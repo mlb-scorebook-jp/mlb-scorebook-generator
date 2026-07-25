@@ -65,7 +65,7 @@ function showPreviewMessage(title, detail = "") {
     `;
 }
 
-function loadGameData() {
+async function loadGameData() {
     const url = urlInput.value.trim();
 
     if (!url) {
@@ -85,6 +85,8 @@ function loadGameData() {
     state.gamePk = gamePk;
     state.gamedayUrl = url;
     state.loaded = true;
+    const gameData = await fetchGameData(gamePk);
+console.log(gameData);
 
     setGameInfo(0, "HOME", "取得準備中");
     setGameInfo(1, "AWAY", "取得準備中");
@@ -147,3 +149,14 @@ footerButtons.forEach((button) => {
 });
 
 resetGameInfo();
+async function fetchGameData(gamePk) {
+    const response = await fetch(
+        `https://statsapi.mlb.com/api/v1.1/game/${gamePk}/feed/live`
+    );
+
+    if (!response.ok) {
+        throw new Error("試合データを取得できませんでした。");
+    }
+
+    return await response.json();
+}
