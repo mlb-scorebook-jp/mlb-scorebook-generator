@@ -1,12 +1,101 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>MLB Scorebook Generator</title>
+
+    <link rel="stylesheet" href="style.css">
 </head>
-<body style="font-family: sans-serif; text-align:center; margin-top:80px;">
-    <h1>⚾ MLB Scorebook Generator</h1>
-    <h2>Version 0.1</h2>
-    <p>Welcome!</p>
+
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            ⚾ MLB Scorebook Generator
+        </div>
+
+        <div class="version">
+            Version 0.1
+        </div>
+    </header>
+
+    <!-- Main -->
+    <main class="container">
+
+        <!-- Left Panel -->
+        <aside class="sidebar">
+
+            <h2>Game Data</h2>
+
+            <label for="gameday-url">
+                MLB Gameday URL
+            </label>
+
+            <input
+                type="text"
+                id="gameday-url"
+                placeholder="https://www.mlb.com/gameday/...">
+
+            <button id="load-btn">
+                試合データを取得
+            </button>
+
+            <button id="generate-btn">
+                スコアブック生成
+            </button>
+
+            <hr>
+
+            <h3>Game Information</h3>
+
+            <div class="game-info">
+
+                <p>HOME：</p>
+
+                <p>AWAY：</p>
+
+                <p>DATE：</p>
+
+                <p>BALLPARK：</p>
+
+                <p>STATUS：</p>
+
+            </div>
+
+        </aside>
+
+        <!-- Scorebook -->
+        <section class="viewer">
+
+            <div class="scorebook">
+
+                SCOREBOOK PREVIEW
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+
+        <button>PDF</button>
+
+        <button>PNG</button>
+
+        <button>PRINT</button>
+
+        <button>JSON</button>
+
+    </footer>
+
+    <script src="app.js"></script>
+
 </body>
+
 </html>
