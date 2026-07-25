@@ -85,7 +85,11 @@ async function loadGameData() {
     state.gamePk = gamePk;
     state.gamedayUrl = url;
     state.loaded = true;
+    console.log("① fetch開始");
+
     const gameData = await fetchGameData(gamePk);
+
+    console.log("② fetch完了");
 console.log(gameData);
 
     setGameInfo(0, "HOME", "取得準備中");
