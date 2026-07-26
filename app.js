@@ -155,7 +155,6 @@ footerButtons.forEach((button) => {
     button.addEventListener("click", handleOutput);
 });
 
-resetGameInfo();
 async function fetchGameData(gamePk) {
     const response = await fetch(
         `https://statsapi.mlb.com/api/v1.1/game/${gamePk}/feed/live`
