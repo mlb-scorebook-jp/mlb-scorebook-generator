@@ -631,3 +631,127 @@ body {
         padding: 14px;
     }
 }
+
+/* =========================
+   Scorebook Layout
+========================= */
+
+.scorebook {
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 28px;
+}
+
+.scorebook-page {
+    width: 100%;
+    min-height: 100%;
+    color: #1f252b;
+    letter-spacing: 0;
+}
+
+.scorebook-header {
+    display: grid;
+    grid-template-columns: 220px minmax(0, 1fr);
+    gap: 24px;
+    padding-bottom: 18px;
+    border-bottom: 2px solid #29323a;
+}
+
+.scorebook-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 74px;
+    border: 2px solid #29323a;
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+}
+
+.scorebook-game-meta {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    border-top: 1px solid #4b545c;
+    border-left: 1px solid #4b545c;
+}
+
+.scorebook-meta-item {
+    min-height: 37px;
+    display: grid;
+    grid-template-columns: 78px minmax(0, 1fr);
+    align-items: center;
+    border-right: 1px solid #4b545c;
+    border-bottom: 1px solid #4b545c;
+}
+
+.scorebook-meta-item span {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    border-right: 1px solid #4b545c;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    background: rgba(40, 48, 56, 0.08);
+}
+
+.scorebook-meta-item strong {
+    min-width: 0;
+    padding: 0 10px;
+    overflow: hidden;
+    font-size: 12px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.scorebook-body {
+    display: grid;
+    grid-template-columns: 280px minmax(0, 1fr);
+    gap: 14px;
+    margin-top: 16px;
+}
+
+.lineup-section,
+.score-grid-section {
+    border: 1px solid #4b545c;
+}
+
+.lineup-heading {
+    padding: 9px 12px;
+    border-bottom: 1px solid #4b545c;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    background: rgba(40, 48, 56, 0.08);
+}
+
+.lineup-table {
+    min-height: 460px;
+}
+
+.score-grid-placeholder {
+    min-height: 494px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #778089;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    background:
+        repeating-linear-gradient(
+            0deg,
+            transparent 0,
+            transparent 39px,
+            rgba(60, 70, 80, 0.18) 39px,
+            rgba(60, 70, 80, 0.18) 40px
+        ),
+        repeating-linear-gradient(
+            90deg,
+            transparent 0,
+            transparent 69px,
+            rgba(60, 70, 80, 0.18) 69px,
+            rgba(60, 70, 80, 0.18) 70px
+        );
+}
