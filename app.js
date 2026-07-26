@@ -102,7 +102,7 @@ async function loadGameData() {
    setGameInfo(3, "BALLPARK", gameData.gameData.venue.name);
     setGameInfo(4, "STATUS", `試合ID ${gamePk} を確認`);
 
-    console.log("VENUE:", gameData.gameData.venue);
+    console.log("STATUS:", gameData.gameData.status);
 
     loadButton.textContent = "試合IDを確認しました";
 
