@@ -102,6 +102,8 @@ async function loadGameData() {
    setGameInfo(3, "BALLPARK", gameData.gameData.venue.name);
     setGameInfo(4, "STATUS", gameData.gameData.status.detailedState);
 
+    console.log("LIVE DATA:", gameData.liveData);
+
     loadButton.textContent = "試合IDを確認しました";
 
     showPreviewMessage(
