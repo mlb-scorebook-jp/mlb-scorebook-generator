@@ -114,10 +114,12 @@ setGameInfo("status", gameData.gameData.status.detailedState);
 });
 
 console.log(awayLineup);
+/*
 showPreviewMessage(
     "AWAY LINEUP",
     awayLineup.join("<br>")
 );
+*/
 
     loadButton.textContent = "試合IDを確認しました";
 
@@ -138,10 +140,12 @@ function generateScorebook() {
         return;
     }
 
-    showPreviewMessage(
-        "SCOREBOOK GENERATION READY",
-        `GAME ID：${state.gamePk}`
-    );
+    /*
+showPreviewMessage(
+    "SCOREBOOK GENERATION READY",
+    `GAME ID：${state.gamePk}`
+);
+*/
 
     setGameInfo("status", "スコアブック生成準備完了");
 }
