@@ -633,125 +633,584 @@ body {
 }
 
 /* =========================
-   Scorebook Layout
+   NHK Scorebook Layout
 ========================= */
 
 .scorebook {
     align-items: flex-start;
     justify-content: flex-start;
-    padding: 28px;
+    padding: 18px;
 }
 
-.scorebook-page {
-    width: 100%;
-    min-height: 100%;
-    color: #1f252b;
+/* 用紙本体 */
+
+.nhk-scorebook-page {
+    --nhk-line: #4d5552;
+    --nhk-line-light: rgba(77, 85, 82, 0.38);
+    --nhk-line-dark: #252b29;
+    --nhk-paper: #f7f4e9;
+    --nhk-text: #171a19;
+
+    width: 1500px;
+    min-width: 1500px;
+    min-height: 980px;
+    margin: 0 auto;
+    padding: 24px;
+
+    color: var(--nhk-text);
+    font-family:
+        "Hiragino Kaku Gothic ProN",
+        "Hiragino Sans",
+        "Yu Gothic",
+        sans-serif;
+    font-size: 12px;
+    font-weight: 500;
     letter-spacing: 0;
+
+    background:
+        repeating-linear-gradient(
+            0deg,
+            rgba(100, 92, 72, 0.018) 0,
+            rgba(100, 92, 72, 0.018) 1px,
+            transparent 1px,
+            transparent 4px
+        ),
+        linear-gradient(
+            135deg,
+            #fffef9 0%,
+            var(--nhk-paper) 65%,
+            #efebdf 100%
+        );
+
+    border: 1px solid #d3cec0;
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.9) inset,
+        0 14px 34px rgba(0, 0, 0, 0.28);
 }
 
-.scorebook-header {
-    display: grid;
-    grid-template-columns: 220px minmax(0, 1fr);
-    gap: 24px;
-    padding-bottom: 18px;
-    border-bottom: 2px solid #29323a;
+/* =========================
+   Sheet Header
+========================= */
+
+.nhk-sheet-header {
+    margin-bottom: 10px;
 }
 
-.scorebook-title {
+.nhk-header-top {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 74px;
-    border: 2px solid #29323a;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 8px;
+}
+
+.nhk-form-title {
     font-size: 20px;
     font-weight: 800;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.045em;
 }
 
-.scorebook-game-meta {
+.nhk-game-number {
+    min-width: 145px;
+    padding: 2px 10px 4px;
+    border-bottom: 1px solid var(--nhk-line-dark);
+    font-size: 12px;
+    text-align: center;
+}
+
+.nhk-game-meta {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    border-top: 1px solid #4b545c;
-    border-left: 1px solid #4b545c;
+    grid-template-columns:
+        1.25fr
+        1.8fr
+        0.72fr
+        0.72fr
+        0.8fr;
+
+    border-top: 2px solid var(--nhk-line-dark);
+    border-left: 2px solid var(--nhk-line-dark);
 }
 
-.scorebook-meta-item {
-    min-height: 37px;
-    display: grid;
-    grid-template-columns: 78px minmax(0, 1fr);
-    align-items: center;
-    border-right: 1px solid #4b545c;
-    border-bottom: 1px solid #4b545c;
-}
-
-.scorebook-meta-item span {
-    height: 100%;
+.nhk-meta-field {
+    min-height: 38px;
     display: flex;
     align-items: center;
-    padding: 0 10px;
-    border-right: 1px solid #4b545c;
-    font-size: 10px;
-    font-weight: 800;
-    letter-spacing: 0.08em;
-    background: rgba(40, 48, 56, 0.08);
+    gap: 7px;
+    padding: 4px 8px;
+
+    border-right: 2px solid var(--nhk-line-dark);
+    border-bottom: 2px solid var(--nhk-line-dark);
 }
 
-.scorebook-meta-item strong {
+.nhk-meta-label {
+    flex: 0 0 auto;
+    font-size: 9px;
+    font-weight: 800;
+}
+
+.nhk-meta-field strong {
     min-width: 0;
-    padding: 0 10px;
+    flex: 1;
     overflow: hidden;
     font-size: 12px;
+    font-weight: 650;
+    text-align: center;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
 
-.scorebook-body {
+.nhk-matchup {
     display: grid;
-    grid-template-columns: 280px minmax(0, 1fr);
-    gap: 14px;
-    margin-top: 16px;
+    grid-template-columns: 1fr 44px 1fr;
+    margin-top: 7px;
+    border: 2px solid var(--nhk-line-dark);
 }
 
-.lineup-section,
-.score-grid-section {
-    border: 1px solid #4b545c;
+.nhk-matchup-team {
+    min-height: 43px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 4px 12px;
 }
 
-.lineup-heading {
-    padding: 9px 12px;
-    border-bottom: 1px solid #4b545c;
-    font-size: 11px;
+.nhk-team-label {
+    font-size: 10px;
     font-weight: 800;
-    letter-spacing: 0.08em;
-    background: rgba(40, 48, 56, 0.08);
 }
 
-.lineup-table {
-    min-height: 460px;
+.nhk-matchup-team strong {
+    flex: 1;
+    font-size: 17px;
+    font-weight: 750;
+    text-align: center;
 }
 
-.score-grid-placeholder {
-    min-height: 494px;
+.nhk-matchup-separator {
+    display: grid;
+    place-items: center;
+    border-right: 1px solid var(--nhk-line-dark);
+    border-left: 1px solid var(--nhk-line-dark);
+    font-weight: 800;
+}
+
+/* =========================
+   Main Score Grid
+========================= */
+
+.nhk-score-sheet {
+    width: 100%;
+    overflow: hidden;
+    border: 2px solid var(--nhk-line-dark);
+}
+
+.nhk-grid-header,
+.nhk-empty-player-row,
+.nhk-player-row {
+    display: grid;
+
+    grid-template-columns:
+        38px
+        48px
+        176px
+        repeat(12, 76px)
+        repeat(4, 38px);
+}
+
+.nhk-grid-header {
+    min-height: 32px;
+    background: rgba(45, 55, 50, 0.055);
+}
+
+.nhk-header-cell,
+.nhk-row-cell {
+    min-width: 0;
+    border-right: 1px solid var(--nhk-line);
+}
+
+.nhk-header-cell:last-child,
+.nhk-row-cell:last-child {
+    border-right: 0;
+}
+
+.nhk-header-cell {
+    display: grid;
+    place-items: center;
+    padding: 3px 1px;
+    border-bottom: 2px solid var(--nhk-line-dark);
+
+    font-size: 9px;
+    font-weight: 800;
+    line-height: 1;
+    text-align: center;
+}
+
+.nhk-total-header {
+    font-size: 8px;
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+}
+
+.nhk-player-rows {
+    width: 100%;
+}
+
+.nhk-empty-player-row,
+.nhk-player-row {
+    min-height: 76px;
+}
+
+.nhk-row-cell {
+    position: relative;
+    min-height: 76px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #778089;
-    font-size: 13px;
+
+    border-bottom: 1px solid var(--nhk-line);
+    font-size: 11px;
+}
+
+.nhk-order-cell {
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.nhk-position-cell {
+    font-size: 11px;
     font-weight: 700;
-    letter-spacing: 0.08em;
+}
+
+.nhk-player-cell {
+    justify-content: flex-start;
+    padding: 5px 7px;
+
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.25;
+}
+
+/* 打席マス */
+
+.nhk-atbat-cell {
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            to bottom right,
+            transparent calc(50% - 0.35px),
+            rgba(65, 75, 70, 0.11) 50%,
+            transparent calc(50% + 0.35px)
+        ),
+        linear-gradient(
+            to top right,
+            transparent calc(50% - 0.35px),
+            rgba(65, 75, 70, 0.11) 50%,
+            transparent calc(50% + 0.35px)
+        );
+}
+
+.nhk-atbat-cell::before {
+    content: "";
+    position: absolute;
+    inset: 8px 10px;
+
+    border: 1px dotted rgba(60, 70, 65, 0.3);
+    pointer-events: none;
+}
+
+.nhk-atbat-cell::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    width: 21px;
+    height: 21px;
+
+    border: 1px solid rgba(55, 65, 60, 0.52);
+    transform:
+        translate(-50%, -50%)
+        rotate(45deg);
+
+    pointer-events: none;
+}
+
+.nhk-stat-cell {
+    background: rgba(45, 55, 50, 0.025);
+    font-size: 11px;
+    font-weight: 700;
+}
+
+/* 3回ごとの区切り */
+
+.nhk-grid-header > :nth-child(4),
+.nhk-grid-header > :nth-child(7),
+.nhk-grid-header > :nth-child(10),
+.nhk-grid-header > :nth-child(13),
+.nhk-empty-player-row > :nth-child(4),
+.nhk-empty-player-row > :nth-child(7),
+.nhk-empty-player-row > :nth-child(10),
+.nhk-empty-player-row > :nth-child(13),
+.nhk-player-row > :nth-child(4),
+.nhk-player-row > :nth-child(7),
+.nhk-player-row > :nth-child(10),
+.nhk-player-row > :nth-child(13) {
+    border-left: 2px solid var(--nhk-line-dark);
+}
+
+/* 成績欄の区切り */
+
+.nhk-grid-header > :nth-child(16),
+.nhk-empty-player-row > :nth-child(16),
+.nhk-player-row > :nth-child(16) {
+    border-left: 2px solid var(--nhk-line-dark);
+}
+
+/* 旧グリッド用領域 */
+
+.nhk-score-sheet > .score-grid-placeholder {
+    display: none;
+}
+
+/* =========================
+   Sheet Footer
+========================= */
+
+.nhk-sheet-footer {
+    display: grid;
+    grid-template-columns: 1.55fr 0.85fr;
+    gap: 9px;
+    margin-top: 9px;
+}
+
+.nhk-inning-summary,
+.nhk-batting-notes,
+.nhk-pitching-section,
+.nhk-notes-section {
+    overflow: hidden;
+    border: 2px solid var(--nhk-line-dark);
+}
+
+.nhk-summary-title,
+.nhk-section-title {
+    min-height: 27px;
+    display: flex;
+    align-items: center;
+    padding: 3px 8px;
+
+    border-bottom: 1px solid var(--nhk-line-dark);
+    background: rgba(45, 55, 50, 0.055);
+
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+}
+
+/* イニング集計 */
+
+.nhk-summary-grid {
+    display: grid;
+    grid-template-columns: 46px repeat(12, 1fr) 43px;
+}
+
+.nhk-summary-grid > div {
+    min-height: 24px;
+    display: grid;
+    place-items: center;
+
+    border-right: 1px solid var(--nhk-line-light);
+    border-bottom: 1px solid var(--nhk-line-light);
+
+    font-size: 8px;
+}
+
+.nhk-summary-grid > div:nth-child(14n) {
+    border-right: 0;
+}
+
+.nhk-summary-grid > div:nth-last-child(-n + 14) {
+    border-bottom: 0;
+}
+
+.nhk-summary-label,
+.nhk-summary-total {
+    background: rgba(45, 55, 50, 0.045);
+    font-weight: 800;
+}
+
+/* 長打・盗塁欄 */
+
+.nhk-batting-notes {
+    display: grid;
+    grid-template-rows: repeat(4, minmax(39px, auto));
+}
+
+.nhk-footer-box {
+    display: grid;
+    grid-template-columns: 58px 1fr;
+    min-height: 39px;
+    border-bottom: 1px solid var(--nhk-line-dark);
+}
+
+.nhk-footer-box:last-child {
+    border-bottom: 0;
+}
+
+.nhk-footer-label {
+    display: grid;
+    place-items: center;
+
+    border-right: 1px solid var(--nhk-line-dark);
+    background: rgba(45, 55, 50, 0.045);
+
+    font-size: 9px;
+    font-weight: 800;
+}
+
+.nhk-footer-box > div {
+    padding: 5px 7px;
+    font-size: 9px;
+}
+
+/* 投手記録 */
+
+.nhk-pitching-section {
+    grid-column: 1;
+}
+
+.nhk-pitching-header {
+    display: grid;
+    grid-template-columns:
+        2fr
+        0.6fr
+        0.65fr
+        0.8fr
+        0.65fr
+        0.65fr
+        0.65fr
+        0.65fr
+        0.65fr;
+}
+
+.nhk-pitching-header > div {
+    min-height: 27px;
+    display: grid;
+    place-items: center;
+    padding: 2px;
+
+    border-right: 1px solid var(--nhk-line);
+    border-bottom: 1px solid var(--nhk-line);
+
+    font-size: 8px;
+    font-weight: 800;
+    text-align: center;
+}
+
+.nhk-pitching-header > div:last-child {
+    border-right: 0;
+}
+
+.nhk-pitching-rows {
+    min-height: 102px;
+
     background:
         repeating-linear-gradient(
-            0deg,
+            to bottom,
             transparent 0,
-            transparent 39px,
-            rgba(60, 70, 80, 0.18) 39px,
-            rgba(60, 70, 80, 0.18) 40px
-        ),
-        repeating-linear-gradient(
-            90deg,
-            transparent 0,
-            transparent 69px,
-            rgba(60, 70, 80, 0.18) 69px,
-            rgba(60, 70, 80, 0.18) 70px
+            transparent 24px,
+            var(--nhk-line-light) 24px,
+            var(--nhk-line-light) 25px
         );
+}
+
+/* 備考 */
+
+.nhk-notes-section {
+    grid-column: 2;
+}
+
+.nhk-notes-area {
+    min-height: 130px;
+    padding: 7px;
+
+    background:
+        repeating-linear-gradient(
+            to bottom,
+            transparent 0,
+            transparent 24px,
+            rgba(77, 85, 82, 0.26) 24px,
+            rgba(77, 85, 82, 0.26) 25px
+        );
+}
+
+/* =========================
+   Small Screens
+========================= */
+
+@media (max-width: 1100px) {
+    .scorebook {
+        padding: 10px;
+    }
+
+    .nhk-scorebook-page {
+        margin: 0;
+    }
+}
+
+/* =========================
+   Print
+========================= */
+
+@media print {
+
+    body {
+        min-width: 0;
+        background: #ffffff;
+    }
+
+    .header,
+    .sidebar,
+    body > .footer {
+        display: none !important;
+    }
+
+    .container {
+        display: block;
+        min-height: 0;
+        padding: 0;
+    }
+
+    .viewer,
+    .scorebook {
+        display: block;
+        width: auto;
+        min-height: 0;
+        padding: 0;
+        margin: 0;
+
+        overflow: visible;
+        border: 0;
+        background: #ffffff;
+        box-shadow: none;
+    }
+
+    .nhk-scorebook-page {
+        width: 100%;
+        min-width: 0;
+        min-height: 0;
+        margin: 0;
+        padding: 7mm;
+
+        border: 0;
+        box-shadow: none;
+
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+    }
+
+    @page {
+        size: A3 landscape;
+        margin: 5mm;
+    }
 }
