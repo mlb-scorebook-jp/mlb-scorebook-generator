@@ -107,6 +107,10 @@ async function loadGameData() {
 });
 
 console.log(awayLineup);
+showPreviewMessage(
+    "AWAY LINEUP",
+    awayLineup.join("<br>")
+);
 
     loadButton.textContent = "試合IDを確認しました";
 
