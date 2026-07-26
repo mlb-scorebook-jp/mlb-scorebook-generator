@@ -1,66 +1,805 @@
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>MLB Scorebook Generator</title>
 
-    <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            --body-bg: #15191d;
+            --panel-bg: #20262c;
+            --panel-border: #3b454e;
+            --text: #e7ecef;
+            --muted: #9ba7af;
+            --button-bg: #2c353d;
+            --button-hover: #37434d;
+            --accent: #87aebe;
+
+            --paper: #f2eccf;
+            --paper-dark: #e8dfb8;
+            --ink: #34362f;
+            --rule: rgba(52, 54, 47, 0.82);
+            --guide: rgba(52, 54, 47, 0.38);
+
+            --order-width: 34px;
+            --position-width: 42px;
+            --name-width: 148px;
+            --number-width: 38px;
+            --inning-width: 78px;
+            --stat-width: 44px;
+
+            --header-height: 30px;
+            --lineup-height: 75px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+            min-height: 100%;
+        }
+
+        body {
+            color: var(--text);
+            background: var(--body-bg);
+            font-family:
+                "Hiragino Kaku Gothic ProN",
+                "Hiragino Sans",
+                "Yu Gothic",
+                Meiryo,
+                sans-serif;
+        }
+
+        button,
+        input {
+            font: inherit;
+        }
+
+        /* =========================
+           アプリケーション外枠
+        ========================= */
+
+        .app-header {
+            height: 68px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 24px;
+            border-bottom: 1px solid #39434b;
+            background:
+                linear-gradient(180deg, #252c32 0%, #1c2227 100%);
+        }
+
+        .app-title h1 {
+            margin: 0;
+            font-size: 19px;
+            letter-spacing: 0.08em;
+        }
+
+        .app-title p {
+            margin: 5px 0 0;
+            color: var(--muted);
+            font-size: 10px;
+            letter-spacing: 0.12em;
+        }
+
+        .version {
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+        .app-main {
+            display: grid;
+            grid-template-columns: 270px minmax(0, 1fr);
+            min-height: calc(100vh - 120px);
+        }
+
+        /* =========================
+           左側操作パネル
+        ========================= */
+
+        .sidebar {
+            padding: 20px;
+            border-right: 1px solid #374149;
+            background:
+                linear-gradient(180deg, #22292f 0%, #1b2025 100%);
+        }
+
+        .sidebar h2,
+        .sidebar h3 {
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .sidebar h2 {
+            margin-bottom: 18px;
+            font-size: 13px;
+        }
+
+        .sidebar h3 {
+            margin-bottom: 12px;
+            color: #c1cbd1;
+            font-size: 10px;
+        }
+
+        .sidebar label {
+            display: block;
+            margin-bottom: 7px;
+            color: var(--muted);
+            font-size: 10px;
+            letter-spacing: 0.05em;
+        }
+
+        .sidebar input {
+            width: 100%;
+            height: 36px;
+            margin-bottom: 10px;
+            padding: 0 10px;
+            color: #eef3f5;
+            border: 1px solid #46525b;
+            border-radius: 2px;
+            outline: none;
+            background: #14191d;
+            font-size: 11px;
+        }
+
+        .sidebar input:focus {
+            border-color: #7896a3;
+        }
+
+        .sidebar button {
+            width: 100%;
+            min-height: 38px;
+            margin-bottom: 8px;
+            color: #e9eef0;
+            border: 1px solid #4c5861;
+            border-radius: 2px;
+            background:
+                linear-gradient(180deg, #343e46 0%, #283038 100%);
+            cursor: pointer;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .sidebar button:hover {
+            background:
+                linear-gradient(180deg, #3e4a54 0%, #303942 100%);
+        }
+
+        .sidebar hr {
+            margin: 20px 0;
+            border: 0;
+            border-top: 1px solid #3b454d;
+        }
+
+        .game-info {
+            border-top: 1px solid #3c464e;
+        }
+
+        .info-row {
+            min-height: 31px;
+            display: grid;
+            grid-template-columns: 78px 1fr;
+            align-items: center;
+            border-bottom: 1px solid #343e45;
+            font-size: 10px;
+        }
+
+        .info-row span:first-child {
+            color: var(--muted);
+            letter-spacing: 0.08em;
+        }
+
+        .info-row span:last-child {
+            overflow: hidden;
+            text-align: right;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        /* =========================
+           台紙表示領域
+        ========================= */
+
+        .viewer {
+            min-width: 0;
+            padding: 22px;
+            overflow: auto;
+            background:
+                radial-gradient(
+                    circle at 50% 0%,
+                    rgba(105, 122, 132, 0.12),
+                    transparent 45%
+                ),
+                #111519;
+        }
+
+        .paper {
+            width: max-content;
+            min-width: 100%;
+            padding: 18px;
+            color: var(--ink);
+            background:
+                linear-gradient(
+                    rgba(255, 255, 255, 0.08),
+                    rgba(255, 255, 255, 0.08)
+                ),
+                var(--paper);
+            box-shadow:
+                0 15px 38px rgba(0, 0, 0, 0.32),
+                0 0 0 1px rgba(255, 255, 255, 0.12);
+            font-variant-numeric: tabular-nums;
+        }
+
+        .sheet-width {
+            width: calc(
+                var(--order-width) +
+                var(--position-width) +
+                var(--name-width) +
+                var(--number-width) +
+                var(--inning-width) * 12 +
+                var(--stat-width) * 4
+            );
+        }
+
+        /* =========================
+           台紙上部
+        ========================= */
+
+        .sheet-top {
+            margin-bottom: 9px;
+        }
+
+        .sheet-title-row {
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--rule);
+        }
+
+        .sheet-title {
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 15px;
+            font-weight: 700;
+            letter-spacing: 0.13em;
+        }
+
+        .game-number {
+            font-size: 11px;
+        }
+
+        .game-meta {
+            display: grid;
+            grid-template-columns:
+                minmax(180px, 1.1fr)
+                minmax(220px, 1.4fr)
+                120px
+                120px
+                145px;
+            border-left: 1px solid var(--rule);
+            border-bottom: 1px solid var(--rule);
+        }
+
+        .meta-field {
+            min-height: 32px;
+            display: grid;
+            grid-template-columns: auto minmax(0, 1fr);
+            align-items: center;
+            border-right: 1px solid var(--rule);
+        }
+
+        .meta-label {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            padding: 0 8px;
+            border-right: 1px solid var(--rule);
+            background: rgba(220, 209, 165, 0.25);
+            font-size: 9px;
+            font-weight: 700;
+        }
+
+        .meta-value {
+            min-width: 0;
+            padding: 0 8px;
+            overflow: hidden;
+            font-size: 11px;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .matchup {
+            min-height: 37px;
+            display: grid;
+            grid-template-columns: 1fr 38px 1fr;
+            align-items: center;
+            border-right: 1px solid var(--rule);
+            border-bottom: 1px solid var(--rule);
+            border-left: 1px solid var(--rule);
+        }
+
+        .team {
+            height: 100%;
+            display: grid;
+            grid-template-columns: 48px 1fr;
+            align-items: center;
+        }
+
+        .team:first-child {
+            border-right: 1px solid var(--rule);
+        }
+
+        .team:last-child {
+            border-left: 1px solid var(--rule);
+        }
+
+        .team-label {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-right: 1px solid var(--rule);
+            font-size: 9px;
+            font-weight: 700;
+        }
+
+        .team:last-child .team-label {
+            border-right: 1px solid var(--rule);
+        }
+
+        .team-name {
+            padding: 0 10px;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .versus {
+            text-align: center;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        /* =========================
+           スコアブック本体
+        ========================= */
+
+        .score-grid {
+            display: grid;
+            grid-template-columns:
+                var(--order-width)
+                calc(
+                    var(--position-width) +
+                    var(--name-width) +
+                    var(--number-width)
+                )
+                repeat(12, var(--inning-width))
+                repeat(4, var(--stat-width));
+            width: max-content;
+            border-top: 1.4px solid var(--rule);
+            border-left: 1.4px solid var(--rule);
+        }
+
+        .score-grid-header,
+        .lineup-slot,
+        .pitcher-slot {
+            display: contents;
+        }
+
+        .grid-header,
+        .grid-cell {
+            border-right: 1px solid var(--rule);
+            border-bottom: 1px solid var(--rule);
+        }
+
+        .grid-header {
+            height: var(--header-height);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(221, 210, 167, 0.28);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+        }
+
+        /* 打順の右に守備、その右に名前、その右に背番号 */
+        .player-header {
+            display: grid;
+            grid-template-columns:
+                var(--position-width)
+                var(--name-width)
+                var(--number-width);
+            padding: 0;
+        }
+
+        .player-header span {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-right: 1px solid var(--rule);
+        }
+
+        .player-header span:last-child {
+            border-right: 0;
+        }
+
+        .order-cell {
+            height: var(--lineup-height);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(230, 220, 180, 0.18);
+            font-size: 17px;
+            font-weight: 700;
+        }
+
+        /* 各打順に先発＋交代2人の3段 */
+        .player-stack {
+            height: var(--lineup-height);
+        }
+
+        .player-line {
+            height: calc(var(--lineup-height) / 3);
+            display: grid;
+            grid-template-columns:
+                var(--position-width)
+                var(--name-width)
+                var(--number-width);
+        }
+
+        .player-line + .player-line {
+            border-top: 1px dotted var(--guide);
+        }
+
+        .position-cell,
+        .player-name-cell,
+        .number-cell {
+            min-width: 0;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .position-cell {
+            justify-content: center;
+            border-right: 1px solid var(--rule);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: -0.04em;
+        }
+
+        .player-name-cell {
+            padding: 0 5px;
+            border-right: 1px solid var(--rule);
+            font-size: 10px;
+        }
+
+        .number-cell {
+            justify-content: center;
+            font-size: 10px;
+            font-weight: 700;
+        }
+
+        /* =========================
+           NHK式打席マス
+        ========================= */
+
+        .atbat-cell {
+            position: relative;
+            height: var(--lineup-height);
+            display: grid;
+            grid-template-columns: 15px minmax(0, 1fr);
+            padding: 0;
+            overflow: hidden;
+        }
+
+        /* 1球ずつ記録する左側の細い欄 */
+        .pitch-column {
+            height: 100%;
+            display: grid;
+            grid-template-rows: repeat(10, 1fr);
+            border-right: 1px solid var(--rule);
+        }
+
+        .pitch-line {
+            border-bottom: 1px dotted var(--guide);
+        }
+
+        .pitch-line:last-child {
+            border-bottom: 0;
+        }
+
+        /* 打席結果の記入欄 */
+        .result-box {
+            position: relative;
+            min-width: 0;
+            height: 100%;
+        }
+
+        /* 中央縦点線 */
+        .result-box::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            border-left: 1px dotted var(--guide);
+        }
+
+        /* 中央横点線 */
+        .result-box::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            right: 0;
+            left: 0;
+            border-top: 1px dotted var(--guide);
+        }
+
+        /*
+         * ダイヤ形は作らない。
+         * 3・6・9回などの太線も作らない。
+         * 全イニングの縦線を同じ太さにする。
+         */
+
+        .stat-cell {
+            height: var(--lineup-height);
+        }
+
+        /* 投手専用欄 */
+        .pitcher-order {
+            font-size: 16px;
+            letter-spacing: 0.04em;
+        }
+
+        .pitcher-stack {
+            background: rgba(230, 220, 180, 0.12);
+        }
+
+        /* =========================
+           チーム集計
+        ========================= */
+
+        .team-total-grid {
+            display: grid;
+            grid-template-columns:
+                calc(
+                    var(--order-width) +
+                    var(--position-width) +
+                    var(--name-width) +
+                    var(--number-width)
+                )
+                repeat(12, var(--inning-width))
+                repeat(4, var(--stat-width));
+            width: max-content;
+            border-left: 1.4px solid var(--rule);
+        }
+
+        .total-cell {
+            min-height: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-right: 1px solid var(--rule);
+            border-bottom: 1px solid var(--rule);
+            font-size: 9px;
+        }
+
+        .total-label {
+            justify-content: flex-start;
+            padding-left: 10px;
+            font-weight: 700;
+        }
+
+        /* =========================
+           台紙下部
+        ========================= */
+
+        .sheet-footer {
+            margin-top: 10px;
+        }
+
+        .record-boxes {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            border-top: 1px solid var(--rule);
+            border-left: 1px solid var(--rule);
+        }
+
+        .record-box {
+            min-height: 46px;
+            display: grid;
+            grid-template-columns: 48px 1fr;
+            border-right: 1px solid var(--rule);
+            border-bottom: 1px solid var(--rule);
+        }
+
+        .record-label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-right: 1px solid var(--rule);
+            background: rgba(221, 210, 167, 0.22);
+            font-size: 9px;
+            font-weight: 700;
+        }
+
+        .pitching-record {
+            margin-top: 8px;
+            border-top: 1px solid var(--rule);
+            border-left: 1px solid var(--rule);
+        }
+
+        .section-title {
+            min-height: 25px;
+            display: flex;
+            align-items: center;
+            padding: 0 9px;
+            border-right: 1px solid var(--rule);
+            border-bottom: 1px solid var(--rule);
+            background: rgba(221, 210, 167, 0.25);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+        }
+
+        .pitching-header {
+            display: grid;
+            grid-template-columns:
+                minmax(170px, 1.8fr)
+                repeat(8, minmax(48px, 0.65fr));
+        }
+
+        .pitching-header div {
+            min-height: 26px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-right: 1px solid var(--rule);
+            border-bottom: 1px solid var(--rule);
+            font-size: 9px;
+        }
+
+        .pitching-rows {
+            min-height: 72px;
+            border-right: 1px solid var(--rule);
+            border-bottom: 1px solid var(--rule);
+            background:
+                repeating-linear-gradient(
+                    to bottom,
+                    transparent 0,
+                    transparent 23px,
+                    var(--guide) 24px
+                );
+        }
+
+        .notes-section {
+            margin-top: 8px;
+            border-top: 1px solid var(--rule);
+            border-left: 1px solid var(--rule);
+        }
+
+        .notes-area {
+            min-height: 75px;
+            border-right: 1px solid var(--rule);
+            border-bottom: 1px solid var(--rule);
+            background:
+                repeating-linear-gradient(
+                    to bottom,
+                    transparent 0,
+                    transparent 23px,
+                    var(--guide) 24px
+                );
+        }
+
+        /* =========================
+           フッター操作
+        ========================= */
+
+        .app-footer {
+            min-height: 52px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 8px;
+            padding: 8px 22px;
+            border-top: 1px solid #39434b;
+            background: #1d2328;
+        }
+
+        .app-footer button {
+            min-width: 76px;
+            height: 32px;
+            color: #e7ecef;
+            border: 1px solid #4d5962;
+            border-radius: 2px;
+            background: #2c353c;
+            cursor: pointer;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+        }
+
+        @media (max-width: 900px) {
+            .app-main {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                border-right: 0;
+                border-bottom: 1px solid #374149;
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+
+            .app-header,
+            .sidebar,
+            .app-footer {
+                display: none !important;
+            }
+
+            .app-main,
+            .viewer {
+                display: block;
+                padding: 0;
+                overflow: visible;
+                background: white;
+            }
+
+            .paper {
+                padding: 0;
+                box-shadow: none;
+                background: var(--paper);
+                print-color-adjust: exact;
+                -webkit-print-color-adjust: exact;
+            }
+        }
+    </style>
 </head>
 
 <body>
-
-    <!-- Header -->
-    <header class="header">
-
-        <div class="logo">
+    <header class="app-header">
+        <div class="app-title">
             <h1>MLB SCOREBOOK GENERATOR</h1>
-            <p>Professional Baseball Scorebook System</p>
+            <p>PROFESSIONAL BASEBALL SCOREBOOK SYSTEM</p>
         </div>
 
-        <div class="version">
-            Ver. 1.0.0
-        </div>
-
+        <div class="version">Ver. 1.1.0</div>
     </header>
 
-    <!-- Main -->
-    <main class="container">
-
-        <!-- Left Panel -->
+    <main class="app-main">
         <aside class="sidebar">
-
             <h2>Game Data</h2>
 
-            <label for="gameday-url">
-                MLB Gameday URL
-            </label>
+            <label for="gameday-url">MLB Gameday URL</label>
 
             <input
                 type="text"
                 id="gameday-url"
                 placeholder="https://www.mlb.com/gameday/...">
 
-            <button id="load-btn">
-                試合データを取得
-            </button>
-
-            <button id="generate-btn">
-                スコアブック生成
-            </button>
-
-            <button id="save-btn">
-                保存
-            </button>
+            <button id="load-btn">試合データを取得</button>
+            <button id="generate-btn">スコアブック生成</button>
+            <button id="save-btn">保存</button>
 
             <hr>
 
             <h3>Game Information</h3>
 
             <div class="game-info">
-
                 <div class="info-row">
                     <span>HOME</span>
                     <span id="home-team">-</span>
@@ -85,548 +824,417 @@
                     <span>STATUS</span>
                     <span id="game-status">-</span>
                 </div>
-
             </div>
 
             <hr>
 
             <h3>Scorebook Library</h3>
 
-            <div id="library-list">
-                <!-- 保存したスコアブック一覧 -->
-            </div>
-
+            <div id="library-list"></div>
         </aside>
 
-        <!-- Scorebook Viewer -->
         <section class="viewer">
-
-            <div class="scorebook">
-
-                <!-- NHK式スコアブック用紙 -->
-                <article class="scorebook-page nhk-scorebook-page">
-
-                    <!-- 用紙上部 -->
-                    <header class="nhk-sheet-header">
-
-                        <div class="nhk-header-top">
-
-                            <div class="nhk-form-title">
-                                BASEBALL SCOREBOOK
-                            </div>
-
-                            <div class="nhk-game-number">
-                                第
-                                <span id="scorebook-game-number">—</span>
-                                回戦
-                            </div>
-
+            <article class="paper">
+                <header class="sheet-top sheet-width">
+                    <div class="sheet-title-row">
+                        <div class="sheet-title">
+                            BASEBALL SCOREBOOK
                         </div>
 
-                        <div class="nhk-game-meta">
+                        <div class="game-number">
+                            第
+                            <span id="scorebook-game-number">—</span>
+                            回戦
+                        </div>
+                    </div>
 
-                            <div class="nhk-meta-field nhk-meta-date">
-                                <span class="nhk-meta-label">年月日</span>
-                                <strong id="scorebook-date">—</strong>
-                            </div>
-
-                            <div class="nhk-meta-field nhk-meta-ballpark">
-                                <span class="nhk-meta-label">球場</span>
-                                <strong id="scorebook-ballpark">—</strong>
-                            </div>
-
-                            <div class="nhk-meta-field nhk-meta-start">
-                                <span class="nhk-meta-label">開始</span>
-                                <strong id="scorebook-start-time">—</strong>
-                            </div>
-
-                            <div class="nhk-meta-field nhk-meta-end">
-                                <span class="nhk-meta-label">終了</span>
-                                <strong id="scorebook-end-time">—</strong>
-                            </div>
-
-                            <div class="nhk-meta-field nhk-meta-duration">
-                                <span class="nhk-meta-label">試合時間</span>
-                                <strong id="scorebook-duration">—</strong>
-                            </div>
-
+                    <div class="game-meta">
+                        <div class="meta-field">
+                            <span class="meta-label">年月日</span>
+                            <strong
+                                class="meta-value"
+                                id="scorebook-date">—</strong>
                         </div>
 
-                        <div class="nhk-matchup">
-
-                            <div class="nhk-matchup-team nhk-away-team">
-                                <span class="nhk-team-label">先攻</span>
-                                <strong id="scorebook-away-team">—</strong>
-                            </div>
-
-                            <div class="nhk-matchup-separator">
-                                対
-                            </div>
-
-                            <div class="nhk-matchup-team nhk-home-team">
-                                <span class="nhk-team-label">後攻</span>
-                                <strong id="scorebook-home-team">—</strong>
-                            </div>
-
+                        <div class="meta-field">
+                            <span class="meta-label">球場</span>
+                            <strong
+                                class="meta-value"
+                                id="scorebook-ballpark">—</strong>
                         </div>
 
-                    </header>
-
-                    <!-- スコア本体 -->
-                    <section class="nhk-score-sheet">
-                        <!-- 打順・イニング見出し -->
-                        <div class="nhk-grid-header">
-
-                            <div class="nhk-header-cell nhk-order-header">打順</div>
-                            <div class="nhk-header-cell nhk-number-header">背</div>
-                            <div class="nhk-header-cell nhk-bats-header">打</div>
-                            <div class="nhk-header-cell nhk-throws-header">投</div>
-                            <div class="nhk-header-cell nhk-position-header">守</div>
-                            <div class="nhk-header-cell nhk-player-header">選手名</div>
-
-                            <div class="nhk-header-cell nhk-inning-header">1</div>
-                            <div class="nhk-header-cell nhk-inning-header">2</div>
-                            <div class="nhk-header-cell nhk-inning-header">3</div>
-                            <div class="nhk-header-cell nhk-inning-header">4</div>
-                            <div class="nhk-header-cell nhk-inning-header">5</div>
-                            <div class="nhk-header-cell nhk-inning-header">6</div>
-                            <div class="nhk-header-cell nhk-inning-header">7</div>
-                            <div class="nhk-header-cell nhk-inning-header">8</div>
-                            <div class="nhk-header-cell nhk-inning-header">9</div>
-                            <div class="nhk-header-cell nhk-inning-header">10</div>
-                            <div class="nhk-header-cell nhk-inning-header">11</div>
-                            <div class="nhk-header-cell nhk-inning-header">12</div>
-
-                            <div class="nhk-header-cell nhk-total-header">打数</div>
-                            <div class="nhk-header-cell nhk-total-header">安打</div>
-                            <div class="nhk-header-cell nhk-total-header">打点</div>
-                            <div class="nhk-header-cell nhk-total-header">得点</div>
-
-                        </div>
-                        <!--
-                            選手名表示ルール
-                            ・日本人選手：大谷 翔平
-                            ・外国人選手：C.キャロル
-                            ・カタカナ表記は読み表Excelを優先
-                        -->
-                        <div id="away-lineup-table" class="nhk-player-rows">
-                            <div class="nhk-player-row" data-lineup-slot="1">
-                                <div class="nhk-row-cell nhk-order-cell">1</div>
-                                <div class="nhk-row-cell nhk-number-cell">—</div>
-                                <div class="nhk-row-cell nhk-bats-cell">—</div>
-                                <div class="nhk-row-cell nhk-throws-cell">—</div>
-                                <div class="nhk-row-cell nhk-position-cell">—</div>
-                                <div class="nhk-row-cell nhk-player-cell">—</div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-stat-cell"></div>
-                                <div class="nhk-row-cell nhk-stat-cell"></div>
-                                <div class="nhk-row-cell nhk-stat-cell"></div>
-                                <div class="nhk-row-cell nhk-stat-cell"></div>
-                            </div>
-                            <div class="nhk-player-row" data-lineup-slot="2">
-                                <div class="nhk-row-cell nhk-order-cell">2</div>
-                                <div class="nhk-row-cell nhk-number-cell">—</div>
-                                <div class="nhk-row-cell nhk-bats-cell">—</div>
-                                <div class="nhk-row-cell nhk-throws-cell">—</div>
-                                <div class="nhk-row-cell nhk-position-cell">—</div>
-                                <div class="nhk-row-cell nhk-player-cell">—</div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-stat-cell"></div>
-                                <div class="nhk-row-cell nhk-stat-cell"></div>
-                                <div class="nhk-row-cell nhk-stat-cell"></div>
-                                <div class="nhk-row-cell nhk-stat-cell"></div>
-                            </div>
-                            <div class="nhk-player-row" data-lineup-slot="3">
-                                <div class="nhk-row-cell nhk-order-cell">3</div>
-                                <div class="nhk-row-cell nhk-number-cell">—</div>
-                                <div class="nhk-row-cell nhk-bats-cell">—</div>
-                                <div class="nhk-row-cell nhk-throws-cell">—</div>
-                                <div class="nhk-row-cell nhk-position-cell">—</div>
-                                <div class="nhk-row-cell nhk-player-cell">—</div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-stat-cell"></div>
-                                <div class="nhk-row-cell nhk-stat-cell"></div>
-                                <div class="nhk-row-cell nhk-stat-cell"></div>
-                                <div class="nhk-row-cell nhk-stat-cell"></div>
-                            </div>
-                            <div class="nhk-player-row" data-lineup-slot="4">
-                                <div class="nhk-row-cell nhk-order-cell">4</div>
-                                <div class="nhk-row-cell nhk-number-cell">—</div>
-                                <div class="nhk-row-cell nhk-bats-cell">—</div>
-                                <div class="nhk-row-cell nhk-throws-cell">—</div>
-                                <div class="nhk-row-cell nhk-position-cell">—</div>
-                                <div class="nhk-row-cell nhk-player-cell">—</div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-stat-cell"></div>
-                                <div class="nhk-row-cell nhk-stat-cell"></div>
-                                <div class="nhk-row-cell nhk-stat-cell"></div>
-                                <div class="nhk-row-cell nhk-stat-cell"></div>
-                            </div>
-                            <div class="nhk-player-row" data-lineup-slot="5">
-                                <div class="nhk-row-cell nhk-order-cell">5</div>
-                                <div class="nhk-row-cell nhk-number-cell">—</div>
-                                <div class="nhk-row-cell nhk-bats-cell">—</div>
-                                <div class="nhk-row-cell nhk-throws-cell">—</div>
-                                <div class="nhk-row-cell nhk-position-cell">—</div>
-                                <div class="nhk-row-cell nhk-player-cell">—</div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-stat-cell"></div>
-                                <div class="nhk-row-cell nhk-stat-cell"></div>
-                                <div class="nhk-row-cell nhk-stat-cell"></div>
-                                <div class="nhk-row-cell nhk-stat-cell"></div>
-                            </div>
-                            <div class="nhk-player-row" data-lineup-slot="6">
-                                <div class="nhk-row-cell nhk-order-cell">6</div>
-                                <div class="nhk-row-cell nhk-number-cell">—</div>
-                                <div class="nhk-row-cell nhk-bats-cell">—</div>
-                                <div class="nhk-row-cell nhk-throws-cell">—</div>
-                                <div class="nhk-row-cell nhk-position-cell">—</div>
-                                <div class="nhk-row-cell nhk-player-cell">—</div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-stat-cell"></div>
-                                <div class="nhk-row-cell nhk-stat-cell"></div>
-                                <div class="nhk-row-cell nhk-stat-cell"></div>
-                                <div class="nhk-row-cell nhk-stat-cell"></div>
-                            </div>
-                            <div class="nhk-player-row" data-lineup-slot="7">
-                                <div class="nhk-row-cell nhk-order-cell">7</div>
-                                <div class="nhk-row-cell nhk-number-cell">—</div>
-                                <div class="nhk-row-cell nhk-bats-cell">—</div>
-                                <div class="nhk-row-cell nhk-throws-cell">—</div>
-                                <div class="nhk-row-cell nhk-position-cell">—</div>
-                                <div class="nhk-row-cell nhk-player-cell">—</div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-stat-cell"></div>
-                                <div class="nhk-row-cell nhk-stat-cell"></div>
-                                <div class="nhk-row-cell nhk-stat-cell"></div>
-                                <div class="nhk-row-cell nhk-stat-cell"></div>
-                            </div>
-                            <div class="nhk-player-row" data-lineup-slot="8">
-                                <div class="nhk-row-cell nhk-order-cell">8</div>
-                                <div class="nhk-row-cell nhk-number-cell">—</div>
-                                <div class="nhk-row-cell nhk-bats-cell">—</div>
-                                <div class="nhk-row-cell nhk-throws-cell">—</div>
-                                <div class="nhk-row-cell nhk-position-cell">—</div>
-                                <div class="nhk-row-cell nhk-player-cell">—</div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-stat-cell"></div>
-                                <div class="nhk-row-cell nhk-stat-cell"></div>
-                                <div class="nhk-row-cell nhk-stat-cell"></div>
-                                <div class="nhk-row-cell nhk-stat-cell"></div>
-                            </div>
-                            <div class="nhk-player-row" data-lineup-slot="9">
-                                <div class="nhk-row-cell nhk-order-cell">9</div>
-                                <div class="nhk-row-cell nhk-number-cell">—</div>
-                                <div class="nhk-row-cell nhk-bats-cell">—</div>
-                                <div class="nhk-row-cell nhk-throws-cell">—</div>
-                                <div class="nhk-row-cell nhk-position-cell">—</div>
-                                <div class="nhk-row-cell nhk-player-cell">—</div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-atbat-cell"></div>
-                                <div class="nhk-row-cell nhk-stat-cell"></div>
-                                <div class="nhk-row-cell nhk-stat-cell"></div>
-                                <div class="nhk-row-cell nhk-stat-cell"></div>
-                                <div class="nhk-row-cell nhk-stat-cell"></div>
-                            </div>
+                        <div class="meta-field">
+                            <span class="meta-label">開始</span>
+                            <strong
+                                class="meta-value"
+                                id="scorebook-start-time">—</strong>
                         </div>
 
-<!-- app.jsとの互換性を残すための領域 -->
-                        <div
-                            id="score-grid-placeholder"
-                            class="score-grid-placeholder"
-                            aria-hidden="true">
+                        <div class="meta-field">
+                            <span class="meta-label">終了</span>
+                            <strong
+                                class="meta-value"
+                                id="scorebook-end-time">—</strong>
                         </div>
 
+                        <div class="meta-field">
+                            <span class="meta-label">試合時間</span>
+                            <strong
+                                class="meta-value"
+                                id="scorebook-duration">—</strong>
+                        </div>
+                    </div>
+
+                    <div class="matchup">
+                        <div class="team">
+                            <span class="team-label">先攻</span>
+                            <strong
+                                class="team-name"
+                                id="scorebook-away-team">—</strong>
+                        </div>
+
+                        <div class="versus">対</div>
+
+                        <div class="team">
+                            <span class="team-label">後攻</span>
+                            <strong
+                                class="team-name"
+                                id="scorebook-home-team">—</strong>
+                        </div>
+                    </div>
+                </header>
+
+                <section
+                    class="score-grid"
+                    id="away-lineup-table">
+
+                    <div class="score-grid-header">
+                        <div class="grid-header">打順</div>
+
+                        <div class="grid-header player-header">
+                            <span>守備</span>
+                            <span>選手名</span>
+                            <span>背</span>
+                        </div>
+
+                        <div class="grid-header">1</div>
+                        <div class="grid-header">2</div>
+                        <div class="grid-header">3</div>
+                        <div class="grid-header">4</div>
+                        <div class="grid-header">5</div>
+                        <div class="grid-header">6</div>
+                        <div class="grid-header">7</div>
+                        <div class="grid-header">8</div>
+                        <div class="grid-header">9</div>
+                        <div class="grid-header">10</div>
+                        <div class="grid-header">11</div>
+                        <div class="grid-header">12</div>
+
+                        <div class="grid-header">打数</div>
+                        <div class="grid-header">安打</div>
+                        <div class="grid-header">打点</div>
+                        <div class="grid-header">得点</div>
+                    </div>
+                </section>
+
+                <section
+                    class="team-total-grid"
+                    id="team-total-grid">
+                </section>
+
+                <footer class="sheet-footer sheet-width">
+                    <section class="record-boxes">
+                        <div class="record-box">
+                            <span class="record-label">二塁打</span>
+                            <div id="scorebook-doubles"></div>
+                        </div>
+
+                        <div class="record-box">
+                            <span class="record-label">三塁打</span>
+                            <div id="scorebook-triples"></div>
+                        </div>
+
+                        <div class="record-box">
+                            <span class="record-label">本塁打</span>
+                            <div id="scorebook-home-runs"></div>
+                        </div>
+
+                        <div class="record-box">
+                            <span class="record-label">盗塁</span>
+                            <div id="scorebook-stolen-bases"></div>
+                        </div>
                     </section>
 
-                    <!-- 用紙下部 -->
-                    <footer class="nhk-sheet-footer">
+                    <section class="pitching-record">
+                        <div class="section-title">投手記録</div>
 
-                        <!-- イニング集計 -->
-                        <section class="nhk-inning-summary">
+                        <div class="pitching-header">
+                            <div>投手名</div>
+                            <div>回</div>
+                            <div>打者</div>
+                            <div>投球数</div>
+                            <div>安打</div>
+                            <div>三振</div>
+                            <div>四球</div>
+                            <div>失点</div>
+                            <div>自責</div>
+                        </div>
 
-                            <div class="nhk-summary-title">
-                                イニング集計
-                            </div>
+                        <div
+                            class="pitching-rows"
+                            id="scorebook-pitching-table">
+                        </div>
+                    </section>
 
-                            <div class="nhk-summary-grid">
+                    <section class="notes-section">
+                        <div class="section-title">備考</div>
 
-                                <div class="nhk-summary-label">回</div>
-
-                                <div>1</div>
-                                <div>2</div>
-                                <div>3</div>
-                                <div>4</div>
-                                <div>5</div>
-                                <div>6</div>
-                                <div>7</div>
-                                <div>8</div>
-                                <div>9</div>
-                                <div>10</div>
-                                <div>11</div>
-                                <div>12</div>
-
-                                <div class="nhk-summary-total">計</div>
-
-                                <div class="nhk-summary-label">打数</div>
-
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                                <div></div>
-
-                                <div></div>
-
-                                <div class="nhk-summary-label">安打</div>
-
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                                <div></div>
-
-                                <div></div>
-
-                                <div class="nhk-summary-label">得点</div>
-
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                                <div></div>
-
-                                <div></div>
-
-                                <div class="nhk-summary-label">残塁</div>
-
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                                <div></div>
-
-                                <div></div>
-
-                            </div>
-
-                        </section>
-
-                        <!-- 打撃記録 -->
-                        <section class="nhk-batting-notes">
-
-                            <div class="nhk-footer-box">
-                                <span class="nhk-footer-label">二塁打</span>
-                                <div id="scorebook-doubles"></div>
-                            </div>
-
-                            <div class="nhk-footer-box">
-                                <span class="nhk-footer-label">三塁打</span>
-                                <div id="scorebook-triples"></div>
-                            </div>
-
-                            <div class="nhk-footer-box">
-                                <span class="nhk-footer-label">本塁打</span>
-                                <div id="scorebook-home-runs"></div>
-                            </div>
-
-                            <div class="nhk-footer-box">
-                                <span class="nhk-footer-label">盗塁</span>
-                                <div id="scorebook-stolen-bases"></div>
-                            </div>
-
-                        </section>
-
-                        <!-- 投手記録 -->
-                        <section class="nhk-pitching-section">
-
-                            <div class="nhk-section-title">
-                                投手記録
-                            </div>
-
-                            <div class="nhk-pitching-header">
-
-                                <div>投手名</div>
-                                <div>回</div>
-                                <div>打者</div>
-                                <div>投球数</div>
-                                <div>安打</div>
-                                <div>三振</div>
-                                <div>四球</div>
-                                <div>失点</div>
-                                <div>自責</div>
-
-                            </div>
-
-                            <div
-                                id="scorebook-pitching-table"
-                                class="nhk-pitching-rows">
-                            </div>
-
-                        </section>
-
-                        <!-- 備考 -->
-                        <section class="nhk-notes-section">
-
-                            <div class="nhk-section-title">
-                                備考
-                            </div>
-
-                            <div
-                                id="scorebook-notes"
-                                class="nhk-notes-area">
-                            </div>
-
-                        </section>
-
-                    </footer>
-
-                </article>
-
-            </div>
-
+                        <div
+                            class="notes-area"
+                            id="scorebook-notes">
+                        </div>
+                    </section>
+                </footer>
+            </article>
         </section>
-
     </main>
 
-    <!-- Footer Controls -->
-    <footer class="footer">
-
-        <button>PDF</button>
-        <button>PNG</button>
-        <button>PRINT</button>
-        <button>JSON</button>
-
+    <footer class="app-footer">
+        <button type="button">PDF</button>
+        <button type="button">PNG</button>
+        <button type="button">PRINT</button>
+        <button type="button">JSON</button>
     </footer>
 
-    <script src="app.js?v=6" defer></script>
+    <script>
+        (() => {
+            "use strict";
 
+            const scoreGrid = document.getElementById("away-lineup-table");
+            const totalGrid = document.getElementById("team-total-grid");
+
+            if (!scoreGrid || !totalGrid) {
+                console.error("スコアブック領域を取得できません。");
+                return;
+            }
+
+            const createElement = (
+                tagName,
+                className = "",
+                text = ""
+            ) => {
+                const element = document.createElement(tagName);
+
+                if (className) {
+                    element.className = className;
+                }
+
+                if (text !== "") {
+                    element.textContent = text;
+                }
+
+                return element;
+            };
+
+            const createPlayerLine = (
+                playerIndex,
+                isPitcher = false
+            ) => {
+                const line = createElement(
+                    "div",
+                    "player-line"
+                );
+
+                line.dataset.playerIndex = String(playerIndex);
+
+                const position = createElement(
+                    "div",
+                    "position-cell",
+                    isPitcher ? "P" : ""
+                );
+
+                const name = createElement(
+                    "div",
+                    "player-name-cell"
+                );
+
+                const number = createElement(
+                    "div",
+                    "number-cell"
+                );
+
+                line.append(position, name, number);
+
+                return line;
+            };
+
+            const createPlayerStack = (isPitcher = false) => {
+                const stack = createElement(
+                    "div",
+                    isPitcher
+                        ? "grid-cell player-stack pitcher-stack"
+                        : "grid-cell player-stack"
+                );
+
+                for (let index = 0; index < 3; index += 1) {
+                    stack.append(
+                        createPlayerLine(index, isPitcher)
+                    );
+                }
+
+                return stack;
+            };
+
+            const createPitchColumn = () => {
+                const pitchColumn = createElement(
+                    "div",
+                    "pitch-column"
+                );
+
+                for (let pitch = 1; pitch <= 10; pitch += 1) {
+                    const pitchLine = createElement(
+                        "span",
+                        "pitch-line"
+                    );
+
+                    pitchLine.dataset.pitch = String(pitch);
+                    pitchColumn.append(pitchLine);
+                }
+
+                return pitchColumn;
+            };
+
+            const createAtBatCell = (inning) => {
+                const cell = createElement(
+                    "div",
+                    "grid-cell atbat-cell"
+                );
+
+                cell.dataset.inning = String(inning);
+
+                const resultBox = createElement(
+                    "div",
+                    "result-box"
+                );
+
+                cell.append(
+                    createPitchColumn(),
+                    resultBox
+                );
+
+                return cell;
+            };
+
+            const createStatCells = () => {
+                const fragment = document.createDocumentFragment();
+
+                for (let index = 0; index < 4; index += 1) {
+                    fragment.append(
+                        createElement(
+                            "div",
+                            "grid-cell stat-cell"
+                        )
+                    );
+                }
+
+                return fragment;
+            };
+
+            const createLineupSlot = (order) => {
+                const fragment = document.createDocumentFragment();
+
+                const orderCell = createElement(
+                    "div",
+                    "grid-cell order-cell",
+                    String(order)
+                );
+
+                orderCell.dataset.lineupSlot = String(order);
+
+                fragment.append(
+                    orderCell,
+                    createPlayerStack(false)
+                );
+
+                for (let inning = 1; inning <= 12; inning += 1) {
+                    fragment.append(
+                        createAtBatCell(inning)
+                    );
+                }
+
+                fragment.append(createStatCells());
+
+                return fragment;
+            };
+
+            const createPitcherSlot = () => {
+                const fragment = document.createDocumentFragment();
+
+                fragment.append(
+                    createElement(
+                        "div",
+                        "grid-cell order-cell pitcher-order",
+                        "P"
+                    ),
+                    createPlayerStack(true)
+                );
+
+                for (let inning = 1; inning <= 12; inning += 1) {
+                    fragment.append(
+                        createAtBatCell(inning)
+                    );
+                }
+
+                fragment.append(createStatCells());
+
+                return fragment;
+            };
+
+            const buildLineup = () => {
+                for (let order = 1; order <= 9; order += 1) {
+                    scoreGrid.append(
+                        createLineupSlot(order)
+                    );
+                }
+
+                scoreGrid.append(createPitcherSlot());
+            };
+
+            const createTotalRow = (label) => {
+                const fragment = document.createDocumentFragment();
+
+                fragment.append(
+                    createElement(
+                        "div",
+                        "total-cell total-label",
+                        label
+                    )
+                );
+
+                for (let index = 0; index < 16; index += 1) {
+                    fragment.append(
+                        createElement(
+                            "div",
+                            "total-cell"
+                        )
+                    );
+                }
+
+                return fragment;
+            };
+
+            const buildTotals = () => {
+                totalGrid.append(
+                    createTotalRow("チーム計"),
+                    createTotalRow("相手チーム計")
+                );
+            };
+
+            buildLineup();
+            buildTotals();
+        })();
+    </script>
+
+    <script src="app.js?v=7" defer></script>
 </body>
-
 </html>
