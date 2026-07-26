@@ -102,13 +102,11 @@ async function loadGameData() {
    setGameInfo(3, "BALLPARK", gameData.gameData.venue.name);
     setGameInfo(4, "STATUS", gameData.gameData.status.detailedState);
 
-    console.log("LIVE DATA:", gameData.liveData);
-    console.log(gameData.liveData.boxscore.teams.away.battingOrder);
-    gameData.liveData.boxscore.teams.away.battingOrder.forEach(playerId => {
-    console.log(
-        gameData.liveData.boxscore.teams.away.players["ID" + playerId].person.fullName
-    );
+   const awayLineup = gameData.liveData.boxscore.teams.away.battingOrder.map(playerId => {
+    return gameData.liveData.boxscore.teams.away.players["ID" + playerId].person.fullName;
 });
+
+console.log(awayLineup);
 
     loadButton.textContent = "試合IDを確認しました";
 
