@@ -90,10 +90,6 @@ async function loadGameData() {
     const gameData = await fetchGameData(gamePk);
 
     console.log("② fetch完了");
-console.log(gameData);
-console.log(gameData.gameData);
-console.log(gameData.gameData.teams);
-console.log(gameData.gameData.teams.home.name);
 
     setGameInfo(0, "HOME", gameData.gameData.teams.home.name);
     setGameInfo(1, "AWAY", gameData.gameData.teams.away.name);
