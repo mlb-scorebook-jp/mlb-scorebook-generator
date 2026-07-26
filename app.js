@@ -95,8 +95,8 @@ console.log(gameData.gameData);
 console.log(gameData.gameData.teams);
 console.log(gameData.gameData.teams.home.name);
 
-    setGameInfo(0, "HOME", "取得準備中");
-    setGameInfo(1, "AWAY", "取得準備中");
+    setGameInfo(0, "HOME", gameData.gameData.teams.home.name);
+    setGameInfo(1, "AWAY", gameData.gameData.teams.away.name);
     setGameInfo(2, "DATE", "取得準備中");
     setGameInfo(3, "BALLPARK", "取得準備中");
     setGameInfo(4, "STATUS", `試合ID ${gamePk} を確認`);
