@@ -14,14 +14,16 @@
 
     <!-- Header -->
     <header class="header">
-        <div class="logo">
-    <h1>MLB SCOREBOOK GENERATOR</h1>
-    <p>Professional Baseball Scorebook System</p>
-</div>
 
-<div class="version">
-    Ver. 1.0.0
-</div>
+        <div class="logo">
+            <h1>MLB SCOREBOOK GENERATOR</h1>
+            <p>Professional Baseball Scorebook System</p>
+        </div>
+
+        <div class="version">
+            Ver. 1.0.0
+        </div>
+
     </header>
 
     <!-- Main -->
@@ -48,140 +50,454 @@
             <button id="generate-btn">
                 スコアブック生成
             </button>
+
             <button id="save-btn">
-    保存
-</button>
+                保存
+            </button>
 
-           <hr>
+            <hr>
 
-<h3>Game Information</h3>
+            <h3>Game Information</h3>
 
-<div class="game-info">
+            <div class="game-info">
 
-    <div class="info-row">
-        <span>HOME</span>
-        <span id="home-team">-</span>
-    </div>
+                <div class="info-row">
+                    <span>HOME</span>
+                    <span id="home-team">-</span>
+                </div>
 
-    <div class="info-row">
-        <span>AWAY</span>
-        <span id="away-team">-</span>
-    </div>
+                <div class="info-row">
+                    <span>AWAY</span>
+                    <span id="away-team">-</span>
+                </div>
 
-    <div class="info-row">
-        <span>DATE</span>
-        <span id="game-date">-</span>
-    </div>
+                <div class="info-row">
+                    <span>DATE</span>
+                    <span id="game-date">-</span>
+                </div>
 
-    <div class="info-row">
-        <span>BALLPARK</span>
-        <span id="ballpark">-</span>
-    </div>
+                <div class="info-row">
+                    <span>BALLPARK</span>
+                    <span id="ballpark">-</span>
+                </div>
 
-    <div class="info-row">
-        <span>STATUS</span>
-        <span id="game-status">-</span>
-    </div>
+                <div class="info-row">
+                    <span>STATUS</span>
+                    <span id="game-status">-</span>
+                </div>
 
-</div>
-<hr>
+            </div>
 
-<h3>Scorebook Library</h3>
+            <hr>
 
-<div id="library-list">
+            <h3>Scorebook Library</h3>
 
-    <!-- 保存したスコアブック一覧 -->
+            <div id="library-list">
+                <!-- 保存したスコアブック一覧 -->
+            </div>
 
-</div>
         </aside>
 
-        <!-- Scorebook -->
+        <!-- Scorebook Viewer -->
         <section class="viewer">
 
-           <div class="scorebook">
+            <div class="scorebook">
 
-    <div class="scorebook-page">
+                <!-- NHK式スコアブック用紙 -->
+                <article class="scorebook-page nhk-scorebook-page">
 
-        <header class="scorebook-header">
+                    <!-- 用紙上部 -->
+                    <header class="nhk-sheet-header">
 
-            <div class="scorebook-title">
-                MLB SCOREBOOK
+                        <div class="nhk-header-top">
+
+                            <div class="nhk-form-title">
+                                BASEBALL SCOREBOOK
+                            </div>
+
+                            <div class="nhk-game-number">
+                                第
+                                <span id="scorebook-game-number">—</span>
+                                回戦
+                            </div>
+
+                        </div>
+
+                        <div class="nhk-game-meta">
+
+                            <div class="nhk-meta-field nhk-meta-date">
+                                <span class="nhk-meta-label">年月日</span>
+                                <strong id="scorebook-date">—</strong>
+                            </div>
+
+                            <div class="nhk-meta-field nhk-meta-ballpark">
+                                <span class="nhk-meta-label">球場</span>
+                                <strong id="scorebook-ballpark">—</strong>
+                            </div>
+
+                            <div class="nhk-meta-field nhk-meta-start">
+                                <span class="nhk-meta-label">開始</span>
+                                <strong id="scorebook-start-time">—</strong>
+                            </div>
+
+                            <div class="nhk-meta-field nhk-meta-end">
+                                <span class="nhk-meta-label">終了</span>
+                                <strong id="scorebook-end-time">—</strong>
+                            </div>
+
+                            <div class="nhk-meta-field nhk-meta-duration">
+                                <span class="nhk-meta-label">試合時間</span>
+                                <strong id="scorebook-duration">—</strong>
+                            </div>
+
+                        </div>
+
+                        <div class="nhk-matchup">
+
+                            <div class="nhk-matchup-team nhk-away-team">
+                                <span class="nhk-team-label">先攻</span>
+                                <strong id="scorebook-away-team">—</strong>
+                            </div>
+
+                            <div class="nhk-matchup-separator">
+                                対
+                            </div>
+
+                            <div class="nhk-matchup-team nhk-home-team">
+                                <span class="nhk-team-label">後攻</span>
+                                <strong id="scorebook-home-team">—</strong>
+                            </div>
+
+                        </div>
+
+                    </header>
+
+                    <!-- スコア本体 -->
+                    <section class="nhk-score-sheet">
+
+                        <!-- 打順・イニング見出し -->
+                        <div class="nhk-grid-header">
+
+                            <div class="nhk-header-cell nhk-order-header">
+                                打順
+                            </div>
+
+                            <div class="nhk-header-cell nhk-position-header">
+                                守備
+                            </div>
+
+                            <div class="nhk-header-cell nhk-player-header">
+                                選手名
+                            </div>
+
+                            <div class="nhk-header-cell nhk-inning-header">
+                                1
+                            </div>
+
+                            <div class="nhk-header-cell nhk-inning-header">
+                                2
+                            </div>
+
+                            <div class="nhk-header-cell nhk-inning-header">
+                                3
+                            </div>
+
+                            <div class="nhk-header-cell nhk-inning-header">
+                                4
+                            </div>
+
+                            <div class="nhk-header-cell nhk-inning-header">
+                                5
+                            </div>
+
+                            <div class="nhk-header-cell nhk-inning-header">
+                                6
+                            </div>
+
+                            <div class="nhk-header-cell nhk-inning-header">
+                                7
+                            </div>
+
+                            <div class="nhk-header-cell nhk-inning-header">
+                                8
+                            </div>
+
+                            <div class="nhk-header-cell nhk-inning-header">
+                                9
+                            </div>
+
+                            <div class="nhk-header-cell nhk-inning-header">
+                                10
+                            </div>
+
+                            <div class="nhk-header-cell nhk-inning-header">
+                                11
+                            </div>
+
+                            <div class="nhk-header-cell nhk-inning-header">
+                                12
+                            </div>
+
+                            <div class="nhk-header-cell nhk-total-header">
+                                打数
+                            </div>
+
+                            <div class="nhk-header-cell nhk-total-header">
+                                安打
+                            </div>
+
+                            <div class="nhk-header-cell nhk-total-header">
+                                打点
+                            </div>
+
+                            <div class="nhk-header-cell nhk-total-header">
+                                得点
+                            </div>
+
+                        </div>
+
+                        <!--
+                            JavaScriptで選手行を生成する領域。
+
+                            各選手行は将来的に以下の構造で生成する。
+
+                            .nhk-player-row
+                              ├ 打順
+                              ├ 守備
+                              ├ 選手名
+                              ├ 1～12回の打席欄
+                              └ 打数・安打・打点・得点
+                        -->
+                        <div
+                            id="away-lineup-table"
+                            class="nhk-player-rows">
+
+                            <div class="nhk-empty-player-row">
+
+                                <div class="nhk-row-cell nhk-order-cell">1</div>
+                                <div class="nhk-row-cell nhk-position-cell">—</div>
+                                <div class="nhk-row-cell nhk-player-cell">—</div>
+
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+
+                                <div class="nhk-row-cell nhk-stat-cell"></div>
+                                <div class="nhk-row-cell nhk-stat-cell"></div>
+                                <div class="nhk-row-cell nhk-stat-cell"></div>
+                                <div class="nhk-row-cell nhk-stat-cell"></div>
+
+                            </div>
+
+                        </div>
+
+                        <!-- app.jsとの互換性を残すための領域 -->
+                        <div
+                            id="score-grid-placeholder"
+                            class="score-grid-placeholder"
+                            aria-hidden="true">
+                        </div>
+
+                    </section>
+
+                    <!-- 用紙下部 -->
+                    <footer class="nhk-sheet-footer">
+
+                        <!-- イニング集計 -->
+                        <section class="nhk-inning-summary">
+
+                            <div class="nhk-summary-title">
+                                イニング集計
+                            </div>
+
+                            <div class="nhk-summary-grid">
+
+                                <div class="nhk-summary-label">回</div>
+
+                                <div>1</div>
+                                <div>2</div>
+                                <div>3</div>
+                                <div>4</div>
+                                <div>5</div>
+                                <div>6</div>
+                                <div>7</div>
+                                <div>8</div>
+                                <div>9</div>
+                                <div>10</div>
+                                <div>11</div>
+                                <div>12</div>
+
+                                <div class="nhk-summary-total">計</div>
+
+                                <div class="nhk-summary-label">打数</div>
+
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+
+                                <div></div>
+
+                                <div class="nhk-summary-label">安打</div>
+
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+
+                                <div></div>
+
+                                <div class="nhk-summary-label">得点</div>
+
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+
+                                <div></div>
+
+                                <div class="nhk-summary-label">残塁</div>
+
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+
+                                <div></div>
+
+                            </div>
+
+                        </section>
+
+                        <!-- 打撃記録 -->
+                        <section class="nhk-batting-notes">
+
+                            <div class="nhk-footer-box">
+                                <span class="nhk-footer-label">二塁打</span>
+                                <div id="scorebook-doubles"></div>
+                            </div>
+
+                            <div class="nhk-footer-box">
+                                <span class="nhk-footer-label">三塁打</span>
+                                <div id="scorebook-triples"></div>
+                            </div>
+
+                            <div class="nhk-footer-box">
+                                <span class="nhk-footer-label">本塁打</span>
+                                <div id="scorebook-home-runs"></div>
+                            </div>
+
+                            <div class="nhk-footer-box">
+                                <span class="nhk-footer-label">盗塁</span>
+                                <div id="scorebook-stolen-bases"></div>
+                            </div>
+
+                        </section>
+
+                        <!-- 投手記録 -->
+                        <section class="nhk-pitching-section">
+
+                            <div class="nhk-section-title">
+                                投手記録
+                            </div>
+
+                            <div class="nhk-pitching-header">
+
+                                <div>投手名</div>
+                                <div>回</div>
+                                <div>打者</div>
+                                <div>投球数</div>
+                                <div>安打</div>
+                                <div>三振</div>
+                                <div>四球</div>
+                                <div>失点</div>
+                                <div>自責</div>
+
+                            </div>
+
+                            <div
+                                id="scorebook-pitching-table"
+                                class="nhk-pitching-rows">
+                            </div>
+
+                        </section>
+
+                        <!-- 備考 -->
+                        <section class="nhk-notes-section">
+
+                            <div class="nhk-section-title">
+                                備考
+                            </div>
+
+                            <div
+                                id="scorebook-notes"
+                                class="nhk-notes-area">
+                            </div>
+
+                        </section>
+
+                    </footer>
+
+                </article>
+
             </div>
-
-            <div class="scorebook-game-meta">
-
-                <div class="scorebook-meta-item">
-                    <span>AWAY</span>
-                    <strong id="scorebook-away-team">—</strong>
-                </div>
-
-                <div class="scorebook-meta-item">
-                    <span>HOME</span>
-                    <strong id="scorebook-home-team">—</strong>
-                </div>
-
-                <div class="scorebook-meta-item">
-                    <span>DATE</span>
-                    <strong id="scorebook-date">—</strong>
-                </div>
-
-                <div class="scorebook-meta-item">
-                    <span>BALLPARK</span>
-                    <strong id="scorebook-ballpark">—</strong>
-                </div>
-
-            </div>
-
-        </header>
-
-        <section class="scorebook-body">
-
-            <div class="lineup-section">
-
-                <div class="lineup-heading">
-                    AWAY LINEUP
-                </div>
-
-                <div id="away-lineup-table" class="lineup-table">
-
-                    <!-- JavaScriptで打順を表示 -->
-
-                </div>
-
-            </div>
-
-            <div class="score-grid-section">
-
-                <div class="score-grid-placeholder">
-                    SCOREBOOK GRID
-                </div>
-
-            </div>
-
-        </section>
-
-    </div>
-
-</div>
 
         </section>
 
     </main>
 
-    <!-- Footer -->
+    <!-- Footer Controls -->
     <footer class="footer">
 
         <button>PDF</button>
-
         <button>PNG</button>
-
         <button>PRINT</button>
-
         <button>JSON</button>
 
     </footer>
 
-  <script src="app.js?v=6" defer></script>
+    <script src="app.js?v=6" defer></script>
 
 </body>
 
