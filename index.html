@@ -288,7 +288,7 @@
 
         .abs-challenge-grid {
             display: grid;
-            grid-template-columns: 44px 48px 104px 58px 58px 56px;
+            grid-template-columns: 42px 58px 58px 112px 82px 56px;
         }
 
         .abs-challenge-grid > div {
@@ -1211,18 +1211,18 @@
                     createElement(
                         "div",
                         "abs-challenge-title",
-                        "ABS CHALLENGE"
+                        "CHALLENGE LOG"
                     )
                 );
 
                 const grid = createElement("div", "abs-challenge-grid");
-                ["回", "表/裏", "チャレンジ者", "立場", "判定", "結果"].forEach(
+                ["回", "種類", "チーム", "チャレンジ者", "対象", "結果"].forEach(
                     (label) => {
                         grid.append(createElement("div", "abs-head", label));
                     }
                 );
 
-                for (let row = 0; row < 2; row += 1) {
+                for (let row = 0; row < 4; row += 1) {
                     for (let column = 0; column < 6; column += 1) {
                         const cell = createElement("div", "editable-cell");
                         cell.contentEditable = "true";
@@ -1561,7 +1561,7 @@
             const buildSheet = (side) => {
                 const wrapper = createElement("div");
                 wrapper.append(
-                    buildTopScore(),
+                    buildScoreHeaderArea(),
                     buildSheetMeta(state.gameData),
                     buildScoreGrid(side),
                     buildBenchRows(side),
