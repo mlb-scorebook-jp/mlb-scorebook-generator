@@ -5,7 +5,13 @@ const loadButton = document.getElementById("load-btn");
 const generateButton = document.getElementById("generate-btn");
 const scorebookPreview = document.querySelector(".scorebook");
 
-const gameInfoRows = document.querySelectorAll(".game-info p");
+const gameInfoElements = {
+    home: document.getElementById("home-team"),
+    away: document.getElementById("away-team"),
+    date: document.getElementById("game-date"),
+    ballpark: document.getElementById("ballpark"),
+    status: document.getElementById("game-status")
+};
 const footerButtons = document.querySelectorAll(".footer button");
 
 const state = {
@@ -40,20 +46,22 @@ function extractGamePk(url) {
     }
 }
 
-function setGameInfo(index, label, value) {
-    if (!gameInfoRows[index]) {
+function setGameInfo(key, value) {
+    const element = gameInfoElements[key];
+
+    if (!element) {
         return;
     }
 
-    gameInfoRows[index].textContent = `${label}：${value}`;
+    element.textContent = value;
 }
 
 function resetGameInfo() {
-    setGameInfo(0, "HOME", "—");
-    setGameInfo(1, "AWAY", "—");
-    setGameInfo(2, "DATE", "—");
-    setGameInfo(3, "BALLPARK", "—");
-    setGameInfo(4, "STATUS", "未取得");
+    setGameInfo("home", "—");
+    setGameInfo("away", "—");
+    setGameInfo("date", "—");
+    setGameInfo("ballpark", "—");
+    setGameInfo("status", "未取得");
 }
 
 function showPreviewMessage(title, detail = "") {
@@ -91,16 +99,15 @@ async function loadGameData() {
 
     console.log("② fetch完了");
 
-    setGameInfo(0, "HOME", gameData.gameData.teams.home.name);
-    setGameInfo(1, "AWAY", gameData.gameData.teams.away.name);
-    
-    console.log("DATETIME:", gameData.gameData.datetime);
-    
-    setGameInfo(2, "DATE", gameData.gameData.datetime.officialDate);
+    setGameInfo("home", gameData.gameData.teams.home.name);
+setGameInfo("away", gameData.gameData.teams.away.name);
 
+console.log("DATETIME:", gameData.gameData.datetime);
 
-   setGameInfo(3, "BALLPARK", gameData.gameData.venue.name);
-    setGameInfo(4, "STATUS", gameData.gameData.status.detailedState);
+setGameInfo("date", gameData.gameData.datetime.officialDate);
+
+setGameInfo("ballpark", gameData.gameData.venue.name);
+setGameInfo("status", gameData.gameData.status.detailedState);
 
    const awayLineup = gameData.liveData.boxscore.teams.away.battingOrder.map(playerId => {
     return gameData.liveData.boxscore.teams.away.players["ID" + playerId].person.fullName;
@@ -136,7 +143,7 @@ function generateScorebook() {
         `GAME ID：${state.gamePk}`
     );
 
-    setGameInfo(4, "STATUS", "スコアブック生成準備完了");
+    setGameInfo("status", "スコアブック生成準備完了");
 }
 
 function handleOutput(event) {
