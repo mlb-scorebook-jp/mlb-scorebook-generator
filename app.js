@@ -98,10 +98,11 @@ async function loadGameData() {
     
     setGameInfo(2, "DATE", gameData.gameData.datetime.officialDate);
 
-    console.log("VENUE:", gameData.gameData.venue);
-    
+
     setGameInfo(3, "BALLPARK", "取得準備中");
     setGameInfo(4, "STATUS", `試合ID ${gamePk} を確認`);
+
+    console.log("VENUE:", gameData.gameData.venue);
 
     loadButton.textContent = "試合IDを確認しました";
 
