@@ -174,110 +174,49 @@
 
                     <!-- スコア本体 -->
                     <section class="nhk-score-sheet">
-
                         <!-- 打順・イニング見出し -->
                         <div class="nhk-grid-header">
 
-                            <div class="nhk-header-cell nhk-order-header">
-                                打順
-                            </div>
+                            <div class="nhk-header-cell nhk-order-header">打順</div>
+                            <div class="nhk-header-cell nhk-number-header">背</div>
+                            <div class="nhk-header-cell nhk-bats-header">打</div>
+                            <div class="nhk-header-cell nhk-throws-header">投</div>
+                            <div class="nhk-header-cell nhk-position-header">守</div>
+                            <div class="nhk-header-cell nhk-player-header">選手名</div>
 
-                            <div class="nhk-header-cell nhk-position-header">
-                                守備
-                            </div>
+                            <div class="nhk-header-cell nhk-inning-header">1</div>
+                            <div class="nhk-header-cell nhk-inning-header">2</div>
+                            <div class="nhk-header-cell nhk-inning-header">3</div>
+                            <div class="nhk-header-cell nhk-inning-header">4</div>
+                            <div class="nhk-header-cell nhk-inning-header">5</div>
+                            <div class="nhk-header-cell nhk-inning-header">6</div>
+                            <div class="nhk-header-cell nhk-inning-header">7</div>
+                            <div class="nhk-header-cell nhk-inning-header">8</div>
+                            <div class="nhk-header-cell nhk-inning-header">9</div>
+                            <div class="nhk-header-cell nhk-inning-header">10</div>
+                            <div class="nhk-header-cell nhk-inning-header">11</div>
+                            <div class="nhk-header-cell nhk-inning-header">12</div>
 
-                            <div class="nhk-header-cell nhk-player-header">
-                                選手名
-                            </div>
-
-                            <div class="nhk-header-cell nhk-inning-header">
-                                1
-                            </div>
-
-                            <div class="nhk-header-cell nhk-inning-header">
-                                2
-                            </div>
-
-                            <div class="nhk-header-cell nhk-inning-header">
-                                3
-                            </div>
-
-                            <div class="nhk-header-cell nhk-inning-header">
-                                4
-                            </div>
-
-                            <div class="nhk-header-cell nhk-inning-header">
-                                5
-                            </div>
-
-                            <div class="nhk-header-cell nhk-inning-header">
-                                6
-                            </div>
-
-                            <div class="nhk-header-cell nhk-inning-header">
-                                7
-                            </div>
-
-                            <div class="nhk-header-cell nhk-inning-header">
-                                8
-                            </div>
-
-                            <div class="nhk-header-cell nhk-inning-header">
-                                9
-                            </div>
-
-                            <div class="nhk-header-cell nhk-inning-header">
-                                10
-                            </div>
-
-                            <div class="nhk-header-cell nhk-inning-header">
-                                11
-                            </div>
-
-                            <div class="nhk-header-cell nhk-inning-header">
-                                12
-                            </div>
-
-                            <div class="nhk-header-cell nhk-total-header">
-                                打数
-                            </div>
-
-                            <div class="nhk-header-cell nhk-total-header">
-                                安打
-                            </div>
-
-                            <div class="nhk-header-cell nhk-total-header">
-                                打点
-                            </div>
-
-                            <div class="nhk-header-cell nhk-total-header">
-                                得点
-                            </div>
+                            <div class="nhk-header-cell nhk-total-header">打数</div>
+                            <div class="nhk-header-cell nhk-total-header">安打</div>
+                            <div class="nhk-header-cell nhk-total-header">打点</div>
+                            <div class="nhk-header-cell nhk-total-header">得点</div>
 
                         </div>
-
                         <!--
-                            JavaScriptで選手行を生成する領域。
-
-                            各選手行は将来的に以下の構造で生成する。
-
-                            .nhk-player-row
-                              ├ 打順
-                              ├ 守備
-                              ├ 選手名
-                              ├ 1～12回の打席欄
-                              └ 打数・安打・打点・得点
+                            選手名表示ルール
+                            ・日本人選手：大谷 翔平
+                            ・外国人選手：C.キャロル
+                            ・カタカナ表記は読み表Excelを優先
                         -->
-                        <div
-                            id="away-lineup-table"
-                            class="nhk-player-rows">
-
-                            <div class="nhk-empty-player-row">
-
+                        <div id="away-lineup-table" class="nhk-player-rows">
+                            <div class="nhk-player-row" data-lineup-slot="1">
                                 <div class="nhk-row-cell nhk-order-cell">1</div>
+                                <div class="nhk-row-cell nhk-number-cell">—</div>
+                                <div class="nhk-row-cell nhk-bats-cell">—</div>
+                                <div class="nhk-row-cell nhk-throws-cell">—</div>
                                 <div class="nhk-row-cell nhk-position-cell">—</div>
                                 <div class="nhk-row-cell nhk-player-cell">—</div>
-
                                 <div class="nhk-row-cell nhk-atbat-cell"></div>
                                 <div class="nhk-row-cell nhk-atbat-cell"></div>
                                 <div class="nhk-row-cell nhk-atbat-cell"></div>
@@ -290,17 +229,206 @@
                                 <div class="nhk-row-cell nhk-atbat-cell"></div>
                                 <div class="nhk-row-cell nhk-atbat-cell"></div>
                                 <div class="nhk-row-cell nhk-atbat-cell"></div>
-
                                 <div class="nhk-row-cell nhk-stat-cell"></div>
                                 <div class="nhk-row-cell nhk-stat-cell"></div>
                                 <div class="nhk-row-cell nhk-stat-cell"></div>
                                 <div class="nhk-row-cell nhk-stat-cell"></div>
-
                             </div>
-
+                            <div class="nhk-player-row" data-lineup-slot="2">
+                                <div class="nhk-row-cell nhk-order-cell">2</div>
+                                <div class="nhk-row-cell nhk-number-cell">—</div>
+                                <div class="nhk-row-cell nhk-bats-cell">—</div>
+                                <div class="nhk-row-cell nhk-throws-cell">—</div>
+                                <div class="nhk-row-cell nhk-position-cell">—</div>
+                                <div class="nhk-row-cell nhk-player-cell">—</div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-stat-cell"></div>
+                                <div class="nhk-row-cell nhk-stat-cell"></div>
+                                <div class="nhk-row-cell nhk-stat-cell"></div>
+                                <div class="nhk-row-cell nhk-stat-cell"></div>
+                            </div>
+                            <div class="nhk-player-row" data-lineup-slot="3">
+                                <div class="nhk-row-cell nhk-order-cell">3</div>
+                                <div class="nhk-row-cell nhk-number-cell">—</div>
+                                <div class="nhk-row-cell nhk-bats-cell">—</div>
+                                <div class="nhk-row-cell nhk-throws-cell">—</div>
+                                <div class="nhk-row-cell nhk-position-cell">—</div>
+                                <div class="nhk-row-cell nhk-player-cell">—</div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-stat-cell"></div>
+                                <div class="nhk-row-cell nhk-stat-cell"></div>
+                                <div class="nhk-row-cell nhk-stat-cell"></div>
+                                <div class="nhk-row-cell nhk-stat-cell"></div>
+                            </div>
+                            <div class="nhk-player-row" data-lineup-slot="4">
+                                <div class="nhk-row-cell nhk-order-cell">4</div>
+                                <div class="nhk-row-cell nhk-number-cell">—</div>
+                                <div class="nhk-row-cell nhk-bats-cell">—</div>
+                                <div class="nhk-row-cell nhk-throws-cell">—</div>
+                                <div class="nhk-row-cell nhk-position-cell">—</div>
+                                <div class="nhk-row-cell nhk-player-cell">—</div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-stat-cell"></div>
+                                <div class="nhk-row-cell nhk-stat-cell"></div>
+                                <div class="nhk-row-cell nhk-stat-cell"></div>
+                                <div class="nhk-row-cell nhk-stat-cell"></div>
+                            </div>
+                            <div class="nhk-player-row" data-lineup-slot="5">
+                                <div class="nhk-row-cell nhk-order-cell">5</div>
+                                <div class="nhk-row-cell nhk-number-cell">—</div>
+                                <div class="nhk-row-cell nhk-bats-cell">—</div>
+                                <div class="nhk-row-cell nhk-throws-cell">—</div>
+                                <div class="nhk-row-cell nhk-position-cell">—</div>
+                                <div class="nhk-row-cell nhk-player-cell">—</div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-stat-cell"></div>
+                                <div class="nhk-row-cell nhk-stat-cell"></div>
+                                <div class="nhk-row-cell nhk-stat-cell"></div>
+                                <div class="nhk-row-cell nhk-stat-cell"></div>
+                            </div>
+                            <div class="nhk-player-row" data-lineup-slot="6">
+                                <div class="nhk-row-cell nhk-order-cell">6</div>
+                                <div class="nhk-row-cell nhk-number-cell">—</div>
+                                <div class="nhk-row-cell nhk-bats-cell">—</div>
+                                <div class="nhk-row-cell nhk-throws-cell">—</div>
+                                <div class="nhk-row-cell nhk-position-cell">—</div>
+                                <div class="nhk-row-cell nhk-player-cell">—</div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-stat-cell"></div>
+                                <div class="nhk-row-cell nhk-stat-cell"></div>
+                                <div class="nhk-row-cell nhk-stat-cell"></div>
+                                <div class="nhk-row-cell nhk-stat-cell"></div>
+                            </div>
+                            <div class="nhk-player-row" data-lineup-slot="7">
+                                <div class="nhk-row-cell nhk-order-cell">7</div>
+                                <div class="nhk-row-cell nhk-number-cell">—</div>
+                                <div class="nhk-row-cell nhk-bats-cell">—</div>
+                                <div class="nhk-row-cell nhk-throws-cell">—</div>
+                                <div class="nhk-row-cell nhk-position-cell">—</div>
+                                <div class="nhk-row-cell nhk-player-cell">—</div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-stat-cell"></div>
+                                <div class="nhk-row-cell nhk-stat-cell"></div>
+                                <div class="nhk-row-cell nhk-stat-cell"></div>
+                                <div class="nhk-row-cell nhk-stat-cell"></div>
+                            </div>
+                            <div class="nhk-player-row" data-lineup-slot="8">
+                                <div class="nhk-row-cell nhk-order-cell">8</div>
+                                <div class="nhk-row-cell nhk-number-cell">—</div>
+                                <div class="nhk-row-cell nhk-bats-cell">—</div>
+                                <div class="nhk-row-cell nhk-throws-cell">—</div>
+                                <div class="nhk-row-cell nhk-position-cell">—</div>
+                                <div class="nhk-row-cell nhk-player-cell">—</div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-stat-cell"></div>
+                                <div class="nhk-row-cell nhk-stat-cell"></div>
+                                <div class="nhk-row-cell nhk-stat-cell"></div>
+                                <div class="nhk-row-cell nhk-stat-cell"></div>
+                            </div>
+                            <div class="nhk-player-row" data-lineup-slot="9">
+                                <div class="nhk-row-cell nhk-order-cell">9</div>
+                                <div class="nhk-row-cell nhk-number-cell">—</div>
+                                <div class="nhk-row-cell nhk-bats-cell">—</div>
+                                <div class="nhk-row-cell nhk-throws-cell">—</div>
+                                <div class="nhk-row-cell nhk-position-cell">—</div>
+                                <div class="nhk-row-cell nhk-player-cell">—</div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-atbat-cell"></div>
+                                <div class="nhk-row-cell nhk-stat-cell"></div>
+                                <div class="nhk-row-cell nhk-stat-cell"></div>
+                                <div class="nhk-row-cell nhk-stat-cell"></div>
+                                <div class="nhk-row-cell nhk-stat-cell"></div>
+                            </div>
                         </div>
 
-                        <!-- app.jsとの互換性を残すための領域 -->
+<!-- app.jsとの互換性を残すための領域 -->
                         <div
                             id="score-grid-placeholder"
                             class="score-grid-placeholder"

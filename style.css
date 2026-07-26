@@ -642,17 +642,15 @@ body {
     padding: 18px;
 }
 
-/* 用紙本体 */
-
 .nhk-scorebook-page {
-    --nhk-line: #4d5552;
-    --nhk-line-light: rgba(77, 85, 82, 0.38);
+    --nhk-line: #505854;
+    --nhk-line-light: rgba(80, 88, 84, 0.34);
     --nhk-line-dark: #252b29;
     --nhk-paper: #f7f4e9;
     --nhk-text: #171a19;
 
-    width: 1500px;
-    min-width: 1500px;
+    width: 1560px;
+    min-width: 1560px;
     min-height: 980px;
     margin: 0 auto;
     padding: 24px;
@@ -688,9 +686,7 @@ body {
         0 14px 34px rgba(0, 0, 0, 0.28);
 }
 
-/* =========================
-   Sheet Header
-========================= */
+/* Sheet Header */
 
 .nhk-sheet-header {
     margin-bottom: 10px;
@@ -720,13 +716,7 @@ body {
 
 .nhk-game-meta {
     display: grid;
-    grid-template-columns:
-        1.25fr
-        1.8fr
-        0.72fr
-        0.72fr
-        0.8fr;
-
+    grid-template-columns: 1.25fr 1.8fr 0.72fr 0.72fr 0.8fr;
     border-top: 2px solid var(--nhk-line-dark);
     border-left: 2px solid var(--nhk-line-dark);
 }
@@ -737,7 +727,6 @@ body {
     align-items: center;
     gap: 7px;
     padding: 4px 8px;
-
     border-right: 2px solid var(--nhk-line-dark);
     border-bottom: 2px solid var(--nhk-line-dark);
 }
@@ -794,9 +783,7 @@ body {
     font-weight: 800;
 }
 
-/* =========================
-   Main Score Grid
-========================= */
+/* Main Score Grid */
 
 .nhk-score-sheet {
     width: 100%;
@@ -805,20 +792,21 @@ body {
 }
 
 .nhk-grid-header,
-.nhk-empty-player-row,
 .nhk-player-row {
     display: grid;
-
     grid-template-columns:
-        38px
-        48px
-        176px
-        repeat(12, 76px)
+        36px
+        40px
+        32px
+        32px
+        42px
+        154px
+        repeat(12, 74px)
         repeat(4, 38px);
 }
 
 .nhk-grid-header {
-    min-height: 32px;
+    min-height: 34px;
     background: rgba(45, 55, 50, 0.055);
 }
 
@@ -838,37 +826,45 @@ body {
     place-items: center;
     padding: 3px 1px;
     border-bottom: 2px solid var(--nhk-line-dark);
-
     font-size: 9px;
     font-weight: 800;
     line-height: 1;
     text-align: center;
 }
 
+.nhk-player-header {
+    justify-items: start;
+    padding-left: 8px;
+}
+
 .nhk-total-header {
     font-size: 8px;
-    writing-mode: vertical-rl;
-    text-orientation: upright;
 }
 
 .nhk-player-rows {
     width: 100%;
 }
 
-.nhk-empty-player-row,
 .nhk-player-row {
-    min-height: 76px;
+    min-height: 74px;
 }
 
 .nhk-row-cell {
     position: relative;
-    min-height: 76px;
+    min-height: 74px;
     display: flex;
     align-items: center;
     justify-content: center;
-
     border-bottom: 1px solid var(--nhk-line);
     font-size: 11px;
+}
+
+.nhk-player-row:nth-child(3n) .nhk-row-cell {
+    border-bottom-color: var(--nhk-line-dark);
+}
+
+.nhk-player-row:last-child .nhk-row-cell {
+    border-bottom: 0;
 }
 
 .nhk-order-cell {
@@ -876,36 +872,40 @@ body {
     font-weight: 800;
 }
 
+.nhk-number-cell,
+.nhk-bats-cell,
+.nhk-throws-cell,
 .nhk-position-cell {
-    font-size: 11px;
-    font-weight: 700;
+    font-size: 10px;
+    font-weight: 750;
 }
 
 .nhk-player-cell {
     justify-content: flex-start;
-    padding: 5px 7px;
-
+    padding: 5px 8px;
+    overflow: hidden;
     font-size: 12px;
-    font-weight: 700;
-    line-height: 1.25;
+    font-weight: 750;
+    line-height: 1.2;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
-/* 打席マス */
+/* 打席マス：NHK式の記入補助線を残しつつ見やすく調整 */
 
 .nhk-atbat-cell {
     overflow: hidden;
-
     background:
         linear-gradient(
             to bottom right,
             transparent calc(50% - 0.35px),
-            rgba(65, 75, 70, 0.11) 50%,
+            rgba(65, 75, 70, 0.10) 50%,
             transparent calc(50% + 0.35px)
         ),
         linear-gradient(
             to top right,
             transparent calc(50% - 0.35px),
-            rgba(65, 75, 70, 0.11) 50%,
+            rgba(65, 75, 70, 0.10) 50%,
             transparent calc(50% + 0.35px)
         );
 }
@@ -913,9 +913,8 @@ body {
 .nhk-atbat-cell::before {
     content: "";
     position: absolute;
-    inset: 8px 10px;
-
-    border: 1px dotted rgba(60, 70, 65, 0.3);
+    inset: 8px 9px;
+    border: 1px dotted rgba(60, 70, 65, 0.30);
     pointer-events: none;
 }
 
@@ -924,15 +923,10 @@ body {
     position: absolute;
     top: 50%;
     left: 50%;
-
-    width: 21px;
-    height: 21px;
-
-    border: 1px solid rgba(55, 65, 60, 0.52);
-    transform:
-        translate(-50%, -50%)
-        rotate(45deg);
-
+    width: 20px;
+    height: 20px;
+    border: 1px solid rgba(55, 65, 60, 0.50);
+    transform: translate(-50%, -50%) rotate(45deg);
     pointer-events: none;
 }
 
@@ -943,39 +937,28 @@ body {
 }
 
 /* 3回ごとの区切り */
-
-.nhk-grid-header > :nth-child(4),
 .nhk-grid-header > :nth-child(7),
 .nhk-grid-header > :nth-child(10),
 .nhk-grid-header > :nth-child(13),
-.nhk-empty-player-row > :nth-child(4),
-.nhk-empty-player-row > :nth-child(7),
-.nhk-empty-player-row > :nth-child(10),
-.nhk-empty-player-row > :nth-child(13),
-.nhk-player-row > :nth-child(4),
+.nhk-grid-header > :nth-child(16),
 .nhk-player-row > :nth-child(7),
 .nhk-player-row > :nth-child(10),
-.nhk-player-row > :nth-child(13) {
-    border-left: 2px solid var(--nhk-line-dark);
-}
-
-/* 成績欄の区切り */
-
-.nhk-grid-header > :nth-child(16),
-.nhk-empty-player-row > :nth-child(16),
+.nhk-player-row > :nth-child(13),
 .nhk-player-row > :nth-child(16) {
     border-left: 2px solid var(--nhk-line-dark);
 }
 
-/* 旧グリッド用領域 */
+/* 成績欄の区切り */
+.nhk-grid-header > :nth-child(19),
+.nhk-player-row > :nth-child(19) {
+    border-left: 2px solid var(--nhk-line-dark);
+}
 
 .nhk-score-sheet > .score-grid-placeholder {
     display: none;
 }
 
-/* =========================
-   Sheet Footer
-========================= */
+/* Sheet Footer */
 
 .nhk-sheet-footer {
     display: grid;
@@ -998,16 +981,12 @@ body {
     display: flex;
     align-items: center;
     padding: 3px 8px;
-
     border-bottom: 1px solid var(--nhk-line-dark);
     background: rgba(45, 55, 50, 0.055);
-
     font-size: 10px;
     font-weight: 800;
     letter-spacing: 0.06em;
 }
-
-/* イニング集計 */
 
 .nhk-summary-grid {
     display: grid;
@@ -1018,10 +997,8 @@ body {
     min-height: 24px;
     display: grid;
     place-items: center;
-
     border-right: 1px solid var(--nhk-line-light);
     border-bottom: 1px solid var(--nhk-line-light);
-
     font-size: 8px;
 }
 
@@ -1038,8 +1015,6 @@ body {
     background: rgba(45, 55, 50, 0.045);
     font-weight: 800;
 }
-
-/* 長打・盗塁欄 */
 
 .nhk-batting-notes {
     display: grid;
@@ -1060,10 +1035,8 @@ body {
 .nhk-footer-label {
     display: grid;
     place-items: center;
-
     border-right: 1px solid var(--nhk-line-dark);
     background: rgba(45, 55, 50, 0.045);
-
     font-size: 9px;
     font-weight: 800;
 }
@@ -1073,24 +1046,13 @@ body {
     font-size: 9px;
 }
 
-/* 投手記録 */
-
 .nhk-pitching-section {
     grid-column: 1;
 }
 
 .nhk-pitching-header {
     display: grid;
-    grid-template-columns:
-        2fr
-        0.6fr
-        0.65fr
-        0.8fr
-        0.65fr
-        0.65fr
-        0.65fr
-        0.65fr
-        0.65fr;
+    grid-template-columns: 2fr 0.6fr 0.65fr 0.8fr 0.65fr 0.65fr 0.65fr 0.65fr 0.65fr;
 }
 
 .nhk-pitching-header > div {
@@ -1098,10 +1060,8 @@ body {
     display: grid;
     place-items: center;
     padding: 2px;
-
     border-right: 1px solid var(--nhk-line);
     border-bottom: 1px solid var(--nhk-line);
-
     font-size: 8px;
     font-weight: 800;
     text-align: center;
@@ -1113,7 +1073,6 @@ body {
 
 .nhk-pitching-rows {
     min-height: 102px;
-
     background:
         repeating-linear-gradient(
             to bottom,
@@ -1124,8 +1083,6 @@ body {
         );
 }
 
-/* 備考 */
-
 .nhk-notes-section {
     grid-column: 2;
 }
@@ -1133,7 +1090,6 @@ body {
 .nhk-notes-area {
     min-height: 130px;
     padding: 7px;
-
     background:
         repeating-linear-gradient(
             to bottom,
@@ -1143,10 +1099,6 @@ body {
             rgba(77, 85, 82, 0.26) 25px
         );
 }
-
-/* =========================
-   Small Screens
-========================= */
 
 @media (max-width: 1100px) {
     .scorebook {
@@ -1158,12 +1110,7 @@ body {
     }
 }
 
-/* =========================
-   Print
-========================= */
-
 @media print {
-
     body {
         min-width: 0;
         background: #ffffff;
@@ -1188,7 +1135,6 @@ body {
         min-height: 0;
         padding: 0;
         margin: 0;
-
         overflow: visible;
         border: 0;
         background: #ffffff;
@@ -1201,10 +1147,8 @@ body {
         min-height: 0;
         margin: 0;
         padding: 7mm;
-
         border: 0;
         box-shadow: none;
-
         print-color-adjust: exact;
         -webkit-print-color-adjust: exact;
     }
