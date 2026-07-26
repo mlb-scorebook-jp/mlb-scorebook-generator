@@ -15,12 +15,13 @@
     <!-- Header -->
     <header class="header">
         <div class="logo">
-            ⚾ MLB Scorebook Generator
-        </div>
+    <h1>MLB SCOREBOOK GENERATOR</h1>
+    <p>Professional Baseball Scorebook System</p>
+</div>
 
-        <div class="version">
-            Version 0.1
-        </div>
+<div class="version">
+    Ver. 1.0.0
+</div>
     </header>
 
     <!-- Main -->
@@ -47,25 +48,51 @@
             <button id="generate-btn">
                 スコアブック生成
             </button>
+            <button id="save-btn">
+    保存
+</button>
 
-            <hr>
+           <hr>
 
-            <h3>Game Information</h3>
+<h3>Game Information</h3>
 
-            <div class="game-info">
+<div class="game-info">
 
-                <p>HOME：</p>
+    <div class="info-row">
+        <span>HOME</span>
+        <span id="home-team">-</span>
+    </div>
 
-                <p>AWAY：</p>
+    <div class="info-row">
+        <span>AWAY</span>
+        <span id="away-team">-</span>
+    </div>
 
-                <p>DATE：</p>
+    <div class="info-row">
+        <span>DATE</span>
+        <span id="game-date">-</span>
+    </div>
 
-                <p>BALLPARK：</p>
+    <div class="info-row">
+        <span>BALLPARK</span>
+        <span id="ballpark">-</span>
+    </div>
 
-                <p>STATUS：</p>
+    <div class="info-row">
+        <span>STATUS</span>
+        <span id="game-status">-</span>
+    </div>
 
-            </div>
+</div>
+<hr>
 
+<h3>Scorebook Library</h3>
+
+<div id="library-list">
+
+    <!-- 保存したスコアブック一覧 -->
+
+</div>
         </aside>
 
         <!-- Scorebook -->
