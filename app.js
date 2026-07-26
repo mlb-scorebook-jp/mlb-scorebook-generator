@@ -92,6 +92,7 @@ async function loadGameData() {
     console.log("② fetch完了");
 console.log(gameData);
 console.log(gameData.gameData);
+console.log(gameData.gameData.teams);
     setGameInfo(0, "HOME", "取得準備中");
     setGameInfo(1, "AWAY", "取得準備中");
     setGameInfo(2, "DATE", "取得準備中");
