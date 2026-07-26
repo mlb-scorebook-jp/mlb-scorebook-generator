@@ -99,7 +99,7 @@ async function loadGameData() {
     setGameInfo(2, "DATE", gameData.gameData.datetime.officialDate);
 
 
-    setGameInfo(3, "BALLPARK", "取得準備中");
+   setGameInfo(3, "BALLPARK", gameData.gameData.venue.name);
     setGameInfo(4, "STATUS", `試合ID ${gamePk} を確認`);
 
     console.log("VENUE:", gameData.gameData.venue);
