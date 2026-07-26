@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>MLB Scorebook Generator</title>
 
     <style>
@@ -13,25 +12,28 @@
             --panel-border: #3b454e;
             --text: #e7ecef;
             --muted: #9ba7af;
-            --button-bg: #2c353d;
-            --button-hover: #37434d;
             --accent: #87aebe;
 
-            --paper: #f2eccf;
-            --paper-dark: #e8dfb8;
-            --ink: #34362f;
-            --rule: rgba(52, 54, 47, 0.82);
-            --guide: rgba(52, 54, 47, 0.38);
+            --paper: #fbfcf8;
+            --ink: #183b23;
+            --rule: #2f6b3d;
+            --guide: rgba(47, 107, 61, 0.42);
+            --faint: rgba(47, 107, 61, 0.12);
+            --red: #d84949;
+            --blue: #2c67b8;
+            --yellow: #f3c83e;
 
             --order-width: 34px;
-            --position-width: 42px;
-            --name-width: 148px;
-            --number-width: 38px;
-            --inning-width: 78px;
-            --stat-width: 44px;
+            --name-width: 118px;
+            --position-width: 30px;
+            --hand-width: 26px;
+            --number-width: 30px;
+            --inning-width: 76px;
+            --stat-width: 24px;
 
-            --header-height: 30px;
-            --lineup-height: 75px;
+            --header-height: 28px;
+            --lineup-height: 56px;
+            --inning-count: 9;
         }
 
         * {
@@ -60,10 +62,6 @@
             font: inherit;
         }
 
-        /* =========================
-           アプリケーション外枠
-        ========================= */
-
         .app-header {
             height: 68px;
             display: flex;
@@ -71,8 +69,7 @@
             justify-content: space-between;
             padding: 0 24px;
             border-bottom: 1px solid #39434b;
-            background:
-                linear-gradient(180deg, #252c32 0%, #1c2227 100%);
+            background: linear-gradient(180deg, #252c32 0%, #1c2227 100%);
         }
 
         .app-title h1 {
@@ -99,15 +96,10 @@
             min-height: calc(100vh - 120px);
         }
 
-        /* =========================
-           左側操作パネル
-        ========================= */
-
         .sidebar {
             padding: 20px;
             border-right: 1px solid #374149;
-            background:
-                linear-gradient(180deg, #22292f 0%, #1b2025 100%);
+            background: linear-gradient(180deg, #22292f 0%, #1b2025 100%);
         }
 
         .sidebar h2,
@@ -160,16 +152,19 @@
             color: #e9eef0;
             border: 1px solid #4c5861;
             border-radius: 2px;
-            background:
-                linear-gradient(180deg, #343e46 0%, #283038 100%);
+            background: linear-gradient(180deg, #343e46 0%, #283038 100%);
             cursor: pointer;
             font-size: 11px;
             font-weight: 700;
         }
 
         .sidebar button:hover {
-            background:
-                linear-gradient(180deg, #3e4a54 0%, #303942 100%);
+            background: linear-gradient(180deg, #3e4a54 0%, #303942 100%);
+        }
+
+        .sidebar button.active {
+            border-color: #87aebe;
+            background: linear-gradient(180deg, #42525d 0%, #303c45 100%);
         }
 
         .sidebar hr {
@@ -203,21 +198,27 @@
             white-space: nowrap;
         }
 
-        /* =========================
-           台紙表示領域
-        ========================= */
+        .page-switch {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
 
         .viewer {
             min-width: 0;
             padding: 22px;
             overflow: auto;
             background:
-                radial-gradient(
-                    circle at 50% 0%,
-                    rgba(105, 122, 132, 0.12),
-                    transparent 45%
-                ),
+                radial-gradient(circle at 50% 0%, rgba(105, 122, 132, 0.12), transparent 45%),
                 #111519;
+        }
+
+        .scorebook-page {
+            display: none;
+        }
+
+        .scorebook-page.active {
+            display: block;
         }
 
         .paper {
@@ -225,12 +226,7 @@
             min-width: 100%;
             padding: 18px;
             color: var(--ink);
-            background:
-                linear-gradient(
-                    rgba(255, 255, 255, 0.08),
-                    rgba(255, 255, 255, 0.08)
-                ),
-                var(--paper);
+            background: var(--paper);
             box-shadow:
                 0 15px 38px rgba(0, 0, 0, 0.32),
                 0 0 0 1px rgba(255, 255, 255, 0.12);
@@ -238,158 +234,156 @@
         }
 
         .sheet-width {
-            width: calc(
-                var(--order-width) +
-                var(--position-width) +
-                var(--name-width) +
-                var(--number-width) +
-                var(--inning-width) * 12 +
-                var(--stat-width) * 4
-            );
+            width: max-content;
         }
 
-        /* =========================
-           台紙上部
-        ========================= */
-
-        .sheet-top {
-            margin-bottom: 9px;
-        }
-
-        .sheet-title-row {
-            height: 28px;
+        .score-header-area {
             display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border-bottom: 1px solid var(--rule);
+            align-items: stretch;
+            gap: 8px;
+            width: max-content;
+            margin-bottom: 8px;
         }
 
-        .sheet-title {
-            font-family: Georgia, "Times New Roman", serif;
-            font-size: 15px;
-            font-weight: 700;
-            letter-spacing: 0.13em;
-        }
-
-        .game-number {
-            font-size: 11px;
-        }
-
-        .game-meta {
+        .top-score {
             display: grid;
-            grid-template-columns:
-                minmax(180px, 1.1fr)
-                minmax(220px, 1.4fr)
-                120px
-                120px
-                145px;
-            border-left: 1px solid var(--rule);
-            border-bottom: 1px solid var(--rule);
-        }
-
-        .meta-field {
-            min-height: 32px;
-            display: grid;
-            grid-template-columns: auto minmax(0, 1fr);
-            align-items: center;
-            border-right: 1px solid var(--rule);
-        }
-
-        .meta-label {
-            height: 100%;
-            display: flex;
-            align-items: center;
-            padding: 0 8px;
-            border-right: 1px solid var(--rule);
-            background: rgba(220, 209, 165, 0.25);
-            font-size: 9px;
-            font-weight: 700;
-        }
-
-        .meta-value {
-            min-width: 0;
-            padding: 0 8px;
-            overflow: hidden;
-            font-size: 11px;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-
-        .matchup {
-            min-height: 37px;
-            display: grid;
-            grid-template-columns: 1fr 38px 1fr;
-            align-items: center;
-            border-right: 1px solid var(--rule);
-            border-bottom: 1px solid var(--rule);
-            border-left: 1px solid var(--rule);
-        }
-
-        .team {
-            height: 100%;
-            display: grid;
-            grid-template-columns: 48px 1fr;
-            align-items: center;
-        }
-
-        .team:first-child {
-            border-right: 1px solid var(--rule);
-        }
-
-        .team:last-child {
-            border-left: 1px solid var(--rule);
-        }
-
-        .team-label {
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-right: 1px solid var(--rule);
-            font-size: 9px;
-            font-weight: 700;
-        }
-
-        .team:last-child .team-label {
-            border-right: 1px solid var(--rule);
-        }
-
-        .team-name {
-            padding: 0 10px;
-            font-size: 13px;
-            font-weight: 700;
-        }
-
-        .versus {
-            text-align: center;
-            font-size: 11px;
-            font-weight: 700;
-        }
-
-        /* =========================
-           スコアブック本体
-        ========================= */
-
-        .score-grid {
-            display: grid;
-            grid-template-columns:
-                var(--order-width)
-                calc(
-                    var(--position-width) +
-                    var(--name-width) +
-                    var(--number-width)
-                )
-                repeat(12, var(--inning-width))
-                repeat(4, var(--stat-width));
+            grid-template-columns: 120px repeat(var(--inning-count), 36px) repeat(3, 36px);
             width: max-content;
             border-top: 1.4px solid var(--rule);
             border-left: 1.4px solid var(--rule);
         }
 
-        .score-grid-header,
-        .lineup-slot,
-        .pitcher-slot {
-            display: contents;
+        .top-score > div {
+            min-height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2px 5px;
+            border-right: 1px solid var(--rule);
+            border-bottom: 1px solid var(--rule);
+            font-size: 10px;
+            font-weight: 700;
+        }
+
+        .abs-challenge-box {
+            width: 410px;
+            border-top: 1.4px solid var(--rule);
+            border-left: 1.4px solid var(--rule);
+            background: #fff;
+        }
+
+        .abs-challenge-title {
+            min-height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-right: 1px solid var(--rule);
+            border-bottom: 1px solid var(--rule);
+            color: var(--rule);
+            background: var(--faint);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+        }
+
+        .abs-challenge-grid {
+            display: grid;
+            grid-template-columns: 44px 48px 104px 58px 58px 56px;
+        }
+
+        .abs-challenge-grid > div {
+            min-height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2px 4px;
+            border-right: 1px solid var(--rule);
+            border-bottom: 1px solid var(--rule);
+            overflow: hidden;
+            font-size: 9px;
+            white-space: nowrap;
+        }
+
+        .abs-challenge-grid .abs-head {
+            color: var(--rule);
+            background: rgba(47, 107, 61, 0.05);
+            font-weight: 700;
+        }
+
+        .abs-challenge-grid .editable-cell {
+            outline: none;
+            cursor: text;
+        }
+
+        .abs-challenge-grid .editable-cell:focus {
+            background: rgba(243, 200, 62, 0.16);
+        }
+
+        .sheet-meta {
+            display: grid;
+            grid-template-columns: 72px 145px 205px 58px 150px 58px 82px 58px 82px 58px 120px;
+            width: max-content;
+            border-top: 1.4px solid var(--rule);
+            border-left: 1.4px solid var(--rule);
+        }
+
+        .sheet-meta > div {
+            min-height: 28px;
+            display: flex;
+            align-items: center;
+            padding: 0 8px;
+            border-right: 1px solid var(--rule);
+            border-bottom: 1px solid var(--rule);
+            font-size: 10px;
+        }
+
+        .sheet-meta .label {
+            justify-content: center;
+            color: var(--rule);
+            font-weight: 700;
+            background: var(--faint);
+        }
+
+        .matchup-row {
+            display: grid;
+            grid-template-columns: 1fr 54px 1fr 58px 82px 58px 1fr;
+            width: 100%;
+            min-width: 1180px;
+            border-left: 1.4px solid var(--rule);
+            border-bottom: 1.4px solid var(--rule);
+        }
+
+        .matchup-row > div {
+            min-height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 10px;
+            border-right: 1px solid var(--rule);
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .matchup-row .small-label {
+            color: var(--rule);
+            font-size: 10px;
+            background: var(--faint);
+        }
+
+        .score-grid {
+            display: grid;
+            grid-template-columns:
+                var(--order-width)
+                var(--name-width)
+                var(--position-width)
+                var(--hand-width)
+                var(--number-width)
+                repeat(var(--inning-count), var(--inning-width))
+                repeat(15, var(--stat-width));
+            width: max-content;
+            border-top: 1.4px solid var(--rule);
+            border-left: 1.4px solid var(--rule);
+            margin-top: 8px;
         }
 
         .grid-header,
@@ -403,32 +397,18 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: rgba(221, 210, 167, 0.28);
-            font-size: 10px;
+            background: rgba(47, 107, 61, 0.05);
+            font-size: 9px;
             font-weight: 700;
-            letter-spacing: 0.06em;
+            line-height: 1.05;
+            text-align: center;
+            writing-mode: horizontal-tb;
         }
 
-        /* 打順の右に守備、その右に名前、その右に背番号 */
-        .player-header {
-            display: grid;
-            grid-template-columns:
-                var(--position-width)
-                var(--name-width)
-                var(--number-width);
-            padding: 0;
-        }
-
-        .player-header span {
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-right: 1px solid var(--rule);
-        }
-
-        .player-header span:last-child {
-            border-right: 0;
+        .grid-header.vertical {
+            writing-mode: vertical-rl;
+            padding: 2px 0;
+            letter-spacing: 0.05em;
         }
 
         .order-cell {
@@ -436,156 +416,116 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: rgba(230, 220, 180, 0.18);
-            font-size: 17px;
+            font-size: 16px;
             font-weight: 700;
         }
 
-        /* 各打順に先発＋交代2人の3段 */
-        .player-stack {
+        .player-cell {
             height: var(--lineup-height);
-        }
-
-        .player-line {
-            height: calc(var(--lineup-height) / 3);
-            display: grid;
-            grid-template-columns:
-                var(--position-width)
-                var(--name-width)
-                var(--number-width);
-        }
-
-        .player-line + .player-line {
-            border-top: 1px dotted var(--guide);
-        }
-
-        .position-cell,
-        .player-name-cell,
-        .number-cell {
-            min-width: 0;
             display: flex;
             align-items: center;
+            min-width: 0;
             overflow: hidden;
             white-space: nowrap;
+            font-size: 10px;
         }
 
-        .position-cell {
-            justify-content: center;
-            border-right: 1px solid var(--rule);
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: -0.04em;
-        }
-
-        .player-name-cell {
+        .name-cell {
             padding: 0 5px;
-            border-right: 1px solid var(--rule);
-            font-size: 10px;
         }
 
-        .number-cell {
+        .center-cell {
             justify-content: center;
-            font-size: 10px;
-            font-weight: 700;
         }
-
-        /* =========================
-           NHK式打席マス
-        ========================= */
 
         .atbat-cell {
             position: relative;
             height: var(--lineup-height);
             display: grid;
-            grid-template-columns: 15px minmax(0, 1fr);
-            padding: 0;
+            grid-template-columns: 12px minmax(0, 1fr);
             overflow: hidden;
+            background: #fff;
         }
 
-        /* 1球ずつ記録する左側の細い欄 */
         .pitch-column {
+            position: relative;
             height: 100%;
-            display: grid;
-            grid-template-rows: repeat(10, 1fr);
             border-right: 1px solid var(--rule);
         }
 
-        .pitch-line {
-            border-bottom: 1px dotted var(--guide);
-        }
-
-        .pitch-line:last-child {
-            border-bottom: 0;
-        }
-
-        /* 打席結果の記入欄 */
         .result-box {
             position: relative;
-            min-width: 0;
             height: 100%;
         }
 
-        /* 中央縦点線 */
-        .result-box::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 50%;
-            border-left: 1px dotted var(--guide);
-        }
-
-        /* 中央横点線 */
-        .result-box::after {
-            content: "";
+        .diamond {
             position: absolute;
             top: 50%;
-            right: 0;
-            left: 0;
-            border-top: 1px dotted var(--guide);
+            left: 50%;
+            width: 30px;
+            height: 30px;
+            transform: translate(-50%, -50%) rotate(45deg);
+            border: 1px solid var(--guide);
+            background: transparent;
         }
 
-        /*
-         * ダイヤ形は作らない。
-         * 3・6・9回などの太線も作らない。
-         * 全イニングの縦線を同じ太さにする。
-         */
+        .base {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            transform: rotate(45deg);
+            border: 1px solid rgba(47, 107, 61, 0.45);
+            background: #fff;
+        }
+
+        .base.home { left: calc(50% - 3px); bottom: 7px; }
+        .base.first { right: 11px; top: calc(50% - 3px); }
+        .base.second { left: calc(50% - 3px); top: 7px; }
+        .base.third { left: 11px; top: calc(50% - 3px); }
+
+        .atbat-number {
+            position: absolute;
+            top: 4px;
+            left: 17px;
+            color: #666;
+            font-size: 8px;
+        }
+
+        .result-note {
+            position: absolute;
+            right: 3px;
+            bottom: 2px;
+            color: var(--blue);
+            font-size: 9px;
+            font-weight: 700;
+        }
 
         .stat-cell {
             height: var(--lineup-height);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 9px;
         }
 
-        /* 投手専用欄 */
-        .pitcher-order {
-            font-size: 16px;
-            letter-spacing: 0.04em;
-        }
-
-        .pitcher-stack {
-            background: rgba(230, 220, 180, 0.12);
-        }
-
-        /* =========================
-           チーム集計
-        ========================= */
-
-        .team-total-grid {
+        .summary-grid {
             display: grid;
             grid-template-columns:
                 calc(
                     var(--order-width) +
-                    var(--position-width) +
                     var(--name-width) +
+                    var(--position-width) +
+                    var(--hand-width) +
                     var(--number-width)
                 )
-                repeat(12, var(--inning-width))
-                repeat(4, var(--stat-width));
+                repeat(var(--inning-count), var(--inning-width))
+                repeat(15, var(--stat-width));
             width: max-content;
             border-left: 1.4px solid var(--rule);
         }
 
-        .total-cell {
-            min-height: 25px;
+        .summary-cell {
+            min-height: 24px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -594,73 +534,112 @@
             font-size: 9px;
         }
 
-        .total-label {
+        .summary-label {
             justify-content: flex-start;
             padding-left: 10px;
             font-weight: 700;
         }
 
-        /* =========================
-           台紙下部
-        ========================= */
-
-        .sheet-footer {
-            margin-top: 10px;
-        }
-
-        .record-boxes {
+        .bench-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            border-top: 1px solid var(--rule);
-            border-left: 1px solid var(--rule);
+            grid-template-columns:
+                var(--order-width)
+                var(--name-width)
+                var(--position-width)
+                var(--hand-width)
+                var(--number-width)
+                repeat(var(--inning-count), var(--inning-width))
+                repeat(15, var(--stat-width));
+            width: max-content;
+            border-left: 1.4px solid var(--rule);
         }
 
-        .record-box {
-            min-height: 46px;
-            display: grid;
-            grid-template-columns: 48px 1fr;
-            border-right: 1px solid var(--rule);
-            border-bottom: 1px solid var(--rule);
-        }
-
-        .record-label {
+        .bench-label {
+            grid-row: span 5;
             display: flex;
             align-items: center;
             justify-content: center;
             border-right: 1px solid var(--rule);
-            background: rgba(221, 210, 167, 0.22);
-            font-size: 9px;
+            border-bottom: 1px solid var(--rule);
             font-weight: 700;
         }
 
-        .pitching-record {
-            margin-top: 8px;
-            border-top: 1px solid var(--rule);
-            border-left: 1px solid var(--rule);
+        .bench-row {
+            display: contents;
         }
 
-        .section-title {
+        .bench-cell {
+            min-height: 23px;
+            display: flex;
+            align-items: center;
+            border-right: 1px solid var(--rule);
+            border-bottom: 1px solid var(--rule);
+            padding: 0 4px;
+            font-size: 9px;
+        }
+
+        .blank-span {
+            grid-column: span var(--inning-count);
+        }
+
+        .sheet-bottom {
+            display: grid;
+            grid-template-columns: minmax(680px, 1.6fr) minmax(440px, 1fr);
+            gap: 8px;
+            margin-top: 8px;
+            min-width: 1180px;
+        }
+
+        .table-box {
+            border-top: 1.4px solid var(--rule);
+            border-left: 1.4px solid var(--rule);
+        }
+
+        .table-title {
             min-height: 25px;
             display: flex;
             align-items: center;
-            padding: 0 9px;
+            padding: 0 8px;
             border-right: 1px solid var(--rule);
             border-bottom: 1px solid var(--rule);
-            background: rgba(221, 210, 167, 0.25);
+            color: var(--rule);
             font-size: 10px;
             font-weight: 700;
-            letter-spacing: 0.08em;
         }
 
-        .pitching-header {
+        .pitching-table {
             display: grid;
-            grid-template-columns:
-                minmax(170px, 1.8fr)
-                repeat(8, minmax(48px, 0.65fr));
+            grid-template-columns: 28px 110px 26px repeat(12, 42px);
         }
 
-        .pitching-header div {
-            min-height: 26px;
+        .pitching-table > div {
+            min-height: 23px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-right: 1px solid var(--rule);
+            border-bottom: 1px solid var(--rule);
+            font-size: 8px;
+        }
+
+        .pitching-table .left {
+            justify-content: flex-start;
+            padding-left: 4px;
+        }
+
+        .side-stats {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 8px;
+        }
+
+        .small-table {
+            display: grid;
+            grid-template-columns: 1fr repeat(4, 54px);
+        }
+
+        .small-table > div {
+            min-height: 25px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -669,41 +648,35 @@
             font-size: 9px;
         }
 
-        .pitching-rows {
-            min-height: 72px;
-            border-right: 1px solid var(--rule);
-            border-bottom: 1px solid var(--rule);
-            background:
-                repeating-linear-gradient(
-                    to bottom,
-                    transparent 0,
-                    transparent 23px,
-                    var(--guide) 24px
-                );
+        .memo-table {
+            display: grid;
+            grid-template-columns: 80px 1fr;
         }
 
-        .notes-section {
+        .memo-table > div {
+            min-height: 28px;
+            display: flex;
+            align-items: center;
+            padding: 0 6px;
+            border-right: 1px solid var(--rule);
+            border-bottom: 1px solid var(--rule);
+            font-size: 9px;
+        }
+
+        .memo-table .memo-label {
+            justify-content: center;
+            color: var(--rule);
+            font-weight: 700;
+            background: var(--faint);
+        }
+
+        .status-message {
+            min-height: 18px;
             margin-top: 8px;
-            border-top: 1px solid var(--rule);
-            border-left: 1px solid var(--rule);
+            color: #b8c4ca;
+            font-size: 10px;
+            line-height: 1.5;
         }
-
-        .notes-area {
-            min-height: 75px;
-            border-right: 1px solid var(--rule);
-            border-bottom: 1px solid var(--rule);
-            background:
-                repeating-linear-gradient(
-                    to bottom,
-                    transparent 0,
-                    transparent 23px,
-                    var(--guide) 24px
-                );
-        }
-
-        /* =========================
-           フッター操作
-        ========================= */
 
         .app-footer {
             min-height: 52px;
@@ -759,10 +732,15 @@
                 background: white;
             }
 
+            .scorebook-page {
+                display: block !important;
+                page-break-after: always;
+            }
+
             .paper {
                 padding: 0;
                 box-shadow: none;
-                background: var(--paper);
+                background: white;
                 print-color-adjust: exact;
                 -webkit-print-color-adjust: exact;
             }
@@ -774,26 +752,38 @@
     <header class="app-header">
         <div class="app-title">
             <h1>MLB SCOREBOOK GENERATOR</h1>
-            <p>PROFESSIONAL BASEBALL SCOREBOOK SYSTEM</p>
+            <p>WASEDA STYLE DIGITAL SCOREBOOK</p>
         </div>
 
-        <div class="version">Ver. 1.1.0</div>
+        <div class="version">Ver. 2.0.0</div>
     </header>
 
     <main class="app-main">
         <aside class="sidebar">
             <h2>Game Data</h2>
 
-            <label for="gameday-url">MLB Gameday URL</label>
-
+            <label for="gameday-url">MLB Gameday URL / Game PK</label>
             <input
                 type="text"
                 id="gameday-url"
-                placeholder="https://www.mlb.com/gameday/...">
+                placeholder="https://www.mlb.com/gameday/... または gamePk">
 
             <button id="load-btn">試合データを取得</button>
             <button id="generate-btn">スコアブック生成</button>
             <button id="save-btn">保存</button>
+
+            <div class="status-message" id="status-message">
+                初期表示は9回です。Gameday取得後は実際のイニング数に合わせて自動拡張します。
+            </div>
+
+            <hr>
+
+            <h3>Page</h3>
+
+            <div class="page-switch">
+                <button id="away-page-btn" class="active">先攻</button>
+                <button id="home-page-btn">後攻</button>
+            </div>
 
             <hr>
 
@@ -824,205 +814,121 @@
                     <span>STATUS</span>
                     <span id="game-status">-</span>
                 </div>
+
+                <div class="info-row">
+                    <span>INNINGS</span>
+                    <span id="inning-count-display">9</span>
+                </div>
             </div>
 
             <hr>
 
             <h3>Scorebook Library</h3>
-
             <div id="library-list"></div>
         </aside>
 
         <section class="viewer">
-            <article class="paper">
-                <header class="sheet-top sheet-width">
-                    <div class="sheet-title-row">
-                        <div class="sheet-title">
-                            BASEBALL SCOREBOOK
-                        </div>
+            <article class="paper scorebook-page active" id="away-page">
+                <div id="away-sheet"></div>
+            </article>
 
-                        <div class="game-number">
-                            第
-                            <span id="scorebook-game-number">—</span>
-                            回戦
-                        </div>
-                    </div>
-
-                    <div class="game-meta">
-                        <div class="meta-field">
-                            <span class="meta-label">年月日</span>
-                            <strong
-                                class="meta-value"
-                                id="scorebook-date">—</strong>
-                        </div>
-
-                        <div class="meta-field">
-                            <span class="meta-label">球場</span>
-                            <strong
-                                class="meta-value"
-                                id="scorebook-ballpark">—</strong>
-                        </div>
-
-                        <div class="meta-field">
-                            <span class="meta-label">開始</span>
-                            <strong
-                                class="meta-value"
-                                id="scorebook-start-time">—</strong>
-                        </div>
-
-                        <div class="meta-field">
-                            <span class="meta-label">終了</span>
-                            <strong
-                                class="meta-value"
-                                id="scorebook-end-time">—</strong>
-                        </div>
-
-                        <div class="meta-field">
-                            <span class="meta-label">試合時間</span>
-                            <strong
-                                class="meta-value"
-                                id="scorebook-duration">—</strong>
-                        </div>
-                    </div>
-
-                    <div class="matchup">
-                        <div class="team">
-                            <span class="team-label">先攻</span>
-                            <strong
-                                class="team-name"
-                                id="scorebook-away-team">—</strong>
-                        </div>
-
-                        <div class="versus">対</div>
-
-                        <div class="team">
-                            <span class="team-label">後攻</span>
-                            <strong
-                                class="team-name"
-                                id="scorebook-home-team">—</strong>
-                        </div>
-                    </div>
-                </header>
-
-                <section
-                    class="score-grid"
-                    id="away-lineup-table">
-
-                    <div class="score-grid-header">
-                        <div class="grid-header">打順</div>
-
-                        <div class="grid-header player-header">
-                            <span>守備</span>
-                            <span>選手名</span>
-                            <span>背</span>
-                        </div>
-
-                        <div class="grid-header">1</div>
-                        <div class="grid-header">2</div>
-                        <div class="grid-header">3</div>
-                        <div class="grid-header">4</div>
-                        <div class="grid-header">5</div>
-                        <div class="grid-header">6</div>
-                        <div class="grid-header">7</div>
-                        <div class="grid-header">8</div>
-                        <div class="grid-header">9</div>
-                        <div class="grid-header">10</div>
-                        <div class="grid-header">11</div>
-                        <div class="grid-header">12</div>
-
-                        <div class="grid-header">打数</div>
-                        <div class="grid-header">安打</div>
-                        <div class="grid-header">打点</div>
-                        <div class="grid-header">得点</div>
-                    </div>
-                </section>
-
-                <section
-                    class="team-total-grid"
-                    id="team-total-grid">
-                </section>
-
-                <footer class="sheet-footer sheet-width">
-                    <section class="record-boxes">
-                        <div class="record-box">
-                            <span class="record-label">二塁打</span>
-                            <div id="scorebook-doubles"></div>
-                        </div>
-
-                        <div class="record-box">
-                            <span class="record-label">三塁打</span>
-                            <div id="scorebook-triples"></div>
-                        </div>
-
-                        <div class="record-box">
-                            <span class="record-label">本塁打</span>
-                            <div id="scorebook-home-runs"></div>
-                        </div>
-
-                        <div class="record-box">
-                            <span class="record-label">盗塁</span>
-                            <div id="scorebook-stolen-bases"></div>
-                        </div>
-                    </section>
-
-                    <section class="pitching-record">
-                        <div class="section-title">投手記録</div>
-
-                        <div class="pitching-header">
-                            <div>投手名</div>
-                            <div>回</div>
-                            <div>打者</div>
-                            <div>投球数</div>
-                            <div>安打</div>
-                            <div>三振</div>
-                            <div>四球</div>
-                            <div>失点</div>
-                            <div>自責</div>
-                        </div>
-
-                        <div
-                            class="pitching-rows"
-                            id="scorebook-pitching-table">
-                        </div>
-                    </section>
-
-                    <section class="notes-section">
-                        <div class="section-title">備考</div>
-
-                        <div
-                            class="notes-area"
-                            id="scorebook-notes">
-                        </div>
-                    </section>
-                </footer>
+            <article class="paper scorebook-page" id="home-page">
+                <div id="home-sheet"></div>
             </article>
         </section>
     </main>
 
     <footer class="app-footer">
-        <button type="button">PDF</button>
-        <button type="button">PNG</button>
-        <button type="button">PRINT</button>
-        <button type="button">JSON</button>
+        <button type="button" id="pdf-btn">PDF</button>
+        <button type="button" id="png-btn">PNG</button>
+        <button type="button" id="print-btn">PRINT</button>
+        <button type="button" id="json-btn">JSON</button>
     </footer>
 
     <script>
         (() => {
             "use strict";
 
-            const scoreGrid = document.getElementById("away-lineup-table");
-            const totalGrid = document.getElementById("team-total-grid");
+            const DEFAULT_INNINGS = 9;
+            const MIN_INNINGS = 9;
+            const MAX_SAFE_INNINGS = 30;
 
-            if (!scoreGrid || !totalGrid) {
-                console.error("スコアブック領域を取得できません。");
-                return;
-            }
+            const state = {
+                innings: DEFAULT_INNINGS,
+                gamePk: null,
+                gameData: null,
+                away: {
+                    abbreviation: "AWAY",
+                    name: "先攻チーム",
+                    players: [],
+                    pitchers: []
+                },
+                home: {
+                    abbreviation: "HOME",
+                    name: "後攻チーム",
+                    players: [],
+                    pitchers: []
+                }
+            };
 
-            const createElement = (
-                tagName,
-                className = "",
-                text = ""
-            ) => {
+            const statHeaders = [
+                "打席",
+                "打数",
+                "安打",
+                "打点",
+                "得点",
+                "四球",
+                "死球",
+                "三振",
+                "犠打",
+                "犠飛",
+                "本塁打",
+                "盗塁",
+                "残塁",
+                "補殺",
+                "失策"
+            ];
+
+            const pitchingHeaders = [
+                "左/右",
+                "勝敗",
+                "回数",
+                "球数",
+                "S数",
+                "S%",
+                "打者",
+                "打数",
+                "安打",
+                "本塁打",
+                "四球",
+                "死球"
+            ];
+
+            const dom = {
+                gameInput: document.getElementById("gameday-url"),
+                loadButton: document.getElementById("load-btn"),
+                generateButton: document.getElementById("generate-btn"),
+                saveButton: document.getElementById("save-btn"),
+                awayPageButton: document.getElementById("away-page-btn"),
+                homePageButton: document.getElementById("home-page-btn"),
+                awayPage: document.getElementById("away-page"),
+                homePage: document.getElementById("home-page"),
+                awaySheet: document.getElementById("away-sheet"),
+                homeSheet: document.getElementById("home-sheet"),
+                homeTeam: document.getElementById("home-team"),
+                awayTeam: document.getElementById("away-team"),
+                gameDate: document.getElementById("game-date"),
+                ballpark: document.getElementById("ballpark"),
+                gameStatus: document.getElementById("game-status"),
+                inningCount: document.getElementById("inning-count-display"),
+                statusMessage: document.getElementById("status-message"),
+                printButton: document.getElementById("print-btn"),
+                jsonButton: document.getElementById("json-btn"),
+                pdfButton: document.getElementById("pdf-btn"),
+                pngButton: document.getElementById("png-btn")
+            };
+
+            const createElement = (tagName, className = "", text = "") => {
                 const element = document.createElement(tagName);
 
                 if (className) {
@@ -1036,205 +942,796 @@
                 return element;
             };
 
-            const createPlayerLine = (
-                playerIndex,
-                isPitcher = false
-            ) => {
-                const line = createElement(
-                    "div",
-                    "player-line"
-                );
-
-                line.dataset.playerIndex = String(playerIndex);
-
-                const position = createElement(
-                    "div",
-                    "position-cell",
-                    isPitcher ? "P" : ""
-                );
-
-                const name = createElement(
-                    "div",
-                    "player-name-cell"
-                );
-
-                const number = createElement(
-                    "div",
-                    "number-cell"
-                );
-
-                line.append(position, name, number);
-
-                return line;
+            const setStatus = (message, isError = false) => {
+                dom.statusMessage.textContent = message;
+                dom.statusMessage.style.color = isError ? "#ffb4b4" : "#b8c4ca";
             };
 
-            const createPlayerStack = (isPitcher = false) => {
-                const stack = createElement(
-                    "div",
-                    isPitcher
-                        ? "grid-cell player-stack pitcher-stack"
-                        : "grid-cell player-stack"
-                );
+            const extractGamePk = (value) => {
+                const trimmed = value.trim();
 
-                for (let index = 0; index < 3; index += 1) {
-                    stack.append(
-                        createPlayerLine(index, isPitcher)
-                    );
+                if (/^\d+$/.test(trimmed)) {
+                    return trimmed;
                 }
 
-                return stack;
+                const directMatch = trimmed.match(/gamePk[=\/](\d+)/i);
+
+                if (directMatch) {
+                    return directMatch[1];
+                }
+
+                const gamedayMatch = trimmed.match(/gameday\/[^/]*-(\d+)(?:[/?#]|$)/i);
+
+                if (gamedayMatch) {
+                    return gamedayMatch[1];
+                }
+
+                const numbers = trimmed.match(/\d{6,}/g);
+
+                return numbers ? numbers[numbers.length - 1] : null;
+            };
+
+            const clampInningCount = (value) => {
+                const numeric = Number(value);
+
+                if (!Number.isFinite(numeric)) {
+                    return DEFAULT_INNINGS;
+                }
+
+                return Math.min(
+                    MAX_SAFE_INNINGS,
+                    Math.max(MIN_INNINGS, Math.ceil(numeric))
+                );
+            };
+
+            const determineInningCount = (data) => {
+                const linescoreInnings =
+                    data?.liveData?.linescore?.innings?.length ?? 0;
+
+                const currentInning =
+                    data?.liveData?.linescore?.currentInning ?? 0;
+
+                const plays = data?.liveData?.plays?.allPlays ?? [];
+
+                const playInning = plays.reduce((max, play) => {
+                    const inning = play?.about?.inning ?? 0;
+                    return Math.max(max, inning);
+                }, 0);
+
+                const scheduledInnings =
+                    data?.gameData?.game?.scheduledInnings ?? DEFAULT_INNINGS;
+
+                return clampInningCount(
+                    Math.max(
+                        scheduledInnings,
+                        linescoreInnings,
+                        currentInning,
+                        playInning
+                    )
+                );
+            };
+
+            const getPersonName = (person) => {
+                return (
+                    person?.fullName ||
+                    person?.nameFirstLast ||
+                    person?.lastFirstName ||
+                    ""
+                );
+            };
+
+            const getPlayersForSide = (data, side) => {
+                const boxscore = data?.liveData?.boxscore;
+                const teamData = boxscore?.teams?.[side];
+
+                if (!teamData) {
+                    return [];
+                }
+
+                const playerMap = teamData.players ?? {};
+                const battingOrder = teamData.battingOrder ?? [];
+
+                const ordered = battingOrder
+                    .map((playerId) => playerMap[`ID${playerId}`])
+                    .filter(Boolean);
+
+                if (ordered.length >= 9) {
+                    return ordered.slice(0, 9);
+                }
+
+                return Object.values(playerMap)
+                    .filter((player) => player?.stats?.batting)
+                    .slice(0, 9);
+            };
+
+            const getPitchersForSide = (data, side) => {
+                const boxscore = data?.liveData?.boxscore;
+                const teamData = boxscore?.teams?.[side];
+
+                if (!teamData) {
+                    return [];
+                }
+
+                const playerMap = teamData.players ?? {};
+                const pitchers = teamData.pitchers ?? [];
+
+                return pitchers
+                    .map((playerId) => playerMap[`ID${playerId}`])
+                    .filter(Boolean);
+            };
+
+            const getTeamState = (data, side) => {
+                const team = data?.gameData?.teams?.[side] ?? {};
+                const boxscoreTeam = data?.liveData?.boxscore?.teams?.[side];
+
+                return {
+                    abbreviation:
+                        team?.abbreviation ||
+                        boxscoreTeam?.team?.abbreviation ||
+                        side.toUpperCase(),
+                    name:
+                        team?.name ||
+                        boxscoreTeam?.team?.name ||
+                        (side === "away" ? "先攻チーム" : "後攻チーム"),
+                    players: getPlayersForSide(data, side),
+                    pitchers: getPitchersForSide(data, side)
+                };
+            };
+
+            const getGameDateText = (data) => {
+                const dateText = data?.gameData?.datetime?.officialDate;
+
+                if (!dateText) {
+                    return "-";
+                }
+
+                const [year, month, day] = dateText.split("-");
+                return `${year}年${Number(month)}月${Number(day)}日`;
+            };
+
+            const getStartTimeText = (data) => {
+                const iso = data?.gameData?.datetime?.dateTime;
+
+                if (!iso) {
+                    return "-";
+                }
+
+                const date = new Date(iso);
+
+                if (Number.isNaN(date.getTime())) {
+                    return "-";
+                }
+
+                return new Intl.DateTimeFormat("ja-JP", {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                    hour12: false
+                }).format(date);
+            };
+
+            const getEndTimeText = (data) => {
+                const endTime = data?.gameData?.datetime?.endTime;
+
+                if (endTime) {
+                    return endTime;
+                }
+
+                return "-";
+            };
+
+            const getDurationText = (data) => {
+                const minutes = data?.gameData?.gameInfo?.gameDurationMinutes;
+
+                if (!Number.isFinite(minutes)) {
+                    return "-";
+                }
+
+                const hours = Math.floor(minutes / 60);
+                const remainder = minutes % 60;
+
+                return `${hours}:${String(remainder).padStart(2, "0")}`;
+            };
+
+            const getWeatherText = (data) => {
+                const weather = data?.gameData?.weather;
+
+                if (!weather) {
+                    return "-";
+                }
+
+                const condition = weather.condition ?? "";
+                const temp = weather.temp ? `${weather.temp}°F` : "";
+
+                return [condition, temp].filter(Boolean).join(" ");
+            };
+
+            const getStatusText = (data) => {
+                return (
+                    data?.gameData?.status?.detailedState ||
+                    data?.gameData?.status?.abstractGameState ||
+                    "-"
+                );
+            };
+
+            const getLineScoreValue = (side, inningNumber) => {
+                const inning = state.gameData?.liveData?.linescore?.innings?.find(
+                    (item) => item?.num === inningNumber
+                );
+
+                const value = inning?.[side]?.runs;
+                return value === undefined || value === null ? "" : String(value);
+            };
+
+            const getTeamTotal = (side, key) => {
+                const value = state.gameData?.liveData?.linescore?.teams?.[side]?.[key];
+                return value === undefined || value === null ? "" : String(value);
+            };
+
+            const buildTopScore = () => {
+                const container = createElement("section", "top-score");
+
+                container.append(createElement("div", "", ""));
+
+                for (let inning = 1; inning <= state.innings; inning += 1) {
+                    container.append(createElement("div", "", String(inning)));
+                }
+
+                ["R", "H", "E"].forEach((label) => {
+                    container.append(createElement("div", "", label));
+                });
+
+                ["away", "home"].forEach((side) => {
+                    container.append(
+                        createElement("div", "", state[side].abbreviation)
+                    );
+
+                    for (let inning = 1; inning <= state.innings; inning += 1) {
+                        container.append(
+                            createElement(
+                                "div",
+                                "",
+                                getLineScoreValue(side, inning)
+                            )
+                        );
+                    }
+
+                    container.append(
+                        createElement("div", "", getTeamTotal(side, "runs")),
+                        createElement("div", "", getTeamTotal(side, "hits")),
+                        createElement("div", "", getTeamTotal(side, "errors"))
+                    );
+                });
+
+                return container;
+            };
+
+            const buildAbsChallengeTable = () => {
+                const box = createElement("section", "abs-challenge-box");
+                box.append(
+                    createElement(
+                        "div",
+                        "abs-challenge-title",
+                        "ABS CHALLENGE"
+                    )
+                );
+
+                const grid = createElement("div", "abs-challenge-grid");
+                ["回", "表/裏", "チャレンジ者", "立場", "判定", "結果"].forEach(
+                    (label) => {
+                        grid.append(createElement("div", "abs-head", label));
+                    }
+                );
+
+                for (let row = 0; row < 2; row += 1) {
+                    for (let column = 0; column < 6; column += 1) {
+                        const cell = createElement("div", "editable-cell");
+                        cell.contentEditable = "true";
+                        cell.spellcheck = false;
+                        cell.dataset.absRow = String(row + 1);
+                        cell.dataset.absColumn = String(column + 1);
+                        grid.append(cell);
+                    }
+                }
+
+                box.append(grid);
+                return box;
+            };
+
+            const buildScoreHeaderArea = () => {
+                const area = createElement("section", "score-header-area");
+                area.append(buildTopScore(), buildAbsChallengeTable());
+                return area;
+            };
+
+            const buildSheetMeta = (data) => {
+                const fragment = document.createDocumentFragment();
+                const meta = createElement("section", "sheet-meta");
+
+                const items = [
+                    ["日付", getGameDateText(data)],
+                    ["", data?.gameData?.game?.description ?? ""],
+                    ["球場", data?.gameData?.venue?.name ?? "-"],
+                    ["開始", getStartTimeText(data)],
+                    ["審判", ""],
+                    ["終了", getEndTimeText(data)],
+                    ["天候", getWeatherText(data)],
+                    ["時間", getDurationText(data)],
+                    ["状態", getStatusText(data)],
+                    ["観衆", data?.gameData?.gameInfo?.attendance ?? "-"]
+                ];
+
+                items.forEach(([label, value]) => {
+                    if (label) {
+                        meta.append(createElement("div", "label", label));
+                    }
+
+                    meta.append(createElement("div", "", String(value ?? "")));
+                });
+
+                const matchup = createElement("section", "matchup-row");
+
+                matchup.append(
+                    createElement("div", "", state.away.name),
+                    createElement("div", "", "対"),
+                    createElement("div", "", state.home.name),
+                    createElement("div", "small-label", "記録者"),
+                    createElement("div", "", ""),
+                    createElement("div", "small-label", "球審"),
+                    createElement("div", "", "")
+                );
+
+                fragment.append(meta, matchup);
+
+                return fragment;
             };
 
             const createPitchColumn = () => {
-                const pitchColumn = createElement(
-                    "div",
-                    "pitch-column"
-                );
-
-                for (let pitch = 1; pitch <= 10; pitch += 1) {
-                    const pitchLine = createElement(
-                        "span",
-                        "pitch-line"
-                    );
-
-                    pitchLine.dataset.pitch = String(pitch);
-                    pitchColumn.append(pitchLine);
-                }
-
-                return pitchColumn;
+                return createElement("div", "pitch-column");
             };
 
-            const createAtBatCell = (inning) => {
-                const cell = createElement(
-                    "div",
-                    "grid-cell atbat-cell"
-                );
-
+            const createAtBatCell = (inning, order) => {
+                const cell = createElement("div", "grid-cell atbat-cell");
                 cell.dataset.inning = String(inning);
+                cell.dataset.order = String(order);
 
-                const resultBox = createElement(
-                    "div",
-                    "result-box"
-                );
+                const resultBox = createElement("div", "result-box");
+                const diamond = createElement("div", "diamond");
+                const atBatNumber = createElement("span", "atbat-number");
+                const resultNote = createElement("span", "result-note");
 
-                cell.append(
-                    createPitchColumn(),
-                    resultBox
-                );
+                ["home", "first", "second", "third"].forEach((baseName) => {
+                    resultBox.append(
+                        createElement("span", `base ${baseName}`)
+                    );
+                });
+
+                resultBox.append(diamond, atBatNumber, resultNote);
+                cell.append(createPitchColumn(), resultBox);
 
                 return cell;
             };
 
-            const createStatCells = () => {
+            const createPlayerRow = (side, order) => {
                 const fragment = document.createDocumentFragment();
+                const player = state[side].players[order - 1];
 
-                for (let index = 0; index < 4; index += 1) {
-                    fragment.append(
-                        createElement(
-                            "div",
-                            "grid-cell stat-cell"
-                        )
-                    );
-                }
-
-                return fragment;
-            };
-
-            const createLineupSlot = (order) => {
-                const fragment = document.createDocumentFragment();
-
-                const orderCell = createElement(
-                    "div",
-                    "grid-cell order-cell",
-                    String(order)
-                );
-
-                orderCell.dataset.lineupSlot = String(order);
+                const person = player?.person ?? {};
+                const position =
+                    player?.position?.abbreviation ||
+                    player?.allPositions?.[0]?.abbreviation ||
+                    "";
+                const batSide = player?.batSide?.code ?? "";
+                const jerseyNumber = player?.jerseyNumber ?? "";
 
                 fragment.append(
-                    orderCell,
-                    createPlayerStack(false)
-                );
-
-                for (let inning = 1; inning <= 12; inning += 1) {
-                    fragment.append(
-                        createAtBatCell(inning)
-                    );
-                }
-
-                fragment.append(createStatCells());
-
-                return fragment;
-            };
-
-            const createPitcherSlot = () => {
-                const fragment = document.createDocumentFragment();
-
-                fragment.append(
+                    createElement("div", "grid-cell order-cell", String(order)),
                     createElement(
                         "div",
-                        "grid-cell order-cell pitcher-order",
-                        "P"
+                        "grid-cell player-cell name-cell",
+                        getPersonName(person)
                     ),
-                    createPlayerStack(true)
-                );
-
-                for (let inning = 1; inning <= 12; inning += 1) {
-                    fragment.append(
-                        createAtBatCell(inning)
-                    );
-                }
-
-                fragment.append(createStatCells());
-
-                return fragment;
-            };
-
-            const buildLineup = () => {
-                for (let order = 1; order <= 9; order += 1) {
-                    scoreGrid.append(
-                        createLineupSlot(order)
-                    );
-                }
-
-                scoreGrid.append(createPitcherSlot());
-            };
-
-            const createTotalRow = (label) => {
-                const fragment = document.createDocumentFragment();
-
-                fragment.append(
                     createElement(
                         "div",
-                        "total-cell total-label",
-                        label
+                        "grid-cell player-cell center-cell",
+                        position
+                    ),
+                    createElement(
+                        "div",
+                        "grid-cell player-cell center-cell",
+                        batSide
+                    ),
+                    createElement(
+                        "div",
+                        "grid-cell player-cell center-cell",
+                        jerseyNumber
                     )
                 );
 
-                for (let index = 0; index < 16; index += 1) {
-                    fragment.append(
-                        createElement(
-                            "div",
-                            "total-cell"
-                        )
-                    );
+                for (let inning = 1; inning <= state.innings; inning += 1) {
+                    fragment.append(createAtBatCell(inning, order));
+                }
+
+                for (let index = 0; index < statHeaders.length; index += 1) {
+                    fragment.append(createElement("div", "grid-cell stat-cell"));
                 }
 
                 return fragment;
             };
 
-            const buildTotals = () => {
-                totalGrid.append(
-                    createTotalRow("チーム計"),
-                    createTotalRow("相手チーム計")
-                );
+            const buildScoreGrid = (side) => {
+                const grid = createElement("section", "score-grid");
+
+                ["打順", "名前", "守", "左/右", ""].forEach((label) => {
+                    grid.append(createElement("div", "grid-header", label));
+                });
+
+                for (let inning = 1; inning <= state.innings; inning += 1) {
+                    grid.append(
+                        createElement("div", "grid-header", String(inning))
+                    );
+                }
+
+                statHeaders.forEach((label) => {
+                    grid.append(
+                        createElement("div", "grid-header vertical", label)
+                    );
+                });
+
+                for (let order = 1; order <= 9; order += 1) {
+                    grid.append(createPlayerRow(side, order));
+                }
+
+                return grid;
             };
 
-            buildLineup();
-            buildTotals();
+            const buildBenchRows = (side) => {
+                const grid = createElement("section", "bench-grid");
+                const pitchers = state[side].pitchers.slice(0, 5);
+
+                const label = createElement("div", "bench-label", "守");
+                grid.append(label);
+
+                for (let row = 0; row < 5; row += 1) {
+                    const pitcher = pitchers[row];
+                    const person = pitcher?.person ?? {};
+
+                    grid.append(
+                        createElement(
+                            "div",
+                            "bench-cell",
+                            getPersonName(person)
+                        ),
+                        createElement(
+                            "div",
+                            "bench-cell",
+                            pitcher?.position?.abbreviation ?? "P"
+                        ),
+                        createElement(
+                            "div",
+                            "bench-cell",
+                            pitcher?.pitchHand?.code ?? ""
+                        ),
+                        createElement(
+                            "div",
+                            "bench-cell",
+                            pitcher?.jerseyNumber ?? ""
+                        )
+                    );
+
+                    const inningBlank = createElement(
+                        "div",
+                        "bench-cell blank-span"
+                    );
+
+                    inningBlank.style.gridColumn = `span ${state.innings}`;
+                    grid.append(inningBlank);
+
+                    for (
+                        let index = 0;
+                        index < statHeaders.length;
+                        index += 1
+                    ) {
+                        grid.append(createElement("div", "bench-cell"));
+                    }
+                }
+
+                return grid;
+            };
+
+            const buildSummaryRows = (side) => {
+                const grid = createElement("section", "summary-grid");
+
+                ["安打｜四球｜三振", "得点｜残塁", "投球数｜失策"].forEach(
+                    (label) => {
+                        grid.append(
+                            createElement(
+                                "div",
+                                "summary-cell summary-label",
+                                label
+                            )
+                        );
+
+                        for (
+                            let inning = 1;
+                            inning <= state.innings;
+                            inning += 1
+                        ) {
+                            grid.append(createElement("div", "summary-cell"));
+                        }
+
+                        for (
+                            let index = 0;
+                            index < statHeaders.length;
+                            index += 1
+                        ) {
+                            grid.append(createElement("div", "summary-cell"));
+                        }
+                    }
+                );
+
+                return grid;
+            };
+
+            const buildPitchingTable = (side) => {
+                const box = createElement("section", "table-box");
+                box.append(createElement("div", "table-title", "投手成績"));
+
+                const table = createElement("div", "pitching-table");
+                const headers = ["", "投手名", ...pitchingHeaders];
+
+                headers.forEach((label) => {
+                    table.append(createElement("div", "", label));
+                });
+
+                const pitchers =
+                    state[side].pitchers.length > 0
+                        ? state[side].pitchers
+                        : Array.from({ length: 6 }, () => null);
+
+                pitchers.slice(0, 8).forEach((pitcher, index) => {
+                    table.append(
+                        createElement("div", "", String(index + 1)),
+                        createElement(
+                            "div",
+                            "left",
+                            getPersonName(pitcher?.person)
+                        )
+                    );
+
+                    for (
+                        let statIndex = 0;
+                        statIndex < pitchingHeaders.length;
+                        statIndex += 1
+                    ) {
+                        table.append(createElement("div"));
+                    }
+                });
+
+                box.append(table);
+
+                return box;
+            };
+
+            const buildSideTables = () => {
+                const wrapper = createElement("div", "side-stats");
+
+                const catcherBox = createElement("section", "table-box");
+                catcherBox.append(
+                    createElement("div", "table-title", "捕手成績")
+                );
+
+                const catcherTable = createElement("div", "small-table");
+
+                ["捕手", "捕逸", "打妨", "許盗塁", "盗塁刺"].forEach(
+                    (label) => {
+                        catcherTable.append(createElement("div", "", label));
+                    }
+                );
+
+                for (let row = 0; row < 2; row += 1) {
+                    for (let column = 0; column < 5; column += 1) {
+                        catcherTable.append(createElement("div"));
+                    }
+                }
+
+                catcherBox.append(catcherTable);
+
+                const memoBox = createElement("section", "table-box");
+                memoBox.append(
+                    createElement("div", "table-title", "長打・走塁記録")
+                );
+
+                const memoTable = createElement("div", "memo-table");
+
+                ["二塁打", "三塁打", "本塁打", "盗塁", "走塁死"].forEach(
+                    (label) => {
+                        memoTable.append(
+                            createElement("div", "memo-label", label),
+                            createElement("div")
+                        );
+                    }
+                );
+
+                memoBox.append(memoTable);
+                wrapper.append(catcherBox, memoBox);
+
+                return wrapper;
+            };
+
+            const buildSheet = (side) => {
+                const wrapper = createElement("div");
+                wrapper.append(
+                    buildTopScore(),
+                    buildSheetMeta(state.gameData),
+                    buildScoreGrid(side),
+                    buildBenchRows(side),
+                    buildSummaryRows(side)
+                );
+
+                const bottom = createElement("section", "sheet-bottom");
+                bottom.append(buildPitchingTable(side), buildSideTables());
+
+                wrapper.append(bottom);
+
+                return wrapper;
+            };
+
+            const render = () => {
+                document.documentElement.style.setProperty(
+                    "--inning-count",
+                    String(state.innings)
+                );
+
+                dom.inningCount.textContent = String(state.innings);
+
+                dom.awaySheet.replaceChildren(buildSheet("away"));
+                dom.homeSheet.replaceChildren(buildSheet("home"));
+            };
+
+            const updateSidebar = () => {
+                dom.homeTeam.textContent = state.home.name;
+                dom.awayTeam.textContent = state.away.name;
+                dom.gameDate.textContent = getGameDateText(state.gameData);
+                dom.ballpark.textContent =
+                    state.gameData?.gameData?.venue?.name ?? "-";
+                dom.gameStatus.textContent = getStatusText(state.gameData);
+                dom.inningCount.textContent = String(state.innings);
+            };
+
+            const fetchGameData = async (gamePk) => {
+                const endpoint =
+                    `https://statsapi.mlb.com/api/v1.1/game/${gamePk}/feed/live`;
+
+                const response = await fetch(endpoint);
+
+                if (!response.ok) {
+                    throw new Error(
+                        `MLBデータの取得に失敗しました（${response.status}）`
+                    );
+                }
+
+                return response.json();
+            };
+
+            const loadGame = async () => {
+                const gamePk = extractGamePk(dom.gameInput.value);
+
+                if (!gamePk) {
+                    setStatus(
+                        "Gameday URLまたはGame PKを正しく入力してください。",
+                        true
+                    );
+                    return;
+                }
+
+                dom.loadButton.disabled = true;
+                setStatus(`Game PK ${gamePk} を取得しています…`);
+
+                try {
+                    const data = await fetchGameData(gamePk);
+
+                    state.gamePk = gamePk;
+                    state.gameData = data;
+                    state.innings = determineInningCount(data);
+                    state.away = getTeamState(data, "away");
+                    state.home = getTeamState(data, "home");
+
+                    updateSidebar();
+                    render();
+
+                    setStatus(
+                        `${state.away.abbreviation} @ ${state.home.abbreviation} を読み込みました。` +
+                        ` 実際の試合データに合わせて${state.innings}回まで生成しています。`
+                    );
+                } catch (error) {
+                    console.error(error);
+                    setStatus(error.message || "試合データを取得できません。", true);
+                } finally {
+                    dom.loadButton.disabled = false;
+                }
+            };
+
+            const switchPage = (side) => {
+                const showAway = side === "away";
+
+                dom.awayPage.classList.toggle("active", showAway);
+                dom.homePage.classList.toggle("active", !showAway);
+                dom.awayPageButton.classList.toggle("active", showAway);
+                dom.homePageButton.classList.toggle("active", !showAway);
+            };
+
+            const saveSnapshot = () => {
+                const payload = {
+                    version: "2.0.0",
+                    savedAt: new Date().toISOString(),
+                    gamePk: state.gamePk,
+                    innings: state.innings,
+                    away: state.away,
+                    home: state.home,
+                    gameData: state.gameData
+                };
+
+                localStorage.setItem(
+                    "mlb-scorebook-generator-current",
+                    JSON.stringify(payload)
+                );
+
+                setStatus("現在の試合データをブラウザに保存しました。");
+            };
+
+            const exportJson = () => {
+                const payload = {
+                    version: "2.0.0",
+                    exportedAt: new Date().toISOString(),
+                    gamePk: state.gamePk,
+                    innings: state.innings,
+                    away: state.away,
+                    home: state.home,
+                    gameData: state.gameData
+                };
+
+                const blob = new Blob(
+                    [JSON.stringify(payload, null, 2)],
+                    { type: "application/json" }
+                );
+
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement("a");
+
+                link.href = url;
+                link.download =
+                    state.gamePk
+                        ? `scorebook-${state.gamePk}.json`
+                        : "scorebook.json";
+
+                link.click();
+                URL.revokeObjectURL(url);
+            };
+
+            dom.loadButton.addEventListener("click", loadGame);
+
+            dom.generateButton.addEventListener("click", () => {
+                render();
+                setStatus(
+                    `${state.innings}回分の早稲田式スコアブックを再生成しました。`
+                );
+            });
+
+            dom.saveButton.addEventListener("click", saveSnapshot);
+            dom.awayPageButton.addEventListener("click", () => switchPage("away"));
+            dom.homePageButton.addEventListener("click", () => switchPage("home"));
+            dom.printButton.addEventListener("click", () => window.print());
+            dom.pdfButton.addEventListener("click", () => window.print());
+            dom.jsonButton.addEventListener("click", exportJson);
+
+            dom.pngButton.addEventListener("click", () => {
+                setStatus(
+                    "PNG出力は次の工程で実装します。現在はPRINT/PDFを使用してください。"
+                );
+            });
+
+            render();
         })();
     </script>
-
-    <script src="app.js?v=7" defer></script>
 </body>
 </html>
