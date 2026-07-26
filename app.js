@@ -93,6 +93,9 @@ async function loadGameData() {
 
     setGameInfo(0, "HOME", gameData.gameData.teams.home.name);
     setGameInfo(1, "AWAY", gameData.gameData.teams.away.name);
+    
+    console.log(gameData.gameData.datetime);
+    
     setGameInfo(2, "DATE", "取得準備中");
     setGameInfo(3, "BALLPARK", "取得準備中");
     setGameInfo(4, "STATUS", `試合ID ${gamePk} を確認`);
