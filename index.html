@@ -462,42 +462,11 @@
             position: absolute;
             top: 50%;
             left: 50%;
-            width: 30px;
-            height: 30px;
+            width: 34px;
+            height: 34px;
             transform: translate(-50%, -50%) rotate(45deg);
-            border: 1px solid var(--guide);
+            border: 1.2px solid rgba(47, 107, 61, 0.55);
             background: transparent;
-        }
-
-        .base {
-            position: absolute;
-            width: 6px;
-            height: 6px;
-            transform: rotate(45deg);
-            border: 1px solid rgba(47, 107, 61, 0.45);
-            background: #fff;
-        }
-
-        .base.home { left: calc(50% - 3px); bottom: 7px; }
-        .base.first { right: 11px; top: calc(50% - 3px); }
-        .base.second { left: calc(50% - 3px); top: 7px; }
-        .base.third { left: 11px; top: calc(50% - 3px); }
-
-        .atbat-number {
-            position: absolute;
-            top: 4px;
-            left: 17px;
-            color: #666;
-            font-size: 8px;
-        }
-
-        .result-note {
-            position: absolute;
-            right: 3px;
-            bottom: 2px;
-            color: var(--blue);
-            font-size: 9px;
-            font-weight: 700;
         }
 
         .stat-cell {
@@ -1296,16 +1265,8 @@
 
                 const resultBox = createElement("div", "result-box");
                 const diamond = createElement("div", "diamond");
-                const atBatNumber = createElement("span", "atbat-number");
-                const resultNote = createElement("span", "result-note");
 
-                ["home", "first", "second", "third"].forEach((baseName) => {
-                    resultBox.append(
-                        createElement("span", `base ${baseName}`)
-                    );
-                });
-
-                resultBox.append(diamond, atBatNumber, resultNote);
+                resultBox.append(diamond);
                 cell.append(createPitchColumn(), resultBox);
 
                 return cell;
