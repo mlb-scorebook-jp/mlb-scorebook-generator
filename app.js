@@ -103,6 +103,7 @@ async function loadGameData() {
     setGameInfo(4, "STATUS", gameData.gameData.status.detailedState);
 
     console.log("LIVE DATA:", gameData.liveData);
+    console.log(gameData.liveData.boxscore.teams.away.battingOrder);
 
     loadButton.textContent = "試合IDを確認しました";
 
