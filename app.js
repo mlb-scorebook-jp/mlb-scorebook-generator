@@ -114,10 +114,12 @@ showPreviewMessage(
 
     loadButton.textContent = "試合IDを確認しました";
 
-    showPreviewMessage(
-        "GAMEDAY URL ACCEPTED",
-        `GAME ID：${gamePk}`
-    );
+    /*
+showPreviewMessage(
+    "GAMEDAY URL ACCEPTED",
+    `GAME ID : ${gamePk}`
+);
+*/
 
     console.log("Gameday URL:", url);
     console.log("Game ID:", gamePk);
