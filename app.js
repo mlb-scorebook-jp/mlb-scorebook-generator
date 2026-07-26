@@ -104,6 +104,11 @@ async function loadGameData() {
 
     console.log("LIVE DATA:", gameData.liveData);
     console.log(gameData.liveData.boxscore.teams.away.battingOrder);
+    gameData.liveData.boxscore.teams.away.battingOrder.forEach(playerId => {
+    console.log(
+        gameData.liveData.boxscore.teams.away.players["ID" + playerId].person.fullName
+    );
+});
 
     loadButton.textContent = "試合IDを確認しました";
 
