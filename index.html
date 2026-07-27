@@ -24,7 +24,7 @@
             --yellow: #f3c83e;
 
             --order-width: 34px;
-            --name-width: 118px;
+            --name-width: 180px;
             --position-width: 30px;
             --hand-width: 26px;
             --number-width: 30px;
@@ -240,7 +240,7 @@
         .score-header-area {
             display: grid;
             grid-template-columns: max-content 410px;
-            align-items: stretch;
+            align-items: start;
             gap: 10px;
             width: max-content;
             margin-bottom: 10px;
@@ -256,11 +256,11 @@
         }
 
         .top-score > div {
-            min-height: 31px;
+            min-height: 27px;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 3px 6px;
+            padding: 2px 5px;
             border-right: 1px solid var(--rule);
             border-bottom: 1px solid var(--rule);
             font-size: 10px;
@@ -288,7 +288,7 @@
         }
 
         .abs-challenge-title {
-            min-height: 31px;
+            min-height: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -307,11 +307,12 @@
         }
 
         .abs-challenge-grid > div {
-            min-height: 31px;
+            height: 13px;
+            min-height: 13px;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 2px 4px;
+            padding: 0 3px;
             border-right: 1px solid var(--rule);
             border-bottom: 1px solid var(--rule);
             overflow: hidden;
@@ -336,7 +337,7 @@
 
         .sheet-meta {
             display: grid;
-            grid-template-columns: 72px 180px 72px 250px 72px 105px 72px 105px 72px 180px;
+            grid-template-columns: 72px 180px 72px 250px 72px 105px 72px 145px;
             width: max-content;
             border-top: 1.4px solid var(--rule);
             border-left: 1.4px solid var(--rule);
@@ -369,7 +370,7 @@
 
         .matchup-row {
             display: grid;
-            grid-template-columns: 1fr 54px 1fr 58px 82px 58px 1fr;
+            grid-template-columns: 1fr 54px 1fr;
             width: 100%;
             min-width: 1180px;
             border-left: 1.4px solid var(--rule);
@@ -377,7 +378,7 @@
         }
 
         .matchup-row > div {
-            min-height: 56px;
+            min-height: 34px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -397,10 +398,10 @@
             display: grid;
             grid-template-columns:
                 var(--order-width)
+                var(--number-width)
                 var(--name-width)
                 var(--position-width)
                 var(--hand-width)
-                var(--number-width)
                 repeat(var(--inning-count), var(--inning-width))
                 repeat(15, var(--stat-width));
             width: max-content;
@@ -505,10 +506,10 @@
             grid-template-columns:
                 calc(
                     var(--order-width) +
+                    var(--number-width) +
                     var(--name-width) +
                     var(--position-width) +
-                    var(--hand-width) +
-                    var(--number-width)
+                    var(--hand-width)
                 )
                 repeat(var(--inning-count), var(--inning-width))
                 repeat(15, var(--stat-width));
@@ -536,10 +537,10 @@
             display: grid;
             grid-template-columns:
                 var(--order-width)
+                var(--number-width)
                 var(--name-width)
                 var(--position-width)
                 var(--hand-width)
-                var(--number-width)
                 repeat(var(--inning-count), var(--inning-width))
                 repeat(15, var(--stat-width));
             width: max-content;
@@ -779,7 +780,7 @@
             <p>WASEDA STYLE DIGITAL SCOREBOOK</p>
         </div>
 
-        <div class="version">Ver. 2.1.1</div>
+        <div class="version">Ver. 2.2.0</div>
     </header>
 
     <main class="app-main">
@@ -1438,18 +1439,16 @@
                     ["球場", getJapaneseVenueName(data)],
                     ["開始", getStartTimeText(data)],
                     ["終了", getEndTimeText(data)],
-                    ["審判", ""],
                     ["天候", getWeatherText(data)],
                     ["時間", getDurationText(data)],
                     ["状態", getStatusText(data)],
-                    ["観衆", data?.gameData?.gameInfo?.attendance ?? "-"],
-                    ["備考", data?.gameData?.game?.description ?? ""]
+                    ["観衆", data?.gameData?.gameInfo?.attendance ?? "-"]
                 ];
 
                 items.forEach(([label, value]) => {
                     meta.append(
                         createElement("div", "label", label),
-                        createElement("div", label === "備考" ? "wide-value" : "", String(value ?? ""))
+                        createElement("div", "", String(value ?? ""))
                     );
                 });
 
@@ -1458,11 +1457,7 @@
                 matchup.append(
                     createElement("div", "", state.away.name),
                     createElement("div", "", "対"),
-                    createElement("div", "", state.home.name),
-                    createElement("div", "small-label", "記録者"),
-                    createElement("div", "", ""),
-                    createElement("div", "small-label", "球審"),
-                    createElement("div", "", "")
+                    createElement("div", "", state.home.name)
                 );
 
                 fragment.append(meta, matchup);
@@ -1504,6 +1499,11 @@
                     createElement("div", "grid-cell order-cell", String(order)),
                     createElement(
                         "div",
+                        "grid-cell player-cell center-cell",
+                        jerseyNumber
+                    ),
+                    createElement(
+                        "div",
                         "grid-cell player-cell name-cell",
                         getPersonName(person)
                     ),
@@ -1516,11 +1516,6 @@
                         "div",
                         "grid-cell player-cell center-cell",
                         batSide
-                    ),
-                    createElement(
-                        "div",
-                        "grid-cell player-cell center-cell",
-                        jerseyNumber
                     )
                 );
 
@@ -1538,7 +1533,7 @@
             const buildScoreGrid = (side) => {
                 const grid = createElement("section", "score-grid");
 
-                ["打順", "名前", "守", "左/右", ""].forEach((label) => {
+                ["打順", "背番号", "名前", "守", "左/右"].forEach((label) => {
                     grid.append(createElement("div", "grid-header", label));
                 });
 
@@ -1576,6 +1571,11 @@
                         createElement(
                             "div",
                             "bench-cell",
+                            pitcher?.jerseyNumber ?? ""
+                        ),
+                        createElement(
+                            "div",
+                            "bench-cell",
                             getPersonName(person)
                         ),
                         createElement(
@@ -1587,11 +1587,6 @@
                             "div",
                             "bench-cell",
                             pitcher?.pitchHand?.code ?? ""
-                        ),
-                        createElement(
-                            "div",
-                            "bench-cell",
-                            pitcher?.jerseyNumber ?? ""
                         )
                     );
 
