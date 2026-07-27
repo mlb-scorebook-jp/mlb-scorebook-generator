@@ -199,9 +199,7 @@
         }
 
         .page-switch {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px;
+            display: none;
         }
 
         .viewer {
@@ -394,6 +392,41 @@
             background: var(--faint);
         }
 
+        .dual-score-layout {
+            display: grid;
+            grid-template-columns: max-content max-content;
+            align-items: start;
+            gap: 12px;
+            width: max-content;
+            margin-top: 8px;
+        }
+
+        .team-score-panel {
+            width: max-content;
+            min-width: 0;
+        }
+
+        .team-panel-title {
+            min-height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 12px;
+            border: 1.4px solid var(--rule);
+            border-bottom: 0;
+            background: rgba(47, 107, 61, 0.05);
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .team-score-panel .score-grid {
+            margin-top: 0;
+        }
+
+        .team-score-panel .sheet-bottom {
+            margin-top: 8px;
+        }
+
         .score-grid {
             display: grid;
             grid-template-columns:
@@ -460,21 +493,32 @@
 
         .lineup-stack {
             width: 100%;
+            height: 100%;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            gap: 2px;
+            gap: 0;
+            overflow: hidden;
         }
 
         .lineup-entry {
-            min-height: 18px;
+            min-height: 0;
+            flex: 1 1 0;
             display: flex;
             align-items: center;
             width: 100%;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
-            line-height: 1.15;
+            line-height: 1.05;
+        }
+
+        .lineup-stack.compact-3 .lineup-entry {
+            font-size: 9px;
+        }
+
+        .lineup-stack.compact-4 .lineup-entry {
+            font-size: 8px;
         }
 
         .center-cell .lineup-entry {
@@ -1559,13 +1603,18 @@
             const createPlayerRow = (side, order) => {
                 const fragment = document.createDocumentFragment();
                 const players = state[side].players[order - 1] ?? [];
-                const rowHeight = Math.max(56, 24 + players.length * 20);
+                const rowHeight = 56;
 
                 const makeStackCell = (className, valueGetter) => {
                     const cell = createElement("div", `grid-cell player-cell ${className}`);
                     cell.style.height = `${rowHeight}px`;
 
-                    const stack = createElement("div", "lineup-stack");
+                    const compactClass = players.length >= 4
+                        ? " compact-4"
+                        : players.length >= 3
+                            ? " compact-3"
+                            : "";
+                    const stack = createElement("div", `lineup-stack${compactClass}`);
 
                     players.forEach((player) => {
                         stack.append(
@@ -1829,11 +1878,10 @@
                 return wrapper;
             };
 
-            const buildSheet = (side) => {
-                const wrapper = createElement("div");
-                wrapper.append(
-                    buildScoreHeaderArea(),
-                    buildSheetMeta(state.gameData),
+            const buildTeamPanel = (side) => {
+                const panel = createElement("section", "team-score-panel");
+                panel.append(
+                    createElement("div", "team-panel-title", state[side].name),
                     buildScoreGrid(side),
                     buildBenchRows(side),
                     buildSummaryRows(side)
@@ -1841,9 +1889,25 @@
 
                 const bottom = createElement("section", "sheet-bottom");
                 bottom.append(buildPitchingTable(side), buildSideTables());
+                panel.append(bottom);
 
-                wrapper.append(bottom);
+                return panel;
+            };
 
+            const buildSheet = () => {
+                const wrapper = createElement("div");
+                wrapper.append(
+                    buildScoreHeaderArea(),
+                    buildSheetMeta(state.gameData)
+                );
+
+                const dualLayout = createElement("section", "dual-score-layout");
+                dualLayout.append(
+                    buildTeamPanel("away"),
+                    buildTeamPanel("home")
+                );
+
+                wrapper.append(dualLayout);
                 return wrapper;
             };
 
@@ -1855,8 +1919,10 @@
 
                 dom.inningCount.textContent = String(state.innings);
 
-                dom.awaySheet.replaceChildren(buildSheet("away"));
-                dom.homeSheet.replaceChildren(buildSheet("home"));
+                dom.awaySheet.replaceChildren(buildSheet());
+                dom.homeSheet.replaceChildren();
+                dom.awayPage.classList.add("active");
+                dom.homePage.classList.remove("active");
             };
 
             const updateSidebar = () => {
@@ -1922,13 +1988,11 @@
                 }
             };
 
-            const switchPage = (side) => {
-                const showAway = side === "away";
-
-                dom.awayPage.classList.toggle("active", showAway);
-                dom.homePage.classList.toggle("active", !showAway);
-                dom.awayPageButton.classList.toggle("active", showAway);
-                dom.homePageButton.classList.toggle("active", !showAway);
+            const switchPage = () => {
+                dom.awayPage.classList.add("active");
+                dom.homePage.classList.remove("active");
+                dom.awayPageButton.classList.add("active");
+                dom.homePageButton.classList.remove("active");
             };
 
             const saveSnapshot = () => {
