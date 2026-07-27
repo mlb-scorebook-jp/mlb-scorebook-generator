@@ -576,10 +576,15 @@
 
         .sheet-bottom {
             display: grid;
-            grid-template-columns: minmax(680px, 1.6fr) minmax(440px, 1fr);
+            grid-template-columns: minmax(0, 1fr);
             gap: 8px;
+            width: 100%;
+            min-width: 0;
             margin-top: 8px;
-            min-width: 1180px;
+        }
+
+        .sheet-bottom > * {
+            min-width: 0;
         }
 
         .table-box {
@@ -601,11 +606,13 @@
 
         .pitching-table-wrap {
             width: 100%;
+            max-width: 720px;
             overflow: hidden;
         }
 
         .pitching-table {
             width: 100%;
+            max-width: 720px;
             border-collapse: collapse;
             table-layout: fixed;
             background: #fff;
@@ -630,28 +637,24 @@
             font-weight: 700;
         }
 
-        .pitching-table .team-column {
-            width: 150px;
-            white-space: normal;
-        }
-
         .pitching-table .pitcher-column {
-            width: 120px;
+            width: 34%;
             text-align: left;
         }
 
-        .pitching-table .compact-column {
-            width: 34px;
+        .pitching-table .pitch-count-column {
+            width: 9%;
         }
 
-        .pitching-table .number-column {
-            width: 42px;
+        .pitching-table .stat-column {
+            width: 7.1%;
         }
 
         .side-stats {
             display: grid;
-            grid-template-columns: 1fr;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
             gap: 8px;
+            min-width: 0;
         }
 
         .small-table {
@@ -776,7 +779,7 @@
             <p>WASEDA STYLE DIGITAL SCOREBOOK</p>
         </div>
 
-        <div class="version">Ver. 2.1.0</div>
+        <div class="version">Ver. 2.1.1</div>
     </header>
 
     <main class="app-main">
@@ -1058,22 +1061,15 @@
 
             const pitchingHeaders = [
                 "投手名",
-                "左右",
-                "勝敗",
-                "回数",
                 "球数",
-                "S数",
-                "S%",
-                "打者",
-                "打数",
-                "安打",
-                "本塁打",
-                "四球",
-                "死球",
-                "三振",
-                "失点",
-                "自責点",
-                "防御率"
+                "IP",
+                "H",
+                "R",
+                "ER",
+                "BB",
+                "K",
+                "HR",
+                "ERA"
             ];
 
             const dom = {
@@ -1655,19 +1651,18 @@
 
             const buildPitchingTable = (side) => {
                 const box = createElement("section", "table-box");
-                box.append(createElement("div", "table-title", "投手成績"));
+                box.append(createElement("div", "table-title", `投手成績　${state[side].name}`));
 
                 const wrap = createElement("div", "pitching-table-wrap");
                 const table = createElement("table", "pitching-table");
                 const thead = document.createElement("thead");
                 const headRow = document.createElement("tr");
 
-                ["チーム", ...pitchingHeaders].forEach((label, index) => {
+                pitchingHeaders.forEach((label, index) => {
                     const th = createElement("th", "", label);
-                    if (index === 0) th.className = "team-column";
-                    if (index === 1) th.className = "pitcher-column";
-                    if ([2, 3].includes(index)) th.className = "compact-column";
-                    if (index >= 4) th.className = "number-column";
+                    if (index === 0) th.className = "pitcher-column";
+                    else if (index === 1) th.className = "pitch-count-column";
+                    else th.className = "stat-column";
                     headRow.append(th);
                 });
 
@@ -1679,40 +1674,27 @@
                     ? state[side].pitchers.slice(0, 8)
                     : Array.from({ length: 4 }, () => null);
 
-                pitchers.forEach((pitcher, index) => {
+                pitchers.forEach((pitcher) => {
                     const row = document.createElement("tr");
                     const stats = pitcher?.stats?.pitching ?? {};
-                    const strikePct = Number.isFinite(Number(stats.strikePercentage))
-                        ? `${Math.round(Number(stats.strikePercentage) * 100)}%`
-                        : (stats.strikes && stats.numberOfPitches
-                            ? `${Math.round(Number(stats.strikes) / Number(stats.numberOfPitches) * 100)}%`
-                            : "");
-                    const decision = stats.wins ? "勝" : stats.losses ? "敗" : stats.saves ? "S" : "";
                     const values = [
-                        index === 0 ? state[side].name : "",
                         getPersonName(pitcher?.person),
-                        pitcher?.pitchHand?.code === "L" ? "左" : pitcher?.pitchHand?.code === "R" ? "右" : "",
-                        decision,
-                        stats.inningsPitched ?? "",
                         stats.numberOfPitches ?? "",
-                        stats.strikes ?? "",
-                        strikePct,
-                        stats.battersFaced ?? "",
-                        stats.atBats ?? "",
+                        stats.inningsPitched ?? "",
                         stats.hits ?? "",
-                        stats.homeRuns ?? "",
-                        stats.baseOnBalls ?? "",
-                        stats.hitBatsmen ?? "",
-                        stats.strikeOuts ?? "",
                         stats.runs ?? "",
                         stats.earnedRuns ?? "",
+                        stats.baseOnBalls ?? "",
+                        stats.strikeOuts ?? "",
+                        stats.homeRuns ?? "",
                         stats.era ?? ""
                     ];
 
                     values.forEach((value, valueIndex) => {
                         const td = createElement("td", "", String(value ?? ""));
-                        if (valueIndex === 0) td.className = "team-column";
-                        if (valueIndex === 1) td.className = "pitcher-column";
+                        if (valueIndex === 0) td.className = "pitcher-column";
+                        else if (valueIndex === 1) td.className = "pitch-count-column";
+                        else td.className = "stat-column";
                         row.append(td);
                     });
 
@@ -1725,7 +1707,6 @@
 
                 return box;
             };
-
             const buildSideTables = () => {
                 const wrapper = createElement("div", "side-stats");
 
