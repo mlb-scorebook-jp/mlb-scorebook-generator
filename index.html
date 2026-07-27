@@ -458,6 +458,29 @@
             padding: 0 5px;
         }
 
+        .lineup-stack {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 2px;
+        }
+
+        .lineup-entry {
+            min-height: 18px;
+            display: flex;
+            align-items: center;
+            width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            line-height: 1.15;
+        }
+
+        .center-cell .lineup-entry {
+            justify-content: center;
+        }
+
         .center-cell {
             justify-content: center;
         }
@@ -1208,23 +1231,73 @@
                 const teamData = boxscore?.teams?.[side];
 
                 if (!teamData) {
-                    return [];
+                    return Array.from({ length: 9 }, () => []);
                 }
 
                 const playerMap = teamData.players ?? {};
                 const battingOrder = teamData.battingOrder ?? [];
+                const slots = Array.from({ length: 9 }, () => []);
+                const seen = new Set();
 
-                const ordered = battingOrder
-                    .map((playerId) => playerMap[`ID${playerId}`])
-                    .filter(Boolean);
+                Object.values(playerMap).forEach((player) => {
+                    const rawOrder = Number.parseInt(player?.battingOrder, 10);
 
-                if (ordered.length >= 9) {
-                    return ordered.slice(0, 9);
+                    if (!Number.isFinite(rawOrder)) {
+                        return;
+                    }
+
+                    const slotIndex = Math.floor(rawOrder / 100) - 1;
+
+                    if (slotIndex < 0 || slotIndex >= 9) {
+                        return;
+                    }
+
+                    slots[slotIndex].push(player);
+                });
+
+                slots.forEach((slot) => {
+                    slot.sort((a, b) => {
+                        const aOrder = Number.parseInt(a?.battingOrder, 10) || 0;
+                        const bOrder = Number.parseInt(b?.battingOrder, 10) || 0;
+                        return aOrder - bOrder;
+                    });
+
+                    slot.forEach((player) => {
+                        const id = player?.person?.id;
+                        if (id) {
+                            seen.add(id);
+                        }
+                    });
+                });
+
+                battingOrder.forEach((playerId, index) => {
+                    if (seen.has(playerId)) {
+                        return;
+                    }
+
+                    const player = playerMap[`ID${playerId}`];
+
+                    if (!player) {
+                        return;
+                    }
+
+                    const slotIndex = index % 9;
+                    slots[slotIndex].push(player);
+                    seen.add(playerId);
+                });
+
+                if (slots.some((slot) => slot.length)) {
+                    return slots;
                 }
 
-                return Object.values(playerMap)
+                Object.values(playerMap)
                     .filter((player) => player?.stats?.batting)
-                    .slice(0, 9);
+                    .slice(0, 9)
+                    .forEach((player, index) => {
+                        slots[index].push(player);
+                    });
+
+                return slots;
             };
 
             const getPitchersForSide = (data, side) => {
@@ -1485,42 +1558,50 @@
 
             const createPlayerRow = (side, order) => {
                 const fragment = document.createDocumentFragment();
-                const player = state[side].players[order - 1];
+                const players = state[side].players[order - 1] ?? [];
+                const rowHeight = Math.max(56, 24 + players.length * 20);
 
-                const person = player?.person ?? {};
-                const position =
-                    player?.position?.abbreviation ||
-                    player?.allPositions?.[0]?.abbreviation ||
-                    "";
-                const batSide = player?.batSide?.code ?? "";
-                const jerseyNumber = player?.jerseyNumber ?? "";
+                const makeStackCell = (className, valueGetter) => {
+                    const cell = createElement("div", `grid-cell player-cell ${className}`);
+                    cell.style.height = `${rowHeight}px`;
+
+                    const stack = createElement("div", "lineup-stack");
+
+                    players.forEach((player) => {
+                        stack.append(
+                            createElement("div", "lineup-entry", valueGetter(player))
+                        );
+                    });
+
+                    cell.append(stack);
+                    return cell;
+                };
+
+                const orderCell = createElement(
+                    "div",
+                    "grid-cell order-cell",
+                    String(order)
+                );
+                orderCell.style.height = `${rowHeight}px`;
 
                 fragment.append(
-                    createElement("div", "grid-cell order-cell", String(order)),
-                    createElement(
-                        "div",
-                        "grid-cell player-cell center-cell",
-                        jerseyNumber
+                    orderCell,
+                    makeStackCell("center-cell", (player) => player?.jerseyNumber ?? ""),
+                    makeStackCell("name-cell", (player) => getPersonName(player?.person ?? {})),
+                    makeStackCell(
+                        "center-cell",
+                        (player) =>
+                            player?.position?.abbreviation ||
+                            player?.allPositions?.[0]?.abbreviation ||
+                            ""
                     ),
-                    createElement(
-                        "div",
-                        "grid-cell player-cell name-cell",
-                        getPersonName(person)
-                    ),
-                    createElement(
-                        "div",
-                        "grid-cell player-cell center-cell",
-                        position
-                    ),
-                    createElement(
-                        "div",
-                        "grid-cell player-cell center-cell",
-                        batSide
-                    )
+                    makeStackCell("center-cell", (player) => player?.batSide?.code ?? "")
                 );
 
                 for (let inning = 1; inning <= state.innings; inning += 1) {
-                    fragment.append(createAtBatCell(inning, order));
+                    const atBatCell = createAtBatCell(inning, order);
+                    atBatCell.style.height = `${rowHeight}px`;
+                    fragment.append(atBatCell);
                 }
 
                 for (let index = 0; index < statHeaders.length; index += 1) {
