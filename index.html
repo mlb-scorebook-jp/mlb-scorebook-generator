@@ -669,12 +669,12 @@
             position: absolute;
             right: 1px;
             bottom: 0;
-            z-index: 5;
-            max-width: 34px;
-            font-size: 11px;
+            z-index: 7;
+            max-width: 36px;
+            font-size: 13px;
             line-height: 1;
             font-weight: 800;
-            letter-spacing: -0.25px;
+            letter-spacing: -0.3px;
             white-space: nowrap;
         }
 
@@ -687,15 +687,41 @@
             color: var(--blue);
         }
 
-        .play-type-mark {
+        .play-result.long-result {
+            font-size: 11px;
+        }
+
+        .play-template-svg {
             position: absolute;
-            right: 3px;
-            top: 1px;
+            left: 50%;
+            top: 50%;
             z-index: 4;
-            color: var(--blue);
-            font-size: 12px;
+            width: 35px;
+            height: 35px;
+            transform: translate(-50%, -50%);
+            overflow: visible;
+            pointer-events: none;
+        }
+
+        .play-template-svg path,
+        .play-template-svg line,
+        .play-template-svg polyline {
+            fill: none;
+            stroke: var(--blue);
+            stroke-width: 1.55;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .play-extra {
+            position: absolute;
+            left: 1px;
+            bottom: 0;
+            z-index: 7;
+            color: var(--red);
+            font-size: 9px;
             line-height: 1;
-            font-weight: 700;
+            font-weight: 800;
         }
 
         .play-center-mark {
@@ -1894,58 +1920,84 @@
                 return [...new Set(numbers)].join("-");
             };
 
-            const getPlayDisplay = (play) => {
+            const PLAY_TEMPLATES = Object.freeze({
+                strikeout: { category: "out", notation: "K" },
+                swinging_strikeout: { category: "out", notation: "Ks" },
+                walk: { category: "reach", notation: "B" },
+                intentional_walk: { category: "reach", notation: "DIB" },
+                hit_by_pitch: { category: "reach", notation: "HBP" },
+                single: { category: "hit" },
+                double: { category: "hit" },
+                triple: { category: "hit" },
+                home_run: { category: "hit", extra: "HR" },
+                groundout: { category: "out", shape: "ground" },
+                flyout: { category: "out", shape: "fly" },
+                popout: { category: "out", shape: "fly" },
+                lineout: { category: "out", shape: "line" },
+                sac_fly: { category: "out", shape: "fly", prefix: "F" },
+                sac_bunt: { category: "out", shape: "bunt" },
+                field_error: { category: "reach" },
+                fielders_choice: { category: "reach" },
+                catcher_interference: { category: "reach", notation: "CI" },
+                runner_interference: { category: "out", notation: "OI" },
+                unknown_out: { category: "out" }
+            });
+
+            const resolveTemplateId = (play) => {
                 const eventType = String(play?.result?.eventType ?? "").toLowerCase();
                 const event = String(play?.result?.event ?? "").toLowerCase();
                 const description = String(play?.result?.description ?? "").toLowerCase();
+
+                if (eventType === "strikeout" || event.includes("strikeout")) {
+                    return description.includes("swinging") ? "swinging_strikeout" : "strikeout";
+                }
+                if (["walk", "base_on_balls"].includes(eventType) || event === "walk") return "walk";
+                if (["intent_walk", "intentional_walk"].includes(eventType) || event.includes("intentional walk")) return "intentional_walk";
+                if (eventType === "hit_by_pitch" || event.includes("hit by pitch")) return "hit_by_pitch";
+                if (["single", "double", "triple", "home_run"].includes(eventType)) return eventType;
+                if (eventType === "field_error" || event.includes("error")) return "field_error";
+                if (["fielders_choice", "fielders_choice_out"].includes(eventType) || event.includes("fielder's choice")) return "fielders_choice";
+                if (["groundout", "force_out", "double_play", "grounded_into_double_play"].includes(eventType) || event.includes("groundout")) return "groundout";
+                if (["flyout", "field_out"].includes(eventType) || event.includes("flyout")) return "flyout";
+                if (eventType === "pop_out" || event.includes("pop out")) return "popout";
+                if (eventType === "lineout" || event.includes("lineout")) return "lineout";
+                if (eventType === "sac_fly" || event.includes("sac fly")) return "sac_fly";
+                if (["sac_bunt", "sacrifice_bunt"].includes(eventType) || event.includes("sac bunt")) return "sac_bunt";
+                if (eventType.includes("catcher_interf")) return "catcher_interference";
+                if (eventType.includes("runner_interf") || event.includes("interference")) return "runner_interference";
+                return "unknown_out";
+            };
+
+            const getPlayDisplay = (play) => {
+                const templateId = resolveTemplateId(play);
+                const template = PLAY_TEMPLATES[templateId] ?? PLAY_TEMPLATES.unknown_out;
+                const description = String(play?.result?.description ?? "").toLowerCase();
                 const field = getFieldNumber(play);
                 const sequence = getFieldingSequence(play);
-                const display = { notation: "", typeMark: "", category: "out", isHit: false };
+                let notation = template.notation ?? "";
 
-                if (eventType === "strikeout") {
-                    display.notation = description.includes("swinging") ? "Ks" : "K";
-                    return display;
+                if (["single", "double", "triple", "home_run"].includes(templateId)) {
+                    notation = field || "";
+                } else if (templateId === "field_error") {
+                    notation = `E${field || "?"}${description.includes("throwing error") ? "t" : "f"}`;
+                } else if (templateId === "fielders_choice") {
+                    notation = `Fc${field || ""}`;
+                } else if (["groundout", "sac_bunt"].includes(templateId)) {
+                    notation = sequence || field;
+                } else if (["flyout", "popout", "lineout"].includes(templateId)) {
+                    notation = field;
+                } else if (templateId === "sac_fly") {
+                    notation = `F${field || ""}`;
                 }
-                if (["walk", "base_on_balls"].includes(eventType)) {
-                    return { notation: "B", typeMark: "", category: "reach", isHit: false };
-                }
-                if (["intent_walk", "intentional_walk"].includes(eventType)) {
-                    return { notation: "DIB", typeMark: "", category: "reach", isHit: false };
-                }
-                if (eventType === "hit_by_pitch") {
-                    return { notation: "HBP", typeMark: "", category: "reach", isHit: false };
-                }
-                if (["single", "double", "triple", "home_run"].includes(eventType)) {
-                    const suffix = eventType === "double" ? "2B" : eventType === "triple" ? "3B" : eventType === "home_run" ? "HR" : "";
-                    return {
-                        notation: `${field || "H"}${suffix ? ` ${suffix}` : ""}`,
-                        typeMark: "",
-                        category: "hit",
-                        isHit: true
-                    };
-                }
-                if (eventType === "field_error") {
-                    const throwing = description.includes("throwing error");
-                    return { notation: `E${field || "?"}${throwing ? "t" : "f"}`, typeMark: "", category: "reach", isHit: false };
-                }
-                if (["fielders_choice", "fielders_choice_out"].includes(eventType)) {
-                    return { notation: `Fc${field || ""}`, typeMark: "", category: "reach", isHit: false };
-                }
-                if (["groundout", "force_out", "double_play", "grounded_into_double_play"].includes(eventType)) {
-                    return { notation: sequence || field, typeMark: "┐", category: "out", isHit: false };
-                }
-                if (["flyout", "sac_fly", "pop_out"].includes(eventType)) {
-                    return { notation: field, typeMark: "⌒", category: "out", isHit: false };
-                }
-                if (eventType === "lineout") {
-                    return { notation: field, typeMark: "—", category: "out", isHit: false };
-                }
-                if (["sac_bunt", "sacrifice_bunt"].includes(eventType)) {
-                    return { notation: sequence || field, typeMark: "◇", category: "out", isHit: false };
-                }
-                if (eventType.includes("catcher_interf")) return { notation: "CI", typeMark: "", category: "reach", isHit: false };
-                if (eventType.includes("runner_interf") || event.includes("interference")) return { notation: "OI", typeMark: "", category: "out", isHit: false };
-                return { notation: play?.result?.event ?? "", typeMark: "", category: "out", isHit: false };
+
+                return {
+                    templateId,
+                    notation,
+                    category: template.category,
+                    isHit: template.category === "hit",
+                    extra: template.extra ?? "",
+                    shape: template.shape ?? ""
+                };
             };
 
             const segmentCoordinates = {
@@ -1989,10 +2041,12 @@
                         inning,
                         order,
                         batterId,
+                        templateId: display.templateId,
                         notation: display.notation,
-                        typeMark: display.typeMark,
                         category: display.category,
                         isHit: display.isHit,
+                        extra: display.extra,
+                        shape: display.shape,
                         segments: [],
                         centerMark: "",
                         rbi: Number(play?.result?.rbi) || 0,
@@ -2063,16 +2117,36 @@
                 return svg;
             };
 
+            const createTemplateSvg = (shape) => {
+                if (!shape) return null;
+                const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+                svg.setAttribute("viewBox", "0 0 35 35");
+                svg.classList.add("play-template-svg");
+                const addPath = (d) => {
+                    const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+                    path.setAttribute("d", d);
+                    svg.append(path);
+                };
+                if (shape === "fly") addPath("M22 14 Q27 9 31 13");
+                if (shape === "line") addPath("M23 12 L31 12");
+                if (shape === "ground") addPath("M24 11 L31 11 L31 17");
+                if (shape === "bunt") addPath("M25 10 L31 16 L25 22 L19 16 Z");
+                return svg;
+            };
+
             const renderPlateAppearance = (record) => {
-                const card = createElement("div", "play-card");
+                const card = createElement("div", `play-card template-${record.templateId}`);
                 const stage = createElement("div", "diamond-stage");
-                stage.append(createElement("div", "diamond"), createAdvanceSvg(record.segments));
+                stage.append(createElement("div", "diamond"));
+                if (record.isHit && record.segments.length) stage.append(createAdvanceSvg(record.segments));
+                const templateSvg = createTemplateSvg(record.shape);
+                if (templateSvg) stage.append(templateSvg);
                 card.append(stage);
-                if (record.typeMark) card.append(createElement("div", "play-type-mark", record.typeMark));
                 if (record.notation) {
-                    const result = createElement("div", `play-result ${record.category}-result`, record.notation);
-                    card.append(result);
+                    const longClass = record.notation.length > 3 ? " long-result" : "";
+                    card.append(createElement("div", `play-result ${record.category}-result${longClass}`, record.notation));
                 }
+                if (record.extra) card.append(createElement("div", "play-extra hit-result", record.extra));
                 if (record.centerMark) {
                     const centerClass = ["●", "○"].includes(record.centerMark) ? "play-center-mark scored" : "play-center-mark";
                     card.append(createElement("div", centerClass, record.centerMark));
