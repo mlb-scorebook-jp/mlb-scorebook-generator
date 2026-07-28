@@ -661,7 +661,7 @@
 
         .play-card .advance-svg line {
             stroke: var(--red);
-            stroke-width: 2.1;
+            stroke-width: 2;
             stroke-linecap: square;
         }
 
@@ -1891,7 +1891,33 @@
                 return null;
             };
 
+            const getDescriptionFieldNumber = (play) => {
+                const text = String(play?.result?.description ?? "").toLowerCase();
+                const checks = [
+                    [/pitcher|to the mound|back to the mound/, "1"],
+                    [/catcher/, "2"],
+                    [/first baseman|first base side/, "3"],
+                    [/second baseman|second base side/, "4"],
+                    [/third baseman|third base side/, "5"],
+                    [/shortstop/, "6"],
+                    [/left fielder|to left field|into left field|down the left field line/, "7"],
+                    [/center fielder|to center field|into center field/, "8"],
+                    [/right fielder|to right field|into right field|down the right field line/, "9"]
+                ];
+                return checks.find(([pattern]) => pattern.test(text))?.[1] ?? "";
+            };
+
             const getFieldNumber = (play) => {
+                const described = getDescriptionFieldNumber(play);
+                if (described) return described;
+
+                const credits = play?.credits ?? [];
+                const fielder = credits.find((credit) =>
+                    ["fielded_ball", "putout", "assist"].includes(String(credit?.credit).toLowerCase())
+                );
+                const credited = String(fielder?.position?.code ?? fielder?.position?.abbreviation ?? "").replace(/\D/g, "");
+                if (credited) return credited;
+
                 const location = String(play?.hitData?.location ?? "");
                 const map = {
                     "1": "7", "2": "7", "3": "8", "4": "9",
@@ -1902,13 +1928,7 @@
                     "55": "7", "56": "8", "57": "9",
                     "58": "7", "59": "8", "60": "9"
                 };
-                if (map[location]) return map[location];
-
-                const credits = play?.credits ?? [];
-                const fielder = credits.find((credit) =>
-                    ["putout", "assist", "fielded_ball"].includes(String(credit?.credit).toLowerCase())
-                );
-                return String(fielder?.position?.code ?? fielder?.position?.abbreviation ?? "").replace(/\D/g, "");
+                return map[location] ?? "";
             };
 
             const getFieldingSequence = (play) => {
@@ -1917,7 +1937,28 @@
                     .filter((credit) => ["assist", "putout"].includes(String(credit?.credit).toLowerCase()))
                     .map((credit) => String(credit?.position?.code ?? "").replace(/\D/g, ""))
                     .filter(Boolean);
-                return [...new Set(numbers)].join("-");
+                return numbers.filter((number, index) => index === 0 || number !== numbers[index - 1]).join("-");
+            };
+
+            const getBattedBallShape = (play) => {
+                const trajectory = String(play?.hitData?.trajectory ?? "").toLowerCase();
+                const description = String(play?.result?.description ?? "").toLowerCase();
+                if (trajectory.includes("bunt") || description.includes("bunt")) return "bunt";
+                if (trajectory.includes("ground") || description.includes("grounds") || description.includes("groundout")) return "ground";
+                if (trajectory.includes("line") || description.includes("lines out") || description.includes("lineout")) return "line";
+                if (trajectory.includes("popup") || description.includes("pops out") || description.includes("pop out")) return "pop";
+                if (trajectory.includes("fly") || description.includes("flies out") || description.includes("flyout")) return "fly";
+                return "";
+            };
+
+            const getHitNotation = (play, field) => {
+                const description = String(play?.result?.description ?? "").toLowerCase();
+                const trajectory = String(play?.hitData?.trajectory ?? "").toLowerCase();
+                if (description.includes("bunt")) return `◇${field || ""}`;
+                if (/infield single|infield hit/.test(description)) return `H${field || ""}`;
+                if (/soft|blooper|bloop|flare|texas/.test(description)) return `T${field || ""}`;
+                if (trajectory.includes("ground") || description.includes("ground ball")) return `G${field || ""}`;
+                return field || "";
             };
 
             const PLAY_TEMPLATES = Object.freeze({
@@ -1958,7 +1999,14 @@
                 if (eventType === "field_error" || event.includes("error")) return "field_error";
                 if (["fielders_choice", "fielders_choice_out"].includes(eventType) || event.includes("fielder's choice")) return "fielders_choice";
                 if (["groundout", "force_out", "double_play", "grounded_into_double_play"].includes(eventType) || event.includes("groundout")) return "groundout";
-                if (["flyout", "field_out"].includes(eventType) || event.includes("flyout")) return "flyout";
+                if (eventType === "field_out") {
+                    const shape = getBattedBallShape(play);
+                    if (shape === "ground") return "groundout";
+                    if (shape === "line") return "lineout";
+                    if (shape === "pop") return "popout";
+                    return "flyout";
+                }
+                if (eventType === "flyout" || event.includes("flyout")) return "flyout";
                 if (eventType === "pop_out" || event.includes("pop out")) return "popout";
                 if (eventType === "lineout" || event.includes("lineout")) return "lineout";
                 if (eventType === "sac_fly" || event.includes("sac fly")) return "sac_fly";
@@ -1977,7 +2025,7 @@
                 let notation = template.notation ?? "";
 
                 if (["single", "double", "triple", "home_run"].includes(templateId)) {
-                    notation = field || "";
+                    notation = getHitNotation(play, field);
                 } else if (templateId === "field_error") {
                     notation = `E${field || "?"}${description.includes("throwing error") ? "t" : "f"}`;
                 } else if (templateId === "fielders_choice") {
@@ -1996,16 +2044,16 @@
                     category: template.category,
                     isHit: template.category === "hit",
                     extra: template.extra ?? "",
-                    shape: template.shape ?? ""
+                    shape: template.shape ?? getBattedBallShape(play)
                 };
             };
 
             const segmentCoordinates = {
-                "home-1B": [17.5, 30, 30, 17.5],
-                "1B-2B": [30, 17.5, 17.5, 5],
-                "2B-3B": [17.5, 5, 5, 17.5],
-                "3B-score": [5, 17.5, 17.5, 30],
-                "3B-home": [5, 17.5, 17.5, 30]
+                "home-1B": [17.5, 31.4, 31.4, 17.5],
+                "1B-2B": [31.4, 17.5, 17.5, 3.6],
+                "2B-3B": [17.5, 3.6, 3.6, 17.5],
+                "3B-score": [3.6, 17.5, 17.5, 31.4],
+                "3B-home": [3.6, 17.5, 17.5, 31.4]
             };
 
             const addPathSegments = (record, origin, end) => {
@@ -2128,6 +2176,7 @@
                     svg.append(path);
                 };
                 if (shape === "fly") addPath("M22 14 Q27 9 31 13");
+                if (shape === "pop") addPath("M22 14 Q26 7 30 14");
                 if (shape === "line") addPath("M23 12 L31 12");
                 if (shape === "ground") addPath("M24 11 L31 11 L31 17");
                 if (shape === "bunt") addPath("M25 10 L31 16 L25 22 L19 16 Z");
