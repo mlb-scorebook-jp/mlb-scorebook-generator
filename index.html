@@ -715,7 +715,7 @@
         }
 
         .pitching-table .stat-column {
-            width: 7.1%;
+            width: 8.14%;
         }
 
         .side-stats {
@@ -1132,25 +1132,24 @@
             };
 
             const statHeaders = [
-                "AB",
-                "R",
-                "H",
-                "RBI",
-                "BB",
-                "K"
+                "打数",
+                "安打",
+                "得点",
+                "打点",
+                "四球",
+                "三振"
             ];
 
             const pitchingHeaders = [
                 "投手名",
                 "球数",
-                "IP",
-                "H",
-                "R",
-                "ER",
-                "BB",
-                "K",
-                "HR",
-                "ERA"
+                "回",
+                "被安打",
+                "失点",
+                "自責点",
+                "四死球",
+                "奪三振",
+                "防御率"
             ];
 
             const dom = {
@@ -1807,6 +1806,11 @@
                 pitchers.forEach((pitcher) => {
                     const row = document.createElement("tr");
                     const stats = pitcher?.stats?.pitching ?? {};
+                    const walks = Number(stats.baseOnBalls);
+                    const hitByPitch = Number(stats.hitByPitch);
+                    const walksAndHitByPitch = Number.isFinite(walks) || Number.isFinite(hitByPitch)
+                        ? (Number.isFinite(walks) ? walks : 0) + (Number.isFinite(hitByPitch) ? hitByPitch : 0)
+                        : "";
                     const values = [
                         getPersonName(pitcher?.person),
                         stats.numberOfPitches ?? "",
@@ -1814,9 +1818,8 @@
                         stats.hits ?? "",
                         stats.runs ?? "",
                         stats.earnedRuns ?? "",
-                        stats.baseOnBalls ?? "",
+                        walksAndHitByPitch,
                         stats.strikeOuts ?? "",
-                        stats.homeRuns ?? "",
                         stats.era ?? ""
                     ];
 
