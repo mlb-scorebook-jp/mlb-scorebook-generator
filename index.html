@@ -678,12 +678,15 @@
             white-space: nowrap;
         }
 
+        .play-result {
+            color: var(--ink);
+        }
+
         .play-result.hit-result {
             color: var(--red);
         }
 
-        .play-result.out-result,
-        .play-result.reach-result {
+        .play-result.strikeout-result {
             color: var(--blue);
         }
 
@@ -693,12 +696,11 @@
 
         .play-template-svg {
             position: absolute;
-            left: 50%;
-            top: 50%;
-            z-index: 4;
-            width: 35px;
-            height: 35px;
-            transform: translate(-50%, -50%);
+            right: 1px;
+            bottom: 12px;
+            z-index: 6;
+            width: 18px;
+            height: 12px;
             overflow: visible;
             pointer-events: none;
         }
@@ -707,8 +709,8 @@
         .play-template-svg line,
         .play-template-svg polyline {
             fill: none;
-            stroke: var(--blue);
-            stroke-width: 1.55;
+            stroke: var(--ink);
+            stroke-width: 1.45;
             stroke-linecap: round;
             stroke-linejoin: round;
         }
@@ -1951,15 +1953,7 @@
                 return "";
             };
 
-            const getHitNotation = (play, field) => {
-                const description = String(play?.result?.description ?? "").toLowerCase();
-                const trajectory = String(play?.hitData?.trajectory ?? "").toLowerCase();
-                if (description.includes("bunt")) return `◇${field || ""}`;
-                if (/infield single|infield hit/.test(description)) return `H${field || ""}`;
-                if (/soft|blooper|bloop|flare|texas/.test(description)) return `T${field || ""}`;
-                if (trajectory.includes("ground") || description.includes("ground ball")) return `G${field || ""}`;
-                return field || "";
-            };
+            const getHitNotation = (play, field) => field || "";
 
             const PLAY_TEMPLATES = Object.freeze({
                 strikeout: { category: "out", notation: "K" },
@@ -1970,7 +1964,7 @@
                 single: { category: "hit" },
                 double: { category: "hit" },
                 triple: { category: "hit" },
-                home_run: { category: "hit", extra: "HR" },
+                home_run: { category: "hit" },
                 groundout: { category: "out", shape: "ground" },
                 flyout: { category: "out", shape: "fly" },
                 popout: { category: "out", shape: "fly" },
@@ -2035,7 +2029,7 @@
                 } else if (["flyout", "popout", "lineout"].includes(templateId)) {
                     notation = field;
                 } else if (templateId === "sac_fly") {
-                    notation = `F${field || ""}`;
+                    notation = field;
                 }
 
                 return {
@@ -2168,18 +2162,18 @@
             const createTemplateSvg = (shape) => {
                 if (!shape) return null;
                 const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-                svg.setAttribute("viewBox", "0 0 35 35");
+                svg.setAttribute("viewBox", "0 0 18 12");
                 svg.classList.add("play-template-svg");
                 const addPath = (d) => {
                     const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
                     path.setAttribute("d", d);
                     svg.append(path);
                 };
-                if (shape === "fly") addPath("M22 14 Q27 9 31 13");
-                if (shape === "pop") addPath("M22 14 Q26 7 30 14");
-                if (shape === "line") addPath("M23 12 L31 12");
-                if (shape === "ground") addPath("M24 11 L31 11 L31 17");
-                if (shape === "bunt") addPath("M25 10 L31 16 L25 22 L19 16 Z");
+                if (shape === "fly") addPath("M2 9 Q9 1 16 9");
+                if (shape === "pop") addPath("M3 9 Q9 0 15 9");
+                if (shape === "line") addPath("M2 6 L16 6");
+                if (shape === "ground") addPath("M3 3 L15 3 L15 10");
+                if (shape === "bunt") addPath("M9 1 L16 6 L9 11 L2 6 Z");
                 return svg;
             };
 
@@ -2193,7 +2187,10 @@
                 card.append(stage);
                 if (record.notation) {
                     const longClass = record.notation.length > 3 ? " long-result" : "";
-                    card.append(createElement("div", `play-result ${record.category}-result${longClass}`, record.notation));
+                    const strikeoutClass = ["strikeout", "swinging_strikeout"].includes(record.templateId)
+                        ? " strikeout-result"
+                        : "";
+                    card.append(createElement("div", `play-result ${record.category}-result${strikeoutClass}${longClass}`, record.notation));
                 }
                 if (record.extra) card.append(createElement("div", "play-extra hit-result", record.extra));
                 if (record.centerMark) {
