@@ -639,11 +639,19 @@
             min-height: 27px;
             flex: 0 0 27px;
             overflow: visible;
+
+            /* bbscorer-style fixed anchor map for one score entry. */
+            --anchor-left: 2px;
+            --anchor-right: 1px;
+            --anchor-top: 0px;
+            --anchor-bottom: 0px;
         }
 
         .play-card .diamond-stage {
             position: absolute;
             inset: 0;
+            z-index: 1;
+            pointer-events: none;
         }
 
         .play-card .diamond {
@@ -652,24 +660,17 @@
             z-index: 2;
         }
 
-        .play-card .advance-svg,
-        .play-card .runner-advance-svg {
+        /* Red line: batter-runner result in this plate appearance only. */
+        .play-card .advance-svg {
             position: absolute;
             left: 50%;
             top: 50%;
+            z-index: 4;
             width: 43px;
             height: 43px;
             transform: translate(-50%, -50%);
             overflow: visible;
             pointer-events: none;
-        }
-
-        .play-card .advance-svg {
-            z-index: 4;
-        }
-
-        .play-card .runner-advance-svg {
-            z-index: 5;
         }
 
         .play-card .advance-svg path {
@@ -680,31 +681,24 @@
             stroke-linejoin: round;
         }
 
-        .play-card .runner-advance-svg path {
-            fill: none;
-            stroke: #111;
-            stroke-width: 1.35;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-        }
-
+        /* Batter result anchor: lower-right. The batted-ball mark sits directly above it. */
         .play-notation-stack {
             position: absolute;
-            right: 1px;
-            bottom: 0;
-            z-index: 7;
+            right: var(--anchor-right);
+            bottom: var(--anchor-bottom);
+            z-index: 8;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: flex-end;
             gap: 0;
-            min-width: 18px;
+            min-width: 19px;
             color: #111;
             pointer-events: none;
         }
 
         .play-result {
-            max-width: 40px;
+            max-width: 42px;
             color: #111;
             font-size: 14px;
             line-height: 1;
@@ -713,17 +707,9 @@
             white-space: nowrap;
         }
 
-        .play-result.hit-result {
-            color: var(--red);
-        }
-
-        .play-result.strikeout-result {
-            color: var(--blue);
-        }
-
-        .play-result.long-result {
-            font-size: 12px;
-        }
+        .play-result.hit-result { color: var(--red); }
+        .play-result.strikeout-result { color: var(--blue); }
+        .play-result.long-result { font-size: 12px; }
 
         .play-template-svg {
             position: static;
@@ -745,27 +731,30 @@
             stroke-linejoin: round;
         }
 
+        /* Optional secondary batter-result mark: lower-left fixed anchor. */
         .play-extra {
             position: absolute;
-            left: 1px;
-            bottom: 0;
-            z-index: 7;
+            left: var(--anchor-left);
+            bottom: var(--anchor-bottom);
+            z-index: 8;
             color: var(--red);
             font-size: 9px;
             line-height: 1;
             font-weight: 800;
+            white-space: nowrap;
         }
 
         .play-center-mark {
             position: absolute;
             left: 50%;
             top: 50%;
-            z-index: 6;
+            z-index: 7;
             transform: translate(-50%, -50%);
             color: var(--ink);
             font-size: 10px;
             line-height: 1;
             font-weight: 800;
+            pointer-events: none;
         }
 
         .play-center-mark.scored {
@@ -777,14 +766,19 @@
             position: absolute;
             right: 1px;
             top: 1px;
-            z-index: 3;
+            z-index: 9;
             font-size: 7px;
             font-weight: 700;
         }
 
+        /*
+         * Runner-history anchors. These are annotations only; they never draw on
+         * or trace the diamond. Each value states whose plate appearance caused
+         * the advance, or a fixed event code such as S for a steal.
+         */
         .runner-note {
             position: absolute;
-            z-index: 8;
+            z-index: 10;
             color: #111;
             font-size: 8px;
             line-height: 1;
@@ -794,27 +788,31 @@
         }
 
         .runner-note.to-second {
-            right: 3px;
-            top: 2px;
+            right: var(--anchor-right);
+            top: var(--anchor-top);
+            text-align: right;
         }
 
         .runner-note.to-third {
-            left: 3px;
-            top: 2px;
+            left: var(--anchor-left);
+            top: var(--anchor-top);
+            text-align: left;
         }
 
         .runner-note.to-home {
-            left: 3px;
-            bottom: 2px;
+            left: var(--anchor-left);
+            bottom: var(--anchor-bottom);
+            text-align: left;
         }
 
+        /* Fixed inning-change mark, kept outside the result anchor. */
         .inning-end-mark {
             position: absolute;
-            right: -13px;
+            right: -12px;
             bottom: -10px;
             z-index: 12;
-            width: 21px;
-            height: 21px;
+            width: 20px;
+            height: 20px;
             overflow: visible;
             pointer-events: none;
         }
@@ -823,18 +821,16 @@
         .inning-end-mark::after {
             content: "";
             position: absolute;
-            left: 6px;
-            top: -2px;
+            left: 4px;
+            top: 0;
             width: 1.5px;
             height: 24px;
             background: #111;
-            transform: rotate(45deg);
+            transform: rotate(-45deg);
             transform-origin: center;
         }
 
-        .inning-end-mark::after {
-            left: 11px;
-        }
+        .inning-end-mark::after { left: 9px; }
 
         .stat-cell {
             height: var(--lineup-height);
@@ -2163,7 +2159,6 @@
                         extra: display.extra,
                         shape: display.shape,
                         segments: [],
-                        runnerSegments: [],
                         toSecond: "",
                         toThird: "",
                         toHome: "",
@@ -2200,7 +2195,6 @@
                                 if (fromIndex < 2 && toIndex >= 2) target.toSecond = advanceLabel;
                                 if (fromIndex < 3 && toIndex >= 3) target.toThird = advanceLabel;
                                 if (toIndex >= 4) target.toHome = advanceLabel;
-                                addPathSegments({ segments: target.runnerSegments }, origin, end);
                             }
                         }
 
@@ -2305,7 +2299,6 @@
                 const stage = createElement("div", "diamond-stage");
                 stage.append(createElement("div", "diamond"));
                 if (record.isHit && record.segments.length) stage.append(createAdvanceSvg(record.segments));
-                if (record.runnerSegments?.length) stage.append(createAdvanceSvg(record.runnerSegments, "runner-advance-svg"));
                 card.append(stage);
                 if (record.notation) {
                     const notationStack = createElement("div", "play-notation-stack");
