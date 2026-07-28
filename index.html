@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MLB Scorebook Generator</title>
+    <!-- Score notation update: stacked batted-ball symbol, red hits, blue strikeouts, black other results. -->
 
     <style>
         :root {
@@ -665,21 +666,29 @@
             stroke-linecap: square;
         }
 
-        .play-result {
+        .play-notation-stack {
             position: absolute;
             right: 1px;
             bottom: 0;
             z-index: 7;
-            max-width: 36px;
-            font-size: 13px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 0;
+            min-width: 18px;
+            color: #111;
+            pointer-events: none;
+        }
+
+        .play-result {
+            max-width: 40px;
+            color: #111;
+            font-size: 14px;
             line-height: 1;
             font-weight: 800;
             letter-spacing: -0.3px;
             white-space: nowrap;
-        }
-
-        .play-result {
-            color: var(--ink);
         }
 
         .play-result.hit-result {
@@ -691,16 +700,15 @@
         }
 
         .play-result.long-result {
-            font-size: 11px;
+            font-size: 12px;
         }
 
         .play-template-svg {
-            position: absolute;
-            right: 1px;
-            bottom: 12px;
-            z-index: 6;
+            position: static;
+            flex: 0 0 auto;
             width: 18px;
-            height: 12px;
+            height: 11px;
+            margin-bottom: -1px;
             overflow: visible;
             pointer-events: none;
         }
@@ -709,7 +717,7 @@
         .play-template-svg line,
         .play-template-svg polyline {
             fill: none;
-            stroke: var(--ink);
+            stroke: #111;
             stroke-width: 1.45;
             stroke-linecap: round;
             stroke-linejoin: round;
@@ -2182,15 +2190,17 @@
                 const stage = createElement("div", "diamond-stage");
                 stage.append(createElement("div", "diamond"));
                 if (record.isHit && record.segments.length) stage.append(createAdvanceSvg(record.segments));
-                const templateSvg = createTemplateSvg(record.shape);
-                if (templateSvg) stage.append(templateSvg);
                 card.append(stage);
                 if (record.notation) {
+                    const notationStack = createElement("div", "play-notation-stack");
+                    const templateSvg = createTemplateSvg(record.shape);
+                    if (templateSvg) notationStack.append(templateSvg);
                     const longClass = record.notation.length > 3 ? " long-result" : "";
                     const strikeoutClass = ["strikeout", "swinging_strikeout"].includes(record.templateId)
                         ? " strikeout-result"
                         : "";
-                    card.append(createElement("div", `play-result ${record.category}-result${strikeoutClass}${longClass}`, record.notation));
+                    notationStack.append(createElement("div", `play-result ${record.category}-result${strikeoutClass}${longClass}`, record.notation));
+                    card.append(notationStack);
                 }
                 if (record.extra) card.append(createElement("div", "play-extra hit-result", record.extra));
                 if (record.centerMark) {
