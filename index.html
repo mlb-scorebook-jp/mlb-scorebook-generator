@@ -652,21 +652,40 @@
             z-index: 2;
         }
 
-        .play-card .advance-svg {
+        .play-card .advance-svg,
+        .play-card .runner-advance-svg {
             position: absolute;
             left: 50%;
             top: 50%;
-            z-index: 4;
-            width: 41px;
-            height: 41px;
+            width: 43px;
+            height: 43px;
             transform: translate(-50%, -50%);
             overflow: visible;
+            pointer-events: none;
         }
 
-        .play-card .advance-svg line {
+        .play-card .advance-svg {
+            z-index: 4;
+        }
+
+        .play-card .runner-advance-svg {
+            z-index: 5;
+        }
+
+        .play-card .advance-svg path {
+            fill: none;
             stroke: var(--red);
             stroke-width: 2;
-            stroke-linecap: square;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .play-card .runner-advance-svg path {
+            fill: none;
+            stroke: #111;
+            stroke-width: 1.35;
+            stroke-linecap: round;
+            stroke-linejoin: round;
         }
 
         .play-notation-stack {
@@ -763,13 +782,39 @@
             font-weight: 700;
         }
 
+        .runner-note {
+            position: absolute;
+            z-index: 8;
+            color: #111;
+            font-size: 8px;
+            line-height: 1;
+            font-weight: 700;
+            white-space: nowrap;
+            pointer-events: none;
+        }
+
+        .runner-note.to-second {
+            right: 3px;
+            top: 2px;
+        }
+
+        .runner-note.to-third {
+            left: 3px;
+            top: 2px;
+        }
+
+        .runner-note.to-home {
+            left: 3px;
+            bottom: 2px;
+        }
+
         .inning-end-mark {
             position: absolute;
-            right: -8px;
-            bottom: -8px;
+            right: -13px;
+            bottom: -10px;
             z-index: 12;
-            width: 18px;
-            height: 18px;
+            width: 21px;
+            height: 21px;
             overflow: visible;
             pointer-events: none;
         }
@@ -778,17 +823,17 @@
         .inning-end-mark::after {
             content: "";
             position: absolute;
-            left: 8px;
-            top: -1px;
-            width: 1.6px;
-            height: 22px;
+            left: 6px;
+            top: -2px;
+            width: 1.5px;
+            height: 24px;
             background: #111;
-            transform: rotate(-45deg);
+            transform: rotate(45deg);
             transform-origin: center;
         }
 
         .inning-end-mark::after {
-            left: 13px;
+            left: 11px;
         }
 
         .stat-cell {
@@ -2118,6 +2163,10 @@
                         extra: display.extra,
                         shape: display.shape,
                         segments: [],
+                        runnerSegments: [],
+                        toSecond: "",
+                        toThird: "",
+                        toHome: "",
                         centerMark: "",
                         rbi: Number(play?.result?.rbi) || 0,
                         inningEnd: Boolean(play?.about?.isComplete && Number(play?.count?.outs) === 3)
@@ -2134,7 +2183,26 @@
 
                         const origin = movement?.originBase || (isCurrentBatter ? "home" : "");
                         const end = movement?.end;
-                        if (target.isHit) addPathSegments(target, origin, end);
+
+                        // Red path records only the batter-runner's result in this plate appearance.
+                        if (target.isHit && isCurrentBatter) addPathSegments(target, origin, end);
+
+                        // Later advances belong to the runner history of the original score cell.
+                        if (!isCurrentBatter && origin && end) {
+                            const advanceLabel = `（${order}）`;
+                            const baseOrder = ["home", "1B", "2B", "3B", "score"];
+                            let fromBase = normalizeBase(origin);
+                            let toBase = normalizeBase(end);
+                            if (toBase === "home") toBase = "score";
+                            const fromIndex = baseOrder.indexOf(fromBase);
+                            const toIndex = baseOrder.indexOf(toBase);
+                            if (fromIndex >= 0 && toIndex > fromIndex) {
+                                if (fromIndex < 2 && toIndex >= 2) target.toSecond = advanceLabel;
+                                if (fromIndex < 3 && toIndex >= 3) target.toThird = advanceLabel;
+                                if (toIndex >= 4) target.toHome = advanceLabel;
+                                addPathSegments({ segments: target.runnerSegments }, origin, end);
+                            }
+                        }
 
                         if (movement?.isOut) {
                             const outs = Number(play?.count?.outs);
@@ -2170,20 +2238,47 @@
                 return records;
             };
 
-            const createAdvanceSvg = (segments) => {
+            const getRoundedAdvancePath = (segments) => {
+                const set = new Set(segments);
+                const has1 = set.has("home-1B");
+                const has2 = set.has("1B-2B");
+                const has3 = set.has("2B-3B");
+                const has4 = set.has("3B-score") || set.has("3B-home");
+                const r = 3.2;
+
+                // SVG coordinates trace just outside the fixed gray diamond.
+                if (has1) {
+                    let d = "M21.5 42 L38.3 25.2";
+                    if (has2) d += " Q42 21.5 38.3 17.8 L25.2 4.7";
+                    if (has3) d += " Q21.5 1 17.8 4.7 L4.7 17.8";
+                    if (has4) d += " Q1 21.5 4.7 25.2 L21.5 42";
+                    return d;
+                }
+                if (has2) {
+                    let d = "M42 21.5 L38.3 17.8 L25.2 4.7";
+                    if (has3) d += " Q21.5 1 17.8 4.7 L4.7 17.8";
+                    if (has4) d += " Q1 21.5 4.7 25.2 L21.5 42";
+                    return d;
+                }
+                if (has3) {
+                    let d = "M21.5 1 L17.8 4.7 L4.7 17.8";
+                    if (has4) d += " Q1 21.5 4.7 25.2 L21.5 42";
+                    return d;
+                }
+                if (has4) return "M1 21.5 L4.7 25.2 L21.5 42";
+                return "";
+            };
+
+            const createAdvanceSvg = (segments, className = "advance-svg") => {
                 const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-                svg.setAttribute("viewBox", "0 0 41 41");
-                svg.classList.add("advance-svg");
-                segments.forEach((segment) => {
-                    const coords = segmentCoordinates[segment];
-                    if (!coords) return;
-                    const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
-                    line.setAttribute("x1", coords[0]);
-                    line.setAttribute("y1", coords[1]);
-                    line.setAttribute("x2", coords[2]);
-                    line.setAttribute("y2", coords[3]);
-                    svg.append(line);
-                });
+                svg.setAttribute("viewBox", "0 0 43 43");
+                svg.classList.add(className);
+                const d = getRoundedAdvancePath(segments);
+                if (d) {
+                    const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+                    path.setAttribute("d", d);
+                    svg.append(path);
+                }
                 return svg;
             };
 
@@ -2210,6 +2305,7 @@
                 const stage = createElement("div", "diamond-stage");
                 stage.append(createElement("div", "diamond"));
                 if (record.isHit && record.segments.length) stage.append(createAdvanceSvg(record.segments));
+                if (record.runnerSegments?.length) stage.append(createAdvanceSvg(record.runnerSegments, "runner-advance-svg"));
                 card.append(stage);
                 if (record.notation) {
                     const notationStack = createElement("div", "play-notation-stack");
@@ -2227,6 +2323,9 @@
                     const centerClass = ["●", "○"].includes(record.centerMark) ? "play-center-mark scored" : "play-center-mark";
                     card.append(createElement("div", centerClass, record.centerMark));
                 }
+                if (record.toSecond) card.append(createElement("div", "runner-note to-second", record.toSecond));
+                if (record.toThird) card.append(createElement("div", "runner-note to-third", record.toThird));
+                if (record.toHome) card.append(createElement("div", "runner-note to-home", record.toHome));
                 if (record.rbi > 0) card.append(createElement("div", "play-rbi", String(record.rbi)));
                 if (record.inningEnd) card.append(createElement("div", "inning-end-mark"));
                 return card;
