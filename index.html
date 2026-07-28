@@ -644,37 +644,55 @@
         }
 
         .play-card .diamond {
-            width: 21px;
-            height: 21px;
+            width: 25px;
+            height: 25px;
         }
 
         .play-card .advance-svg {
             position: absolute;
             left: 50%;
             top: 50%;
-            width: 31px;
-            height: 31px;
+            width: 35px;
+            height: 35px;
             transform: translate(-50%, -50%);
             overflow: visible;
         }
 
         .play-card .advance-svg line {
-            stroke: #202722;
             stroke-width: 1.7;
             stroke-linecap: round;
         }
 
+        .play-card.play-hit .advance-svg line {
+            stroke: var(--red);
+        }
+
+        .play-card.play-out .advance-svg line,
+        .play-card.play-other .advance-svg line {
+            stroke: var(--blue);
+        }
+
         .play-result {
             position: absolute;
-            left: 1px;
-            top: 1px;
+            right: 2px;
+            bottom: 2px;
             z-index: 3;
-            max-width: 26px;
+            max-width: 32px;
             font-size: 8px;
             line-height: 1;
             font-weight: 700;
             letter-spacing: -0.2px;
+            text-align: right;
             white-space: nowrap;
+        }
+
+        .play-card.play-hit .play-result {
+            color: var(--red);
+        }
+
+        .play-card.play-out .play-result,
+        .play-card.play-other .play-result {
+            color: var(--blue);
         }
 
         .play-center-mark {
@@ -683,9 +701,34 @@
             top: 50%;
             z-index: 4;
             transform: translate(-50%, -50%);
+            color: var(--ink);
             font-size: 9px;
             line-height: 1;
             font-weight: 800;
+        }
+
+        .play-out-order {
+            position: absolute;
+            left: 50%;
+            top: 7px;
+            z-index: 4;
+            transform: translateX(-50%);
+            color: var(--blue);
+            font-size: 8px;
+            line-height: 1;
+            font-weight: 800;
+        }
+
+        .play-score-mark {
+            position: absolute;
+            left: 50%;
+            bottom: 4px;
+            z-index: 4;
+            transform: translateX(-50%);
+            color: var(--red);
+            font-size: 11px;
+            line-height: 1;
+            font-weight: 900;
         }
 
         .play-rbi {
@@ -1867,6 +1910,17 @@
                 return [...new Set(numbers)].join("-");
             };
 
+            const getPlayKind = (play) => {
+                const eventType = String(play?.result?.eventType ?? "").toLowerCase();
+                if (["single", "double", "triple", "home_run"].includes(eventType)) return "hit";
+                if (
+                    Boolean(play?.result?.isOut) ||
+                    ["strikeout", "groundout", "force_out", "double_play", "grounded_into_double_play",
+                     "flyout", "sac_fly", "lineout", "pop_out", "sac_bunt", "sacrifice_bunt"].includes(eventType)
+                ) return "out";
+                return "other";
+            };
+
             const getPlayNotation = (play) => {
                 const eventType = String(play?.result?.eventType ?? "").toLowerCase();
                 const event = String(play?.result?.event ?? "").toLowerCase();
@@ -1942,8 +1996,11 @@
                         order,
                         batterId,
                         notation: getPlayNotation(play),
+                        kind: getPlayKind(play),
                         segments: [],
                         centerMark: "",
+                        outMark: "",
+                        scoreMark: "",
                         rbi: Number(play?.result?.rbi) || 0,
                         inningEnd: Boolean(play?.about?.isComplete && Number(play?.count?.outs) === 3)
                     };
@@ -1963,10 +2020,10 @@
 
                         if (movement?.isOut) {
                             const outs = Number(play?.count?.outs);
-                            target.centerMark = ROMAN_OUTS[Math.max(1, Math.min(3, outs))] || "Ⅰ";
+                            target.outMark = ROMAN_OUTS[Math.max(1, Math.min(3, outs))] || "Ⅰ";
                             activeRunner.delete(Number(runnerId));
                         } else if (["score", "home", "home_plate"].includes(String(end).toLowerCase())) {
-                            target.centerMark = runner?.details?.earned === false ? "○" : "●";
+                            target.scoreMark = runner?.details?.earned === false ? "○" : "●";
                             activeRunner.delete(Number(runnerId));
                         } else if (end) {
                             activeRunner.set(Number(runnerId), target);
@@ -1976,8 +2033,22 @@
                     if (!runners.some((runner) => Number(runner?.details?.runner?.id) === Number(batterId))) {
                         const isOut = Boolean(play?.result?.isOut) || Number(play?.count?.outs) > Number(play?.about?.startOuts ?? 0);
                         if (isOut) {
-                            record.centerMark = ROMAN_OUTS[Math.max(1, Math.min(3, Number(play?.count?.outs) || 1))];
+                            record.outMark = ROMAN_OUTS[Math.max(1, Math.min(3, Number(play?.count?.outs) || 1))];
                         }
+                    }
+
+                    if (record.inningEnd) {
+                        activeRunner.forEach((runnerRecord, runnerId) => {
+                            if (
+                                runnerRecord.side === side &&
+                                runnerRecord.inning === inning &&
+                                !runnerRecord.outMark &&
+                                !runnerRecord.scoreMark
+                            ) {
+                                runnerRecord.centerMark = "ℓ";
+                                activeRunner.delete(runnerId);
+                            }
+                        });
                     }
                 });
 
@@ -2013,12 +2084,14 @@
             };
 
             const renderPlateAppearance = (record) => {
-                const card = createElement("div", "play-card");
+                const card = createElement("div", `play-card play-${record.kind || "other"}`);
                 const stage = createElement("div", "diamond-stage");
                 stage.append(createElement("div", "diamond"), createAdvanceSvg(record.segments));
                 card.append(stage);
                 if (record.notation) card.append(createElement("div", "play-result", record.notation));
                 if (record.centerMark) card.append(createElement("div", "play-center-mark", record.centerMark));
+                if (record.outMark) card.append(createElement("div", "play-out-order", record.outMark));
+                if (record.scoreMark) card.append(createElement("div", "play-score-mark", record.scoreMark));
                 if (record.rbi > 0) card.append(createElement("div", "play-rbi", String(record.rbi)));
                 if (record.inningEnd) card.append(createElement("div", "inning-end-mark", "＝"));
                 return card;
