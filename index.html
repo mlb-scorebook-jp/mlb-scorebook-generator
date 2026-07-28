@@ -415,7 +415,7 @@
             border: 1.4px solid var(--rule);
             border-bottom: 0;
             background: rgba(47, 107, 61, 0.05);
-            font-size: 13px;
+            font-size: 15px;
             font-weight: 700;
         }
 
@@ -436,7 +436,7 @@
                 var(--position-width)
                 var(--hand-width)
                 repeat(var(--inning-count), var(--inning-width))
-                repeat(15, var(--stat-width));
+                repeat(6, var(--stat-width));
             width: max-content;
             border-top: 1.4px solid var(--rule);
             border-left: 1.4px solid var(--rule);
@@ -455,7 +455,7 @@
             align-items: center;
             justify-content: center;
             background: rgba(47, 107, 61, 0.05);
-            font-size: 9px;
+            font-size: 11px;
             font-weight: 700;
             line-height: 1.05;
             text-align: center;
@@ -484,7 +484,7 @@
             min-width: 0;
             overflow: hidden;
             white-space: nowrap;
-            font-size: 10px;
+            font-size: 12px;
         }
 
         .name-cell {
@@ -514,11 +514,11 @@
         }
 
         .lineup-stack.compact-3 .lineup-entry {
-            font-size: 9px;
+            font-size: 10px;
         }
 
         .lineup-stack.compact-4 .lineup-entry {
-            font-size: 8px;
+            font-size: 9px;
         }
 
         .center-cell .lineup-entry {
@@ -565,7 +565,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 9px;
+            font-size: 11px;
         }
 
         .summary-grid {
@@ -579,7 +579,7 @@
                     var(--hand-width)
                 )
                 repeat(var(--inning-count), var(--inning-width))
-                repeat(15, var(--stat-width));
+                repeat(6, var(--stat-width));
             width: max-content;
             border-left: 1.4px solid var(--rule);
         }
@@ -609,7 +609,7 @@
                 var(--position-width)
                 var(--hand-width)
                 repeat(var(--inning-count), var(--inning-width))
-                repeat(15, var(--stat-width));
+                repeat(6, var(--stat-width));
             width: max-content;
             border-left: 1.4px solid var(--rule);
         }
@@ -635,7 +635,7 @@
             border-right: 1px solid var(--rule);
             border-bottom: 1px solid var(--rule);
             padding: 0 4px;
-            font-size: 9px;
+            font-size: 11px;
         }
 
         .blank-span {
@@ -668,7 +668,7 @@
             border-right: 1px solid var(--rule);
             border-bottom: 1px solid var(--rule);
             color: var(--rule);
-            font-size: 10px;
+            font-size: 12px;
             font-weight: 700;
         }
 
@@ -693,7 +693,7 @@
             border-right: 1px solid var(--rule);
             border-bottom: 1px solid var(--rule);
             overflow: hidden;
-            font-size: 8px;
+            font-size: 10px;
             text-align: center;
             text-overflow: ellipsis;
             white-space: nowrap;
@@ -737,7 +737,29 @@
             justify-content: center;
             border-right: 1px solid var(--rule);
             border-bottom: 1px solid var(--rule);
-            font-size: 9px;
+            font-size: 10px;
+        }
+
+        .special-notes {
+            display: grid;
+            grid-template-columns: 1fr;
+            background: #fff;
+        }
+
+        .special-note-row {
+            min-height: 27px;
+            display: flex;
+            align-items: center;
+            padding: 3px 8px;
+            border-right: 1px solid var(--rule);
+            border-bottom: 1px solid var(--rule);
+            outline: none;
+            font-size: 11px;
+            line-height: 1.25;
+        }
+
+        .special-note-row:focus {
+            background: rgba(243, 200, 62, 0.16);
         }
 
         .memo-table {
@@ -752,7 +774,7 @@
             padding: 0 6px;
             border-right: 1px solid var(--rule);
             border-bottom: 1px solid var(--rule);
-            font-size: 9px;
+            font-size: 10px;
         }
 
         .memo-table .memo-label {
@@ -847,7 +869,7 @@
             <p>WASEDA STYLE DIGITAL SCOREBOOK</p>
         </div>
 
-        <div class="version">Ver. 2.2.0</div>
+        <div class="version">Ver. 2.3.0</div>
     </header>
 
     <main class="app-main">
@@ -1110,21 +1132,12 @@
             };
 
             const statHeaders = [
-                "打席",
-                "打数",
-                "安打",
-                "打点",
-                "得点",
-                "四球",
-                "死球",
-                "三振",
-                "犠打",
-                "犠飛",
-                "本塁打",
-                "盗塁",
-                "残塁",
-                "補殺",
-                "失策"
+                "AB",
+                "R",
+                "H",
+                "RBI",
+                "BB",
+                "K"
             ];
 
             const pitchingHeaders = [
@@ -1569,15 +1582,7 @@
                     );
                 });
 
-                const matchup = createElement("section", "matchup-row");
-
-                matchup.append(
-                    createElement("div", "", state.away.name),
-                    createElement("div", "", "対"),
-                    createElement("div", "", state.home.name)
-                );
-
-                fragment.append(meta, matchup);
+                fragment.append(meta);
 
                 return fragment;
             };
@@ -1835,26 +1840,20 @@
             const buildSideTables = () => {
                 const wrapper = createElement("div", "side-stats");
 
-                const catcherBox = createElement("section", "table-box");
-                catcherBox.append(
-                    createElement("div", "table-title", "捕手成績")
+                const notesBox = createElement("section", "table-box");
+                notesBox.append(
+                    createElement("div", "table-title", "特記事項")
                 );
 
-                const catcherTable = createElement("div", "small-table");
-
-                ["捕手", "捕逸", "打妨", "許盗塁", "盗塁刺"].forEach(
-                    (label) => {
-                        catcherTable.append(createElement("div", "", label));
-                    }
-                );
-
-                for (let row = 0; row < 2; row += 1) {
-                    for (let column = 0; column < 5; column += 1) {
-                        catcherTable.append(createElement("div"));
-                    }
+                const notesTable = createElement("div", "special-notes");
+                for (let row = 0; row < 6; row += 1) {
+                    const note = createElement("div", "special-note-row");
+                    note.contentEditable = "true";
+                    note.spellcheck = false;
+                    note.dataset.noteRow = String(row + 1);
+                    notesTable.append(note);
                 }
-
-                catcherBox.append(catcherTable);
+                notesBox.append(notesTable);
 
                 const memoBox = createElement("section", "table-box");
                 memoBox.append(
@@ -1873,7 +1872,7 @@
                 );
 
                 memoBox.append(memoTable);
-                wrapper.append(catcherBox, memoBox);
+                wrapper.append(notesBox, memoBox);
 
                 return wrapper;
             };
