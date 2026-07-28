@@ -237,9 +237,8 @@
 
         .score-header-area {
             display: grid;
-            grid-template-columns: max-content 410px;
+            grid-template-columns: max-content;
             align-items: start;
-            gap: 10px;
             width: max-content;
             margin-bottom: 10px;
         }
@@ -279,7 +278,8 @@
         }
 
         .abs-challenge-box {
-            width: 410px;
+            width: 100%;
+            margin-bottom: 8px;
             border-top: 1.4px solid var(--rule);
             border-left: 1.4px solid var(--rule);
             background: #fff;
@@ -301,12 +301,12 @@
 
         .abs-challenge-grid {
             display: grid;
-            grid-template-columns: 42px 58px 58px 112px 82px 56px;
+            grid-template-columns: 8% 14% 14% 28% 22% 14%;
         }
 
         .abs-challenge-grid > div {
-            height: 13px;
-            min-height: 13px;
+            height: 18px;
+            min-height: 18px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -1545,7 +1545,7 @@
                     }
                 );
 
-                for (let row = 0; row < 4; row += 1) {
+                for (let row = 0; row < 8; row += 1) {
                     for (let column = 0; column < 6; column += 1) {
                         const cell = createElement("div", "editable-cell");
                         cell.contentEditable = "true";
@@ -1562,7 +1562,7 @@
 
             const buildScoreHeaderArea = () => {
                 const area = createElement("section", "score-header-area");
-                area.append(buildTopScore(), buildAbsChallengeTable());
+                area.append(buildTopScore());
                 return area;
             };
 
@@ -1703,7 +1703,7 @@
                 const grid = createElement("section", "bench-grid");
                 const pitchers = state[side].pitchers.slice(0, 5);
 
-                const label = createElement("div", "bench-label", "守");
+                const label = createElement("div", "bench-label", "P");
                 grid.append(label);
 
                 for (let row = 0; row < 5; row += 1) {
@@ -1891,6 +1891,11 @@
 
             const buildTeamPanel = (side) => {
                 const panel = createElement("section", "team-score-panel");
+
+                if (side === "home") {
+                    panel.append(buildAbsChallengeTable());
+                }
+
                 panel.append(
                     createElement("div", "team-panel-title", state[side].name),
                     buildScoreGrid(side),
