@@ -26,7 +26,7 @@
             --order-width: 34px;
             --name-width: 180px;
             --position-width: 30px;
-            --hand-width: 26px;
+            --hand-width: 36px;
             --number-width: 30px;
             --inning-width: 76px;
             --stat-width: 24px;
@@ -1674,7 +1674,7 @@
             const buildScoreGrid = (side) => {
                 const grid = createElement("section", "score-grid");
 
-                ["打順", "背番号", "名前", "守", "左/右"].forEach((label) => {
+                ["打順", "背番号", "名前", "守", "投/打"].forEach((label) => {
                     grid.append(createElement("div", "grid-header", label));
                 });
 
