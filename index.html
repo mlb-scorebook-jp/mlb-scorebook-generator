@@ -623,7 +623,7 @@
             flex-direction: column;
             align-items: stretch;
             justify-content: center;
-            gap: 1px;
+            gap: 0;
             padding: 1px;
         }
 
@@ -633,8 +633,9 @@
 
         .play-card {
             position: relative;
-            min-height: 25px;
-            flex: 1 1 0;
+            height: 27px;
+            min-height: 27px;
+            flex: 0 0 27px;
             overflow: hidden;
         }
 
@@ -659,76 +660,59 @@
         }
 
         .play-card .advance-svg line {
-            stroke-width: 1.7;
-            stroke-linecap: round;
-        }
-
-        .play-card.play-hit .advance-svg line {
             stroke: var(--red);
-        }
-
-        .play-card.play-out .advance-svg line,
-        .play-card.play-other .advance-svg line {
-            stroke: var(--blue);
+            stroke-width: 2.1;
+            stroke-linecap: square;
         }
 
         .play-result {
             position: absolute;
-            right: 2px;
-            bottom: 2px;
-            z-index: 3;
-            max-width: 32px;
-            font-size: 8px;
+            right: 1px;
+            bottom: 0;
+            z-index: 5;
+            max-width: 34px;
+            font-size: 11px;
             line-height: 1;
-            font-weight: 700;
-            letter-spacing: -0.2px;
-            text-align: right;
+            font-weight: 800;
+            letter-spacing: -0.25px;
             white-space: nowrap;
         }
 
-        .play-card.play-hit .play-result {
+        .play-result.hit-result {
             color: var(--red);
         }
 
-        .play-card.play-out .play-result,
-        .play-card.play-other .play-result {
+        .play-result.out-result,
+        .play-result.reach-result {
             color: var(--blue);
+        }
+
+        .play-type-mark {
+            position: absolute;
+            right: 3px;
+            top: 1px;
+            z-index: 4;
+            color: var(--blue);
+            font-size: 12px;
+            line-height: 1;
+            font-weight: 700;
         }
 
         .play-center-mark {
             position: absolute;
             left: 50%;
             top: 50%;
-            z-index: 4;
+            z-index: 6;
             transform: translate(-50%, -50%);
             color: var(--ink);
-            font-size: 9px;
+            font-size: 10px;
             line-height: 1;
             font-weight: 800;
         }
 
-        .play-out-order {
-            position: absolute;
-            left: 50%;
-            top: 7px;
-            z-index: 4;
-            transform: translateX(-50%);
-            color: var(--blue);
-            font-size: 8px;
-            line-height: 1;
-            font-weight: 800;
-        }
-
-        .play-score-mark {
-            position: absolute;
-            left: 50%;
-            bottom: 4px;
-            z-index: 4;
-            transform: translateX(-50%);
+        .play-center-mark.scored {
             color: var(--red);
-            font-size: 11px;
-            line-height: 1;
-            font-weight: 900;
+            font-size: 13px;
         }
 
         .play-rbi {
@@ -1060,7 +1044,7 @@
             <p>WASEDA STYLE DIGITAL SCOREBOOK</p>
         </div>
 
-        <div class="version">Ver. 2.3.0</div>
+        <div class="version">Ver. 2.3.1</div>
     </header>
 
     <main class="app-main">
@@ -1910,57 +1894,66 @@
                 return [...new Set(numbers)].join("-");
             };
 
-            const getPlayKind = (play) => {
-                const eventType = String(play?.result?.eventType ?? "").toLowerCase();
-                if (["single", "double", "triple", "home_run"].includes(eventType)) return "hit";
-                if (
-                    Boolean(play?.result?.isOut) ||
-                    ["strikeout", "groundout", "force_out", "double_play", "grounded_into_double_play",
-                     "flyout", "sac_fly", "lineout", "pop_out", "sac_bunt", "sacrifice_bunt"].includes(eventType)
-                ) return "out";
-                return "other";
-            };
-
-            const getPlayNotation = (play) => {
+            const getPlayDisplay = (play) => {
                 const eventType = String(play?.result?.eventType ?? "").toLowerCase();
                 const event = String(play?.result?.event ?? "").toLowerCase();
                 const description = String(play?.result?.description ?? "").toLowerCase();
                 const field = getFieldNumber(play);
                 const sequence = getFieldingSequence(play);
+                const display = { notation: "", typeMark: "", category: "out", isHit: false };
 
                 if (eventType === "strikeout") {
-                    return description.includes("swinging") ? "Ks" : "K";
+                    display.notation = description.includes("swinging") ? "Ks" : "K";
+                    return display;
                 }
-                if (["walk", "base_on_balls"].includes(eventType)) return "B";
-                if (["intent_walk", "intentional_walk"].includes(eventType)) return "DIB";
-                if (["hit_by_pitch"].includes(eventType)) return "HBP";
-                if (eventType === "single") return field || "H";
-                if (eventType === "double") return `${field || "H"} 2B`;
-                if (eventType === "triple") return `${field || "H"} 3B`;
-                if (eventType === "home_run") return `${field || "H"} HR`;
+                if (["walk", "base_on_balls"].includes(eventType)) {
+                    return { notation: "B", typeMark: "", category: "reach", isHit: false };
+                }
+                if (["intent_walk", "intentional_walk"].includes(eventType)) {
+                    return { notation: "DIB", typeMark: "", category: "reach", isHit: false };
+                }
+                if (eventType === "hit_by_pitch") {
+                    return { notation: "HBP", typeMark: "", category: "reach", isHit: false };
+                }
+                if (["single", "double", "triple", "home_run"].includes(eventType)) {
+                    const suffix = eventType === "double" ? "2B" : eventType === "triple" ? "3B" : eventType === "home_run" ? "HR" : "";
+                    return {
+                        notation: `${field || "H"}${suffix ? ` ${suffix}` : ""}`,
+                        typeMark: "",
+                        category: "hit",
+                        isHit: true
+                    };
+                }
                 if (eventType === "field_error") {
                     const throwing = description.includes("throwing error");
-                    return `E${field || "?"}${throwing ? "t" : "f"}`;
+                    return { notation: `E${field || "?"}${throwing ? "t" : "f"}`, typeMark: "", category: "reach", isHit: false };
                 }
-                if (["fielders_choice", "fielders_choice_out"].includes(eventType)) return `Fc${field || ""}`;
+                if (["fielders_choice", "fielders_choice_out"].includes(eventType)) {
+                    return { notation: `Fc${field || ""}`, typeMark: "", category: "reach", isHit: false };
+                }
                 if (["groundout", "force_out", "double_play", "grounded_into_double_play"].includes(eventType)) {
-                    return sequence || `${field || ""})`;
+                    return { notation: sequence || field, typeMark: "┐", category: "out", isHit: false };
                 }
-                if (["flyout", "sac_fly"].includes(eventType)) return `${field || ""})`;
-                if (eventType === "lineout") return `${field || ""}—`;
-                if (eventType === "pop_out") return `${field || ""})`;
-                if (["sac_bunt", "sacrifice_bunt"].includes(eventType)) return `□${sequence || field}`;
-                if (eventType.includes("catcher_interf")) return "CI";
-                if (eventType.includes("runner_interf") || event.includes("interference")) return "OI";
-                return play?.result?.event ?? "";
+                if (["flyout", "sac_fly", "pop_out"].includes(eventType)) {
+                    return { notation: field, typeMark: "⌒", category: "out", isHit: false };
+                }
+                if (eventType === "lineout") {
+                    return { notation: field, typeMark: "—", category: "out", isHit: false };
+                }
+                if (["sac_bunt", "sacrifice_bunt"].includes(eventType)) {
+                    return { notation: sequence || field, typeMark: "◇", category: "out", isHit: false };
+                }
+                if (eventType.includes("catcher_interf")) return { notation: "CI", typeMark: "", category: "reach", isHit: false };
+                if (eventType.includes("runner_interf") || event.includes("interference")) return { notation: "OI", typeMark: "", category: "out", isHit: false };
+                return { notation: play?.result?.event ?? "", typeMark: "", category: "out", isHit: false };
             };
 
             const segmentCoordinates = {
-                "home-1B": [15.5, 27, 27, 15.5],
-                "1B-2B": [27, 15.5, 15.5, 4],
-                "2B-3B": [15.5, 4, 4, 15.5],
-                "3B-score": [4, 15.5, 15.5, 27],
-                "3B-home": [4, 15.5, 15.5, 27]
+                "home-1B": [17.5, 30, 30, 17.5],
+                "1B-2B": [30, 17.5, 17.5, 5],
+                "2B-3B": [17.5, 5, 5, 17.5],
+                "3B-score": [5, 17.5, 17.5, 30],
+                "3B-home": [5, 17.5, 17.5, 30]
             };
 
             const addPathSegments = (record, origin, end) => {
@@ -1989,18 +1982,19 @@
                     const inning = Number(play?.about?.inning);
                     if (!order || !inning) return;
 
+                    const display = getPlayDisplay(play);
                     const record = {
                         playIndex,
                         side,
                         inning,
                         order,
                         batterId,
-                        notation: getPlayNotation(play),
-                        kind: getPlayKind(play),
+                        notation: display.notation,
+                        typeMark: display.typeMark,
+                        category: display.category,
+                        isHit: display.isHit,
                         segments: [],
                         centerMark: "",
-                        outMark: "",
-                        scoreMark: "",
                         rbi: Number(play?.result?.rbi) || 0,
                         inningEnd: Boolean(play?.about?.isComplete && Number(play?.count?.outs) === 3)
                     };
@@ -2016,14 +2010,14 @@
 
                         const origin = movement?.originBase || (isCurrentBatter ? "home" : "");
                         const end = movement?.end;
-                        addPathSegments(target, origin, end);
+                        if (target.isHit) addPathSegments(target, origin, end);
 
                         if (movement?.isOut) {
                             const outs = Number(play?.count?.outs);
-                            target.outMark = ROMAN_OUTS[Math.max(1, Math.min(3, outs))] || "Ⅰ";
+                            target.centerMark = ROMAN_OUTS[Math.max(1, Math.min(3, outs))] || "Ⅰ";
                             activeRunner.delete(Number(runnerId));
                         } else if (["score", "home", "home_plate"].includes(String(end).toLowerCase())) {
-                            target.scoreMark = runner?.details?.earned === false ? "○" : "●";
+                            target.centerMark = runner?.details?.earned === false ? "○" : "●";
                             activeRunner.delete(Number(runnerId));
                         } else if (end) {
                             activeRunner.set(Number(runnerId), target);
@@ -2033,22 +2027,8 @@
                     if (!runners.some((runner) => Number(runner?.details?.runner?.id) === Number(batterId))) {
                         const isOut = Boolean(play?.result?.isOut) || Number(play?.count?.outs) > Number(play?.about?.startOuts ?? 0);
                         if (isOut) {
-                            record.outMark = ROMAN_OUTS[Math.max(1, Math.min(3, Number(play?.count?.outs) || 1))];
+                            record.centerMark = ROMAN_OUTS[Math.max(1, Math.min(3, Number(play?.count?.outs) || 1))];
                         }
-                    }
-
-                    if (record.inningEnd) {
-                        activeRunner.forEach((runnerRecord, runnerId) => {
-                            if (
-                                runnerRecord.side === side &&
-                                runnerRecord.inning === inning &&
-                                !runnerRecord.outMark &&
-                                !runnerRecord.scoreMark
-                            ) {
-                                runnerRecord.centerMark = "ℓ";
-                                activeRunner.delete(runnerId);
-                            }
-                        });
                     }
                 });
 
@@ -2068,7 +2048,7 @@
 
             const createAdvanceSvg = (segments) => {
                 const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-                svg.setAttribute("viewBox", "0 0 31 31");
+                svg.setAttribute("viewBox", "0 0 35 35");
                 svg.classList.add("advance-svg");
                 segments.forEach((segment) => {
                     const coords = segmentCoordinates[segment];
@@ -2084,14 +2064,19 @@
             };
 
             const renderPlateAppearance = (record) => {
-                const card = createElement("div", `play-card play-${record.kind || "other"}`);
+                const card = createElement("div", "play-card");
                 const stage = createElement("div", "diamond-stage");
                 stage.append(createElement("div", "diamond"), createAdvanceSvg(record.segments));
                 card.append(stage);
-                if (record.notation) card.append(createElement("div", "play-result", record.notation));
-                if (record.centerMark) card.append(createElement("div", "play-center-mark", record.centerMark));
-                if (record.outMark) card.append(createElement("div", "play-out-order", record.outMark));
-                if (record.scoreMark) card.append(createElement("div", "play-score-mark", record.scoreMark));
+                if (record.typeMark) card.append(createElement("div", "play-type-mark", record.typeMark));
+                if (record.notation) {
+                    const result = createElement("div", `play-result ${record.category}-result`, record.notation);
+                    card.append(result);
+                }
+                if (record.centerMark) {
+                    const centerClass = ["●", "○"].includes(record.centerMark) ? "play-center-mark scored" : "play-center-mark";
+                    card.append(createElement("div", centerClass, record.centerMark));
+                }
                 if (record.rbi > 0) card.append(createElement("div", "play-rbi", String(record.rbi)));
                 if (record.inningEnd) card.append(createElement("div", "inning-end-mark", "＝"));
                 return card;
