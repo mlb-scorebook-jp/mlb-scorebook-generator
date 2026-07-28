@@ -621,12 +621,10 @@
         }
 
         .result-box.has-play {
-            display: flex;
-            flex-direction: column;
-            align-items: stretch;
-            justify-content: center;
-            gap: 0;
-            padding: 1px;
+            position: relative;
+            display: block;
+            padding: 0;
+            overflow: visible;
         }
 
         .result-box.has-play > .diamond {
@@ -634,10 +632,10 @@
         }
 
         .play-card {
-            position: relative;
-            height: 27px;
-            min-height: 27px;
-            flex: 0 0 27px;
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
             overflow: visible;
         }
 
@@ -652,8 +650,7 @@
             z-index: 2;
         }
 
-        .play-card .advance-svg,
-        .play-card .runner-advance-svg {
+        .play-card .advance-svg {
             position: absolute;
             left: 50%;
             top: 50%;
@@ -668,10 +665,6 @@
             z-index: 4;
         }
 
-        .play-card .runner-advance-svg {
-            z-index: 5;
-        }
-
         .play-card .advance-svg path {
             fill: none;
             stroke: var(--red);
@@ -680,18 +673,10 @@
             stroke-linejoin: round;
         }
 
-        .play-card .runner-advance-svg path {
-            fill: none;
-            stroke: #111;
-            stroke-width: 1.35;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-        }
-
         .play-notation-stack {
             position: absolute;
-            right: 1px;
-            bottom: 0;
+            right: 2px;
+            bottom: 3px;
             z-index: 7;
             display: flex;
             flex-direction: column;
@@ -794,24 +779,27 @@
         }
 
         .runner-note.to-second {
-            right: 3px;
+            right: 2px;
             top: 2px;
+            text-align: right;
         }
 
         .runner-note.to-third {
-            left: 3px;
+            left: 2px;
             top: 2px;
+            text-align: left;
         }
 
         .runner-note.to-home {
-            left: 3px;
-            bottom: 2px;
+            left: 2px;
+            bottom: 3px;
+            text-align: left;
         }
 
         .inning-end-mark {
             position: absolute;
-            right: -13px;
-            bottom: -10px;
+            right: -15px;
+            bottom: -11px;
             z-index: 12;
             width: 21px;
             height: 21px;
@@ -828,7 +816,7 @@
             width: 1.5px;
             height: 24px;
             background: #111;
-            transform: rotate(45deg);
+            transform: rotate(-45deg);
             transform-origin: center;
         }
 
@@ -2189,7 +2177,9 @@
 
                         // Later advances belong to the runner history of the original score cell.
                         if (!isCurrentBatter && origin && end) {
-                            const advanceLabel = `（${order}）`;
+                            const movementReason = String(runner?.details?.eventType || runner?.details?.event || "").toLowerCase();
+                            const isSteal = movementReason.includes("stolen_base") || movementReason.includes("steal");
+                            const advanceLabel = isSteal ? "S" : `（${order}）`;
                             const baseOrder = ["home", "1B", "2B", "3B", "score"];
                             let fromBase = normalizeBase(origin);
                             let toBase = normalizeBase(end);
@@ -2200,7 +2190,6 @@
                                 if (fromIndex < 2 && toIndex >= 2) target.toSecond = advanceLabel;
                                 if (fromIndex < 3 && toIndex >= 3) target.toThird = advanceLabel;
                                 if (toIndex >= 4) target.toHome = advanceLabel;
-                                addPathSegments({ segments: target.runnerSegments }, origin, end);
                             }
                         }
 
@@ -2305,7 +2294,6 @@
                 const stage = createElement("div", "diamond-stage");
                 stage.append(createElement("div", "diamond"));
                 if (record.isHit && record.segments.length) stage.append(createAdvanceSvg(record.segments));
-                if (record.runnerSegments?.length) stage.append(createAdvanceSvg(record.runnerSegments, "runner-advance-svg"));
                 card.append(stage);
                 if (record.notation) {
                     const notationStack = createElement("div", "play-notation-stack");
