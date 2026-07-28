@@ -463,9 +463,16 @@
         }
 
         .grid-header.vertical {
-            writing-mode: vertical-rl;
-            padding: 2px 0;
-            letter-spacing: 0.05em;
+            writing-mode: horizontal-tb;
+            padding: 1px 0;
+            letter-spacing: 0;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .grid-header.vertical span {
+            display: block;
+            line-height: 1;
         }
 
         .order-cell {
@@ -1678,9 +1685,11 @@
                 }
 
                 statHeaders.forEach((label) => {
-                    grid.append(
-                        createElement("div", "grid-header vertical", label)
-                    );
+                    const header = createElement("div", "grid-header vertical");
+                    [...label].forEach((character) => {
+                        header.append(createElement("span", "", character));
+                    });
+                    grid.append(header);
                 });
 
                 for (let order = 1; order <= 9; order += 1) {
