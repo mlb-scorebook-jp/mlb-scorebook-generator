@@ -593,7 +593,7 @@
             height: var(--lineup-height);
             display: grid;
             grid-template-columns: 12px minmax(0, 1fr);
-            overflow: hidden;
+            overflow: visible;
             background: #fff;
         }
 
@@ -606,6 +606,7 @@
         .result-box {
             position: relative;
             height: 100%;
+            overflow: visible;
         }
 
         .diamond {
@@ -637,7 +638,7 @@
             height: 27px;
             min-height: 27px;
             flex: 0 0 27px;
-            overflow: hidden;
+            overflow: visible;
         }
 
         .play-card .diamond-stage {
@@ -648,14 +649,16 @@
         .play-card .diamond {
             width: 25px;
             height: 25px;
+            z-index: 2;
         }
 
         .play-card .advance-svg {
             position: absolute;
             left: 50%;
             top: 50%;
-            width: 35px;
-            height: 35px;
+            z-index: 4;
+            width: 41px;
+            height: 41px;
             transform: translate(-50%, -50%);
             overflow: visible;
         }
@@ -762,13 +765,30 @@
 
         .inning-end-mark {
             position: absolute;
-            right: 1px;
-            bottom: 0;
-            z-index: 5;
-            font-size: 10px;
-            line-height: 1;
-            font-weight: 800;
-            transform: rotate(-16deg);
+            right: -8px;
+            bottom: -8px;
+            z-index: 12;
+            width: 18px;
+            height: 18px;
+            overflow: visible;
+            pointer-events: none;
+        }
+
+        .inning-end-mark::before,
+        .inning-end-mark::after {
+            content: "";
+            position: absolute;
+            left: 8px;
+            top: -1px;
+            width: 1.6px;
+            height: 22px;
+            background: #111;
+            transform: rotate(-45deg);
+            transform-origin: center;
+        }
+
+        .inning-end-mark::after {
+            left: 13px;
         }
 
         .stat-cell {
@@ -2051,11 +2071,11 @@
             };
 
             const segmentCoordinates = {
-                "home-1B": [17.5, 31.4, 31.4, 17.5],
-                "1B-2B": [31.4, 17.5, 17.5, 3.6],
-                "2B-3B": [17.5, 3.6, 3.6, 17.5],
-                "3B-score": [3.6, 17.5, 17.5, 31.4],
-                "3B-home": [3.6, 17.5, 17.5, 31.4]
+                "home-1B": [20.5, 40.0, 40.0, 20.5],
+                "1B-2B": [40.0, 20.5, 20.5, 1.0],
+                "2B-3B": [20.5, 1.0, 1.0, 20.5],
+                "3B-score": [1.0, 20.5, 20.5, 40.0],
+                "3B-home": [1.0, 20.5, 20.5, 40.0]
             };
 
             const addPathSegments = (record, origin, end) => {
@@ -2152,7 +2172,7 @@
 
             const createAdvanceSvg = (segments) => {
                 const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-                svg.setAttribute("viewBox", "0 0 35 35");
+                svg.setAttribute("viewBox", "0 0 41 41");
                 svg.classList.add("advance-svg");
                 segments.forEach((segment) => {
                     const coords = segmentCoordinates[segment];
@@ -2208,7 +2228,7 @@
                     card.append(createElement("div", centerClass, record.centerMark));
                 }
                 if (record.rbi > 0) card.append(createElement("div", "play-rbi", String(record.rbi)));
-                if (record.inningEnd) card.append(createElement("div", "inning-end-mark", "＝"));
+                if (record.inningEnd) card.append(createElement("div", "inning-end-mark"));
                 return card;
             };
 
