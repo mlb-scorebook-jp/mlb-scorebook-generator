@@ -34,6 +34,41 @@
             --header-height: 28px;
             --lineup-height: 56px;
             --inning-count: 9;
+            --team-score-width: calc(
+                var(--order-width) +
+                var(--number-width) +
+                var(--name-width) +
+                var(--position-width) +
+                var(--hand-width) +
+                var(--inning-width) +
+                var(--inning-width) +
+                var(--inning-width) +
+                var(--inning-width) +
+                var(--inning-width) +
+                var(--inning-width) +
+                var(--inning-width) +
+                var(--inning-width) +
+                var(--inning-width) +
+                var(--stat-width) +
+                var(--stat-width) +
+                var(--stat-width) +
+                var(--stat-width) +
+                var(--stat-width) +
+                var(--stat-width)
+            );
+            --challenge-width: calc(
+                var(--inning-width) +
+                var(--inning-width) +
+                var(--inning-width) +
+                var(--inning-width) +
+                var(--inning-width) +
+                var(--stat-width) +
+                var(--stat-width) +
+                var(--stat-width) +
+                var(--stat-width) +
+                var(--stat-width) +
+                var(--stat-width)
+            );
         }
 
         * {
@@ -236,17 +271,19 @@
         }
 
         .score-header-area {
-            display: grid;
-            grid-template-columns: max-content 410px;
-            align-items: stretch;
-            gap: 10px;
-            width: max-content;
+            position: relative;
+            width: calc(
+                var(--team-score-width) +
+                var(--team-score-width) +
+                12px
+            );
             margin-bottom: 10px;
         }
 
         .score-header-left {
             display: flex;
             flex-direction: column;
+            gap: 8px;
             width: max-content;
         }
 
@@ -285,7 +322,10 @@
         }
 
         .abs-challenge-box {
-            width: 410px;
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: var(--challenge-width);
             height: 100%;
             display: flex;
             flex-direction: column;
@@ -312,7 +352,7 @@
         .abs-challenge-grid {
             flex: 1;
             display: grid;
-            grid-template-columns: 42px 58px 58px 112px 82px 56px;
+            grid-template-columns: 10% 14% 14% 27% 21% 14%;
             grid-template-rows: repeat(9, minmax(0, 1fr));
         }
 
