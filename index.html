@@ -1176,9 +1176,23 @@
             const renderPlateAppearance = (record) => {
                 const card = createElement("div", `play-card template-${record.templateId}`);
                 const stage = createElement("div", "diamond-stage");
+                const slots = {
+                    topLeft: createElement("div", "score-slot top-left"),
+                    topRight: createElement("div", "score-slot top-right"),
+                    bottomLeft: createElement("div", "score-slot bottom-left"),
+                    bottomRight: createElement("div", "score-slot bottom-right")
+                };
+
                 stage.append(createElement("div", "diamond"));
                 if (record.isHit && record.segments.length) stage.append(createAdvanceSvg(record.segments));
-                card.append(stage);
+                card.append(
+                    stage,
+                    slots.topLeft,
+                    slots.topRight,
+                    slots.bottomLeft,
+                    slots.bottomRight
+                );
+
                 if (record.notation) {
                     const notationStack = createElement("div", "play-notation-stack");
                     const templateSvg = createTemplateSvg(record.shape);
@@ -1188,17 +1202,18 @@
                         ? " strikeout-result"
                         : "";
                     notationStack.append(createElement("div", `play-result ${record.category}-result${strikeoutClass}${longClass}`, record.notation));
-                    card.append(notationStack);
+                    slots.bottomRight.append(notationStack);
                 }
-                if (record.extra) card.append(createElement("div", "play-extra hit-result", record.extra));
+
+                if (record.extra) slots.bottomLeft.append(createElement("div", "play-extra hit-result", record.extra));
                 if (record.centerMark) {
                     const centerClass = ["●", "○"].includes(record.centerMark) ? "play-center-mark scored" : "play-center-mark";
                     card.append(createElement("div", centerClass, record.centerMark));
                 }
-                if (record.toSecond) card.append(createElement("div", "runner-note to-second", record.toSecond));
-                if (record.toThird) card.append(createElement("div", "runner-note to-third", record.toThird));
-                if (record.toHome) card.append(createElement("div", "runner-note to-home", record.toHome));
-                if (record.rbi > 0) card.append(createElement("div", "play-rbi", String(record.rbi)));
+                if (record.toSecond) slots.topRight.append(createElement("div", "runner-note to-second", record.toSecond));
+                if (record.toThird) slots.topLeft.append(createElement("div", "runner-note to-third", record.toThird));
+                if (record.toHome) slots.bottomLeft.append(createElement("div", "runner-note to-home", record.toHome));
+                if (record.rbi > 0) slots.topRight.append(createElement("div", "play-rbi", String(record.rbi)));
                 if (record.inningEnd) card.append(createElement("div", "inning-end-mark"));
                 return card;
             };
