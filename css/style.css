@@ -599,27 +599,6 @@ input {
     height: 100%;
     overflow: visible;
 }
-.result-box::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-
-    background:
-    repeating-linear-gradient(
-        to bottom,
-        #999 0 2px,
-        transparent 2px 6px
-    ) center / 1px 100% no-repeat,
-
-    repeating-linear-gradient(
-        to right,
-        #999 0 2px,
-        transparent 2px 6px
-    ) center / 100% 1px no-repeat;
-
-    z-index: 0;
-}
 
 .diamond {
     position: absolute;
@@ -630,7 +609,6 @@ input {
     transform: translate(-50%, -50%) rotate(45deg);
     border: 1.1px solid rgba(47, 107, 61, 0.55);
     background: transparent;
-    display: none;
 }
 
 .result-box.has-play {
@@ -723,7 +701,6 @@ input {
 .play-result.hit-result { color: var(--red); }
 .play-result.strikeout-result { color: var(--blue); }
 .play-result.long-result { font-size: 12px; }
-
 
 .play-template-svg {
     position: static;
