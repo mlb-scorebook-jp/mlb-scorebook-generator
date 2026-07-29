@@ -907,6 +907,70 @@
 
             const ROMAN_OUTS = ["", "Ⅰ", "Ⅱ", "Ⅲ"];
 
+            const assignOutNumbers = (play, batterId) => {
+                const startingOuts = Number(play?.about?.startOuts) || 0;
+                const entries = (play?.runners ?? [])
+                    .map((runner, sourceIndex) => ({
+                        runner,
+                        sourceIndex,
+                        explicitOutNumber: Number(runner?.movement?.outNumber) || 0,
+                        playIndex: Number(runner?.details?.playIndex)
+                    }))
+                    .filter(({ runner }) => Boolean(runner?.movement?.isOut));
+                const endingOuts = Math.min(
+                    3,
+                    Math.max(startingOuts + entries.length, Number(play?.count?.outs) || 0)
+                );
+                const isGroundMultiOut = entries.length > 1 && (
+                    String(play?.result?.eventType ?? "").toLowerCase().includes("ground") ||
+                    String(play?.result?.description ?? "").toLowerCase().includes("ground")
+                );
+
+                entries.sort((left, right) => {
+                    const leftExplicit = left.explicitOutNumber;
+                    const rightExplicit = right.explicitOutNumber;
+                    if (leftExplicit && rightExplicit && leftExplicit !== rightExplicit) {
+                        return leftExplicit - rightExplicit;
+                    }
+                    if (Number.isFinite(left.playIndex) && Number.isFinite(right.playIndex) && left.playIndex !== right.playIndex) {
+                        return left.playIndex - right.playIndex;
+                    }
+
+                    const leftIsBatter = Number(left.runner?.details?.runner?.id) === Number(batterId);
+                    const rightIsBatter = Number(right.runner?.details?.runner?.id) === Number(batterId);
+                    if (leftIsBatter !== rightIsBatter) {
+                        return isGroundMultiOut
+                            ? Number(leftIsBatter) - Number(rightIsBatter)
+                            : Number(rightIsBatter) - Number(leftIsBatter);
+                    }
+                    return left.sourceIndex - right.sourceIndex;
+                });
+
+                const availableNumbers = [];
+                for (let outNumber = startingOuts + 1; outNumber <= Math.min(3, endingOuts); outNumber += 1) {
+                    availableNumbers.push(outNumber);
+                }
+
+                const assignedNumbers = new Map();
+                const usedNumbers = new Set();
+                entries.forEach(({ runner, explicitOutNumber }) => {
+                    const isValidExplicit = explicitOutNumber > startingOuts &&
+                        explicitOutNumber <= Math.min(3, endingOuts) &&
+                        !usedNumbers.has(explicitOutNumber);
+                    if (!isValidExplicit) return;
+                    assignedNumbers.set(runner, explicitOutNumber);
+                    usedNumbers.add(explicitOutNumber);
+                });
+                entries.forEach(({ runner }) => {
+                    if (assignedNumbers.has(runner)) return;
+                    const outNumber = availableNumbers.find((number) => !usedNumbers.has(number));
+                    if (!outNumber) return;
+                    assignedNumbers.set(runner, outNumber);
+                    usedNumbers.add(outNumber);
+                });
+                return assignedNumbers;
+            };
+
             const normalizeBase = (base) => {
                 const value = String(base ?? "").toLowerCase();
                 if (["home", "home_plate"].includes(value)) return "home";
@@ -989,11 +1053,17 @@
 
             const getHitNotation = (play, field) => field || "";
 
+            const getSeasonHomeRunNumber = (play) => {
+                const description = String(play?.result?.description ?? "");
+                const match = description.match(/\b(?:homers?|home runs?|grand slams?)\s*\((\d+)\)/i);
+                return match?.[1] ?? "";
+            };
+
             const PLAY_TEMPLATES = Object.freeze({
                 strikeout: { category: "out", notation: "K" },
                 swinging_strikeout: { category: "out", notation: "Ks" },
-                walk: { category: "reach", notation: "BB" },
-                intentional_walk: { category: "reach", notation: "IBB" },
+                walk: { category: "reach", notation: "B" },
+                intentional_walk: { category: "reach", notation: "DIB" },
                 hit_by_pitch: { category: "reach", notation: "HBP" },
                 single: { category: "hit" },
                 double: { category: "hit" },
@@ -1071,6 +1141,7 @@
                     notation,
                     category: template.category,
                     isHit: template.category === "hit",
+                    homeRunNumber: templateId === "home_run" ? getSeasonHomeRunNumber(play) : "",
                     extra: template.extra ?? "",
                     shape: template.shape ?? getBattedBallShape(play)
                 };
@@ -1113,6 +1184,7 @@
                         notation: display.notation,
                         category: display.category,
                         isHit: display.isHit,
+                        homeRunNumber: display.homeRunNumber,
                         extra: display.extra,
                         shape: display.shape,
                         segments: [],
@@ -1126,13 +1198,23 @@
                     records.push(record);
 
                     const runners = play?.runners ?? [];
-                    let recordedOuts = Number(play?.about?.startOuts) || 0;
+                    const outNumberByRunner = assignOutNumbers(play, batterId);
                     let batterOutRecorded = false;
                     runners.forEach((runner) => {
                         const runnerId = runner?.details?.runner?.id;
                         const movement = runner?.movement ?? {};
                         const isCurrentBatter = Number(runnerId) === Number(batterId);
-                        const target = isCurrentBatter ? record : activeRunner.get(Number(runnerId));
+                        const runnerOrder = getBattingSlot(side, runnerId);
+                        const fallbackTarget = runnerOrder
+                            ? [...records].reverse().find((candidate) =>
+                                candidate.side === side &&
+                                candidate.inning === inning &&
+                                candidate.order === runnerOrder
+                            )
+                            : null;
+                        const target = isCurrentBatter
+                            ? record
+                            : activeRunner.get(Number(runnerId)) || fallbackTarget;
                         if (!target) return;
 
                         const origin = movement?.originBase || (isCurrentBatter ? "home" : "");
@@ -1158,8 +1240,8 @@
                         }
 
                         if (movement?.isOut) {
-                            recordedOuts += 1;
-                            target.centerMark = ROMAN_OUTS[Math.min(3, recordedOuts)] || "Ⅰ";
+                            const outNumber = outNumberByRunner.get(runner);
+                            if (outNumber) target.centerMark = ROMAN_OUTS[outNumber];
                             if (isCurrentBatter) batterOutRecorded = true;
                             activeRunner.delete(Number(runnerId));
                         } else if (["score", "home", "home_plate"].includes(String(end).toLowerCase())) {
@@ -1237,7 +1319,7 @@
             };
 
             const createTemplateSvg = (shape) => {
-                if (!shape) return null;
+                if (!shape || shape === "ground") return null;
                 const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
                 svg.setAttribute("viewBox", "0 0 18 12");
                 svg.classList.add("play-template-svg");
@@ -1249,7 +1331,6 @@
                 if (shape === "fly") addPath("M2 9 Q9 1 16 9");
                 if (shape === "pop") addPath("M3 9 Q9 0 15 9");
                 if (shape === "line") addPath("M2 6 L16 6");
-                if (shape === "ground") addPath("M3 3 L15 3 L15 10");
                 if (shape === "bunt") addPath("M9 1 L16 6 L9 11 L2 6 Z");
                 return svg;
             };
@@ -1265,6 +1346,9 @@
 
                 stage.append(createElement("div", "diamond"));
                 if (record.isHit && record.segments.length) stage.append(createAdvanceSvg(record.segments));
+                if (record.rbi > 0) {
+                    stage.append(createElement("div", "score-symbol play-rbi", String(record.rbi)));
+                }
                 card.append(
                     stage,
                     ...anchorNames.map((name) => slots[name])
@@ -1278,19 +1362,25 @@
                     const strikeoutClass = ["strikeout", "swinging_strikeout"].includes(record.templateId)
                         ? " strikeout-result"
                         : "";
-                    notationStack.append(createElement("div", `play-result ${record.category}-result${strikeoutClass}${longClass}`, record.notation));
+                    notationStack.append(createElement("div", `score-symbol play-result ${record.category}-result${strikeoutClass}${longClass}`, record.notation));
                     slots.bottomRight.append(notationStack);
                 }
 
-                if (record.extra) slots.bottomLeft.append(createElement("div", "play-extra hit-result", record.extra));
+                if (record.extra) slots.bottomLeft.append(createElement("div", "score-symbol play-extra hit-result", record.extra));
+                if (record.homeRunNumber) {
+                    slots.bottomLeft.append(
+                        createElement("div", "score-symbol home-run-count", `${record.homeRunNumber}号`)
+                    );
+                }
                 if (record.centerMark) {
-                    const centerClass = ["●", "○"].includes(record.centerMark) ? "play-center-mark scored" : "play-center-mark";
+                    const centerClass = ["●", "○"].includes(record.centerMark)
+                        ? "score-symbol play-center-mark scored"
+                        : "score-symbol play-center-mark out-number";
                     slots.center.append(createElement("div", centerClass, record.centerMark));
                 }
-                if (record.toSecond) slots.topRight.append(createElement("div", "runner-note to-second", record.toSecond));
-                if (record.toThird) slots.topLeft.append(createElement("div", "runner-note to-third", record.toThird));
-                if (record.toHome) slots.bottomLeft.append(createElement("div", "runner-note to-home", record.toHome));
-                if (record.rbi > 0) slots.topRight.append(createElement("div", "play-rbi", String(record.rbi)));
+                if (record.toSecond) slots.topRight.append(createElement("div", "score-symbol runner-note to-second", record.toSecond));
+                if (record.toThird) slots.topLeft.append(createElement("div", "score-symbol runner-note to-third", record.toThird));
+                if (record.toHome) slots.bottomLeft.append(createElement("div", "score-symbol runner-note to-home", record.toHome));
                 if (record.inningEnd) card.append(createElement("div", "inning-end-mark"));
                 return card;
             };

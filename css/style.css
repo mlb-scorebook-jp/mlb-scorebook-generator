@@ -676,7 +676,7 @@ input {
     min-height: 27px;
     flex: 0 0 27px;
     overflow: visible;
-
+    --score-symbol-font-size: 12px;
 }
 
 /* Shared five-anchor positioning map for every score annotation. */
@@ -699,41 +699,43 @@ input {
 }
 
 .score-anchor.top-left {
-    top: -2px;
+    top: -12px;
     left: -2px;
-    transform: translate(-2px,-2px);
+    align-items: flex-start;
+    transform: translateX(-2px);
 }
 
 .score-anchor.top-right {
-    top: -2px;
+    top: -12px;
     right: -2px;
-    transform: translate(3px,-2px);
+    align-items: flex-start;
+    transform: translateX(3px);
 }
 
 .score-anchor.center {
-    inset: 50% auto auto 50%;
-    min-width: 18px;
-    min-height: 18px;
+    top: 50%;
+    left: 50%;
     transform: translate(-50%, -50%);
 }
 
 .score-anchor.bottom-left {
-    bottom: -1px;
+    bottom: -11px;
     left: -2px;
-    transform: translate(-2px,2px);
+    align-items: flex-end;
+    transform: translateX(-2px);
 }
 
 .score-anchor.bottom-right {
     right: -2px;
-    bottom: -1px;
-    transform: translate(4px,3px);
+    bottom: -11px;
+    align-items: flex-end;
+    transform: translateX(4px);
 }
 
 /* Symbols have no coordinates of their own; their parent anchor places them. */
 .score-anchor .play-notation-stack,
 .score-anchor .play-extra,
 .score-anchor .play-center-mark,
-.score-anchor .play-rbi,
 .score-anchor .runner-note {
     position: static;
     inset: auto;
@@ -752,12 +754,12 @@ input {
     translate: 0 1px;
 }
 
-
 .play-card .diamond-stage {
     position: absolute;
     inset: 0;
     z-index: 1;
     pointer-events: none;
+    --diamond-first-base-x: calc(50% + 22px);
 }
 
 .play-card .diamond {
@@ -800,19 +802,21 @@ input {
     pointer-events: none;
 }
 
+.score-symbol {
+    font-size: var(--score-symbol-font-size);
+    font-weight: 500;
+}
+
 .play-result {
     max-width: 42px;
     color: #111;
-    font-size: 14px;
     line-height: 1;
-    font-weight: 800;
     letter-spacing: -0.3px;
     white-space: nowrap;
 }
 
 .play-result.hit-result { color: var(--red); }
 .play-result.strikeout-result { color: var(--blue); }
-.play-result.long-result { font-size: 12px; }
 
 .play-template-svg {
     position: static;
@@ -838,30 +842,45 @@ input {
 .play-extra {
     z-index: 8;
     color: var(--red);
-    font-size: 9px;
     line-height: 1;
-    font-weight: 800;
+    white-space: nowrap;
+}
+
+.home-run-count {
+    z-index: 8;
+    color: var(--red);
+    font-size: 10px;
+    line-height: 1;
     white-space: nowrap;
 }
 
 .play-center-mark {
     z-index: 7;
     color: var(--ink);
-    font-size: 10px;
     line-height: 1;
-    font-weight: 800;
     pointer-events: none;
 }
 
 .play-center-mark.scored {
     color: var(--red);
-    font-size: 13px;
+}
+
+.play-center-mark.out-number {
+    font-size: 14px;
+    font-weight: 700;
 }
 
 .play-rbi {
+    position: absolute;
+    left: var(--diamond-first-base-x);
+    top: 50%;
     z-index: 9;
-    font-size: 7px;
-    font-weight: 700;
+    color: var(--red);
+    font-size: 9px;
+    font-weight: 500;
+    line-height: 1;
+    transform: translateY(-50%);
+    white-space: nowrap;
 }
 
 /*
@@ -872,9 +891,7 @@ input {
 .runner-note {
     z-index: 10;
     color: #111;
-    font-size: 8px;
     line-height: 1;
-    font-weight: 700;
     white-space: nowrap;
     pointer-events: none;
 }
@@ -891,14 +908,14 @@ input {
     text-align: left;
 }
 
-/* Fixed inning-change mark, kept outside the result anchor. */
+/* Inning change: two thin parallel lines bridge to the next batter card. */
 .inning-end-mark {
     position: absolute;
-    right: -12px;
-    bottom: -10px;
-    z-index: 12;
-    width: 20px;
-    height: 20px;
+    right: 0;
+    bottom: 0;
+    z-index: 5;
+    width: 0;
+    height: 0;
     overflow: visible;
     pointer-events: none;
 }
@@ -907,16 +924,17 @@ input {
 .inning-end-mark::after {
     content: "";
     position: absolute;
-    left: 4px;
     top: 0;
-    width: 1.5px;
-    height: 24px;
+    left: 0;
+    width: 0.5px;
+    height: 30px;
     background: #111;
-    transform: rotate(-45deg);
-    transform-origin: center;
+    transform: rotate(15deg);
+    transform-origin: top center;
 }
 
-.inning-end-mark::after { left: 9px; }
+.inning-end-mark::before { left: 0; }
+.inning-end-mark::after { left: 2px; }
 
 .stat-cell {
     height: var(--lineup-height);
@@ -1220,7 +1238,7 @@ input {
 
 /* =========================================================
    SYMBOL POSITIONING 鬩包ｽｯ�ｽ�ｶ�ｽ�ｽ�ｽ�ｽ PASS 1
-   K / Ks / BB / IBB / HBP
+   K / Ks / B / DIB / HBP
    ========================================================= */
 
 /* Symbol typography only; the shared anchor owns placement. */
@@ -1236,22 +1254,19 @@ input {
 /* K / Ks */
 .play-card.template-strikeout .play-result,
 .play-card.template-swinging_strikeout .play-result {
-    font-size: 14px;
     line-height: 1;
     letter-spacing: -0.45px;
 }
 
-/* BB */
+/* B */
 .play-card.template-walk .play-result {
-    font-size: 14px;
     line-height: 1;
 }
 
-/* IBB / HBP: keep long labels compact and inside the same lower-right anchor. */
+/* DIB / HBP: keep long labels compact and inside the same lower-right anchor. */
 .play-card.template-intentional_walk .play-result,
 .play-card.template-hit_by_pitch .play-result {
     max-width: 28px;
-    font-size: 10px;
     line-height: 1;
     letter-spacing: -0.55px;
 }
