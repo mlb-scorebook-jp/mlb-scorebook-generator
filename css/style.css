@@ -609,6 +609,7 @@ input {
     transform: translate(-50%, -50%) rotate(45deg);
     border: 1.1px solid rgba(47, 107, 61, 0.55);
     background: transparent;
+    display: none;
 }
 
 .result-box.has-play {
