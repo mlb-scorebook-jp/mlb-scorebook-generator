@@ -1122,3 +1122,52 @@ input {
         -webkit-print-color-adjust: exact;
     }
 }
+
+/* =========================================================
+   SYMBOL POSITIONING 窶� PASS 1
+   K / Ks / B / DIB / HBP
+   ========================================================= */
+
+/* Shared result anchor: place the notation in the reference lower-right zone. */
+.play-card.template-strikeout .play-notation-stack,
+.play-card.template-swinging_strikeout .play-notation-stack,
+.play-card.template-walk .play-notation-stack,
+.play-card.template-intentional_walk .play-notation-stack,
+.play-card.template-hit_by_pitch .play-notation-stack {
+    right: 2px;
+    bottom: 1px;
+    min-width: 22px;
+    align-items: center;
+}
+
+/* K / Ks */
+.play-card.template-strikeout .play-result,
+.play-card.template-swinging_strikeout .play-result {
+    font-size: 14px;
+    line-height: 1;
+    letter-spacing: -0.45px;
+}
+
+/* B */
+.play-card.template-walk .play-result {
+    font-size: 14px;
+    line-height: 1;
+}
+
+/* DIB / HBP: keep long labels compact and inside the same lower-right anchor. */
+.play-card.template-intentional_walk .play-result,
+.play-card.template-hit_by_pitch .play-result {
+    max-width: 28px;
+    font-size: 10px;
+    line-height: 1;
+    letter-spacing: -0.55px;
+}
+
+/* These five symbols do not use a batted-ball shape. */
+.play-card.template-strikeout .play-template-svg,
+.play-card.template-swinging_strikeout .play-template-svg,
+.play-card.template-walk .play-template-svg,
+.play-card.template-intentional_walk .play-template-svg,
+.play-card.template-hit_by_pitch .play-template-svg {
+    display: none;
+}
