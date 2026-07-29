@@ -657,7 +657,7 @@ input {
     --anchor-left: 2px;
     --anchor-right: 1px;
     --anchor-top: 0px;
-    --anchor-bottom: 0px;
+    --anchor-bottom: 4px;
 }
 
 .play-card .diamond-stage {
