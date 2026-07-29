@@ -677,18 +677,11 @@ input {
     flex: 0 0 27px;
     overflow: visible;
 
-    /* bbscorer-style fixed anchor map for one score entry. */
-    --anchor-left: 2px;
-    --anchor-right: 1px;
-    --anchor-top: 0px;
-    --anchor-bottom: 0px;
 }
 
-/* Shared four-quadrant positioning map for every score annotation. */
-.score-slot {
+/* Shared five-anchor positioning map for every score annotation. */
+.score-anchor {
     position: absolute;
-    width: 50%;
-    height: 50%;
     z-index: 6;
     display: flex;
     align-items: center;
@@ -697,35 +690,51 @@ input {
     pointer-events: none;
 }
 
-.score-slot.top-left {
+.score-anchor.top-left,
+.score-anchor.top-right,
+.score-anchor.bottom-left,
+.score-anchor.bottom-right {
+    width: 50%;
+    height: 50%;
+}
+
+.score-anchor.top-left {
     top: -2px;
     left: -2px;
     transform: translate(-2px,-2px);
 }
 
-.score-slot.top-right {
+.score-anchor.top-right {
     top: -2px;
     right: -2px;
     transform: translate(3px,-2px);
 }
 
-.score-slot.bottom-left {
+.score-anchor.center {
+    inset: 50% auto auto 50%;
+    min-width: 18px;
+    min-height: 18px;
+    transform: translate(-50%, -50%);
+}
+
+.score-anchor.bottom-left {
     bottom: -1px;
     left: -2px;
     transform: translate(-2px,2px);
 }
 
-.score-slot.bottom-right {
+.score-anchor.bottom-right {
     right: -2px;
     bottom: -1px;
     transform: translate(4px,3px);
 }
 
-/* Elements placed in a quadrant use the quadrant itself as the sole anchor. */
-.score-slot .play-notation-stack,
-.score-slot .play-extra,
-.score-slot .play-rbi,
-.score-slot .runner-note {
+/* Symbols have no coordinates of their own; their parent anchor places them. */
+.score-anchor .play-notation-stack,
+.score-anchor .play-extra,
+.score-anchor .play-center-mark,
+.score-anchor .play-rbi,
+.score-anchor .runner-note {
     position: static;
     inset: auto;
     margin: 0;
@@ -733,13 +742,13 @@ input {
     text-align: center;
 }
 
-.score-slot .play-notation-stack {
+.score-anchor .play-notation-stack {
     min-width: 0;
     align-items: center;
     justify-content: center;
 }
 
-.score-slot.bottom-right .play-notation-stack {
+.score-anchor.bottom-right .play-notation-stack {
     translate: 0 1px;
 }
 
@@ -780,9 +789,6 @@ input {
 
 /* Batter result anchor: lower-right. The batted-ball mark sits directly above it. */
 .play-notation-stack {
-    position: absolute;
-    right: var(--anchor-right);
-    bottom: var(--anchor-bottom);
     z-index: 8;
     display: flex;
     flex-direction: column;
@@ -830,9 +836,6 @@ input {
 
 /* Optional secondary batter-result mark: lower-left fixed anchor. */
 .play-extra {
-    position: absolute;
-    left: var(--anchor-left);
-    bottom: var(--anchor-bottom);
     z-index: 8;
     color: var(--red);
     font-size: 9px;
@@ -842,11 +845,7 @@ input {
 }
 
 .play-center-mark {
-    position: absolute;
-    left: 50%;
-    top: 50%;
     z-index: 7;
-    transform: translate(-50%, -50%);
     color: var(--ink);
     font-size: 10px;
     line-height: 1;
@@ -860,9 +859,6 @@ input {
 }
 
 .play-rbi {
-    position: absolute;
-    right: 1px;
-    top: 1px;
     z-index: 9;
     font-size: 7px;
     font-weight: 700;
@@ -874,7 +870,6 @@ input {
  * the advance, or a fixed event code such as S for a steal.
  */
 .runner-note {
-    position: absolute;
     z-index: 10;
     color: #111;
     font-size: 8px;
@@ -885,20 +880,14 @@ input {
 }
 
 .runner-note.to-second {
-    right: var(--anchor-right);
-    top: var(--anchor-top);
     text-align: right;
 }
 
 .runner-note.to-third {
-    left: var(--anchor-left);
-    top: var(--anchor-top);
     text-align: left;
 }
 
 .runner-note.to-home {
-    left: var(--anchor-left);
-    bottom: var(--anchor-bottom);
     text-align: left;
 }
 
@@ -1231,17 +1220,15 @@ input {
 
 /* =========================================================
    SYMBOL POSITIONING 鬩包ｽｯ�ｽ�ｶ�ｽ�ｽ�ｽ�ｽ PASS 1
-   K / Ks / B / DIB / HBP
+   K / Ks / BB / IBB / HBP
    ========================================================= */
 
-/* Shared result anchor: place the notation in the reference lower-right zone. */
+/* Symbol typography only; the shared anchor owns placement. */
 .play-card.template-strikeout .play-notation-stack,
 .play-card.template-swinging_strikeout .play-notation-stack,
 .play-card.template-walk .play-notation-stack,
 .play-card.template-intentional_walk .play-notation-stack,
 .play-card.template-hit_by_pitch .play-notation-stack {
-    right: 2px;
-    bottom: 1px;
     min-width: 22px;
     align-items: center;
 }
@@ -1254,13 +1241,13 @@ input {
     letter-spacing: -0.45px;
 }
 
-/* B */
+/* BB */
 .play-card.template-walk .play-result {
     font-size: 14px;
     line-height: 1;
 }
 
-/* DIB / HBP: keep long labels compact and inside the same lower-right anchor. */
+/* IBB / HBP: keep long labels compact and inside the same lower-right anchor. */
 .play-card.template-intentional_walk .play-result,
 .play-card.template-hit_by_pitch .play-result {
     max-width: 28px;
@@ -1278,18 +1265,8 @@ input {
     display: none;
 }
 
-/* Quadrant placement overrides legacy symbol-specific anchors. */
-.play-card .score-slot .play-notation-stack,
-.play-card.template-strikeout .score-slot .play-notation-stack,
-.play-card.template-swinging_strikeout .score-slot .play-notation-stack,
-.play-card.template-walk .score-slot .play-notation-stack,
-.play-card.template-intentional_walk .score-slot .play-notation-stack,
-.play-card.template-hit_by_pitch .score-slot .play-notation-stack {
-    position: static;
-    right: auto;
-    bottom: auto;
-    left: auto;
-    top: auto;
+/* Result symbols inherit placement exclusively from their shared anchor. */
+.play-card .score-anchor .play-notation-stack {
     min-width: 0;
     align-items: center;
 }

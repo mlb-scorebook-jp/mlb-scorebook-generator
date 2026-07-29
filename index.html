@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- TEST -->
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
@@ -991,8 +992,8 @@
             const PLAY_TEMPLATES = Object.freeze({
                 strikeout: { category: "out", notation: "K" },
                 swinging_strikeout: { category: "out", notation: "Ks" },
-                walk: { category: "reach", notation: "B" },
-                intentional_walk: { category: "reach", notation: "DIB" },
+                walk: { category: "reach", notation: "BB" },
+                intentional_walk: { category: "reach", notation: "IBB" },
                 hit_by_pitch: { category: "reach", notation: "HBP" },
                 single: { category: "hit" },
                 double: { category: "hit" },
@@ -1075,14 +1076,6 @@
                 };
             };
 
-            const segmentCoordinates = {
-                "home-1B": [20.5, 40.0, 40.0, 20.5],
-                "1B-2B": [40.0, 20.5, 20.5, 1.0],
-                "2B-3B": [20.5, 1.0, 1.0, 20.5],
-                "3B-score": [1.0, 20.5, 20.5, 40.0],
-                "3B-home": [1.0, 20.5, 20.5, 40.0]
-            };
-
             const addPathSegments = (record, origin, end) => {
                 const order = ["home", "1B", "2B", "3B", "score"];
                 let from = normalizeBase(origin);
@@ -1133,6 +1126,8 @@
                     records.push(record);
 
                     const runners = play?.runners ?? [];
+                    let recordedOuts = Number(play?.about?.startOuts) || 0;
+                    let batterOutRecorded = false;
                     runners.forEach((runner) => {
                         const runnerId = runner?.details?.runner?.id;
                         const movement = runner?.movement ?? {};
@@ -1163,8 +1158,9 @@
                         }
 
                         if (movement?.isOut) {
-                            const outs = Number(play?.count?.outs);
-                            target.centerMark = ROMAN_OUTS[Math.max(1, Math.min(3, outs))] || "Ⅰ";
+                            recordedOuts += 1;
+                            target.centerMark = ROMAN_OUTS[Math.min(3, recordedOuts)] || "Ⅰ";
+                            if (isCurrentBatter) batterOutRecorded = true;
                             activeRunner.delete(Number(runnerId));
                         } else if (["score", "home", "home_plate"].includes(String(end).toLowerCase())) {
                             target.centerMark = runner?.details?.earned === false ? "○" : "●";
@@ -1174,7 +1170,7 @@
                         }
                     });
 
-                    if (!runners.some((runner) => Number(runner?.details?.runner?.id) === Number(batterId))) {
+                    if (!batterOutRecorded && !runners.some((runner) => Number(runner?.details?.runner?.id) === Number(batterId))) {
                         const isOut = Boolean(play?.result?.isOut) || Number(play?.count?.outs) > Number(play?.about?.startOuts ?? 0);
                         if (isOut) {
                             record.centerMark = ROMAN_OUTS[Math.max(1, Math.min(3, Number(play?.count?.outs) || 1))];
@@ -1261,21 +1257,17 @@
             const renderPlateAppearance = (record) => {
                 const card = createElement("div", `play-card template-${record.templateId}`);
                 const stage = createElement("div", "diamond-stage");
-                const slots = {
-                    topLeft: createElement("div", "score-slot top-left"),
-                    topRight: createElement("div", "score-slot top-right"),
-                    bottomLeft: createElement("div", "score-slot bottom-left"),
-                    bottomRight: createElement("div", "score-slot bottom-right")
-                };
+                const anchorNames = ["topLeft", "topRight", "center", "bottomLeft", "bottomRight"];
+                const slots = Object.fromEntries(anchorNames.map((name) => [
+                    name,
+                    createElement("div", `score-anchor ${name.replace(/[A-Z]/g, (letter) => `-${letter.toLowerCase()}`)}`)
+                ]));
 
                 stage.append(createElement("div", "diamond"));
                 if (record.isHit && record.segments.length) stage.append(createAdvanceSvg(record.segments));
                 card.append(
                     stage,
-                    slots.topLeft,
-                    slots.topRight,
-                    slots.bottomLeft,
-                    slots.bottomRight
+                    ...anchorNames.map((name) => slots[name])
                 );
 
                 if (record.notation) {
@@ -1293,7 +1285,7 @@
                 if (record.extra) slots.bottomLeft.append(createElement("div", "play-extra hit-result", record.extra));
                 if (record.centerMark) {
                     const centerClass = ["●", "○"].includes(record.centerMark) ? "play-center-mark scored" : "play-center-mark";
-                    card.append(createElement("div", centerClass, record.centerMark));
+                    slots.center.append(createElement("div", centerClass, record.centerMark));
                 }
                 if (record.toSecond) slots.topRight.append(createElement("div", "runner-note to-second", record.toSecond));
                 if (record.toThird) slots.topLeft.append(createElement("div", "runner-note to-third", record.toThird));
