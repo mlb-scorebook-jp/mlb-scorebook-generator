@@ -657,7 +657,7 @@ input {
     --anchor-left: 2px;
     --anchor-right: 1px;
     --anchor-top: 0px;
-    --anchor-bottom: 4px;
+    --anchor-bottom: 0px;
 }
 
 .play-card .diamond-stage {
@@ -723,6 +723,9 @@ input {
 .play-result.hit-result { color: var(--red); }
 .play-result.strikeout-result { color: var(--blue); }
 .play-result.long-result { font-size: 12px; }
+.template-home_run .play-result {
+    transform: translate(3px, 9px);
+}
 
 .play-template-svg {
     position: static;
