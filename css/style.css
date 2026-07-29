@@ -464,7 +464,21 @@ input {
     font-weight: 700;
 }
 .team-panel-title-main {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 8px;
     line-height: 1.1;
+}
+
+.team-panel-title-name {
+    font-size: 15px;
+}
+
+.team-panel-title-record {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.01em;
 }
 
 .team-panel-title-division {

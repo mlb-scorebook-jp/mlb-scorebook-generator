@@ -545,8 +545,10 @@
                     team?.division?.abbreviation ||
                     "";
 
-                const normalized = normalizeLookupKey(divisionName);
-                return JAPANESE_DIVISION_NAMES[normalized] || divisionName || "";
+                const normalized = normalizeLookupKey(divisionName)
+                    .replace(/division$/, "");
+
+                return JAPANESE_DIVISION_NAMES[normalized] || "";
             };
 
             const getTeamRecord = (team, boxscoreTeam) => {
@@ -1499,18 +1501,30 @@
             const buildTeamPanelTitle = (side) => {
                 const team = state[side];
                 const title = createElement("div", "team-panel-title");
-                const recordText =
-                    Number.isFinite(team.wins) && Number.isFinite(team.losses)
-                        ? `　${team.wins}-${team.losses}`
-                        : "";
+                const mainLine = createElement(
+                    "div",
+                    "team-panel-title-main"
+                );
 
-                title.append(
+                mainLine.append(
                     createElement(
-                        "div",
-                        "team-panel-title-main",
-                        `${team.name}${recordText}`
+                        "span",
+                        "team-panel-title-name",
+                        team.name
                     )
                 );
+
+                if (Number.isFinite(team.wins) && Number.isFinite(team.losses)) {
+                    mainLine.append(
+                        createElement(
+                            "span",
+                            "team-panel-title-record",
+                            `${team.wins}-${team.losses}`
+                        )
+                    );
+                }
+
+                title.append(mainLine);
 
                 if (team.division) {
                     title.append(
