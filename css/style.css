@@ -638,28 +638,54 @@ input {
     --anchor-bottom: 0px;
 }
 
-.play-card .diamond-stage {
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    pointer-events: none;
-}
-
-.play-card .diamond {
-    width: 25px;
-    height: 25px;
-    z-index: 2;
-}
-
-/* Red line: batter-runner result in this plate appearance only. */
-.play-card .advance-svg {
+.play-card .score-guide-stage {
     position: absolute;
     left: 50%;
     top: 50%;
-    z-index: 4;
-    width: 43px;
-    height: 43px;
+    z-index: 1;
+    width: 27px;
+    height: 27px;
     transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+
+.play-card .score-cross-guide {
+    position: absolute;
+    inset: 0;
+}
+
+.play-card .score-cross-guide::before,
+.play-card .score-cross-guide::after {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    opacity: 0.72;
+    pointer-events: none;
+}
+
+.play-card .score-cross-guide::before {
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    border-left: 1px dotted var(--guide);
+    transform: translateX(-0.5px);
+}
+
+.play-card .score-cross-guide::after {
+    left: 0;
+    right: 0;
+    top: 50%;
+    border-top: 1px dotted var(--guide);
+    transform: translateY(-0.5px);
+}
+
+/* Red line: batter-runner result along the guide midpoints. */
+.play-card .advance-svg {
+    position: absolute;
+    inset: 0;
+    z-index: 4;
+    width: 100%;
+    height: 100%;
     overflow: visible;
     pointer-events: none;
 }
@@ -667,46 +693,49 @@ input {
 .play-card .advance-svg path {
     fill: none;
     stroke: var(--red);
-    stroke-width: 2;
+    stroke-width: 6;
     stroke-linecap: round;
     stroke-linejoin: round;
 }
 
-/* Batter result anchor: lower-right. The batted-ball mark sits directly above it. */
+/* Batter result: center of the lower-right quadrant. */
 .play-notation-stack {
     position: absolute;
-    right: var(--anchor-right);
-    bottom: var(--anchor-bottom);
+    left: calc(50% + 6.75px);
+    top: calc(50% + 6.75px);
     z-index: 8;
+    width: 13.5px;
+    max-width: 13.5px;
+    transform: translate(-50%, -50%);
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: center;
     gap: 0;
-    min-width: 19px;
     color: #111;
     pointer-events: none;
 }
 
 .play-result {
-    max-width: 42px;
+    max-width: 13.5px;
     color: #111;
-    font-size: 14px;
+    font-size: 11px;
     line-height: 1;
     font-weight: 800;
-    letter-spacing: -0.3px;
+    letter-spacing: -0.45px;
+    text-align: center;
     white-space: nowrap;
 }
 
 .play-result.hit-result { color: var(--red); }
 .play-result.strikeout-result { color: var(--blue); }
-.play-result.long-result { font-size: 12px; }
+.play-result.long-result { font-size: 8px; letter-spacing: -0.7px; }
 
 .play-template-svg {
     position: static;
     flex: 0 0 auto;
-    width: 18px;
-    height: 11px;
+    width: 13px;
+    height: 8px;
     margin-bottom: -1px;
     overflow: visible;
     pointer-events: none;
@@ -717,7 +746,7 @@ input {
 .play-template-svg polyline {
     fill: none;
     stroke: #111;
-    stroke-width: 1.45;
+    stroke-width: 1.3;
     stroke-linecap: round;
     stroke-linejoin: round;
 }
@@ -1121,53 +1150,4 @@ input {
         print-color-adjust: exact;
         -webkit-print-color-adjust: exact;
     }
-}
-
-/* =========================================================
-   SYMBOL POSITIONING 窶� PASS 1
-   K / Ks / B / DIB / HBP
-   ========================================================= */
-
-/* Shared result anchor: place the notation in the reference lower-right zone. */
-.play-card.template-strikeout .play-notation-stack,
-.play-card.template-swinging_strikeout .play-notation-stack,
-.play-card.template-walk .play-notation-stack,
-.play-card.template-intentional_walk .play-notation-stack,
-.play-card.template-hit_by_pitch .play-notation-stack {
-    right: 2px;
-    bottom: 1px;
-    min-width: 22px;
-    align-items: center;
-}
-
-/* K / Ks */
-.play-card.template-strikeout .play-result,
-.play-card.template-swinging_strikeout .play-result {
-    font-size: 14px;
-    line-height: 1;
-    letter-spacing: -0.45px;
-}
-
-/* B */
-.play-card.template-walk .play-result {
-    font-size: 14px;
-    line-height: 1;
-}
-
-/* DIB / HBP: keep long labels compact and inside the same lower-right anchor. */
-.play-card.template-intentional_walk .play-result,
-.play-card.template-hit_by_pitch .play-result {
-    max-width: 28px;
-    font-size: 10px;
-    line-height: 1;
-    letter-spacing: -0.55px;
-}
-
-/* These five symbols do not use a batted-ball shape. */
-.play-card.template-strikeout .play-template-svg,
-.play-card.template-swinging_strikeout .play-template-svg,
-.play-card.template-walk .play-template-svg,
-.play-card.template-intentional_walk .play-template-svg,
-.play-card.template-hit_by_pitch .play-template-svg {
-    display: none;
 }
