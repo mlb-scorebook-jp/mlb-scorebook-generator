@@ -698,23 +698,27 @@ input {
 }
 
 .score-slot.top-left {
-    top: 0;
-    left: 0;
+    top: -2px;
+    left: -2px;
+    transform: translate(-2px,-2px);
 }
 
 .score-slot.top-right {
-    top: 0;
-    right: 0;
+    top: -2px;
+    right: -2px;
+    transform: translate(3px,-2px);
 }
 
 .score-slot.bottom-left {
-    bottom: 0;
-    left: 0;
+    bottom: -1px;
+    left: -2px;
+    transform: translate(-2px,2px);
 }
 
 .score-slot.bottom-right {
-    right: 0;
-    bottom: 0;
+    right: -2px;
+    bottom: -1px;
+    transform: translate(4px,3px);
 }
 
 /* Elements placed in a quadrant use the quadrant itself as the sole anchor. */
@@ -1226,7 +1230,7 @@ input {
 }
 
 /* =========================================================
-   SYMBOL POSITIONING 驕ｯ�ｶ�ｽ�ｽ PASS 1
+   SYMBOL POSITIONING 鬩包ｽｯ�ｽ�ｶ�ｽ�ｽ�ｽ�ｽ PASS 1
    K / Ks / B / DIB / HBP
    ========================================================= */
 
