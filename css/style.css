@@ -600,6 +600,25 @@ input {
     overflow: visible;
 }
 
+.result-box::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background:
+        repeating-linear-gradient(
+            to bottom,
+            #999 0 2px,
+            transparent 2px 6px
+        ) center / 1px 100% no-repeat,
+        repeating-linear-gradient(
+            to right,
+            #999 0 2px,
+            transparent 2px 6px
+        ) center / 100% 1px no-repeat;
+}
+
 .diamond {
     position: absolute;
     top: 50%;
@@ -609,6 +628,7 @@ input {
     transform: translate(-50%, -50%) rotate(45deg);
     border: 1.1px solid rgba(47, 107, 61, 0.55);
     background: transparent;
+    display: none;
 }
 
 .result-box.has-play {
@@ -637,6 +657,62 @@ input {
     --anchor-top: 0px;
     --anchor-bottom: 0px;
 }
+
+/* Shared four-quadrant positioning map for every score annotation. */
+.score-slot {
+    position: absolute;
+    width: 50%;
+    height: 50%;
+    z-index: 6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: visible;
+    pointer-events: none;
+}
+
+.score-slot.top-left {
+    top: 0;
+    left: 0;
+}
+
+.score-slot.top-right {
+    top: 0;
+    right: 0;
+}
+
+.score-slot.bottom-left {
+    bottom: 0;
+    left: 0;
+}
+
+.score-slot.bottom-right {
+    right: 0;
+    bottom: 0;
+}
+
+/* Elements placed in a quadrant use the quadrant itself as the sole anchor. */
+.score-slot .play-notation-stack,
+.score-slot .play-extra,
+.score-slot .play-rbi,
+.score-slot .runner-note {
+    position: static;
+    inset: auto;
+    margin: 0;
+    transform: none;
+    text-align: center;
+}
+
+.score-slot .play-notation-stack {
+    min-width: 0;
+    align-items: center;
+    justify-content: center;
+}
+
+.score-slot.bottom-right .play-notation-stack {
+    translate: 0 1px;
+}
+
 
 .play-card .diamond-stage {
     position: absolute;
@@ -1124,7 +1200,7 @@ input {
 }
 
 /* =========================================================
-   SYMBOL POSITIONING 遯ｶ�ｽ PASS 1
+   SYMBOL POSITIONING 驕ｯ�ｶ�ｽ�ｽ PASS 1
    K / Ks / B / DIB / HBP
    ========================================================= */
 
@@ -1170,4 +1246,20 @@ input {
 .play-card.template-intentional_walk .play-template-svg,
 .play-card.template-hit_by_pitch .play-template-svg {
     display: none;
+}
+
+/* Quadrant placement overrides legacy symbol-specific anchors. */
+.play-card .score-slot .play-notation-stack,
+.play-card.template-strikeout .score-slot .play-notation-stack,
+.play-card.template-swinging_strikeout .score-slot .play-notation-stack,
+.play-card.template-walk .score-slot .play-notation-stack,
+.play-card.template-intentional_walk .score-slot .play-notation-stack,
+.play-card.template-hit_by_pitch .score-slot .play-notation-stack {
+    position: static;
+    right: auto;
+    bottom: auto;
+    left: auto;
+    top: auto;
+    min-width: 0;
+    align-items: center;
 }
