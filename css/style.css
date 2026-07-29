@@ -450,17 +450,29 @@ input {
 }
 
 .team-panel-title {
-    min-height: 30px;
+    min-height: 44px;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 0 12px;
+    gap: 2px;
+    padding: 4px 12px;
     border: 1.4px solid var(--rule);
     border-bottom: 0;
     background: rgba(47, 107, 61, 0.05);
     font-size: 15px;
     font-weight: 700;
 }
+.team-panel-title-main {
+    line-height: 1.1;
+}
+
+.team-panel-title-division {
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 1.1;
+}
+
 
 .team-score-panel .score-grid {
     margin-top: 0;

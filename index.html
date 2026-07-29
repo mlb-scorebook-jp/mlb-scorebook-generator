@@ -119,6 +119,21 @@
 
             const NHK_TEAM_NAMES = {"arizonadiamondbacks":"アリゾナ・ダイヤモンドバックス","athletics":"アスレチックス","atlantabraves":"アトランタ・ブレーブス","baltimoreorioles":"ボルチモア・オリオールズ","bostonredsox":"ボストン・レッドソックス","chicagocubs":"シカゴ・カブス","chicagowhitesox":"シカゴ・ホワイトソックス","cincinnatireds":"シンシナティ・レッズ","clevelandguardians":"クリーブランド・ガーディアンズ","coloradorockies":"コロラド・ロッキーズ","detroittigers":"デトロイト・タイガース","houstonastros":"ヒューストン・アストロズ","kansascityroyals":"カンザスシティ・ロイヤルズ","losangelesangels":"ロサンゼルス・エンゼルス","losangelesdodgers":"ロサンゼルス・ドジャース","miamimarlins":"マイアミ・マーリンズ","milwaukeebrewers":"ミルウォーキー・ブルワーズ","minnesotatwins":"ミネソタ・ツインズ","newyorkmets":"ニューヨーク・メッツ","newyorkyankees":"ニューヨーク・ヤンキース","philadelphiaphillies":"フィラデルフィア・フィリーズ","pittsburghpirates":"ピッツバーグ・パイレーツ","sandiegopadres":"サンディエゴ・パドレス","sanfranciscogiants":"サンフランシスコ・ジャイアンツ","seattlemariners":"シアトル・マリナーズ","stlouiscardinals":"セントルイス・カージナルス","tampabayrays":"タンパベイ・レイズ","texasrangers":"テキサス・レンジャーズ","torontobluejays":"トロント・ブルージェイズ","washingtonnationals":"ワシントン・ナショナルズ"};
 
+            const JAPANESE_DIVISION_NAMES = {
+                "americanleagueeast": "アメリカンリーグ東部地区",
+                "americanleaguecentral": "アメリカンリーグ中部地区",
+                "americanleaguewest": "アメリカンリーグ西部地区",
+                "nationaleagueeast": "ナショナルリーグ東部地区",
+                "nationaleaguecentral": "ナショナルリーグ中部地区",
+                "nationaleaguewest": "ナショナルリーグ西部地区",
+                "aleast": "アメリカンリーグ東部地区",
+                "alcentral": "アメリカンリーグ中部地区",
+                "alwest": "アメリカンリーグ西部地区",
+                "nleast": "ナショナルリーグ東部地区",
+                "nlcentral": "ナショナルリーグ中部地区",
+                "nlwest": "ナショナルリーグ西部地区"
+            };
+
             const JAPANESE_VENUE_NAMES = {
                 "americafamilyfield": "アメリカンファミリー・フィールド",
                 "angelstadium": "エンゼル・スタジアム",
@@ -523,6 +538,34 @@
                     .filter(Boolean);
             };
 
+            const getJapaneseDivisionName = (team) => {
+                const divisionName =
+                    team?.division?.name ||
+                    team?.division?.nameShort ||
+                    team?.division?.abbreviation ||
+                    "";
+
+                const normalized = normalizeLookupKey(divisionName);
+                return JAPANESE_DIVISION_NAMES[normalized] || divisionName || "";
+            };
+
+            const getTeamRecord = (team, boxscoreTeam) => {
+                const record =
+                    team?.record ||
+                    team?.leagueRecord ||
+                    boxscoreTeam?.team?.record ||
+                    boxscoreTeam?.team?.leagueRecord ||
+                    {};
+
+                const wins = Number(record?.wins);
+                const losses = Number(record?.losses);
+
+                return {
+                    wins: Number.isFinite(wins) ? wins : null,
+                    losses: Number.isFinite(losses) ? losses : null
+                };
+            };
+
             const getTeamState = (data, side) => {
                 const team = data?.gameData?.teams?.[side] ?? {};
                 const boxscoreTeam = data?.liveData?.boxscore?.teams?.[side];
@@ -532,9 +575,15 @@
                     getNhkTeamName(boxscoreTeam?.team) ||
                     (side === "away" ? "先攻チーム" : "後攻チーム");
 
+                const record = getTeamRecord(team, boxscoreTeam);
+
                 return {
                     abbreviation: nhkTeamName,
                     name: nhkTeamName,
+                    wins: record.wins,
+                    losses: record.losses,
+                    division: getJapaneseDivisionName(team) ||
+                        getJapaneseDivisionName(boxscoreTeam?.team),
                     players: getPlayersForSide(data, side),
                     pitchers: getPitchersForSide(data, side)
                 };
@@ -1447,11 +1496,40 @@
                 return wrapper;
             };
 
+            const buildTeamPanelTitle = (side) => {
+                const team = state[side];
+                const title = createElement("div", "team-panel-title");
+                const recordText =
+                    Number.isFinite(team.wins) && Number.isFinite(team.losses)
+                        ? `　${team.wins}-${team.losses}`
+                        : "";
+
+                title.append(
+                    createElement(
+                        "div",
+                        "team-panel-title-main",
+                        `${team.name}${recordText}`
+                    )
+                );
+
+                if (team.division) {
+                    title.append(
+                        createElement(
+                            "div",
+                            "team-panel-title-division",
+                            `（${team.division}）`
+                        )
+                    );
+                }
+
+                return title;
+            };
+
             const buildTeamPanel = (side) => {
                 const panel = createElement("section", "team-score-panel");
 
                 panel.append(
-                    createElement("div", "team-panel-title", state[side].name),
+                    buildTeamPanelTitle(side),
                     buildScoreGrid(side),
                     buildBenchRows(side),
                     buildSummaryRows(side)
