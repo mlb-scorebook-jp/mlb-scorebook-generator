@@ -599,6 +599,18 @@ input {
     height: 100%;
     overflow: visible;
 }
+.result-box::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+
+    background:
+        linear-gradient(#999, #999) center/1px 100% no-repeat,
+        linear-gradient(#999, #999) center/100% 1px no-repeat;
+
+    z-index: 0;
+}
 
 .diamond {
     position: absolute;
