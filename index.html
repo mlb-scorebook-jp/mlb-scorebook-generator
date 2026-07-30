@@ -340,6 +340,15 @@
                 "三振"
             ];
 
+            const battingStatFields = [
+                "atBats",
+                "hits",
+                "runs",
+                "rbi",
+                "baseOnBalls",
+                "strikeOuts"
+            ];
+
             const pitchingHeaders = [
                 "投手名",
                 "球数",
@@ -482,6 +491,32 @@
                 );
             };
 
+            const HAND_LABELS = Object.freeze({ R: "右", L: "左", S: "両" });
+
+            const enrichPlayerHandedness = (data, player) => {
+                const playerId = player?.person?.id;
+                const personDetails = playerId
+                    ? data?.gameData?.players?.[`ID${playerId}`] ?? {}
+                    : {};
+                return {
+                    ...player,
+                    person: { ...personDetails, ...player?.person },
+                    pitchHand: player?.pitchHand ?? personDetails?.pitchHand,
+                    batSide: player?.batSide ?? personDetails?.batSide
+                };
+            };
+
+            const getThrowBatText = (player) => {
+                const throws = HAND_LABELS[String(player?.pitchHand?.code ?? "").toUpperCase()] ?? "";
+                const bats = HAND_LABELS[String(player?.batSide?.code ?? "").toUpperCase()] ?? "";
+                return throws && bats ? `${throws}/${bats}` : "";
+            };
+
+            const getBattingStatText = (player, field) => {
+                const value = Number(player?.stats?.batting?.[field]);
+                return Number.isFinite(value) ? String(value) : "0";
+            };
+
             const getPlayersForSide = (data, side) => {
                 const boxscore = data?.liveData?.boxscore;
                 const teamData = boxscore?.teams?.[side];
@@ -508,7 +543,7 @@
                         return;
                     }
 
-                    slots[slotIndex].push(player);
+                    slots[slotIndex].push(enrichPlayerHandedness(data, player));
                 });
 
                 slots.forEach((slot) => {
@@ -538,7 +573,7 @@
                     }
 
                     const slotIndex = index % 9;
-                    slots[slotIndex].push(player);
+                    slots[slotIndex].push(enrichPlayerHandedness(data, player));
                     seen.add(playerId);
                 });
 
@@ -550,7 +585,7 @@
                     .filter((player) => player?.stats?.batting)
                     .slice(0, 9)
                     .forEach((player, index) => {
-                        slots[index].push(player);
+                        slots[index].push(enrichPlayerHandedness(data, player));
                     });
 
                 return slots;
@@ -569,7 +604,8 @@
 
                 return pitchers
                     .map((playerId) => playerMap[`ID${playerId}`])
-                    .filter(Boolean);
+                    .filter(Boolean)
+                    .map((player) => enrichPlayerHandedness(data, player));
             };
 
             const getJapaneseDivisionName = (team) => {
@@ -758,7 +794,223 @@
                 return container;
             };
 
-            const buildAbsChallengeTable = () => {
+            const getChallengeTeamInfo = (data, teamId) => {
+                const numericTeamId = Number(teamId);
+                for (const side of ["away", "home"]) {
+                    const team = data?.gameData?.teams?.[side] ?? {};
+                    if (Number(team?.id) !== numericTeamId) continue;
+                    return {
+                        side,
+                        code: String(
+                            team?.teamCode || team?.fileCode || team?.abbreviation || ""
+                        ).toUpperCase()
+                    };
+                }
+                return { side: "", code: "" };
+            };
+
+            const getChallengePlayer = (data, playerId) =>
+                data?.gameData?.players?.[`ID${Number(playerId)}`] ?? {};
+
+            const getAbsChallengerRole = (data, play, reviewDetails) => {
+                const playerId = Number(reviewDetails?.player?.id);
+                if (playerId === Number(play?.matchup?.batter?.id)) return "打者";
+                if (playerId === Number(play?.matchup?.pitcher?.id)) return "投手";
+
+                const person = getChallengePlayer(data, playerId);
+                const position = String(person?.primaryPosition?.abbreviation ?? "").toUpperCase();
+                if (position === "C") return "捕手";
+                if (position === "P") return "投手";
+
+                const challengeTeam = getChallengeTeamInfo(data, reviewDetails?.challengeTeamId);
+                const battingSide = play?.about?.halfInning === "top" ? "away" : "home";
+                return challengeTeam.side === battingSide ? "打者" : "捕手";
+            };
+
+            const getReplayTargetData = (play) => {
+                const description = String(play?.result?.description ?? "");
+                const parenthetical = description.match(/challenged\s*\(([^)]+)\)/i)?.[1] ?? "";
+                return {
+                    label: parenthetical,
+                    event: String(play?.result?.event ?? ""),
+                    eventType: String(play?.result?.eventType ?? ""),
+                    description
+                };
+            };
+
+            const getReplayPlayLabel = (target, play) => {
+                const label = `${target?.label ?? ""} ${target?.event ?? ""}`.toLowerCase();
+                if (/play at 1st|first base/.test(label)) return "一塁プレー";
+                if (/play at 2nd|second base/.test(label)) return "二塁プレー";
+                if (/play at 3rd|third base/.test(label)) return "三塁プレー";
+                if (/play at home|home plate/.test(label)) return "本塁プレー";
+                if (/tag play/.test(label)) return "タッチプレー";
+                if (/stolen base|steal/.test(label)) return "盗塁";
+                if (/pickoff/.test(label)) return "牽制";
+                if (/catch|no catch/.test(label)) return "捕球";
+                if (/home run|homer/.test(label)) return "ホームラン";
+                if (/hit by pitch|hbp/.test(label)) return "HBP";
+                if (/fair|foul/.test(label)) return "フェア・ファウル";
+                return target?.label || target?.event || String(play?.result?.event ?? "");
+            };
+
+            const getReplayFinalRuling = (target, play) => {
+                const label = `${target?.label ?? ""} ${target?.event ?? ""}`.toLowerCase();
+                const eventType = String(play?.result?.eventType ?? "").toLowerCase();
+                const event = String(play?.result?.event ?? "").toLowerCase();
+                if (/play at|base|tag play|stolen|steal|pickoff/.test(label)) {
+                    return (play?.runners ?? []).some((runner) => runner?.movement?.isOut)
+                        ? "アウト"
+                        : "セーフ";
+                }
+                if (/catch|no catch/.test(label)) {
+                    return play?.result?.isOut ? "キャッチ" : "ノーキャッチ";
+                }
+                if (/fair|foul/.test(label)) {
+                    return eventType.includes("foul") || event.includes("foul") ? "ファウル" : "フェア";
+                }
+                if (/home run|homer/.test(label)) {
+                    return eventType === "home_run" ? "ホームラン" : "ホームランではない";
+                }
+                if (/hit by pitch|hbp/.test(label)) {
+                    return eventType === "hit_by_pitch" ? "HBP" : "HBPではない";
+                }
+                return String(play?.result?.event ?? "");
+            };
+
+            const getOppositeReplayRuling = (ruling) => ({
+                "アウト": "セーフ",
+                "セーフ": "アウト",
+                "ファウル": "フェア",
+                "フェア": "ファウル",
+                "キャッチ": "ノーキャッチ",
+                "ノーキャッチ": "キャッチ",
+                "ホームラン": "ホームランではない",
+                "ホームランではない": "ホームラン",
+                "HBP": "HBPではない",
+                "HBPではない": "HBP"
+            }[ruling] ?? ruling);
+
+            const getAbsFinalCall = (event) => {
+                if (event?.details?.isBall) return "ボール";
+                if (event?.details?.isStrike) return "ストライク";
+                const call = String(event?.details?.call?.description ?? "").toLowerCase();
+                if (call.includes("ball")) return "ボール";
+                if (call.includes("strike")) return "ストライク";
+                return "";
+            };
+
+            const getAbsTargetData = (event, review) => {
+                const finalCall = getAbsFinalCall(event);
+                const originalCall = review?.isOverturned
+                    ? finalCall === "ボール" ? "ストライク" : "ボール"
+                    : finalCall;
+                return {
+                    originalCall,
+                    finalCall,
+                    call: String(event?.details?.call?.description ?? ""),
+                    callCode: String(event?.details?.call?.code ?? ""),
+                    description: String(event?.details?.description ?? ""),
+                    pitchType: String(event?.details?.type?.description ?? "")
+                };
+            };
+
+            const getChallengeLogEntries = (data) => {
+                const entries = [];
+                const seen = new Set();
+                const plays = data?.liveData?.plays?.allPlays ?? [];
+
+                const appendEntry = (entry) => {
+                    const key = [
+                        entry.type,
+                        entry.playIndex,
+                        entry.type === "ABS" ? entry.eventIndex : "play",
+                        entry.team,
+                        entry.challenger,
+                        entry.resultText
+                    ].join("|");
+                    if (seen.has(key)) return;
+                    seen.add(key);
+                    entries.push(entry);
+                };
+
+                plays.forEach((play, playIndex) => {
+                    const inning = Number(play?.about?.inning) || "";
+                    const half = play?.about?.halfInning === "top" ? "表" : "裏";
+
+                    (play?.playEvents ?? []).forEach((event, eventIndex) => {
+                        const review = event?.reviewDetails;
+                        if (!review) return;
+
+                        const reviewType = String(review?.reviewType ?? "").toUpperCase();
+                        if (reviewType !== "MJ") {
+                            const replayTeam = getChallengeTeamInfo(data, review?.challengeTeamId);
+                            const target = getReplayTargetData(play);
+                            const finalRuling = getReplayFinalRuling(target, play);
+                            appendEntry({
+                                inning,
+                                half,
+                                type: "Replay",
+                                team: replayTeam.code,
+                                challenger: getReplayPlayLabel(target, play),
+                                target,
+                                targetText: review?.isOverturned
+                                    ? getOppositeReplayRuling(finalRuling)
+                                    : finalRuling,
+                                resultText: finalRuling,
+                                playIndex,
+                                eventIndex
+                            });
+                            return;
+                        }
+
+                        const team = getChallengeTeamInfo(data, review?.challengeTeamId);
+                        const player = getChallengePlayer(data, review?.player?.id);
+                        const role = getAbsChallengerRole(data, play, review);
+                        const name = getPersonName({ ...player, ...review?.player });
+                        const target = getAbsTargetData(event, review);
+                        appendEntry({
+                            inning,
+                            half,
+                            type: "ABS",
+                            team: team.code,
+                            challenger: name ? `${name}（${role}）` : "",
+                            target,
+                            targetText: target.originalCall,
+                            resultText: target.finalCall,
+                            playIndex,
+                            eventIndex
+                        });
+                    });
+
+                    const review = play?.reviewDetails;
+                    if (!review || String(review?.reviewType ?? "").toUpperCase() === "MJ") return;
+
+                    const team = getChallengeTeamInfo(data, review?.challengeTeamId);
+                    const target = getReplayTargetData(play);
+                    const finalRuling = getReplayFinalRuling(target, play);
+                    appendEntry({
+                        inning,
+                        half,
+                        type: "Replay",
+                        team: team.code,
+                        challenger: getReplayPlayLabel(target, play),
+                        target,
+                        targetText: review?.isOverturned
+                            ? getOppositeReplayRuling(finalRuling)
+                            : finalRuling,
+                        resultText: finalRuling,
+                        playIndex,
+                        eventIndex: Number.MAX_SAFE_INTEGER
+                    });
+                });
+
+                return entries.sort((left, right) =>
+                    left.playIndex - right.playIndex || left.eventIndex - right.eventIndex
+                );
+            };
+
+            const buildAbsChallengeTable = (data) => {
                 const box = createElement("section", "abs-challenge-box");
                 box.append(
                     createElement(
@@ -775,11 +1027,22 @@
                     }
                 );
 
+                const entries = getChallengeLogEntries(data);
                 for (let row = 0; row < 8; row += 1) {
+                    const entry = entries[row];
+                    const values = entry
+                        ? [
+                            `${entry.inning}${entry.half}`,
+                            entry.type,
+                            entry.team,
+                            entry.challenger,
+                            entry.targetText,
+                            entry.resultText
+                        ]
+                        : ["", "", "", "", "", ""];
                     for (let column = 0; column < 6; column += 1) {
-                        const cell = createElement("div", "editable-cell");
-                        cell.contentEditable = "true";
-                        cell.spellcheck = false;
+                        const cell = createElement("div", "editable-cell", String(values[column] ?? ""));
+                        cell.title = String(values[column] ?? "");
                         cell.dataset.absRow = String(row + 1);
                         cell.dataset.absColumn = String(column + 1);
                         grid.append(cell);
@@ -794,7 +1057,7 @@
                 const area = createElement("section", "score-header-area");
                 const left = createElement("div", "score-header-left");
                 left.append(buildTopScore(), buildSheetMeta(data));
-                area.append(left, buildAbsChallengeTable());
+                area.append(left, buildAbsChallengeTable(data));
                 return area;
             };
 
@@ -888,7 +1151,7 @@
                             player?.allPositions?.[0]?.abbreviation ||
                             ""
                     ),
-                    makeStackCell("center-cell", (player) => player?.batSide?.code ?? "")
+                    makeStackCell("center-cell hand-cell", (player) => getThrowBatText(player))
                 );
 
                 for (let inning = 1; inning <= state.innings; inning += 1) {
@@ -897,9 +1160,14 @@
                     fragment.append(atBatCell);
                 }
 
-                for (let index = 0; index < statHeaders.length; index += 1) {
-                    fragment.append(createElement("div", "grid-cell stat-cell"));
-                }
+                battingStatFields.forEach((field) => {
+                    fragment.append(
+                        makeStackCell(
+                            "center-cell stat-cell",
+                            (player) => getBattingStatText(player, field)
+                        )
+                    );
+                });
 
                 return fragment;
             };
@@ -1031,13 +1299,198 @@
                 return map[location] ?? "";
             };
 
-            const getFieldingSequence = (play) => {
-                const credits = play?.credits ?? [];
-                const numbers = credits
-                    .filter((credit) => ["assist", "putout"].includes(String(credit?.credit).toLowerCase()))
-                    .map((credit) => String(credit?.position?.code ?? "").replace(/\D/g, ""))
+            const FIELDING_POSITION_NUMBERS = Object.freeze({
+                pitcher: "1",
+                catcher: "2",
+                "first baseman": "3",
+                "second baseman": "4",
+                "third baseman": "5",
+                shortstop: "6",
+                "left fielder": "7",
+                "center fielder": "8",
+                "right fielder": "9"
+            });
+
+            const OUT_BASE_LETTERS = Object.freeze({
+                "1B": "A",
+                "2B": "B",
+                "3B": "C",
+                home: "D",
+                score: "D"
+            });
+
+            const uniqueConsecutive = (values) =>
+                values.filter((value, index) => index === 0 || value !== values[index - 1]);
+
+            const getDescriptionFieldingNumbers = (description) => {
+                const pattern = /\b(first baseman|second baseman|third baseman|left fielder|center fielder|right fielder|pitcher|catcher|shortstop)\b/gi;
+                const numbers = [...String(description ?? "").matchAll(pattern)]
+                    .map((match) => FIELDING_POSITION_NUMBERS[match[1].toLowerCase()])
                     .filter(Boolean);
-                return numbers.filter((number, index) => index === 0 || number !== numbers[index - 1]).join("-");
+                return uniqueConsecutive(numbers);
+            };
+
+            const getCreditFieldingNumbers = (credits) => {
+                const relevant = (credits ?? []).filter((credit) => {
+                    const type = String(credit?.credit ?? "").toLowerCase();
+                    return type.includes("assist") || type.includes("putout");
+                });
+                const ordered = [
+                    ...relevant.filter((credit) => String(credit?.credit ?? "").toLowerCase().includes("assist")),
+                    ...relevant.filter((credit) => String(credit?.credit ?? "").toLowerCase().includes("putout"))
+                ];
+                return uniqueConsecutive(
+                    ordered
+                        .map((credit) => String(credit?.position?.code ?? "").replace(/\D/g, ""))
+                        .filter(Boolean)
+                );
+            };
+
+            const getRunnerEventDescription = (play, runner) => {
+                const playIndex = Number(runner?.details?.playIndex);
+                const eventDetails = Number.isInteger(playIndex)
+                    ? play?.playEvents?.[playIndex]?.details
+                    : null;
+                const eventDescription = eventDetails?.eventType
+                    ? eventDetails?.description
+                    : "";
+                return String(eventDescription || play?.result?.description || "");
+            };
+
+            const getFieldingNumbers = (play, description, credits = []) => {
+                const described = getDescriptionFieldingNumbers(description);
+                if (described.length) return described;
+
+                const credited = getCreditFieldingNumbers(credits.length ? credits : play?.credits);
+                if (credited.length) return credited;
+
+                const fallback = getFieldNumber(play);
+                return fallback ? [fallback] : [];
+            };
+
+            const getOutBaseLetter = (runner) => {
+                const base = normalizeBase(runner?.movement?.outBase);
+                return OUT_BASE_LETTERS[base] ?? "";
+            };
+
+            const getRunnerFieldingResult = (play, runner, batterId) => {
+                if (!runner?.movement?.isOut) return "";
+
+                const mainDescription = String(play?.result?.description ?? "");
+                const description = getRunnerEventDescription(play, runner);
+                const usesRunnerEvent = description !== mainDescription;
+                const playIndex = Number(runner?.details?.playIndex);
+                const eventCredits = Number.isInteger(playIndex)
+                    ? play?.playEvents?.[playIndex]?.credits ?? []
+                    : [];
+                const numbers = getFieldingNumbers(play, description, eventCredits);
+                if (!numbers.length) return "";
+
+                const runnerEventType = String(runner?.details?.eventType ?? "").toLowerCase();
+                const playEventType = String(play?.result?.eventType ?? "").toLowerCase();
+                const lowerDescription = description.toLowerCase();
+                const isBatter = Number(runner?.details?.runner?.id) === Number(batterId);
+                const isForceOut = runnerEventType.includes("force_out") ||
+                    runnerEventType.includes("grounded_into_double_play") ||
+                    runnerEventType.includes("triple_play") ||
+                    playEventType === "force_out" ||
+                    playEventType === "triple_play" ||
+                    lowerDescription.includes("force out");
+                const isTagOut = !isForceOut && (
+                    /caught_stealing|pickoff|tag_out/.test(runnerEventType) ||
+                    /caught stealing|picked off|tagged out|tag play/.test(lowerDescription) ||
+                    (!isBatter && Boolean(runner?.movement?.originBase))
+                );
+
+                const relatedOuts = usesRunnerEvent
+                    ? [runner]
+                    : (play?.runners ?? [])
+                        .filter((candidate) => candidate?.movement?.isOut)
+                        .sort((left, right) =>
+                            (Number(left?.movement?.outNumber) || 0) -
+                            (Number(right?.movement?.outNumber) || 0)
+                        );
+                const runnerIndex = Math.max(0, relatedOuts.indexOf(runner));
+                const terminalIndex = Math.min(
+                    numbers.length - 1,
+                    Math.max(0, numbers.length - relatedOuts.length + runnerIndex)
+                );
+                const route = numbers.slice(0, terminalIndex + 1);
+                const suffixes = route.map(() => "");
+
+                if (isTagOut) {
+                    suffixes[suffixes.length - 1] = "TO";
+                } else if (
+                    isForceOut &&
+                    !isBatter &&
+                    terminalIndex === numbers.length - 1
+                ) {
+                    suffixes[suffixes.length - 1] = getOutBaseLetter(runner);
+                } else if (
+                    isBatter &&
+                    route.length === 1 &&
+                    lowerDescription.includes("ground")
+                ) {
+                    suffixes[0] = getOutBaseLetter(runner) || "A";
+                }
+
+                return route
+                    .map((number, index) => `${number}${suffixes[index]}`)
+                    .join("-");
+            };
+
+            const getPrimaryFieldingResult = (play, batterId) => {
+                const description = String(play?.result?.description ?? "");
+                const numbers = getFieldingNumbers(play, description);
+                if (!numbers.length) return "";
+
+                const outRunners = (play?.runners ?? [])
+                    .filter((runner) => runner?.movement?.isOut)
+                    .filter((runner) => getRunnerEventDescription(play, runner) === description)
+                    .sort((left, right) =>
+                        (Number(left?.movement?.outNumber) || 0) -
+                        (Number(right?.movement?.outNumber) || 0)
+                    );
+                if (!outRunners.length) return numbers.join("-");
+
+                const suffixes = numbers.map(() => "");
+                outRunners.forEach((runner, runnerIndex) => {
+                    const terminalIndex = Math.min(
+                        numbers.length - 1,
+                        Math.max(0, numbers.length - outRunners.length + runnerIndex)
+                    );
+                    const runnerEventType = String(runner?.details?.eventType ?? "").toLowerCase();
+                    const playEventType = String(play?.result?.eventType ?? "").toLowerCase();
+                    const lowerDescription = description.toLowerCase();
+                    const isBatter = Number(runner?.details?.runner?.id) === Number(batterId);
+                    const isForceOut = runnerEventType.includes("force_out") ||
+                        runnerEventType.includes("grounded_into_double_play") ||
+                        runnerEventType.includes("triple_play") ||
+                        playEventType === "force_out" ||
+                        playEventType === "triple_play" ||
+                        lowerDescription.includes("force out");
+                    const isTagOut = !isForceOut && !isBatter && Boolean(runner?.movement?.originBase);
+
+                    if (isTagOut) {
+                        suffixes[terminalIndex] = "TO";
+                    } else if (
+                        isForceOut &&
+                        !isBatter &&
+                        terminalIndex === numbers.length - 1
+                    ) {
+                        suffixes[terminalIndex] = getOutBaseLetter(runner);
+                    } else if (
+                        isBatter &&
+                        numbers.length === 1 &&
+                        lowerDescription.includes("ground")
+                    ) {
+                        suffixes[terminalIndex] = getOutBaseLetter(runner) || "A";
+                    }
+                });
+
+                return numbers
+                    .map((number, index) => `${number}${suffixes[index]}`)
+                    .join("-");
             };
 
             const getBattedBallShape = (play) => {
@@ -1096,7 +1549,7 @@
                 if (["single", "double", "triple", "home_run"].includes(eventType)) return eventType;
                 if (eventType === "field_error" || event.includes("error")) return "field_error";
                 if (["fielders_choice", "fielders_choice_out"].includes(eventType) || event.includes("fielder's choice")) return "fielders_choice";
-                if (["groundout", "force_out", "double_play", "grounded_into_double_play"].includes(eventType) || event.includes("groundout")) return "groundout";
+                if (["groundout", "force_out", "double_play", "grounded_into_double_play", "triple_play"].includes(eventType) || event.includes("groundout") || event.includes("triple play")) return "groundout";
                 if (eventType === "field_out") {
                     const shape = getBattedBallShape(play);
                     if (shape === "ground") return "groundout";
@@ -1114,12 +1567,12 @@
                 return "unknown_out";
             };
 
-            const getPlayDisplay = (play) => {
+            const getPlayDisplay = (play, batterId) => {
                 const templateId = resolveTemplateId(play);
                 const template = PLAY_TEMPLATES[templateId] ?? PLAY_TEMPLATES.unknown_out;
                 const description = String(play?.result?.description ?? "").toLowerCase();
                 const field = getFieldNumber(play);
-                const sequence = getFieldingSequence(play);
+                const fieldingResult = getPrimaryFieldingResult(play, batterId);
                 let notation = template.notation ?? "";
 
                 if (["single", "double", "triple", "home_run"].includes(templateId)) {
@@ -1129,7 +1582,7 @@
                 } else if (templateId === "fielders_choice") {
                     notation = `Fc${field || ""}`;
                 } else if (["groundout", "sac_bunt"].includes(templateId)) {
-                    notation = sequence || field;
+                    notation = fieldingResult || field;
                 } else if (["flyout", "popout", "lineout"].includes(templateId)) {
                     notation = field;
                 } else if (templateId === "sac_fly") {
@@ -1173,7 +1626,7 @@
                     const inning = Number(play?.about?.inning);
                     if (!order || !inning) return;
 
-                    const display = getPlayDisplay(play);
+                    const display = getPlayDisplay(play, batterId);
                     const record = {
                         playIndex,
                         side,
@@ -1186,11 +1639,16 @@
                         isHit: display.isHit,
                         homeRunNumber: display.homeRunNumber,
                         extra: display.extra,
+                        outResult: "",
                         shape: display.shape,
                         segments: [],
+                        runnerAdvancePath: "",
                         toSecond: "",
                         toThird: "",
                         toHome: "",
+                        outAtSecond: "",
+                        outAtThird: "",
+                        outAtHome: "",
                         centerMark: "",
                         rbi: Number(play?.result?.rbi) || 0,
                         inningEnd: Boolean(play?.about?.isComplete && Number(play?.count?.outs) === 3)
@@ -1233,8 +1691,19 @@
                             const fromIndex = baseOrder.indexOf(fromBase);
                             const toIndex = baseOrder.indexOf(toBase);
                             if (fromIndex >= 0 && toIndex > fromIndex) {
-                                if (fromIndex < 2 && toIndex >= 2) target.toSecond = advanceLabel;
-                                if (fromIndex < 3 && toIndex >= 3) target.toThird = advanceLabel;
+                                if (toIndex - fromIndex > 1) {
+                                    if (fromIndex < 2 && toIndex > 2) target.toSecond = "";
+                                    if (fromIndex < 3 && toIndex > 3) target.toThird = "";
+                                    if (fromIndex === 1 && toIndex === 3) {
+                                        target.runnerAdvancePath = "second-third";
+                                    } else if (fromIndex === 1 && toIndex >= 4) {
+                                        target.runnerAdvancePath = "second-third-home";
+                                    } else if (fromIndex === 2 && toIndex >= 4) {
+                                        target.runnerAdvancePath = "third-home";
+                                    }
+                                }
+                                if (toIndex === 2) target.toSecond = advanceLabel;
+                                if (toIndex === 3) target.toThird = advanceLabel;
                                 if (toIndex >= 4) target.toHome = advanceLabel;
                             }
                         }
@@ -1242,6 +1711,19 @@
                         if (movement?.isOut) {
                             const outNumber = outNumberByRunner.get(runner);
                             if (outNumber) target.centerMark = ROMAN_OUTS[outNumber];
+                            const runnerDescription = getRunnerEventDescription(play, runner);
+                            const mainDescription = String(play?.result?.description ?? "");
+                            if (!isCurrentBatter) {
+                                const runnerFieldingResult = getRunnerFieldingResult(play, runner, batterId);
+                                const outBase = normalizeBase(movement?.outBase || movement?.end);
+                                if (runnerDescription === mainDescription) {
+                                    if (outBase === "2B") target.outAtSecond = runnerFieldingResult;
+                                    if (outBase === "3B") target.outAtThird = runnerFieldingResult;
+                                    if (["home", "score"].includes(outBase)) target.outAtHome = runnerFieldingResult;
+                                } else {
+                                    target.outResult = runnerFieldingResult;
+                                }
+                            }
                             if (isCurrentBatter) batterOutRecorded = true;
                             activeRunner.delete(Number(runnerId));
                         } else if (["score", "home", "home_plate"].includes(String(end).toLowerCase())) {
@@ -1257,6 +1739,17 @@
                         if (isOut) {
                             record.centerMark = ROMAN_OUTS[Math.max(1, Math.min(3, Number(play?.count?.outs) || 1))];
                         }
+                    }
+
+                    const halfInningEnded = Boolean(
+                        play?.about?.isComplete && Number(play?.count?.outs) === 3
+                    );
+                    if (halfInningEnded) {
+                        [...activeRunner.entries()].forEach(([runnerId, runnerRecord]) => {
+                            if (runnerRecord.side !== side || runnerRecord.inning !== inning) return;
+                            if (!runnerRecord.centerMark) runnerRecord.centerMark = "ℓ";
+                            activeRunner.delete(runnerId);
+                        });
                     }
                 });
 
@@ -1307,7 +1800,7 @@
 
             const createAdvanceSvg = (segments, className = "advance-svg") => {
                 const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-                svg.setAttribute("viewBox", "0 0 43 43");
+                svg.setAttribute("viewBox", "-1 -1 45 45");
                 svg.classList.add(className);
                 const d = getRoundedAdvancePath(segments);
                 if (d) {
@@ -1315,6 +1808,37 @@
                     path.setAttribute("d", d);
                     svg.append(path);
                 }
+                return svg;
+            };
+
+            let runnerHistoryArrowId = 0;
+            const createRunnerHistorySvg = (type) => {
+                const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+                svg.setAttribute("viewBox", "0 0 61 61");
+                svg.classList.add("runner-history-svg", `runner-history-${type}`);
+                const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+                path.setAttribute("d", type === "second-third"
+                    ? "M52 52 L52 9 L9 9"
+                    : type === "second-third-home"
+                        ? "M52 52 L52 9 L9 9 L9 52"
+                        : "M52 9 L9 9 L9 52");
+                const markerId = `runner-history-arrow-${runnerHistoryArrowId += 1}`;
+                const defs = document.createElementNS("http://www.w3.org/2000/svg", "defs");
+                const marker = document.createElementNS("http://www.w3.org/2000/svg", "marker");
+                marker.setAttribute("id", markerId);
+                marker.setAttribute("viewBox", "0 0 6 6");
+                marker.setAttribute("refX", "5");
+                marker.setAttribute("refY", "3");
+                marker.setAttribute("markerWidth", "8");
+                marker.setAttribute("markerHeight", "8");
+                marker.setAttribute("orient", "auto");
+                const arrow = document.createElementNS("http://www.w3.org/2000/svg", "path");
+                arrow.setAttribute("d", "M0 0 L6 3 L0 6 Z");
+                marker.append(arrow);
+                defs.append(marker);
+                svg.append(defs);
+                path.setAttribute("marker-end", `url(#${markerId})`);
+                svg.append(path);
                 return svg;
             };
 
@@ -1353,16 +1877,25 @@
                     stage,
                     ...anchorNames.map((name) => slots[name])
                 );
+                if (record.runnerAdvancePath) {
+                    card.append(createRunnerHistorySvg(record.runnerAdvancePath));
+                }
 
-                if (record.notation) {
+                if (record.notation || record.outResult) {
                     const notationStack = createElement("div", "play-notation-stack");
-                    const templateSvg = createTemplateSvg(record.shape);
-                    if (templateSvg) notationStack.append(templateSvg);
-                    const longClass = record.notation.length > 3 ? " long-result" : "";
-                    const strikeoutClass = ["strikeout", "swinging_strikeout"].includes(record.templateId)
-                        ? " strikeout-result"
-                        : "";
-                    notationStack.append(createElement("div", `score-symbol play-result ${record.category}-result${strikeoutClass}${longClass}`, record.notation));
+                    if (record.notation) {
+                        const templateSvg = createTemplateSvg(record.shape);
+                        if (templateSvg) notationStack.append(templateSvg);
+                        const longClass = record.notation.length > 3 ? " long-result" : "";
+                        const strikeoutClass = ["strikeout", "swinging_strikeout"].includes(record.templateId)
+                            ? " strikeout-result"
+                            : "";
+                        notationStack.append(createElement("div", `score-symbol play-result ${record.category}-result${strikeoutClass}${longClass}`, record.notation));
+                    }
+                    if (record.outResult && record.outResult !== record.notation) {
+                        const longClass = record.outResult.length > 3 ? " long-result" : "";
+                        notationStack.append(createElement("div", `score-symbol play-result runner-out-result${longClass}`, record.outResult));
+                    }
                     slots.bottomRight.append(notationStack);
                 }
 
@@ -1375,13 +1908,21 @@
                 if (record.centerMark) {
                     const centerClass = ["●", "○"].includes(record.centerMark)
                         ? "score-symbol play-center-mark scored"
+                        : record.centerMark === "ℓ"
+                            ? "score-symbol play-center-mark stranded"
                         : "score-symbol play-center-mark out-number";
                     slots.center.append(createElement("div", centerClass, record.centerMark));
                 }
                 if (record.toSecond) slots.topRight.append(createElement("div", "score-symbol runner-note to-second", record.toSecond));
                 if (record.toThird) slots.topLeft.append(createElement("div", "score-symbol runner-note to-third", record.toThird));
                 if (record.toHome) slots.bottomLeft.append(createElement("div", "score-symbol runner-note to-home", record.toHome));
-                if (record.inningEnd) card.append(createElement("div", "inning-end-mark"));
+                if (record.outAtSecond) slots.topRight.append(createElement("div", "score-symbol runner-base-out-result", record.outAtSecond));
+                if (record.outAtThird) slots.topLeft.append(createElement("div", "score-symbol runner-base-out-result", record.outAtThird));
+                if (record.outAtHome) slots.bottomLeft.append(createElement("div", "score-symbol runner-base-out-result", record.outAtHome));
+                if (record.inningEnd) {
+                    card.classList.add("has-inning-end");
+                    card.append(createElement("div", "inning-end-mark"));
+                }
                 return card;
             };
 
@@ -1393,6 +1934,104 @@
                     if (!resultBox) return;
                     resultBox.classList.add("has-play");
                     resultBox.append(renderPlateAppearance(record));
+                });
+                populateSubstitutionIndicators();
+            };
+
+            const getSubstitutionRole = (eventDetails) => {
+                const eventType = String(eventDetails?.eventType ?? "").toLowerCase();
+                const description = String(eventDetails?.description ?? "").toLowerCase();
+                if (eventType === "pitching_substitution") return "pitcher";
+                if (eventType === "defensive_substitution") return "defense";
+                if (eventType === "offensive_substitution" && description.includes("pinch-hitter")) return "pinch-hitter";
+                if (eventType === "offensive_substitution" && description.includes("pinch-runner")) return "pinch-runner";
+                return "";
+            };
+
+            const getSubstitutionIndicators = () => {
+                const indicators = [];
+                const seenPlayers = new Set();
+                const plays = state.gameData?.liveData?.plays?.allPlays ?? [];
+                plays.forEach((play) => {
+                    const battingSide = play?.about?.halfInning === "top" ? "away" : "home";
+                    const fieldingSide = battingSide === "away" ? "home" : "away";
+                    const inning = Number(play?.about?.inning);
+                    (play?.playEvents ?? []).forEach((event) => {
+                        const role = getSubstitutionRole(event?.details);
+                        const playerId = Number(event?.player?.id);
+                        if (!role || !playerId || seenPlayers.has(playerId)) return;
+
+                        const side = role === "defense" ? fieldingSide : battingSide;
+                        const order = role === "pitcher"
+                            ? getBattingSlot(battingSide, play?.matchup?.batter?.id)
+                            : getBattingSlot(side, playerId);
+                        if (!order || !inning) return;
+
+                        const person = state.gameData?.gameData?.players?.[`ID${playerId}`] ?? event?.player ?? {};
+                        indicators.push({
+                            side: role === "pitcher" ? battingSide : side,
+                            teamSide: role === "pitcher" ? fieldingSide : side,
+                            inning,
+                            order,
+                            playerId,
+                            role,
+                            name: getPersonName(person)
+                        });
+                        seenPlayers.add(playerId);
+                    });
+                });
+                return indicators;
+            };
+
+            const createSubstitutionIndicator = (items, cell) => {
+                const indicator = createElement("div", "substitution-indicator");
+                const wave = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+                wave.setAttribute("viewBox", "0 0 64 5");
+                wave.setAttribute("preserveAspectRatio", "none");
+                wave.classList.add("substitution-wave");
+                const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+                path.setAttribute("d", "M0 2.5 Q4 0 8 2.5 T16 2.5 T24 2.5 T32 2.5 T40 2.5 T48 2.5 T56 2.5 T64 2.5");
+                wave.append(path);
+
+                const names = createElement("div", "substitution-names");
+                if (items.length > 1) names.classList.add("multiple");
+                items.forEach((item) => {
+                    const rolePrefix = {
+                        pitcher: "P：",
+                        "pinch-hitter": "PH：",
+                        "pinch-runner": "PR：",
+                        defense: ""
+                    }[item.role] ?? "";
+                    names.append(createElement(
+                        "span",
+                        `substitution-name substitution-${item.role} substitution-${item.teamSide}`,
+                        `${rolePrefix}${item.name}`
+                    ));
+                });
+                indicator.append(wave, names);
+                return indicator;
+            };
+
+            const populateSubstitutionIndicators = () => {
+                const grouped = new Map();
+                getSubstitutionIndicators().forEach((item) => {
+                    const key = `${item.side}-${item.inning}-${item.order}`;
+                    if (!grouped.has(key)) grouped.set(key, []);
+                    grouped.get(key).push(item);
+                });
+                grouped.forEach((items) => {
+                    const { side, inning, order } = items[0];
+                    const cell = dom.awaySheet.querySelector(
+                        `.atbat-cell[data-side="${side}"][data-inning="${inning}"][data-order="${order}"]`
+                    );
+                    if (cell) {
+                        const indicator = createSubstitutionIndicator(items, cell);
+                        cell.append(indicator);
+                        const names = indicator.querySelector(".substitution-names");
+                        if (names && names.scrollWidth > names.clientWidth) {
+                            names.classList.add("tight");
+                        }
+                    }
                 });
             };
 
@@ -1453,8 +2092,8 @@
                         ),
                         createElement(
                             "div",
-                            "bench-cell",
-                            pitcher?.pitchHand?.code ?? ""
+                            "bench-cell hand-cell",
+                            getThrowBatText(pitcher)
                         )
                     );
 

@@ -699,14 +699,14 @@ input {
 }
 
 .score-anchor.top-left {
-    top: -12px;
+    top: -1px;
     left: -2px;
     align-items: flex-start;
     transform: translateX(-2px);
 }
 
 .score-anchor.top-right {
-    top: -12px;
+    top: -1px;
     right: -2px;
     align-items: flex-start;
     transform: translateX(3px);
@@ -774,10 +774,10 @@ input {
     left: 50%;
     top: 50%;
     z-index: 4;
-    width: 43px;
-    height: 43px;
+    width: 25px;
+    height: 25px;
     transform: translate(-50%, -50%);
-    overflow: visible;
+    overflow: hidden;
     pointer-events: none;
 }
 
@@ -787,6 +787,52 @@ input {
     stroke-width: 2;
     stroke-linecap: round;
     stroke-linejoin: round;
+    vector-effect: non-scaling-stroke;
+}
+
+/* Runner history between the 2B, 3B, and home annotation areas. */
+.play-card .runner-history-svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 6;
+    width: 25px;
+    height: 25px;
+    transform: translate(-50%, -50%);
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.play-card .runner-history-svg > path {
+    fill: none;
+    stroke: #111;
+    stroke-width: 0.75;
+    stroke-linecap: round;
+    stroke-linejoin: miter;
+    vector-effect: non-scaling-stroke;
+}
+
+.play-card .runner-history-svg marker path {
+    fill: #111;
+    stroke: none;
+}
+
+/* 2B to home via 3B: keep the bent pass arrow inside the upper-left quarter. */
+.play-card .runner-history-svg.runner-history-third-home {
+    top: -1px;
+    left: 6px;
+    width: 15px;
+    height: 15px;
+    transform: none;
+}
+
+/* 1B to 3B via 2B: mirror the bent pass arrow in the upper-right quarter. */
+.play-card .runner-history-svg.runner-history-second-third {
+    top: -1px;
+    left: 37px;
+    width: 15px;
+    height: 15px;
+    transform: none;
 }
 
 /* Batter result anchor: lower-right. The batted-ball mark sits directly above it. */
@@ -813,6 +859,17 @@ input {
     line-height: 1;
     letter-spacing: -0.3px;
     white-space: nowrap;
+}
+
+/* Keep longer defensive routes readable inside the score cell. */
+.play-card.template-groundout .play-result,
+.play-card.template-sac-bunt .play-result,
+.play-card .runner-out-result {
+    font-size: 9px;
+}
+
+.play-card .runner-out-result.long-result {
+    font-size: 7px;
 }
 
 .play-result.hit-result { color: var(--red); }
@@ -870,6 +927,15 @@ input {
     font-weight: 700;
 }
 
+.play-center-mark.stranded {
+    color: #111;
+    font-family: "Times New Roman", "STIX Two Math", serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 0.9;
+}
+
 .play-rbi {
     position: absolute;
     left: var(--diamond-first-base-x);
@@ -891,6 +957,16 @@ input {
 .runner-note {
     z-index: 10;
     color: #111;
+    font-size: 9px;
+    line-height: 1;
+    white-space: nowrap;
+    pointer-events: none;
+}
+
+.runner-base-out-result {
+    z-index: 10;
+    color: #111;
+    font-size: 9px;
     line-height: 1;
     white-space: nowrap;
     pointer-events: none;
@@ -908,12 +984,78 @@ input {
     text-align: left;
 }
 
+.substitution-indicator {
+    position: absolute;
+    inset: 0;
+    z-index: 14;
+    overflow: visible;
+    pointer-events: none;
+}
+
+.substitution-wave {
+    position: absolute;
+    top: -2px;
+    left: 12px;
+    width: calc(100% - 12px);
+    height: 5px;
+    overflow: visible;
+}
+
+.substitution-wave path {
+    fill: none;
+    stroke: #111;
+    stroke-width: 1;
+    stroke-linecap: round;
+}
+
+.substitution-names {
+    position: absolute;
+    top: 3px;
+    right: 1px;
+    left: 13px;
+    display: flex;
+    height: 8px;
+    align-items: flex-start;
+    flex-wrap: nowrap;
+    gap: 0 3px;
+    overflow: hidden;
+    padding: 0 1px;
+    background: rgba(255, 255, 255, 0.9);
+    font-size: 7px;
+    font-weight: 600;
+    line-height: 1.05;
+    white-space: nowrap;
+}
+
+.substitution-names.multiple {
+    gap: 1px;
+    font-size: 5px;
+    letter-spacing: -0.2px;
+}
+
+.substitution-names.tight {
+    gap: 1px;
+    font-size: 5.5px;
+    letter-spacing: -0.2px;
+}
+
+.substitution-names.multiple.tight {
+    font-size: 4px;
+}
+
+.substitution-name.substitution-pitcher { color: #237a3b; }
+.substitution-name.substitution-pinch-hitter { color: #7a3fa0; }
+.substitution-name.substitution-pinch-runner { color: #2468b4; }
+.substitution-name.substitution-defense { color: #b85a00; }
+.substitution-name.substitution-away { color: #237a3b; }
+.substitution-name.substitution-home { color: #7a3fa0; }
+
 /* Inning change: two thin parallel lines bridge to the next batter card. */
 .inning-end-mark {
     position: absolute;
-    right: 0;
-    bottom: 0;
-    z-index: 5;
+    right: -8px;
+    bottom: 5px;
+    z-index: 0;
     width: 0;
     height: 0;
     overflow: visible;
@@ -926,15 +1068,21 @@ input {
     position: absolute;
     top: 0;
     left: 0;
-    width: 0.5px;
-    height: 30px;
+    width: 1px;
     background: #111;
-    transform: rotate(15deg);
+    transform: rotate(25deg);
     transform-origin: top center;
 }
 
-.inning-end-mark::before { left: 0; }
-.inning-end-mark::after { left: 2px; }
+.inning-end-mark::before {
+    left: 0;
+    height: 38px;
+}
+
+.inning-end-mark::after {
+    left: 3px;
+    height: 44px;
+}
 
 .stat-cell {
     height: var(--lineup-height);
