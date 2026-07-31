@@ -650,7 +650,8 @@
                 return Object.values(playerMap)
                     .map((player) => ({
                         id: Number(player?.person?.id),
-                        person: data?.gameData?.players?.[`ID${player?.person?.id}`] ?? player?.person
+                        person: data?.gameData?.players?.[`ID${player?.person?.id}`] ?? player?.person,
+                        currentGameBatting: player?.stats?.batting ?? {}
                     }))
                     .filter((player, index, list) => player.id &&
                         list.findIndex((candidate) => candidate.id === player.id) === index);
@@ -677,13 +678,26 @@
 
                 const request = Promise.all(["away", "home"].map(async (side) => {
                     const candidates = getStreakCandidatesForSide(data, side);
-                    const analyzed = await Promise.all(candidates.map(async (player) => ({
-                        ...player,
-                        ...summarizeCurrentStreaks(
+                    const analyzed = await Promise.all(candidates.map(async (player) => {
+                        const streaks = summarizeCurrentStreaks(
                             await fetchPlayerRegularSeasonGameLog(player.id, season),
                             context
-                        )
-                    })));
+                        );
+                        const currentStat = player.currentGameBatting;
+                        const currentPa = getPlateAppearances(currentStat);
+                        if (isGameFinal(data) && currentPa > 0) {
+                            if ((Number(currentStat?.hits) || 0) === 0) {
+                                streaks.hitStreak = 0;
+                            }
+                            const reachedBase = (Number(currentStat?.hits) || 0) +
+                                (Number(currentStat?.baseOnBalls) || 0) +
+                                (Number(currentStat?.hitByPitch) || 0);
+                            if (reachedBase === 0) {
+                                streaks.onBaseStreak = 0;
+                            }
+                        }
+                        return { ...player, ...streaks };
+                    }));
                     const code = getMlbTeamDisplayCode(data?.gameData?.teams?.[side]);
                     const hitLeader = chooseLongestStreak(analyzed, "hitStreak");
                     const onBaseLeader = chooseLongestStreak(analyzed, "onBaseStreak");
