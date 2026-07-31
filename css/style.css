@@ -344,7 +344,7 @@ input {
 .abs-challenge-grid {
     flex: 1;
     display: grid;
-    grid-template-columns: 10% 14% 14% 27% 21% 14%;
+    grid-template-columns: 8% 18% 10% 11% 11% 16% 13% 13%;
     grid-template-rows: repeat(9, minmax(0, 1fr));
 }
 

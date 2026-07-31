@@ -317,6 +317,7 @@
                 innings: DEFAULT_INNINGS,
                 gamePk: null,
                 gameData: null,
+                streakNotes: { away: [], home: [] },
                 away: {
                     abbreviation: "AWAY",
                     name: "先攻チーム",
@@ -493,6 +494,213 @@
 
             const HAND_LABELS = Object.freeze({ R: "右", L: "左", S: "両" });
 
+            const MLB_TEAM_CODES_BY_ID = Object.freeze({
+                108: "LAA", 109: "ARI", 110: "BAL", 111: "BOS", 112: "CHC",
+                113: "CIN", 114: "CLE", 115: "COL", 116: "DET", 117: "HOU",
+                118: "KC", 119: "LAD", 120: "WSH", 121: "NYM", 133: "ATH",
+                134: "PIT", 135: "SD", 136: "SEA", 137: "SF", 138: "STL",
+                139: "TB", 140: "TEX", 141: "TOR", 142: "MIN", 143: "PHI",
+                144: "ATL", 145: "CWS", 146: "MIA", 147: "NYY", 158: "MIL"
+            });
+
+            const MLB_TEAM_CODE_ALIASES = Object.freeze({
+                ANA: "LAA", LAA: "LAA",
+                ARI: "ARI", AZ: "ARI",
+                ATH: "ATH", OAK: "ATH",
+                ATL: "ATL",
+                BAL: "BAL",
+                BOS: "BOS",
+                CHC: "CHC",
+                CHA: "CWS", CHW: "CWS", CWS: "CWS",
+                CIN: "CIN",
+                CLE: "CLE",
+                COL: "COL",
+                DET: "DET",
+                HOU: "HOU",
+                KCA: "KC", KC: "KC",
+                LAN: "LAD", LAD: "LAD",
+                MIA: "MIA", FLA: "MIA",
+                MIL: "MIL",
+                MIN: "MIN",
+                NYM: "NYM", NYN: "NYM",
+                NYA: "NYY", NYY: "NYY",
+                PHI: "PHI",
+                PIT: "PIT",
+                SD: "SD", SDN: "SD",
+                SEA: "SEA",
+                SF: "SF", SFN: "SF",
+                SLN: "STL", STL: "STL",
+                TB: "TB", TBA: "TB",
+                TEX: "TEX",
+                TOR: "TOR",
+                WAS: "WSH", WSH: "WSH"
+            });
+
+            const getMlbTeamDisplayCode = (teamOrCode) => {
+                if (teamOrCode && typeof teamOrCode === "object") {
+                    const idCode = MLB_TEAM_CODES_BY_ID[Number(teamOrCode?.id)];
+                    if (idCode) return idCode;
+                    const rawCode = teamOrCode?.teamCode ||
+                        teamOrCode?.fileCode ||
+                        teamOrCode?.abbreviation ||
+                        "";
+                    return MLB_TEAM_CODE_ALIASES[String(rawCode).toUpperCase()] ||
+                        String(rawCode).toUpperCase();
+                }
+                const rawCode = String(teamOrCode ?? "").toUpperCase();
+                return MLB_TEAM_CODE_ALIASES[rawCode] || rawCode;
+            };
+
+            const streakNotesCache = new Map();
+            const playerGameLogCache = new Map();
+
+            const getPlateAppearances = (stat = {}) => {
+                const officialValue = Number(stat.plateAppearances);
+                if (Number.isFinite(officialValue)) return officialValue;
+                return ["atBats", "baseOnBalls", "hitByPitch", "sacFlies", "sacBunts"]
+                    .reduce((total, field) => total + (Number(stat[field]) || 0), 0);
+            };
+
+            const fetchPlayerRegularSeasonGameLog = async (playerId, season) => {
+                const cacheKey = `${playerId}:${season}`;
+                if (playerGameLogCache.has(cacheKey)) {
+                    return playerGameLogCache.get(cacheKey);
+                }
+
+                const request = fetch(
+                    `https://statsapi.mlb.com/api/v1/people/${playerId}/stats` +
+                    `?stats=gameLog&group=hitting&season=${season}&gameType=R`
+                ).then(async (response) => {
+                    if (!response.ok) return [];
+                    const payload = await response.json();
+                    return payload?.stats?.[0]?.splits ?? [];
+                }).catch(() => []);
+
+                playerGameLogCache.set(cacheKey, request);
+                return request;
+            };
+
+            const isGameBeforeCurrentStart = (split, context) => {
+                const splitDate = String(split?.date ?? "").slice(0, 10);
+                if (!splitDate || splitDate > context.officialDate) return false;
+                const splitGamePk = Number(split?.game?.gamePk);
+                if (splitGamePk === context.gamePk) return false;
+                if (splitDate < context.officialDate) return true;
+
+                const splitGameNumber = Number(split?.game?.gameNumber);
+                if (context.gameNumber > 1 && Number.isFinite(splitGameNumber)) {
+                    return splitGameNumber < context.gameNumber;
+                }
+                return context.gameNumber > 1 && Number.isFinite(splitGamePk) &&
+                    splitGamePk < context.gamePk;
+            };
+
+            const summarizeCurrentStreaks = (splits, context) => {
+                const games = splits
+                    .filter((split) => isGameBeforeCurrentStart(split, context))
+                    .sort((a, b) => {
+                        const dateOrder = String(b?.date ?? "").localeCompare(String(a?.date ?? ""));
+                        if (dateOrder) return dateOrder;
+                        return (Number(b?.game?.gameNumber) || Number(b?.game?.gamePk) || 0) -
+                            (Number(a?.game?.gameNumber) || Number(a?.game?.gamePk) || 0);
+                    });
+
+                let hitStreak = 0;
+                let onBaseStreak = 0;
+                let hitActive = true;
+                let onBaseActive = true;
+                let plateAppearances = 0;
+                let atBats = 0;
+                let hits = 0;
+
+                games.forEach((split) => {
+                    const stat = split?.stat ?? {};
+                    const gamePa = getPlateAppearances(stat);
+                    if (gamePa <= 0) return;
+
+                    const gameHits = Number(stat.hits) || 0;
+                    const reachedBase = gameHits +
+                        (Number(stat.baseOnBalls) || 0) +
+                        (Number(stat.hitByPitch) || 0);
+
+                    if (hitActive) {
+                        if (gameHits > 0) hitStreak += 1;
+                        else hitActive = false;
+                    }
+                    if (onBaseActive) {
+                        if (reachedBase > 0) onBaseStreak += 1;
+                        else onBaseActive = false;
+                    }
+
+                    plateAppearances += gamePa;
+                    atBats += Number(stat.atBats) || 0;
+                    hits += gameHits;
+                });
+
+                return {
+                    hitStreak,
+                    onBaseStreak,
+                    plateAppearances,
+                    average: atBats > 0 ? hits / atBats : 0
+                };
+            };
+
+            const getStreakCandidatesForSide = (data, side) => {
+                const playerMap = data?.liveData?.boxscore?.teams?.[side]?.players ?? {};
+                return Object.values(playerMap)
+                    .map((player) => ({
+                        id: Number(player?.person?.id),
+                        person: data?.gameData?.players?.[`ID${player?.person?.id}`] ?? player?.person
+                    }))
+                    .filter((player, index, list) => player.id &&
+                        list.findIndex((candidate) => candidate.id === player.id) === index);
+            };
+
+            const chooseLongestStreak = (players, field) => players
+                .filter((player) => player[field] >= 2)
+                .sort((a, b) => b[field] - a[field] ||
+                    b.plateAppearances - a.plateAppearances ||
+                    b.average - a.average)[0] ?? null;
+
+            const fetchStreakNotes = async (data, gamePk) => {
+                if (streakNotesCache.has(String(gamePk))) {
+                    return streakNotesCache.get(String(gamePk));
+                }
+
+                const officialDate = String(data?.gameData?.datetime?.officialDate ?? "");
+                const season = Number(data?.gameData?.game?.season) || Number(officialDate.slice(0, 4));
+                const context = {
+                    officialDate,
+                    gamePk: Number(gamePk),
+                    gameNumber: Number(data?.gameData?.game?.gameNumber) || 1
+                };
+
+                const request = Promise.all(["away", "home"].map(async (side) => {
+                    const candidates = getStreakCandidatesForSide(data, side);
+                    const analyzed = await Promise.all(candidates.map(async (player) => ({
+                        ...player,
+                        ...summarizeCurrentStreaks(
+                            await fetchPlayerRegularSeasonGameLog(player.id, season),
+                            context
+                        )
+                    })));
+                    const code = getMlbTeamDisplayCode(data?.gameData?.teams?.[side]);
+                    const hitLeader = chooseLongestStreak(analyzed, "hitStreak");
+                    const onBaseLeader = chooseLongestStreak(analyzed, "onBaseStreak");
+                    const notes = [];
+                    if (hitLeader) {
+                        notes.push(`${code}　${getPersonName(hitLeader.person)}　連続試合安打：${hitLeader.hitStreak}試合`);
+                    }
+                    if (onBaseLeader) {
+                        notes.push(`${code}　${getPersonName(onBaseLeader.person)}　連続試合出塁：${onBaseLeader.onBaseStreak}試合`);
+                    }
+                    return [side, notes];
+                })).then((entries) => Object.fromEntries(entries));
+
+                streakNotesCache.set(String(gamePk), request);
+                return request;
+            };
+
             const enrichPlayerHandedness = (data, player) => {
                 const playerId = player?.person?.id;
                 const personDetails = playerId
@@ -650,7 +858,7 @@
                 const record = getTeamRecord(team, boxscoreTeam);
 
                 return {
-                    abbreviation: nhkTeamName,
+                    abbreviation: getMlbTeamDisplayCode(team) || nhkTeamName,
                     name: nhkTeamName,
                     wins: record.wins,
                     losses: record.losses,
@@ -801,9 +1009,7 @@
                     if (Number(team?.id) !== numericTeamId) continue;
                     return {
                         side,
-                        code: String(
-                            team?.teamCode || team?.fileCode || team?.abbreviation || ""
-                        ).toUpperCase()
+                        code: getMlbTeamDisplayCode(team)
                     };
                 }
                 return { side: "", code: "" };
@@ -915,6 +1121,25 @@
                 };
             };
 
+            const getAbsBatterText = (data, play) => {
+                const batterId = Number(play?.matchup?.batter?.id);
+                const batter = getChallengePlayer(data, batterId);
+                return getPersonName({ ...batter, ...play?.matchup?.batter }) || "—";
+            };
+
+            const getAbsPitchNumberText = (play, event, eventIndex) => {
+                const apiPitchNumber = Number(event?.pitchNumber);
+                if (Number.isFinite(apiPitchNumber) && apiPitchNumber > 0) {
+                    return `${apiPitchNumber}球目`;
+                }
+
+                const pitchCount = (play?.playEvents ?? [])
+                    .slice(0, eventIndex + 1)
+                    .filter((playEvent) => playEvent?.isPitch || playEvent?.type === "pitch")
+                    .length;
+                return pitchCount > 0 ? `${pitchCount}球目` : "—";
+            };
+
             const getChallengeLogEntries = (data) => {
                 const entries = [];
                 const seen = new Set();
@@ -950,6 +1175,8 @@
                             appendEntry({
                                 inning,
                                 half,
+                                batter: "—",
+                                pitchNumber: "—",
                                 type: "Replay",
                                 team: replayTeam.code,
                                 challenger: getReplayPlayLabel(target, play),
@@ -965,16 +1192,16 @@
                         }
 
                         const team = getChallengeTeamInfo(data, review?.challengeTeamId);
-                        const player = getChallengePlayer(data, review?.player?.id);
                         const role = getAbsChallengerRole(data, play, review);
-                        const name = getPersonName({ ...player, ...review?.player });
                         const target = getAbsTargetData(event, review);
                         appendEntry({
                             inning,
                             half,
+                            batter: getAbsBatterText(data, play),
+                            pitchNumber: getAbsPitchNumberText(play, event, eventIndex),
                             type: "ABS",
                             team: team.code,
-                            challenger: name ? `${name}（${role}）` : "",
+                            challenger: role || "—",
                             target,
                             targetText: target.originalCall,
                             resultText: target.finalCall,
@@ -992,6 +1219,8 @@
                     appendEntry({
                         inning,
                         half,
+                        batter: "—",
+                        pitchNumber: "—",
                         type: "Replay",
                         team: team.code,
                         challenger: getReplayPlayLabel(target, play),
@@ -1021,7 +1250,7 @@
                 );
 
                 const grid = createElement("div", "abs-challenge-grid");
-                ["回", "種類", "チーム", "チャレンジ者", "対象", "結果"].forEach(
+                ["回", "打者", "球数", "種類", "チーム", "チャレンジャー", "対象", "結果"].forEach(
                     (label) => {
                         grid.append(createElement("div", "abs-head", label));
                     }
@@ -1033,14 +1262,16 @@
                     const values = entry
                         ? [
                             `${entry.inning}${entry.half}`,
+                            entry.batter || "—",
+                            entry.pitchNumber || "—",
                             entry.type,
                             entry.team,
                             entry.challenger,
                             entry.targetText,
                             entry.resultText
                         ]
-                        : ["", "", "", "", "", ""];
-                    for (let column = 0; column < 6; column += 1) {
+                        : ["", "", "", "", "", "", "", ""];
+                    for (let column = 0; column < 8; column += 1) {
                         const cell = createElement("div", "editable-cell", String(values[column] ?? ""));
                         cell.title = String(values[column] ?? "");
                         cell.dataset.absRow = String(row + 1);
@@ -2213,7 +2444,7 @@
 
                 return box;
             };
-            const buildSideTables = () => {
+            const buildSideTables = (side) => {
                 const wrapper = createElement("div", "side-stats");
 
                 const notesBox = createElement("section", "table-box");
@@ -2223,7 +2454,11 @@
 
                 const notesTable = createElement("div", "special-notes");
                 for (let row = 0; row < 6; row += 1) {
-                    const note = createElement("div", "special-note-row");
+                    const note = createElement(
+                        "div",
+                        "special-note-row",
+                        state.streakNotes?.[side]?.[row] ?? ""
+                    );
                     note.contentEditable = "true";
                     note.spellcheck = false;
                     note.dataset.noteRow = String(row + 1);
@@ -2305,7 +2540,7 @@
                 );
 
                 const bottom = createElement("section", "sheet-bottom");
-                bottom.append(buildPitchingTable(side), buildSideTables());
+                bottom.append(buildPitchingTable(side), buildSideTables(side));
                 panel.append(bottom);
 
                 return panel;
@@ -2389,6 +2624,7 @@
                     state.innings = determineInningCount(data);
                     state.away = getTeamState(data, "away");
                     state.home = getTeamState(data, "home");
+                    state.streakNotes = await fetchStreakNotes(data, gamePk);
 
                     updateSidebar();
                     render();
@@ -2462,7 +2698,10 @@
 
             dom.loadButton.addEventListener("click", loadGame);
 
-            dom.generateButton.addEventListener("click", () => {
+            dom.generateButton.addEventListener("click", async () => {
+                if (state.gameData && state.gamePk) {
+                    state.streakNotes = await fetchStreakNotes(state.gameData, state.gamePk);
+                }
                 render();
                 setStatus(
                     `${state.innings}回分の早稲田式スコアブックを再生成しました。`
