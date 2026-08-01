@@ -594,9 +594,29 @@
 
             const streakNotesCache = new Map();
             const playerGameLogCache = new Map();
+            const playerCareerStreakCache = new Map();
             const teamScheduleCache = new Map();
             const gameBoxscoreCache = new Map();
             const activeRosterCache = new Map();
+            const playerCareerStatsCache = new Map();
+
+            const CAREER_MILESTONE_DEFINITIONS = Object.freeze({
+                hitting: [
+                    { field: "hits", currentField: "hits", label: "安打", marks: [500, 1000, 1500, 2000, 2500, 3000] },
+                    { field: "homeRuns", currentField: "homeRuns", label: "本塁打", marks: [100, 200, 300, 400, 500, 600, 700] },
+                    { field: "rbi", currentField: "rbi", label: "打点", marks: [500, 1000, 1500, 2000] },
+                    { field: "stolenBases", currentField: "stolenBases", label: "盗塁", marks: [100, 200, 300, 400, 500] },
+                    { field: "runs", currentField: "runs", label: "得点", marks: [500, 1000, 1500, 2000] },
+                    { field: "gamesPlayed", currentField: "gamesPlayed", label: "試合出場", marks: [500, 1000, 1500, 2000, 2500, 3000] }
+                ],
+                pitching: [
+                    { field: "wins", currentField: "wins", label: "勝利", marks: [50, 100, 150, 200, 250, 300] },
+                    { field: "strikeOuts", currentField: "strikeOuts", label: "奪三振", marks: [500, 1000, 1500, 2000, 2500, 3000] },
+                    { field: "gamesPlayed", currentField: "gamesPlayed", label: "登板", marks: [100, 250, 500, 750, 1000] },
+                    { field: "saves", currentField: "saves", label: "セーブ", marks: [50, 100, 150, 200, 250, 300, 400, 500, 600] },
+                    { field: "holds", currentField: "holds", label: "ホールド", marks: [50, 100, 150, 200] }
+                ]
+            });
 
             const getPlateAppearances = (stat = {}) => {
                 const officialValue = Number(stat.plateAppearances);
@@ -622,6 +642,143 @@
 
                 playerGameLogCache.set(cacheKey, request);
                 return request;
+            };
+
+            const fetchPlayerCareerStats = async (player, group, officialDate) => {
+                const playerId = Number(player?.id);
+                const debutDate = String(player?.person?.mlbDebutDate ?? "");
+                if (!Number.isFinite(playerId) || !/^\d{4}-\d{2}-\d{2}$/.test(debutDate)) {
+                    return null;
+                }
+                const cacheKey = `${playerId}:${group}:${officialDate}`;
+                if (playerCareerStatsCache.has(cacheKey)) {
+                    return playerCareerStatsCache.get(cacheKey);
+                }
+
+                const request = fetch(
+                    `https://statsapi.mlb.com/api/v1/people/${playerId}/stats` +
+                    `?stats=byDateRange&group=${group}&gameType=R` +
+                    `&startDate=${debutDate}&endDate=${officialDate}`
+                ).then(async (response) => {
+                    if (!response.ok) return null;
+                    const payload = await response.json();
+                    return payload?.stats?.[0]?.splits?.[0]?.stat ?? null;
+                }).catch(() => null);
+
+                playerCareerStatsCache.set(cacheKey, request);
+                return request;
+            };
+
+            const calculateLongestStreaks = (splits, excludedGamePk) => {
+                const games = splits
+                    .filter((split) => Number(split?.game?.gamePk) !== Number(excludedGamePk))
+                    .sort((a, b) => String(a?.date ?? "").localeCompare(String(b?.date ?? "")) ||
+                        (Number(a?.game?.gameNumber) || Number(a?.game?.gamePk) || 0) -
+                        (Number(b?.game?.gameNumber) || Number(b?.game?.gamePk) || 0));
+                let hit = 0;
+                let onBase = 0;
+                let longestHit = 0;
+                let longestOnBase = 0;
+
+                games.forEach((split) => {
+                    const stat = split?.stat ?? {};
+                    if (getPlateAppearances(stat) <= 0) return;
+                    const hits = Number(stat?.hits) || 0;
+                    const reached = hits +
+                        (Number(stat?.baseOnBalls) || 0) +
+                        (Number(stat?.hitByPitch) || 0);
+                    hit = hits > 0 ? hit + 1 : 0;
+                    onBase = reached > 0 ? onBase + 1 : 0;
+                    longestHit = Math.max(longestHit, hit);
+                    longestOnBase = Math.max(longestOnBase, onBase);
+                });
+                return { hit: longestHit, onBase: longestOnBase };
+            };
+
+            const fetchPlayerCareerBestStreaks = async (player, season, currentGamePk) => {
+                const debutYear = Number(String(player?.person?.mlbDebutDate ?? "").slice(0, 4));
+                if (!Number.isFinite(debutYear) || debutYear > season) return null;
+                const cacheKey = `${player.id}:${season}:${currentGamePk}`;
+                if (playerCareerStreakCache.has(cacheKey)) {
+                    return playerCareerStreakCache.get(cacheKey);
+                }
+
+                const request = mapWithConcurrency(
+                    Array.from({ length: season - debutYear + 1 }, (_, index) => debutYear + index),
+                    4,
+                    (year) => fetchPlayerRegularSeasonGameLog(player.id, year)
+                ).then((yearlySplits) => calculateLongestStreaks(
+                    yearlySplits.flat(),
+                    currentGamePk
+                )).catch(() => null);
+                playerCareerStreakCache.set(cacheKey, request);
+                return request;
+            };
+
+            const getPersonalStreakSuffix = (current, previousBest, stopped) => {
+                if (stopped || !Number.isFinite(previousBest) || previousBest < 1) return "";
+                if (current > previousBest) return "（自己最長更新）";
+                if (current === previousBest) return "（自己最長タイ）";
+                const remaining = previousBest - current;
+                return remaining >= 1 && remaining <= 2
+                    ? `（自己最長${previousBest}まであと${remaining}）`
+                    : "";
+            };
+
+            const buildCareerMilestoneNotes = async (players, code, officialDate) => {
+                const notes = await mapWithConcurrency(players, 8, async (player) => {
+                    const primaryPosition = normalizePositionAbbreviation(
+                        player?.person?.primaryPosition
+                    );
+                    const groups = player?.rosterPosition === "TWP" || primaryPosition === "TWP"
+                        ? ["hitting", "pitching"]
+                        : isPitcherCandidate(player) ? ["pitching"] : ["hitting"];
+                    const playerNotes = [];
+
+                    for (const group of groups) {
+                        const career = await fetchPlayerCareerStats(player, group, officialDate);
+                        if (!career) continue;
+                        const current = group === "pitching"
+                            ? player.currentGamePitching
+                            : player.currentGameBatting;
+
+                        CAREER_MILESTONE_DEFINITIONS[group].forEach((definition) => {
+                            const total = Number(career?.[definition.field]);
+                            if (!Number.isFinite(total)) return;
+                            const gameValue = Number(current?.[definition.currentField]) || 0;
+                            const beforeGame = Math.max(0, total - gameValue);
+                            const achieved = definition.marks.find((mark) =>
+                                beforeGame < mark && total >= mark
+                            );
+                            const next = definition.marks.find((mark) => mark > total);
+                            const playerName = getPersonName(player.person);
+
+                            if (achieved) {
+                                playerNotes.push({
+                                    text: `${code}　${playerName}　通算${achieved}${definition.label}達成`,
+                                    priority: 0,
+                                    importance: achieved
+                                });
+                                return;
+                            }
+                            if (next) {
+                                const remaining = next - total;
+                                if (remaining >= 1 && remaining <= 5) {
+                                    playerNotes.push({
+                                        text: `${code}　${playerName}　通算${next}${definition.label}まであと${remaining}`,
+                                        priority: 4,
+                                        importance: 6 - remaining
+                                    });
+                                }
+                            }
+                        });
+                    }
+                    return playerNotes;
+                });
+
+                return notes.flat().sort((a, b) =>
+                    a.priority - b.priority || b.importance - a.importance
+                );
             };
 
             const fetchActiveRoster = async (teamId, officialDate) => {
@@ -938,7 +1095,8 @@
                             rosterPosition: normalizePositionAbbreviation(
                                 entry?.position ?? entry?.person?.primaryPosition
                             ),
-                            currentGameBatting: gamePlayer?.stats?.batting ?? {}
+                            currentGameBatting: gamePlayer?.stats?.batting ?? {},
+                            currentGamePitching: gamePlayer?.stats?.pitching ?? {}
                         };
                     })
                     .filter((player, index, list) => player.id &&
@@ -1011,19 +1169,47 @@
                     const code = getMlbTeamDisplayCode(team);
                     const hitLeader = chooseLongestStreak(analyzed, "hitStreak");
                     const onBaseLeader = chooseLongestStreak(analyzed, "onBaseStreak");
-                    const notes = [];
+                    const streakLeaders = [...new Map(
+                        [hitLeader, onBaseLeader]
+                            .filter(Boolean)
+                            .map((player) => [player.id, player])
+                    ).values()];
+                    const personalBestEntries = await Promise.all(streakLeaders.map(async (player) => [
+                        player.id,
+                        await fetchPlayerCareerBestStreaks(player, season, gamePk)
+                    ]));
+                    const personalBestByPlayer = new Map(personalBestEntries);
+                    const notes = await buildCareerMilestoneNotes(analyzed, code, officialDate);
                     if (hitLeader) {
-                        const suffix = hitLeader.hitStreakStopped ? "でストップ" : "";
+                        const stoppedSuffix = hitLeader.hitStreakStopped ? "でストップ" : "";
+                        const personalSuffix = getPersonalStreakSuffix(
+                            hitLeader.hitStreak,
+                            personalBestByPlayer.get(hitLeader.id)?.hit,
+                            hitLeader.hitStreakStopped
+                        );
+                        const priority = personalSuffix.includes("更新") ? 1
+                            : personalSuffix.includes("タイ") ? 2
+                                : personalSuffix.includes("あと") ? 5
+                                    : hitLeader.hitStreakStopped ? 3 : 6;
                         notes.push({
-                            text: `${code}　${getPersonName(hitLeader.person)}　連続試合安打：${hitLeader.hitStreak}試合${suffix}`,
-                            priority: hitLeader.hitStreakStopped ? 1 : 6
+                            text: `${code}　${getPersonName(hitLeader.person)}　連続試合安打：${hitLeader.hitStreak}試合${stoppedSuffix}${personalSuffix}`,
+                            priority
                         });
                     }
                     if (onBaseLeader) {
-                        const suffix = onBaseLeader.onBaseStreakStopped ? "でストップ" : "";
+                        const stoppedSuffix = onBaseLeader.onBaseStreakStopped ? "でストップ" : "";
+                        const personalSuffix = getPersonalStreakSuffix(
+                            onBaseLeader.onBaseStreak,
+                            personalBestByPlayer.get(onBaseLeader.id)?.onBase,
+                            onBaseLeader.onBaseStreakStopped
+                        );
+                        const priority = personalSuffix.includes("更新") ? 1
+                            : personalSuffix.includes("タイ") ? 2
+                                : personalSuffix.includes("あと") ? 5
+                                    : onBaseLeader.onBaseStreakStopped ? 3 : 7;
                         notes.push({
-                            text: `${code}　${getPersonName(onBaseLeader.person)}　連続試合出塁：${onBaseLeader.onBaseStreak}試合${suffix}`,
-                            priority: onBaseLeader.onBaseStreakStopped ? 1 : 7
+                            text: `${code}　${getPersonName(onBaseLeader.person)}　連続試合出塁：${onBaseLeader.onBaseStreak}試合${stoppedSuffix}${personalSuffix}`,
+                            priority
                         });
                     }
                     const schedule = await fetchTeamRegularSeasonSchedule(
@@ -1249,6 +1435,19 @@
                     .map((playerId) => playerMap[`ID${playerId}`])
                     .filter(Boolean)
                     .map((player) => enrichPlayerHandedness(data, player));
+            };
+
+            const getPitcherDecisionSuffix = (person) => {
+                if (!isGameFinal(state.gameData)) return "";
+
+                const playerId = Number(person?.id);
+                if (!Number.isFinite(playerId)) return "";
+
+                const decisions = state.gameData?.liveData?.decisions ?? {};
+                if (Number(decisions?.winner?.id) === playerId) return " (W)";
+                if (Number(decisions?.loser?.id) === playerId) return " (L)";
+                if (Number(decisions?.save?.id) === playerId) return " (S)";
+                return "";
             };
 
             const getJapaneseDivisionName = (team) => {
@@ -3011,13 +3210,14 @@
                 pitchers.forEach((pitcher) => {
                     const row = document.createElement("tr");
                     const stats = pitcher?.stats?.pitching ?? {};
+                    const pitcherName = getPersonName(pitcher?.person);
                     const walks = Number(stats.baseOnBalls);
                     const hitByPitch = Number(stats.hitByPitch);
                     const walksAndHitByPitch = Number.isFinite(walks) || Number.isFinite(hitByPitch)
                         ? (Number.isFinite(walks) ? walks : 0) + (Number.isFinite(hitByPitch) ? hitByPitch : 0)
                         : "";
                     const values = [
-                        getPersonName(pitcher?.person),
+                        `${pitcherName}${getPitcherDecisionSuffix(pitcher?.person)}`,
                         stats.numberOfPitches ?? "",
                         stats.inningsPitched ?? "",
                         stats.hits ?? "",
