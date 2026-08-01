@@ -468,6 +468,28 @@ input {
     white-space: normal;
 }
 
+.sheet-meta .attendance-value {
+    justify-content: space-between;
+    gap: 5px;
+}
+
+.attendance-number,
+.attendance-note {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.attendance-number {
+    flex: 0 0 auto;
+}
+
+.attendance-note {
+    flex: 1 1 auto;
+    text-align: right;
+}
+
 .matchup-row {
     display: grid;
     grid-template-columns: 1fr 54px 1fr;

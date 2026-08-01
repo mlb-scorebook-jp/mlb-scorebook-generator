@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MLB Scorebook Generator</title>
     <!-- Score notation update: stacked batted-ball symbol, red hits, blue strikeouts, black other results. -->
-    <link rel="stylesheet" href="css/style.css?v=20260801-22">
+    <link rel="stylesheet" href="css/style.css?v=20260801-23">
 </head>
 
 <body>
@@ -327,6 +327,7 @@
                     ])
                 ),
                 headToHead: null,
+                attendanceNote: "",
                 streakNotes: { away: [], home: [] },
                 defensivePositionHistory: { away: {}, home: {} },
                 away: {
@@ -637,6 +638,7 @@
             const playerCareerStatsCache = new Map();
             const headToHeadCache = new Map();
             const teamFirstYearCache = new Map();
+            const seasonAttendanceCache = new Map();
 
             const CAREER_MILESTONE_DEFINITIONS = Object.freeze({
                 hitting: [
@@ -889,6 +891,67 @@
                     .catch(() => []);
                 teamScheduleCache.set(cacheKey, request);
                 return request;
+            };
+
+            const fetchSeasonAttendanceNote = async (data, gamePk) => {
+                const gameType = String(
+                    data?.gameData?.game?.type ?? data?.gameData?.game?.gameType ?? ""
+                ).toUpperCase();
+                if (gameType !== "R" || !isGameFinal(data)) return "";
+
+                const homeTeamId = Number(data?.gameData?.teams?.home?.id);
+                const homeVenueId = Number(data?.gameData?.teams?.home?.venue?.id);
+                const gameVenueId = Number(data?.gameData?.venue?.id);
+                const officialDate = String(data?.gameData?.datetime?.officialDate ?? "");
+                const season = Number(data?.gameData?.game?.season) ||
+                    Number(officialDate.slice(0, 4));
+                if (!homeTeamId || !homeVenueId || gameVenueId !== homeVenueId ||
+                    !officialDate || !season) return "";
+
+                const cacheKey = `${homeTeamId}:${season}:${officialDate}:attendance`;
+                let gamesRequest = seasonAttendanceCache.get(cacheKey);
+                if (!gamesRequest) {
+                    const params = new URLSearchParams({
+                        sportId: "1",
+                        teamId: String(homeTeamId),
+                        startDate: `${season}-02-01`,
+                        endDate: officialDate,
+                        gameType: "R",
+                        hydrate: "gameInfo,venue"
+                    });
+                    gamesRequest = fetch(`https://statsapi.mlb.com/api/v1/schedule?${params}`)
+                        .then(async (response) => {
+                            if (!response.ok) return [];
+                            const payload = await response.json();
+                            return (payload?.dates ?? []).flatMap((date) => date?.games ?? []);
+                        })
+                        .catch(() => []);
+                    seasonAttendanceCache.set(cacheKey, gamesRequest);
+                }
+
+                const attendances = (await gamesRequest)
+                    .filter((game) =>
+                        String(game?.gameType ?? "").toUpperCase() === "R" &&
+                        String(game?.status?.abstractGameState ?? "").toLowerCase() === "final" &&
+                        Number(game?.teams?.home?.team?.id) === homeTeamId &&
+                        Number(game?.venue?.id) === homeVenueId &&
+                        game?.neutralSite !== true &&
+                        game?.reverseHomeAwayStatus !== true
+                    )
+                    .map((game) => ({
+                        gamePk: Number(game?.gamePk),
+                        attendance: Number(game?.gameInfo?.attendance)
+                    }))
+                    .filter((entry) => Number.isFinite(entry.attendance) && entry.attendance > 0);
+                const current = attendances.find((entry) =>
+                    entry.gamePk === Number(gamePk)
+                );
+                if (!current || !attendances.length) return "";
+
+                const values = attendances.map((entry) => entry.attendance);
+                if (current.attendance === Math.max(...values)) return "今季最多入場者数";
+                if (current.attendance === Math.min(...values)) return "今季最少入場者数";
+                return "";
             };
 
             const getEmptyHeadToHeadRecord = () => ({
@@ -2226,10 +2289,27 @@
                 ];
 
                 items.forEach(([label, value]) => {
-                    meta.append(
-                        createElement("div", "label", label),
-                        createElement("div", "", String(value ?? ""))
-                    );
+                    const valueCell = createElement("div", "", String(value ?? ""));
+                    if (label === "観衆") {
+                        valueCell.classList.add("attendance-value");
+                        valueCell.textContent = "";
+                        const attendance = Number(value);
+                        valueCell.append(createElement(
+                            "span",
+                            "attendance-number",
+                            Number.isFinite(attendance)
+                                ? attendance.toLocaleString("ja-JP")
+                                : String(value ?? "-")
+                        ));
+                        if (state.attendanceNote) {
+                            valueCell.append(createElement(
+                                "span",
+                                "attendance-note",
+                                state.attendanceNote
+                            ));
+                        }
+                    }
+                    meta.append(createElement("div", "label", label), valueCell);
                 });
 
                 fragment.append(meta);
@@ -3929,9 +4009,10 @@
                     state.defensivePositionHistory = buildDefensivePositionHistory(data);
                     state.away = getTeamState(data, "away");
                     state.home = getTeamState(data, "home");
-                    [state.streakNotes, state.headToHead] = await Promise.all([
+                    [state.streakNotes, state.headToHead, state.attendanceNote] = await Promise.all([
                         fetchStreakNotes(data, gamePk),
-                        fetchHeadToHeadRecord(data, gamePk)
+                        fetchHeadToHeadRecord(data, gamePk),
+                        fetchSeasonAttendanceNote(data, gamePk)
                     ]);
 
                     updateSidebar();
@@ -4088,9 +4169,10 @@
 
             dom.generateButton.addEventListener("click", async () => {
                 if (state.gameData && state.gamePk) {
-                    [state.streakNotes, state.headToHead] = await Promise.all([
+                    [state.streakNotes, state.headToHead, state.attendanceNote] = await Promise.all([
                         fetchStreakNotes(state.gameData, state.gamePk),
-                        fetchHeadToHeadRecord(state.gameData, state.gamePk)
+                        fetchHeadToHeadRecord(state.gameData, state.gamePk),
+                        fetchSeasonAttendanceNote(state.gameData, state.gamePk)
                     ]);
                 }
                 render();
