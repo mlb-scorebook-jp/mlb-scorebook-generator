@@ -2622,7 +2622,7 @@
                     [/second baseman|second base side/, "4"],
                     [/third baseman|third base side/, "5"],
                     [/shortstop/, "6"],
-                    [/right[- ]center field/, "9"],
+                    [/right[- ]center field/, "9•8"],
                     [/left[- ]center field/, "7"],
                     [/left fielder|to left field|into left field|down the left field line/, "7"],
                     [/center fielder|to center field|into center field/, "8"],
@@ -2887,6 +2887,7 @@
                 field_error: { category: "reach" },
                 fielders_choice: { category: "reach" },
                 catcher_interference: { category: "reach", notation: "CI" },
+                fielder_interference: { category: "reach", notation: "FI" },
                 runner_interference: { category: "out", notation: "OI" },
                 unknown_out: { category: "out" }
             });
@@ -2919,6 +2920,10 @@
                 if (eventType === "sac_fly" || event.includes("sac fly")) return "sac_fly";
                 if (["sac_bunt", "sacrifice_bunt"].includes(eventType) || event.includes("sac bunt")) return "sac_bunt";
                 if (eventType.includes("catcher_interf")) return "catcher_interference";
+                if (eventType === "fielder_interference" ||
+                    (!eventType && /fielder'?s? interference|fielding interference/.test(description))) {
+                    return "fielder_interference";
+                }
                 if (eventType.includes("runner_interf") || event.includes("interference")) return "runner_interference";
                 return "unknown_out";
             };
@@ -3162,6 +3167,24 @@
                             const linkedEventDescription = String(
                                 linkedEventDetails?.description ?? ""
                             ).toLowerCase();
+                            const playEventType = String(
+                                play?.result?.eventType ?? ""
+                            ).toLowerCase();
+                            const interferenceEventTypes = [
+                                runnerEventType,
+                                linkedEventType,
+                                playEventType
+                            ];
+                            const hasFielderInterferenceCode = interferenceEventTypes
+                                .includes("fielder_interference");
+                            const hasAnyInterferenceCode = interferenceEventTypes.some((type) =>
+                                type.includes("interf") || type.includes("obstruction")
+                            );
+                            const isFielderInterference = hasFielderInterferenceCode ||
+                                (!hasAnyInterferenceCode &&
+                                    /fielder'?s? interference|fielding interference/.test(
+                                        `${runnerEventDescription} ${linkedEventDescription}`
+                                    ));
                             const isStolenBase = runnerEventType.includes("stolen_base") ||
                                 runnerEventDescription.includes("stolen base") ||
                                 /\bsteals\b/.test(runnerEventDescription);
@@ -3175,11 +3198,13 @@
                                 linkedEventDescription.includes("passed ball");
                             const advanceLabel = isStolenBase
                                 ? "S"
-                                : isWildPitch
-                                    ? "WP"
-                                    : isPassedBall
-                                        ? "PB"
-                                        : `（${order}）`;
+                                : isFielderInterference
+                                    ? "FI"
+                                    : isWildPitch
+                                        ? "WP"
+                                        : isPassedBall
+                                            ? "PB"
+                                            : `（${order}）`;
                             const baseOrder = ["home", "1B", "2B", "3B", "score"];
                             let fromBase = normalizeBase(origin);
                             let toBase = normalizeBase(end);
