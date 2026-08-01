@@ -1247,17 +1247,52 @@ input {
         repeat(var(--inning-count), var(--inning-width))
         repeat(6, var(--stat-width));
     width: max-content;
+    min-height: 115px;
     border-left: 1.4px solid var(--rule);
 }
 
 .bench-label {
-    grid-row: span 5;
     display: flex;
     align-items: center;
     justify-content: center;
+    min-height: 115px;
     border-right: 1px solid var(--rule);
     border-bottom: 1px solid var(--rule);
     font-weight: 700;
+}
+
+.bench-pitcher-list {
+    grid-column: 2 / -1;
+    min-width: 0;
+    min-height: 115px;
+    display: flex;
+    align-items: center;
+    border-right: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    overflow: hidden;
+}
+
+.bench-pitcher-flow {
+    width: 100%;
+    max-height: 46px;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    overflow: hidden;
+    padding: 0 8px;
+    line-height: 23px;
+}
+
+.bench-pitcher-entry {
+    flex: 0 0 auto;
+    height: 23px;
+    font-size: 10px;
+    white-space: nowrap;
+}
+
+.bench-pitcher-entry:not(:last-child)::after {
+    content: " / ";
+    white-space: pre;
 }
 
 .bench-row {

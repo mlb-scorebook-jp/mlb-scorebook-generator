@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MLB Scorebook Generator</title>
     <!-- Score notation update: stacked batted-ball symbol, red hits, blue strikeouts, black other results. -->
-    <link rel="stylesheet" href="css/style.css?v=20260801-9">
+    <link rel="stylesheet" href="css/style.css?v=20260801-10">
 </head>
 
 <body>
@@ -3313,54 +3313,85 @@
                 return grid;
             };
 
-            const buildBenchRows = (side) => {
-                const grid = createElement("section", "bench-grid");
-                const pitchers = state[side].pitchers.slice(0, 5);
+            const formatPitcherEntryTiming = (play, outs) => {
+                const inning = Number(play?.about?.inning);
+                if (!inning) return "";
+                const half = play?.about?.halfInning === "top" ? "表" : "裏";
+                const outCount = Number(outs);
+                return `${inning}${half}${outCount > 0 ? `${Math.min(outCount, 2)}死` : ""}`;
+            };
 
-                const label = createElement("div", "bench-label", "P");
-                grid.append(label);
+            const getPitcherEntryTiming = (side, pitcher, pitcherIndex) => {
+                if (pitcherIndex === 0) return "先";
+                const playerId = Number(pitcher?.person?.id);
+                if (!playerId) return "";
+                const plays = state.gameData?.liveData?.plays?.allPlays ?? [];
 
-                for (let row = 0; row < 5; row += 1) {
-                    const pitcher = pitchers[row];
-                    const person = pitcher?.person ?? {};
-
-                    const pitcherNameCell = createElement("div", "bench-cell");
-                    pitcherNameCell.append(createPlayerProfileLink(person));
-                    grid.append(
-                        createElement(
-                            "div",
-                            "bench-cell",
-                            pitcher?.jerseyNumber ?? ""
-                        ),
-                        pitcherNameCell,
-                        createElement(
-                            "div",
-                            "bench-cell",
-                            pitcher?.position?.abbreviation ?? "P"
-                        ),
-                        createElement(
-                            "div",
-                            "bench-cell hand-cell",
-                            getPitchHandText(pitcher)
-                        )
-                    );
-
-                    const inningBlank = createElement(
-                        "div",
-                        "bench-cell blank-span"
-                    );
-
-                    inningBlank.style.gridColumn = `span ${state.innings}`;
-                    grid.append(inningBlank);
-
-                    for (
-                        let index = 0;
-                        index < statHeaders.length;
-                        index += 1
-                    ) {
-                        grid.append(createElement("div", "bench-cell"));
+                for (let playIndex = 0; playIndex < plays.length; playIndex += 1) {
+                    const play = plays[playIndex];
+                    for (const event of play?.playEvents ?? []) {
+                        const eventType = String(event?.details?.eventType ?? "").toLowerCase();
+                        if (eventType !== "pitching_substitution" ||
+                            Number(event?.player?.id) !== playerId) continue;
+                        const eventOuts = Number(event?.count?.outs);
+                        if (Number.isFinite(eventOuts)) {
+                            return formatPitcherEntryTiming(play, eventOuts);
+                        }
+                        const halfKey = `${play?.about?.inning}-${play?.about?.halfInning}`;
+                        let previousPlayOuts = 0;
+                        for (let previousIndex = playIndex - 1; previousIndex >= 0; previousIndex -= 1) {
+                            const previousPlay = plays[previousIndex];
+                            const previousHalfKey = `${previousPlay?.about?.inning}-${previousPlay?.about?.halfInning}`;
+                            if (previousHalfKey !== halfKey) break;
+                            previousPlayOuts = Number(previousPlay?.count?.outs) || 0;
+                            break;
+                        }
+                        return formatPitcherEntryTiming(play, previousPlayOuts);
                     }
                 }
+
+                const previousOuts = new Map();
+                for (const play of plays) {
+                    const halfKey = `${play?.about?.inning}-${play?.about?.halfInning}`;
+                    const battingSide = play?.about?.halfInning === "top" ? "away" : "home";
+                    const fieldingSide = battingSide === "away" ? "home" : "away";
+                    if (fieldingSide === side &&
+                        Number(play?.matchup?.pitcher?.id) === playerId) {
+                        return formatPitcherEntryTiming(play, previousOuts.get(halfKey) ?? 0);
+                    }
+                    previousOuts.set(halfKey, Number(play?.count?.outs) || 0);
+                }
+                return "";
+            };
+
+            const getPitchArmAbbreviation = (pitcher) => {
+                const code = String(pitcher?.pitchHand?.code ?? "").toUpperCase();
+                if (code === "L") return "LHP";
+                if (code === "R") return "RHP";
+                return "";
+            };
+
+            const buildBenchRows = (side) => {
+                const grid = createElement("section", "bench-grid");
+                const pitchers = state[side].pitchers;
+
+                const label = createElement("div", "bench-label", "P");
+                const list = createElement("div", "bench-pitcher-list");
+                const flow = createElement("div", "bench-pitcher-flow");
+                pitchers.forEach((pitcher, pitcherIndex) => {
+                    const person = pitcher?.person ?? {};
+                    const entry = createElement("span", "bench-pitcher-entry");
+                    const timing = getPitcherEntryTiming(side, pitcher, pitcherIndex);
+                    const number = String(pitcher?.jerseyNumber ?? "").trim();
+                    const arm = getPitchArmAbbreviation(pitcher);
+                    const prefix = [timing, number].filter(Boolean).join(" ");
+                    if (prefix) entry.append(document.createTextNode(`${prefix} `));
+                    entry.append(createPlayerProfileLink(person));
+                    if (arm) entry.append(document.createTextNode(`（${arm}）`));
+                    flow.append(entry);
+                });
+                list.append(flow);
+                grid.append(label, list);
 
                 return grid;
             };
@@ -3420,20 +3451,24 @@
                 table.append(thead);
 
                 const tbody = document.createElement("tbody");
-                const pitchers = state[side].pitchers.length > 0
-                    ? state[side].pitchers.slice(0, 8)
-                    : Array.from({ length: 4 }, () => null);
+                const rowCount = Math.max(
+                    4,
+                    Math.min(8, state.away.pitchers.length),
+                    Math.min(8, state.home.pitchers.length)
+                );
+                const pitchers = state[side].pitchers.slice(0, rowCount);
+                while (pitchers.length < rowCount) pitchers.push(null);
 
                 pitchers.forEach((pitcher) => {
                     const row = document.createElement("tr");
                     const stats = pitcher?.stats?.pitching ?? {};
-                    const pitcherName = getPersonName(pitcher?.person);
+                    const pitcherName = pitcher ? getPersonName(pitcher?.person) : "";
                     const walks = Number(stats.baseOnBalls);
                     const hitByPitch = Number(stats.hitByPitch);
                     const walksAndHitByPitch = Number.isFinite(walks) || Number.isFinite(hitByPitch)
                         ? (Number.isFinite(walks) ? walks : 0) + (Number.isFinite(hitByPitch) ? hitByPitch : 0)
                         : "";
-                    const values = [
+                    const values = pitcher ? [
                         `${pitcherName}${getPitcherDecisionSuffix(pitcher?.person)}`,
                         stats.numberOfPitches ?? "",
                         stats.inningsPitched ?? "",
@@ -3443,7 +3478,7 @@
                         walksAndHitByPitch,
                         stats.strikeOuts ?? "",
                         stats.era ?? ""
-                    ];
+                    ] : Array.from({ length: pitchingHeaders.length }, () => "");
 
                     values.forEach((value, valueIndex) => {
                         const td = createElement("td", "", String(value ?? ""));
