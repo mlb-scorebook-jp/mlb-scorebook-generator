@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MLB Scorebook Generator</title>
     <!-- Score notation update: stacked batted-ball symbol, red hits, blue strikeouts, black other results. -->
-    <link rel="stylesheet" href="css/style.css?v=20260801-26">
+    <link rel="stylesheet" href="css/style.css?v=20260802-1">
 </head>
 
 <body>
@@ -17,6 +17,12 @@
         </div>
 
         <section class="header-game-search" aria-label="試合検索">
+            <label class="header-search-field header-year-field">
+                <span>YEAR</span>
+                <select id="header-game-year" aria-label="検索シーズン">
+                    <option value="">選択</option>
+                </select>
+            </label>
             <label class="header-search-field">
                 <span>TEAM 1</span>
                 <select id="header-home-team" aria-label="検索チーム1">
@@ -129,6 +135,7 @@
     </footer>
 
     <script src="js/players.js"></script>
+    <script src="js/historical-records.js"></script>
 
     <script>
         (() => {
@@ -399,6 +406,7 @@
             const dom = {
                 gameInput: document.getElementById("gameday-url"),
                 loadButton: document.getElementById("load-btn"),
+                searchGameYear: document.getElementById("header-game-year"),
                 searchHomeTeam: document.getElementById("header-home-team"),
                 searchAwayTeam: document.getElementById("header-away-team"),
                 searchGameDate: document.getElementById("header-game-date"),
@@ -706,6 +714,54 @@
             const teamFirstYearCache = new Map();
             const seasonAttendanceCache = new Map();
             const gameSearchCache = new Map();
+            const seasonSearchCache = new Map();
+            const seasonTeamSearchCache = new Map();
+
+            const getHistoricalRecordsForGame = (data, gamePk) => {
+                const officialDate = String(data?.gameData?.datetime?.officialDate ?? "");
+                const teamIds = {
+                    away: Number(data?.gameData?.teams?.away?.id),
+                    home: Number(data?.gameData?.teams?.home?.id)
+                };
+                return (window.HISTORICAL_RECORDS ?? [])
+                    .filter((record) => {
+                        if (Number(record?.gamePk)) {
+                            return Number(record.gamePk) === Number(gamePk);
+                        }
+                        return record?.gameDate === officialDate &&
+                            Object.values(teamIds).includes(Number(record?.teamId));
+                    })
+                    .map((record) => ({
+                        ...record,
+                        side: teamIds.away === Number(record?.teamId) ? "away" : "home"
+                    }))
+                    .sort((a, b) => Number(a?.priority) - Number(b?.priority));
+            };
+
+            const mergeHistoricalRecordNotes = (notesBySide, data, gamePk) => {
+                const records = getHistoricalRecordsForGame(data, gamePk);
+                const merged = { away: [], home: [] };
+                ["away", "home"].forEach((side) => {
+                    const sideRecords = records.filter((record) => record.side === side);
+                    const normalNotes = Array.isArray(notesBySide?.[side])
+                        ? notesBySide[side]
+                        : [];
+                    const filteredNotes = normalNotes.filter((note) => {
+                        const normalizedNote = normalizeLookupKey(note);
+                        return !sideRecords.some((record) =>
+                            (record?.dedupeTokens ?? []).length > 0 &&
+                            record.dedupeTokens.every((token) =>
+                                normalizedNote.includes(normalizeLookupKey(token))
+                            )
+                        );
+                    });
+                    merged[side] = [
+                        ...sideRecords.map((record) => record.displayText),
+                        ...filteredNotes
+                    ].slice(0, 12);
+                });
+                return merged;
+            };
 
             const CAREER_MILESTONE_DEFINITIONS = Object.freeze({
                 hitting: [
@@ -1904,9 +1960,13 @@
             const getTeamState = (data, side) => {
                 const team = data?.gameData?.teams?.[side] ?? {};
                 const boxscoreTeam = data?.liveData?.boxscore?.teams?.[side];
+                const gameSeason = Number(data?.gameData?.game?.season) ||
+                    Number(String(data?.gameData?.datetime?.officialDate ?? "").slice(0, 4));
+                const historicalGame = Number.isInteger(gameSeason) &&
+                    gameSeason < new Date().getFullYear();
 
                 const nhkTeamName =
-                    getNhkTeamName(team) ||
+                    (historicalGame ? String(team?.name ?? "") : getNhkTeamName(team)) ||
                     getNhkTeamName(boxscoreTeam?.team) ||
                     (side === "away" ? "先攻チーム" : "後攻チーム");
 
@@ -1914,7 +1974,9 @@
 
                 return {
                     id: Number(team?.id) || null,
-                    abbreviation: getMlbTeamDisplayCode(team) || nhkTeamName,
+                    abbreviation: historicalGame
+                        ? String(team?.abbreviation ?? "").toUpperCase() || nhkTeamName
+                        : getMlbTeamDisplayCode(team) || nhkTeamName,
                     name: nhkTeamName,
                     wins: record.wins,
                     losses: record.losses,
@@ -4322,6 +4384,67 @@
                 return response.json();
             };
 
+            const fetchSearchSeasons = async () => {
+                const cacheKey = "available-seasons";
+                if (seasonSearchCache.has(cacheKey)) return seasonSearchCache.get(cacheKey);
+                const request = fetch("https://statsapi.mlb.com/api/v1/seasons/all?sportId=1")
+                    .then(async (response) => {
+                        if (!response.ok) throw new Error("シーズン一覧を取得できません。");
+                        const payload = await response.json();
+                        return (payload?.seasons ?? [])
+                            .map((season) => ({
+                                id: Number(season?.seasonId),
+                                startDate: String(season?.regularSeasonStartDate ?? ""),
+                                endDate: String(season?.regularSeasonEndDate ?? "")
+                            }))
+                            .filter((season) => Number.isInteger(season.id))
+                            .sort((a, b) => b.id - a.id);
+                    });
+                seasonSearchCache.set(cacheKey, request);
+                return request;
+            };
+
+            const fetchSearchTeamsForSeason = async (season) => {
+                const numericSeason = Number(season);
+                if (seasonTeamSearchCache.has(numericSeason)) {
+                    return seasonTeamSearchCache.get(numericSeason);
+                }
+                const request = fetch(
+                    `https://statsapi.mlb.com/api/v1/teams?sportId=1&season=${numericSeason}`
+                ).then(async (response) => {
+                    if (!response.ok) throw new Error("年別球団一覧を取得できません。");
+                    const payload = await response.json();
+                    return (payload?.teams ?? [])
+                        .filter((team) => Number(team?.id) && team?.name)
+                        .map((team) => ({
+                            id: Number(team.id),
+                            name: String(team.name),
+                            abbreviation: String(team.abbreviation ?? "")
+                        }))
+                        .sort((a, b) => a.name.localeCompare(b.name, "en"));
+                });
+                seasonTeamSearchCache.set(numericSeason, request);
+                return request;
+            };
+
+            const getSearchSeason = () =>
+                Number(dom.searchGameYear.value) || new Date().getFullYear();
+
+            const getSearchSeasonDates = async (season) => {
+                const seasons = await fetchSearchSeasons().catch(() => []);
+                const metadata = seasons.find((item) => item.id === Number(season));
+                const start = metadata?.startDate || `${season}-01-01`;
+                const end = metadata?.endDate || `${season}-12-31`;
+                const dates = [];
+                const current = new Date(`${start}T12:00:00Z`);
+                const last = new Date(`${end}T12:00:00Z`);
+                while (current <= last) {
+                    dates.push(current.toISOString().slice(0, 10));
+                    current.setUTCDate(current.getUTCDate() + 1);
+                }
+                return dates;
+            };
+
             const getSearchGames = async (params, cacheKey) => {
                 if (gameSearchCache.has(cacheKey)) return gameSearchCache.get(cacheKey);
                 const request = fetch(`https://statsapi.mlb.com/api/v1/schedule?${params}`)
@@ -4431,18 +4554,53 @@
                     : "";
             };
 
-            const getSeasonSearchDates = (season) => {
-                const dates = [];
-                const current = new Date(`${season}-03-01T12:00:00Z`);
-                const end = new Date(`${season}-11-15T12:00:00Z`);
-                while (current <= end) {
-                    dates.push(current.toISOString().slice(0, 10));
-                    current.setUTCDate(current.getUTCDate() + 1);
-                }
-                return dates;
+            const getSelectedSearchTeamId = (select) => Number(select.value) || null;
+
+            const setSearchTeamOptions = (teams) => {
+                const currentYear = new Date().getFullYear();
+                const season = getSearchSeason();
+                const currentNames = new Map(
+                    MLB_TEAM_SEARCH_OPTIONS.map((team) => [Number(team.id), team.name])
+                );
+                [dom.searchHomeTeam, dom.searchAwayTeam].forEach((select) => {
+                    select.replaceChildren(createElement("option", "", "選択"));
+                    select.firstElementChild.value = "";
+                    teams.forEach((team) => {
+                        const displayName = season === currentYear
+                            ? currentNames.get(Number(team.id)) || team.name
+                            : team.name;
+                        const option = createElement("option", "", displayName);
+                        option.value = String(team.id);
+                        option.dataset.abbreviation = team.abbreviation;
+                        select.append(option);
+                    });
+                });
+                updateSearchTeamOptions();
             };
 
-            const getSelectedSearchTeamId = (select) => Number(select.value) || null;
+            const resetSearchSelection = async () => {
+                dom.searchHomeTeam.value = "";
+                dom.searchAwayTeam.value = "";
+                dom.searchGameDate.value = "";
+                const season = getSearchSeason();
+                setHeaderSearchBusy(true);
+                try {
+                    const [teams, dates] = await Promise.all([
+                        fetchSearchTeamsForSeason(season),
+                        getSearchSeasonDates(season)
+                    ]);
+                    setSearchTeamOptions(teams);
+                    setSearchDateOptions(dates);
+                    if (!teams.length) setStatus("該当年に球団が見つかりません。", true);
+                } catch (error) {
+                    console.error(error);
+                    setSearchTeamOptions([]);
+                    setSearchDateOptions([]);
+                    setStatus(error.message || "検索データを取得できません。", true);
+                } finally {
+                    setHeaderSearchBusy(false);
+                }
+            };
 
             const updateSearchTeamOptions = () => {
                 const team1Id = getSelectedSearchTeamId(dom.searchHomeTeam);
@@ -4461,6 +4619,7 @@
 
             const setHeaderSearchBusy = (busy) => {
                 dom.searchGameButton.disabled = busy;
+                dom.searchGameYear.disabled = busy;
                 dom.searchHomeTeam.disabled = busy;
                 dom.searchAwayTeam.disabled = busy;
                 dom.searchGameDate.disabled = busy;
@@ -4472,17 +4631,17 @@
                 const currentValue = dom.searchGameDate.value;
                 const currentDate = getSearchOptionDate(currentValue);
                 if (!team1Id || !team2Id) {
-                    const season = Number(currentDate.slice(0, 4)) || new Date().getFullYear();
-                    setSearchDateOptions(getSeasonSearchDates(season), currentDate);
+                    const dates = await getSearchSeasonDates(getSearchSeason());
+                    setSearchDateOptions(dates, currentDate);
                     return;
                 }
 
-                const season = Number(currentDate.slice(0, 4)) || new Date().getFullYear();
+                const season = getSearchSeason();
                 setHeaderSearchBusy(true);
                 const games = await fetchGamesForSearchMatchup(team1Id, team2Id, season);
                 setHeaderSearchBusy(false);
                 setSearchGameOptions(games, currentValue);
-                if (!games.length) setStatus("試合が見つかりません", true);
+                if (!games.length) setStatus("該当する試合がありません", true);
             };
 
             const syncSearchOpponentFromDate = async (changedTeam) => {
@@ -4504,7 +4663,7 @@
                     ].includes(selectedTeamId)
                 );
                 if (!game) {
-                    setStatus("試合が見つかりません", true);
+                    setStatus("該当する試合がありません", true);
                     return;
                 }
                 const homeId = Number(game?.teams?.home?.team?.id);
@@ -4541,23 +4700,32 @@
                 });
                 setHeaderSearchBusy(false);
                 if (!game?.gamePk) {
-                    setStatus("試合が見つかりません", true);
+                    setStatus("該当する試合がありません", true);
                     return;
                 }
                 dom.gameInput.value = String(game.gamePk);
                 await loadGame();
             };
 
-            const initializeHeaderGameSearch = () => {
-                [dom.searchHomeTeam, dom.searchAwayTeam].forEach((select) => {
-                    MLB_TEAM_SEARCH_OPTIONS.forEach((team) => {
-                        const option = createElement("option", "", team.name);
-                        option.value = String(team.id);
-                        select.append(option);
+            const initializeHeaderGameSearch = async () => {
+                const currentYear = new Date().getFullYear();
+                dom.searchGameYear.replaceChildren(createElement("option", "", String(currentYear)));
+                dom.searchGameYear.firstElementChild.value = String(currentYear);
+                try {
+                    const seasons = await fetchSearchSeasons();
+                    dom.searchGameYear.replaceChildren();
+                    seasons.forEach((season) => {
+                        const option = createElement("option", "", String(season.id));
+                        option.value = String(season.id);
+                        dom.searchGameYear.append(option);
                     });
-                });
-                setSearchDateOptions(getSeasonSearchDates(new Date().getFullYear()));
-                updateSearchTeamOptions();
+                    dom.searchGameYear.value = seasons.some((season) => season.id === currentYear)
+                        ? String(currentYear)
+                        : String(seasons[0]?.id ?? currentYear);
+                } catch (error) {
+                    console.error(error);
+                }
+                await resetSearchSelection();
             };
 
             const loadGame = async () => {
@@ -4584,18 +4752,38 @@
                     state.defensivePositionHistory = buildDefensivePositionHistory(data);
                     state.away = getTeamState(data, "away");
                     state.home = getTeamState(data, "home");
-                    [state.streakNotes, state.headToHead, state.attendanceNote] = await Promise.all([
+                    const supplementalResults = await Promise.allSettled([
                         fetchStreakNotes(data, gamePk),
                         fetchHeadToHeadRecord(data, gamePk),
                         fetchSeasonAttendanceNote(data, gamePk)
                     ]);
+                    supplementalResults.forEach((result) => {
+                        if (result.status === "rejected") console.error(result.reason);
+                    });
+                    const ordinaryNotes = supplementalResults[0].status === "fulfilled"
+                        ? supplementalResults[0].value
+                        : { away: [], home: [] };
+                    state.streakNotes = mergeHistoricalRecordNotes(
+                        ordinaryNotes,
+                        data,
+                        gamePk
+                    );
+                    state.headToHead = supplementalResults[1].status === "fulfilled"
+                        ? supplementalResults[1].value
+                        : null;
+                    state.attendanceNote = supplementalResults[2].status === "fulfilled"
+                        ? supplementalResults[2].value
+                        : "";
 
                     updateSidebar();
                     render();
 
+                    const hasPitchDetails = (data?.liveData?.plays?.allPlays ?? [])
+                        .some((play) => (play?.playEvents ?? []).some((event) => event?.isPitch));
                     setStatus(
                         `${state.away.abbreviation} @ ${state.home.abbreviation} を読み込みました。` +
-                        ` 実際の試合データに合わせて${state.innings}回まで生成しています。`
+                        ` 実際の試合データに合わせて${state.innings}回まで生成しています。` +
+                        (hasPitchDetails ? "" : " この試合は一部の詳細データを取得できません。")
                     );
                 } catch (error) {
                     console.error(error);
@@ -4657,6 +4845,11 @@
                 state.headToHead = snapshot.headToHead ?? null;
                 state.attendanceNote = snapshot.attendanceNote ?? "";
                 state.streakNotes = snapshot.streakNotes ?? { away: [], home: [] };
+                state.streakNotes = mergeHistoricalRecordNotes(
+                    state.streakNotes,
+                    snapshot.gameData,
+                    snapshot.gamePk
+                );
                 state.defensivePositionHistory = snapshot.defensivePositionHistory ??
                     buildDefensivePositionHistory(snapshot.gameData);
 
@@ -4860,6 +5053,7 @@
             };
 
             dom.loadButton.addEventListener("click", loadGame);
+            dom.searchGameYear.addEventListener("change", resetSearchSelection);
             dom.searchHomeTeam.addEventListener("change", async () => {
                 updateSearchTeamOptions();
                 if (dom.searchGameDate.value && !getSearchOptionGamePk(dom.searchGameDate.value)) {
@@ -4893,11 +5087,18 @@
 
             dom.generateButton.addEventListener("click", async () => {
                 if (state.gameData && state.gamePk) {
-                    [state.streakNotes, state.headToHead, state.attendanceNote] = await Promise.all([
+                    const [ordinaryNotes, headToHead, attendanceNote] = await Promise.all([
                         fetchStreakNotes(state.gameData, state.gamePk),
                         fetchHeadToHeadRecord(state.gameData, state.gamePk),
                         fetchSeasonAttendanceNote(state.gameData, state.gamePk)
                     ]);
+                    state.streakNotes = mergeHistoricalRecordNotes(
+                        ordinaryNotes,
+                        state.gameData,
+                        state.gamePk
+                    );
+                    state.headToHead = headToHead;
+                    state.attendanceNote = attendanceNote;
                 }
                 render();
                 setStatus(
