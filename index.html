@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MLB Scorebook Generator</title>
     <!-- Score notation update: stacked batted-ball symbol, red hits, blue strikeouts, black other results. -->
-    <link rel="stylesheet" href="css/style.css?v=20260801-6">
+    <link rel="stylesheet" href="css/style.css?v=20260801-9">
 </head>
 
 <body>
@@ -317,6 +317,7 @@
                 innings: DEFAULT_INNINGS,
                 gamePk: null,
                 gameData: null,
+                headToHead: null,
                 streakNotes: { away: [], home: [] },
                 defensivePositionHistory: { away: {}, home: {} },
                 away: {
@@ -599,6 +600,8 @@
             const gameBoxscoreCache = new Map();
             const activeRosterCache = new Map();
             const playerCareerStatsCache = new Map();
+            const headToHeadCache = new Map();
+            const teamFirstYearCache = new Map();
 
             const CAREER_MILESTONE_DEFINITIONS = Object.freeze({
                 hitting: [
@@ -822,6 +825,169 @@
                     })
                     .catch(() => []);
                 teamScheduleCache.set(cacheKey, request);
+                return request;
+            };
+
+            const getEmptyHeadToHeadRecord = () => ({
+                awaySeason: null,
+                homeSeason: null,
+                awayCareer: null,
+                homeCareer: null
+            });
+
+            const fetchHeadToHeadSchedule = async (
+                teamId,
+                opponentId,
+                startDate,
+                endDate
+            ) => {
+                const params = new URLSearchParams({
+                    sportId: "1",
+                    teamId: String(teamId),
+                    opponentId: String(opponentId),
+                    startDate,
+                    endDate,
+                    gameType: "R"
+                });
+                const controller = new AbortController();
+                const timeoutId = window.setTimeout(() => controller.abort(), 12000);
+                try {
+                    const response = await fetch(
+                        `https://statsapi.mlb.com/api/v1/schedule?${params}`,
+                        { signal: controller.signal }
+                    );
+                    if (!response.ok) return null;
+                    const payload = await response.json();
+                    return (payload?.dates ?? [])
+                        .flatMap((date) => date?.games ?? [])
+                        .filter((game) => String(game?.gameType ?? "").toUpperCase() === "R")
+                        .filter((game) => String(game?.status?.abstractGameState ?? "")
+                            .toLowerCase() === "final");
+                } catch {
+                    return null;
+                } finally {
+                    window.clearTimeout(timeoutId);
+                }
+            };
+
+            const countHeadToHeadWins = (games, awayTeamId, homeTeamId) => {
+                if (!Array.isArray(games)) return null;
+                const wins = { [awayTeamId]: 0, [homeTeamId]: 0 };
+                games.forEach((game) => {
+                    const away = game?.teams?.away ?? {};
+                    const home = game?.teams?.home ?? {};
+                    let winnerId = null;
+                    if (away?.isWinner === true) winnerId = Number(away?.team?.id);
+                    else if (home?.isWinner === true) winnerId = Number(home?.team?.id);
+                    else {
+                        const awayScore = Number(away?.score);
+                        const homeScore = Number(home?.score);
+                        if (Number.isFinite(awayScore) && Number.isFinite(homeScore) &&
+                            awayScore !== homeScore) {
+                            winnerId = awayScore > homeScore
+                                ? Number(away?.team?.id)
+                                : Number(home?.team?.id);
+                        }
+                    }
+                    if (Object.prototype.hasOwnProperty.call(wins, winnerId)) wins[winnerId] += 1;
+                });
+                return wins;
+            };
+
+            const fetchTeamFirstYear = async (teamId) => {
+                const cacheKey = String(teamId);
+                if (teamFirstYearCache.has(cacheKey)) return teamFirstYearCache.get(cacheKey);
+                const request = fetch(`https://statsapi.mlb.com/api/v1/teams/${teamId}`)
+                    .then(async (response) => {
+                        if (!response.ok) return null;
+                        const payload = await response.json();
+                        const year = Number(payload?.teams?.[0]?.firstYearOfPlay);
+                        return Number.isFinite(year) ? year : null;
+                    }).catch(() => null);
+                teamFirstYearCache.set(cacheKey, request);
+                return request;
+            };
+
+            const fetchCareerHeadToHeadSchedule = async (
+                awayTeamId,
+                homeTeamId,
+                officialDate
+            ) => {
+                const [awayFirstYear, homeFirstYear] = await Promise.all([
+                    fetchTeamFirstYear(awayTeamId),
+                    fetchTeamFirstYear(homeTeamId)
+                ]);
+                if (!Number.isFinite(awayFirstYear) || !Number.isFinite(homeFirstYear)) {
+                    return null;
+                }
+                const firstYear = Math.max(awayFirstYear, homeFirstYear);
+                const finalYear = Number(officialDate.slice(0, 4));
+                const ranges = [];
+                for (let year = firstYear; year <= finalYear; year += 1) {
+                    ranges.push({
+                        startDate: `${year}-01-01`,
+                        endDate: year === finalYear
+                            ? officialDate
+                            : `${year}-12-31`
+                    });
+                }
+                const results = await mapWithConcurrency(ranges, 8, (range) =>
+                    fetchHeadToHeadSchedule(
+                        awayTeamId,
+                        homeTeamId,
+                        range.startDate,
+                        range.endDate
+                    )
+                );
+                return results.some((games) => !Array.isArray(games))
+                    ? null
+                    : results.flat();
+            };
+
+            const fetchHeadToHeadRecord = async (data, gamePk) => {
+                const awayTeam = data?.gameData?.teams?.away ?? {};
+                const homeTeam = data?.gameData?.teams?.home ?? {};
+                const awayTeamId = Number(awayTeam?.id);
+                const homeTeamId = Number(homeTeam?.id);
+                const officialDate = String(data?.gameData?.datetime?.officialDate ?? "");
+                const season = Number(data?.gameData?.game?.season) || Number(officialDate.slice(0, 4));
+                if (!awayTeamId || !homeTeamId || !officialDate || !season) {
+                    return getEmptyHeadToHeadRecord();
+                }
+
+                const cacheKey = `${gamePk}:${isGameFinal(data) ? "final" : "pregame"}`;
+                if (headToHeadCache.has(cacheKey)) return headToHeadCache.get(cacheKey);
+                const request = Promise.all([
+                    fetchHeadToHeadSchedule(
+                        awayTeamId,
+                        homeTeamId,
+                        `${season}-01-01`,
+                        officialDate
+                    ),
+                    fetchCareerHeadToHeadSchedule(
+                        awayTeamId,
+                        homeTeamId,
+                        officialDate
+                    )
+                ]).then(([seasonGames, careerGames]) => {
+                    const seasonWins = countHeadToHeadWins(
+                        seasonGames,
+                        awayTeamId,
+                        homeTeamId
+                    );
+                    const careerWins = countHeadToHeadWins(
+                        careerGames,
+                        awayTeamId,
+                        homeTeamId
+                    );
+                    return {
+                        awaySeason: seasonWins?.[awayTeamId] ?? null,
+                        homeSeason: seasonWins?.[homeTeamId] ?? null,
+                        awayCareer: careerWins?.[awayTeamId] ?? null,
+                        homeCareer: careerWins?.[homeTeamId] ?? null
+                    };
+                }).catch(() => getEmptyHeadToHeadRecord());
+                headToHeadCache.set(cacheKey, request);
                 return request;
             };
 
@@ -1095,6 +1261,7 @@
                             rosterPosition: normalizePositionAbbreviation(
                                 entry?.position ?? entry?.person?.primaryPosition
                             ),
+                            battingOrder: Number.parseInt(gamePlayer?.battingOrder, 10),
                             currentGameBatting: gamePlayer?.stats?.batting ?? {},
                             currentGamePitching: gamePlayer?.stats?.pitching ?? {}
                         };
@@ -1106,6 +1273,23 @@
             const isPitcherCandidate = (player) =>
                 player?.rosterPosition === "P" ||
                 String(player?.person?.primaryPosition?.type ?? "").toLowerCase() === "pitcher";
+
+            const isTwoWayCandidate = (player) => {
+                const primaryPosition = normalizePositionAbbreviation(
+                    player?.person?.primaryPosition
+                );
+                return player?.rosterPosition === "TWP" || primaryPosition === "TWP" ||
+                    String(player?.person?.primaryPosition?.type ?? "")
+                        .toLowerCase() === "two-way player";
+            };
+
+            const isAbsenceEligibleFielder = (player) => {
+                if (isTwoWayCandidate(player)) {
+                    return Number.isFinite(player?.battingOrder) ||
+                        getPlateAppearances(player?.currentGameBatting) > 0;
+                }
+                return !isPitcherCandidate(player);
+            };
 
             const chooseLongestStreak = (players, field) => players
                 .filter((player) => player[`${field}Eligible`])
@@ -1218,7 +1402,7 @@
                         officialDate
                     );
                     notes.push(...await getAbsenceNotes(
-                        analyzed,
+                        analyzed.filter(isAbsenceEligibleFielder),
                         schedule,
                         participation.appeared,
                         gamePk,
@@ -1636,6 +1820,37 @@
                 return container;
             };
 
+            const formatHeadToHeadWins = (value) =>
+                Number.isFinite(value) ? `${value}勝` : "-";
+
+            const buildHeadToHeadTable = () => {
+                const table = createElement("section", "head-to-head-table");
+                const record = state.headToHead ?? getEmptyHeadToHeadRecord();
+                const rows = [
+                    ["対戦成績", state.away.abbreviation, state.home.abbreviation, "head"],
+                    [
+                        "今シーズン",
+                        formatHeadToHeadWins(record.awaySeason),
+                        formatHeadToHeadWins(record.homeSeason),
+                        ""
+                    ],
+                    [
+                        "通算",
+                        formatHeadToHeadWins(record.awayCareer),
+                        formatHeadToHeadWins(record.homeCareer),
+                        ""
+                    ]
+                ];
+                rows.forEach(([label, awayValue, homeValue, className]) => {
+                    table.append(
+                        createElement("div", `head-to-head-label ${className}`.trim(), label),
+                        createElement("div", className, awayValue),
+                        createElement("div", className, homeValue)
+                    );
+                });
+                return table;
+            };
+
             const getChallengeTeamInfo = (data, teamId) => {
                 const numericTeamId = Number(teamId);
                 for (const side of ["away", "home"]) {
@@ -1925,7 +2140,9 @@
             const buildScoreHeaderArea = (data) => {
                 const area = createElement("section", "score-header-area");
                 const left = createElement("div", "score-header-left");
-                left.append(buildTopScore(), buildSheetMeta(data));
+                const scoreSummary = createElement("div", "score-summary-row");
+                scoreSummary.append(buildTopScore(), buildHeadToHeadTable());
+                left.append(scoreSummary, buildSheetMeta(data));
                 area.append(left, buildAbsChallengeTable(data));
                 return area;
             };
@@ -3426,7 +3643,10 @@
                     state.defensivePositionHistory = buildDefensivePositionHistory(data);
                     state.away = getTeamState(data, "away");
                     state.home = getTeamState(data, "home");
-                    state.streakNotes = await fetchStreakNotes(data, gamePk);
+                    [state.streakNotes, state.headToHead] = await Promise.all([
+                        fetchStreakNotes(data, gamePk),
+                        fetchHeadToHeadRecord(data, gamePk)
+                    ]);
 
                     updateSidebar();
                     render();
@@ -3470,14 +3690,15 @@
             };
 
             const PRINT_PAGE_STYLE_ID = "print-a3-landscape-page";
+            const PRINT_STAGE_ID = "scorebook-print-stage";
             const A3_LANDSCAPE_WIDTH_MM = 420;
             const A3_LANDSCAPE_HEIGHT_MM = 297;
             const PRINT_MARGIN_MM = 6;
             const CSS_PIXELS_PER_MM = 96 / 25.4;
 
             const clearPrintFit = () => {
-                document.body.classList.remove("print-fit-a3");
-                document.documentElement.style.removeProperty("--print-scale");
+                document.body.classList.remove("print-stage-active");
+                document.getElementById(PRINT_STAGE_ID)?.remove();
                 document.getElementById(PRINT_PAGE_STYLE_ID)?.remove();
             };
 
@@ -3507,8 +3728,27 @@
                     printableWidth / contentWidth,
                     printableHeight / contentHeight
                 );
-                document.documentElement.style.setProperty("--print-scale", String(scale));
-                document.body.classList.add("print-fit-a3");
+                const printStage = document.createElement("section");
+                printStage.id = PRINT_STAGE_ID;
+                printStage.setAttribute("aria-hidden", "true");
+                printStage.style.setProperty("--print-scale", String(scale));
+                printStage.style.setProperty(
+                    "--print-output-width",
+                    `${contentWidth * scale}px`
+                );
+                printStage.style.setProperty(
+                    "--print-output-height",
+                    `${contentHeight * scale}px`
+                );
+
+                const printContent = document.createElement("div");
+                printContent.className = "scorebook-print-content";
+                printContent.style.width = `${contentWidth}px`;
+                printContent.style.height = `${contentHeight}px`;
+                printContent.append(content.cloneNode(true));
+                printStage.append(printContent);
+                document.body.append(printStage);
+                document.body.classList.add("print-stage-active");
 
                 const pageStyle = document.createElement("style");
                 pageStyle.id = PRINT_PAGE_STYLE_ID;
@@ -3522,7 +3762,9 @@
                     setStatus("印刷対象を生成してからPRINTを実行してください。", true);
                     return;
                 }
-                requestAnimationFrame(() => window.print());
+                requestAnimationFrame(() => {
+                    requestAnimationFrame(() => window.print());
+                });
             };
 
             const exportJson = () => {
@@ -3558,7 +3800,10 @@
 
             dom.generateButton.addEventListener("click", async () => {
                 if (state.gameData && state.gamePk) {
-                    state.streakNotes = await fetchStreakNotes(state.gameData, state.gamePk);
+                    [state.streakNotes, state.headToHead] = await Promise.all([
+                        fetchStreakNotes(state.gameData, state.gamePk),
+                        fetchHeadToHeadRecord(state.gameData, state.gamePk)
+                    ]);
                 }
                 render();
                 setStatus(

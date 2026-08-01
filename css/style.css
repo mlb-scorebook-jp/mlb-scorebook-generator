@@ -279,6 +279,14 @@ input {
     min-width: 0;
 }
 
+.score-summary-row {
+    display: flex;
+    align-items: stretch;
+    gap: 8px;
+    width: 969px;
+    min-width: 0;
+}
+
 .top-score {
     display: grid;
     grid-template-columns: 210px repeat(var(--inning-count), 38px) repeat(3, 42px);
@@ -311,6 +319,43 @@ input {
 .top-score .no-bottom {
     font-size: 15px;
     font-weight: 800;
+}
+
+.head-to-head-table {
+    flex: 1 1 auto;
+    min-width: 0;
+    display: grid;
+    grid-template-columns: minmax(92px, 1.25fr) repeat(2, minmax(58px, 1fr));
+    grid-template-rows: repeat(3, minmax(0, 1fr));
+    align-self: stretch;
+    border-top: 1.4px solid var(--rule);
+    border-left: 1.4px solid var(--rule);
+    background: #fff;
+}
+
+.head-to-head-table > div {
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px 5px;
+    border-right: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    overflow: hidden;
+    font-size: 10px;
+    font-weight: 700;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.head-to-head-table .head {
+    color: var(--rule);
+    background: var(--faint);
+}
+
+.head-to-head-table .head-to-head-label {
+    justify-content: flex-start;
+    padding-left: 9px;
 }
 
 .abs-challenge-box {
@@ -1444,15 +1489,18 @@ input {
         page-break-after: always;
     }
 
-    body.print-fit-a3 .scorebook-page {
+    body.print-stage-active > *:not(#scorebook-print-stage) {
         display: none !important;
     }
 
-    body.print-fit-a3 #away-page {
+    #scorebook-print-stage {
         display: block !important;
-        width: max-content;
-        min-width: 0;
-        zoom: var(--print-scale, 1);
+        position: relative;
+        width: var(--print-output-width);
+        height: var(--print-output-height);
+        margin: 0;
+        padding: 0;
+        overflow: visible;
         page-break-before: avoid;
         page-break-after: avoid;
         page-break-inside: avoid;
@@ -1461,8 +1509,14 @@ input {
         break-inside: avoid-page;
     }
 
-    body.print-fit-a3 #home-page {
-        display: none !important;
+    #scorebook-print-stage .scorebook-print-content {
+        position: absolute;
+        top: 0;
+        left: 0;
+        margin: 0;
+        padding: 0;
+        transform: scale(var(--print-scale, 1));
+        transform-origin: top left;
     }
 
     .paper {
@@ -1483,6 +1537,10 @@ input {
         text-decoration: none !important;
         opacity: 1 !important;
     }
+}
+
+#scorebook-print-stage {
+    display: none;
 }
 
 /* =========================================================
