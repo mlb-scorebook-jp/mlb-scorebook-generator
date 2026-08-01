@@ -3130,10 +3130,34 @@
                                 play,
                                 runner
                             ).toLowerCase();
+                            const runnerPlayIndex = Number(runner?.details?.playIndex);
+                            const linkedEventDetails = Number.isInteger(runnerPlayIndex)
+                                ? play?.playEvents?.[runnerPlayIndex]?.details ?? {}
+                                : {};
+                            const linkedEventType = String(
+                                linkedEventDetails?.eventType ?? ""
+                            ).toLowerCase();
+                            const linkedEventDescription = String(
+                                linkedEventDetails?.description ?? ""
+                            ).toLowerCase();
                             const isStolenBase = runnerEventType.includes("stolen_base") ||
                                 runnerEventDescription.includes("stolen base") ||
                                 /\bsteals\b/.test(runnerEventDescription);
-                            const advanceLabel = isStolenBase ? "S" : `（${order}）`;
+                            const isWildPitch = runnerEventType.includes("wild_pitch") ||
+                                linkedEventType.includes("wild_pitch") ||
+                                runnerEventDescription.includes("wild pitch") ||
+                                linkedEventDescription.includes("wild pitch");
+                            const isPassedBall = runnerEventType.includes("passed_ball") ||
+                                linkedEventType.includes("passed_ball") ||
+                                runnerEventDescription.includes("passed ball") ||
+                                linkedEventDescription.includes("passed ball");
+                            const advanceLabel = isStolenBase
+                                ? "S"
+                                : isWildPitch
+                                    ? "WP"
+                                    : isPassedBall
+                                        ? "PB"
+                                        : `（${order}）`;
                             const baseOrder = ["home", "1B", "2B", "3B", "score"];
                             let fromBase = normalizeBase(origin);
                             let toBase = normalizeBase(end);
