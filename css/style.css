@@ -15,6 +15,9 @@
     --blue: #2c67b8;
     --yellow: #f3c83e;
 
+    /* Visibility trial: change to block to restore the inning-change double line. */
+    --inning-end-mark-display: none;
+
     --order-width: 34px;
     --name-width: 180px;
     --position-width: 30px;
@@ -546,7 +549,7 @@ select {
     width: var(--challenge-width);
     flex: 0 0 var(--challenge-width);
     display: grid;
-    grid-template-columns: 10% 44% 10% 12% 12% 12%;
+    grid-template-columns: 9% 40% 9% 11% 12% 12% 7%;
     grid-template-rows: repeat(9, minmax(0, 1fr));
 }
 
@@ -1160,6 +1163,14 @@ select {
     stroke: none;
 }
 
+.pickoff-error-label {
+    position: static;
+    color: #111;
+    font-size: 8px;
+    line-height: 1;
+    white-space: nowrap;
+}
+
 /* Runner history between the 2B, 3B, and home annotation areas. */
 .play-card .runner-history-svg {
     position: absolute;
@@ -1188,7 +1199,8 @@ select {
 }
 
 /* 2B to home via 3B: keep the bent pass arrow inside the upper-left quarter. */
-.play-card .runner-history-svg.runner-history-third-home {
+.play-card .runner-history-svg.runner-history-third-home,
+.play-card .runner-history-svg.runner-history-poe-third-home {
     top: -1px;
     left: 6px;
     width: 15px;
@@ -1200,6 +1212,15 @@ select {
 .play-card .runner-history-svg.runner-history-second-third {
     top: -1px;
     left: 37px;
+    width: 15px;
+    height: 15px;
+    transform: none;
+}
+
+/* POE label remains at 2B; its leftward 2B-to-3B arrow occupies 3B's quarter. */
+.play-card .runner-history-svg.runner-history-poe-second-third {
+    top: -1px;
+    left: 6px;
     width: 15px;
     height: 15px;
     transform: none;
@@ -1303,6 +1324,12 @@ select {
 
 .play-center-mark.scored {
     color: var(--red);
+}
+
+/* Keep the unearned-run circle's outer size fixed while strengthening its inner edge. */
+.play-center-mark.scored.unearned {
+    -webkit-text-stroke: 0.35px var(--red);
+    paint-order: stroke fill;
 }
 
 .play-center-mark.out-number {
@@ -1450,6 +1477,7 @@ select {
 
 /* Inning change: two thin parallel lines bridge to the next batter card. */
 .inning-end-mark {
+    display: var(--inning-end-mark-display);
     position: absolute;
     right: -8px;
     bottom: 5px;
