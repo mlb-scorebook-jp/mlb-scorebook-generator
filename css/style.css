@@ -1790,6 +1790,10 @@ select {
         transform-origin: top left;
     }
 
+    #scorebook-print-stage *:not(.play-card):not(.play-card *) {
+        color: #000 !important;
+    }
+
     #scorebook-print-stage .scorebook-page,
     #scorebook-print-stage .paper {
         page-break-before: avoid !important;
