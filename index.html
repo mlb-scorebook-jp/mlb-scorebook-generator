@@ -803,9 +803,9 @@
                 return request;
             };
 
-            const calculateLongestStreaks = (splits, excludedGamePk) => {
+            const calculateLongestStreaks = (splits, context) => {
                 const games = splits
-                    .filter((split) => Number(split?.game?.gamePk) !== Number(excludedGamePk))
+                    .filter((split) => isGameBeforeCurrentStart(split, context))
                     .sort((a, b) => String(a?.date ?? "").localeCompare(String(b?.date ?? "")) ||
                         (Number(a?.game?.gameNumber) || Number(a?.game?.gamePk) || 0) -
                         (Number(b?.game?.gameNumber) || Number(b?.game?.gamePk) || 0));
@@ -829,10 +829,16 @@
                 return { hit: longestHit, onBase: longestOnBase };
             };
 
-            const fetchPlayerCareerBestStreaks = async (player, season, currentGamePk) => {
+            const fetchPlayerCareerBestStreaks = async (player, season, context) => {
                 const debutYear = Number(String(player?.person?.mlbDebutDate ?? "").slice(0, 4));
                 if (!Number.isFinite(debutYear) || debutYear > season) return null;
-                const cacheKey = `${player.id}:${season}:${currentGamePk}`;
+                const cacheKey = [
+                    player.id,
+                    season,
+                    context.officialDate,
+                    context.gamePk,
+                    context.gameNumber
+                ].join(":");
                 if (playerCareerStreakCache.has(cacheKey)) {
                     return playerCareerStreakCache.get(cacheKey);
                 }
@@ -843,7 +849,7 @@
                     (year) => fetchPlayerRegularSeasonGameLog(player.id, year)
                 ).then((yearlySplits) => calculateLongestStreaks(
                     yearlySplits.flat(),
-                    currentGamePk
+                    context
                 )).catch(() => null);
                 playerCareerStreakCache.set(cacheKey, request);
                 return request;
@@ -859,7 +865,7 @@
                     : "";
             };
 
-            const buildCareerMilestoneNotes = async (players, code, officialDate) => {
+            const buildCareerMilestoneNotes = async (players, code, context) => {
                 const notes = await mapWithConcurrency(players, 8, async (player) => {
                     const primaryPosition = normalizePositionAbbreviation(
                         player?.person?.primaryPosition
@@ -870,14 +876,33 @@
                     const playerNotes = [];
 
                     for (const group of groups) {
-                        const career = await fetchPlayerCareerStats(player, group, officialDate);
+                        const career = await fetchPlayerCareerStats(
+                            player,
+                            group,
+                            context.officialDate
+                        );
                         if (!career) continue;
+                        const laterSameDaySplits = context.gameNumber === 1
+                            ? (await fetchPlayerRegularSeasonGameLog(
+                                player.id,
+                                Number(context.officialDate.slice(0, 4)),
+                                group
+                            )).filter((split) =>
+                                String(split?.date ?? "").slice(0, 10) === context.officialDate &&
+                                Number(split?.game?.gamePk) !== context.gamePk &&
+                                !isGameBeforeCurrentStart(split, context)
+                            )
+                            : [];
                         const current = group === "pitching"
                             ? player.currentGamePitching
                             : player.currentGameBatting;
 
                         CAREER_MILESTONE_DEFINITIONS[group].forEach((definition) => {
-                            const total = Number(career?.[definition.field]);
+                            const laterSameDayValue = laterSameDaySplits.reduce(
+                                (sum, split) => sum + (Number(split?.stat?.[definition.field]) || 0),
+                                0
+                            );
+                            const total = Number(career?.[definition.field]) - laterSameDayValue;
                             if (!Number.isFinite(total)) return;
                             const gameValue = Number(current?.[definition.currentField]) || 0;
                             const beforeGame = Math.max(0, total - gameValue);
@@ -1383,6 +1408,22 @@
                     splitGamePk < context.gamePk;
             };
 
+            const isScheduleGameThroughCurrent = (game, context) => {
+                const gameDate = String(
+                    game?.officialDate ?? game?.gameDate ?? ""
+                ).slice(0, 10);
+                if (!gameDate || gameDate > context.officialDate) return false;
+                if (gameDate < context.officialDate) return true;
+                const gamePk = Number(game?.gamePk);
+                if (gamePk === context.gamePk) return true;
+                const gameNumber = Number(game?.gameNumber);
+                if (context.gameNumber > 1 && Number.isFinite(gameNumber)) {
+                    return gameNumber < context.gameNumber;
+                }
+                return context.gameNumber > 1 && Number.isFinite(gamePk) &&
+                    gamePk < context.gamePk;
+            };
+
             const summarizeCurrentStreaks = (splits, context) => {
                 const games = splits
                     .filter((split) => isGameBeforeCurrentStart(split, context))
@@ -1552,10 +1593,10 @@
                     ).values()];
                     const personalBestEntries = await Promise.all(streakLeaders.map(async (player) => [
                         player.id,
-                        await fetchPlayerCareerBestStreaks(player, season, gamePk)
+                        await fetchPlayerCareerBestStreaks(player, season, context)
                     ]));
                     const personalBestByPlayer = new Map(personalBestEntries);
-                    const notes = await buildCareerMilestoneNotes(analyzed, code, officialDate);
+                    const notes = await buildCareerMilestoneNotes(analyzed, code, context);
                     if (hitLeader) {
                         const stoppedSuffix = hitLeader.hitStreakStopped ? "でストップ" : "";
                         const personalSuffix = getPersonalStreakSuffix(
@@ -1593,9 +1634,12 @@
                         season,
                         officialDate
                     );
+                    const scheduleThroughCurrent = schedule.filter((game) =>
+                        isScheduleGameThroughCurrent(game, context)
+                    );
                     notes.push(...await getAbsenceNotes(
                         analyzed.filter(isAbsenceEligibleFielder),
-                        schedule,
+                        scheduleThroughCurrent,
                         participation.appeared,
                         gamePk,
                         team?.id,
