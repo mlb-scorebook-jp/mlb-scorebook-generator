@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MLB Scorebook Generator</title>
     <!-- Score notation update: stacked batted-ball symbol, red hits, blue strikeouts, black other results. -->
-    <link rel="stylesheet" href="css/style.css?v=20260801-10">
+    <link rel="stylesheet" href="css/style.css?v=20260801-15">
 </head>
 
 <body>
@@ -317,6 +317,10 @@
                 innings: DEFAULT_INNINGS,
                 gamePk: null,
                 gameData: null,
+                inningColumns: Array.from(
+                    { length: DEFAULT_INNINGS },
+                    (_, index) => ({ inning: index + 1, occurrence: 1 })
+                ),
                 headToHead: null,
                 streakNotes: { away: [], home: [] },
                 defensivePositionHistory: { away: {}, home: {} },
@@ -469,6 +473,31 @@
                         playInning
                     )
                 );
+            };
+
+            const determineInningColumns = (data, inningCount) => {
+                const plateAppearances = new Map();
+                (data?.liveData?.plays?.allPlays ?? []).forEach((play) => {
+                    if (!play?.matchup?.batter?.id) return;
+                    const side = play?.about?.halfInning === "top" ? "away" : "home";
+                    const inning = Number(play?.about?.inning);
+                    if (!inning) return;
+                    const key = `${side}-${inning}`;
+                    plateAppearances.set(key, (plateAppearances.get(key) ?? 0) + 1);
+                });
+
+                const columns = [];
+                for (let inning = 1; inning <= inningCount; inning += 1) {
+                    const maxAppearances = Math.max(
+                        plateAppearances.get(`away-${inning}`) ?? 0,
+                        plateAppearances.get(`home-${inning}`) ?? 0
+                    );
+                    const columnCount = Math.max(1, Math.ceil(maxAppearances / 9));
+                    for (let occurrence = 1; occurrence <= columnCount; occurrence += 1) {
+                        columns.push({ inning, occurrence });
+                    }
+                }
+                return columns;
             };
 
             const getPersonName = (person) => {
@@ -2178,10 +2207,11 @@
                 return createElement("div", "pitch-column");
             };
 
-            const createAtBatCell = (side, inning, order) => {
+            const createAtBatCell = (side, inning, occurrence, order) => {
                 const cell = createElement("div", "grid-cell atbat-cell");
                 cell.dataset.side = side;
                 cell.dataset.inning = String(inning);
+                cell.dataset.inningOccurrence = String(occurrence);
                 cell.dataset.order = String(order);
 
                 const resultBox = createElement("div", "result-box");
@@ -2246,11 +2276,11 @@
                     makeStackCell("center-cell hand-cell", (player) => getRosterHandText(side, player))
                 );
 
-                for (let inning = 1; inning <= state.innings; inning += 1) {
-                    const atBatCell = createAtBatCell(side, inning, order);
+                state.inningColumns.forEach(({ inning, occurrence }) => {
+                    const atBatCell = createAtBatCell(side, inning, occurrence, order);
                     atBatCell.style.height = `${rowHeight}px`;
                     fragment.append(atBatCell);
-                }
+                });
 
                 battingStatFields.forEach((field) => {
                     fragment.append(
@@ -2766,6 +2796,7 @@
                 const plays = state.gameData?.liveData?.plays?.allPlays ?? [];
                 const automaticRunners = getAutomaticRunnerPlacements(state.gameData, plays);
                 const renderedAutomaticRunners = new Set();
+                const plateAppearanceOccurrences = new Map();
 
                 plays.forEach((play, playIndex) => {
                     const side = play?.about?.halfInning === "top" ? "away" : "home";
@@ -2775,6 +2806,9 @@
                     if (!order || !inning) return;
 
                     const halfKey = `${side}-${inning}`;
+                    const occurrenceKey = `${side}-${inning}-${order}`;
+                    const inningOccurrence = (plateAppearanceOccurrences.get(occurrenceKey) ?? 0) + 1;
+                    plateAppearanceOccurrences.set(occurrenceKey, inningOccurrence);
                     const automaticRunnerId = automaticRunners.get(halfKey);
                     if (automaticRunnerId && !renderedAutomaticRunners.has(halfKey)) {
                         const automaticRunnerOrder = getBattingSlot(side, automaticRunnerId);
@@ -2784,6 +2818,7 @@
                                 atBatIndex: null,
                                 side,
                                 inning,
+                                inningOccurrence: 1,
                                 order: automaticRunnerOrder,
                                 batterId: automaticRunnerId,
                                 templateId: "extra_inning_runner",
@@ -2821,6 +2856,7 @@
                             : null,
                         side,
                         inning,
+                        inningOccurrence,
                         order,
                         batterId,
                         templateId: display.templateId,
@@ -3176,7 +3212,10 @@
             const populateScoreGrid = () => {
                 const records = buildPlateAppearanceRecords();
                 records.forEach((record) => {
-                    const selector = `.atbat-cell[data-side="${record.side}"][data-inning="${record.inning}"][data-order="${record.order}"] .result-box`;
+                    const selector = `.atbat-cell[data-side="${record.side}"]` +
+                        `[data-inning="${record.inning}"]` +
+                        `[data-inning-occurrence="${record.inningOccurrence ?? 1}"]` +
+                        `[data-order="${record.order}"] .result-box`;
                     const resultBox = dom.awaySheet.querySelector(selector);
                     if (!resultBox) return;
                     resultBox.classList.add("has-play");
@@ -3199,7 +3238,7 @@
                 const indicators = [];
                 const seenPlayers = new Set();
                 const plays = state.gameData?.liveData?.plays?.allPlays ?? [];
-                plays.forEach((play) => {
+                plays.forEach((play, playIndex) => {
                     const battingSide = play?.about?.halfInning === "top" ? "away" : "home";
                     const fieldingSide = battingSide === "away" ? "home" : "away";
                     const inning = Number(play?.about?.inning);
@@ -3213,12 +3252,21 @@
                             ? getBattingSlot(battingSide, play?.matchup?.batter?.id)
                             : getBattingSlot(side, playerId);
                         if (!order || !inning) return;
+                        const displaySide = role === "pitcher" ? battingSide : side;
+                        const priorAppearances = plays.slice(0, playIndex).filter((priorPlay) => {
+                            const priorSide = priorPlay?.about?.halfInning === "top" ? "away" : "home";
+                            return priorSide === displaySide &&
+                                Number(priorPlay?.about?.inning) === inning &&
+                                Boolean(priorPlay?.matchup?.batter?.id);
+                        }).length;
+                        const inningOccurrence = Math.floor(priorAppearances / 9) + 1;
 
                         const person = state.gameData?.gameData?.players?.[`ID${playerId}`] ?? event?.player ?? {};
                         indicators.push({
-                            side: role === "pitcher" ? battingSide : side,
+                            side: displaySide,
                             teamSide: role === "pitcher" ? fieldingSide : side,
                             inning,
+                            inningOccurrence,
                             order,
                             playerId,
                             person,
@@ -3265,14 +3313,17 @@
             const populateSubstitutionIndicators = () => {
                 const grouped = new Map();
                 getSubstitutionIndicators().forEach((item) => {
-                    const key = `${item.side}-${item.inning}-${item.order}`;
+                    const key = `${item.side}-${item.inning}-${item.inningOccurrence}-${item.order}`;
                     if (!grouped.has(key)) grouped.set(key, []);
                     grouped.get(key).push(item);
                 });
                 grouped.forEach((items) => {
-                    const { side, inning, order } = items[0];
+                    const { side, inning, inningOccurrence, order } = items[0];
                     const cell = dom.awaySheet.querySelector(
-                        `.atbat-cell[data-side="${side}"][data-inning="${inning}"][data-order="${order}"]`
+                        `.atbat-cell[data-side="${side}"]` +
+                        `[data-inning="${inning}"]` +
+                        `[data-inning-occurrence="${inningOccurrence}"]` +
+                        `[data-order="${order}"]`
                     );
                     if (cell) {
                         const indicator = createSubstitutionIndicator(items, cell);
@@ -3292,11 +3343,11 @@
                     grid.append(createElement("div", "grid-header", label));
                 });
 
-                for (let inning = 1; inning <= state.innings; inning += 1) {
+                state.inningColumns.forEach(({ inning }) => {
                     grid.append(
                         createElement("div", "grid-header", String(inning))
                     );
-                }
+                });
 
                 statHeaders.forEach((label) => {
                     const header = createElement("div", "grid-header vertical");
@@ -3313,16 +3364,23 @@
                 return grid;
             };
 
-            const formatPitcherEntryTiming = (play, outs) => {
+            const PITCHER_ORDER_MARKS = ["①", "②", "③", "④", "⑤", "⑥", "⑦", "⑧", "⑨", "⑩"];
+
+            const getPitcherOrderLabel = (pitcherIndex) =>
+                pitcherIndex === 0
+                    ? "先"
+                    : PITCHER_ORDER_MARKS[pitcherIndex] ?? String(pitcherIndex + 1);
+
+            const formatPitcherEntrySituation = (play, outs) => {
                 const inning = Number(play?.about?.inning);
                 if (!inning) return "";
                 const half = play?.about?.halfInning === "top" ? "表" : "裏";
-                const outCount = Number(outs);
-                return `${inning}${half}${outCount > 0 ? `${Math.min(outCount, 2)}死` : ""}`;
+                const outLabel = { 1: "一死", 2: "二死" }[Number(outs)] ?? "";
+                return `${inning}${half}${outLabel}`;
             };
 
-            const getPitcherEntryTiming = (side, pitcher, pitcherIndex) => {
-                if (pitcherIndex === 0) return "先";
+            const getPitcherEntrySituation = (side, pitcher, pitcherIndex) => {
+                if (pitcherIndex === 0) return "";
                 const playerId = Number(pitcher?.person?.id);
                 if (!playerId) return "";
                 const plays = state.gameData?.liveData?.plays?.allPlays ?? [];
@@ -3335,7 +3393,7 @@
                             Number(event?.player?.id) !== playerId) continue;
                         const eventOuts = Number(event?.count?.outs);
                         if (Number.isFinite(eventOuts)) {
-                            return formatPitcherEntryTiming(play, eventOuts);
+                            return formatPitcherEntrySituation(play, eventOuts);
                         }
                         const halfKey = `${play?.about?.inning}-${play?.about?.halfInning}`;
                         let previousPlayOuts = 0;
@@ -3346,7 +3404,7 @@
                             previousPlayOuts = Number(previousPlay?.count?.outs) || 0;
                             break;
                         }
-                        return formatPitcherEntryTiming(play, previousPlayOuts);
+                        return formatPitcherEntrySituation(play, previousPlayOuts);
                     }
                 }
 
@@ -3357,7 +3415,7 @@
                     const fieldingSide = battingSide === "away" ? "home" : "away";
                     if (fieldingSide === side &&
                         Number(play?.matchup?.pitcher?.id) === playerId) {
-                        return formatPitcherEntryTiming(play, previousOuts.get(halfKey) ?? 0);
+                        return formatPitcherEntrySituation(play, previousOuts.get(halfKey) ?? 0);
                     }
                     previousOuts.set(halfKey, Number(play?.count?.outs) || 0);
                 }
@@ -3381,12 +3439,16 @@
                 pitchers.forEach((pitcher, pitcherIndex) => {
                     const person = pitcher?.person ?? {};
                     const entry = createElement("span", "bench-pitcher-entry");
-                    const timing = getPitcherEntryTiming(side, pitcher, pitcherIndex);
+                    const orderLabel = getPitcherOrderLabel(pitcherIndex);
+                    const situation = getPitcherEntrySituation(side, pitcher, pitcherIndex);
+                    const timing = `${orderLabel}${situation}`;
                     const number = String(pitcher?.jerseyNumber ?? "").trim();
                     const arm = getPitchArmAbbreviation(pitcher);
                     const prefix = [timing, number].filter(Boolean).join(" ");
                     if (prefix) entry.append(document.createTextNode(`${prefix} `));
-                    entry.append(createPlayerProfileLink(person));
+                    const pitcherNameLink = createPlayerProfileLink(person);
+                    pitcherNameLink.classList.add("bench-pitcher-name");
+                    entry.append(pitcherNameLink);
                     if (arm) entry.append(document.createTextNode(`（${arm}）`));
                     flow.append(entry);
                 });
@@ -3409,11 +3471,7 @@
                             )
                         );
 
-                        for (
-                            let inning = 1;
-                            inning <= state.innings;
-                            inning += 1
-                        ) {
+                        for (let column = 0; column < state.inningColumns.length; column += 1) {
                             grid.append(createElement("div", "summary-cell"));
                         }
 
@@ -3611,6 +3669,10 @@
                     "--inning-count",
                     String(state.innings)
                 );
+                document.documentElement.style.setProperty(
+                    "--score-column-count",
+                    String(state.inningColumns.length)
+                );
 
                 dom.inningCount.textContent = String(state.innings);
 
@@ -3675,6 +3737,7 @@
                     state.gamePk = gamePk;
                     state.gameData = data;
                     state.innings = determineInningCount(data);
+                    state.inningColumns = determineInningColumns(data, state.innings);
                     state.defensivePositionHistory = buildDefensivePositionHistory(data);
                     state.away = getTeamState(data, "away");
                     state.home = getTeamState(data, "home");
@@ -3711,6 +3774,7 @@
                     savedAt: new Date().toISOString(),
                     gamePk: state.gamePk,
                     innings: state.innings,
+                    inningColumns: state.inningColumns,
                     away: state.away,
                     home: state.home,
                     gameData: state.gameData
@@ -3808,6 +3872,7 @@
                     exportedAt: new Date().toISOString(),
                     gamePk: state.gamePk,
                     innings: state.innings,
+                    inningColumns: state.inningColumns,
                     away: state.away,
                     home: state.home,
                     gameData: state.gameData

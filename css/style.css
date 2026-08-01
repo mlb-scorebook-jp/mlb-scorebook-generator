@@ -26,6 +26,7 @@
     --header-height: 28px;
     --lineup-height: 56px;
     --inning-count: 9;
+    --score-column-count: 9;
     --team-score-width: calc(
         var(--order-width) +
         var(--number-width) +
@@ -562,7 +563,7 @@ input {
         var(--name-width)
         var(--position-width)
         var(--hand-width)
-        repeat(var(--inning-count), var(--inning-width))
+        repeat(var(--score-column-count), var(--inning-width))
         repeat(6, var(--stat-width));
     width: max-content;
     border-top: 1.4px solid var(--rule);
@@ -1214,7 +1215,7 @@ input {
             var(--position-width) +
             var(--hand-width)
         )
-        repeat(var(--inning-count), var(--inning-width))
+        repeat(var(--score-column-count), var(--inning-width))
         repeat(6, var(--stat-width));
     width: max-content;
     border-left: 1.4px solid var(--rule);
@@ -1244,10 +1245,10 @@ input {
         var(--name-width)
         var(--position-width)
         var(--hand-width)
-        repeat(var(--inning-count), var(--inning-width))
+        repeat(var(--score-column-count), var(--inning-width))
         repeat(6, var(--stat-width));
     width: max-content;
-    min-height: 115px;
+    min-height: 58px;
     border-left: 1.4px solid var(--rule);
 }
 
@@ -1255,7 +1256,7 @@ input {
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 115px;
+    min-height: 58px;
     border-right: 1px solid var(--rule);
     border-bottom: 1px solid var(--rule);
     font-weight: 700;
@@ -1264,7 +1265,7 @@ input {
 .bench-pitcher-list {
     grid-column: 2 / -1;
     min-width: 0;
-    min-height: 115px;
+    min-height: 58px;
     display: flex;
     align-items: center;
     border-right: 1px solid var(--rule);
@@ -1286,12 +1287,12 @@ input {
 .bench-pitcher-entry {
     flex: 0 0 auto;
     height: 23px;
-    font-size: 10px;
+    font-size: 12px;
     white-space: nowrap;
 }
 
 .bench-pitcher-entry:not(:last-child)::after {
-    content: " / ";
+    content: " ー ";
     white-space: pre;
 }
 
@@ -1310,7 +1311,7 @@ input {
 }
 
 .blank-span {
-    grid-column: span var(--inning-count);
+    grid-column: span var(--score-column-count);
 }
 
 .sheet-bottom {
