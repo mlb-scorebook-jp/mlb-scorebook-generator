@@ -1785,6 +1785,16 @@ select {
         transform-origin: top left;
     }
 
+    #scorebook-print-stage .scorebook-page,
+    #scorebook-print-stage .paper {
+        page-break-before: avoid !important;
+        page-break-after: avoid !important;
+        page-break-inside: avoid !important;
+        break-before: avoid-page !important;
+        break-after: avoid-page !important;
+        break-inside: avoid-page !important;
+    }
+
     .paper {
         padding: 0;
         box-shadow: none;

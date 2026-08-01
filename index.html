@@ -4396,10 +4396,10 @@
                 setStatus("現在の試合データをブラウザに保存しました。");
             };
 
-            const PRINT_PAGE_STYLE_ID = "print-a3-landscape-page";
+            const PRINT_PAGE_STYLE_ID = "print-a4-landscape-page";
             const PRINT_STAGE_ID = "scorebook-print-stage";
-            const A3_LANDSCAPE_WIDTH_MM = 420;
-            const A3_LANDSCAPE_HEIGHT_MM = 297;
+            const A4_LANDSCAPE_WIDTH_MM = 297;
+            const A4_LANDSCAPE_HEIGHT_MM = 210;
             const PRINT_MARGIN_MM = 6;
             const CSS_PIXELS_PER_MM = 96 / 25.4;
 
@@ -4415,10 +4415,10 @@
                 if (!content) return false;
 
                 const printableWidth = (
-                    A3_LANDSCAPE_WIDTH_MM - PRINT_MARGIN_MM * 2
+                    A4_LANDSCAPE_WIDTH_MM - PRINT_MARGIN_MM * 2
                 ) * CSS_PIXELS_PER_MM;
                 const printableHeight = (
-                    A3_LANDSCAPE_HEIGHT_MM - PRINT_MARGIN_MM * 2
+                    A4_LANDSCAPE_HEIGHT_MM - PRINT_MARGIN_MM * 2
                 ) * CSS_PIXELS_PER_MM;
                 const contentWidth = Math.max(
                     content.scrollWidth,
@@ -4459,7 +4459,7 @@
 
                 const pageStyle = document.createElement("style");
                 pageStyle.id = PRINT_PAGE_STYLE_ID;
-                pageStyle.textContent = `@page { size: A3 landscape; margin: ${PRINT_MARGIN_MM}mm; }`;
+                pageStyle.textContent = `@page { size: A4 landscape; margin: ${PRINT_MARGIN_MM}mm; }`;
                 document.head.append(pageStyle);
                 return true;
             };
@@ -4546,7 +4546,7 @@
             dom.awayPageButton.addEventListener("click", () => switchPage("away"));
             dom.homePageButton.addEventListener("click", () => switchPage("home"));
             dom.printButton.addEventListener("click", printFullScorebook);
-            dom.pdfButton.addEventListener("click", () => window.print());
+            dom.pdfButton.addEventListener("click", printFullScorebook);
             dom.jsonButton.addEventListener("click", exportJson);
 
             dom.pngButton.addEventListener("click", () => {
