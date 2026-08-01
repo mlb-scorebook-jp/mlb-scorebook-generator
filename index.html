@@ -2214,6 +2214,42 @@
                 return getPersonName({ ...batter, ...play?.matchup?.batter }) || "—";
             };
 
+            const getAbsChallengerText = (data, play, review, teamCode) => {
+                const role = getAbsChallengerRole(data, play, review);
+                let player = review?.player ?? {};
+                if (!player?.id && role === "打者") player = play?.matchup?.batter ?? {};
+                if (!player?.id && role === "投手") player = play?.matchup?.pitcher ?? {};
+                const details = getChallengePlayer(data, player?.id);
+                const name = getPersonName({ ...details, ...player }) || role || "—";
+                return teamCode ? `${name}（${teamCode}）` : name;
+            };
+
+            const getReplayTargetPlayerText = (data, play, target, review) => {
+                if (review?.player?.id) {
+                    const details = getChallengePlayer(data, review.player.id);
+                    const name = getPersonName({ ...details, ...review.player });
+                    if (name) return name;
+                }
+                const targetLabel = `${target?.label ?? ""} ${target?.event ?? ""}`.toLowerCase();
+                const isRunnerPlay = /play at|base|tag play|stolen|steal|pickoff/.test(targetLabel);
+                if (isRunnerPlay) {
+                    const runners = play?.runners ?? [];
+                    const runner = runners.find((item) => item?.movement?.isOut) ??
+                        runners.find((item) => item?.details?.runner?.id);
+                    if (runner?.details?.runner?.id) {
+                        const details = getChallengePlayer(data, runner.details.runner.id);
+                        const name = getPersonName({ ...details, ...runner.details.runner });
+                        if (name) return name;
+                    }
+                }
+                return getAbsBatterText(data, play);
+            };
+
+            const getReplayChallengerText = (data, play, target, review, teamCode) => {
+                const playerName = getReplayTargetPlayerText(data, play, target, review) || "—";
+                return teamCode ? `${teamCode}（${playerName}）` : playerName;
+            };
+
             const getAbsPitchNumberText = (play, event, eventIndex) => {
                 const apiPitchNumber = Number(event?.pitchNumber);
                 if (Number.isFinite(apiPitchNumber) && apiPitchNumber > 0) {
@@ -2262,11 +2298,16 @@
                             appendEntry({
                                 inning,
                                 half,
-                                batter: "—",
                                 pitchNumber: "—",
                                 type: "Replay",
                                 team: replayTeam.code,
-                                challenger: getReplayPlayLabel(target, play),
+                                challenger: getReplayChallengerText(
+                                    data,
+                                    play,
+                                    target,
+                                    review,
+                                    replayTeam.code
+                                ),
                                 target,
                                 targetText: review?.isOverturned
                                     ? getOppositeReplayRuling(finalRuling)
@@ -2279,16 +2320,14 @@
                         }
 
                         const team = getChallengeTeamInfo(data, review?.challengeTeamId);
-                        const role = getAbsChallengerRole(data, play, review);
                         const target = getAbsTargetData(event, review);
                         appendEntry({
                             inning,
                             half,
-                            batter: getAbsBatterText(data, play),
                             pitchNumber: getAbsPitchNumberText(play, event, eventIndex),
                             type: "ABS",
                             team: team.code,
-                            challenger: role || "—",
+                            challenger: getAbsChallengerText(data, play, review, team.code),
                             target,
                             targetText: target.originalCall,
                             resultText: target.finalCall,
@@ -2306,11 +2345,16 @@
                     appendEntry({
                         inning,
                         half,
-                        batter: "—",
                         pitchNumber: "—",
                         type: "Replay",
                         team: team.code,
-                        challenger: getReplayPlayLabel(target, play),
+                        challenger: getReplayChallengerText(
+                            data,
+                            play,
+                            target,
+                            review,
+                            team.code
+                        ),
                         target,
                         targetText: review?.isOverturned
                             ? getOppositeReplayRuling(finalRuling)
@@ -2340,8 +2384,12 @@
                 const tables = createElement("div", "abs-challenge-tables");
                 for (let tableIndex = 0; tableIndex < 2; tableIndex += 1) {
                     const grid = createElement("div", "abs-challenge-grid");
-                    ["回", "打者", "球数", "種類", "チーム", "チャレンジャー", "対象", "結果"].forEach(
-                        (label) => grid.append(createElement("div", "abs-head", label))
+                    ["イニング", "チャレンジャー", "球数", "種類", "対象", "結果"].forEach(
+                        (label, column) => grid.append(createElement(
+                            "div",
+                            `abs-head abs-column-${column + 1}`,
+                            label
+                        ))
                     );
                     for (let row = 0; row < 8; row += 1) {
                         const entryIndex = tableIndex * 8 + row;
@@ -2349,19 +2397,21 @@
                         const values = entry
                             ? [
                                 `${entry.inning}${entry.half}`,
-                                entry.batter || "—",
+                                entry.challenger,
                                 entry.pitchNumber || "—",
                                 entry.type,
-                                entry.team,
-                                entry.challenger,
                                 entry.type === "ABS" && ["ボール", "ストライク"].includes(entry.targetText)
                                     ? `${entry.targetText}判定`
                                     : entry.targetText,
                                 entry.resultText
                             ]
-                            : ["", "", "", "", "", "", "", ""];
-                        for (let column = 0; column < 8; column += 1) {
-                            const cell = createElement("div", "editable-cell", String(values[column] ?? ""));
+                            : ["", "", "", "", "", ""];
+                        for (let column = 0; column < 6; column += 1) {
+                            const cell = createElement(
+                                "div",
+                                `editable-cell abs-column-${column + 1}`,
+                                String(values[column] ?? "")
+                            );
                             cell.title = String(values[column] ?? "");
                             cell.dataset.absRow = String(entryIndex + 1);
                             cell.dataset.absColumn = String(column + 1);

@@ -546,7 +546,7 @@ select {
     width: var(--challenge-width);
     flex: 0 0 var(--challenge-width);
     display: grid;
-    grid-template-columns: 8% 18% 10% 11% 11% 16% 13% 13%;
+    grid-template-columns: 10% 44% 10% 12% 12% 12%;
     grid-template-rows: repeat(9, minmax(0, 1fr));
 }
 
@@ -588,6 +588,19 @@ select {
 
 .abs-challenge-grid .editable-cell:focus {
     background: rgba(243, 200, 62, 0.16);
+}
+
+.abs-challenge-grid .abs-column-2 {
+    justify-content: flex-start;
+    text-align: left;
+}
+
+.abs-challenge-grid .abs-column-4 {
+    font-weight: 700;
+}
+
+.abs-challenge-grid .abs-column-2 .abs-cell-text {
+    transform-origin: left center;
 }
 
 .abs-cell-text {
