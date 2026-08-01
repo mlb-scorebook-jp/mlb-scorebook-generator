@@ -6,14 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MLB Scorebook Generator</title>
     <!-- Score notation update: stacked batted-ball symbol, red hits, blue strikeouts, black other results. -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css?v=20260801-4">
 </head>
 
 <body>
     <header class="app-header">
         <div class="app-title">
             <h1>MLB SCOREBOOK GENERATOR</h1>
-            <p>WASEDA STYLE DIGITAL SCOREBOOK</p>
+            <p aria-hidden="true">&nbsp;</p>
         </div>
 
         <div class="version">Ver. 2.3.2</div>
@@ -318,6 +318,7 @@
                 gamePk: null,
                 gameData: null,
                 streakNotes: { away: [], home: [] },
+                defensivePositionHistory: { away: {}, home: {} },
                 away: {
                     abbreviation: "AWAY",
                     name: "先攻チーム",
@@ -492,6 +493,46 @@
                 );
             };
 
+            const getMlbPlayerPageUrl = (person) => {
+                const playerId = Number(person?.id);
+                return Number.isInteger(playerId) && playerId > 0
+                    ? `https://www.mlb.com/player/${playerId}`
+                    : "";
+            };
+
+            const createPlayerProfileLink = (person, text = getPersonName(person)) => {
+                const url = getMlbPlayerPageUrl(person);
+                if (!url) return createElement("span", "", text);
+                const link = createElement("a", "player-profile-link", text);
+                link.href = url;
+                link.target = "_blank";
+                link.rel = "noopener noreferrer";
+                return link;
+            };
+
+            const getMlbGamedayAtBatUrl = (gamePk, atBatIndex) => {
+                if (gamePk == null || gamePk === "" || atBatIndex == null || atBatIndex === "") {
+                    return "";
+                }
+                const numericGamePk = Number(gamePk);
+                const numericAtBatIndex = Number(atBatIndex);
+                return Number.isInteger(numericGamePk) && numericGamePk > 0 &&
+                    Number.isInteger(numericAtBatIndex) && numericAtBatIndex >= 0
+                    ? `https://www.mlb.com/gameday/${numericGamePk}/play/${numericAtBatIndex}`
+                    : "";
+            };
+
+            const createGamedayAtBatResult = (text, className, atBatIndex) => {
+                const url = getMlbGamedayAtBatUrl(state.gamePk, atBatIndex);
+                if (!url) return createElement("div", className, text);
+                const link = createElement("a", `${className} gameday-atbat-link`, text);
+                link.href = url;
+                link.target = "_blank";
+                link.rel = "noopener noreferrer";
+                link.setAttribute("aria-label", `${text}のMLB Gameday打席詳細を新しいタブで開く`);
+                return link;
+            };
+
             const HAND_LABELS = Object.freeze({ R: "右", L: "左", S: "両" });
 
             const MLB_TEAM_CODES_BY_ID = Object.freeze({
@@ -553,6 +594,9 @@
 
             const streakNotesCache = new Map();
             const playerGameLogCache = new Map();
+            const teamScheduleCache = new Map();
+            const gameBoxscoreCache = new Map();
+            const activeRosterCache = new Map();
 
             const getPlateAppearances = (stat = {}) => {
                 const officialValue = Number(stat.plateAppearances);
@@ -561,15 +605,15 @@
                     .reduce((total, field) => total + (Number(stat[field]) || 0), 0);
             };
 
-            const fetchPlayerRegularSeasonGameLog = async (playerId, season) => {
-                const cacheKey = `${playerId}:${season}`;
+            const fetchPlayerRegularSeasonGameLog = async (playerId, season, group = "hitting") => {
+                const cacheKey = `${playerId}:${season}:${group}`;
                 if (playerGameLogCache.has(cacheKey)) {
                     return playerGameLogCache.get(cacheKey);
                 }
 
                 const request = fetch(
                     `https://statsapi.mlb.com/api/v1/people/${playerId}/stats` +
-                    `?stats=gameLog&group=hitting&season=${season}&gameType=R`
+                    `?stats=gameLog&group=${group}&season=${season}&gameType=R`
                 ).then(async (response) => {
                     if (!response.ok) return [];
                     const payload = await response.json();
@@ -578,6 +622,235 @@
 
                 playerGameLogCache.set(cacheKey, request);
                 return request;
+            };
+
+            const fetchActiveRoster = async (teamId, officialDate) => {
+                const cacheKey = `${teamId}:${officialDate}`;
+                if (activeRosterCache.has(cacheKey)) return activeRosterCache.get(cacheKey);
+                const request = fetch(
+                    `https://statsapi.mlb.com/api/v1/teams/${teamId}/roster` +
+                    `?rosterType=active&date=${officialDate}&hydrate=person`
+                ).then(async (response) => {
+                    if (!response.ok) return [];
+                    const payload = await response.json();
+                    return (payload?.roster ?? []).filter((entry) =>
+                        String(entry?.status?.code ?? "A").toUpperCase() === "A"
+                    );
+                }).catch(() => []);
+                activeRosterCache.set(cacheKey, request);
+                return request;
+            };
+
+            const fetchTeamRegularSeasonSchedule = async (teamId, season, officialDate) => {
+                const cacheKey = `${teamId}:${season}:${officialDate}`;
+                if (teamScheduleCache.has(cacheKey)) return teamScheduleCache.get(cacheKey);
+
+                const params = new URLSearchParams({
+                    sportId: "1",
+                    teamId: String(teamId),
+                    startDate: `${season}-02-01`,
+                    endDate: officialDate,
+                    gameType: "R"
+                });
+                const request = fetch(`https://statsapi.mlb.com/api/v1/schedule?${params}`)
+                    .then(async (response) => {
+                        if (!response.ok) return [];
+                        const payload = await response.json();
+                        return (payload?.dates ?? [])
+                            .flatMap((date) => date?.games ?? [])
+                            .filter((game) => String(game?.gameType ?? "").toUpperCase() === "R")
+                            .filter((game) => String(game?.status?.abstractGameState ?? "").toLowerCase() === "final")
+                            .sort((a, b) => String(a?.gameDate ?? "").localeCompare(String(b?.gameDate ?? "")) ||
+                                (Number(a?.gameNumber) || 0) - (Number(b?.gameNumber) || 0));
+                    })
+                    .catch(() => []);
+                teamScheduleCache.set(cacheKey, request);
+                return request;
+            };
+
+            const getCurrentGameParticipation = (data, side) => {
+                const appeared = new Set();
+                const teamData = data?.liveData?.boxscore?.teams?.[side] ?? {};
+                Object.values(teamData?.players ?? {}).forEach((player) => {
+                    const playerId = Number(player?.person?.id);
+                    const batting = player?.stats?.batting ?? {};
+                    const pitching = player?.stats?.pitching ?? {};
+                    const fielding = player?.stats?.fielding ?? {};
+                    const rawOrder = Number.parseInt(player?.battingOrder, 10);
+                    const didAppear = Number(batting?.gamesPlayed) > 0 ||
+                        Number(pitching?.gamesPlayed) > 0 ||
+                        Number(fielding?.gamesStarted) > 0 ||
+                        getPlateAppearances(batting) > 0 ||
+                        (Number.isFinite(rawOrder) && rawOrder % 100 === 0);
+                    if (playerId && didAppear) appeared.add(playerId);
+                });
+
+                (data?.liveData?.plays?.allPlays ?? []).forEach((play) => {
+                    const battingSide = play?.about?.halfInning === "top" ? "away" : "home";
+                    const fieldingSide = battingSide === "away" ? "home" : "away";
+                    if (battingSide === side) {
+                        const batterId = Number(play?.matchup?.batter?.id);
+                        if (batterId) appeared.add(batterId);
+                        (play?.runners ?? []).forEach((runner) => {
+                            const runnerId = Number(runner?.details?.runner?.id);
+                            if (runnerId) appeared.add(runnerId);
+                        });
+                    }
+                    if (fieldingSide === side) {
+                        const pitcherId = Number(play?.matchup?.pitcher?.id);
+                        if (pitcherId) appeared.add(pitcherId);
+                    }
+                    (play?.playEvents ?? []).forEach((event) => {
+                        const role = getSubstitutionRole(event?.details);
+                        const playerId = Number(event?.player?.id);
+                        if (!role || !playerId) return;
+                        const eventSide = ["pitcher", "defense"].includes(role)
+                            ? fieldingSide
+                            : battingSide;
+                        if (eventSide === side) appeared.add(playerId);
+                    });
+                });
+                return { appeared };
+            };
+
+            const fetchGameBoxscore = async (gamePk) => {
+                const cacheKey = String(gamePk);
+                if (gameBoxscoreCache.has(cacheKey)) return gameBoxscoreCache.get(cacheKey);
+                const request = fetch(`https://statsapi.mlb.com/api/v1/game/${gamePk}/boxscore`)
+                    .then(async (response) => response.ok ? response.json() : null)
+                    .catch(() => null);
+                gameBoxscoreCache.set(cacheKey, request);
+                return request;
+            };
+
+            const mapWithConcurrency = async (items, limit, mapper) => {
+                const results = new Array(items.length);
+                let nextIndex = 0;
+                const workers = Array.from(
+                    { length: Math.min(limit, items.length) },
+                    async () => {
+                        while (nextIndex < items.length) {
+                            const index = nextIndex;
+                            nextIndex += 1;
+                            results[index] = await mapper(items[index], index);
+                        }
+                    }
+                );
+                await Promise.all(workers);
+                return results;
+            };
+
+            const isPlayerStarterInBoxscore = (boxscore, teamId, playerId) => {
+                for (const side of ["away", "home"]) {
+                    const team = boxscore?.teams?.[side];
+                    if (Number(team?.team?.id) !== Number(teamId)) continue;
+                    const player = team?.players?.[`ID${playerId}`];
+                    const battingOrder = Number.parseInt(player?.battingOrder, 10);
+                    return Number.isFinite(battingOrder) && battingOrder % 100 === 0;
+                }
+                return false;
+            };
+
+            const isJapanesePlayer = (person) =>
+                [person?.birthCountry, person?.country]
+                    .some((country) => String(country ?? "").trim().toLowerCase() === "japan");
+
+            const getScheduleOpponentCode = (game, teamId) => {
+                const away = game?.teams?.away?.team ?? {};
+                const home = game?.teams?.home?.team ?? {};
+                return getMlbTeamDisplayCode(Number(away?.id) === Number(teamId) ? home : away);
+            };
+
+            const getScheduleReferenceText = (game, teamId) => {
+                if (!game) return "";
+                const dateText = String(game?.officialDate ?? game?.gameDate ?? "").slice(0, 10);
+                const [, month, day] = dateText.split("-");
+                const opponent = getScheduleOpponentCode(game, teamId);
+                if (!month || !day || !opponent) return "";
+                return `（${Number(month)}月${Number(day)}日 vs ${opponent}以来）`;
+            };
+
+            const getAbsenceNotes = async (
+                players,
+                schedule,
+                appearedIds,
+                currentGamePk,
+                teamId,
+                code
+            ) => {
+                const scheduleGamePks = new Set(schedule.map((game) => Number(game?.gamePk)));
+                const preliminary = players.map((player) => {
+                    if (appearedIds.has(player.id)) return null;
+                    const appearances = (player.gameLogSplits ?? []).filter((split) =>
+                        scheduleGamePks.has(Number(split?.game?.gamePk))
+                    );
+                    const appearanceGamePks = new Set(
+                        appearances.map((split) => Number(split?.game?.gamePk))
+                    );
+
+                    let gamesSinceAbsence = 0;
+                    let previousAbsenceGame = null;
+                    const previousGames = schedule
+                        .filter((game) => Number(game?.gamePk) !== Number(currentGamePk))
+                        .reverse();
+                    for (const game of previousGames) {
+                        if (!appearanceGamePks.has(Number(game?.gamePk))) {
+                            previousAbsenceGame = game;
+                            break;
+                        }
+                        gamesSinceAbsence += 1;
+                    }
+                    const japanese = isJapanesePlayer(player.person);
+                    if (!japanese && (schedule.length < 30 ||
+                        appearanceGamePks.size / schedule.length < 0.85)) return null;
+                    return {
+                        ...player,
+                        appearanceGamePks,
+                        gamesSinceAbsence,
+                        previousAbsenceGame,
+                        japanese
+                    };
+                }).filter(Boolean);
+
+                const requiredGamePks = [...new Set(
+                    preliminary
+                        .filter((player) => !player.japanese)
+                        .flatMap((player) => [...player.appearanceGamePks])
+                )];
+                const boxscores = await mapWithConcurrency(
+                    requiredGamePks,
+                    6,
+                    async (gamePk) => [gamePk, await fetchGameBoxscore(gamePk)]
+                );
+                const boxscoreByGame = new Map(boxscores);
+
+                return preliminary.map((player) => {
+                    const reference = getScheduleReferenceText(player.previousAbsenceGame, teamId);
+                    if (player.japanese) {
+                        return {
+                            text: `${code}　${getPersonName(player.person)}　${player.gamesSinceAbsence}試合ぶりの欠場${reference}`,
+                            priority: 2,
+                            startRate: 1,
+                            starts: 0
+                        };
+                    }
+                    const starts = [...player.appearanceGamePks].reduce((total, gamePk) =>
+                        total + Number(isPlayerStarterInBoxscore(
+                            boxscoreByGame.get(gamePk),
+                            teamId,
+                            player.id
+                        )), 0);
+                    const startRate = starts / schedule.length;
+                    if (startRate < 0.85) return null;
+                    return {
+                        text: `${code}　${getPersonName(player.person)}　${player.gamesSinceAbsence}試合ぶりの欠場${reference}`,
+                        priority: 3,
+                        startRate,
+                        starts
+                    };
+                }).filter(Boolean)
+                    .sort((a, b) => a.priority - b.priority ||
+                        b.startRate - a.startRate || b.starts - a.starts);
             };
 
             const isGameBeforeCurrentStart = (split, context) => {
@@ -645,25 +918,47 @@
                 };
             };
 
-            const getStreakCandidatesForSide = (data, side) => {
+            const getRosterCandidatesForSide = (data, side, roster) => {
                 const playerMap = data?.liveData?.boxscore?.teams?.[side]?.players ?? {};
-                return Object.values(playerMap)
-                    .map((player) => ({
-                        id: Number(player?.person?.id),
-                        person: data?.gameData?.players?.[`ID${player?.person?.id}`] ?? player?.person,
-                        currentGameBatting: player?.stats?.batting ?? {}
-                    }))
+                const source = roster.length ? roster : Object.values(playerMap).map((player) => ({
+                    person: player?.person,
+                    position: player?.position
+                }));
+                return source
+                    .map((entry) => {
+                        const id = Number(entry?.person?.id);
+                        const gamePlayer = playerMap[`ID${id}`] ?? {};
+                        return {
+                            id,
+                            person: {
+                                ...entry?.person,
+                                ...(data?.gameData?.players?.[`ID${id}`] ?? {}),
+                                ...(gamePlayer?.person ?? {})
+                            },
+                            rosterPosition: normalizePositionAbbreviation(
+                                entry?.position ?? entry?.person?.primaryPosition
+                            ),
+                            currentGameBatting: gamePlayer?.stats?.batting ?? {}
+                        };
+                    })
                     .filter((player, index, list) => player.id &&
                         list.findIndex((candidate) => candidate.id === player.id) === index);
             };
 
+            const isPitcherCandidate = (player) =>
+                player?.rosterPosition === "P" ||
+                String(player?.person?.primaryPosition?.type ?? "").toLowerCase() === "pitcher";
+
             const chooseLongestStreak = (players, field) => players
-                .filter((player) => player[field] >= 2)
+                .filter((player) => player[`${field}Eligible`])
                 .sort((a, b) => b[field] - a[field] ||
                     b.plateAppearances - a.plateAppearances ||
                     b.average - a.average)[0] ?? null;
 
             const fetchStreakNotes = async (data, gamePk) => {
+                if (!isGameFinal(data)) {
+                    return { away: [], home: [] };
+                }
                 if (streakNotesCache.has(String(gamePk))) {
                     return streakNotesCache.get(String(gamePk));
                 }
@@ -677,38 +972,77 @@
                 };
 
                 const request = Promise.all(["away", "home"].map(async (side) => {
-                    const candidates = getStreakCandidatesForSide(data, side);
+                    const team = data?.gameData?.teams?.[side] ?? {};
+                    const roster = await fetchActiveRoster(team?.id, officialDate);
+                    const candidates = getRosterCandidatesForSide(data, side, roster);
+                    const participation = getCurrentGameParticipation(data, side);
                     const analyzed = await Promise.all(candidates.map(async (player) => {
+                        const gameLogSplits = await fetchPlayerRegularSeasonGameLog(player.id, season);
                         const streaks = summarizeCurrentStreaks(
-                            await fetchPlayerRegularSeasonGameLog(player.id, season),
+                            gameLogSplits,
                             context
                         );
                         const currentStat = player.currentGameBatting;
                         const currentPa = getPlateAppearances(currentStat);
-                        if (isGameFinal(data) && currentPa > 0) {
-                            if ((Number(currentStat?.hits) || 0) === 0) {
-                                streaks.hitStreak = 0;
-                            }
+                        const pregameHitStreak = streaks.hitStreak;
+                        const pregameOnBaseStreak = streaks.onBaseStreak;
+                        const streakPlayerEligible = participation.appeared.has(player.id) &&
+                            !isPitcherCandidate(player);
+                        streaks.hitStreakEligible = streakPlayerEligible && pregameHitStreak >= 2;
+                        streaks.onBaseStreakEligible = streakPlayerEligible && pregameOnBaseStreak >= 2;
+                        streaks.hitStreakStopped = false;
+                        streaks.onBaseStreakStopped = false;
+                        if (currentPa > 0) {
+                            const currentHits = Number(currentStat?.hits) || 0;
+                            streaks.hitStreak = currentHits > 0
+                                ? pregameHitStreak + 1
+                                : pregameHitStreak;
+                            streaks.hitStreakStopped = currentHits === 0 && pregameHitStreak >= 2;
                             const reachedBase = (Number(currentStat?.hits) || 0) +
                                 (Number(currentStat?.baseOnBalls) || 0) +
                                 (Number(currentStat?.hitByPitch) || 0);
-                            if (reachedBase === 0) {
-                                streaks.onBaseStreak = 0;
-                            }
+                            streaks.onBaseStreak = reachedBase > 0
+                                ? pregameOnBaseStreak + 1
+                                : pregameOnBaseStreak;
+                            streaks.onBaseStreakStopped = reachedBase === 0 && pregameOnBaseStreak >= 2;
                         }
-                        return { ...player, ...streaks };
+                        return { ...player, ...streaks, gameLogSplits };
                     }));
-                    const code = getMlbTeamDisplayCode(data?.gameData?.teams?.[side]);
+                    const code = getMlbTeamDisplayCode(team);
                     const hitLeader = chooseLongestStreak(analyzed, "hitStreak");
                     const onBaseLeader = chooseLongestStreak(analyzed, "onBaseStreak");
                     const notes = [];
                     if (hitLeader) {
-                        notes.push(`${code}　${getPersonName(hitLeader.person)}　連続試合安打：${hitLeader.hitStreak}試合`);
+                        const suffix = hitLeader.hitStreakStopped ? "でストップ" : "";
+                        notes.push({
+                            text: `${code}　${getPersonName(hitLeader.person)}　連続試合安打：${hitLeader.hitStreak}試合${suffix}`,
+                            priority: hitLeader.hitStreakStopped ? 1 : 6
+                        });
                     }
                     if (onBaseLeader) {
-                        notes.push(`${code}　${getPersonName(onBaseLeader.person)}　連続試合出塁：${onBaseLeader.onBaseStreak}試合`);
+                        const suffix = onBaseLeader.onBaseStreakStopped ? "でストップ" : "";
+                        notes.push({
+                            text: `${code}　${getPersonName(onBaseLeader.person)}　連続試合出塁：${onBaseLeader.onBaseStreak}試合${suffix}`,
+                            priority: onBaseLeader.onBaseStreakStopped ? 1 : 7
+                        });
                     }
-                    return [side, notes];
+                    const schedule = await fetchTeamRegularSeasonSchedule(
+                        team?.id,
+                        season,
+                        officialDate
+                    );
+                    notes.push(...await getAbsenceNotes(
+                        analyzed,
+                        schedule,
+                        participation.appeared,
+                        gamePk,
+                        team?.id,
+                        code
+                    ));
+                    return [side, notes
+                        .sort((a, b) => a.priority - b.priority)
+                        .slice(0, 12)
+                        .map((note) => note.text)];
                 })).then((entries) => Object.fromEntries(entries));
 
                 streakNotesCache.set(String(gamePk), request);
@@ -729,14 +1063,101 @@
             };
 
             const getThrowBatText = (player) => {
-                const throws = HAND_LABELS[String(player?.pitchHand?.code ?? "").toUpperCase()] ?? "";
+                const throws = getPitchHandText(player);
                 const bats = HAND_LABELS[String(player?.batSide?.code ?? "").toUpperCase()] ?? "";
                 return throws && bats ? `${throws}/${bats}` : "";
             };
 
+            const getPitchHandText = (player) =>
+                HAND_LABELS[String(player?.pitchHand?.code ?? "").toUpperCase()] ?? "";
+
             const getBattingStatText = (player, field) => {
                 const value = Number(player?.stats?.batting?.[field]);
                 return Number.isFinite(value) ? String(value) : "0";
+            };
+
+            const normalizePositionAbbreviation = (position) =>
+                String(position?.abbreviation ?? position ?? "").trim().toUpperCase();
+
+            const getPositionFromDescription = (description) => {
+                const text = String(description ?? "").toLowerCase();
+                const positions = [
+                    ["designated hitter", "DH"], ["right field", "RF"],
+                    ["center field", "CF"], ["left field", "LF"],
+                    ["first base", "1B"], ["second base", "2B"],
+                    ["third base", "3B"], ["shortstop", "SS"],
+                    ["catcher", "C"], ["pitcher", "P"]
+                ];
+                return positions.find(([label]) => text.includes(label))?.[1] ?? "";
+            };
+
+            const buildDefensivePositionHistory = (data) => {
+                const histories = { away: {}, home: {} };
+                const fallbackPositions = { away: {}, home: {} };
+
+                ["away", "home"].forEach((side) => {
+                    const players = data?.liveData?.boxscore?.teams?.[side]?.players ?? {};
+                    Object.values(players).forEach((player) => {
+                        const playerId = Number(player?.person?.id);
+                        if (!playerId) return;
+                        const allPositions = (player?.allPositions ?? [])
+                            .map(normalizePositionAbbreviation)
+                            .filter(Boolean)
+                            .filter((position, index, list) => !index || position !== list[index - 1]);
+                        const initialPosition = allPositions[0] ||
+                            normalizePositionAbbreviation(player?.position);
+                        histories[side][playerId] = initialPosition ? [initialPosition] : [];
+                        fallbackPositions[side][playerId] = allPositions;
+                    });
+                });
+
+                const defensiveEventTypes = new Set([
+                    "defensive_substitution",
+                    "defensive_switch",
+                    "pitching_substitution"
+                ]);
+                (data?.liveData?.plays?.allPlays ?? []).forEach((play) => {
+                    const battingSide = play?.about?.halfInning === "top" ? "away" : "home";
+                    const fieldingSide = battingSide === "away" ? "home" : "away";
+                    (play?.playEvents ?? []).forEach((event) => {
+                        const eventType = String(event?.details?.eventType ?? "").toLowerCase();
+                        if (!defensiveEventTypes.has(eventType)) return;
+                        const playerId = Number(event?.player?.id);
+                        if (!playerId) return;
+                        const position = normalizePositionAbbreviation(event?.position) ||
+                            getPositionFromDescription(event?.details?.description);
+                        if (!position) return;
+                        const history = histories[fieldingSide][playerId] ?? [];
+                        if (history[history.length - 1] !== position) history.push(position);
+                        histories[fieldingSide][playerId] = history;
+                    });
+                });
+
+                ["away", "home"].forEach((side) => {
+                    Object.entries(fallbackPositions[side]).forEach(([playerId, positions]) => {
+                        if ((histories[side][playerId]?.length ?? 0) <= 1 && positions.length > 1) {
+                            histories[side][playerId] = positions;
+                        }
+                    });
+                    Object.entries(histories[side]).forEach(([playerId, positions]) => {
+                        histories[side][playerId] = positions.join("→");
+                    });
+                });
+                return histories;
+            };
+
+            const getPlayerPositionHistoryText = (side, player) => {
+                const playerId = Number(player?.person?.id);
+                return state.defensivePositionHistory?.[side]?.[playerId] ||
+                    normalizePositionAbbreviation(player?.allPositions?.[0]) ||
+                    normalizePositionAbbreviation(player?.position);
+            };
+
+            const getRosterHandText = (side, player) => {
+                const positions = getPlayerPositionHistoryText(side, player).split("→");
+                const isPitcher = positions.includes("P") ||
+                    normalizePositionAbbreviation(player?.position) === "P";
+                return isPitcher ? getPitchHandText(player) : getThrowBatText(player);
             };
 
             const getPlayersForSide = (data, side) => {
@@ -1263,38 +1684,42 @@
                     )
                 );
 
-                const grid = createElement("div", "abs-challenge-grid");
-                ["回", "打者", "球数", "種類", "チーム", "チャレンジャー", "対象", "結果"].forEach(
-                    (label) => {
-                        grid.append(createElement("div", "abs-head", label));
-                    }
-                );
-
                 const entries = getChallengeLogEntries(data);
-                for (let row = 0; row < 8; row += 1) {
-                    const entry = entries[row];
-                    const values = entry
-                        ? [
-                            `${entry.inning}${entry.half}`,
-                            entry.batter || "—",
-                            entry.pitchNumber || "—",
-                            entry.type,
-                            entry.team,
-                            entry.challenger,
-                            entry.targetText,
-                            entry.resultText
-                        ]
-                        : ["", "", "", "", "", "", "", ""];
-                    for (let column = 0; column < 8; column += 1) {
-                        const cell = createElement("div", "editable-cell", String(values[column] ?? ""));
-                        cell.title = String(values[column] ?? "");
-                        cell.dataset.absRow = String(row + 1);
-                        cell.dataset.absColumn = String(column + 1);
-                        grid.append(cell);
+                const tables = createElement("div", "abs-challenge-tables");
+                for (let tableIndex = 0; tableIndex < 2; tableIndex += 1) {
+                    const grid = createElement("div", "abs-challenge-grid");
+                    ["回", "打者", "球数", "種類", "チーム", "チャレンジャー", "対象", "結果"].forEach(
+                        (label) => grid.append(createElement("div", "abs-head", label))
+                    );
+                    for (let row = 0; row < 8; row += 1) {
+                        const entryIndex = tableIndex * 8 + row;
+                        const entry = entries[entryIndex];
+                        const values = entry
+                            ? [
+                                `${entry.inning}${entry.half}`,
+                                entry.batter || "—",
+                                entry.pitchNumber || "—",
+                                entry.type,
+                                entry.team,
+                                entry.challenger,
+                                entry.type === "ABS" && ["ボール", "ストライク"].includes(entry.targetText)
+                                    ? `${entry.targetText}判定`
+                                    : entry.targetText,
+                                entry.resultText
+                            ]
+                            : ["", "", "", "", "", "", "", ""];
+                        for (let column = 0; column < 8; column += 1) {
+                            const cell = createElement("div", "editable-cell", String(values[column] ?? ""));
+                            cell.title = String(values[column] ?? "");
+                            cell.dataset.absRow = String(entryIndex + 1);
+                            cell.dataset.absColumn = String(column + 1);
+                            grid.append(cell);
+                        }
                     }
+                    tables.append(grid);
                 }
 
-                box.append(grid);
+                box.append(tables);
                 return box;
             };
 
@@ -1369,9 +1794,18 @@
                     const stack = createElement("div", `lineup-stack${compactClass}`);
 
                     players.forEach((player) => {
-                        stack.append(
-                            createElement("div", "lineup-entry", valueGetter(player))
-                        );
+                        const value = String(valueGetter(player) ?? "");
+                        const entry = createElement("div", "lineup-entry", value);
+                        if (className.includes("name-cell")) {
+                            entry.textContent = "";
+                            entry.append(createPlayerProfileLink(player?.person ?? {}, value));
+                        }
+                        if (className.includes("position-cell")) {
+                            entry.classList.add("position-history");
+                            if (value.length >= 8) entry.classList.add("position-history-extended");
+                            else if (value.length >= 5) entry.classList.add("position-history-long");
+                        }
+                        stack.append(entry);
                     });
 
                     cell.append(stack);
@@ -1390,13 +1824,10 @@
                     makeStackCell("center-cell", (player) => player?.jerseyNumber ?? ""),
                     makeStackCell("name-cell", (player) => getPersonName(player?.person ?? {})),
                     makeStackCell(
-                        "center-cell",
-                        (player) =>
-                            player?.position?.abbreviation ||
-                            player?.allPositions?.[0]?.abbreviation ||
-                            ""
+                        "center-cell position-cell",
+                        (player) => getPlayerPositionHistoryText(side, player)
                     ),
-                    makeStackCell("center-cell hand-cell", (player) => getThrowBatText(player))
+                    makeStackCell("center-cell hand-cell", (player) => getRosterHandText(side, player))
                 );
 
                 for (let inning = 1; inning <= state.innings; inning += 1) {
@@ -1859,10 +2290,66 @@
                 }
             };
 
+            const getAutomaticRunnerPlacements = (data, plays) => {
+                const gameType = String(
+                    data?.gameData?.game?.type ?? data?.gameData?.game?.gameType ?? ""
+                ).toUpperCase();
+                if (gameType !== "R") return new Map();
+
+                const placements = new Map();
+                const previousCompletedBatter = { away: null, home: null };
+                const visitedHalfInnings = new Set();
+
+                plays.forEach((play) => {
+                    const side = play?.about?.halfInning === "top" ? "away" : "home";
+                    const inning = Number(play?.about?.inning);
+                    const halfKey = `${side}-${inning}`;
+                    if (inning >= 10 && !visitedHalfInnings.has(halfKey)) {
+                        visitedHalfInnings.add(halfKey);
+                        const prePitchEvents = [];
+                        for (const event of play?.playEvents ?? []) {
+                            if (event?.isPitch || event?.type === "pitch") break;
+                            prePitchEvents.push(event);
+                        }
+
+                        const placedEvent = prePitchEvents.find((event) => {
+                            const eventType = String(event?.details?.eventType ?? "").toLowerCase();
+                            const description = String(event?.details?.description ?? "").toLowerCase();
+                            return eventType.includes("runner_placed") ||
+                                /automatic runner|extra-inning runner|placed on second/.test(description);
+                        });
+                        const movementRunner = (play?.runners ?? []).find((runner) =>
+                            normalizeBase(runner?.movement?.originBase || runner?.movement?.start) === "2B"
+                        );
+                        const baseRunner = play?.matchup?.preOnSecond || play?.matchup?.postOnSecond;
+                        const pinchRunner = [...prePitchEvents].reverse().find((event) => {
+                            const eventType = String(event?.details?.eventType ?? "").toLowerCase();
+                            const description = String(event?.details?.description ?? "").toLowerCase();
+                            return eventType === "offensive_substitution" &&
+                                /pinch-runner|pinch runner/.test(description);
+                        });
+                        const runnerId = Number(
+                            pinchRunner?.player?.id ||
+                            placedEvent?.player?.id ||
+                            movementRunner?.details?.runner?.id ||
+                            baseRunner?.id ||
+                            previousCompletedBatter[side]
+                        );
+                        if (runnerId) placements.set(halfKey, runnerId);
+                    }
+
+                    const batterId = Number(play?.matchup?.batter?.id);
+                    if (batterId) previousCompletedBatter[side] = batterId;
+                });
+                return placements;
+            };
+
             const buildPlateAppearanceRecords = () => {
                 const records = [];
                 const activeRunner = new Map();
                 const plays = state.gameData?.liveData?.plays?.allPlays ?? [];
+                const automaticRunners = getAutomaticRunnerPlacements(state.gameData, plays);
+                const renderedAutomaticRunners = new Set();
 
                 plays.forEach((play, playIndex) => {
                     const side = play?.about?.halfInning === "top" ? "away" : "home";
@@ -1871,9 +2358,51 @@
                     const inning = Number(play?.about?.inning);
                     if (!order || !inning) return;
 
+                    const halfKey = `${side}-${inning}`;
+                    const automaticRunnerId = automaticRunners.get(halfKey);
+                    if (automaticRunnerId && !renderedAutomaticRunners.has(halfKey)) {
+                        const automaticRunnerOrder = getBattingSlot(side, automaticRunnerId);
+                        if (automaticRunnerOrder) {
+                            const automaticRunnerRecord = {
+                                playIndex: playIndex - 0.5,
+                                atBatIndex: null,
+                                side,
+                                inning,
+                                order: automaticRunnerOrder,
+                                batterId: automaticRunnerId,
+                                templateId: "extra_inning_runner",
+                                notation: "E",
+                                category: "other",
+                                isHit: false,
+                                homeRunNumber: "",
+                                extra: "",
+                                outResult: "",
+                                shape: "",
+                                segments: [],
+                                runnerAdvancePath: "",
+                                ghostRunner: true,
+                                toSecond: "",
+                                toThird: "",
+                                toHome: "",
+                                outAtSecond: "",
+                                outAtThird: "",
+                                outAtHome: "",
+                                centerMark: "",
+                                rbi: 0,
+                                inningEnd: false
+                            };
+                            records.push(automaticRunnerRecord);
+                            activeRunner.set(Number(automaticRunnerId), automaticRunnerRecord);
+                        }
+                        renderedAutomaticRunners.add(halfKey);
+                    }
+
                     const display = getPlayDisplay(play, batterId);
                     const record = {
                         playIndex,
+                        atBatIndex: Number.isInteger(Number(play?.about?.atBatIndex))
+                            ? Number(play.about.atBatIndex)
+                            : null,
                         side,
                         inning,
                         order,
@@ -1967,6 +2496,9 @@
                                     if (["home", "score"].includes(outBase)) target.outAtHome = runnerFieldingResult;
                                 } else {
                                     target.outResult = runnerFieldingResult;
+                                    target.outResultAtBatIndex = Number.isInteger(Number(play?.about?.atBatIndex))
+                                        ? Number(play.about.atBatIndex)
+                                        : null;
                                 }
                             }
                             if (isCurrentBatter) batterOutRecorded = true;
@@ -1990,6 +2522,25 @@
                         play?.about?.isComplete && Number(play?.count?.outs) === 3
                     );
                     if (halfInningEnded) {
+                        const thirdOutRunner = runners.find((runner) =>
+                            outNumberByRunner.get(runner) === 3
+                        ) || [...runners].reverse().find((runner) => runner?.movement?.isOut);
+                        const thirdOutEventType = String(
+                            thirdOutRunner?.details?.eventType ?? play?.result?.eventType ?? ""
+                        ).toLowerCase();
+                        const thirdOutDescription = getRunnerEventDescription(
+                            play,
+                            thirdOutRunner
+                        ).toLowerCase();
+                        const thirdOutIsForce = thirdOutEventType.includes("force_out") ||
+                            thirdOutEventType.includes("grounded_into_double_play") ||
+                            thirdOutEventType.includes("triple_play") ||
+                            thirdOutDescription.includes("force out");
+
+                        if (thirdOutIsForce) {
+                            activeRunner.delete(Number(batterId));
+                            activeRunner.delete(Number(thirdOutRunner?.details?.runner?.id));
+                        }
                         [...activeRunner.entries()].forEach(([runnerId, runnerRecord]) => {
                             if (runnerRecord.side !== side || runnerRecord.inning !== inning) return;
                             if (!runnerRecord.centerMark) runnerRecord.centerMark = "ℓ";
@@ -2056,6 +2607,32 @@
                 return svg;
             };
 
+            let ghostRunnerArrowId = 0;
+            const createGhostRunnerSvg = () => {
+                const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+                svg.setAttribute("viewBox", "-1 -1 45 45");
+                svg.classList.add("ghost-runner-svg");
+                const markerId = `ghost-runner-arrow-${ghostRunnerArrowId += 1}`;
+                const defs = document.createElementNS("http://www.w3.org/2000/svg", "defs");
+                const marker = document.createElementNS("http://www.w3.org/2000/svg", "marker");
+                marker.setAttribute("id", markerId);
+                marker.setAttribute("viewBox", "0 0 6 6");
+                marker.setAttribute("refX", "5");
+                marker.setAttribute("refY", "3");
+                marker.setAttribute("markerWidth", "5");
+                marker.setAttribute("markerHeight", "5");
+                marker.setAttribute("orient", "auto");
+                const arrow = document.createElementNS("http://www.w3.org/2000/svg", "path");
+                arrow.setAttribute("d", "M0 0 L6 3 L0 6 Z");
+                marker.append(arrow);
+                defs.append(marker);
+                const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+                path.setAttribute("d", "M21.5 42 L21.5 5");
+                path.setAttribute("marker-end", `url(#${markerId})`);
+                svg.append(defs, path);
+                return svg;
+            };
+
             let runnerHistoryArrowId = 0;
             const createRunnerHistorySvg = (type) => {
                 const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
@@ -2115,6 +2692,7 @@
 
                 stage.append(createElement("div", "diamond"));
                 if (record.isHit && record.segments.length) stage.append(createAdvanceSvg(record.segments));
+                if (record.ghostRunner) stage.append(createGhostRunnerSvg());
                 if (record.rbi > 0) {
                     stage.append(createElement("div", "score-symbol play-rbi", String(record.rbi)));
                 }
@@ -2135,11 +2713,19 @@
                         const strikeoutClass = ["strikeout", "swinging_strikeout"].includes(record.templateId)
                             ? " strikeout-result"
                             : "";
-                        notationStack.append(createElement("div", `score-symbol play-result ${record.category}-result${strikeoutClass}${longClass}`, record.notation));
+                        notationStack.append(createGamedayAtBatResult(
+                            record.notation,
+                            `score-symbol play-result ${record.category}-result${strikeoutClass}${longClass}`,
+                            record.atBatIndex
+                        ));
                     }
                     if (record.outResult && record.outResult !== record.notation) {
                         const longClass = record.outResult.length > 3 ? " long-result" : "";
-                        notationStack.append(createElement("div", `score-symbol play-result runner-out-result${longClass}`, record.outResult));
+                        notationStack.append(createGamedayAtBatResult(
+                            record.outResult,
+                            `score-symbol play-result runner-out-result${longClass}`,
+                            record.outResultAtBatIndex
+                        ));
                     }
                     slots.bottomRight.append(notationStack);
                 }
@@ -2219,6 +2805,7 @@
                             inning,
                             order,
                             playerId,
+                            person,
                             role,
                             name: getPersonName(person)
                         });
@@ -2247,11 +2834,13 @@
                         "pinch-runner": "PR：",
                         defense: ""
                     }[item.role] ?? "";
-                    names.append(createElement(
+                    const name = createElement(
                         "span",
-                        `substitution-name substitution-${item.role} substitution-${item.teamSide}`,
-                        `${rolePrefix}${item.name}`
-                    ));
+                        `substitution-name substitution-${item.role} substitution-${item.teamSide}`
+                    );
+                    if (rolePrefix) name.append(document.createTextNode(rolePrefix));
+                    name.append(createPlayerProfileLink(item.person, item.name));
+                    names.append(name);
                 });
                 indicator.append(wave, names);
                 return indicator;
@@ -2319,17 +2908,15 @@
                     const pitcher = pitchers[row];
                     const person = pitcher?.person ?? {};
 
+                    const pitcherNameCell = createElement("div", "bench-cell");
+                    pitcherNameCell.append(createPlayerProfileLink(person));
                     grid.append(
                         createElement(
                             "div",
                             "bench-cell",
                             pitcher?.jerseyNumber ?? ""
                         ),
-                        createElement(
-                            "div",
-                            "bench-cell",
-                            getPersonName(person)
-                        ),
+                        pitcherNameCell,
                         createElement(
                             "div",
                             "bench-cell",
@@ -2338,7 +2925,7 @@
                         createElement(
                             "div",
                             "bench-cell hand-cell",
-                            getThrowBatText(pitcher)
+                            getPitchHandText(pitcher)
                         )
                     );
 
@@ -2443,7 +3030,11 @@
 
                     values.forEach((value, valueIndex) => {
                         const td = createElement("td", "", String(value ?? ""));
-                        if (valueIndex === 0) td.className = "pitcher-column";
+                        if (valueIndex === 0) {
+                            td.className = "pitcher-column";
+                            td.textContent = "";
+                            td.append(createPlayerProfileLink(pitcher?.person ?? {}, String(value ?? "")));
+                        }
                         else if (valueIndex === 1) td.className = "pitch-count-column";
                         else td.className = "stat-column";
                         row.append(td);
@@ -2461,43 +3052,30 @@
             const buildSideTables = (side) => {
                 const wrapper = createElement("div", "side-stats");
 
-                const notesBox = createElement("section", "table-box");
+                const notesBox = createElement("section", "table-box special-notes-box");
                 notesBox.append(
                     createElement("div", "table-title", "特記事項")
                 );
 
-                const notesTable = createElement("div", "special-notes");
-                for (let row = 0; row < 6; row += 1) {
-                    const note = createElement(
-                        "div",
-                        "special-note-row",
-                        state.streakNotes?.[side]?.[row] ?? ""
-                    );
-                    note.contentEditable = "true";
-                    note.spellcheck = false;
-                    note.dataset.noteRow = String(row + 1);
-                    notesTable.append(note);
-                }
-                notesBox.append(notesTable);
-
-                const memoBox = createElement("section", "table-box");
-                memoBox.append(
-                    createElement("div", "table-title", "長打・走塁記録")
-                );
-
-                const memoTable = createElement("div", "memo-table");
-
-                ["二塁打", "三塁打", "本塁打", "盗塁", "走塁死"].forEach(
-                    (label) => {
-                        memoTable.append(
-                            createElement("div", "memo-label", label),
-                            createElement("div")
+                const notesColumns = createElement("div", "special-notes-columns");
+                for (let column = 0; column < 2; column += 1) {
+                    const notesTable = createElement("div", "special-notes");
+                    for (let row = 0; row < 6; row += 1) {
+                        const noteIndex = column * 6 + row;
+                        const note = createElement(
+                            "div",
+                            "special-note-row",
+                            state.streakNotes?.[side]?.[noteIndex] ?? ""
                         );
+                        note.contentEditable = "true";
+                        note.spellcheck = false;
+                        note.dataset.noteRow = String(noteIndex + 1);
+                        notesTable.append(note);
                     }
-                );
-
-                memoBox.append(memoTable);
-                wrapper.append(notesBox, memoBox);
+                    notesColumns.append(notesTable);
+                }
+                notesBox.append(notesColumns);
+                wrapper.append(notesBox);
 
                 return wrapper;
             };
@@ -2585,6 +3163,15 @@
                 dom.inningCount.textContent = String(state.innings);
 
                 dom.awaySheet.replaceChildren(buildSheet());
+                const scorePanelWidth = dom.awaySheet
+                    .querySelector(".team-score-panel")
+                    ?.getBoundingClientRect().width;
+                if (Number.isFinite(scorePanelWidth) && scorePanelWidth > 0) {
+                    document.documentElement.style.setProperty(
+                        "--team-score-width",
+                        `${scorePanelWidth}px`
+                    );
+                }
                 populateScoreGrid();
                 dom.homeSheet.replaceChildren();
                 dom.awayPage.classList.add("active");
@@ -2636,6 +3223,7 @@
                     state.gamePk = gamePk;
                     state.gameData = data;
                     state.innings = determineInningCount(data);
+                    state.defensivePositionHistory = buildDefensivePositionHistory(data);
                     state.away = getTeamState(data, "away");
                     state.home = getTeamState(data, "home");
                     state.streakNotes = await fetchStreakNotes(data, gamePk);
