@@ -695,6 +695,62 @@ input {
     border-right: 1px solid var(--rule);
 }
 
+.pitch-result-sequence {
+    --pitch-symbol-size: 8px;
+    position: absolute;
+    top: 1px;
+    right: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0;
+    overflow: hidden;
+    color: #111;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+}
+
+.pitch-result-symbol {
+    width: var(--pitch-symbol-size);
+    height: var(--pitch-symbol-size);
+    min-height: var(--pitch-symbol-size);
+    flex: 0 0 var(--pitch-symbol-size);
+    overflow: visible;
+}
+
+.pitch-shape-stroke {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.1;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.pitch-shape-fill {
+    fill: currentColor;
+    stroke: none;
+}
+
+.pitch-shape-glyph {
+    fill: currentColor;
+    stroke: none;
+    font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+    font-size: 12px;
+    text-anchor: middle;
+    dominant-baseline: central;
+}
+
+.pitch-steal-mark {
+    fill: var(--red);
+    stroke: none;
+    font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+    font-size: 7px;
+    font-weight: 700;
+    text-anchor: middle;
+}
+
 .result-box {
     position: relative;
     height: 100%;
@@ -1076,6 +1132,10 @@ input {
     pointer-events: none;
 }
 
+.runner-note.stolen-base-note {
+    color: var(--red);
+}
+
 .runner-base-out-result {
     z-index: 10;
     color: #111;
@@ -1141,9 +1201,13 @@ input {
 }
 
 .substitution-names.multiple {
-    gap: 1px;
-    font-size: 5px;
-    letter-spacing: -0.2px;
+    height: 16px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    font-size: 6.5px;
+    letter-spacing: 0;
+    line-height: 1;
 }
 
 .substitution-names.tight {
@@ -1153,7 +1217,14 @@ input {
 }
 
 .substitution-names.multiple.tight {
-    font-size: 4px;
+    font-size: 5.5px;
+}
+
+.substitution-names.multiple .substitution-name {
+    display: block;
+    min-height: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .substitution-name.substitution-pitcher { color: #237a3b; }

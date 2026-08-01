@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MLB Scorebook Generator</title>
     <!-- Score notation update: stacked batted-ball symbol, red hits, blue strikeouts, black other results. -->
-    <link rel="stylesheet" href="css/style.css?v=20260801-15">
+    <link rel="stylesheet" href="css/style.css?v=20260801-22">
 </head>
 
 <body>
@@ -696,11 +696,39 @@
                 const request = fetch(
                     `https://statsapi.mlb.com/api/v1/people/${playerId}/stats` +
                     `?stats=byDateRange&group=${group}&gameType=R` +
-                    `&startDate=${debutDate}&endDate=${officialDate}`
+                    `&sportIds=1&startDate=${debutDate}&endDate=${officialDate}`
                 ).then(async (response) => {
                     if (!response.ok) return null;
                     const payload = await response.json();
-                    return payload?.stats?.[0]?.splits?.[0]?.stat ?? null;
+                    const splits = (payload?.stats ?? []).flatMap((statGroup) =>
+                        statGroup?.splits ?? []
+                    );
+                    if (!splits.length) return null;
+
+                    // byDateRange returns team stints plus an already aggregated
+                    // "All" split. Prefer that aggregate to avoid double counting;
+                    // if it is absent, combine MLB team stints as a fallback.
+                    const aggregateSplit = splits.find((split) =>
+                        !split?.team && Number(split?.sport?.id) === 0
+                    );
+                    const careerSplits = aggregateSplit
+                        ? [aggregateSplit]
+                        : splits.filter((split) =>
+                            Number(split?.sport?.id) === 1 && Boolean(split?.team?.id)
+                        );
+                    const careerTotals = {};
+                    const milestoneFields = new Set(
+                        (CAREER_MILESTONE_DEFINITIONS[group] ?? [])
+                            .map((definition) => definition.field)
+                    );
+                    careerSplits.forEach((split) => {
+                        milestoneFields.forEach((field) => {
+                            const value = Number(split?.stat?.[field]);
+                            if (!Number.isFinite(value)) return;
+                            careerTotals[field] = (careerTotals[field] ?? 0) + value;
+                        });
+                    });
+                    return Object.keys(careerTotals).length ? careerTotals : null;
                 }).catch(() => null);
 
                 playerCareerStatsCache.set(cacheKey, request);
@@ -2209,8 +2237,106 @@
                 return fragment;
             };
 
-            const createPitchColumn = () => {
-                return createElement("div", "pitch-column");
+            const PITCH_RESULT_BY_CODE = Object.freeze({
+                C: "called-strike",
+                S: "swinging-strike",
+                W: "swinging-strike",
+                B: "ball",
+                "*B": "ball",
+                F: "foul",
+                M: "swinging-bunt",
+                L: "foul-bunt",
+                O: "foul-bunt"
+            });
+
+            const getPitchResults = (play) => (play?.playEvents ?? [])
+                .map((event, eventIndex) => {
+                    if (!event?.isPitch && event?.type !== "pitch") return null;
+                    const result = PITCH_RESULT_BY_CODE[
+                        String(event?.details?.code ?? "").trim().toUpperCase()
+                    ] ?? "";
+                    return result ? { result, eventIndex, stolenBase: false } : null;
+                })
+                .filter(Boolean);
+
+            const createPitchResultSvg = (result, stolenBase = false) => {
+                const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+                svg.setAttribute("viewBox", "0 0 12 12");
+                svg.setAttribute("aria-hidden", "true");
+                svg.classList.add("pitch-result-symbol", `pitch-result-${result}`);
+
+                const addShape = (tagName, attributes) => {
+                    const shape = document.createElementNS("http://www.w3.org/2000/svg", tagName);
+                    Object.entries(attributes).forEach(([name, value]) =>
+                        shape.setAttribute(name, String(value))
+                    );
+                    shape.setAttribute("vector-effect", "non-scaling-stroke");
+                    svg.append(shape);
+                    return shape;
+                };
+
+                if (result === "called-strike") {
+                    const glyph = addShape("text", {
+                        x: 6,
+                        y: 6,
+                        class: "pitch-shape-glyph"
+                    });
+                    glyph.textContent = "◎";
+                } else if (["swinging-strike", "ball"].includes(result)) {
+                    addShape("circle", {
+                        cx: 6,
+                        cy: 6,
+                        r: 4.25,
+                        class: result === "ball" ? "pitch-shape-fill" : "pitch-shape-stroke"
+                    });
+                } else if (result === "foul") {
+                    addShape("line", {
+                        x1: 1.5,
+                        y1: 6,
+                        x2: 10.5,
+                        y2: 6,
+                        class: "pitch-shape-stroke"
+                    });
+                } else {
+                    addShape("polygon", {
+                        points: "6,1.25 10.75,6 6,10.75 1.25,6",
+                        class: "pitch-shape-stroke"
+                    });
+                    if (result === "foul-bunt") {
+                        addShape("line", {
+                            x1: 0,
+                            y1: 6,
+                            x2: 12,
+                            y2: 6,
+                            class: "pitch-shape-stroke"
+                        });
+                    }
+                }
+                if (stolenBase) {
+                    const stealMark = addShape("text", {
+                        x: 10.5,
+                        y: 3.2,
+                        class: "pitch-steal-mark"
+                    });
+                    stealMark.textContent = "’";
+                }
+                return svg;
+            };
+
+            const createPitchColumn = (pitchResults = []) => {
+                const column = createElement("div", "pitch-column");
+                if (!pitchResults.length) return column;
+
+                const sequence = createElement("div", "pitch-result-sequence");
+                sequence.style.setProperty(
+                    "--pitch-symbol-size",
+                    `${Math.max(4.5, Math.min(8, 50 / pitchResults.length))}px`
+                );
+                pitchResults.forEach(({ result, stolenBase }) =>
+                    sequence.append(createPitchResultSvg(result, stolenBase))
+                );
+                column.append(sequence);
+                return column;
             };
 
             const createAtBatCell = (side, inning, occurrence, order) => {
@@ -2838,6 +2964,7 @@
                                 segments: [],
                                 runnerAdvancePath: "",
                                 ghostRunner: true,
+                                pitchResults: [],
                                 toSecond: "",
                                 toThird: "",
                                 toHome: "",
@@ -2870,6 +2997,7 @@
                         category: display.category,
                         isHit: display.isHit,
                         homeRunNumber: display.homeRunNumber,
+                        pitchResults: getPitchResults(play),
                         extra: display.extra,
                         outResult: "",
                         shape: display.shape,
@@ -2915,7 +3043,17 @@
 
                         // Later advances belong to the runner history of the original score cell.
                         if (!isCurrentBatter && origin && end) {
-                            const advanceLabel = `（${order}）`;
+                            const runnerEventType = String(
+                                runner?.details?.eventType ?? ""
+                            ).toLowerCase();
+                            const runnerEventDescription = getRunnerEventDescription(
+                                play,
+                                runner
+                            ).toLowerCase();
+                            const isStolenBase = runnerEventType.includes("stolen_base") ||
+                                runnerEventDescription.includes("stolen base") ||
+                                /\bsteals\b/.test(runnerEventDescription);
+                            const advanceLabel = isStolenBase ? "S" : `（${order}）`;
                             const baseOrder = ["home", "1B", "2B", "3B", "score"];
                             let fromBase = normalizeBase(origin);
                             let toBase = normalizeBase(end);
@@ -2937,6 +3075,26 @@
                                 if (toIndex === 2) target.toSecond = advanceLabel;
                                 if (toIndex === 3) target.toThird = advanceLabel;
                                 if (toIndex >= 4) target.toHome = advanceLabel;
+                            }
+                            if (isStolenBase) {
+                                const eventIndex = Number(runner?.details?.playIndex);
+                                if (Number.isInteger(eventIndex)) {
+                                    let pitchResult = record.pitchResults.find((item) =>
+                                        item.eventIndex === eventIndex
+                                    );
+                                    if (!pitchResult) {
+                                        const stealEvent = play?.playEvents?.[eventIndex];
+                                        const stealCount = stealEvent?.count ?? {};
+                                        pitchResult = [...record.pitchResults].reverse().find((item) => {
+                                            if (item.eventIndex >= eventIndex) return false;
+                                            const pitchCount = play?.playEvents?.[item.eventIndex]?.count ?? {};
+                                            return Number(pitchCount.balls) === Number(stealCount.balls) &&
+                                                Number(pitchCount.strikes) === Number(stealCount.strikes) &&
+                                                Number(pitchCount.outs) === Number(stealCount.outs);
+                                        });
+                                    }
+                                    if (pitchResult) pitchResult.stolenBase = true;
+                                }
                             }
                         }
 
@@ -3202,9 +3360,21 @@
                         : "score-symbol play-center-mark out-number";
                     slots.center.append(createElement("div", centerClass, record.centerMark));
                 }
-                if (record.toSecond) slots.topRight.append(createElement("div", "score-symbol runner-note to-second", record.toSecond));
-                if (record.toThird) slots.topLeft.append(createElement("div", "score-symbol runner-note to-third", record.toThird));
-                if (record.toHome) slots.bottomLeft.append(createElement("div", "score-symbol runner-note to-home", record.toHome));
+                if (record.toSecond) slots.topRight.append(createElement(
+                    "div",
+                    `score-symbol runner-note to-second${record.toSecond === "S" ? " stolen-base-note" : ""}`,
+                    record.toSecond
+                ));
+                if (record.toThird) slots.topLeft.append(createElement(
+                    "div",
+                    `score-symbol runner-note to-third${record.toThird === "S" ? " stolen-base-note" : ""}`,
+                    record.toThird
+                ));
+                if (record.toHome) slots.bottomLeft.append(createElement(
+                    "div",
+                    `score-symbol runner-note to-home${record.toHome === "S" ? " stolen-base-note" : ""}`,
+                    record.toHome
+                ));
                 if (record.outAtSecond) slots.topRight.append(createElement("div", "score-symbol runner-base-out-result", record.outAtSecond));
                 if (record.outAtThird) slots.topLeft.append(createElement("div", "score-symbol runner-base-out-result", record.outAtThird));
                 if (record.outAtHome) slots.bottomLeft.append(createElement("div", "score-symbol runner-base-out-result", record.outAtHome));
@@ -3218,12 +3388,17 @@
             const populateScoreGrid = () => {
                 const records = buildPlateAppearanceRecords();
                 records.forEach((record) => {
-                    const selector = `.atbat-cell[data-side="${record.side}"]` +
+                    const cellSelector = `.atbat-cell[data-side="${record.side}"]` +
                         `[data-inning="${record.inning}"]` +
                         `[data-inning-occurrence="${record.inningOccurrence ?? 1}"]` +
-                        `[data-order="${record.order}"] .result-box`;
-                    const resultBox = dom.awaySheet.querySelector(selector);
-                    if (!resultBox) return;
+                        `[data-order="${record.order}"]`;
+                    const cell = dom.awaySheet.querySelector(cellSelector);
+                    const resultBox = cell?.querySelector(".result-box");
+                    if (!cell || !resultBox) return;
+                    const currentPitchColumn = cell.querySelector(".pitch-column");
+                    if (currentPitchColumn && record.pitchResults?.length) {
+                        currentPitchColumn.replaceWith(createPitchColumn(record.pitchResults));
+                    }
                     resultBox.classList.add("has-play");
                     resultBox.append(renderPlateAppearance(record));
                 });
