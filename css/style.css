@@ -261,6 +261,48 @@ select {
     font-size: 10px;
 }
 
+#library-list {
+    max-height: 240px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.library-item {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 26px;
+    align-items: center;
+    border-bottom: 1px solid #343e45;
+}
+
+.sidebar .library-item button {
+    min-height: 30px;
+    margin: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    font-size: 10px;
+    font-weight: 500;
+}
+
+.sidebar .library-item button:hover {
+    background: rgba(255, 255, 255, 0.055);
+}
+
+.sidebar .library-load {
+    overflow: hidden;
+    padding: 0 5px;
+    text-align: left;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.sidebar .library-delete {
+    width: 26px;
+    padding: 0;
+    color: #aeb9bf;
+    font-size: 13px;
+}
+
 .sidebar label {
     display: block;
     margin-bottom: 7px;

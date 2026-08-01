@@ -417,6 +417,7 @@
                 ballpark: document.getElementById("ballpark"),
                 gameStatus: document.getElementById("game-status"),
                 inningCount: document.getElementById("inning-count-display"),
+                libraryList: document.getElementById("library-list"),
                 statusMessage: document.getElementById("status-message"),
                 printButton: document.getElementById("print-btn"),
                 jsonButton: document.getElementById("json-btn"),
@@ -4376,24 +4377,137 @@
                 dom.homePageButton.classList.remove("active");
             };
 
+            const SCOREBOOK_LIBRARY_KEY = "mlb-scorebook-generator-library-v1";
+
+            const readScorebookLibrary = () => {
+                try {
+                    const stored = JSON.parse(
+                        localStorage.getItem(SCOREBOOK_LIBRARY_KEY) || "[]"
+                    );
+                    return Array.isArray(stored) ? stored : [];
+                } catch (error) {
+                    console.error(error);
+                    return [];
+                }
+            };
+
+            const writeScorebookLibrary = (entries) => {
+                localStorage.setItem(SCOREBOOK_LIBRARY_KEY, JSON.stringify(entries));
+            };
+
+            const getSnapshotDisplayName = () => {
+                const officialDate = String(
+                    state.gameData?.gameData?.datetime?.officialDate ?? ""
+                );
+                const [year, month, day] = officialDate.split("-");
+                const date = year && month && day
+                    ? `${year}/${month.padStart(2, "0")}/${day.padStart(2, "0")}`
+                    : "----/--/--";
+                return `${date} ${state.away.abbreviation}＠${state.home.abbreviation}`;
+            };
+
+            const restoreSnapshot = (snapshot) => {
+                if (!snapshot?.gamePk || !snapshot?.gameData) {
+                    setStatus("保存データを復元できませんでした。", true);
+                    return;
+                }
+
+                state.gamePk = snapshot.gamePk;
+                state.gameData = snapshot.gameData;
+                state.innings = snapshot.innings ?? determineInningCount(snapshot.gameData);
+                state.inningColumns = snapshot.inningColumns ??
+                    determineInningColumns(snapshot.gameData, state.innings);
+                state.away = snapshot.away ?? getTeamState(snapshot.gameData, "away");
+                state.home = snapshot.home ?? getTeamState(snapshot.gameData, "home");
+                state.headToHead = snapshot.headToHead ?? null;
+                state.attendanceNote = snapshot.attendanceNote ?? "";
+                state.streakNotes = snapshot.streakNotes ?? { away: [], home: [] };
+                state.defensivePositionHistory = snapshot.defensivePositionHistory ??
+                    buildDefensivePositionHistory(snapshot.gameData);
+
+                dom.gameInput.value = String(snapshot.gamePk);
+                updateSidebar();
+                render();
+                setStatus(`${snapshot.displayName} を保存データから読み込みました。`);
+            };
+
+            const renderScorebookLibrary = () => {
+                const entries = readScorebookLibrary().sort((a, b) =>
+                    String(b?.savedAt ?? "").localeCompare(String(a?.savedAt ?? ""))
+                );
+                dom.libraryList.replaceChildren();
+
+                entries.forEach((entry) => {
+                    const item = createElement("div", "library-item");
+                    const loadButton = createElement(
+                        "button",
+                        "library-load",
+                        entry.displayName || String(entry.gamePk)
+                    );
+                    loadButton.type = "button";
+                    loadButton.title = loadButton.textContent;
+                    loadButton.addEventListener("click", () => restoreSnapshot(entry));
+
+                    const deleteButton = createElement("button", "library-delete", "×");
+                    deleteButton.type = "button";
+                    deleteButton.title = "削除";
+                    deleteButton.setAttribute("aria-label", `${loadButton.textContent}を削除`);
+                    deleteButton.addEventListener("click", () => {
+                        if (!window.confirm("このスコアブックを削除しますか？")) return;
+                        writeScorebookLibrary(readScorebookLibrary().filter(
+                            (saved) => String(saved?.gamePk) !== String(entry.gamePk)
+                        ));
+                        renderScorebookLibrary();
+                        setStatus(`${loadButton.textContent} を削除しました。`);
+                    });
+
+                    item.append(loadButton, deleteButton);
+                    dom.libraryList.append(item);
+                });
+            };
+
             const saveSnapshot = () => {
+                if (!state.gamePk || !state.gameData) {
+                    setStatus("保存する試合データを読み込んでください。", true);
+                    return;
+                }
+
+                const entries = readScorebookLibrary();
+                const existingIndex = entries.findIndex(
+                    (entry) => String(entry?.gamePk) === String(state.gamePk)
+                );
                 const payload = {
                     version: "2.0.0",
                     savedAt: new Date().toISOString(),
                     gamePk: state.gamePk,
+                    gameDate: state.gameData?.gameData?.datetime?.officialDate ?? "",
+                    awayTeam: state.away.abbreviation,
+                    homeTeam: state.home.abbreviation,
+                    displayName: existingIndex >= 0
+                        ? entries[existingIndex].displayName
+                        : getSnapshotDisplayName(),
                     innings: state.innings,
                     inningColumns: state.inningColumns,
                     away: state.away,
                     home: state.home,
-                    gameData: state.gameData
+                    gameData: state.gameData,
+                    headToHead: state.headToHead,
+                    attendanceNote: state.attendanceNote,
+                    streakNotes: state.streakNotes,
+                    defensivePositionHistory: state.defensivePositionHistory,
+                    gameStatus: getStatusText(state.gameData)
                 };
 
-                localStorage.setItem(
-                    "mlb-scorebook-generator-current",
-                    JSON.stringify(payload)
-                );
-
-                setStatus("現在の試合データをブラウザに保存しました。");
+                try {
+                    if (existingIndex >= 0) entries[existingIndex] = payload;
+                    else entries.push(payload);
+                    writeScorebookLibrary(entries);
+                    renderScorebookLibrary();
+                    setStatus(`${payload.displayName} をSCOREBOOK LIBRARYへ保存しました。`);
+                } catch (error) {
+                    console.error(error);
+                    setStatus("ブラウザの保存容量が不足しているため保存できませんでした。", true);
+                }
             };
 
             const PRINT_PAGE_STYLE_ID = "print-a4-landscape-page";
@@ -4564,6 +4678,7 @@
             window.addEventListener("afterprint", clearPrintFit);
 
             initializeHeaderGameSearch();
+            renderScorebookLibrary();
             render();
         })();
     </script>
