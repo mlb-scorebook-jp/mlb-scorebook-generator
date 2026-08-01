@@ -563,6 +563,23 @@ input {
     font-size: 15px;
 }
 
+.team-page-link {
+    color: inherit;
+    font: inherit;
+    font-size: 15px;
+    font-weight: inherit;
+    text-decoration: none;
+}
+
+.team-page-link:hover,
+.team-page-link:focus-visible {
+    color: inherit;
+    cursor: pointer;
+    text-decoration: underline;
+    text-decoration-thickness: 0.5px;
+    text-underline-offset: 1px;
+}
+
 .team-panel-title-record {
     font-size: 10px;
     font-weight: 700;
@@ -1664,6 +1681,11 @@ input {
     }
 
     .player-profile-link {
+        color: inherit !important;
+        text-decoration: none !important;
+    }
+
+    .team-page-link {
         color: inherit !important;
         text-decoration: none !important;
     }

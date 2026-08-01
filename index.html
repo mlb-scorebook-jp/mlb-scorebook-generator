@@ -581,6 +581,32 @@
                 144: "ATL", 145: "CWS", 146: "MIA", 147: "NYY", 158: "MIL"
             });
 
+            const MLB_TEAM_SLUGS_BY_ID = Object.freeze({
+                108: "angels", 109: "dbacks", 110: "orioles", 111: "redsox",
+                112: "cubs", 113: "reds", 114: "guardians", 115: "rockies",
+                116: "tigers", 117: "astros", 118: "royals", 119: "dodgers",
+                120: "nationals", 121: "mets", 133: "athletics", 134: "pirates",
+                135: "padres", 136: "mariners", 137: "giants", 138: "cardinals",
+                139: "rays", 140: "rangers", 141: "bluejays", 142: "twins",
+                143: "phillies", 144: "braves", 145: "whitesox", 146: "marlins",
+                147: "yankees", 158: "brewers"
+            });
+
+            const getMlbTeamPageUrl = (teamId) => {
+                const slug = MLB_TEAM_SLUGS_BY_ID[Number(teamId)];
+                return slug ? `https://www.mlb.com/${slug}` : "";
+            };
+
+            const createTeamPageLink = (team) => {
+                const url = getMlbTeamPageUrl(team?.id);
+                if (!url) return createElement("span", "team-panel-title-name", team?.name ?? "");
+                const link = createElement("a", "team-panel-title-name team-page-link", team.name);
+                link.href = url;
+                link.target = "_blank";
+                link.rel = "noopener noreferrer";
+                return link;
+            };
+
             const MLB_TEAM_CODE_ALIASES = Object.freeze({
                 ANA: "LAA", LAA: "LAA",
                 ARI: "ARI", AZ: "ARI",
@@ -1802,6 +1828,7 @@
                 const record = getTeamRecord(team, boxscoreTeam);
 
                 return {
+                    id: Number(team?.id) || null,
                     abbreviation: getMlbTeamDisplayCode(team) || nhkTeamName,
                     name: nhkTeamName,
                     wins: record.wins,
@@ -3930,13 +3957,7 @@
                     "team-panel-title-main"
                 );
 
-                mainLine.append(
-                    createElement(
-                        "span",
-                        "team-panel-title-name",
-                        team.name
-                    )
-                );
+                mainLine.append(createTeamPageLink(team));
 
                 if (Number.isFinite(team.wins) && Number.isFinite(team.losses)) {
                     mainLine.append(
