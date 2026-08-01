@@ -317,9 +317,14 @@
                 innings: DEFAULT_INNINGS,
                 gamePk: null,
                 gameData: null,
-                inningColumns: Array.from(
-                    { length: DEFAULT_INNINGS },
-                    (_, index) => ({ inning: index + 1, occurrence: 1 })
+                inningColumns: Object.fromEntries(
+                    ["away", "home"].map((side) => [
+                        side,
+                        Array.from(
+                            { length: DEFAULT_INNINGS },
+                            (_, index) => ({ inning: index + 1, occurrence: 1 })
+                        )
+                    ])
                 ),
                 headToHead: null,
                 streakNotes: { away: [], home: [] },
@@ -486,19 +491,20 @@
                     plateAppearances.set(key, (plateAppearances.get(key) ?? 0) + 1);
                 });
 
-                const columns = [];
-                for (let inning = 1; inning <= inningCount; inning += 1) {
-                    const maxAppearances = Math.max(
-                        plateAppearances.get(`away-${inning}`) ?? 0,
-                        plateAppearances.get(`home-${inning}`) ?? 0
-                    );
-                    const columnCount = Math.max(1, Math.ceil(maxAppearances / 9));
-                    for (let occurrence = 1; occurrence <= columnCount; occurrence += 1) {
-                        columns.push({ inning, occurrence });
+                return Object.fromEntries(["away", "home"].map((side) => {
+                    const columns = [];
+                    for (let inning = 1; inning <= inningCount; inning += 1) {
+                        const appearances = plateAppearances.get(`${side}-${inning}`) ?? 0;
+                        const columnCount = Math.max(1, Math.ceil(appearances / 9));
+                        for (let occurrence = 1; occurrence <= columnCount; occurrence += 1) {
+                            columns.push({ inning, occurrence });
+                        }
                     }
-                }
-                return columns;
+                    return [side, columns];
+                }));
             };
+
+            const getInningColumns = (side) => state.inningColumns?.[side] ?? [];
 
             const getPersonName = (person) => {
                 const candidates = [
@@ -2276,7 +2282,7 @@
                     makeStackCell("center-cell hand-cell", (player) => getRosterHandText(side, player))
                 );
 
-                state.inningColumns.forEach(({ inning, occurrence }) => {
+                getInningColumns(side).forEach(({ inning, occurrence }) => {
                     const atBatCell = createAtBatCell(side, inning, occurrence, order);
                     atBatCell.style.height = `${rowHeight}px`;
                     fragment.append(atBatCell);
@@ -3343,7 +3349,7 @@
                     grid.append(createElement("div", "grid-header", label));
                 });
 
-                state.inningColumns.forEach(({ inning }) => {
+                getInningColumns(side).forEach(({ inning }) => {
                     grid.append(
                         createElement("div", "grid-header", String(inning))
                     );
@@ -3471,7 +3477,7 @@
                             )
                         );
 
-                        for (let column = 0; column < state.inningColumns.length; column += 1) {
+                        for (let column = 0; column < getInningColumns(side).length; column += 1) {
                             grid.append(createElement("div", "summary-cell"));
                         }
 
@@ -3633,6 +3639,10 @@
 
             const buildTeamPanel = (side) => {
                 const panel = createElement("section", "team-score-panel");
+                panel.style.setProperty(
+                    "--score-column-count",
+                    String(getInningColumns(side).length)
+                );
 
                 panel.append(
                     buildTeamPanelTitle(side),
@@ -3671,7 +3681,10 @@
                 );
                 document.documentElement.style.setProperty(
                     "--score-column-count",
-                    String(state.inningColumns.length)
+                    String(Math.max(
+                        getInningColumns("away").length,
+                        getInningColumns("home").length
+                    ))
                 );
 
                 dom.inningCount.textContent = String(state.innings);
