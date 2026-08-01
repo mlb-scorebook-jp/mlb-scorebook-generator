@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MLB Scorebook Generator</title>
     <!-- Score notation update: stacked batted-ball symbol, red hits, blue strikeouts, black other results. -->
-    <link rel="stylesheet" href="css/style.css?v=20260801-24">
+    <link rel="stylesheet" href="css/style.css?v=20260801-25">
 </head>
 
 <body>
@@ -15,6 +15,28 @@
             <h1>MLB SCOREBOOK GENERATOR</h1>
             <p aria-hidden="true">&nbsp;</p>
         </div>
+
+        <section class="header-game-search" aria-label="試合検索">
+            <label class="header-search-field">
+                <span>HOME</span>
+                <select id="header-home-team" aria-label="ホームチーム">
+                    <option value="">選択</option>
+                </select>
+            </label>
+            <label class="header-search-field">
+                <span>AWAY</span>
+                <select id="header-away-team" aria-label="アウェイチーム">
+                    <option value="">選択</option>
+                </select>
+            </label>
+            <label class="header-search-field header-date-field">
+                <span>DATE</span>
+                <select id="header-game-date" aria-label="試合日">
+                    <option value="">選択</option>
+                </select>
+            </label>
+            <button type="button" id="header-game-search-btn">試合データを取得</button>
+        </section>
 
         <div class="version">Ver. 2.3.2</div>
     </header>
@@ -377,6 +399,10 @@
             const dom = {
                 gameInput: document.getElementById("gameday-url"),
                 loadButton: document.getElementById("load-btn"),
+                searchHomeTeam: document.getElementById("header-home-team"),
+                searchAwayTeam: document.getElementById("header-away-team"),
+                searchGameDate: document.getElementById("header-game-date"),
+                searchGameButton: document.getElementById("header-game-search-btn"),
                 generateButton: document.getElementById("generate-btn"),
                 saveButton: document.getElementById("save-btn"),
                 awayPageButton: document.getElementById("away-page-btn"),
@@ -592,6 +618,19 @@
                 147: "yankees", 158: "brewers"
             });
 
+            const MLB_TEAM_SEARCH_OPTIONS = Object.freeze([
+                [109, "arizonadiamondbacks"], [133, "athletics"], [144, "atlantabraves"],
+                [110, "baltimoreorioles"], [111, "bostonredsox"], [112, "chicagocubs"],
+                [145, "chicagowhitesox"], [113, "cincinnatireds"], [114, "clevelandguardians"],
+                [115, "coloradorockies"], [116, "detroittigers"], [117, "houstonastros"],
+                [118, "kansascityroyals"], [108, "losangelesangels"], [119, "losangelesdodgers"],
+                [146, "miamimarlins"], [158, "milwaukeebrewers"], [142, "minnesotatwins"],
+                [121, "newyorkmets"], [147, "newyorkyankees"], [143, "philadelphiaphillies"],
+                [134, "pittsburghpirates"], [135, "sandiegopadres"], [137, "sanfranciscogiants"],
+                [136, "seattlemariners"], [138, "stlouiscardinals"], [139, "tampabayrays"],
+                [140, "texasrangers"], [141, "torontobluejays"], [120, "washingtonnationals"]
+            ].map(([id, nameKey]) => ({ id, name: NHK_TEAM_NAMES[nameKey] })));
+
             const getMlbTeamPageUrl = (teamId) => {
                 const slug = MLB_TEAM_SLUGS_BY_ID[Number(teamId)];
                 return slug ? `https://www.mlb.com/${slug}` : "";
@@ -665,6 +704,7 @@
             const headToHeadCache = new Map();
             const teamFirstYearCache = new Map();
             const seasonAttendanceCache = new Map();
+            const gameSearchCache = new Map();
 
             const CAREER_MILESTONE_DEFINITIONS = Object.freeze({
                 hitting: [
@@ -4078,6 +4118,168 @@
                 return response.json();
             };
 
+            const getSearchGames = async (params, cacheKey) => {
+                if (gameSearchCache.has(cacheKey)) return gameSearchCache.get(cacheKey);
+                const request = fetch(`https://statsapi.mlb.com/api/v1/schedule?${params}`)
+                    .then(async (response) => {
+                        if (!response.ok) return [];
+                        const payload = await response.json();
+                        return (payload?.dates ?? [])
+                            .flatMap((date) => date?.games ?? [])
+                            .filter((game) => String(game?.gameType ?? "").toUpperCase() === "R")
+                            .sort((a, b) =>
+                                String(a?.officialDate ?? "").localeCompare(String(b?.officialDate ?? "")) ||
+                                (Number(a?.gameNumber) || 0) - (Number(b?.gameNumber) || 0)
+                            );
+                    })
+                    .catch(() => []);
+                gameSearchCache.set(cacheKey, request);
+                return request;
+            };
+
+            const fetchGamesForSearchDate = (date) => {
+                const params = new URLSearchParams({
+                    sportId: "1",
+                    date,
+                    gameType: "R"
+                });
+                return getSearchGames(params, `date:${date}`);
+            };
+
+            const fetchGamesForSearchMatchup = (homeTeamId, awayTeamId, season) => {
+                const params = new URLSearchParams({
+                    sportId: "1",
+                    teamId: String(homeTeamId),
+                    opponentId: String(awayTeamId),
+                    startDate: `${season}-01-01`,
+                    endDate: `${season}-12-31`,
+                    gameType: "R"
+                });
+                return getSearchGames(
+                    params,
+                    `matchup:${homeTeamId}:${awayTeamId}:${season}`
+                ).then((games) => games.filter((game) =>
+                    Number(game?.teams?.home?.team?.id) === Number(homeTeamId) &&
+                    Number(game?.teams?.away?.team?.id) === Number(awayTeamId)
+                ));
+            };
+
+            const formatSearchDate = (date) => {
+                const [year, month, day] = String(date).split("-");
+                return year && month && day
+                    ? `${year}/${Number(month)}/${Number(day)}`
+                    : String(date);
+            };
+
+            const setSearchDateOptions = (dates, selectedDate = "") => {
+                dom.searchGameDate.replaceChildren(createElement("option", "", "選択"));
+                dom.searchGameDate.firstElementChild.value = "";
+                [...new Set(dates)].sort().forEach((date) => {
+                    const option = createElement("option", "", formatSearchDate(date));
+                    option.value = date;
+                    dom.searchGameDate.append(option);
+                });
+                dom.searchGameDate.value = dates.includes(selectedDate) ? selectedDate : "";
+            };
+
+            const getSeasonSearchDates = (season) => {
+                const dates = [];
+                const current = new Date(`${season}-03-01T12:00:00Z`);
+                const end = new Date(`${season}-11-15T12:00:00Z`);
+                while (current <= end) {
+                    dates.push(current.toISOString().slice(0, 10));
+                    current.setUTCDate(current.getUTCDate() + 1);
+                }
+                return dates;
+            };
+
+            const getSelectedSearchTeamId = (select) => Number(select.value) || null;
+
+            const setHeaderSearchBusy = (busy) => {
+                dom.searchGameButton.disabled = busy;
+                dom.searchHomeTeam.disabled = busy;
+                dom.searchAwayTeam.disabled = busy;
+                dom.searchGameDate.disabled = busy;
+            };
+
+            const refreshMatchupSearchDates = async () => {
+                const homeTeamId = getSelectedSearchTeamId(dom.searchHomeTeam);
+                const awayTeamId = getSelectedSearchTeamId(dom.searchAwayTeam);
+                const currentDate = dom.searchGameDate.value;
+                if (!homeTeamId || !awayTeamId) {
+                    const season = Number(currentDate.slice(0, 4)) || new Date().getFullYear();
+                    setSearchDateOptions(getSeasonSearchDates(season), currentDate);
+                    return;
+                }
+
+                const season = Number(currentDate.slice(0, 4)) || new Date().getFullYear();
+                setHeaderSearchBusy(true);
+                const games = await fetchGamesForSearchMatchup(homeTeamId, awayTeamId, season);
+                setHeaderSearchBusy(false);
+                const dates = games.map((game) => String(game?.officialDate ?? "")).filter(Boolean);
+                setSearchDateOptions(dates, currentDate);
+                if (!dates.length) setStatus("試合が見つかりません", true);
+            };
+
+            const syncSearchOpponentFromDate = async (changedSide) => {
+                const date = dom.searchGameDate.value;
+                const selectedTeamId = getSelectedSearchTeamId(
+                    changedSide === "home" ? dom.searchHomeTeam : dom.searchAwayTeam
+                );
+                if (!date || !selectedTeamId) return;
+
+                setHeaderSearchBusy(true);
+                const games = await fetchGamesForSearchDate(date);
+                setHeaderSearchBusy(false);
+                const game = games.find((candidate) => Number(
+                    candidate?.teams?.[changedSide]?.team?.id
+                ) === selectedTeamId);
+                if (!game) {
+                    setStatus("試合が見つかりません", true);
+                    return;
+                }
+                if (changedSide === "home") {
+                    dom.searchAwayTeam.value = String(game?.teams?.away?.team?.id ?? "");
+                } else {
+                    dom.searchHomeTeam.value = String(game?.teams?.home?.team?.id ?? "");
+                }
+            };
+
+            const searchAndLoadGame = async () => {
+                const homeTeamId = getSelectedSearchTeamId(dom.searchHomeTeam);
+                const awayTeamId = getSelectedSearchTeamId(dom.searchAwayTeam);
+                const date = dom.searchGameDate.value;
+                if (!homeTeamId || !awayTeamId || !date) {
+                    setStatus("HOME・AWAY・DATEを選択してください。", true);
+                    return;
+                }
+
+                setHeaderSearchBusy(true);
+                const games = await fetchGamesForSearchDate(date);
+                const game = games.find((candidate) =>
+                    Number(candidate?.teams?.home?.team?.id) === homeTeamId &&
+                    Number(candidate?.teams?.away?.team?.id) === awayTeamId
+                );
+                setHeaderSearchBusy(false);
+                if (!game?.gamePk) {
+                    setStatus("試合が見つかりません", true);
+                    return;
+                }
+                dom.gameInput.value = String(game.gamePk);
+                await loadGame();
+            };
+
+            const initializeHeaderGameSearch = () => {
+                [dom.searchHomeTeam, dom.searchAwayTeam].forEach((select) => {
+                    MLB_TEAM_SEARCH_OPTIONS.forEach((team) => {
+                        const option = createElement("option", "", team.name);
+                        option.value = String(team.id);
+                        select.append(option);
+                    });
+                });
+                setSearchDateOptions(getSeasonSearchDates(new Date().getFullYear()));
+            };
+
             const loadGame = async () => {
                 const gamePk = extractGamePk(dom.gameInput.value);
 
@@ -4259,6 +4461,28 @@
             };
 
             dom.loadButton.addEventListener("click", loadGame);
+            dom.searchHomeTeam.addEventListener("change", async () => {
+                if (dom.searchGameDate.value) {
+                    await syncSearchOpponentFromDate("home");
+                } else {
+                    await refreshMatchupSearchDates();
+                }
+            });
+            dom.searchAwayTeam.addEventListener("change", async () => {
+                if (dom.searchGameDate.value) {
+                    await syncSearchOpponentFromDate("away");
+                } else {
+                    await refreshMatchupSearchDates();
+                }
+            });
+            dom.searchGameDate.addEventListener("change", async () => {
+                if (getSelectedSearchTeamId(dom.searchHomeTeam)) {
+                    await syncSearchOpponentFromDate("home");
+                } else if (getSelectedSearchTeamId(dom.searchAwayTeam)) {
+                    await syncSearchOpponentFromDate("away");
+                }
+            });
+            dom.searchGameButton.addEventListener("click", searchAndLoadGame);
 
             dom.generateButton.addEventListener("click", async () => {
                 if (state.gameData && state.gamePk) {
@@ -4289,6 +4513,7 @@
 
             window.addEventListener("afterprint", clearPrintFit);
 
+            initializeHeaderGameSearch();
             render();
         })();
     </script>

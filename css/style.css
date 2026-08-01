@@ -86,7 +86,8 @@ body {
 }
 
 button,
-input {
+input,
+select {
     font: inherit;
 }
 
@@ -98,6 +99,11 @@ input {
     padding: 0 24px;
     border-bottom: 1px solid #39434b;
     background: linear-gradient(180deg, #252c32 0%, #1c2227 100%);
+    gap: 18px;
+}
+
+.app-title {
+    flex: 0 0 auto;
 }
 
 .app-title h1 {
@@ -114,8 +120,74 @@ input {
 }
 
 .version {
+    flex: 0 0 auto;
     color: var(--muted);
     font-size: 11px;
+}
+
+.header-game-search {
+    min-width: 0;
+    display: flex;
+    flex: 1 1 auto;
+    align-items: flex-end;
+    justify-content: flex-end;
+    gap: 8px;
+}
+
+.header-search-field {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    color: #aeb9c0;
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+}
+
+.header-search-field select {
+    width: 164px;
+    height: 29px;
+    padding: 0 26px 0 8px;
+    color: #e8edef;
+    border: 1px solid #4a555e;
+    border-radius: 2px;
+    outline: none;
+    background: linear-gradient(180deg, #20272d 0%, #151a1f 100%);
+    font-size: 10px;
+    letter-spacing: 0;
+}
+
+.header-date-field select {
+    width: 118px;
+}
+
+.header-search-field select:focus {
+    border-color: #7c98a5;
+}
+
+#header-game-search-btn {
+    height: 29px;
+    padding: 0 12px;
+    color: #edf1f3;
+    border: 1px solid #56636c;
+    border-radius: 2px;
+    background: linear-gradient(180deg, #39444c 0%, #252d33 100%);
+    font-size: 10px;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+#header-game-search-btn:hover,
+#header-game-search-btn:focus-visible {
+    border-color: #89a3af;
+    background: linear-gradient(180deg, #46535c 0%, #2c353c 100%);
+}
+
+#header-game-search-btn:disabled,
+.header-search-field select:disabled {
+    cursor: wait;
+    opacity: 0.55;
 }
 
 .app-main {
