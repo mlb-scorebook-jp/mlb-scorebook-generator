@@ -18,14 +18,14 @@
 
         <section class="header-game-search" aria-label="試合検索">
             <label class="header-search-field">
-                <span>HOME</span>
-                <select id="header-home-team" aria-label="ホームチーム">
+                <span>TEAM 1</span>
+                <select id="header-home-team" aria-label="検索チーム1">
                     <option value="">選択</option>
                 </select>
             </label>
             <label class="header-search-field">
-                <span>AWAY</span>
-                <select id="header-away-team" aria-label="アウェイチーム">
+                <span>TEAM 2</span>
+                <select id="header-away-team" aria-label="検索チーム2">
                     <option value="">選択</option>
                 </select>
             </label>
@@ -4350,21 +4350,24 @@
                 return getSearchGames(params, `date:${date}`);
             };
 
-            const fetchGamesForSearchMatchup = (homeTeamId, awayTeamId, season) => {
+            const fetchGamesForSearchMatchup = (team1Id, team2Id, season) => {
+                const orderedIds = [Number(team1Id), Number(team2Id)].sort((a, b) => a - b);
                 const params = new URLSearchParams({
                     sportId: "1",
-                    teamId: String(homeTeamId),
-                    opponentId: String(awayTeamId),
+                    teamId: String(orderedIds[0]),
+                    opponentId: String(orderedIds[1]),
                     startDate: `${season}-01-01`,
                     endDate: `${season}-12-31`,
                     gameType: "R"
                 });
                 return getSearchGames(
                     params,
-                    `matchup:${homeTeamId}:${awayTeamId}:${season}`
+                    `matchup:${orderedIds[0]}:${orderedIds[1]}:${season}`
                 ).then((games) => games.filter((game) =>
-                    Number(game?.teams?.home?.team?.id) === Number(homeTeamId) &&
-                    Number(game?.teams?.away?.team?.id) === Number(awayTeamId)
+                    [
+                        Number(game?.teams?.home?.team?.id),
+                        Number(game?.teams?.away?.team?.id)
+                    ].sort((a, b) => a - b).join(":") === orderedIds.join(":")
                 ));
             };
 
@@ -4375,6 +4378,9 @@
                     : String(date);
             };
 
+            const getSearchOptionDate = (value) => String(value ?? "").split("|")[0];
+            const getSearchOptionGamePk = (value) => Number(String(value ?? "").split("|")[1]) || null;
+
             const setSearchDateOptions = (dates, selectedDate = "") => {
                 dom.searchGameDate.replaceChildren(createElement("option", "", "選択"));
                 dom.searchGameDate.firstElementChild.value = "";
@@ -4384,6 +4390,45 @@
                     dom.searchGameDate.append(option);
                 });
                 dom.searchGameDate.value = dates.includes(selectedDate) ? selectedDate : "";
+            };
+
+            const setSearchGameOptions = (games, selectedValue = "") => {
+                dom.searchGameDate.replaceChildren(createElement("option", "", "選択"));
+                dom.searchGameDate.firstElementChild.value = "";
+                const dateCounts = games.reduce((counts, game) => {
+                    const date = String(game?.officialDate ?? "");
+                    if (date) counts.set(date, (counts.get(date) || 0) + 1);
+                    return counts;
+                }, new Map());
+                const dateNumbers = new Map();
+                games.forEach((game) => {
+                    const date = String(game?.officialDate ?? "");
+                    const gamePk = Number(game?.gamePk);
+                    if (!date || !gamePk) return;
+                    const sequence = (dateNumbers.get(date) || 0) + 1;
+                    dateNumbers.set(date, sequence);
+                    const suffix = (dateCounts.get(date) || 0) > 1
+                        ? ` Game ${Number(game?.gameNumber) || sequence}`
+                        : "";
+                    const option = createElement("option", "", `${formatSearchDate(date)}${suffix}`);
+                    option.value = `${date}|${gamePk}`;
+                    dom.searchGameDate.append(option);
+                });
+                const selectedGamePk = getSearchOptionGamePk(selectedValue);
+                const matchingOption = [...dom.searchGameDate.options].find((option) =>
+                    selectedGamePk && getSearchOptionGamePk(option.value) === selectedGamePk
+                );
+                if (matchingOption) {
+                    dom.searchGameDate.value = matchingOption.value;
+                    return;
+                }
+                const selectedDate = getSearchOptionDate(selectedValue);
+                const sameDateOptions = [...dom.searchGameDate.options].filter((option) =>
+                    option.value && getSearchOptionDate(option.value) === selectedDate
+                );
+                dom.searchGameDate.value = sameDateOptions.length === 1
+                    ? sameDateOptions[0].value
+                    : "";
             };
 
             const getSeasonSearchDates = (season) => {
@@ -4399,6 +4444,21 @@
 
             const getSelectedSearchTeamId = (select) => Number(select.value) || null;
 
+            const updateSearchTeamOptions = () => {
+                const team1Id = getSelectedSearchTeamId(dom.searchHomeTeam);
+                const team2Id = getSelectedSearchTeamId(dom.searchAwayTeam);
+                [...dom.searchHomeTeam.options].forEach((option) => {
+                    const unavailable = Boolean(option.value) && Number(option.value) === team2Id;
+                    option.disabled = unavailable;
+                    option.hidden = unavailable;
+                });
+                [...dom.searchAwayTeam.options].forEach((option) => {
+                    const unavailable = Boolean(option.value) && Number(option.value) === team1Id;
+                    option.disabled = unavailable;
+                    option.hidden = unavailable;
+                });
+            };
+
             const setHeaderSearchBusy = (busy) => {
                 dom.searchGameButton.disabled = busy;
                 dom.searchHomeTeam.disabled = busy;
@@ -4407,10 +4467,11 @@
             };
 
             const refreshMatchupSearchDates = async () => {
-                const homeTeamId = getSelectedSearchTeamId(dom.searchHomeTeam);
-                const awayTeamId = getSelectedSearchTeamId(dom.searchAwayTeam);
-                const currentDate = dom.searchGameDate.value;
-                if (!homeTeamId || !awayTeamId) {
+                const team1Id = getSelectedSearchTeamId(dom.searchHomeTeam);
+                const team2Id = getSelectedSearchTeamId(dom.searchAwayTeam);
+                const currentValue = dom.searchGameDate.value;
+                const currentDate = getSearchOptionDate(currentValue);
+                if (!team1Id || !team2Id) {
                     const season = Number(currentDate.slice(0, 4)) || new Date().getFullYear();
                     setSearchDateOptions(getSeasonSearchDates(season), currentDate);
                     return;
@@ -4418,52 +4479,66 @@
 
                 const season = Number(currentDate.slice(0, 4)) || new Date().getFullYear();
                 setHeaderSearchBusy(true);
-                const games = await fetchGamesForSearchMatchup(homeTeamId, awayTeamId, season);
+                const games = await fetchGamesForSearchMatchup(team1Id, team2Id, season);
                 setHeaderSearchBusy(false);
-                const dates = games.map((game) => String(game?.officialDate ?? "")).filter(Boolean);
-                setSearchDateOptions(dates, currentDate);
-                if (!dates.length) setStatus("試合が見つかりません", true);
+                setSearchGameOptions(games, currentValue);
+                if (!games.length) setStatus("試合が見つかりません", true);
             };
 
-            const syncSearchOpponentFromDate = async (changedSide) => {
-                const date = dom.searchGameDate.value;
+            const syncSearchOpponentFromDate = async (changedTeam) => {
+                const date = getSearchOptionDate(dom.searchGameDate.value);
                 const selectedTeamId = getSelectedSearchTeamId(
-                    changedSide === "home" ? dom.searchHomeTeam : dom.searchAwayTeam
+                    changedTeam === "team1" ? dom.searchHomeTeam : dom.searchAwayTeam
                 );
                 if (!date || !selectedTeamId) return;
 
                 setHeaderSearchBusy(true);
                 const games = await fetchGamesForSearchDate(date);
                 setHeaderSearchBusy(false);
-                const game = games.find((candidate) => Number(
-                    candidate?.teams?.[changedSide]?.team?.id
-                ) === selectedTeamId);
+                const selectedGamePk = getSearchOptionGamePk(dom.searchGameDate.value);
+                const game = games.find((candidate) =>
+                    (!selectedGamePk || Number(candidate?.gamePk) === selectedGamePk) &&
+                    [
+                        Number(candidate?.teams?.home?.team?.id),
+                        Number(candidate?.teams?.away?.team?.id)
+                    ].includes(selectedTeamId)
+                );
                 if (!game) {
                     setStatus("試合が見つかりません", true);
                     return;
                 }
-                if (changedSide === "home") {
-                    dom.searchAwayTeam.value = String(game?.teams?.away?.team?.id ?? "");
+                const homeId = Number(game?.teams?.home?.team?.id);
+                const awayId = Number(game?.teams?.away?.team?.id);
+                const opponentId = homeId === selectedTeamId ? awayId : homeId;
+                if (changedTeam === "team1") {
+                    dom.searchAwayTeam.value = String(opponentId || "");
                 } else {
-                    dom.searchHomeTeam.value = String(game?.teams?.home?.team?.id ?? "");
+                    dom.searchHomeTeam.value = String(opponentId || "");
                 }
+                updateSearchTeamOptions();
             };
 
             const searchAndLoadGame = async () => {
-                const homeTeamId = getSelectedSearchTeamId(dom.searchHomeTeam);
-                const awayTeamId = getSelectedSearchTeamId(dom.searchAwayTeam);
-                const date = dom.searchGameDate.value;
-                if (!homeTeamId || !awayTeamId || !date) {
-                    setStatus("HOME・AWAY・DATEを選択してください。", true);
+                const team1Id = getSelectedSearchTeamId(dom.searchHomeTeam);
+                const team2Id = getSelectedSearchTeamId(dom.searchAwayTeam);
+                const selectedDateValue = dom.searchGameDate.value;
+                const date = getSearchOptionDate(selectedDateValue);
+                if (!team1Id || !team2Id || !date) {
+                    setStatus("TEAM 1・TEAM 2・DATEを選択してください。", true);
                     return;
                 }
 
                 setHeaderSearchBusy(true);
                 const games = await fetchGamesForSearchDate(date);
-                const game = games.find((candidate) =>
-                    Number(candidate?.teams?.home?.team?.id) === homeTeamId &&
-                    Number(candidate?.teams?.away?.team?.id) === awayTeamId
-                );
+                const selectedGamePk = getSearchOptionGamePk(selectedDateValue);
+                const selectedIds = [team1Id, team2Id].sort((a, b) => a - b).join(":");
+                const game = games.find((candidate) => {
+                    if (selectedGamePk && Number(candidate?.gamePk) !== selectedGamePk) return false;
+                    return [
+                        Number(candidate?.teams?.home?.team?.id),
+                        Number(candidate?.teams?.away?.team?.id)
+                    ].sort((a, b) => a - b).join(":") === selectedIds;
+                });
                 setHeaderSearchBusy(false);
                 if (!game?.gamePk) {
                     setStatus("試合が見つかりません", true);
@@ -4482,6 +4557,7 @@
                     });
                 });
                 setSearchDateOptions(getSeasonSearchDates(new Date().getFullYear()));
+                updateSearchTeamOptions();
             };
 
             const loadGame = async () => {
@@ -4785,24 +4861,32 @@
 
             dom.loadButton.addEventListener("click", loadGame);
             dom.searchHomeTeam.addEventListener("change", async () => {
-                if (dom.searchGameDate.value) {
-                    await syncSearchOpponentFromDate("home");
+                updateSearchTeamOptions();
+                if (dom.searchGameDate.value && !getSearchOptionGamePk(dom.searchGameDate.value)) {
+                    await syncSearchOpponentFromDate("team1");
+                    await refreshMatchupSearchDates();
                 } else {
+                    dom.searchGameDate.value = "";
                     await refreshMatchupSearchDates();
                 }
             });
             dom.searchAwayTeam.addEventListener("change", async () => {
-                if (dom.searchGameDate.value) {
-                    await syncSearchOpponentFromDate("away");
+                updateSearchTeamOptions();
+                if (dom.searchGameDate.value && !getSearchOptionGamePk(dom.searchGameDate.value)) {
+                    await syncSearchOpponentFromDate("team2");
+                    await refreshMatchupSearchDates();
                 } else {
+                    dom.searchGameDate.value = "";
                     await refreshMatchupSearchDates();
                 }
             });
             dom.searchGameDate.addEventListener("change", async () => {
                 if (getSelectedSearchTeamId(dom.searchHomeTeam)) {
-                    await syncSearchOpponentFromDate("home");
+                    await syncSearchOpponentFromDate("team1");
+                    await refreshMatchupSearchDates();
                 } else if (getSelectedSearchTeamId(dom.searchAwayTeam)) {
-                    await syncSearchOpponentFromDate("away");
+                    await syncSearchOpponentFromDate("team2");
+                    await refreshMatchupSearchDates();
                 }
             });
             dom.searchGameButton.addEventListener("click", searchAndLoadGame);
