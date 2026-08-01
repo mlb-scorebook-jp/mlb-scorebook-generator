@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MLB Scorebook Generator</title>
     <!-- Score notation update: stacked batted-ball symbol, red hits, blue strikeouts, black other results. -->
-    <link rel="stylesheet" href="css/style.css?v=20260801-23">
+    <link rel="stylesheet" href="css/style.css?v=20260801-24">
 </head>
 
 <body>
@@ -2253,6 +2253,13 @@
                             cell.title = String(values[column] ?? "");
                             cell.dataset.absRow = String(entryIndex + 1);
                             cell.dataset.absColumn = String(column + 1);
+                            const text = createElement(
+                                "span",
+                                "abs-cell-text",
+                                String(values[column] ?? "")
+                            );
+                            cell.textContent = "";
+                            cell.append(text);
                             grid.append(cell);
                         }
                     }
@@ -2261,6 +2268,19 @@
 
                 box.append(tables);
                 return box;
+            };
+
+            const fitChallengeLogText = (root) => {
+                root.querySelectorAll(".abs-challenge-grid .editable-cell").forEach((cell) => {
+                    const text = cell.querySelector(".abs-cell-text");
+                    if (!text || !text.textContent) return;
+                    text.style.transform = "none";
+                    const availableWidth = Math.max(1, cell.clientWidth - 6);
+                    const naturalWidth = text.scrollWidth;
+                    if (naturalWidth <= availableWidth) return;
+                    const scale = Math.max(0.45, availableWidth / naturalWidth);
+                    text.style.transform = `scaleX(${scale})`;
+                });
             };
 
             const buildScoreHeaderArea = (data) => {
@@ -3971,6 +3991,7 @@
                 dom.inningCount.textContent = String(state.innings);
 
                 dom.awaySheet.replaceChildren(buildSheet());
+                fitChallengeLogText(dom.awaySheet);
                 const scorePanelWidth = dom.awaySheet
                     .querySelector(".team-score-panel")
                     ?.getBoundingClientRect().width;

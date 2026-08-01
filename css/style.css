@@ -435,6 +435,13 @@ input {
     background: rgba(243, 200, 62, 0.16);
 }
 
+.abs-cell-text {
+    display: inline-block;
+    max-width: none;
+    transform-origin: center;
+    white-space: nowrap;
+}
+
 .sheet-meta {
     display: grid;
     grid-template-columns: 72px 180px 72px 250px 72px 105px 72px 145px;
