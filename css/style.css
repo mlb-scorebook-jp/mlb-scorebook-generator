@@ -9,7 +9,7 @@
     --paper: #fbfcf8;
     --ink: #183b23;
     --rule: #2f6b3d;
-    --guide: rgba(47, 107, 61, 0.42);
+    --guide: rgba(47, 107, 61, 0.72);
     --faint: rgba(47, 107, 61, 0.12);
     --red: #d84949;
     --blue: #2c67b8;
@@ -664,12 +664,12 @@ input {
     background:
         repeating-linear-gradient(
             to bottom,
-            #999 0 2px,
+            var(--guide) 0 2px,
             transparent 2px 6px
         ) center / 1px 100% no-repeat,
         repeating-linear-gradient(
             to right,
-            #999 0 2px,
+            var(--guide) 0 2px,
             transparent 2px 6px
         ) center / 100% 1px no-repeat;
 }
@@ -1442,6 +1442,27 @@ input {
     .scorebook-page {
         display: block !important;
         page-break-after: always;
+    }
+
+    body.print-fit-a3 .scorebook-page {
+        display: none !important;
+    }
+
+    body.print-fit-a3 #away-page {
+        display: block !important;
+        width: max-content;
+        min-width: 0;
+        zoom: var(--print-scale, 1);
+        page-break-before: avoid;
+        page-break-after: avoid;
+        page-break-inside: avoid;
+        break-before: avoid-page;
+        break-after: avoid-page;
+        break-inside: avoid-page;
+    }
+
+    body.print-fit-a3 #home-page {
+        display: none !important;
     }
 
     .paper {

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MLB Scorebook Generator</title>
     <!-- Score notation update: stacked batted-ball symbol, red hits, blue strikeouts, black other results. -->
-    <link rel="stylesheet" href="css/style.css?v=20260801-4">
+    <link rel="stylesheet" href="css/style.css?v=20260801-6">
 </head>
 
 <body>
@@ -3269,6 +3269,62 @@
                 setStatus("現在の試合データをブラウザに保存しました。");
             };
 
+            const PRINT_PAGE_STYLE_ID = "print-a3-landscape-page";
+            const A3_LANDSCAPE_WIDTH_MM = 420;
+            const A3_LANDSCAPE_HEIGHT_MM = 297;
+            const PRINT_MARGIN_MM = 6;
+            const CSS_PIXELS_PER_MM = 96 / 25.4;
+
+            const clearPrintFit = () => {
+                document.body.classList.remove("print-fit-a3");
+                document.documentElement.style.removeProperty("--print-scale");
+                document.getElementById(PRINT_PAGE_STYLE_ID)?.remove();
+            };
+
+            const preparePrintFit = () => {
+                clearPrintFit();
+                const content = dom.awaySheet.firstElementChild;
+                if (!content) return false;
+
+                const printableWidth = (
+                    A3_LANDSCAPE_WIDTH_MM - PRINT_MARGIN_MM * 2
+                ) * CSS_PIXELS_PER_MM;
+                const printableHeight = (
+                    A3_LANDSCAPE_HEIGHT_MM - PRINT_MARGIN_MM * 2
+                ) * CSS_PIXELS_PER_MM;
+                const contentWidth = Math.max(
+                    content.scrollWidth,
+                    content.getBoundingClientRect().width
+                );
+                const contentHeight = Math.max(
+                    content.scrollHeight,
+                    content.getBoundingClientRect().height
+                );
+                if (!(contentWidth > 0 && contentHeight > 0)) return false;
+
+                const scale = Math.min(
+                    1,
+                    printableWidth / contentWidth,
+                    printableHeight / contentHeight
+                );
+                document.documentElement.style.setProperty("--print-scale", String(scale));
+                document.body.classList.add("print-fit-a3");
+
+                const pageStyle = document.createElement("style");
+                pageStyle.id = PRINT_PAGE_STYLE_ID;
+                pageStyle.textContent = `@page { size: A3 landscape; margin: ${PRINT_MARGIN_MM}mm; }`;
+                document.head.append(pageStyle);
+                return true;
+            };
+
+            const printFullScorebook = () => {
+                if (!preparePrintFit()) {
+                    setStatus("印刷対象を生成してからPRINTを実行してください。", true);
+                    return;
+                }
+                requestAnimationFrame(() => window.print());
+            };
+
             const exportJson = () => {
                 const payload = {
                     version: "2.0.0",
@@ -3313,7 +3369,7 @@
             dom.saveButton.addEventListener("click", saveSnapshot);
             dom.awayPageButton.addEventListener("click", () => switchPage("away"));
             dom.homePageButton.addEventListener("click", () => switchPage("home"));
-            dom.printButton.addEventListener("click", () => window.print());
+            dom.printButton.addEventListener("click", printFullScorebook);
             dom.pdfButton.addEventListener("click", () => window.print());
             dom.jsonButton.addEventListener("click", exportJson);
 
@@ -3322,6 +3378,8 @@
                     "PNG出力は次の工程で実装します。現在はPRINT/PDFを使用してください。"
                 );
             });
+
+            window.addEventListener("afterprint", clearPrintFit);
 
             render();
         })();
