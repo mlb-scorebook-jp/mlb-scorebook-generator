@@ -1732,7 +1732,12 @@ select {
 }
 
 @media print {
+    html,
     body {
+        width: 100%;
+        height: 100%;
+        margin: 0 !important;
+        padding: 0 !important;
         background: white;
     }
 
@@ -1762,8 +1767,8 @@ select {
     #scorebook-print-stage {
         display: block !important;
         position: relative;
-        width: var(--print-output-width);
-        height: var(--print-output-height);
+        width: var(--print-page-width);
+        height: var(--print-page-height);
         margin: 0;
         padding: 0;
         overflow: visible;
@@ -1777,8 +1782,8 @@ select {
 
     #scorebook-print-stage .scorebook-print-content {
         position: absolute;
-        top: 0;
-        left: 0;
+        top: var(--print-offset-y, 0);
+        left: var(--print-offset-x, 0);
         margin: 0;
         padding: 0;
         transform: scale(var(--print-scale, 1));

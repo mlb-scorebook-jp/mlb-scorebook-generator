@@ -4435,18 +4435,24 @@
                     printableWidth / contentWidth,
                     printableHeight / contentHeight
                 );
+                const outputWidth = contentWidth * scale;
+                const outputHeight = contentHeight * scale;
+                const offsetX = Math.max(0, (printableWidth - outputWidth) / 2);
+                const offsetY = Math.max(0, (printableHeight - outputHeight) / 2);
                 const printStage = document.createElement("section");
                 printStage.id = PRINT_STAGE_ID;
                 printStage.setAttribute("aria-hidden", "true");
                 printStage.style.setProperty("--print-scale", String(scale));
                 printStage.style.setProperty(
-                    "--print-output-width",
-                    `${contentWidth * scale}px`
+                    "--print-page-width",
+                    `${printableWidth}px`
                 );
                 printStage.style.setProperty(
-                    "--print-output-height",
-                    `${contentHeight * scale}px`
+                    "--print-page-height",
+                    `${printableHeight}px`
                 );
+                printStage.style.setProperty("--print-offset-x", `${offsetX}px`);
+                printStage.style.setProperty("--print-offset-y", `${offsetY}px`);
 
                 const printContent = document.createElement("div");
                 printContent.className = "scorebook-print-content";
