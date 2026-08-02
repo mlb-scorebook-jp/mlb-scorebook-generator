@@ -267,6 +267,139 @@
         return collectArticles(payload);
     };
 
+    const getRecentTeamTransactions = async (teams, date) => {
+        const teamIds = teams.map((team) => Number(team?.id)).filter(Boolean);
+        if (!teamIds.length) return [];
+        let startDate = date;
+        for (let count = 0; count < 3; count += 1) startDate = previousDate(startDate);
+        const params = new URLSearchParams({
+            teamId: teamIds.join(","),
+            startDate,
+            endDate: date
+        });
+        const payload = await fetchJson(
+            `${API_ROOT}/v1/transactions?${params}`,
+            `pregame:transactions:${teamIds.sort((a, b) => a - b).join("-")}:${startDate}:${date}`
+        ).catch(() => null);
+        const seen = new Set();
+        return (payload?.transactions ?? []).flatMap((transaction) => {
+            const identity = `${transaction?.id ?? ""}:${transaction?.description ?? ""}`;
+            if (seen.has(identity)) return [];
+            seen.add(identity);
+            const person = transaction?.person ?? {};
+            const relevantTeam = teams.find((team) =>
+                Number(team?.id) === Number(transaction?.toTeam?.id) ||
+                Number(team?.id) === Number(transaction?.fromTeam?.id)
+            );
+            const code = teamCode(relevantTeam);
+            const description = String(transaction?.description ?? "");
+            const typeCode = String(transaction?.typeCode ?? "").toUpperCase();
+            let action = "ロースター異動";
+            if (typeCode === "TR") action = "トレード";
+            else if (/injured list/i.test(description)) {
+                const days = description.match(/(\d+)-day injured list/i)?.[1];
+                action = `${days ? `${days}日間` : ""}IL入り`;
+            } else if (typeCode === "CU") action = "メジャー昇格";
+            else if (typeCode === "OPT") action = "マイナー降格";
+            else if (typeCode === "ASG" && /rehab/i.test(description)) action = "リハビリ出場開始";
+            else if (typeCode === "OUT") action = "アウトライト";
+            else if (/designated for assignment/i.test(description)) action = "DFA";
+            else if (/signed/i.test(description)) action = "契約";
+            const transactionDate = String(transaction?.effectiveDate ?? transaction?.date ?? date);
+            const headline = `${compactDate(transactionDate)}　${code}　` +
+                `${person?.id ? playerName(person) : "球団発表"}　${action}`;
+            return [{
+                headline,
+                date: transactionDate,
+                url: `https://www.mlb.com/transactions?date=${transactionDate}`,
+                officialTransaction: true
+            }];
+        }).sort((a, b) => String(b.date).localeCompare(String(a.date)));
+    };
+
+    const translateInjuryReason = (description) => {
+        const reason = String(description ?? "").split(/injured list\.\s*/i)[1] ?? "";
+        if (!reason) return "";
+        const replacements = [
+            [/right shoulder/gi, "右肩"], [/left shoulder/gi, "左肩"],
+            [/right elbow/gi, "右肘"], [/left elbow/gi, "左肘"],
+            [/right forearm/gi, "右前腕"], [/left forearm/gi, "左前腕"],
+            [/right wrist/gi, "右手首"], [/left wrist/gi, "左手首"],
+            [/right hand/gi, "右手"], [/left hand/gi, "左手"],
+            [/right hamstring/gi, "右ハムストリング"], [/left hamstring/gi, "左ハムストリング"],
+            [/right knee/gi, "右膝"], [/left knee/gi, "左膝"],
+            [/right ankle/gi, "右足首"], [/left ankle/gi, "左足首"],
+            [/right foot/gi, "右足"], [/left foot/gi, "左足"],
+            [/lower back/gi, "腰"], [/back/gi, "背中"],
+            [/groin/gi, "鼠径部"], [/calf/gi, "ふくらはぎ"],
+            [/oblique/gi, "脇腹"], [/abdominal/gi, "腹部"],
+            [/inflammation/gi, "炎症"], [/tendinitis/gi, "腱炎"],
+            [/strain/gi, "筋損傷"], [/sprain/gi, "捻挫"],
+            [/soreness/gi, "痛み"], [/tightness/gi, "張り"],
+            [/fracture/gi, "骨折"], [/contusion/gi, "打撲"]
+        ];
+        let translated = reason.replace(/\.$/, "");
+        replacements.forEach(([pattern, value]) => { translated = translated.replace(pattern, value); });
+        return /[a-z]{4,}/i.test(translated) ? "" : translated;
+    };
+
+    const getTeamInjuryReports = async (teams, date) => {
+        const teamIds = teams.map((team) => Number(team?.id)).filter(Boolean);
+        if (!teamIds.length) return [];
+        const season = date.slice(0, 4);
+        const params = new URLSearchParams({
+            teamId: teamIds.join(","),
+            startDate: `${season}-01-01`,
+            endDate: date
+        });
+        const payload = await fetchJson(
+            `${API_ROOT}/v1/transactions?${params}`,
+            `pregame:injury-history:${teamIds.sort((a, b) => a - b).join("-")}:${date}`
+        ).catch(() => null);
+        const statusByPlayer = new Map();
+        (payload?.transactions ?? []).sort((a, b) =>
+            String(a?.effectiveDate ?? a?.date ?? "").localeCompare(
+                String(b?.effectiveDate ?? b?.date ?? "")
+            )
+        ).forEach((transaction) => {
+            const playerId = Number(transaction?.person?.id);
+            if (!playerId) return;
+            const description = String(transaction?.description ?? "");
+            const eventDate = String(transaction?.effectiveDate ?? transaction?.date ?? date);
+            if (/placed .* on the (?:\d+-day )?injured list/i.test(description) ||
+                /transferred .* to the \d+-day injured list/i.test(description)) {
+                const days = description.match(/(\d+)-day injured list/i)?.[1];
+                const relevantTeam = teams.find((team) =>
+                    Number(team?.id) === Number(transaction?.toTeam?.id) ||
+                    Number(team?.id) === Number(transaction?.fromTeam?.id)
+                );
+                statusByPlayer.set(playerId, {
+                    person: transaction.person,
+                    team: relevantTeam,
+                    eventDate,
+                    status: `${days ? `${days}日間` : ""}IL`,
+                    reason: translateInjuryReason(description)
+                });
+                return;
+            }
+            if (/rehab assignment/i.test(description) && statusByPlayer.has(playerId)) {
+                statusByPlayer.get(playerId).status = "リハビリ出場中";
+                statusByPlayer.get(playerId).eventDate = eventDate;
+                return;
+            }
+            if (/reinstated|activated .* from the .*injured list/i.test(description)) {
+                statusByPlayer.delete(playerId);
+            }
+        });
+        return [...statusByPlayer.values()].map((injury) => ({
+            headline: `${teamCode(injury.team)}　${playerName(injury.person)}　${injury.status}` +
+                (injury.reason ? `（${injury.reason}）` : ""),
+            date: injury.eventDate,
+            url: "https://www.mlb.com/injury-report",
+            officialInjury: true
+        }));
+    };
+
     const articleHasPlayer = (article, playerId) => (article?.keywordsAll ?? []).some((keyword) => {
         const value = String(keyword?.value ?? "");
         return (keyword?.type === "player" && value === `playerid-${playerId}`) ||
@@ -1084,10 +1217,12 @@
             const date = String(feed?.gameData?.datetime?.officialDate ?? game?.officialDate ?? currentDate);
             const awayTeam = feed?.gameData?.teams?.away ?? game?.teams?.away?.team ?? {};
             const homeTeam = feed?.gameData?.teams?.home ?? game?.teams?.home?.team ?? {};
-            const [awayTrend, homeTrend, standings] = await Promise.all([
+            const [awayTrend, homeTrend, standings, transactions, injuries] = await Promise.all([
                 getTeamTrend(awayTeam.id, date),
                 getTeamTrend(homeTeam.id, date),
-                getStandingsSnapshot(date)
+                getStandingsSnapshot(date),
+                getRecentTeamTransactions([awayTeam, homeTeam], date),
+                getTeamInjuryReports([awayTeam, homeTeam], date)
             ]);
             setMatchupHeader(awayTeam, homeTeam, standings, game, feed);
             const grid = el("div", "pregame-detail-grid");
@@ -1109,7 +1244,7 @@
             grid.append(startingSection);
 
             const playersSection = section("注目選手", "記録・直近成績を優先");
-            playersSection.classList.add("pregame-span-6", "pregame-featured-section");
+            playersSection.classList.add("pregame-featured-section");
             const playerColumns = el("div", "pregame-team-columns");
             for (const [side, team] of [
                 ["away", awayTeam],
@@ -1132,10 +1267,9 @@
                 playerColumns.append(column);
             }
             playersSection.append(playerColumns);
-            grid.append(playersSection);
 
             const trendsSection = section("チーム動向", "直近10試合");
-            trendsSection.classList.add("pregame-span-6", "pregame-team-trends-section");
+            trendsSection.classList.add("pregame-team-trends-section");
             const trendColumns = el("div", "pregame-team-columns");
             [[awayTeam, awayTrend], [homeTeam, homeTrend]].forEach(([team, trend]) => {
                 const column = el("div");
@@ -1161,12 +1295,15 @@
                 trendColumns.append(column);
             });
             trendsSection.append(trendColumns);
-            grid.append(trendsSection);
 
             const articleSection = section("MLB公式関連記事", "プレビュー・怪我・ロースター・トレード");
-            articleSection.classList.add("pregame-span-6");
-            articleSection.append(renderArticles(articles));
-            grid.append(articleSection);
+            articleSection.append(renderArticles([...injuries, ...transactions, ...articles]));
+
+            const lowerLayout = el("div", "pregame-lower-layout pregame-span-12");
+            const rightColumn = el("div", "pregame-lower-right");
+            rightColumn.append(trendsSection, articleSection);
+            lowerLayout.append(playersSection, rightColumn);
+            grid.append(lowerLayout);
 
             dom.content.replaceChildren(grid);
         } catch (error) {

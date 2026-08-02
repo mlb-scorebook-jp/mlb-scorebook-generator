@@ -507,6 +507,20 @@
     align-self: start;
 }
 
+.pregame-lower-layout {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+    gap: 12px;
+}
+
+.pregame-lower-right {
+    display: grid;
+    align-content: start;
+    gap: 12px;
+    min-width: 0;
+}
+
 .pregame-featured-note {
     min-width: 0;
 }
@@ -633,6 +647,10 @@ a.pregame-metric-value:focus-visible {
 
 /* Smartphone-only presentation. Desktop and tablet rules remain untouched. */
 @media screen and (max-width: 767px) {
+    .pregame-lower-layout {
+        grid-template-columns: 1fr;
+    }
+
     .viewer.pregame-active {
         box-sizing: border-box;
         width: 100%;
