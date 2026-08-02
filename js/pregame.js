@@ -1108,13 +1108,8 @@
             startingSection.append(startingGrid);
             grid.append(startingSection);
 
-            const highlights = [];
-            if (awayTrend.streakText !== "-") highlights.push(`${teamCode(awayTeam)}　${awayTrend.streakText}`);
-            if (homeTrend.streakText !== "-") highlights.push(`${teamCode(homeTeam)}　${homeTrend.streakText}`);
-            articles.slice(0, 3).forEach((article) => highlights.push(article.headline));
-
             const playersSection = section("注目選手", "記録・直近成績を優先");
-            playersSection.classList.add("pregame-span-6");
+            playersSection.classList.add("pregame-span-6", "pregame-featured-section");
             const playerColumns = el("div", "pregame-team-columns");
             for (const [side, team] of [
                 ["away", awayTeam],
@@ -1140,7 +1135,7 @@
             grid.append(playersSection);
 
             const trendsSection = section("チーム動向", "直近10試合");
-            trendsSection.classList.add("pregame-span-6");
+            trendsSection.classList.add("pregame-span-6", "pregame-team-trends-section");
             const trendColumns = el("div", "pregame-team-columns");
             [[awayTeam, awayTrend], [homeTeam, homeTrend]].forEach(([team, trend]) => {
                 const column = el("div");
@@ -1167,21 +1162,6 @@
             });
             trendsSection.append(trendColumns);
             grid.append(trendsSection);
-
-            const notesSection = section("特記事項", "スコアブック共通情報");
-            notesSection.classList.add("pregame-span-6");
-            const noteContainer = el("div");
-            const sameGame = Number(currentContext?.gamePk) === Number(gamePk);
-            const stateNotes = sameGame ? currentContext?.streakNotes : null;
-            const notes = [
-                ...(stateNotes?.away ?? []),
-                ...(stateNotes?.home ?? [])
-            ].map((note) => typeof note === "object" ? note.text : note).filter(Boolean);
-            (notes.length ? notes : highlights).slice(0, 12).forEach((text) =>
-                noteContainer.append(el("div", "pregame-note-row", text))
-            );
-            notesSection.append(noteContainer);
-            grid.append(notesSection);
 
             const articleSection = section("MLB公式関連記事", "プレビュー・怪我・ロースター・トレード");
             articleSection.classList.add("pregame-span-6");
