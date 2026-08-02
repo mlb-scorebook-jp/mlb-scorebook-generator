@@ -1275,6 +1275,7 @@
 
             const getCurrentGameParticipation = (data, side) => {
                 const appeared = new Set();
+                const starters = new Set();
                 const teamData = data?.liveData?.boxscore?.teams?.[side] ?? {};
                 Object.values(teamData?.players ?? {}).forEach((player) => {
                     const playerId = Number(player?.person?.id);
@@ -1288,6 +1289,9 @@
                         getPlateAppearances(batting) > 0 ||
                         (Number.isFinite(rawOrder) && rawOrder % 100 === 0);
                     if (playerId && didAppear) appeared.add(playerId);
+                    if (playerId && Number.isFinite(rawOrder) && rawOrder % 100 === 0) {
+                        starters.add(playerId);
+                    }
                 });
 
                 (data?.liveData?.plays?.allPlays ?? []).forEach((play) => {
@@ -1315,7 +1319,7 @@
                         if (eventSide === side) appeared.add(playerId);
                     });
                 });
-                return { appeared };
+                return { appeared, starters };
             };
 
             const fetchGameBoxscore = async (gamePk) => {
@@ -1375,17 +1379,19 @@
                 return `（${Number(month)}月${Number(day)}日 vs ${opponent}以来）`;
             };
 
-            const getAbsenceNotes = async (
+            const getLineupStatusNotes = async (
                 players,
                 schedule,
                 appearedIds,
+                starterIds,
                 currentGamePk,
                 teamId,
-                code
+                code,
+                gameFinal
             ) => {
                 const scheduleGamePks = new Set(schedule.map((game) => Number(game?.gamePk)));
                 const preliminary = players.map((player) => {
-                    if (appearedIds.has(player.id)) return null;
+                    if (starterIds.has(player.id)) return null;
                     const appearances = (player.gameLogSplits ?? []).filter((split) =>
                         scheduleGamePks.has(Number(split?.game?.gamePk))
                     );
@@ -1406,8 +1412,13 @@
                         gamesSinceAbsence += 1;
                     }
                     const japanese = isJapanesePlayer(player.person);
-                    if (!japanese && (schedule.length < 30 ||
-                        appearanceGamePks.size / schedule.length < 0.85)) return null;
+                    const previousAppearanceCount = [...appearanceGamePks]
+                        .filter((gamePk) => Number(gamePk) !== Number(currentGamePk))
+                        .length;
+                    if (!japanese && (previousGames.length < 30 ||
+                        previousAppearanceCount / previousGames.length < 0.85)) {
+                        return null;
+                    }
                     return {
                         ...player,
                         appearanceGamePks,
@@ -1419,7 +1430,6 @@
 
                 const requiredGamePks = [...new Set(
                     preliminary
-                        .filter((player) => !player.japanese)
                         .flatMap((player) => [...player.appearanceGamePks])
                 )];
                 const boxscores = await mapWithConcurrency(
@@ -1430,26 +1440,59 @@
                 const boxscoreByGame = new Map(boxscores);
 
                 return preliminary.map((player) => {
-                    const reference = getScheduleReferenceText(player.previousAbsenceGame, teamId);
-                    if (player.japanese) {
-                        return {
-                            text: `${code}　${getPersonName(player.person)}　${player.gamesSinceAbsence}試合ぶりの欠場${reference}`,
-                            priority: 2,
-                            startRate: 1,
-                            starts: 0
-                        };
-                    }
                     const starts = [...player.appearanceGamePks].reduce((total, gamePk) =>
                         total + Number(isPlayerStarterInBoxscore(
                             boxscoreByGame.get(gamePk),
                             teamId,
                             player.id
                         )), 0);
-                    const startRate = starts / schedule.length;
-                    if (startRate < 0.85) return null;
+                    const completedTeamGames = schedule.filter((game) =>
+                        Number(game?.gamePk) !== Number(currentGamePk)
+                    ).length;
+                    const startRate = completedTeamGames > 0
+                        ? starts / completedTeamGames
+                        : 0;
+                    if (!player.japanese && (completedTeamGames < 30 || startRate < 0.85)) {
+                        return null;
+                    }
+
+                    const appeared = appearedIds.has(player.id);
+                    if (gameFinal && !appeared) {
+                        const reference = getScheduleReferenceText(
+                            player.previousAbsenceGame,
+                            teamId
+                        );
+                        return {
+                            text: `${code}　${getPersonName(player.person)}　${player.gamesSinceAbsence}試合ぶりの欠場${reference}`,
+                            priority: player.japanese ? 2 : 3,
+                            startRate,
+                            starts
+                        };
+                    }
+
+                    let gamesSinceBenchStart = 1;
+                    let previousBenchGame = null;
+                    const previousGames = schedule
+                        .filter((game) => Number(game?.gamePk) !== Number(currentGamePk))
+                        .reverse();
+                    for (const game of previousGames) {
+                        const gamePk = Number(game?.gamePk);
+                        if (!isPlayerStarterInBoxscore(
+                            boxscoreByGame.get(gamePk),
+                            teamId,
+                            player.id
+                        )) {
+                            previousBenchGame = game;
+                            break;
+                        }
+                        gamesSinceBenchStart += 1;
+                    }
+                    const benchText = previousBenchGame
+                        ? `${gamesSinceBenchStart}試合ぶりのベンチスタート`
+                        : "今季初のベンチスタート";
                     return {
-                        text: `${code}　${getPersonName(player.person)}　${player.gamesSinceAbsence}試合ぶりの欠場${reference}`,
-                        priority: 3,
+                        text: `${code}　${getPersonName(player.person)}　${benchText}`,
+                        priority: player.japanese ? 2 : 3,
                         startRate,
                         starts
                     };
@@ -1621,11 +1664,14 @@
             };
 
             const fetchStreakNotes = async (data, gamePk) => {
-                if (!isGameFinal(data)) {
-                    return { away: [], home: [] };
-                }
-                if (streakNotesCache.has(String(gamePk))) {
-                    return streakNotesCache.get(String(gamePk));
+                const gameFinal = isGameFinal(data);
+                const liveRevision = (data?.liveData?.plays?.allPlays ?? []).reduce(
+                    (total, play) => total + 1 + (play?.playEvents?.length ?? 0),
+                    0
+                );
+                const cacheKey = `${gamePk}:${gameFinal ? "final" : `live-${liveRevision}`}`;
+                if (streakNotesCache.has(cacheKey)) {
+                    return streakNotesCache.get(cacheKey);
                 }
 
                 const officialDate = String(data?.gameData?.datetime?.officialDate ?? "");
@@ -1674,8 +1720,12 @@
                         return { ...player, ...streaks, gameLogSplits };
                     }));
                     const code = getTeamCodeForSeason(team, season);
-                    const hitLeader = chooseLongestStreak(analyzed, "hitStreak");
-                    const onBaseLeader = chooseLongestStreak(analyzed, "onBaseStreak");
+                    const hitLeader = gameFinal
+                        ? chooseLongestStreak(analyzed, "hitStreak")
+                        : null;
+                    const onBaseLeader = gameFinal
+                        ? chooseLongestStreak(analyzed, "onBaseStreak")
+                        : null;
                     const streakLeaders = [...new Map(
                         [hitLeader, onBaseLeader]
                             .filter(Boolean)
@@ -1686,8 +1736,10 @@
                         await fetchPlayerCareerBestStreaks(player, season, context)
                     ]));
                     const personalBestByPlayer = new Map(personalBestEntries);
-                    const notes = await buildCareerMilestoneNotes(analyzed, code, context);
-                    if (hitLeader) {
+                    const notes = gameFinal
+                        ? await buildCareerMilestoneNotes(analyzed, code, context)
+                        : [];
+                    if (gameFinal && hitLeader) {
                         const stoppedSuffix = hitLeader.hitStreakStopped ? "でストップ" : "";
                         const personalSuffix = getPersonalStreakSuffix(
                             hitLeader.hitStreak,
@@ -1703,7 +1755,7 @@
                             priority
                         });
                     }
-                    if (onBaseLeader) {
+                    if (gameFinal && onBaseLeader) {
                         const stoppedSuffix = onBaseLeader.onBaseStreakStopped ? "でストップ" : "";
                         const personalSuffix = getPersonalStreakSuffix(
                             onBaseLeader.onBaseStreak,
@@ -1730,7 +1782,7 @@
                     const gameType = String(
                         data?.gameData?.game?.type ?? data?.gameData?.game?.gameType ?? ""
                     ).toUpperCase();
-                    const teamStreak = gameType === "R"
+                    const teamStreak = gameFinal && gameType === "R"
                         ? getTeamWinLossStreak(scheduleThroughCurrent, team?.id)
                         : null;
                     if (teamStreak) {
@@ -1739,13 +1791,15 @@
                             priority: -1
                         });
                     }
-                    notes.push(...await getAbsenceNotes(
+                    notes.push(...await getLineupStatusNotes(
                         analyzed.filter(isAbsenceEligibleFielder),
                         scheduleThroughCurrent,
                         participation.appeared,
+                        participation.starters,
                         gamePk,
                         team?.id,
-                        code
+                        code,
+                        gameFinal
                     ));
                     return [side, notes
                         .sort((a, b) => a.priority - b.priority)
@@ -1753,7 +1807,7 @@
                         .map((note) => note.text)];
                 })).then((entries) => Object.fromEntries(entries));
 
-                streakNotesCache.set(String(gamePk), request);
+                streakNotesCache.set(cacheKey, request);
                 return request;
             };
 
@@ -3239,7 +3293,16 @@
                 if (["single", "double", "triple", "home_run"].includes(eventType)) return eventType;
                 if (eventType === "field_error" || event.includes("error")) return "field_error";
                 if (["fielders_choice", "fielders_choice_out"].includes(eventType) || event.includes("fielder's choice")) return "fielders_choice";
-                if (["groundout", "force_out", "double_play", "grounded_into_double_play", "triple_play"].includes(eventType) || event.includes("groundout") || event.includes("triple play")) return "groundout";
+                if (["double_play", "triple_play"].includes(eventType) ||
+                    event.includes("double play") || event.includes("triple play")) {
+                    const shape = getBattedBallShape(play);
+                    if (shape === "line") return "lineout";
+                    if (shape === "pop") return "popout";
+                    if (shape === "fly") return "flyout";
+                    return "groundout";
+                }
+                if (["groundout", "force_out", "grounded_into_double_play"].includes(eventType) ||
+                    event.includes("groundout")) return "groundout";
                 if (eventType === "field_out") {
                     const shape = getBattedBallShape(play);
                     if (shape === "ground") return "groundout";
@@ -3265,7 +3328,11 @@
                 const templateId = resolveTemplateId(play);
                 const template = PLAY_TEMPLATES[templateId] ?? PLAY_TEMPLATES.unknown_out;
                 const description = String(play?.result?.description ?? "").toLowerCase();
-                const field = getFieldNumber(play);
+                const caughtBallFielder = ["flyout", "popout", "lineout", "sac_fly"]
+                    .includes(templateId)
+                    ? getFieldingNumbers(play, description)[0] ?? ""
+                    : "";
+                const field = caughtBallFielder || getFieldNumber(play);
                 const fieldingResult = getPrimaryFieldingResult(play, batterId);
                 let notation = template.notation ?? "";
 
