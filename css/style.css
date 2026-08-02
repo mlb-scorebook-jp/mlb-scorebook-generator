@@ -809,13 +809,54 @@ select {
     -webkit-print-color-adjust: exact;
 }
 
-.multi-out-connection {
-    fill: #2d63ad;
+.multi-out-connection-line {
+    fill: none;
     stroke: #2d63ad;
     stroke-width: 1.5;
-    stroke-linecap: round;
+    stroke-linecap: butt;
     stroke-linejoin: round;
     vector-effect: non-scaling-stroke;
+}
+
+.multi-out-connection-triangle {
+    fill: #2d63ad;
+    stroke: none;
+}
+
+.atbat-cell.multi-out-link-segment::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 12px;
+    z-index: 8;
+    width: 1.5px;
+    background: #2d63ad;
+    pointer-events: none;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+}
+
+.multi-out-endpoint-triangle {
+    position: absolute;
+    left: 12px;
+    z-index: 9;
+    width: 8px;
+    height: 8px;
+    background: #2d63ad;
+    pointer-events: none;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+}
+
+.multi-out-endpoint-triangle.top {
+    top: 0;
+    clip-path: polygon(0 0, 100% 0, 0 100%);
+}
+
+.multi-out-endpoint-triangle.bottom {
+    bottom: 0;
+    clip-path: polygon(0 0, 100% 100%, 0 100%);
 }
 
 .grid-header,

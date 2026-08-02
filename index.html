@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MLB Scorebook Generator</title>
     <!-- Score notation update: stacked batted-ball symbol, red hits, blue strikeouts, black other results. -->
-    <link rel="stylesheet" href="css/style.css?v=20260802-3">
+    <link rel="stylesheet" href="css/style.css?v=20260802-5">
 </head>
 
 <body>
@@ -4037,6 +4037,12 @@
                     grid.querySelectorAll(".multi-out-connection-layer").forEach((layer) =>
                         layer.remove()
                     );
+                    grid.querySelectorAll(".atbat-cell.multi-out-link-segment").forEach((cell) =>
+                        cell.classList.remove("multi-out-link-segment")
+                    );
+                    grid.querySelectorAll(".multi-out-endpoint-triangle").forEach((triangle) =>
+                        triangle.remove()
+                    );
 
                     const linkedPlays = records.filter((record) =>
                         record.side === grid.dataset.side &&
@@ -4055,6 +4061,42 @@
                         const cards = [...new Set(record.multiOutLinkedRecords
                             .map((linked) => linked.renderedCard))];
                         if (cards.length < 2) return;
+                        const cells = [...new Set(cards
+                            .map((card) => card.closest(".atbat-cell"))
+                            .filter(Boolean))];
+                        const columnKeys = new Set(cells.map((cell) =>
+                            `${cell.dataset.inning}-${cell.dataset.inningOccurrence}`
+                        ));
+                        if (cells.length >= 2 && columnKeys.size === 1) {
+                            const orderedCells = cells.sort((left, right) =>
+                                left.getBoundingClientRect().top - right.getBoundingClientRect().top
+                            );
+                            const firstCell = orderedCells[0];
+                            const lastCell = orderedCells[orderedCells.length - 1];
+                            const firstTop = firstCell.getBoundingClientRect().top;
+                            const lastTop = lastCell.getBoundingClientRect().top;
+                            const inning = firstCell.dataset.inning;
+                            const occurrence = firstCell.dataset.inningOccurrence;
+                            grid.querySelectorAll(
+                                `.atbat-cell[data-side="${record.side}"]` +
+                                `[data-inning="${inning}"]` +
+                                `[data-inning-occurrence="${occurrence}"]`
+                            ).forEach((cell) => {
+                                const cellTop = cell.getBoundingClientRect().top;
+                                if (cellTop >= firstTop && cellTop <= lastTop) {
+                                    cell.classList.add("multi-out-link-segment");
+                                }
+                            });
+                            firstCell.append(createElement(
+                                "div",
+                                "multi-out-endpoint-triangle top"
+                            ));
+                            lastCell.append(createElement(
+                                "div",
+                                "multi-out-endpoint-triangle bottom"
+                            ));
+                            return;
+                        }
                         const points = cards
                             .map((card) => {
                                 const cell = card.closest(".atbat-cell");
@@ -4073,18 +4115,35 @@
                         const top = points[0].top;
                         const bottom = points[points.length - 1].bottom;
                         const x = points[points.length - 1].x;
-                        const bracket = document.createElementNS(
+                        const bottomTriangleY = bottom - 1;
+                        const line = document.createElementNS(
                             "http://www.w3.org/2000/svg",
                             "path"
                         );
-                        bracket.setAttribute(
-                            "d",
-                            `M${x} ${top} V${bottom} ` +
-                            `M${x} ${top} L${x + 8} ${top} L${x} ${top + 8} Z ` +
-                            `M${x} ${bottom} L${x + 8} ${bottom} L${x} ${bottom - 8} Z`
+                        line.setAttribute("d", `M${x} ${top} V${bottom}`);
+                        line.classList.add("multi-out-connection-line");
+
+                        const topTriangle = document.createElementNS(
+                            "http://www.w3.org/2000/svg",
+                            "polygon"
                         );
-                        bracket.classList.add("multi-out-connection");
-                        svg.append(bracket);
+                        topTriangle.setAttribute(
+                            "points",
+                            `${x},${top} ${x + 8},${top} ${x},${top + 8}`
+                        );
+                        topTriangle.classList.add("multi-out-connection-triangle");
+
+                        const bottomTriangle = document.createElementNS(
+                            "http://www.w3.org/2000/svg",
+                            "polygon"
+                        );
+                        bottomTriangle.setAttribute(
+                            "points",
+                            `${x},${bottomTriangleY} ${x + 8},${bottomTriangleY} ` +
+                            `${x},${bottomTriangleY - 8}`
+                        );
+                        bottomTriangle.classList.add("multi-out-connection-triangle");
+                        svg.append(line, topTriangle, bottomTriangle);
                     });
 
                     if (svg.childElementCount) grid.append(svg);
