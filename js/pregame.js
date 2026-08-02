@@ -166,6 +166,20 @@
         return payload?.stats?.[0]?.splits ?? [];
     };
 
+    const getPlayerCareerGameLog = async (person, date, group) => {
+        const debutDate = String(person?.mlbDebutDate ?? "");
+        const startDate = /^\d{4}-\d{2}-\d{2}$/.test(debutDate)
+            ? debutDate
+            : `${String(date).slice(0, 4)}-01-01`;
+        const endDate = previousDate(date);
+        const payload = await fetchJson(
+            `${API_ROOT}/v1/people/${person.id}/stats?stats=gameLog&group=${group}&gameType=R` +
+            `&startDate=${startDate}&endDate=${endDate}`,
+            `pregame:career-log:${person.id}:${group}:${endDate}`
+        );
+        return payload?.stats?.[0]?.splits ?? [];
+    };
+
     const getPlayerSeasonStatsBeforeDate = async (playerId, season, group, date) => {
         const endDate = previousDate(date);
         const payload = await fetchJson(
@@ -802,22 +816,43 @@
         return firstPitcherId ? getPlayerFromFeed(feed, firstPitcherId) : null;
     };
 
-    const getStartingPitcherData = async (pitcher, date) => {
+    const getStartingPitcherData = async (pitcher, date, opponent) => {
         if (!pitcher?.id) return null;
         const season = Number(date.slice(0, 4));
-        const [seasonStats, logs, profile] = await Promise.all([
+        const [seasonStats, profile] = await Promise.all([
             getPlayerSeasonStatsBeforeDate(pitcher.id, season, "pitching", date),
-            getPlayerGameLog(pitcher.id, season, "pitching"),
-            pitcher?.mlbDebutDate
-                ? Promise.resolve(pitcher)
-                : fetchJson(`${API_ROOT}/v1/people/${pitcher.id}`, `pregame:starter-profile:${pitcher.id}`)
-                    .then((payload) => payload?.people?.[0] ?? pitcher)
+            fetchJson(
+                `${API_ROOT}/v1/people/${pitcher.id}?hydrate=xrefId`,
+                `pregame:starter-profile-xref:${pitcher.id}`
+            ).then((payload) => payload?.people?.[0] ?? pitcher)
         ]);
-        const careerBeforeGame = await getPlayerCareer(profile, "pitching", previousDate(date)).catch(() => null);
-        const previousAppearance = logs
+        const careerLogs = await getPlayerCareerGameLog(profile, date, "pitching").catch(() => []);
+        const previousAppearance = careerLogs
             .filter((split) => String(split?.date ?? "") < date && statNumber(split?.stat?.gamesPlayed) > 0)
             .sort((a, b) => String(b?.date ?? "").localeCompare(String(a?.date ?? "")))[0];
-        return { pitcher: profile, seasonStats, previousAppearance, careerBeforeGame };
+        const opponentLogs = careerLogs.filter((split) =>
+            Number(split?.opponent?.id) === Number(opponent?.id)
+        );
+        const matchup = opponentLogs.reduce((total, split) => {
+            total.games += statNumber(split?.stat?.gamesPlayed);
+            total.wins += statNumber(split?.stat?.wins);
+            total.losses += statNumber(split?.stat?.losses);
+            total.earnedRuns += statNumber(split?.stat?.earnedRuns);
+            total.outs += statNumber(split?.stat?.outs);
+            return total;
+        }, { games: 0, wins: 0, losses: 0, earnedRuns: 0, outs: 0 });
+        matchup.era = matchup.outs > 0
+            ? ((matchup.earnedRuns * 27) / matchup.outs).toFixed(2)
+            : "-.--";
+        return {
+            pitcher: profile,
+            seasonStats,
+            previousAppearance,
+            hasCareerAppearance: careerLogs.length > 0,
+            date,
+            opponent,
+            matchup
+        };
     };
 
     const compactDate = (date) => {
@@ -853,6 +888,34 @@
             `防御率${data.seasonStats?.era ?? "-"}`;
         summary.append(name, seasonGrid);
         column.append(summary);
+        const baseballReferenceId = data.pitcher?.xrefIds?.find(
+            (xref) => String(xref?.xrefType ?? "").toLowerCase() === "lahman"
+        )?.xrefId;
+        const matchupBox = el(
+            baseballReferenceId ? "a" : "div",
+            "pregame-pitcher-matchup"
+        );
+        if (baseballReferenceId) {
+            const referenceUrl = new URL("https://www.baseball-reference.com/players/split.fcgi");
+            referenceUrl.searchParams.set("id", baseballReferenceId);
+            referenceUrl.searchParams.set("year", "Career");
+            referenceUrl.searchParams.set("t", "p");
+            matchupBox.href = referenceUrl.toString();
+            matchupBox.target = "_blank";
+            matchupBox.rel = "noopener noreferrer";
+            matchupBox.setAttribute(
+                "aria-label",
+                `${playerName(data.pitcher)}のBaseball-Reference対戦別通算投手成績を新しいタブで開く`
+            );
+        }
+        matchupBox.append(
+            el("strong", "", `VS.${teamCode(data.opponent)}`),
+            el("span", "",
+                `${data.matchup.games}試合 ${data.matchup.wins}勝${data.matchup.losses}敗　` +
+                `防御率${data.matchup.era}`
+            )
+        );
+        column.append(matchupBox);
         const previousEntry = data.previousAppearance;
         const previous = previousEntry?.stat;
         const previousBox = el("div", "pregame-previous-start");
@@ -871,9 +934,7 @@
                 )
             );
         } else {
-            const hasMlbAppearance = statNumber(data.careerBeforeGame?.gamesPlayed) > 0 ||
-                statNumber(data.careerBeforeGame?.gamesStarted) > 0;
-            previousBox.append(el("strong", "", hasMlbAppearance ? "今季初登板" : "MLB初登板"));
+            previousBox.append(el("strong", "", data.hasCareerAppearance ? "今季初登板" : "MLB初登板"));
         }
         column.append(previousBox);
         return column;
@@ -898,8 +959,8 @@
             const awayProbable = getProbablePitcher(game, feed, "away");
             const homeProbable = getProbablePitcher(game, feed, "home");
             const [awayStarter, homeStarter] = await Promise.all([
-                getStartingPitcherData(awayProbable, date),
-                getStartingPitcherData(homeProbable, date)
+                getStartingPitcherData(awayProbable, date, homeTeam),
+                getStartingPitcherData(homeProbable, date, awayTeam)
             ]);
             const startingSection = section("Starting Pitcher", "先発投手比較");
             startingSection.classList.add("pregame-span-12");
