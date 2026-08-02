@@ -514,7 +514,7 @@
         } else {
             dom.title.textContent = name;
         }
-        dom.subtitle.textContent = `${teamCode(team)} / ${formatDate(date)} 試合前資料`;
+        dom.subtitle.textContent = `${teamCode(team)} / ${formatDate(date)} 試合前時点`;
     };
 
     const divisionJapaneseLabel = (division) => ({
