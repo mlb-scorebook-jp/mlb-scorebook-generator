@@ -724,6 +724,94 @@
             const gameSearchCache = new Map();
             const seasonSearchCache = new Map();
             const seasonTeamSearchCache = new Map();
+            const officialGameArticlesCache = new Map();
+
+            const getSpecialNoteText = (note) =>
+                typeof note === "object" && note !== null
+                    ? String(note.text ?? "")
+                    : String(note ?? "");
+
+            const getOfficialMlbArticleUrl = (article) => {
+                const suppliedUrl = String(article?.url ?? "").trim();
+                if (suppliedUrl) {
+                    try {
+                        const parsed = new URL(suppliedUrl, "https://www.mlb.com");
+                        if (parsed.protocol === "https:" &&
+                            (parsed.hostname === "mlb.com" || parsed.hostname.endsWith(".mlb.com"))) {
+                            return parsed.href;
+                        }
+                    } catch (_error) {
+                        // Invalid URLs are ignored rather than guessed from a player name.
+                    }
+                }
+                const slug = String(article?.slug ?? "").trim();
+                return /^[a-z0-9][a-z0-9-]*$/i.test(slug)
+                    ? `https://www.mlb.com/news/${slug}`
+                    : "";
+            };
+
+            const collectOfficialGameArticles = (content) => {
+                const articles = [];
+                const seen = new Set();
+                const visit = (value) => {
+                    if (!value || typeof value !== "object") return;
+                    if (Array.isArray(value)) {
+                        value.forEach(visit);
+                        return;
+                    }
+                    if (value.type === "article" && value.slug && value.headline) {
+                        const url = getOfficialMlbArticleUrl(value);
+                        if (url && !seen.has(url)) {
+                            seen.add(url);
+                            articles.push({ ...value, officialUrl: url });
+                        }
+                    }
+                    Object.values(value).forEach(visit);
+                };
+                visit(content?.editorial);
+                return articles;
+            };
+
+            const fetchOfficialGameArticles = (gamePk) => {
+                const key = String(gamePk ?? "");
+                if (!key) return Promise.resolve([]);
+                if (officialGameArticlesCache.has(key)) {
+                    return officialGameArticlesCache.get(key);
+                }
+                const request = fetch(`https://statsapi.mlb.com/api/v1/game/${key}/content`)
+                    .then((response) => response.ok ? response.json() : null)
+                    .then(collectOfficialGameArticles)
+                    .catch(() => []);
+                officialGameArticlesCache.set(key, request);
+                return request;
+            };
+
+            const findOfficialAbsenceArticle = (articles, player, officialDate) => {
+                const playerId = String(player?.id ?? player?.person?.id ?? "");
+                if (!playerId) return null;
+                const absenceTerms = /out of (?:the )?(?:starting )?lineup|not in (?:the )?lineup|scratched|day off|rest(?:ed|ing)?|bench(?:ed)?|held out|sidelined|injur(?:y|ed)|soreness|tightness|discomfort/i;
+                const gameTime = Date.parse(`${officialDate}T12:00:00Z`);
+                return (articles ?? []).find((article) => {
+                    const taggedPlayer = (article?.keywordsAll ?? []).some((keyword) => {
+                        const value = String(keyword?.value ?? "");
+                        return ((keyword?.type === "player" && value === `playerid-${playerId}`) ||
+                            (keyword?.type === "player_id" && value === playerId));
+                    });
+                    if (!taggedPlayer) return false;
+                    const articleTime = Date.parse(String(article?.date ?? ""));
+                    if (Number.isFinite(gameTime) && Number.isFinite(articleTime) &&
+                        Math.abs(articleTime - gameTime) > 36 * 60 * 60 * 1000) {
+                        return false;
+                    }
+                    const searchableText = [
+                        article?.headline,
+                        article?.seoTitle,
+                        article?.blurb,
+                        article?.body
+                    ].filter(Boolean).join(" ");
+                    return absenceTerms.test(searchableText);
+                }) ?? null;
+            };
 
             const getHistoricalRecordsForGame = (data, gamePk) => {
                 const officialDate = String(data?.gameData?.datetime?.officialDate ?? "");
@@ -755,7 +843,7 @@
                         ? notesBySide[side]
                         : [];
                     const filteredNotes = normalNotes.filter((note) => {
-                        const normalizedNote = normalizeLookupKey(note);
+                        const normalizedNote = normalizeLookupKey(getSpecialNoteText(note));
                         return !sideRecords.some((record) =>
                             (record?.dedupeTokens ?? []).length > 0 &&
                             record.dedupeTokens.every((token) =>
@@ -930,6 +1018,15 @@
                     : "";
             };
 
+            const hasCurrentGamePitchingAppearance = (player) => {
+                const pitching = player?.currentGamePitching ?? {};
+                return Number(pitching?.gamesPlayed) > 0 ||
+                    Number(pitching?.gamesStarted) > 0 ||
+                    Number(pitching?.battersFaced) > 0 ||
+                    Number(pitching?.numberOfPitches) > 0 ||
+                    Number(pitching?.pitchesThrown) > 0;
+            };
+
             const buildCareerMilestoneNotes = async (players, code, context) => {
                 const notes = await mapWithConcurrency(players, 8, async (player) => {
                     const primaryPosition = normalizePositionAbbreviation(
@@ -941,6 +1038,10 @@
                     const playerNotes = [];
 
                     for (const group of groups) {
+                        if (group === "pitching" &&
+                            !hasCurrentGamePitchingAppearance(player)) {
+                            continue;
+                        }
                         const career = await fetchPlayerCareerStats(
                             player,
                             group,
@@ -1466,7 +1567,10 @@
                             text: `${code}　${getPersonName(player.person)}　${player.gamesSinceAbsence}試合ぶりの欠場${reference}`,
                             priority: player.japanese ? 2 : 3,
                             startRate,
-                            starts
+                            starts,
+                            kind: "absence",
+                            playerId: player.id,
+                            person: player.person
                         };
                     }
 
@@ -1627,7 +1731,8 @@
             const isAbsenceEligibleFielder = (player) => {
                 if (isTwoWayCandidate(player)) {
                     return Number.isFinite(player?.battingOrder) ||
-                        getPlateAppearances(player?.currentGameBatting) > 0;
+                        getPlateAppearances(player?.currentGameBatting) > 0 ||
+                        player?.seasonHittingRole === true;
                 }
                 return !isPitcherCandidate(player);
             };
@@ -1689,6 +1794,17 @@
                     const participation = getCurrentGameParticipation(data, side);
                     const analyzed = await Promise.all(candidates.map(async (player) => {
                         const gameLogSplits = await fetchPlayerRegularSeasonGameLog(player.id, season);
+                        const hittingSplitsThroughGame = gameLogSplits.filter((split) =>
+                            String(split?.date ?? "").slice(0, 10) <= officialDate
+                        );
+                        const priorHittingGames = hittingSplitsThroughGame.filter((split) =>
+                            Number(split?.game?.gamePk) !== Number(gamePk) &&
+                            getPlateAppearances(split?.stat) > 0
+                        );
+                        const priorPlateAppearances = priorHittingGames.reduce(
+                            (total, split) => total + getPlateAppearances(split?.stat),
+                            0
+                        );
                         const streaks = summarizeCurrentStreaks(
                             gameLogSplits,
                             context
@@ -1717,7 +1833,13 @@
                                 : pregameOnBaseStreak;
                             streaks.onBaseStreakStopped = reachedBase === 0 && pregameOnBaseStreak >= 2;
                         }
-                        return { ...player, ...streaks, gameLogSplits };
+                        return {
+                            ...player,
+                            ...streaks,
+                            gameLogSplits,
+                            seasonHittingRole: priorHittingGames.length >= 3 ||
+                                priorPlateAppearances >= 10
+                        };
                     }));
                     const code = getTeamCodeForSeason(team, season);
                     const hitLeader = gameFinal
@@ -1791,7 +1913,7 @@
                             priority: -1
                         });
                     }
-                    notes.push(...await getLineupStatusNotes(
+                    const lineupStatusNotes = await getLineupStatusNotes(
                         analyzed.filter(isAbsenceEligibleFielder),
                         scheduleThroughCurrent,
                         participation.appeared,
@@ -1800,11 +1922,28 @@
                         team?.id,
                         code,
                         gameFinal
-                    ));
+                    );
+                    const absenceNotes = lineupStatusNotes.filter((note) =>
+                        note.kind === "absence"
+                    );
+                    if (absenceNotes.length > 0) {
+                        const officialArticles = await fetchOfficialGameArticles(gamePk);
+                        absenceNotes.forEach((note) => {
+                            const article = findOfficialAbsenceArticle(
+                                officialArticles,
+                                note.person,
+                                officialDate
+                            );
+                            if (article) note.link = article.officialUrl;
+                        });
+                    }
+                    notes.push(...lineupStatusNotes);
                     return [side, notes
                         .sort((a, b) => a.priority - b.priority)
                         .slice(0, 12)
-                        .map((note) => note.text)];
+                        .map((note) => note.link
+                            ? { text: note.text, link: note.link }
+                            : note.text)];
                 })).then((entries) => Object.fromEntries(entries));
 
                 streakNotesCache.set(cacheKey, request);
@@ -4545,11 +4684,23 @@
                     const notesTable = createElement("div", "special-notes");
                     for (let row = 0; row < 6; row += 1) {
                         const noteIndex = column * 6 + row;
-                        const note = createElement(
-                            "div",
-                            "special-note-row",
-                            state.streakNotes?.[side]?.[noteIndex] ?? ""
-                        );
+                        const noteData = state.streakNotes?.[side]?.[noteIndex] ?? "";
+                        const note = createElement("div", "special-note-row");
+                        note.append(document.createTextNode(getSpecialNoteText(noteData)));
+                        if (noteData && typeof noteData === "object" && noteData.link) {
+                            note.append(document.createTextNode("　"));
+                            const sourceLink = createElement(
+                                "a",
+                                "special-note-source-link",
+                                "コメントあり"
+                            );
+                            sourceLink.href = noteData.link;
+                            sourceLink.target = "_blank";
+                            sourceLink.rel = "noopener noreferrer";
+                            sourceLink.contentEditable = "false";
+                            sourceLink.setAttribute("aria-label", "MLB公式記事を新しいタブで開く");
+                            note.append(sourceLink);
+                        }
                         note.contentEditable = "true";
                         note.spellcheck = false;
                         note.dataset.noteRow = String(noteIndex + 1);
