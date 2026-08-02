@@ -484,6 +484,29 @@
     border-bottom: 0;
 }
 
+.pregame-featured-player {
+    display: block;
+}
+
+.pregame-featured-note {
+    min-width: 0;
+}
+
+.pregame-featured-note {
+    display: block;
+    grid-column: 1 / -1;
+    margin-top: 3px;
+    color: #c8d3d8;
+    text-decoration: none;
+}
+
+.pregame-featured-note:hover,
+.pregame-featured-note:focus-visible {
+    color: #fff;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
 .pregame-metric-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
@@ -503,10 +526,21 @@
     letter-spacing: 0.07em;
 }
 
-.pregame-metric strong {
+.pregame-metric strong,
+.pregame-metric-value {
     display: block;
     margin-top: 5px;
+    color: inherit;
     font-size: 17px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+a.pregame-metric-value:hover,
+a.pregame-metric-value:focus-visible {
+    color: #fff;
+    text-decoration: underline;
+    text-underline-offset: 2px;
 }
 
 .pregame-article-row a,
@@ -856,6 +890,10 @@
         width: 100%;
     }
 
+    .pregame-featured-player {
+        display: block;
+    }
+
     .pregame-metric-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
@@ -870,7 +908,8 @@
         line-height: 1.4;
     }
 
-    .pregame-metric strong {
+    .pregame-metric strong,
+    .pregame-metric-value {
         font-size: 21px;
     }
 }

@@ -153,6 +153,14 @@
         return new Set((payload?.roster ?? []).map((entry) => Number(entry?.person?.id)));
     };
 
+    const getActiveRosterPlayers = async (teamId, date) => {
+        const payload = await fetchJson(
+            `${API_ROOT}/v1/teams/${teamId}/roster?rosterType=active&date=${date}&hydrate=person`,
+            `pregame:active-roster-players:${teamId}:${date}`
+        ).catch(() => null);
+        return payload?.roster ?? [];
+    };
+
     const getFeed = (gamePk) => fetchJson(
         `${API_ROOT}/v1.1/game/${gamePk}/feed/live`,
         `pregame:feed:${gamePk}`
@@ -196,9 +204,27 @@
         const payload = await fetchJson(
             `${API_ROOT}/v1/people/${person.id}/stats?stats=byDateRange&group=${group}` +
             `&gameType=R&sportIds=1&startDate=${debut}&endDate=${date}`,
-            `pregame:career:${person.id}:${group}:${date}`
+            `pregame:career-mlb-total-v2:${person.id}:${group}:${date}`
         );
-        return (payload?.stats ?? []).flatMap((entry) => entry?.splits ?? [])[0]?.stat ?? null;
+        const splits = (payload?.stats ?? []).flatMap((entry) => entry?.splits ?? []);
+        const mlbTotal = splits.find((split) =>
+            !split?.team && Number(split?.sport?.id) === 0
+        );
+        if (mlbTotal?.stat) return mlbTotal.stat;
+
+        const additiveFields = group === "pitching"
+            ? ["wins", "strikeOuts", "gamesPlayed", "saves"]
+            : ["hits", "homeRuns", "rbi", "stolenBases"];
+        const teamSplits = splits.filter((split) =>
+            Number(split?.sport?.id) === 1 && Boolean(split?.team?.id)
+        );
+        if (!teamSplits.length) return null;
+        return teamSplits.reduce((totals, split) => {
+            additiveFields.forEach((field) => {
+                totals[field] = (totals[field] ?? 0) + statNumber(split?.stat?.[field]);
+            });
+            return totals;
+        }, {});
     };
 
     const collectArticles = (content) => {
@@ -603,10 +629,26 @@
         return null;
     };
 
-    const metric = (label, value) => {
+    const metric = (label, value, linkOptions = null) => {
         const box = el("div", "pregame-metric");
-        box.append(el("span", "", label), el("strong", "", value));
+        const valueElement = el(linkOptions?.href ? "a" : "strong", "pregame-metric-value", value);
+        if (linkOptions?.href) {
+            valueElement.href = linkOptions.href;
+            valueElement.target = "_blank";
+            valueElement.rel = "noopener noreferrer";
+            if (linkOptions.ariaLabel) valueElement.setAttribute("aria-label", linkOptions.ariaLabel);
+        }
+        box.append(el("span", "", label), valueElement);
         return box;
+    };
+
+    const getOfficialTeamStatsUrl = (team, season, group) => {
+        const slug = window.MLB_SCOREBOOK_TEAM_SLUGS_BY_ID?.[Number(team?.id)];
+        if (!slug) return "";
+        const path = group === "pitching" ? "stats/team/pitching" : "stats/team";
+        const url = new URL(`https://www.mlb.com/${slug}/${path}`);
+        url.searchParams.set("season", String(season));
+        return url.toString();
     };
 
     const renderPlayerDetail = async (playerId, gamePk) => {
@@ -784,27 +826,121 @@
         };
     };
 
-    const getFeaturedPlayers = (feed, side) => {
+    const getFeaturedPlayers = async (feed, side, date) => {
         const team = feed?.liveData?.boxscore?.teams?.[side] ?? {};
-        const players = Object.values(team?.players ?? {}).filter((entry) => {
-            const order = Number.parseInt(entry?.battingOrder, 10);
-            return Number.isFinite(order) && order % 100 === 0;
+        const teamId = Number(feed?.gameData?.teams?.[side]?.id);
+        const boxPlayers = new Map(Object.values(team?.players ?? {}).map((entry) => [
+            Number(entry?.person?.id),
+            entry
+        ]));
+        const roster = await getActiveRosterPlayers(teamId, date);
+        return roster.map((rosterEntry) => {
+            const boxEntry = boxPlayers.get(Number(rosterEntry?.person?.id));
+            return {
+                ...(boxEntry ?? {}),
+                person: { ...(rosterEntry?.person ?? {}), ...(boxEntry?.person ?? {}) },
+                position: boxEntry?.position ?? rosterEntry?.position,
+                rosterPosition: rosterEntry?.position?.abbreviation
+            };
         });
-        return players.sort((a, b) =>
-            statNumber(b?.seasonStats?.batting?.ops) - statNumber(a?.seasonStats?.batting?.ops)
-        ).slice(0, 3);
     };
 
-    const createFeaturedPlayerRow = (entry) => {
+    const getFeaturedPlayerData = async (entry, date) => {
+        const playerId = Number(entry?.person?.id);
+        const season = Number(date.slice(0, 4));
+        if (!playerId) return { entry, notes: [], importance: 0 };
+        const profile = await fetchJson(
+            `${API_ROOT}/v1/people/${playerId}`,
+            `pregame:featured-profile:${playerId}`
+        ).then((payload) => payload?.people?.[0] ?? entry.person).catch(() => entry.person);
+        const primaryType = String(profile?.primaryPosition?.type ?? "").toLowerCase();
+        const primaryAbbreviation = String(profile?.primaryPosition?.abbreviation ?? "").toUpperCase();
+        const isTwoWay = primaryType.includes("two-way") || primaryAbbreviation === "TWP";
+        const isPitcher = primaryType === "pitcher" || primaryAbbreviation === "P";
+        const groups = isTwoWay ? ["hitting", "pitching"] : [isPitcher ? "pitching" : "hitting"];
+        const [hittingLogs, ...careers] = await Promise.all([
+            groups.includes("hitting")
+                ? getPlayerGameLog(playerId, season, "hitting").catch(() => [])
+                : Promise.resolve([]),
+            ...groups.map((group) => getPlayerCareer(profile, group, previousDate(date)).catch(() => null))
+        ]);
+        const priorHittingLogs = hittingLogs.filter((split) => String(split?.date ?? "") < date);
+        const previousGame = [...priorHittingLogs]
+            .filter((split) => {
+                const stat = split?.stat ?? {};
+                return statNumber(stat.plateAppearances) > 0 || statNumber(stat.atBats) > 0;
+            })
+            .sort((a, b) => String(b?.date ?? "").localeCompare(String(a?.date ?? "")))[0];
+        const notes = [];
+        let importance = 0;
+        const officialPlayerStatsUrl = (group, view) => {
+            const url = new URL(`https://www.mlb.com/player/${playerId}`);
+            url.searchParams.set(
+                "stats",
+                `${view}-r-${group === "pitching" ? "pitching" : "hitting"}-mlb`
+            );
+            if (view === "gamelogs") url.searchParams.set("year", String(season));
+            return url.toString();
+        };
+        if (previousGame) {
+            const stat = previousGame.stat ?? {};
+            const hits = statNumber(stat.hits);
+            const rbi = statNumber(stat.rbi);
+            const homeRuns = statNumber(stat.homeRuns);
+            const stolenBases = statNumber(stat.stolenBases);
+            if (hits >= 2 || rbi >= 2 || homeRuns >= 1 || stolenBases >= 1) {
+                const isYesterday = String(previousGame.date) === previousDate(date);
+                const extras = [
+                    homeRuns ? `${homeRuns}本塁打` : "",
+                    stolenBases ? `${stolenBases}盗塁` : ""
+                ].filter(Boolean).join("　");
+                notes.push({
+                    text: `${isYesterday ? "昨日" : "前戦"}（${compactDate(previousGame.date)} vs. ` +
+                        `${teamCode(previousGame.opponent)}）` +
+                        `${statNumber(stat.atBats)}打数${hits}安打${rbi}打点` +
+                        (extras ? `　${extras}` : ""),
+                    href: previousGame?.game?.gamePk
+                        ? `https://www.mlb.com/gameday/${previousGame.game.gamePk}/final`
+                        : officialPlayerStatsUrl("hitting", "gamelogs")
+                });
+                importance += hits + rbi + homeRuns * 2 + stolenBases;
+            }
+        }
+        const streaks = getHittingStreaks(priorHittingLogs);
+        const hittingGameLogUrl = officialPlayerStatsUrl("hitting", "gamelogs");
+        if (streaks.hits >= 3) notes.push({ text: `${streaks.hits}試合連続安打`, href: hittingGameLogUrl });
+        if (streaks.onBase >= 5) notes.push({ text: `${streaks.onBase}試合連続出塁`, href: hittingGameLogUrl });
+        if (streaks.rbi >= 3) notes.push({ text: `${streaks.rbi}試合連続打点`, href: hittingGameLogUrl });
+        importance += streaks.hits >= 3 ? streaks.hits : 0;
+        importance += streaks.onBase >= 5 ? streaks.onBase : 0;
+        groups.forEach((group, index) => {
+            const milestoneNotes = remainingMilestones(careers[index], group);
+            notes.push(...milestoneNotes.map((text) => ({
+                text,
+                href: officialPlayerStatsUrl(group, "career")
+            })));
+            importance += milestoneNotes.length * 10;
+        });
+        return { entry: { ...entry, person: profile }, notes, importance };
+    };
+
+    const createFeaturedPlayerRow = (featured) => {
+        const entry = featured.entry;
         const row = el("li");
+        row.classList.add("pregame-featured-player");
         const link = el("a", "pregame-player-link", playerName(entry?.person));
         link.href = `https://www.mlb.com/player/${entry?.person?.id}`;
         link.target = "_blank";
         link.rel = "noopener noreferrer";
-        const stat = entry?.seasonStats?.batting ?? {};
-        row.append(link, document.createTextNode(
-            `　打率 ${stat.avg ?? "-"} / OPS ${stat.ops ?? "-"} / 本塁打 ${stat.homeRuns ?? 0}`
-        ));
+        row.append(link);
+        featured.notes.slice(0, 3).forEach((note) => {
+            const noteLink = el("a", "pregame-featured-note", note.text);
+            noteLink.href = note.href;
+            noteLink.target = "_blank";
+            noteLink.rel = "noopener noreferrer";
+            noteLink.setAttribute("aria-label", `${playerName(entry?.person)}：${note.text}のMLB公式情報を開く`);
+            row.append(noteLink);
+        });
         return row;
     };
 
@@ -977,22 +1113,29 @@
             if (homeTrend.streakText !== "-") highlights.push(`${teamCode(homeTeam)}　${homeTrend.streakText}`);
             articles.slice(0, 3).forEach((article) => highlights.push(article.headline));
 
-            const playersSection = section("注目選手", "今季OPS上位を優先");
+            const playersSection = section("注目選手", "記録・直近成績を優先");
             playersSection.classList.add("pregame-span-6");
             const playerColumns = el("div", "pregame-team-columns");
-            [
+            for (const [side, team] of [
                 ["away", awayTeam],
                 ["home", homeTeam]
-            ].forEach(([side, team]) => {
+            ]) {
                 const column = el("div");
                 column.append(el("h4", "pregame-team-heading", teamCode(team)));
                 const list = el("ul", "pregame-data-list");
-                const featured = getFeaturedPlayers(feed, side);
-                if (featured.length) featured.forEach((entry) => list.append(createFeaturedPlayerRow(entry)));
-                else list.append(el("li", "", "ラインアップ未発表"));
+                const starters = await getFeaturedPlayers(feed, side, date);
+                const featured = (await Promise.all(
+                    starters.map((entry) => getFeaturedPlayerData(entry, date))
+                )).filter((player) => player.notes.length > 0).sort((a, b) =>
+                    b.importance - a.importance ||
+                    statNumber(b.entry?.seasonStats?.batting?.ops) -
+                        statNumber(a.entry?.seasonStats?.batting?.ops)
+                );
+                if (featured.length) featured.forEach((player) => list.append(createFeaturedPlayerRow(player)));
+                else list.append(el("li", "", "該当する注目情報なし"));
                 column.append(list);
                 playerColumns.append(column);
-            });
+            }
             playersSection.append(playerColumns);
             grid.append(playersSection);
 
@@ -1003,12 +1146,21 @@
                 const column = el("div");
                 column.append(el("h4", "pregame-team-heading", teamCode(team)));
                 const metrics = el("div", "pregame-metric-grid");
+                const season = Number(date.slice(0, 4));
+                const battingUrl = getOfficialTeamStatsUrl(team, season, "hitting");
+                const pitchingUrl = getOfficialTeamStatsUrl(team, season, "pitching");
                 metrics.append(
                     metric("直近10試合", `${trend.wins}勝${trend.losses}敗`),
                     metric("連勝・連敗", trend.streakText),
-                    metric("チーム打率", String(trend.avg)),
+                    metric("チーム打率", String(trend.avg), battingUrl ? {
+                        href: battingUrl,
+                        ariaLabel: `${teamCode(team)}の${season}年MLB公式チーム打撃成績を新しいタブで開く`
+                    } : null),
                     metric("チームOPS", String(trend.ops)),
-                    metric("投手ERA", String(trend.era))
+                    metric("投手ERA", String(trend.era), pitchingUrl ? {
+                        href: pitchingUrl,
+                        ariaLabel: `${teamCode(team)}の${season}年MLB公式チーム投手成績を新しいタブで開く`
+                    } : null)
                 );
                 column.append(metrics);
                 trendColumns.append(column);
