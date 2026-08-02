@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MLB Scorebook Generator</title>
     <!-- Score notation update: stacked batted-ball symbol, red hits, blue strikeouts, black other results. -->
-    <link rel="stylesheet" href="css/style.css?v=20260802-2">
+    <link rel="stylesheet" href="css/style.css?v=20260802-3">
 </head>
 
 <body>
@@ -3239,11 +3239,18 @@
             const getBattedBallShape = (play) => {
                 const trajectory = String(play?.hitData?.trajectory ?? "").toLowerCase();
                 const description = String(play?.result?.description ?? "").toLowerCase();
-                if (trajectory.includes("bunt") || description.includes("bunt")) return "bunt";
-                if (trajectory.includes("ground") || description.includes("grounds") || description.includes("groundout")) return "ground";
-                if (trajectory.includes("line") || description.includes("lines out") || description.includes("lineout")) return "line";
-                if (trajectory.includes("popup") || description.includes("pops out") || description.includes("pop out")) return "pop";
-                if (trajectory.includes("fly") || description.includes("flies out") || description.includes("flyout")) return "fly";
+                // The official play sentence describes the scored result. Prefer its
+                // explicit batted-ball verb when tracking data uses a conflicting arc.
+                if (/\bbunts?\b/.test(description)) return "bunt";
+                if (/\bgrounds?\b|groundout/.test(description)) return "ground";
+                if (/\blines? (?:out|into)\b|lineout|line drive/.test(description)) return "line";
+                if (/\bpops? out\b|popout/.test(description)) return "pop";
+                if (/\bflies? out\b|flyout/.test(description)) return "fly";
+                if (trajectory.includes("bunt")) return "bunt";
+                if (trajectory.includes("ground")) return "ground";
+                if (trajectory.includes("line")) return "line";
+                if (trajectory.includes("popup")) return "pop";
+                if (trajectory.includes("fly")) return "fly";
                 return "";
             };
 
@@ -3293,7 +3300,7 @@
                 if (["single", "double", "triple", "home_run"].includes(eventType)) return eventType;
                 if (eventType === "field_error" || event.includes("error")) return "field_error";
                 if (["fielders_choice", "fielders_choice_out"].includes(eventType) || event.includes("fielder's choice")) return "fielders_choice";
-                if (["double_play", "triple_play"].includes(eventType) ||
+                if (["double_play", "grounded_into_double_play", "triple_play"].includes(eventType) ||
                     event.includes("double play") || event.includes("triple play")) {
                     const shape = getBattedBallShape(play);
                     if (shape === "line") return "lineout";
@@ -3301,7 +3308,7 @@
                     if (shape === "fly") return "flyout";
                     return "groundout";
                 }
-                if (["groundout", "force_out", "grounded_into_double_play"].includes(eventType) ||
+                if (["groundout", "force_out"].includes(eventType) ||
                     event.includes("groundout")) return "groundout";
                 if (eventType === "field_out") {
                     const shape = getBattedBallShape(play);
@@ -3540,6 +3547,7 @@
 
                     const runners = play?.runners ?? [];
                     const outNumberByRunner = assignOutNumbers(play, batterId);
+                    const playOutTargets = [];
                     let batterOutRecorded = false;
                     runners.forEach((runner) => {
                         const runnerId = runner?.details?.runner?.id;
@@ -3691,6 +3699,7 @@
                         }
 
                         if (movement?.isOut) {
+                            playOutTargets.push(target);
                             const outNumber = outNumberByRunner.get(runner);
                             if (outNumber) target.centerMark = ROMAN_OUTS[outNumber];
                             const runnerDescription = getRunnerEventDescription(play, runner);
@@ -3718,6 +3727,11 @@
                             activeRunner.set(Number(runnerId), target);
                         }
                     });
+
+                    const uniqueOutTargets = [...new Set(playOutTargets)];
+                    if (uniqueOutTargets.length >= 2) {
+                        record.multiOutLinkedRecords = uniqueOutTargets;
+                    }
 
                     if (isComplete && !batterOutRecorded &&
                         !runners.some((runner) => Number(runner?.details?.runner?.id) === Number(batterId))) {
@@ -4010,9 +4024,71 @@
                         currentPitchColumn.replaceWith(createPitchColumn(record.pitchResults));
                     }
                     resultBox.classList.add("has-play");
-                    resultBox.append(renderPlateAppearance(record));
+                    const card = renderPlateAppearance(record);
+                    record.renderedCard = card;
+                    resultBox.append(card);
                 });
+                populateMultiOutConnections(records);
                 populateSubstitutionIndicators();
+            };
+
+            const populateMultiOutConnections = (records) => {
+                dom.awaySheet.querySelectorAll(".score-grid").forEach((grid) => {
+                    grid.querySelectorAll(".multi-out-connection-layer").forEach((layer) =>
+                        layer.remove()
+                    );
+
+                    const linkedPlays = records.filter((record) =>
+                        record.side === grid.dataset.side &&
+                        record.multiOutLinkedRecords?.length >= 2 &&
+                        record.multiOutLinkedRecords.every((linked) => linked.renderedCard)
+                    );
+                    if (!linkedPlays.length) return;
+
+                    const gridRect = grid.getBoundingClientRect();
+                    const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+                    svg.classList.add("multi-out-connection-layer");
+                    svg.setAttribute("viewBox", `0 0 ${gridRect.width} ${gridRect.height}`);
+                    svg.setAttribute("preserveAspectRatio", "none");
+
+                    linkedPlays.forEach((record) => {
+                        const cards = [...new Set(record.multiOutLinkedRecords
+                            .map((linked) => linked.renderedCard))];
+                        if (cards.length < 2) return;
+                        const points = cards
+                            .map((card) => {
+                                const cell = card.closest(".atbat-cell");
+                                const resultBox = card.closest(".result-box");
+                                const rect = card.getBoundingClientRect();
+                                const cellRect = cell?.getBoundingClientRect() ?? rect;
+                                const resultRect = resultBox?.getBoundingClientRect() ?? rect;
+                                return {
+                                    x: resultRect.left - gridRect.left,
+                                    top: cellRect.top - gridRect.top,
+                                    bottom: cellRect.bottom - gridRect.top,
+                                    cellTop: cellRect.top
+                                };
+                            })
+                            .sort((left, right) => left.cellTop - right.cellTop);
+                        const top = points[0].top;
+                        const bottom = points[points.length - 1].bottom;
+                        const x = points[points.length - 1].x;
+                        const bracket = document.createElementNS(
+                            "http://www.w3.org/2000/svg",
+                            "path"
+                        );
+                        bracket.setAttribute(
+                            "d",
+                            `M${x} ${top} V${bottom} ` +
+                            `M${x} ${top} L${x + 8} ${top} L${x} ${top + 8} Z ` +
+                            `M${x} ${bottom} L${x + 8} ${bottom} L${x} ${bottom - 8} Z`
+                        );
+                        bracket.classList.add("multi-out-connection");
+                        svg.append(bracket);
+                    });
+
+                    if (svg.childElementCount) grid.append(svg);
+                });
             };
 
             const getSubstitutionRole = (eventDetails) => {
@@ -4129,6 +4205,7 @@
 
             const buildScoreGrid = (side) => {
                 const grid = createElement("section", "score-grid");
+                grid.dataset.side = side;
 
                 ["打順", "背番号", "名前", "守", "投/打"].forEach((label) => {
                     grid.append(createElement("div", "grid-header", label));

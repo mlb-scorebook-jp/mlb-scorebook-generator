@@ -781,6 +781,7 @@ select {
 }
 
 .score-grid {
+    position: relative;
     display: grid;
     grid-template-columns:
         var(--order-width)
@@ -794,6 +795,27 @@ select {
     border-top: 1.4px solid var(--rule);
     border-left: 1.4px solid var(--rule);
     margin-top: 8px;
+}
+
+.multi-out-connection-layer {
+    position: absolute;
+    inset: 0;
+    z-index: 8;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    pointer-events: none;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+}
+
+.multi-out-connection {
+    fill: #2d63ad;
+    stroke: #2d63ad;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    vector-effect: non-scaling-stroke;
 }
 
 .grid-header,
