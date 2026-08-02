@@ -454,6 +454,59 @@
     gap: 12px;
 }
 
+.pregame-batting-summary {
+    display: grid;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.pregame-batting-summary-card {
+    border: 1px solid #46535c;
+    background: #1b2429;
+}
+
+.pregame-batting-summary-title {
+    margin: 0;
+    padding: 8px 10px;
+    color: #edf3f5;
+    border-bottom: 1px solid #46535c;
+    background: linear-gradient(180deg, #263139 0%, #222c32 100%);
+    font-size: 12px;
+    letter-spacing: 0.02em;
+}
+
+.pregame-batting-summary-rows {
+    padding: 3px 10px;
+}
+
+.pregame-batting-summary-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px 18px;
+    min-height: 30px;
+    align-items: center;
+    border-bottom: 1px solid #344047;
+}
+
+.pregame-batting-summary-row:last-child {
+    border-bottom: 0;
+}
+
+.pregame-batting-stat {
+    color: #dfe6e9;
+    font-size: 11px;
+    line-height: 1.45;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+a.pregame-batting-stat:hover,
+a.pregame-batting-stat:focus-visible {
+    color: #fff;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
 .pregame-span-12 { grid-column: span 12; }
 .pregame-span-8 { grid-column: span 8; }
 .pregame-span-6 { grid-column: span 6; }
@@ -599,6 +652,11 @@ a.pregame-metric-value:focus-visible {
 
 @media print {
     .pregame-player-title-link {
+        color: inherit;
+        text-decoration: none;
+    }
+
+    .pregame-batting-stat {
         color: inherit;
         text-decoration: none;
     }
@@ -948,5 +1006,35 @@ a.pregame-metric-value:focus-visible {
     .pregame-metric strong,
     .pregame-metric-value {
         font-size: 21px;
+    }
+
+    .pregame-batting-summary {
+        width: 100%;
+        max-width: 100%;
+        gap: 12px;
+    }
+
+    .pregame-batting-summary-title {
+        padding: 12px;
+        font-size: 18px;
+    }
+
+    .pregame-batting-summary-rows {
+        padding: 4px 12px;
+    }
+
+    .pregame-batting-summary-row {
+        gap: 8px 16px;
+        min-height: 44px;
+        padding: 7px 0;
+    }
+
+    .pregame-batting-stat {
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+        font-size: 16px;
+        line-height: 1.5;
+        white-space: normal;
     }
 }

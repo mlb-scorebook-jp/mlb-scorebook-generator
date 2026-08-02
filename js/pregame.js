@@ -198,6 +198,37 @@
         return payload?.stats?.[0]?.splits?.[0]?.stat ?? {};
     };
 
+    const getPlayerRispAverage = async (playerId, date, startDate) => {
+        const endDate = previousDate(date);
+        const firstSeason = Number(String(startDate).slice(0, 4));
+        const lastSeason = Number(String(endDate).slice(0, 4));
+        if (!Number.isFinite(firstSeason) || !Number.isFinite(lastSeason)) return null;
+        const seasons = Array.from(
+            { length: Math.max(0, lastSeason - firstSeason + 1) },
+            (_value, index) => firstSeason + index
+        );
+        const splits = await Promise.all(seasons.map(async (season) => {
+            const params = new URLSearchParams({
+                stats: "statSplits",
+                group: "hitting",
+                gameType: "R",
+                sitCodes: "risp",
+                season: String(season)
+            });
+            const payload = await fetchJson(
+                `${API_ROOT}/v1/people/${playerId}/stats?${params}`,
+                `pregame:risp-season:${playerId}:${season}`
+            ).catch(() => null);
+            return payload?.stats?.[0]?.splits?.[0]?.stat ?? null;
+        }));
+        const totals = splits.filter(Boolean).reduce((result, stat) => {
+            result.atBats += statNumber(stat?.atBats);
+            result.hits += statNumber(stat?.hits);
+            return result;
+        }, { atBats: 0, hits: 0 });
+        return totals.atBats ? totals.hits / totals.atBats : null;
+    };
+
     const getPlayerCareer = async (person, group, date) => {
         const debut = String(person?.mlbDebutDate ?? "");
         if (!/^\d{4}-\d{2}-\d{2}$/.test(debut)) return null;
@@ -214,17 +245,30 @@
 
         const additiveFields = group === "pitching"
             ? ["wins", "strikeOuts", "gamesPlayed", "saves"]
-            : ["hits", "homeRuns", "rbi", "stolenBases"];
+            : [
+                "gamesPlayed", "atBats", "hits", "homeRuns", "rbi", "stolenBases",
+                "doubles", "triples", "baseOnBalls", "hitByPitch", "strikeOuts",
+                "sacBunts", "sacFlies", "totalBases"
+            ];
         const teamSplits = splits.filter((split) =>
             Number(split?.sport?.id) === 1 && Boolean(split?.team?.id)
         );
         if (!teamSplits.length) return null;
-        return teamSplits.reduce((totals, split) => {
+        const totals = teamSplits.reduce((result, split) => {
             additiveFields.forEach((field) => {
-                totals[field] = (totals[field] ?? 0) + statNumber(split?.stat?.[field]);
+                result[field] = (result[field] ?? 0) + statNumber(split?.stat?.[field]);
             });
-            return totals;
+            return result;
         }, {});
+        if (group === "hitting") {
+            totals.avg = totals.atBats ? totals.hits / totals.atBats : 0;
+            const derivedTotalBases = totals.hits + totals.doubles +
+                (2 * totals.triples) + (3 * totals.homeRuns);
+            totals.slg = totals.atBats
+                ? (totals.totalBases || derivedTotalBases) / totals.atBats
+                : 0;
+        }
+        return totals;
     };
 
     const collectArticles = (content) => {
@@ -784,6 +828,67 @@
         return url.toString();
     };
 
+    const getBaseballReferenceBattingUrl = (person) => {
+        const referenceId = person?.xrefIds?.find(
+            (xref) => String(xref?.xrefType ?? "").toLowerCase() === "lahman"
+        )?.xrefId;
+        if (!referenceId) return "";
+        return `https://www.baseball-reference.com/players/${String(referenceId).charAt(0)}/${referenceId}.shtml`;
+    };
+
+    const formatAverage = (value) => {
+        const numeric = Number.parseFloat(value);
+        return Number.isFinite(numeric) ? numeric.toFixed(3).replace(/^0/, "") : "-";
+    };
+
+    const battingStatLink = (text, href, ariaLabel) => {
+        const node = el(href ? "a" : "span", "pregame-batting-stat", text);
+        if (href) {
+            node.href = href;
+            node.target = "_blank";
+            node.rel = "noopener noreferrer";
+            node.setAttribute("aria-label", ariaLabel);
+        }
+        return node;
+    };
+
+    const renderBattingSummaryCard = (title, stats, rispAverage, referenceUrl, player) => {
+        const card = el("section", "pregame-batting-summary-card");
+        card.append(el("h3", "pregame-batting-summary-title", title));
+        const rows = el("div", "pregame-batting-summary-rows");
+        const linked = (text, label) => battingStatLink(
+            text,
+            referenceUrl,
+            `${playerName(player)}の${label}をBaseball-Referenceで開く`
+        );
+        const row1 = el("div", "pregame-batting-summary-row");
+        row1.append(
+            linked(`${stats?.gamesPlayed ?? 0}試合`, "試合数"),
+            linked(`打率 ${formatAverage(stats?.avg)}（${stats?.atBats ?? 0}打数${stats?.hits ?? 0}安打）`, "打率"),
+            linked(`本塁打${stats?.homeRuns ?? 0}本`, "本塁打"),
+            linked(`打点${stats?.rbi ?? 0}`, "打点"),
+            linked(`盗塁${stats?.stolenBases ?? 0}`, "盗塁")
+        );
+        const row2 = el("div", "pregame-batting-summary-row");
+        row2.append(
+            linked(`得点圏打率 ${formatAverage(rispAverage)}`, "得点圏打率"),
+            linked(`長打率 ${formatAverage(stats?.slg)}`, "長打率"),
+            linked(`二塁打${stats?.doubles ?? 0}本`, "二塁打"),
+            linked(`三塁打${stats?.triples ?? 0}本`, "三塁打")
+        );
+        const row3 = el("div", "pregame-batting-summary-row");
+        row3.append(
+            linked(`四球${stats?.baseOnBalls ?? 0}`, "四球"),
+            linked(`死球${stats?.hitByPitch ?? 0}`, "死球"),
+            linked(`三振${stats?.strikeOuts ?? 0}`, "三振"),
+            linked(`犠打${stats?.sacBunts ?? 0}`, "犠打"),
+            linked(`犠飛${stats?.sacFlies ?? 0}`, "犠飛")
+        );
+        rows.append(row1, row2, row3);
+        card.append(rows);
+        return card;
+    };
+
     const renderPlayerDetail = async (playerId, gamePk) => {
         setLoading(true);
         try {
@@ -809,6 +914,29 @@
                 group,
                 await getPlayerCareer(person, group, date).catch(() => null)
             ])));
+            const battingProfilePayload = await fetchJson(
+                `${API_ROOT}/v1/people/${playerId}?hydrate=xrefId`,
+                `pregame:player-profile-xref:${playerId}`
+            ).catch(() => null);
+            const battingProfile = battingProfilePayload?.people?.[0] ?? person;
+            const seasonBatting = await getPlayerSeasonStatsBeforeDate(
+                playerId,
+                season,
+                "hitting",
+                date
+            ).catch(() => ({}));
+            const careerBatting = await getPlayerCareer(
+                battingProfile,
+                "hitting",
+                previousDate(date)
+            ).catch(() => ({}));
+            const debutDate = /^\d{4}-\d{2}-\d{2}$/.test(String(battingProfile?.mlbDebutDate ?? ""))
+                ? battingProfile.mlbDebutDate
+                : `${season}-01-01`;
+            const [seasonRispAverage, careerRispAverage] = await Promise.all([
+                getPlayerRispAverage(playerId, date, `${season}-01-01`),
+                getPlayerRispAverage(playerId, date, debutDate)
+            ]);
             const officialArticles = articles.filter((article) => articleHasPlayer(article, playerId));
             const gameInfo = getPlayerGameInfo(feed, game, playerId);
 
@@ -816,6 +944,24 @@
                 .find((team) => Number(team?.id) === Number(person?.currentTeam?.id)) ??
                 feed?.gameData?.teams?.[gameInfo?.side] ?? person?.currentTeam;
             setPlayerHeader(person, playerTeam, date);
+            const battingSummary = el("div", "pregame-batting-summary");
+            const referenceUrl = getBaseballReferenceBattingUrl(battingProfile);
+            battingSummary.append(
+                renderBattingSummaryCard(
+                    `${season}打撃成績`,
+                    seasonBatting,
+                    seasonRispAverage,
+                    referenceUrl,
+                    person
+                ),
+                renderBattingSummaryCard(
+                    "MLB通算打撃成績",
+                    careerBatting,
+                    careerRispAverage,
+                    referenceUrl,
+                    person
+                )
+            );
             const grid = el("div", "pregame-detail-grid");
 
             groups.forEach((group) => {
@@ -895,7 +1041,7 @@
             articleSection.append(renderArticles(officialArticles));
             grid.append(articleSection);
 
-            dom.content.replaceChildren(grid);
+            dom.content.replaceChildren(battingSummary, grid);
         } catch (error) {
             console.error(error);
             dom.content.replaceChildren(el("div", "pregame-error", error.message));
