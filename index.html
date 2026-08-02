@@ -7,7 +7,7 @@
     <title>MLB Scorebook Generator</title>
     <!-- Score notation update: stacked batted-ball symbol, red hits, blue strikeouts, black other results. -->
     <link rel="stylesheet" href="css/style.css?v=20260802-5">
-    <link rel="stylesheet" href="css/pregame.css?v=20260802-5">
+    <link rel="stylesheet" href="css/pregame.css?v=20260802-12">
 </head>
 
 <body>
@@ -121,7 +121,6 @@
             <section class="pregame-view" id="pregame-view" hidden aria-label="試合前情報">
                 <header class="pregame-view-header">
                     <div>
-                        <p class="pregame-kicker">ハイライト構成準備</p>
                         <h2 id="pregame-title">試合前情報</h2>
                         <p id="pregame-subtitle">今日紹介できる材料を、短時間で整理します。</p>
                     </div>
@@ -158,7 +157,7 @@
     <script src="js/players.js"></script>
     <script src="js/players-2026-updates.js?v=20260802-1"></script>
     <script src="js/historical-records.js"></script>
-    <script src="js/pregame.js?v=20260802-7"></script>
+    <script src="js/pregame.js?v=20260802-10"></script>
 
     <script>
         (() => {
@@ -653,6 +652,7 @@
                 143: "phillies", 144: "braves", 145: "whitesox", 146: "marlins",
                 147: "yankees", 158: "brewers"
             });
+            window.MLB_SCOREBOOK_TEAM_SLUGS_BY_ID = MLB_TEAM_SLUGS_BY_ID;
 
             const MLB_TEAM_SEARCH_OPTIONS = Object.freeze([
                 [109, "arizonadiamondbacks"], [133, "athletics"], [144, "atlantabraves"],

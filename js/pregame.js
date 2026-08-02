@@ -74,6 +74,12 @@
         return year && month && day ? `${year}/${Number(month)}/${Number(day)}` : String(date ?? "-");
     };
 
+    const previousDate = (date) => {
+        const value = new Date(`${String(date).slice(0, 10)}T00:00:00Z`);
+        value.setUTCDate(value.getUTCDate() - 1);
+        return value.toISOString().slice(0, 10);
+    };
+
     const currentMlbDate = () => new Intl.DateTimeFormat("en-CA", {
         timeZone: "America/New_York",
         year: "numeric",
@@ -304,8 +310,86 @@
     };
 
     const setHeader = (title, subtitle) => {
+        dom.title.className = "";
         dom.title.textContent = title;
         dom.subtitle.textContent = subtitle;
+    };
+
+    const setPlayerHeader = (person, team, date) => {
+        dom.title.className = "";
+        const name = playerName(person);
+        if (person?.id) {
+            const link = el("a", "pregame-player-title-link", name);
+            link.href = `https://www.mlb.com/player/${person.id}`;
+            link.target = "_blank";
+            link.rel = "noopener noreferrer";
+            dom.title.replaceChildren(link);
+        } else {
+            dom.title.textContent = name;
+        }
+        dom.subtitle.textContent = `${teamCode(team)} / ${formatDate(date)} 試合前資料`;
+    };
+
+    const divisionJapaneseLabel = (division) => ({
+        "American League East": "アメリカンリーグ東部地区",
+        "American League Central": "アメリカンリーグ中部地区",
+        "American League West": "アメリカンリーグ西部地区",
+        "National League East": "ナショナルリーグ東部地区",
+        "National League Central": "ナショナルリーグ中部地区",
+        "National League West": "ナショナルリーグ西部地区"
+    })[String(division ?? "")] ?? String(division ?? "所属地区未確定");
+
+    const getStandingsSnapshot = async (date) => {
+        const standingsDate = previousDate(date);
+        const season = date.slice(0, 4);
+        const params = new URLSearchParams({
+            leagueId: "103,104",
+            season,
+            standingsTypes: "regularSeason",
+            date: standingsDate,
+            hydrate: "division,team,league"
+        });
+        const payload = await fetchJson(
+            `${API_ROOT}/v1/standings?${params}`,
+            `pregame:standings:${standingsDate}`
+        ).catch(() => null);
+        const standings = new Map();
+        (payload?.records ?? []).forEach((record) => {
+            (record?.teamRecords ?? []).forEach((teamRecord) => {
+                standings.set(Number(teamRecord?.team?.id), {
+                    division: divisionJapaneseLabel(record?.division?.name ?? teamRecord?.team?.division?.name),
+                    rank: Number.parseInt(teamRecord?.divisionRank, 10)
+                });
+            });
+        });
+        return standings;
+    };
+
+    const setMatchupHeader = (awayTeam, homeTeam, standings) => {
+        const teamBlock = (team) => {
+            const block = el("span", "pregame-header-team");
+            const standing = standings.get(Number(team?.id));
+            const rank = Number.isFinite(standing?.rank) ? `${standing.rank}位` : "順位未確定";
+            const slug = window.MLB_SCOREBOOK_TEAM_SLUGS_BY_ID?.[Number(team?.id)];
+            const teamName = el(slug ? "a" : "strong", "pregame-header-team-name", teamJapaneseName(team));
+            if (slug) {
+                teamName.href = `https://www.mlb.com/${slug}`;
+                teamName.target = "_blank";
+                teamName.rel = "noopener noreferrer";
+            }
+            block.append(
+                teamName,
+                el("small", "", `${standing?.division ?? "所属地区未確定"}　${rank}`)
+            );
+            return block;
+        };
+        dom.title.className = "pregame-matchup-heading";
+        dom.title.replaceChildren(
+            teamBlock(awayTeam),
+            el("span", "pregame-header-versus", "VS."),
+            teamBlock(homeTeam)
+        );
+        dom.subtitle.textContent = "";
     };
 
     const section = (title, subtitle = "") => {
@@ -506,7 +590,7 @@
             const playerTeam = [feed?.gameData?.teams?.away, feed?.gameData?.teams?.home]
                 .find((team) => Number(team?.id) === Number(person?.currentTeam?.id)) ??
                 feed?.gameData?.teams?.[gameInfo?.side] ?? person?.currentTeam;
-            setHeader(playerName(person), `${teamCode(playerTeam)} / ${formatDate(date)} 試合前資料`);
+            setPlayerHeader(person, playerTeam, date);
             const grid = el("div", "pregame-detail-grid");
 
             groups.forEach((group) => {
@@ -682,12 +766,12 @@
             const date = String(feed?.gameData?.datetime?.officialDate ?? game?.officialDate ?? currentDate);
             const awayTeam = feed?.gameData?.teams?.away ?? game?.teams?.away?.team ?? {};
             const homeTeam = feed?.gameData?.teams?.home ?? game?.teams?.home?.team ?? {};
-            const [awayTrend, homeTrend] = await Promise.all([
+            const [awayTrend, homeTrend, standings] = await Promise.all([
                 getTeamTrend(awayTeam.id, date),
-                getTeamTrend(homeTeam.id, date)
+                getTeamTrend(homeTeam.id, date),
+                getStandingsSnapshot(date)
             ]);
-            const matchup = `${teamJapaneseName(awayTeam)} VS. ${teamJapaneseName(homeTeam)}`;
-            setHeader(matchup, `${formatDate(date)}　ハイライト構成メモ`);
+            setMatchupHeader(awayTeam, homeTeam, standings);
             const grid = el("div", "pregame-detail-grid");
 
             const highlightSection = section("今日の試合の見どころ", "優先度順");
