@@ -1001,6 +1001,11 @@ select {
         ) center / 100% 1px no-repeat;
 }
 
+/* Live plate appearance: a restrained yellow overlay, cleared when the play completes. */
+.atbat-cell.in-progress {
+    background-color: rgba(243, 200, 62, 0.2);
+}
+
 .diamond {
     position: absolute;
     top: 50%;

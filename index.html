@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MLB Scorebook Generator</title>
     <!-- Score notation update: stacked batted-ball symbol, red hits, blue strikeouts, black other results. -->
-    <link rel="stylesheet" href="css/style.css?v=20260802-1">
+    <link rel="stylesheet" href="css/style.css?v=20260802-2">
 </head>
 
 <body>
@@ -3423,7 +3423,18 @@
                         renderedAutomaticRunners.add(halfKey);
                     }
 
-                    const display = getPlayDisplay(play, batterId);
+                    const isComplete = play?.about?.isComplete !== false;
+                    const display = isComplete
+                        ? getPlayDisplay(play, batterId)
+                        : {
+                            templateId: "in_progress",
+                            notation: "",
+                            category: "other",
+                            isHit: false,
+                            homeRunNumber: "",
+                            extra: "",
+                            shape: ""
+                        };
                     const record = {
                         playIndex,
                         atBatIndex: Number.isInteger(Number(play?.about?.atBatIndex))
@@ -3455,6 +3466,7 @@
                         outAtHome: "",
                         centerMark: "",
                         rbi: Number(play?.result?.rbi) || 0,
+                        inProgress: !isComplete,
                         inningEnd: Boolean(play?.about?.isComplete && Number(play?.count?.outs) === 3)
                     };
                     records.push(record);
@@ -3640,7 +3652,8 @@
                         }
                     });
 
-                    if (!batterOutRecorded && !runners.some((runner) => Number(runner?.details?.runner?.id) === Number(batterId))) {
+                    if (isComplete && !batterOutRecorded &&
+                        !runners.some((runner) => Number(runner?.details?.runner?.id) === Number(batterId))) {
                         const isOut = Boolean(play?.result?.isOut) || Number(play?.count?.outs) > Number(play?.about?.startOuts ?? 0);
                         if (isOut) {
                             record.centerMark = ROMAN_OUTS[Math.max(1, Math.min(3, Number(play?.count?.outs) || 1))];
@@ -3924,6 +3937,7 @@
                     const cell = dom.awaySheet.querySelector(cellSelector);
                     const resultBox = cell?.querySelector(".result-box");
                     if (!cell || !resultBox) return;
+                    cell.classList.toggle("in-progress", Boolean(record.inProgress));
                     const currentPitchColumn = cell.querySelector(".pitch-column");
                     if (currentPitchColumn && record.pitchResults?.length) {
                         currentPitchColumn.replaceWith(createPitchColumn(record.pitchResults));
