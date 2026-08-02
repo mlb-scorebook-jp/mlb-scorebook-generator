@@ -2493,6 +2493,22 @@
                 const eventType = String(play?.result?.eventType ?? "").toLowerCase();
                 const event = String(play?.result?.event ?? "").toLowerCase();
                 if (/play at|base|tag play|stolen|steal|pickoff/.test(label)) {
+                    const targetBase = /play at 1st|first base/.test(label) ? "1B"
+                        : /play at 2nd|second base/.test(label) ? "2B"
+                            : /play at 3rd|third base/.test(label) ? "3B"
+                                : /play at home|home plate/.test(label) ? "score"
+                                    : "";
+                    const batterId = Number(play?.matchup?.batter?.id);
+                    const targetRunner = (play?.runners ?? []).find((runner) => {
+                        const movement = runner?.movement ?? {};
+                        if (targetBase === "1B" &&
+                            Number(runner?.details?.runner?.id) === batterId) return true;
+                        return String(movement?.end ?? "") === targetBase ||
+                            String(movement?.outBase ?? "") === targetBase;
+                    });
+                    if (targetRunner) {
+                        return targetRunner?.movement?.isOut ? "アウト" : "セーフ";
+                    }
                     return (play?.runners ?? []).some((runner) => runner?.movement?.isOut)
                         ? "アウト"
                         : "セーフ";
@@ -2575,7 +2591,19 @@
                 const isRunnerPlay = /play at|base|tag play|stolen|steal|pickoff/.test(targetLabel);
                 if (isRunnerPlay) {
                     const runners = play?.runners ?? [];
-                    const runner = runners.find((item) => item?.movement?.isOut) ??
+                    const targetBase = /play at 1st|first base/.test(targetLabel) ? "1B"
+                        : /play at 2nd|second base/.test(targetLabel) ? "2B"
+                            : /play at 3rd|third base/.test(targetLabel) ? "3B"
+                                : /play at home|home plate/.test(targetLabel) ? "score"
+                                    : "";
+                    const batterId = Number(play?.matchup?.batter?.id);
+                    const runner = runners.find((item) => {
+                        const movement = item?.movement ?? {};
+                        if (targetBase === "1B" &&
+                            Number(item?.details?.runner?.id) === batterId) return true;
+                        return String(movement?.end ?? "") === targetBase ||
+                            String(movement?.outBase ?? "") === targetBase;
+                    }) ?? runners.find((item) => item?.movement?.isOut) ??
                         runners.find((item) => item?.details?.runner?.id);
                     if (runner?.details?.runner?.id) {
                         const details = getChallengePlayer(data, runner.details.runner.id);
