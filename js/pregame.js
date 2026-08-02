@@ -46,7 +46,8 @@
     };
 
     const teamCode = (team) => String(
-        team?.abbreviation ?? team?.teamCode ?? team?.fileCode ?? team?.name ?? "-"
+        team?.abbreviation ?? team?.teamCode ?? team?.fileCode ??
+        window.MLB_SCOREBOOK_TEAM_CODES_BY_ID?.[Number(team?.id)] ?? team?.name ?? "-"
     ).toUpperCase();
 
     const teamJapaneseName = (team) => {
@@ -163,6 +164,16 @@
             `pregame:log:${playerId}:${season}:${group}`
         );
         return payload?.stats?.[0]?.splits ?? [];
+    };
+
+    const getPlayerSeasonStatsBeforeDate = async (playerId, season, group, date) => {
+        const endDate = previousDate(date);
+        const payload = await fetchJson(
+            `${API_ROOT}/v1/people/${playerId}/stats?stats=byDateRange&group=${group}&gameType=R` +
+            `&startDate=${season}-01-01&endDate=${endDate}`,
+            `pregame:season-before:${playerId}:${season}:${group}:${date}`
+        );
+        return payload?.stats?.[0]?.splits?.[0]?.stat ?? {};
     };
 
     const getPlayerCareer = async (person, group, date) => {
@@ -310,12 +321,15 @@
     };
 
     const setHeader = (title, subtitle) => {
+        dom.title.parentElement?.classList.remove("pregame-matchup-title-block");
         dom.title.className = "";
         dom.title.textContent = title;
+        dom.subtitle.className = "";
         dom.subtitle.textContent = subtitle;
     };
 
     const setPlayerHeader = (person, team, date) => {
+        dom.title.parentElement?.classList.remove("pregame-matchup-title-block");
         dom.title.className = "";
         const name = playerName(person);
         if (person?.id) {
@@ -365,7 +379,19 @@
         return standings;
     };
 
-    const setMatchupHeader = (awayTeam, homeTeam, standings) => {
+    const formatGameTime = (dateTime, timeZone) => {
+        if (!dateTime) return "時刻未定";
+        const value = new Date(dateTime);
+        if (Number.isNaN(value.getTime())) return "時刻未定";
+        return new Intl.DateTimeFormat("en-US", {
+            timeZone,
+            hour: "numeric",
+            minute: "2-digit",
+            hour12: true
+        }).format(value);
+    };
+
+    const setMatchupHeader = (awayTeam, homeTeam, standings, game, feed) => {
         const teamBlock = (team) => {
             const block = el("span", "pregame-header-team");
             const standing = standings.get(Number(team?.id));
@@ -384,12 +410,22 @@
             return block;
         };
         dom.title.className = "pregame-matchup-heading";
+        dom.title.parentElement?.classList.add("pregame-matchup-title-block");
         dom.title.replaceChildren(
             teamBlock(awayTeam),
             el("span", "pregame-header-versus", "VS."),
             teamBlock(homeTeam)
         );
-        dom.subtitle.textContent = "";
+        const venue = venueLabel(feed?.gameData?.venue ?? game?.venue) || "球場未定";
+        const dateTime = feed?.gameData?.datetime?.dateTime ?? game?.gameDate;
+        dom.subtitle.className = "pregame-matchup-meta-line";
+        dom.subtitle.replaceChildren(
+            el("span", "pregame-matchup-venue", venue),
+            el("span", "pregame-matchup-times",
+                `ET ${formatGameTime(dateTime, "America/New_York")}　｜　` +
+                `JST ${formatGameTime(dateTime, "Asia/Tokyo")}`
+            )
+        );
     };
 
     const section = (title, subtitle = "") => {
@@ -422,7 +458,7 @@
         setLoading(true);
         const date = currentDate || currentMlbDate();
         if (dom.dateInput) dom.dateInput.value = date;
-        setHeader("試合前情報", `${formatDate(date)}　今日の構成材料を先に確認`);
+        setHeader("試合前情報", formatDate(date));
         try {
             const season = Number(date.slice(0, 4));
             const [games, japanesePlayers] = await Promise.all([
@@ -758,6 +794,91 @@
         return row;
     };
 
+    const getProbablePitcher = (game, feed, side) => {
+        const probable = game?.teams?.[side]?.probablePitcher ?? feed?.gameData?.probablePitchers?.[side];
+        if (probable?.id) return probable;
+        const boxTeam = feed?.liveData?.boxscore?.teams?.[side];
+        const firstPitcherId = Number(boxTeam?.pitchers?.[0]);
+        return firstPitcherId ? getPlayerFromFeed(feed, firstPitcherId) : null;
+    };
+
+    const getStartingPitcherData = async (pitcher, date) => {
+        if (!pitcher?.id) return null;
+        const season = Number(date.slice(0, 4));
+        const [seasonStats, logs, profile] = await Promise.all([
+            getPlayerSeasonStatsBeforeDate(pitcher.id, season, "pitching", date),
+            getPlayerGameLog(pitcher.id, season, "pitching"),
+            pitcher?.mlbDebutDate
+                ? Promise.resolve(pitcher)
+                : fetchJson(`${API_ROOT}/v1/people/${pitcher.id}`, `pregame:starter-profile:${pitcher.id}`)
+                    .then((payload) => payload?.people?.[0] ?? pitcher)
+        ]);
+        const careerBeforeGame = await getPlayerCareer(profile, "pitching", previousDate(date)).catch(() => null);
+        const previousAppearance = logs
+            .filter((split) => String(split?.date ?? "") < date && statNumber(split?.stat?.gamesPlayed) > 0)
+            .sort((a, b) => String(b?.date ?? "").localeCompare(String(a?.date ?? "")))[0];
+        return { pitcher: profile, seasonStats, previousAppearance, careerBeforeGame };
+    };
+
+    const compactDate = (date) => {
+        const [, month, day] = String(date ?? "").slice(0, 10).split("-");
+        return month && day ? `${Number(month)}/${Number(day)}` : "日付不明";
+    };
+
+    const pitcherDecision = (stat) => {
+        if (statNumber(stat?.wins) > 0) return "(W)";
+        if (statNumber(stat?.losses) > 0) return "(L)";
+        if (statNumber(stat?.saves) > 0) return "(S)";
+        if (statNumber(stat?.holds) > 0) return "(H)";
+        return "";
+    };
+
+    const renderStartingPitcher = (data, team) => {
+        const column = el("article", "pregame-starting-pitcher");
+        const summary = el("div", "pregame-starting-summary");
+        summary.append(el("div", "pregame-starting-team", teamCode(team)));
+        if (!data) {
+            summary.append(el("strong", "pregame-starting-name", "先発未定"));
+            column.append(summary);
+            return column;
+        }
+        const name = el("a", "pregame-starting-name", playerName(data.pitcher));
+        name.href = `https://www.mlb.com/player/${data.pitcher.id}`;
+        name.target = "_blank";
+        name.rel = "noopener noreferrer";
+        const starts = statNumber(data.seasonStats?.gamesStarted);
+        const seasonGrid = el("div", "pregame-starting-stats");
+        seasonGrid.textContent = `${starts}試合（${starts}先発）　` +
+            `${statNumber(data.seasonStats?.wins)}勝${statNumber(data.seasonStats?.losses)}敗　` +
+            `防御率${data.seasonStats?.era ?? "-"}`;
+        summary.append(name, seasonGrid);
+        column.append(summary);
+        const previousEntry = data.previousAppearance;
+        const previous = previousEntry?.stat;
+        const previousBox = el("div", "pregame-previous-start");
+        if (previous) {
+            const walksAndHitByPitch = statNumber(previous.baseOnBalls) + statNumber(previous.hitBatsmen);
+            const decision = pitcherDecision(previous);
+            previousBox.append(
+                el("strong", "", "前回登板"),
+                el("span", "pregame-previous-meta",
+                    `${compactDate(previousEntry?.date)}　vs. ${teamCode(previousEntry?.opponent)}` +
+                    (decision ? `　${decision}` : "")
+                ),
+                el("span", "pregame-previous-line",
+                    `${previous.inningsPitched ?? "-"}回　${statNumber(previous.runs)}失点　` +
+                    `${statNumber(previous.strikeOuts)}奪三振　${walksAndHitByPitch}四死球`
+                )
+            );
+        } else {
+            const hasMlbAppearance = statNumber(data.careerBeforeGame?.gamesPlayed) > 0 ||
+                statNumber(data.careerBeforeGame?.gamesStarted) > 0;
+            previousBox.append(el("strong", "", hasMlbAppearance ? "今季初登板" : "MLB初登板"));
+        }
+        column.append(previousBox);
+        return column;
+    };
+
     const renderGameDetail = async (gamePk) => {
         setLoading(true);
         try {
@@ -771,26 +892,29 @@
                 getTeamTrend(homeTeam.id, date),
                 getStandingsSnapshot(date)
             ]);
-            setMatchupHeader(awayTeam, homeTeam, standings);
+            setMatchupHeader(awayTeam, homeTeam, standings, game, feed);
             const grid = el("div", "pregame-detail-grid");
 
-            const highlightSection = section("今日の試合の見どころ", "優先度順");
-            highlightSection.classList.add("pregame-span-12");
-            const highlightList = el("ul", "pregame-data-list");
+            const awayProbable = getProbablePitcher(game, feed, "away");
+            const homeProbable = getProbablePitcher(game, feed, "home");
+            const [awayStarter, homeStarter] = await Promise.all([
+                getStartingPitcherData(awayProbable, date),
+                getStartingPitcherData(homeProbable, date)
+            ]);
+            const startingSection = section("Starting Pitcher", "先発投手比較");
+            startingSection.classList.add("pregame-span-12");
+            const startingGrid = el("div", "pregame-starting-grid");
+            startingGrid.append(
+                renderStartingPitcher(awayStarter, awayTeam),
+                renderStartingPitcher(homeStarter, homeTeam)
+            );
+            startingSection.append(startingGrid);
+            grid.append(startingSection);
+
             const highlights = [];
             if (awayTrend.streakText !== "-") highlights.push(`${teamCode(awayTeam)}　${awayTrend.streakText}`);
             if (homeTrend.streakText !== "-") highlights.push(`${teamCode(homeTeam)}　${homeTrend.streakText}`);
-            const awayProbable = game?.teams?.away?.probablePitcher?.fullName;
-            const homeProbable = game?.teams?.home?.probablePitcher?.fullName;
-            if (awayProbable || homeProbable) highlights.push(
-                `先発予定：${awayProbable ? playerName({ fullName: awayProbable }) : "未定"} 対 ` +
-                `${homeProbable ? playerName({ fullName: homeProbable }) : "未定"}`
-            );
             articles.slice(0, 3).forEach((article) => highlights.push(article.headline));
-            (highlights.length ? highlights : ["MLB公式データで表示できる見どころを準備中です。"])
-                .forEach((text) => highlightList.append(el("li", "", text)));
-            highlightSection.append(highlightList);
-            grid.append(highlightSection);
 
             const playersSection = section("注目選手", "今季OPS上位を優先");
             playersSection.classList.add("pregame-span-6");

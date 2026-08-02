@@ -7,7 +7,7 @@
     <title>MLB Scorebook Generator</title>
     <!-- Score notation update: stacked batted-ball symbol, red hits, blue strikeouts, black other results. -->
     <link rel="stylesheet" href="css/style.css?v=20260802-5">
-    <link rel="stylesheet" href="css/pregame.css?v=20260802-12">
+    <link rel="stylesheet" href="css/pregame.css?v=20260802-17">
 </head>
 
 <body>
@@ -157,7 +157,7 @@
     <script src="js/players.js"></script>
     <script src="js/players-2026-updates.js?v=20260802-1"></script>
     <script src="js/historical-records.js"></script>
-    <script src="js/pregame.js?v=20260802-10"></script>
+    <script src="js/pregame.js?v=20260802-15"></script>
 
     <script>
         (() => {
@@ -641,6 +641,7 @@
                 139: "TB", 140: "TEX", 141: "TOR", 142: "MIN", 143: "PHI",
                 144: "ATL", 145: "CWS", 146: "MIA", 147: "NYY", 158: "MIL"
             });
+            window.MLB_SCOREBOOK_TEAM_CODES_BY_ID = MLB_TEAM_CODES_BY_ID;
 
             const MLB_TEAM_SLUGS_BY_ID = Object.freeze({
                 108: "angels", 109: "dbacks", 110: "orioles", 111: "redsox",

@@ -44,9 +44,11 @@
 }
 
 .pregame-matchup-heading {
-    display: flex;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
     align-items: flex-start;
     gap: 14px;
+    width: 100%;
 }
 
 .pregame-view-header h2.pregame-matchup-heading {
@@ -96,16 +98,52 @@
     letter-spacing: 0.04em;
 }
 
+.pregame-matchup-title-block {
+    width: 100%;
+    text-align: center;
+}
+
 .pregame-view-header #pregame-subtitle {
     margin: 5px 0 0;
     color: #aab5bc;
     font-size: 11px;
 }
 
+.pregame-matchup-meta-line {
+    display: grid;
+    justify-items: center;
+    gap: 3px;
+    margin-top: 8px !important;
+    color: #aab5bc;
+    font-size: 10px !important;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    text-align: center;
+}
+
+.pregame-matchup-venue,
+.pregame-matchup-times {
+    display: block;
+    width: 100%;
+    white-space: nowrap;
+}
+
 .pregame-header-actions {
     display: flex;
     align-items: flex-end;
     gap: 8px;
+}
+
+.pregame-view-header:has(.pregame-matchup-title-block) {
+    position: relative;
+    align-items: center;
+    padding-bottom: 54px;
+}
+
+.pregame-view-header:has(.pregame-matchup-title-block) .pregame-header-actions {
+    position: absolute;
+    right: 18px;
+    bottom: 16px;
 }
 
 .pregame-date-control {
@@ -197,6 +235,96 @@
 .pregame-section-header span {
     color: #9eabb3;
     font-size: 9px;
+}
+
+.pregame-starting-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.pregame-starting-pitcher {
+    min-width: 0;
+    padding: 8px 16px 9px;
+}
+
+.pregame-starting-pitcher + .pregame-starting-pitcher {
+    border-left: 1px solid #46535c;
+}
+
+.pregame-starting-team {
+    margin-bottom: 3px;
+    color: #9eabb3;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+}
+
+.pregame-starting-name {
+    color: #e8edf0;
+    font-size: 16px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.pregame-starting-name:hover,
+.pregame-starting-name:focus-visible {
+    color: #fff;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.pregame-starting-stats,
+.pregame-previous-start {
+    display: block;
+    margin-top: 5px;
+}
+
+.pregame-starting-stats,
+.pregame-previous-start span,
+.pregame-previous-start strong {
+    font-size: 11px;
+}
+
+.pregame-previous-start {
+    margin-top: 5px;
+    padding-top: 4px;
+    border-top: 1px solid #46535c;
+}
+
+.pregame-previous-start strong {
+    display: block;
+    margin-bottom: 2px;
+    color: #b9c5cb;
+    letter-spacing: 0.04em;
+}
+
+.pregame-previous-meta,
+.pregame-previous-line {
+    display: block;
+    line-height: 1.35;
+}
+
+.pregame-previous-meta {
+    color: #c7d1d6;
+}
+
+@media (max-width: 760px) {
+    .pregame-starting-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .pregame-starting-pitcher + .pregame-starting-pitcher {
+        border-top: 1px solid #46535c;
+        border-left: 0;
+    }
+
+    .pregame-matchup-title-block {
+        width: 100%;
+    }
+
+    .pregame-view-header:has(.pregame-matchup-title-block) .pregame-header-actions {
+        position: static;
+    }
 }
 
 .pregame-card-grid {
@@ -415,5 +543,289 @@
 @media print {
     .pregame-view {
         display: none !important;
+    }
+}
+
+/* Smartphone-only presentation. Desktop and tablet rules remain untouched. */
+@media screen and (max-width: 767px) {
+    .viewer.pregame-active {
+        box-sizing: border-box;
+        width: 100%;
+        min-width: 0;
+        padding: 10px;
+    }
+
+    .pregame-view,
+    .pregame-content,
+    .pregame-dashboard,
+    .pregame-section,
+    .pregame-detail-grid {
+        box-sizing: border-box;
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+    }
+
+    .pregame-view {
+        min-height: auto;
+        font-size: 16px;
+    }
+
+    .pregame-view-header,
+    .pregame-view-header:has(.pregame-matchup-title-block) {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 14px;
+        margin-bottom: 12px;
+        padding: 14px;
+        text-align: center;
+    }
+
+    .pregame-view-header > div:first-child,
+    .pregame-matchup-title-block {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+    }
+
+    .pregame-view-header h2,
+    .pregame-view-header h2.pregame-matchup-heading {
+        font-size: 21px;
+        line-height: 1.35;
+    }
+
+    .pregame-matchup-heading {
+        grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+        align-items: start;
+        gap: 7px;
+    }
+
+    .pregame-header-team-name,
+    .pregame-header-team small,
+    .pregame-matchup-venue,
+    .pregame-matchup-times {
+        white-space: normal;
+        overflow-wrap: anywhere;
+    }
+
+    .pregame-header-team small,
+    .pregame-matchup-meta-line,
+    .pregame-view-header #pregame-subtitle {
+        font-size: 14px !important;
+        line-height: 1.45;
+    }
+
+    .pregame-matchup-meta-line {
+        gap: 6px;
+        margin-top: 10px !important;
+    }
+
+    .pregame-matchup-times {
+        overflow-wrap: normal;
+    }
+
+    .pregame-view-header:has(.pregame-matchup-title-block) .pregame-header-actions,
+    .pregame-header-actions {
+        position: static;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 9px;
+        width: 100%;
+    }
+
+    .pregame-date-control {
+        grid-column: 1 / -1;
+        gap: 5px;
+        width: 100%;
+        font-size: 14px;
+        text-align: left;
+    }
+
+    .pregame-date-control input,
+    .pregame-header-actions button,
+    .pregame-action-button {
+        width: 100%;
+        min-height: 44px;
+        font-size: 15px;
+    }
+
+    .pregame-loading,
+    .pregame-error,
+    .pregame-empty {
+        font-size: 16px;
+        line-height: 1.5;
+    }
+
+    .pregame-dashboard,
+    .pregame-detail-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .pregame-span-12,
+    .pregame-span-8,
+    .pregame-span-6,
+    .pregame-span-4 {
+        grid-column: 1;
+    }
+
+    .pregame-section-header {
+        min-height: 48px;
+        padding: 10px 12px;
+    }
+
+    .pregame-section-header h3 {
+        font-size: 18px;
+        line-height: 1.35;
+    }
+
+    .pregame-section-header span {
+        font-size: 14px;
+        text-align: right;
+    }
+
+    .pregame-card-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        padding: 12px;
+    }
+
+    .pregame-person-card,
+    .pregame-game-card {
+        box-sizing: border-box;
+        width: 100%;
+        min-height: 72px;
+        padding: 14px;
+    }
+
+    .pregame-person-card strong,
+    .pregame-game-card strong {
+        overflow: visible;
+        font-size: 18px;
+        line-height: 1.4;
+        text-overflow: clip;
+        white-space: normal;
+        overflow-wrap: anywhere;
+    }
+
+    .pregame-person-card small,
+    .pregame-game-card small,
+    .pregame-live-badge,
+    .pregame-status-badge {
+        font-size: 14px;
+        line-height: 1.45;
+    }
+
+    .pregame-live-badge,
+    .pregame-status-badge {
+        min-height: 30px;
+        align-items: center;
+        padding: 3px 9px;
+    }
+
+    .pregame-matchup-title {
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .pregame-starting-grid,
+    .pregame-team-columns {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .pregame-starting-pitcher {
+        box-sizing: border-box;
+        width: 100%;
+        padding: 16px;
+    }
+
+    .pregame-starting-pitcher + .pregame-starting-pitcher {
+        margin-top: 10px;
+        border-top: 1px solid #46535c;
+        border-left: 0;
+    }
+
+    .pregame-starting-team {
+        margin-bottom: 5px;
+        font-size: 14px;
+    }
+
+    .pregame-starting-name {
+        display: inline-flex;
+        align-items: center;
+        min-height: 44px;
+        font-size: 20px;
+        line-height: 1.35;
+    }
+
+    .pregame-starting-stats,
+    .pregame-previous-start span,
+    .pregame-previous-start strong {
+        font-size: 16px;
+        line-height: 1.55;
+    }
+
+    .pregame-starting-stats,
+    .pregame-previous-meta,
+    .pregame-previous-line {
+        white-space: normal;
+        overflow-wrap: anywhere;
+    }
+
+    .pregame-previous-start {
+        margin-top: 10px;
+        padding-top: 9px;
+    }
+
+    .pregame-team-heading {
+        padding: 12px;
+        font-size: 17px;
+    }
+
+    .pregame-data-list li,
+    .pregame-note-row,
+    .pregame-article-row {
+        min-height: 44px;
+        padding: 11px 12px;
+        font-size: 16px;
+        line-height: 1.55;
+        white-space: normal;
+        overflow-wrap: anywhere;
+    }
+
+    .pregame-player-link,
+    .pregame-article-row a {
+        display: inline-flex;
+        align-items: center;
+        min-height: 44px;
+        max-width: 100%;
+        white-space: normal;
+        overflow-wrap: anywhere;
+    }
+
+    .pregame-article-row a {
+        display: flex;
+        width: 100%;
+    }
+
+    .pregame-metric-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .pregame-metric {
+        min-height: 88px;
+        padding: 12px;
+    }
+
+    .pregame-metric span {
+        font-size: 14px;
+        line-height: 1.4;
+    }
+
+    .pregame-metric strong {
+        font-size: 21px;
     }
 }
