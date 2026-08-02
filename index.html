@@ -3177,6 +3177,7 @@
                 const isTagOut = !isForceOut && (
                     /caught_stealing|pickoff|tag_out/.test(runnerEventType) ||
                     /caught stealing|picked off|tagged out|tag play/.test(lowerDescription) ||
+                    /out at (?:2nd|3rd|home)\b/.test(lowerDescription) ||
                     (!isBatter && Boolean(runner?.movement?.originBase))
                 );
 
@@ -3739,9 +3740,13 @@
                             if (outNumber) target.centerMark = ROMAN_OUTS[outNumber];
                             const runnerDescription = getRunnerEventDescription(play, runner);
                             const mainDescription = String(play?.result?.description ?? "");
+                            const runnerFieldingResult = getRunnerFieldingResult(
+                                play,
+                                runner,
+                                batterId
+                            );
+                            const outBase = normalizeBase(movement?.outBase || movement?.end);
                             if (!isCurrentBatter) {
-                                const runnerFieldingResult = getRunnerFieldingResult(play, runner, batterId);
-                                const outBase = normalizeBase(movement?.outBase || movement?.end);
                                 if (runnerDescription === mainDescription) {
                                     if (outBase === "2B") target.outAtSecond = runnerFieldingResult;
                                     if (outBase === "3B") target.outAtThird = runnerFieldingResult;
@@ -3751,6 +3756,12 @@
                                     target.outResultAtBatIndex = Number.isInteger(Number(play?.about?.atBatIndex))
                                         ? Number(play.about.atBatIndex)
                                         : null;
+                                }
+                            } else if (record.isHit) {
+                                if (outBase === "2B") record.outAtSecond = runnerFieldingResult;
+                                if (outBase === "3B") record.outAtThird = runnerFieldingResult;
+                                if (["home", "score"].includes(outBase)) {
+                                    record.outAtHome = runnerFieldingResult;
                                 }
                             }
                             if (isCurrentBatter) batterOutRecorded = true;
