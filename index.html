@@ -7,6 +7,7 @@
     <title>MLB Scorebook Generator</title>
     <!-- Score notation update: stacked batted-ball symbol, red hits, blue strikeouts, black other results. -->
     <link rel="stylesheet" href="css/style.css?v=20260802-5">
+    <link rel="stylesheet" href="css/pregame.css?v=20260802-5">
 </head>
 
 <body>
@@ -58,7 +59,7 @@
                 placeholder="https://www.mlb.com/gameday/... または gamePk">
 
             <button id="load-btn">試合データを取得</button>
-            <button id="generate-btn">スコアブック生成</button>
+            <button id="generate-btn">試合前情報</button>
             <button id="save-btn">保存</button>
 
             <div class="status-message" id="status-message">
@@ -117,6 +118,26 @@
         </aside>
 
         <section class="viewer">
+            <section class="pregame-view" id="pregame-view" hidden aria-label="試合前情報">
+                <header class="pregame-view-header">
+                    <div>
+                        <p class="pregame-kicker">ハイライト構成準備</p>
+                        <h2 id="pregame-title">試合前情報</h2>
+                        <p id="pregame-subtitle">今日紹介できる材料を、短時間で整理します。</p>
+                    </div>
+                    <div class="pregame-header-actions">
+                        <label class="pregame-date-control" for="pregame-date">
+                            <span>現地日付</span>
+                            <input type="date" id="pregame-date" aria-label="試合前情報の日付">
+                        </label>
+                        <button type="button" id="pregame-home-btn">TOP</button>
+                        <button type="button" id="pregame-close-btn">スコアブックへ戻る</button>
+                    </div>
+                </header>
+                <div class="pregame-loading" id="pregame-loading" hidden>MLB公式データを整理しています…</div>
+                <div class="pregame-content" id="pregame-content"></div>
+            </section>
+
             <article class="paper scorebook-page active" id="away-page">
                 <div id="away-sheet"></div>
             </article>
@@ -135,7 +156,9 @@
     </footer>
 
     <script src="js/players.js"></script>
+    <script src="js/players-2026-updates.js?v=20260802-1"></script>
     <script src="js/historical-records.js"></script>
+    <script src="js/pregame.js?v=20260802-7"></script>
 
     <script>
         (() => {
@@ -148,6 +171,9 @@
             // Player-name readings are loaded from js/players.js.
 
             const NHK_TEAM_NAMES = {"arizonadiamondbacks":"アリゾナ・ダイヤモンドバックス","athletics":"アスレチックス","atlantabraves":"アトランタ・ブレーブス","baltimoreorioles":"ボルチモア・オリオールズ","bostonredsox":"ボストン・レッドソックス","chicagocubs":"シカゴ・カブス","chicagowhitesox":"シカゴ・ホワイトソックス","cincinnatireds":"シンシナティ・レッズ","clevelandguardians":"クリーブランド・ガーディアンズ","coloradorockies":"コロラド・ロッキーズ","detroittigers":"デトロイト・タイガース","houstonastros":"ヒューストン・アストロズ","kansascityroyals":"カンザスシティ・ロイヤルズ","losangelesangels":"ロサンゼルス・エンゼルス","losangelesdodgers":"ロサンゼルス・ドジャース","miamimarlins":"マイアミ・マーリンズ","milwaukeebrewers":"ミルウォーキー・ブルワーズ","minnesotatwins":"ミネソタ・ツインズ","newyorkmets":"ニューヨーク・メッツ","newyorkyankees":"ニューヨーク・ヤンキース","philadelphiaphillies":"フィラデルフィア・フィリーズ","pittsburghpirates":"ピッツバーグ・パイレーツ","sandiegopadres":"サンディエゴ・パドレス","sanfranciscogiants":"サンフランシスコ・ジャイアンツ","seattlemariners":"シアトル・マリナーズ","stlouiscardinals":"セントルイス・カージナルス","tampabayrays":"タンパベイ・レイズ","texasrangers":"テキサス・レンジャーズ","torontobluejays":"トロント・ブルージェイズ","washingtonnationals":"ワシントン・ナショナルズ"};
+
+            NHK_TEAM_NAMES.stlouiscardinals = "セントルイス・カーディナルス";
+            window.MLB_SCOREBOOK_NHK_TEAM_NAMES = NHK_TEAM_NAMES;
 
             const JAPANESE_DIVISION_NAMES = {
                 "americanleagueeast": "アメリカンリーグ東部地区",
@@ -190,7 +216,7 @@
                 "サンディエゴ・パドレス": "ナショナルリーグ西部地区",
                 "サンフランシスコ・ジャイアンツ": "ナショナルリーグ西部地区",
                 "シアトル・マリナーズ": "アメリカンリーグ西部地区",
-                "セントルイス・カージナルス": "ナショナルリーグ中部地区",
+                "セントルイス・カーディナルス": "ナショナルリーグ中部地区",
                 "タンパベイ・レイズ": "アメリカンリーグ東部地区",
                 "テキサス・レンジャーズ": "アメリカンリーグ西部地区",
                 "トロント・ブルージェイズ": "アメリカンリーグ東部地区",
@@ -235,6 +261,7 @@
                 "georgemsteinbrennerfield": "ジョージ・M・スタインブレナー・フィールド",
                 "theathleticsballpark": "アスレチックス・ボールパーク"
             };
+            window.MLB_SCOREBOOK_JAPANESE_VENUE_NAMES = JAPANESE_VENUE_NAMES;
 
             const JAPANESE_WEATHER_CONDITIONS = {
                 "clear": "晴れ",
@@ -800,7 +827,7 @@
                     if (!taggedPlayer) return false;
                     const articleTime = Date.parse(String(article?.date ?? ""));
                     if (Number.isFinite(gameTime) && Number.isFinite(articleTime) &&
-                        Math.abs(articleTime - gameTime) > 36 * 60 * 60 * 1000) {
+                        Math.abs(articleTime - gameTime) > 72 * 60 * 60 * 1000) {
                         return false;
                     }
                     const searchableText = [
@@ -5253,6 +5280,7 @@
             };
 
             const switchPage = () => {
+                window.PregameInfo?.close();
                 dom.awayPage.classList.add("active");
                 dom.homePage.classList.remove("active");
                 dom.awayPageButton.classList.add("active");
@@ -5545,24 +5573,12 @@
             dom.searchGameButton.addEventListener("click", searchAndLoadGame);
 
             dom.generateButton.addEventListener("click", async () => {
-                if (state.gameData && state.gamePk) {
-                    const [ordinaryNotes, headToHead, attendanceNote] = await Promise.all([
-                        fetchStreakNotes(state.gameData, state.gamePk),
-                        fetchHeadToHeadRecord(state.gameData, state.gamePk),
-                        fetchSeasonAttendanceNote(state.gameData, state.gamePk)
-                    ]);
-                    state.streakNotes = mergeHistoricalRecordNotes(
-                        ordinaryNotes,
-                        state.gameData,
-                        state.gamePk
-                    );
-                    state.headToHead = headToHead;
-                    state.attendanceNote = attendanceNote;
-                }
-                render();
-                setStatus(
-                    `${state.innings}回分の早稲田式スコアブックを再生成しました。`
-                );
+                await window.PregameInfo?.open({
+                    gamePk: state.gamePk,
+                    gameData: state.gameData,
+                    streakNotes: state.streakNotes
+                });
+                setStatus("試合前情報を表示しています。");
             });
 
             dom.saveButton.addEventListener("click", saveSnapshot);

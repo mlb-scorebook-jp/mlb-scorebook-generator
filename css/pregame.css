@@ -1,0 +1,355 @@
+.viewer.pregame-active {
+    padding: 18px;
+    overflow: auto;
+    background:
+        linear-gradient(rgba(20, 25, 29, 0.94), rgba(20, 25, 29, 0.94)),
+        repeating-linear-gradient(90deg, transparent 0 4px, rgba(255, 255, 255, 0.018) 4px 5px);
+}
+
+.viewer.pregame-active > .scorebook-page {
+    display: none !important;
+}
+
+.pregame-view {
+    width: min(1480px, 100%);
+    min-height: calc(100vh - 158px);
+    margin: 0 auto;
+    color: #e8edf0;
+}
+
+.pregame-view[hidden] {
+    display: none !important;
+}
+
+.pregame-view-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 16px;
+    padding: 16px 18px;
+    border: 1px solid #46535c;
+    background: linear-gradient(180deg, #252e34 0%, #1b2227 100%);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.24);
+}
+
+.pregame-kicker {
+    margin: 0 0 4px;
+    color: #8fb5c4;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+}
+
+.pregame-view-header h2 {
+    margin: 0;
+    font-size: 23px;
+    letter-spacing: 0.06em;
+}
+
+.pregame-view-header #pregame-subtitle {
+    margin: 5px 0 0;
+    color: #aab5bc;
+    font-size: 11px;
+}
+
+.pregame-header-actions {
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+}
+
+.pregame-date-control {
+    display: grid;
+    gap: 3px;
+    color: #9eabb3;
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+}
+
+.pregame-date-control input {
+    box-sizing: border-box;
+    width: 132px;
+    min-height: 31px;
+    padding: 0 9px;
+    color: #eef3f5;
+    color-scheme: dark;
+    border: 1px solid #596873;
+    border-radius: 2px;
+    outline: none;
+    background: #20282e;
+    font: inherit;
+    font-size: 10px;
+    letter-spacing: 0;
+}
+
+.pregame-date-control input:focus {
+    border-color: #91acb8;
+    box-shadow: 0 0 0 1px rgba(145, 172, 184, 0.3);
+}
+
+.pregame-header-actions button,
+.pregame-action-button {
+    min-height: 31px;
+    padding: 0 12px;
+    color: #eef3f5;
+    border: 1px solid #596873;
+    border-radius: 2px;
+    background: linear-gradient(180deg, #3a4650 0%, #252e35 100%);
+    font-size: 10px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.pregame-header-actions button:hover,
+.pregame-action-button:hover {
+    border-color: #91acb8;
+    background: linear-gradient(180deg, #485660 0%, #303a42 100%);
+}
+
+.pregame-loading {
+    margin-bottom: 12px;
+    padding: 10px 14px;
+    color: #17210f;
+    border-left: 4px solid #e1b82f;
+    background: #f1d86e;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.pregame-dashboard {
+    display: grid;
+    gap: 16px;
+}
+
+.pregame-section {
+    min-width: 0;
+    border: 1px solid #46535c;
+    background: #1c2328;
+}
+
+.pregame-section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 38px;
+    padding: 8px 12px;
+    border-bottom: 1px solid #46535c;
+    background: linear-gradient(180deg, #2b353c 0%, #232b31 100%);
+}
+
+.pregame-section-header h3 {
+    margin: 0;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+}
+
+.pregame-section-header span {
+    color: #9eabb3;
+    font-size: 9px;
+}
+
+.pregame-card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 8px;
+    padding: 10px;
+}
+
+.pregame-person-card,
+.pregame-game-card {
+    min-width: 0;
+    padding: 11px 12px;
+    color: inherit;
+    border: 1px solid #3f4b53;
+    border-radius: 2px;
+    background: linear-gradient(145deg, #252e34 0%, #1c2328 100%);
+    text-align: left;
+    cursor: pointer;
+}
+
+.pregame-matchup-title {
+    display: flex;
+    align-items: baseline;
+    gap: 5px;
+}
+
+.pregame-versus {
+    font-size: 0.68em;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+}
+
+.pregame-matchup-meta {
+    display: grid;
+    gap: 2px;
+}
+
+.pregame-venue-line,
+.pregame-pitcher-line {
+    display: block;
+    min-width: 0;
+}
+
+.pregame-person-card:hover,
+.pregame-game-card:hover {
+    border-color: #86a6b4;
+    background: linear-gradient(145deg, #303b43 0%, #222a30 100%);
+}
+
+.pregame-person-card strong,
+.pregame-game-card strong {
+    display: block;
+    overflow: hidden;
+    font-size: 13px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.pregame-person-card small,
+.pregame-game-card small {
+    display: block;
+    margin-top: 5px;
+    color: #a7b3ba;
+    font-size: 9px;
+}
+
+.pregame-live-badge,
+.pregame-status-badge {
+    display: inline-flex;
+    margin-top: 7px;
+    padding: 2px 6px;
+    color: #dfe8eb;
+    border: 1px solid #52616a;
+    border-radius: 999px;
+    font-size: 8px;
+}
+
+.pregame-live-badge {
+    color: #211b08;
+    border-color: #d5aa22;
+    background: #e6c247;
+}
+
+.pregame-empty {
+    padding: 24px 16px;
+    color: #9fabb2;
+    font-size: 11px;
+    text-align: center;
+}
+
+.pregame-detail-grid {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.pregame-span-12 { grid-column: span 12; }
+.pregame-span-8 { grid-column: span 8; }
+.pregame-span-6 { grid-column: span 6; }
+.pregame-span-4 { grid-column: span 4; }
+
+.pregame-data-list {
+    display: grid;
+    gap: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.pregame-data-list li,
+.pregame-note-row,
+.pregame-article-row {
+    min-height: 30px;
+    padding: 7px 10px;
+    border-bottom: 1px solid #344047;
+    color: #dfe6e9;
+    font-size: 10px;
+    line-height: 1.45;
+}
+
+.pregame-data-list li:last-child,
+.pregame-note-row:last-child,
+.pregame-article-row:last-child {
+    border-bottom: 0;
+}
+
+.pregame-metric-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+}
+
+.pregame-metric {
+    min-height: 64px;
+    padding: 10px;
+    border-right: 1px solid #344047;
+    border-bottom: 1px solid #344047;
+}
+
+.pregame-metric span {
+    display: block;
+    color: #98a7af;
+    font-size: 8px;
+    letter-spacing: 0.07em;
+}
+
+.pregame-metric strong {
+    display: block;
+    margin-top: 5px;
+    font-size: 17px;
+}
+
+.pregame-article-row a,
+.pregame-player-link {
+    color: #dfe9ed;
+    text-decoration: none;
+}
+
+.pregame-article-row a:hover,
+.pregame-player-link:hover {
+    color: #fff;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.pregame-team-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.pregame-team-heading {
+    margin: 0;
+    padding: 9px 10px;
+    color: #edf3f5;
+    border-bottom: 1px solid #46535c;
+    background: #263039;
+    font-size: 11px;
+}
+
+.pregame-error {
+    padding: 30px;
+    color: #f2c9c9;
+    border: 1px solid #804c4c;
+    background: #392627;
+    font-size: 11px;
+}
+
+@media (max-width: 1000px) {
+    .pregame-span-8,
+    .pregame-span-6,
+    .pregame-span-4 {
+        grid-column: span 12;
+    }
+
+    .pregame-team-columns {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media print {
+    .pregame-view {
+        display: none !important;
+    }
+}
