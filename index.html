@@ -703,6 +703,14 @@
                 return MLB_TEAM_CODE_ALIASES[rawCode] || rawCode;
             };
 
+            const getTeamCodeForSeason = (team, season) => {
+                if (Number(season) < new Date().getFullYear()) {
+                    return String(team?.abbreviation ?? team?.teamCode ?? "").toUpperCase() ||
+                        getMlbTeamDisplayCode(team);
+                }
+                return getMlbTeamDisplayCode(team);
+            };
+
             const streakNotesCache = new Map();
             const playerGameLogCache = new Map();
             const playerCareerStreakCache = new Map();
@@ -1587,6 +1595,31 @@
                     b.plateAppearances - a.plateAppearances ||
                     b.average - a.average)[0] ?? null;
 
+            const getTeamWinLossStreak = (schedule, teamId) => {
+                const outcomes = schedule.map((game) => {
+                    const away = game?.teams?.away ?? {};
+                    const home = game?.teams?.home ?? {};
+                    const isAway = Number(away?.team?.id) === Number(teamId);
+                    const team = isAway ? away : home;
+                    const opponent = isAway ? home : away;
+                    if (team?.isWinner === true) return "win";
+                    if (opponent?.isWinner === true) return "loss";
+                    const teamScore = Number(team?.score);
+                    const opponentScore = Number(opponent?.score);
+                    if (!Number.isFinite(teamScore) || !Number.isFinite(opponentScore) ||
+                        teamScore === opponentScore) return "";
+                    return teamScore > opponentScore ? "win" : "loss";
+                });
+                const latest = outcomes[outcomes.length - 1];
+                if (!latest) return null;
+                let count = 0;
+                for (let index = outcomes.length - 1; index >= 0; index -= 1) {
+                    if (outcomes[index] !== latest) break;
+                    count += 1;
+                }
+                return count >= 3 ? { type: latest, count } : null;
+            };
+
             const fetchStreakNotes = async (data, gamePk) => {
                 if (!isGameFinal(data)) {
                     return { away: [], home: [] };
@@ -1640,7 +1673,7 @@
                         }
                         return { ...player, ...streaks, gameLogSplits };
                     }));
-                    const code = getMlbTeamDisplayCode(team);
+                    const code = getTeamCodeForSeason(team, season);
                     const hitLeader = chooseLongestStreak(analyzed, "hitStreak");
                     const onBaseLeader = chooseLongestStreak(analyzed, "onBaseStreak");
                     const streakLeaders = [...new Map(
@@ -1694,6 +1727,18 @@
                     const scheduleThroughCurrent = schedule.filter((game) =>
                         isScheduleGameThroughCurrent(game, context)
                     );
+                    const gameType = String(
+                        data?.gameData?.game?.type ?? data?.gameData?.game?.gameType ?? ""
+                    ).toUpperCase();
+                    const teamStreak = gameType === "R"
+                        ? getTeamWinLossStreak(scheduleThroughCurrent, team?.id)
+                        : null;
+                    if (teamStreak) {
+                        notes.push({
+                            text: `${code}　${teamStreak.count}${teamStreak.type === "win" ? "連勝" : "連敗"}`,
+                            priority: -1
+                        });
+                    }
                     notes.push(...await getAbsenceNotes(
                         analyzed.filter(isAbsenceEligibleFielder),
                         scheduleThroughCurrent,
