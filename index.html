@@ -2557,7 +2557,42 @@
                     });
 
                     const review = play?.reviewDetails;
-                    if (!review || String(review?.reviewType ?? "").toUpperCase() === "MJ") return;
+                    if (!review) return;
+
+                    if (String(review?.reviewType ?? "").toUpperCase() === "MJ") {
+                        const reviewedPitchEntry = [...(play?.playEvents ?? [])]
+                            .map((event, eventIndex) => ({ event, eventIndex }))
+                            .reverse()
+                            .find(({ event }) =>
+                                (event?.isPitch || event?.type === "pitch") &&
+                                Boolean(getAbsFinalCall(event))
+                            );
+                        if (!reviewedPitchEntry) return;
+                        const { event, eventIndex } = reviewedPitchEntry;
+                        const team = getChallengeTeamInfo(data, review?.challengeTeamId);
+                        const target = getAbsTargetData(event, review);
+                        appendEntry({
+                            inning,
+                            half,
+                            pitchNumber: getAbsPitchNumberText(play, event, eventIndex),
+                            type: "ABS",
+                            team: team.code,
+                            challenger: getAbsChallengerText(
+                                data,
+                                play,
+                                review,
+                                team.code
+                            ),
+                            target,
+                            targetText: target.originalCall,
+                            resultText: target.finalCall,
+                            successful: Boolean(review?.isOverturned),
+                            apiRemaining: getApiChallengeRemaining(review),
+                            playIndex,
+                            eventIndex
+                        });
+                        return;
+                    }
 
                     const team = getChallengeTeamInfo(data, review?.challengeTeamId);
                     const target = getReplayTargetData(play);
