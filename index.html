@@ -497,7 +497,20 @@
                     return gamedayMatch[1];
                 }
 
-                const numbers = trimmed.match(/\d{6,}/g);
+                // Current MLB Gameday URLs place the Game PK in its own path
+                // segment after the matchup/date (…/2026/08/01/824485/final).
+                // Read only the URL path here so tracking IDs in the query
+                // string can never be mistaken for the Game PK.
+                const gamedayPathMatch = trimmed.match(
+                    /\/gameday\/[^?#]*?\/(\d{5,})(?:\/|$)/i
+                );
+
+                if (gamedayPathMatch) {
+                    return gamedayPathMatch[1];
+                }
+
+                const valueWithoutQuery = trimmed.split(/[?#]/, 1)[0];
+                const numbers = valueWithoutQuery.match(/\d{5,}/g);
 
                 return numbers ? numbers[numbers.length - 1] : null;
             };
