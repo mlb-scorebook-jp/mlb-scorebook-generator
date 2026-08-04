@@ -356,7 +356,11 @@
                 headline,
                 date: transactionDate,
                 url: `https://www.mlb.com/transactions?date=${transactionDate}`,
-                officialTransaction: true
+                officialTransaction: true,
+                personId: Number(person?.id) || null,
+                personDisplayName: person?.id ? playerName(person) : "球団発表",
+                teamDisplayCode: code,
+                action
             }];
         }).sort((a, b) => String(b.date).localeCompare(String(a.date)));
     };
@@ -656,9 +660,9 @@
 
     const empty = (text) => el("div", "pregame-empty", text);
 
-    const renderArticles = (articles) => {
+    const renderArticles = (articles, emptyText = "該当するMLB公式記事はありません。") => {
         const list = el("div", "pregame-article-list");
-        if (!articles.length) return empty("該当するMLB公式記事はありません。");
+        if (!articles.length) return empty(emptyText);
         articles.slice(0, 8).forEach((article) => {
             const row = el("div", "pregame-article-row");
             const link = el("a", "", article.headline);
@@ -666,6 +670,31 @@
             link.target = "_blank";
             link.rel = "noopener noreferrer";
             row.append(link);
+            list.append(row);
+        });
+        return list;
+    };
+
+    const renderTransactions = (transactions) => {
+        if (!transactions.length) {
+            return empty("対象期間のトレード・ロースター異動はありません。");
+        }
+        const list = el("div", "pregame-article-list");
+        transactions.slice(0, 8).forEach((transaction) => {
+            const row = el("div", "pregame-article-row pregame-transaction-row");
+            row.append(el("span", "pregame-transaction-meta",
+                `${compactDate(transaction.date)}　${transaction.teamDisplayCode}　`
+            ));
+            if (transaction.personId) {
+                const playerLink = el("a", "pregame-transaction-player", transaction.personDisplayName);
+                playerLink.href = `https://www.mlb.com/player/${transaction.personId}`;
+                playerLink.target = "_blank";
+                playerLink.rel = "noopener noreferrer";
+                row.append(playerLink);
+            } else {
+                row.append(el("span", "pregame-transaction-player", transaction.personDisplayName));
+            }
+            row.append(el("span", "pregame-transaction-action", `　${transaction.action}`));
             list.append(row);
         });
         return list;
@@ -1442,8 +1471,26 @@
             });
             trendsSection.append(trendColumns);
 
-            const articleSection = section("MLB公式関連記事", "プレビュー・怪我・ロースター・トレード");
-            articleSection.append(renderArticles([...injuries, ...transactions, ...articles]));
+            const articleSection = section("MLB公式関連記事", "記事・負傷情報・Transactions");
+            const relatedColumns = el("div", "pregame-related-columns");
+            const editorialColumn = el("div", "pregame-related-column");
+            editorialColumn.append(
+                el("h4", "pregame-related-heading", "MLB公式関連記事・負傷情報"),
+                renderArticles([...injuries, ...articles])
+            );
+            const transactionColumn = el("div", "pregame-related-column");
+            const transactionHeading = el("h4", "pregame-related-heading");
+            const transactionHeadingLink = el("a", "pregame-related-heading-link", "トレード／ロースター異動");
+            transactionHeadingLink.href = "https://www.mlb.com/transactions";
+            transactionHeadingLink.target = "_blank";
+            transactionHeadingLink.rel = "noopener noreferrer";
+            transactionHeading.append(transactionHeadingLink);
+            transactionColumn.append(
+                transactionHeading,
+                renderTransactions(transactions)
+            );
+            relatedColumns.append(editorialColumn, transactionColumn);
+            articleSection.append(relatedColumns);
 
             const lowerLayout = el("div", "pregame-lower-layout pregame-span-12");
             const rightColumn = el("div", "pregame-lower-right");

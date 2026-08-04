@@ -574,6 +574,49 @@ a.pregame-batting-stat:focus-visible {
     min-width: 0;
 }
 
+.pregame-related-columns {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.pregame-related-column {
+    min-width: 0;
+}
+
+.pregame-related-column + .pregame-related-column {
+    border-left: 1px solid #46535c;
+}
+
+.pregame-related-heading {
+    margin: 0;
+    padding: 9px 10px;
+    color: #edf3f5;
+    border-bottom: 1px solid #46535c;
+    background: #263039;
+    font-size: 10px;
+}
+
+.pregame-related-heading-link,
+.pregame-transaction-player {
+    color: inherit;
+    text-decoration: none;
+}
+
+.pregame-related-heading-link:hover,
+.pregame-related-heading-link:focus-visible,
+.pregame-transaction-player:hover,
+.pregame-transaction-player:focus-visible {
+    color: #fff;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.pregame-transaction-row {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+}
+
 .pregame-featured-note {
     min-width: 0;
 }
@@ -707,6 +750,20 @@ a.pregame-metric-value:focus-visible {
 @media screen and (max-width: 767px) {
     .pregame-lower-layout {
         grid-template-columns: 1fr;
+    }
+
+    .pregame-related-columns {
+        grid-template-columns: 1fr;
+    }
+
+    .pregame-related-column + .pregame-related-column {
+        border-top: 1px solid #46535c;
+        border-left: 0;
+    }
+
+    .pregame-related-heading {
+        padding: 12px;
+        font-size: 17px;
     }
 
     .viewer.pregame-active {
