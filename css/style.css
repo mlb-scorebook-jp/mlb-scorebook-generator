@@ -733,6 +733,97 @@ body.app-mode-pregame .pregame-brand-home {
         #111519;
 }
 
+.score-loading-overlay {
+    position: fixed;
+    z-index: 60;
+    top: 68px;
+    right: 0;
+    bottom: 52px;
+    left: 270px;
+    display: grid;
+    place-items: center;
+    padding: 24px;
+    background: rgba(7, 10, 12, 0.78);
+    backdrop-filter: blur(1.5px);
+}
+
+.score-loading-overlay[hidden],
+body.app-mode-home .score-loading-overlay,
+body.app-mode-pregame .score-loading-overlay {
+    display: none;
+}
+
+.score-loading-dialog {
+    width: min(390px, 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 28px 24px;
+    color: #e8edef;
+    border: 1px solid #53616a;
+    border-radius: 2px;
+    background: linear-gradient(180deg, rgba(39, 47, 53, 0.98), rgba(24, 30, 34, 0.98));
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.42);
+    text-align: center;
+}
+
+.score-loading-spinner {
+    width: 25px;
+    height: 25px;
+    margin-bottom: 17px;
+    border: 2px solid rgba(210, 220, 224, 0.24);
+    border-top-color: #d5dee2;
+    border-radius: 50%;
+    animation: score-loading-spin 850ms linear infinite;
+}
+
+.score-loading-dialog strong {
+    font-size: 15px;
+    letter-spacing: 0.04em;
+}
+
+.score-loading-dialog > span:not(.score-loading-spinner) {
+    margin-top: 8px;
+    color: #aebbc1;
+    font-size: 11px;
+}
+
+.score-loading-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 20px;
+}
+
+.score-loading-actions[hidden] {
+    display: none;
+}
+
+.score-loading-actions button {
+    min-width: 94px;
+    height: 34px;
+    color: #edf2f4;
+    border: 1px solid #596872;
+    border-radius: 2px;
+    background: linear-gradient(180deg, #38434b 0%, #272f35 100%);
+    cursor: pointer;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.score-loading-overlay.is-error .score-loading-spinner {
+    display: none;
+}
+
+@keyframes score-loading-spin {
+    to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .score-loading-spinner {
+        animation-duration: 1.8s;
+    }
+}
+
 .scorebook-page {
     display: none;
 }
@@ -2348,6 +2439,26 @@ body:not(.app-mode-home):not(.app-mode-pregame) .viewer {
 
     body:not(.app-mode-home):not(.app-mode-pregame) .app-main {
         bottom: 46px;
+    }
+
+    .score-loading-overlay {
+        top: 58px;
+        bottom: 46px;
+        left: 0;
+        padding: 18px;
+    }
+
+    .score-loading-dialog {
+        padding: 25px 18px;
+    }
+
+    .score-loading-dialog > span:not(.score-loading-spinner) {
+        font-size: 12px;
+    }
+
+    .score-loading-actions button {
+        min-width: 110px;
+        min-height: 44px;
     }
 
     .app-footer button {

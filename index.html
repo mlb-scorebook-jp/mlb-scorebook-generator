@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MLB Scorebook Generator</title>
     <!-- Score notation update: stacked batted-ball symbol, red hits, blue strikeouts, black other results. -->
-    <link rel="stylesheet" href="css/style.css?v=20260808-3">
+    <link rel="stylesheet" href="css/style.css?v=20260808-4">
     <link rel="stylesheet" href="css/pregame.css?v=20260808-1">
 </head>
 
@@ -149,6 +149,24 @@
         </aside>
 
         <section class="viewer">
+            <section
+                class="score-loading-overlay"
+                id="score-loading-overlay"
+                role="status"
+                aria-live="polite"
+                aria-busy="true"
+                hidden>
+                <div class="score-loading-dialog">
+                    <span class="score-loading-spinner" aria-hidden="true"></span>
+                    <strong id="score-loading-title">スコアを取得しています…</strong>
+                    <span id="score-loading-message">MLB公式データを読み込み中</span>
+                    <div class="score-loading-actions" id="score-loading-actions" hidden>
+                        <button type="button" id="score-loading-retry">再試行</button>
+                        <button type="button" id="score-loading-close">閉じる</button>
+                    </div>
+                </div>
+            </section>
+
             <section class="pregame-view" id="pregame-view" hidden aria-label="試合前情報">
                 <button type="button" class="pregame-brand-home" id="pregame-brand-home">MLB SCOREBOOK GENERATOR</button>
                 <header class="pregame-view-header">
@@ -194,7 +212,7 @@
     <script src="js/players.js"></script>
     <script src="js/players-2026-updates.js?v=20260802-1"></script>
     <script src="js/historical-records.js"></script>
-    <script src="js/pregame.js?v=20260808-1"></script>
+    <script src="js/pregame.js?v=20260808-2"></script>
 
     <script>
         (() => {
@@ -479,6 +497,12 @@
                 todayGamesPanel: document.getElementById("today-games-panel"),
                 todayGamesHeading: document.getElementById("today-games-heading"),
                 todayGamesList: document.getElementById("today-games-list"),
+                scoreLoadingOverlay: document.getElementById("score-loading-overlay"),
+                scoreLoadingTitle: document.getElementById("score-loading-title"),
+                scoreLoadingMessage: document.getElementById("score-loading-message"),
+                scoreLoadingActions: document.getElementById("score-loading-actions"),
+                scoreLoadingRetry: document.getElementById("score-loading-retry"),
+                scoreLoadingClose: document.getElementById("score-loading-close"),
                 generateButton: document.getElementById("generate-btn"),
                 saveButton: document.getElementById("save-btn"),
                 awayPageButton: document.getElementById("away-page-btn"),
@@ -523,16 +547,74 @@
                 });
             };
 
+            const APP_SESSION_KEY = "mlb-scorebook-generator-tab-session-v1";
+
+            const readAppSessionFromHash = () => {
+                const params = new URLSearchParams(String(window.location.hash ?? "").replace(/^#/, ""));
+                const view = params.get("view");
+                if (!view) return null;
+                return {
+                    view,
+                    date: params.get("date") || undefined,
+                    gamePk: params.get("gamePk") || undefined,
+                    playerId: params.get("playerId") || undefined
+                };
+            };
+
+            const readAppSession = () => {
+                const hashState = readAppSessionFromHash();
+                if (hashState) return hashState;
+                try {
+                    const value = JSON.parse(window.sessionStorage?.getItem(APP_SESSION_KEY) || "null");
+                    return value && typeof value === "object" ? value : null;
+                } catch (_error) {
+                    return null;
+                }
+            };
+
+            const saveAppSession = (value) => {
+                try {
+                    window.sessionStorage?.setItem(APP_SESSION_KEY, JSON.stringify({
+                        ...value,
+                        updatedAt: new Date().toISOString()
+                    }));
+                } catch (_error) {
+                    // Storage can be unavailable in private browsing; navigation still works normally.
+                }
+
+                const params = new URLSearchParams();
+                if (value?.view && value.view !== "home") {
+                    params.set("view", value.view);
+                    ["date", "gamePk", "playerId"].forEach((key) => {
+                        if (value[key] !== undefined && value[key] !== null && value[key] !== "") {
+                            params.set(key, String(value[key]));
+                        }
+                    });
+                }
+                const hash = params.toString();
+                const nextUrl = `${window.location.pathname}${window.location.search}${hash ? `#${hash}` : ""}`;
+                window.history.replaceState(null, "", nextUrl);
+            };
+
+            window.MLBAppSession = {
+                read: readAppSession,
+                save: saveAppSession
+            };
+
             const showPortalHome = () => {
                 window.PregameInfo?.close({ preserveShell: true });
                 document.body.classList.remove("app-mode-pregame");
                 document.body.classList.add("app-mode-home");
+                saveAppSession({ view: "home" });
                 window.scrollTo(0, 0);
             };
 
-            const showScorebook = () => {
+            const showScorebook = (options = {}) => {
                 window.PregameInfo?.close({ preserveShell: true });
                 document.body.classList.remove("app-mode-home", "app-mode-pregame");
+                if (options?.persist !== false) {
+                    saveAppSession({ view: "scorebook", gamePk: state.gamePk || null });
+                }
                 window.scrollTo(0, 0);
                 requestAnimationFrame(refreshHorizontalScrollbar);
             };
@@ -576,6 +658,52 @@
                 dom.statusMessage.textContent = message;
                 dom.statusMessage.style.color = isError ? "#ffb4b4" : "#b8c4ca";
             };
+
+            let isScoreLoading = false;
+
+            const setScoreLoadingControls = (disabled) => {
+                dom.loadButton.disabled = disabled;
+                dom.todayGamesToggle.disabled = disabled;
+                dom.searchGameButton.disabled = disabled;
+                dom.searchGameYear.disabled = disabled;
+                dom.searchHomeTeam.disabled = disabled;
+                dom.searchAwayTeam.disabled = disabled;
+                dom.searchGameDate.disabled = disabled;
+            };
+
+            const showScoreLoading = () => {
+                isScoreLoading = true;
+                dom.scoreLoadingOverlay.hidden = false;
+                dom.scoreLoadingOverlay.classList.remove("is-error");
+                dom.scoreLoadingOverlay.setAttribute("aria-busy", "true");
+                dom.scoreLoadingTitle.textContent = "スコアを取得しています…";
+                dom.scoreLoadingMessage.textContent = "MLB公式データを読み込み中";
+                dom.scoreLoadingActions.hidden = true;
+                setScoreLoadingControls(true);
+            };
+
+            const hideScoreLoading = () => {
+                isScoreLoading = false;
+                dom.scoreLoadingOverlay.hidden = true;
+                dom.scoreLoadingOverlay.classList.remove("is-error");
+                dom.scoreLoadingOverlay.setAttribute("aria-busy", "false");
+                setScoreLoadingControls(false);
+            };
+
+            const showScoreLoadingError = () => {
+                isScoreLoading = false;
+                dom.scoreLoadingOverlay.hidden = false;
+                dom.scoreLoadingOverlay.classList.add("is-error");
+                dom.scoreLoadingOverlay.setAttribute("aria-busy", "false");
+                dom.scoreLoadingTitle.textContent = "スコアの取得に失敗しました。";
+                dom.scoreLoadingMessage.textContent = "もう一度お試しください。";
+                dom.scoreLoadingActions.hidden = false;
+                setScoreLoadingControls(false);
+            };
+
+            const waitForScorePaint = () => new Promise((resolve) => {
+                requestAnimationFrame(() => requestAnimationFrame(resolve));
+            });
 
             const extractGamePk = (value) => {
                 const trimmed = value.trim();
@@ -5238,7 +5366,9 @@
 
             const getMlbLocalDate = () => {
                 const parts = new Intl.DateTimeFormat("en-US", {
-                    timeZone: "America/New_York",
+                    // 日本時間では翌日になっていても、MLBの当日カードを
+                    // 取りこぼさないようアメリカ西海岸の日付を基準にする。
+                    timeZone: "America/Los_Angeles",
                     year: "numeric",
                     month: "2-digit",
                     day: "2-digit"
@@ -5621,6 +5751,7 @@
             };
 
             const loadGame = async () => {
+                if (isScoreLoading) return;
                 const gamePk = extractGamePk(dom.gameInput.value);
 
                 if (!gamePk) {
@@ -5631,8 +5762,11 @@
                     return;
                 }
 
-                dom.loadButton.disabled = true;
+                showScoreLoading();
                 setStatus(`Game PK ${gamePk} を取得しています…`);
+                await new Promise((resolve) => requestAnimationFrame(resolve));
+
+                let completed = false;
 
                 try {
                     const data = await fetchGameData(gamePk);
@@ -5681,11 +5815,15 @@
                         ` 実際の試合データに合わせて${state.innings}回まで生成しています。` +
                         (hasPitchDetails ? "" : " この試合は一部の詳細データを取得できません。")
                     );
+                    await waitForScorePaint();
+                    completed = true;
+                    saveAppSession({ view: "scorebook", gamePk: String(gamePk) });
                 } catch (error) {
                     console.error(error);
                     setStatus(error.message || "試合データを取得できません。", true);
+                    showScoreLoadingError();
                 } finally {
-                    dom.loadButton.disabled = false;
+                    if (completed) hideScoreLoading();
                 }
             };
 
@@ -5950,6 +6088,11 @@
             };
 
             dom.loadButton.addEventListener("click", loadGame);
+            dom.scoreLoadingRetry.addEventListener("click", async () => {
+                hideScoreLoading();
+                await loadGame();
+            });
+            dom.scoreLoadingClose.addEventListener("click", hideScoreLoading);
             dom.todayGamesToggle.addEventListener("click", async () => {
                 if (!dom.todayGamesPanel.hidden) {
                     closeTodayGames();
@@ -6040,10 +6183,51 @@
             window.addEventListener("resize", refreshHorizontalScrollbar, { passive: true });
             new ResizeObserver(refreshHorizontalScrollbar).observe(dom.workspace);
 
-            initializeHeaderGameSearch();
-            renderScorebookLibrary();
-            render();
-            requestAnimationFrame(refreshHorizontalScrollbar);
+            const restoreAppSession = async () => {
+                const saved = readAppSession();
+                if (!saved || saved.view === "home") {
+                    document.body.classList.add("app-mode-home");
+                    return;
+                }
+
+                if (saved.view === "scorebook") {
+                    showScorebook({ persist: false });
+                    if (saved.gamePk) {
+                        dom.gameInput.value = String(saved.gamePk);
+                        await loadGame();
+                    }
+                    return;
+                }
+
+                if (["pregame-top", "pregame-game", "pregame-player"].includes(saved.view)) {
+                    document.body.classList.remove("app-mode-home");
+                    document.body.classList.add("app-mode-pregame");
+                    await window.PregameInfo?.open({
+                        restoreView: saved.view,
+                        date: saved.date,
+                        gamePk: saved.gamePk,
+                        playerId: saved.playerId
+                    });
+                    window.scrollTo(0, 0);
+                    return;
+                }
+
+                showPortalHome();
+            };
+
+            const initializeApp = async () => {
+                renderScorebookLibrary();
+                render();
+                requestAnimationFrame(refreshHorizontalScrollbar);
+                await restoreAppSession();
+                await initializeHeaderGameSearch();
+            };
+
+            if (document.readyState === "loading") {
+                document.addEventListener("DOMContentLoaded", initializeApp, { once: true });
+            } else {
+                initializeApp();
+            }
         })();
     </script>
 </body>

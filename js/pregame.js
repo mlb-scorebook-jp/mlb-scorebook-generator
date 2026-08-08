@@ -9,6 +9,14 @@
 
     const dom = {};
 
+    const savePregameSession = (view, details = {}) => {
+        window.MLBAppSession?.save?.({
+            view,
+            date: currentDate || currentMlbDate(),
+            ...details
+        });
+    };
+
     const el = (tag, className = "", text = "") => {
         const node = document.createElement(tag);
         if (className) node.className = className;
@@ -701,6 +709,7 @@
     };
 
     const renderTop = async () => {
+        savePregameSession("pregame-top");
         setLoading(true);
         const date = currentDate || currentMlbDate();
         if (dom.dateInput) dom.dateInput.value = date;
@@ -919,6 +928,10 @@
     };
 
     const renderPlayerDetail = async (playerId, gamePk) => {
+        savePregameSession("pregame-player", {
+            playerId: Number(playerId),
+            gamePk: Number(gamePk)
+        });
         setLoading(true);
         try {
             const game = gameIndex.get(Number(gamePk)) ?? currentContext?.scheduleGame ?? {};
@@ -1385,6 +1398,7 @@
     };
 
     const renderGameDetail = async (gamePk) => {
+        savePregameSession("pregame-game", { gamePk: Number(gamePk) });
         setLoading(true);
         try {
             const game = gameIndex.get(Number(gamePk)) ?? currentContext?.scheduleGame ?? {};
@@ -1511,12 +1525,25 @@
         window.MLBAppNavigation?.enterPregameShell?.();
         currentContext = context;
         currentDate = String(
+            context?.date ??
             context?.gameData?.gameData?.datetime?.officialDate ??
             document.getElementById("header-game-date")?.value?.split("|")?.[0] ??
             currentMlbDate()
         ).slice(0, 10);
         dom.viewer.classList.add("pregame-active");
         dom.view.hidden = false;
+        if (context?.restoreView === "pregame-game" && Number(context?.gamePk)) {
+            await renderGameDetail(Number(context.gamePk));
+            return;
+        }
+        if (
+            context?.restoreView === "pregame-player" &&
+            Number(context?.playerId) &&
+            Number(context?.gamePk)
+        ) {
+            await renderPlayerDetail(Number(context.playerId), Number(context.gamePk));
+            return;
+        }
         await renderTop();
     };
 
