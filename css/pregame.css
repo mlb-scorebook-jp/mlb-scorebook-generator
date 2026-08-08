@@ -811,6 +811,76 @@ a.pregame-batting-stat:focus-visible {
     align-self: start;
 }
 
+.pregame-team-trends-section .pregame-team-columns {
+    gap: 0;
+}
+
+.pregame-team-trends-section .pregame-team-columns > div + div {
+    border-left: 1px solid #46535c;
+}
+
+.pregame-team-trends-section .pregame-metric-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.pregame-team-trends-section .pregame-metric:nth-child(2n) {
+    border-right: 0;
+}
+
+.pregame-team-trends-section .pregame-metric:nth-last-child(-n + 2) {
+    border-bottom: 0;
+}
+
+.pregame-trend-history {
+    display: grid;
+    grid-template-columns: repeat(var(--trend-game-count), minmax(0, 1fr));
+    min-height: 34px;
+    margin-top: 4px;
+    padding-top: 2px;
+}
+
+.pregame-trend-series {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    align-items: center;
+    min-width: 0;
+    padding: 0 2px;
+}
+
+.pregame-trend-series + .pregame-trend-series {
+    border-left: 1px solid #46535c;
+}
+
+.pregame-trend-opponent {
+    color: #aebac0;
+    font-size: 7px;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 0.06em;
+    text-align: center;
+}
+
+.pregame-trend-outcomes {
+    display: grid;
+    grid-template-columns: repeat(var(--trend-series-count), minmax(0, 1fr));
+    align-items: center;
+    margin-top: 1px;
+}
+
+.pregame-trend-result {
+    display: block;
+    box-sizing: border-box;
+    width: 8px;
+    height: 8px;
+    justify-self: center;
+    border: 1px solid #d5dde1;
+    border-radius: 50%;
+}
+
+.pregame-trend-result.is-loss {
+    background: #d5dde1;
+}
+
 .pregame-lower-layout {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1296,6 +1366,11 @@ a.pregame-metric-value:focus-visible {
     .pregame-team-columns {
         grid-template-columns: 1fr;
         gap: 0;
+    }
+
+    .pregame-team-trends-section .pregame-team-columns > div + div {
+        border-top: 1px solid #46535c;
+        border-left: 0;
     }
 
     .pregame-starting-pitcher {

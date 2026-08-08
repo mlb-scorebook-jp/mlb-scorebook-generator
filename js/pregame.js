@@ -1206,6 +1206,11 @@
         return url.toString();
     };
 
+    const getOfficialTeamScheduleUrl = (team, season) => {
+        const slug = window.MLB_SCOREBOOK_TEAM_SLUGS_BY_ID?.[Number(team?.id)];
+        return slug ? `https://www.mlb.com/${slug}/schedule/${season}/` : "";
+    };
+
     const getBaseballReferenceBattingUrl = (person) => {
         const referenceId = person?.xrefIds?.find(
             (xref) => String(xref?.xrefType ?? "").toLowerCase() === "lahman"
@@ -1654,13 +1659,19 @@
     const getTeamTrend = async (teamId, date) => {
         const schedule = await getTeamSchedule(teamId, date);
         const recent = schedule.slice(-10);
-        const outcomes = recent.map((game) => {
+        const results = recent.map((game) => {
             const away = game?.teams?.away ?? {};
             const home = game?.teams?.home ?? {};
             const own = Number(away?.team?.id) === Number(teamId) ? away : home;
             const opponent = own === away ? home : away;
-            return statNumber(own.score) > statNumber(opponent.score) ? "W" : "L";
+            return {
+                outcome: statNumber(own.score) > statNumber(opponent.score) ? "W" : "L",
+                opponent: teamCode(opponent?.team),
+                date: String(game?.officialDate ?? ""),
+                gamePk: Number(game?.gamePk) || null
+            };
         });
+        const outcomes = results.map((result) => result.outcome);
         const latest = outcomes.at(-1);
         let streak = 0;
         for (let index = outcomes.length - 1; index >= 0 && outcomes[index] === latest; index -= 1) {
@@ -1685,8 +1696,36 @@
             streakText: streak >= 2 ? `${streak}連${latest === "W" ? "勝" : "敗"}` : "-",
             avg: hitting.avg ?? "-",
             ops: hitting.ops ?? "-",
-            era: pitching.era ?? "-"
+            era: pitching.era ?? "-",
+            results
         };
+    };
+
+    const renderTeamTrendHistory = (results) => {
+        const history = el("div", "pregame-trend-history");
+        const series = [];
+        results.forEach((result) => {
+            const current = series.at(-1);
+            if (current?.opponent === result.opponent) current.results.push(result);
+            else series.push({ opponent: result.opponent, results: [result] });
+        });
+        history.style.setProperty("--trend-game-count", String(Math.max(results.length, 1)));
+        series.forEach((group) => {
+            const groupElement = el("div", "pregame-trend-series");
+            groupElement.style.gridColumn = `span ${group.results.length}`;
+            groupElement.append(el("span", "pregame-trend-opponent", group.opponent));
+            const outcomes = el("div", "pregame-trend-outcomes");
+            outcomes.style.setProperty("--trend-series-count", String(group.results.length));
+            group.results.forEach((result) => {
+                const mark = el("span", `pregame-trend-result ${result.outcome === "W" ? "is-win" : "is-loss"}`);
+                mark.setAttribute("role", "img");
+                mark.setAttribute("aria-label", result.outcome === "W" ? "勝利" : "敗戦");
+                outcomes.append(mark);
+            });
+            groupElement.append(outcomes);
+            history.append(groupElement);
+        });
+        return history;
     };
 
     const getFeaturedPlayers = async (feed, side, date) => {
@@ -2018,17 +2057,22 @@
                 column.append(el("h4", "pregame-team-heading", teamCode(team)));
                 const metrics = el("div", "pregame-metric-grid");
                 const season = Number(date.slice(0, 4));
+                const scheduleUrl = getOfficialTeamScheduleUrl(team, season);
                 const battingUrl = getOfficialTeamStatsUrl(team, season, "hitting");
                 const pitchingUrl = getOfficialTeamStatsUrl(team, season, "pitching");
+                const recentGamesMetric = metric("直近10試合", `${trend.wins}勝${trend.losses}敗`, scheduleUrl ? {
+                        href: scheduleUrl,
+                        ariaLabel: `${teamCode(team)}の${season}年MLB公式スケジュールを新しいタブで開く`
+                    } : null);
+                recentGamesMetric.append(renderTeamTrendHistory(trend.results));
                 metrics.append(
-                    metric("直近10試合", `${trend.wins}勝${trend.losses}敗`),
+                    recentGamesMetric,
                     metric("連勝・連敗", trend.streakText),
                     metric("チーム打率", String(trend.avg), battingUrl ? {
                         href: battingUrl,
                         ariaLabel: `${teamCode(team)}の${season}年MLB公式チーム打撃成績を新しいタブで開く`
                     } : null),
-                    metric("チームOPS", String(trend.ops)),
-                    metric("投手ERA", String(trend.era), pitchingUrl ? {
+                    metric("チーム防御率", String(trend.era), pitchingUrl ? {
                         href: pitchingUrl,
                         ariaLabel: `${teamCode(team)}の${season}年MLB公式チーム投手成績を新しいタブで開く`
                     } : null)
