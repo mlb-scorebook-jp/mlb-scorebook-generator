@@ -765,10 +765,10 @@
     const aggregateHitting = (splits) => {
         const totals = splits.reduce((sum, split) => {
             const stat = split?.stat ?? {};
-            ["atBats", "hits", "homeRuns", "rbi", "stolenBases", "baseOnBalls", "hitByPitch", "sacFlies", "totalBases"]
+            ["atBats", "hits", "homeRuns", "rbi", "runs", "stolenBases", "baseOnBalls", "hitByPitch", "sacFlies", "totalBases"]
                 .forEach((field) => { sum[field] += statNumber(stat[field]); });
             return sum;
-        }, { atBats: 0, hits: 0, homeRuns: 0, rbi: 0, stolenBases: 0, baseOnBalls: 0, hitByPitch: 0, sacFlies: 0, totalBases: 0 });
+        }, { atBats: 0, hits: 0, homeRuns: 0, rbi: 0, runs: 0, stolenBases: 0, baseOnBalls: 0, hitByPitch: 0, sacFlies: 0, totalBases: 0 });
         const avg = totals.atBats ? totals.hits / totals.atBats : 0;
         const obpDenominator = totals.atBats + totals.baseOnBalls + totals.hitByPitch + totals.sacFlies;
         const obp = obpDenominator
@@ -1401,7 +1401,10 @@
         sectionElement.classList.add("pregame-span-8", "pregame-recent-pitching-section");
         const scroller = el("div", "pregame-recent-pitching-scroll");
         const table = el("table", "pregame-recent-pitching-table");
-        const columns = ["日付", "対戦相手", "W/L", "防御率", "投球回", "奪三振", "失点", "与四球"];
+        const columns = ["日付", "対戦相手", "防御率", "投球回", "奪三振", "失点", "与四球"];
+        const colgroup = document.createElement("colgroup");
+        ["date", "opponent", "era", "innings", "strikeouts", "runs", "walks"]
+            .forEach((name) => colgroup.append(el("col", `pregame-recent-pitching-col-${name}`)));
         const head = document.createElement("thead");
         const headRow = document.createElement("tr");
         columns.forEach((label) => headRow.append(el("th", "", label)));
@@ -1415,15 +1418,19 @@
                 ? `${Number(dateParts[1])}/${Number(dateParts[2])}`
                 : "-";
             const decision = statNumber(stat.wins) > 0
-                ? "W"
+                ? "（W）"
                 : statNumber(stat.losses) > 0
-                    ? "L"
-                    : "－";
+                    ? "（L）"
+                    : "";
             const row = document.createElement("tr");
+            row.append(el("td", "", dateLabel));
+            const opponentCell = el("td", "pregame-recent-pitching-opponent");
+            opponentCell.append(el("span", "pregame-recent-pitching-opponent-code", teamCode(split?.opponent)));
+            if (decision) {
+                opponentCell.append(el("span", "pregame-recent-pitching-decision", decision));
+            }
+            row.append(opponentCell);
             [
-                dateLabel,
-                teamCode(split?.opponent),
-                decision,
                 outs ? (statNumber(stat.earnedRuns) * 27 / outs).toFixed(2) : "－",
                 stat?.inningsPitched ?? "－",
                 String(statNumber(stat.strikeOuts)),
@@ -1436,9 +1443,8 @@
         const totalRow = document.createElement("tr");
         totalRow.className = "pregame-recent-pitching-total";
         [
-            "直近5登板計",
+            `直近5登板計（${totals.wins}勝${totals.losses}敗）`,
             "",
-            `${totals.wins}W ${totals.losses}L`,
             totals.era.toFixed(2),
             totals.innings,
             String(totals.strikeOuts),
@@ -1450,10 +1456,176 @@
             if (index !== 1) totalRow.append(cell);
         });
         body.append(totalRow);
+        table.append(colgroup, head, body);
+        scroller.append(table);
+        sectionElement.append(scroller);
+        return sectionElement;
+    };
+
+    const shortLogDate = (split) => {
+        const parts = String(split?.date ?? "").slice(0, 10).split("-");
+        return parts.length === 3 ? `${Number(parts[1])}/${Number(parts[2])}` : "-";
+    };
+
+    const logMatchupLabel = (split) => `${shortLogDate(split)} vs. ${teamCode(split?.opponent)}`;
+
+    const renderRecentHittingTable = (splits) => {
+        const sectionElement = section("直近5試合");
+        sectionElement.classList.add("pregame-span-8", "pregame-recent-hitting-section");
+        const scroller = el("div", "pregame-recent-hitting-scroll");
+        const table = el("table", "pregame-recent-hitting-table");
+        const columns = ["日付", "対戦相手", "打数", "安打", "本塁打", "打点", "得点", "盗塁", "四球"];
+        const head = document.createElement("thead");
+        const headRow = document.createElement("tr");
+        columns.forEach((label) => headRow.append(el("th", "", label)));
+        head.append(headRow);
+        const body = document.createElement("tbody");
+        [...splits].reverse().forEach((split) => {
+            const stat = split?.stat ?? {};
+            const row = document.createElement("tr");
+            [
+                shortLogDate(split), teamCode(split?.opponent), String(statNumber(stat.atBats)),
+                String(statNumber(stat.hits)), String(statNumber(stat.homeRuns)),
+                String(statNumber(stat.rbi)), String(statNumber(stat.runs)),
+                String(statNumber(stat.stolenBases)), String(statNumber(stat.baseOnBalls))
+            ].forEach((value) => row.append(el("td", "", value)));
+            body.append(row);
+        });
+        const totals = aggregateHitting(splits);
+        const totalRow = document.createElement("tr");
+        totalRow.className = "pregame-recent-hitting-total";
+        [
+            "直近5試合TOTAL", "", String(totals.atBats), String(totals.hits),
+            String(totals.homeRuns), String(totals.rbi), String(totals.runs),
+            String(totals.stolenBases), String(totals.baseOnBalls)
+        ].forEach((value, index) => {
+            const cell = el(index === 0 ? "th" : "td", "", value);
+            if (index === 0) cell.colSpan = 2;
+            if (index !== 1) totalRow.append(cell);
+        });
+        body.append(totalRow);
         table.append(head, body);
         scroller.append(table);
         sectionElement.append(scroller);
         return sectionElement;
+    };
+
+    const longestSeasonStreak = (splits, qualifies, { ignore = () => false } = {}) => {
+        const ordered = [...splits].sort((a, b) => String(a?.date).localeCompare(String(b?.date)));
+        let current = [];
+        let best = [];
+        ordered.forEach((split) => {
+            if (ignore(split)) return;
+            if (qualifies(split)) {
+                current.push(split);
+                if (current.length >= best.length) best = [...current];
+            } else {
+                current = [];
+            }
+        });
+        const active = current.length > 0 && current.length === best.length;
+        return { entries: best, active };
+    };
+
+    const seasonRecordFromStreak = (streak, label, minimum = 2) => {
+        if (streak.entries.length < minimum) return null;
+        const first = streak.entries[0];
+        const last = streak.entries.at(-1);
+        const range = streak.active
+            ? `${logMatchupLabel(first)} ～`
+            : `${logMatchupLabel(first)} ～ ${logMatchupLabel(last)}`;
+        return {
+            text: `${range}　${streak.entries.length}試合連続${label}`,
+            active: streak.active,
+            sortKey: String(first?.date ?? "")
+        };
+    };
+
+    const getSeasonRecords = (logs, { priorCareerCompleteGames = 0 } = {}) => {
+        const records = [];
+        if (logs.hitting?.length) {
+            const played = (split) => {
+                const stat = split?.stat ?? {};
+                return statNumber(stat.plateAppearances) || statNumber(stat.atBats) +
+                    statNumber(stat.baseOnBalls) + statNumber(stat.hitByPitch);
+            };
+            [
+                ["安打", (split) => statNumber(split?.stat?.hits) > 0],
+                ["出塁", (split) => statNumber(split?.stat?.hits) + statNumber(split?.stat?.baseOnBalls) + statNumber(split?.stat?.hitByPitch) > 0],
+                ["打点", (split) => statNumber(split?.stat?.rbi) > 0]
+            ].forEach(([label, qualifies]) => {
+                const record = seasonRecordFromStreak(
+                    longestSeasonStreak(logs.hitting, qualifies, { ignore: (split) => !played(split) }),
+                    label
+                );
+                if (record) records.push(record);
+            });
+            const firstHomeRun = [...logs.hitting]
+                .sort((a, b) => String(a?.date).localeCompare(String(b?.date)))
+                .find((split) => statNumber(split?.stat?.homeRuns) > 0);
+            if (firstHomeRun) records.push({
+                text: `${logMatchupLabel(firstHomeRun)}　今季初本塁打`,
+                active: false,
+                sortKey: String(firstHomeRun?.date ?? "")
+            });
+        }
+        if (logs.pitching?.length) {
+            const starts = logs.pitching.filter((split) => statNumber(split?.stat?.gamesStarted) > 0);
+            const qualityStarts = longestSeasonStreak(
+                starts,
+                (split) => inningsToOuts(split?.stat?.inningsPitched) >= 18 && statNumber(split?.stat?.earnedRuns) <= 3
+            );
+            const qsRecord = seasonRecordFromStreak(qualityStarts, "QS");
+            if (qsRecord) records.push(qsRecord);
+            const decisions = logs.pitching.filter((split) =>
+                statNumber(split?.stat?.wins) > 0 || statNumber(split?.stat?.losses) > 0
+            );
+            const winStreak = seasonRecordFromStreak(
+                longestSeasonStreak(decisions, (split) => statNumber(split?.stat?.wins) > 0),
+                "勝"
+            );
+            if (winStreak) {
+                winStreak.text = winStreak.text.replace(/(\d+)試合連続勝$/, "$1連勝");
+                records.push(winStreak);
+            }
+            let completeGamesSeen = statNumber(priorCareerCompleteGames);
+            [...logs.pitching]
+                .sort((a, b) => String(a?.date).localeCompare(String(b?.date)))
+                .forEach((split) => {
+                const stat = split?.stat ?? {};
+                if (inningsToOuts(stat.inningsPitched) >= 27 && statNumber(stat.hits) === 0) {
+                    records.push({
+                        text: `${logMatchupLabel(split)}　ノーヒットノーラン`,
+                        active: false,
+                        sortKey: String(split?.date ?? "")
+                    });
+                } else if (statNumber(stat.completeGames) > 0) {
+                    const label = completeGamesSeen === 0 ? "キャリア初完投" : "完投";
+                    records.push({
+                        text: `${logMatchupLabel(split)}　${label}`,
+                        active: false,
+                        sortKey: String(split?.date ?? "")
+                    });
+                }
+                completeGamesSeen += statNumber(stat.completeGames);
+            });
+        }
+        return records.sort((a, b) => String(a.sortKey).localeCompare(String(b.sortKey)));
+    };
+
+    const renderSeasonRecordList = (records) => {
+        const list = el("ul", "pregame-data-list pregame-season-record-list");
+        if (!records.length) {
+            list.append(el("li", "", "今シーズンに表示対象となる記録はありません。"));
+            return list;
+        }
+        records.forEach((record) => {
+            const row = el("li", "pregame-season-record-row");
+            row.append(el("span", "pregame-season-record-text", record.text));
+            if (record.active) row.append(el("span", "pregame-status-badge pregame-season-record-status", "継続中"));
+            list.append(row);
+        });
+        return list;
     };
 
     const renderPlayerDetail = async (playerId, gamePk) => {
@@ -1621,45 +1793,17 @@
                     grid.append(renderRecentPitchingTable(five));
                     return;
                 }
-                const statsSection = section(
-                    "最近の打撃成績",
-                    "試合前時点"
-                );
-                statsSection.classList.add(groups.length > 1 ? "pregame-span-6" : "pregame-span-8");
-                const metrics = el("div", "pregame-metric-grid");
-                const fiveStats = aggregateHitting(five);
-                const tenStats = aggregateHitting(recent);
-                metrics.append(
-                    metric("直近5試合 打率", fiveStats.avg.toFixed(3).replace(/^0/, "")),
-                    metric("直近5試合 OPS", fiveStats.ops.toFixed(3).replace(/^0/, "")),
-                    metric("直近10試合 打率", tenStats.avg.toFixed(3).replace(/^0/, "")),
-                    metric("直近10試合 OPS", tenStats.ops.toFixed(3).replace(/^0/, "")),
-                    metric("10試合 本塁打", String(tenStats.homeRuns)),
-                    metric("10試合 打点", String(tenStats.rbi)),
-                    metric("10試合 盗塁", String(tenStats.stolenBases))
-                );
-                statsSection.append(metrics);
-                grid.append(statsSection);
+                grid.append(renderRecentHittingTable(five));
             });
 
-            const currentSection = section("現在継続中の記録", "放送用メモ");
-            currentSection.classList.add("pregame-span-4");
-            const currentList = el("ul", "pregame-data-list");
-            const notes = [];
-            if (logs.hitting) {
-                const streaks = getHittingStreaks(logs.hitting);
-                if (streaks.hits >= 2) notes.push(`${streaks.hits}試合連続安打`);
-                if (streaks.onBase >= 2) notes.push(`${streaks.onBase}試合連続出塁`);
-                if (streaks.rbi >= 2) notes.push(`${streaks.rbi}試合連続打点`);
-            }
-            if (logs.pitching) {
-                const qualityStartStreak = getQualityStartStreak(logs.pitching);
-                if (qualityStartStreak >= 2) notes.push(`${qualityStartStreak}試合連続QS中`);
-            }
-            groups.forEach((group) => notes.push(...remainingMilestones(careers[group], group)));
-            (notes.length ? notes : ["現在表示対象となる継続・節目記録はありません。"])
-                .forEach((text) => currentList.append(el("li", "", text)));
-            currentSection.append(currentList);
+            const currentSection = section("今シーズンの記録");
+            currentSection.classList.add("pregame-span-4", "pregame-season-records-section");
+            const priorCareerCompleteGames = [...yearlyPitching.entries()]
+                .filter(([year]) => Number(year) < season)
+                .reduce((total, [_year, stats]) => total + statNumber(stats?.completeGames), 0);
+            currentSection.append(renderSeasonRecordList(getSeasonRecords(logs, {
+                priorCareerCompleteGames
+            })));
             grid.append(currentSection);
 
             const todaySection = section("今日の情報", statusLabel(game));
