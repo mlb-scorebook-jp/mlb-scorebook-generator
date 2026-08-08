@@ -1007,8 +1007,14 @@ a.pregame-batting-stat:focus-visible {
     border-radius: 50%;
 }
 
+.pregame-trend-result.is-win {
+    border-color: #edf3f5;
+    background: #edf3f5;
+}
+
 .pregame-trend-result.is-loss {
-    background: #d5dde1;
+    border-color: #7f8b91;
+    background: #11171b;
 }
 
 .pregame-trend-run-totals {
