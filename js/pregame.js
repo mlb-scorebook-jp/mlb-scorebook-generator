@@ -1206,9 +1206,12 @@
         return url.toString();
     };
 
-    const getOfficialTeamScheduleUrl = (team, season) => {
+    const getOfficialTeamScheduleUrl = (team, gameDate) => {
         const slug = window.MLB_SCOREBOOK_TEAM_SLUGS_BY_ID?.[Number(team?.id)];
-        return slug ? `https://www.mlb.com/${slug}/schedule/${season}/` : "";
+        const month = /^\d{4}-\d{2}-\d{2}$/.test(String(gameDate))
+            ? String(gameDate).slice(0, 7)
+            : "";
+        return slug && month ? `https://www.mlb.com/${slug}/schedule/${month}` : "";
     };
 
     const getBaseballReferenceBattingUrl = (person) => {
@@ -2057,12 +2060,12 @@
                 column.append(el("h4", "pregame-team-heading", teamCode(team)));
                 const metrics = el("div", "pregame-metric-grid");
                 const season = Number(date.slice(0, 4));
-                const scheduleUrl = getOfficialTeamScheduleUrl(team, season);
+                const scheduleUrl = getOfficialTeamScheduleUrl(team, date);
                 const battingUrl = getOfficialTeamStatsUrl(team, season, "hitting");
                 const pitchingUrl = getOfficialTeamStatsUrl(team, season, "pitching");
                 const recentGamesMetric = metric("直近10試合", `${trend.wins}勝${trend.losses}敗`, scheduleUrl ? {
                         href: scheduleUrl,
-                        ariaLabel: `${teamCode(team)}の${season}年MLB公式スケジュールを新しいタブで開く`
+                        ariaLabel: `${teamCode(team)}の${date}を含むMLB公式スケジュールを新しいタブで開く`
                     } : null);
                 recentGamesMetric.append(renderTeamTrendHistory(trend.results));
                 metrics.append(
