@@ -174,6 +174,24 @@
         147: "#0c2340", 158: "#12284b"
     };
 
+    const TEAM_SOCIAL_ACCOUNTS = {
+        108: ["angels", "angels"], 109: ["dbacks", "dbacks"],
+        110: ["orioles", "orioles"], 111: ["redsox", "redsox"],
+        112: ["cubs", "cubs"], 113: ["reds", "reds"],
+        114: ["cleguardians", "CLEGuardians"], 115: ["rockies", "rockies"],
+        116: ["tigers", "tigers"], 117: ["astros", "astrosbaseball"],
+        118: ["royals", "kcroyals"], 119: ["dodgers", "dodgers"],
+        120: ["nationals", "nationals"], 121: ["mets", "mets"],
+        133: ["athletics", "athletics"], 134: ["Pirates", "pittsburghpirates"],
+        135: ["padres", "padres"], 136: ["mariners", "mariners"],
+        137: ["sfgiants", "SFGiants"], 138: ["cardinals", "cardinals"],
+        139: ["raysbaseball", "raysbaseball"], 140: ["rangers", "rangers"],
+        141: ["bluejays", "bluejays"], 142: ["twins", "twins"],
+        143: ["phillies", "phillies"], 144: ["braves", "braves"],
+        145: ["whitesox", "whitesox"], 146: ["marlins", "marlins"],
+        147: ["yankees", "yankees"], 158: ["brewers", "brewers"]
+    };
+
     const MLB_TEAM_LEAGUE_BY_ID = new Map([
         [108, "AL"], [110, "AL"], [111, "AL"], [114, "AL"], [116, "AL"],
         [117, "AL"], [118, "AL"], [133, "AL"], [136, "AL"], [139, "AL"],
@@ -667,14 +685,17 @@
             if (value.type === "article" && value.headline && value.slug) {
                 const supplied = String(value.url ?? "");
                 let url = "";
-                try {
-                    const parsed = new URL(supplied || `/news/${value.slug}`, "https://www.mlb.com");
-                    if (parsed.protocol === "https:" &&
-                        (parsed.hostname === "mlb.com" || parsed.hostname.endsWith(".mlb.com"))) {
-                        url = parsed.href;
+                for (const candidate of [supplied, `/news/${value.slug}`]) {
+                    try {
+                        const parsed = new URL(candidate, "https://www.mlb.com");
+                        if (parsed.protocol === "https:" &&
+                            (parsed.hostname === "mlb.com" || parsed.hostname.endsWith(".mlb.com"))) {
+                            url = parsed.href;
+                            break;
+                        }
+                    } catch (_error) {
+                        // Try the canonical MLB.com news slug next.
                     }
-                } catch (_error) {
-                    url = "";
                 }
                 if (url && !seen.has(url)) {
                     seen.add(url);
@@ -836,6 +857,11 @@
         const value = String(keyword?.value ?? "");
         return (keyword?.type === "player" && value === `playerid-${playerId}`) ||
             (keyword?.type === "player_id" && value === String(playerId));
+    });
+
+    const articleHasTeam = (article, teamId) => (article?.keywordsAll ?? []).some((keyword) => {
+        const value = String(keyword?.value ?? "");
+        return keyword?.type === "team" && value === `teamid-${teamId}`;
     });
 
     const statNumber = (value) => Number(value) || 0;
@@ -1011,7 +1037,7 @@
         }).format(value);
     };
 
-    const setMatchupHeader = (awayTeam, homeTeam, standings, game, feed, gamePk) => {
+    const setMatchupHeader = (awayTeam, homeTeam, standings, game, feed, gamePk, articles) => {
         const teamBlock = (team) => {
             const block = el("span", "pregame-header-team");
             const standing = standings.get(Number(team?.id));
@@ -1023,9 +1049,40 @@
                 teamName.target = "_blank";
                 teamName.rel = "noopener noreferrer";
             }
+            const links = el("span", "pregame-team-official-links");
+            const [xAccount, instagramAccount] = TEAM_SOCIAL_ACCOUNTS[Number(team?.id)] ?? [];
+            if (xAccount) {
+                const xLink = el("a", "pregame-team-social-link pregame-team-x-link");
+                xLink.href = `https://x.com/${xAccount}`;
+                xLink.target = "_blank";
+                xLink.rel = "noopener noreferrer";
+                xLink.setAttribute("aria-label", `${teamJapaneseName(team)}公式X`);
+                xLink.append(el("span", "", "X"));
+                links.append(xLink);
+            }
+            if (instagramAccount) {
+                const instagramLink = el("a", "pregame-team-social-link pregame-team-instagram-link");
+                instagramLink.href = `https://www.instagram.com/${instagramAccount}/`;
+                instagramLink.target = "_blank";
+                instagramLink.rel = "noopener noreferrer";
+                instagramLink.setAttribute("aria-label", `${teamJapaneseName(team)}公式Instagram`);
+                instagramLink.append(el("span", "pregame-instagram-icon"));
+                links.append(instagramLink);
+            }
+            const teamArticle = articles.find((article) => articleHasTeam(article, Number(team?.id)));
+            if (teamArticle?.url) {
+                const articleLink = el("a", "pregame-team-social-link pregame-team-mlb-link", "MLB");
+                articleLink.href = teamArticle.url;
+                articleLink.target = "_blank";
+                articleLink.rel = "noopener noreferrer";
+                articleLink.title = teamArticle.headline;
+                articleLink.setAttribute("aria-label", `${teamJapaneseName(team)}のMLB公式記事：${teamArticle.headline}`);
+                links.append(articleLink);
+            }
             block.append(
                 teamName,
-                el("small", "", `${standing?.division ?? "所属地区未確定"}　${rank}`)
+                el("small", "", `${standing?.division ?? "所属地区未確定"}　${rank}`),
+                links
             );
             return block;
         };
@@ -2352,7 +2409,7 @@
                 getRecentTeamTransactions([awayTeam, homeTeam], date),
                 getTeamInjuryReports([awayTeam, homeTeam], date)
             ]);
-            setMatchupHeader(awayTeam, homeTeam, standings, game, feed, gamePk);
+            setMatchupHeader(awayTeam, homeTeam, standings, game, feed, gamePk, articles);
             const grid = el("div", "pregame-detail-grid");
 
             const awayProbable = getProbablePitcher(game, feed, "away");
