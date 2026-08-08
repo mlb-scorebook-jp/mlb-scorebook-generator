@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MLB Scorebook Generator</title>
     <!-- Score notation update: stacked batted-ball symbol, red hits, blue strikeouts, black other results. -->
-    <link rel="stylesheet" href="css/style.css?v=20260808-1">
+    <link rel="stylesheet" href="css/style.css?v=20260808-2">
     <link rel="stylesheet" href="css/pregame.css?v=20260808-1">
 </head>
 
@@ -159,10 +159,15 @@
     </main>
 
     <footer class="app-footer">
-        <button type="button" id="pdf-btn">PDF</button>
-        <button type="button" id="png-btn">PNG</button>
-        <button type="button" id="print-btn">PRINT</button>
-        <button type="button" id="json-btn">JSON</button>
+        <div class="footer-scrollbar" id="footer-scrollbar" aria-label="スコアブック横スクロール" tabindex="0">
+            <div class="footer-scrollbar-spacer" id="footer-scrollbar-spacer"></div>
+        </div>
+        <div class="footer-actions">
+            <button type="button" id="pdf-btn">PDF</button>
+            <button type="button" id="png-btn">PNG</button>
+            <button type="button" id="print-btn">PRINT</button>
+            <button type="button" id="json-btn">JSON</button>
+        </div>
     </footer>
 
     <script src="js/players.js"></script>
@@ -470,6 +475,28 @@
                 pngButton: document.getElementById("png-btn")
             };
 
+            dom.workspace = document.querySelector(".app-main");
+            dom.footerScrollbar = document.getElementById("footer-scrollbar");
+            dom.footerScrollbarSpacer = document.getElementById("footer-scrollbar-spacer");
+
+            let syncingHorizontalScroll = false;
+            const refreshHorizontalScrollbar = () => {
+                if (!dom.workspace || !dom.footerScrollbar || !dom.footerScrollbarSpacer) return;
+                const maxScroll = Math.max(0, dom.workspace.scrollWidth - dom.workspace.clientWidth);
+                dom.footerScrollbarSpacer.style.width =
+                    `${maxScroll + dom.footerScrollbar.clientWidth}px`;
+                dom.footerScrollbar.scrollLeft = Math.min(dom.workspace.scrollLeft, maxScroll);
+            };
+
+            const syncHorizontalScroll = (source, target) => {
+                if (syncingHorizontalScroll || !source || !target) return;
+                syncingHorizontalScroll = true;
+                target.scrollLeft = source.scrollLeft;
+                requestAnimationFrame(() => {
+                    syncingHorizontalScroll = false;
+                });
+            };
+
             const showPortalHome = () => {
                 window.PregameInfo?.close({ preserveShell: true });
                 document.body.classList.remove("app-mode-pregame");
@@ -481,6 +508,7 @@
                 window.PregameInfo?.close({ preserveShell: true });
                 document.body.classList.remove("app-mode-home", "app-mode-pregame");
                 window.scrollTo(0, 0);
+                requestAnimationFrame(refreshHorizontalScrollbar);
             };
 
             const showPregame = async () => {
@@ -5040,6 +5068,7 @@
                 dom.homeSheet.replaceChildren();
                 dom.awayPage.classList.add("active");
                 dom.homePage.classList.remove("active");
+                requestAnimationFrame(refreshHorizontalScrollbar);
             };
 
             const updateSidebar = () => {
@@ -5820,10 +5849,19 @@
             });
 
             window.addEventListener("afterprint", clearPrintFit);
+            dom.workspace.addEventListener("scroll", () => {
+                syncHorizontalScroll(dom.workspace, dom.footerScrollbar);
+            }, { passive: true });
+            dom.footerScrollbar.addEventListener("scroll", () => {
+                syncHorizontalScroll(dom.footerScrollbar, dom.workspace);
+            }, { passive: true });
+            window.addEventListener("resize", refreshHorizontalScrollbar, { passive: true });
+            new ResizeObserver(refreshHorizontalScrollbar).observe(dom.workspace);
 
             initializeHeaderGameSearch();
             renderScorebookLibrary();
             render();
+            requestAnimationFrame(refreshHorizontalScrollbar);
         })();
     </script>
 </body>

@@ -131,9 +131,28 @@ body:not(.app-mode-home) > .portal-home {
     display: none;
 }
 
-body.app-mode-home > .app-header,
 body.app-mode-home > .app-main,
 body.app-mode-home > .app-footer {
+    display: none;
+}
+
+body.app-mode-home > .app-header {
+    display: flex;
+}
+
+body.app-mode-home .header-game-search,
+body.app-mode-home .version,
+body.app-mode-pregame .header-game-search,
+body.app-mode-pregame .version {
+    display: none;
+}
+
+body.app-mode-home .portal-home {
+    min-height: 100vh;
+    padding-top: 96px;
+}
+
+body.app-mode-home .portal-home-panel h1 {
     display: none;
 }
 
@@ -155,6 +174,11 @@ select {
 }
 
 .app-header {
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    right: 0;
+    left: 0;
     height: 68px;
     display: flex;
     align-items: center;
@@ -327,20 +351,33 @@ select {
     min-height: calc(100vh - 120px);
 }
 
-body.app-mode-pregame .app-header,
 body.app-mode-pregame .sidebar,
 body.app-mode-pregame .app-footer {
     display: none;
 }
 
+body.app-mode-pregame .app-header {
+    display: flex;
+}
+
 body.app-mode-pregame .app-main {
     display: block;
+    position: fixed;
+    top: 68px;
+    right: 0;
+    bottom: 0;
+    left: 0;
     min-height: 100vh;
+    overflow: auto;
 }
 
 body.app-mode-pregame .viewer {
     width: 100%;
     min-height: 100vh;
+}
+
+body.app-mode-pregame .pregame-brand-home {
+    display: none;
 }
 
 @media screen and (max-width: 767px) {
@@ -2003,6 +2040,12 @@ body.app-mode-pregame .viewer {
 }
 
 .app-footer {
+    position: fixed;
+    z-index: 1000;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 52px;
     min-height: 52px;
     display: flex;
     align-items: center;
@@ -2011,6 +2054,48 @@ body.app-mode-pregame .viewer {
     padding: 8px 22px;
     border-top: 1px solid #39434b;
     background: #1d2328;
+}
+
+.footer-scrollbar {
+    min-width: 80px;
+    height: 18px;
+    flex: 1 1 auto;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-color: #778691 #22292f;
+    scrollbar-width: auto;
+}
+
+.footer-scrollbar::-webkit-scrollbar {
+    height: 14px;
+}
+
+.footer-scrollbar::-webkit-scrollbar-track {
+    border: 1px solid #364149;
+    border-radius: 2px;
+    background: #161c20;
+}
+
+.footer-scrollbar::-webkit-scrollbar-thumb {
+    border: 2px solid #161c20;
+    border-radius: 5px;
+    background: #778691;
+}
+
+.footer-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #96a7b1;
+}
+
+.footer-scrollbar-spacer {
+    height: 1px;
+    width: 100%;
+}
+
+.footer-actions {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    gap: 8px;
 }
 
 .app-footer button {
@@ -2034,6 +2119,75 @@ body.app-mode-pregame .viewer {
     .sidebar {
         border-right: 0;
         border-bottom: 1px solid #374149;
+    }
+}
+
+body:not(.app-mode-home):not(.app-mode-pregame) {
+    overflow: hidden;
+}
+
+body:not(.app-mode-home):not(.app-mode-pregame) .app-main {
+    position: fixed;
+    top: 68px;
+    right: 0;
+    bottom: 52px;
+    left: 0;
+    display: grid;
+    grid-template-columns: 270px max-content;
+    width: auto;
+    min-width: 0;
+    min-height: 0;
+    overflow: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+}
+
+body:not(.app-mode-home):not(.app-mode-pregame) .sidebar {
+    width: 270px;
+    min-width: 270px;
+    border-right: 1px solid #374149;
+    border-bottom: 0;
+}
+
+body:not(.app-mode-home):not(.app-mode-pregame) .viewer {
+    width: max-content;
+    min-width: calc(100vw - 270px);
+    overflow: visible;
+}
+
+@media screen and (max-width: 767px) {
+    .app-header {
+        height: 58px;
+        padding: 0 12px;
+    }
+
+    .app-title h1 {
+        font-size: 15px;
+    }
+
+    body:not(.app-mode-home):not(.app-mode-pregame) .app-main,
+    body.app-mode-pregame .app-main {
+        top: 58px;
+    }
+
+    .app-footer {
+        height: 46px;
+        min-height: 46px;
+        padding: 6px 8px;
+    }
+
+    body:not(.app-mode-home):not(.app-mode-pregame) .app-main {
+        bottom: 46px;
+    }
+
+    .app-footer button {
+        min-width: 54px;
+        height: 30px;
+        font-size: 9px;
+    }
+
+    .footer-actions {
+        gap: 4px;
     }
 }
 
