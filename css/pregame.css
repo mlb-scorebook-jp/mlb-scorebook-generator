@@ -755,6 +755,53 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
     min-width: 0;
 }
 
+.pregame-statcast-section {
+    margin-bottom: 12px;
+}
+
+.pregame-statcast-metrics {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.pregame-statcast-metric {
+    display: grid;
+    align-content: center;
+    gap: 5px;
+    min-height: 64px;
+    padding: 9px 12px;
+    border-right: 1px solid #3d4950;
+}
+
+.pregame-statcast-metric:last-child {
+    border-right: 0;
+}
+
+.pregame-statcast-label {
+    color: #aebac0;
+    font-size: 10px;
+}
+
+.pregame-statcast-value {
+    color: #edf3f5;
+    font-size: 18px;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+}
+
+a.pregame-statcast-value {
+    text-decoration: underline;
+    text-decoration-color: rgba(237, 243, 245, 0.45);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+}
+
+a.pregame-statcast-value:hover,
+a.pregame-statcast-value:focus-visible {
+    color: #fff;
+    text-decoration-color: currentColor;
+}
+
 .pregame-status-badge.pregame-season-record-status {
     flex: 0 0 auto;
     min-height: 18px;
@@ -1378,6 +1425,28 @@ a.pregame-metric-value:focus-visible {
         min-height: 34px;
         padding-inline: 9px;
         font-size: 11px;
+    }
+
+    .pregame-statcast-metrics {
+        grid-template-columns: 1fr;
+    }
+
+    .pregame-statcast-metric {
+        min-height: 60px;
+        border-right: 0;
+        border-bottom: 1px solid #3d4950;
+    }
+
+    .pregame-statcast-metric:last-child {
+        border-bottom: 0;
+    }
+
+    .pregame-statcast-label {
+        font-size: 14px;
+    }
+
+    .pregame-statcast-value {
+        font-size: 20px;
     }
 
     .pregame-games-section .pregame-league-grid {
