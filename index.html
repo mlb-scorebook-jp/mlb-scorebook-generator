@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MLB Scorebook Generator</title>
     <!-- Score notation update: stacked batted-ball symbol, red hits, blue strikeouts, black other results. -->
-    <link rel="stylesheet" href="css/style.css?v=20260808-5">
+    <link rel="stylesheet" href="css/style.css?v=20260808-6">
     <link rel="stylesheet" href="css/pregame.css?v=20260808-10">
 </head>
 
@@ -529,7 +529,8 @@
             dom.footerScrollbar = document.getElementById("footer-scrollbar");
             dom.footerScrollbarSpacer = document.getElementById("footer-scrollbar-spacer");
 
-            let syncingHorizontalScroll = false;
+            let horizontalSyncFrame = 0;
+            let pendingHorizontalSync = null;
             const refreshHorizontalScrollbar = () => {
                 if (!dom.workspace || !dom.footerScrollbar || !dom.footerScrollbarSpacer) return;
                 const maxScroll = Math.max(0, dom.workspace.scrollWidth - dom.workspace.clientWidth);
@@ -539,11 +540,18 @@
             };
 
             const syncHorizontalScroll = (source, target) => {
-                if (syncingHorizontalScroll || !source || !target) return;
-                syncingHorizontalScroll = true;
-                target.scrollLeft = source.scrollLeft;
-                requestAnimationFrame(() => {
-                    syncingHorizontalScroll = false;
+                if (!source || !target) return;
+                const scrollLeft = source.scrollLeft;
+                if (target.scrollLeft === scrollLeft) return;
+                pendingHorizontalSync = { target, scrollLeft };
+                if (horizontalSyncFrame) return;
+                horizontalSyncFrame = requestAnimationFrame(() => {
+                    const pending = pendingHorizontalSync;
+                    pendingHorizontalSync = null;
+                    horizontalSyncFrame = 0;
+                    if (pending && pending.target.scrollLeft !== pending.scrollLeft) {
+                        pending.target.scrollLeft = pending.scrollLeft;
+                    }
                 });
             };
 
