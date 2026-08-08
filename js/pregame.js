@@ -89,6 +89,30 @@
         147: "#0c2340", 158: "#12284b"
     };
 
+    const MLB_TEAM_LEAGUE_BY_ID = new Map([
+        [108, "AL"], [110, "AL"], [111, "AL"], [114, "AL"], [116, "AL"],
+        [117, "AL"], [118, "AL"], [133, "AL"], [136, "AL"], [139, "AL"],
+        [140, "AL"], [141, "AL"], [142, "AL"], [145, "AL"], [147, "AL"],
+        [109, "NL"], [112, "NL"], [113, "NL"], [115, "NL"], [119, "NL"],
+        [120, "NL"], [121, "NL"], [134, "NL"], [135, "NL"], [137, "NL"],
+        [138, "NL"], [143, "NL"], [144, "NL"], [146, "NL"], [158, "NL"]
+    ]);
+
+    const teamLeagueCode = (team) => {
+        const leagueId = Number(team?.league?.id);
+        if (leagueId === 103) return "AL";
+        if (leagueId === 104) return "NL";
+        return MLB_TEAM_LEAGUE_BY_ID.get(Number(team?.id)) ?? "";
+    };
+
+    const gameLeagueCategory = (game) => {
+        const awayLeague = teamLeagueCode(game?.teams?.away?.team);
+        const homeLeague = teamLeagueCode(game?.teams?.home?.team);
+        if (awayLeague && awayLeague === homeLeague) return awayLeague;
+        if (awayLeague && homeLeague) return "INTERLEAGUE";
+        return "";
+    };
+
     const setGameCardTeamColors = (card, awayTeam, homeTeam) => {
         card.style.setProperty(
             "--pregame-away-color",
@@ -864,11 +888,10 @@
 
             const gamesSection = section("全試合", `${games.length}試合`);
             gamesSection.classList.add("pregame-games-section");
-            const gamesGrid = el("div", "pregame-card-grid");
             if (!games.length) {
                 gamesSection.append(empty("この日のMLB公式戦は見つかりませんでした。"));
             } else {
-                games.forEach((game) => {
+                const createGameCard = (game) => {
                     const away = game?.teams?.away?.team ?? {};
                     const home = game?.teams?.home?.team ?? {};
                     const card = el("button", "pregame-game-card");
@@ -889,7 +912,7 @@
                                 ? playerName(game.teams.away.probablePitcher)
                                 : "未定"
                         ),
-                        el("span", "pregame-pitcher-versus", "対"),
+                        Object.assign(el("span", "pregame-pitcher-versus"), { ariaHidden: "true" }),
                         el(
                             "span",
                             "pregame-pitcher-name pregame-pitcher-home",
@@ -913,9 +936,32 @@
                             gameCardStatusLabel(game)
                         )
                     );
-                    gamesGrid.append(card);
+                    return card;
+                };
+
+                const gamesByLeague = new Map([
+                    ["AL", []],
+                    ["NL", []],
+                    ["INTERLEAGUE", []]
+                ]);
+                games.forEach((game) => {
+                    const category = gameLeagueCategory(game);
+                    if (gamesByLeague.has(category)) gamesByLeague.get(category).push(game);
                 });
-                gamesSection.append(gamesGrid);
+
+                gamesByLeague.forEach((categoryGames, category) => {
+                    if (!categoryGames.length) return;
+                    const group = el("section", "pregame-league-group");
+                    const heading = el("div", "pregame-league-header");
+                    heading.append(
+                        el("h4", "", category),
+                        el("span", "", `${categoryGames.length}試合`)
+                    );
+                    const grid = el("div", "pregame-card-grid pregame-league-grid");
+                    categoryGames.forEach((game) => grid.append(createGameCard(game)));
+                    group.append(heading, grid);
+                    gamesSection.append(group);
+                });
             }
             dashboard.append(gamesSection);
             dom.content.replaceChildren(dashboard);

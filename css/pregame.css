@@ -1,6 +1,6 @@
 .viewer.pregame-active {
-    padding: 18px;
-    overflow: auto;
+    padding: 18px 18px 32px;
+    overflow: visible;
     background:
         linear-gradient(rgba(20, 25, 29, 0.94), rgba(20, 25, 29, 0.94)),
         repeating-linear-gradient(90deg, transparent 0 4px, rgba(255, 255, 255, 0.018) 4px 5px);
@@ -272,6 +272,34 @@
     font-weight: 700;
 }
 
+.pregame-league-group + .pregame-league-group {
+    border-top: 1px solid #344047;
+}
+
+.pregame-league-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 30px;
+    padding: 6px 10px 0;
+}
+
+.pregame-league-header h4 {
+    margin: 0;
+    color: #e8edf0;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+}
+
+.pregame-league-header span {
+    padding: 1px 6px;
+    color: #b7c2c8;
+    border: 1px solid #48565e;
+    border-radius: 999px;
+    font-size: 8px;
+    font-weight: 700;
+}
+
 .pregame-starting-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -401,6 +429,10 @@
     padding: 10px;
 }
 
+.pregame-games-section .pregame-league-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
 .pregame-person-card,
 .pregame-game-card {
     min-width: 0;
@@ -445,7 +477,7 @@
 
 .pregame-games-section .pregame-pitcher-line {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr) 28px minmax(0, 1fr);
     align-items: center;
     gap: 5px;
     text-align: center;
@@ -502,7 +534,7 @@
 
 .pregame-games-section .pregame-matchup-title {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr) 28px minmax(0, 1fr);
     align-items: center;
     text-align: center;
 }
@@ -840,6 +872,10 @@ a.pregame-metric-value:focus-visible {
 }
 
 @media (max-width: 1000px) {
+    .pregame-games-section .pregame-league-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
     .pregame-span-8,
     .pregame-span-6,
     .pregame-span-4 {
@@ -859,6 +895,10 @@ a.pregame-metric-value:focus-visible {
 
 /* Smartphone-only presentation. Desktop and tablet rules remain untouched. */
 @media screen and (max-width: 767px) {
+    .pregame-games-section .pregame-league-grid {
+        grid-template-columns: 1fr;
+    }
+
     .pregame-brand-home {
         min-height: 44px;
         margin-bottom: 8px;
