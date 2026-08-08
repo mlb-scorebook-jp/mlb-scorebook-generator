@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MLB Scorebook Generator</title>
     <!-- Score notation update: stacked batted-ball symbol, red hits, blue strikeouts, black other results. -->
-    <link rel="stylesheet" href="css/style.css?v=20260808-6">
+    <link rel="stylesheet" href="css/style.css?v=20260808-7">
     <link rel="stylesheet" href="css/pregame.css?v=20260808-33">
 </head>
 
@@ -187,13 +187,15 @@
                 <div class="pregame-content" id="pregame-content"></div>
             </section>
 
-            <article class="paper scorebook-page active" id="away-page">
-                <div id="away-sheet"></div>
-            </article>
+            <div class="scorebook-horizontal-scroll" id="scorebook-horizontal-scroll">
+                <article class="paper scorebook-page active" id="away-page">
+                    <div id="away-sheet"></div>
+                </article>
 
-            <article class="paper scorebook-page" id="home-page">
-                <div id="home-sheet"></div>
-            </article>
+                <article class="paper scorebook-page" id="home-page">
+                    <div id="home-sheet"></div>
+                </article>
+            </div>
         </section>
     </main>
 
@@ -527,17 +529,65 @@
             };
 
             dom.workspace = document.querySelector(".app-main");
+            dom.sidebar = document.querySelector(".sidebar");
+            dom.viewer = document.querySelector(".viewer");
+            dom.headerGameSearch = document.querySelector(".header-game-search");
+            dom.scorebookHorizontalScroll = document.getElementById("scorebook-horizontal-scroll");
             dom.footerScrollbar = document.getElementById("footer-scrollbar");
             dom.footerScrollbarSpacer = document.getElementById("footer-scrollbar-spacer");
+
+            const portraitScorebookQuery = window.matchMedia(
+                "screen and (orientation: portrait) and (max-width: 1100px)"
+            );
+            const headerSearchPlaceholder = document.createComment("header game search");
+            dom.headerGameSearch.before(headerSearchPlaceholder);
+
+            const getHorizontalScrollTarget = () =>
+                portraitScorebookQuery.matches
+                    ? dom.scorebookHorizontalScroll
+                    : dom.workspace;
+
+            const updatePortraitOperationLayout = () => {
+                if (portraitScorebookQuery.matches) {
+                    dom.saveButton.after(dom.headerGameSearch);
+                } else if (headerSearchPlaceholder.parentNode) {
+                    headerSearchPlaceholder.after(dom.headerGameSearch);
+                }
+            };
+
+            const updatePortraitScorebookScale = () => {
+                const zones = document.querySelectorAll(".scorebook-lineup-zone");
+                if (!portraitScorebookQuery.matches) {
+                    zones.forEach((zone) => zone.style.removeProperty("--portrait-scorebook-scale"));
+                    return;
+                }
+
+                const availableHeight = Math.max(
+                    1,
+                    Math.min(
+                        dom.workspace?.clientHeight || window.innerHeight,
+                        window.visualViewport?.height || window.innerHeight
+                    )
+                );
+                zones.forEach((zone) => {
+                    zone.style.removeProperty("--portrait-scorebook-scale");
+                    const naturalHeight = zone.getBoundingClientRect().height;
+                    const scale = naturalHeight > 0
+                        ? Math.min(1, availableHeight / naturalHeight)
+                        : 1;
+                    zone.style.setProperty("--portrait-scorebook-scale", String(scale));
+                });
+            };
 
             let horizontalSyncFrame = 0;
             let pendingHorizontalSync = null;
             const refreshHorizontalScrollbar = () => {
-                if (!dom.workspace || !dom.footerScrollbar || !dom.footerScrollbarSpacer) return;
-                const maxScroll = Math.max(0, dom.workspace.scrollWidth - dom.workspace.clientWidth);
+                const target = getHorizontalScrollTarget();
+                if (!target || !dom.footerScrollbar || !dom.footerScrollbarSpacer) return;
+                const maxScroll = Math.max(0, target.scrollWidth - target.clientWidth);
                 dom.footerScrollbarSpacer.style.width =
                     `${maxScroll + dom.footerScrollbar.clientWidth}px`;
-                dom.footerScrollbar.scrollLeft = Math.min(dom.workspace.scrollLeft, maxScroll);
+                dom.footerScrollbar.scrollLeft = Math.min(target.scrollLeft, maxScroll);
             };
 
             const syncHorizontalScroll = (source, target) => {
@@ -5171,12 +5221,13 @@
                     String(getInningColumns(side).length)
                 );
 
-                panel.append(
+                const lineupZone = createElement("section", "scorebook-lineup-zone");
+                lineupZone.append(
                     buildTeamPanelTitle(side),
                     buildScoreGrid(side),
-                    buildBenchRows(side),
-                    buildSummaryRows(side)
+                    buildBenchRows(side)
                 );
+                panel.append(lineupZone, buildSummaryRows(side));
 
                 const bottom = createElement("section", "sheet-bottom");
                 bottom.append(buildPitchingTable(side), buildSideTables(side));
@@ -5231,7 +5282,10 @@
                 dom.homeSheet.replaceChildren();
                 dom.awayPage.classList.add("active");
                 dom.homePage.classList.remove("active");
-                requestAnimationFrame(refreshHorizontalScrollbar);
+                requestAnimationFrame(() => {
+                    updatePortraitScorebookScale();
+                    refreshHorizontalScrollbar();
+                });
             };
 
             const updateSidebar = () => {
@@ -6171,13 +6225,28 @@
 
             window.addEventListener("afterprint", clearPrintFit);
             dom.workspace.addEventListener("scroll", () => {
-                syncHorizontalScroll(dom.workspace, dom.footerScrollbar);
+                if (!portraitScorebookQuery.matches) {
+                    syncHorizontalScroll(dom.workspace, dom.footerScrollbar);
+                }
+            }, { passive: true });
+            dom.scorebookHorizontalScroll.addEventListener("scroll", () => {
+                if (portraitScorebookQuery.matches) {
+                    syncHorizontalScroll(dom.scorebookHorizontalScroll, dom.footerScrollbar);
+                }
             }, { passive: true });
             dom.footerScrollbar.addEventListener("scroll", () => {
-                syncHorizontalScroll(dom.footerScrollbar, dom.workspace);
+                syncHorizontalScroll(dom.footerScrollbar, getHorizontalScrollTarget());
             }, { passive: true });
-            window.addEventListener("resize", refreshHorizontalScrollbar, { passive: true });
+            const refreshPortraitLayout = () => {
+                updatePortraitOperationLayout();
+                updatePortraitScorebookScale();
+                refreshHorizontalScrollbar();
+            };
+            window.addEventListener("resize", refreshPortraitLayout, { passive: true });
+            window.visualViewport?.addEventListener("resize", refreshPortraitLayout, { passive: true });
+            portraitScorebookQuery.addEventListener("change", refreshPortraitLayout);
             new ResizeObserver(refreshHorizontalScrollbar).observe(dom.workspace);
+            updatePortraitOperationLayout();
 
             const restoreAppSession = async () => {
                 const saved = readAppSession();
