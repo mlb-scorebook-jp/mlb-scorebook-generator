@@ -258,6 +258,20 @@
     font-size: 9px;
 }
 
+.pregame-games-section .pregame-section-header {
+    justify-content: flex-start;
+    gap: 8px;
+}
+
+.pregame-games-section .pregame-section-header span {
+    padding: 2px 7px;
+    color: #c5cfd4;
+    border: 1px solid #53616a;
+    border-radius: 999px;
+    background: rgba(13, 18, 21, 0.28);
+    font-weight: 700;
+}
+
 .pregame-starting-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -422,10 +436,86 @@
     min-width: 0;
 }
 
+.pregame-games-section .pregame-venue-line {
+    overflow: hidden;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.pregame-games-section .pregame-pitcher-line {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    align-items: center;
+    gap: 5px;
+    text-align: center;
+}
+
+.pregame-games-section .pregame-pitcher-name {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.pregame-games-section .pregame-pitcher-versus {
+    font-size: 0.9em;
+}
+
 .pregame-person-card:hover,
 .pregame-game-card:hover {
     border-color: #86a6b4;
     background: linear-gradient(145deg, #303b43 0%, #222a30 100%);
+}
+
+.pregame-games-section .pregame-game-card {
+    position: relative;
+    overflow: hidden;
+    padding-top: 13px;
+    color: #edf2f4;
+    border-color: #3f4b53;
+    background: linear-gradient(145deg, #252e34 0%, #1c2328 100%);
+}
+
+.pregame-games-section .pregame-game-card::before {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 3px;
+    background: linear-gradient(
+        90deg,
+        var(--pregame-away-color) 0 50%,
+        var(--pregame-home-color) 50% 100%
+    );
+    content: "";
+}
+
+.pregame-games-section .pregame-game-card:hover,
+.pregame-games-section .pregame-game-card:focus-visible {
+    color: #f5f8f9;
+    border-color: #86a6b4;
+    outline: 1px solid rgba(134, 166, 180, 0.32);
+    outline-offset: -2px;
+    background: linear-gradient(145deg, #303b43 0%, #222a30 100%);
+}
+
+.pregame-games-section .pregame-matchup-title {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    align-items: center;
+    text-align: center;
+}
+
+.pregame-games-section .pregame-game-card small {
+    color: #a7b3ba;
+}
+
+.pregame-games-section .pregame-live-badge,
+.pregame-games-section .pregame-status-badge {
+    color: #dfe8eb;
+    border-color: #52616a;
+    background: rgba(17, 22, 25, 0.34);
 }
 
 .pregame-person-card strong,

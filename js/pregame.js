@@ -78,6 +78,28 @@
         146: "マーリンズ", 147: "ヤンキース", 158: "ブルワーズ"
     })[Number(team?.id)] ?? teamJapaneseName(team);
 
+    const TEAM_CARD_COLORS = {
+        108: "#ba0021", 109: "#a71930", 110: "#df4601", 111: "#bd3039",
+        112: "#0e3386", 113: "#c6011f", 114: "#00385d", 115: "#33006f",
+        116: "#0c2340", 117: "#002d62", 118: "#004687", 119: "#005a9c",
+        120: "#ab0003", 121: "#002d72", 133: "#003831", 134: "#fdb827",
+        135: "#2f241d", 136: "#005c5c", 137: "#fd5a1e", 138: "#c41e3a",
+        139: "#092c5c", 140: "#003278", 141: "#134a8e", 142: "#002b5c",
+        143: "#e81828", 144: "#ce1141", 145: "#27251f", 146: "#00a3e0",
+        147: "#0c2340", 158: "#12284b"
+    };
+
+    const setGameCardTeamColors = (card, awayTeam, homeTeam) => {
+        card.style.setProperty(
+            "--pregame-away-color",
+            TEAM_CARD_COLORS[Number(awayTeam?.id)] ?? "#66727a"
+        );
+        card.style.setProperty(
+            "--pregame-home-color",
+            TEAM_CARD_COLORS[Number(homeTeam?.id)] ?? "#879198"
+        );
+    };
+
     const formatDate = (date) => {
         const [year, month, day] = String(date ?? "").slice(0, 10).split("-");
         return year && month && day ? `${year}/${Number(month)}/${Number(day)}` : String(date ?? "-");
@@ -110,6 +132,77 @@
         if (/warmup|pre-game/.test(status)) return "試合前";
         if (/scheduled|preview/.test(status)) return "開始前";
         return "予定";
+    };
+
+    const statusReasonLabel = (reason) => {
+        const value = String(reason ?? "").trim();
+        const normalized = value.toLowerCase();
+        if (!value) return "";
+        if (/rain/.test(normalized)) return "雨天";
+        if (/inclement weather|weather/.test(normalized)) return "悪天候";
+        if (/wet grounds|ground conditions|unplayable field/.test(normalized)) {
+            return "グラウンドコンディション不良";
+        }
+        if (/air quality/.test(normalized)) return "大気状態不良";
+        if (/power/.test(normalized)) return "停電";
+        return "";
+    };
+
+    const explicitRescheduleDate = (game) => {
+        const candidates = [
+            game?.rescheduleDate,
+            game?.resumeDate,
+            game?.rescheduledGameDate,
+            game?.status?.rescheduleDate,
+            game?.status?.resumeDate
+        ];
+        const value = candidates.find((candidate) => /^\d{4}-\d{2}-\d{2}/.test(String(candidate ?? "")));
+        if (!value) return "";
+        const [, month, day] = String(value).slice(0, 10).split("-");
+        return month && day ? `${Number(month)}月${Number(day)}日` : "";
+    };
+
+    const gameCardStatusLabel = (game) => {
+        const detailed = String(game?.status?.detailedState ?? "");
+        const abstract = String(game?.status?.abstractGameState ?? "");
+        const coded = String(game?.status?.codedGameState ?? "");
+        const reason = String(game?.status?.reason ?? game?.reason ?? "");
+        const combined = `${detailed} ${abstract} ${reason}`.toLowerCase();
+        const translatedReason = statusReasonLabel(reason || detailed);
+        const rescheduleDate = explicitRescheduleDate(game);
+
+        if (/postpon|resched/.test(combined)) {
+            const prefix = translatedReason === "雨天"
+                ? "雨天順延"
+                : translatedReason
+                    ? `${translatedReason}による順延`
+                    : "順延";
+            return rescheduleDate ? `${prefix}（${rescheduleDate}）` : prefix;
+        }
+        if (/cancel/.test(combined) || coded === "C") {
+            return translatedReason ? `${translatedReason}による中止` : "中止";
+        }
+        if (/suspend|delay|paused/.test(combined)) {
+            if (translatedReason === "雨天") return "雨天中断";
+            if (translatedReason) return `${translatedReason}による中断`;
+            return "一時中断";
+        }
+        if (/final|completed|game over/.test(combined) || coded === "F") return "終了";
+        if (/live|in progress|manager challenge|review/.test(combined)) {
+            const inning = Number(game?.linescore?.currentInning);
+            if (!inning) return "試合中";
+            const inningState = String(game?.linescore?.inningState ?? "").toLowerCase();
+            const half = game?.linescore?.isTopInning || /^top/.test(inningState)
+                ? "表"
+                : game?.linescore?.isBottomInning || /^bottom/.test(inningState)
+                    ? "裏"
+                    : "";
+            return `${inning}回${half}`;
+        }
+        if (/warmup|pre-game|scheduled|preview/.test(combined) || ["P", "S"].includes(coded)) {
+            return "開始前";
+        }
+        return "状態確認中";
     };
 
     const positionLabel = (position) => ({
@@ -770,6 +863,7 @@
             dashboard.append(japaneseSection);
 
             const gamesSection = section("全試合", `${games.length}試合`);
+            gamesSection.classList.add("pregame-games-section");
             const gamesGrid = el("div", "pregame-card-grid");
             if (!games.length) {
                 gamesSection.append(empty("この日のMLB公式戦は見つかりませんでした。"));
@@ -778,6 +872,7 @@
                     const away = game?.teams?.away?.team ?? {};
                     const home = game?.teams?.home?.team ?? {};
                     const card = el("button", "pregame-game-card");
+                    setGameCardTeamColors(card, away, home);
                     const matchupTitle = el("strong", "pregame-matchup-title");
                     matchupTitle.append(
                         document.createTextNode(teamJapaneseShortName(away)),
@@ -785,24 +880,38 @@
                         document.createTextNode(teamJapaneseShortName(home))
                     );
                     const matchupMeta = el("small", "pregame-matchup-meta");
-                    matchupMeta.append(
-                        el("span", "pregame-venue-line", venueLabel(game?.venue) || "球場未定"),
-                        el("span", "pregame-pitcher-line", `先発　${
+                    const pitcherLine = el("span", "pregame-pitcher-line");
+                    pitcherLine.append(
+                        el(
+                            "span",
+                            "pregame-pitcher-name pregame-pitcher-away",
                             game?.teams?.away?.probablePitcher?.fullName
                                 ? playerName(game.teams.away.probablePitcher)
                                 : "未定"
-                        }　対　${
+                        ),
+                        el("span", "pregame-pitcher-versus", "対"),
+                        el(
+                            "span",
+                            "pregame-pitcher-name pregame-pitcher-home",
                             game?.teams?.home?.probablePitcher?.fullName
                                 ? playerName(game.teams.home.probablePitcher)
                                 : "未定"
-                        }`)
+                        )
+                    );
+                    matchupMeta.append(
+                        el("span", "pregame-venue-line", venueLabel(game?.venue) || "球場未定"),
+                        pitcherLine
                     );
                     card.type = "button";
                     card.dataset.pregameGame = String(game.gamePk);
                     card.append(
                         matchupTitle,
                         matchupMeta,
-                        el("span", isLive(game) ? "pregame-live-badge" : "pregame-status-badge", statusLabel(game))
+                        el(
+                            "span",
+                            isLive(game) ? "pregame-live-badge" : "pregame-status-badge",
+                            gameCardStatusLabel(game)
+                        )
                     );
                     gamesGrid.append(card);
                 });
