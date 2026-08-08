@@ -240,6 +240,16 @@ select {
     gap: 8px;
 }
 
+.header-search-purpose {
+    align-self: flex-end;
+    margin: 0 2px 8px 0;
+    color: #8f9ba2;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+}
+
 .header-search-field {
     min-width: 0;
     display: flex;
@@ -495,6 +505,166 @@ body.app-mode-pregame .pregame-brand-home {
 
 .sidebar input:focus {
     border-color: #7896a3;
+}
+
+.today-games-control {
+    position: relative;
+    z-index: 20;
+    margin-bottom: 8px;
+}
+
+.sidebar .today-games-toggle {
+    min-height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0;
+    padding: 0 14px;
+    border-color: #718a96;
+    background: linear-gradient(180deg, #3c4850 0%, #293239 100%);
+    font-size: 13px;
+}
+
+.today-games-toggle[aria-expanded="true"] .today-games-caret {
+    transform: rotate(180deg);
+}
+
+.today-games-caret {
+    color: #b8cbd3;
+    font-size: 9px;
+    transition: transform 120ms ease;
+}
+
+.today-games-panel {
+    position: absolute;
+    top: calc(100% + 5px);
+    left: 0;
+    width: min(430px, calc(100vw - 28px));
+    border: 1px solid #596872;
+    border-radius: 2px;
+    background: #171d21;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.48);
+}
+
+.today-games-panel[hidden] {
+    display: none;
+}
+
+.today-games-panel-heading {
+    padding: 9px 11px;
+    color: #c5d0d5;
+    border-bottom: 1px solid #3f4a51;
+    background: linear-gradient(180deg, #283138 0%, #20272c 100%);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+}
+
+.today-games-list {
+    max-height: min(58vh, 520px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+}
+
+.sidebar .today-game-card {
+    min-height: 43px;
+    display: grid;
+    grid-template-columns: 42px 24px minmax(78px, 1fr) 24px 42px;
+    align-items: center;
+    gap: 5px;
+    margin: 0;
+    padding: 7px 10px;
+    border: 0;
+    border-bottom: 1px solid #313b42;
+    border-radius: 0;
+    background: transparent;
+    font-size: 11px;
+}
+
+.sidebar .today-game-card:last-child {
+    border-bottom: 0;
+}
+
+.sidebar .today-game-card:hover,
+.sidebar .today-game-card:focus-visible {
+    background: #27323a;
+    outline: 1px solid #718d99;
+    outline-offset: -1px;
+}
+
+.today-game-team {
+    color: #f0f4f5;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+}
+
+.today-game-score {
+    color: #fff;
+    text-align: center;
+    font-variant-numeric: tabular-nums;
+}
+
+.today-game-state {
+    color: #b8c7cd;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.today-games-message {
+    padding: 18px 12px;
+    color: #aeb9bf;
+    font-size: 11px;
+    line-height: 1.6;
+    text-align: center;
+}
+
+.direct-game-entry {
+    margin-bottom: 8px;
+    border: 1px solid #3f4a52;
+    border-radius: 2px;
+    background: rgba(12, 16, 19, 0.34);
+}
+
+.direct-game-entry summary {
+    min-height: 34px;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    color: #aeb9bf;
+    cursor: pointer;
+    font-size: 10px;
+    list-style: none;
+}
+
+.direct-game-entry summary::-webkit-details-marker {
+    display: none;
+}
+
+.direct-game-entry summary::after {
+    margin-left: auto;
+    content: "›";
+    font-size: 15px;
+}
+
+.direct-game-entry[open] summary::after {
+    transform: rotate(90deg);
+}
+
+.direct-game-entry-body {
+    padding: 7px 9px 2px;
+    border-top: 1px solid #364148;
+}
+
+@media screen and (max-width: 767px) {
+    .today-games-panel {
+        width: min(360px, calc(100vw - 24px));
+    }
+
+    .sidebar .today-game-card {
+        min-height: 52px;
+        grid-template-columns: 42px 26px minmax(72px, 1fr) 26px 42px;
+        font-size: 12px;
+    }
 }
 
 .sidebar button {

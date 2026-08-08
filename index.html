@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MLB Scorebook Generator</title>
     <!-- Score notation update: stacked batted-ball symbol, red hits, blue strikeouts, black other results. -->
-    <link rel="stylesheet" href="css/style.css?v=20260808-2">
+    <link rel="stylesheet" href="css/style.css?v=20260808-3">
     <link rel="stylesheet" href="css/pregame.css?v=20260808-1">
 </head>
 
@@ -28,6 +28,7 @@
         </div>
 
         <section class="header-game-search" aria-label="試合検索">
+            <span class="header-search-purpose">過去の試合を検索</span>
             <label class="header-search-field header-year-field">
                 <span>YEAR</span>
                 <select id="header-game-year" aria-label="検索シーズン">
@@ -62,13 +63,33 @@
         <aside class="sidebar">
             <h2>Game Data</h2>
 
-            <label for="gameday-url">MLB Gameday URL / Game PK</label>
-            <input
-                type="text"
-                id="gameday-url"
-                placeholder="https://www.mlb.com/gameday/... または gamePk">
+            <div class="today-games-control" id="today-games-control">
+                <button
+                    type="button"
+                    class="today-games-toggle"
+                    id="today-games-toggle"
+                    aria-expanded="false"
+                    aria-controls="today-games-panel">
+                    <span>本日の試合</span><span class="today-games-caret" aria-hidden="true">▼</span>
+                </button>
+                <section class="today-games-panel" id="today-games-panel" hidden>
+                    <div class="today-games-panel-heading" id="today-games-heading">本日の試合</div>
+                    <div class="today-games-list" id="today-games-list"></div>
+                </section>
+            </div>
 
-            <button id="load-btn">試合データを取得</button>
+            <details class="direct-game-entry" id="direct-game-entry">
+                <summary>URL / Game PKを直接入力</summary>
+                <div class="direct-game-entry-body">
+                    <label for="gameday-url">MLB Gameday URL / Game PK</label>
+                    <input
+                        type="text"
+                        id="gameday-url"
+                        placeholder="https://www.mlb.com/gameday/... または gamePk">
+                    <button id="load-btn">試合データを取得</button>
+                </div>
+            </details>
+
             <button id="generate-btn">試合前情報</button>
             <button id="save-btn">保存</button>
 
@@ -453,6 +474,11 @@
                 searchAwayTeam: document.getElementById("header-away-team"),
                 searchGameDate: document.getElementById("header-game-date"),
                 searchGameButton: document.getElementById("header-game-search-btn"),
+                todayGamesControl: document.getElementById("today-games-control"),
+                todayGamesToggle: document.getElementById("today-games-toggle"),
+                todayGamesPanel: document.getElementById("today-games-panel"),
+                todayGamesHeading: document.getElementById("today-games-heading"),
+                todayGamesList: document.getElementById("today-games-list"),
                 generateButton: document.getElementById("generate-btn"),
                 saveButton: document.getElementById("save-btn"),
                 awayPageButton: document.getElementById("away-page-btn"),
@@ -5208,6 +5234,137 @@
                 return getSearchGames(params, `date:${date}`);
             };
 
+            const todayGamesCache = new Map();
+
+            const getMlbLocalDate = () => {
+                const parts = new Intl.DateTimeFormat("en-US", {
+                    timeZone: "America/New_York",
+                    year: "numeric",
+                    month: "2-digit",
+                    day: "2-digit"
+                }).formatToParts(new Date());
+                const values = Object.fromEntries(parts.map((part) => [part.type, part.value]));
+                return `${values.year}-${values.month}-${values.day}`;
+            };
+
+            const fetchTodayGames = (date) => {
+                if (todayGamesCache.has(date)) return todayGamesCache.get(date);
+                const params = new URLSearchParams({
+                    sportId: "1",
+                    date,
+                    hydrate: "team,linescore,venue"
+                });
+                const request = fetch(`https://statsapi.mlb.com/api/v1/schedule?${params}`)
+                    .then(async (response) => {
+                        if (!response.ok) throw new Error("本日の試合一覧を取得できません。");
+                        const payload = await response.json();
+                        return (payload?.dates ?? [])
+                            .flatMap((item) => item?.games ?? [])
+                            .filter((game) => Number(game?.gamePk));
+                    });
+                todayGamesCache.set(date, request);
+                return request;
+            };
+
+            const formatTodayGameTime = (game) => {
+                const gameDate = new Date(game?.gameDate);
+                if (Number.isNaN(gameDate.getTime())) return "開始前";
+                const timeZone = game?.venue?.timeZone?.id || "America/New_York";
+                try {
+                    return new Intl.DateTimeFormat("en-US", {
+                        timeZone,
+                        hour: "numeric",
+                        minute: "2-digit",
+                        hour12: false
+                    }).format(gameDate);
+                } catch (_error) {
+                    return new Intl.DateTimeFormat("en-US", {
+                        timeZone: "America/New_York",
+                        hour: "numeric",
+                        minute: "2-digit",
+                        hour12: false
+                    }).format(gameDate);
+                }
+            };
+
+            const getTodayGameState = (game) => {
+                const abstractState = String(game?.status?.abstractGameState ?? "").toLowerCase();
+                const detailedState = String(game?.status?.detailedState ?? "");
+                const normalized = detailedState.toLowerCase();
+                const innings = Number(game?.linescore?.currentInning) ||
+                    (game?.linescore?.innings ?? []).length || 9;
+
+                if (abstractState === "final" || /final|game over|completed early/.test(normalized)) {
+                    return innings > 9 ? `FINAL/${innings}` : "FINAL";
+                }
+                if (/postponed/.test(normalized)) return "延期";
+                if (/cancelled|canceled/.test(normalized)) return "中止";
+                if (/suspended/.test(normalized)) return "中断";
+                if (/rain delay|delayed start.*rain/.test(normalized)) return "雨天遅延";
+                if (/delayed/.test(normalized)) return "遅延";
+                if (abstractState === "live" || /in progress|manager challenge/.test(normalized)) {
+                    const inning = Number(game?.linescore?.currentInning);
+                    return inning ? `${inning}回` : "試合中";
+                }
+                return formatTodayGameTime(game);
+            };
+
+            const closeTodayGames = () => {
+                dom.todayGamesPanel.hidden = true;
+                dom.todayGamesToggle.setAttribute("aria-expanded", "false");
+            };
+
+            const renderTodayGames = (games, date) => {
+                dom.todayGamesHeading.textContent = `${formatSearchDate(date)} 本日の試合`;
+                dom.todayGamesList.replaceChildren();
+                if (!games.length) {
+                    dom.todayGamesList.append(createElement("p", "today-games-message", "本日の試合はありません。"));
+                    return;
+                }
+
+                games.forEach((game) => {
+                    const away = game?.teams?.away;
+                    const home = game?.teams?.home;
+                    const awayCode = away?.team?.abbreviation || "AWY";
+                    const homeCode = home?.team?.abbreviation || "HME";
+                    const abstractState = String(game?.status?.abstractGameState ?? "").toLowerCase();
+                    const showScore = abstractState === "live" || abstractState === "final";
+                    const button = createElement("button", "today-game-card");
+                    button.type = "button";
+                    button.dataset.gamePk = String(game.gamePk);
+                    button.setAttribute(
+                        "aria-label",
+                        `${awayCode} 対 ${homeCode}、${getTodayGameState(game)}`
+                    );
+                    button.append(
+                        createElement("span", "today-game-team", awayCode),
+                        createElement("span", "today-game-score", showScore ? String(away?.score ?? "-") : ""),
+                        createElement("span", "today-game-state", getTodayGameState(game)),
+                        createElement("span", "today-game-score", showScore ? String(home?.score ?? "-") : ""),
+                        createElement("span", "today-game-team", homeCode)
+                    );
+                    dom.todayGamesList.append(button);
+                });
+            };
+
+            const openTodayGames = async () => {
+                dom.todayGamesPanel.hidden = false;
+                dom.todayGamesToggle.setAttribute("aria-expanded", "true");
+                const date = getMlbLocalDate();
+                dom.todayGamesHeading.textContent = `${formatSearchDate(date)} 本日の試合`;
+                dom.todayGamesList.replaceChildren(
+                    createElement("p", "today-games-message", "本日の試合を取得しています…")
+                );
+                try {
+                    renderTodayGames(await fetchTodayGames(date), date);
+                } catch (error) {
+                    console.error(error);
+                    dom.todayGamesList.replaceChildren(
+                        createElement("p", "today-games-message", "本日の試合一覧を取得できません。")
+                    );
+                }
+            };
+
             const fetchGamesForSearchMatchup = (team1Id, team2Id, season) => {
                 const orderedIds = [Number(team1Id), Number(team2Id)].sort((a, b) => a - b);
                 const params = new URLSearchParams({
@@ -5793,6 +5950,31 @@
             };
 
             dom.loadButton.addEventListener("click", loadGame);
+            dom.todayGamesToggle.addEventListener("click", async () => {
+                if (!dom.todayGamesPanel.hidden) {
+                    closeTodayGames();
+                    return;
+                }
+                await openTodayGames();
+            });
+            dom.todayGamesList.addEventListener("click", async (event) => {
+                const gameCard = event.target.closest("[data-game-pk]");
+                if (!gameCard) return;
+                dom.gameInput.value = gameCard.dataset.gamePk;
+                closeTodayGames();
+                await loadGame();
+            });
+            document.addEventListener("click", (event) => {
+                if (!dom.todayGamesPanel.hidden && !dom.todayGamesControl.contains(event.target)) {
+                    closeTodayGames();
+                }
+            });
+            document.addEventListener("keydown", (event) => {
+                if (event.key === "Escape" && !dom.todayGamesPanel.hidden) {
+                    closeTodayGames();
+                    dom.todayGamesToggle.focus();
+                }
+            });
             dom.searchGameYear.addEventListener("change", resetSearchSelection);
             dom.searchHomeTeam.addEventListener("change", async () => {
                 updateSearchTeamOptions();
