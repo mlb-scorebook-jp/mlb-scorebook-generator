@@ -6,7 +6,9 @@
         repeating-linear-gradient(90deg, transparent 0 4px, rgba(255, 255, 255, 0.018) 4px 5px);
 }
 
-.viewer.pregame-active > .scorebook-page {
+.viewer.pregame-active > .scorebook-page,
+.viewer.pregame-active > .scorebook-horizontal-scroll,
+body.app-mode-pregame .scorebook-horizontal-scroll {
     display: none !important;
 }
 
@@ -747,12 +749,18 @@
     min-width: 0;
 }
 
-.pregame-season-record-status {
+.pregame-status-badge.pregame-season-record-status {
     flex: 0 0 auto;
+    min-height: 18px;
+    align-items: center;
+    margin-top: 0;
+    padding: 3px 8px;
     color: #211b08;
     border-color: #d5aa22;
     background: #e6c247;
+    font-size: 10px;
     font-weight: 700;
+    line-height: 1;
 }
 
 .pregame-recent-pitching-opponent {

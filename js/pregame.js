@@ -1785,15 +1785,13 @@
                 );
             }
             const grid = el("div", "pregame-detail-grid");
-
-            groups.forEach((group) => {
+            const recentSections = groups.map((group) => {
                 const recent = [...(logs[group] ?? [])].slice(-10);
                 const five = recent.slice(-5);
                 if (group === "pitching") {
-                    grid.append(renderRecentPitchingTable(five));
-                    return;
+                    return renderRecentPitchingTable(five);
                 }
-                grid.append(renderRecentHittingTable(five));
+                return renderRecentHittingTable(five);
             });
 
             const currentSection = section("今シーズンの記録");
@@ -1804,7 +1802,11 @@
             currentSection.append(renderSeasonRecordList(getSeasonRecords(logs, {
                 priorCareerCompleteGames
             })));
-            grid.append(currentSection);
+            if (isTwoWay && recentSections.length >= 2) {
+                grid.append(recentSections[0], currentSection, ...recentSections.slice(1));
+            } else {
+                grid.append(...recentSections, currentSection);
+            }
 
             const todaySection = section("今日の情報", statusLabel(game));
             todaySection.classList.add("pregame-span-6");
