@@ -151,6 +151,28 @@ body.app-mode-pregame .scorebook-horizontal-scroll {
     white-space: nowrap;
 }
 
+.pregame-score-load-button {
+    min-width: 156px;
+    min-height: 35px;
+    margin-top: 5px;
+    padding: 0 20px;
+    color: #f3f7f8;
+    border: 1px solid #75858f;
+    border-radius: 2px;
+    background: linear-gradient(180deg, #4a5963 0%, #303b43 100%);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.22);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+}
+
+.pregame-score-load-button:hover,
+.pregame-score-load-button:focus-visible {
+    border-color: #94a6b0;
+    background: linear-gradient(180deg, #586872 0%, #39454d 100%);
+}
+
 .pregame-header-actions {
     display: flex;
     align-items: flex-end;
@@ -1552,6 +1574,12 @@ a.pregame-metric-value:focus-visible {
 
     .pregame-matchup-times {
         overflow-wrap: normal;
+    }
+
+    .pregame-score-load-button {
+        width: min(100%, 240px);
+        min-height: 44px;
+        font-size: 16px;
     }
 
     .pregame-view-header:has(.pregame-matchup-title-block) .pregame-header-actions,

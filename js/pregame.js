@@ -1011,7 +1011,7 @@
         }).format(value);
     };
 
-    const setMatchupHeader = (awayTeam, homeTeam, standings, game, feed) => {
+    const setMatchupHeader = (awayTeam, homeTeam, standings, game, feed, gamePk) => {
         const teamBlock = (team) => {
             const block = el("span", "pregame-header-team");
             const standing = standings.get(Number(team?.id));
@@ -1044,8 +1044,12 @@
             el("span", "pregame-matchup-times",
                 `ET ${formatGameTime(dateTime, "America/New_York")}　｜　` +
                 `JST ${formatGameTime(dateTime, "Asia/Tokyo")}`
-            )
+            ),
+            el("button", "pregame-score-load-button", "スコア取得")
         );
+        const scoreButton = dom.subtitle.querySelector(".pregame-score-load-button");
+        scoreButton.type = "button";
+        scoreButton.dataset.pregameScoreGame = String(gamePk);
     };
 
     const section = (title, subtitle = "") => {
@@ -2348,7 +2352,7 @@
                 getRecentTeamTransactions([awayTeam, homeTeam], date),
                 getTeamInjuryReports([awayTeam, homeTeam], date)
             ]);
-            setMatchupHeader(awayTeam, homeTeam, standings, game, feed);
+            setMatchupHeader(awayTeam, homeTeam, standings, game, feed, gamePk);
             const grid = el("div", "pregame-detail-grid");
 
             const awayProbable = getProbablePitcher(game, feed, "away");
@@ -2565,6 +2569,13 @@
                 scrollCompactPregameToTop();
                 renderGameDetail(Number(gameCard.dataset.pregameGame));
             }
+        });
+        dom.view.addEventListener("click", async (event) => {
+            const scoreButton = event.target.closest("[data-pregame-score-game]");
+            if (!scoreButton) return;
+            const gamePk = Number(scoreButton.dataset.pregameScoreGame);
+            if (!gamePk || !window.MLBAppNavigation?.loadScorebookGame) return;
+            await window.MLBAppNavigation.loadScorebookGame(gamePk);
         });
     };
 
