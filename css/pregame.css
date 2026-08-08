@@ -635,6 +635,102 @@
     border-bottom: 0;
 }
 
+.pregame-batting-table-scroll {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    overflow-x: visible;
+}
+
+.pregame-batting-table-card {
+    min-width: 0;
+    max-width: 100%;
+}
+
+.pregame-detail-grid + .pregame-batting-table-card {
+    margin-top: 12px;
+}
+
+.pregame-batting-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    color: #dfe6e9;
+    font-variant-numeric: tabular-nums;
+}
+
+.pregame-batting-table th,
+.pregame-batting-table td {
+    height: 31px;
+    padding: 5px 3px;
+    border-right: 1px solid #3d4950;
+    border-bottom: 1px solid #3d4950;
+    font-size: 10px;
+    line-height: 1.25;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.pregame-batting-table tr > :last-child {
+    border-right: 0;
+}
+
+.pregame-batting-table tbody tr:last-child > * {
+    border-bottom: 0;
+}
+
+.pregame-batting-table thead th {
+    color: #c9d3d8;
+    background: #202a30;
+    font-size: 9px;
+    font-weight: 700;
+}
+
+.pregame-batting-table tbody th {
+    color: #eef3f5;
+    background: #222c32;
+    font-weight: 700;
+}
+
+.pregame-batting-table tbody tr:last-child th,
+.pregame-batting-table tbody tr:last-child td {
+    background: rgba(78, 94, 104, 0.2);
+    font-weight: 700;
+}
+
+.pregame-batting-table-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-width: 0;
+}
+
+.pregame-batting-year-col {
+    width: 6.5%;
+}
+
+.pregame-batting-col-gamesPlayed,
+.pregame-batting-col-rbi,
+.pregame-batting-col-stolenBases,
+.pregame-batting-col-baseOnBalls,
+.pregame-batting-col-hitByPitch,
+.pregame-batting-col-strikeOuts,
+.pregame-batting-col-sacBunts,
+.pregame-batting-col-sacFlies,
+.pregame-batting-col-errors {
+    width: 6.1%;
+}
+
+.pregame-batting-col-avg,
+.pregame-batting-col-homeRuns,
+.pregame-batting-col-risp,
+.pregame-batting-col-slg,
+.pregame-batting-col-doubles,
+.pregame-batting-col-triples {
+    width: 7.2%;
+}
+
 .pregame-batting-stat {
     color: #dfe6e9;
     font-size: 11px;
@@ -872,6 +968,16 @@ a.pregame-metric-value:focus-visible {
 }
 
 @media (max-width: 1000px) {
+    .pregame-batting-table-scroll {
+        overflow-x: auto;
+        overscroll-behavior-x: contain;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .pregame-batting-table {
+        min-width: 1050px;
+    }
+
     .pregame-games-section .pregame-league-grid {
         grid-template-columns: repeat(3, minmax(0, 1fr));
     }
@@ -1250,5 +1356,21 @@ a.pregame-metric-value:focus-visible {
         font-size: 16px;
         line-height: 1.5;
         white-space: normal;
+    }
+
+    .pregame-batting-table-link {
+        min-height: 44px;
+        font-size: 14px;
+        white-space: nowrap;
+    }
+
+    .pregame-batting-table th,
+    .pregame-batting-table td {
+        height: 46px;
+        font-size: 14px;
+    }
+
+    .pregame-batting-table thead th {
+        font-size: 14px;
     }
 }

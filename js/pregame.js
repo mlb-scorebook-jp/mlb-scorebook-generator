@@ -354,6 +354,118 @@
         return totals.atBats ? totals.hits / totals.atBats : null;
     };
 
+    const getPlayerRispStatsBySeason = async (playerId, date, startDate) => {
+        const endDate = previousDate(date);
+        const firstSeason = Number(String(startDate).slice(0, 4));
+        const lastSeason = Number(String(endDate).slice(0, 4));
+        if (!Number.isFinite(firstSeason) || !Number.isFinite(lastSeason)) return new Map();
+        const seasons = Array.from(
+            { length: Math.max(0, lastSeason - firstSeason + 1) },
+            (_value, index) => firstSeason + index
+        );
+        const entries = await Promise.all(seasons.map(async (season) => {
+            const params = new URLSearchParams({
+                stats: "statSplits",
+                group: "hitting",
+                gameType: "R",
+                sitCodes: "risp",
+                season: String(season)
+            });
+            const payload = await fetchJson(
+                `${API_ROOT}/v1/people/${playerId}/stats?${params}`,
+                `pregame:risp-season:${playerId}:${season}`
+            ).catch(() => null);
+            const stats = (payload?.stats ?? []).flatMap((entry) => entry?.splits ?? []);
+            const atBats = stats.reduce((sum, split) => sum + statNumber(split?.stat?.atBats), 0);
+            const hits = stats.reduce((sum, split) => sum + statNumber(split?.stat?.hits), 0);
+            return [season, stats.length ? { atBats, hits } : null];
+        }));
+        return new Map(entries.filter(([_season, stats]) => stats));
+    };
+
+    const HITTING_TOTAL_FIELDS = [
+        "gamesPlayed", "atBats", "hits", "homeRuns", "rbi", "stolenBases",
+        "doubles", "triples", "baseOnBalls", "hitByPitch", "strikeOuts",
+        "sacBunts", "sacFlies", "totalBases"
+    ];
+
+    const aggregateOfficialHittingSplits = (splits) => {
+        if (!splits.length) return null;
+        if (splits.length === 1) return { ...splits[0].stat };
+        const totals = {};
+        HITTING_TOTAL_FIELDS.forEach((field) => {
+            totals[field] = splits.reduce(
+                (sum, split) => sum + statNumber(split?.stat?.[field]),
+                0
+            );
+        });
+        totals.avg = totals.atBats ? totals.hits / totals.atBats : 0;
+        const derivedTotalBases = totals.hits + totals.doubles +
+            (2 * totals.triples) + (3 * totals.homeRuns);
+        totals.slg = totals.atBats
+            ? (totals.totalBases || derivedTotalBases) / totals.atBats
+            : 0;
+        return totals;
+    };
+
+    const getPlayerYearByYearBatting = async (playerId) => {
+        const params = new URLSearchParams({
+            stats: "yearByYear",
+            group: "hitting",
+            gameType: "R",
+            sportIds: "1"
+        });
+        const payload = await fetchJson(
+            `${API_ROOT}/v1/people/${playerId}/stats?${params}`,
+            `pregame:year-by-year-hitting:${playerId}`
+        );
+        const bySeason = new Map();
+        (payload?.stats ?? []).flatMap((entry) => entry?.splits ?? []).forEach((split) => {
+            const season = Number(split?.season);
+            if (!Number.isFinite(season) || !split?.stat) return;
+            if (!bySeason.has(season)) bySeason.set(season, []);
+            bySeason.get(season).push(split);
+        });
+        return new Map([...bySeason.entries()]
+            .map(([season, splits]) => [season, aggregateOfficialHittingSplits(splits)]));
+    };
+
+    const getPlayerYearByYearErrors = async (playerId) => {
+        const params = new URLSearchParams({
+            stats: "yearByYear",
+            group: "fielding",
+            gameType: "R",
+            sportIds: "1"
+        });
+        const payload = await fetchJson(
+            `${API_ROOT}/v1/people/${playerId}/stats?${params}`,
+            `pregame:year-by-year-fielding-v2:${playerId}`
+        ).catch(() => null);
+        const bySeason = new Map();
+        (payload?.stats ?? []).flatMap((entry) => entry?.splits ?? [])
+            .filter((split) => Number(split?.sport?.id) === 1)
+            .forEach((split) => {
+            const season = Number(split?.season);
+            if (!Number.isFinite(season) || split?.stat?.errors == null) return;
+            bySeason.set(season, (bySeason.get(season) ?? 0) + statNumber(split.stat.errors));
+        });
+        return bySeason;
+    };
+
+    const getPlayerFieldingErrorsBeforeDate = async (playerId, season, date) => {
+        const endDate = previousDate(date);
+        const payload = await fetchJson(
+            `${API_ROOT}/v1/people/${playerId}/stats?stats=byDateRange&group=fielding&gameType=R` +
+            `&sportIds=1&startDate=${season}-01-01&endDate=${endDate}`,
+            `pregame:fielding-before-v2:${playerId}:${season}:${date}`
+        ).catch(() => null);
+        const splits = (payload?.stats ?? []).flatMap((entry) => entry?.splits ?? [])
+            .filter((split) => Number(split?.sport?.id) === 1 && split?.stat?.errors != null);
+        return splits.length
+            ? splits.reduce((sum, split) => sum + statNumber(split.stat.errors), 0)
+            : null;
+    };
+
     const getPlayerCareer = async (person, group, date) => {
         const debut = String(person?.mlbDebutDate ?? "");
         if (!/^\d{4}-\d{2}-\d{2}$/.test(debut)) return null;
@@ -1045,7 +1157,83 @@
         return node;
     };
 
-    const renderBattingSummaryCard = (title, stats, rispAverage, referenceUrl, player) => {
+    const BATTING_TABLE_COLUMNS = [
+        { label: "試合", field: "gamesPlayed" },
+        { label: "打率", field: "avg", rate: true },
+        { label: "本塁打", field: "homeRuns" },
+        { label: "打点", field: "rbi" },
+        { label: "盗塁", field: "stolenBases" },
+        { label: "得点圏", field: "risp", rate: true },
+        { label: "長打率", field: "slg", rate: true },
+        { label: "二塁打", field: "doubles" },
+        { label: "三塁打", field: "triples" },
+        { label: "四球", field: "baseOnBalls" },
+        { label: "死球", field: "hitByPitch" },
+        { label: "三振", field: "strikeOuts" },
+        { label: "犠打", field: "sacBunts" },
+        { label: "犠飛", field: "sacFlies" },
+        { label: "失策", field: "errors" }
+    ];
+
+    const battingTableValue = (row, column) => {
+        if (column.field === "risp") {
+            if (!row.risp) return "-";
+            return formatAverage(row.risp.atBats ? row.risp.hits / row.risp.atBats : 0);
+        }
+        if (column.field === "errors") {
+            return row.errors == null ? "-" : String(row.errors);
+        }
+        const value = row.stats?.[column.field];
+        if (value == null || value === "") return "-";
+        return column.rate ? formatAverage(value) : String(value);
+    };
+
+    const renderBattingStatsTable = (
+        title,
+        rows,
+        referenceUrl,
+        player,
+        { includeSeason = false } = {}
+    ) => {
+        const card = el("section", "pregame-batting-summary-card pregame-batting-table-card");
+        card.append(el("h3", "pregame-batting-summary-title", title));
+        const scroller = el("div", "pregame-batting-table-scroll");
+        const table = el("table", "pregame-batting-table");
+        const colgroup = document.createElement("colgroup");
+        if (includeSeason) colgroup.append(el("col", "pregame-batting-year-col"));
+        BATTING_TABLE_COLUMNS.forEach((column) => {
+            colgroup.append(el("col", `pregame-batting-col-${column.field}`));
+        });
+        const head = document.createElement("thead");
+        const headRow = document.createElement("tr");
+        if (includeSeason) headRow.append(el("th", "pregame-batting-year", "年度"));
+        BATTING_TABLE_COLUMNS.forEach((column) => headRow.append(el("th", "", column.label)));
+        head.append(headRow);
+        const body = document.createElement("tbody");
+        rows.forEach((row) => {
+            const tr = document.createElement("tr");
+            if (includeSeason) tr.append(el("th", "pregame-batting-year", row.label));
+            BATTING_TABLE_COLUMNS.forEach((column) => {
+                const td = document.createElement("td");
+                const value = battingTableValue(row, column);
+                const linked = battingStatLink(
+                    value,
+                    value === "-" ? "" : referenceUrl,
+                    `${playerName(player)}の${row.label ? `${row.label}年 ` : ""}${column.label}をBaseball-Referenceで開く`
+                );
+                linked.classList.add("pregame-batting-table-link");
+                td.append(linked);
+                tr.append(td);
+            });
+            body.append(tr);
+        });
+        table.append(colgroup, head, body);
+        scroller.append(table);
+        card.append(scroller);
+        return card;
+    };
+
+    const renderLegacyBattingSummaryCard = (title, stats, rispAverage, referenceUrl, player) => {
         const card = el("section", "pregame-batting-summary-card");
         card.append(el("h3", "pregame-batting-summary-title", title));
         const rows = el("div", "pregame-batting-summary-rows");
@@ -1116,24 +1304,30 @@
                 `pregame:player-profile-xref:${playerId}`
             ).catch(() => null);
             const battingProfile = battingProfilePayload?.people?.[0] ?? person;
-            const seasonBatting = await getPlayerSeasonStatsBeforeDate(
-                playerId,
-                season,
-                "hitting",
-                date
-            ).catch(() => ({}));
-            const careerBatting = await getPlayerCareer(
-                battingProfile,
-                "hitting",
-                previousDate(date)
-            ).catch(() => ({}));
             const debutDate = /^\d{4}-\d{2}-\d{2}$/.test(String(battingProfile?.mlbDebutDate ?? ""))
                 ? battingProfile.mlbDebutDate
                 : `${season}-01-01`;
-            const [seasonRispAverage, careerRispAverage] = await Promise.all([
-                getPlayerRispAverage(playerId, date, `${season}-01-01`),
-                getPlayerRispAverage(playerId, date, debutDate)
+            const hasHitting = groups.includes("hitting");
+            const [
+                seasonBatting,
+                careerBatting,
+                yearlyBatting,
+                yearlyErrors,
+                currentSeasonErrors,
+                rispBySeason
+            ] = await Promise.all([
+                getPlayerSeasonStatsBeforeDate(playerId, season, "hitting", date).catch(() => ({})),
+                getPlayerCareer(battingProfile, "hitting", previousDate(date)).catch(() => ({})),
+                hasHitting ? getPlayerYearByYearBatting(playerId).catch(() => new Map()) : new Map(),
+                hasHitting ? getPlayerYearByYearErrors(playerId) : new Map(),
+                hasHitting ? getPlayerFieldingErrorsBeforeDate(playerId, season, date) : null,
+                getPlayerRispStatsBySeason(playerId, date, debutDate)
             ]);
+            const seasonRisp = rispBySeason.get(season) ?? null;
+            const careerRisp = [...rispBySeason.values()].reduce((totals, stats) => ({
+                atBats: totals.atBats + statNumber(stats?.atBats),
+                hits: totals.hits + statNumber(stats?.hits)
+            }), { atBats: 0, hits: 0 });
             const officialArticles = articles.filter((article) => articleHasPlayer(article, playerId));
             const gameInfo = getPlayerGameInfo(feed, game, playerId);
 
@@ -1142,23 +1336,78 @@
                 feed?.gameData?.teams?.[gameInfo?.side] ?? person?.currentTeam;
             setPlayerHeader(person, playerTeam, date);
             const battingSummary = el("div", "pregame-batting-summary");
+            let yearlyBattingTable = null;
             const referenceUrl = getBaseballReferenceBattingUrl(battingProfile);
-            battingSummary.append(
-                renderBattingSummaryCard(
-                    `${season}打撃成績`,
-                    seasonBatting,
-                    seasonRispAverage,
+            if (hasHitting) {
+                yearlyBatting.set(season, seasonBatting);
+                if (currentSeasonErrors == null) yearlyErrors.delete(season);
+                else yearlyErrors.set(season, currentSeasonErrors);
+                const seasonRows = [{
+                    label: "",
+                    stats: seasonBatting,
+                    risp: seasonRisp,
+                    errors: currentSeasonErrors
+                }];
+                const yearlyRows = [...yearlyBatting.entries()]
+                    .filter(([year, stats]) => year <= season && statNumber(stats?.gamesPlayed) > 0)
+                    .sort(([yearA], [yearB]) => yearA - yearB)
+                    .map(([year, stats]) => ({
+                        label: String(year),
+                        stats,
+                        risp: rispBySeason.get(year) ?? null,
+                        errors: yearlyErrors.has(year) ? yearlyErrors.get(year) : null
+                    }));
+                const pastErrors = [...yearlyErrors.entries()]
+                    .filter(([year]) => year < season)
+                    .reduce((sum, [_year, errors]) => sum + statNumber(errors), 0);
+                const careerErrors = currentSeasonErrors == null
+                    ? null
+                    : pastErrors + currentSeasonErrors;
+                yearlyRows.push({
+                    label: "通算",
+                    stats: careerBatting,
+                    risp: careerRisp.atBats ? careerRisp : null,
+                    errors: careerErrors
+                });
+                battingSummary.append(
+                    renderBattingStatsTable(
+                        `${season}シーズン成績`,
+                        seasonRows,
+                        referenceUrl,
+                        person
+                    )
+                );
+                yearlyBattingTable = renderBattingStatsTable(
+                    "年度別成績",
+                    yearlyRows,
                     referenceUrl,
-                    person
-                ),
-                renderBattingSummaryCard(
-                    "MLB通算打撃成績",
-                    careerBatting,
-                    careerRispAverage,
-                    referenceUrl,
-                    person
-                )
-            );
+                    person,
+                    { includeSeason: true }
+                );
+            } else {
+                const seasonRispAverage = seasonRisp?.atBats
+                    ? seasonRisp.hits / seasonRisp.atBats
+                    : null;
+                const careerRispAverage = careerRisp.atBats
+                    ? careerRisp.hits / careerRisp.atBats
+                    : null;
+                battingSummary.append(
+                    renderLegacyBattingSummaryCard(
+                        `${season}打撃成績`,
+                        seasonBatting,
+                        seasonRispAverage,
+                        referenceUrl,
+                        person
+                    ),
+                    renderLegacyBattingSummaryCard(
+                        "MLB通算打撃成績",
+                        careerBatting,
+                        careerRispAverage,
+                        referenceUrl,
+                        person
+                    )
+                );
+            }
             const grid = el("div", "pregame-detail-grid");
 
             groups.forEach((group) => {
@@ -1238,7 +1487,9 @@
             articleSection.append(renderArticles(officialArticles));
             grid.append(articleSection);
 
-            dom.content.replaceChildren(battingSummary, grid);
+            const playerSections = [battingSummary, grid];
+            if (yearlyBattingTable) playerSections.push(yearlyBattingTable);
+            dom.content.replaceChildren(...playerSections);
         } catch (error) {
             console.error(error);
             dom.content.replaceChildren(el("div", "pregame-error", error.message));
