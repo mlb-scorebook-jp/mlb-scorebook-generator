@@ -654,11 +654,16 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
     color: #a7b3ba;
 }
 
-.pregame-games-section .pregame-live-badge,
 .pregame-games-section .pregame-status-badge {
     color: #dfe8eb;
     border-color: #52616a;
     background: rgba(17, 22, 25, 0.34);
+}
+
+.pregame-games-section .pregame-live-badge {
+    color: #211b08;
+    border-color: #d5aa22;
+    background: #e6c247;
 }
 
 .pregame-person-card strong,
