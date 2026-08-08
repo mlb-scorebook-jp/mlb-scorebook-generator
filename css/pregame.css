@@ -157,6 +157,12 @@ body.app-mode-pregame .scorebook-horizontal-scroll {
     gap: 8px;
 }
 
+body.app-mode-pregame .app-header > .pregame-header-actions-global {
+    position: static;
+    flex: 0 0 auto;
+    margin-left: auto;
+}
+
 .pregame-view-header:has(.pregame-matchup-title-block) {
     position: relative;
     align-items: center;
@@ -979,10 +985,11 @@ a.pregame-batting-stat:focus-visible {
 
 .pregame-trend-series {
     display: grid;
+    box-sizing: border-box;
     grid-template-rows: auto 1fr;
     align-items: center;
     min-width: 0;
-    padding: 0 2px;
+    padding: 0 5px;
 }
 
 .pregame-trend-series + .pregame-trend-series {
@@ -1326,6 +1333,53 @@ a.pregame-metric-value:focus-visible {
 
 /* Smartphone-only presentation. Desktop and tablet rules remain untouched. */
 @media screen and (max-width: 767px) {
+    body.app-mode-pregame.pregame-game-detail-active .app-header {
+        height: 112px;
+        flex-wrap: wrap;
+        align-content: center;
+        gap: 7px;
+    }
+
+    body.app-mode-pregame.pregame-game-detail-active .app-title {
+        width: 100%;
+    }
+
+    body.app-mode-pregame.pregame-game-detail-active .app-main {
+        top: 112px;
+    }
+
+    body.app-mode-pregame .app-header > .pregame-header-actions-global {
+        display: flex;
+        align-items: flex-end;
+        gap: 7px;
+        width: 100%;
+        min-width: 0;
+    }
+
+    body.app-mode-pregame .app-header > .pregame-header-actions-global .pregame-date-control {
+        display: grid;
+        flex: 1 1 auto;
+        grid-column: auto;
+        gap: 2px;
+        width: auto;
+        min-width: 0;
+        font-size: 9px;
+    }
+
+    body.app-mode-pregame .app-header > .pregame-header-actions-global .pregame-date-control input {
+        width: 100%;
+        min-height: 34px;
+        font-size: 12px;
+    }
+
+    body.app-mode-pregame .app-header > .pregame-header-actions-global button {
+        flex: 0 0 auto;
+        width: auto;
+        min-height: 34px;
+        padding-inline: 9px;
+        font-size: 11px;
+    }
+
     .pregame-games-section .pregame-league-grid {
         grid-template-columns: 1fr;
     }

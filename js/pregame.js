@@ -8,6 +8,20 @@
     let currentDate = "";
 
     const dom = {};
+    let headerActionsAnchor = null;
+
+    const placeHeaderActions = (inAppHeader = false) => {
+        if (!dom.headerActions || !dom.appHeader || !headerActionsAnchor) return;
+        if (inAppHeader) {
+            dom.appHeader.append(dom.headerActions);
+            dom.headerActions.classList.add("pregame-header-actions-global");
+            document.body.classList.add("pregame-game-detail-active");
+            return;
+        }
+        headerActionsAnchor.after(dom.headerActions);
+        dom.headerActions.classList.remove("pregame-header-actions-global");
+        document.body.classList.remove("pregame-game-detail-active");
+    };
 
     const savePregameSession = (view, details = {}) => {
         window.MLBAppSession?.save?.({
@@ -1015,6 +1029,7 @@
     };
 
     const renderTop = async () => {
+        placeHeaderActions(false);
         savePregameSession("pregame-top");
         dom.view.classList.remove("pregame-player-detail-active");
         setLoading(true);
@@ -1629,6 +1644,7 @@
     };
 
     const renderPlayerDetail = async (playerId, gamePk) => {
+        placeHeaderActions(false);
         savePregameSession("pregame-player", {
             playerId: Number(playerId),
             gamePk: Number(gamePk)
@@ -2211,6 +2227,7 @@
     };
 
     const renderGameDetail = async (gamePk) => {
+        placeHeaderActions(true);
         savePregameSession("pregame-game", { gamePk: Number(gamePk) });
         dom.view.classList.remove("pregame-player-detail-active");
         setLoading(true);
@@ -2381,6 +2398,7 @@
     };
 
     const close = ({ preserveShell = false } = {}) => {
+        placeHeaderActions(false);
         dom.viewer.classList.remove("pregame-active");
         dom.view.hidden = true;
         if (!preserveShell) document.body.classList.remove("app-mode-pregame");
@@ -2407,7 +2425,13 @@
         dom.dateInput = document.getElementById("pregame-date");
         dom.homeButton = document.getElementById("pregame-home-btn");
         dom.closeButton = document.getElementById("pregame-close-btn");
+        dom.headerActions = document.querySelector(".pregame-header-actions");
+        dom.appHeader = document.querySelector(".app-header");
         if (!dom.view) return;
+        if (dom.headerActions) {
+            headerActionsAnchor = document.createComment("pregame header actions home");
+            dom.headerActions.before(headerActionsAnchor);
+        }
         dom.dateInput.addEventListener("change", async () => {
             const selectedDate = String(dom.dateInput.value ?? "");
             if (!/^\d{4}-\d{2}-\d{2}$/.test(selectedDate)) return;
