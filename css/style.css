@@ -77,6 +77,66 @@ body {
     min-height: 100%;
 }
 
+.portal-home {
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: 28px;
+    background:
+        linear-gradient(rgba(17, 21, 25, 0.96), rgba(17, 21, 25, 0.96)),
+        repeating-linear-gradient(90deg, transparent 0 4px, rgba(255, 255, 255, 0.018) 4px 5px);
+}
+
+.portal-home-panel {
+    width: min(620px, 100%);
+    padding: 48px;
+    border: 1px solid #46535c;
+    background: linear-gradient(180deg, #252e34 0%, #1b2227 100%);
+    box-shadow: 0 18px 48px rgba(0, 0, 0, 0.34);
+    text-align: center;
+}
+
+.portal-home h1 {
+    margin: 0;
+    font-size: 25px;
+    letter-spacing: 0.08em;
+}
+
+.portal-home-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    margin-top: 42px;
+}
+
+.portal-home-actions button {
+    min-height: 76px;
+    color: #edf1f3;
+    border: 1px solid #596873;
+    border-radius: 2px;
+    background: linear-gradient(180deg, #3a4650 0%, #252e35 100%);
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    cursor: pointer;
+}
+
+.portal-home-actions button:hover,
+.portal-home-actions button:focus-visible {
+    border-color: #91acb8;
+    background: linear-gradient(180deg, #485660 0%, #303a42 100%);
+}
+
+body:not(.app-mode-home) > .portal-home {
+    display: none;
+}
+
+body.app-mode-home > .app-header,
+body.app-mode-home > .app-main,
+body.app-mode-home > .app-footer {
+    display: none;
+}
+
 body {
     color: var(--text);
     background: var(--body-bg);
@@ -113,6 +173,25 @@ select {
     margin: 0;
     font-size: 19px;
     letter-spacing: 0.08em;
+}
+
+.app-home-link {
+    margin: 0;
+    padding: 0;
+    color: inherit;
+    border: 0;
+    background: transparent;
+    font: inherit;
+    letter-spacing: inherit;
+    cursor: pointer;
+}
+
+.app-home-link:hover,
+.app-home-link:focus-visible {
+    color: #fff;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 4px;
 }
 
 .app-title p {
@@ -246,6 +325,48 @@ select {
     display: grid;
     grid-template-columns: 270px minmax(0, 1fr);
     min-height: calc(100vh - 120px);
+}
+
+body.app-mode-pregame .app-header,
+body.app-mode-pregame .sidebar,
+body.app-mode-pregame .app-footer {
+    display: none;
+}
+
+body.app-mode-pregame .app-main {
+    display: block;
+    min-height: 100vh;
+}
+
+body.app-mode-pregame .viewer {
+    width: 100%;
+    min-height: 100vh;
+}
+
+@media screen and (max-width: 767px) {
+    .portal-home {
+        padding: 18px;
+    }
+
+    .portal-home-panel {
+        padding: 34px 18px;
+    }
+
+    .portal-home h1 {
+        font-size: 21px;
+        line-height: 1.4;
+    }
+
+    .portal-home-actions {
+        grid-template-columns: 1fr;
+        gap: 14px;
+        margin-top: 34px;
+    }
+
+    .portal-home-actions button {
+        width: 100%;
+        min-height: 64px;
+    }
 }
 
 .sidebar {
@@ -651,6 +772,15 @@ select {
 }
 
 .sheet-meta .wide-value {
+    white-space: normal;
+}
+
+.sheet-meta .status-value {
+    align-content: center;
+    overflow: visible;
+    line-height: 1.35;
+    overflow-wrap: anywhere;
+    text-overflow: clip;
     white-space: normal;
 }
 

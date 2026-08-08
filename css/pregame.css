@@ -17,6 +17,27 @@
     color: #e8edf0;
 }
 
+.pregame-brand-home {
+    display: block;
+    margin: 0 0 12px;
+    padding: 0;
+    color: #e8edf0;
+    border: 0;
+    background: transparent;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+}
+
+.pregame-brand-home:hover,
+.pregame-brand-home:focus-visible {
+    color: #fff;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 4px;
+}
+
 .pregame-view[hidden] {
     display: none !important;
 }
@@ -748,6 +769,12 @@ a.pregame-metric-value:focus-visible {
 
 /* Smartphone-only presentation. Desktop and tablet rules remain untouched. */
 @media screen and (max-width: 767px) {
+    .pregame-brand-home {
+        min-height: 44px;
+        margin-bottom: 8px;
+        font-size: 17px;
+        text-align: left;
+    }
     .pregame-lower-layout {
         grid-template-columns: 1fr;
     }

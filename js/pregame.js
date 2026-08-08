@@ -1508,6 +1508,7 @@
     };
 
     const open = async (context = {}) => {
+        window.MLBAppNavigation?.enterPregameShell?.();
         currentContext = context;
         currentDate = String(
             context?.gameData?.gameData?.datetime?.officialDate ??
@@ -1519,9 +1520,10 @@
         await renderTop();
     };
 
-    const close = () => {
+    const close = ({ preserveShell = false } = {}) => {
         dom.viewer.classList.remove("pregame-active");
         dom.view.hidden = true;
+        if (!preserveShell) document.body.classList.remove("app-mode-pregame");
     };
 
     const initialize = () => {
@@ -1542,7 +1544,13 @@
             await renderTop();
         });
         dom.homeButton.addEventListener("click", renderTop);
-        dom.closeButton.addEventListener("click", close);
+        dom.closeButton.addEventListener("click", () => {
+            if (window.MLBAppNavigation?.showScorebook) {
+                window.MLBAppNavigation.showScorebook();
+            } else {
+                close();
+            }
+        });
         dom.content.addEventListener("click", (event) => {
             const playerCard = event.target.closest("[data-pregame-player]");
             if (playerCard) {
