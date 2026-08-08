@@ -2279,10 +2279,8 @@ body.app-mode-pregame .score-loading-overlay {
     outline: none;
     font-size: 11px;
     line-height: 1.25;
-}
-
-.special-note-row:focus {
-    background: rgba(243, 200, 62, 0.16);
+    user-select: text;
+    -webkit-user-select: text;
 }
 
 .special-note-source-link {

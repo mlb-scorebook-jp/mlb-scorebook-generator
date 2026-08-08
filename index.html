@@ -5166,8 +5166,7 @@
                             sourceLink.setAttribute("aria-label", "MLB公式記事を新しいタブで開く");
                             note.append(sourceLink);
                         }
-                        note.contentEditable = "true";
-                        note.spellcheck = false;
+                        note.contentEditable = "false";
                         note.dataset.noteRow = String(noteIndex + 1);
                         notesTable.append(note);
                     }
