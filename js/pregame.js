@@ -782,10 +782,10 @@
         const totals = splits.reduce((sum, split) => {
             const stat = split?.stat ?? {};
             sum.outs += inningsToOuts(stat.inningsPitched);
-            ["earnedRuns", "strikeOuts", "baseOnBalls", "hits", "wins", "saves"]
+            ["runs", "earnedRuns", "strikeOuts", "baseOnBalls", "hits", "wins", "losses", "saves"]
                 .forEach((field) => { sum[field] += statNumber(stat[field]); });
             return sum;
-        }, { outs: 0, earnedRuns: 0, strikeOuts: 0, baseOnBalls: 0, hits: 0, wins: 0, saves: 0 });
+        }, { outs: 0, runs: 0, earnedRuns: 0, strikeOuts: 0, baseOnBalls: 0, hits: 0, wins: 0, losses: 0, saves: 0 });
         return {
             ...totals,
             innings: formatInnings(totals.outs),
@@ -1396,6 +1396,66 @@
         return card;
     };
 
+    const renderRecentPitchingTable = (splits) => {
+        const sectionElement = section("直近5登板");
+        sectionElement.classList.add("pregame-span-8", "pregame-recent-pitching-section");
+        const scroller = el("div", "pregame-recent-pitching-scroll");
+        const table = el("table", "pregame-recent-pitching-table");
+        const columns = ["日付", "対戦相手", "W/L", "防御率", "投球回", "奪三振", "失点", "与四球"];
+        const head = document.createElement("thead");
+        const headRow = document.createElement("tr");
+        columns.forEach((label) => headRow.append(el("th", "", label)));
+        head.append(headRow);
+        const body = document.createElement("tbody");
+        [...splits].reverse().forEach((split) => {
+            const stat = split?.stat ?? {};
+            const outs = inningsToOuts(stat.inningsPitched);
+            const dateParts = String(split?.date ?? "").slice(0, 10).split("-");
+            const dateLabel = dateParts.length === 3
+                ? `${Number(dateParts[1])}/${Number(dateParts[2])}`
+                : "-";
+            const decision = statNumber(stat.wins) > 0
+                ? "W"
+                : statNumber(stat.losses) > 0
+                    ? "L"
+                    : "－";
+            const row = document.createElement("tr");
+            [
+                dateLabel,
+                teamCode(split?.opponent),
+                decision,
+                outs ? (statNumber(stat.earnedRuns) * 27 / outs).toFixed(2) : "－",
+                stat?.inningsPitched ?? "－",
+                String(statNumber(stat.strikeOuts)),
+                String(statNumber(stat.runs)),
+                String(statNumber(stat.baseOnBalls))
+            ].forEach((value) => row.append(el("td", "", value)));
+            body.append(row);
+        });
+        const totals = aggregatePitching(splits);
+        const totalRow = document.createElement("tr");
+        totalRow.className = "pregame-recent-pitching-total";
+        [
+            "直近5登板計",
+            "",
+            `${totals.wins}W ${totals.losses}L`,
+            totals.era.toFixed(2),
+            totals.innings,
+            String(totals.strikeOuts),
+            String(totals.runs),
+            String(totals.baseOnBalls)
+        ].forEach((value, index) => {
+            const cell = el(index === 0 ? "th" : "td", "", value);
+            if (index === 0) cell.colSpan = 2;
+            if (index !== 1) totalRow.append(cell);
+        });
+        body.append(totalRow);
+        table.append(head, body);
+        scroller.append(table);
+        sectionElement.append(scroller);
+        return sectionElement;
+    };
+
     const renderPlayerDetail = async (playerId, gamePk) => {
         savePregameSession("pregame-player", {
             playerId: Number(playerId),
@@ -1557,36 +1617,27 @@
             groups.forEach((group) => {
                 const recent = [...(logs[group] ?? [])].slice(-10);
                 const five = recent.slice(-5);
+                if (group === "pitching") {
+                    grid.append(renderRecentPitchingTable(five));
+                    return;
+                }
                 const statsSection = section(
-                    group === "hitting" ? "最近の打撃成績" : "最近の投手成績",
+                    "最近の打撃成績",
                     "試合前時点"
                 );
                 statsSection.classList.add(groups.length > 1 ? "pregame-span-6" : "pregame-span-8");
                 const metrics = el("div", "pregame-metric-grid");
-                if (group === "hitting") {
-                    const fiveStats = aggregateHitting(five);
-                    const tenStats = aggregateHitting(recent);
-                    metrics.append(
-                        metric("直近5試合 打率", fiveStats.avg.toFixed(3).replace(/^0/, "")),
-                        metric("直近5試合 OPS", fiveStats.ops.toFixed(3).replace(/^0/, "")),
-                        metric("直近10試合 打率", tenStats.avg.toFixed(3).replace(/^0/, "")),
-                        metric("直近10試合 OPS", tenStats.ops.toFixed(3).replace(/^0/, "")),
-                        metric("10試合 本塁打", String(tenStats.homeRuns)),
-                        metric("10試合 打点", String(tenStats.rbi)),
-                        metric("10試合 盗塁", String(tenStats.stolenBases))
-                    );
-                } else {
-                    const fiveStats = aggregatePitching(five);
-                    const tenStats = aggregatePitching(recent);
-                    metrics.append(
-                        metric("直近5登板 防御率", fiveStats.era.toFixed(2)),
-                        metric("直近5登板 投球回", fiveStats.innings),
-                        metric("直近5登板 奪三振", String(fiveStats.strikeOuts)),
-                        metric("直近10登板 防御率", tenStats.era.toFixed(2)),
-                        metric("直近10登板 奪三振", String(tenStats.strikeOuts)),
-                        metric("直近10登板 四球", String(tenStats.baseOnBalls))
-                    );
-                }
+                const fiveStats = aggregateHitting(five);
+                const tenStats = aggregateHitting(recent);
+                metrics.append(
+                    metric("直近5試合 打率", fiveStats.avg.toFixed(3).replace(/^0/, "")),
+                    metric("直近5試合 OPS", fiveStats.ops.toFixed(3).replace(/^0/, "")),
+                    metric("直近10試合 打率", tenStats.avg.toFixed(3).replace(/^0/, "")),
+                    metric("直近10試合 OPS", tenStats.ops.toFixed(3).replace(/^0/, "")),
+                    metric("10試合 本塁打", String(tenStats.homeRuns)),
+                    metric("10試合 打点", String(tenStats.rbi)),
+                    metric("10試合 盗塁", String(tenStats.stolenBases))
+                );
                 statsSection.append(metrics);
                 grid.append(statsSection);
             });

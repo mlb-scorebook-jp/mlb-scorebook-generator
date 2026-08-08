@@ -659,6 +659,61 @@
     margin-top: 12px;
 }
 
+.pregame-recent-pitching-section {
+    min-width: 0;
+}
+
+.pregame-recent-pitching-scroll {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+.pregame-recent-pitching-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    color: #dfe6e9;
+    font-variant-numeric: tabular-nums;
+}
+
+.pregame-recent-pitching-table th,
+.pregame-recent-pitching-table td {
+    height: 28px;
+    padding: 4px 5px;
+    border-right: 1px solid #3d4950;
+    border-bottom: 1px solid #3d4950;
+    font-size: 12px;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.pregame-recent-pitching-table th:last-child,
+.pregame-recent-pitching-table td:last-child {
+    border-right: 0;
+}
+
+.pregame-recent-pitching-table tbody tr:last-child th,
+.pregame-recent-pitching-table tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+.pregame-recent-pitching-table thead th {
+    color: #cbd5da;
+    background: #202a30;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.pregame-recent-pitching-total {
+    background: #263139;
+    font-weight: 700;
+}
+
+.pregame-recent-pitching-total th {
+    color: #edf3f5;
+}
+
 .pregame-batting-table-card + .pregame-batting-table-card {
     margin-top: 12px;
 }
@@ -1578,6 +1633,17 @@ a.pregame-metric-value:focus-visible {
     }
 
     .pregame-batting-table thead th {
+        font-size: 14px;
+    }
+
+    .pregame-recent-pitching-table {
+        min-width: 640px;
+    }
+
+    .pregame-recent-pitching-table th,
+    .pregame-recent-pitching-table td,
+    .pregame-recent-pitching-table thead th {
+        height: 44px;
         font-size: 14px;
     }
 }
