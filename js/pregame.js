@@ -1011,6 +1011,7 @@
 
     const renderTop = async () => {
         savePregameSession("pregame-top");
+        dom.view.classList.remove("pregame-player-detail-active");
         setLoading(true);
         const date = currentDate || currentMlbDate();
         if (dom.dateInput) dom.dateInput.value = date;
@@ -1387,6 +1388,7 @@
             playerId: Number(playerId),
             gamePk: Number(gamePk)
         });
+        dom.view.classList.add("pregame-player-detail-active");
         setLoading(true);
         try {
             const game = gameIndex.get(Number(gamePk)) ?? currentContext?.scheduleGame ?? {};
@@ -1824,9 +1826,13 @@
             ).then((payload) => payload?.people?.[0] ?? pitcher)
         ]);
         const careerLogs = await getPlayerCareerGameLog(profile, date, "pitching").catch(() => []);
-        const previousAppearance = careerLogs
+        const recentAppearances = careerLogs
             .filter((split) => String(split?.date ?? "") < date && statNumber(split?.stat?.gamesPlayed) > 0)
-            .sort((a, b) => String(b?.date ?? "").localeCompare(String(a?.date ?? "")))[0];
+            .sort((a, b) =>
+                String(b?.date ?? "").localeCompare(String(a?.date ?? "")) ||
+                statNumber(b?.game?.gamePk) - statNumber(a?.game?.gamePk)
+            )
+            .slice(0, 3);
         const opponentLogs = careerLogs.filter((split) =>
             Number(split?.opponent?.id) === Number(opponent?.id)
         );
@@ -1844,7 +1850,7 @@
         return {
             pitcher: profile,
             seasonStats,
-            previousAppearance,
+            recentAppearances,
             hasCareerAppearance: careerLogs.length > 0,
             date,
             opponent,
@@ -1864,6 +1870,10 @@
         if (statNumber(stat?.holds) > 0) return "(H)";
         return "";
     };
+
+    const appearanceLabel = (index) => ["前回登板", "前々回登板", "前々々回登板"][index] ?? "登板";
+
+    const appearanceOpponent = (appearance) => `vs. ${teamCode(appearance?.opponent)}`;
 
     const renderStartingPitcher = (data, team) => {
         const column = el("article", "pregame-starting-pitcher");
@@ -1913,23 +1923,25 @@
             )
         );
         column.append(matchupBox);
-        const previousEntry = data.previousAppearance;
-        const previous = previousEntry?.stat;
         const previousBox = el("div", "pregame-previous-start");
-        if (previous) {
-            const walksAndHitByPitch = statNumber(previous.baseOnBalls) + statNumber(previous.hitBatsmen);
-            const decision = pitcherDecision(previous);
-            previousBox.append(
-                el("strong", "", "前回登板"),
-                el("span", "pregame-previous-meta",
-                    `${compactDate(previousEntry?.date)}　vs. ${teamCode(previousEntry?.opponent)}` +
-                    (decision ? `　${decision}` : "")
-                ),
-                el("span", "pregame-previous-line",
-                    `${previous.inningsPitched ?? "-"}回　${statNumber(previous.runs)}失点　` +
-                    `${statNumber(previous.strikeOuts)}奪三振　${walksAndHitByPitch}四死球`
-                )
-            );
+        if (data.recentAppearances.length) {
+            data.recentAppearances.forEach((appearance, index) => {
+                const stat = appearance?.stat ?? {};
+                const walksAndHitByPitch = statNumber(stat.baseOnBalls) + statNumber(stat.hitBatsmen);
+                const decision = pitcherDecision(stat);
+                const row = el("div", "pregame-appearance-row");
+                row.append(
+                    el("strong", "pregame-appearance-label", appearanceLabel(index)),
+                    el("span", "pregame-appearance-date", compactDate(appearance?.date)),
+                    el("span", "pregame-appearance-opponent", appearanceOpponent(appearance)),
+                    el("span", "pregame-appearance-decision", decision),
+                    el("span", "pregame-appearance-stat", `${stat.inningsPitched ?? "-"}回`),
+                    el("span", "pregame-appearance-stat", `${statNumber(stat.runs)}失点`),
+                    el("span", "pregame-appearance-stat", `${statNumber(stat.strikeOuts)}奪三振`),
+                    el("span", "pregame-appearance-stat", `${walksAndHitByPitch}四死球`)
+                );
+                previousBox.append(row);
+            });
         } else {
             previousBox.append(el("strong", "", data.hasCareerAppearance ? "今季初登板" : "MLB初登板"));
         }
@@ -1939,6 +1951,7 @@
 
     const renderGameDetail = async (gamePk) => {
         savePregameSession("pregame-game", { gamePk: Number(gamePk) });
+        dom.view.classList.remove("pregame-player-detail-active");
         setLoading(true);
         try {
             const game = gameIndex.get(Number(gamePk)) ?? currentContext?.scheduleGame ?? {};
@@ -2029,7 +2042,7 @@
             const relatedColumns = el("div", "pregame-related-columns");
             const editorialColumn = el("div", "pregame-related-column");
             editorialColumn.append(
-                el("h4", "pregame-related-heading", "MLB公式関連記事・負傷情報"),
+                el("h4", "pregame-related-heading", "負傷者情報"),
                 renderArticles([...injuries, ...articles])
             );
             const transactionColumn = el("div", "pregame-related-column");

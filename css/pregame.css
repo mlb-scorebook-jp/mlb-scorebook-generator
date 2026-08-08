@@ -356,6 +356,10 @@
 }
 
 .pregame-previous-start {
+    display: grid;
+    grid-template-columns: max-content max-content max-content 3ch max-content max-content max-content max-content;
+    column-gap: 9px;
+    row-gap: 4px;
     grid-column: 1 / -1;
     margin-top: 5px;
     padding-top: 4px;
@@ -363,20 +367,24 @@
 }
 
 .pregame-previous-start strong {
-    display: block;
-    margin-bottom: 2px;
     color: #b9c5cb;
     letter-spacing: 0.04em;
 }
 
-.pregame-previous-meta,
-.pregame-previous-line {
-    display: block;
+.pregame-appearance-row {
+    display: grid;
+    grid-template-columns: subgrid;
+    grid-column: 1 / -1;
+    align-items: baseline;
     line-height: 1.35;
 }
 
-.pregame-previous-meta {
+.pregame-appearance-date,
+.pregame-appearance-opponent,
+.pregame-appearance-decision,
+.pregame-appearance-stat {
     color: #c7d1d6;
+    white-space: nowrap;
 }
 
 .pregame-pitcher-matchup {
@@ -915,6 +923,56 @@ a.pregame-metric-value:focus-visible {
     text-underline-offset: 2px;
 }
 
+/* Japanese player detail typography. Layout dimensions remain unchanged. */
+@media screen and (min-width: 768px) {
+    .pregame-player-detail-active .pregame-view-header #pregame-subtitle {
+        font-size: 13px;
+    }
+
+    .pregame-player-detail-active .pregame-date-control {
+        font-size: 9px;
+    }
+
+    .pregame-player-detail-active .pregame-date-control input,
+    .pregame-player-detail-active .pregame-header-actions button {
+        font-size: 11px;
+    }
+
+    .pregame-player-detail-active .pregame-section-header h3,
+    .pregame-player-detail-active .pregame-batting-summary-title {
+        font-size: 14px;
+    }
+
+    .pregame-player-detail-active .pregame-section-header span {
+        font-size: 10px;
+    }
+
+    .pregame-player-detail-active .pregame-batting-table thead th {
+        font-size: 11px;
+    }
+
+    .pregame-player-detail-active .pregame-batting-table tbody th,
+    .pregame-player-detail-active .pregame-batting-table tbody td {
+        font-size: 12px;
+    }
+
+    .pregame-player-detail-active .pregame-batting-summary .pregame-batting-table tbody th,
+    .pregame-player-detail-active .pregame-batting-summary .pregame-batting-table tbody td {
+        font-size: 13px;
+        font-weight: 700;
+    }
+
+    .pregame-player-detail-active .pregame-metric span {
+        font-size: 10px;
+    }
+
+    .pregame-player-detail-active .pregame-data-list li,
+    .pregame-player-detail-active .pregame-note-row,
+    .pregame-player-detail-active .pregame-article-row {
+        font-size: 12px;
+    }
+}
+
 .pregame-article-row a,
 .pregame-player-link {
     color: #dfe9ed;
@@ -972,6 +1030,25 @@ a.pregame-metric-value:focus-visible {
 }
 
 @media (max-width: 1000px) {
+    .pregame-previous-start {
+        display: block;
+    }
+
+    .pregame-appearance-row {
+        display: flex;
+        flex-wrap: wrap;
+        column-gap: 10px;
+        row-gap: 2px;
+    }
+
+    .pregame-appearance-row + .pregame-appearance-row {
+        margin-top: 6px;
+    }
+
+    .pregame-appearance-label {
+        flex: 0 0 100%;
+    }
+
     .pregame-batting-table-scroll {
         overflow-x: auto;
         overscroll-behavior-x: contain;
@@ -1267,8 +1344,10 @@ a.pregame-metric-value:focus-visible {
     }
 
     .pregame-starting-stats,
-    .pregame-previous-meta,
-    .pregame-previous-line {
+    .pregame-appearance-date,
+    .pregame-appearance-opponent,
+    .pregame-appearance-decision,
+    .pregame-appearance-stat {
         white-space: normal;
         overflow-wrap: anywhere;
     }
