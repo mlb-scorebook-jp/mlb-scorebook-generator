@@ -856,6 +856,7 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
 }
 
 .pregame-statcast-section {
+    margin-top: 12px;
     margin-bottom: 12px;
 }
 
