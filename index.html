@@ -1792,6 +1792,86 @@
                 [person?.birthCountry, person?.country]
                     .some((country) => String(country ?? "").trim().toLowerCase() === "japan");
 
+            const sortHittingGameLogs = (splits) => [...splits]
+                .filter((split) => getPlateAppearances(split?.stat) > 0)
+                .sort((a, b) => {
+                    const dateOrder = String(a?.date ?? "").localeCompare(String(b?.date ?? ""));
+                    if (dateOrder) return dateOrder;
+                    return (Number(a?.game?.gameNumber) || Number(a?.game?.gamePk) || 0) -
+                        (Number(b?.game?.gameNumber) || Number(b?.game?.gamePk) || 0);
+                });
+
+            const findLastHomeRunGameIndex = (games) => {
+                for (let index = games.length - 1; index >= 0; index -= 1) {
+                    if ((Number(games[index]?.stat?.homeRuns) || 0) > 0) return index;
+                }
+                return -1;
+            };
+
+            const getGamesSincePreviousHomeRun = async (player, season, context) => {
+                const currentSeasonGames = sortHittingGameLogs(
+                    (player?.gameLogSplits ?? []).filter((split) =>
+                        isGameBeforeCurrentStart(split, context)
+                    )
+                );
+                const currentSeasonHomeRunIndex = findLastHomeRunGameIndex(currentSeasonGames);
+                if (currentSeasonHomeRunIndex >= 0) {
+                    return {
+                        gamesSince: currentSeasonGames.length - currentSeasonHomeRunIndex,
+                        previousHomeRun: currentSeasonGames[currentSeasonHomeRunIndex]
+                    };
+                }
+
+                let gamesAfterPreviousHomeRun = currentSeasonGames.length;
+                const debutYear = Number(String(player?.person?.mlbDebutDate ?? "").slice(0, 4));
+                const earliestSeason = Number.isFinite(debutYear) ? debutYear : season;
+                for (let priorSeason = season - 1; priorSeason >= earliestSeason; priorSeason -= 1) {
+                    const priorGames = sortHittingGameLogs(
+                        await fetchPlayerRegularSeasonGameLog(player.id, priorSeason)
+                    );
+                    const homeRunIndex = findLastHomeRunGameIndex(priorGames);
+                    if (homeRunIndex >= 0) {
+                        return {
+                            gamesSince: gamesAfterPreviousHomeRun + priorGames.length - homeRunIndex,
+                            previousHomeRun: priorGames[homeRunIndex]
+                        };
+                    }
+                    gamesAfterPreviousHomeRun += priorGames.length;
+                }
+                return null;
+            };
+
+            const formatPreviousHomeRunReference = (split) => {
+                const [, month, day] = String(split?.date ?? "").slice(0, 10).split("-");
+                const opponent = getMlbTeamDisplayCode(split?.opponent);
+                if (!month || !day || !opponent) return "";
+                return `${Number(month)}/${Number(day)} vs.${opponent}以来`;
+            };
+
+            const buildJapaneseHitterHomeRunNotes = async (
+                players,
+                season,
+                context,
+                code
+            ) => {
+                const eligiblePlayers = players.filter((player) =>
+                    isJapanesePlayer(player.person) &&
+                    (isTwoWayCandidate(player) || !isPitcherCandidate(player)) &&
+                    (Number(player?.currentGameBatting?.homeRuns) || 0) > 0
+                );
+                return Promise.all(eligiblePlayers.map(async (player) => {
+                    const previous = await getGamesSincePreviousHomeRun(player, season, context);
+                    const reference = formatPreviousHomeRunReference(previous?.previousHomeRun);
+                    if (!reference || !Number.isFinite(previous?.gamesSince) ||
+                        previous.gamesSince < 1) return null;
+                    return {
+                        text: `${code}　${getPersonName(player.person)}　` +
+                            `${reference}　${previous.gamesSince}試合ぶりのホームラン`,
+                        priority: -2
+                    };
+                })).then((notes) => notes.filter(Boolean));
+            };
+
             const getScheduleOpponentCode = (game, teamId) => {
                 const away = game?.teams?.away?.team ?? {};
                 const home = game?.teams?.home?.team ?? {};
@@ -2188,6 +2268,12 @@
                     const notes = gameFinal
                         ? await buildCareerMilestoneNotes(analyzed, code, context)
                         : [];
+                    notes.push(...await buildJapaneseHitterHomeRunNotes(
+                        analyzed,
+                        season,
+                        context,
+                        code
+                    ));
                     if (gameFinal && hitLeader) {
                         const stoppedSuffix = hitLeader.hitStreakStopped ? "でストップ" : "";
                         const personalSuffix = getPersonalStreakSuffix(
