@@ -651,6 +651,10 @@
     margin-top: 12px;
 }
 
+.pregame-batting-table-card + .pregame-batting-table-card {
+    margin-top: 12px;
+}
+
 .pregame-batting-table {
     width: 100%;
     border-collapse: collapse;
