@@ -839,6 +839,21 @@ a.pregame-batting-stat:focus-visible {
     padding-top: 2px;
 }
 
+.pregame-trend-history-metric {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.pregame-trend-history-metric > .pregame-trend-record {
+    margin-top: 17px;
+}
+
+.pregame-trend-history-metric .pregame-trend-history {
+    width: 100%;
+    margin-top: 0;
+}
+
 .pregame-trend-series {
     display: grid;
     grid-template-rows: auto 1fr;
@@ -879,6 +894,36 @@ a.pregame-batting-stat:focus-visible {
 
 .pregame-trend-result.is-loss {
     background: #d5dde1;
+}
+
+.pregame-trend-run-totals {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-top: 7px;
+}
+
+.pregame-trend-run-total {
+    min-width: 0;
+    text-align: center;
+}
+
+.pregame-trend-run-total + .pregame-trend-run-total {
+    border-left: 1px solid #344047;
+}
+
+.pregame-trend-run-totals .pregame-trend-run-label {
+    color: #aebac0;
+    font-size: 8px;
+    line-height: 1.2;
+    letter-spacing: 0.04em;
+}
+
+.pregame-trend-run-totals .pregame-trend-run-value {
+    margin-top: 2px;
+    color: #edf3f5;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.15;
 }
 
 .pregame-lower-layout {
@@ -1484,6 +1529,10 @@ a.pregame-metric-value:focus-visible {
     .pregame-metric strong,
     .pregame-metric-value {
         font-size: 21px;
+    }
+
+    .pregame-trend-history-metric > .pregame-trend-record {
+        margin-top: 25px;
     }
 
     .pregame-batting-summary {
