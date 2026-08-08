@@ -1959,6 +1959,17 @@
         if (!preserveShell) document.body.classList.remove("app-mode-pregame");
     };
 
+    const scrollCompactPregameToTop = () => {
+        if (!window.matchMedia("(max-width: 1024px)").matches) return;
+        const scrollContainer = document.querySelector(".app-main");
+        if (!scrollContainer) return;
+        scrollContainer.scrollTo({
+            top: 0,
+            left: scrollContainer.scrollLeft,
+            behavior: "auto"
+        });
+    };
+
     const initialize = () => {
         dom.viewer = document.querySelector(".viewer");
         dom.view = document.getElementById("pregame-view");
@@ -1987,6 +1998,7 @@
         dom.content.addEventListener("click", (event) => {
             const playerCard = event.target.closest("[data-pregame-player]");
             if (playerCard) {
+                scrollCompactPregameToTop();
                 renderPlayerDetail(
                     Number(playerCard.dataset.pregamePlayer),
                     Number(playerCard.dataset.pregameGame)
@@ -1994,7 +2006,10 @@
                 return;
             }
             const gameCard = event.target.closest("[data-pregame-game]");
-            if (gameCard) renderGameDetail(Number(gameCard.dataset.pregameGame));
+            if (gameCard) {
+                scrollCompactPregameToTop();
+                renderGameDetail(Number(gameCard.dataset.pregameGame));
+            }
         });
     };
 
