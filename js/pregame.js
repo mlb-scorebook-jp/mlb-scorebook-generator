@@ -135,12 +135,7 @@
         return value.toISOString().slice(0, 10);
     };
 
-    const currentMlbDate = () => new Intl.DateTimeFormat("en-CA", {
-        timeZone: "America/New_York",
-        year: "numeric",
-        month: "2-digit",
-        day: "2-digit"
-    }).format(new Date());
+    const currentMlbDate = () => window.MLBGameDate.getTodayGameDate();
 
     const getStatus = (game) => String(
         game?.status?.detailedState ?? game?.status?.abstractGameState ?? "Scheduled"
