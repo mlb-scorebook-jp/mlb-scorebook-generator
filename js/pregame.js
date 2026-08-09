@@ -779,6 +779,33 @@
         return collectArticles(payload);
     };
 
+    const relevantLatestNews = (teams, rosterEntries, date) => {
+        const teamIds = new Set(teams.map((team) => Number(team?.id)).filter(Boolean));
+        const playerIds = new Set(
+            rosterEntries.map((entry) => Number(entry?.person?.id ?? entry?.personId)).filter(Boolean)
+        );
+        const gameTime = new Date(`${date}T12:00:00Z`).getTime();
+        const maximumDistance = 3 * 24 * 60 * 60 * 1000;
+        return (window.MLB_LATEST_NEWS ?? []).filter((article) => {
+            const articleTime = new Date(article.contentDate).getTime();
+            if (!Number.isFinite(articleTime) || Math.abs(articleTime - gameTime) > maximumDistance) {
+                return false;
+            }
+            return article.teamIds?.some((id) => teamIds.has(Number(id))) ||
+                article.playerIds?.some((id) => playerIds.has(Number(id)));
+        }).sort((a, b) => String(b.contentDate).localeCompare(String(a.contentDate)));
+    };
+
+    const mergeOfficialArticles = (...groups) => {
+        const seen = new Set();
+        return groups.flat().filter((article) => {
+            const key = String(article?.url ?? article?.slug ?? "");
+            if (!key || seen.has(key)) return false;
+            seen.add(key);
+            return true;
+        });
+    };
+
     const getRecentTeamTransactions = async (teams, date) => {
         const teamIds = teams.map((team) => Number(team?.id)).filter(Boolean);
         if (!teamIds.length) return [];
@@ -1242,10 +1269,11 @@
         if (!articles.length) return empty(emptyText);
         articles.slice(0, 8).forEach((article) => {
             const row = el("div", "pregame-article-row");
-            const link = el("a", "", article.headline);
+            const link = el("a", "", article.summaryJa || article.headline);
             link.href = article.url;
             link.target = "_blank";
             link.rel = "noopener noreferrer";
+            if (article.summaryJa && article.headline) link.title = article.headline;
             row.append(link);
             list.append(row);
         });
@@ -2634,6 +2662,18 @@
             startingSection.append(startingGrid);
             grid.append(startingSection);
 
+            const rosterBySide = {};
+            [rosterBySide.away, rosterBySide.home] = await Promise.all([
+                getFeaturedPlayers(feed, "away", date),
+                getFeaturedPlayers(feed, "home", date)
+            ]);
+            const latestArticles = relevantLatestNews(
+                [awayTeam, homeTeam],
+                [...rosterBySide.away, ...rosterBySide.home],
+                date
+            );
+            const displayedArticles = mergeOfficialArticles(latestArticles, articles);
+
             const playersSection = section("注目選手", "記録・直近成績を優先");
             playersSection.classList.add("pregame-featured-section");
             const playerColumns = el("div", "pregame-team-columns");
@@ -2644,7 +2684,7 @@
                 const column = el("div");
                 column.append(el("h4", "pregame-team-heading", teamCode(team)));
                 const list = el("ul", "pregame-data-list");
-                const starters = await getFeaturedPlayers(feed, side, date);
+                const starters = rosterBySide[side];
                 const featured = (await Promise.all(
                     starters.map((entry) => getFeaturedPlayerData(entry, date))
                 )).filter((player) => player.notes.length > 0).sort((a, b) =>
@@ -2707,7 +2747,7 @@
             trendsSection.append(trendColumns);
 
             const articleSection = section("MLB公式関連記事", "MLB・球団公式");
-            articleSection.append(renderArticles(articles));
+            articleSection.append(renderArticles(displayedArticles));
 
             const rosterSection = section("負傷者・ロースター情報", "MLB公式");
             const relatedColumns = el("div", "pregame-related-columns");
