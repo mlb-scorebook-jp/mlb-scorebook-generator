@@ -860,6 +860,14 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
     margin-bottom: 12px;
 }
 
+.pregame-statcast-season-note {
+    margin-left: 8px;
+    color: #9eabb3;
+    font-size: 9px;
+    font-weight: 400;
+    letter-spacing: 0;
+}
+
 .pregame-statcast-metrics {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr)) minmax(254px, 1.15fr);

@@ -1846,6 +1846,7 @@
     const renderStatcastSection = (history, zones, person, season) => {
         const wrapper = section("Statcast", "Baseball Savant");
         wrapper.classList.add("pregame-statcast-section");
+        wrapper.querySelector("h3")?.append(el("small", "pregame-statcast-season-note", "（レギュラーシーズン）"));
         const metrics = el("div", "pregame-statcast-metrics");
         const sourceUrl = savantPlayerUrl(person);
         [
