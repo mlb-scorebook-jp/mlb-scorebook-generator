@@ -87,7 +87,32 @@
         return `https://baseballsavant.mlb.com/savant-player/${slug}-${id}?stats=${statsView}`;
     };
 
-    const getSavantHittingMetrics = async (playerId, season) => {
+    const getSavantHittingMetrics = async (playerId, season, beforeDate = "") => {
+        if (beforeDate && Number(String(beforeDate).slice(0, 4)) === Number(season)) {
+            const rows = await getSavantBattedBallRows(playerId, season, beforeDate);
+            const battedBalls = rows.filter((row) =>
+                String(row.launch_speed ?? "").trim() !== "" &&
+                String(row.launch_speed_angle ?? "").trim() !== "" &&
+                Number.isFinite(Number(row.launch_speed))
+            );
+            if (!battedBalls.length) return null;
+            const barrels = battedBalls.filter((row) => Number(row.launch_speed_angle) === 6).length;
+            const hardHit = battedBalls.filter((row) => Number(row.launch_speed) >= 95).length;
+            const averageExitVelocity = battedBalls.reduce(
+                (sum, row) => sum + Number(row.launch_speed), 0
+            ) / battedBalls.length;
+            const distances = battedBalls
+                .filter((row) => String(row.hit_distance_sc ?? "").trim() !== "")
+                .map((row) => Number(row.hit_distance_sc))
+                .filter(Number.isFinite);
+            const compact = (value) => value.toFixed(1).replace(/\.0$/, "");
+            return {
+                brl_percent: compact((barrels * 100) / battedBalls.length),
+                avg_hit_speed: compact(averageExitVelocity),
+                ev95percent: compact((hardHit * 100) / battedBalls.length),
+                max_distance: distances.length ? String(Math.round(Math.max(...distances))) : ""
+            };
+        }
         const key = `savant:statcast:${season}`;
         if (!savantCache.has(key)) {
             const params = new URLSearchParams({
@@ -139,33 +164,48 @@
         "other_out"
     ]);
 
-    const getSavantZoneBattingAverage = async (playerId, season) => {
-        const key = `savant:zones:${playerId}:${season}`;
+    const getSavantBattedBallRows = async (playerId, season, beforeDate) => {
+        const endDate = previousDate(beforeDate);
+        const key = `savant:player-rows:${playerId}:${season}:${endDate}`;
         if (!savantCache.has(key)) {
             const params = new URLSearchParams({
                 all: "true",
                 type: "batter",
                 player_type: "batter",
                 hfSea: `${season}|`,
-                hfGT: "R|"
+                hfGT: "R|",
+                game_date_gt: `${season}-01-01`,
+                game_date_lt: endDate
             });
             params.append("batters_lookup[]", String(playerId));
             const request = fetch(`https://baseballsavant.mlb.com/statcast_search/csv?${params}`)
                 .then(async (response) => {
-                    if (!response.ok) throw new Error(`Baseball Savantのゾーン情報を取得できませんでした（${response.status}）`);
+                    if (!response.ok) throw new Error(`Baseball Savantを取得できませんでした（${response.status}）`);
                     const lines = (await response.text()).replace(/^\uFEFF/, "")
                         .split(/\r?\n/)
                         .filter(Boolean);
-                    if (!lines.length) return new Map();
+                    if (!lines.length) return [];
                     const headers = parseCsvLine(lines[0]);
-                    const eventIndex = headers.indexOf("events");
-                    const zoneIndex = headers.indexOf("zone");
-                    if (eventIndex < 0 || zoneIndex < 0) return new Map();
-                    const totals = new Map();
-                    lines.slice(1).forEach((line) => {
+                    return lines.slice(1).map((line) => {
                         const values = parseCsvLine(line);
-                        const event = values[eventIndex];
-                        const zone = Number(values[zoneIndex]);
+                        return Object.fromEntries(headers.map((header, index) => [header, values[index] ?? ""]));
+                    });
+                });
+            savantCache.set(key, request);
+        }
+        return savantCache.get(key);
+    };
+
+    const getSavantZoneBattingAverage = async (playerId, season, beforeDate) => {
+        const endDate = previousDate(beforeDate);
+        const key = `savant:zones:${playerId}:${season}:${endDate}`;
+        if (!savantCache.has(key)) {
+            const request = getSavantBattedBallRows(playerId, season, beforeDate)
+                .then((rows) => {
+                    const totals = new Map();
+                    rows.forEach((row) => {
+                        const event = row.events;
+                        const zone = Number(row.zone);
                         if (!SAVANT_AT_BAT_EVENTS.has(event) || !Number.isInteger(zone) || zone === 10 || zone < 1 || zone > 14) return;
                         const current = totals.get(zone) ?? { atBats: 0, hits: 0 };
                         current.atBats += 1;
@@ -779,18 +819,28 @@
         return collectArticles(payload);
     };
 
+    const articleMlbDate = (article) => {
+        const value = String(article?.contentDate ?? article?.date ?? "");
+        if (/^\d{4}-\d{2}-\d{2}$/.test(value)) return value;
+        const timestamp = new Date(value);
+        if (!Number.isFinite(timestamp.getTime())) return "";
+        const parts = new Intl.DateTimeFormat("en-CA", {
+            timeZone: "America/New_York",
+            year: "numeric",
+            month: "2-digit",
+            day: "2-digit"
+        }).formatToParts(timestamp);
+        const values = Object.fromEntries(parts.map((part) => [part.type, part.value]));
+        return `${values.year}-${values.month}-${values.day}`;
+    };
+
     const relevantLatestNews = (teams, rosterEntries, date) => {
         const teamIds = new Set(teams.map((team) => Number(team?.id)).filter(Boolean));
         const playerIds = new Set(
             rosterEntries.map((entry) => Number(entry?.person?.id ?? entry?.personId)).filter(Boolean)
         );
-        const gameTime = new Date(`${date}T12:00:00Z`).getTime();
-        const maximumDistance = 3 * 24 * 60 * 60 * 1000;
         return (window.MLB_LATEST_NEWS ?? []).filter((article) => {
-            const articleTime = new Date(article.contentDate).getTime();
-            if (!Number.isFinite(articleTime) || Math.abs(articleTime - gameTime) > maximumDistance) {
-                return false;
-            }
+            if (articleMlbDate(article) !== date) return false;
             return article.teamIds?.some((id) => teamIds.has(Number(id))) ||
                 article.playerIds?.some((id) => playerIds.has(Number(id)));
         }).sort((a, b) => String(b.contentDate).localeCompare(String(a.contentDate)));
@@ -2034,10 +2084,6 @@
                 (await getPlayerGameLog(playerId, season, group))
                     .filter((split) => String(split?.date ?? "") < date)
             ])));
-            const careers = Object.fromEntries(await Promise.all(groups.map(async (group) => [
-                group,
-                await getPlayerCareer(person, group, date).catch(() => null)
-            ])));
             const battingProfilePayload = await fetchJson(
                 `${API_ROOT}/v1/people/${playerId}?hydrate=xrefId`,
                 `pregame:player-profile-xref:${playerId}`
@@ -2092,9 +2138,13 @@
                 ? await Promise.all([
                     Promise.all(statcastSeasons.map(async (year) => ({
                         season: year,
-                        stats: await getSavantHittingMetrics(playerId, year).catch(() => null)
+                        stats: await getSavantHittingMetrics(
+                            playerId,
+                            year,
+                            year === season ? date : ""
+                        ).catch(() => null)
                     }))).then((rows) => rows.filter((row) => row.stats)),
-                    getSavantZoneBattingAverage(playerId, season).catch(() => new Map())
+                    getSavantZoneBattingAverage(playerId, season, date).catch(() => new Map())
                 ])
                 : [[], new Map()];
             const seasonRisp = rispBySeason.get(season) ?? null;
@@ -2247,22 +2297,24 @@
 
     const getTeamSchedule = async (teamId, date) => {
         const season = date.slice(0, 4);
+        const endDate = previousDate(date);
         const params = new URLSearchParams({
             sportId: "1",
             teamId: String(teamId),
             startDate: `${season}-02-01`,
-            endDate: date,
+            endDate,
             gameType: "R"
         });
         const payload = await fetchJson(
             `${API_ROOT}/v1/schedule?${params}`,
-            `pregame:team-schedule:${teamId}:${date}`
+            `pregame:team-schedule:${teamId}:${endDate}`
         );
         return (payload?.dates ?? []).flatMap((entry) => entry.games ?? [])
             .filter(isFinal);
     };
 
     const getTeamTrend = async (teamId, date) => {
+        const endDate = previousDate(date);
         const schedule = await getTeamSchedule(teamId, date);
         const recent = schedule.slice(-10);
         const results = recent.map((game) => {
@@ -2288,12 +2340,12 @@
         const startDate = recent[0]?.officialDate ?? date;
         const [hittingPayload, pitchingPayload] = await Promise.all([
             fetchJson(
-                `${API_ROOT}/v1/teams/${teamId}/stats?stats=byDateRange&group=hitting&gameType=R&startDate=${startDate}&endDate=${date}`,
-                `pregame:team-hit:${teamId}:${startDate}:${date}`
+                `${API_ROOT}/v1/teams/${teamId}/stats?stats=byDateRange&group=hitting&gameType=R&startDate=${startDate}&endDate=${endDate}`,
+                `pregame:team-hit:${teamId}:${startDate}:${endDate}`
             ).catch(() => null),
             fetchJson(
-                `${API_ROOT}/v1/teams/${teamId}/stats?stats=byDateRange&group=pitching&gameType=R&startDate=${startDate}&endDate=${date}`,
-                `pregame:team-pitch:${teamId}:${startDate}:${date}`
+                `${API_ROOT}/v1/teams/${teamId}/stats?stats=byDateRange&group=pitching&gameType=R&startDate=${startDate}&endDate=${endDate}`,
+                `pregame:team-pitch:${teamId}:${startDate}:${endDate}`
             ).catch(() => null)
         ]);
         const hitting = hittingPayload?.stats?.[0]?.splits?.[0]?.stat ?? {};
@@ -2323,6 +2375,7 @@
         series.forEach((group) => {
             const groupElement = el("div", "pregame-trend-series");
             groupElement.style.gridColumn = `span ${group.results.length}`;
+            groupElement.style.setProperty("--trend-series-count", String(group.results.length));
             groupElement.append(el("span", "pregame-trend-opponent", group.opponent));
             const outcomes = el("div", "pregame-trend-outcomes");
             outcomes.style.setProperty("--trend-series-count", String(group.results.length));
@@ -2672,7 +2725,10 @@
                 [...rosterBySide.away, ...rosterBySide.home],
                 date
             );
-            const displayedArticles = mergeOfficialArticles(latestArticles, articles);
+            const displayedArticles = mergeOfficialArticles(
+                latestArticles,
+                articles.filter((article) => articleMlbDate(article) === date)
+            );
 
             const playersSection = section("注目選手", "記録・直近成績を優先");
             playersSection.classList.add("pregame-featured-section");

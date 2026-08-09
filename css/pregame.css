@@ -1260,8 +1260,9 @@ a.pregame-batting-stat:focus-visible {
 }
 
 .pregame-trend-history {
-    display: grid;
-    grid-template-columns: repeat(var(--trend-game-count), minmax(0, 1fr));
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
     min-height: 34px;
     margin-top: 4px;
     padding-top: 2px;
@@ -1283,31 +1284,48 @@ a.pregame-batting-stat:focus-visible {
 }
 
 .pregame-trend-series {
+    position: relative;
     display: grid;
     box-sizing: border-box;
     grid-template-rows: auto 1fr;
     align-items: center;
+    flex: 0 0 calc(var(--trend-series-count) * 9px + 3px);
     min-width: 0;
-    padding: 0 5px;
+    padding: 0 2px;
 }
 
 .pregame-trend-series + .pregame-trend-series {
-    border-left: 1px solid #46535c;
+    border-left: 0;
 }
 
-.pregame-trend-opponent {
+.pregame-trend-series + .pregame-trend-series::before {
+    position: absolute;
+    top: 12px;
+    bottom: 0;
+    left: 0;
+    width: 1px;
+    background: #46535c;
+    content: "";
+}
+
+.pregame-team-trends-section .pregame-trend-opponent {
+    display: block;
+    min-width: 0;
+    overflow: visible;
     color: #aebac0;
-    font-size: 7px;
+    font-size: 8px;
     font-weight: 700;
     line-height: 1.2;
-    letter-spacing: 0.06em;
+    letter-spacing: 0;
     text-align: center;
+    white-space: nowrap;
 }
 
 .pregame-trend-outcomes {
-    display: grid;
-    grid-template-columns: repeat(var(--trend-series-count), minmax(0, 1fr));
+    display: flex;
     align-items: center;
+    justify-content: center;
+    gap: 1px;
     margin-top: 1px;
 }
 
@@ -1316,7 +1334,7 @@ a.pregame-batting-stat:focus-visible {
     box-sizing: border-box;
     width: 8px;
     height: 8px;
-    justify-self: center;
+    flex: 0 0 8px;
     border: 1px solid #d5dde1;
     border-radius: 50%;
 }
