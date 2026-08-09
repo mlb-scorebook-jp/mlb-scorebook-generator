@@ -32,24 +32,6 @@
         ]
     },
     {
-        "headline": "Yanks' past, present, future coincide as Cole hits milestone -- and kids steal show",
-        "summaryJa": "G.コール（NYY）、ヤンキース加入後通算1000奪三振を達成",
-        "slug": "gerrit-cole-picks-up-1-000th-strikeout-as-a-yankee",
-        "url": "https://www.mlb.com/news/gerrit-cole-picks-up-1-000th-strikeout-as-a-yankee",
-        "contentDate": "2026-08-08T23:43:00Z",
-        "teamIds": [
-            147
-        ],
-        "playerIds": [
-            543037
-        ],
-        "taxonomy": [
-            "apple-news",
-            "milestone",
-            "game-recap"
-        ]
-    },
-    {
         "headline": "Tommy John shares message thanking fans and teammates as he battles health issues",
         "summaryJa": "T.ジョン（NYY）、闘病を支えるファンとチームメートへ感謝",
         "slug": "tommy-john-misses-old-timers-day-for-health-reasons",
@@ -82,22 +64,6 @@
         ]
     },
     {
-        "headline": "After late-inning drama, Ohtani's go-ahead hit snaps Dodgers' 7-game skid",
-        "summaryJa": "MLB公式がドジャースについて報じた。",
-        "slug": "dodgers-losing-streak-ends-after-7-games",
-        "url": "https://www.mlb.com/news/dodgers-losing-streak-ends-after-7-games",
-        "contentDate": "2026-08-09T05:11:00Z",
-        "teamIds": [
-            119
-        ],
-        "playerIds": [],
-        "taxonomy": [
-            "apple-news",
-            "game-recap",
-            "relief-performance"
-        ]
-    },
-    {
         "headline": "Carroll's girlfriend steals show with anthem, then Carroll steals a HR!",
         "summaryJa": "C.キャロル（AZ）の恋人が国歌斉唱、本人は本塁打をもぎ取る好守",
         "slug": "corbin-carroll-s-girlfriend-emma-broyles-sings-national-anthem",
@@ -111,6 +77,70 @@
         ],
         "taxonomy": [
             "apple-news"
+        ]
+    },
+    {
+        "headline": "Prize prospects from Adley trade impress in O's Minors debuts",
+        "summaryJa": "MLB公式がAnthony Eyanson（BAL）について報じた。",
+        "slug": "anthony-eyanson-kyson-witherspoon-orioles-debuts",
+        "url": "https://www.mlb.com/news/anthony-eyanson-kyson-witherspoon-orioles-debuts",
+        "contentDate": "2026-08-09T02:41:00Z",
+        "teamIds": [
+            110
+        ],
+        "playerIds": [
+            809254,
+            804817
+        ],
+        "taxonomy": [
+            "apple-news",
+            "mlb-top-prospects"
+        ]
+    },
+    {
+        "headline": "Star shortstops Abrams, De La Cruz square off on Peacock (12:15 ET)",
+        "summaryJa": "MLB公式がMLBの最新情報について報じた。",
+        "slug": "mlb-sunday-leadoff-on-nbc-peacock-for-2026-season",
+        "url": "https://www.mlb.com/news/mlb-sunday-leadoff-on-nbc-peacock-for-2026-season",
+        "contentDate": "2026-08-09T15:08:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "taxonomy": [
+            "apple-news"
+        ]
+    },
+    {
+        "headline": "Yanks' past, present, future coincide as Cole hits milestone -- and kids steal show",
+        "summaryJa": "G.コール（NYY）、ヤンキース加入後通算1000奪三振を達成",
+        "slug": "gerrit-cole-picks-up-1-000th-strikeout-as-a-yankee",
+        "url": "https://www.mlb.com/news/gerrit-cole-picks-up-1-000th-strikeout-as-a-yankee",
+        "contentDate": "2026-08-08T23:43:00Z",
+        "teamIds": [
+            147
+        ],
+        "playerIds": [
+            543037
+        ],
+        "taxonomy": [
+            "apple-news",
+            "milestone",
+            "game-recap"
+        ]
+    },
+    {
+        "headline": "After late-inning drama, Ohtani's go-ahead hit snaps Dodgers' 7-game skid",
+        "summaryJa": "MLB公式がドジャースについて報じた。",
+        "slug": "dodgers-losing-streak-ends-after-7-games",
+        "url": "https://www.mlb.com/news/dodgers-losing-streak-ends-after-7-games",
+        "contentDate": "2026-08-09T05:11:00Z",
+        "teamIds": [
+            119
+        ],
+        "playerIds": [],
+        "taxonomy": [
+            "apple-news",
+            "game-recap",
+            "relief-performance"
         ]
     },
     {
@@ -129,6 +159,35 @@
         "taxonomy": [
             "apple-news",
             "field-of-dreams"
+        ]
+    },
+    {
+        "headline": "Last Chance: Trade Deadline sale offers you the best deal for MLB.TV",
+        "summaryJa": "MLB公式がMLBの最新情報について報じた。",
+        "slug": "mlb-tv-trade-deadline-2026-sale",
+        "url": "https://www.mlb.com/news/mlb-tv-trade-deadline-2026-sale",
+        "contentDate": "2026-08-09T04:41:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "taxonomy": [
+            "apple-news"
+        ]
+    },
+    {
+        "headline": "Nats No. 4 prospect homers off of 3-time All-Star at Triple-A",
+        "summaryJa": "MLB公式がS.キング（WSH）について報じた。",
+        "slug": "nationals-prospect-seaver-king-homers-off-of-carlos-rodon-at-triple-a",
+        "url": "https://www.mlb.com/news/nationals-prospect-seaver-king-homers-off-of-carlos-rodon-at-triple-a",
+        "contentDate": "2026-08-09T14:04:28.578Z",
+        "teamIds": [
+            120
+        ],
+        "playerIds": [
+            814409
+        ],
+        "taxonomy": [
+            "mlb-top-prospects",
+            "apple-news"
         ]
     },
     {
@@ -161,18 +220,6 @@
         "taxonomy": [
             "apple-news",
             "game-recap"
-        ]
-    },
-    {
-        "headline": "Last Chance: Trade Deadline sale offers you the best deal for MLB.TV",
-        "summaryJa": "MLB公式がMLBの最新情報について報じた。",
-        "slug": "mlb-tv-trade-deadline-2026-sale",
-        "url": "https://www.mlb.com/news/mlb-tv-trade-deadline-2026-sale",
-        "contentDate": "2026-08-09T04:41:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "taxonomy": [
-            "apple-news"
         ]
     },
     {
@@ -225,6 +272,33 @@
             "apple-news",
             "game-recap"
         ]
+    },
+    {
+        "headline": "Get to know the red-hot new Mets prospect whose first language is French",
+        "summaryJa": "MLB公式がÉmilien Pitre（NYM）について報じた。",
+        "slug": "emilien-pitre-stays-hot-after-joining-mets-organization",
+        "url": "https://www.mlb.com/news/emilien-pitre-stays-hot-after-joining-mets-organization",
+        "contentDate": "2026-08-09T01:24:00Z",
+        "teamIds": [
+            121
+        ],
+        "playerIds": [
+            692150
+        ],
+        "taxonomy": [
+            "apple-news",
+            "mlb-top-prospects"
+        ]
+    },
+    {
+        "headline": "Baseball’s competitive balance issue, explained",
+        "summaryJa": "MLB公式がMLBの最新情報について報じた。",
+        "slug": "mlb-competitive-balance-issue-explained",
+        "url": "https://www.mlb.com/news/mlb-competitive-balance-issue-explained",
+        "contentDate": "2026-06-21T00:15:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "taxonomy": []
     },
     {
         "headline": "Weiss tossed after Sale gets called for run-scoring balk",
@@ -291,16 +365,6 @@
             "minor-league-baseball",
             "injury"
         ]
-    },
-    {
-        "headline": "Baseball’s competitive balance issue, explained",
-        "summaryJa": "MLB公式がMLBの最新情報について報じた。",
-        "slug": "mlb-competitive-balance-issue-explained",
-        "url": "https://www.mlb.com/news/mlb-competitive-balance-issue-explained",
-        "contentDate": "2026-06-21T00:15:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "taxonomy": []
     },
     {
         "headline": "Injuries: H. Greene, Stanton, Dodgers, Adley, Soto, Cubs",
@@ -426,72 +490,6 @@
         "taxonomy": [
             "apple-news",
             "game-recap"
-        ]
-    },
-    {
-        "headline": "250 for 250: Top 10 memorable animal moments",
-        "summaryJa": "MLB公式がMLBの最新情報について報じた。",
-        "slug": "best-animal-moments-in-mlb-history",
-        "url": "https://www.mlb.com/news/best-animal-moments-in-mlb-history",
-        "contentDate": "2026-08-08T15:34:29.965Z",
-        "teamIds": [],
-        "playerIds": [],
-        "taxonomy": [
-            "apple-news",
-            "offbeat",
-            "rankings"
-        ]
-    },
-    {
-        "headline": "New Pirate making waves all over the field ... and social media",
-        "summaryJa": "R.サイモン（PIT）、攻守とSNSで存在感",
-        "slug": "ronny-simon-helps-lead-pirates-past-mets",
-        "url": "https://www.mlb.com/news/ronny-simon-helps-lead-pirates-past-mets",
-        "contentDate": "2026-08-09T02:44:00Z",
-        "teamIds": [
-            134
-        ],
-        "playerIds": [
-            682927
-        ],
-        "taxonomy": [
-            "apple-news",
-            "style",
-            "game-recap"
-        ]
-    },
-    {
-        "headline": "3 homers, 5-for-5, 17 total bases! Rockies prospect enjoys historic night",
-        "summaryJa": "MLB公式がZ.ビーン（COL）について報じた。",
-        "slug": "rockies-prospect-zac-veen-17-total-bases-3-homer-game",
-        "url": "https://www.mlb.com/news/rockies-prospect-zac-veen-17-total-bases-3-homer-game",
-        "contentDate": "2026-08-09T05:03:00Z",
-        "teamIds": [
-            115
-        ],
-        "playerIds": [
-            691728
-        ],
-        "taxonomy": [
-            "apple-news",
-            "mlb-top-prospects"
-        ]
-    },
-    {
-        "headline": "Holmes returns to big leagues for first time since May in Cubs debut",
-        "summaryJa": "C.ホームズ（CHC）、5月以来のメジャー復帰登板",
-        "slug": "clay-holmes-goes-four-innings-in-cubs-debut-vs-royals",
-        "url": "https://www.mlb.com/news/clay-holmes-goes-four-innings-in-cubs-debut-vs-royals",
-        "contentDate": "2026-08-09T02:44:00Z",
-        "teamIds": [
-            112
-        ],
-        "playerIds": [
-            605280
-        ],
-        "taxonomy": [
-            "apple-news",
-            "team-debut"
         ]
     }
 ]);
