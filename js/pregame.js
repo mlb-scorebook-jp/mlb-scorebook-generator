@@ -73,7 +73,7 @@
         return values;
     };
 
-    const savantPlayerUrl = (person) => {
+    const savantPlayerUrl = (person, view = "hitting") => {
         const id = Number(person?.id);
         if (!id) return "";
         const slug = String(person?.fullName ?? person?.name ?? "player")
@@ -83,7 +83,8 @@
             .replace(/['’]/g, "")
             .replace(/[^a-z0-9]+/g, "-")
             .replace(/^-+|-+$/g, "") || "player";
-        return `https://baseballsavant.mlb.com/savant-player/${slug}-${id}?stats=statcast-r-hitting-mlb`;
+        const statsView = view === "zones" ? "statcast-r-zones-mlb" : "statcast-r-hitting-mlb";
+        return `https://baseballsavant.mlb.com/savant-player/${slug}-${id}?stats=${statsView}`;
     };
 
     const getSavantHittingMetrics = async (playerId, season) => {
@@ -117,6 +118,68 @@
         }
         const players = await savantCache.get(key);
         return players.get(Number(playerId)) ?? null;
+    };
+
+    const SAVANT_HIT_EVENTS = new Set(["single", "double", "triple", "home_run"]);
+    const SAVANT_AT_BAT_EVENTS = new Set([
+        "single",
+        "double",
+        "triple",
+        "home_run",
+        "field_out",
+        "force_out",
+        "grounded_into_double_play",
+        "fielders_choice",
+        "fielders_choice_out",
+        "strikeout",
+        "strikeout_double_play",
+        "double_play",
+        "triple_play",
+        "field_error",
+        "other_out"
+    ]);
+
+    const getSavantZoneBattingAverage = async (playerId, season) => {
+        const key = `savant:zones:${playerId}:${season}`;
+        if (!savantCache.has(key)) {
+            const params = new URLSearchParams({
+                all: "true",
+                type: "batter",
+                player_type: "batter",
+                hfSea: `${season}|`,
+                hfGT: "R|"
+            });
+            params.append("batters_lookup[]", String(playerId));
+            const request = fetch(`https://baseballsavant.mlb.com/statcast_search/csv?${params}`)
+                .then(async (response) => {
+                    if (!response.ok) throw new Error(`Baseball Savantのゾーン情報を取得できませんでした（${response.status}）`);
+                    const lines = (await response.text()).replace(/^\uFEFF/, "")
+                        .split(/\r?\n/)
+                        .filter(Boolean);
+                    if (!lines.length) return new Map();
+                    const headers = parseCsvLine(lines[0]);
+                    const eventIndex = headers.indexOf("events");
+                    const zoneIndex = headers.indexOf("zone");
+                    if (eventIndex < 0 || zoneIndex < 0) return new Map();
+                    const totals = new Map();
+                    lines.slice(1).forEach((line) => {
+                        const values = parseCsvLine(line);
+                        const event = values[eventIndex];
+                        const zone = Number(values[zoneIndex]);
+                        if (!SAVANT_AT_BAT_EVENTS.has(event) || !Number.isInteger(zone) || zone === 10 || zone < 1 || zone > 14) return;
+                        const current = totals.get(zone) ?? { atBats: 0, hits: 0 };
+                        current.atBats += 1;
+                        if (SAVANT_HIT_EVENTS.has(event)) current.hits += 1;
+                        totals.set(zone, current);
+                    });
+                    return new Map([...totals.entries()].map(([zone, total]) => [
+                        zone,
+                        total.atBats ? total.hits / total.atBats : null
+                    ]));
+                });
+            savantCache.set(key, request);
+        }
+        return savantCache.get(key);
     };
 
     const normalizeKey = (value) => String(value ?? "")
@@ -1775,32 +1838,88 @@
         return list;
     };
 
-    const renderStatcastSection = (stats, person) => {
+    const statcastAverageLabel = (value) => {
+        if (!Number.isFinite(value)) return "—";
+        return value.toFixed(3).replace(/^0/, "");
+    };
+
+    const renderStatcastSection = (history, zones, person, season) => {
         const wrapper = section("Statcast", "Baseball Savant");
         wrapper.classList.add("pregame-statcast-section");
         const metrics = el("div", "pregame-statcast-metrics");
         const sourceUrl = savantPlayerUrl(person);
         [
-            ["バレル率", stats?.brl_percent, "%"],
-            ["平均打球速度", stats?.avg_hit_speed, " mph"],
-            ["最長飛距離", stats?.max_distance, " ft"]
-        ].forEach(([label, value, unit]) => {
+            ["バレル率", "brl_percent", "%"],
+            ["平均打球速度", "avg_hit_speed", " mph"],
+            ["Hard-Hit率", "ev95percent", "%"],
+            ["最長飛距離", "max_distance", " ft"]
+        ].forEach(([label, key, unit]) => {
             const card = el("div", "pregame-statcast-metric");
-            const displayValue = value == null || value === "" ? "—" : `${value}${unit}`;
-            const hasSource = value != null && value !== "" && sourceUrl;
-            const valueNode = el(hasSource ? "a" : "strong", "pregame-statcast-value", displayValue);
-            if (hasSource) {
-                valueNode.href = sourceUrl;
-                valueNode.target = "_blank";
-                valueNode.rel = "noopener noreferrer";
-                valueNode.setAttribute("aria-label", `${label} ${displayValue}（Baseball Savant公式）`);
-            }
-            card.append(
-                el("span", "pregame-statcast-label", label),
-                valueNode
-            );
+            card.classList.add(`pregame-statcast-${key}`);
+            card.append(el("span", "pregame-statcast-label", label));
+            const rows = el("div", "pregame-statcast-history");
+            history.forEach(({ season: rowSeason, stats }) => {
+                const value = stats?.[key];
+                let displayValue = value == null || value === "" ? "—" : `${value}${unit}`;
+                const numericValue = Number(value);
+                if (Number.isFinite(numericValue) && key === "avg_hit_speed") {
+                    displayValue = `${value} mph（${(numericValue * 1.609344).toFixed(1)}km）`;
+                } else if (Number.isFinite(numericValue) && key === "max_distance") {
+                    displayValue = `${value} ft（${(numericValue * 0.3048).toFixed(1)}m）`;
+                }
+                const row = el("div", "pregame-statcast-history-row");
+                row.append(el("span", "pregame-statcast-season", String(rowSeason)));
+                const hasSource = value != null && value !== "" && sourceUrl;
+                const valueNode = el(hasSource ? "a" : "strong", "pregame-statcast-value", displayValue);
+                if (hasSource) {
+                    valueNode.href = sourceUrl;
+                    valueNode.target = "_blank";
+                    valueNode.rel = "noopener noreferrer";
+                    valueNode.setAttribute("aria-label", `${rowSeason}年 ${label} ${displayValue}（Baseball Savant公式）`);
+                }
+                row.append(valueNode);
+                rows.append(row);
+            });
+            if (!history.length) rows.append(el("strong", "pregame-statcast-value", "—"));
+            card.append(rows);
             metrics.append(card);
         });
+
+        const zoneCard = el("div", "pregame-statcast-metric pregame-statcast-zone-card");
+        zoneCard.append(el("span", "pregame-statcast-label", "コース別打率"));
+        const zoneLink = savantPlayerUrl(person, "zones");
+        const zoneChart = el("div", "pregame-zone-chart");
+        const outer = el("div", "pregame-zone-outer");
+        [11, 12, 13, 14].forEach((zone) => {
+            const value = zones?.get(zone);
+            const node = el(zoneLink && Number.isFinite(value) ? "a" : "span", `pregame-zone-cell pregame-zone-${zone}`, statcastAverageLabel(value));
+            node.style.setProperty("--pregame-zone-strength", Number.isFinite(value) ? String(Math.min(1, value / 0.5)) : "0");
+            if (node.tagName === "A") {
+                node.href = zoneLink;
+                node.target = "_blank";
+                node.rel = "noopener noreferrer";
+                node.setAttribute("aria-label", `${season}年 ゾーン${zone} 打率${statcastAverageLabel(value)}（Baseball Savant公式）`);
+            }
+            outer.append(node);
+        });
+        const inner = el("div", "pregame-zone-inner");
+        for (let zone = 1; zone <= 9; zone += 1) {
+            const value = zones?.get(zone);
+            const node = el(zoneLink && Number.isFinite(value) ? "a" : "span", "pregame-zone-cell", statcastAverageLabel(value));
+            node.style.setProperty("--pregame-zone-strength", Number.isFinite(value) ? String(Math.min(1, value / 0.5)) : "0");
+            if (node.tagName === "A") {
+                node.href = zoneLink;
+                node.target = "_blank";
+                node.rel = "noopener noreferrer";
+                node.setAttribute("aria-label", `${season}年 ゾーン${zone} 打率${statcastAverageLabel(value)}（Baseball Savant公式）`);
+            }
+            inner.append(node);
+        }
+        zoneChart.append(outer, inner);
+        const zoneVisual = el("div", "pregame-zone-visual");
+        zoneVisual.append(zoneChart, el("span", "pregame-zone-home-plate"));
+        zoneCard.append(el("span", "pregame-zone-view-label", `${season}年・打者視点`), zoneVisual);
+        metrics.append(zoneCard);
         wrapper.append(metrics);
         return wrapper;
     };
@@ -1855,8 +1974,7 @@
                 rispBySeason,
                 seasonPitching,
                 careerPitching,
-                yearlyPitching,
-                statcastHitting
+                yearlyPitching
             ] = await Promise.all([
                 hasHitting
                     ? getPlayerSeasonStatsBeforeDate(playerId, season, "hitting", date).catch(() => ({}))
@@ -1874,9 +1992,28 @@
                 hasPitching
                     ? getPlayerCareer(battingProfile, "pitching", previousDate(date)).catch(() => ({}))
                     : {},
-                hasPitching ? getPlayerYearByYearPitching(playerId).catch(() => new Map()) : new Map(),
-                hasHitting ? getSavantHittingMetrics(playerId, season).catch(() => null) : null
+                hasPitching ? getPlayerYearByYearPitching(playerId).catch(() => new Map()) : new Map()
             ]);
+            const statcastSeasonCandidates = [...yearlyBatting.keys()];
+            if (statNumber(seasonBatting?.gamesPlayed) > 0 && !statcastSeasonCandidates.includes(season)) {
+                statcastSeasonCandidates.push(season);
+            }
+            const statcastSeasons = hasHitting
+                ? [...new Set(statcastSeasonCandidates)]
+                    .map(Number)
+                    .filter((year) => Number.isInteger(year) && year <= season)
+                    .sort((a, b) => b - a)
+                    .slice(0, 5)
+                : [];
+            const [statcastHistory, statcastZones] = hasHitting
+                ? await Promise.all([
+                    Promise.all(statcastSeasons.map(async (year) => ({
+                        season: year,
+                        stats: await getSavantHittingMetrics(playerId, year).catch(() => null)
+                    }))).then((rows) => rows.filter((row) => row.stats)),
+                    getSavantZoneBattingAverage(playerId, season).catch(() => new Map())
+                ])
+                : [[], new Map()];
             const seasonRisp = rispBySeason.get(season) ?? null;
             const careerRisp = [...rispBySeason.values()].reduce((totals, stats) => ({
                 atBats: totals.atBats + statNumber(stats?.atBats),
@@ -2013,7 +2150,7 @@
             grid.append(articleSection);
 
             const playerSections = [battingSummary, grid];
-            if (hasHitting) playerSections.push(renderStatcastSection(statcastHitting, battingProfile));
+            if (hasHitting) playerSections.push(renderStatcastSection(statcastHistory, statcastZones, battingProfile, season));
             if (yearlyBattingTable) playerSections.push(yearlyBattingTable);
             if (yearlyPitchingTable) playerSections.push(yearlyPitchingTable);
             dom.content.replaceChildren(...playerSections);
