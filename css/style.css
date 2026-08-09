@@ -634,6 +634,25 @@ body.app-mode-pregame .pregame-brand-home {
     text-align: center;
 }
 
+@media screen and (min-width: 1101px) {
+    .today-games-panel {
+        width: 300px;
+    }
+
+    .today-games-list {
+        max-height: none;
+        overflow-y: visible;
+        overscroll-behavior: auto;
+    }
+
+    .sidebar .today-game-card {
+        min-height: 34px;
+        grid-template-columns: 38px 22px minmax(72px, 1fr) 22px 38px;
+        gap: 4px;
+        padding: 4px 8px;
+    }
+}
+
 .direct-game-entry {
     margin-bottom: 8px;
     border: 1px solid #3f4a52;
