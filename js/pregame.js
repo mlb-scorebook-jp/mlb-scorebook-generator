@@ -2766,7 +2766,7 @@
                 const scheduleUrl = getOfficialTeamScheduleUrl(team, date);
                 const battingUrl = getOfficialTeamStatsUrl(team, season, "hitting");
                 const pitchingUrl = getOfficialTeamStatsUrl(team, season, "pitching");
-                const recentGamesMetric = el("div", "pregame-metric pregame-trend-history-metric");
+                const recentGamesMetric = el("div", "pregame-metric pregame-trend-record-metric");
                 const recentRecord = el(
                     scheduleUrl ? "a" : "strong",
                     "pregame-metric-value pregame-trend-record",
@@ -2781,13 +2781,23 @@
                         `${teamCode(team)}の${date}を含むMLB公式スケジュールを新しいタブで開く`
                     );
                 }
-                recentGamesMetric.append(recentRecord);
-                recentGamesMetric.append(renderTeamTrendHistory(trend.results));
+                recentGamesMetric.append(el("span", "", "勝敗"), recentRecord);
                 const streakMetric = metric("連勝・連敗", trend.streakText);
-                streakMetric.append(renderTeamRunTotals(trend.runsFor, trend.runsAgainst));
+                const historyMetric = el("div", "pregame-metric pregame-trend-history-metric");
+                historyMetric.append(
+                    el("span", "", "内容"),
+                    renderTeamTrendHistory(trend.results)
+                );
+                const runTotalsMetric = el("div", "pregame-metric pregame-trend-runs-metric");
+                runTotalsMetric.append(
+                    el("span", "", "得点・失点"),
+                    renderTeamRunTotals(trend.runsFor, trend.runsAgainst)
+                );
                 metrics.append(
                     recentGamesMetric,
                     streakMetric,
+                    historyMetric,
+                    runTotalsMetric,
                     metric("チーム打率", String(trend.avg), battingUrl ? {
                         href: battingUrl,
                         ariaLabel: `${teamCode(team)}の${season}年MLB公式チーム打撃成績を新しいタブで開く`
