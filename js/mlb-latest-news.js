@@ -313,15 +313,17 @@
         "taxonomy": []
     },
     {
-        "headline": "Starter scratched? No problem for Rays' 'pen in win over Mariners",
-        "summaryJa": "MLB公式がレイズについて報じた。",
+        "headline": "'I gotta wear the slanted hat': Baker breaks Rodney's record with 23rd consecutive save",
+        "summaryJa": "MLB公式がB.ベイカー（TB）について報じた。",
         "slug": "rays-bullpen-leads-way-in-win-over-mariners",
         "url": "https://www.mlb.com/news/rays-bullpen-leads-way-in-win-over-mariners",
-        "contentDate": "2026-08-09T04:59:34.956Z",
+        "contentDate": "2026-08-09T06:53:00Z",
         "teamIds": [
             139
         ],
-        "playerIds": [],
+        "playerIds": [
+            641329
+        ],
         "taxonomy": [
             "apple-news",
             "game-recap"
@@ -346,11 +348,11 @@
         ]
     },
     {
-        "headline": "Wilson tossed for the 2nd time in 4 games over ABS dispute",
+        "headline": "Wilson tossed for the 2nd time in 4 games as frustration mounts in Seattle",
         "summaryJa": "MLB公式がマリナーズについて報じた。",
         "slug": "dan-wilson-ejected-during-rays-mariners-game",
         "url": "https://www.mlb.com/news/dan-wilson-ejected-during-rays-mariners-game",
-        "contentDate": "2026-08-09T04:30:00Z",
+        "contentDate": "2026-08-09T06:11:00Z",
         "teamIds": [
             136
         ],
