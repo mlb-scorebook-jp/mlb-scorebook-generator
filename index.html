@@ -215,7 +215,7 @@
     <script src="js/players-2026-updates.js?v=20260802-1"></script>
     <script src="js/historical-records.js"></script>
     <script src="js/mlb-business-date.js?v=20260808-1"></script>
-    <script src="js/pregame.js?v=20260809-13"></script>
+    <script src="js/pregame.js?v=20260809-15"></script>
 
     <script>
         (() => {
@@ -1059,6 +1059,7 @@
             const seasonSearchCache = new Map();
             const seasonTeamSearchCache = new Map();
             const officialGameArticlesCache = new Map();
+            let allTimeStrikeoutLeadersRequest = null;
 
             const getSpecialNoteText = (note) =>
                 typeof note === "object" && note !== null
@@ -1290,6 +1291,62 @@
                 return request;
             };
 
+            const fetchAllTimeStrikeoutLeaders = () => {
+                if (allTimeStrikeoutLeadersRequest) {
+                    return allTimeStrikeoutLeadersRequest;
+                }
+                const params = new URLSearchParams({
+                    leaderCategories: "strikeouts",
+                    statGroup: "pitching",
+                    statType: "career",
+                    sportId: "1",
+                    limit: "15"
+                });
+                allTimeStrikeoutLeadersRequest = fetch(
+                    `https://statsapi.mlb.com/api/v1/stats/leaders?${params}`
+                ).then(async (response) => {
+                    if (!response.ok) return [];
+                    const payload = await response.json();
+                    return (payload?.leagueLeaders?.[0]?.leaders ?? [])
+                        .map((leader) => ({
+                            rank: Number(leader?.rank),
+                            playerId: Number(leader?.person?.id),
+                            value: Number(leader?.value)
+                        }))
+                        .filter((leader) =>
+                            Number.isFinite(leader.rank) &&
+                            Number.isFinite(leader.playerId) &&
+                            Number.isFinite(leader.value)
+                        );
+                }).catch(() => []);
+                return allTimeStrikeoutLeadersRequest;
+            };
+
+            const buildAllTimeStrikeoutRankNote = async (player, code, career, current) => {
+                const gameStrikeouts = Number(current?.strikeOuts) || 0;
+                const total = Number(career?.strikeOuts);
+                if (gameStrikeouts < 1 || !Number.isFinite(total)) return null;
+
+                const leaders = await fetchAllTimeStrikeoutLeaders();
+                const playerId = Number(player?.id ?? player?.person?.id);
+                const officialLeader = leaders.find((leader) => leader.playerId === playerId);
+
+                // The all-time endpoint has no historical date parameter. Requiring its
+                // current value to match this game prevents present-day rankings from
+                // being attached to an older scorebook.
+                if (!officialLeader || officialLeader.value !== total) return null;
+
+                const rank = Number(officialLeader.rank);
+                if (rank > 10) return null;
+
+                return {
+                    text: `${code}　${getPersonName(player.person)}　` +
+                        `MLB歴代${rank}位となる${total}奪三振達成`,
+                    priority: 0,
+                    importance: total
+                };
+            };
+
             const calculateLongestStreaks = (splits, context) => {
                 const games = splits
                     .filter((split) => isGameBeforeCurrentStart(split, context))
@@ -1431,6 +1488,16 @@
                                 }
                             }
                         });
+
+                        if (group === "pitching") {
+                            const allTimeRankNote = await buildAllTimeStrikeoutRankNote(
+                                player,
+                                code,
+                                career,
+                                current
+                            );
+                            if (allTimeRankNote) playerNotes.push(allTimeRankNote);
+                        }
                     }
                     return playerNotes;
                 });

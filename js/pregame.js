@@ -1025,6 +1025,60 @@
         });
     };
 
+    const getAllTimeStrikeoutCountdown = async (career, playerId) => {
+        const total = Number(career?.strikeOuts);
+        if (!Number.isFinite(total)) return null;
+
+        const params = new URLSearchParams({
+            leaderCategories: "strikeouts",
+            statGroup: "pitching",
+            statType: "career",
+            sportId: "1",
+            limit: "15"
+        });
+        const payload = await fetchJson(
+            `${API_ROOT}/v1/stats/leaders?${params}`,
+            "pregame:all-time-pitching-strikeout-leaders"
+        ).catch(() => null);
+        const leaders = (payload?.leagueLeaders?.[0]?.leaders ?? [])
+            .map((leader) => ({
+                rank: Number(leader?.rank),
+                playerId: Number(leader?.person?.id),
+                value: Number(leader?.value)
+            }))
+            .filter((leader) =>
+                Number.isFinite(leader.rank) && Number.isFinite(leader.value)
+            );
+        if (!leaders.length) return null;
+
+        const officialPlayer = leaders.find((leader) => leader.playerId === Number(playerId));
+        let targetRank;
+        let targetValue;
+
+        // When reopening the pregame page for the game in which the rank was
+        // reached, the live all-time list can already contain the postgame total.
+        if (officialPlayer?.rank <= 10 && officialPlayer.value > total) {
+            targetRank = officialPlayer.rank;
+            targetValue = officialPlayer.value;
+        } else if (officialPlayer?.rank <= 10) {
+            const nextRank = officialPlayer.rank - 1;
+            const nextLeader = leaders.find((leader) => leader.rank === nextRank);
+            if (!nextLeader) return null;
+            targetRank = nextRank;
+            targetValue = nextLeader.value + 1;
+        } else {
+            const tenth = leaders.find((leader) => leader.rank === 10);
+            if (!tenth) return null;
+            targetRank = 10;
+            targetValue = tenth.value + 1;
+        }
+
+        const remaining = targetValue - total;
+        return remaining >= 1 && remaining <= 5
+            ? `MLB歴代${targetRank}位となる${targetValue}奪三振まであと${remaining}`
+            : null;
+    };
+
     const setLoading = (loading) => {
         dom.loading.hidden = !loading;
     };
@@ -2364,6 +2418,20 @@
             })));
             importance += milestoneNotes.length * 10;
         });
+        const pitchingIndex = groups.indexOf("pitching");
+        if (pitchingIndex >= 0) {
+            const allTimeStrikeoutNote = await getAllTimeStrikeoutCountdown(
+                careers[pitchingIndex],
+                playerId
+            );
+            if (allTimeStrikeoutNote) {
+                notes.push({
+                    text: allTimeStrikeoutNote,
+                    href: officialPlayerStatsUrl("pitching", "career")
+                });
+                importance += 10;
+            }
+        }
         return { entry: { ...entry, person: profile }, notes, importance };
     };
 
@@ -2638,12 +2706,15 @@
             });
             trendsSection.append(trendColumns);
 
-            const articleSection = section("MLB公式関連記事", "記事・負傷情報・Transactions");
+            const articleSection = section("MLB公式関連記事", "MLB・球団公式");
+            articleSection.append(renderArticles(articles));
+
+            const rosterSection = section("負傷者・ロースター情報", "MLB公式");
             const relatedColumns = el("div", "pregame-related-columns");
             const editorialColumn = el("div", "pregame-related-column");
             editorialColumn.append(
                 el("h4", "pregame-related-heading", "負傷者情報"),
-                renderArticles([...injuries, ...articles])
+                renderArticles(injuries, "該当する負傷者情報はありません。")
             );
             const transactionColumn = el("div", "pregame-related-column");
             const transactionHeading = el("h4", "pregame-related-heading");
@@ -2657,11 +2728,11 @@
                 renderTransactions(transactions)
             );
             relatedColumns.append(editorialColumn, transactionColumn);
-            articleSection.append(relatedColumns);
+            rosterSection.append(relatedColumns);
 
             const lowerLayout = el("div", "pregame-lower-layout pregame-span-12");
             const rightColumn = el("div", "pregame-lower-right");
-            rightColumn.append(trendsSection, articleSection);
+            rightColumn.append(trendsSection, articleSection, rosterSection);
             lowerLayout.append(playersSection, rightColumn);
             grid.append(lowerLayout);
 
