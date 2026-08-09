@@ -20,15 +20,34 @@
         ]
     },
     {
-        "headline": "Lefty batters are dominating in 2026. Here’s why",
-        "summaryJa": "MLB公式がMLBの最新情報について報じた。",
-        "slug": "lefty-batters-dominating-2026",
-        "url": "https://www.mlb.com/news/lefty-batters-dominating-2026",
-        "contentDate": "2026-08-09T02:28:51.04Z",
-        "teamIds": [],
-        "playerIds": [],
+        "headline": "Chris Sale -- who is not pitching today -- ejected before game vs. Yankees",
+        "summaryJa": "MLB公式がC.セール（ATL）について報じた。",
+        "slug": "chris-sale-ejected-before-game-against-yankees",
+        "url": "https://www.mlb.com/news/chris-sale-ejected-before-game-against-yankees",
+        "contentDate": "2026-08-09T18:43:00Z",
+        "teamIds": [
+            144
+        ],
+        "playerIds": [
+            519242
+        ],
         "taxonomy": [
             "apple-news"
+        ]
+    },
+    {
+        "headline": "Padres sign outfielder Austin Hays (source)",
+        "summaryJa": "MLB公式がA.ヘイズについて報じた。",
+        "slug": "austin-hays-padres-contract",
+        "url": "https://www.mlb.com/news/austin-hays-padres-contract",
+        "contentDate": "2026-08-09T19:08:55.792Z",
+        "teamIds": [],
+        "playerIds": [
+            669720
+        ],
+        "taxonomy": [
+            "apple-news",
+            "transactions"
         ]
     },
     {
@@ -64,15 +83,21 @@
         ]
     },
     {
-        "headline": "LIVE: Star shortstops De La Cruz, Abrams square off on Peacock",
-        "summaryJa": "MLB公式がMLBの最新情報について報じた。",
-        "slug": "mlb-sunday-leadoff-on-nbc-peacock-for-2026-season",
-        "url": "https://www.mlb.com/news/mlb-sunday-leadoff-on-nbc-peacock-for-2026-season",
-        "contentDate": "2026-08-09T16:00:00Z",
-        "teamIds": [],
-        "playerIds": [],
+        "headline": "Pratt (hamstring strain) placed on 10-day IL",
+        "summaryJa": "MLB公式がC.プラット（MIL）について報じた。",
+        "slug": "cooper-pratt-placed-on-injured-list-with-hamstring-injury",
+        "url": "https://www.mlb.com/news/cooper-pratt-placed-on-injured-list-with-hamstring-injury",
+        "contentDate": "2026-08-09T18:26:50.848Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [
+            806198
+        ],
         "taxonomy": [
-            "apple-news"
+            "apple-news",
+            "injury",
+            "transactions"
         ]
     },
     {
@@ -107,6 +132,47 @@
         "taxonomy": [
             "apple-news",
             "mlb-top-prospects"
+        ]
+    },
+    {
+        "headline": "Overhauled 'pen steps up again as Nats complete first sweep since April",
+        "summaryJa": "MLB公式がB.ロード（WSH）について報じた。",
+        "slug": "brad-lord-leads-strong-effort-by-nationals-bullpen",
+        "url": "https://www.mlb.com/news/brad-lord-leads-strong-effort-by-nationals-bullpen",
+        "contentDate": "2026-08-09T19:11:23.949Z",
+        "teamIds": [
+            120
+        ],
+        "playerIds": [
+            695418
+        ],
+        "taxonomy": [
+            "apple-news",
+            "game-recap"
+        ]
+    },
+    {
+        "headline": "Lefty batters are dominating in 2026. Here’s why",
+        "summaryJa": "MLB公式がMLBの最新情報について報じた。",
+        "slug": "lefty-batters-dominating-2026",
+        "url": "https://www.mlb.com/news/lefty-batters-dominating-2026",
+        "contentDate": "2026-08-09T02:28:51.04Z",
+        "teamIds": [],
+        "playerIds": [],
+        "taxonomy": [
+            "apple-news"
+        ]
+    },
+    {
+        "headline": "Last Chance: Trade Deadline sale offers you the best deal for MLB.TV",
+        "summaryJa": "MLB公式がMLBの最新情報について報じた。",
+        "slug": "mlb-tv-trade-deadline-2026-sale",
+        "url": "https://www.mlb.com/news/mlb-tv-trade-deadline-2026-sale",
+        "contentDate": "2026-08-09T04:41:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "taxonomy": [
+            "apple-news"
         ]
     },
     {
@@ -158,18 +224,6 @@
             "apple-news",
             "game-recap",
             "relief-performance"
-        ]
-    },
-    {
-        "headline": "Last Chance: Trade Deadline sale offers you the best deal for MLB.TV",
-        "summaryJa": "MLB公式がMLBの最新情報について報じた。",
-        "slug": "mlb-tv-trade-deadline-2026-sale",
-        "url": "https://www.mlb.com/news/mlb-tv-trade-deadline-2026-sale",
-        "contentDate": "2026-08-09T04:41:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "taxonomy": [
-            "apple-news"
         ]
     },
     {
@@ -240,6 +294,16 @@
         ]
     },
     {
+        "headline": "Baseball’s competitive balance issue, explained",
+        "summaryJa": "MLB公式がMLBの最新情報について報じた。",
+        "slug": "mlb-competitive-balance-issue-explained",
+        "url": "https://www.mlb.com/news/mlb-competitive-balance-issue-explained",
+        "contentDate": "2026-06-21T00:15:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "taxonomy": []
+    },
+    {
         "headline": "Jobe brings the heat in winning first start back from Tommy John surgery",
         "summaryJa": "J.ジョーブ（DET）、手術からの復帰初先発で勝利",
         "slug": "jackson-jobe-pitches-5-scoreless-innings-in-return-from-tommy-john-surgery",
@@ -289,16 +353,6 @@
             "apple-news",
             "game-recap"
         ]
-    },
-    {
-        "headline": "Baseball’s competitive balance issue, explained",
-        "summaryJa": "MLB公式がMLBの最新情報について報じた。",
-        "slug": "mlb-competitive-balance-issue-explained",
-        "url": "https://www.mlb.com/news/mlb-competitive-balance-issue-explained",
-        "contentDate": "2026-06-21T00:15:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "taxonomy": []
     },
     {
         "headline": "Get to know the red-hot new Mets prospect whose first language is French",
@@ -438,53 +492,6 @@
         ],
         "playerIds": [
             641329
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap"
-        ]
-    },
-    {
-        "headline": "Wilson tossed for the 2nd time in 4 games as frustration mounts in Seattle",
-        "summaryJa": "MLB公式がマリナーズについて報じた。",
-        "slug": "dan-wilson-ejected-during-rays-mariners-game",
-        "url": "https://www.mlb.com/news/dan-wilson-ejected-during-rays-mariners-game",
-        "contentDate": "2026-08-09T06:11:00Z",
-        "teamIds": [
-            136
-        ],
-        "playerIds": [],
-        "taxonomy": [
-            "apple-news",
-            "ejection"
-        ]
-    },
-    {
-        "headline": "TWIB: Skubal debuts for Dodgers in an epic series at Wrigley Field",
-        "summaryJa": "MLB公式がMLBの最新情報について報じた。",
-        "slug": "this-week-in-baseball-tarik-skubal-debuts-with-dodgers",
-        "url": "https://www.mlb.com/news/this-week-in-baseball-tarik-skubal-debuts-with-dodgers",
-        "contentDate": "2026-08-08T16:00:14.213Z",
-        "teamIds": [],
-        "playerIds": [],
-        "taxonomy": [
-            "apple-news",
-            "this-week-in-baseball"
-        ]
-    },
-    {
-        "headline": "Unexpected heroes come up clutch in Brewers' gritty comeback win",
-        "summaryJa": "ブルワーズ、ベンチメンバーの活躍で逆転勝利",
-        "slug": "andrew-vaughn-s-rbi-single-completes-comeback-against-twins",
-        "url": "https://www.mlb.com/news/andrew-vaughn-s-rbi-single-completes-comeback-against-twins",
-        "contentDate": "2026-08-09T04:19:00Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [
-            663604,
-            666152,
-            688107
         ],
         "taxonomy": [
             "apple-news",
