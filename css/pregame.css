@@ -1307,10 +1307,11 @@ a.pregame-batting-stat:focus-visible {
 
 .pregame-trend-series + .pregame-trend-series::before {
     position: absolute;
-    top: 12px;
+    top: auto;
     bottom: 0;
     left: 0;
     width: 1px;
+    height: 9px;
     background: #46535c;
     content: "";
 }
