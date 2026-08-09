@@ -1936,9 +1936,17 @@
                 );
                 return Promise.all(eligiblePlayers.map(async (player) => {
                     const previous = await getGamesSincePreviousHomeRun(player, season, context);
-                    const reference = formatPreviousHomeRunReference(previous?.previousHomeRun);
-                    if (!reference || !Number.isFinite(previous?.gamesSince) ||
-                        previous.gamesSince < 1) return null;
+                    if (!Number.isFinite(previous?.gamesSince) || previous.gamesSince < 1) {
+                        return null;
+                    }
+                    if (previous.gamesSince === 1) {
+                        return {
+                            text: `${code}　${getPersonName(player.person)}　2試合連続ホームラン`,
+                            priority: -2
+                        };
+                    }
+                    const reference = formatPreviousHomeRunReference(previous.previousHomeRun);
+                    if (!reference) return null;
                     return {
                         text: `${code}　${getPersonName(player.person)}　` +
                             `${reference}　${previous.gamesSince}試合ぶりのホームラン`,
