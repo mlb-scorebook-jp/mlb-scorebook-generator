@@ -3,7 +3,7 @@
     global.MLB_LATEST_NEWS = Object.freeze([
     {
         "headline": "Yanks' past, present, future coincide as Cole hits milestone -- and kids steal show",
-        "summaryJa": "MLB公式がG.コール（NYY）について報じた。",
+        "summaryJa": "G.コール（NYY）、ヤンキース加入後通算1000奪三振を達成",
         "slug": "gerrit-cole-picks-up-1-000th-strikeout-as-a-yankee",
         "url": "https://www.mlb.com/news/gerrit-cole-picks-up-1-000th-strikeout-as-a-yankee",
         "contentDate": "2026-08-08T23:43:00Z",
@@ -21,7 +21,7 @@
     },
     {
         "headline": "Mad Max passes Big Train to move into 10th on career strikeout list",
-        "summaryJa": "M.シャーザー（TOR）が通算3516奪三振に到達し、MLB歴代10位へ浮上した。",
+        "summaryJa": "M.シャーザー（TOR）、通算3516奪三振でMLB歴代10位へ浮上",
         "slug": "max-scherzer-enters-top-10-all-time-strikeout-leaderboard",
         "url": "https://www.mlb.com/news/max-scherzer-enters-top-10-all-time-strikeout-leaderboard",
         "contentDate": "2026-08-09T02:01:00Z",
@@ -56,7 +56,7 @@
     },
     {
         "headline": "Tying run at the plate in the 9th, Sox stifled by A's as 9-game win streak ends",
-        "summaryJa": "MLB公式がレッドソックスについて報じた。",
+        "summaryJa": "レッドソックス、9回の同点機を逃し連勝が9でストップ",
         "slug": "red-sox-lose-to-a-s-to-snap-9-game-winning-streak",
         "url": "https://www.mlb.com/news/red-sox-lose-to-a-s-to-snap-9-game-winning-streak",
         "contentDate": "2026-08-09T00:43:00Z",
@@ -71,7 +71,7 @@
     },
     {
         "headline": "5-run rally carries White Sox to win after retiring Guillen's number",
-        "summaryJa": "MLB公式がT.ピーターズ（CWS）について報じた。",
+        "summaryJa": "T.ピーターズ（CWS）らの5得点の反撃で、O.ギーエン永久欠番式後の一戦に勝利",
         "slug": "white-sox-rally-for-win-after-retiring-ozzie-guillen-s-number",
         "url": "https://www.mlb.com/news/white-sox-rally-for-win-after-retiring-ozzie-guillen-s-number",
         "contentDate": "2026-08-09T02:35:55.272Z",
@@ -88,7 +88,7 @@
     },
     {
         "headline": "Tommy John shares message thanking fans and teammates as he battles health issues",
-        "summaryJa": "MLB公式がT.ジョン（NYY）について報じた。",
+        "summaryJa": "T.ジョン（NYY）、闘病を支えるファンとチームメートへ感謝",
         "slug": "tommy-john-misses-old-timers-day-for-health-reasons",
         "url": "https://www.mlb.com/news/tommy-john-misses-old-timers-day-for-health-reasons",
         "contentDate": "2026-08-08T23:56:00Z",
@@ -104,7 +104,7 @@
     },
     {
         "headline": "Weiss tossed after Sale gets called for run-scoring balk",
-        "summaryJa": "MLB公式がC.セール（ATL）について報じた。",
+        "summaryJa": "C.セール（ATL）の失点につながるボーク判定でW.ワイス監督が退場",
         "slug": "walt-weiss-ejected-after-run-scoring-balk-on-chris-sale",
         "url": "https://www.mlb.com/news/walt-weiss-ejected-after-run-scoring-balk-on-chris-sale",
         "contentDate": "2026-08-09T00:04:00Z",
@@ -120,7 +120,7 @@
     },
     {
         "headline": "Which teams have the top potential postseason rotations?",
-        "summaryJa": "MLB公式がMLBの最新情報について報じた。",
+        "summaryJa": "ポストシーズン進出候補、先発ローテーション上位球団を比較",
         "slug": "mlb-2026-top-potential-postseason-rotations",
         "url": "https://www.mlb.com/news/mlb-2026-top-potential-postseason-rotations",
         "contentDate": "2026-08-08T04:09:23.038Z",
@@ -132,7 +132,7 @@
     },
     {
         "headline": "Alcantara sets a Marlins franchise record -- for the 3rd time this year",
-        "summaryJa": "MLB公式がS.アルカンタラ（MIA）について報じた。",
+        "summaryJa": "S.アルカンタラ（MIA）、今季3度目のマーリンズ投球回記録を樹立",
         "slug": "sandy-alcantara-sets-marlins-franchise-record-for-innings-pitched",
         "url": "https://www.mlb.com/news/sandy-alcantara-sets-marlins-franchise-record-for-innings-pitched",
         "contentDate": "2026-08-09T00:25:00Z",
@@ -149,7 +149,7 @@
     },
     {
         "headline": "Jobe brings the heat in winning first start back from Tommy John surgery",
-        "summaryJa": "MLB公式がJ.ジョーブ（DET）について報じた。",
+        "summaryJa": "J.ジョーブ（DET）、手術からの復帰初先発で勝利",
         "slug": "jackson-jobe-pitches-5-scoreless-innings-in-return-from-tommy-john-surgery",
         "url": "https://www.mlb.com/news/jackson-jobe-pitches-5-scoreless-innings-in-return-from-tommy-john-surgery",
         "contentDate": "2026-08-09T02:07:00Z",
@@ -190,7 +190,7 @@
     },
     {
         "headline": "Toeing the rubber? Why Wheeler's back foot is causing a stir",
-        "summaryJa": "MLB公式がZ.ウィーラー（PHI）について報じた。",
+        "summaryJa": "Z.ウィーラー（PHI）、投球時の軸足を巡り注目集まる",
         "slug": "examining-placement-zack-wheeler-foot-pitchers-mound",
         "url": "https://www.mlb.com/news/examining-placement-zack-wheeler-foot-pitchers-mound",
         "contentDate": "2026-08-09T02:55:16.692Z",
@@ -205,11 +205,11 @@
         ]
     },
     {
-        "headline": "deGrom returns to form as Rangers' ace leads charge in playoff push",
-        "summaryJa": "MLB公式がJ.デグローム（TEX）について報じた。",
+        "headline": "deGrom wanted to stay a Ranger at the Deadline. This start proves why",
+        "summaryJa": "J.デグロム（TEX）が本来の投球を取り戻し、プレーオフ争いをけん引",
         "slug": "jacob-degrom-pitches-five-innings-in-rangers-win-vs-orioles",
         "url": "https://www.mlb.com/news/jacob-degrom-pitches-five-innings-in-rangers-win-vs-orioles",
-        "contentDate": "2026-08-09T02:22:27.418Z",
+        "contentDate": "2026-08-09T03:20:00Z",
         "teamIds": [
             140
         ],
@@ -218,12 +218,13 @@
         ],
         "taxonomy": [
             "apple-news",
-            "game-recap"
+            "game-recap",
+            "payoff-pitch"
         ]
     },
     {
         "headline": "Rutschman doubles, throws out runner in strong 1st rehab game with Sox",
-        "summaryJa": "MLB公式がA.ラッチマン（BOS）について報じた。",
+        "summaryJa": "A.ラッチマン（BOS）、リハビリ初戦で二塁打と盗塁阻止",
         "slug": "adley-rutschman-doubles-in-first-triple-a-rehab-start-for-red-sox",
         "url": "https://www.mlb.com/news/adley-rutschman-doubles-in-first-triple-a-rehab-start-for-red-sox",
         "contentDate": "2026-08-08T22:27:10.613Z",
@@ -243,7 +244,7 @@
     },
     {
         "headline": "Injuries: H. Greene, Stanton, Dodgers, Adley, Soto, Cubs",
-        "summaryJa": "MLB公式がG.スタントンについて報じた。",
+        "summaryJa": "大谷翔平（LAD）らMLB各球団の最新負傷情報",
         "slug": "baseball-injury-updates",
         "url": "https://www.mlb.com/news/baseball-injury-updates",
         "contentDate": "2026-08-09T00:11:00Z",
@@ -269,7 +270,7 @@
     },
     {
         "headline": "Put on a show, Jac! Caglianone clobbers 2 monster homers in 4-hit night",
-        "summaryJa": "MLB公式がJ.キャグリオーン（KC）について報じた。",
+        "summaryJa": "J.カグリアノン（KC）、特大2本塁打を含む4安打",
         "slug": "jac-caglianone-hits-two-home-runs-in-royals-win-vs-cubs",
         "url": "https://www.mlb.com/news/jac-caglianone-hits-two-home-runs-in-royals-win-vs-cubs",
         "contentDate": "2026-08-09T01:53:20.917Z",
@@ -287,7 +288,7 @@
     },
     {
         "headline": "The top 5 Field of Dreams Game moments … so far",
-        "summaryJa": "MLB公式がヤンキースについて報じた。",
+        "summaryJa": "フィールド・オブ・ドリームス・ゲーム名場面トップ5",
         "slug": "mlb-field-of-dreams-game-best-moments",
         "url": "https://www.mlb.com/news/mlb-field-of-dreams-game-best-moments",
         "contentDate": "2026-08-09T01:48:23.675Z",
@@ -328,7 +329,7 @@
     },
     {
         "headline": "Carroll's girlfriend steals show with anthem, then Carroll steals a HR!",
-        "summaryJa": "MLB公式がC.キャロル（AZ）について報じた。",
+        "summaryJa": "C.キャロル（AZ）の恋人が国歌斉唱、本人は本塁打をもぎ取る好守",
         "slug": "corbin-carroll-s-girlfriend-emma-broyles-sings-national-anthem",
         "url": "https://www.mlb.com/news/corbin-carroll-s-girlfriend-emma-broyles-sings-national-anthem",
         "contentDate": "2026-08-08T23:53:12.446Z",
@@ -344,7 +345,7 @@
     },
     {
         "headline": "Brewers' bench sets the table in gritty comeback victory",
-        "summaryJa": "MLB公式がブルワーズについて報じた。",
+        "summaryJa": "ブルワーズ、ベンチメンバーの活躍で逆転勝利",
         "slug": "andrew-vaughn-s-rbi-single-completes-comeback-against-twins",
         "url": "https://www.mlb.com/news/andrew-vaughn-s-rbi-single-completes-comeback-against-twins",
         "contentDate": "2026-08-09T02:12:53.798Z",
@@ -358,11 +359,11 @@
         ]
     },
     {
-        "headline": "Merrill's blast backs King's quality start as Padres hold off Astros",
-        "summaryJa": "MLB公式がM.キング（SD）について報じた。",
+        "headline": "Resurgences from King, Merrill could be key to Padres' stretch run",
+        "summaryJa": "M.キング（SD）の好投とJ.メリルの一発でパドレス勝利",
         "slug": "michael-king-jackson-merrill-lead-padres-win-over-astros",
         "url": "https://www.mlb.com/news/michael-king-jackson-merrill-lead-padres-win-over-astros",
-        "contentDate": "2026-08-09T01:58:11.637Z",
+        "contentDate": "2026-08-09T03:28:00Z",
         "teamIds": [
             135
         ],
@@ -391,7 +392,7 @@
     },
     {
         "headline": "New Pirate making waves all over the field ... and social media",
-        "summaryJa": "MLB公式がR.サイモン（PIT）について報じた。",
+        "summaryJa": "R.サイモン（PIT）、攻守とSNSで存在感",
         "slug": "ronny-simon-helps-lead-pirates-past-mets",
         "url": "https://www.mlb.com/news/ronny-simon-helps-lead-pirates-past-mets",
         "contentDate": "2026-08-09T02:44:00Z",
@@ -409,7 +410,7 @@
     },
     {
         "headline": "Holmes returns to big leagues for first time since May in Cubs debut",
-        "summaryJa": "MLB公式がC.ホームズ（CHC）について報じた。",
+        "summaryJa": "C.ホームズ（CHC）、5月以来のメジャー復帰登板",
         "slug": "clay-holmes-goes-four-innings-in-cubs-debut-vs-royals",
         "url": "https://www.mlb.com/news/clay-holmes-goes-four-innings-in-cubs-debut-vs-royals",
         "contentDate": "2026-08-09T02:44:00Z",
@@ -426,7 +427,7 @@
     },
     {
         "headline": "Jax (elbow discomfort), Walls (back tightness) scratched against Mariners",
-        "summaryJa": "MLB公式がG.ジャックス（TB）について報じた。",
+        "summaryJa": "G.ジャックス（TB）とT.ウォールズが試合前に出場回避",
         "slug": "griffin-jax-scratched-from-start-vs-mariners",
         "url": "https://www.mlb.com/news/griffin-jax-scratched-from-start-vs-mariners",
         "contentDate": "2026-08-09T00:56:00Z",
@@ -444,7 +445,7 @@
     },
     {
         "headline": "Rodón throws 48 pitches in rehab start, could piggyback upon return to Yankees",
-        "summaryJa": "MLB公式がC.ロドン（NYY）について報じた。",
+        "summaryJa": "C.ロドン（NYY）、リハビリ登板で48球　復帰後の起用法も検討",
         "slug": "carlos-rodon-to-begin-minor-league-rehab-saturday",
         "url": "https://www.mlb.com/news/carlos-rodon-to-begin-minor-league-rehab-saturday",
         "contentDate": "2026-08-09T00:43:00Z",
@@ -461,7 +462,7 @@
     },
     {
         "headline": "With another gem, Alvarez emerging as key arm for Nats",
-        "summaryJa": "MLB公式がA.アルバレス（WSH）について報じた。",
+        "summaryJa": "A.アルバレス（WSH）、再び好投し先発陣の重要戦力へ",
         "slug": "andrew-alvarez-holds-off-reds-in-nationals-win",
         "url": "https://www.mlb.com/news/andrew-alvarez-holds-off-reds-in-nationals-win",
         "contentDate": "2026-08-09T03:00:00Z",
@@ -478,7 +479,7 @@
     },
     {
         "headline": "Benge (left wrist) out of lineup on Saturday but expects quick return",
-        "summaryJa": "MLB公式がC.ベンジ（NYM）について報じた。",
+        "summaryJa": "C.ベンジ（NYM）、左手首の負傷で欠場も早期復帰を見込む",
         "slug": "carson-benge-out-of-mets-lineup-with-wrist-injury",
         "url": "https://www.mlb.com/news/carson-benge-out-of-mets-lineup-with-wrist-injury",
         "contentDate": "2026-08-08T22:02:50.298Z",
