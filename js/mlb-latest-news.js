@@ -35,29 +35,29 @@
         ]
     },
     {
-        "headline": "111 games, zero errors: Wilson sets MLB record at shortstop",
-        "summaryJa": "MLB公式がJ.ウィルソン（ATH）について報じた。",
-        "slug": "jacob-wilson-mlb-error-free-shortstop-record",
-        "url": "https://www.mlb.com/news/jacob-wilson-mlb-error-free-shortstop-record",
-        "contentDate": "2026-08-09T21:38:00Z",
+        "headline": "E-Rod's 115-pitch gem helps D-backs secure season series vs. LA for 1st time since '18",
+        "summaryJa": "MLB公式がE.ロドリゲス（AZ）について報じた。",
+        "slug": "eduardo-rodriguez-lead-d-backs-to-series-win-over-dodgers",
+        "url": "https://www.mlb.com/news/eduardo-rodriguez-lead-d-backs-to-series-win-over-dodgers",
+        "contentDate": "2026-08-09T22:45:19.509Z",
         "teamIds": [
-            133
+            109
         ],
         "playerIds": [
-            805779
+            593958
         ],
         "taxonomy": [
             "apple-news",
-            "defense",
-            "game-recap"
+            "game-recap",
+            "payoff-pitch"
         ]
     },
     {
-        "headline": "Chris Sale -- who wasn't pitching today -- ejected before game vs. Yankees",
+        "headline": "Chris Sale -- who wasn't pitching Sunday -- ejected before game vs. Yankees",
         "summaryJa": "MLB公式がC.セール（ATL）について報じた。",
         "slug": "chris-sale-ejected-before-game-against-yankees",
         "url": "https://www.mlb.com/news/chris-sale-ejected-before-game-against-yankees",
-        "contentDate": "2026-08-09T21:17:00Z",
+        "contentDate": "2026-08-09T22:35:00Z",
         "teamIds": [
             144
         ],
@@ -91,7 +91,7 @@
         "summaryJa": "MLB公式がG.ホームズ（ATL）について報じた。",
         "slug": "grant-holmes-pitches-6-scoreless-innings-in-win-over-yankees",
         "url": "https://www.mlb.com/news/grant-holmes-pitches-6-scoreless-innings-in-win-over-yankees",
-        "contentDate": "2026-08-09T20:30:29.555Z",
+        "contentDate": "2026-08-09T22:05:00Z",
         "teamIds": [
             144
         ],
@@ -105,21 +105,32 @@
         ]
     },
     {
-        "headline": "Boyd goes 7 in Cubs' romp vs. Royals",
-        "summaryJa": "M.ボイド（CHC）、7回を投げロイヤルズ戦大勝に貢献",
-        "slug": "matthew-boyd-ian-happ-lead-cubs-win-vs-royals",
-        "url": "https://www.mlb.com/news/matthew-boyd-ian-happ-lead-cubs-win-vs-royals",
-        "contentDate": "2026-08-09T21:11:00Z",
+        "headline": "Astros, Padres clash in matchup of playoff contenders on Sunday Night Baseball (NBC, 8:20 ET)",
+        "summaryJa": "MLB公式がMLBの最新情報について報じた。",
+        "slug": "sunday-night-baseball-on-peacock-nbc-for-2026-mlb-season",
+        "url": "https://www.mlb.com/news/sunday-night-baseball-on-peacock-nbc-for-2026-mlb-season",
+        "contentDate": "2026-08-09T22:25:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "taxonomy": [
+            "apple-news"
+        ]
+    },
+    {
+        "headline": "111 games, zero errors: Wilson sets MLB record at shortstop",
+        "summaryJa": "MLB公式がJ.ウィルソン（ATH）について報じた。",
+        "slug": "jacob-wilson-mlb-error-free-shortstop-record",
+        "url": "https://www.mlb.com/news/jacob-wilson-mlb-error-free-shortstop-record",
+        "contentDate": "2026-08-09T21:38:00Z",
         "teamIds": [
-            112
+            133
         ],
         "playerIds": [
-            571510,
-            664023
+            805779
         ],
         "taxonomy": [
             "apple-news",
-            "takeaways",
+            "defense",
             "game-recap"
         ]
     },
@@ -157,23 +168,6 @@
         ]
     },
     {
-        "headline": "Padres sign outfielder Austin Hays (source)",
-        "summaryJa": "MLB公式がA.ヘイズ（SD）について報じた。",
-        "slug": "austin-hays-padres-contract",
-        "url": "https://www.mlb.com/news/austin-hays-padres-contract",
-        "contentDate": "2026-08-09T19:08:55.792Z",
-        "teamIds": [
-            135
-        ],
-        "playerIds": [
-            669720
-        ],
-        "taxonomy": [
-            "apple-news",
-            "transactions"
-        ]
-    },
-    {
         "headline": "Last Chance: Trade Deadline sale offers you the best deal for MLB.TV",
         "summaryJa": "MLB公式がMLBの最新情報について報じた。",
         "slug": "mlb-tv-trade-deadline-2026-sale",
@@ -183,6 +177,23 @@
         "playerIds": [],
         "taxonomy": [
             "apple-news"
+        ]
+    },
+    {
+        "headline": "Padres upgrade roster with post-Deadline signing of outfielder Hays",
+        "summaryJa": "MLB公式がA.ヘイズ（SD）について報じた。",
+        "slug": "austin-hays-padres-contract",
+        "url": "https://www.mlb.com/news/austin-hays-padres-contract",
+        "contentDate": "2026-08-09T22:27:00Z",
+        "teamIds": [
+            135
+        ],
+        "playerIds": [
+            669720
+        ],
+        "taxonomy": [
+            "apple-news",
+            "transactions"
         ]
     },
     {
@@ -200,6 +211,44 @@
         "taxonomy": [
             "apple-news",
             "transactions"
+        ]
+    },
+    {
+        "headline": "Boyd goes 7 in Cubs' romp vs. Royals",
+        "summaryJa": "M.ボイド（CHC）、7回を投げロイヤルズ戦大勝に貢献",
+        "slug": "matthew-boyd-ian-happ-lead-cubs-win-vs-royals",
+        "url": "https://www.mlb.com/news/matthew-boyd-ian-happ-lead-cubs-win-vs-royals",
+        "contentDate": "2026-08-09T22:04:00Z",
+        "teamIds": [
+            112
+        ],
+        "playerIds": [
+            571510,
+            664023
+        ],
+        "taxonomy": [
+            "apple-news",
+            "takeaways",
+            "game-recap"
+        ]
+    },
+    {
+        "headline": "Rutschman on cusp of making Red Sox debut during next series in Toronto",
+        "summaryJa": "MLB公式がA.ラッチマン（BOS）について報じた。",
+        "slug": "adley-rutschman-eyeing-red-sox-debut-in-toronto",
+        "url": "https://www.mlb.com/news/adley-rutschman-eyeing-red-sox-debut-in-toronto",
+        "contentDate": "2026-08-09T22:50:04.493Z",
+        "teamIds": [
+            111,
+            533
+        ],
+        "playerIds": [
+            668939
+        ],
+        "taxonomy": [
+            "apple-news",
+            "rehab",
+            "injury"
         ]
     },
     {
@@ -239,19 +288,32 @@
         ]
     },
     {
-        "headline": "Mets' bats break out for 15-hit, 11-run outburst to keep rolling",
-        "summaryJa": "MLB公式がメッツについて報じた。",
+        "headline": "Buoyed by 11-run outburst, Mets focused on finishing strong",
+        "summaryJa": "MLB公式がB.ビシェット（NYM）について報じた。",
         "slug": "mets-score-11-runs-to-win-series-vs-pirates",
         "url": "https://www.mlb.com/news/mets-score-11-runs-to-win-series-vs-pirates",
-        "contentDate": "2026-08-09T20:39:54.268Z",
+        "contentDate": "2026-08-09T22:16:00Z",
         "teamIds": [
             121
         ],
-        "playerIds": [],
+        "playerIds": [
+            666182
+        ],
         "taxonomy": [
             "apple-news",
-            "game-recap"
+            "game-recap",
+            "performance"
         ]
+    },
+    {
+        "headline": "Baseball’s competitive balance issue, explained",
+        "summaryJa": "MLB公式がMLBの最新情報について報じた。",
+        "slug": "mlb-competitive-balance-issue-explained",
+        "url": "https://www.mlb.com/news/mlb-competitive-balance-issue-explained",
+        "contentDate": "2026-06-21T00:15:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "taxonomy": []
     },
     {
         "headline": "Skubal set for 1st Dodgers home start -- and another 2x Cy winner will follow",
@@ -306,16 +368,6 @@
             "injury",
             "transactions"
         ]
-    },
-    {
-        "headline": "Baseball’s competitive balance issue, explained",
-        "summaryJa": "MLB公式がMLBの最新情報について報じた。",
-        "slug": "mlb-competitive-balance-issue-explained",
-        "url": "https://www.mlb.com/news/mlb-competitive-balance-issue-explained",
-        "contentDate": "2026-06-21T00:15:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "taxonomy": []
     },
     {
         "headline": "Stowers exits Marlins' rout with left hamstring discomfort after 2-run single",
@@ -446,57 +498,6 @@
         "playerIds": [],
         "taxonomy": [
             "apple-news"
-        ]
-    },
-    {
-        "headline": "Benge (left wrist) returns to Mets' lineup Sunday",
-        "summaryJa": "C.ベンジ（NYM）、左手首の負傷で欠場も早期復帰を見込む",
-        "slug": "carson-benge-out-of-mets-lineup-with-wrist-injury",
-        "url": "https://www.mlb.com/news/carson-benge-out-of-mets-lineup-with-wrist-injury",
-        "contentDate": "2026-08-09T17:02:00Z",
-        "teamIds": [
-            121
-        ],
-        "playerIds": [
-            701807
-        ],
-        "taxonomy": [
-            "apple-news",
-            "injury"
-        ]
-    },
-    {
-        "headline": "Yanks' past, present, future coincide as Cole hits milestone -- and kids steal show",
-        "summaryJa": "G.コール（NYY）、ヤンキース加入後通算1000奪三振を達成",
-        "slug": "gerrit-cole-picks-up-1-000th-strikeout-as-a-yankee",
-        "url": "https://www.mlb.com/news/gerrit-cole-picks-up-1-000th-strikeout-as-a-yankee",
-        "contentDate": "2026-08-08T23:43:00Z",
-        "teamIds": [
-            147
-        ],
-        "playerIds": [
-            543037
-        ],
-        "taxonomy": [
-            "apple-news",
-            "milestone",
-            "game-recap"
-        ]
-    },
-    {
-        "headline": "After late-inning drama, Ohtani's go-ahead hit snaps Dodgers' 7-game skid",
-        "summaryJa": "MLB公式がドジャースについて報じた。",
-        "slug": "dodgers-losing-streak-ends-after-7-games",
-        "url": "https://www.mlb.com/news/dodgers-losing-streak-ends-after-7-games",
-        "contentDate": "2026-08-09T05:11:00Z",
-        "teamIds": [
-            119
-        ],
-        "playerIds": [],
-        "taxonomy": [
-            "apple-news",
-            "game-recap",
-            "relief-performance"
         ]
     }
 ]);
