@@ -2,24 +2,6 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
-        "headline": "Yanks' past, present, future coincide as Cole hits milestone -- and kids steal show",
-        "summaryJa": "G.コール（NYY）、ヤンキース加入後通算1000奪三振を達成",
-        "slug": "gerrit-cole-picks-up-1-000th-strikeout-as-a-yankee",
-        "url": "https://www.mlb.com/news/gerrit-cole-picks-up-1-000th-strikeout-as-a-yankee",
-        "contentDate": "2026-08-08T23:43:00Z",
-        "teamIds": [
-            147
-        ],
-        "playerIds": [
-            543037
-        ],
-        "taxonomy": [
-            "apple-news",
-            "milestone",
-            "game-recap"
-        ]
-    },
-    {
         "headline": "Mad Max passes Big Train to move into 10th on career strikeout list",
         "summaryJa": "M.シャーザー（TOR）、通算3516奪三振でMLB歴代10位へ浮上",
         "slug": "max-scherzer-enters-top-10-all-time-strikeout-leaderboard",
@@ -50,6 +32,56 @@
         ]
     },
     {
+        "headline": "Yanks' past, present, future coincide as Cole hits milestone -- and kids steal show",
+        "summaryJa": "G.コール（NYY）、ヤンキース加入後通算1000奪三振を達成",
+        "slug": "gerrit-cole-picks-up-1-000th-strikeout-as-a-yankee",
+        "url": "https://www.mlb.com/news/gerrit-cole-picks-up-1-000th-strikeout-as-a-yankee",
+        "contentDate": "2026-08-08T23:43:00Z",
+        "teamIds": [
+            147
+        ],
+        "playerIds": [
+            543037
+        ],
+        "taxonomy": [
+            "apple-news",
+            "milestone",
+            "game-recap"
+        ]
+    },
+    {
+        "headline": "Tommy John shares message thanking fans and teammates as he battles health issues",
+        "summaryJa": "T.ジョン（NYY）、闘病を支えるファンとチームメートへ感謝",
+        "slug": "tommy-john-misses-old-timers-day-for-health-reasons",
+        "url": "https://www.mlb.com/news/tommy-john-misses-old-timers-day-for-health-reasons",
+        "contentDate": "2026-08-08T23:56:00Z",
+        "teamIds": [
+            147
+        ],
+        "playerIds": [
+            116550
+        ],
+        "taxonomy": [
+            "apple-news"
+        ]
+    },
+    {
+        "headline": "Toeing the rubber? Why Wheeler's back foot is causing a stir",
+        "summaryJa": "Z.ウィーラー（PHI）、投球時の軸足を巡り注目集まる",
+        "slug": "examining-placement-zack-wheeler-foot-pitchers-mound",
+        "url": "https://www.mlb.com/news/examining-placement-zack-wheeler-foot-pitchers-mound",
+        "contentDate": "2026-08-09T02:55:16.692Z",
+        "teamIds": [
+            143
+        ],
+        "playerIds": [
+            554430
+        ],
+        "taxonomy": [
+            "apple-news"
+        ]
+    },
+    {
         "headline": "After late-inning drama, Ohtani's go-ahead hit snaps Dodgers' 7-game skid",
         "summaryJa": "MLB公式がドジャースについて報じた。",
         "slug": "dodgers-losing-streak-ends-after-7-games",
@@ -66,6 +98,40 @@
         ]
     },
     {
+        "headline": "Carroll's girlfriend steals show with anthem, then Carroll steals a HR!",
+        "summaryJa": "C.キャロル（AZ）の恋人が国歌斉唱、本人は本塁打をもぎ取る好守",
+        "slug": "corbin-carroll-s-girlfriend-emma-broyles-sings-national-anthem",
+        "url": "https://www.mlb.com/news/corbin-carroll-s-girlfriend-emma-broyles-sings-national-anthem",
+        "contentDate": "2026-08-08T23:53:12.446Z",
+        "teamIds": [
+            109
+        ],
+        "playerIds": [
+            682998
+        ],
+        "taxonomy": [
+            "apple-news"
+        ]
+    },
+    {
+        "headline": "The top 5 Field of Dreams Game moments … so far",
+        "summaryJa": "フィールド・オブ・ドリームス・ゲーム名場面トップ5",
+        "slug": "mlb-field-of-dreams-game-best-moments",
+        "url": "https://www.mlb.com/news/mlb-field-of-dreams-game-best-moments",
+        "contentDate": "2026-08-09T01:48:23.675Z",
+        "teamIds": [
+            147,
+            145,
+            112,
+            113
+        ],
+        "playerIds": [],
+        "taxonomy": [
+            "apple-news",
+            "field-of-dreams"
+        ]
+    },
+    {
         "headline": "Tying run at the plate in the 9th, Sox stifled by A's as 9-game win streak ends",
         "summaryJa": "レッドソックス、9回の同点機を逃し連勝が9でストップ",
         "slug": "red-sox-lose-to-a-s-to-snap-9-game-winning-streak",
@@ -78,6 +144,52 @@
         "taxonomy": [
             "apple-news",
             "takeaways"
+        ]
+    },
+    {
+        "headline": "Alcantara sets a Marlins franchise record -- for the 3rd time this year",
+        "summaryJa": "S.アルカンタラ（MIA）、今季3度目のマーリンズ投球回記録を樹立",
+        "slug": "sandy-alcantara-sets-marlins-franchise-record-for-innings-pitched",
+        "url": "https://www.mlb.com/news/sandy-alcantara-sets-marlins-franchise-record-for-innings-pitched",
+        "contentDate": "2026-08-09T00:25:00Z",
+        "teamIds": [
+            146
+        ],
+        "playerIds": [
+            645261
+        ],
+        "taxonomy": [
+            "apple-news",
+            "game-recap"
+        ]
+    },
+    {
+        "headline": "Last Chance: Trade Deadline sale offers you the best deal for MLB.TV",
+        "summaryJa": "MLB公式がMLBの最新情報について報じた。",
+        "slug": "mlb-tv-trade-deadline-2026-sale",
+        "url": "https://www.mlb.com/news/mlb-tv-trade-deadline-2026-sale",
+        "contentDate": "2026-08-09T04:41:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "taxonomy": [
+            "apple-news"
+        ]
+    },
+    {
+        "headline": "Jobe brings the heat in winning first start back from Tommy John surgery",
+        "summaryJa": "J.ジョーブ（DET）、手術からの復帰初先発で勝利",
+        "slug": "jackson-jobe-pitches-5-scoreless-innings-in-return-from-tommy-john-surgery",
+        "url": "https://www.mlb.com/news/jackson-jobe-pitches-5-scoreless-innings-in-return-from-tommy-john-surgery",
+        "contentDate": "2026-08-09T03:43:00Z",
+        "teamIds": [
+            116
+        ],
+        "playerIds": [
+            695549
+        ],
+        "taxonomy": [
+            "apple-news",
+            "game-recap"
         ]
     },
     {
@@ -115,68 +227,6 @@
         ]
     },
     {
-        "headline": "Tommy John shares message thanking fans and teammates as he battles health issues",
-        "summaryJa": "T.ジョン（NYY）、闘病を支えるファンとチームメートへ感謝",
-        "slug": "tommy-john-misses-old-timers-day-for-health-reasons",
-        "url": "https://www.mlb.com/news/tommy-john-misses-old-timers-day-for-health-reasons",
-        "contentDate": "2026-08-08T23:56:00Z",
-        "teamIds": [
-            147
-        ],
-        "playerIds": [
-            116550
-        ],
-        "taxonomy": [
-            "apple-news"
-        ]
-    },
-    {
-        "headline": "Alcantara sets a Marlins franchise record -- for the 3rd time this year",
-        "summaryJa": "S.アルカンタラ（MIA）、今季3度目のマーリンズ投球回記録を樹立",
-        "slug": "sandy-alcantara-sets-marlins-franchise-record-for-innings-pitched",
-        "url": "https://www.mlb.com/news/sandy-alcantara-sets-marlins-franchise-record-for-innings-pitched",
-        "contentDate": "2026-08-09T00:25:00Z",
-        "teamIds": [
-            146
-        ],
-        "playerIds": [
-            645261
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap"
-        ]
-    },
-    {
-        "headline": "Jobe brings the heat in winning first start back from Tommy John surgery",
-        "summaryJa": "J.ジョーブ（DET）、手術からの復帰初先発で勝利",
-        "slug": "jackson-jobe-pitches-5-scoreless-innings-in-return-from-tommy-john-surgery",
-        "url": "https://www.mlb.com/news/jackson-jobe-pitches-5-scoreless-innings-in-return-from-tommy-john-surgery",
-        "contentDate": "2026-08-09T03:43:00Z",
-        "teamIds": [
-            116
-        ],
-        "playerIds": [
-            695549
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap"
-        ]
-    },
-    {
-        "headline": "Last Chance: Trade Deadline sale offers you the best deal for MLB.TV",
-        "summaryJa": "MLB公式がMLBの最新情報について報じた。",
-        "slug": "mlb-tv-trade-deadline-2026-sale",
-        "url": "https://www.mlb.com/news/mlb-tv-trade-deadline-2026-sale",
-        "contentDate": "2026-08-09T04:41:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "taxonomy": [
-            "apple-news"
-        ]
-    },
-    {
         "headline": "Weiss tossed after Sale gets called for run-scoring balk",
         "summaryJa": "C.セール（ATL）の失点につながるボーク判定でW.ワイス監督が退場",
         "slug": "walt-weiss-ejected-after-run-scoring-balk-on-chris-sale",
@@ -200,22 +250,6 @@
         "contentDate": "2026-08-09T01:46:20.218Z",
         "teamIds": [],
         "playerIds": [],
-        "taxonomy": [
-            "apple-news"
-        ]
-    },
-    {
-        "headline": "Toeing the rubber? Why Wheeler's back foot is causing a stir",
-        "summaryJa": "Z.ウィーラー（PHI）、投球時の軸足を巡り注目集まる",
-        "slug": "examining-placement-zack-wheeler-foot-pitchers-mound",
-        "url": "https://www.mlb.com/news/examining-placement-zack-wheeler-foot-pitchers-mound",
-        "contentDate": "2026-08-09T02:55:16.692Z",
-        "teamIds": [
-            143
-        ],
-        "playerIds": [
-            554430
-        ],
         "taxonomy": [
             "apple-news"
         ]
@@ -257,6 +291,16 @@
             "minor-league-baseball",
             "injury"
         ]
+    },
+    {
+        "headline": "Baseball’s competitive balance issue, explained",
+        "summaryJa": "MLB公式がMLBの最新情報について報じた。",
+        "slug": "mlb-competitive-balance-issue-explained",
+        "url": "https://www.mlb.com/news/mlb-competitive-balance-issue-explained",
+        "contentDate": "2026-06-21T00:15:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "taxonomy": []
     },
     {
         "headline": "Injuries: H. Greene, Stanton, Dodgers, Adley, Soto, Cubs",
@@ -303,16 +347,6 @@
         ]
     },
     {
-        "headline": "Baseball’s competitive balance issue, explained",
-        "summaryJa": "MLB公式がMLBの最新情報について報じた。",
-        "slug": "mlb-competitive-balance-issue-explained",
-        "url": "https://www.mlb.com/news/mlb-competitive-balance-issue-explained",
-        "contentDate": "2026-06-21T00:15:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "taxonomy": []
-    },
-    {
         "headline": "'I gotta wear the slanted hat': Baker breaks Rodney's record with 23rd consecutive save",
         "summaryJa": "MLB公式がB.ベイカー（TB）について報じた。",
         "slug": "rays-bullpen-leads-way-in-win-over-mariners",
@@ -327,24 +361,6 @@
         "taxonomy": [
             "apple-news",
             "game-recap"
-        ]
-    },
-    {
-        "headline": "The top 5 Field of Dreams Game moments … so far",
-        "summaryJa": "フィールド・オブ・ドリームス・ゲーム名場面トップ5",
-        "slug": "mlb-field-of-dreams-game-best-moments",
-        "url": "https://www.mlb.com/news/mlb-field-of-dreams-game-best-moments",
-        "contentDate": "2026-08-09T01:48:23.675Z",
-        "teamIds": [
-            147,
-            145,
-            112,
-            113
-        ],
-        "playerIds": [],
-        "taxonomy": [
-            "apple-news",
-            "field-of-dreams"
         ]
     },
     {
@@ -373,22 +389,6 @@
         "taxonomy": [
             "apple-news",
             "this-week-in-baseball"
-        ]
-    },
-    {
-        "headline": "Carroll's girlfriend steals show with anthem, then Carroll steals a HR!",
-        "summaryJa": "C.キャロル（AZ）の恋人が国歌斉唱、本人は本塁打をもぎ取る好守",
-        "slug": "corbin-carroll-s-girlfriend-emma-broyles-sings-national-anthem",
-        "url": "https://www.mlb.com/news/corbin-carroll-s-girlfriend-emma-broyles-sings-national-anthem",
-        "contentDate": "2026-08-08T23:53:12.446Z",
-        "teamIds": [
-            109
-        ],
-        "playerIds": [
-            682998
-        ],
-        "taxonomy": [
-            "apple-news"
         ]
     },
     {
