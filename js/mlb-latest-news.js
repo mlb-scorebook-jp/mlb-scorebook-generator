@@ -24,7 +24,7 @@
         "summaryJa": "M.シャーザー（TOR）、通算3516奪三振でMLB歴代10位へ浮上",
         "slug": "max-scherzer-enters-top-10-all-time-strikeout-leaderboard",
         "url": "https://www.mlb.com/news/max-scherzer-enters-top-10-all-time-strikeout-leaderboard",
-        "contentDate": "2026-08-09T02:01:00Z",
+        "contentDate": "2026-08-09T04:37:00Z",
         "teamIds": [
             141
         ],
@@ -35,6 +35,49 @@
             "apple-news",
             "milestone",
             "game-recap"
+        ]
+    },
+    {
+        "headline": "Lefty batters are dominating in 2026. Here’s why",
+        "summaryJa": "MLB公式がMLBの最新情報について報じた。",
+        "slug": "lefty-batters-dominating-2026",
+        "url": "https://www.mlb.com/news/lefty-batters-dominating-2026",
+        "contentDate": "2026-08-09T02:28:51.04Z",
+        "teamIds": [],
+        "playerIds": [],
+        "taxonomy": [
+            "apple-news"
+        ]
+    },
+    {
+        "headline": "After late-inning drama, Ohtani's go-ahead hit snaps Dodgers' 7-game skid",
+        "summaryJa": "MLB公式がドジャースについて報じた。",
+        "slug": "dodgers-losing-streak-ends-after-7-games",
+        "url": "https://www.mlb.com/news/dodgers-losing-streak-ends-after-7-games",
+        "contentDate": "2026-08-09T05:11:00Z",
+        "teamIds": [
+            119
+        ],
+        "playerIds": [],
+        "taxonomy": [
+            "apple-news",
+            "game-recap",
+            "relief-performance"
+        ]
+    },
+    {
+        "headline": "Tying run at the plate in the 9th, Sox stifled by A's as 9-game win streak ends",
+        "summaryJa": "レッドソックス、9回の同点機を逃し連勝が9でストップ",
+        "slug": "red-sox-lose-to-a-s-to-snap-9-game-winning-streak",
+        "url": "https://www.mlb.com/news/red-sox-lose-to-a-s-to-snap-9-game-winning-streak",
+        "contentDate": "2026-08-09T00:43:00Z",
+        "teamIds": [
+            111
+        ],
+        "playerIds": [],
+        "taxonomy": [
+            "apple-news",
+            "takeaways"
         ]
     },
     {
@@ -55,26 +98,11 @@
         ]
     },
     {
-        "headline": "Tying run at the plate in the 9th, Sox stifled by A's as 9-game win streak ends",
-        "summaryJa": "レッドソックス、9回の同点機を逃し連勝が9でストップ",
-        "slug": "red-sox-lose-to-a-s-to-snap-9-game-winning-streak",
-        "url": "https://www.mlb.com/news/red-sox-lose-to-a-s-to-snap-9-game-winning-streak",
-        "contentDate": "2026-08-09T00:43:00Z",
-        "teamIds": [
-            111
-        ],
-        "playerIds": [],
-        "taxonomy": [
-            "apple-news",
-            "takeaways"
-        ]
-    },
-    {
         "headline": "5-run rally carries White Sox to win after retiring Guillen's number",
         "summaryJa": "T.ピーターズ（CWS）らの5得点の反撃で、O.ギーエン永久欠番式後の一戦に勝利",
         "slug": "white-sox-rally-for-win-after-retiring-ozzie-guillen-s-number",
         "url": "https://www.mlb.com/news/white-sox-rally-for-win-after-retiring-ozzie-guillen-s-number",
-        "contentDate": "2026-08-09T02:35:55.272Z",
+        "contentDate": "2026-08-09T04:22:00Z",
         "teamIds": [
             145
         ],
@@ -103,34 +131,6 @@
         ]
     },
     {
-        "headline": "Weiss tossed after Sale gets called for run-scoring balk",
-        "summaryJa": "C.セール（ATL）の失点につながるボーク判定でW.ワイス監督が退場",
-        "slug": "walt-weiss-ejected-after-run-scoring-balk-on-chris-sale",
-        "url": "https://www.mlb.com/news/walt-weiss-ejected-after-run-scoring-balk-on-chris-sale",
-        "contentDate": "2026-08-09T00:04:00Z",
-        "teamIds": [
-            144
-        ],
-        "playerIds": [
-            519242
-        ],
-        "taxonomy": [
-            "apple-news"
-        ]
-    },
-    {
-        "headline": "Which teams have the top potential postseason rotations?",
-        "summaryJa": "ポストシーズン進出候補、先発ローテーション上位球団を比較",
-        "slug": "mlb-2026-top-potential-postseason-rotations",
-        "url": "https://www.mlb.com/news/mlb-2026-top-potential-postseason-rotations",
-        "contentDate": "2026-08-08T04:09:23.038Z",
-        "teamIds": [],
-        "playerIds": [],
-        "taxonomy": [
-            "apple-news"
-        ]
-    },
-    {
         "headline": "Alcantara sets a Marlins franchise record -- for the 3rd time this year",
         "summaryJa": "S.アルカンタラ（MIA）、今季3度目のマーリンズ投球回記録を樹立",
         "slug": "sandy-alcantara-sets-marlins-franchise-record-for-innings-pitched",
@@ -152,7 +152,7 @@
         "summaryJa": "J.ジョーブ（DET）、手術からの復帰初先発で勝利",
         "slug": "jackson-jobe-pitches-5-scoreless-innings-in-return-from-tommy-john-surgery",
         "url": "https://www.mlb.com/news/jackson-jobe-pitches-5-scoreless-innings-in-return-from-tommy-john-surgery",
-        "contentDate": "2026-08-09T02:07:00Z",
+        "contentDate": "2026-08-09T03:43:00Z",
         "teamIds": [
             116
         ],
@@ -165,13 +165,29 @@
         ]
     },
     {
-        "headline": "Trade Deadline sale offers you the best deal for MLB.TV",
+        "headline": "Last Chance: Trade Deadline sale offers you the best deal for MLB.TV",
         "summaryJa": "MLB公式がMLBの最新情報について報じた。",
         "slug": "mlb-tv-trade-deadline-2026-sale",
         "url": "https://www.mlb.com/news/mlb-tv-trade-deadline-2026-sale",
-        "contentDate": "2026-08-03T16:04:03.286Z",
+        "contentDate": "2026-08-09T04:41:00Z",
         "teamIds": [],
         "playerIds": [],
+        "taxonomy": [
+            "apple-news"
+        ]
+    },
+    {
+        "headline": "Weiss tossed after Sale gets called for run-scoring balk",
+        "summaryJa": "C.セール（ATL）の失点につながるボーク判定でW.ワイス監督が退場",
+        "slug": "walt-weiss-ejected-after-run-scoring-balk-on-chris-sale",
+        "url": "https://www.mlb.com/news/walt-weiss-ejected-after-run-scoring-balk-on-chris-sale",
+        "contentDate": "2026-08-09T00:04:00Z",
+        "teamIds": [
+            144
+        ],
+        "playerIds": [
+            519242
+        ],
         "taxonomy": [
             "apple-news"
         ]
@@ -269,11 +285,11 @@
         ]
     },
     {
-        "headline": "Put on a show, Jac! Caglianone clobbers 2 monster homers in 4-hit night",
+        "headline": "Put on a show, Jac! Caglianone clobbers 2 monster HRs in 4-hit night",
         "summaryJa": "J.カグリアノン（KC）、特大2本塁打を含む4安打",
         "slug": "jac-caglianone-hits-two-home-runs-in-royals-win-vs-cubs",
         "url": "https://www.mlb.com/news/jac-caglianone-hits-two-home-runs-in-royals-win-vs-cubs",
-        "contentDate": "2026-08-09T01:53:20.917Z",
+        "contentDate": "2026-08-09T03:44:00Z",
         "teamIds": [
             118
         ],
@@ -283,6 +299,31 @@
         "taxonomy": [
             "apple-news",
             "player-tracking",
+            "game-recap"
+        ]
+    },
+    {
+        "headline": "Baseball’s competitive balance issue, explained",
+        "summaryJa": "MLB公式がMLBの最新情報について報じた。",
+        "slug": "mlb-competitive-balance-issue-explained",
+        "url": "https://www.mlb.com/news/mlb-competitive-balance-issue-explained",
+        "contentDate": "2026-06-21T00:15:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "taxonomy": []
+    },
+    {
+        "headline": "Starter scratched? No problem for Rays' 'pen in win over Mariners",
+        "summaryJa": "MLB公式がレイズについて報じた。",
+        "slug": "rays-bullpen-leads-way-in-win-over-mariners",
+        "url": "https://www.mlb.com/news/rays-bullpen-leads-way-in-win-over-mariners",
+        "contentDate": "2026-08-09T04:59:34.956Z",
+        "teamIds": [
+            139
+        ],
+        "playerIds": [],
+        "taxonomy": [
+            "apple-news",
             "game-recap"
         ]
     },
@@ -305,14 +346,19 @@
         ]
     },
     {
-        "headline": "Baseball’s competitive balance issue, explained",
-        "summaryJa": "MLB公式がMLBの最新情報について報じた。",
-        "slug": "mlb-competitive-balance-issue-explained",
-        "url": "https://www.mlb.com/news/mlb-competitive-balance-issue-explained",
-        "contentDate": "2026-06-21T00:15:00Z",
-        "teamIds": [],
+        "headline": "Wilson tossed for the 2nd time in 4 games over ABS dispute",
+        "summaryJa": "MLB公式がマリナーズについて報じた。",
+        "slug": "dan-wilson-ejected-during-rays-mariners-game",
+        "url": "https://www.mlb.com/news/dan-wilson-ejected-during-rays-mariners-game",
+        "contentDate": "2026-08-09T04:30:00Z",
+        "teamIds": [
+            136
+        ],
         "playerIds": [],
-        "taxonomy": []
+        "taxonomy": [
+            "apple-news",
+            "ejection"
+        ]
     },
     {
         "headline": "TWIB: Skubal debuts for Dodgers in an epic series at Wrigley Field",
@@ -344,15 +390,19 @@
         ]
     },
     {
-        "headline": "Brewers' bench sets the table in gritty comeback victory",
+        "headline": "Unexpected heroes come up clutch in Brewers' gritty comeback win",
         "summaryJa": "ブルワーズ、ベンチメンバーの活躍で逆転勝利",
         "slug": "andrew-vaughn-s-rbi-single-completes-comeback-against-twins",
         "url": "https://www.mlb.com/news/andrew-vaughn-s-rbi-single-completes-comeback-against-twins",
-        "contentDate": "2026-08-09T02:12:53.798Z",
+        "contentDate": "2026-08-09T04:19:00Z",
         "teamIds": [
             158
         ],
-        "playerIds": [],
+        "playerIds": [
+            663604,
+            666152,
+            688107
+        ],
         "taxonomy": [
             "apple-news",
             "game-recap"
@@ -363,7 +413,7 @@
         "summaryJa": "M.キング（SD）の好投とJ.メリルの一発でパドレス勝利",
         "slug": "michael-king-jackson-merrill-lead-padres-win-over-astros",
         "url": "https://www.mlb.com/news/michael-king-jackson-merrill-lead-padres-win-over-astros",
-        "contentDate": "2026-08-09T03:28:00Z",
+        "contentDate": "2026-08-09T05:20:00Z",
         "teamIds": [
             135
         ],
@@ -409,6 +459,23 @@
         ]
     },
     {
+        "headline": "3 homers, 5-for-5, 17 total bases! Rockies prospect enjoys historic night",
+        "summaryJa": "MLB公式がZ.ビーン（COL）について報じた。",
+        "slug": "rockies-prospect-zac-veen-17-total-bases-3-homer-game",
+        "url": "https://www.mlb.com/news/rockies-prospect-zac-veen-17-total-bases-3-homer-game",
+        "contentDate": "2026-08-09T05:03:00Z",
+        "teamIds": [
+            115
+        ],
+        "playerIds": [
+            691728
+        ],
+        "taxonomy": [
+            "apple-news",
+            "mlb-top-prospects"
+        ]
+    },
+    {
         "headline": "Holmes returns to big leagues for first time since May in Cubs debut",
         "summaryJa": "C.ホームズ（CHC）、5月以来のメジャー復帰登板",
         "slug": "clay-holmes-goes-four-innings-in-cubs-debut-vs-royals",
@@ -423,75 +490,6 @@
         "taxonomy": [
             "apple-news",
             "team-debut"
-        ]
-    },
-    {
-        "headline": "Jax (elbow discomfort), Walls (back tightness) scratched against Mariners",
-        "summaryJa": "G.ジャックス（TB）とT.ウォールズが試合前に出場回避",
-        "slug": "griffin-jax-scratched-from-start-vs-mariners",
-        "url": "https://www.mlb.com/news/griffin-jax-scratched-from-start-vs-mariners",
-        "contentDate": "2026-08-09T00:56:00Z",
-        "teamIds": [
-            139
-        ],
-        "playerIds": [
-            643377,
-            670764
-        ],
-        "taxonomy": [
-            "apple-news",
-            "injury"
-        ]
-    },
-    {
-        "headline": "Rodón throws 48 pitches in rehab start, could piggyback upon return to Yankees",
-        "summaryJa": "C.ロドン（NYY）、リハビリ登板で48球　復帰後の起用法も検討",
-        "slug": "carlos-rodon-to-begin-minor-league-rehab-saturday",
-        "url": "https://www.mlb.com/news/carlos-rodon-to-begin-minor-league-rehab-saturday",
-        "contentDate": "2026-08-09T00:43:00Z",
-        "teamIds": [
-            147
-        ],
-        "playerIds": [
-            607074
-        ],
-        "taxonomy": [
-            "injury",
-            "apple-news"
-        ]
-    },
-    {
-        "headline": "With another gem, Alvarez emerging as key arm for Nats",
-        "summaryJa": "A.アルバレス（WSH）、再び好投し先発陣の重要戦力へ",
-        "slug": "andrew-alvarez-holds-off-reds-in-nationals-win",
-        "url": "https://www.mlb.com/news/andrew-alvarez-holds-off-reds-in-nationals-win",
-        "contentDate": "2026-08-09T03:00:00Z",
-        "teamIds": [
-            120
-        ],
-        "playerIds": [
-            674841
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap"
-        ]
-    },
-    {
-        "headline": "Benge (left wrist) out of lineup on Saturday but expects quick return",
-        "summaryJa": "C.ベンジ（NYM）、左手首の負傷で欠場も早期復帰を見込む",
-        "slug": "carson-benge-out-of-mets-lineup-with-wrist-injury",
-        "url": "https://www.mlb.com/news/carson-benge-out-of-mets-lineup-with-wrist-injury",
-        "contentDate": "2026-08-08T22:02:50.298Z",
-        "teamIds": [
-            121
-        ],
-        "playerIds": [
-            701807
-        ],
-        "taxonomy": [
-            "apple-news",
-            "injury"
         ]
     }
 ]);
