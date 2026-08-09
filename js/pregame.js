@@ -1120,7 +1120,7 @@
                 xLink.target = "_blank";
                 xLink.rel = "noopener noreferrer";
                 xLink.setAttribute("aria-label", `${teamJapaneseName(team)}公式X`);
-                xLink.append(el("span", "", "X"));
+                xLink.innerHTML = '<svg class="pregame-social-logo" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.657l-5.214-6.817-5.967 6.817H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z"/></svg>';
                 links.append(xLink);
             }
             if (instagramAccount) {
@@ -1129,7 +1129,7 @@
                 instagramLink.target = "_blank";
                 instagramLink.rel = "noopener noreferrer";
                 instagramLink.setAttribute("aria-label", `${teamJapaneseName(team)}公式Instagram`);
-                instagramLink.append(el("span", "pregame-instagram-icon"));
+                instagramLink.innerHTML = '<svg class="pregame-social-logo" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.25" y="3.25" width="17.5" height="17.5" rx="5.25" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="12" cy="12" r="4.1" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="17.55" cy="6.55" r="1.25" fill="currentColor"/></svg>';
                 links.append(instagramLink);
             }
             const teamArticle = articles.find((article) => articleHasTeam(article, Number(team?.id)));

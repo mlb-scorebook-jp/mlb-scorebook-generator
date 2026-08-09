@@ -147,41 +147,42 @@ body.app-mode-pregame .scorebook-horizontal-scroll {
     background: #354149;
 }
 
+.pregame-team-x-link,
+.pregame-team-instagram-link {
+    overflow: hidden;
+    border-color: rgba(255, 255, 255, 0.48);
+    color: #fff;
+}
+
+.pregame-team-x-link {
+    background: #000;
+}
+
+.pregame-team-instagram-link {
+    background: radial-gradient(circle at 30% 105%, #ffd600 0 22%, #ff7a00 40%, #ff0169 62%, #d300c5 78%, #7638fa 100%);
+}
+
+.pregame-team-x-link:hover,
+.pregame-team-x-link:focus-visible {
+    background: #191919;
+}
+
+.pregame-team-instagram-link:hover,
+.pregame-team-instagram-link:focus-visible {
+    background: radial-gradient(circle at 30% 105%, #ffe34f 0 22%, #ff9635 40%, #ff3f89 62%, #df3bd1 78%, #9361fb 100%);
+}
+
+.pregame-social-logo {
+    display: block;
+    width: 12px;
+    height: 12px;
+    fill: currentColor;
+}
+
 .pregame-team-mlb-link {
     width: 27px;
     font-size: 8px;
     letter-spacing: 0.02em;
-}
-
-.pregame-instagram-icon {
-    position: relative;
-    box-sizing: border-box;
-    width: 10px;
-    height: 10px;
-    border: 1px solid currentColor;
-    border-radius: 3px;
-}
-
-.pregame-instagram-icon::before {
-    position: absolute;
-    top: 2px;
-    left: 2px;
-    width: 4px;
-    height: 4px;
-    border: 1px solid currentColor;
-    border-radius: 50%;
-    content: "";
-}
-
-.pregame-instagram-icon::after {
-    position: absolute;
-    top: 1px;
-    right: 1px;
-    width: 1px;
-    height: 1px;
-    border-radius: 50%;
-    background: currentColor;
-    content: "";
 }
 
 .pregame-header-versus {
@@ -1836,16 +1837,9 @@ a.pregame-metric-value:focus-visible {
         font-size: 10px;
     }
 
-    .pregame-instagram-icon {
-        width: 14px;
-        height: 14px;
-    }
-
-    .pregame-instagram-icon::before {
-        top: 3px;
-        left: 3px;
-        width: 6px;
-        height: 6px;
+    .pregame-social-logo {
+        width: 18px;
+        height: 18px;
     }
 
     .pregame-matchup-meta-line {
