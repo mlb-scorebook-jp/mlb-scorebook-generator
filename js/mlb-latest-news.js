@@ -64,6 +64,18 @@
         ]
     },
     {
+        "headline": "LIVE: Star shortstops De La Cruz, Abrams square off on Peacock",
+        "summaryJa": "MLB公式がMLBの最新情報について報じた。",
+        "slug": "mlb-sunday-leadoff-on-nbc-peacock-for-2026-season",
+        "url": "https://www.mlb.com/news/mlb-sunday-leadoff-on-nbc-peacock-for-2026-season",
+        "contentDate": "2026-08-09T16:00:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "taxonomy": [
+            "apple-news"
+        ]
+    },
+    {
         "headline": "Carroll's girlfriend steals show with anthem, then Carroll steals a HR!",
         "summaryJa": "C.キャロル（AZ）の恋人が国歌斉唱、本人は本塁打をもぎ取る好守",
         "slug": "corbin-carroll-s-girlfriend-emma-broyles-sings-national-anthem",
@@ -98,15 +110,20 @@
         ]
     },
     {
-        "headline": "Star shortstops Abrams, De La Cruz square off on Peacock (12:15 ET)",
-        "summaryJa": "MLB公式がMLBの最新情報について報じた。",
-        "slug": "mlb-sunday-leadoff-on-nbc-peacock-for-2026-season",
-        "url": "https://www.mlb.com/news/mlb-sunday-leadoff-on-nbc-peacock-for-2026-season",
-        "contentDate": "2026-08-09T15:08:00Z",
-        "teamIds": [],
-        "playerIds": [],
+        "headline": "Benge (left wrist) returns to Mets' lineup Sunday",
+        "summaryJa": "C.ベンジ（NYM）、左手首の負傷で欠場も早期復帰を見込む",
+        "slug": "carson-benge-out-of-mets-lineup-with-wrist-injury",
+        "url": "https://www.mlb.com/news/carson-benge-out-of-mets-lineup-with-wrist-injury",
+        "contentDate": "2026-08-09T17:02:00Z",
+        "teamIds": [
+            121
+        ],
+        "playerIds": [
+            701807
+        ],
         "taxonomy": [
-            "apple-news"
+            "apple-news",
+            "injury"
         ]
     },
     {
@@ -144,6 +161,18 @@
         ]
     },
     {
+        "headline": "Last Chance: Trade Deadline sale offers you the best deal for MLB.TV",
+        "summaryJa": "MLB公式がMLBの最新情報について報じた。",
+        "slug": "mlb-tv-trade-deadline-2026-sale",
+        "url": "https://www.mlb.com/news/mlb-tv-trade-deadline-2026-sale",
+        "contentDate": "2026-08-09T04:41:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "taxonomy": [
+            "apple-news"
+        ]
+    },
+    {
         "headline": "The top 5 Field of Dreams Game moments … so far",
         "summaryJa": "フィールド・オブ・ドリームス・ゲーム名場面トップ5",
         "slug": "mlb-field-of-dreams-game-best-moments",
@@ -159,18 +188,6 @@
         "taxonomy": [
             "apple-news",
             "field-of-dreams"
-        ]
-    },
-    {
-        "headline": "Last Chance: Trade Deadline sale offers you the best deal for MLB.TV",
-        "summaryJa": "MLB公式がMLBの最新情報について報じた。",
-        "slug": "mlb-tv-trade-deadline-2026-sale",
-        "url": "https://www.mlb.com/news/mlb-tv-trade-deadline-2026-sale",
-        "contentDate": "2026-08-09T04:41:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "taxonomy": [
-            "apple-news"
         ]
     },
     {
@@ -274,6 +291,16 @@
         ]
     },
     {
+        "headline": "Baseball’s competitive balance issue, explained",
+        "summaryJa": "MLB公式がMLBの最新情報について報じた。",
+        "slug": "mlb-competitive-balance-issue-explained",
+        "url": "https://www.mlb.com/news/mlb-competitive-balance-issue-explained",
+        "contentDate": "2026-06-21T00:15:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "taxonomy": []
+    },
+    {
         "headline": "Get to know the red-hot new Mets prospect whose first language is French",
         "summaryJa": "MLB公式がÉmilien Pitre（NYM）について報じた。",
         "slug": "emilien-pitre-stays-hot-after-joining-mets-organization",
@@ -289,16 +316,6 @@
             "apple-news",
             "mlb-top-prospects"
         ]
-    },
-    {
-        "headline": "Baseball’s competitive balance issue, explained",
-        "summaryJa": "MLB公式がMLBの最新情報について報じた。",
-        "slug": "mlb-competitive-balance-issue-explained",
-        "url": "https://www.mlb.com/news/mlb-competitive-balance-issue-explained",
-        "contentDate": "2026-06-21T00:15:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "taxonomy": []
     },
     {
         "headline": "Weiss tossed after Sale gets called for run-scoring balk",
@@ -468,24 +485,6 @@
             663604,
             666152,
             688107
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap"
-        ]
-    },
-    {
-        "headline": "Resurgences from King, Merrill could be key to Padres' stretch run",
-        "summaryJa": "M.キング（SD）の好投とJ.メリルの一発でパドレス勝利",
-        "slug": "michael-king-jackson-merrill-lead-padres-win-over-astros",
-        "url": "https://www.mlb.com/news/michael-king-jackson-merrill-lead-padres-win-over-astros",
-        "contentDate": "2026-08-09T05:20:00Z",
-        "teamIds": [
-            135
-        ],
-        "playerIds": [
-            650633,
-            701538
         ],
         "taxonomy": [
             "apple-news",
