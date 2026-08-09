@@ -106,7 +106,7 @@
     },
     {
         "headline": "Boyd goes 7 in Cubs' romp vs. Royals",
-        "summaryJa": "MLB公式がM.ボイド（CHC）について報じた。",
+        "summaryJa": "M.ボイド（CHC）、7回を投げロイヤルズ戦大勝に貢献",
         "slug": "matthew-boyd-ian-happ-lead-cubs-win-vs-royals",
         "url": "https://www.mlb.com/news/matthew-boyd-ian-happ-lead-cubs-win-vs-royals",
         "contentDate": "2026-08-09T21:11:00Z",
@@ -187,7 +187,7 @@
     },
     {
         "headline": "Royals add 9-time All-Star Kimbrel to bolster bullpen (source)",
-        "summaryJa": "MLB公式がC.キンブレル（KC）について報じた。",
+        "summaryJa": "C.キンブレル（KC）、救援陣強化へロイヤルズ加入",
         "slug": "craig-kimbrel-royals-2026-contract",
         "url": "https://www.mlb.com/news/craig-kimbrel-royals-2026-contract",
         "contentDate": "2026-08-09T21:25:02.923Z",

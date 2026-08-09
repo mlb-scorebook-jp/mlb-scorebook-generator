@@ -59,6 +59,10 @@ query Latest($path:String!,$language:Language,$source:ContentSource){
 }`;
 
 const japaneseSummaries = new Map([
+    ["craig-kimbrel-royals-2026-contract",
+        "C.キンブレル（KC）、救援陣強化へロイヤルズ加入"],
+    ["matthew-boyd-ian-happ-lead-cubs-win-vs-royals",
+        "M.ボイド（CHC）、7回を投げロイヤルズ戦大勝に貢献"],
     ["gerrit-cole-picks-up-1-000th-strikeout-as-a-yankee",
         "G.コール（NYY）、ヤンキース加入後通算1000奪三振を達成"],
     ["shohei-ohtani-plays-catch-in-knee-injury-recovery",
