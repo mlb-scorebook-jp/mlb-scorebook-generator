@@ -289,8 +289,13 @@ select {
     color-scheme: dark;
 }
 
+.header-year-field {
+    min-width: 86px;
+    flex: 0 0 86px;
+}
+
 .header-year-field select {
-    width: 76px;
+    width: 100%;
 }
 
 .header-date-field select {
@@ -363,8 +368,9 @@ select {
         width: 132px;
     }
 
-    .header-year-field select {
-        width: 72px;
+    .header-year-field {
+        min-width: 86px;
+        flex-basis: 86px;
     }
 }
 
