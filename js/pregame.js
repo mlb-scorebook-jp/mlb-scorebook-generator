@@ -1498,19 +1498,10 @@
         setHeader("試合前情報", formatDate(date));
         try {
             const season = Number(date.slice(0, 4));
-            const [games, japanesePlayers, seriesSchedule] = await Promise.all([
+            const [games, japanesePlayers] = await Promise.all([
                 getSchedule(date),
-                getSeasonJapanesePlayers(season),
-                getSeriesSchedule(date)
+                getSeasonJapanesePlayers(season)
             ]);
-            const seriesStandingByGame = new Map(games.map((game) => {
-                const awayId = Number(game?.teams?.away?.team?.id);
-                const homeId = Number(game?.teams?.home?.team?.id);
-                return [
-                    Number(game?.gamePk),
-                    calculateCurrentSeriesStanding(seriesSchedule, game?.gamePk, awayId, homeId)
-                ];
-            }));
             const teamGame = new Map();
             games.forEach((game) => {
                 [game?.teams?.away?.team, game?.teams?.home?.team].forEach((team) => {
@@ -1571,21 +1562,10 @@
                     const card = el("button", "pregame-game-card");
                     setGameCardTeamColors(card, away, home);
                     const matchupTitle = el("strong", "pregame-matchup-title");
-                    const seriesStanding = seriesStandingByGame.get(Number(game?.gamePk));
-                    const awayLabel = el("span", "pregame-card-team pregame-card-team-away");
-                    const homeLabel = el("span", "pregame-card-team pregame-card-team-home");
-                    awayLabel.append(
-                        el("span", "pregame-card-team-name", teamJapaneseShortName(away)),
-                        renderSeriesStars(away, seriesStanding, "pregame-card-series-stars")
-                    );
-                    homeLabel.append(
-                        renderSeriesStars(home, seriesStanding, "pregame-card-series-stars"),
-                        el("span", "pregame-card-team-name", teamJapaneseShortName(home))
-                    );
                     matchupTitle.append(
-                        awayLabel,
+                        document.createTextNode(teamJapaneseShortName(away)),
                         el("span", "pregame-versus", "VS."),
-                        homeLabel
+                        document.createTextNode(teamJapaneseShortName(home))
                     );
                     const matchupMeta = el("small", "pregame-matchup-meta");
                     const pitcherLine = el("span", "pregame-pitcher-line");

@@ -679,33 +679,6 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
     text-align: center;
 }
 
-.pregame-games-section .pregame-card-team {
-    display: inline-flex;
-    align-items: baseline;
-    gap: 6px;
-    min-width: 0;
-}
-
-.pregame-games-section .pregame-card-team-away {
-    justify-content: flex-end;
-}
-
-.pregame-games-section .pregame-card-team-home {
-    justify-content: flex-start;
-}
-
-.pregame-games-section .pregame-card-team-name {
-    min-width: 0;
-}
-
-.pregame-games-section .pregame-card-series-stars {
-    flex: 0 0 auto;
-    align-self: baseline;
-    min-height: 0;
-    margin: 0;
-    font-size: 0.82em;
-}
-
 .pregame-games-section .pregame-game-card small {
     color: #a7b3ba;
 }
