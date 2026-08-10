@@ -1,6 +1,8 @@
 "use strict";
 
 (() => {
+    document.documentElement.classList.toggle("pregame-touch-capable", navigator.maxTouchPoints > 0);
+
     const API_ROOT = "https://statsapi.mlb.com/api";
     const cache = new Map();
     const savantCache = new Map();
@@ -1325,11 +1327,51 @@
             (record?.teamRecords ?? []).forEach((teamRecord) => {
                 standings.set(Number(teamRecord?.team?.id), {
                     division: divisionJapaneseLabel(record?.division?.name ?? teamRecord?.team?.division?.name),
-                    rank: Number.parseInt(teamRecord?.divisionRank, 10)
+                    rank: Number.parseInt(teamRecord?.divisionRank, 10),
+                    wins: Number.parseInt(teamRecord?.wins, 10),
+                    losses: Number.parseInt(teamRecord?.losses, 10)
                 });
             });
         });
         return standings;
+    };
+
+    const isDesktopGameDetailLayout = () =>
+        navigator.maxTouchPoints === 0 &&
+        window.matchMedia("screen and (min-width: 1101px) and (hover: hover) and (pointer: fine)").matches;
+
+    const getTeamRecordsBeforeGame = (standings, sameDayGames, gamePk, gameDateTime, teamIds) => {
+        const records = new Map(teamIds.map((teamId) => {
+            const standing = standings.get(Number(teamId));
+            const wins = Number(standing?.wins);
+            const losses = Number(standing?.losses);
+            return [Number(teamId), Number.isFinite(wins) && Number.isFinite(losses) ? { wins, losses } : null];
+        }));
+        const targetStart = Date.parse(String(gameDateTime ?? ""));
+        if (!Number.isFinite(targetStart)) return records;
+        sameDayGames.forEach((entry) => {
+            if (Number(entry?.gamePk) === Number(gamePk) || !isFinal(entry)) return;
+            const gameStart = Date.parse(String(entry?.gameDate ?? ""));
+            if (!Number.isFinite(gameStart) || gameStart >= targetStart) return;
+            const away = entry?.teams?.away ?? {};
+            const home = entry?.teams?.home ?? {};
+            const awayId = Number(away?.team?.id);
+            const homeId = Number(home?.team?.id);
+            if (!records.has(awayId) && !records.has(homeId)) return;
+            const awayScore = Number(away?.score);
+            const homeScore = Number(home?.score);
+            const winnerId = away?.isWinner === true || (Number.isFinite(awayScore) && awayScore > homeScore)
+                ? awayId
+                : home?.isWinner === true || (Number.isFinite(homeScore) && homeScore > awayScore)
+                    ? homeId
+                    : 0;
+            const loserId = winnerId === awayId ? homeId : winnerId === homeId ? awayId : 0;
+            const winnerRecord = records.get(winnerId);
+            const loserRecord = records.get(loserId);
+            if (winnerRecord) winnerRecord.wins += 1;
+            if (loserRecord) loserRecord.losses += 1;
+        });
+        return records;
     };
 
     const formatGameTime = (dateTime, timeZone) => {
@@ -1358,7 +1400,17 @@
         return stars;
     };
 
-    const setMatchupHeader = (awayTeam, homeTeam, standings, game, feed, gamePk, articles, seriesStanding) => {
+    const setMatchupHeader = (
+        awayTeam,
+        homeTeam,
+        standings,
+        game,
+        feed,
+        gamePk,
+        articles,
+        seriesStanding,
+        pregameRecords
+    ) => {
         const teamBlock = (team) => {
             const block = el("span", "pregame-header-team");
             const standing = standings.get(Number(team?.id));
@@ -1402,6 +1454,14 @@
             }
             block.append(
                 teamName,
+                ...(pregameRecords ? [el(
+                    "span",
+                    "pregame-header-record",
+                    (() => {
+                        const record = pregameRecords.get(Number(team?.id));
+                        return record ? `${record.wins}勝${record.losses}敗` : "—";
+                    })()
+                )] : []),
                 el("small", "", `${standing?.division ?? "所属地区未確定"}　${rank}`),
                 links
             );
@@ -2836,15 +2896,36 @@
             const date = String(feed?.gameData?.datetime?.officialDate ?? game?.officialDate ?? currentDate);
             const awayTeam = feed?.gameData?.teams?.away ?? game?.teams?.away?.team ?? {};
             const homeTeam = feed?.gameData?.teams?.home ?? game?.teams?.home?.team ?? {};
-            const [awayTrend, homeTrend, standings, transactions, injuries, seriesStanding] = await Promise.all([
+            const desktopDetail = isDesktopGameDetailLayout();
+            const [awayTrend, homeTrend, standings, transactions, injuries, seriesStanding, sameDayGames] = await Promise.all([
                 getTeamTrend(awayTeam.id, date),
                 getTeamTrend(homeTeam.id, date),
                 getStandingsSnapshot(date),
                 getRecentTeamTransactions([awayTeam, homeTeam], date),
                 getTeamInjuryReports([awayTeam, homeTeam], date),
-                getCurrentSeriesStanding(gamePk, awayTeam.id, homeTeam.id, date)
+                getCurrentSeriesStanding(gamePk, awayTeam.id, homeTeam.id, date),
+                desktopDetail ? getSchedule(date).catch(() => []) : Promise.resolve([])
             ]);
-            setMatchupHeader(awayTeam, homeTeam, standings, game, feed, gamePk, articles, seriesStanding);
+            const pregameRecords = desktopDetail
+                ? getTeamRecordsBeforeGame(
+                    standings,
+                    sameDayGames,
+                    gamePk,
+                    feed?.gameData?.datetime?.dateTime ?? game?.gameDate,
+                    [awayTeam.id, homeTeam.id]
+                )
+                : null;
+            setMatchupHeader(
+                awayTeam,
+                homeTeam,
+                standings,
+                game,
+                feed,
+                gamePk,
+                articles,
+                seriesStanding,
+                pregameRecords
+            );
             const grid = el("div", "pregame-detail-grid");
 
             const awayProbable = getProbablePitcher(game, feed, "away");
@@ -2853,7 +2934,7 @@
                 getStartingPitcherData(awayProbable, date, homeTeam),
                 getStartingPitcherData(homeProbable, date, awayTeam)
             ]);
-            const startingSection = section("Starting Pitcher", "先発投手比較");
+            const startingSection = section("先発投手", "先発投手比較");
             startingSection.classList.add("pregame-span-12");
             const startingGrid = el("div", "pregame-starting-grid");
             startingGrid.append(

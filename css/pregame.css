@@ -275,6 +275,80 @@ body.app-mode-pregame .scorebook-horizontal-scroll {
     background: linear-gradient(180deg, #586872 0%, #39454d 100%);
 }
 
+/* Individual matchup header: larger desktop typography without affecting touch layouts. */
+@media screen and (min-width: 1101px) and (hover: hover) and (pointer: fine) {
+    html:not(.pregame-touch-capable) body.app-mode-pregame.pregame-game-detail-active
+    .pregame-view-header h2.pregame-matchup-heading {
+        column-gap: 20px;
+        font-size: 26px;
+    }
+
+    html:not(.pregame-touch-capable) body.app-mode-pregame.pregame-game-detail-active
+    .pregame-view-header:has(.pregame-matchup-title-block) {
+        padding-bottom: 16px;
+    }
+
+    html:not(.pregame-touch-capable) body.app-mode-pregame.pregame-game-detail-active .pregame-header-record {
+        color: #e4eaed;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 1.2;
+        white-space: nowrap;
+    }
+
+    html:not(.pregame-touch-capable) body.app-mode-pregame.pregame-game-detail-active .pregame-header-team small {
+        font-size: 13px;
+    }
+
+    html:not(.pregame-touch-capable) body.app-mode-pregame.pregame-game-detail-active .pregame-series-stars {
+        gap: 3px;
+        font-size: 0.9em;
+    }
+
+    html:not(.pregame-touch-capable) body.app-mode-pregame.pregame-game-detail-active .pregame-header-versus {
+        font-size: 0.82em;
+    }
+
+    html:not(.pregame-touch-capable) body.app-mode-pregame.pregame-game-detail-active .pregame-team-official-links {
+        gap: 7px;
+    }
+
+    html:not(.pregame-touch-capable) body.app-mode-pregame.pregame-game-detail-active .pregame-team-social-link {
+        width: 22px;
+        height: 22px;
+        font-size: 10px;
+    }
+
+    html:not(.pregame-touch-capable) body.app-mode-pregame.pregame-game-detail-active .pregame-social-logo {
+        width: 15px;
+        height: 15px;
+    }
+
+    html:not(.pregame-touch-capable) body.app-mode-pregame.pregame-game-detail-active .pregame-team-mlb-link {
+        width: 32px;
+        font-size: 9px;
+    }
+
+    html:not(.pregame-touch-capable) body.app-mode-pregame.pregame-game-detail-active .pregame-matchup-meta-line {
+        margin-top: 2px !important;
+        font-size: 13px !important;
+    }
+
+    html:not(.pregame-touch-capable) body.app-mode-pregame.pregame-game-detail-active .pregame-matchup-venue {
+        font-size: 14px;
+    }
+
+    html:not(.pregame-touch-capable) body.app-mode-pregame.pregame-game-detail-active .pregame-matchup-times {
+        font-size: 13px;
+    }
+
+    html:not(.pregame-touch-capable) body.app-mode-pregame.pregame-game-detail-active .pregame-score-load-button {
+        min-width: 174px;
+        padding: 0 24px;
+        font-size: 14px;
+    }
+}
+
 .pregame-header-actions {
     display: flex;
     align-items: flex-end;
