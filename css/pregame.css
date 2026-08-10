@@ -1672,6 +1672,7 @@ a.pregame-metric-value:focus-visible {
 
     body.app-mode-pregame.pregame-game-detail-active .app-main {
         top: 112px;
+        margin-top: 112px;
     }
 
     body.app-mode-pregame .app-header > .pregame-header-actions-global {
