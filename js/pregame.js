@@ -341,6 +341,12 @@
         return value.toISOString().slice(0, 10);
     };
 
+    const shiftDate = (date, days) => {
+        const value = new Date(`${String(date).slice(0, 10)}T00:00:00Z`);
+        value.setUTCDate(value.getUTCDate() + days);
+        return value.toISOString().slice(0, 10);
+    };
+
     const currentMlbDate = () => window.MLBGameDate.getTodayGameDate();
 
     const getStatus = (game) => String(
@@ -463,6 +469,75 @@
         const games = (payload?.dates ?? []).flatMap((entry) => entry?.games ?? []);
         games.forEach((game) => gameIndex.set(Number(game.gamePk), game));
         return games;
+    };
+
+    const calculateCurrentSeriesStanding = (scheduleGames, gamePk, teamId, opponentId) => {
+        const games = scheduleGames
+            .filter((entry) => [
+                Number(entry?.teams?.away?.team?.id),
+                Number(entry?.teams?.home?.team?.id)
+            ].includes(Number(teamId)))
+            .sort((a, b) => {
+                const dateOrder = String(a?.gameDate ?? a?.officialDate ?? "")
+                    .localeCompare(String(b?.gameDate ?? b?.officialDate ?? ""));
+                return dateOrder || Number(a?.gamePk) - Number(b?.gamePk);
+            });
+        const targetIndex = games.findIndex((entry) => Number(entry?.gamePk) === Number(gamePk));
+        if (targetIndex < 0) return null;
+        const target = games[targetIndex];
+        const totalGames = Number(target?.gamesInSeries);
+        const targetNumber = Number(target?.seriesGameNumber);
+        if (!Number.isInteger(totalGames) || totalGames < 2 ||
+            !Number.isInteger(targetNumber) || targetNumber < 1 || targetNumber > totalGames) return null;
+        const hasSameTeams = (entry) => {
+            const ids = [Number(entry?.teams?.away?.team?.id), Number(entry?.teams?.home?.team?.id)];
+            return ids.includes(Number(teamId)) && ids.includes(Number(opponentId));
+        };
+        let start = targetIndex;
+        let end = targetIndex;
+        while (start > 0 && hasSameTeams(games[start - 1])) start -= 1;
+        while (end + 1 < games.length && hasSameTeams(games[end + 1])) end += 1;
+        const seriesGames = games.slice(start, end + 1);
+        const seriesNumbers = new Set(seriesGames.map((entry) => Number(entry?.seriesGameNumber)));
+        if (seriesGames.length !== totalGames || seriesNumbers.size !== totalGames ||
+            [...seriesNumbers].some((number) => number < 1 || number > totalGames)) return null;
+
+        const wins = new Map([[Number(teamId), 0], [Number(opponentId), 0]]);
+        seriesGames.forEach((entry) => {
+            if (Number(entry?.seriesGameNumber) > targetNumber || !isFinal(entry)) return;
+            const away = entry?.teams?.away ?? {};
+            const home = entry?.teams?.home ?? {};
+            const awayScore = Number(away?.score);
+            const homeScore = Number(home?.score);
+            const winnerId = away?.isWinner === true || (Number.isFinite(awayScore) && awayScore > homeScore)
+                ? Number(away?.team?.id)
+                : home?.isWinner === true || (Number.isFinite(homeScore) && homeScore > awayScore)
+                    ? Number(home?.team?.id)
+                    : 0;
+            if (wins.has(winnerId)) wins.set(winnerId, wins.get(winnerId) + 1);
+        });
+        return { totalGames, wins };
+    };
+
+    const getSeriesSchedule = async (date, teamId = "") => {
+        const params = new URLSearchParams({
+            sportId: "1",
+            startDate: shiftDate(date, -10),
+            endDate: shiftDate(date, 10),
+            gameType: "R",
+            hydrate: "team,linescore"
+        });
+        if (teamId) params.set("teamId", String(teamId));
+        const payload = await fetchJson(
+            `${API_ROOT}/v1/schedule?${params}`,
+            `pregame:series-schedule:${teamId || "all"}:${date}`
+        ).catch(() => null);
+        return (payload?.dates ?? []).flatMap((entry) => entry?.games ?? []);
+    };
+
+    const getCurrentSeriesStanding = async (gamePk, teamId, opponentId, date) => {
+        const games = await getSeriesSchedule(date, teamId);
+        return calculateCurrentSeriesStanding(games, gamePk, teamId, opponentId);
     };
 
     const getSeasonJapanesePlayers = async (season) => {
@@ -1269,7 +1344,21 @@
         }).format(value);
     };
 
-    const setMatchupHeader = (awayTeam, homeTeam, standings, game, feed, gamePk, articles) => {
+    const renderSeriesStars = (team, seriesStanding, extraClass = "") => {
+        const stars = el("span", `pregame-series-stars${extraClass ? ` ${extraClass}` : ""}`);
+        if (!seriesStanding) return stars;
+        const wins = seriesStanding.wins.get(Number(team?.id)) ?? 0;
+        for (let index = 0; index < seriesStanding.totalGames; index += 1) {
+            stars.append(el("span", index < wins ? "pregame-series-star won" : "pregame-series-star", index < wins ? "★" : "☆"));
+        }
+        stars.setAttribute(
+            "aria-label",
+            `${teamJapaneseName(team)} このカード${seriesStanding.totalGames}試合中${wins}勝`
+        );
+        return stars;
+    };
+
+    const setMatchupHeader = (awayTeam, homeTeam, standings, game, feed, gamePk, articles, seriesStanding) => {
         const teamBlock = (team) => {
             const block = el("span", "pregame-header-team");
             const standing = standings.get(Number(team?.id));
@@ -1319,12 +1408,18 @@
             return block;
         };
         dom.title.className = "pregame-matchup-heading";
+        if (seriesStanding) dom.title.classList.add("pregame-series-standing-active");
         dom.title.parentElement?.classList.add("pregame-matchup-title-block");
-        dom.title.replaceChildren(
-            teamBlock(awayTeam),
-            el("span", "pregame-header-versus", "VS."),
-            teamBlock(homeTeam)
-        );
+        const matchupHeading = seriesStanding
+            ? [
+                teamBlock(awayTeam),
+                renderSeriesStars(awayTeam, seriesStanding),
+                el("span", "pregame-header-versus", "VS."),
+                renderSeriesStars(homeTeam, seriesStanding),
+                teamBlock(homeTeam)
+            ]
+            : [teamBlock(awayTeam), el("span", "pregame-header-versus", "VS."), teamBlock(homeTeam)];
+        dom.title.replaceChildren(...matchupHeading);
         const venue = venueLabel(feed?.gameData?.venue ?? game?.venue) || "球場未定";
         const dateTime = feed?.gameData?.datetime?.dateTime ?? game?.gameDate;
         dom.subtitle.className = "pregame-matchup-meta-line";
@@ -1403,10 +1498,19 @@
         setHeader("試合前情報", formatDate(date));
         try {
             const season = Number(date.slice(0, 4));
-            const [games, japanesePlayers] = await Promise.all([
+            const [games, japanesePlayers, seriesSchedule] = await Promise.all([
                 getSchedule(date),
-                getSeasonJapanesePlayers(season)
+                getSeasonJapanesePlayers(season),
+                getSeriesSchedule(date)
             ]);
+            const seriesStandingByGame = new Map(games.map((game) => {
+                const awayId = Number(game?.teams?.away?.team?.id);
+                const homeId = Number(game?.teams?.home?.team?.id);
+                return [
+                    Number(game?.gamePk),
+                    calculateCurrentSeriesStanding(seriesSchedule, game?.gamePk, awayId, homeId)
+                ];
+            }));
             const teamGame = new Map();
             games.forEach((game) => {
                 [game?.teams?.away?.team, game?.teams?.home?.team].forEach((team) => {
@@ -1467,10 +1571,21 @@
                     const card = el("button", "pregame-game-card");
                     setGameCardTeamColors(card, away, home);
                     const matchupTitle = el("strong", "pregame-matchup-title");
+                    const seriesStanding = seriesStandingByGame.get(Number(game?.gamePk));
+                    const awayLabel = el("span", "pregame-card-team pregame-card-team-away");
+                    const homeLabel = el("span", "pregame-card-team pregame-card-team-home");
+                    awayLabel.append(
+                        el("span", "pregame-card-team-name", teamJapaneseShortName(away)),
+                        renderSeriesStars(away, seriesStanding, "pregame-card-series-stars")
+                    );
+                    homeLabel.append(
+                        renderSeriesStars(home, seriesStanding, "pregame-card-series-stars"),
+                        el("span", "pregame-card-team-name", teamJapaneseShortName(home))
+                    );
                     matchupTitle.append(
-                        document.createTextNode(teamJapaneseShortName(away)),
+                        awayLabel,
                         el("span", "pregame-versus", "VS."),
-                        document.createTextNode(teamJapaneseShortName(home))
+                        homeLabel
                     );
                     const matchupMeta = el("small", "pregame-matchup-meta");
                     const pitcherLine = el("span", "pregame-pitcher-line");
@@ -2741,14 +2856,15 @@
             const date = String(feed?.gameData?.datetime?.officialDate ?? game?.officialDate ?? currentDate);
             const awayTeam = feed?.gameData?.teams?.away ?? game?.teams?.away?.team ?? {};
             const homeTeam = feed?.gameData?.teams?.home ?? game?.teams?.home?.team ?? {};
-            const [awayTrend, homeTrend, standings, transactions, injuries] = await Promise.all([
+            const [awayTrend, homeTrend, standings, transactions, injuries, seriesStanding] = await Promise.all([
                 getTeamTrend(awayTeam.id, date),
                 getTeamTrend(homeTeam.id, date),
                 getStandingsSnapshot(date),
                 getRecentTeamTransactions([awayTeam, homeTeam], date),
-                getTeamInjuryReports([awayTeam, homeTeam], date)
+                getTeamInjuryReports([awayTeam, homeTeam], date),
+                getCurrentSeriesStanding(gamePk, awayTeam.id, homeTeam.id, date)
             ]);
-            setMatchupHeader(awayTeam, homeTeam, standings, game, feed, gamePk, articles);
+            setMatchupHeader(awayTeam, homeTeam, standings, game, feed, gamePk, articles, seriesStanding);
             const grid = el("div", "pregame-detail-grid");
 
             const awayProbable = getProbablePitcher(game, feed, "away");
