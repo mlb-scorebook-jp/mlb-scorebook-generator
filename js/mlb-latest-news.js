@@ -32,38 +32,6 @@
         ]
     },
     {
-        "headline": "Miz blazes his way to 200 K's faster than all but one pitcher in MLB history",
-        "summaryJa": "J.ミザロウスキー（MIL）、MLB史上2番目の速さでシーズン200奪三振に到達",
-        "slug": "jacob-misiorowski-notches-200th-strikeout-of-season-vs-twins",
-        "url": "https://www.mlb.com/news/jacob-misiorowski-notches-200th-strikeout-of-season-vs-twins",
-        "contentDate": "2026-08-10T00:02:00Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [
-            694819
-        ],
-        "taxonomy": [
-            "apple-news",
-            "key-moments",
-            "game-recap"
-        ]
-    },
-    {
-        "headline": "Every team’s biggest impending free agent for 2026-27",
-        "summaryJa": "MLB公式がMLBの最新情報について報じた。",
-        "slug": "baseball-s-biggest-free-agents-by-team-for-2026-2027",
-        "url": "https://www.mlb.com/news/baseball-s-biggest-free-agents-by-team-for-2026-2027",
-        "contentDate": "2026-08-10T03:38:53.742Z",
-        "teamIds": [],
-        "playerIds": [],
-        "taxonomy": [
-            "apple-news",
-            "rumors",
-            "mlbn-hot-stove"
-        ]
-    },
-    {
         "headline": "Skubal set for 1st Dodgers home start -- and another 2x Cy winner will follow",
         "summaryJa": "T.スクーバル（LAD）、ドジャー・スタジアムで移籍後初先発へ",
         "slug": "tarik-skubal-dodger-stadium-debut-with-dodgers",
@@ -81,6 +49,20 @@
         ]
     },
     {
+        "headline": "Every team’s biggest impending free agent for 2026-27",
+        "summaryJa": "MLB公式がMLBの最新情報について報じた。",
+        "slug": "baseball-s-biggest-free-agents-by-team-for-2026-2027",
+        "url": "https://www.mlb.com/news/baseball-s-biggest-free-agents-by-team-for-2026-2027",
+        "contentDate": "2026-08-10T03:38:53.742Z",
+        "teamIds": [],
+        "playerIds": [],
+        "taxonomy": [
+            "apple-news",
+            "rumors",
+            "mlbn-hot-stove"
+        ]
+    },
+    {
         "headline": "MLB's highest-scoring offense is also its all-time youngest",
         "summaryJa": "MLB公式がナショナルズについて報じた。",
         "slug": "2026-nationals-have-youngest-lineup-ever",
@@ -93,6 +75,60 @@
         "taxonomy": [
             "savant",
             "apple-news"
+        ]
+    },
+    {
+        "headline": "Mets lose closer Williams to IL with shoulder strain",
+        "summaryJa": "MLB公式がD.ウィリアムズ（NYM）について報じた。",
+        "slug": "devin-williams-right-shoulder-strain-injured-list",
+        "url": "https://www.mlb.com/news/devin-williams-right-shoulder-strain-injured-list",
+        "contentDate": "2026-08-10T20:07:00Z",
+        "teamIds": [
+            121
+        ],
+        "playerIds": [
+            642207,
+            702752
+        ],
+        "taxonomy": [
+            "injury",
+            "apple-news"
+        ]
+    },
+    {
+        "headline": "Tim Anderson, batting champ and two-time All-Star, announces retirement",
+        "summaryJa": "MLB公式がT.アンダーソン（CWS）について報じた。",
+        "slug": "tim-anderson-retires",
+        "url": "https://www.mlb.com/news/tim-anderson-retires",
+        "contentDate": "2026-08-10T18:35:53.599Z",
+        "teamIds": [
+            145
+        ],
+        "playerIds": [
+            641313
+        ],
+        "taxonomy": [
+            "apple-news",
+            "retirement"
+        ]
+    },
+    {
+        "headline": "Abreu, McCarthy start August red-hot with Player of Week honors",
+        "summaryJa": "MLB公式がW.アブレイユ（BOS）について報じた。",
+        "slug": "wilyer-abreu-jake-mccarthy-players-of-the-week",
+        "url": "https://www.mlb.com/news/wilyer-abreu-jake-mccarthy-players-of-the-week",
+        "contentDate": "2026-08-10T20:35:03.75Z",
+        "teamIds": [
+            111,
+            115
+        ],
+        "playerIds": [
+            677800,
+            664983
+        ],
+        "taxonomy": [
+            "apple-news",
+            "player-of-the-week"
         ]
     },
     {
@@ -133,6 +169,24 @@
         "playerIds": [],
         "taxonomy": [
             "apple-news"
+        ]
+    },
+    {
+        "headline": "Miz blazes his way to 200 K's faster than all but one pitcher in MLB history",
+        "summaryJa": "J.ミザロウスキー（MIL）、MLB史上2番目の速さでシーズン200奪三振に到達",
+        "slug": "jacob-misiorowski-notches-200th-strikeout-of-season-vs-twins",
+        "url": "https://www.mlb.com/news/jacob-misiorowski-notches-200th-strikeout-of-season-vs-twins",
+        "contentDate": "2026-08-10T00:02:00Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [
+            694819
+        ],
+        "taxonomy": [
+            "apple-news",
+            "key-moments",
+            "game-recap"
         ]
     },
     {
@@ -265,6 +319,16 @@
         ]
     },
     {
+        "headline": "Baseball’s competitive balance issue, explained",
+        "summaryJa": "MLBの戦力均衡を巡る現状と課題を解説",
+        "slug": "mlb-competitive-balance-issue-explained",
+        "url": "https://www.mlb.com/news/mlb-competitive-balance-issue-explained",
+        "contentDate": "2026-06-21T00:15:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "taxonomy": []
+    },
+    {
         "headline": "Braves win 10-inning pitchers' duel to avoid Bronx sweep",
         "summaryJa": "G.ホームズ（ATL）が6回無失点、延長10回の投手戦を制し3連敗を阻止",
         "slug": "grant-holmes-pitches-6-scoreless-innings-in-win-over-yankees",
@@ -307,16 +371,6 @@
         "taxonomy": [
             "apple-news"
         ]
-    },
-    {
-        "headline": "Baseball’s competitive balance issue, explained",
-        "summaryJa": "MLBの戦力均衡を巡る現状と課題を解説",
-        "slug": "mlb-competitive-balance-issue-explained",
-        "url": "https://www.mlb.com/news/mlb-competitive-balance-issue-explained",
-        "contentDate": "2026-06-21T00:15:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "taxonomy": []
     },
     {
         "headline": "Schwarber snaps dinger drought, Hill gets walk-off hit in Phils' much-needed win",
@@ -448,11 +502,11 @@
         ]
     },
     {
-        "headline": "Royals add 9-time All-Star Kimbrel to bolster bullpen (source)",
+        "headline": "Royals add 9-time All-Star Kimbrel to bolster bullpen",
         "summaryJa": "C.キンブレル（KC）、救援陣強化へロイヤルズ加入",
         "slug": "craig-kimbrel-royals-2026-contract",
         "url": "https://www.mlb.com/news/craig-kimbrel-royals-2026-contract",
-        "contentDate": "2026-08-09T21:25:02.923Z",
+        "contentDate": "2026-08-10T20:06:00Z",
         "teamIds": [
             118
         ],
@@ -462,58 +516,6 @@
         "taxonomy": [
             "apple-news",
             "transactions"
-        ]
-    },
-    {
-        "headline": "Stars come out to help lead Padres to series win over Astros",
-        "summaryJa": "MLB公式がF.タティース Jr.（SD）について報じた。",
-        "slug": "padres-hit-4-home-runs-to-take-series-from-astros",
-        "url": "https://www.mlb.com/news/padres-hit-4-home-runs-to-take-series-from-astros",
-        "contentDate": "2026-08-10T04:04:00Z",
-        "teamIds": [
-            135
-        ],
-        "playerIds": [
-            665487
-        ],
-        "taxonomy": [
-            "apple-news",
-            "takeaways",
-            "game-recap",
-            "long-home-runs"
-        ]
-    },
-    {
-        "headline": "Speedy Simpson produces 4 hits after moving up to No. 3 in Rays' lineup",
-        "summaryJa": "MLB公式がC.シンプソン（TB）について報じた。",
-        "slug": "chandler-simpson-has-4-hits-in-rays-win-over-mariners",
-        "url": "https://www.mlb.com/news/chandler-simpson-has-4-hits-in-rays-win-over-mariners",
-        "contentDate": "2026-08-10T00:16:00Z",
-        "teamIds": [
-            139
-        ],
-        "playerIds": [
-            802415
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap"
-        ]
-    },
-    {
-        "headline": "Surging Tigers head home riding high after big road trip",
-        "summaryJa": "MLB公式がタイガースについて報じた。",
-        "slug": "tigers-beat-giants-to-cap-successful-west-coast-road-trip",
-        "url": "https://www.mlb.com/news/tigers-beat-giants-to-cap-successful-west-coast-road-trip",
-        "contentDate": "2026-08-10T00:59:00Z",
-        "teamIds": [
-            116
-        ],
-        "playerIds": [],
-        "taxonomy": [
-            "apple-news",
-            "game-recap",
-            "extra-innings"
         ]
     }
 ]);
