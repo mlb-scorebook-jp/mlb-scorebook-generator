@@ -5,7 +5,8 @@
     // correspondence here so scorebook and pregame views always use the
     // same verified destination.
     const STATHEAD_PLAYER_IDS = Object.freeze({
-        691016: "soders000tyl"
+        691016: "soders000tyl",
+        691594: "sanoja000jav"
     });
 
     const playerStreakFinderUrl = (mlbPlayerId) => {
