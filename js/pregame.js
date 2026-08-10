@@ -1046,20 +1046,58 @@
 
     const getHittingStreaks = (splits) => {
         const ordered = [...splits].sort((a, b) => String(a.date).localeCompare(String(b.date)));
-        let hits = 0;
-        let onBase = 0;
-        let rbi = 0;
+        const createStreak = () => ({ count: 0, startDate: "", endDate: "", noPlateAppearanceGames: [] });
+        const streaks = {
+            hits: createStreak(),
+            onBase: createStreak(),
+            rbi: createStreak()
+        };
+        const updateStreak = (streak, succeeded, date) => {
+            if (!succeeded) {
+                Object.assign(streak, createStreak());
+                return;
+            }
+            if (!streak.count) streak.startDate = date;
+            streak.count += 1;
+            streak.endDate = date;
+        };
         ordered.forEach((split) => {
             const stat = split?.stat ?? {};
             const pa = statNumber(stat.plateAppearances) ||
                 statNumber(stat.atBats) + statNumber(stat.baseOnBalls) + statNumber(stat.hitByPitch);
-            if (!pa) return;
-            hits = statNumber(stat.hits) > 0 ? hits + 1 : 0;
-            onBase = statNumber(stat.hits) + statNumber(stat.baseOnBalls) + statNumber(stat.hitByPitch) > 0
-                ? onBase + 1 : 0;
-            rbi = statNumber(stat.rbi) > 0 ? rbi + 1 : 0;
+            if (!pa) {
+                if (statNumber(stat.gamesPlayed) > 0) {
+                    Object.values(streaks).forEach((streak) => {
+                        if (!streak.count) return;
+                        streak.noPlateAppearanceGames.push({
+                            date: String(split?.date ?? ""),
+                            fieldingOnly: Array.isArray(split?.positionsPlayed) && split.positionsPlayed.length > 0
+                        });
+                    });
+                }
+                return;
+            }
+            const date = String(split?.date ?? "");
+            updateStreak(streaks.hits, statNumber(stat.hits) > 0, date);
+            updateStreak(
+                streaks.onBase,
+                statNumber(stat.hits) + statNumber(stat.baseOnBalls) + statNumber(stat.hitByPitch) > 0,
+                date
+            );
+            updateStreak(streaks.rbi, statNumber(stat.rbi) > 0, date);
         });
-        return { hits, onBase, rbi };
+        return streaks;
+    };
+
+    const formatHittingStreak = (streak, label) => {
+        const period = streak.startDate && streak.endDate
+            ? ` ${compactDate(streak.startDate)}〜${compactDate(streak.endDate)}`
+            : "";
+        const annotations = streak.noPlateAppearanceGames
+            .filter((game) => game.date >= streak.startDate && game.date <= streak.endDate)
+            .map((game) => `${compactDate(game.date)}は${game.fieldingOnly ? "守備のみ出場" : "打席なし"}`);
+        return `${streak.count}試合連続${label}${period}` +
+            (annotations.length ? `（${annotations.join("、")}）` : "");
     };
 
     const getQualityStartStreak = (splits) => {
@@ -2486,11 +2524,17 @@
         }
         const streaks = getHittingStreaks(priorHittingLogs);
         const hittingGameLogUrl = officialPlayerStatsUrl("hitting", "gamelogs");
-        if (streaks.hits >= 3) notes.push({ text: `${streaks.hits}試合連続安打`, href: hittingGameLogUrl });
-        if (streaks.onBase >= 5) notes.push({ text: `${streaks.onBase}試合連続出塁`, href: hittingGameLogUrl });
-        if (streaks.rbi >= 3) notes.push({ text: `${streaks.rbi}試合連続打点`, href: hittingGameLogUrl });
-        importance += streaks.hits >= 3 ? streaks.hits : 0;
-        importance += streaks.onBase >= 5 ? streaks.onBase : 0;
+        if (streaks.hits.count >= 3) {
+            notes.push({ text: formatHittingStreak(streaks.hits, "安打"), href: hittingGameLogUrl });
+        }
+        if (streaks.onBase.count >= 5) {
+            notes.push({ text: formatHittingStreak(streaks.onBase, "出塁"), href: hittingGameLogUrl });
+        }
+        if (streaks.rbi.count >= 3) {
+            notes.push({ text: formatHittingStreak(streaks.rbi, "打点"), href: hittingGameLogUrl });
+        }
+        importance += streaks.hits.count >= 3 ? streaks.hits.count : 0;
+        importance += streaks.onBase.count >= 5 ? streaks.onBase.count : 0;
         groups.forEach((group, index) => {
             const milestoneNotes = remainingMilestones(careers[index], group);
             notes.push(...milestoneNotes.map((text) => ({
