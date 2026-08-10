@@ -113,7 +113,7 @@
         ]
     },
     {
-        "headline": "Abreu, McCarthy start August red-hot with Player of Week honors",
+        "headline": "Abreu, McCarthy start August red-hot with Player of the Week honors",
         "summaryJa": "MLB公式がW.アブレイユ（BOS）について報じた。",
         "slug": "wilyer-abreu-jake-mccarthy-players-of-the-week",
         "url": "https://www.mlb.com/news/wilyer-abreu-jake-mccarthy-players-of-the-week",
@@ -129,6 +129,20 @@
         "taxonomy": [
             "apple-news",
             "player-of-the-week"
+        ]
+    },
+    {
+        "headline": "Phillies-Cardinals clash could have major playoff implications",
+        "summaryJa": "MLB公式がカージナルスについて報じた。",
+        "slug": "phillies-cardinals-series-has-nl-wild-card-implications",
+        "url": "https://www.mlb.com/news/phillies-cardinals-series-has-nl-wild-card-implications",
+        "contentDate": "2026-08-10T14:51:31.812Z",
+        "teamIds": [
+            138
+        ],
+        "playerIds": [],
+        "taxonomy": [
+            "apple-news"
         ]
     },
     {
@@ -187,6 +201,23 @@
             "apple-news",
             "key-moments",
             "game-recap"
+        ]
+    },
+    {
+        "headline": "Rangers place Eovaldi on IL with elbow inflammation",
+        "summaryJa": "MLB公式がN.イバルディ（TEX）について報じた。",
+        "slug": "nathan-eovaldi-elbow-inflammation-injured-list",
+        "url": "https://www.mlb.com/news/nathan-eovaldi-elbow-inflammation-injured-list",
+        "contentDate": "2026-08-10T22:33:44.348Z",
+        "teamIds": [
+            140
+        ],
+        "playerIds": [
+            543135
+        ],
+        "taxonomy": [
+            "apple-news",
+            "injury"
         ]
     },
     {
@@ -250,6 +281,32 @@
         ]
     },
     {
+        "headline": "Trio of prospects traded at Deadline headline latest Team of the Week",
+        "summaryJa": "MLB公式がZ.ビーンについて報じた。",
+        "slug": "prospect-team-of-the-week-august-10-2026",
+        "url": "https://www.mlb.com/news/prospect-team-of-the-week-august-10-2026",
+        "contentDate": "2026-08-10T21:23:48.708Z",
+        "teamIds": [],
+        "playerIds": [
+            691728,
+            695722,
+            815824,
+            801126,
+            807727,
+            815929,
+            806223,
+            813841,
+            807739,
+            806265,
+            695066
+        ],
+        "taxonomy": [
+            "apple-news",
+            "minor-league-baseball",
+            "mlb-top-prospects"
+        ]
+    },
+    {
         "headline": "111 games, zero errors: Wilson sets MLB record at shortstop",
         "summaryJa": "J.ウィルソン（ATH）、遊撃手で111試合連続無失策のMLB記録を樹立",
         "slug": "jacob-wilson-mlb-error-free-shortstop-record",
@@ -266,6 +323,16 @@
             "defense",
             "game-recap"
         ]
+    },
+    {
+        "headline": "Baseball’s competitive balance issue, explained",
+        "summaryJa": "MLBの戦力均衡を巡る現状と課題を解説",
+        "slug": "mlb-competitive-balance-issue-explained",
+        "url": "https://www.mlb.com/news/mlb-competitive-balance-issue-explained",
+        "contentDate": "2026-06-21T00:15:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "taxonomy": []
     },
     {
         "headline": "Phillies give 4 former players their 'Moonlight' moment in ode to Field of Dreams",
@@ -319,16 +386,6 @@
         ]
     },
     {
-        "headline": "Baseball’s competitive balance issue, explained",
-        "summaryJa": "MLBの戦力均衡を巡る現状と課題を解説",
-        "slug": "mlb-competitive-balance-issue-explained",
-        "url": "https://www.mlb.com/news/mlb-competitive-balance-issue-explained",
-        "contentDate": "2026-06-21T00:15:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "taxonomy": []
-    },
-    {
         "headline": "Braves win 10-inning pitchers' duel to avoid Bronx sweep",
         "summaryJa": "G.ホームズ（ATL）が6回無失点、延長10回の投手戦を制し3連敗を阻止",
         "slug": "grant-holmes-pitches-6-scoreless-innings-in-win-over-yankees",
@@ -344,20 +401,6 @@
             "apple-news",
             "extra-innings",
             "game-recap"
-        ]
-    },
-    {
-        "headline": "Phillies-Cardinals clash could have major playoff implications",
-        "summaryJa": "MLB公式がカージナルスについて報じた。",
-        "slug": "phillies-cardinals-series-has-nl-wild-card-implications",
-        "url": "https://www.mlb.com/news/phillies-cardinals-series-has-nl-wild-card-implications",
-        "contentDate": "2026-08-10T14:51:31.812Z",
-        "teamIds": [
-            138
-        ],
-        "playerIds": [],
-        "taxonomy": [
-            "apple-news"
         ]
     },
     {
@@ -439,11 +482,11 @@
         ]
     },
     {
-        "headline": "Injuries: Jax, H. Greene, Rodón, Ohtani, Adley, Soto, Cubs",
+        "headline": "Injuries: Eovaldi, Adley, Jax, H. Greene, Rodón, Ohtani",
         "summaryJa": "大谷翔平（LAD）らMLB各球団の最新負傷情報",
         "slug": "baseball-injury-updates",
         "url": "https://www.mlb.com/news/baseball-injury-updates",
-        "contentDate": "2026-08-09T23:36:00Z",
+        "contentDate": "2026-08-10T22:57:00Z",
         "teamIds": [],
         "playerIds": [
             519317,
@@ -454,10 +497,10 @@
             701350,
             666157,
             607074,
-            665742,
             518692,
             643377,
-            669065
+            669065,
+            543135
         ],
         "taxonomy": [
             "injury",
@@ -481,41 +524,6 @@
             "apple-news",
             "takeaways",
             "game-recap"
-        ]
-    },
-    {
-        "headline": "Reds ace Burns bullish on rising Nats SS, a former Wake Forest teammate",
-        "summaryJa": "MLB公式がS.キング（WSH）について報じた。",
-        "slug": "seaver-king-chase-burns-teammates-at-wake-forest",
-        "url": "https://www.mlb.com/news/seaver-king-chase-burns-teammates-at-wake-forest",
-        "contentDate": "2026-08-10T13:12:00Z",
-        "teamIds": [
-            120
-        ],
-        "playerIds": [
-            814409,
-            695505
-        ],
-        "taxonomy": [
-            "apple-news",
-            "mlb-top-prospects"
-        ]
-    },
-    {
-        "headline": "Royals add 9-time All-Star Kimbrel to bolster bullpen",
-        "summaryJa": "C.キンブレル（KC）、救援陣強化へロイヤルズ加入",
-        "slug": "craig-kimbrel-royals-2026-contract",
-        "url": "https://www.mlb.com/news/craig-kimbrel-royals-2026-contract",
-        "contentDate": "2026-08-10T20:06:00Z",
-        "teamIds": [
-            118
-        ],
-        "playerIds": [
-            518886
-        ],
-        "taxonomy": [
-            "apple-news",
-            "transactions"
         ]
     }
 ]);
