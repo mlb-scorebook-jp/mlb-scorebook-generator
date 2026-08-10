@@ -224,6 +224,148 @@
         return savantCache.get(key);
     };
 
+    const SAVANT_PITCH_SWING_DESCRIPTIONS = new Set([
+        "swinging_strike",
+        "swinging_strike_blocked",
+        "missed_bunt",
+        "foul_tip",
+        "foul",
+        "foul_bunt",
+        "hit_into_play"
+    ]);
+    const SAVANT_PITCH_WHIFF_DESCRIPTIONS = new Set([
+        "swinging_strike",
+        "swinging_strike_blocked",
+        "missed_bunt",
+        "foul_tip"
+    ]);
+    const SAVANT_PITCH_TYPE_LABELS = new Map([
+        ["FF", "4シーム"],
+        ["SI", "シンカー"],
+        ["FC", "カッター"],
+        ["SL", "スライダー"],
+        ["ST", "スイーパー"],
+        ["CU", "カーブ"],
+        ["KC", "ナックルカーブ"],
+        ["CH", "チェンジアップ"],
+        ["FS", "スプリット"],
+        ["FO", "フォーク"],
+        ["SC", "スクリュー"],
+        ["KN", "ナックル"],
+        ["EP", "イーファス"],
+        ["SV", "スラーブ"]
+    ]);
+
+    const savantPitcherUrl = (person, view = "pitching") => {
+        const id = Number(person?.id);
+        if (!id) return "";
+        const slug = String(person?.fullName ?? person?.name ?? "player")
+            .normalize("NFKD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .toLowerCase()
+            .replace(/['’]/g, "")
+            .replace(/[^a-z0-9]+/g, "-")
+            .replace(/^-+|-+$/g, "") || "player";
+        const statsView = view === "zones" ? "statcast-r-zones-mlb" : "statcast-r-pitching-mlb";
+        return `https://baseballsavant.mlb.com/savant-player/${slug}-${id}?stats=${statsView}`;
+    };
+
+    const getSavantPitchRows = async (playerId, season, beforeDate) => {
+        const endDate = previousDate(beforeDate);
+        const key = `savant:pitcher:player-rows:${playerId}:${season}:${endDate}`;
+        if (!savantCache.has(key)) {
+            const params = new URLSearchParams({
+                all: "true",
+                type: "pitcher",
+                player_type: "pitcher",
+                hfSea: `${season}|`,
+                hfGT: "R|",
+                game_date_gt: `${season}-01-01`,
+                game_date_lt: endDate
+            });
+            params.append("pitchers_lookup[]", String(playerId));
+            const request = fetch(`https://baseballsavant.mlb.com/statcast_search/csv?${params}`)
+                .then(async (response) => {
+                    if (!response.ok) throw new Error(`Baseball Savantを取得できませんでした（${response.status}）`);
+                    const lines = (await response.text()).replace(/^\uFEFF/, "")
+                        .split(/\r?\n/)
+                        .filter(Boolean);
+                    if (!lines.length) return [];
+                    const headers = parseCsvLine(lines[0]);
+                    return lines.slice(1).map((line) => {
+                        const values = parseCsvLine(line);
+                        return Object.fromEntries(headers.map((header, index) => [header, values[index] ?? ""]));
+                    });
+                });
+            savantCache.set(key, request);
+        }
+        return savantCache.get(key);
+    };
+
+    const aggregatePitcherStatcast = (rows, pitchType, batterSide) => {
+        const totals = {
+            velocitySum: 0,
+            velocityCount: 0,
+            swings: 0,
+            whiffs: 0,
+            chasePitches: 0,
+            chases: 0,
+            battedBalls: 0,
+            hardHits: 0,
+            zones: new Map()
+        };
+        rows.forEach((row) => {
+            if (pitchType && row.pitch_type !== pitchType) return;
+            if (batterSide && row.stand !== batterSide) return;
+
+            const description = String(row.description ?? "");
+            const velocity = Number(row.release_speed);
+            if (pitchType && String(row.release_speed ?? "").trim() !== "" && Number.isFinite(velocity)) {
+                totals.velocitySum += velocity;
+                totals.velocityCount += 1;
+            }
+            if (SAVANT_PITCH_SWING_DESCRIPTIONS.has(description)) totals.swings += 1;
+            if (SAVANT_PITCH_WHIFF_DESCRIPTIONS.has(description)) totals.whiffs += 1;
+
+            const zone = Number(row.zone);
+            if (Number.isInteger(zone) && zone >= 11 && zone <= 14) {
+                totals.chasePitches += 1;
+                if (SAVANT_PITCH_SWING_DESCRIPTIONS.has(description)) totals.chases += 1;
+            }
+
+            const launchSpeed = Number(row.launch_speed);
+            if (description === "hit_into_play" && String(row.launch_speed ?? "").trim() !== "" && Number.isFinite(launchSpeed)) {
+                totals.battedBalls += 1;
+                if (launchSpeed >= 95) totals.hardHits += 1;
+            }
+
+            const event = String(row.events ?? "");
+            if (!SAVANT_AT_BAT_EVENTS.has(event) || !Number.isInteger(zone) || zone === 10 || zone < 1 || zone > 14) return;
+            const zoneTotal = totals.zones.get(zone) ?? { atBats: 0, hits: 0 };
+            zoneTotal.atBats += 1;
+            if (SAVANT_HIT_EVENTS.has(event)) zoneTotal.hits += 1;
+            totals.zones.set(zone, zoneTotal);
+        });
+        const percentage = (part, whole) => whole ? (part * 100) / whole : null;
+        return {
+            averageVelocity: pitchType && totals.velocityCount
+                ? totals.velocitySum / totals.velocityCount
+                : null,
+            whiffPercent: percentage(totals.whiffs, totals.swings),
+            chasePercent: percentage(totals.chases, totals.chasePitches),
+            hardHitPercent: percentage(totals.hardHits, totals.battedBalls),
+            zones: new Map([...totals.zones.entries()].map(([zone, total]) => [
+                zone,
+                total.atBats ? total.hits / total.atBats : null
+            ]))
+        };
+    };
+
+    const pitcherPitchTypeLabel = (pitchType, rows = []) => {
+        if (SAVANT_PITCH_TYPE_LABELS.has(pitchType)) return SAVANT_PITCH_TYPE_LABELS.get(pitchType);
+        return rows.find((row) => row.pitch_type === pitchType)?.pitch_name || pitchType;
+    };
+
     const normalizeKey = (value) => String(value ?? "")
         .normalize("NFKD")
         .replace(/[\u0300-\u036f]/g, "")
@@ -2250,6 +2392,171 @@
         return wrapper;
     };
 
+    const renderPitcherStatcastSection = (seasonRows, person, season) => {
+        const wrapper = section("Statcast", "Baseball Savant");
+        wrapper.classList.add("pregame-statcast-section", "pregame-pitcher-statcast-section");
+        wrapper.querySelector("h3")?.append(el("small", "pregame-statcast-season-note", "（レギュラーシーズン）"));
+
+        const currentRows = seasonRows.find((entry) => entry.season === season)?.rows ?? [];
+        const currentPitchCounts = new Map();
+        currentRows.forEach((row) => {
+            const pitchType = String(row.pitch_type ?? "").trim();
+            if (pitchType) currentPitchCounts.set(pitchType, (currentPitchCounts.get(pitchType) ?? 0) + 1);
+        });
+        const allPitchTypes = new Set();
+        seasonRows.forEach(({ rows }) => rows.forEach((row) => {
+            const pitchType = String(row.pitch_type ?? "").trim();
+            if (pitchType) allPitchTypes.add(pitchType);
+        }));
+        const pitchTypes = [...allPitchTypes].sort((a, b) =>
+            (currentPitchCounts.get(b) ?? 0) - (currentPitchCounts.get(a) ?? 0) ||
+            pitcherPitchTypeLabel(a, currentRows).localeCompare(pitcherPitchTypeLabel(b, currentRows), "ja")
+        );
+        let selectedPitchType = [...currentPitchCounts.entries()]
+            .sort((a, b) => b[1] - a[1])[0]?.[0] ?? pitchTypes[0] ?? "";
+        let selectedBatterSide = "";
+
+        const filters = el("div", "pregame-statcast-filters");
+        const pitchLabel = el("label", "pregame-statcast-filter");
+        pitchLabel.append(el("span", "", "球種"));
+        const pitchSelect = el("select", "pregame-statcast-select");
+        const allPitchesOption = el("option", "", "全球種");
+        allPitchesOption.value = "";
+        pitchSelect.append(allPitchesOption);
+        pitchTypes.forEach((pitchType) => {
+            const option = el("option", "", pitcherPitchTypeLabel(pitchType, currentRows));
+            option.value = pitchType;
+            pitchSelect.append(option);
+        });
+        pitchSelect.value = selectedPitchType;
+        pitchLabel.append(pitchSelect);
+
+        const sideLabel = el("label", "pregame-statcast-filter");
+        sideLabel.append(el("span", "", "対打者"));
+        const sideSelect = el("select", "pregame-statcast-select");
+        [["", "全打者"], ["R", "右打者"], ["L", "左打者"]].forEach(([value, label]) => {
+            const option = el("option", "", label);
+            option.value = value;
+            sideSelect.append(option);
+        });
+        sideLabel.append(sideSelect);
+        filters.append(pitchLabel, sideLabel);
+        wrapper.append(filters);
+
+        const metrics = el("div", "pregame-statcast-metrics");
+        const sourceUrl = savantPitcherUrl(person);
+        const metricDefinitions = [
+            ["平均球速", "averageVelocity"],
+            ["Whiff%", "whiffPercent"],
+            ["Chase%", "chasePercent"],
+            ["Hard-Hit%", "hardHitPercent"]
+        ];
+        const metricHistories = new Map();
+        metricDefinitions.forEach(([label, key]) => {
+            const card = el("div", `pregame-statcast-metric pregame-pitcher-statcast-${key}`);
+            card.append(el("span", "pregame-statcast-label", label));
+            const history = el("div", "pregame-statcast-history");
+            metricHistories.set(key, { history, label });
+            card.append(history);
+            metrics.append(card);
+        });
+
+        const zoneCard = el("div", "pregame-statcast-metric pregame-statcast-zone-card");
+        zoneCard.append(el("span", "pregame-statcast-label", "コース別被打率"));
+        const zoneViewLabel = el("span", "pregame-zone-view-label");
+        const zoneLink = savantPitcherUrl(person, "zones");
+        const zoneChart = el("div", "pregame-zone-chart");
+        const outer = el("div", "pregame-zone-outer");
+        const zoneNodes = new Map();
+        [11, 12, 13, 14].forEach((zone) => {
+            const node = el("span", `pregame-zone-cell pregame-zone-${zone}`, "—");
+            zoneNodes.set(zone, node);
+            outer.append(node);
+        });
+        const inner = el("div", "pregame-zone-inner");
+        for (let zone = 1; zone <= 9; zone += 1) {
+            const node = el("span", "pregame-zone-cell", "—");
+            zoneNodes.set(zone, node);
+            inner.append(node);
+        }
+        zoneChart.append(outer, inner);
+        const zoneVisual = el("div", "pregame-zone-visual");
+        zoneVisual.append(zoneChart, el("span", "pregame-zone-home-plate"));
+        zoneCard.append(zoneViewLabel, zoneVisual);
+        metrics.append(zoneCard);
+        wrapper.append(metrics);
+
+        const formatMetric = (key, value) => {
+            if (!Number.isFinite(value)) return "—";
+            if (key === "averageVelocity") {
+                return `${value.toFixed(1)} mph（${(value * 1.609344).toFixed(1)} km/h）`;
+            }
+            return `${value.toFixed(1)}%`;
+        };
+        const update = () => {
+            selectedPitchType = pitchSelect.value;
+            selectedBatterSide = sideSelect.value;
+            const aggregates = new Map(seasonRows.map(({ season: rowSeason, rows }) => [
+                rowSeason,
+                aggregatePitcherStatcast(rows, selectedPitchType, selectedBatterSide)
+            ]));
+            metricHistories.forEach(({ history, label }, key) => {
+                history.replaceChildren();
+                seasonRows.forEach(({ season: rowSeason }) => {
+                    const value = aggregates.get(rowSeason)?.[key];
+                    const displayValue = formatMetric(key, value);
+                    const row = el("div", "pregame-statcast-history-row");
+                    row.append(el("span", "pregame-statcast-season", String(rowSeason)));
+                    const hasSource = Number.isFinite(value) && sourceUrl;
+                    const valueNode = el(hasSource ? "a" : "strong", "pregame-statcast-value", displayValue);
+                    if (hasSource) {
+                        valueNode.href = sourceUrl;
+                        valueNode.target = "_blank";
+                        valueNode.rel = "noopener noreferrer";
+                        valueNode.setAttribute("aria-label", `${rowSeason}年 ${label} ${displayValue}（Baseball Savant公式）`);
+                    }
+                    row.append(valueNode);
+                    history.append(row);
+                });
+                if (!seasonRows.length) history.append(el("strong", "pregame-statcast-value", "—"));
+            });
+
+            const currentAggregate = aggregates.get(season);
+            const pitchText = selectedPitchType
+                ? pitcherPitchTypeLabel(selectedPitchType, currentRows)
+                : "全球種";
+            const sideText = selectedBatterSide === "R" ? "右打者" : selectedBatterSide === "L" ? "左打者" : "全打者";
+            zoneViewLabel.textContent = `${season}年・${pitchText}・対${sideText}・打者視点`;
+            zoneNodes.forEach((node, zone) => {
+                const value = currentAggregate?.zones?.get(zone);
+                node.textContent = statcastAverageLabel(value);
+                node.style.setProperty("--pregame-zone-strength", Number.isFinite(value) ? String(Math.min(1, value / 0.5)) : "0");
+                if (zoneLink && Number.isFinite(value)) {
+                    node.setAttribute("role", "link");
+                    node.tabIndex = 0;
+                    node.setAttribute("aria-label", `${season}年 ゾーン${zone} 被打率${statcastAverageLabel(value)}（Baseball Savant公式）`);
+                    node.onclick = () => window.open(zoneLink, "_blank", "noopener,noreferrer");
+                    node.onkeydown = (event) => {
+                        if (event.key === "Enter" || event.key === " ") {
+                            event.preventDefault();
+                            window.open(zoneLink, "_blank", "noopener,noreferrer");
+                        }
+                    };
+                } else {
+                    node.removeAttribute("role");
+                    node.removeAttribute("tabindex");
+                    node.removeAttribute("aria-label");
+                    node.onclick = null;
+                    node.onkeydown = null;
+                }
+            });
+        };
+        pitchSelect.addEventListener("change", update);
+        sideSelect.addEventListener("change", update);
+        update();
+        return wrapper;
+    };
+
     const renderPlayerDetail = async (playerId, gamePk) => {
         placeHeaderActions(false);
         savePregameSession("pregame-player", {
@@ -2340,6 +2647,27 @@
                     getSavantZoneBattingAverage(playerId, season, date).catch(() => new Map())
                 ])
                 : [[], new Map()];
+            const statcastPitchingSeasonCandidates = [...yearlyPitching.keys()];
+            if (statNumber(seasonPitching?.gamesPlayed) > 0 && !statcastPitchingSeasonCandidates.includes(season)) {
+                statcastPitchingSeasonCandidates.push(season);
+            }
+            const statcastPitchingSeasons = hasPitching
+                ? [...new Set(statcastPitchingSeasonCandidates)]
+                    .map(Number)
+                    .filter((year) => Number.isInteger(year) && year <= season)
+                    .sort((a, b) => b - a)
+                    .slice(0, 5)
+                : [];
+            const statcastPitchingRows = hasPitching
+                ? await Promise.all(statcastPitchingSeasons.map(async (year) => ({
+                    season: year,
+                    rows: await getSavantPitchRows(
+                        playerId,
+                        year,
+                        year === season ? date : `${year + 1}-01-01`
+                    ).catch(() => [])
+                })))
+                : [];
             const seasonRisp = rispBySeason.get(season) ?? null;
             const careerRisp = [...rispBySeason.values()].reduce((totals, stats) => ({
                 atBats: totals.atBats + statNumber(stats?.atBats),
@@ -2477,6 +2805,7 @@
 
             const playerSections = [battingSummary, grid];
             if (hasHitting) playerSections.push(renderStatcastSection(statcastHistory, statcastZones, battingProfile, season));
+            if (hasPitching) playerSections.push(renderPitcherStatcastSection(statcastPitchingRows, battingProfile, season));
             if (yearlyBattingTable) playerSections.push(yearlyBattingTable);
             if (yearlyPitchingTable) playerSections.push(yearlyPitchingTable);
             dom.content.replaceChildren(...playerSections);
