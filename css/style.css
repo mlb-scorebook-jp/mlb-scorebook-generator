@@ -2592,6 +2592,71 @@ body:not(.app-mode-home):not(.app-mode-pregame) .viewer {
     }
 }
 
+/*
+ * Touch devices keep document/window as the only vertical scroller so iOS
+ * Scroll to Top works on both iPhone and iPad. The scorebook remains the
+ * only independent horizontal scroller; JavaScript locks each gesture axis.
+ */
+@media screen and (hover: none) and (pointer: coarse) {
+    html {
+        overflow-y: auto;
+    }
+
+    body:not(.app-mode-home) {
+        height: auto;
+        overflow-x: hidden;
+        overflow-y: auto;
+        overscroll-behavior-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    body:not(.app-mode-home):not(.app-mode-pregame) .app-main {
+        position: static;
+        grid-template-columns: 270px minmax(0, 1fr);
+        width: 100%;
+        min-width: 0;
+        min-height: calc(100vh - 120px);
+        min-height: calc(100dvh - 120px);
+        margin-top: 68px;
+        margin-bottom: 52px;
+        overflow: visible;
+        overscroll-behavior-y: auto;
+    }
+
+    body.app-mode-pregame .app-main {
+        position: static;
+        width: 100%;
+        min-height: calc(100vh - 68px);
+        min-height: calc(100dvh - 68px);
+        margin-top: 68px;
+        overflow: visible;
+        overscroll-behavior-y: auto;
+    }
+
+    body:not(.app-mode-home):not(.app-mode-pregame) .viewer {
+        width: 100%;
+        min-width: 0;
+        overflow: visible;
+    }
+
+    body:not(.app-mode-home):not(.app-mode-pregame) .scorebook-horizontal-scroll {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        overflow-x: auto;
+        overflow-y: visible;
+        overscroll-behavior-x: contain;
+        touch-action: pan-y;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .today-games-list {
+        max-height: none;
+        overflow-y: visible;
+        overscroll-behavior: auto;
+    }
+}
+
 @media screen and (max-width: 767px) {
     .app-header {
         height: 58px;
@@ -2668,6 +2733,7 @@ body:not(.app-mode-home):not(.app-mode-pregame) .viewer {
         min-height: calc(100vh - 104px);
         min-height: calc(100dvh - 104px);
         margin-top: 58px;
+        margin-bottom: 0;
         padding-bottom: 46px;
         overflow: visible;
         overscroll-behavior-y: auto;
@@ -2682,7 +2748,6 @@ body:not(.app-mode-home):not(.app-mode-pregame) .viewer {
         margin-top: 58px;
         overflow: visible;
         overscroll-behavior-y: auto;
-        touch-action: pan-y;
     }
 }
 

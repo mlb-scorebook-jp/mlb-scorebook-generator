@@ -553,11 +553,14 @@
             const portraitScorebookQuery = window.matchMedia(
                 "screen and (orientation: portrait) and (max-width: 1100px)"
             );
+            const touchScorebookQuery = window.matchMedia(
+                "screen and (hover: none) and (pointer: coarse)"
+            );
             const headerSearchPlaceholder = document.createComment("header game search");
             dom.headerGameSearch.before(headerSearchPlaceholder);
 
             const getHorizontalScrollTarget = () =>
-                portraitScorebookQuery.matches
+                portraitScorebookQuery.matches || touchScorebookQuery.matches
                     ? dom.scorebookHorizontalScroll
                     : dom.workspace;
 
@@ -6497,6 +6500,53 @@
             dom.footerScrollbar.addEventListener("scroll", () => {
                 syncHorizontalScroll(dom.footerScrollbar, getHorizontalScrollTarget());
             }, { passive: true });
+
+            const installScorebookTouchAxisLock = () => {
+                const target = dom.scorebookHorizontalScroll;
+                const threshold = 7;
+                let gesture = null;
+
+                const resetGesture = () => {
+                    gesture = null;
+                };
+
+                target.addEventListener("touchstart", (event) => {
+                    if (!touchScorebookQuery.matches || event.touches.length !== 1) {
+                        resetGesture();
+                        return;
+                    }
+                    const touch = event.touches[0];
+                    gesture = {
+                        axis: "",
+                        startX: touch.clientX,
+                        startY: touch.clientY,
+                        startScrollLeft: target.scrollLeft
+                    };
+                }, { passive: true });
+
+                target.addEventListener("touchmove", (event) => {
+                    if (!gesture || event.touches.length !== 1) return;
+                    const touch = event.touches[0];
+                    const deltaX = touch.clientX - gesture.startX;
+                    const deltaY = touch.clientY - gesture.startY;
+
+                    if (!gesture.axis) {
+                        if (Math.hypot(deltaX, deltaY) < threshold) return;
+                        gesture.axis = Math.abs(deltaX) > Math.abs(deltaY)
+                            ? "horizontal"
+                            : "vertical";
+                    }
+
+                    if (gesture.axis !== "horizontal") return;
+                    event.preventDefault();
+                    target.scrollLeft = gesture.startScrollLeft - deltaX;
+                }, { passive: false });
+
+                target.addEventListener("touchend", resetGesture, { passive: true });
+                target.addEventListener("touchcancel", resetGesture, { passive: true });
+            };
+
+            installScorebookTouchAxisLock();
             const refreshPortraitLayout = () => {
                 updatePortraitOperationLayout();
                 updatePortraitScorebookScale();
