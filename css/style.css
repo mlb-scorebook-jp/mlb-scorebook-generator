@@ -759,6 +759,48 @@ body.app-mode-pregame .pregame-brand-home {
     display: none;
 }
 
+.atbat-link-setting {
+    display: grid;
+    gap: 7px;
+    margin: 0;
+    padding: 9px 10px 10px;
+    border: 1px solid #3c464e;
+    background: rgba(12, 16, 19, 0.28);
+}
+
+.atbat-link-setting legend {
+    padding: 0 4px;
+    color: #aeb9bf;
+    font-size: 9px;
+    letter-spacing: 0.04em;
+}
+
+.sidebar .atbat-link-setting label {
+    min-height: 24px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin: 0;
+    color: #d8e0e3;
+    cursor: pointer;
+    font-size: 10px;
+    letter-spacing: 0;
+}
+
+.sidebar .atbat-link-setting input[type="radio"] {
+    width: 13px;
+    height: 13px;
+    flex: 0 0 13px;
+    margin: 0;
+    padding: 0;
+    accent-color: #7896a3;
+}
+
+.sidebar .atbat-link-setting label:has(input:focus-visible) {
+    outline: 1px solid #7896a3;
+    outline-offset: 2px;
+}
+
 .viewer {
     min-width: 0;
     padding: 22px;

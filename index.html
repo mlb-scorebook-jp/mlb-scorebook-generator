@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MLB Scorebook Generator</title>
     <!-- Score notation update: stacked batted-ball symbol, red hits, blue strikeouts, black other results. -->
-    <link rel="stylesheet" href="css/style.css?v=20260810-8">
+    <link rel="stylesheet" href="css/style.css?v=20260810-9">
     <link rel="stylesheet" href="css/pregame.css?v=20260810-14">
 </head>
 
@@ -99,9 +99,21 @@
 
             <hr>
 
-            <h3>Page</h3>
+            <h3>設定</h3>
 
-            <div class="page-switch">
+            <fieldset class="atbat-link-setting">
+                <legend>打席結果クリック時</legend>
+                <label>
+                    <input type="radio" name="atbat-link-target" value="gameday" checked>
+                    <span>MLB Gameday</span>
+                </label>
+                <label>
+                    <input type="radio" name="atbat-link-target" value="research">
+                    <span>Research Tool（映像付き）</span>
+                </label>
+            </fieldset>
+
+            <div class="page-switch" aria-hidden="true">
                 <button id="away-page-btn" class="active">先攻</button>
                 <button id="home-page-btn">後攻</button>
             </div>
@@ -509,6 +521,7 @@
                 scoreLoadingClose: document.getElementById("score-loading-close"),
                 generateButton: document.getElementById("generate-btn"),
                 saveButton: document.getElementById("save-btn"),
+                atBatLinkTargetInputs: [...document.querySelectorAll("[name='atbat-link-target']")],
                 awayPageButton: document.getElementById("away-page-btn"),
                 homePageButton: document.getElementById("home-page-btn"),
                 awayPage: document.getElementById("away-page"),
@@ -927,14 +940,74 @@
                     : "";
             };
 
-            const createGamedayAtBatResult = (text, className, atBatIndex) => {
-                const url = getMlbGamedayAtBatUrl(state.gamePk, atBatIndex);
+            const AT_BAT_LINK_TARGET_KEY = "mlb-scorebook-generator-atbat-link-target-v1";
+            const AT_BAT_LINK_TARGETS = new Set(["gameday", "research"]);
+            let atBatLinkTarget = (() => {
+                try {
+                    const stored = localStorage.getItem(AT_BAT_LINK_TARGET_KEY);
+                    return AT_BAT_LINK_TARGETS.has(stored) ? stored : "gameday";
+                } catch (_error) {
+                    return "gameday";
+                }
+            })();
+
+            const getCompletedPlateAppearancePlayId = (play) => {
+                if (play?.about?.isComplete !== true) return "";
+                const events = Array.isArray(play?.playEvents) ? play.playEvents : [];
+                for (let index = events.length - 1; index >= 0; index -= 1) {
+                    const playId = String(events[index]?.playId ?? "").trim();
+                    if (playId) return playId;
+                }
+                return "";
+            };
+
+            const getMlbResearchAtBatUrl = (gamePk, playId) => {
+                const numericGamePk = Number(gamePk);
+                const normalizedPlayId = String(playId ?? "").trim();
+                return Number.isInteger(numericGamePk) && numericGamePk > 0 && normalizedPlayId
+                    ? `https://research.mlb.com/games/${numericGamePk}/plays/${normalizedPlayId}`
+                    : "";
+            };
+
+            const getAtBatResultUrl = (gamePk, atBatIndex, playId) => {
+                if (atBatLinkTarget === "research") {
+                    const researchUrl = getMlbResearchAtBatUrl(gamePk, playId);
+                    if (researchUrl) return { url: researchUrl, label: "MLB Research Tool" };
+                }
+                const gamedayUrl = getMlbGamedayAtBatUrl(gamePk, atBatIndex);
+                return gamedayUrl ? { url: gamedayUrl, label: "MLB Gameday" } : null;
+            };
+
+            const applyAtBatResultLinkTarget = (link) => {
+                const target = getAtBatResultUrl(
+                    link.dataset.gamePk,
+                    link.dataset.atBatIndex,
+                    link.dataset.playId
+                );
+                if (!target) return;
+                link.href = target.url;
+                link.setAttribute(
+                    "aria-label",
+                    `${link.dataset.resultText}の${target.label}打席詳細を新しいタブで開く`
+                );
+            };
+
+            const refreshAtBatResultLinks = () => {
+                document.querySelectorAll(".gameday-atbat-link").forEach(applyAtBatResultLinkTarget);
+            };
+
+            const createGamedayAtBatResult = (text, className, atBatIndex, playId = "") => {
+                const target = getAtBatResultUrl(state.gamePk, atBatIndex, playId);
+                const url = target?.url ?? "";
                 if (!url) return createElement("div", className, text);
                 const link = createElement("a", `${className} gameday-atbat-link`, text);
-                link.href = url;
                 link.target = "_blank";
                 link.rel = "noopener noreferrer";
-                link.setAttribute("aria-label", `${text}のMLB Gameday打席詳細を新しいタブで開く`);
+                link.dataset.gamePk = String(state.gamePk ?? "");
+                link.dataset.atBatIndex = String(atBatIndex ?? "");
+                link.dataset.playId = String(playId ?? "");
+                link.dataset.resultText = text;
+                applyAtBatResultLinkTarget(link);
                 return link;
             };
 
@@ -4263,6 +4336,7 @@
                             const automaticRunnerRecord = {
                                 playIndex: playIndex - 0.5,
                                 atBatIndex: null,
+                                playId: "",
                                 side,
                                 inning,
                                 inningOccurrence: 1,
@@ -4315,6 +4389,7 @@
                         atBatIndex: Number.isInteger(Number(play?.about?.atBatIndex))
                             ? Number(play.about.atBatIndex)
                             : null,
+                        playId: getCompletedPlateAppearancePlayId(play),
                         side,
                         inning,
                         inningOccurrence,
@@ -4525,6 +4600,7 @@
                                     target.outResultAtBatIndex = Number.isInteger(Number(play?.about?.atBatIndex))
                                         ? Number(play.about.atBatIndex)
                                         : null;
+                                    target.outResultPlayId = getCompletedPlateAppearancePlayId(play);
                                 }
                             } else if (record.isHit) {
                                 if (outBase === "2B") record.outAtSecond = runnerFieldingResult;
@@ -4762,7 +4838,8 @@
                         notationStack.append(createGamedayAtBatResult(
                             record.notation,
                             `score-symbol play-result ${record.category}-result${strikeoutClass}${longClass}`,
-                            record.atBatIndex
+                            record.atBatIndex,
+                            record.playId
                         ));
                     }
                     if (record.outResult && record.outResult !== record.notation) {
@@ -4770,7 +4847,8 @@
                         notationStack.append(createGamedayAtBatResult(
                             record.outResult,
                             `score-symbol play-result runner-out-result${longClass}`,
-                            record.outResultAtBatIndex
+                            record.outResultAtBatIndex,
+                            record.outResultPlayId
                         ));
                     }
                     slots.bottomRight.append(notationStack);
@@ -6304,6 +6382,20 @@
                 link.click();
                 URL.revokeObjectURL(url);
             };
+
+            dom.atBatLinkTargetInputs.forEach((input) => {
+                input.checked = input.value === atBatLinkTarget;
+                input.addEventListener("change", () => {
+                    if (!input.checked || !AT_BAT_LINK_TARGETS.has(input.value)) return;
+                    atBatLinkTarget = input.value;
+                    try {
+                        localStorage.setItem(AT_BAT_LINK_TARGET_KEY, atBatLinkTarget);
+                    } catch (error) {
+                        console.error(error);
+                    }
+                    refreshAtBatResultLinks();
+                });
+            });
 
             dom.loadButton.addEventListener("click", loadGame);
             dom.scoreLoadingRetry.addEventListener("click", async () => {
