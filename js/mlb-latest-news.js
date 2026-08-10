@@ -2,6 +2,36 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "The postseason schedule is out. Here’s what you need to know",
+        "summaryJa": "MLB公式がレイズについて報じた。",
+        "slug": "2026-mlb-playoff-and-world-series-schedule",
+        "url": "https://www.mlb.com/news/2026-mlb-playoff-and-world-series-schedule",
+        "contentDate": "2026-08-10T16:41:13.084Z",
+        "teamIds": [
+            139,
+            145,
+            117,
+            147,
+            111,
+            140,
+            116,
+            142,
+            114,
+            158,
+            144,
+            119,
+            112,
+            109,
+            143,
+            135
+        ],
+        "playerIds": [],
+        "taxonomy": [
+            "postseason",
+            "apple-news"
+        ]
+    },
+    {
         "headline": "Miz blazes his way to 200 K's faster than all but one pitcher in MLB history",
         "summaryJa": "J.ミザロウスキー（MIL）、MLB史上2番目の速さでシーズン200奪三振に到達",
         "slug": "jacob-misiorowski-notches-200th-strikeout-of-season-vs-twins",
@@ -20,22 +50,6 @@
         ]
     },
     {
-        "headline": "Chris Sale -- who wasn't pitching Sunday -- ejected before game vs. Yankees",
-        "summaryJa": "C.セール（ATL）、登板予定のないヤンキース戦の試合前に退場処分",
-        "slug": "chris-sale-ejected-before-game-against-yankees",
-        "url": "https://www.mlb.com/news/chris-sale-ejected-before-game-against-yankees",
-        "contentDate": "2026-08-09T22:35:00Z",
-        "teamIds": [
-            144
-        ],
-        "playerIds": [
-            519242
-        ],
-        "taxonomy": [
-            "apple-news"
-        ]
-    },
-    {
         "headline": "Every team’s biggest impending free agent for 2026-27",
         "summaryJa": "MLB公式がMLBの最新情報について報じた。",
         "slug": "baseball-s-biggest-free-agents-by-team-for-2026-2027",
@@ -50,21 +64,75 @@
         ]
     },
     {
-        "headline": "E-Rod's 115-pitch gem helps D-backs secure season series vs. LA for 1st time since '18",
-        "summaryJa": "E.ロドリゲス（AZ）が115球の好投、ドジャースとのシーズン対戦勝ち越しに貢献",
-        "slug": "eduardo-rodriguez-lead-d-backs-to-series-win-over-dodgers",
-        "url": "https://www.mlb.com/news/eduardo-rodriguez-lead-d-backs-to-series-win-over-dodgers",
-        "contentDate": "2026-08-10T00:33:00Z",
+        "headline": "Skubal set for 1st Dodgers home start -- and another 2x Cy winner will follow",
+        "summaryJa": "T.スクーバル（LAD）、ドジャー・スタジアムで移籍後初先発へ",
+        "slug": "tarik-skubal-dodger-stadium-debut-with-dodgers",
+        "url": "https://www.mlb.com/news/tarik-skubal-dodger-stadium-debut-with-dodgers",
+        "contentDate": "2026-08-09T20:02:53.088Z",
         "teamIds": [
-            109
+            119
         ],
         "playerIds": [
-            593958
+            669373
         ],
         "taxonomy": [
             "apple-news",
-            "game-recap",
-            "payoff-pitch"
+            "ultimate-player"
+        ]
+    },
+    {
+        "headline": "MLB's highest-scoring offense is also its all-time youngest",
+        "summaryJa": "MLB公式がナショナルズについて報じた。",
+        "slug": "2026-nationals-have-youngest-lineup-ever",
+        "url": "https://www.mlb.com/news/2026-nationals-have-youngest-lineup-ever",
+        "contentDate": "2026-08-10T04:00:00Z",
+        "teamIds": [
+            120
+        ],
+        "playerIds": [],
+        "taxonomy": [
+            "savant",
+            "apple-news"
+        ]
+    },
+    {
+        "headline": "Red Sox have been historically hot, and that's without slew of injured stars",
+        "summaryJa": "MLB公式がA.ラッチマン（BOS）について報じた。",
+        "slug": "red-sox-ready-to-welcome-back-injured-players",
+        "url": "https://www.mlb.com/news/red-sox-ready-to-welcome-back-injured-players",
+        "contentDate": "2026-08-10T13:28:59.054Z",
+        "teamIds": [
+            111
+        ],
+        "playerIds": [
+            668939
+        ],
+        "taxonomy": [
+            "apple-news",
+            "injury"
+        ]
+    },
+    {
+        "headline": "Top 5 series to watch this week",
+        "summaryJa": "MLB公式がレッドソックスについて報じた。",
+        "slug": "mlb-series-to-watch-week-of-aug-10-2026",
+        "url": "https://www.mlb.com/news/mlb-series-to-watch-week-of-aug-10-2026",
+        "contentDate": "2026-08-10T03:24:12.959Z",
+        "teamIds": [
+            111,
+            141,
+            136,
+            147,
+            143,
+            142,
+            158,
+            119,
+            109,
+            144
+        ],
+        "playerIds": [],
+        "taxonomy": [
+            "apple-news"
         ]
     },
     {
@@ -85,7 +153,7 @@
         ]
     },
     {
-        "headline": "43-run nailbiter among wildest Minors moments from July",
+        "headline": "43-run nail-biter among wildest Minors moments from July",
         "summaryJa": "MLB公式がMLBの最新情報について報じた。",
         "slug": "crooked-numbers-july-2026",
         "url": "https://www.mlb.com/news/crooked-numbers-july-2026",
@@ -95,6 +163,22 @@
         "taxonomy": [
             "minor-league-baseball",
             "offbeat",
+            "apple-news"
+        ]
+    },
+    {
+        "headline": "Chris Sale -- who wasn't pitching Sunday -- ejected before game vs. Yankees",
+        "summaryJa": "C.セール（ATL）、登板予定のないヤンキース戦の試合前に退場処分",
+        "slug": "chris-sale-ejected-before-game-against-yankees",
+        "url": "https://www.mlb.com/news/chris-sale-ejected-before-game-against-yankees",
+        "contentDate": "2026-08-09T22:35:00Z",
+        "teamIds": [
+            144
+        ],
+        "playerIds": [
+            519242
+        ],
+        "taxonomy": [
             "apple-news"
         ]
     },
@@ -145,18 +229,21 @@
         ]
     },
     {
-        "headline": "MLB's highest-scoring offense is also its all-time youngest",
-        "summaryJa": "MLB公式がナショナルズについて報じた。",
-        "slug": "2026-nationals-have-youngest-lineup-ever",
-        "url": "https://www.mlb.com/news/2026-nationals-have-youngest-lineup-ever",
-        "contentDate": "2026-08-10T04:00:00Z",
+        "headline": "E-Rod's 115-pitch gem helps D-backs secure season series vs. LA for 1st time since '18",
+        "summaryJa": "E.ロドリゲス（AZ）が115球の好投、ドジャースとのシーズン対戦勝ち越しに貢献",
+        "slug": "eduardo-rodriguez-lead-d-backs-to-series-win-over-dodgers",
+        "url": "https://www.mlb.com/news/eduardo-rodriguez-lead-d-backs-to-series-win-over-dodgers",
+        "contentDate": "2026-08-10T00:33:00Z",
         "teamIds": [
-            120
+            109
         ],
-        "playerIds": [],
+        "playerIds": [
+            593958
+        ],
         "taxonomy": [
-            "savant",
-            "apple-news"
+            "apple-news",
+            "game-recap",
+            "payoff-pitch"
         ]
     },
     {
@@ -196,23 +283,6 @@
         ]
     },
     {
-        "headline": "Skubal set for 1st Dodgers home start -- and another 2x Cy winner will follow",
-        "summaryJa": "T.スクーバル（LAD）、ドジャー・スタジアムで移籍後初先発へ",
-        "slug": "tarik-skubal-dodger-stadium-debut-with-dodgers",
-        "url": "https://www.mlb.com/news/tarik-skubal-dodger-stadium-debut-with-dodgers",
-        "contentDate": "2026-08-09T20:02:53.088Z",
-        "teamIds": [
-            119
-        ],
-        "playerIds": [
-            669373
-        ],
-        "taxonomy": [
-            "apple-news",
-            "ultimate-player"
-        ]
-    },
-    {
         "headline": "Phillies-Cardinals clash could have major playoff implications",
         "summaryJa": "MLB公式がカージナルスについて報じた。",
         "slug": "phillies-cardinals-series-has-nl-wild-card-implications",
@@ -239,44 +309,14 @@
         ]
     },
     {
-        "headline": "Brewers-Dodgers clash among 5 series to watch this week",
-        "summaryJa": "MLB公式がレッドソックスについて報じた。",
-        "slug": "mlb-series-to-watch-week-of-aug-10-2026",
-        "url": "https://www.mlb.com/news/mlb-series-to-watch-week-of-aug-10-2026",
-        "contentDate": "2026-08-10T03:24:12.959Z",
-        "teamIds": [
-            111,
-            141,
-            136,
-            147,
-            143,
-            142,
-            158,
-            119,
-            109,
-            144
-        ],
+        "headline": "Baseball’s competitive balance issue, explained",
+        "summaryJa": "MLBの戦力均衡を巡る現状と課題を解説",
+        "slug": "mlb-competitive-balance-issue-explained",
+        "url": "https://www.mlb.com/news/mlb-competitive-balance-issue-explained",
+        "contentDate": "2026-06-21T00:15:00Z",
+        "teamIds": [],
         "playerIds": [],
-        "taxonomy": [
-            "apple-news"
-        ]
-    },
-    {
-        "headline": "Red Sox have been historically hot, and that's without slew of injured stars",
-        "summaryJa": "MLB公式がA.ラッチマン（BOS）について報じた。",
-        "slug": "red-sox-ready-to-welcome-back-injured-players",
-        "url": "https://www.mlb.com/news/red-sox-ready-to-welcome-back-injured-players",
-        "contentDate": "2026-08-10T13:28:59.054Z",
-        "teamIds": [
-            111
-        ],
-        "playerIds": [
-            668939
-        ],
-        "taxonomy": [
-            "apple-news",
-            "injury"
-        ]
+        "taxonomy": []
     },
     {
         "headline": "Schwarber snaps dinger drought, Hill gets walk-off hit in Phils' much-needed win",
@@ -295,16 +335,6 @@
             "apple-news",
             "game-recap"
         ]
-    },
-    {
-        "headline": "Baseball’s competitive balance issue, explained",
-        "summaryJa": "MLBの戦力均衡を巡る現状と課題を解説",
-        "slug": "mlb-competitive-balance-issue-explained",
-        "url": "https://www.mlb.com/news/mlb-competitive-balance-issue-explained",
-        "contentDate": "2026-06-21T00:15:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "taxonomy": []
     },
     {
         "headline": "Ichiro! Lou! Rizzs! Legends come home for packed 50 Seasons Celebration",
@@ -484,23 +514,6 @@
             "apple-news",
             "game-recap",
             "extra-innings"
-        ]
-    },
-    {
-        "headline": "Overhauled 'pen steps up again as Nats complete first sweep since April",
-        "summaryJa": "B.ロード（WSH）ら救援陣が好投、ナショナルズが4月以来の3連戦スイープ",
-        "slug": "brad-lord-leads-strong-effort-by-nationals-bullpen",
-        "url": "https://www.mlb.com/news/brad-lord-leads-strong-effort-by-nationals-bullpen",
-        "contentDate": "2026-08-09T20:34:00Z",
-        "teamIds": [
-            120
-        ],
-        "playerIds": [
-            695418
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap"
         ]
     }
 ]);
