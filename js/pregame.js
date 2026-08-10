@@ -1090,8 +1090,8 @@
     };
 
     const formatHittingStreak = (streak, label) => {
-        const period = streak.startDate && streak.endDate
-            ? ` ${compactDate(streak.startDate)}〜${compactDate(streak.endDate)}`
+        const period = streak.startDate
+            ? ` ${compactDate(streak.startDate)}〜`
             : "";
         const annotations = streak.noPlateAppearanceGames
             .filter((game) => game.date >= streak.startDate && game.date <= streak.endDate)
