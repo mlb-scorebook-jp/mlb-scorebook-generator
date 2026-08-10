@@ -2648,6 +2648,32 @@ body:not(.app-mode-home):not(.app-mode-pregame) .viewer {
     }
 }
 
+@media screen and (orientation: portrait) and (max-width: 767px) {
+    html {
+        overflow-y: auto;
+    }
+
+    body:not(.app-mode-home):not(.app-mode-pregame) {
+        height: auto;
+        overflow-x: hidden;
+        overflow-y: auto;
+        overscroll-behavior-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    body:not(.app-mode-home):not(.app-mode-pregame) .app-main {
+        position: static;
+        width: 100%;
+        min-height: calc(100vh - 104px);
+        min-height: calc(100dvh - 104px);
+        margin-top: 58px;
+        padding-bottom: 46px;
+        overflow: visible;
+        overscroll-behavior-y: auto;
+        touch-action: pan-y;
+    }
+}
+
 @media print {
     html,
     body {
