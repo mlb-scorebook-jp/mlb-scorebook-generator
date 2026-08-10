@@ -2527,7 +2527,7 @@
         row.append(link);
         featured.notes.slice(0, 3).forEach((note) => {
             const noteLink = el("a", "pregame-featured-note", note.text);
-            const statheadUrl = /自己最長.+まであと\d+/.test(String(note.text ?? ""))
+            const statheadUrl = /自己最長(?:更新|タイ|.+まであと\d+)/.test(String(note.text ?? ""))
                 ? window.MLBStatheadLinks?.playerStreakFinderUrl(entry?.person?.id)
                 : "";
             noteLink.href = statheadUrl || note.href;

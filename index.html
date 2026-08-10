@@ -2458,7 +2458,7 @@
                         notes.push({
                             text: `${code}　${getPersonName(hitLeader.person)}　連続試合安打：${hitLeader.hitStreak}試合${stoppedSuffix}${personalSuffix}`,
                             priority,
-                            ...(personalSuffix.includes("あと")
+                            ...(personalSuffix
                                 ? {
                                     link: window.MLBStatheadLinks?.playerStreakFinderUrl(hitLeader.id) || "",
                                     linkType: "stathead-streak"
@@ -2480,7 +2480,7 @@
                         notes.push({
                             text: `${code}　${getPersonName(onBaseLeader.person)}　連続試合出塁：${onBaseLeader.onBaseStreak}試合${stoppedSuffix}${personalSuffix}`,
                             priority,
-                            ...(personalSuffix.includes("あと")
+                            ...(personalSuffix
                                 ? {
                                     link: window.MLBStatheadLinks?.playerStreakFinderUrl(onBaseLeader.id) || "",
                                     linkType: "stathead-streak"
