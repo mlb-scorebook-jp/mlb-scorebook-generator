@@ -3,7 +3,7 @@
     global.MLB_LATEST_NEWS = Object.freeze([
     {
         "headline": "Miz blazes his way to 200 K's faster than all but one pitcher in MLB history",
-        "summaryJa": "MLB公式がJ.ミザロウスキー（MIL）について報じた。",
+        "summaryJa": "J.ミザロウスキー（MIL）、MLB史上2番目の速さでシーズン200奪三振に到達",
         "slug": "jacob-misiorowski-notches-200th-strikeout-of-season-vs-twins",
         "url": "https://www.mlb.com/news/jacob-misiorowski-notches-200th-strikeout-of-season-vs-twins",
         "contentDate": "2026-08-09T21:32:00Z",
@@ -21,7 +21,7 @@
     },
     {
         "headline": "Phillies give 4 former players their 'Moonlight' moment in ode to Field of Dreams",
-        "summaryJa": "MLB公式がフィリーズについて報じた。",
+        "summaryJa": "フィリーズ、元選手4人に『フィールド・オブ・ドリームス』さながらの特別な一日",
         "slug": "phillies-host-former-players-in-ode-to-moonlight-graham-from-field-of-dreams",
         "url": "https://www.mlb.com/news/phillies-host-former-players-in-ode-to-moonlight-graham-from-field-of-dreams",
         "contentDate": "2026-08-09T20:46:44.63Z",
@@ -36,7 +36,7 @@
     },
     {
         "headline": "E-Rod's 115-pitch gem helps D-backs secure season series vs. LA for 1st time since '18",
-        "summaryJa": "MLB公式がE.ロドリゲス（AZ）について報じた。",
+        "summaryJa": "E.ロドリゲス（AZ）が115球の好投、ドジャースとのシーズン対戦勝ち越しに貢献",
         "slug": "eduardo-rodriguez-lead-d-backs-to-series-win-over-dodgers",
         "url": "https://www.mlb.com/news/eduardo-rodriguez-lead-d-backs-to-series-win-over-dodgers",
         "contentDate": "2026-08-09T22:45:19.509Z",
@@ -54,7 +54,7 @@
     },
     {
         "headline": "Chris Sale -- who wasn't pitching Sunday -- ejected before game vs. Yankees",
-        "summaryJa": "MLB公式がC.セール（ATL）について報じた。",
+        "summaryJa": "C.セール（ATL）、登板予定のないヤンキース戦の試合前に退場処分",
         "slug": "chris-sale-ejected-before-game-against-yankees",
         "url": "https://www.mlb.com/news/chris-sale-ejected-before-game-against-yankees",
         "contentDate": "2026-08-09T22:35:00Z",
@@ -70,7 +70,7 @@
     },
     {
         "headline": "Schwarber snaps dinger drought with 2 HRs in walk-off win",
-        "summaryJa": "MLB公式がK.シュワーバー（PHI）について報じた。",
+        "summaryJa": "K.シュワーバー（PHI）が2本塁打、サヨナラ勝利で一発不振を脱出",
         "slug": "kyle-schwarber-hits-two-homers-in-phillies-walk-off-win",
         "url": "https://www.mlb.com/news/kyle-schwarber-hits-two-homers-in-phillies-walk-off-win",
         "contentDate": "2026-08-09T21:33:21.866Z",
@@ -88,7 +88,7 @@
     },
     {
         "headline": "Braves win 10-inning pitchers' duel to avoid Bronx sweep",
-        "summaryJa": "MLB公式がG.ホームズ（ATL）について報じた。",
+        "summaryJa": "G.ホームズ（ATL）が6回無失点、延長10回の投手戦を制し3連敗を阻止",
         "slug": "grant-holmes-pitches-6-scoreless-innings-in-win-over-yankees",
         "url": "https://www.mlb.com/news/grant-holmes-pitches-6-scoreless-innings-in-win-over-yankees",
         "contentDate": "2026-08-09T22:05:00Z",
@@ -106,7 +106,7 @@
     },
     {
         "headline": "Astros, Padres clash in matchup of playoff contenders on Sunday Night Baseball (NBC, 8:20 ET)",
-        "summaryJa": "MLB公式がMLBの最新情報について報じた。",
+        "summaryJa": "プレーオフ争いのアストロズとパドレスがサンデーナイトで対戦",
         "slug": "sunday-night-baseball-on-peacock-nbc-for-2026-mlb-season",
         "url": "https://www.mlb.com/news/sunday-night-baseball-on-peacock-nbc-for-2026-mlb-season",
         "contentDate": "2026-08-09T22:25:00Z",
@@ -118,7 +118,7 @@
     },
     {
         "headline": "111 games, zero errors: Wilson sets MLB record at shortstop",
-        "summaryJa": "MLB公式がJ.ウィルソン（ATH）について報じた。",
+        "summaryJa": "J.ウィルソン（ATH）、遊撃手で111試合連続無失策のMLB記録を樹立",
         "slug": "jacob-wilson-mlb-error-free-shortstop-record",
         "url": "https://www.mlb.com/news/jacob-wilson-mlb-error-free-shortstop-record",
         "contentDate": "2026-08-09T21:38:00Z",
@@ -136,7 +136,7 @@
     },
     {
         "headline": "New Giant Mayer excited for 'next chapter' with boyhood favorite team",
-        "summaryJa": "MLB公式がM.マイヤー（SF）について報じた。",
+        "summaryJa": "M.マイヤー（SF）、少年時代から応援したジャイアンツ加入に意欲",
         "slug": "marcelo-mayer-excited-to-join-giants-after-trade-from-red-sox",
         "url": "https://www.mlb.com/news/marcelo-mayer-excited-to-join-giants-after-trade-from-red-sox",
         "contentDate": "2026-08-09T21:21:37.515Z",
@@ -152,7 +152,7 @@
     },
     {
         "headline": "Alonso's first multihomer game as an Oriole leads rout of Rangers",
-        "summaryJa": "MLB公式がP.アロンゾ（BAL）について報じた。",
+        "summaryJa": "P.アロンゾ（BAL）、移籍後初の1試合2本塁打でレンジャーズ戦大勝をけん引",
         "slug": "pete-alonso-homers-twice-in-orioles-win-over-rangers",
         "url": "https://www.mlb.com/news/pete-alonso-homers-twice-in-orioles-win-over-rangers",
         "contentDate": "2026-08-09T21:51:48.57Z",
@@ -169,7 +169,7 @@
     },
     {
         "headline": "Last Chance: Trade Deadline sale offers you the best deal for MLB.TV",
-        "summaryJa": "MLB公式がMLBの最新情報について報じた。",
+        "summaryJa": "MLB.TV、トレード期限セールを実施",
         "slug": "mlb-tv-trade-deadline-2026-sale",
         "url": "https://www.mlb.com/news/mlb-tv-trade-deadline-2026-sale",
         "contentDate": "2026-08-09T04:41:00Z",
@@ -181,7 +181,7 @@
     },
     {
         "headline": "Padres upgrade roster with post-Deadline signing of outfielder Hays",
-        "summaryJa": "MLB公式がA.ヘイズ（SD）について報じた。",
+        "summaryJa": "A.ヘイズ（SD）、トレード期限後にパドレスと契約",
         "slug": "austin-hays-padres-contract",
         "url": "https://www.mlb.com/news/austin-hays-padres-contract",
         "contentDate": "2026-08-09T22:27:00Z",
@@ -234,7 +234,7 @@
     },
     {
         "headline": "Rutschman on cusp of making Red Sox debut during next series in Toronto",
-        "summaryJa": "MLB公式がA.ラッチマン（BOS）について報じた。",
+        "summaryJa": "A.ラッチマン（BOS）、次のブルージェイズ戦で移籍後初出場へ",
         "slug": "adley-rutschman-eyeing-red-sox-debut-in-toronto",
         "url": "https://www.mlb.com/news/adley-rutschman-eyeing-red-sox-debut-in-toronto",
         "contentDate": "2026-08-09T22:50:04.493Z",
@@ -253,7 +253,7 @@
     },
     {
         "headline": "Wetherholt lifts Cardinals to victory with clutch 8th-inning double",
-        "summaryJa": "MLB公式がJ.ウェザーホルト（STL）について報じた。",
+        "summaryJa": "J.ウェザーホルト（STL）、8回の決勝二塁打でカージナルスを勝利へ",
         "slug": "jj-wetherholt-gets-game-winning-hit-vs-rockies",
         "url": "https://www.mlb.com/news/jj-wetherholt-gets-game-winning-hit-vs-rockies",
         "contentDate": "2026-08-09T21:31:59.54Z",
@@ -270,7 +270,7 @@
     },
     {
         "headline": "Schlittler rebounds from rough start with dazzler, but help is too little, too late",
-        "summaryJa": "MLB公式がC.シュリットラー（NYY）について報じた。",
+        "summaryJa": "C.シュリットラー（NYY）が7回好投も、反撃及ばずブレーブスに敗戦",
         "slug": "cam-schlittler-pitches-7-strong-innings-against-braves",
         "url": "https://www.mlb.com/news/cam-schlittler-pitches-7-strong-innings-against-braves",
         "contentDate": "2026-08-09T21:10:00Z",
@@ -289,7 +289,7 @@
     },
     {
         "headline": "Buoyed by 11-run outburst, Mets focused on finishing strong",
-        "summaryJa": "MLB公式がB.ビシェット（NYM）について報じた。",
+        "summaryJa": "メッツ、11得点の猛攻でパイレーツとのシリーズ勝ち越し",
         "slug": "mets-score-11-runs-to-win-series-vs-pirates",
         "url": "https://www.mlb.com/news/mets-score-11-runs-to-win-series-vs-pirates",
         "contentDate": "2026-08-09T22:16:00Z",
@@ -307,7 +307,7 @@
     },
     {
         "headline": "Baseball’s competitive balance issue, explained",
-        "summaryJa": "MLB公式がMLBの最新情報について報じた。",
+        "summaryJa": "MLBの戦力均衡を巡る現状と課題を解説",
         "slug": "mlb-competitive-balance-issue-explained",
         "url": "https://www.mlb.com/news/mlb-competitive-balance-issue-explained",
         "contentDate": "2026-06-21T00:15:00Z",
@@ -317,7 +317,7 @@
     },
     {
         "headline": "Skubal set for 1st Dodgers home start -- and another 2x Cy winner will follow",
-        "summaryJa": "MLB公式がT.スクーバル（LAD）について報じた。",
+        "summaryJa": "T.スクーバル（LAD）、ドジャー・スタジアムで移籍後初先発へ",
         "slug": "tarik-skubal-dodger-stadium-debut-with-dodgers",
         "url": "https://www.mlb.com/news/tarik-skubal-dodger-stadium-debut-with-dodgers",
         "contentDate": "2026-08-09T20:02:53.088Z",
@@ -334,7 +334,7 @@
     },
     {
         "headline": "Prize prospects from Adley trade impress in O's Minors debuts",
-        "summaryJa": "MLB公式がAnthony Eyanson（BAL）について報じた。",
+        "summaryJa": "ラッチマンとのトレードで加入した有望株2人がマイナー初登板で好投",
         "slug": "anthony-eyanson-kyson-witherspoon-orioles-debuts",
         "url": "https://www.mlb.com/news/anthony-eyanson-kyson-witherspoon-orioles-debuts",
         "contentDate": "2026-08-09T02:41:00Z",
@@ -352,7 +352,7 @@
     },
     {
         "headline": "Jax lands on IL with elbow discomfort; Grove called up",
-        "summaryJa": "MLB公式がG.ジャックス（TB）について報じた。",
+        "summaryJa": "G.ジャックス（TB）が右肘の違和感で15日間IL入り、G.グローブ昇格",
         "slug": "griffin-jax-placed-on-15-day-injured-list-with-right-elbow-discomfort",
         "url": "https://www.mlb.com/news/griffin-jax-placed-on-15-day-injured-list-with-right-elbow-discomfort",
         "contentDate": "2026-08-09T19:49:24.037Z",
@@ -371,7 +371,7 @@
     },
     {
         "headline": "Stowers exits Marlins' rout with left hamstring discomfort after 2-run single",
-        "summaryJa": "MLB公式がK.ストワーズ（MIA）について報じた。",
+        "summaryJa": "K.ストワーズ（MIA）、2点適時打後に左ハムストリングの違和感で交代",
         "slug": "kyle-stowers-exits-marlins-game-with-hamstring-injury",
         "url": "https://www.mlb.com/news/kyle-stowers-exits-marlins-game-with-hamstring-injury",
         "contentDate": "2026-08-09T20:51:00Z",
@@ -439,7 +439,7 @@
     },
     {
         "headline": "Pratt (hamstring strain) placed on 10-day IL",
-        "summaryJa": "MLB公式がC.プラット（MIL）について報じた。",
+        "summaryJa": "C.プラット（MIL）、ハムストリング負傷で10日間IL入り",
         "slug": "cooper-pratt-placed-on-injured-list-with-hamstring-injury",
         "url": "https://www.mlb.com/news/cooper-pratt-placed-on-injured-list-with-hamstring-injury",
         "contentDate": "2026-08-09T21:34:00Z",
@@ -473,7 +473,7 @@
     },
     {
         "headline": "Overhauled 'pen steps up again as Nats complete first sweep since April",
-        "summaryJa": "MLB公式がB.ロード（WSH）について報じた。",
+        "summaryJa": "B.ロード（WSH）ら救援陣が好投、ナショナルズが4月以来の3連戦スイープ",
         "slug": "brad-lord-leads-strong-effort-by-nationals-bullpen",
         "url": "https://www.mlb.com/news/brad-lord-leads-strong-effort-by-nationals-bullpen",
         "contentDate": "2026-08-09T20:34:00Z",
@@ -490,7 +490,7 @@
     },
     {
         "headline": "Lefty batters are dominating in 2026. Here’s why",
-        "summaryJa": "MLB公式がMLBの最新情報について報じた。",
+        "summaryJa": "2026年は左打者が躍進、その要因をデータで分析",
         "slug": "lefty-batters-dominating-2026",
         "url": "https://www.mlb.com/news/lefty-batters-dominating-2026",
         "contentDate": "2026-08-09T02:28:51.04Z",

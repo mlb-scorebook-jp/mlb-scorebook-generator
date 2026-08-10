@@ -2653,7 +2653,8 @@ body:not(.app-mode-home):not(.app-mode-pregame) .viewer {
         overflow-y: auto;
     }
 
-    body:not(.app-mode-home):not(.app-mode-pregame) {
+    body:not(.app-mode-home):not(.app-mode-pregame),
+    body.app-mode-pregame {
         height: auto;
         overflow-x: hidden;
         overflow-y: auto;
@@ -2668,6 +2669,17 @@ body:not(.app-mode-home):not(.app-mode-pregame) .viewer {
         min-height: calc(100dvh - 104px);
         margin-top: 58px;
         padding-bottom: 46px;
+        overflow: visible;
+        overscroll-behavior-y: auto;
+        touch-action: pan-y;
+    }
+
+    body.app-mode-pregame .app-main {
+        position: static;
+        width: 100%;
+        min-height: calc(100vh - 58px);
+        min-height: calc(100dvh - 58px);
+        margin-top: 58px;
         overflow: visible;
         overscroll-behavior-y: auto;
         touch-action: pan-y;
