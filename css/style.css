@@ -2367,6 +2367,20 @@ body.app-mode-pregame .score-loading-overlay {
     text-underline-offset: 1px;
 }
 
+.special-note-stathead-link {
+    color: inherit;
+    font: inherit;
+    text-decoration: underline;
+    text-decoration-thickness: 0.5px;
+    text-underline-offset: 1px;
+}
+
+.special-note-stathead-link:hover,
+.special-note-stathead-link:focus-visible {
+    color: #174f32;
+    cursor: pointer;
+}
+
 .player-profile-link {
     color: inherit;
     font: inherit;

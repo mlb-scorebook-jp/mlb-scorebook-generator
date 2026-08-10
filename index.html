@@ -228,6 +228,7 @@
     <script src="js/historical-records.js"></script>
     <script src="js/mlb-business-date.js?v=20260808-1"></script>
     <script src="js/mlb-latest-news.js?v=20260810-1"></script>
+    <script src="js/stathead-links.js?v=20260810-1"></script>
     <script src="js/pregame.js?v=20260810-3"></script>
 
     <script>
@@ -2456,7 +2457,13 @@
                                     : hitLeader.hitStreakStopped ? 3 : 6;
                         notes.push({
                             text: `${code}　${getPersonName(hitLeader.person)}　連続試合安打：${hitLeader.hitStreak}試合${stoppedSuffix}${personalSuffix}`,
-                            priority
+                            priority,
+                            ...(personalSuffix.includes("あと")
+                                ? {
+                                    link: window.MLBStatheadLinks?.playerStreakFinderUrl(hitLeader.id) || "",
+                                    linkType: "stathead-streak"
+                                }
+                                : {})
                         });
                     }
                     if (gameFinal && onBaseLeader) {
@@ -2472,7 +2479,13 @@
                                     : onBaseLeader.onBaseStreakStopped ? 3 : 7;
                         notes.push({
                             text: `${code}　${getPersonName(onBaseLeader.person)}　連続試合出塁：${onBaseLeader.onBaseStreak}試合${stoppedSuffix}${personalSuffix}`,
-                            priority
+                            priority,
+                            ...(personalSuffix.includes("あと")
+                                ? {
+                                    link: window.MLBStatheadLinks?.playerStreakFinderUrl(onBaseLeader.id) || "",
+                                    linkType: "stathead-streak"
+                                }
+                                : {})
                         });
                     }
                     const schedule = await fetchTeamRegularSeasonSchedule(
@@ -5411,8 +5424,33 @@
                         const noteIndex = column * 6 + row;
                         const noteData = state.streakNotes?.[side]?.[noteIndex] ?? "";
                         const note = createElement("div", "special-note-row");
-                        note.append(document.createTextNode(getSpecialNoteText(noteData)));
+                        const noteText = getSpecialNoteText(noteData);
+                        if (noteData && typeof noteData === "object" &&
+                            noteData.link && noteData.linkType === "stathead-streak") {
+                            const noteLink = createElement(
+                                "a",
+                                "special-note-stathead-link",
+                                noteText
+                            );
+                            noteLink.href = noteData.link;
+                            noteLink.target = "_blank";
+                            noteLink.rel = "noopener noreferrer";
+                            noteLink.contentEditable = "false";
+                            noteLink.setAttribute(
+                                "aria-label",
+                                `${noteText}のStathead選手別ストリーク検索を新しいタブで開く`
+                            );
+                            note.append(noteLink);
+                        } else {
+                            note.append(document.createTextNode(noteText));
+                        }
                         if (noteData && typeof noteData === "object" && noteData.link) {
+                            if (noteData.linkType === "stathead-streak") {
+                                note.contentEditable = "false";
+                                note.dataset.noteRow = String(noteIndex + 1);
+                                notesTable.append(note);
+                                continue;
+                            }
                             note.append(document.createTextNode("　"));
                             const sourceLink = createElement(
                                 "a",

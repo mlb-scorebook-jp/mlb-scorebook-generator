@@ -2527,10 +2527,18 @@
         row.append(link);
         featured.notes.slice(0, 3).forEach((note) => {
             const noteLink = el("a", "pregame-featured-note", note.text);
-            noteLink.href = note.href;
+            const statheadUrl = /自己最長.+まであと\d+/.test(String(note.text ?? ""))
+                ? window.MLBStatheadLinks?.playerStreakFinderUrl(entry?.person?.id)
+                : "";
+            noteLink.href = statheadUrl || note.href;
             noteLink.target = "_blank";
             noteLink.rel = "noopener noreferrer";
-            noteLink.setAttribute("aria-label", `${playerName(entry?.person)}：${note.text}のMLB公式情報を開く`);
+            noteLink.setAttribute(
+                "aria-label",
+                statheadUrl
+                    ? `${playerName(entry?.person)}のStathead選手別ストリーク検索を開く`
+                    : `${playerName(entry?.person)}：${note.text}のMLB公式情報を開く`
+            );
             row.append(noteLink);
         });
         return row;
