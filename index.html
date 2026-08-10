@@ -2068,12 +2068,17 @@
 
                     let gamesSinceAbsence = 0;
                     let previousAbsenceGame = null;
+                    let consecutiveAbsences = 1;
                     const previousGames = schedule
                         .filter((game) => Number(game?.gamePk) !== Number(currentGamePk))
                         .reverse();
                     for (const game of previousGames) {
                         if (!appearanceGamePks.has(Number(game?.gamePk))) {
-                            previousAbsenceGame = game;
+                            if (!previousAbsenceGame) previousAbsenceGame = game;
+                            if (gamesSinceAbsence === 0) {
+                                consecutiveAbsences += 1;
+                                continue;
+                            }
                             break;
                         }
                         gamesSinceAbsence += 1;
@@ -2091,6 +2096,7 @@
                         appearanceGamePks,
                         gamesSinceAbsence,
                         previousAbsenceGame,
+                        consecutiveAbsences,
                         japanese
                     };
                 }).filter(Boolean);
@@ -2125,12 +2131,16 @@
 
                     const appeared = appearedIds.has(player.id);
                     if (gameFinal && !appeared) {
-                        const reference = getScheduleReferenceText(
-                            player.previousAbsenceGame,
-                            teamId
-                        );
+                        const absenceText = player.consecutiveAbsences > 1
+                            ? `${player.consecutiveAbsences}試合連続欠場`
+                            : player.previousAbsenceGame
+                                ? `${player.gamesSinceAbsence + 1}試合ぶりの欠場${getScheduleReferenceText(
+                                    player.previousAbsenceGame,
+                                    teamId
+                                )}`
+                                : "欠場";
                         return {
-                            text: `${code}　${getPersonName(player.person)}　${player.gamesSinceAbsence}試合ぶりの欠場${reference}`,
+                            text: `${code}　${getPersonName(player.person)}　${absenceText}`,
                             priority: player.japanese ? 2 : 3,
                             startRate,
                             starts,
