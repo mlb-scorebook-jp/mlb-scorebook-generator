@@ -68,7 +68,7 @@
         ]
     },
     {
-        "headline": "'All of a sudden he's Spider-manning': Rookie's pair of reckless grabs leave all in awe",
+        "headline": "'All of a sudden he's Spider-Manning': Rookie's pair of reckless grabs leave all in awe",
         "summaryJa": "MLB公式がL.ラーラ（MIL）について報じた。",
         "slug": "luis-lara-makes-two-amazing-catches-in-brewers-win-vs-twins",
         "url": "https://www.mlb.com/news/luis-lara-makes-two-amazing-catches-in-brewers-win-vs-twins",
@@ -82,6 +82,33 @@
         "taxonomy": [
             "apple-news",
             "mlb-top-prospects"
+        ]
+    },
+    {
+        "headline": "43-run nailbiter among wildest Minors moments from July",
+        "summaryJa": "MLB公式がMLBの最新情報について報じた。",
+        "slug": "crooked-numbers-july-2026",
+        "url": "https://www.mlb.com/news/crooked-numbers-july-2026",
+        "contentDate": "2026-08-10T15:25:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "taxonomy": [
+            "minor-league-baseball",
+            "offbeat",
+            "apple-news"
+        ]
+    },
+    {
+        "headline": "Ranking the top 10 series clinchers in MLB history",
+        "summaryJa": "MLB公式がMLBの最新情報について報じた。",
+        "slug": "top-series-clinchers-in-baseball-history",
+        "url": "https://www.mlb.com/news/top-series-clinchers-in-baseball-history",
+        "contentDate": "2026-08-10T15:20:54.386Z",
+        "teamIds": [],
+        "playerIds": [],
+        "taxonomy": [
+            "apple-news",
+            "rankings"
         ]
     },
     {
@@ -186,6 +213,20 @@
         ]
     },
     {
+        "headline": "Phillies-Cardinals clash could have major playoff implications",
+        "summaryJa": "MLB公式がカージナルスについて報じた。",
+        "slug": "phillies-cardinals-series-has-nl-wild-card-implications",
+        "url": "https://www.mlb.com/news/phillies-cardinals-series-has-nl-wild-card-implications",
+        "contentDate": "2026-08-10T14:51:31.812Z",
+        "teamIds": [
+            138
+        ],
+        "playerIds": [],
+        "taxonomy": [
+            "apple-news"
+        ]
+    },
+    {
         "headline": "North Carolina wins 2026 Little League Softball World Series",
         "summaryJa": "MLB公式がMLBの最新情報について報じた。",
         "slug": "north-carolina-wins-2026-little-league-softball-world-series",
@@ -221,6 +262,23 @@
         ]
     },
     {
+        "headline": "Red Sox have been historically hot, and that's without slew of injured stars",
+        "summaryJa": "MLB公式がA.ラッチマン（BOS）について報じた。",
+        "slug": "red-sox-ready-to-welcome-back-injured-players",
+        "url": "https://www.mlb.com/news/red-sox-ready-to-welcome-back-injured-players",
+        "contentDate": "2026-08-10T13:28:59.054Z",
+        "teamIds": [
+            111
+        ],
+        "playerIds": [
+            668939
+        ],
+        "taxonomy": [
+            "apple-news",
+            "injury"
+        ]
+    },
+    {
         "headline": "Schwarber snaps dinger drought, Hill gets walk-off hit in Phils' much-needed win",
         "summaryJa": "K.シュワーバー（PHI）が2本塁打、サヨナラ勝利で一発不振を脱出",
         "slug": "kyle-schwarber-hits-two-homers-in-phillies-walk-off-win",
@@ -236,6 +294,30 @@
         "taxonomy": [
             "apple-news",
             "game-recap"
+        ]
+    },
+    {
+        "headline": "Baseball’s competitive balance issue, explained",
+        "summaryJa": "MLBの戦力均衡を巡る現状と課題を解説",
+        "slug": "mlb-competitive-balance-issue-explained",
+        "url": "https://www.mlb.com/news/mlb-competitive-balance-issue-explained",
+        "contentDate": "2026-06-21T00:15:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "taxonomy": []
+    },
+    {
+        "headline": "Ichiro! Lou! Rizzs! Legends come home for packed 50 Seasons Celebration",
+        "summaryJa": "MLB公式がマリナーズについて報じた。",
+        "slug": "mariners-50-seasons-celebration-best-moments",
+        "url": "https://www.mlb.com/news/mariners-50-seasons-celebration-best-moments",
+        "contentDate": "2026-08-10T15:00:34.565Z",
+        "teamIds": [
+            136
+        ],
+        "playerIds": [],
+        "taxonomy": [
+            "apple-news"
         ]
     },
     {
@@ -318,14 +400,22 @@
         ]
     },
     {
-        "headline": "Baseball’s competitive balance issue, explained",
-        "summaryJa": "MLBの戦力均衡を巡る現状と課題を解説",
-        "slug": "mlb-competitive-balance-issue-explained",
-        "url": "https://www.mlb.com/news/mlb-competitive-balance-issue-explained",
-        "contentDate": "2026-06-21T00:15:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "taxonomy": []
+        "headline": "Reds ace Burns bullish on rising Nats SS, a former Wake Forest teammate",
+        "summaryJa": "MLB公式がS.キング（WSH）について報じた。",
+        "slug": "seaver-king-chase-burns-teammates-at-wake-forest",
+        "url": "https://www.mlb.com/news/seaver-king-chase-burns-teammates-at-wake-forest",
+        "contentDate": "2026-08-10T13:12:00Z",
+        "teamIds": [
+            120
+        ],
+        "playerIds": [
+            814409,
+            695505
+        ],
+        "taxonomy": [
+            "apple-news",
+            "mlb-top-prospects"
+        ]
     },
     {
         "headline": "Royals add 9-time All-Star Kimbrel to bolster bullpen (source)",
@@ -411,108 +501,6 @@
         "taxonomy": [
             "apple-news",
             "game-recap"
-        ]
-    },
-    {
-        "headline": "Rutschman on cusp of making Red Sox debut during next series in Toronto",
-        "summaryJa": "A.ラッチマン（BOS）、次のブルージェイズ戦で移籍後初出場へ",
-        "slug": "adley-rutschman-eyeing-red-sox-debut-in-toronto",
-        "url": "https://www.mlb.com/news/adley-rutschman-eyeing-red-sox-debut-in-toronto",
-        "contentDate": "2026-08-10T01:13:00Z",
-        "teamIds": [
-            111,
-            533
-        ],
-        "playerIds": [
-            668939
-        ],
-        "taxonomy": [
-            "apple-news",
-            "rehab",
-            "injury"
-        ]
-    },
-    {
-        "headline": "D-backs adding veteran righty Littell to bolster rotation (source)",
-        "summaryJa": "MLB公式がZ.リテル（AZ）について報じた。",
-        "slug": "zack-littell-diamondbacks-deal",
-        "url": "https://www.mlb.com/news/zack-littell-diamondbacks-deal",
-        "contentDate": "2026-08-09T23:04:00Z",
-        "teamIds": [
-            109
-        ],
-        "playerIds": [
-            641793
-        ],
-        "taxonomy": [
-            "apple-news",
-            "transactions"
-        ]
-    },
-    {
-        "headline": "Reflective Wetherholt lifts Cards with clutch game-winning double",
-        "summaryJa": "J.ウェザーホルト（STL）、8回の決勝二塁打でカージナルスを勝利へ",
-        "slug": "jj-wetherholt-gets-game-winning-hit-vs-rockies",
-        "url": "https://www.mlb.com/news/jj-wetherholt-gets-game-winning-hit-vs-rockies",
-        "contentDate": "2026-08-09T23:53:00Z",
-        "teamIds": [
-            138
-        ],
-        "playerIds": [
-            802139
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap",
-            "clutch-moment"
-        ]
-    },
-    {
-        "headline": "'It's been a minute': Sox tripped up late in first series loss since July 1",
-        "summaryJa": "MLB公式がレッドソックスについて報じた。",
-        "slug": "red-sox-streak-of-nine-straight-series-wins-snapped-by-athletics",
-        "url": "https://www.mlb.com/news/red-sox-streak-of-nine-straight-series-wins-snapped-by-athletics",
-        "contentDate": "2026-08-09T22:29:00Z",
-        "teamIds": [
-            111
-        ],
-        "playerIds": [],
-        "taxonomy": [
-            "apple-news",
-            "takeaways"
-        ]
-    },
-    {
-        "headline": "Buoyed by 11-run outburst, Mets focused on finishing strong",
-        "summaryJa": "メッツ、11得点の猛攻でパイレーツとのシリーズ勝ち越し",
-        "slug": "mets-score-11-runs-to-win-series-vs-pirates",
-        "url": "https://www.mlb.com/news/mets-score-11-runs-to-win-series-vs-pirates",
-        "contentDate": "2026-08-09T22:16:00Z",
-        "teamIds": [
-            121
-        ],
-        "playerIds": [
-            666182
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap",
-            "performance"
-        ]
-    },
-    {
-        "headline": "Dodgers drop season series vs. D-backs. What does that mean for NL West race?",
-        "summaryJa": "MLB公式がドジャースについて報じた。",
-        "slug": "dodgers-lose-2026-season-series-vs-diamondbacks",
-        "url": "https://www.mlb.com/news/dodgers-lose-2026-season-series-vs-diamondbacks",
-        "contentDate": "2026-08-10T00:16:00Z",
-        "teamIds": [
-            119
-        ],
-        "playerIds": [],
-        "taxonomy": [
-            "apple-news",
-            "game-recap-losing"
         ]
     }
 ]);
