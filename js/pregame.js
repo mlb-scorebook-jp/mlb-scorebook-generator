@@ -2894,13 +2894,7 @@
 
     const scrollCompactPregameToTop = () => {
         if (!window.matchMedia("(max-width: 1024px)").matches) return;
-        const scrollContainer = document.querySelector(".app-main");
-        if (!scrollContainer) return;
-        scrollContainer.scrollTo({
-            top: 0,
-            left: scrollContainer.scrollLeft,
-            behavior: "auto"
-        });
+        window.scrollTo(0, 0);
     };
 
     const initialize = () => {
