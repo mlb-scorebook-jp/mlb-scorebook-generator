@@ -1289,6 +1289,41 @@ a.pregame-statcast-value:focus-visible {
     width: 6.5%;
 }
 
+.pregame-batting-table:not(.pregame-pitching-table) .pregame-batting-col-gamesPlayed,
+.pregame-batting-table:not(.pregame-pitching-table) .pregame-batting-col-atBats,
+.pregame-batting-table:not(.pregame-pitching-table) .pregame-batting-col-hits {
+    width: 6%;
+}
+
+.pregame-batting-table:not(.pregame-pitching-table) .pregame-batting-col-avg,
+.pregame-batting-table:not(.pregame-pitching-table) .pregame-batting-col-risp,
+.pregame-batting-table:not(.pregame-pitching-table) .pregame-batting-col-slg {
+    width: 8%;
+}
+
+.pregame-batting-table:not(.pregame-pitching-table) .pregame-batting-col-homeRuns,
+.pregame-batting-table:not(.pregame-pitching-table) .pregame-batting-col-rbi {
+    width: 6%;
+}
+
+.pregame-batting-table:not(.pregame-pitching-table) .pregame-batting-col-stolenBases,
+.pregame-batting-table:not(.pregame-pitching-table) .pregame-batting-col-doubles,
+.pregame-batting-table:not(.pregame-pitching-table) .pregame-batting-col-baseOnBalls,
+.pregame-batting-table:not(.pregame-pitching-table) .pregame-batting-col-strikeOuts {
+    width: 5.5%;
+}
+
+.pregame-batting-table:not(.pregame-pitching-table) .pregame-batting-col-triples,
+.pregame-batting-table:not(.pregame-pitching-table) .pregame-batting-col-hitByPitch,
+.pregame-batting-table:not(.pregame-pitching-table) .pregame-batting-col-sacBunts,
+.pregame-batting-table:not(.pregame-pitching-table) .pregame-batting-col-sacFlies {
+    width: 5%;
+}
+
+.pregame-batting-table:not(.pregame-pitching-table) .pregame-batting-col-errors {
+    width: 4%;
+}
+
 .pregame-batting-col-gamesPlayed,
 .pregame-batting-col-rbi,
 .pregame-batting-col-stolenBases,
@@ -1773,6 +1808,10 @@ a.pregame-metric-value:focus-visible {
 
     .pregame-batting-table {
         min-width: 1050px;
+    }
+
+    .pregame-batting-table:not(.pregame-pitching-table) {
+        min-width: 1190px;
     }
 
     .pregame-games-section .pregame-league-grid {

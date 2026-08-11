@@ -1923,6 +1923,8 @@
 
     const BATTING_TABLE_COLUMNS = [
         { label: "試合", field: "gamesPlayed" },
+        { label: "打数", field: "atBats" },
+        { label: "安打", field: "hits" },
         { label: "打率", field: "avg", rate: true },
         { label: "本塁打", field: "homeRuns" },
         { label: "打点", field: "rbi" },
