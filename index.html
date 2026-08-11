@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MLB Scorebook Generator</title>
     <!-- Score notation update: stacked batted-ball symbol, red hits, blue strikeouts, black other results. -->
-    <link rel="stylesheet" href="css/style.css?v=20260811-15">
-    <link rel="stylesheet" href="css/pregame.css?v=20260811-9">
+    <link rel="stylesheet" href="css/style.css?v=20260811-18">
+    <link rel="stylesheet" href="css/pregame.css?v=20260811-10">
 </head>
 
 <body class="app-mode-home">
@@ -26,6 +26,11 @@
             <h1><button type="button" class="app-home-link" id="app-home-link">MLB SCOREBOOK GENERATOR</button></h1>
             <p aria-hidden="true">&nbsp;</p>
         </div>
+
+        <nav class="app-primary-nav" aria-label="メインナビゲーション">
+            <button type="button" id="header-scorebook-btn">スコアブック生成</button>
+            <button type="button" id="generate-btn">試合前情報</button>
+        </nav>
 
         <section class="header-game-search" aria-label="試合検索">
             <div class="header-search-tabs" role="tablist" aria-label="検索方法">
@@ -82,7 +87,7 @@
             </div>
         </section>
 
-        <div class="version">Ver. 2.3.4</div>
+        <div class="version">Ver. 2.3.7</div>
     </header>
 
     <main class="app-main">
@@ -116,7 +121,6 @@
                 </div>
             </details>
 
-            <button id="generate-btn">試合前情報</button>
             <button id="save-btn">保存</button>
 
             <div class="status-message" id="status-message">
@@ -6856,6 +6860,7 @@
                 setStatus("試合前情報を表示しています。");
             });
 
+            document.getElementById("header-scorebook-btn").addEventListener("click", showScorebook);
             document.getElementById("portal-scorebook-btn").addEventListener("click", showScorebook);
             document.getElementById("portal-pregame-btn").addEventListener("click", showPregame);
             document.getElementById("app-home-link").addEventListener("click", showPortalHome);

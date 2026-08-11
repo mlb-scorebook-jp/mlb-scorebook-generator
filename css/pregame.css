@@ -357,6 +357,7 @@ body.app-mode-pregame .scorebook-horizontal-scroll {
 
 body.app-mode-pregame .app-header > .pregame-header-actions-global {
     position: static;
+    order: 1;
     flex: 0 0 auto;
     margin-left: auto;
 }
@@ -1951,7 +1952,8 @@ a.pregame-metric-value:focus-visible {
     }
 
     body.app-mode-pregame.pregame-game-detail-active .app-title {
-        width: 100%;
+        width: auto;
+        flex: 1 1 auto;
     }
 
     body.app-mode-pregame.pregame-game-detail-active .app-main {
@@ -1960,11 +1962,16 @@ a.pregame-metric-value:focus-visible {
     }
 
     body.app-mode-pregame .app-header > .pregame-header-actions-global {
+        order: 1;
         display: flex;
         align-items: flex-end;
         gap: 7px;
         width: 100%;
         min-width: 0;
+    }
+
+    body.app-mode-pregame.pregame-game-detail-active .version {
+        order: 0;
     }
 
     body.app-mode-pregame .app-header > .pregame-header-actions-global .pregame-date-control {
