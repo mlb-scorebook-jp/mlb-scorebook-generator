@@ -1330,6 +1330,24 @@
                 ]
             });
 
+            const CAREER_FIRST_DEFINITIONS = Object.freeze({
+                hitting: [
+                    { field: "gamesPlayed", currentField: "gamesPlayed", label: "MLB初出場" },
+                    { field: "hits", currentField: "hits", label: "MLB初安打" },
+                    { field: "homeRuns", currentField: "homeRuns", label: "MLB初本塁打" },
+                    { field: "rbi", currentField: "rbi", label: "MLB初打点" },
+                    { field: "stolenBases", currentField: "stolenBases", label: "MLB初盗塁" }
+                ],
+                pitching: [
+                    { field: "gamesPlayed", currentField: "gamesPlayed", label: "MLB初登板" },
+                    { field: "gamesStarted", currentField: "gamesStarted", label: "MLB初先発" },
+                    { field: "wins", currentField: "wins", label: "MLB初勝利" },
+                    { field: "strikeOuts", currentField: "strikeOuts", label: "MLB初奪三振" },
+                    { field: "saves", currentField: "saves", label: "MLB初セーブ" },
+                    { field: "holds", currentField: "holds", label: "MLB初ホールド" }
+                ]
+            });
+
             const getPlateAppearances = (stat = {}) => {
                 const officialValue = Number(stat.plateAppearances);
                 if (Number.isFinite(officialValue)) return officialValue;
@@ -1392,7 +1410,10 @@
                         );
                     const careerTotals = {};
                     const milestoneFields = new Set(
-                        (CAREER_MILESTONE_DEFINITIONS[group] ?? [])
+                        [
+                            ...(CAREER_MILESTONE_DEFINITIONS[group] ?? []),
+                            ...(CAREER_FIRST_DEFINITIONS[group] ?? [])
+                        ]
                             .map((definition) => definition.field)
                     );
                     careerSplits.forEach((split) => {
@@ -1571,6 +1592,23 @@
                         const current = group === "pitching"
                             ? player.currentGamePitching
                             : player.currentGameBatting;
+
+                        CAREER_FIRST_DEFINITIONS[group].forEach((definition, index) => {
+                            const laterSameDayValue = laterSameDaySplits.reduce(
+                                (sum, split) => sum + (Number(split?.stat?.[definition.field]) || 0),
+                                0
+                            );
+                            const total = Number(career?.[definition.field]) - laterSameDayValue;
+                            const gameValue = Number(current?.[definition.currentField]) || 0;
+                            if (!Number.isFinite(total) || gameValue <= 0) return;
+                            const beforeGame = Math.max(0, total - gameValue);
+                            if (beforeGame !== 0 || total <= 0) return;
+                            playerNotes.push({
+                                text: `${code}　${getPersonName(player.person)}　${definition.label}`,
+                                priority: -3,
+                                importance: 100 - index
+                            });
+                        });
 
                         CAREER_MILESTONE_DEFINITIONS[group].forEach((definition) => {
                             const laterSameDayValue = laterSameDaySplits.reduce(
