@@ -82,7 +82,7 @@
             </div>
         </section>
 
-        <div class="version">Ver. 2.3.3</div>
+        <div class="version">Ver. 2.3.4</div>
     </header>
 
     <main class="app-main">
@@ -5178,12 +5178,12 @@
                         const playerId = Number(event?.player?.id);
                         if (!role || !playerId || seenPlayers.has(playerId)) return;
 
-                        const side = role === "defense" ? fieldingSide : battingSide;
-                        const order = role === "pitcher"
+                        const fieldingEntry = role === "pitcher" || role === "defense";
+                        const order = fieldingEntry
                             ? getBattingSlot(battingSide, play?.matchup?.batter?.id)
-                            : getBattingSlot(side, playerId);
+                            : getBattingSlot(battingSide, playerId);
                         if (!order || !inning) return;
-                        const displaySide = role === "pitcher" ? battingSide : side;
+                        const displaySide = battingSide;
                         const priorAppearances = plays.slice(0, playIndex).filter((priorPlay) => {
                             const priorSide = priorPlay?.about?.halfInning === "top" ? "away" : "home";
                             return priorSide === displaySide &&
@@ -5195,7 +5195,7 @@
                         const person = state.gameData?.gameData?.players?.[`ID${playerId}`] ?? event?.player ?? {};
                         indicators.push({
                             side: displaySide,
-                            teamSide: role === "pitcher" ? fieldingSide : side,
+                            teamSide: fieldingEntry ? fieldingSide : battingSide,
                             inning,
                             inningOccurrence,
                             order,
