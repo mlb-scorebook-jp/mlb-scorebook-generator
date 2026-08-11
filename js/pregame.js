@@ -2560,6 +2560,94 @@
         return wrapper;
     };
 
+    const AWARD_CATEGORIES = Object.freeze([
+        { key: "mvp", label: "最優秀選手（MVP）", ids: ["ALMVP", "NLMVP"] },
+        { key: "cy-young", label: "サイ・ヤング賞", ids: ["MLBCY", "ALCY", "NLCY"] },
+        { key: "rookie", label: "新人王", ids: ["MLBROY", "ALROY", "NLROY"] },
+        { key: "world-series-mvp", label: "ワールドシリーズMVP", ids: ["WSMVP"] },
+        { key: "lcs-mvp", label: "リーグ優勝決定シリーズMVP", ids: ["ALCSMVP", "NLCSMVP"] },
+        { key: "hank-aaron", label: "ハンク・アーロン賞", ids: ["ALHAA", "NLHAA"] },
+        { key: "silver-slugger", label: "シルバースラッガー賞", ids: ["ALSS", "NLSS"] },
+        { key: "gold-glove", label: "ゴールドグラブ賞", ids: ["ALGG", "NLGG"] },
+        { key: "platinum-glove", label: "プラチナ・グラブ賞", ids: ["ALPG", "NLPG"] },
+        { key: "outstanding-dh", label: "エドガー・マルティネス賞", ids: ["DHOY"] },
+        { key: "reliever", label: "リリーバー・オブ・ザ・イヤー", ids: ["ALREL", "NLREL"] },
+        { key: "comeback", label: "カムバック賞", ids: ["ALCPOY", "NLCPOY"] },
+        { key: "all-star-mvp", label: "オールスターゲームMVP", ids: ["ASMVP"] },
+        { key: "all-star", label: "オールスター選出", ids: ["ALAS", "NLAS"] },
+        { key: "all-mlb-first", label: "オールMLB・ファーストチーム", ids: ["MLBAFIRST"] },
+        { key: "all-mlb-second", label: "オールMLB・セカンドチーム", ids: ["MLBSECOND"] },
+        { key: "commissioner", label: "コミッショナー特別表彰", ids: ["MLBCOMHA"] }
+    ]);
+
+    const AWARD_CATEGORY_BY_ID = new Map(
+        AWARD_CATEGORIES.flatMap((category) =>
+            category.ids.map((id) => [id, category])
+        )
+    );
+
+    const getPlayerAwards = async (playerId) => {
+        const payload = await fetchJson(
+            `${API_ROOT}/v1/people/${playerId}/awards`,
+            `player-awards:${playerId}`
+        );
+        return payload?.awards ?? [];
+    };
+
+    const getAwardLeague = (awardId) => {
+        if (String(awardId).startsWith("AL")) return "AL";
+        if (String(awardId).startsWith("NL")) return "NL";
+        return "";
+    };
+
+    const normalizePlayerAwards = (awards) => {
+        const grouped = new Map(AWARD_CATEGORIES.map((category) => [category.key, []]));
+        const seen = new Set();
+        awards.forEach((award) => {
+            const category = AWARD_CATEGORY_BY_ID.get(String(award?.id ?? ""));
+            const season = Number(award?.season);
+            if (!category || !Number.isInteger(season)) return;
+            const league = getAwardLeague(award.id);
+            const dedupeKey = `${category.key}:${season}:${league}`;
+            if (seen.has(dedupeKey)) return;
+            seen.add(dedupeKey);
+            grouped.get(category.key).push({ season, league });
+        });
+        return AWARD_CATEGORIES.map((category) => ({
+            ...category,
+            years: grouped.get(category.key)
+                .sort((left, right) => left.season - right.season || left.league.localeCompare(right.league))
+        })).filter((category) => category.years.length);
+    };
+
+    const renderAwardsSection = (awards) => {
+        const categories = normalizePlayerAwards(awards);
+        if (!categories.length) return null;
+        const wrapper = section("AWARDS");
+        wrapper.classList.add("pregame-awards-section");
+        const table = el("table", "pregame-awards-table");
+        const head = document.createElement("thead");
+        const headRow = document.createElement("tr");
+        headRow.append(el("th", "", "受賞歴"), el("th", "", "受賞年度"));
+        head.append(headRow);
+        const body = document.createElement("tbody");
+        categories.forEach((category) => {
+            const row = document.createElement("tr");
+            row.append(el("th", "", category.label));
+            const yearsCell = document.createElement("td");
+            const years = el("div", "pregame-awards-years");
+            category.years.forEach(({ season, league }) => {
+                years.append(el("span", "pregame-awards-year", `${season}${league ? `（${league}）` : ""}`));
+            });
+            yearsCell.append(years);
+            row.append(yearsCell);
+            body.append(row);
+        });
+        table.append(head, body);
+        wrapper.append(table);
+        return wrapper;
+    };
+
     const renderPlayerDetail = async (playerId, gamePk) => {
         placeHeaderActions(false);
         savePregameSession("pregame-player", {
@@ -2592,6 +2680,9 @@
                 `pregame:player-profile-xref:${playerId}`
             ).catch(() => null);
             const battingProfile = battingProfilePayload?.people?.[0] ?? person;
+            const isJapanesePlayer = String(
+                battingProfile?.birthCountry ?? person?.birthCountry ?? ""
+            ).toLowerCase() === "japan";
             const debutDate = /^\d{4}-\d{2}-\d{2}$/.test(String(battingProfile?.mlbDebutDate ?? ""))
                 ? battingProfile.mlbDebutDate
                 : `${season}-01-01`;
@@ -2606,7 +2697,8 @@
                 rispBySeason,
                 seasonPitching,
                 careerPitching,
-                yearlyPitching
+                yearlyPitching,
+                playerAwards
             ] = await Promise.all([
                 hasHitting
                     ? getPlayerSeasonStatsBeforeDate(playerId, season, "hitting", date).catch(() => ({}))
@@ -2624,7 +2716,8 @@
                 hasPitching
                     ? getPlayerCareer(battingProfile, "pitching", previousDate(date)).catch(() => ({}))
                     : {},
-                hasPitching ? getPlayerYearByYearPitching(playerId).catch(() => new Map()) : new Map()
+                hasPitching ? getPlayerYearByYearPitching(playerId).catch(() => new Map()) : new Map(),
+                isJapanesePlayer ? getPlayerAwards(playerId).catch(() => []) : []
             ]);
             const statcastSeasonCandidates = [...yearlyBatting.keys()];
             if (statNumber(seasonBatting?.gamesPlayed) > 0 && !statcastSeasonCandidates.includes(season)) {
@@ -2811,6 +2904,8 @@
             if (hasPitching) playerSections.push(renderPitcherStatcastSection(statcastPitchingRows, battingProfile, season));
             if (yearlyBattingTable) playerSections.push(yearlyBattingTable);
             if (yearlyPitchingTable) playerSections.push(yearlyPitchingTable);
+            const awardsSection = renderAwardsSection(playerAwards);
+            if (awardsSection) playerSections.push(awardsSection);
             dom.content.replaceChildren(...playerSections);
         } catch (error) {
             console.error(error);

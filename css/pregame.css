@@ -1277,6 +1277,96 @@ a.pregame-statcast-value:focus-visible {
     font-weight: 700;
 }
 
+.pregame-awards-section {
+    margin-top: 12px;
+}
+
+.pregame-awards-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    color: #dfe6e9;
+    font-variant-numeric: tabular-nums;
+}
+
+.pregame-awards-table th,
+.pregame-awards-table td {
+    min-height: 34px;
+    padding: 8px 12px;
+    border-right: 1px solid #3d4950;
+    border-bottom: 1px solid #3d4950;
+    font-size: 11px;
+    line-height: 1.45;
+    text-align: left;
+    vertical-align: middle;
+}
+
+.pregame-awards-table tr > :last-child {
+    border-right: 0;
+}
+
+.pregame-awards-table tbody tr:last-child > * {
+    border-bottom: 0;
+}
+
+.pregame-awards-table thead th {
+    color: #c9d3d8;
+    background: #202a30;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.pregame-awards-table thead th:first-child,
+.pregame-awards-table tbody th {
+    width: 28%;
+}
+
+.pregame-awards-table tbody th {
+    color: #eef3f5;
+    background: #222c32;
+    font-weight: 700;
+}
+
+.pregame-awards-years {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px 18px;
+}
+
+.pregame-awards-year {
+    white-space: nowrap;
+}
+
+@media (max-width: 760px) {
+    .pregame-awards-table thead th:first-child,
+    .pregame-awards-table tbody th {
+        width: 40%;
+    }
+
+    .pregame-awards-table th,
+    .pregame-awards-table td {
+        padding: 8px 9px;
+        font-size: 12px;
+    }
+
+    .pregame-awards-years {
+        gap: 5px 12px;
+    }
+}
+
+@media (hover: none) and (pointer: coarse) {
+    .pregame-awards-table th,
+    .pregame-awards-table td {
+        min-height: 44px;
+        font-size: 14px;
+    }
+
+    .pregame-awards-table thead th {
+        font-size: 13px;
+    }
+}
+
 .pregame-batting-table-link {
     display: inline-flex;
     align-items: center;
