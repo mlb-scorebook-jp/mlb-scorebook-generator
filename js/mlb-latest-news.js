@@ -34,6 +34,19 @@
         ]
     },
     {
+        "headline": "Predicting this year's All-MLB Teams",
+        "summaryJa": "MLB公式がMLBの最新情報について報じた。",
+        "slug": "all-mlb-team-predictions-for-august-2026",
+        "url": "https://www.mlb.com/news/all-mlb-team-predictions-for-august-2026",
+        "contentDate": "2026-08-11T04:49:17.755Z",
+        "teamIds": [],
+        "playerIds": [],
+        "taxonomy": [
+            "apple-news",
+            "all-mlb-team"
+        ]
+    },
+    {
         "headline": "With 1 week of hindsight, MLB execs recap a frenzied Trade Deadline",
         "summaryJa": "MLB公式がMLBの最新情報について報じた。",
         "slug": "2026-trade-deadline-recap-from-mlb-executives",
@@ -44,6 +57,81 @@
         "taxonomy": [
             "trade-deadline",
             "apple-news"
+        ]
+    },
+    {
+        "headline": "Watch MiLB at Field of Dreams tonight on MLB Network (7:30 ET)",
+        "summaryJa": "MLB公式がMLBの最新情報について報じた。",
+        "slug": "milb-at-field-of-dreams-game-2026",
+        "url": "https://www.mlb.com/news/milb-at-field-of-dreams-game-2026",
+        "contentDate": "2026-08-11T16:20:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "taxonomy": [
+            "field-of-dreams",
+            "mlb-top-prospects",
+            "apple-news"
+        ]
+    },
+    {
+        "headline": "3 plays that show Lombard's all-around impact for Yanks",
+        "summaryJa": "MLB公式がG.ロンバード Jr.（NYY）について報じた。",
+        "slug": "george-lombard-jr-showing-all-around-skill-set-for-yankees",
+        "url": "https://www.mlb.com/news/george-lombard-jr-showing-all-around-skill-set-for-yankees",
+        "contentDate": "2026-08-11T14:57:38.832Z",
+        "teamIds": [
+            147
+        ],
+        "playerIds": [
+            806146
+        ],
+        "taxonomy": [
+            "apple-news",
+            "savant",
+            "mlb-top-prospects"
+        ]
+    },
+    {
+        "headline": "Yankees' Triple-A team to announce new name for 2027",
+        "summaryJa": "MLB公式がMLBの最新情報について報じた。",
+        "slug": "swb-railriders-to-change-name",
+        "url": "https://www.mlb.com/news/swb-railriders-to-change-name",
+        "contentDate": "2026-08-11T17:03:03.221Z",
+        "teamIds": [],
+        "playerIds": [],
+        "taxonomy": [
+            "minor-league-baseball",
+            "apple-news",
+            "baseball-traveler"
+        ]
+    },
+    {
+        "headline": "Opposing pitchers beware: 'Jack-Jack is back'",
+        "summaryJa": "MLB公式がJ.チョリオ（MIL）について報じた。",
+        "slug": "jackson-chourio-gets-his-power-back-to-boost-brewers",
+        "url": "https://www.mlb.com/news/jackson-chourio-gets-his-power-back-to-boost-brewers",
+        "contentDate": "2026-08-11T15:46:00Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [
+            694192
+        ],
+        "taxonomy": [
+            "apple-news"
+        ]
+    },
+    {
+        "headline": "Ranking top 10 masterclass pitching performances of all time",
+        "summaryJa": "MLB公式がMLBの最新情報について報じた。",
+        "slug": "top-pitching-performances-in-baseball-history",
+        "url": "https://www.mlb.com/news/top-pitching-performances-in-baseball-history",
+        "contentDate": "2026-08-11T15:25:08.167Z",
+        "teamIds": [],
+        "playerIds": [],
+        "taxonomy": [
+            "apple-news",
+            "rankings"
         ]
     },
     {
@@ -103,19 +191,6 @@
         ]
     },
     {
-        "headline": "Predicting this year's All-MLB Teams",
-        "summaryJa": "MLB公式がMLBの最新情報について報じた。",
-        "slug": "all-mlb-team-predictions-for-august-2026",
-        "url": "https://www.mlb.com/news/all-mlb-team-predictions-for-august-2026",
-        "contentDate": "2026-08-11T04:49:17.755Z",
-        "teamIds": [],
-        "playerIds": [],
-        "taxonomy": [
-            "apple-news",
-            "all-mlb-team"
-        ]
-    },
-    {
         "headline": "Painter crafts work of art with no-hit bid into sixth inning",
         "summaryJa": "MLB公式がA.ペインター（PHI）について報じた。",
         "slug": "andrew-painter-pitches-five-no-hit-innings-in-win-against-cardinals",
@@ -169,6 +244,20 @@
         ]
     },
     {
+        "headline": "Checking in on all 9 players in the O's Deadline haul",
+        "summaryJa": "MLB公式がオリオールズについて報じた。",
+        "slug": "orioles-2026-trade-deadline-acquisitions-update",
+        "url": "https://www.mlb.com/news/orioles-2026-trade-deadline-acquisitions-update",
+        "contentDate": "2026-08-11T14:59:38.961Z",
+        "teamIds": [
+            110
+        ],
+        "playerIds": [],
+        "taxonomy": [
+            "apple-news"
+        ]
+    },
+    {
         "headline": "Down to their final strike, Smith saves Astros in 9th ... then Peña wins it in 10th",
         "summaryJa": "MLB公式がJ.ペーニャ（HOU）について報じた。",
         "slug": "jeremy-pena-astros-beat-giants-in-extra-innings",
@@ -204,6 +293,16 @@
             "apple-news",
             "game-recap"
         ]
+    },
+    {
+        "headline": "Baseball’s competitive balance issue, explained",
+        "summaryJa": "MLBの戦力均衡を巡る現状と課題を解説",
+        "slug": "mlb-competitive-balance-issue-explained",
+        "url": "https://www.mlb.com/news/mlb-competitive-balance-issue-explained",
+        "contentDate": "2026-06-21T00:15:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "taxonomy": []
     },
     {
         "headline": "Gore strikes out nine in first start after welcoming daughter",
@@ -290,20 +389,6 @@
         ]
     },
     {
-        "headline": "Watch MiLB at Field of Dreams tonight on MLB Network",
-        "summaryJa": "MLB公式がMLBの最新情報について報じた。",
-        "slug": "milb-at-field-of-dreams-game-2026",
-        "url": "https://www.mlb.com/news/milb-at-field-of-dreams-game-2026",
-        "contentDate": "2026-08-11T06:07:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "taxonomy": [
-            "field-of-dreams",
-            "mlb-top-prospects",
-            "apple-news"
-        ]
-    },
-    {
         "headline": "Yelich knocks in Contreras with homer after both moved down in lineup",
         "summaryJa": "MLB公式がW.コントレラス（MIL）について報じた。",
         "slug": "william-contreras-christian-yelich-move-down-in-brewers-lineup",
@@ -319,16 +404,6 @@
         "taxonomy": [
             "apple-news"
         ]
-    },
-    {
-        "headline": "Baseball’s competitive balance issue, explained",
-        "summaryJa": "MLBの戦力均衡を巡る現状と課題を解説",
-        "slug": "mlb-competitive-balance-issue-explained",
-        "url": "https://www.mlb.com/news/mlb-competitive-balance-issue-explained",
-        "contentDate": "2026-06-21T00:15:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "taxonomy": []
     },
     {
         "headline": "Taillon exits first Toronto home start with right forearm discomfort",
@@ -431,89 +506,6 @@
         ],
         "playerIds": [
             668873
-        ],
-        "taxonomy": [
-            "apple-news",
-            "injury",
-            "transactions"
-        ]
-    },
-    {
-        "headline": "Tim Anderson, batting champ and two-time All-Star, announces retirement",
-        "summaryJa": "MLB公式がT.アンダーソン（CWS）について報じた。",
-        "slug": "tim-anderson-retires",
-        "url": "https://www.mlb.com/news/tim-anderson-retires",
-        "contentDate": "2026-08-10T18:35:53.599Z",
-        "teamIds": [
-            145
-        ],
-        "playerIds": [
-            641313
-        ],
-        "taxonomy": [
-            "apple-news",
-            "retirement"
-        ]
-    },
-    {
-        "headline": "Ranking the top 10 series clinchers in MLB history",
-        "summaryJa": "MLB公式がMLBの最新情報について報じた。",
-        "slug": "top-series-clinchers-in-baseball-history",
-        "url": "https://www.mlb.com/news/top-series-clinchers-in-baseball-history",
-        "contentDate": "2026-08-10T15:20:54.386Z",
-        "teamIds": [],
-        "playerIds": [],
-        "taxonomy": [
-            "apple-news",
-            "rankings"
-        ]
-    },
-    {
-        "headline": "Two Dodgers trailblazers got their start in a tiny town in New Hampshire",
-        "summaryJa": "MLB公式がDon Newcombe（LAD）について報じた。",
-        "slug": "dodgers-don-newcombe-roy-campanella-bonded-as-minor-league-teammates",
-        "url": "https://www.mlb.com/news/dodgers-don-newcombe-roy-campanella-bonded-as-minor-league-teammates",
-        "contentDate": "2026-06-29T22:39:00Z",
-        "teamIds": [
-            119
-        ],
-        "playerIds": [
-            119733,
-            111915
-        ],
-        "taxonomy": [
-            "minor-league-baseball",
-            "history",
-            "apple-news",
-            "50-stories-50-states"
-        ]
-    },
-    {
-        "headline": "MLB's highest-scoring offense is also its all-time youngest",
-        "summaryJa": "MLB公式がナショナルズについて報じた。",
-        "slug": "2026-nationals-have-youngest-lineup-ever",
-        "url": "https://www.mlb.com/news/2026-nationals-have-youngest-lineup-ever",
-        "contentDate": "2026-08-10T04:00:00Z",
-        "teamIds": [
-            120
-        ],
-        "playerIds": [],
-        "taxonomy": [
-            "savant",
-            "apple-news"
-        ]
-    },
-    {
-        "headline": "Rangers place Eovaldi on IL with elbow inflammation",
-        "summaryJa": "MLB公式がN.イバルディ（TEX）について報じた。",
-        "slug": "nathan-eovaldi-elbow-inflammation-injured-list",
-        "url": "https://www.mlb.com/news/nathan-eovaldi-elbow-inflammation-injured-list",
-        "contentDate": "2026-08-11T00:48:00Z",
-        "teamIds": [
-            140
-        ],
-        "playerIds": [
-            543135
         ],
         "taxonomy": [
             "apple-news",
