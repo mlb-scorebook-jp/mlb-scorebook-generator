@@ -18,22 +18,6 @@
         ]
     },
     {
-        "headline": "Skubal gets 'nerves' in 1st LA start as Dodger: 'This one was special to me'",
-        "summaryJa": "T.スクーバル（LAD）、ドジャー・スタジアムで移籍後初先発へ",
-        "slug": "tarik-skubal-dodger-stadium-debut-with-dodgers",
-        "url": "https://www.mlb.com/news/tarik-skubal-dodger-stadium-debut-with-dodgers",
-        "contentDate": "2026-08-11T06:32:00Z",
-        "teamIds": [
-            119
-        ],
-        "playerIds": [
-            669373
-        ],
-        "taxonomy": [
-            "apple-news"
-        ]
-    },
-    {
         "headline": "Predicting this year's All-MLB Teams",
         "summaryJa": "MLB公式がMLBの最新情報について報じた。",
         "slug": "all-mlb-team-predictions-for-august-2026",
@@ -47,29 +31,114 @@
         ]
     },
     {
-        "headline": "With 1 week of hindsight, MLB execs recap a frenzied Trade Deadline",
-        "summaryJa": "MLB公式がMLBの最新情報について報じた。",
-        "slug": "2026-trade-deadline-recap-from-mlb-executives",
-        "url": "https://www.mlb.com/news/2026-trade-deadline-recap-from-mlb-executives",
-        "contentDate": "2026-08-11T04:49:15.459Z",
-        "teamIds": [],
-        "playerIds": [],
-        "taxonomy": [
-            "trade-deadline",
-            "apple-news"
-        ]
-    },
-    {
         "headline": "Watch MiLB at Field of Dreams tonight on MLB Network (7:30 ET)",
         "summaryJa": "MLB公式がMLBの最新情報について報じた。",
         "slug": "milb-at-field-of-dreams-game-2026",
         "url": "https://www.mlb.com/news/milb-at-field-of-dreams-game-2026",
-        "contentDate": "2026-08-11T16:20:00Z",
+        "contentDate": "2026-08-11T20:10:00Z",
         "teamIds": [],
         "playerIds": [],
         "taxonomy": [
             "field-of-dreams",
             "mlb-top-prospects",
+            "apple-news"
+        ]
+    },
+    {
+        "headline": "Snell returning from IL for first start since May 9",
+        "summaryJa": "MLB公式がB.スネル（LAD）について報じた。",
+        "slug": "blake-snell-set-to-return-from-il-to-face-royals",
+        "url": "https://www.mlb.com/news/blake-snell-set-to-return-from-il-to-face-royals",
+        "contentDate": "2026-08-11T04:16:00Z",
+        "teamIds": [
+            119
+        ],
+        "playerIds": [
+            605483
+        ],
+        "taxonomy": [
+            "apple-news",
+            "injury"
+        ]
+    },
+    {
+        "headline": "Yankees' Triple-A team to announce new name for 2027",
+        "summaryJa": "MLB公式がMLBの最新情報について報じた。",
+        "slug": "swb-railriders-to-change-name",
+        "url": "https://www.mlb.com/news/swb-railriders-to-change-name",
+        "contentDate": "2026-08-11T17:03:03.221Z",
+        "teamIds": [],
+        "playerIds": [],
+        "taxonomy": [
+            "minor-league-baseball",
+            "apple-news",
+            "baseball-traveler"
+        ]
+    },
+    {
+        "headline": "Angels relieve pitching coaches Maddux, Chiti, Scott of duties",
+        "summaryJa": "MLB公式がエンゼルスについて報じた。",
+        "slug": "angels-dismiss-mike-maddux-dom-chiti-darryl-scott",
+        "url": "https://www.mlb.com/news/angels-dismiss-mike-maddux-dom-chiti-darryl-scott",
+        "contentDate": "2026-08-11T19:44:00Z",
+        "teamIds": [
+            108
+        ],
+        "playerIds": [],
+        "taxonomy": [
+            "apple-news"
+        ]
+    },
+    {
+        "headline": "Red Sox set to activate Deadline prize Rutschman on Tuesday",
+        "summaryJa": "A.ラッチマン（BOS）、次のブルージェイズ戦で移籍後初出場へ",
+        "slug": "adley-rutschman-eyeing-red-sox-debut-in-toronto",
+        "url": "https://www.mlb.com/news/adley-rutschman-eyeing-red-sox-debut-in-toronto",
+        "contentDate": "2026-08-11T04:09:00Z",
+        "teamIds": [
+            111
+        ],
+        "playerIds": [
+            668939
+        ],
+        "taxonomy": [
+            "apple-news",
+            "rehab",
+            "injury"
+        ]
+    },
+    {
+        "headline": "Blue Jays place Taillon (right forearm tendinitis) on IL, recall Chase Lee",
+        "summaryJa": "MLB公式がJ.タイオン（TOR）について報じた。",
+        "slug": "jameson-taillon-to-injured-list-with-right-forearm-tendinitis",
+        "url": "https://www.mlb.com/news/jameson-taillon-to-injured-list-with-right-forearm-tendinitis",
+        "contentDate": "2026-08-11T19:45:30.503Z",
+        "teamIds": [
+            141
+        ],
+        "playerIds": [
+            592791
+        ],
+        "taxonomy": [
+            "apple-news",
+            "injury"
+        ]
+    },
+    {
+        "headline": "Stowers placed on 10-day IL with left hamstring strain",
+        "summaryJa": "MLB公式がK.ストワーズ（MIA）について報じた。",
+        "slug": "kyle-stowers-placed-on-injured-list-with-left-hamstring-strain",
+        "url": "https://www.mlb.com/news/kyle-stowers-placed-on-injured-list-with-left-hamstring-strain",
+        "contentDate": "2026-08-11T19:02:58.514Z",
+        "teamIds": [
+            146
+        ],
+        "playerIds": [
+            669065
+        ],
+        "taxonomy": [
+            "injury",
+            "transactions",
             "apple-news"
         ]
     },
@@ -92,17 +161,32 @@
         ]
     },
     {
-        "headline": "Yankees' Triple-A team to announce new name for 2027",
+        "headline": "Skubal gets 'nerves' in 1st LA start as Dodger: 'This one was special to me'",
+        "summaryJa": "T.スクーバル（LAD）、ドジャー・スタジアムで移籍後初先発へ",
+        "slug": "tarik-skubal-dodger-stadium-debut-with-dodgers",
+        "url": "https://www.mlb.com/news/tarik-skubal-dodger-stadium-debut-with-dodgers",
+        "contentDate": "2026-08-11T06:32:00Z",
+        "teamIds": [
+            119
+        ],
+        "playerIds": [
+            669373
+        ],
+        "taxonomy": [
+            "apple-news"
+        ]
+    },
+    {
+        "headline": "With 1 week of hindsight, MLB execs recap a frenzied Trade Deadline",
         "summaryJa": "MLB公式がMLBの最新情報について報じた。",
-        "slug": "swb-railriders-to-change-name",
-        "url": "https://www.mlb.com/news/swb-railriders-to-change-name",
-        "contentDate": "2026-08-11T17:03:03.221Z",
+        "slug": "2026-trade-deadline-recap-from-mlb-executives",
+        "url": "https://www.mlb.com/news/2026-trade-deadline-recap-from-mlb-executives",
+        "contentDate": "2026-08-11T04:49:15.459Z",
         "teamIds": [],
         "playerIds": [],
         "taxonomy": [
-            "minor-league-baseball",
-            "apple-news",
-            "baseball-traveler"
+            "trade-deadline",
+            "apple-news"
         ]
     },
     {
@@ -208,22 +292,14 @@
         ]
     },
     {
-        "headline": "Red Sox set to activate Deadline prize Rutschman on Tuesday",
-        "summaryJa": "A.ラッチマン（BOS）、次のブルージェイズ戦で移籍後初出場へ",
-        "slug": "adley-rutschman-eyeing-red-sox-debut-in-toronto",
-        "url": "https://www.mlb.com/news/adley-rutschman-eyeing-red-sox-debut-in-toronto",
-        "contentDate": "2026-08-11T04:09:00Z",
-        "teamIds": [
-            111
-        ],
-        "playerIds": [
-            668939
-        ],
-        "taxonomy": [
-            "apple-news",
-            "rehab",
-            "injury"
-        ]
+        "headline": "Baseball’s competitive balance issue, explained",
+        "summaryJa": "MLBの戦力均衡を巡る現状と課題を解説",
+        "slug": "mlb-competitive-balance-issue-explained",
+        "url": "https://www.mlb.com/news/mlb-competitive-balance-issue-explained",
+        "contentDate": "2026-06-21T00:15:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "taxonomy": []
     },
     {
         "headline": "Did a midseason reinvention give the White Sox another ace reliever?",
@@ -295,14 +371,18 @@
         ]
     },
     {
-        "headline": "Baseball’s competitive balance issue, explained",
-        "summaryJa": "MLBの戦力均衡を巡る現状と課題を解説",
-        "slug": "mlb-competitive-balance-issue-explained",
-        "url": "https://www.mlb.com/news/mlb-competitive-balance-issue-explained",
-        "contentDate": "2026-06-21T00:15:00Z",
+        "headline": "Movers of Series 1: Klingler, Brown and Ricketts earn Series 2 captain spots",
+        "summaryJa": "MLB公式がMLBの最新情報について報じた。",
+        "slug": "baylee-klingler-kenzie-brown-keilani-ricketts-captains-for-ausl-cup-series-two",
+        "url": "https://www.mlb.com/news/baylee-klingler-kenzie-brown-keilani-ricketts-captains-for-ausl-cup-series-two",
+        "contentDate": "2026-08-11T18:12:19.911Z",
         "teamIds": [],
         "playerIds": [],
-        "taxonomy": []
+        "taxonomy": [
+            "leagueid-6044",
+            "apple-news",
+            "athletes-unlimited-softball-league"
+        ]
     },
     {
         "headline": "Gore strikes out nine in first start after welcoming daughter",
@@ -420,97 +500,6 @@
         "taxonomy": [
             "apple-news",
             "injury"
-        ]
-    },
-    {
-        "headline": "Soroka sharp in IL return, while D-backs unconcerned about Perdomo (knee)",
-        "summaryJa": "MLB公式がG.ペルドモ（AZ）について報じた。",
-        "slug": "michael-soroka-returns-from-il-geraldo-perdomo-injures-knee",
-        "url": "https://www.mlb.com/news/michael-soroka-returns-from-il-geraldo-perdomo-injures-knee",
-        "contentDate": "2026-08-11T05:51:00Z",
-        "teamIds": [
-            109
-        ],
-        "playerIds": [
-            672695,
-            647336
-        ],
-        "taxonomy": [
-            "apple-news",
-            "injury",
-            "game-recap"
-        ]
-    },
-    {
-        "headline": "Buxton (hip) could return by weekend; Ryan tosses on flat ground",
-        "summaryJa": "MLB公式がB.バクストン（MIN）について報じた。",
-        "slug": "byron-buxton-takes-on-field-batting-practice-runs-bases-for-first-time",
-        "url": "https://www.mlb.com/news/byron-buxton-takes-on-field-batting-practice-runs-bases-for-first-time",
-        "contentDate": "2026-08-11T00:09:00Z",
-        "teamIds": [
-            142
-        ],
-        "playerIds": [
-            621439,
-            657746
-        ],
-        "taxonomy": [
-            "apple-news"
-        ]
-    },
-    {
-        "headline": "Strider (elbow), Waldrep (arm discomfort) cleared to begin throwing",
-        "summaryJa": "MLB公式がS.ストライダー（ATL）について報じた。",
-        "slug": "spencer-strider-hurston-waldrep-cleared-to-begin-throwing",
-        "url": "https://www.mlb.com/news/spencer-strider-hurston-waldrep-cleared-to-begin-throwing",
-        "contentDate": "2026-08-11T00:20:00Z",
-        "teamIds": [
-            144
-        ],
-        "playerIds": [
-            675911,
-            694462
-        ],
-        "taxonomy": [
-            "apple-news",
-            "injury",
-            "rehab"
-        ]
-    },
-    {
-        "headline": "'Best I've felt in the last two years': Musgrove making strides after latest rehab outing",
-        "summaryJa": "MLB公式がJ.マズグローブ（SD）について報じた。",
-        "slug": "joe-musgrove-discusses-injury-rehab-progress",
-        "url": "https://www.mlb.com/news/joe-musgrove-discusses-injury-rehab-progress",
-        "contentDate": "2026-08-11T01:10:53.95Z",
-        "teamIds": [
-            135
-        ],
-        "playerIds": [
-            605397
-        ],
-        "taxonomy": [
-            "apple-news",
-            "rehab",
-            "injury"
-        ]
-    },
-    {
-        "headline": "Kilian heads to IL with moderate left oblique strain, out 'for a while'",
-        "summaryJa": "MLB公式がC.キリアン（PHI）について報じた。",
-        "slug": "caleb-kilian-placed-on-injured-list-with-left-oblique-strain",
-        "url": "https://www.mlb.com/news/caleb-kilian-placed-on-injured-list-with-left-oblique-strain",
-        "contentDate": "2026-08-10T23:34:36.933Z",
-        "teamIds": [
-            143
-        ],
-        "playerIds": [
-            668873
-        ],
-        "taxonomy": [
-            "apple-news",
-            "injury",
-            "transactions"
         ]
     }
 ]);
