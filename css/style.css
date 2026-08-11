@@ -245,6 +245,7 @@ select {
 }
 
 .header-game-search {
+    position: relative;
     min-width: 0;
     display: flex;
     flex: 1 1 auto;
@@ -252,6 +253,78 @@ select {
     justify-content: flex-end;
     gap: 8px;
 }
+
+.header-search-tabs,
+.header-search-panel {
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+}
+
+.header-search-tabs {
+    align-self: flex-end;
+    gap: 3px;
+}
+
+.header-search-panel {
+    position: absolute;
+    z-index: 70;
+    top: calc(100% + 8px);
+    right: 0;
+    padding: 12px;
+    border: 1px solid #4b5861;
+    background: #182025;
+    box-shadow: 0 8px 22px rgb(0 0 0 / 38%);
+}
+
+.header-search-tab {
+    min-height: 34px;
+    padding: 0 12px;
+    color: #e5ebee;
+    border: 1px solid #687985;
+    border-radius: 2px;
+    background: linear-gradient(180deg, #35414a 0%, #252e35 100%);
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 8%), 0 1px 2px rgb(0 0 0 / 30%);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.025em;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.header-search-tab::before {
+    content: "⌕";
+    display: inline-block;
+    margin-right: 6px;
+    color: #c7dce5;
+    font-size: 14px;
+    line-height: 1;
+    vertical-align: -1px;
+}
+
+.header-search-tab:hover,
+.header-search-tab:focus-visible {
+    color: #fff;
+    border-color: #91a8b5;
+    background: linear-gradient(180deg, #44535d 0%, #303b43 100%);
+}
+
+.header-search-tab.is-active {
+    color: #fff;
+    border-color: #a1bac6;
+    background: linear-gradient(180deg, #4b5c66 0%, #34414a 100%);
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 12%), 0 2px 4px rgb(0 0 0 / 35%);
+}
+
+.header-search-panel[hidden],
+.player-search-results[hidden] {
+    display: none !important;
+}
+
+.player-team-field select,
+.player-name-field select { width: 180px; }
+.player-record-field select { width: 88px; }
+.player-condition-field select { width: 96px; }
 
 .header-search-purpose {
     align-self: flex-end;
@@ -327,7 +400,8 @@ select {
     background: #1b2227;
 }
 
-#header-game-search-btn {
+#header-game-search-btn,
+#player-search-btn {
     height: 29px;
     padding: 0 12px;
     color: #edf1f3;
@@ -340,18 +414,62 @@ select {
 }
 
 #header-game-search-btn:hover,
-#header-game-search-btn:focus-visible {
+#header-game-search-btn:focus-visible,
+#player-search-btn:hover,
+#player-search-btn:focus-visible {
     border-color: #89a3af;
     background: linear-gradient(180deg, #46535c 0%, #2c353c 100%);
 }
 
 #header-game-search-btn:disabled,
+#player-search-btn:disabled,
 .header-search-field select:disabled {
     color: #9aa5ac;
     -webkit-text-fill-color: #9aa5ac;
     cursor: wait;
     opacity: 0.55;
 }
+
+.player-search-results {
+    position: absolute;
+    z-index: 80;
+    top: calc(100% + 6px);
+    right: 0;
+    width: min(680px, calc(100vw - 24px));
+    max-height: 420px;
+    overflow-y: auto;
+    border: 1px solid #4b5861;
+    background: #182025;
+    box-shadow: 0 8px 22px rgb(0 0 0 / 38%);
+}
+
+.player-search-results-heading,
+.player-search-empty {
+    margin: 0;
+    padding: 9px 12px;
+    color: #c9d1d5;
+    font-size: 11px;
+}
+
+.player-search-result {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 105px minmax(130px, 1fr) 110px 55px;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 12px;
+    color: #e8edef;
+    border: 0;
+    border-top: 1px solid #374149;
+    background: transparent;
+    text-align: left;
+    cursor: pointer;
+}
+
+.player-search-result:hover,
+.player-search-result:focus-visible { background: #263139; }
+.player-result-value { color: #fff; }
+.player-result-side { color: #8f9ba2; font-size: 9px; text-align: right; }
 
 @media (max-width: 980px) {
     .header-game-search {
@@ -728,6 +846,36 @@ body.app-mode-pregame .pregame-brand-home {
 .sidebar button.active {
     border-color: #87aebe;
     background: linear-gradient(180deg, #42525d 0%, #303c45 100%);
+}
+
+#generate-btn {
+    position: relative;
+    min-height: 46px;
+    padding: 0 34px 0 14px;
+    color: #fff;
+    border-color: #7d949f;
+    background: linear-gradient(180deg, #465660 0%, #303b43 100%);
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 10%), 0 2px 4px rgb(0 0 0 / 28%);
+    font-size: 13px;
+    letter-spacing: 0.04em;
+}
+
+#generate-btn::after {
+    content: "›";
+    position: absolute;
+    top: 50%;
+    right: 14px;
+    color: #d6e5eb;
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 1;
+    transform: translateY(-53%);
+}
+
+#generate-btn:hover,
+#generate-btn:focus-visible {
+    border-color: #a8bec8;
+    background: linear-gradient(180deg, #566872 0%, #394750 100%);
 }
 
 .sidebar hr {
@@ -2559,6 +2707,29 @@ body:not(.app-mode-home):not(.app-mode-pregame) .viewer {
         border-top: 1px solid #374149;
     }
 
+    body:not(.app-mode-home):not(.app-mode-pregame) .header-search-tabs {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    body:not(.app-mode-home):not(.app-mode-pregame) .header-search-tab {
+        min-height: 44px;
+    }
+
+    body:not(.app-mode-home):not(.app-mode-pregame) .header-search-panel {
+        position: static;
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr;
+        align-items: stretch;
+        gap: 8px;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        box-shadow: none;
+    }
+
     body:not(.app-mode-home):not(.app-mode-pregame) .header-search-purpose {
         align-self: auto;
         margin: 0;
@@ -2568,15 +2739,30 @@ body:not(.app-mode-home):not(.app-mode-pregame) .viewer {
 
     body:not(.app-mode-home):not(.app-mode-pregame) .header-search-field,
     body:not(.app-mode-home):not(.app-mode-pregame) .header-search-field select,
-    body:not(.app-mode-home):not(.app-mode-pregame) #header-game-search-btn {
+    body:not(.app-mode-home):not(.app-mode-pregame) #header-game-search-btn,
+    body:not(.app-mode-home):not(.app-mode-pregame) #player-search-btn {
         width: 100%;
         min-width: 0;
     }
 
     body:not(.app-mode-home):not(.app-mode-pregame) .header-search-field select,
-    body:not(.app-mode-home):not(.app-mode-pregame) #header-game-search-btn {
+    body:not(.app-mode-home):not(.app-mode-pregame) #header-game-search-btn,
+    body:not(.app-mode-home):not(.app-mode-pregame) #player-search-btn {
         min-height: 44px;
     }
+
+    body:not(.app-mode-home):not(.app-mode-pregame) .player-search-results {
+        position: static;
+        width: 100%;
+        max-height: none;
+        box-shadow: none;
+    }
+
+    body:not(.app-mode-home):not(.app-mode-pregame) .player-search-result {
+        grid-template-columns: 88px minmax(90px, 1fr) 90px;
+    }
+
+    body:not(.app-mode-home):not(.app-mode-pregame) .player-result-side { display: none; }
 
     body:not(.app-mode-home):not(.app-mode-pregame) .viewer {
         width: 100%;

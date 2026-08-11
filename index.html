@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MLB Scorebook Generator</title>
     <!-- Score notation update: stacked batted-ball symbol, red hits, blue strikeouts, black other results. -->
-    <link rel="stylesheet" href="css/style.css?v=20260810-11">
+    <link rel="stylesheet" href="css/style.css?v=20260811-14">
     <link rel="stylesheet" href="css/pregame.css?v=20260811-8">
 </head>
 
@@ -28,32 +28,58 @@
         </div>
 
         <section class="header-game-search" aria-label="試合検索">
-            <span class="header-search-purpose">過去の試合を検索</span>
-            <label class="header-search-field header-year-field">
-                <span>YEAR</span>
-                <select id="header-game-year" aria-label="検索シーズン">
-                    <option value="">選択</option>
-                </select>
-            </label>
-            <label class="header-search-field">
-                <span>TEAM 1</span>
-                <select id="header-home-team" aria-label="検索チーム1">
-                    <option value="">選択</option>
-                </select>
-            </label>
-            <label class="header-search-field">
-                <span>TEAM 2</span>
-                <select id="header-away-team" aria-label="検索チーム2">
-                    <option value="">選択</option>
-                </select>
-            </label>
-            <label class="header-search-field header-date-field">
-                <span>DATE</span>
-                <select id="header-game-date" aria-label="試合日">
-                    <option value="">選択</option>
-                </select>
-            </label>
-            <button type="button" id="header-game-search-btn">試合データを取得</button>
+            <div class="header-search-tabs" role="tablist" aria-label="検索方法">
+                <button type="button" class="header-search-tab" id="matchup-search-tab" role="tab" aria-selected="false" aria-expanded="false" aria-controls="matchup-search-panel">過去の試合を検索</button>
+                <button type="button" class="header-search-tab" id="player-search-tab" role="tab" aria-selected="false" aria-expanded="false" aria-controls="player-search-panel">選手名で検索</button>
+            </div>
+            <div class="header-search-panel" id="matchup-search-panel" role="tabpanel" aria-labelledby="matchup-search-tab" hidden>
+                <label class="header-search-field header-year-field">
+                    <span>YEAR</span>
+                    <select id="header-game-year" aria-label="検索シーズン"><option value="">選択</option></select>
+                </label>
+                <label class="header-search-field">
+                    <span>TEAM 1</span>
+                    <select id="header-home-team" aria-label="検索チーム1"><option value="">選択</option></select>
+                </label>
+                <label class="header-search-field">
+                    <span>TEAM 2</span>
+                    <select id="header-away-team" aria-label="検索チーム2"><option value="">選択</option></select>
+                </label>
+                <label class="header-search-field header-date-field">
+                    <span>DATE</span>
+                    <select id="header-game-date" aria-label="試合日"><option value="">選択</option></select>
+                </label>
+                <button type="button" id="header-game-search-btn">試合データを取得</button>
+            </div>
+            <div class="header-search-panel player-search-panel" id="player-search-panel" role="tabpanel" aria-labelledby="player-search-tab" hidden>
+                <label class="header-search-field header-year-field">
+                    <span>YEAR</span>
+                    <select id="player-search-year" aria-label="選手検索シーズン"><option value="">選択</option></select>
+                </label>
+                <label class="header-search-field player-team-field">
+                    <span>TEAM</span>
+                    <select id="player-search-team" aria-label="選手検索チーム"><option value="">選択</option></select>
+                </label>
+                <label class="header-search-field player-name-field">
+                    <span>PLAYER</span>
+                    <select id="player-search-player" aria-label="検索選手"><option value="">選択</option></select>
+                </label>
+                <label class="header-search-field player-record-field">
+                    <span>記録</span>
+                    <select id="player-search-record" aria-label="検索記録">
+                        <option value="homeRuns">本塁打</option><option value="triples">三塁打</option><option value="doubles">二塁打</option><option value="singles">単打</option><option value="stolenBases">盗塁</option>
+                    </select>
+                </label>
+                <label class="header-search-field player-condition-field">
+                    <span>条件</span>
+                    <select id="player-search-condition" aria-label="検索条件">
+                        <option value="gte:1">1以上</option><option value="gte:2">2以上</option><option value="gte:3">3以上</option><option value="gte:4">4以上</option>
+                        <option value="eq:1">ちょうど1</option><option value="eq:2">ちょうど2</option><option value="eq:3">ちょうど3</option><option value="eq:4">ちょうど4</option>
+                    </select>
+                </label>
+                <button type="button" id="player-search-btn">検索</button>
+                <section class="player-search-results" id="player-search-results" aria-live="polite" hidden></section>
+            </div>
         </section>
 
         <div class="version">Ver. 2.3.2</div>
@@ -510,6 +536,17 @@
                 searchAwayTeam: document.getElementById("header-away-team"),
                 searchGameDate: document.getElementById("header-game-date"),
                 searchGameButton: document.getElementById("header-game-search-btn"),
+                matchupSearchTab: document.getElementById("matchup-search-tab"),
+                playerSearchTab: document.getElementById("player-search-tab"),
+                matchupSearchPanel: document.getElementById("matchup-search-panel"),
+                playerSearchPanel: document.getElementById("player-search-panel"),
+                playerSearchYear: document.getElementById("player-search-year"),
+                playerSearchTeam: document.getElementById("player-search-team"),
+                playerSearchPlayer: document.getElementById("player-search-player"),
+                playerSearchRecord: document.getElementById("player-search-record"),
+                playerSearchCondition: document.getElementById("player-search-condition"),
+                playerSearchButton: document.getElementById("player-search-btn"),
+                playerSearchResults: document.getElementById("player-search-results"),
                 todayGamesControl: document.getElementById("today-games-control"),
                 todayGamesToggle: document.getElementById("today-games-toggle"),
                 todayGamesPanel: document.getElementById("today-games-panel"),
@@ -1137,6 +1174,8 @@
             const gameSearchCache = new Map();
             const seasonSearchCache = new Map();
             const seasonTeamSearchCache = new Map();
+            const teamSeasonHitterCache = new Map();
+            const seasonPlayerListCache = new Map();
             const officialGameArticlesCache = new Map();
             let allTimeStrikeoutLeadersRequest = null;
 
@@ -6084,27 +6123,259 @@
                 }
                 dom.gameInput.value = String(game.gamePk);
                 await loadGame();
+                setHeaderSearchMode(null);
+            };
+
+            const JAPANESE_PLAYER_TEAM_VALUE = "japanese";
+            const PLAYER_RECORD_DEFINITIONS = Object.freeze({
+                homeRuns: { label: "本塁打", field: "homeRuns" },
+                triples: { label: "三塁打", field: "triples" },
+                doubles: { label: "二塁打", field: "doubles" },
+                singles: { label: "単打", field: "singles" },
+                stolenBases: { label: "盗塁", field: "stolenBases" }
+            });
+
+            const isHitterPosition = (position) => {
+                const abbreviation = String(position?.abbreviation ?? "").toUpperCase();
+                const type = String(position?.type ?? "").toLowerCase();
+                return abbreviation === "TWP" || (abbreviation !== "P" && type !== "pitcher");
+            };
+
+            const fetchTeamSeasonHitters = async (teamId, season) => {
+                const cacheKey = `team-player-list:${teamId}:${season}`;
+                if (teamSeasonHitterCache.has(cacheKey)) return teamSeasonHitterCache.get(cacheKey);
+                const params = new URLSearchParams({
+                    stats: "season", group: "hitting", season: String(season),
+                    gameType: "R", teamId: String(teamId), playerPool: "ALL", hydrate: "person"
+                });
+                const request = fetch(`https://statsapi.mlb.com/api/v1/stats?${params}`)
+                    .then(async (response) => {
+                        if (!response.ok) throw new Error("野手一覧を取得できません。");
+                        const payload = await response.json();
+                        const players = new Map();
+                        (payload?.stats?.[0]?.splits ?? []).forEach((split) => {
+                            const person = split?.player;
+                            if (!Number(person?.id) || Number(split?.stat?.gamesPlayed) <= 0 ||
+                                !isHitterPosition(split?.position)) return;
+                            players.set(Number(person.id), {
+                                person,
+                                position: split.position,
+                                team: split.team
+                            });
+                        });
+                        return [...players.values()];
+                    });
+                teamSeasonHitterCache.set(cacheKey, request);
+                return request;
+            };
+
+            const fetchJapaneseSeasonHitters = async (season) => {
+                const cacheKey = `japanese-player-list:${season}`;
+                if (seasonPlayerListCache.has(cacheKey)) return seasonPlayerListCache.get(cacheKey);
+                const request = fetch(`https://statsapi.mlb.com/api/v1/sports/1/players?season=${season}`)
+                    .then(async (response) => {
+                        if (!response.ok) throw new Error("日本人選手一覧を取得できません。");
+                        const payload = await response.json();
+                        return (payload?.people ?? [])
+                            .filter((person) => String(person?.birthCountry ?? "").toLowerCase() === "japan")
+                            .filter((person) => isHitterPosition(person?.primaryPosition))
+                            .map((person) => ({ person, position: person.primaryPosition, team: null }));
+                    });
+                seasonPlayerListCache.set(cacheKey, request);
+                return request;
+            };
+
+            const getPlayerSearchSeason = () => Number(dom.playerSearchYear.value) || new Date().getFullYear();
+
+            const setPlayerSearchTeamOptions = (teams) => {
+                const previous = dom.playerSearchTeam.value;
+                dom.playerSearchTeam.replaceChildren(createElement("option", "", "選択"));
+                dom.playerSearchTeam.firstElementChild.value = "";
+                const japanese = createElement("option", "", "日本人選手");
+                japanese.value = JAPANESE_PLAYER_TEAM_VALUE;
+                dom.playerSearchTeam.append(japanese);
+                const currentNames = new Map(MLB_TEAM_SEARCH_OPTIONS.map((team) => [Number(team.id), team.name]));
+                teams.forEach((team) => {
+                    const option = createElement("option", "", currentNames.get(Number(team.id)) || team.name);
+                    option.value = String(team.id);
+                    dom.playerSearchTeam.append(option);
+                });
+                if ([...dom.playerSearchTeam.options].some((option) => option.value === previous)) {
+                    dom.playerSearchTeam.value = previous;
+                }
+            };
+
+            const resetPlayerResults = () => {
+                dom.playerSearchResults.hidden = true;
+                dom.playerSearchResults.replaceChildren();
+            };
+
+            const setPlayerSearchBusy = (busy) => {
+                [dom.playerSearchYear, dom.playerSearchTeam, dom.playerSearchPlayer,
+                    dom.playerSearchRecord, dom.playerSearchCondition, dom.playerSearchButton]
+                    .forEach((control) => { control.disabled = busy; });
+            };
+
+            const refreshPlayerSearchTeams = async () => {
+                setPlayerSearchBusy(true);
+                resetPlayerResults();
+                dom.playerSearchPlayer.replaceChildren(createElement("option", "", "TEAMを選択"));
+                dom.playerSearchPlayer.firstElementChild.value = "";
+                try {
+                    setPlayerSearchTeamOptions(await fetchSearchTeamsForSeason(getPlayerSearchSeason()));
+                } catch (error) {
+                    console.error(error);
+                    setPlayerSearchTeamOptions([]);
+                    setStatus(error.message || "球団一覧を取得できません。", true);
+                } finally {
+                    setPlayerSearchBusy(false);
+                }
+            };
+
+            const refreshPlayerSearchPlayers = async () => {
+                const teamValue = dom.playerSearchTeam.value;
+                resetPlayerResults();
+                dom.playerSearchPlayer.replaceChildren(createElement("option", "", teamValue ? "取得中…" : "TEAMを選択"));
+                dom.playerSearchPlayer.firstElementChild.value = "";
+                if (!teamValue) return;
+                setPlayerSearchBusy(true);
+                try {
+                    const players = teamValue === JAPANESE_PLAYER_TEAM_VALUE
+                        ? await fetchJapaneseSeasonHitters(getPlayerSearchSeason())
+                        : await fetchTeamSeasonHitters(Number(teamValue), getPlayerSearchSeason());
+                    players.sort((a, b) => getPersonName(a.person).localeCompare(getPersonName(b.person), "ja"));
+                    dom.playerSearchPlayer.replaceChildren(createElement("option", "", "選択"));
+                    dom.playerSearchPlayer.firstElementChild.value = "";
+                    players.forEach(({ person, position }) => {
+                        const positionLabel = String(position?.abbreviation ?? "");
+                        const option = createElement("option", "", `${getPersonName(person)}${positionLabel ? ` / ${positionLabel}` : ""}`);
+                        option.value = String(person.id);
+                        dom.playerSearchPlayer.append(option);
+                    });
+                    if (!players.length) setStatus("該当年に野手が見つかりません。", true);
+                } catch (error) {
+                    console.error(error);
+                    dom.playerSearchPlayer.replaceChildren(createElement("option", "", "取得失敗"));
+                    setStatus(error.message || "野手一覧を取得できません。", true);
+                } finally {
+                    setPlayerSearchBusy(false);
+                }
+            };
+
+            const getPlayerGameStat = (stat, field) => {
+                if (field !== "singles") return Number(stat?.[field]) || 0;
+                return Math.max(0, (Number(stat?.hits) || 0) - (Number(stat?.doubles) || 0) -
+                    (Number(stat?.triples) || 0) - (Number(stat?.homeRuns) || 0));
+            };
+
+            const renderPlayerSearchResults = (matches, definition) => {
+                dom.playerSearchResults.replaceChildren();
+                dom.playerSearchResults.hidden = false;
+                const heading = createElement("div", "player-search-results-heading", `該当 ${matches.length}試合`);
+                dom.playerSearchResults.append(heading);
+                if (!matches.length) {
+                    dom.playerSearchResults.append(createElement("p", "player-search-empty", "該当する試合はありません。"));
+                    return;
+                }
+                const dateCounts = matches.reduce((map, item) => map.set(item.date, (map.get(item.date) || 0) + 1), new Map());
+                matches.forEach((item) => {
+                    const button = createElement("button", "player-search-result");
+                    button.type = "button";
+                    button.dataset.playerGamePk = String(item.gamePk);
+                    const gameSuffix = dateCounts.get(item.date) > 1 || item.gameNumber > 1 ? ` Game ${item.gameNumber}` : "";
+                    button.append(
+                        createElement("span", "player-result-date", `${formatSearchDate(item.date)}${gameSuffix}`),
+                        createElement("span", "player-result-opponent", `${item.isHome ? "vs." : "@"} ${item.opponent}`),
+                        createElement("strong", "player-result-value", `${item.value}${definition.label}`),
+                        createElement("span", "player-result-side", item.isHome ? "HOME" : "AWAY")
+                    );
+                    dom.playerSearchResults.append(button);
+                });
+            };
+
+            const searchPlayerGames = async () => {
+                const playerId = Number(dom.playerSearchPlayer.value);
+                const definition = PLAYER_RECORD_DEFINITIONS[dom.playerSearchRecord.value];
+                const [operator, thresholdText] = dom.playerSearchCondition.value.split(":");
+                const threshold = Number(thresholdText);
+                if (!playerId || !definition || !threshold) {
+                    setStatus("YEAR・TEAM・PLAYER・記録・条件を選択してください。", true);
+                    return;
+                }
+                setPlayerSearchBusy(true);
+                resetPlayerResults();
+                try {
+                    const splits = await fetchPlayerRegularSeasonGameLog(playerId, getPlayerSearchSeason(), "hitting");
+                    const matches = splits.map((split) => {
+                        const value = getPlayerGameStat(split?.stat, definition.field);
+                        return {
+                            value,
+                            gamePk: Number(split?.game?.gamePk),
+                            date: String(split?.date ?? split?.game?.gameDate ?? "").slice(0, 10),
+                            opponent: String(split?.opponent?.abbreviation ?? split?.opponent?.name ?? "—"),
+                            isHome: Boolean(split?.isHome),
+                            gameNumber: Number(split?.game?.gameNumber) || 1
+                        };
+                    }).filter((item) => item.gamePk && item.date &&
+                        (operator === "eq" ? item.value === threshold : item.value >= threshold))
+                        .sort((a, b) => b.date.localeCompare(a.date) || b.gameNumber - a.gameNumber);
+                    renderPlayerSearchResults(matches, definition);
+                } catch (error) {
+                    console.error(error);
+                    renderPlayerSearchResults([], definition);
+                    setStatus("選手のゲームログを取得できません。", true);
+                } finally {
+                    setPlayerSearchBusy(false);
+                }
+            };
+
+            const setHeaderSearchMode = (mode) => {
+                const matchupMode = mode === "matchup";
+                const playerMode = mode === "player";
+                dom.matchupSearchTab.classList.toggle("is-active", matchupMode);
+                dom.playerSearchTab.classList.toggle("is-active", playerMode);
+                dom.matchupSearchTab.setAttribute("aria-selected", String(matchupMode));
+                dom.playerSearchTab.setAttribute("aria-selected", String(playerMode));
+                dom.matchupSearchTab.setAttribute("aria-expanded", String(matchupMode));
+                dom.playerSearchTab.setAttribute("aria-expanded", String(playerMode));
+                dom.matchupSearchPanel.hidden = !matchupMode;
+                dom.playerSearchPanel.hidden = !playerMode;
+            };
+
+            const getOpenHeaderSearchMode = () => {
+                if (!dom.matchupSearchPanel.hidden) return "matchup";
+                if (!dom.playerSearchPanel.hidden) return "player";
+                return null;
+            };
+
+            const toggleHeaderSearchMode = (mode) => {
+                setHeaderSearchMode(getOpenHeaderSearchMode() === mode ? null : mode);
             };
 
             const initializeHeaderGameSearch = async () => {
                 const currentYear = new Date().getFullYear();
                 dom.searchGameYear.replaceChildren(createElement("option", "", String(currentYear)));
                 dom.searchGameYear.firstElementChild.value = String(currentYear);
+                dom.playerSearchYear.replaceChildren(createElement("option", "", String(currentYear)));
+                dom.playerSearchYear.firstElementChild.value = String(currentYear);
                 try {
                     const seasons = await fetchSearchSeasons();
                     dom.searchGameYear.replaceChildren();
+                    dom.playerSearchYear.replaceChildren();
                     seasons.forEach((season) => {
                         const option = createElement("option", "", String(season.id));
                         option.value = String(season.id);
                         dom.searchGameYear.append(option);
+                        dom.playerSearchYear.append(option.cloneNode(true));
                     });
                     dom.searchGameYear.value = seasons.some((season) => season.id === currentYear)
                         ? String(currentYear)
                         : String(seasons[0]?.id ?? currentYear);
+                    dom.playerSearchYear.value = dom.searchGameYear.value;
                 } catch (error) {
                     console.error(error);
                 }
-                await resetSearchSelection();
+                await Promise.all([resetSearchSelection(), refreshPlayerSearchTeams()]);
             };
 
             const loadGame = async () => {
@@ -6482,11 +6753,17 @@
                 if (!dom.todayGamesPanel.hidden && !dom.todayGamesControl.contains(event.target)) {
                     closeTodayGames();
                 }
+                if (getOpenHeaderSearchMode() && !dom.headerGameSearch.contains(event.target)) {
+                    setHeaderSearchMode(null);
+                }
             });
             document.addEventListener("keydown", (event) => {
                 if (event.key === "Escape" && !dom.todayGamesPanel.hidden) {
                     closeTodayGames();
                     dom.todayGamesToggle.focus();
+                }
+                if (event.key === "Escape" && getOpenHeaderSearchMode()) {
+                    setHeaderSearchMode(null);
                 }
             });
             dom.searchGameYear.addEventListener("change", resetSearchSelection);
@@ -6520,6 +6797,21 @@
                 }
             });
             dom.searchGameButton.addEventListener("click", searchAndLoadGame);
+            dom.matchupSearchTab.addEventListener("click", () => toggleHeaderSearchMode("matchup"));
+            dom.playerSearchTab.addEventListener("click", () => toggleHeaderSearchMode("player"));
+            dom.playerSearchYear.addEventListener("change", refreshPlayerSearchTeams);
+            dom.playerSearchTeam.addEventListener("change", refreshPlayerSearchPlayers);
+            dom.playerSearchPlayer.addEventListener("change", resetPlayerResults);
+            dom.playerSearchRecord.addEventListener("change", resetPlayerResults);
+            dom.playerSearchCondition.addEventListener("change", resetPlayerResults);
+            dom.playerSearchButton.addEventListener("click", searchPlayerGames);
+            dom.playerSearchResults.addEventListener("click", async (event) => {
+                const result = event.target.closest("[data-player-game-pk]");
+                if (!result) return;
+                dom.gameInput.value = result.dataset.playerGamePk;
+                setHeaderSearchMode(null);
+                await loadGame();
+            });
 
             dom.generateButton.addEventListener("click", async () => {
                 await showPregame();
