@@ -2795,7 +2795,8 @@ body:not(.app-mode-home):not(.app-mode-pregame) .viewer {
 /*
  * Touch devices keep document/window as the only vertical scroller so iOS
  * Scroll to Top works on both iPhone and iPad. The scorebook remains the
- * only independent horizontal scroller; JavaScript locks each gesture axis.
+ * only independent horizontal scroller. Native touch scrolling keeps the
+ * browser's gesture-axis lock and momentum after the finger is released.
  */
 @media screen and (hover: none) and (pointer: coarse) {
     html {
@@ -2821,6 +2822,7 @@ body:not(.app-mode-home):not(.app-mode-pregame) .viewer {
         margin-bottom: 52px;
         overflow: visible;
         overscroll-behavior-y: auto;
+        touch-action: pan-x pan-y;
     }
 
     body.app-mode-pregame .app-main {
@@ -2846,7 +2848,7 @@ body:not(.app-mode-home):not(.app-mode-pregame) .viewer {
         overflow-x: auto;
         overflow-y: visible;
         overscroll-behavior-x: contain;
-        touch-action: pan-y;
+        touch-action: pan-x pan-y;
         -webkit-overflow-scrolling: touch;
     }
 
@@ -2854,6 +2856,79 @@ body:not(.app-mode-home):not(.app-mode-pregame) .viewer {
         max-height: none;
         overflow-y: visible;
         overscroll-behavior: auto;
+    }
+}
+
+/*
+ * Touch landscape search panels are anchored to the visual viewport instead
+ * of the scorebook width. iPad uses two rows; compact landscape phones use
+ * three rows so every control remains fully visible.
+ */
+@media screen and (orientation: landscape) and (hover: none) and (pointer: coarse) {
+    body:not(.app-mode-home):not(.app-mode-pregame) .header-search-panel {
+        position: fixed;
+        top: calc(68px + env(safe-area-inset-top, 0px));
+        right: max(12px, env(safe-area-inset-right, 0px));
+        left: max(12px, env(safe-area-inset-left, 0px));
+        width: auto;
+        max-width: none;
+        display: grid;
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+        align-items: end;
+        box-sizing: border-box;
+    }
+
+    body:not(.app-mode-home):not(.app-mode-pregame) .header-search-panel .header-search-field,
+    body:not(.app-mode-home):not(.app-mode-pregame) .header-search-panel .header-search-field select,
+    body:not(.app-mode-home):not(.app-mode-pregame) .header-search-panel #header-game-search-btn,
+    body:not(.app-mode-home):not(.app-mode-pregame) .header-search-panel #player-search-btn {
+        width: 100%;
+        min-width: 0;
+    }
+
+    #player-search-panel .header-year-field { grid-area: 1 / 1 / 2 / 2; }
+    #player-search-panel .player-team-field { grid-area: 1 / 2 / 2 / 4; }
+    #player-search-panel .player-name-field { grid-area: 1 / 4 / 2 / 7; }
+    #player-search-panel .player-record-field { grid-area: 2 / 1 / 3 / 3; }
+    #player-search-panel .player-condition-field { grid-area: 2 / 3 / 3 / 5; }
+    #player-search-panel #player-search-btn { grid-area: 2 / 5 / 3 / 7; }
+
+    #matchup-search-panel .header-year-field { grid-area: 1 / 1 / 2 / 2; }
+    #matchup-search-panel > .header-search-field:nth-of-type(2) { grid-area: 1 / 2 / 2 / 4; }
+    #matchup-search-panel > .header-search-field:nth-of-type(3) { grid-area: 1 / 4 / 2 / 7; }
+    #matchup-search-panel .header-date-field { grid-area: 2 / 1 / 3 / 3; }
+    #matchup-search-panel #header-game-search-btn { grid-area: 2 / 3 / 3 / 7; }
+
+    body:not(.app-mode-home):not(.app-mode-pregame) .player-search-results {
+        right: 0;
+        left: 0;
+        width: 100%;
+        max-height: min(420px, calc(100dvh - 190px));
+    }
+}
+
+@media screen and (orientation: landscape) and (hover: none) and (pointer: coarse) and (max-height: 520px) {
+    body:not(.app-mode-home):not(.app-mode-pregame) .header-search-panel {
+        top: calc(58px + env(safe-area-inset-top, 0px));
+        padding: 8px;
+        gap: 6px;
+    }
+
+    #player-search-panel .header-year-field { grid-area: 1 / 1 / 2 / 3; }
+    #player-search-panel .player-team-field { grid-area: 1 / 3 / 2 / 7; }
+    #player-search-panel .player-name-field { grid-area: 2 / 1 / 3 / 7; }
+    #player-search-panel .player-record-field { grid-area: 3 / 1 / 4 / 3; }
+    #player-search-panel .player-condition-field { grid-area: 3 / 3 / 4 / 5; }
+    #player-search-panel #player-search-btn { grid-area: 3 / 5 / 4 / 7; }
+
+    #matchup-search-panel .header-year-field { grid-area: 1 / 1 / 2 / 3; }
+    #matchup-search-panel .header-date-field { grid-area: 1 / 3 / 2 / 7; }
+    #matchup-search-panel > .header-search-field:nth-of-type(2) { grid-area: 2 / 1 / 3 / 4; }
+    #matchup-search-panel > .header-search-field:nth-of-type(3) { grid-area: 2 / 4 / 3 / 7; }
+    #matchup-search-panel #header-game-search-btn { grid-area: 3 / 1 / 4 / 7; }
+
+    body:not(.app-mode-home):not(.app-mode-pregame) .player-search-results {
+        max-height: calc(100dvh - 220px);
     }
 }
 

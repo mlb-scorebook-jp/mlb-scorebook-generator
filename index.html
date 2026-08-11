@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MLB Scorebook Generator</title>
     <!-- Score notation update: stacked batted-ball symbol, red hits, blue strikeouts, black other results. -->
-    <link rel="stylesheet" href="css/style.css?v=20260811-14">
+    <link rel="stylesheet" href="css/style.css?v=20260811-15">
     <link rel="stylesheet" href="css/pregame.css?v=20260811-9">
 </head>
 
@@ -82,7 +82,7 @@
             </div>
         </section>
 
-        <div class="version">Ver. 2.3.2</div>
+        <div class="version">Ver. 2.3.3</div>
     </header>
 
     <main class="app-main">
@@ -6889,52 +6889,6 @@
                 syncHorizontalScroll(dom.footerScrollbar, getHorizontalScrollTarget());
             }, { passive: true });
 
-            const installScorebookTouchAxisLock = () => {
-                const target = dom.scorebookHorizontalScroll;
-                const threshold = 7;
-                let gesture = null;
-
-                const resetGesture = () => {
-                    gesture = null;
-                };
-
-                target.addEventListener("touchstart", (event) => {
-                    if (!touchScorebookQuery.matches || event.touches.length !== 1) {
-                        resetGesture();
-                        return;
-                    }
-                    const touch = event.touches[0];
-                    gesture = {
-                        axis: "",
-                        startX: touch.clientX,
-                        startY: touch.clientY,
-                        startScrollLeft: target.scrollLeft
-                    };
-                }, { passive: true });
-
-                target.addEventListener("touchmove", (event) => {
-                    if (!gesture || event.touches.length !== 1) return;
-                    const touch = event.touches[0];
-                    const deltaX = touch.clientX - gesture.startX;
-                    const deltaY = touch.clientY - gesture.startY;
-
-                    if (!gesture.axis) {
-                        if (Math.hypot(deltaX, deltaY) < threshold) return;
-                        gesture.axis = Math.abs(deltaX) > Math.abs(deltaY)
-                            ? "horizontal"
-                            : "vertical";
-                    }
-
-                    if (gesture.axis !== "horizontal") return;
-                    event.preventDefault();
-                    target.scrollLeft = gesture.startScrollLeft - deltaX;
-                }, { passive: false });
-
-                target.addEventListener("touchend", resetGesture, { passive: true });
-                target.addEventListener("touchcancel", resetGesture, { passive: true });
-            };
-
-            installScorebookTouchAxisLock();
             const refreshPortraitLayout = () => {
                 updatePortraitOperationLayout();
                 updatePortraitScorebookScale();
