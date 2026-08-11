@@ -2,22 +2,6 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
-        "headline": "Red Sox get a run thanks to seldom-seen 'fourth out rule'",
-        "summaryJa": "MLB公式がブルージェイズについて報じた。",
-        "slug": "blue-jays-red-sox-delayed-for-rule-check",
-        "url": "https://www.mlb.com/news/blue-jays-red-sox-delayed-for-rule-check",
-        "contentDate": "2026-08-11T04:37:00Z",
-        "teamIds": [
-            141,
-            111
-        ],
-        "playerIds": [],
-        "taxonomy": [
-            "apple-news",
-            "replay"
-        ]
-    },
-    {
         "headline": "Predicting this year's All-MLB Teams",
         "summaryJa": "MLB公式がMLBの最新情報について報じた。",
         "slug": "all-mlb-team-predictions-for-august-2026",
@@ -28,20 +12,6 @@
         "taxonomy": [
             "apple-news",
             "all-mlb-team"
-        ]
-    },
-    {
-        "headline": "Watch MiLB at Field of Dreams tonight on MLB Network (7:30 ET)",
-        "summaryJa": "MLB公式がMLBの最新情報について報じた。",
-        "slug": "milb-at-field-of-dreams-game-2026",
-        "url": "https://www.mlb.com/news/milb-at-field-of-dreams-game-2026",
-        "contentDate": "2026-08-11T20:10:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "taxonomy": [
-            "field-of-dreams",
-            "mlb-top-prospects",
-            "apple-news"
         ]
     },
     {
@@ -62,6 +32,55 @@
         ]
     },
     {
+        "headline": "Red Sox set to activate Deadline prize Rutschman on Tuesday",
+        "summaryJa": "A.ラッチマン（BOS）、次のブルージェイズ戦で移籍後初出場へ",
+        "slug": "adley-rutschman-eyeing-red-sox-debut-in-toronto",
+        "url": "https://www.mlb.com/news/adley-rutschman-eyeing-red-sox-debut-in-toronto",
+        "contentDate": "2026-08-11T04:09:00Z",
+        "teamIds": [
+            111
+        ],
+        "playerIds": [
+            668939
+        ],
+        "taxonomy": [
+            "apple-news",
+            "rehab",
+            "injury"
+        ]
+    },
+    {
+        "headline": "Watch MiLB at Field of Dreams tonight on MLB Network (7:30 ET)",
+        "summaryJa": "MLB公式がMLBの最新情報について報じた。",
+        "slug": "milb-at-field-of-dreams-game-2026",
+        "url": "https://www.mlb.com/news/milb-at-field-of-dreams-game-2026",
+        "contentDate": "2026-08-11T20:10:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "taxonomy": [
+            "field-of-dreams",
+            "mlb-top-prospects",
+            "apple-news"
+        ]
+    },
+    {
+        "headline": "Rockies calling Veen back up to Majors after torrid stretch at Triple-A (source)",
+        "summaryJa": "MLB公式がZ.ビーン（COL）について報じた。",
+        "slug": "zac-veen-called-up-rockies-2026",
+        "url": "https://www.mlb.com/news/zac-veen-called-up-rockies-2026",
+        "contentDate": "2026-08-11T22:15:31.209Z",
+        "teamIds": [
+            115
+        ],
+        "playerIds": [
+            691728
+        ],
+        "taxonomy": [
+            "apple-news",
+            "mlb-top-prospects"
+        ]
+    },
+    {
         "headline": "Yankees' Triple-A team to announce new name for 2027",
         "summaryJa": "MLB公式がMLBの最新情報について報じた。",
         "slug": "swb-railriders-to-change-name",
@@ -73,6 +92,54 @@
             "minor-league-baseball",
             "apple-news",
             "baseball-traveler"
+        ]
+    },
+    {
+        "headline": "Red Sox get a run thanks to seldom-seen 'fourth out rule'",
+        "summaryJa": "MLB公式がブルージェイズについて報じた。",
+        "slug": "blue-jays-red-sox-delayed-for-rule-check",
+        "url": "https://www.mlb.com/news/blue-jays-red-sox-delayed-for-rule-check",
+        "contentDate": "2026-08-11T04:37:00Z",
+        "teamIds": [
+            141,
+            111
+        ],
+        "playerIds": [],
+        "taxonomy": [
+            "apple-news",
+            "replay"
+        ]
+    },
+    {
+        "headline": "Yesavage has surgery on left knee, could still return this season",
+        "summaryJa": "MLB公式がT.イーサベッジ（TOR）について報じた。",
+        "slug": "trey-yesavage-surgery-left-knee",
+        "url": "https://www.mlb.com/news/trey-yesavage-surgery-left-knee",
+        "contentDate": "2026-08-11T21:03:10.371Z",
+        "teamIds": [
+            141
+        ],
+        "playerIds": [
+            702056
+        ],
+        "taxonomy": [
+            "apple-news",
+            "injury"
+        ]
+    },
+    {
+        "headline": "Cards bring back navy caps for remaining road games",
+        "summaryJa": "MLB公式がカージナルスについて報じた。",
+        "slug": "cardinals-navy-caps-road-games-2026",
+        "url": "https://www.mlb.com/news/cardinals-navy-caps-road-games-2026",
+        "contentDate": "2026-08-11T21:21:02.881Z",
+        "teamIds": [
+            138
+        ],
+        "playerIds": [],
+        "taxonomy": [
+            "apple-news",
+            "offbeat"
         ]
     },
     {
@@ -90,21 +157,17 @@
         ]
     },
     {
-        "headline": "Red Sox set to activate Deadline prize Rutschman on Tuesday",
-        "summaryJa": "A.ラッチマン（BOS）、次のブルージェイズ戦で移籍後初出場へ",
-        "slug": "adley-rutschman-eyeing-red-sox-debut-in-toronto",
-        "url": "https://www.mlb.com/news/adley-rutschman-eyeing-red-sox-debut-in-toronto",
-        "contentDate": "2026-08-11T04:09:00Z",
-        "teamIds": [
-            111
-        ],
-        "playerIds": [
-            668939
-        ],
+        "headline": "Here's what you need to know ahead of tomorrow's High School All-American Game",
+        "summaryJa": "MLB公式がMLBの最新情報について報じた。",
+        "slug": "high-school-all-american-game-2026-watch-live",
+        "url": "https://www.mlb.com/news/high-school-all-american-game-2026-watch-live",
+        "contentDate": "2026-08-11T20:44:14.112Z",
+        "teamIds": [],
+        "playerIds": [],
         "taxonomy": [
             "apple-news",
-            "rehab",
-            "injury"
+            "mlb-top-prospects",
+            "mlb-draft"
         ]
     },
     {
@@ -129,7 +192,7 @@
         "summaryJa": "MLB公式がK.ストワーズ（MIA）について報じた。",
         "slug": "kyle-stowers-placed-on-injured-list-with-left-hamstring-strain",
         "url": "https://www.mlb.com/news/kyle-stowers-placed-on-injured-list-with-left-hamstring-strain",
-        "contentDate": "2026-08-11T19:02:58.514Z",
+        "contentDate": "2026-08-11T21:24:00Z",
         "teamIds": [
             146
         ],
@@ -219,6 +282,16 @@
         ]
     },
     {
+        "headline": "Baseball’s competitive balance issue, explained",
+        "summaryJa": "MLBの戦力均衡を巡る現状と課題を解説",
+        "slug": "mlb-competitive-balance-issue-explained",
+        "url": "https://www.mlb.com/news/mlb-competitive-balance-issue-explained",
+        "contentDate": "2026-06-21T00:15:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "taxonomy": []
+    },
+    {
         "headline": "Rays stay rolling as 8-run 8th secures 7th straight win",
         "summaryJa": "MLB公式がレイズについて報じた。",
         "slug": "rays-win-seventh-straight-game-with-eight-run-eighth",
@@ -290,16 +363,6 @@
             "apple-news",
             "game-recap"
         ]
-    },
-    {
-        "headline": "Baseball’s competitive balance issue, explained",
-        "summaryJa": "MLBの戦力均衡を巡る現状と課題を解説",
-        "slug": "mlb-competitive-balance-issue-explained",
-        "url": "https://www.mlb.com/news/mlb-competitive-balance-issue-explained",
-        "contentDate": "2026-06-21T00:15:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "taxonomy": []
     },
     {
         "headline": "Did a midseason reinvention give the White Sox another ace reliever?",
@@ -430,76 +493,6 @@
         "taxonomy": [
             "postseason",
             "apple-news"
-        ]
-    },
-    {
-        "headline": "Feeling urgency after tough road trip, Dodgers conjure some clutch magic",
-        "summaryJa": "MLB公式がF.フリーマン（LAD）について報じた。",
-        "slug": "max-muncy-freddie-freeman-give-dodgers-clutch-hits-to-beat-royals",
-        "url": "https://www.mlb.com/news/max-muncy-freddie-freeman-give-dodgers-clutch-hits-to-beat-royals",
-        "contentDate": "2026-08-11T06:49:00Z",
-        "teamIds": [
-            119
-        ],
-        "playerIds": [
-            518692
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap",
-            "clutch-moment"
-        ]
-    },
-    {
-        "headline": "McAdoo's second MLB homer shows Schneider's willingness to ride hot hand",
-        "summaryJa": "MLB公式がC.マカドゥー（TOR）について報じた。",
-        "slug": "charles-mcadoo-homers-in-blue-jays-win-over-red-sox",
-        "url": "https://www.mlb.com/news/charles-mcadoo-homers-in-blue-jays-win-over-red-sox",
-        "contentDate": "2026-08-11T03:39:00Z",
-        "teamIds": [
-            141
-        ],
-        "playerIds": [
-            807727
-        ],
-        "taxonomy": [
-            "apple-news",
-            "takeaways",
-            "game-recap"
-        ]
-    },
-    {
-        "headline": "Yelich knocks in Contreras with homer after both moved down in lineup",
-        "summaryJa": "MLB公式がW.コントレラス（MIL）について報じた。",
-        "slug": "william-contreras-christian-yelich-move-down-in-brewers-lineup",
-        "url": "https://www.mlb.com/news/william-contreras-christian-yelich-move-down-in-brewers-lineup",
-        "contentDate": "2026-08-11T05:42:00Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [
-            661388,
-            592885
-        ],
-        "taxonomy": [
-            "apple-news"
-        ]
-    },
-    {
-        "headline": "Taillon exits first Toronto home start with right forearm discomfort",
-        "summaryJa": "MLB公式がJ.タイオン（TOR）について報じた。",
-        "slug": "jameson-taillon-exits-blue-jays-game-with-injury",
-        "url": "https://www.mlb.com/news/jameson-taillon-exits-blue-jays-game-with-injury",
-        "contentDate": "2026-08-11T03:53:00Z",
-        "teamIds": [
-            141
-        ],
-        "playerIds": [
-            592791
-        ],
-        "taxonomy": [
-            "apple-news",
-            "injury"
         ]
     }
 ]);
