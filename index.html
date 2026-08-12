@@ -1172,6 +1172,7 @@
             const gameBoxscoreCache = new Map();
             const activeRosterCache = new Map();
             const playerCareerStatsCache = new Map();
+            const playerTransactionsCache = new Map();
             const headToHeadCache = new Map();
             const teamFirstYearCache = new Map();
             const seasonAttendanceCache = new Map();
@@ -1352,6 +1353,17 @@
                 ]
             });
 
+            const TEAM_FIRST_DEFINITIONS = Object.freeze({
+                hitting: CAREER_FIRST_DEFINITIONS.hitting.map((definition) => ({
+                    ...definition,
+                    label: definition.label.replace(/^MLB初/, "移籍後初")
+                })),
+                pitching: CAREER_FIRST_DEFINITIONS.pitching.map((definition) => ({
+                    ...definition,
+                    label: definition.label.replace(/^MLB初/, "移籍後初")
+                }))
+            });
+
             const getPlateAppearances = (stat = {}) => {
                 const officialValue = Number(stat.plateAppearances);
                 if (Number.isFinite(officialValue)) return officialValue;
@@ -1375,6 +1387,50 @@
                 }).catch(() => []);
 
                 playerGameLogCache.set(cacheKey, request);
+                return request;
+            };
+
+            const fetchPlayerTransferIntoTeam = async (
+                playerId,
+                currentTeamId,
+                officialDate
+            ) => {
+                const season = Number(officialDate.slice(0, 4));
+                if (!Number.isFinite(playerId) || !Number.isFinite(currentTeamId) ||
+                    !Number.isFinite(season)) return null;
+                const cacheKey = `${playerId}:${currentTeamId}:${officialDate}`;
+                if (playerTransactionsCache.has(cacheKey)) {
+                    return playerTransactionsCache.get(cacheKey);
+                }
+                const params = new URLSearchParams({
+                    playerId: String(playerId),
+                    startDate: `${season - 1}-10-01`,
+                    endDate: officialDate
+                });
+                const request = fetch(
+                    `https://statsapi.mlb.com/api/v1/transactions?${params}`
+                ).then(async (response) => {
+                    if (!response.ok) return null;
+                    const payload = await response.json();
+                    return (payload?.transactions ?? [])
+                        .filter((transaction) => {
+                            const fromTeamId = Number(transaction?.fromTeam?.id);
+                            const toTeamId = Number(transaction?.toTeam?.id);
+                            const effectiveDate = String(
+                                transaction?.effectiveDate ?? transaction?.date ?? ""
+                            ).slice(0, 10);
+                            return toTeamId === Number(currentTeamId) &&
+                                fromTeamId !== toTeamId &&
+                                Boolean(MLB_TEAM_CODES_BY_ID[fromTeamId]) &&
+                                effectiveDate && effectiveDate <= officialDate;
+                        })
+                        .sort((a, b) => String(
+                            b?.effectiveDate ?? b?.date ?? ""
+                        ).localeCompare(String(
+                            a?.effectiveDate ?? a?.date ?? ""
+                        )))[0] ?? null;
+                }).catch(() => null);
+                playerTransactionsCache.set(cacheKey, request);
                 return request;
             };
 
@@ -1561,7 +1617,14 @@
                     Number(pitching?.pitchesThrown) > 0;
             };
 
-            const buildCareerMilestoneNotes = async (players, code, context) => {
+            const buildCareerMilestoneNotes = async (
+                players,
+                code,
+                context,
+                currentTeam
+            ) => {
+                const currentTeamId = Number(currentTeam?.id);
+                const season = Number(context.officialDate.slice(0, 4));
                 const notes = await mapWithConcurrency(players, 8, async (player) => {
                     const primaryPosition = normalizePositionAbbreviation(
                         player?.person?.primaryPosition
@@ -1569,6 +1632,10 @@
                     const groups = player?.rosterPosition === "TWP" || primaryPosition === "TWP"
                         ? ["hitting", "pitching"]
                         : isPitcherCandidate(player) ? ["pitching"] : ["hitting"];
+                    if (hasCurrentGamePitchingAppearance(player) &&
+                        !groups.includes("pitching")) {
+                        groups.push("pitching");
+                    }
                     const playerNotes = [];
 
                     for (const group of groups) {
@@ -1596,6 +1663,63 @@
                         const current = group === "pitching"
                             ? player.currentGamePitching
                             : player.currentGameBatting;
+
+                        const hasTeamFirstCandidate = TEAM_FIRST_DEFINITIONS[group].some(
+                            (definition) =>
+                                (Number(current?.[definition.currentField]) || 0) > 0
+                        );
+                        if (hasTeamFirstCandidate && Number.isFinite(currentTeamId)) {
+                            const [transfer, seasonSplits, previousSeasonSplits] = await Promise.all([
+                                fetchPlayerTransferIntoTeam(
+                                    player.id,
+                                    currentTeamId,
+                                    context.officialDate
+                                ),
+                                fetchPlayerRegularSeasonGameLog(player.id, season, group),
+                                fetchPlayerRegularSeasonGameLog(player.id, season - 1, group)
+                            ]);
+                            const sourceTeamId = Number(transfer?.fromTeam?.id);
+                            const effectiveDate = String(
+                                transfer?.effectiveDate ?? transfer?.date ?? ""
+                            ).slice(0, 10);
+                            const allReferenceSplits = [
+                                ...previousSeasonSplits,
+                                ...seasonSplits
+                            ];
+                            const hasSourceMlbAppearance = allReferenceSplits.some((split) =>
+                                Number(split?.team?.id) === sourceTeamId &&
+                                (Number(split?.stat?.gamesPlayed) || 0) > 0
+                            );
+
+                            if (transfer && hasSourceMlbAppearance) {
+                                const priorCurrentTeamSplits = seasonSplits.filter((split) => {
+                                    const splitDate = String(split?.date ?? "").slice(0, 10);
+                                    return Number(split?.team?.id) === currentTeamId &&
+                                        isGameBeforeCurrentStart(split, context) &&
+                                        (!effectiveDate || splitDate >= effectiveDate);
+                                });
+                                const sourceCode = MLB_TEAM_CODES_BY_ID[sourceTeamId];
+
+                                TEAM_FIRST_DEFINITIONS[group].forEach((definition, index) => {
+                                    const gameValue = Number(
+                                        current?.[definition.currentField]
+                                    ) || 0;
+                                    if (gameValue <= 0) return;
+                                    const priorValue = priorCurrentTeamSplits.reduce(
+                                        (sum, split) => sum +
+                                            (Number(split?.stat?.[definition.field]) || 0),
+                                        0
+                                    );
+                                    if (priorValue !== 0) return;
+                                    playerNotes.push({
+                                        text: `${code}　${getPersonName(player.person)}　` +
+                                            `${sourceCode}から${definition.label}`,
+                                        priority: -2,
+                                        importance: 95 - index
+                                    });
+                                });
+                            }
+                        }
 
                         CAREER_FIRST_DEFINITIONS[group].forEach((definition, index) => {
                             const laterSameDayValue = laterSameDaySplits.reduce(
@@ -2518,7 +2642,7 @@
                     ]));
                     const personalBestByPlayer = new Map(personalBestEntries);
                     const notes = gameFinal
-                        ? await buildCareerMilestoneNotes(analyzed, code, context)
+                        ? await buildCareerMilestoneNotes(analyzed, code, context, team)
                         : [];
                     notes.push(...await buildJapaneseHitterHomeRunNotes(
                         analyzed,
