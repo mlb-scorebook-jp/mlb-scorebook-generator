@@ -1318,9 +1318,17 @@
         const period = streak.startDate
             ? ` ${compactDate(streak.startDate)}〜`
             : "";
-        const annotations = streak.noPlateAppearanceGames
+        const annotationDates = new Map();
+        streak.noPlateAppearanceGames
             .filter((game) => game.date >= streak.startDate && game.date <= streak.endDate)
-            .map((game) => `${compactDate(game.date)}は${game.fieldingOnly ? "守備のみ出場" : "打席なし"}`);
+            .forEach((game) => {
+                const annotation = game.fieldingOnly ? "守備のみ出場" : "打席なし";
+                if (!annotationDates.has(annotation)) annotationDates.set(annotation, new Set());
+                annotationDates.get(annotation).add(compactDate(game.date));
+            });
+        const annotations = [...annotationDates.entries()].map(([annotation, dates]) =>
+            `${[...dates].join("、")}は${annotation}`
+        );
         return `${streak.count}試合連続${label}${period}` +
             (annotations.length ? `（${annotations.join("、")}）` : "");
     };
