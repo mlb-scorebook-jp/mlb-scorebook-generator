@@ -1438,11 +1438,16 @@
                 return request;
             };
 
-            const aggregateGameLogStatsThroughGame = (splits, context) => {
+            const aggregateGameLogStatsThroughGame = (
+                splits,
+                context,
+                includeCurrentGame = true
+            ) => {
                 const totals = {};
                 splits.filter((split) =>
                     isGameBeforeCurrentStart(split, context) ||
-                    Number(split?.game?.gamePk) === Number(context.gamePk)
+                    (includeCurrentGame &&
+                        Number(split?.game?.gamePk) === Number(context.gamePk))
                 ).forEach((split) => {
                     Object.keys(split?.stat ?? {}).forEach((field) => {
                         const value = Number(split.stat[field]);
@@ -1906,6 +1911,11 @@
                                 currentLogs,
                                 context
                             );
+                            const statsBeforeGame = aggregateGameLogStatsThroughGame(
+                                currentLogs,
+                                context,
+                                false
+                            );
                             const reachesMinimum = CONSECUTIVE_SEASON_DEFINITIONS[group]
                                 .some((definition) =>
                                     (Number(currentStats?.[definition.field]) || 0) >=
@@ -1922,6 +1932,9 @@
                                 statsThroughGame,
                                 season,
                                 group
+                            ).filter((achievement) =>
+                                (Number(statsBeforeGame?.[achievement.field]) || 0) <
+                                achievement.level
                             ).forEach((achievement, index) => {
                                 playerNotes.push({
                                     text: `${code}　${getPersonName(player.person)}　` +
