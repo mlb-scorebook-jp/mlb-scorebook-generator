@@ -2,6 +2,30 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "The story behind why Ohtani always 'reels in' Seiya",
+        "summaryJa": "大谷 翔平（LAD）を巡る注目点をMLB公式が分析",
+        "slug": "shohei-ohtani-seiya-suzuki-fishing-joke",
+        "url": "https://www.mlb.com/news/shohei-ohtani-seiya-suzuki-fishing-joke",
+        "contentDate": "2026-08-12T16:29:05.993Z",
+        "teamIds": [
+            119,
+            112
+        ],
+        "playerIds": [
+            660271,
+            673548
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "offbeat",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Mikolas DFA'd by Nationals; Kent called up for start vs. Cubs",
         "summaryJa": "M.マイコラス（WSH）の移籍・契約に関する最新情報",
         "slug": "miles-mikolas-designated-by-nationals",
@@ -12,6 +36,9 @@
         ],
         "playerIds": [
             571945
+        ],
+        "gamePks": [
+            822698
         ],
         "taxonomy": [
             "transactions",
@@ -34,6 +61,9 @@
         "playerIds": [
             596019
         ],
+        "gamePks": [
+            824883
+        ],
         "taxonomy": [
             "cafe-con-lindor",
             "apple-news"
@@ -55,6 +85,7 @@
         "playerIds": [
             596019
         ],
+        "gamePks": [],
         "taxonomy": [
             "apple-news"
         ],
@@ -74,6 +105,9 @@
         ],
         "playerIds": [
             641313
+        ],
+        "gamePks": [
+            824562
         ],
         "taxonomy": [
             "apple-news",
@@ -95,6 +129,7 @@
         "playerIds": [
             547180
         ],
+        "gamePks": [],
         "taxonomy": [
             "injury",
             "apple-news"
@@ -117,12 +152,33 @@
             140
         ],
         "playerIds": [],
+        "gamePks": [
+            823511,
+            823994
+        ],
         "taxonomy": [
             "apple-news"
         ],
         "sourceScopes": [
             "MLB",
             "球団公式"
+        ]
+    },
+    {
+        "headline": "250 for 250: Top 10 flashes of infield wizardry",
+        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
+        "slug": "top-flashes-of-infield-wizardry-in-baseball-history",
+        "url": "https://www.mlb.com/news/top-flashes-of-infield-wizardry-in-baseball-history",
+        "contentDate": "2026-08-12T15:25:04.968Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "rankings"
+        ],
+        "sourceScopes": [
+            "MLB"
         ]
     },
     {
@@ -136,6 +192,9 @@
         ],
         "playerIds": [
             829093
+        ],
+        "gamePks": [
+            823672
         ],
         "taxonomy": [
             "apple-news",
@@ -168,6 +227,7 @@
             696146,
             800325
         ],
+        "gamePks": [],
         "taxonomy": [
             "apple-news",
             "mlb-top-prospects"
@@ -189,6 +249,7 @@
             656941,
             691406
         ],
+        "gamePks": [],
         "taxonomy": [
             "apple-news",
             "home-run-leaders"
@@ -208,6 +269,9 @@
             120
         ],
         "playerIds": [],
+        "gamePks": [
+            822698
+        ],
         "taxonomy": [
             "apple-news",
             "offbeat"
@@ -227,6 +291,9 @@
             146
         ],
         "playerIds": [],
+        "gamePks": [
+            823833
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -246,6 +313,9 @@
         ],
         "playerIds": [
             703601
+        ],
+        "gamePks": [
+            824241
         ],
         "taxonomy": [
             "apple-news",
@@ -268,6 +338,7 @@
         "playerIds": [
             800169
         ],
+        "gamePks": [],
         "taxonomy": [
             "apple-news",
             "mlb-top-prospects"
@@ -289,6 +360,7 @@
         "playerIds": [
             829033
         ],
+        "gamePks": [],
         "taxonomy": [
             "apple-news",
             "mlb-top-prospects"
@@ -309,6 +381,7 @@
         "playerIds": [
             815816
         ],
+        "gamePks": [],
         "taxonomy": [
             "apple-news"
         ],
@@ -326,6 +399,7 @@
             115
         ],
         "playerIds": [],
+        "gamePks": [],
         "taxonomy": [
             "injury",
             "transactions",
@@ -347,6 +421,9 @@
         "playerIds": [
             608379
         ],
+        "gamePks": [
+            823917
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -365,6 +442,9 @@
         ],
         "playerIds": [
             571970
+        ],
+        "gamePks": [
+            823917
         ],
         "taxonomy": [
             "apple-news",
@@ -388,6 +468,9 @@
         "playerIds": [
             605483
         ],
+        "gamePks": [
+            823917
+        ],
         "taxonomy": [
             "apple-news",
             "payoff-pitch"
@@ -409,6 +492,9 @@
         "playerIds": [
             554430
         ],
+        "gamePks": [
+            823017
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -426,6 +512,9 @@
             133
         ],
         "playerIds": [],
+        "gamePks": [
+            824970
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -443,6 +532,7 @@
             134
         ],
         "playerIds": [],
+        "gamePks": [],
         "taxonomy": [
             "pit-inside-the-pirates"
         ],
@@ -462,12 +552,14 @@
         "playerIds": [
             665487
         ],
+        "gamePks": [
+            823264
+        ],
         "taxonomy": [
             "apple-news",
             "milestone"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -482,6 +574,9 @@
         ],
         "playerIds": [
             674003
+        ],
+        "gamePks": [
+            823997
         ],
         "taxonomy": [
             "apple-news",
@@ -503,6 +598,9 @@
         "playerIds": [
             687931
         ],
+        "gamePks": [
+            823186
+        ],
         "taxonomy": [
             "apple-news",
             "game-recap"
@@ -523,6 +621,9 @@
         "playerIds": [
             691720
         ],
+        "gamePks": [
+            825046
+        ],
         "taxonomy": [
             "apple-news",
             "injury",
@@ -542,6 +643,9 @@
             135
         ],
         "playerIds": [],
+        "gamePks": [
+            823264
+        ],
         "taxonomy": [
             "apple-news",
             "takeaways",
@@ -563,6 +667,9 @@
             145
         ],
         "playerIds": [],
+        "gamePks": [
+            824563
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -583,6 +690,9 @@
         "playerIds": [
             668930
         ],
+        "gamePks": [
+            823264
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -600,6 +710,9 @@
             109
         ],
         "playerIds": [],
+        "gamePks": [
+            825046
+        ],
         "taxonomy": [
             "apple-news",
             "takeaways"
@@ -620,6 +733,9 @@
         "playerIds": [
             670764
         ],
+        "gamePks": [
+            824970
+        ],
         "taxonomy": [
             "apple-news",
             "game-recap"
@@ -637,6 +753,7 @@
         "contentDate": "2026-08-12T05:25:00Z",
         "teamIds": [],
         "playerIds": [],
+        "gamePks": [],
         "taxonomy": [
             "mlb-top-prospects",
             "apple-news"
@@ -656,6 +773,9 @@
         ],
         "playerIds": [
             514888
+        ],
+        "gamePks": [
+            823186
         ],
         "taxonomy": [
             "apple-news",
@@ -677,12 +797,14 @@
         "playerIds": [
             516811
         ],
+        "gamePks": [
+            823832
+        ],
         "taxonomy": [
             "apple-news",
             "game-recap"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -697,6 +819,9 @@
         ],
         "playerIds": [
             691728
+        ],
+        "gamePks": [
+            825046
         ],
         "taxonomy": [
             "apple-news",
@@ -718,6 +843,9 @@
         "playerIds": [
             669467
         ],
+        "gamePks": [
+            823019
+        ],
         "taxonomy": [
             "apple-news",
             "game-recap"
@@ -736,6 +864,9 @@
             136
         ],
         "playerIds": [],
+        "gamePks": [
+            823512
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -756,6 +887,9 @@
         "playerIds": [
             678882
         ],
+        "gamePks": [
+            822778
+        ],
         "taxonomy": [
             "apple-news",
             "hot-streak",
@@ -773,6 +907,7 @@
         "contentDate": "2026-08-12T05:00:00Z",
         "teamIds": [],
         "playerIds": [],
+        "gamePks": [],
         "taxonomy": [
             "apple-news",
             "mlb-top-prospects",
@@ -795,6 +930,9 @@
         "playerIds": [
             807311
         ],
+        "gamePks": [
+            824563
+        ],
         "taxonomy": [
             "apple-news",
             "mlb-top-prospects"
@@ -811,6 +949,7 @@
         "contentDate": "2026-08-12T04:44:00Z",
         "teamIds": [],
         "playerIds": [],
+        "gamePks": [],
         "taxonomy": [
             "mlb-top-prospects",
             "apple-news",
@@ -834,6 +973,9 @@
             800600,
             663623
         ],
+        "gamePks": [
+            822697
+        ],
         "taxonomy": [
             "apple-news",
             "mlb-top-prospects",
@@ -853,6 +995,9 @@
             114
         ],
         "playerIds": [],
+        "gamePks": [
+            824240
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -871,6 +1016,9 @@
         ],
         "playerIds": [
             650911
+        ],
+        "gamePks": [
+            823019
         ],
         "taxonomy": [
             "apple-news"
@@ -893,6 +1041,9 @@
             683002,
             687952
         ],
+        "gamePks": [
+            823673
+        ],
         "taxonomy": [
             "apple-news",
             "game-recap"
@@ -912,6 +1063,9 @@
         ],
         "playerIds": [
             527048
+        ],
+        "gamePks": [
+            824886
         ],
         "taxonomy": [
             "apple-news",
@@ -936,6 +1090,7 @@
         "playerIds": [
             650333
         ],
+        "gamePks": [],
         "taxonomy": [
             "savant",
             "player-tracking",
@@ -956,6 +1111,9 @@
             108
         ],
         "playerIds": [],
+        "gamePks": [
+            823997
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -975,6 +1133,9 @@
         "playerIds": [
             641857,
             663757
+        ],
+        "gamePks": [
+            823512
         ],
         "taxonomy": [
             "apple-news",
@@ -998,6 +1159,9 @@
         "playerIds": [
             668939
         ],
+        "gamePks": [
+            822778
+        ],
         "taxonomy": [
             "apple-news",
             "injury",
@@ -1020,6 +1184,9 @@
             665795,
             694037
         ],
+        "gamePks": [
+            822697
+        ],
         "taxonomy": [
             "apple-news",
             "injury",
@@ -1039,6 +1206,7 @@
             147
         ],
         "playerIds": [],
+        "gamePks": [],
         "taxonomy": [
             "injury",
             "transactions",
@@ -1058,6 +1226,9 @@
             113
         ],
         "playerIds": [],
+        "gamePks": [
+            824563
+        ],
         "taxonomy": [
             "apple-news",
             "game-recap",
@@ -1078,6 +1249,9 @@
             116
         ],
         "playerIds": [],
+        "gamePks": [
+            824240
+        ],
         "taxonomy": [
             "apple-news",
             "game-recap"
@@ -1099,6 +1273,9 @@
         "playerIds": [
             650968
         ],
+        "gamePks": [
+            823673
+        ],
         "taxonomy": [
             "injury",
             "apple-news"
@@ -1117,6 +1294,9 @@
             142
         ],
         "playerIds": [],
+        "gamePks": [
+            823673
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -1136,6 +1316,9 @@
         "playerIds": [
             678246,
             803011
+        ],
+        "gamePks": [
+            824563
         ],
         "taxonomy": [
             "apple-news",
@@ -1158,6 +1341,9 @@
         "playerIds": [
             703520
         ],
+        "gamePks": [
+            822778
+        ],
         "taxonomy": [
             "apple-news",
             "takeaways",
@@ -1177,6 +1363,7 @@
             116
         ],
         "playerIds": [],
+        "gamePks": [],
         "taxonomy": [
             "injury",
             "transactions",
@@ -1198,6 +1385,9 @@
         "playerIds": [
             673548,
             691718
+        ],
+        "gamePks": [
+            822697
         ],
         "taxonomy": [
             "apple-news",
@@ -1221,6 +1411,9 @@
         "playerIds": [
             682985
         ],
+        "gamePks": [
+            824240
+        ],
         "taxonomy": [
             "injury",
             "apple-news"
@@ -1240,6 +1433,9 @@
         ],
         "playerIds": [
             669065
+        ],
+        "gamePks": [
+            823832
         ],
         "taxonomy": [
             "injury",
@@ -1262,6 +1458,9 @@
         "playerIds": [
             690997
         ],
+        "gamePks": [
+            824886
+        ],
         "taxonomy": [
             "apple-news",
             "game-recap-losing"
@@ -1281,6 +1480,9 @@
         ],
         "playerIds": [
             668800
+        ],
+        "gamePks": [
+            823186
         ],
         "taxonomy": [
             "apple-news",
@@ -1302,6 +1504,9 @@
         "playerIds": [
             682227
         ],
+        "gamePks": [
+            824563
+        ],
         "taxonomy": [
             "injury",
             "rehab",
@@ -1321,6 +1526,7 @@
             158
         ],
         "playerIds": [],
+        "gamePks": [],
         "taxonomy": [
             "injury",
             "transactions",
@@ -1342,6 +1548,9 @@
         "playerIds": [
             643377
         ],
+        "gamePks": [
+            824970
+        ],
         "taxonomy": [
             "apple-news",
             "injury"
@@ -1360,6 +1569,7 @@
             134
         ],
         "playerIds": [],
+        "gamePks": [],
         "taxonomy": [
             "pit-inside-the-pirates"
         ],
@@ -1379,6 +1589,9 @@
         "playerIds": [
             117517
         ],
+        "gamePks": [
+            823019
+        ],
         "taxonomy": [
             "community",
             "apple-news"
@@ -1397,6 +1610,7 @@
             110
         ],
         "playerIds": [],
+        "gamePks": [],
         "taxonomy": [
             "injury",
             "transactions",
@@ -1416,6 +1630,7 @@
             112
         ],
         "playerIds": [],
+        "gamePks": [],
         "taxonomy": [
             "injury",
             "transactions",
@@ -1436,6 +1651,9 @@
         ],
         "playerIds": [
             661563
+        ],
+        "gamePks": [
+            823512
         ],
         "taxonomy": [
             "apple-news",
@@ -1458,6 +1676,9 @@
         "playerIds": [
             663556
         ],
+        "gamePks": [
+            824970
+        ],
         "taxonomy": [
             "apple-news",
             "rehab",
@@ -1477,6 +1698,7 @@
             118
         ],
         "playerIds": [],
+        "gamePks": [],
         "taxonomy": [
             "injury",
             "transactions",
@@ -1496,6 +1718,7 @@
             119
         ],
         "playerIds": [],
+        "gamePks": [],
         "taxonomy": [
             "injury",
             "transactions",
@@ -1515,6 +1738,7 @@
             139
         ],
         "playerIds": [],
+        "gamePks": [],
         "taxonomy": [
             "injury",
             "transactions",
@@ -1534,6 +1758,7 @@
             140
         ],
         "playerIds": [],
+        "gamePks": [],
         "taxonomy": [
             "injury",
             "transactions",
@@ -1553,6 +1778,7 @@
             117
         ],
         "playerIds": [],
+        "gamePks": [],
         "taxonomy": [
             "transactions",
             "injury",
@@ -1572,6 +1798,9 @@
             138
         ],
         "playerIds": [],
+        "gamePks": [
+            823019
+        ],
         "taxonomy": [
             "apple-news",
             "offbeat"
@@ -1590,6 +1819,7 @@
             137
         ],
         "playerIds": [],
+        "gamePks": [],
         "taxonomy": [
             "transactions",
             "injury",
@@ -1609,6 +1839,7 @@
             120
         ],
         "playerIds": [],
+        "gamePks": [],
         "taxonomy": [
             "injury",
             "transactions",
@@ -1628,6 +1859,7 @@
             111
         ],
         "playerIds": [],
+        "gamePks": [],
         "taxonomy": [
             "injury",
             "transactions",
@@ -1649,6 +1881,9 @@
         "playerIds": [
             673540
         ],
+        "gamePks": [
+            824886
+        ],
         "taxonomy": [
             "apple-news",
             "milestone"
@@ -1667,6 +1902,7 @@
             134
         ],
         "playerIds": [],
+        "gamePks": [],
         "taxonomy": [
             "injury",
             "transactions",
@@ -1688,6 +1924,9 @@
         "playerIds": [
             668881
         ],
+        "gamePks": [
+            822699
+        ],
         "taxonomy": [
             "injury",
             "apple-news"
@@ -1706,6 +1945,7 @@
             113
         ],
         "playerIds": [],
+        "gamePks": [],
         "taxonomy": [
             "injury",
             "transactions",
@@ -1725,6 +1965,7 @@
             141
         ],
         "playerIds": [],
+        "gamePks": [],
         "taxonomy": [
             "injury",
             "transactions",
@@ -1744,6 +1985,7 @@
             145
         ],
         "playerIds": [],
+        "gamePks": [],
         "taxonomy": [
             "injury",
             "transactions",
@@ -1764,6 +2006,10 @@
             111
         ],
         "playerIds": [],
+        "gamePks": [
+            822778,
+            822780
+        ],
         "taxonomy": [
             "replay",
             "apple-news"
@@ -1782,6 +2028,7 @@
             136
         ],
         "playerIds": [],
+        "gamePks": [],
         "taxonomy": [
             "injury",
             "transactions",
@@ -1801,6 +2048,7 @@
             146
         ],
         "playerIds": [],
+        "gamePks": [],
         "taxonomy": [
             "injury",
             "transactions",
@@ -1822,6 +2070,9 @@
         "playerIds": [
             702056
         ],
+        "gamePks": [
+            822778
+        ],
         "taxonomy": [
             "apple-news",
             "injury"
@@ -1840,6 +2091,7 @@
             143
         ],
         "playerIds": [],
+        "gamePks": [],
         "taxonomy": [
             "injury",
             "transactions",
@@ -1861,6 +2113,9 @@
         "playerIds": [
             592791
         ],
+        "gamePks": [
+            822778
+        ],
         "taxonomy": [
             "apple-news",
             "injury"
@@ -1879,6 +2134,9 @@
             133
         ],
         "playerIds": [],
+        "gamePks": [
+            824970
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -1894,6 +2152,7 @@
         "contentDate": "2026-08-11T17:03:03.221Z",
         "teamIds": [],
         "playerIds": [],
+        "gamePks": [],
         "taxonomy": [
             "minor-league-baseball",
             "apple-news",
@@ -1913,6 +2172,9 @@
             117
         ],
         "playerIds": [],
+        "gamePks": [
+            823186
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -1932,6 +2194,9 @@
         "playerIds": [
             656756,
             543135
+        ],
+        "gamePks": [
+            823997
         ],
         "taxonomy": [
             "apple-news",
@@ -1953,6 +2218,9 @@
         "playerIds": [
             694192
         ],
+        "gamePks": [
+            823264
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -1970,6 +2238,9 @@
             110
         ],
         "playerIds": [],
+        "gamePks": [
+            823673
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -1989,6 +2260,7 @@
         "playerIds": [
             806146
         ],
+        "gamePks": [],
         "taxonomy": [
             "apple-news",
             "savant",
@@ -2010,6 +2282,9 @@
         "playerIds": [
             693304
         ],
+        "gamePks": [
+            823832
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -2029,6 +2304,9 @@
         "playerIds": [
             656492
         ],
+        "gamePks": [
+            824240
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -2046,6 +2324,7 @@
             147
         ],
         "playerIds": [],
+        "gamePks": [],
         "taxonomy": [
             "nyy-yankees-magazine",
             "apple-news"
@@ -2065,6 +2344,9 @@
         ],
         "playerIds": [
             669022
+        ],
+        "gamePks": [
+            823998
         ],
         "taxonomy": [
             "apple-news",
@@ -2087,6 +2369,9 @@
         "playerIds": [
             518692
         ],
+        "gamePks": [
+            823918
+        ],
         "taxonomy": [
             "apple-news",
             "game-recap",
@@ -2107,6 +2392,9 @@
         ],
         "playerIds": [
             669373
+        ],
+        "gamePks": [
+            823918
         ],
         "taxonomy": [
             "apple-news"
@@ -2129,6 +2417,9 @@
             545361,
             685133
         ],
+        "gamePks": [
+            823998
+        ],
         "taxonomy": [
             "apple-news",
             "payoff-pitch"
@@ -2147,6 +2438,9 @@
             139
         ],
         "playerIds": [],
+        "gamePks": [
+            824969
+        ],
         "taxonomy": [
             "apple-news",
             "game-recap",
@@ -2168,6 +2462,9 @@
         "playerIds": [
             695506
         ],
+        "gamePks": [
+            823918
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -2187,6 +2484,9 @@
         "playerIds": [
             665161,
             701358
+        ],
+        "gamePks": [
+            823189
         ],
         "taxonomy": [
             "apple-news",
@@ -2210,6 +2510,9 @@
         "playerIds": [
             680869
         ],
+        "gamePks": [
+            824969
+        ],
         "taxonomy": [
             "apple-news",
             "transactions",
@@ -2231,6 +2534,9 @@
         "playerIds": [
             672695,
             647336
+        ],
+        "gamePks": [
+            825048
         ],
         "taxonomy": [
             "apple-news",
@@ -2254,6 +2560,9 @@
             691740,
             656305
         ],
+        "gamePks": [
+            823189
+        ],
         "taxonomy": [
             "apple-news",
             "injury",
@@ -2276,6 +2585,9 @@
             641793,
             623149
         ],
+        "gamePks": [
+            825048
+        ],
         "taxonomy": [
             "transactions",
             "apple-news"
@@ -2297,6 +2609,9 @@
             661388,
             592885
         ],
+        "gamePks": [
+            823265
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -2315,6 +2630,9 @@
         ],
         "playerIds": [
             701538
+        ],
+        "gamePks": [
+            823265
         ],
         "taxonomy": [
             "apple-news",
@@ -2335,6 +2653,9 @@
             138
         ],
         "playerIds": [],
+        "gamePks": [
+            823018
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -2354,6 +2675,9 @@
         "playerIds": [
             669221,
             693821
+        ],
+        "gamePks": [
+            824887
         ],
         "taxonomy": [
             "apple-news",
@@ -2375,6 +2699,9 @@
         "playerIds": [
             664983
         ],
+        "gamePks": [
+            825048
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -2394,6 +2721,7 @@
         "playerIds": [
             663855
         ],
+        "gamePks": [],
         "taxonomy": [
             "apple-news",
             "player-tracking",
@@ -2415,6 +2743,9 @@
         "playerIds": [
             543243
         ],
+        "gamePks": [
+            822780
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -2433,6 +2764,9 @@
             111
         ],
         "playerIds": [],
+        "gamePks": [
+            822780
+        ],
         "taxonomy": [
             "apple-news",
             "replay"
@@ -2452,6 +2786,9 @@
         ],
         "playerIds": [
             665152
+        ],
+        "gamePks": [
+            823675
         ],
         "taxonomy": [
             "apple-news",
@@ -2473,6 +2810,9 @@
         "playerIds": [
             642207,
             673540
+        ],
+        "gamePks": [
+            824887
         ],
         "taxonomy": [
             "injury",
@@ -2498,6 +2838,9 @@
         "playerIds": [
             691725
         ],
+        "gamePks": [
+            823018
+        ],
         "taxonomy": [
             "apple-news",
             "game-recap"
@@ -2516,6 +2859,9 @@
             110
         ],
         "playerIds": [],
+        "gamePks": [
+            823675
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -2534,6 +2880,9 @@
         ],
         "playerIds": [
             807727
+        ],
+        "gamePks": [
+            822780
         ],
         "taxonomy": [
             "apple-news",
@@ -2554,6 +2903,7 @@
             133
         ],
         "playerIds": [],
+        "gamePks": [],
         "taxonomy": [
             "injury",
             "transactions",
@@ -2574,6 +2924,7 @@
             135
         ],
         "playerIds": [],
+        "gamePks": [],
         "taxonomy": [
             "injury",
             "transactions",
@@ -2594,6 +2945,9 @@
         ],
         "playerIds": [
             605397
+        ],
+        "gamePks": [
+            823265
         ],
         "taxonomy": [
             "apple-news",
@@ -2616,6 +2970,9 @@
         "playerIds": [
             518886
         ],
+        "gamePks": [
+            823918
+        ],
         "taxonomy": [
             "apple-news",
             "transactions"
@@ -2636,6 +2993,9 @@
         "playerIds": [
             543135
         ],
+        "gamePks": [
+            823998
+        ],
         "taxonomy": [
             "apple-news",
             "injury",
@@ -2655,6 +3015,9 @@
             139
         ],
         "playerIds": [],
+        "gamePks": [
+            824969
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -2672,6 +3035,7 @@
             109
         ],
         "playerIds": [],
+        "gamePks": [],
         "taxonomy": [
             "injury",
             "transactions",
@@ -2694,6 +3058,9 @@
             675911,
             694462
         ],
+        "gamePks": [
+            824887
+        ],
         "taxonomy": [
             "apple-news",
             "injury",
@@ -2713,6 +3080,7 @@
             142
         ],
         "playerIds": [],
+        "gamePks": [],
         "taxonomy": [
             "injury",
             "transactions",
@@ -2735,6 +3103,9 @@
             621439,
             657746
         ],
+        "gamePks": [
+            823675
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -2752,6 +3123,7 @@
             108
         ],
         "playerIds": [],
+        "gamePks": [],
         "taxonomy": [
             "injury",
             "transactions",
@@ -2771,6 +3143,7 @@
             144
         ],
         "playerIds": [],
+        "gamePks": [],
         "taxonomy": [
             "injury",
             "transactions",
@@ -2792,6 +3165,9 @@
         "playerIds": [
             668873
         ],
+        "gamePks": [
+            823018
+        ],
         "taxonomy": [
             "apple-news",
             "injury",
@@ -2811,6 +3187,7 @@
             121
         ],
         "playerIds": [],
+        "gamePks": [],
         "taxonomy": [
             "injury",
             "transactions",
@@ -2830,6 +3207,7 @@
             140
         ],
         "playerIds": [],
+        "gamePks": [],
         "taxonomy": [],
         "sourceScopes": [
             "球団公式"
@@ -2845,6 +3223,7 @@
             138
         ],
         "playerIds": [],
+        "gamePks": [],
         "taxonomy": [
             "injury",
             "transactions",
@@ -2874,6 +3253,7 @@
             806265,
             695066
         ],
+        "gamePks": [],
         "taxonomy": [
             "apple-news",
             "minor-league-baseball",
@@ -2897,6 +3277,10 @@
             677800,
             664983
         ],
+        "gamePks": [
+            822780,
+            825048
+        ],
         "taxonomy": [
             "apple-news",
             "player-of-the-week"
@@ -2915,6 +3299,7 @@
             121
         ],
         "playerIds": [],
+        "gamePks": [],
         "taxonomy": [
             "exclude-from-personalization"
         ],
@@ -2932,6 +3317,7 @@
             137
         ],
         "playerIds": [],
+        "gamePks": [],
         "taxonomy": [
             "exclude-from-personalization"
         ],
@@ -2949,6 +3335,7 @@
             113
         ],
         "playerIds": [],
+        "gamePks": [],
         "taxonomy": [
             "exclude-from-personalization"
         ],
@@ -2966,6 +3353,7 @@
             139
         ],
         "playerIds": [],
+        "gamePks": [],
         "taxonomy": [
             "exclude-from-personalization"
         ],
@@ -2983,6 +3371,7 @@
             143
         ],
         "playerIds": [],
+        "gamePks": [],
         "taxonomy": [
             "exclude-from-personalization"
         ],
@@ -3000,6 +3389,7 @@
             138
         ],
         "playerIds": [],
+        "gamePks": [],
         "taxonomy": [
             "exclude-from-personalization"
         ],
@@ -3017,6 +3407,7 @@
             158
         ],
         "playerIds": [],
+        "gamePks": [],
         "taxonomy": [
             "exclude-from-personalization"
         ],
@@ -3036,6 +3427,7 @@
         "playerIds": [
             641313
         ],
+        "gamePks": [],
         "taxonomy": [
             "apple-news",
             "retirement"
@@ -3054,6 +3446,7 @@
             133
         ],
         "playerIds": [],
+        "gamePks": [],
         "taxonomy": [
             "exclude-from-personalization"
         ],
@@ -3071,6 +3464,7 @@
             142
         ],
         "playerIds": [],
+        "gamePks": [],
         "taxonomy": [
             "exclude-from-personalization"
         ],
@@ -3092,6 +3486,9 @@
             660271,
             663656
         ],
+        "gamePks": [
+            823918
+        ],
         "taxonomy": [
             "apple-news",
             "trade-deadline"
@@ -3110,6 +3507,9 @@
             136
         ],
         "playerIds": [],
+        "gamePks": [
+            823512
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -3127,6 +3527,9 @@
             138
         ],
         "playerIds": [],
+        "gamePks": [
+            823018
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -3144,6 +3547,9 @@
             135
         ],
         "playerIds": [],
+        "gamePks": [
+            823265
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -3163,6 +3569,9 @@
         "playerIds": [
             621020,
             691718
+        ],
+        "gamePks": [
+            822697
         ],
         "taxonomy": [
             "apple-news",
@@ -3184,6 +3593,9 @@
         "playerIds": [
             701807
         ],
+        "gamePks": [
+            824887
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -3201,6 +3613,7 @@
             120
         ],
         "playerIds": [],
+        "gamePks": [],
         "taxonomy": [
             "exclude-from-personalization"
         ],
@@ -3218,6 +3631,7 @@
             144
         ],
         "playerIds": [],
+        "gamePks": [],
         "taxonomy": [
             "exclude-from-personalization"
         ],
@@ -3235,6 +3649,7 @@
             118
         ],
         "playerIds": [],
+        "gamePks": [],
         "taxonomy": [
             "exclude-from-personalization"
         ],
@@ -3252,6 +3667,7 @@
             114
         ],
         "playerIds": [],
+        "gamePks": [],
         "taxonomy": [
             "exclude-from-personalization"
         ],
@@ -3269,6 +3685,7 @@
             146
         ],
         "playerIds": [],
+        "gamePks": [],
         "taxonomy": [
             "exclude-from-personalization"
         ],
@@ -3288,6 +3705,7 @@
         "playerIds": [
             682254
         ],
+        "gamePks": [],
         "taxonomy": [
             "apple-news"
         ],
@@ -3307,6 +3725,9 @@
         "playerIds": [
             663586
         ],
+        "gamePks": [
+            824887
+        ],
         "taxonomy": [],
         "sourceScopes": [
             "球団公式"
@@ -3324,6 +3745,7 @@
         "playerIds": [
             806039
         ],
+        "gamePks": [],
         "taxonomy": [
             "mlb-top-prospects",
             "apple-news"
@@ -3345,6 +3767,7 @@
             120691,
             430897
         ],
+        "gamePks": [],
         "taxonomy": [
             "apple-news"
         ],
@@ -3362,6 +3785,7 @@
             109
         ],
         "playerIds": [],
+        "gamePks": [],
         "taxonomy": [
             "exclude-from-personalization"
         ],
@@ -3379,6 +3803,7 @@
             115
         ],
         "playerIds": [],
+        "gamePks": [],
         "taxonomy": [
             "exclude-from-personalization"
         ],
@@ -3397,6 +3822,9 @@
         ],
         "playerIds": [
             668939
+        ],
+        "gamePks": [
+            822780
         ],
         "taxonomy": [
             "apple-news",
@@ -3418,6 +3846,7 @@
         "playerIds": [
             703680
         ],
+        "gamePks": [],
         "taxonomy": [
             "mlb-top-prospects",
             "apple-news"
@@ -3439,6 +3868,7 @@
             814409,
             695505
         ],
+        "gamePks": [],
         "taxonomy": [
             "apple-news",
             "mlb-top-prospects"
@@ -3457,6 +3887,7 @@
             135
         ],
         "playerIds": [],
+        "gamePks": [],
         "taxonomy": [],
         "sourceScopes": [
             "球団公式"
@@ -3474,6 +3905,7 @@
         "playerIds": [
             702576
         ],
+        "gamePks": [],
         "taxonomy": [
             "mlb-top-prospects",
             "apple-news"
@@ -3492,6 +3924,9 @@
             117
         ],
         "playerIds": [],
+        "gamePks": [
+            823268
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -3510,6 +3945,9 @@
         ],
         "playerIds": [
             669720
+        ],
+        "gamePks": [
+            823268
         ],
         "taxonomy": [
             "apple-news",
@@ -3531,6 +3969,9 @@
         "playerIds": [
             665487
         ],
+        "gamePks": [
+            823268
+        ],
         "taxonomy": [
             "apple-news",
             "takeaways",
@@ -3551,6 +3992,7 @@
             120
         ],
         "playerIds": [],
+        "gamePks": [],
         "taxonomy": [
             "savant",
             "apple-news"
@@ -3569,6 +4011,9 @@
             114
         ],
         "playerIds": [],
+        "gamePks": [
+            824565
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -3588,6 +4033,7 @@
         "playerIds": [
             689476
         ],
+        "gamePks": [],
         "taxonomy": [
             "minor-league-baseball",
             "apple-news"
@@ -3608,6 +4054,9 @@
         "playerIds": [
             691785
         ],
+        "gamePks": [
+            823190
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -3627,6 +4076,7 @@
         "playerIds": [
             695722
         ],
+        "gamePks": [],
         "taxonomy": [
             "apple-news",
             "mlb-top-prospects"
@@ -3645,6 +4095,7 @@
         "playerIds": [
             800522
         ],
+        "gamePks": [],
         "taxonomy": [
             "mlb-top-prospects",
             "apple-news",
@@ -3664,6 +4115,7 @@
             119
         ],
         "playerIds": [],
+        "gamePks": [],
         "taxonomy": [
             "apple-news",
             "injury",
@@ -3685,6 +4137,9 @@
         "playerIds": [
             624413
         ],
+        "gamePks": [
+            822862
+        ],
         "taxonomy": [
             "apple-news",
             "game-recap"
@@ -3705,6 +4160,7 @@
         "playerIds": [
             701771
         ],
+        "gamePks": [],
         "taxonomy": [
             "apple-news",
             "mlb-top-prospects"
@@ -3723,6 +4179,9 @@
             136
         ],
         "playerIds": [],
+        "gamePks": [
+            823104
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -3740,6 +4199,9 @@
             116
         ],
         "playerIds": [],
+        "gamePks": [
+            823190
+        ],
         "taxonomy": [
             "apple-news",
             "game-recap",
@@ -3761,6 +4223,9 @@
         "playerIds": [
             696146
         ],
+        "gamePks": [
+            824564
+        ],
         "taxonomy": [
             "apple-news",
             "mlb-top-prospects",
@@ -3780,6 +4245,9 @@
             115
         ],
         "playerIds": [],
+        "gamePks": [
+            823020
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -3799,6 +4267,7 @@
         "playerIds": [
             682625
         ],
+        "gamePks": [],
         "taxonomy": [
             "apple-news",
             "minor-league-baseball"
@@ -3819,6 +4288,9 @@
         "playerIds": [
             593958
         ],
+        "gamePks": [
+            825050
+        ],
         "taxonomy": [
             "apple-news",
             "game-recap",
@@ -3838,6 +4310,9 @@
             119
         ],
         "playerIds": [],
+        "gamePks": [
+            825050
+        ],
         "taxonomy": [
             "apple-news",
             "game-recap-losing"
@@ -3857,6 +4332,9 @@
         ],
         "playerIds": [
             802415
+        ],
+        "gamePks": [
+            823104
         ],
         "taxonomy": [
             "apple-news",
@@ -3878,6 +4356,9 @@
         "playerIds": [
             806198,
             678225
+        ],
+        "gamePks": [
+            823751
         ],
         "taxonomy": [
             "apple-news",
@@ -3901,6 +4382,9 @@
             656941,
             656537
         ],
+        "gamePks": [
+            823425
+        ],
         "taxonomy": [
             "apple-news",
             "game-recap"
@@ -3920,6 +4404,9 @@
         ],
         "playerIds": [
             694819
+        ],
+        "gamePks": [
+            823751
         ],
         "taxonomy": [
             "apple-news",
@@ -3942,6 +4429,9 @@
         "playerIds": [
             800325
         ],
+        "gamePks": [
+            823751
+        ],
         "taxonomy": [
             "apple-news",
             "mlb-top-prospects"
@@ -3961,6 +4451,9 @@
         ],
         "playerIds": [
             802139
+        ],
+        "gamePks": [
+            823020
         ],
         "taxonomy": [
             "apple-news",
@@ -3983,6 +4476,9 @@
         "playerIds": [
             669065
         ],
+        "gamePks": [
+            823835
+        ],
         "taxonomy": [
             "apple-news",
             "injury",
@@ -4004,6 +4500,9 @@
         "playerIds": [
             605397
         ],
+        "gamePks": [
+            823268
+        ],
         "taxonomy": [
             "apple-news",
             "injury",
@@ -4023,6 +4522,9 @@
             140
         ],
         "playerIds": [],
+        "gamePks": [
+            822862
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -4040,6 +4542,9 @@
             141
         ],
         "playerIds": [],
+        "gamePks": [
+            823425
+        ],
         "taxonomy": [
             "apple-news",
             "hard-throw"
@@ -4058,6 +4563,9 @@
             142
         ],
         "playerIds": [],
+        "gamePks": [
+            823751
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -4076,6 +4584,9 @@
         ],
         "playerIds": [
             663903
+        ],
+        "gamePks": [
+            822700
         ],
         "taxonomy": [
             "apple-news",
@@ -4096,6 +4607,9 @@
         ],
         "playerIds": [
             687263
+        ],
+        "gamePks": [
+            823835
         ],
         "taxonomy": [
             "apple-news"
@@ -4118,6 +4632,9 @@
             695506,
             677951
         ],
+        "gamePks": [
+            824078
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -4137,6 +4654,9 @@
         "playerIds": [
             519242
         ],
+        "gamePks": [
+            823513
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -4154,6 +4674,9 @@
             111
         ],
         "playerIds": [],
+        "gamePks": [
+            824724
+        ],
         "taxonomy": [
             "apple-news",
             "takeaways"
@@ -4172,6 +4695,9 @@
             134
         ],
         "playerIds": [],
+        "gamePks": [
+            823345
+        ],
         "taxonomy": [
             "apple-news",
             "long-home-runs"
@@ -4191,6 +4717,9 @@
         ],
         "playerIds": [
             702593
+        ],
+        "gamePks": [
+            824564
         ],
         "taxonomy": [
             "apple-news",
@@ -4212,6 +4741,9 @@
         "playerIds": [
             666182
         ],
+        "gamePks": [
+            823345
+        ],
         "taxonomy": [
             "apple-news",
             "game-recap",
@@ -4232,6 +4764,9 @@
         ],
         "playerIds": [
             656550
+        ],
+        "gamePks": [
+            823513
         ],
         "taxonomy": [
             "apple-news",
@@ -4255,6 +4790,9 @@
             571510,
             664023
         ],
+        "gamePks": [
+            824078
+        ],
         "taxonomy": [
             "apple-news",
             "takeaways",
@@ -4275,6 +4813,9 @@
         ],
         "playerIds": [
             805779
+        ],
+        "gamePks": [
+            824724
         ],
         "taxonomy": [
             "apple-news",
@@ -4297,6 +4838,9 @@
         "playerIds": [
             693645
         ],
+        "gamePks": [
+            823513
+        ],
         "taxonomy": [
             "apple-news",
             "filthy-pitch",
@@ -4317,6 +4861,10 @@
             143
         ],
         "playerIds": [],
+        "gamePks": [
+            823425,
+            823018
+        ],
         "taxonomy": [
             "apple-news",
             "field-of-dreams"
@@ -4337,6 +4885,9 @@
         "playerIds": [
             695418
         ],
+        "gamePks": [
+            822700
+        ],
         "taxonomy": [
             "apple-news",
             "game-recap"
@@ -4355,6 +4906,7 @@
             134
         ],
         "playerIds": [],
+        "gamePks": [],
         "taxonomy": [
             "pit-inside-the-pirates"
         ],
@@ -4374,6 +4926,9 @@
         "playerIds": [
             643377,
             675627
+        ],
+        "gamePks": [
+            823104
         ],
         "taxonomy": [
             "apple-news",
@@ -4396,6 +4951,9 @@
         "playerIds": [
             668904
         ],
+        "gamePks": [
+            823751
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -4414,6 +4972,9 @@
         ],
         "playerIds": [
             701807
+        ],
+        "gamePks": [
+            823345
         ],
         "taxonomy": [
             "apple-news",
@@ -4436,6 +4997,9 @@
             702540,
             695721
         ],
+        "gamePks": [
+            824724
+        ],
         "taxonomy": [
             "apple-news",
             "mlb-top-prospects"
@@ -4455,6 +5019,9 @@
         ],
         "playerIds": [
             814409
+        ],
+        "gamePks": [
+            822700
         ],
         "taxonomy": [
             "mlb-top-prospects",
@@ -4476,6 +5043,9 @@
         "playerIds": [
             641329
         ],
+        "gamePks": [
+            823102
+        ],
         "taxonomy": [
             "apple-news",
             "game-recap"
@@ -4494,6 +5064,9 @@
             136
         ],
         "playerIds": [],
+        "gamePks": [
+            823102
+        ],
         "taxonomy": [
             "apple-news",
             "ejection"
@@ -4513,6 +5086,9 @@
         ],
         "playerIds": [
             672841
+        ],
+        "gamePks": [
+            823102
         ],
         "taxonomy": [
             "rehab",
@@ -4536,6 +5112,9 @@
             643377,
             670764
         ],
+        "gamePks": [
+            823102
+        ],
         "taxonomy": [
             "apple-news",
             "injury"
@@ -4554,6 +5133,9 @@
             136
         ],
         "playerIds": [],
+        "gamePks": [
+            823102
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -4572,6 +5154,9 @@
         ],
         "playerIds": [
             694297
+        ],
+        "gamePks": [
+            825049
         ],
         "taxonomy": [
             "apple-news"
@@ -4592,6 +5177,9 @@
         "playerIds": [
             695505
         ],
+        "gamePks": [
+            822701
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -4610,6 +5198,9 @@
         ],
         "playerIds": [
             828344
+        ],
+        "gamePks": [
+            825049
         ],
         "taxonomy": [
             "apple-news",
@@ -4632,6 +5223,9 @@
             650633,
             701538
         ],
+        "gamePks": [
+            823267
+        ],
         "taxonomy": [
             "apple-news",
             "game-recap"
@@ -4652,6 +5246,9 @@
         "playerIds": [
             670059
         ],
+        "gamePks": [
+            824565
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -4671,6 +5268,9 @@
         "playerIds": [
             808967
         ],
+        "gamePks": [
+            825049
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -4688,6 +5288,9 @@
             119
         ],
         "playerIds": [],
+        "gamePks": [
+            825049
+        ],
         "taxonomy": [
             "apple-news",
             "game-recap",
@@ -4708,6 +5311,9 @@
         ],
         "playerIds": [
             664983
+        ],
+        "gamePks": [
+            823021
         ],
         "taxonomy": [
             "apple-news",
@@ -4730,6 +5336,7 @@
         "playerIds": [
             691728
         ],
+        "gamePks": [],
         "taxonomy": [
             "apple-news",
             "mlb-top-prospects"
@@ -4750,6 +5357,9 @@
         "playerIds": [
             605400
         ],
+        "gamePks": [
+            823426
+        ],
         "taxonomy": [
             "injury",
             "apple-news",
@@ -4769,6 +5379,9 @@
             134
         ],
         "playerIds": [],
+        "gamePks": [
+            823348
+        ],
         "taxonomy": [
             "pit-inside-the-pirates",
             "apple-news"
@@ -4788,6 +5401,9 @@
         ],
         "playerIds": [
             453286
+        ],
+        "gamePks": [
+            823426
         ],
         "taxonomy": [
             "apple-news",
@@ -4809,6 +5425,9 @@
         ],
         "playerIds": [
             671976
+        ],
+        "gamePks": [
+            824565
         ],
         "taxonomy": [
             "apple-news",
@@ -4832,6 +5451,9 @@
             666152,
             688107
         ],
+        "gamePks": [
+            823752
+        ],
         "taxonomy": [
             "apple-news",
             "game-recap"
@@ -4851,6 +5473,9 @@
         ],
         "playerIds": [
             687401
+        ],
+        "gamePks": [
+            823752
         ],
         "taxonomy": [
             "apple-news",
@@ -4873,6 +5498,7 @@
             811666,
             811139
         ],
+        "gamePks": [],
         "taxonomy": [
             "mlb-top-prospects",
             "apple-news"
@@ -4893,6 +5519,9 @@
         "playerIds": [
             680694
         ],
+        "gamePks": [
+            822864
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -4912,6 +5541,9 @@
         "playerIds": [
             669461
         ],
+        "gamePks": [
+            823021
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -4930,6 +5562,9 @@
         ],
         "playerIds": [
             695506
+        ],
+        "gamePks": [
+            824079
         ],
         "taxonomy": [
             "apple-news",
@@ -4952,6 +5587,9 @@
         "playerIds": [
             695549
         ],
+        "gamePks": [
+            823188
+        ],
         "taxonomy": [
             "apple-news",
             "game-recap"
@@ -4970,6 +5608,9 @@
             117
         ],
         "playerIds": [],
+        "gamePks": [
+            823267
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -4987,6 +5628,9 @@
             142
         ],
         "playerIds": [],
+        "gamePks": [
+            823752
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -5005,6 +5649,9 @@
         ],
         "playerIds": [
             594798
+        ],
+        "gamePks": [
+            822864
         ],
         "taxonomy": [
             "apple-news",
@@ -5027,6 +5674,9 @@
         "playerIds": [
             674841
         ],
+        "gamePks": [
+            822701
+        ],
         "taxonomy": [
             "apple-news",
             "game-recap"
@@ -5047,6 +5697,9 @@
         "playerIds": [
             554430
         ],
+        "gamePks": [
+            823426
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -5065,6 +5718,9 @@
         ],
         "playerIds": [
             605280
+        ],
+        "gamePks": [
+            824079
         ],
         "taxonomy": [
             "apple-news",
@@ -5085,6 +5741,9 @@
         ],
         "playerIds": [
             682927
+        ],
+        "gamePks": [
+            823348
         ],
         "taxonomy": [
             "apple-news",
@@ -5108,6 +5767,7 @@
             809254,
             804817
         ],
+        "gamePks": [],
         "taxonomy": [
             "apple-news",
             "mlb-top-prospects"
@@ -5130,6 +5790,9 @@
             664023,
             607067
         ],
+        "gamePks": [
+            824079
+        ],
         "taxonomy": [
             "apple-news",
             "takeaways"
@@ -5150,6 +5813,7 @@
         "playerIds": [
             806224
         ],
+        "gamePks": [],
         "taxonomy": [
             "apple-news",
             "mlb-top-prospects"
@@ -5169,6 +5833,9 @@
         ],
         "playerIds": [
             476594
+        ],
+        "gamePks": [
+            823348
         ],
         "taxonomy": [
             "apple-news",
@@ -5194,6 +5861,9 @@
             467055,
             457763
         ],
+        "gamePks": [
+            823188
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -5213,6 +5883,7 @@
         "playerIds": [
             692150
         ],
+        "gamePks": [],
         "taxonomy": [
             "apple-news",
             "mlb-top-prospects"
@@ -5233,6 +5904,9 @@
         "playerIds": [
             115230
         ],
+        "gamePks": [
+            824565
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -5251,6 +5925,9 @@
         ],
         "playerIds": [
             828098
+        ],
+        "gamePks": [
+            823426
         ],
         "taxonomy": [
             "mlb-top-prospects",
@@ -5273,6 +5950,9 @@
         "playerIds": [
             700712
         ],
+        "gamePks": [
+            823834
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -5290,6 +5970,9 @@
             111
         ],
         "playerIds": [],
+        "gamePks": [
+            824726
+        ],
         "taxonomy": [
             "apple-news",
             "takeaways"
@@ -5309,6 +5992,9 @@
         ],
         "playerIds": [
             607074
+        ],
+        "gamePks": [
+            823514
         ],
         "taxonomy": [
             "injury",
@@ -5330,6 +6016,9 @@
         "playerIds": [
             645261
         ],
+        "gamePks": [
+            823834
+        ],
         "taxonomy": [
             "apple-news",
             "game-recap"
@@ -5350,6 +6039,9 @@
         "playerIds": [
             519242
         ],
+        "gamePks": [
+            823514
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -5369,6 +6061,9 @@
         "playerIds": [
             519242
         ],
+        "gamePks": [
+            823514
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -5387,6 +6082,9 @@
         ],
         "playerIds": [
             660271
+        ],
+        "gamePks": [
+            825049
         ],
         "taxonomy": [
             "injury",
@@ -5408,6 +6106,9 @@
         "playerIds": [
             695611
         ],
+        "gamePks": [
+            824726
+        ],
         "taxonomy": [
             "apple-news",
             "game-recap"
@@ -5428,6 +6129,9 @@
         "playerIds": [
             116550
         ],
+        "gamePks": [
+            823514
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -5447,6 +6151,9 @@
         "playerIds": [
             682998
         ],
+        "gamePks": [
+            825049
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -5465,6 +6172,9 @@
         ],
         "playerIds": [
             543037
+        ],
+        "gamePks": [
+            823514
         ],
         "taxonomy": [
             "apple-news",
@@ -5488,6 +6198,9 @@
             696146,
             701780
         ],
+        "gamePks": [
+            824565
+        ],
         "taxonomy": [
             "apple-news",
             "mlb-top-prospects",
@@ -5509,6 +6222,9 @@
         ],
         "playerIds": [
             668939
+        ],
+        "gamePks": [
+            824726
         ],
         "taxonomy": [
             "apple-news",
@@ -5532,6 +6248,9 @@
         "playerIds": [
             677592
         ],
+        "gamePks": [
+            823021
+        ],
         "taxonomy": [
             "apple-news",
             "transactions"
@@ -5551,6 +6270,9 @@
         ],
         "playerIds": [
             686217
+        ],
+        "gamePks": [
+            823752
         ],
         "taxonomy": [
             "apple-news",
@@ -5573,6 +6295,9 @@
         "playerIds": [
             111952
         ],
+        "gamePks": [
+            823345
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -5590,6 +6315,9 @@
             147
         ],
         "playerIds": [],
+        "gamePks": [
+            823514
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -5610,6 +6338,9 @@
             668939,
             701350,
             669711
+        ],
+        "gamePks": [
+            824727
         ],
         "taxonomy": [
             "apple-news",
@@ -5634,6 +6365,9 @@
             117361,
             117340
         ],
+        "gamePks": [
+            823188
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -5653,6 +6387,7 @@
         "playerIds": [
             808967
         ],
+        "gamePks": [],
         "taxonomy": [
             "apple-news",
             "savant"
@@ -5673,6 +6408,7 @@
         "playerIds": [
             695771
         ],
+        "gamePks": [],
         "taxonomy": [
             "apple-news",
             "mlb-top-prospects"
@@ -5693,6 +6429,7 @@
         "playerIds": [
             700413
         ],
+        "gamePks": [],
         "taxonomy": [
             "apple-news",
             "mlb-top-prospects"
@@ -5714,6 +6451,9 @@
             115503,
             115230
         ],
+        "gamePks": [
+            824565
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -5732,6 +6472,9 @@
         ],
         "playerIds": [
             702070
+        ],
+        "gamePks": [
+            824081
         ],
         "taxonomy": [
             "apple-news"
@@ -5752,6 +6495,7 @@
         "playerIds": [
             823787
         ],
+        "gamePks": [],
         "taxonomy": [
             "apple-news",
             "mlb-top-prospects"
@@ -5770,6 +6514,9 @@
             136
         ],
         "playerIds": [],
+        "gamePks": [
+            823103
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -5789,6 +6536,9 @@
         "playerIds": [
             672456
         ],
+        "gamePks": [
+            823191
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -5807,6 +6557,9 @@
         ],
         "playerIds": [
             621242
+        ],
+        "gamePks": [
+            825051
         ],
         "taxonomy": [
             "apple-news",
@@ -5829,6 +6582,9 @@
             665750,
             669358
         ],
+        "gamePks": [
+            822863
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -5847,6 +6603,9 @@
         ],
         "playerIds": [
             814439
+        ],
+        "gamePks": [
+            825051
         ],
         "taxonomy": [
             "game-recap",
@@ -5869,6 +6628,9 @@
             605288,
             664141
         ],
+        "gamePks": [
+            823191
+        ],
         "taxonomy": [
             "apple-news",
             "game-recap"
@@ -5889,6 +6651,9 @@
         "playerIds": [
             701908
         ],
+        "gamePks": [
+            825051
+        ],
         "taxonomy": [
             "mlb-top-prospects",
             "apple-news"
@@ -5907,6 +6672,9 @@
             111
         ],
         "playerIds": [],
+        "gamePks": [
+            824727
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -5925,6 +6693,9 @@
         ],
         "playerIds": [
             592662
+        ],
+        "gamePks": [
+            823266
         ],
         "taxonomy": [
             "apple-news",
@@ -5946,6 +6717,9 @@
         ],
         "playerIds": [
             641816
+        ],
+        "gamePks": [
+            823515
         ],
         "taxonomy": [
             "apple-news",
@@ -5969,6 +6743,7 @@
         "playerIds": [
             806956
         ],
+        "gamePks": [],
         "taxonomy": [
             "apple-news",
             "mlb-top-prospects"
@@ -5988,6 +6763,9 @@
         ],
         "playerIds": [
             701358
+        ],
+        "gamePks": [
+            823266
         ],
         "taxonomy": [
             "apple-news",
@@ -6009,6 +6787,9 @@
         "playerIds": [
             663738
         ],
+        "gamePks": [
+            824081
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -6027,6 +6808,9 @@
         ],
         "playerIds": [
             828098
+        ],
+        "gamePks": [
+            823428
         ],
         "taxonomy": [
             "mlb-top-prospects",
@@ -6048,6 +6832,9 @@
         "playerIds": [
             703520
         ],
+        "gamePks": [
+            823428
+        ],
         "taxonomy": [
             "mlb-top-prospects",
             "transactions",
@@ -6068,6 +6855,9 @@
             136
         ],
         "playerIds": [],
+        "gamePks": [
+            823103
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -6086,6 +6876,9 @@
         ],
         "playerIds": [
             656876
+        ],
+        "gamePks": [
+            823103
         ],
         "taxonomy": [
             "apple-news",
@@ -6107,6 +6900,9 @@
         "playerIds": [
             805673
         ],
+        "gamePks": [
+            823750
+        ],
         "taxonomy": [
             "apple-news",
             "injury"
@@ -6127,6 +6923,9 @@
         "playerIds": [
             667755
         ],
+        "gamePks": [
+            823428
+        ],
         "taxonomy": [
             "apple-news",
             "game-recap"
@@ -6145,6 +6944,9 @@
             147
         ],
         "playerIds": [],
+        "gamePks": [
+            823515
+        ],
         "taxonomy": [
             "apple-news",
             "extra-innings",
@@ -6167,6 +6969,9 @@
         "playerIds": [
             675660
         ],
+        "gamePks": [
+            823750
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -6185,6 +6990,9 @@
         ],
         "playerIds": [
             681198
+        ],
+        "gamePks": [
+            823024
         ],
         "taxonomy": [
             "apple-news"
@@ -6206,6 +7014,9 @@
             681517,
             691026
         ],
+        "gamePks": [
+            823024
+        ],
         "taxonomy": [
             "apple-news",
             "game-recap"
@@ -6225,6 +7036,9 @@
         ],
         "playerIds": [
             701785
+        ],
+        "gamePks": [
+            823750
         ],
         "taxonomy": [
             "mlb-top-prospects",
@@ -6251,6 +7065,9 @@
             805999,
             701807
         ],
+        "gamePks": [
+            823349
+        ],
         "taxonomy": [
             "apple-news",
             "game-recap",
@@ -6272,6 +7089,9 @@
         ],
         "playerIds": [
             592332
+        ],
+        "gamePks": [
+            824081
         ],
         "taxonomy": [
             "apple-news",
@@ -6295,6 +7115,9 @@
             682829,
             553993
         ],
+        "gamePks": [
+            822699
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -6314,6 +7137,7 @@
         "playerIds": [
             807739
         ],
+        "gamePks": [],
         "taxonomy": [
             "apple-news",
             "mlb-top-prospects"
@@ -6333,6 +7157,9 @@
         ],
         "playerIds": [
             695734
+        ],
+        "gamePks": [
+            822699
         ],
         "taxonomy": [
             "apple-news",
@@ -6354,6 +7181,9 @@
             111
         ],
         "playerIds": [],
+        "gamePks": [
+            824727
+        ],
         "taxonomy": [
             "apple-news",
             "takeaways",
@@ -6374,6 +7204,9 @@
         ],
         "playerIds": [
             682657
+        ],
+        "gamePks": [
+            824566
         ],
         "taxonomy": [
             "apple-news",
@@ -6397,6 +7230,9 @@
             543135,
             592626
         ],
+        "gamePks": [
+            822863
+        ],
         "taxonomy": [
             "apple-news",
             "game-recap"
@@ -6415,6 +7251,9 @@
             146
         ],
         "playerIds": [],
+        "gamePks": [
+            823836
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -6434,6 +7273,9 @@
         "playerIds": [
             702273
         ],
+        "gamePks": [
+            824566
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -6452,6 +7294,9 @@
         ],
         "playerIds": [
             669387
+        ],
+        "gamePks": [
+            823349
         ],
         "taxonomy": [
             "apple-news"
@@ -6473,6 +7318,9 @@
             592332,
             673548
         ],
+        "gamePks": [
+            824081
+        ],
         "taxonomy": [
             "apple-news",
             "takeaways"
@@ -6492,6 +7340,9 @@
         ],
         "playerIds": [
             545361
+        ],
+        "gamePks": [
+            823836
         ],
         "taxonomy": [
             "apple-news",
@@ -6515,6 +7366,9 @@
         "playerIds": [
             677944
         ],
+        "gamePks": [
+            824566
+        ],
         "taxonomy": [
             "apple-news",
             "injury"
@@ -6535,6 +7389,9 @@
         "playerIds": [
             400284
         ],
+        "gamePks": [
+            823428
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -6554,6 +7411,7 @@
         "playerIds": [
             811294
         ],
+        "gamePks": [],
         "taxonomy": [
             "apple-news",
             "mlb-top-prospects"
@@ -6573,6 +7431,9 @@
         ],
         "playerIds": [
             801139
+        ],
+        "gamePks": [
+            824727
         ],
         "taxonomy": [
             "apple-news",
@@ -6595,6 +7456,9 @@
         "playerIds": [
             665833
         ],
+        "gamePks": [
+            823349
+        ],
         "taxonomy": [
             "apple-news",
             "injury",
@@ -6614,6 +7478,9 @@
             133
         ],
         "playerIds": [],
+        "gamePks": [
+            824727
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -6632,6 +7499,9 @@
         ],
         "playerIds": [
             656305
+        ],
+        "gamePks": [
+            823191
         ],
         "taxonomy": [
             "apple-news",
@@ -6653,6 +7523,9 @@
         "playerIds": [
             695558
         ],
+        "gamePks": [
+            823349
+        ],
         "taxonomy": [
             "mlb-top-prospects",
             "apple-news"
@@ -6673,6 +7546,7 @@
         "playerIds": [
             696501
         ],
+        "gamePks": [],
         "taxonomy": [
             "apple-news",
             "mlb-top-prospects"
@@ -6693,6 +7567,7 @@
         "playerIds": [
             814351
         ],
+        "gamePks": [],
         "taxonomy": [
             "mlb-top-prospects",
             "apple-news"
@@ -6713,6 +7588,9 @@
         "playerIds": [
             810938,
             700246
+        ],
+        "gamePks": [
+            823103
         ],
         "taxonomy": [
             "apple-news",
@@ -6736,6 +7614,9 @@
             665795,
             666129
         ],
+        "gamePks": [
+            824081
+        ],
         "taxonomy": [
             "apple-news",
             "injury",
@@ -6757,6 +7638,9 @@
         "playerIds": [
             677942
         ],
+        "gamePks": [
+            822863
+        ],
         "taxonomy": [
             "apple-news",
             "injury"
@@ -6777,6 +7661,9 @@
         "playerIds": [
             605135
         ],
+        "gamePks": [
+            824807
+        ],
         "taxonomy": [
             "apple-news",
             "injury",
@@ -6796,6 +7683,9 @@
             145
         ],
         "playerIds": [],
+        "gamePks": [
+            824566
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -6815,6 +7705,7 @@
         "playerIds": [
             821150
         ],
+        "gamePks": [],
         "taxonomy": [
             "apple-news",
             "mlb-top-prospects"
@@ -6831,6 +7722,7 @@
         "contentDate": "2026-08-07T23:49:42.045Z",
         "teamIds": [],
         "playerIds": [],
+        "gamePks": [],
         "taxonomy": [
             "offbeat",
             "minor-league-baseball",
@@ -6851,6 +7743,7 @@
             114
         ],
         "playerIds": [],
+        "gamePks": [],
         "taxonomy": [
             "injury",
             "transactions",
@@ -6872,6 +7765,9 @@
         "playerIds": [
             656756
         ],
+        "gamePks": [
+            822863
+        ],
         "taxonomy": [
             "apple-news",
             "transactions"
@@ -6890,6 +7786,7 @@
             134
         ],
         "playerIds": [],
+        "gamePks": [],
         "taxonomy": [
             "pit-inside-the-pirates"
         ],
@@ -6908,6 +7805,9 @@
         ],
         "playerIds": [
             641598
+        ],
+        "gamePks": [
+            823515
         ],
         "taxonomy": [
             "apple-news",
@@ -6929,6 +7829,9 @@
         "playerIds": [
             657746
         ],
+        "gamePks": [
+            824080
+        ],
         "taxonomy": [
             "injury",
             "apple-news"
@@ -6945,6 +7848,9 @@
         "contentDate": "2026-08-07T20:12:30.308Z",
         "teamIds": [],
         "playerIds": [],
+        "gamePks": [
+            824566
+        ],
         "taxonomy": [
             "rbi-program",
             "apple-news",
@@ -6967,6 +7873,10 @@
         "playerIds": [
             663698
         ],
+        "gamePks": [
+            824729,
+            824566
+        ],
         "taxonomy": [
             "apple-news",
             "injury"
@@ -6987,6 +7897,7 @@
         "playerIds": [
             701785
         ],
+        "gamePks": [],
         "taxonomy": [
             "mlb-top-prospects",
             "mlb-debut",
@@ -7006,6 +7917,7 @@
             144
         ],
         "playerIds": [],
+        "gamePks": [],
         "taxonomy": [
             "apple-news"
         ],
@@ -7025,6 +7937,9 @@
         "playerIds": [
             813833
         ],
+        "gamePks": [
+            824727
+        ],
         "taxonomy": [
             "apple-news",
             "minor-league-baseball"
@@ -7041,6 +7956,7 @@
         "contentDate": "2026-08-07T17:28:41.503Z",
         "teamIds": [],
         "playerIds": [],
+        "gamePks": [],
         "taxonomy": [
             "apple-news",
             "offbeat",
@@ -7061,6 +7977,9 @@
             138
         ],
         "playerIds": [],
+        "gamePks": [
+            823024
+        ],
         "taxonomy": [
             "apple-news",
             "trade-deadline",
@@ -7082,6 +8001,9 @@
         "playerIds": [
             813314
         ],
+        "gamePks": [
+            823266
+        ],
         "taxonomy": [
             "apple-news",
             "mlb-draft"
@@ -7102,6 +8024,7 @@
         "playerIds": [
             804530
         ],
+        "gamePks": [],
         "taxonomy": [
             "apple-news",
             "mlb-top-prospects"
@@ -7121,6 +8044,9 @@
         ],
         "playerIds": [
             694968
+        ],
+        "gamePks": [
+            823024
         ],
         "taxonomy": [
             "apple-news",
@@ -7142,6 +8068,9 @@
         "playerIds": [
             624413
         ],
+        "gamePks": [
+            822863
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -7160,6 +8089,9 @@
         ],
         "playerIds": [
             663460
+        ],
+        "gamePks": [
+            825051
         ],
         "taxonomy": [
             "apple-news",
@@ -7183,6 +8115,9 @@
             669160,
             622608
         ],
+        "gamePks": [
+            823750
+        ],
         "taxonomy": [
             "apple-news",
             "trade-deadline"
@@ -7202,6 +8137,9 @@
         ],
         "playerIds": [
             701398
+        ],
+        "gamePks": [
+            822699
         ],
         "taxonomy": [
             "apple-news",
@@ -7223,6 +8161,7 @@
         "playerIds": [
             695722
         ],
+        "gamePks": [],
         "taxonomy": [
             "mlb-top-prospects",
             "apple-news"
@@ -7243,6 +8182,9 @@
         "playerIds": [
             804606
         ],
+        "gamePks": [
+            823349
+        ],
         "taxonomy": [
             "apple-news",
             "injury"
@@ -7261,6 +8203,9 @@
             140
         ],
         "playerIds": [],
+        "gamePks": [
+            822863
+        ],
         "taxonomy": [
             "apple-news",
             "trade-deadline"
@@ -7279,6 +8224,7 @@
             134
         ],
         "playerIds": [],
+        "gamePks": [],
         "taxonomy": [
             "pit-inside-the-pirates"
         ],
@@ -7296,6 +8242,9 @@
             112
         ],
         "playerIds": [],
+        "gamePks": [
+            824081
+        ],
         "taxonomy": [
             "apple-news",
             "trade-deadline"
@@ -7319,6 +8268,9 @@
             673380,
             673540
         ],
+        "gamePks": [
+            823349
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -7338,29 +8290,12 @@
         "playerIds": [
             806146
         ],
+        "gamePks": [
+            823515
+        ],
         "taxonomy": [
             "apple-news",
             "milestone"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Morales homers in 3rd straight game for High-A Great Lakes",
-        "summaryJa": "Emil Morales（LAD）、記録達成の最新情報",
-        "slug": "emil-morales-home-run-in-3rd-straight-game",
-        "url": "https://www.mlb.com/news/emil-morales-home-run-in-3rd-straight-game",
-        "contentDate": "2026-08-07T12:38:20.316Z",
-        "teamIds": [
-            119
-        ],
-        "playerIds": [
-            815896
-        ],
-        "taxonomy": [
-            "apple-news",
-            "mlb-top-prospects"
         ],
         "sourceScopes": [
             "球団公式"
@@ -7377,6 +8312,9 @@
         ],
         "playerIds": [
             699134
+        ],
+        "gamePks": [
+            825053
         ],
         "taxonomy": [
             "apple-news",
@@ -7399,6 +8337,9 @@
         "playerIds": [
             691776
         ],
+        "gamePks": [
+            823430
+        ],
         "taxonomy": [
             "mlb-top-prospects",
             "apple-news"
@@ -7419,6 +8360,9 @@
         "playerIds": [
             700649
         ],
+        "gamePks": [
+            823191
+        ],
         "taxonomy": [
             "mlb-top-prospects",
             "apple-news"
@@ -7437,6 +8381,9 @@
             109
         ],
         "playerIds": [],
+        "gamePks": [
+            825053
+        ],
         "taxonomy": [
             "trade-deadline",
             "apple-news"
@@ -7456,6 +8403,9 @@
         ],
         "playerIds": [
             675085
+        ],
+        "gamePks": [
+            824885
         ],
         "taxonomy": [
             "apple-news",
@@ -7477,6 +8427,7 @@
         "playerIds": [
             805805
         ],
+        "gamePks": [],
         "taxonomy": [
             "apple-news",
             "mlb-top-prospects"
@@ -7495,6 +8446,9 @@
             145
         ],
         "playerIds": [],
+        "gamePks": [
+            824729
+        ],
         "taxonomy": [
             "apple-news",
             "extra-innings",
@@ -7516,6 +8470,9 @@
         "playerIds": [
             660670
         ],
+        "gamePks": [
+            824885
+        ],
         "taxonomy": [
             "apple-news",
             "game-recap"
@@ -7534,6 +8491,9 @@
             142
         ],
         "playerIds": [],
+        "gamePks": [
+            824080
+        ],
         "taxonomy": [
             "game-recap",
             "apple-news"
@@ -7554,6 +8514,9 @@
         "playerIds": [
             663738
         ],
+        "gamePks": [
+            824080
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -7573,6 +8536,7 @@
         "playerIds": [
             670541
         ],
+        "gamePks": [],
         "taxonomy": [
             "apple-news"
         ],
@@ -7591,6 +8555,9 @@
         ],
         "playerIds": [
             681293
+        ],
+        "gamePks": [
+            824664
         ],
         "taxonomy": [
             "apple-news",
@@ -7613,6 +8580,7 @@
         "playerIds": [
             805796
         ],
+        "gamePks": [],
         "taxonomy": [
             "mlb-top-prospects",
             "apple-news"
@@ -7632,6 +8600,9 @@
         ],
         "playerIds": [
             682227
+        ],
+        "gamePks": [
+            824481
         ],
         "taxonomy": [
             "rehab",
@@ -7654,6 +8625,9 @@
         "playerIds": [
             800604
         ],
+        "gamePks": [
+            824729
+        ],
         "taxonomy": [
             "mlb-top-prospects",
             "apple-news"
@@ -7674,6 +8648,7 @@
         "playerIds": [
             814307
         ],
+        "gamePks": [],
         "taxonomy": [
             "apple-news",
             "mlb-top-prospects"
@@ -7694,6 +8669,9 @@
         "playerIds": [
             687605
         ],
+        "gamePks": [
+            823430
+        ],
         "taxonomy": [
             "apple-news",
             "milestone"
@@ -7713,6 +8691,9 @@
         ],
         "playerIds": [
             601713
+        ],
+        "gamePks": [
+            825053
         ],
         "taxonomy": [
             "apple-news",
@@ -7736,6 +8717,9 @@
             664285,
             693307
         ],
+        "gamePks": [
+            823105
+        ],
         "taxonomy": [
             "apple-news",
             "game-recap",
@@ -7758,6 +8742,9 @@
         "playerIds": [
             804526
         ],
+        "gamePks": [
+            824664
+        ],
         "taxonomy": [
             "mlb-top-prospects",
             "apple-news"
@@ -7778,6 +8765,9 @@
         "playerIds": [
             682243
         ],
+        "gamePks": [
+            823105
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -7796,6 +8786,9 @@
         ],
         "playerIds": [
             676979
+        ],
+        "gamePks": [
+            824729
         ],
         "taxonomy": [
             "apple-news",
@@ -7817,6 +8810,9 @@
         "playerIds": [
             656302
         ],
+        "gamePks": [
+            824664
+        ],
         "taxonomy": [
             "apple-news",
             "payoff-pitch"
@@ -7835,6 +8831,9 @@
             114
         ],
         "playerIds": [],
+        "gamePks": [
+            824566
+        ],
         "taxonomy": [
             "apple-news",
             "trade-deadline"
@@ -7855,6 +8854,9 @@
         "playerIds": [
             691718,
             608324
+        ],
+        "gamePks": [
+            824664
         ],
         "taxonomy": [
             "apple-news",
@@ -7879,6 +8881,9 @@
             519242,
             641816
         ],
+        "gamePks": [
+            824885
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -7896,6 +8901,9 @@
             114
         ],
         "playerIds": [],
+        "gamePks": [
+            824401
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -7914,6 +8922,9 @@
         ],
         "playerIds": [
             669160
+        ],
+        "gamePks": [
+            823754
         ],
         "taxonomy": [
             "apple-news",
@@ -7935,6 +8946,9 @@
         "playerIds": [
             687064
         ],
+        "gamePks": [
+            824804
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -7952,6 +8966,9 @@
             113
         ],
         "playerIds": [],
+        "gamePks": [
+            824481
+        ],
         "taxonomy": [
             "apple-news",
             "game-recap",
@@ -7972,6 +8989,9 @@
             133
         ],
         "playerIds": [],
+        "gamePks": [
+            824481
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -7989,6 +9009,9 @@
             134
         ],
         "playerIds": [],
+        "gamePks": [
+            823754
+        ],
         "taxonomy": [
             "pit-inside-the-pirates"
         ],
@@ -8007,6 +9030,9 @@
         ],
         "playerIds": [
             687263
+        ],
+        "gamePks": [
+            824804
         ],
         "taxonomy": [
             "apple-news",
@@ -8028,6 +9054,9 @@
         "playerIds": [
             642100
         ],
+        "gamePks": [
+            823105
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -8046,6 +9075,7 @@
             115135,
             115136
         ],
+        "gamePks": [],
         "taxonomy": [
             "mlbn-611-podcast",
             "apple-news"
@@ -8065,6 +9095,10 @@
         ],
         "playerIds": [
             695549
+        ],
+        "gamePks": [
+            823106,
+            823105
         ],
         "taxonomy": [
             "apple-news",
@@ -8087,6 +9121,9 @@
         "playerIds": [
             592332
         ],
+        "gamePks": [
+            824664
+        ],
         "taxonomy": [
             "apple-news",
             "trade-deadline"
@@ -8105,6 +9142,7 @@
             137
         ],
         "playerIds": [],
+        "gamePks": [],
         "taxonomy": [
             "apple-news"
         ],
@@ -8124,6 +9162,9 @@
         "playerIds": [
             592662,
             663554
+        ],
+        "gamePks": [
+            825053
         ],
         "taxonomy": [
             "apple-news",
@@ -8145,6 +9186,10 @@
         "playerIds": [
             669330
         ],
+        "gamePks": [
+            823103,
+            824322
+        ],
         "taxonomy": [
             "apple-news",
             "trade-deadline"
@@ -8165,6 +9210,7 @@
         "playerIds": [
             676475
         ],
+        "gamePks": [],
         "taxonomy": [
             "apple-news"
         ],
@@ -8183,6 +9229,9 @@
         ],
         "playerIds": [
             691785
+        ],
+        "gamePks": [
+            822866
         ],
         "taxonomy": [
             "apple-news"
@@ -8210,6 +9259,7 @@
             808959,
             671277
         ],
+        "gamePks": [],
         "taxonomy": [
             "apple-news",
             "rankings",
@@ -8229,6 +9279,9 @@
             144
         ],
         "playerIds": [],
+        "gamePks": [
+            824885
+        ],
         "taxonomy": [
             "apple-news",
             "trade-deadline"
@@ -8248,6 +9301,9 @@
         ],
         "playerIds": [
             683352
+        ],
+        "gamePks": [
+            825052
         ],
         "taxonomy": [
             "apple-news",
@@ -8270,6 +9326,9 @@
         "playerIds": [
             828824
         ],
+        "gamePks": [
+            823516
+        ],
         "taxonomy": [
             "mlb-top-prospects",
             "apple-news"
@@ -8289,6 +9348,9 @@
             136
         ],
         "playerIds": [],
+        "gamePks": [
+            823106
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -8307,6 +9369,9 @@
         ],
         "playerIds": [
             663554
+        ],
+        "gamePks": [
+            825052
         ],
         "taxonomy": [
             "apple-news",
@@ -8329,6 +9394,9 @@
         "playerIds": [
             669467
         ],
+        "gamePks": [
+            823516
+        ],
         "taxonomy": [
             "apple-news",
             "game-recap"
@@ -8348,6 +9416,9 @@
         ],
         "playerIds": [
             691023
+        ],
+        "gamePks": [
+            823516
         ],
         "taxonomy": [
             "apple-news",
@@ -8369,6 +9440,9 @@
         "playerIds": [
             571945
         ],
+        "gamePks": [
+            823429
+        ],
         "taxonomy": [
             "apple-news",
             "game-recap"
@@ -8388,6 +9462,9 @@
         ],
         "playerIds": [
             806146
+        ],
+        "gamePks": [
+            823516
         ],
         "taxonomy": [
             "apple-news",
@@ -8410,6 +9487,9 @@
             114
         ],
         "playerIds": [],
+        "gamePks": [
+            824402
+        ],
         "taxonomy": [
             "apple-news",
             "ejection"
@@ -8430,6 +9510,9 @@
         "playerIds": [
             682052
         ],
+        "gamePks": [
+            824482
+        ],
         "taxonomy": [
             "apple-news",
             "payoff-pitch"
@@ -8449,6 +9532,9 @@
         ],
         "playerIds": [
             694197
+        ],
+        "gamePks": [
+            824402
         ],
         "taxonomy": [
             "apple-news",
@@ -8472,6 +9558,9 @@
         "playerIds": [
             150374
         ],
+        "gamePks": [
+            824482
+        ],
         "taxonomy": [
             "apple-news",
             "mlb-top-prospects"
@@ -8490,6 +9579,7 @@
             134
         ],
         "playerIds": [],
+        "gamePks": [],
         "taxonomy": [
             "pit-inside-the-pirates"
         ],
@@ -8508,6 +9598,9 @@
         ],
         "playerIds": [
             691587
+        ],
+        "gamePks": [
+            824889
         ],
         "taxonomy": [
             "apple-news",
@@ -8528,6 +9621,9 @@
         ],
         "playerIds": [
             702070
+        ],
+        "gamePks": [
+            824082
         ],
         "taxonomy": [
             "apple-news",
@@ -8551,6 +9647,9 @@
             663586,
             693821
         ],
+        "gamePks": [
+            824889
+        ],
         "taxonomy": [
             "apple-news",
             "game-recap"
@@ -8570,6 +9669,9 @@
         ],
         "playerIds": [
             695076
+        ],
+        "gamePks": [
+            824482
         ],
         "taxonomy": [
             "apple-news",
@@ -8591,6 +9693,9 @@
         "playerIds": [
             665152
         ],
+        "gamePks": [
+            824082
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -8609,6 +9714,9 @@
         ],
         "playerIds": [
             668881
+        ],
+        "gamePks": [
+            824482
         ],
         "taxonomy": [
             "injury",
@@ -8631,6 +9739,9 @@
         "playerIds": [
             672282
         ],
+        "gamePks": [
+            824806
+        ],
         "taxonomy": [
             "apple-news",
             "trade-deadline"
@@ -8649,6 +9760,9 @@
             115
         ],
         "playerIds": [],
+        "gamePks": [
+            824322
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -8667,6 +9781,9 @@
         ],
         "playerIds": [
             607259
+        ],
+        "gamePks": [
+            824322
         ],
         "taxonomy": [
             "apple-news",
@@ -8691,6 +9808,9 @@
             691718,
             660271
         ],
+        "gamePks": [
+            824646
+        ],
         "taxonomy": [
             "apple-news",
             "key-moments",
@@ -8712,6 +9832,9 @@
         "playerIds": [
             670541
         ],
+        "gamePks": [
+            824158
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -8731,6 +9854,9 @@
         "playerIds": [
             678760
         ],
+        "gamePks": [
+            822866
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -8749,6 +9875,9 @@
         ],
         "playerIds": [
             694197
+        ],
+        "gamePks": [
+            824402
         ],
         "taxonomy": [
             "mlb-top-prospects",
@@ -8771,6 +9900,9 @@
         "playerIds": [
             666157
         ],
+        "gamePks": [
+            824482
+        ],
         "taxonomy": [
             "apple-news",
             "injury",
@@ -8792,6 +9924,9 @@
         "playerIds": [
             674003
         ],
+        "gamePks": [
+            822866
+        ],
         "taxonomy": [
             "apple-news",
             "game-recap"
@@ -8811,6 +9946,9 @@
         ],
         "playerIds": [
             545361
+        ],
+        "gamePks": [
+            824806
         ],
         "taxonomy": [
             "trade-deadline",
@@ -8832,29 +9970,11 @@
         "playerIds": [
             694197
         ],
+        "gamePks": [],
         "taxonomy": [
             "mlb-top-prospects",
             "apple-news",
             "mlb-debut"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "With eyes on WS return, Gausman ready to guide Cubs in October",
-        "summaryJa": "K.ガーズマン（CHC）、復帰へ向けた最新状況",
-        "slug": "kevin-gausman-talks-being-traded-to-cubs",
-        "url": "https://www.mlb.com/news/kevin-gausman-talks-being-traded-to-cubs",
-        "contentDate": "2026-08-05T18:06:47.065Z",
-        "teamIds": [
-            112
-        ],
-        "playerIds": [
-            592332
-        ],
-        "taxonomy": [
-            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
@@ -8879,6 +9999,7 @@
             801139,
             805808
         ],
+        "gamePks": [],
         "taxonomy": [
             "awards-watch",
             "apple-news"
@@ -8897,6 +10018,9 @@
             108
         ],
         "playerIds": [],
+        "gamePks": [
+            824806
+        ],
         "taxonomy": [
             "apple-news",
             "trade-deadline"
@@ -8916,6 +10040,9 @@
         ],
         "playerIds": [
             702021
+        ],
+        "gamePks": [
+            823429
         ],
         "taxonomy": [
             "apple-news"
@@ -8937,6 +10064,7 @@
             158
         ],
         "playerIds": [],
+        "gamePks": [],
         "taxonomy": [
             "apple-news",
             "trade-deadline"
@@ -8955,6 +10083,9 @@
             146
         ],
         "playerIds": [],
+        "gamePks": [
+            824889
+        ],
         "taxonomy": [
             "apple-news",
             "trade-deadline"
@@ -8977,6 +10108,9 @@
             665152,
             621345
         ],
+        "gamePks": [
+            824082
+        ],
         "taxonomy": [
             "apple-news",
             "trade-deadline"
@@ -8997,6 +10131,7 @@
         "playerIds": [
             805785
         ],
+        "gamePks": [],
         "taxonomy": [
             "mlb-top-prospects",
             "apple-news"
@@ -9017,6 +10152,9 @@
         "playerIds": [
             608379
         ],
+        "gamePks": [
+            824082
+        ],
         "taxonomy": [
             "apple-news",
             "trade-deadline"
@@ -9036,6 +10174,9 @@
         ],
         "playerIds": [
             663457
+        ],
+        "gamePks": [
+            825054
         ],
         "taxonomy": [
             "apple-news"
@@ -9058,6 +10199,7 @@
             806146,
             813075
         ],
+        "gamePks": [],
         "taxonomy": [
             "apple-news",
             "mlb-top-prospects"
@@ -9077,6 +10219,9 @@
         ],
         "playerIds": [
             675512
+        ],
+        "gamePks": [
+            823108
         ],
         "taxonomy": [
             "apple-news",
@@ -9098,6 +10243,9 @@
         "playerIds": [
             664983
         ],
+        "gamePks": [
+            824321
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -9117,6 +10265,9 @@
         "playerIds": [
             694918
         ],
+        "gamePks": [
+            822865
+        ],
         "taxonomy": [
             "apple-news",
             "mlb-top-prospects"
@@ -9135,6 +10286,9 @@
             113
         ],
         "playerIds": [],
+        "gamePks": [
+            824484
+        ],
         "taxonomy": [
             "apple-news",
             "game-recap"
@@ -9155,6 +10309,9 @@
         "playerIds": [
             680570
         ],
+        "gamePks": [
+            824805
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -9173,6 +10330,9 @@
         ],
         "playerIds": [
             666211
+        ],
+        "gamePks": [
+            824161
         ],
         "taxonomy": [
             "apple-news",
@@ -9195,6 +10355,7 @@
         "playerIds": [
             806039
         ],
+        "gamePks": [],
         "taxonomy": [
             "mlb-top-prospects",
             "apple-news"
@@ -9214,6 +10375,9 @@
         ],
         "playerIds": [
             677649
+        ],
+        "gamePks": [
+            822865
         ],
         "taxonomy": [
             "apple-news",
@@ -9236,6 +10400,9 @@
         "playerIds": [
             677951
         ],
+        "gamePks": [
+            824084
+        ],
         "taxonomy": [
             "apple-news",
             "transactions"
@@ -9255,6 +10422,9 @@
         ],
         "playerIds": [
             521692
+        ],
+        "gamePks": [
+            824084
         ],
         "taxonomy": [
             "apple-news",
@@ -9276,6 +10446,9 @@
         "playerIds": [
             669372
         ],
+        "gamePks": [
+            824484
+        ],
         "taxonomy": [
             "apple-news",
             "injury"
@@ -9295,6 +10468,9 @@
         ],
         "playerIds": [
             677944
+        ],
+        "gamePks": [
+            824403
         ],
         "taxonomy": [
             "apple-news"
@@ -9317,6 +10493,9 @@
             656492,
             663993
         ],
+        "gamePks": [
+            824403
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -9335,6 +10514,9 @@
         ],
         "playerIds": [
             691783
+        ],
+        "gamePks": [
+            825054
         ],
         "taxonomy": [
             "apple-news",
@@ -9357,6 +10539,9 @@
         "playerIds": [
             699302
         ],
+        "gamePks": [
+            824484
+        ],
         "taxonomy": [
             "apple-news",
             "transactions",
@@ -9378,6 +10563,9 @@
         "playerIds": [
             682663
         ],
+        "gamePks": [
+            824888
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -9396,6 +10584,9 @@
         ],
         "playerIds": [
             666160
+        ],
+        "gamePks": [
+            824324
         ],
         "taxonomy": [
             "apple-news",
@@ -9416,6 +10607,10 @@
         ],
         "playerIds": [
             621043
+        ],
+        "gamePks": [
+            824162,
+            824161
         ],
         "taxonomy": [
             "injury",
@@ -9438,6 +10633,9 @@
             663568,
             679883
         ],
+        "gamePks": [
+            824084
+        ],
         "taxonomy": [
             "apple-news",
             "injury"
@@ -9457,6 +10655,9 @@
         ],
         "playerIds": [
             701762
+        ],
+        "gamePks": [
+            824484
         ],
         "taxonomy": [
             "injury",
@@ -9479,6 +10680,9 @@
         "playerIds": [
             694208
         ],
+        "gamePks": [
+            824805
+        ],
         "taxonomy": [
             "transactions",
             "apple-news"
@@ -9498,6 +10702,9 @@
         ],
         "playerIds": [
             663457
+        ],
+        "gamePks": [
+            825095
         ],
         "taxonomy": [
             "apple-news",
@@ -9521,6 +10728,7 @@
         "playerIds": [
             675512
         ],
+        "gamePks": [],
         "taxonomy": [
             "apple-news",
             "player-tracking"
@@ -9540,6 +10748,9 @@
         ],
         "playerIds": [
             662139
+        ],
+        "gamePks": [
+            824160
         ],
         "taxonomy": [
             "trades",
@@ -9562,6 +10773,9 @@
         "playerIds": [
             594798
         ],
+        "gamePks": [
+            822867
+        ],
         "taxonomy": [
             "rumors",
             "apple-news",
@@ -9583,6 +10797,9 @@
         "playerIds": [
             686751
         ],
+        "gamePks": [
+            824484
+        ],
         "taxonomy": [
             "apple-news",
             "trade-deadline",
@@ -9600,6 +10817,7 @@
         "contentDate": "2026-08-04T04:06:00Z",
         "teamIds": [],
         "playerIds": [],
+        "gamePks": [],
         "taxonomy": [
             "mlb-top-prospects",
             "trade-deadline",
@@ -9619,6 +10837,9 @@
             115
         ],
         "playerIds": [],
+        "gamePks": [
+            824324
+        ],
         "taxonomy": [
             "apple-news",
             "trade-deadline",
@@ -9638,6 +10859,9 @@
             137
         ],
         "playerIds": [],
+        "gamePks": [
+            822867
+        ],
         "taxonomy": [
             "trade-deadline",
             "apple-news",
@@ -9661,6 +10885,7 @@
             679922,
             676510
         ],
+        "gamePks": [],
         "taxonomy": [
             "trades",
             "trade-deadline",
@@ -9693,6 +10918,7 @@
             669199,
             684049
         ],
+        "gamePks": [],
         "taxonomy": [
             "apple-news",
             "trades",
@@ -9719,6 +10945,9 @@
             689476,
             684049
         ],
+        "gamePks": [
+            824888
+        ],
         "taxonomy": [
             "apple-news",
             "trade-deadline",
@@ -9741,6 +10970,7 @@
             667755,
             608718
         ],
+        "gamePks": [],
         "taxonomy": [
             "trade-deadline",
             "apple-news",
@@ -9761,6 +10991,10 @@
         ],
         "playerIds": [
             656756
+        ],
+        "gamePks": [
+            824163,
+            822867
         ],
         "taxonomy": [
             "apple-news",
@@ -9785,6 +11019,9 @@
             671936,
             695776
         ],
+        "gamePks": [
+            822867
+        ],
         "taxonomy": [
             "trade-deadline",
             "trades",
@@ -9807,6 +11044,7 @@
         "playerIds": [
             686668
         ],
+        "gamePks": [],
         "taxonomy": [
             "apple-news",
             "trades",
@@ -9830,6 +11068,7 @@
             678882,
             645261
         ],
+        "gamePks": [],
         "taxonomy": [
             "apple-news",
             "players-of-the-week"
@@ -9848,6 +11087,7 @@
             119
         ],
         "playerIds": [],
+        "gamePks": [],
         "taxonomy": [
             "exclude-from-personalization"
         ],
@@ -9865,6 +11105,7 @@
             136
         ],
         "playerIds": [],
+        "gamePks": [],
         "taxonomy": [
             "exclude-from-personalization"
         ],
@@ -9882,6 +11123,7 @@
             110
         ],
         "playerIds": [],
+        "gamePks": [],
         "taxonomy": [
             "exclude-from-personalization"
         ],
@@ -9899,6 +11141,7 @@
             108
         ],
         "playerIds": [],
+        "gamePks": [],
         "taxonomy": [
             "exclude-from-personalization"
         ],
@@ -9914,6 +11157,7 @@
         "contentDate": "2026-08-03T15:11:23.087Z",
         "teamIds": [],
         "playerIds": [],
+        "gamePks": [],
         "taxonomy": [
             "player-of-the-month",
             "apple-news"
@@ -9934,6 +11178,9 @@
         "playerIds": [
             670541
         ],
+        "gamePks": [
+            824163
+        ],
         "taxonomy": [
             "apple-news",
             "game-recap",
@@ -9953,6 +11200,9 @@
             140
         ],
         "playerIds": [],
+        "gamePks": [
+            824163
+        ],
         "taxonomy": [
             "apple-news",
             "trade-deadline"
@@ -9973,6 +11223,9 @@
         "playerIds": [
             678022
         ],
+        "gamePks": [
+            824972
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -9988,6 +11241,7 @@
         "contentDate": "2026-07-31T15:33:51.48Z",
         "teamIds": [],
         "playerIds": [],
+        "gamePks": [],
         "taxonomy": [
             "field-of-dreams",
             "minor-league-baseball",
@@ -10007,6 +11261,7 @@
             116
         ],
         "playerIds": [],
+        "gamePks": [],
         "taxonomy": [
             "apple-news",
             "exclude-from-personalization"
@@ -10023,6 +11278,7 @@
         "contentDate": "2026-06-21T00:15:00Z",
         "teamIds": [],
         "playerIds": [],
+        "gamePks": [],
         "taxonomy": [],
         "sourceScopes": [
             "MLB"

@@ -1056,15 +1056,18 @@
         return `${values.year}-${values.month}-${values.day}`;
     };
 
-    const relevantLatestNews = (teams, rosterEntries, date) => {
+    const relevantLatestNews = (teams, rosterEntries, date, gamePk) => {
         const teamIds = new Set(teams.map((team) => Number(team?.id)).filter(Boolean));
         const playerIds = new Set(
             rosterEntries.map((entry) => Number(entry?.person?.id ?? entry?.personId)).filter(Boolean)
         );
         return (window.MLB_LATEST_NEWS ?? []).filter((article) => {
-            if (articleMlbDate(article) !== date) return false;
-            return article.teamIds?.some((id) => teamIds.has(Number(id))) ||
+            const isRelevant = article.teamIds?.some((id) => teamIds.has(Number(id))) ||
                 article.playerIds?.some((id) => playerIds.has(Number(id)));
+            if (!isRelevant) return false;
+            const taggedGames = (article.gamePks ?? []).map(Number).filter(Number.isFinite);
+            if (taggedGames.length) return taggedGames.includes(Number(gamePk));
+            return articleMlbDate(article) === date;
         }).sort((a, b) => String(b.contentDate).localeCompare(String(a.contentDate)));
     };
 
@@ -3381,11 +3384,12 @@
             const latestArticles = relevantLatestNews(
                 [awayTeam, homeTeam],
                 [...rosterBySide.away, ...rosterBySide.home],
-                date
+                date,
+                gamePk
             );
             const displayedArticles = mergeOfficialArticles(
                 latestArticles,
-                articles.filter((article) => articleMlbDate(article) === date)
+                articles
             );
 
             const playersSection = section("注目選手", "記録・直近成績を優先");

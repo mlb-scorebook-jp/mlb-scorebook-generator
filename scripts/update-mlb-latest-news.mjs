@@ -52,6 +52,7 @@ const articleSelection = `{
       ... on TeamTag{team{id name}}
       ... on PersonTag{person{id fullName}}
       ... on TaxonomyTag{slug}
+      ... on GameTag{gamePk}
     }
   }
 }`;
@@ -302,6 +303,10 @@ const normalizeArticle = (article, sourceScope) => {
     const taxonomy = article.tags
         ?.filter((tag) => tag.__typename === "TaxonomyTag" && tag.slug)
         .map((tag) => tag.slug) ?? [];
+    const gamePks = article.tags
+        ?.filter((tag) => tag.__typename === "GameTag" && tag.gamePk)
+        .map((tag) => Number(tag.gamePk))
+        .filter(Number.isFinite) ?? [];
     const primaryTeam = teamNames.get(teams[0]?.id);
     const playerDisplayName = players[0]
         ? newsPlayerNameOverrides.get(normalizeName(players[0].name)) ||
@@ -318,6 +323,7 @@ const normalizeArticle = (article, sourceScope) => {
         contentDate: article.contentDate,
         teamIds: teams.map((team) => team.id),
         playerIds: players.map((player) => player.id),
+        gamePks,
         taxonomy,
         sourceScopes: [sourceScope]
     };
@@ -336,6 +342,7 @@ Object.entries(payload.data ?? {}).forEach(([sourceScope, items]) => {
         }
         existing.teamIds = [...new Set([...existing.teamIds, ...normalized.teamIds])];
         existing.playerIds = [...new Set([...existing.playerIds, ...normalized.playerIds])];
+        existing.gamePks = [...new Set([...existing.gamePks, ...normalized.gamePks])];
         existing.taxonomy = [...new Set([...existing.taxonomy, ...normalized.taxonomy])];
         existing.sourceScopes = [...new Set([...existing.sourceScopes, ...normalized.sourceScopes])];
     });
