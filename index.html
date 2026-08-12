@@ -1173,6 +1173,7 @@
             const activeRosterCache = new Map();
             const playerCareerStatsCache = new Map();
             const playerTransactionsCache = new Map();
+            const playerYearByYearStatsCache = new Map();
             const headToHeadCache = new Map();
             const teamFirstYearCache = new Map();
             const seasonAttendanceCache = new Map();
@@ -1364,6 +1365,21 @@
                 }))
             });
 
+            const CONSECUTIVE_SEASON_DEFINITIONS = Object.freeze({
+                hitting: [
+                    { field: "homeRuns", minimum: 20, step: 10, unit: "本塁打" },
+                    { field: "rbi", minimum: 90, step: 10, unit: "打点" },
+                    { field: "hits", minimum: 150, step: 10, unit: "安打" },
+                    { field: "stolenBases", minimum: 20, step: 10, unit: "盗塁" }
+                ],
+                pitching: [
+                    { field: "strikeOuts", minimum: 100, step: 50, unit: "奪三振" },
+                    { field: "wins", minimum: 10, step: 10, unit: "勝" },
+                    { field: "saves", minimum: 20, step: 10, unit: "セーブ" },
+                    { field: "gamesPlayed", minimum: 50, step: 10, unit: "登板" }
+                ]
+            });
+
             const getPlateAppearances = (stat = {}) => {
                 const officialValue = Number(stat.plateAppearances);
                 if (Number.isFinite(officialValue)) return officialValue;
@@ -1389,6 +1405,76 @@
                 playerGameLogCache.set(cacheKey, request);
                 return request;
             };
+
+            const fetchPlayerYearByYearStats = async (playerId, group) => {
+                const cacheKey = `${playerId}:${group}`;
+                if (playerYearByYearStatsCache.has(cacheKey)) {
+                    return playerYearByYearStatsCache.get(cacheKey);
+                }
+                const request = fetch(
+                    `https://statsapi.mlb.com/api/v1/people/${playerId}/stats` +
+                    `?stats=yearByYear&group=${group}&gameType=R&sportIds=1`
+                ).then(async (response) => {
+                    if (!response.ok) return new Map();
+                    const payload = await response.json();
+                    const seasons = new Map();
+                    (payload?.stats ?? []).flatMap((entry) => entry?.splits ?? [])
+                        .filter((split) => Number(split?.sport?.id) === 1)
+                        .forEach((split) => {
+                            const year = Number(split?.season);
+                            if (!Number.isFinite(year)) return;
+                            const totals = seasons.get(year) ?? {};
+                            Object.keys(split?.stat ?? {}).forEach((field) => {
+                                const value = Number(split.stat[field]);
+                                if (Number.isFinite(value)) {
+                                    totals[field] = (Number(totals[field]) || 0) + value;
+                                }
+                            });
+                            seasons.set(year, totals);
+                        });
+                    return seasons;
+                }).catch(() => new Map());
+                playerYearByYearStatsCache.set(cacheKey, request);
+                return request;
+            };
+
+            const aggregateGameLogStatsThroughGame = (splits, context) => {
+                const totals = {};
+                splits.filter((split) =>
+                    isGameBeforeCurrentStart(split, context) ||
+                    Number(split?.game?.gamePk) === Number(context.gamePk)
+                ).forEach((split) => {
+                    Object.keys(split?.stat ?? {}).forEach((field) => {
+                        const value = Number(split.stat[field]);
+                        if (Number.isFinite(value)) {
+                            totals[field] = (Number(totals[field]) || 0) + value;
+                        }
+                    });
+                });
+                return totals;
+            };
+
+            const getConsecutiveSeasonAchievements = (yearlyStats, season, group) =>
+                CONSECUTIVE_SEASON_DEFINITIONS[group].flatMap((definition) => {
+                    const current = Number(yearlyStats.get(season)?.[definition.field]) || 0;
+                    if (current < definition.minimum) return [];
+                    const maximumLevel = definition.minimum + Math.floor(
+                        Math.max(0, current - definition.minimum) / definition.step
+                    ) * definition.step;
+                    for (let level = maximumLevel;
+                        level >= definition.minimum;
+                        level -= definition.step) {
+                        let firstSeason = season;
+                        while ((Number(
+                            yearlyStats.get(firstSeason - 1)?.[definition.field]
+                        ) || 0) >= level) firstSeason -= 1;
+                        const count = season - firstSeason + 1;
+                        if (count >= 2) {
+                            return [{ ...definition, level, count, firstSeason }];
+                        }
+                    }
+                    return [];
+                });
 
             const fetchPlayerTransferIntoTeam = async (
                 playerId,
@@ -1789,6 +1875,68 @@
                 return notes.flat().sort((a, b) =>
                     a.priority - b.priority || b.importance - a.importance
                 );
+            };
+
+            const buildConsecutiveSeasonNotes = async (players, code, context) => {
+                const season = Number(context.officialDate.slice(0, 4));
+                if (!Number.isFinite(season)) return [];
+                const notes = await mapWithConcurrency(
+                    players.filter((player) => player.appearedInCurrentGame),
+                    6,
+                    async (player) => {
+                        const primaryPosition = normalizePositionAbbreviation(
+                            player?.person?.primaryPosition
+                        );
+                        const groups = player?.rosterPosition === "TWP" ||
+                            primaryPosition === "TWP"
+                            ? ["hitting", "pitching"]
+                            : isPitcherCandidate(player) ? ["pitching"] : ["hitting"];
+                        if (hasCurrentGamePitchingAppearance(player) &&
+                            !groups.includes("pitching")) groups.push("pitching");
+                        const playerNotes = [];
+                        for (const group of groups) {
+                            if (group === "pitching" &&
+                                !hasCurrentGamePitchingAppearance(player)) continue;
+                            const currentLogs = await fetchPlayerRegularSeasonGameLog(
+                                player.id,
+                                season,
+                                group
+                            );
+                            const currentStats = aggregateGameLogStatsThroughGame(
+                                currentLogs,
+                                context
+                            );
+                            const reachesMinimum = CONSECUTIVE_SEASON_DEFINITIONS[group]
+                                .some((definition) =>
+                                    (Number(currentStats?.[definition.field]) || 0) >=
+                                    definition.minimum
+                                );
+                            if (!reachesMinimum) continue;
+                            const yearlyStats = await fetchPlayerYearByYearStats(
+                                player.id,
+                                group
+                            );
+                            const statsThroughGame = new Map(yearlyStats);
+                            statsThroughGame.set(season, currentStats);
+                            getConsecutiveSeasonAchievements(
+                                statsThroughGame,
+                                season,
+                                group
+                            ).forEach((achievement, index) => {
+                                playerNotes.push({
+                                    text: `${code}　${getPersonName(player.person)}　` +
+                                        `${achievement.count}年連続${achievement.level}` +
+                                        `${achievement.unit}以上` +
+                                        `（${achievement.firstSeason}〜${season}）`,
+                                    priority: 4,
+                                    importance: 80 - index
+                                });
+                            });
+                        }
+                        return playerNotes;
+                    }
+                );
+                return notes.flat();
             };
 
             const fetchActiveRoster = async (teamId, officialDate) => {
@@ -2620,6 +2768,7 @@
                             ...player,
                             ...streaks,
                             gameLogSplits,
+                            appearedInCurrentGame: participation.appeared.has(player.id),
                             seasonHittingRole: priorHittingGames.length >= 3 ||
                                 priorPlateAppearances >= 10
                         };
@@ -2644,6 +2793,13 @@
                     const notes = gameFinal
                         ? await buildCareerMilestoneNotes(analyzed, code, context, team)
                         : [];
+                    if (gameFinal) {
+                        notes.push(...await buildConsecutiveSeasonNotes(
+                            analyzed,
+                            code,
+                            context
+                        ));
+                    }
                     notes.push(...await buildJapaneseHitterHomeRunNotes(
                         analyzed,
                         season,

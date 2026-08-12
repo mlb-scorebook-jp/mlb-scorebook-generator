@@ -2226,8 +2226,57 @@
         };
     };
 
-    const getSeasonRecords = (logs, { priorCareerCompleteGames = 0 } = {}) => {
+    const CONSECUTIVE_SEASON_DEFINITIONS = Object.freeze({
+        hitting: [
+            { field: "homeRuns", minimum: 20, step: 10, unit: "本塁打" },
+            { field: "rbi", minimum: 90, step: 10, unit: "打点" },
+            { field: "hits", minimum: 150, step: 10, unit: "安打" },
+            { field: "stolenBases", minimum: 20, step: 10, unit: "盗塁" }
+        ],
+        pitching: [
+            { field: "strikeOuts", minimum: 100, step: 50, unit: "奪三振" },
+            { field: "wins", minimum: 10, step: 10, unit: "勝" },
+            { field: "saves", minimum: 20, step: 10, unit: "セーブ" },
+            { field: "gamesPlayed", minimum: 50, step: 10, unit: "登板" }
+        ]
+    });
+
+    const consecutiveSeasonRecords = (yearlyStats, season, group) =>
+        CONSECUTIVE_SEASON_DEFINITIONS[group].flatMap((definition) => {
+            const current = statNumber(yearlyStats?.get(season)?.[definition.field]);
+            if (current < definition.minimum) return [];
+            const maximumLevel = definition.minimum + Math.floor(
+                Math.max(0, current - definition.minimum) / definition.step
+            ) * definition.step;
+            for (let level = maximumLevel;
+                level >= definition.minimum;
+                level -= definition.step) {
+                let firstSeason = season;
+                while (statNumber(
+                    yearlyStats?.get(firstSeason - 1)?.[definition.field]
+                ) >= level) firstSeason -= 1;
+                const count = season - firstSeason + 1;
+                if (count >= 2) return [{
+                    text: `${count}年連続${level}${definition.unit}以上` +
+                        `（${firstSeason}〜${season}）`,
+                    active: true,
+                    sortKey: `${season}-12-31`
+                }];
+            }
+            return [];
+        });
+
+    const getSeasonRecords = (logs, {
+        priorCareerCompleteGames = 0,
+        yearlyBatting = new Map(),
+        yearlyPitching = new Map(),
+        season = 0
+    } = {}) => {
         const records = [];
+        records.push(
+            ...consecutiveSeasonRecords(yearlyBatting, season, "hitting"),
+            ...consecutiveSeasonRecords(yearlyPitching, season, "pitching")
+        );
         if (logs.hitting?.length) {
             const played = (split) => {
                 const stat = split?.stat ?? {};
@@ -2872,7 +2921,10 @@
                 .filter(([year]) => Number(year) < season)
                 .reduce((total, [_year, stats]) => total + statNumber(stats?.completeGames), 0);
             currentSection.append(renderSeasonRecordList(getSeasonRecords(logs, {
-                priorCareerCompleteGames
+                priorCareerCompleteGames,
+                yearlyBatting,
+                yearlyPitching,
+                season
             })));
             if (isTwoWay && recentSections.length >= 2) {
                 grid.append(recentSections[0], currentSection, ...recentSections.slice(1));
