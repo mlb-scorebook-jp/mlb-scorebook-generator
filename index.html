@@ -257,9 +257,9 @@
     <script src="js/players-2026-updates.js?v=20260811-1"></script>
     <script src="js/historical-records.js"></script>
     <script src="js/mlb-business-date.js?v=20260808-1"></script>
-    <script src="js/mlb-latest-news.js?v=20260810-1"></script>
+    <script src="js/mlb-latest-news.js?v=20260813-club-news-1"></script>
     <script src="js/stathead-links.js?v=20260810-1"></script>
-    <script src="js/pregame.js?v=20260813-1"></script>
+    <script src="js/pregame.js?v=20260813-2"></script>
 
     <script>
         (() => {
@@ -4372,7 +4372,12 @@
                 const gameType = String(
                     data?.gameData?.game?.type ?? data?.gameData?.game?.gameType ?? ""
                 ).toUpperCase();
-                if (gameType !== "R") return new Map();
+                const officialDate = String(data?.gameData?.datetime?.officialDate ?? "");
+                const season = Number(data?.gameData?.game?.season) ||
+                    Number(officialDate.slice(0, 4));
+                if (gameType !== "R" || !Number.isFinite(season) || season < 2020) {
+                    return new Map();
+                }
 
                 const placements = new Map();
                 const previousCompletedBatter = { away: null, home: null };

@@ -4,6 +4,7 @@ import { fileURLToPath } from "node:url";
 
 const GRAPHQL_URL = "https://data-graph.mlb.com/graphql";
 const NEWS_PATH = "sel-mlb-news-list?$limit=30";
+const TEAM_NEWS_LIMIT = 20;
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const outputPath = resolve(root, "js/mlb-latest-news.js");
 const playerNamesPath = resolve(root, "js/players.js");
@@ -43,19 +44,25 @@ const teamNames = new Map([
     [147, ["ヤンキース", "NYY"]], [158, ["ブルワーズ", "MIL"]]
 ]);
 
-const query = `
-query Latest($path:String!,$language:Language,$source:ContentSource){
-  items:getContentListFromPath(path:$path,language:$language,source:$source){
-    ... on Article{
-      headline slug contentDate relativeSiteUrl
-      tags{
-        __typename
-        ... on TeamTag{team{id name}}
-        ... on PersonTag{person{id fullName}}
-        ... on TaxonomyTag{slug}
-      }
+const articleSelection = `{
+  ... on Article{
+    headline slug contentDate relativeSiteUrl
+    tags{
+      __typename
+      ... on TeamTag{team{id name}}
+      ... on PersonTag{person{id fullName}}
+      ... on TaxonomyTag{slug}
     }
   }
+}`;
+const teamNewsSelections = [...teamNames.keys()].map((teamId) =>
+    `team${teamId}:getContentListFromPath(` +
+    `path:"sel-t${teamId}-news-list?$limit=${TEAM_NEWS_LIMIT}",` +
+    `language:EN_US,source:MLB)${articleSelection}`
+).join("\n");
+const query = `query Latest{
+  mlb:getContentListFromPath(path:"${NEWS_PATH}",language:EN_US,source:MLB)${articleSelection}
+  ${teamNewsSelections}
 }`;
 
 const japaneseSummaries = new Map([
@@ -274,16 +281,18 @@ const officialUrl = (relativeSiteUrl, slug) => {
 const response = await fetch(GRAPHQL_URL, {
     method: "POST",
     headers: { "content-type": "application/json" },
-    body: JSON.stringify({
-        query,
-        variables: { path: NEWS_PATH, language: "EN_US", source: "MLB" }
-    })
+    body: JSON.stringify({ query })
 });
 if (!response.ok) throw new Error(`MLB news request failed: ${response.status}`);
 const payload = await response.json();
-if (payload.errors?.length) throw new Error(payload.errors[0]?.message || "MLB GraphQL error");
+if (payload.errors?.length && !payload.data) {
+    throw new Error(payload.errors[0]?.message || "MLB GraphQL error");
+}
+if (payload.errors?.length) {
+    console.warn(`MLB news returned ${payload.errors.length} partial error(s); available feeds were retained.`);
+}
 
-const articles = (payload.data?.items ?? []).map((article) => {
+const normalizeArticle = (article, sourceScope) => {
     const teams = article.tags
         ?.filter((tag) => tag.__typename === "TeamTag" && tag.team?.id)
         .map((tag) => ({ id: Number(tag.team.id), name: tag.team.name })) ?? [];
@@ -309,9 +318,30 @@ const articles = (payload.data?.items ?? []).map((article) => {
         contentDate: article.contentDate,
         teamIds: teams.map((team) => team.id),
         playerIds: players.map((player) => player.id),
-        taxonomy
+        taxonomy,
+        sourceScopes: [sourceScope]
     };
+};
+
+const articlesByKey = new Map();
+Object.entries(payload.data ?? {}).forEach(([sourceScope, items]) => {
+    (items ?? []).forEach((article) => {
+        if (!article?.slug && !article?.relativeSiteUrl) return;
+        const normalized = normalizeArticle(article, sourceScope === "mlb" ? "MLB" : "球団公式");
+        const key = normalized.slug || normalized.url;
+        const existing = articlesByKey.get(key);
+        if (!existing) {
+            articlesByKey.set(key, normalized);
+            return;
+        }
+        existing.teamIds = [...new Set([...existing.teamIds, ...normalized.teamIds])];
+        existing.playerIds = [...new Set([...existing.playerIds, ...normalized.playerIds])];
+        existing.taxonomy = [...new Set([...existing.taxonomy, ...normalized.taxonomy])];
+        existing.sourceScopes = [...new Set([...existing.sourceScopes, ...normalized.sourceScopes])];
+    });
 });
+const articles = [...articlesByKey.values()]
+    .sort((a, b) => String(b.contentDate).localeCompare(String(a.contentDate)));
 
 const source = `// MLB公式Latest Newsから自動生成。手動編集しないでください。\n` +
     `(function (global) {\n` +

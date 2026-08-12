@@ -1652,7 +1652,7 @@
 
     const empty = (text) => el("div", "pregame-empty", text);
 
-    const renderArticles = (articles, emptyText = "該当するMLB公式記事はありません。") => {
+    const renderArticles = (articles, emptyText = "該当するMLB・球団公式記事はありません。") => {
         const list = el("div", "pregame-article-list");
         if (!articles.length) return empty(emptyText);
         articles.slice(0, 8).forEach((article) => {
