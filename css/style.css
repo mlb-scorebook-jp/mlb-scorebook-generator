@@ -2090,6 +2090,30 @@ body.app-mode-pregame .score-loading-overlay {
     stroke-linejoin: round;
 }
 
+/* Sacrifice fly: enclose the fly mark and fielder number as one result. */
+.play-card.template-sac_fly .play-notation-stack {
+    width: 20px;
+    min-width: 20px;
+    padding: 1px 1px 0;
+    border: 1px solid #111;
+    box-sizing: border-box;
+    overflow: hidden;
+    translate: -5px 1px;
+}
+
+.play-card.template-sac_fly .play-template-svg {
+    width: 14px;
+    height: 8px;
+    margin-bottom: 0;
+}
+
+.play-card.template-sac_fly .play-result {
+    max-width: 16px;
+    font-size: 9px;
+    line-height: 1;
+    letter-spacing: -0.2px;
+}
+
 /* Optional secondary batter-result mark: lower-left fixed anchor. */
 .play-extra {
     z-index: 8;
