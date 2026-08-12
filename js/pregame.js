@@ -649,7 +649,9 @@
 
         const wins = new Map([[Number(teamId), 0], [Number(opponentId), 0]]);
         seriesGames.forEach((entry) => {
-            if (Number(entry?.seriesGameNumber) > targetNumber || !isFinal(entry)) return;
+            // Keep the matchup header at the instant immediately before the selected game.
+            // The selected game's result must not appear when this page is opened afterward.
+            if (Number(entry?.seriesGameNumber) >= targetNumber || !isFinal(entry)) return;
             const away = entry?.teams?.away ?? {};
             const home = entry?.teams?.home ?? {};
             const awayScore = Number(away?.score);
