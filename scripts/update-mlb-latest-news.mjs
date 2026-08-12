@@ -160,8 +160,106 @@ const japaneseSummaries = new Map([
     ["brad-lord-leads-strong-effort-by-nationals-bullpen",
         "B.ロード（WSH）ら救援陣が好投、ナショナルズが4月以来の3連戦スイープ"],
     ["lefty-batters-dominating-2026",
-        "2026年は左打者が躍進、その要因をデータで分析"]
+        "2026年は左打者が躍進、その要因をデータで分析"],
+    ["white-sox-have-pope-hat-giveaway-at-rate-field",
+        "ホワイトソックス、満員の本拠地で特別企画と本塁打を披露"],
+    ["who-will-win-the-mlb-home-run-race",
+        "40年以上ぶりの大接戦、今季の本塁打王争いを展望"],
+    ["mlb-top-prospects-making-late-season-impact-in-2026",
+        "有望株6人、ポストシーズン争いで早くも存在感"],
+    ["explaining-the-phillies-unconventional-batting-order",
+        "フィリーズの新打線が機能する理由を分析"],
+    ["offense-leads-padres-to-series-win-over-mlb-best-brewers",
+        "パドレスがブルワーズに大勝、ナ・リーグのワイルドカード争いは3球団が並ぶ"],
+    ["orioles-acquire-harold-rivas-complete-adley-rutschman-deal",
+        "オリオールズ、ラッチマンのトレード後日指名で18歳外野手H.リバスを獲得"],
+    ["mariners-vs-yankees-and-angels-vs-rangers-on-espn",
+        "ヤンキース対マリナーズなど、地区・プレーオフ争いの注目2試合"],
+    ["blake-snell-strikes-out-10-in-return-from-elbow-surgery",
+        "B.スネル（LAD）、右肘手術からの復帰戦で10奪三振"],
+    ["ryan-mcmahon-hits-go-ahead-single-as-yankees-beat-mariners",
+        "R.マクマーン（NYY）が勝ち越し打、ヤンキースが逆転勝利"],
+    ["phillies-prospect-aroon-escobar-throws-his-glove-for-an-out",
+        "フィリーズ有望株A.エスコバー、グラブを投げてアウトにする珍プレー"],
+    ["nationals-host-country-night-thanks-to-little-wild-mobile-farm",
+        "ナショナルズのクラブハウスにヤギと子豚、特別企画で選手を笑顔に"],
+    ["pete-crow-armstrong-seiya-suzuki-homer-in-cubs-win",
+        "鈴木誠也とP.クロウ＝アームストロングが本塁打、カブス打線をけん引"],
+    ["marlins-celebrate-wins-in-creative-fashion",
+        "マーリンズ、音楽やチャンピオンベルトで勝利を祝う独自スタイル"],
+    ["cal-raleigh-discusses-mariners-struggles-after-loss-to-yankees",
+        "C.ローリー、敵地で苦戦するマリナーズ打線へ率直な思い"],
+    ["reds-eighth-inning-rally-comeback-win-vs-white-sox",
+        "E.パガン（CIN）が14球の勝負を制し、レッズの逆転勝利を呼び込む"],
+    ["taylor-walls-hits-first-and-second-homers-of-season",
+        "T.ウォールズ（TB）が30分で2本塁打、レイズは8連勝"],
+    ["max-muncy-walks-off-royals-in-10th-inning",
+        "M.マンシー（LAD）、延長10回に満塁からサヨナラ打"],
+    ["martin-perez-extends-scoreless-streak-in-win-over-mets",
+        "M.ペレス（ATL）がメッツ打線を無失点、離脱者相次ぐ先発陣を支える"],
+    ["kevin-mcgonigle-tigers-beat-guardians",
+        "タイガースがガーディアンズを退け、好調を維持"],
+    ["high-school-all-american-game-2026-watch-live",
+        "高校オールアメリカン・ゲーム、注目選手と見どころを紹介"],
+    ["miguel-vargas-mystery-white-sox-see-movie-in-spider-man-costume",
+        "ホワイトソックス選手がスパイダーマン姿で映画館へ、正体は謎のまま"],
+    ["tigers-max-clark-makes-comerica-park-debut-after-road-trip",
+        "M.クラーク（DET）、長期遠征を終え本拠地コメリカ・パーク初登場"],
+    ["moments-that-made-milb-at-field-of-dreams-magical-2026",
+        "マイナー版『フィールド・オブ・ドリームス』を彩った11の名場面"],
+    ["fernando-tatis-jr-takes-2nd-on-padres-all-time-homer-list",
+        "F.タティース Jr.（SD）、球団通算本塁打で歴代2位へ浮上"],
+    ["eury-perez-throws-seven-scoreless-innings-vs-pirates",
+        "E.ペレス（MIA）が7回無失点、エース級への成長を示す"],
+    ["brett-bateman-leads-blue-jays-over-red-sox",
+        "B.ベイトマン（TOR）が勝利をけん引、ブルージェイズは好調維持"],
+    ["orioles-hit-home-runs-in-first-three-innings-in-win-vs-twins",
+        "オリオールズ、序盤3イニングの3本塁打でツインズに勝利"],
+    ["andre-pallante-everson-pereira-lead-cardinals-win-over-phillies",
+        "A.パランテ（STL）がサンチェスとの投げ合いを制し、カージナルス勝利"],
+    ["adley-rutschman-red-sox-debut",
+        "A.ラッチマン（BOS）、移籍後初出場で安打と2四球"]
 ]);
+
+const summarizeHeadlineJa = (article, subject) => {
+    const headline = String(article.headline || "").toLowerCase();
+    const slug = String(article.slug || "").toLowerCase();
+    const text = `${headline} ${slug}`;
+    if (/injur|soreness|discomfort|placed on .*il|injured list/.test(text)) {
+        return `${subject}の負傷状況をMLB公式が詳報`;
+    }
+    if (/return|reinstat|rehab/.test(text)) {
+        return `${subject}、復帰へ向けた最新状況`;
+    }
+    if (/acquir|trade|deal|sign|contract|claim/.test(text)) {
+        return `${subject}の移籍・契約に関する最新情報`;
+    }
+    if (/debut|call.?up|promot/.test(text)) {
+        return `${subject}、メジャー昇格・初出場に関する最新情報`;
+    }
+    if (/record|milestone|\d+(?:st|nd|rd|th)/.test(text)) {
+        return `${subject}、記録達成の最新情報`;
+    }
+    if (/walk.?off/.test(text)) {
+        return `${subject}、サヨナラ勝利の主役に`;
+    }
+    if (/home run|homer|\bhrs?\b|grand slam/.test(text)) {
+        return `${subject}、本塁打で存在感`;
+    }
+    if (/strikeout|\bk\b|scoreless|shutout|pitch/.test(text)) {
+        return `${subject}、マウンドで好投`;
+    }
+    if (/win|beat|rout|sweep|comeback/.test(text)) {
+        return `${subject}、勝利を呼び込む活躍`;
+    }
+    if (/prospect|ranking|top \d+/.test(text)) {
+        return `${subject}ら注目選手の最新動向`;
+    }
+    if (/explain|why|how|analysis|look at|examining/.test(text)) {
+        return `${subject}を巡る注目点をMLB公式が分析`;
+    }
+    return `${subject}の最新動向をMLB公式が詳報`;
+};
 
 const officialUrl = (relativeSiteUrl, slug) => {
     const candidate = relativeSiteUrl || `/news/${slug}`;
@@ -205,7 +303,7 @@ const articles = (payload.data?.items ?? []).map((article) => {
         : primaryTeam?.[0] || "MLBの最新情報";
     return {
         headline: article.headline,
-        summaryJa: japaneseSummaries.get(article.slug) || `MLB公式が${subject}について報じた。`,
+        summaryJa: japaneseSummaries.get(article.slug) || summarizeHeadlineJa(article, subject),
         slug: article.slug,
         url: officialUrl(article.relativeSiteUrl, article.slug),
         contentDate: article.contentDate,
