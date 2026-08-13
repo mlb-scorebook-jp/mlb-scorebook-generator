@@ -2,6 +2,28 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Díaz embraces leadership role on and off the field",
+        "summaryJa": "Y.ディアス（TB）の最新動向をMLB公式が詳報",
+        "slug": "yandy-diaz-leads-by-example-as-veteran-presence-for-rays",
+        "url": "https://www.mlb.com/news/yandy-diaz-leads-by-example-as-veteran-presence-for-rays",
+        "contentDate": "2026-08-13T11:00:40.163Z",
+        "teamIds": [
+            139
+        ],
+        "playerIds": [
+            650490
+        ],
+        "gamePks": [
+            822942
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Seager's resurgence gives Rangers hope to break free from .500",
         "summaryJa": "C.シーガー（TEX）の最新動向をMLB公式が詳報",
         "slug": "corey-seager-hits-home-run-double-in-rangers-loss-to-angels",
@@ -6297,30 +6319,6 @@
             "rehab",
             "injury",
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Jax (elbow discomfort), Walls (back tightness) scratched against Mariners",
-        "summaryJa": "G.ジャックス（TB）とT.ウォールズが試合前に出場回避",
-        "slug": "griffin-jax-scratched-from-start-vs-mariners",
-        "url": "https://www.mlb.com/news/griffin-jax-scratched-from-start-vs-mariners",
-        "contentDate": "2026-08-09T05:49:00Z",
-        "teamIds": [
-            139
-        ],
-        "playerIds": [
-            643377,
-            670764
-        ],
-        "gamePks": [
-            823102
-        ],
-        "taxonomy": [
-            "apple-news",
-            "injury"
         ],
         "sourceScopes": [
             "球団公式"
