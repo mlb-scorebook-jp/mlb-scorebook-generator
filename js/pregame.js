@@ -3108,7 +3108,100 @@
         });
     };
 
-    const getFeaturedPlayerData = async (entry, date) => {
+    const FEATURED_AWARD_DEFINITIONS = Object.freeze([
+        { id: "ALPOW", label: "週間MVP", league: "AL", period: "week" },
+        { id: "NLPOW", label: "週間MVP", league: "NL", period: "week" },
+        { id: "ALPOM", label: "月間最優秀選手", league: "AL", period: "month" },
+        { id: "NLPOM", label: "月間最優秀選手", league: "NL", period: "month" },
+        { id: "ALPITOM", label: "月間最優秀投手", league: "AL", period: "month" },
+        { id: "NLPITOM", label: "月間最優秀投手", league: "NL", period: "month" },
+        { id: "ALROM", label: "月間最優秀新人", league: "AL", period: "month" },
+        { id: "NLROM", label: "月間最優秀新人", league: "NL", period: "month" }
+    ]);
+
+    const getPreviousMonthKey = (date) => {
+        const value = new Date(`${String(date).slice(0, 10)}T00:00:00Z`);
+        value.setUTCMonth(value.getUTCMonth() - 1);
+        return value.toISOString().slice(0, 7);
+    };
+
+    const findFeaturedAwardArticle = (definition, award, awardDate, targetDate) => {
+        const playerId = Number(award?.player?.id);
+        const latestAllowedDate = shiftDate(awardDate, definition.period === "week" ? 3 : 7);
+        return (window.MLB_LATEST_NEWS ?? [])
+            .filter((article) => {
+                const publicationDate = String(article?.contentDate ?? "").slice(0, 10);
+                if (!publicationDate || publicationDate <= awardDate || publicationDate >= targetDate ||
+                    publicationDate > latestAllowedDate) return false;
+                const taxonomy = article?.taxonomy ?? [];
+                if (definition.period === "week") {
+                    return taxonomy.includes("player-of-the-week") &&
+                        (article?.playerIds ?? []).some((id) => Number(id) === playerId);
+                }
+                return taxonomy.includes("player-of-the-month") ||
+                    /monthly-awards/i.test(String(article?.slug ?? ""));
+            })
+            .sort((left, right) =>
+                String(left.contentDate).localeCompare(String(right.contentDate))
+            )[0] ?? null;
+    };
+
+    const getRecentFeaturedAwards = async (date) => {
+        const season = Number(date.slice(0, 4));
+        const previousMonthKey = getPreviousMonthKey(date);
+        const notesByPlayer = new Map();
+        const results = await Promise.all(FEATURED_AWARD_DEFINITIONS.map(async (definition) => {
+            const payload = await fetchJson(
+                `${API_ROOT}/v1/awards/${definition.id}/recipients?season=${season}`,
+                `pregame:featured-award:${definition.id}:${season}`
+            ).catch(() => null);
+            const announced = (payload?.awards ?? []).filter((award) => {
+                const awardDate = String(award?.date ?? "").slice(0, 10);
+                return awardDate && awardDate < date;
+            });
+            const latestDate = announced.reduce(
+                (latest, award) => String(award?.date ?? "").slice(0, 10) > latest
+                    ? String(award.date).slice(0, 10)
+                    : latest,
+                ""
+            );
+            if (!latestDate) return [];
+            const isCurrentPeriod = definition.period === "week"
+                ? latestDate >= shiftDate(date, -7)
+                : latestDate.slice(0, 7) === previousMonthKey;
+            return isCurrentPeriod
+                ? announced
+                    .filter((award) => String(award?.date ?? "").slice(0, 10) === latestDate)
+                    .map((award) => ({
+                        definition,
+                        award,
+                        awardDate: latestDate,
+                        article: findFeaturedAwardArticle(definition, award, latestDate, date)
+                    }))
+                    .filter((entry) => entry.article)
+                : [];
+        }));
+        results.flat().forEach(({ definition, award, awardDate, article }) => {
+            const playerId = Number(award?.player?.id);
+            if (!playerId) return;
+            const periodLabel = definition.period === "month"
+                ? `${Number(awardDate.slice(5, 7))}月 ${definition.label}（${definition.league}）`
+                : `${definition.label}（${definition.league}・${compactDate(awardDate)}）`;
+            const notes = notesByPlayer.get(playerId) ?? [];
+            if (!notes.some((note) => note.text === periodLabel)) {
+                notes.push({
+                    text: periodLabel,
+                    href: article.url,
+                    featuredAward: true,
+                    awardPeriod: definition.period
+                });
+            }
+            notesByPlayer.set(playerId, notes);
+        });
+        return notesByPlayer;
+    };
+
+    const getFeaturedPlayerData = async (entry, date, awardNotesByPlayer = new Map()) => {
         const playerId = Number(entry?.person?.id);
         const season = Number(date.slice(0, 4));
         if (!playerId) return { entry, notes: [], importance: 0 };
@@ -3169,6 +3262,12 @@
                 importance += hits + rbi + homeRuns * 2 + stolenBases;
             }
         }
+        const featuredAwardNotes = awardNotesByPlayer.get(playerId) ?? [];
+        notes.push(...featuredAwardNotes);
+        importance += featuredAwardNotes.reduce(
+            (total, note) => total + (note.awardPeriod === "month" ? 12 : 8),
+            0
+        );
         const streaks = getHittingStreaks(priorHittingLogs);
         const hittingGameLogUrl = officialPlayerStatsUrl("hitting", "gamelogs");
         if (streaks.hits.count >= 3) {
@@ -3238,9 +3337,11 @@
         link.rel = "noopener noreferrer";
         row.append(link);
         const monthlyAverageNote = featured.notes.find((note) => note.monthlyAverage);
+        const featuredAwardNotes = featured.notes.filter((note) => note.featuredAward);
         const displayedNotes = featured.notes
-            .filter((note) => !note.monthlyAverage)
+            .filter((note) => !note.monthlyAverage && !note.featuredAward)
             .slice(0, 3);
+        displayedNotes.push(...featuredAwardNotes);
         if (monthlyAverageNote) displayedNotes.push(monthlyAverageNote);
         displayedNotes.forEach((note) => {
             const noteLink = el("a", "pregame-featured-note", note.text);
@@ -3467,6 +3568,7 @@
                 getFeaturedPlayers(feed, "away", date),
                 getFeaturedPlayers(feed, "home", date)
             ]);
+            const featuredAwards = await getRecentFeaturedAwards(date);
             const latestArticles = relevantLatestNews(
                 [awayTeam, homeTeam],
                 [...rosterBySide.away, ...rosterBySide.home],
@@ -3490,7 +3592,7 @@
                 const list = el("ul", "pregame-data-list");
                 const starters = rosterBySide[side];
                 const featured = (await Promise.all(
-                    starters.map((entry) => getFeaturedPlayerData(entry, date))
+                    starters.map((entry) => getFeaturedPlayerData(entry, date, featuredAwards))
                 )).filter((player) => player.notes.length > 0).sort((a, b) =>
                     b.importance - a.importance ||
                     statNumber(b.entry?.seasonStats?.batting?.ops) -
