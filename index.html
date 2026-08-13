@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MLB Scorebook Generator</title>
     <!-- Score notation update: stacked batted-ball symbol, red hits, blue strikeouts, black other results. -->
-    <link rel="stylesheet" href="css/style.css?v=20260813-06">
+    <link rel="stylesheet" href="css/style.css?v=20260813-09">
     <link rel="stylesheet" href="css/pregame.css?v=20260811-10">
 </head>
 
@@ -232,6 +232,7 @@
             <div class="scorebook-horizontal-scroll" id="scorebook-horizontal-scroll">
                 <article class="paper scorebook-page active" id="away-page">
                     <div id="away-sheet"></div>
+                    <section class="pitch-chart-section" id="pitch-chart-section" hidden aria-label="投球チャート"></section>
                 </article>
 
                 <article class="paper scorebook-page" id="home-page">
@@ -570,6 +571,7 @@
                 awayPage: document.getElementById("away-page"),
                 homePage: document.getElementById("home-page"),
                 awaySheet: document.getElementById("away-sheet"),
+                pitchChartSection: document.getElementById("pitch-chart-section"),
                 homeSheet: document.getElementById("home-sheet"),
                 homeTeam: document.getElementById("home-team"),
                 awayTeam: document.getElementById("away-team"),
@@ -5921,6 +5923,458 @@
                 return panel;
             };
 
+            const PITCH_CHART_TYPE_LABELS = new Map([
+                ["FF", "4シーム"], ["SI", "シンカー"], ["FC", "カッター"],
+                ["SL", "スライダー"], ["ST", "スイーパー"], ["CU", "カーブ"],
+                ["CS", "スローカーブ"], ["KC", "ナックルカーブ"],
+                ["CH", "チェンジアップ"], ["FS", "スプリット"], ["FO", "フォーク"],
+                ["SC", "スクリュー"], ["KN", "ナックル"], ["EP", "イーファス"],
+                ["SV", "スラーブ"], ["PO", "ピッチアウト"]
+            ]);
+            const PITCH_CHART_COLORS = [
+                "#315f8f", "#9b3f32", "#537d3e", "#7a5690", "#9a6b25",
+                "#2f7b78", "#815742", "#59636b", "#6b7d2e", "#764b62"
+            ];
+
+            const getPitchChartTypeLabel = (code, fallback = "") => {
+                const normalized = String(code ?? "").toUpperCase();
+                return PITCH_CHART_TYPE_LABELS.get(normalized) || fallback || "球種不明";
+            };
+
+            const getPitchChartNumber = (value) => {
+                if (value === null || value === undefined || value === "") return NaN;
+                return Number(value);
+            };
+
+            const normalizePitchChartData = (data, gamePk) => {
+                const normalized = [];
+                const seen = new Set();
+                const pitcherCounts = new Map();
+                const pitcherAppearance = { away: new Map(), home: new Map() };
+                const plays = data?.liveData?.plays?.allPlays ?? [];
+
+                plays.forEach((play) => {
+                    const pitcherId = Number(play?.matchup?.pitcher?.id);
+                    if (!pitcherId) return;
+                    const isTop = play?.about?.isTopInning === true ||
+                        String(play?.about?.halfInning ?? "").toLowerCase() === "top";
+                    const teamSide = isTop ? "home" : "away";
+                    if (!pitcherAppearance[teamSide].has(pitcherId)) {
+                        pitcherAppearance[teamSide].set(pitcherId, pitcherAppearance[teamSide].size);
+                    }
+
+                    (play?.playEvents ?? []).forEach((event) => {
+                        if (!event?.isPitch) return;
+                        const atBatIndex = Number(play?.about?.atBatIndex);
+                        const eventIndex = Number(event?.index);
+                        const playId = String(event?.playId ?? "").trim();
+                        const key = playId
+                            ? `${gamePk}:${playId}`
+                            : `${gamePk}:${atBatIndex}:${eventIndex}`;
+                        if (seen.has(key)) return;
+                        seen.add(key);
+
+                        const pitcherPitchNumber = (pitcherCounts.get(pitcherId) ?? 0) + 1;
+                        pitcherCounts.set(pitcherId, pitcherPitchNumber);
+                        const coordinates = event?.pitchData?.coordinates ?? {};
+                        const pitchTypeCode = String(event?.details?.type?.code ?? "").toUpperCase();
+                        normalized.push({
+                            key,
+                            gamePk: Number(gamePk),
+                            playId: playId || null,
+                            atBatIndex,
+                            eventIndex,
+                            pitcherId,
+                            pitcherName: getPersonName(play?.matchup?.pitcher ?? {}) || "投手名不明",
+                            pitcherPitchNumber,
+                            batterId: Number(play?.matchup?.batter?.id),
+                            batterName: getPersonName(play?.matchup?.batter ?? {}) || "打者名不明",
+                            batterSide: String(play?.matchup?.batSide?.code ?? "").toUpperCase(),
+                            teamSide,
+                            appearanceOrder: pitcherAppearance[teamSide].get(pitcherId),
+                            atBatPitchNumber: Number(event?.pitchNumber),
+                            pitchTypeCode,
+                            pitchTypeName: getPitchChartTypeLabel(
+                                pitchTypeCode,
+                                String(event?.details?.type?.description ?? "")
+                            ),
+                            speed: getPitchChartNumber(event?.pitchData?.startSpeed),
+                            pX: getPitchChartNumber(coordinates?.pX),
+                            pZ: getPitchChartNumber(coordinates?.pZ),
+                            strikeZoneTop: getPitchChartNumber(event?.pitchData?.strikeZoneTop),
+                            strikeZoneBottom: getPitchChartNumber(event?.pitchData?.strikeZoneBottom),
+                            result: String(event?.details?.description ?? event?.details?.call?.description ?? ""),
+                            inning: Number(play?.about?.inning),
+                            halfInning: String(play?.about?.halfInning ?? (isTop ? "top" : "bottom"))
+                        });
+                    });
+                });
+
+                return normalized;
+            };
+
+            const medianPitchValue = (values, fallback) => {
+                const sorted = values.filter(Number.isFinite).sort((left, right) => left - right);
+                if (!sorted.length) return fallback;
+                const middle = Math.floor(sorted.length / 2);
+                return sorted.length % 2
+                    ? sorted[middle]
+                    : (sorted[middle - 1] + sorted[middle]) / 2;
+            };
+
+            const createPitchChartSvg = (
+                pitches,
+                allPitcherPitches,
+                title,
+                colorByType,
+                filterOptions = null
+            ) => {
+                const SVG_NS = "http://www.w3.org/2000/svg";
+                const width = 240;
+                const height = 230;
+                const plot = { left: 18, right: 222, top: 12, bottom: 210 };
+                const zoneTop = medianPitchValue(
+                    allPitcherPitches.map((pitch) => pitch.strikeZoneTop),
+                    3.5
+                );
+                const zoneBottom = medianPitchValue(
+                    allPitcherPitches.map((pitch) => pitch.strikeZoneBottom),
+                    1.5
+                );
+                const plotWidth = plot.right - plot.left;
+                const plotHeight = plot.bottom - plot.top;
+                // Match the existing pitcher zone chart: 24% side insets and 20% vertical insets.
+                const zone = {
+                    left: plot.left + plotWidth * 0.24,
+                    right: plot.right - plotWidth * 0.24,
+                    top: plot.top + plotHeight * 0.20,
+                    bottom: plot.bottom - plotHeight * 0.20
+                };
+                const zoneHalfWidthFeet = 17 / 24;
+                const validPitcherLocations = allPitcherPitches.filter((pitch) =>
+                    Number.isFinite(pitch.pX) && Number.isFinite(pitch.pZ)
+                );
+                const minX = Math.min(
+                    -zoneHalfWidthFeet - 0.15,
+                    ...validPitcherLocations.map((pitch) => pitch.pX - 0.08)
+                );
+                const maxX = Math.max(
+                    zoneHalfWidthFeet + 0.15,
+                    ...validPitcherLocations.map((pitch) => pitch.pX + 0.08)
+                );
+                const minZ = Math.min(
+                    zoneBottom - 0.2,
+                    ...validPitcherLocations.map((pitch) => pitch.pZ - 0.08)
+                );
+                const maxZ = Math.max(
+                    zoneTop + 0.2,
+                    ...validPitcherLocations.map((pitch) => pitch.pZ + 0.08)
+                );
+                const project = (value, inputStart, inputEnd, outputStart, outputEnd) => {
+                    if (inputEnd === inputStart) return (outputStart + outputEnd) / 2;
+                    return outputStart +
+                        ((value - inputStart) / (inputEnd - inputStart)) *
+                        (outputEnd - outputStart);
+                };
+                // Keep the strike-zone area linear and use its surrounding margins for
+                // balls outside the zone so every recorded pX/pZ remains visible.
+                const xScale = (value) => {
+                    if (value < -zoneHalfWidthFeet) {
+                        return project(value, minX, -zoneHalfWidthFeet, plot.left, zone.left);
+                    }
+                    if (value > zoneHalfWidthFeet) {
+                        return project(value, zoneHalfWidthFeet, maxX, zone.right, plot.right);
+                    }
+                    return project(
+                        value,
+                        -zoneHalfWidthFeet,
+                        zoneHalfWidthFeet,
+                        zone.left,
+                        zone.right
+                    );
+                };
+                const zScale = (value) => {
+                    if (value < zoneBottom) {
+                        return project(value, minZ, zoneBottom, plot.bottom, zone.bottom);
+                    }
+                    if (value > zoneTop) {
+                        return project(value, zoneTop, maxZ, zone.top, plot.top);
+                    }
+                    return project(value, zoneBottom, zoneTop, zone.bottom, zone.top);
+                };
+                const createSvgElement = (name, attributes = {}) => {
+                    const element = document.createElementNS(SVG_NS, name);
+                    Object.entries(attributes).forEach(([key, value]) => element.setAttribute(key, String(value)));
+                    return element;
+                };
+
+                const figure = createElement("figure", "pitch-chart-figure");
+                const caption = createElement("figcaption", "pitch-chart-caption");
+                caption.append(createElement("strong", "", title));
+                if (filterOptions) {
+                    caption.classList.add("has-filters");
+                    const filters = createElement("div", "pitch-chart-filters");
+                    const pitchTypeSelect = createElement("select", "pitch-chart-filter-select");
+                    pitchTypeSelect.setAttribute("aria-label", `${filterOptions.pitcherName}の球種`);
+                    const allPitchTypes = createElement("option", "", "球種：すべて");
+                    allPitchTypes.value = "";
+                    pitchTypeSelect.append(allPitchTypes);
+                    filterOptions.pitchTypes.forEach(({ code, label }) => {
+                        const option = createElement("option", "", `球種：${label}`);
+                        option.value = code;
+                        pitchTypeSelect.append(option);
+                    });
+                    pitchTypeSelect.value = filterOptions.selectedPitchType ?? "";
+
+                    const batterSelect = createElement("select", "pitch-chart-filter-select pitch-chart-batter-select");
+                    batterSelect.setAttribute("aria-label", `${filterOptions.pitcherName}の対戦打者`);
+                    const allBatters = createElement("option", "", "打者：すべて");
+                    allBatters.value = "";
+                    batterSelect.append(allBatters);
+                    filterOptions.batters.forEach(({ id, name }) => {
+                        const option = createElement("option", "", `打者：${name}`);
+                        option.value = String(id);
+                        batterSelect.append(option);
+                    });
+                    batterSelect.value = filterOptions.selectedBatterId ?? "";
+                    filters.append(pitchTypeSelect, batterSelect);
+                    caption.append(filters);
+
+                    const updateFilteredChart = () => {
+                        const selectedPitchType = pitchTypeSelect.value;
+                        const selectedBatterId = batterSelect.value;
+                        const filtered = allPitcherPitches.filter((pitch) =>
+                            (!selectedPitchType || pitch.pitchTypeCode === selectedPitchType) &&
+                            (!selectedBatterId || String(pitch.batterId) === selectedBatterId)
+                        );
+                        const replacement = createPitchChartSvg(
+                            filtered,
+                            allPitcherPitches,
+                            title,
+                            colorByType,
+                            {
+                                ...filterOptions,
+                                selectedPitchType,
+                                selectedBatterId
+                            }
+                        );
+                        const detail = figure.closest(".pitch-chart-pitcher")
+                            ?.querySelector(".pitch-chart-pitch-detail");
+                        figure.replaceWith(replacement);
+                        if (detail) {
+                            detail.textContent = "投球点を選択すると球種・球速・結果を表示します。";
+                        }
+                    };
+                    pitchTypeSelect.addEventListener("change", updateFilteredChart);
+                    batterSelect.addEventListener("change", updateFilteredChart);
+                }
+                caption.append(createElement("span", "pitch-chart-count", `${pitches.length}球`));
+                const svg = createSvgElement("svg", {
+                    class: "pitch-chart-svg",
+                    viewBox: `0 0 ${width} ${height}`,
+                    role: "img",
+                    "aria-label": `${title} ${pitches.length}球の投球位置`
+                });
+                svg.append(createSvgElement("rect", {
+                    class: "pitch-chart-plot-bg",
+                    x: plot.left,
+                    y: plot.top,
+                    width: plot.right - plot.left,
+                    height: plot.bottom - plot.top
+                }));
+                svg.append(createSvgElement("rect", {
+                    class: "pitch-chart-zone",
+                    x: zone.left,
+                    y: zone.top,
+                    width: zone.right - zone.left,
+                    height: zone.bottom - zone.top
+                }));
+                for (let division = 1; division <= 2; division += 1) {
+                    const x = zone.left + ((zone.right - zone.left) * division) / 3;
+                    const y = zone.top + ((zone.bottom - zone.top) * division) / 3;
+                    svg.append(createSvgElement("line", {
+                        class: "pitch-chart-zone-grid-line",
+                        x1: x, y1: zone.top, x2: x, y2: zone.bottom
+                    }));
+                    svg.append(createSvgElement("line", {
+                        class: "pitch-chart-zone-grid-line",
+                        x1: zone.left, y1: y, x2: zone.right, y2: y
+                    }));
+                }
+
+                let missingLocations = 0;
+                pitches.forEach((pitch) => {
+                    if (!Number.isFinite(pitch.pX) || !Number.isFinite(pitch.pZ)) {
+                        missingLocations += 1;
+                        return;
+                    }
+                    const group = createSvgElement("g", {
+                        class: "pitch-chart-point",
+                        tabindex: "0",
+                        role: "button"
+                    });
+                    const speedText = Number.isFinite(pitch.speed) ? `${pitch.speed.toFixed(1)} mph` : "球速不明";
+                    const halfText = pitch.halfInning.toLowerCase() === "top" ? "表" : "裏";
+                    const detail = `${pitch.pitcherPitchNumber}球目｜${pitch.inning}回${halfText} ` +
+                        `${pitch.batterName}｜${pitch.pitchTypeName} ${speedText}｜${pitch.result || "結果不明"}`;
+                    group.dataset.pitchDetail = detail;
+                    const nativeTitle = createSvgElement("title");
+                    nativeTitle.textContent = detail;
+                    group.append(nativeTitle);
+                    group.append(createSvgElement("circle", {
+                        class: "pitch-chart-hit-area",
+                        cx: xScale(pitch.pX),
+                        cy: zScale(pitch.pZ),
+                        r: 9
+                    }));
+                    group.append(createSvgElement("circle", {
+                        cx: xScale(pitch.pX),
+                        cy: zScale(pitch.pZ),
+                        r: 3.4,
+                        fill: colorByType.get(pitch.pitchTypeCode) ?? "#59636b"
+                    }));
+                    svg.append(group);
+                });
+
+                figure.append(caption, svg);
+                if (missingLocations > 0) {
+                    figure.append(createElement(
+                        "div",
+                        "pitch-chart-missing",
+                        `位置データなし ${missingLocations}球`
+                    ));
+                }
+                return figure;
+            };
+
+            const buildPitcherChartRow = (pitcherPitches) => {
+                const row = createElement("article", "pitch-chart-pitcher");
+                const pitcher = pitcherPitches[0];
+                const typeCodes = [...new Set(pitcherPitches.map((pitch) => pitch.pitchTypeCode))];
+                const colorByType = new Map(typeCodes.map((code, index) => [
+                    code,
+                    PITCH_CHART_COLORS[index % PITCH_CHART_COLORS.length]
+                ]));
+                const header = createElement("header", "pitch-chart-pitcher-header");
+                header.append(
+                    createElement("h4", "", pitcher.pitcherName),
+                    createElement("span", "", `${pitcherPitches.length}球`)
+                );
+                const legend = createElement("div", "pitch-chart-legend");
+                typeCodes.forEach((code) => {
+                    const item = createElement("span", "pitch-chart-legend-item");
+                    const swatch = createElement("i", "");
+                    swatch.style.backgroundColor = colorByType.get(code);
+                    item.append(swatch, document.createTextNode(getPitchChartTypeLabel(code)));
+                    legend.append(item);
+                });
+                const charts = createElement("div", "pitch-chart-grid");
+                const pitchTypes = typeCodes.map((code) => ({
+                    code,
+                    label: getPitchChartTypeLabel(code)
+                }));
+                const batterMap = new Map();
+                pitcherPitches.forEach((pitch) => {
+                    if (!batterMap.has(pitch.batterId)) {
+                        batterMap.set(pitch.batterId, {
+                            id: pitch.batterId,
+                            name: pitch.batterName
+                        });
+                    }
+                });
+                charts.append(
+                    createPitchChartSvg(
+                        pitcherPitches,
+                        pitcherPitches,
+                        "全投球",
+                        colorByType,
+                        {
+                            pitcherName: pitcher.pitcherName,
+                            pitchTypes,
+                            batters: [...batterMap.values()],
+                            selectedPitchType: "",
+                            selectedBatterId: ""
+                        }
+                    ),
+                    createPitchChartSvg(
+                        pitcherPitches.filter((pitch) => pitch.batterSide === "R"),
+                        pitcherPitches,
+                        "対右打者",
+                        colorByType
+                    ),
+                    createPitchChartSvg(
+                        pitcherPitches.filter((pitch) => pitch.batterSide === "L"),
+                        pitcherPitches,
+                        "対左打者",
+                        colorByType
+                    )
+                );
+                const detail = createElement(
+                    "div",
+                    "pitch-chart-pitch-detail",
+                    "投球点を選択すると球種・球速・結果を表示します。"
+                );
+                row.append(header, legend, charts, detail);
+                return row;
+            };
+
+            const buildPitchChartTeam = (side, pitches) => {
+                const team = createElement("section", "pitch-chart-team");
+                const heading = createElement("h3", "pitch-chart-team-title");
+                heading.append(
+                    createElement("span", "", state[side].abbreviation),
+                    document.createTextNode(` ${state[side].name} 投手陣`)
+                );
+                team.append(heading);
+                const grouped = new Map();
+                pitches
+                    .filter((pitch) => pitch.teamSide === side)
+                    .sort((left, right) => left.appearanceOrder - right.appearanceOrder ||
+                        left.pitcherPitchNumber - right.pitcherPitchNumber)
+                    .forEach((pitch) => {
+                        if (!grouped.has(pitch.pitcherId)) grouped.set(pitch.pitcherId, []);
+                        grouped.get(pitch.pitcherId).push(pitch);
+                    });
+                grouped.forEach((pitcherPitches) => team.append(buildPitcherChartRow(pitcherPitches)));
+                return team;
+            };
+
+            const clearPitchCharts = () => {
+                dom.pitchChartSection.replaceChildren();
+                dom.pitchChartSection.hidden = true;
+            };
+
+            const renderPitchCharts = () => {
+                clearPitchCharts();
+                if (!isGameFinal(state.gameData)) return;
+                try {
+                    const pitches = normalizePitchChartData(state.gameData, state.gamePk);
+                    if (!pitches.length) return;
+                    const heading = createElement("header", "pitch-chart-section-header");
+                    heading.append(
+                        createElement("h2", "", "投球チャート"),
+                        createElement("span", "", "捕手視点｜試合終了時点")
+                    );
+                    const teams = createElement("div", "pitch-chart-teams");
+                    teams.append(
+                        buildPitchChartTeam("away", pitches),
+                        buildPitchChartTeam("home", pitches)
+                    );
+                    dom.pitchChartSection.append(heading, teams);
+                    dom.pitchChartSection.onclick = (event) => {
+                        const point = event.target.closest?.(".pitch-chart-point");
+                        if (!point) return;
+                        const detail = point.closest(".pitch-chart-pitcher")
+                            ?.querySelector(".pitch-chart-pitch-detail");
+                        if (detail) detail.textContent = point.dataset.pitchDetail ?? "";
+                    };
+                    dom.pitchChartSection.hidden = false;
+                } catch (error) {
+                    console.error("投球チャートを生成できませんでした。", error);
+                    clearPitchCharts();
+                }
+            };
+
             const buildSheet = () => {
                 const wrapper = createElement("div");
                 wrapper.append(
@@ -5964,6 +6418,7 @@
                     );
                 }
                 populateScoreGrid();
+                renderPitchCharts();
                 dom.homeSheet.replaceChildren();
                 dom.awayPage.classList.add("active");
                 dom.homePage.classList.remove("active");
@@ -6730,6 +7185,7 @@
                 }
 
                 showScoreLoading();
+                clearPitchCharts();
                 setStatus(`Game PK ${gamePk} を取得しています…`);
                 await new Promise((resolve) => requestAnimationFrame(resolve));
 

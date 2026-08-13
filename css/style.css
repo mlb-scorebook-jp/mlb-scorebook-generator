@@ -2587,6 +2587,248 @@ body.app-mode-pregame .score-loading-overlay {
     text-underline-offset: 1px;
 }
 
+.pitch-chart-section {
+    width: 100%;
+    margin-top: 12px;
+    border: 1px solid var(--rule);
+    background: #f7f8f5;
+}
+
+.pitch-chart-section[hidden] {
+    display: none !important;
+}
+
+.pitch-chart-section-header,
+.pitch-chart-team-title,
+.pitch-chart-pitcher-header,
+.pitch-chart-caption {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.pitch-chart-section-header {
+    min-height: 34px;
+    padding: 5px 10px;
+    border-bottom: 1px solid var(--rule);
+    background: rgba(47, 107, 61, 0.07);
+}
+
+.pitch-chart-section-header h2,
+.pitch-chart-team-title h3,
+.pitch-chart-pitcher-header h4 {
+    margin: 0;
+}
+
+.pitch-chart-section-header h2 {
+    font-size: 14px;
+}
+
+.pitch-chart-section-header span {
+    color: #506057;
+    font-size: 10px;
+}
+
+.pitch-chart-teams {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(720px, 1fr));
+    gap: 12px;
+    padding: 10px;
+}
+
+.pitch-chart-team {
+    min-width: 0;
+    border: 1px solid #7b9881;
+    background: #fff;
+}
+
+.pitch-chart-team-title {
+    min-height: 32px;
+    margin: 0;
+    padding: 5px 9px;
+    border-bottom: 1px solid #7b9881;
+    background: #edf2ed;
+    font-size: 13px;
+}
+
+.pitch-chart-team-title span {
+    margin-right: 5px;
+    color: var(--rule);
+}
+
+.pitch-chart-pitcher {
+    padding: 8px;
+    border-bottom: 1px solid #aab9ad;
+}
+
+.pitch-chart-pitcher:last-child {
+    border-bottom: 0;
+}
+
+.pitch-chart-pitcher-header {
+    min-height: 25px;
+    gap: 8px;
+}
+
+.pitch-chart-pitcher-header h4 {
+    font-size: 13px;
+}
+
+.pitch-chart-pitcher-header span {
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.pitch-chart-legend {
+    display: flex;
+    min-height: 22px;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px 10px;
+    padding: 2px 0 5px;
+}
+
+.pitch-chart-legend-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 9px;
+}
+
+.pitch-chart-legend-item i {
+    width: 8px;
+    height: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.35);
+    border-radius: 50%;
+}
+
+.pitch-chart-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 6px;
+}
+
+.pitch-chart-figure {
+    min-width: 0;
+    margin: 0;
+    border: 1px solid #aab9ad;
+    background: #fff;
+}
+
+.pitch-chart-caption {
+    min-height: 25px;
+    padding: 3px 6px;
+    border-bottom: 1px solid #c4cfc6;
+    font-size: 10px;
+}
+
+.pitch-chart-caption > span {
+    color: #526057;
+}
+
+.pitch-chart-caption.has-filters {
+    gap: 4px;
+}
+
+.pitch-chart-filters {
+    display: flex;
+    min-width: 0;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 3px;
+}
+
+.pitch-chart-filter-select {
+    width: 68px;
+    min-width: 0;
+    height: 19px;
+    padding: 0 13px 0 3px;
+    overflow: hidden;
+    color: #26352b;
+    border: 1px solid #8d9d91;
+    border-radius: 1px;
+    background: #f7f9f7;
+    font-size: 8px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.pitch-chart-batter-select {
+    width: 82px;
+}
+
+.pitch-chart-count {
+    flex: 0 0 auto;
+    white-space: nowrap;
+}
+
+.pitch-chart-svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 240 / 230;
+}
+
+.pitch-chart-plot-bg {
+    fill: #fbfcfa;
+    stroke: #c7d0c8;
+    stroke-width: 0.8;
+}
+
+.pitch-chart-zone {
+    fill: rgba(47, 107, 61, 0.035);
+    stroke: #223a29;
+    stroke-width: 1.5;
+}
+
+.pitch-chart-zone-grid-line {
+    stroke: #65786a;
+    stroke-width: 0.75;
+}
+
+.pitch-chart-point {
+    cursor: pointer;
+    outline: none;
+}
+
+.pitch-chart-point circle:not(.pitch-chart-hit-area) {
+    stroke: #fff;
+    stroke-width: 0.7;
+    opacity: 0.82;
+}
+
+.pitch-chart-hit-area {
+    fill: transparent;
+    stroke: none;
+    pointer-events: all;
+}
+
+.pitch-chart-point:hover circle:not(.pitch-chart-hit-area),
+.pitch-chart-point:focus-visible circle:not(.pitch-chart-hit-area) {
+    stroke: #111;
+    stroke-width: 1.4;
+    opacity: 1;
+}
+
+.pitch-chart-missing,
+.pitch-chart-pitch-detail {
+    min-height: 22px;
+    padding: 4px 6px;
+    color: #536158;
+    font-size: 9px;
+    line-height: 1.35;
+}
+
+.pitch-chart-missing {
+    border-top: 1px solid #d4dbd5;
+}
+
+.pitch-chart-pitch-detail {
+    margin-top: 5px;
+    border: 1px solid #c6d0c8;
+    background: #f3f6f3;
+}
+
 .special-note-stathead-link {
     color: inherit;
     font: inherit;
@@ -3192,6 +3434,10 @@ body:not(.app-mode-home):not(.app-mode-pregame) .viewer {
     .app-header,
     .sidebar,
     .app-footer {
+        display: none !important;
+    }
+
+    .pitch-chart-section {
         display: none !important;
     }
 
