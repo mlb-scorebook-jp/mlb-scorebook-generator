@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MLB Scorebook Generator</title>
     <!-- Score notation update: stacked batted-ball symbol, red hits, blue strikeouts, black other results. -->
-    <link rel="stylesheet" href="css/style.css?v=20260814-4">
+    <link rel="stylesheet" href="css/style.css?v=20260814-8">
     <link rel="stylesheet" href="css/pregame.css?v=20260811-10">
 </head>
 
@@ -1056,6 +1056,33 @@
                 link.dataset.resultText = text;
                 applyAtBatResultLinkTarget(link);
                 return link;
+            };
+
+            const isDefensiveRoute = (text) =>
+                /^\d(?:-\d)+(?:[A-D]|TO)?$/.test(String(text ?? ""));
+
+            const splitLongDefensiveRoute = (text) => {
+                const value = String(text ?? "");
+                if (!isDefensiveRoute(value) || value.length <= 6) return null;
+                const breakIndexes = [...value.matchAll(/-/g)].map((match) => match.index);
+                if (!breakIndexes.length) return null;
+                const midpoint = value.length / 2;
+                const breakIndex = breakIndexes.reduce((best, index) =>
+                    Math.abs(index - midpoint) < Math.abs(best - midpoint) ? index : best
+                );
+                return [value.slice(0, breakIndex), value.slice(breakIndex)];
+            };
+
+            const createRunnerBaseOutResult = (text) => {
+                const element = createElement("div", "score-symbol runner-base-out-result");
+                const lines = splitLongDefensiveRoute(text);
+                if (!lines) {
+                    element.textContent = text;
+                    return element;
+                }
+                element.classList.add("wrapped-defensive-route");
+                lines.forEach((line) => element.append(createElement("span", "", line)));
+                return element;
             };
 
             const HAND_LABELS = Object.freeze({ R: "右", L: "左", S: "両" });
@@ -5311,12 +5338,15 @@
                         const templateSvg = createTemplateSvg(record.shape);
                         if (templateSvg) notationStack.append(templateSvg);
                         const longClass = record.notation.length > 3 ? " long-result" : "";
+                        const defensiveRouteClass = isDefensiveRoute(record.notation) && record.notation.length >= 5
+                            ? " defensive-route-result"
+                            : "";
                         const strikeoutClass = ["strikeout", "swinging_strikeout"].includes(record.templateId)
                             ? " strikeout-result"
                             : "";
                         notationStack.append(createGamedayAtBatResult(
                             record.notation,
-                            `score-symbol play-result ${record.category}-result${strikeoutClass}${longClass}`,
+                            `score-symbol play-result ${record.category}-result${strikeoutClass}${longClass}${defensiveRouteClass}`,
                             record.atBatIndex,
                             record.playId
                         ));
@@ -5374,9 +5404,9 @@
                         record.pickoffErrorLabel
                     ));
                 }
-                if (record.outAtSecond) slots.topRight.append(createElement("div", "score-symbol runner-base-out-result", record.outAtSecond));
-                if (record.outAtThird) slots.topLeft.append(createElement("div", "score-symbol runner-base-out-result", record.outAtThird));
-                if (record.outAtHome) slots.bottomLeft.append(createElement("div", "score-symbol runner-base-out-result", record.outAtHome));
+                if (record.outAtSecond) slots.topRight.append(createRunnerBaseOutResult(record.outAtSecond));
+                if (record.outAtThird) slots.topLeft.append(createRunnerBaseOutResult(record.outAtThird));
+                if (record.outAtHome) slots.bottomLeft.append(createRunnerBaseOutResult(record.outAtHome));
                 if (record.inningEnd) {
                     card.classList.add("has-inning-end");
                     card.append(createElement("div", "inning-end-mark"));
