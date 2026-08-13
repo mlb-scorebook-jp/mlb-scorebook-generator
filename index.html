@@ -4539,7 +4539,7 @@
                 if (/\bgrounds?\b|groundout/.test(description)) return "ground";
                 if (/\blines? (?:out|into)\b|lineout|line drive/.test(description)) return "line";
                 if (/\bpops? out\b|popout/.test(description)) return "pop";
-                if (/\bflies? out\b|flyout/.test(description)) return "fly";
+                if (/\bflies? (?:out|into)\b|flyout/.test(description)) return "fly";
                 if (trajectory.includes("bunt")) return "bunt";
                 if (trajectory.includes("ground")) return "ground";
                 if (trajectory.includes("line")) return "line";
@@ -5044,6 +5044,17 @@
                             activeRunner.set(Number(runnerId), target);
                         }
                     });
+
+                    // A caught fly/line/pop belongs only to the batter. Any additional
+                    // out in the same play belongs to the original runner's score cell.
+                    if (["flyout", "popout", "lineout", "sac_fly"].includes(record.templateId)) {
+                        record.outResult = "";
+                        record.outResultAtBatIndex = null;
+                        record.outResultPlayId = "";
+                        record.outAtSecond = "";
+                        record.outAtThird = "";
+                        record.outAtHome = "";
+                    }
 
                     const uniqueOutTargets = [...new Set(playOutTargets)];
                     if (uniqueOutTargets.length >= 2) {
