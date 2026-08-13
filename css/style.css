@@ -2941,7 +2941,30 @@ body.app-mode-pregame .score-loading-overlay {
     }
 
     .pitch-chart-grid {
-        grid-template-columns: minmax(0, 1fr);
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 4px;
+    }
+
+    .pitch-chart-caption.has-filters {
+        padding-right: 4px;
+        padding-left: 4px;
+    }
+
+    .pitch-chart-filters {
+        gap: 2px;
+    }
+
+    .pitch-chart-filter-select {
+        height: 28px;
+        padding-right: 16px;
+        padding-left: 4px;
+        font-size: 9px;
+    }
+
+    .pitch-chart-zone-description {
+        padding-right: 2px;
+        padding-left: 2px;
+        font-size: 8px;
     }
 }
 
