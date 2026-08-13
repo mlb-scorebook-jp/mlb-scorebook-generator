@@ -1742,6 +1742,33 @@ body.app-mode-pregame .score-loading-overlay {
     overflow: visible;
 }
 
+.pitch-result-symbol.pitch-result-foul {
+    height: 5px;
+    min-height: 5px;
+    flex-basis: 5px;
+}
+
+.pitch-result-symbol.pitch-result-foul .pitch-shape-stroke {
+    stroke-width: 0.9;
+}
+
+.pitch-total-count {
+    position: absolute;
+    right: 2px;
+    bottom: 1px;
+    z-index: 4;
+    color: var(--red);
+    font-size: 9px;
+    font-weight: 500;
+    line-height: 1;
+    white-space: nowrap;
+    pointer-events: none;
+}
+
+.pitch-total-count.two-digit {
+    right: -2px;
+}
+
 .pitch-shape-stroke {
     fill: none;
     stroke: currentColor;

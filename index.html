@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MLB Scorebook Generator</title>
     <!-- Score notation update: stacked batted-ball symbol, red hits, blue strikeouts, black other results. -->
-    <link rel="stylesheet" href="css/style.css?v=20260813-20">
+    <link rel="stylesheet" href="css/style.css?v=20260813-25">
     <link rel="stylesheet" href="css/pregame.css?v=20260811-10">
 </head>
 
@@ -3999,15 +3999,28 @@
                 O: "foul-bunt"
             });
 
-            const getPitchResults = (play) => (play?.playEvents ?? [])
+            const isPitchEvent = (event) => event?.isPitch || event?.type === "pitch";
+
+            const getPlateAppearancePitchCount = (play) =>
+                (play?.playEvents ?? []).filter(isPitchEvent).length;
+
+            const getPitchResults = (play) => {
+                const events = play?.playEvents ?? [];
+                const lastEventIndex = events.length - 1;
+                const resultPitchIndex = play?.about?.isComplete !== false &&
+                    isPitchEvent(events[lastEventIndex])
+                    ? lastEventIndex
+                    : -1;
+                return events
                 .map((event, eventIndex) => {
-                    if (!event?.isPitch && event?.type !== "pitch") return null;
+                    if (!isPitchEvent(event) || eventIndex === resultPitchIndex) return null;
                     const result = PITCH_RESULT_BY_CODE[
                         String(event?.details?.code ?? "").trim().toUpperCase()
                     ] ?? "";
                     return result ? { result, eventIndex, stolenBase: false } : null;
                 })
                 .filter(Boolean);
+            };
 
             const createPitchResultSvg = (result, stolenBase = false) => {
                 const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
@@ -4040,11 +4053,13 @@
                         class: result === "ball" ? "pitch-shape-fill" : "pitch-shape-stroke"
                     });
                 } else if (result === "foul") {
+                    svg.setAttribute("viewBox", "0 0 12 6");
+                    svg.setAttribute("preserveAspectRatio", "none");
                     addShape("line", {
                         x1: 1.5,
-                        y1: 6,
+                        y1: 3,
                         x2: 10.5,
-                        y2: 6,
+                        y2: 3,
                         class: "pitch-shape-stroke"
                     });
                 } else {
@@ -4073,19 +4088,23 @@
                 return svg;
             };
 
-            const createPitchColumn = (pitchResults = []) => {
+            const createPitchColumn = (pitchResults = [], totalPitches = 0) => {
                 const column = createElement("div", "pitch-column");
-                if (!pitchResults.length) return column;
-
-                const sequence = createElement("div", "pitch-result-sequence");
-                sequence.style.setProperty(
-                    "--pitch-symbol-size",
-                    `${Math.max(4.5, Math.min(8, 50 / pitchResults.length))}px`
-                );
-                pitchResults.forEach(({ result, stolenBase }) =>
-                    sequence.append(createPitchResultSvg(result, stolenBase))
-                );
-                column.append(sequence);
+                if (pitchResults.length) {
+                    const sequence = createElement("div", "pitch-result-sequence");
+                    pitchResults.forEach(({ result, stolenBase }) =>
+                        sequence.append(createPitchResultSvg(result, stolenBase))
+                    );
+                    column.append(sequence);
+                }
+                if (totalPitches > 0) {
+                    const total = createElement(
+                        "div",
+                        `pitch-total-count${totalPitches >= 10 ? " two-digit" : ""}`,
+                        String(totalPitches)
+                    );
+                    column.append(total);
+                }
                 return column;
             };
 
@@ -4782,6 +4801,7 @@
                                 pickoffErrorLabel: "",
                                 ghostRunner: true,
                                 pitchResults: [],
+                                pitchCount: 0,
                                 toSecond: "",
                                 toThird: "",
                                 toHome: "",
@@ -4827,6 +4847,7 @@
                         isHit: display.isHit,
                         homeRunNumber: display.homeRunNumber,
                         pitchResults: getPitchResults(play),
+                        pitchCount: isComplete ? getPlateAppearancePitchCount(play) : 0,
                         extra: display.extra,
                         outResult: "",
                         shape: display.shape,
@@ -5354,8 +5375,11 @@
                     if (!cell || !resultBox) return;
                     cell.classList.toggle("in-progress", Boolean(record.inProgress));
                     const currentPitchColumn = cell.querySelector(".pitch-column");
-                    if (currentPitchColumn && record.pitchResults?.length) {
-                        currentPitchColumn.replaceWith(createPitchColumn(record.pitchResults));
+                    if (currentPitchColumn && (record.pitchResults?.length || record.pitchCount)) {
+                        currentPitchColumn.replaceWith(createPitchColumn(
+                            record.pitchResults,
+                            record.pitchCount
+                        ));
                     }
                     resultBox.classList.add("has-play");
                     const card = renderPlateAppearance(record);
