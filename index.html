@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MLB Scorebook Generator</title>
     <!-- Score notation update: stacked batted-ball symbol, red hits, blue strikeouts, black other results. -->
-    <link rel="stylesheet" href="css/style.css?v=20260813-19">
+    <link rel="stylesheet" href="css/style.css?v=20260813-20">
     <link rel="stylesheet" href="css/pregame.css?v=20260811-10">
 </head>
 
@@ -6064,6 +6064,20 @@
                 return date.toISOString().slice(0, 10);
             };
 
+            const getPitchChartBatterSavantUrl = (batter) => {
+                const playerId = Number(batter?.id);
+                if (!playerId) return "";
+                const slug = String(batter?.name ?? "player")
+                    .normalize("NFKD")
+                    .replace(/[\u0300-\u036f]/g, "")
+                    .toLowerCase()
+                    .replace(/['’]/g, "")
+                    .replace(/[^a-z0-9]+/g, "-")
+                    .replace(/^-+|-+$/g, "") || "player";
+                return `https://baseballsavant.mlb.com/savant-player/${slug}-${playerId}` +
+                    "?stats=statcast-r-zones-mlb";
+            };
+
             const getPitchChartBatterZoneData = async (
                 batterId,
                 pitcherHand = "",
@@ -6394,18 +6408,40 @@
                 };
                 const figure = createElement("figure", "pitch-chart-figure pitch-chart-zone-metric");
                 const caption = createElement("figcaption", "pitch-chart-caption has-filters");
-                caption.append(
-                    createElement("strong", "", "対戦打者 コース別打率"),
-                    createElement("span", "pitch-chart-count", batter?.name ?? "打者未選択")
-                );
+                caption.append(createElement("strong", "", "対戦打者 コース別打率"));
+                const batterUrl = getPitchChartBatterSavantUrl(batter);
+                const batterLabel = batterUrl
+                    ? createElement("a", "pitch-chart-batter-link pitch-chart-count", batter.name)
+                    : createElement("span", "pitch-chart-count", batter?.name ?? "打者未選択");
+                if (batterUrl) {
+                    batterLabel.href = batterUrl;
+                    batterLabel.target = "_blank";
+                    batterLabel.rel = "noopener noreferrer";
+                    batterLabel.setAttribute(
+                        "aria-label",
+                        `${batter.name}のBaseball Savantコース別データを新しいタブで開く`
+                    );
+                }
+                caption.append(batterLabel);
                 const description = createElement("div", "pitch-chart-zone-description");
-                description.textContent = status === "loading"
-                    ? `${conditionText || "シーズン成績"}｜取得中…`
-                    : status === "error"
+                if (batter && status !== "error") {
+                    const [handCondition, pitchCondition] = String(
+                        conditionText || "シーズン成績"
+                    ).split("｜");
+                    description.append(
+                        createElement("strong", "pitch-chart-hand-condition", handCondition),
+                        createElement("span", "pitch-chart-pitch-condition", pitchCondition || ""),
+                        createElement(
+                            "span",
+                            "pitch-chart-condition-note",
+                            status === "loading" ? "取得中…" : "打数はポイントで確認"
+                        )
+                    );
+                } else {
+                    description.textContent = status === "error"
                         ? "コース別打率を取得できませんでした"
-                        : batter
-                            ? `${conditionText || "シーズン成績"}｜打数はポイントで確認`
-                            : "全投球の打者プルダウンから打者を選択";
+                        : "全投球の打者プルダウンから打者を選択";
+                }
                 caption.append(description);
 
                 const svg = createSvgElement("svg", {
