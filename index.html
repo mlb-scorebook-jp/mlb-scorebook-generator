@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MLB Scorebook Generator</title>
     <!-- Score notation update: stacked batted-ball symbol, red hits, blue strikeouts, black other results. -->
-    <link rel="stylesheet" href="css/style.css?v=20260813-10">
+    <link rel="stylesheet" href="css/style.css?v=20260813-11">
     <link rel="stylesheet" href="css/pregame.css?v=20260811-10">
 </head>
 
@@ -6256,8 +6256,25 @@
                     PITCH_CHART_COLORS[index % PITCH_CHART_COLORS.length]
                 ]));
                 const header = createElement("header", "pitch-chart-pitcher-header");
+                const pitcherName = Number(state.gamePk) && Number(pitcher.pitcherId)
+                    ? createElement("a", "pitch-chart-pitcher-link", pitcher.pitcherName)
+                    : createElement("span", "", pitcher.pitcherName);
+                if (pitcherName.tagName === "A") {
+                    const savantUrl = new URL("https://baseballsavant.mlb.com/player-scroll/game");
+                    savantUrl.searchParams.set("gamePk", String(state.gamePk));
+                    savantUrl.searchParams.set("player_id", String(pitcher.pitcherId));
+                    pitcherName.href = savantUrl.toString();
+                    pitcherName.target = "_blank";
+                    pitcherName.rel = "noopener noreferrer";
+                    pitcherName.setAttribute(
+                        "aria-label",
+                        `${pitcher.pitcherName}のBaseball Savant試合別投球チャートを新しいタブで開く`
+                    );
+                }
+                const pitcherHeading = createElement("h4", "");
+                pitcherHeading.append(pitcherName);
                 header.append(
-                    createElement("h4", "", pitcher.pitcherName),
+                    pitcherHeading,
                     createElement("span", "", `${pitcherPitches.length}球`)
                 );
                 const legend = createElement("div", "pitch-chart-legend");
