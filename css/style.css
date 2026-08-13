@@ -506,7 +506,7 @@ body.app-mode-pregame #generate-btn {
 .player-search-result {
     width: 100%;
     display: grid;
-    grid-template-columns: 105px minmax(130px, 1fr) 110px 55px;
+    grid-template-columns: 105px minmax(180px, 1.35fr) 76px minmax(130px, 1fr) 48px;
     align-items: center;
     gap: 10px;
     padding: 9px 12px;
@@ -521,6 +521,25 @@ body.app-mode-pregame #generate-btn {
 .player-search-result:hover,
 .player-search-result:focus-visible { background: #263139; }
 .player-result-value { color: #fff; }
+.player-result-pitchers {
+    min-width: 0;
+    overflow: hidden;
+    color: #c5cdd1;
+    font-size: 10px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.player-result-pitchers.is-multiple {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 9px;
+    line-height: 1.25;
+}
+.player-result-pitchers.is-multiple span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 .player-result-side { color: #8f9ba2; font-size: 9px; text-align: right; }
 
 @media (max-width: 980px) {

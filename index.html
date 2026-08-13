@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MLB Scorebook Generator</title>
     <!-- Score notation update: stacked batted-ball symbol, red hits, blue strikeouts, black other results. -->
-    <link rel="stylesheet" href="css/style.css?v=20260813-14">
+    <link rel="stylesheet" href="css/style.css?v=20260813-15">
     <link rel="stylesheet" href="css/pregame.css?v=20260811-10">
 </head>
 
@@ -1183,6 +1183,8 @@
             const seasonTeamSearchCache = new Map();
             const teamSeasonHitterCache = new Map();
             const seasonPlayerListCache = new Map();
+            const playerSearchGameFeedCache = new Map();
+            let playerSearchResultsGeneration = 0;
             const officialGameArticlesCache = new Map();
             let allTimeStrikeoutLeadersRequest = null;
 
@@ -7059,6 +7061,7 @@
             };
 
             const resetPlayerResults = () => {
+                playerSearchResultsGeneration += 1;
                 dom.playerSearchResults.hidden = true;
                 dom.playerSearchResults.replaceChildren();
             };
@@ -7121,6 +7124,74 @@
                     (Number(stat?.triples) || 0) - (Number(stat?.homeRuns) || 0));
             };
 
+            const PLAYER_SEARCH_EVENT_TYPES = Object.freeze({
+                homeRuns: "home_run",
+                triples: "triple",
+                doubles: "double",
+                singles: "single"
+            });
+
+            const fetchPlayerSearchGameFeed = (gamePk) => {
+                const key = Number(gamePk);
+                if (playerSearchGameFeedCache.has(key)) return playerSearchGameFeedCache.get(key);
+                const request = fetch(`https://statsapi.mlb.com/api/v1.1/game/${key}/feed/live`)
+                    .then((response) => {
+                        if (!response.ok) throw new Error("該当試合の投手情報を取得できません。");
+                        return response.json();
+                    });
+                playerSearchGameFeedCache.set(key, request);
+                return request;
+            };
+
+            const getPlayerSearchPitcherNames = (data, playerId, recordKey) => {
+                const names = [];
+                const addPitcher = (play) => {
+                    const name = getPersonName(play?.matchup?.pitcher ?? {});
+                    if (name && !names.includes(name)) names.push(name);
+                };
+                (data?.liveData?.plays?.allPlays ?? []).forEach((play) => {
+                    if (recordKey === "stolenBases") {
+                        const hasStolenBase = (play?.runners ?? []).some((runner) =>
+                            Number(runner?.details?.runner?.id) === Number(playerId) &&
+                            String(runner?.details?.eventType ?? "").startsWith("stolen_base")
+                        );
+                        if (hasStolenBase) addPitcher(play);
+                        return;
+                    }
+                    if (Number(play?.matchup?.batter?.id) !== Number(playerId)) return;
+                    if (String(play?.result?.eventType ?? "") === PLAYER_SEARCH_EVENT_TYPES[recordKey]) {
+                        addPitcher(play);
+                    }
+                });
+                return names;
+            };
+
+            const fillPlayerSearchPitchers = (matches, playerId, recordKey) => {
+                const generation = playerSearchResultsGeneration;
+                matches.forEach(async (item) => {
+                    const pitcherCell = dom.playerSearchResults.querySelector(
+                        `[data-player-game-pk="${item.gamePk}"] .player-result-pitchers`
+                    );
+                    if (!pitcherCell) return;
+                    try {
+                        const feed = await fetchPlayerSearchGameFeed(item.gamePk);
+                        const names = getPlayerSearchPitcherNames(feed, playerId, recordKey);
+                        if (!pitcherCell.isConnected || generation !== playerSearchResultsGeneration) return;
+                        pitcherCell.classList.toggle("is-multiple", names.length > 1);
+                        pitcherCell.replaceChildren(...(
+                            names.length
+                                ? names.map((name) => createElement("span", "", `投手：${name}`))
+                                : [document.createTextNode("投手：—")]
+                        ));
+                    } catch (error) {
+                        console.error(error);
+                        if (pitcherCell.isConnected && generation === playerSearchResultsGeneration) {
+                            pitcherCell.textContent = "投手：—";
+                        }
+                    }
+                });
+            };
+
             const renderPlayerSearchResults = (matches, definition) => {
                 dom.playerSearchResults.replaceChildren();
                 dom.playerSearchResults.hidden = false;
@@ -7140,6 +7211,7 @@
                         createElement("span", "player-result-date", `${formatSearchDate(item.date)}${gameSuffix}`),
                         createElement("span", "player-result-opponent", `${item.isHome ? "vs." : "@"} ${item.opponent}`),
                         createElement("strong", "player-result-value", `${item.value}${definition.label}`),
+                        createElement("span", "player-result-pitchers", "投手：取得中…"),
                         createElement("span", "player-result-side", item.isHome ? "HOME" : "AWAY")
                     );
                     dom.playerSearchResults.append(button);
@@ -7148,7 +7220,8 @@
 
             const searchPlayerGames = async () => {
                 const playerId = Number(dom.playerSearchPlayer.value);
-                const definition = PLAYER_RECORD_DEFINITIONS[dom.playerSearchRecord.value];
+                const recordKey = dom.playerSearchRecord.value;
+                const definition = PLAYER_RECORD_DEFINITIONS[recordKey];
                 const [operator, thresholdText] = dom.playerSearchCondition.value.split(":");
                 const threshold = Number(thresholdText);
                 if (!playerId || !definition || !threshold) {
@@ -7165,7 +7238,8 @@
                             value,
                             gamePk: Number(split?.game?.gamePk),
                             date: String(split?.date ?? split?.game?.gameDate ?? "").slice(0, 10),
-                            opponent: String(split?.opponent?.abbreviation ?? split?.opponent?.name ?? "—"),
+                            opponent: getNhkTeamName(split?.opponent) ||
+                                String(split?.opponent?.abbreviation ?? "—"),
                             isHome: Boolean(split?.isHome),
                             gameNumber: Number(split?.game?.gameNumber) || 1
                         };
@@ -7173,6 +7247,7 @@
                         (operator === "eq" ? item.value === threshold : item.value >= threshold))
                         .sort((a, b) => b.date.localeCompare(a.date) || b.gameNumber - a.gameNumber);
                     renderPlayerSearchResults(matches, definition);
+                    fillPlayerSearchPitchers(matches, playerId, recordKey);
                 } catch (error) {
                     console.error(error);
                     renderPlayerSearchResults([], definition);
