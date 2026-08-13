@@ -4392,6 +4392,18 @@
                 return fallback ? [fallback] : [];
             };
 
+            const getBatterPutoutFielder = (play, batterId) => {
+                const batterRunner = (play?.runners ?? []).find((runner) =>
+                    Number(runner?.details?.runner?.id) === Number(batterId)
+                );
+                const putout = (batterRunner?.credits ?? []).find((credit) =>
+                    String(credit?.credit ?? "").toLowerCase().includes("putout")
+                );
+                return String(
+                    putout?.position?.code ?? putout?.position?.abbreviation ?? ""
+                ).replace(/\D/g, "");
+            };
+
             const getOutBaseLetter = (runner) => {
                 const base = normalizeBase(runner?.movement?.outBase);
                 return OUT_BASE_LETTERS[base] ?? "";
@@ -4619,7 +4631,8 @@
                 const description = String(play?.result?.description ?? "").toLowerCase();
                 const caughtBallFielder = ["flyout", "popout", "lineout", "sac_fly"]
                     .includes(templateId)
-                    ? getFieldingNumbers(play, description)[0] ?? ""
+                    ? getBatterPutoutFielder(play, batterId) ||
+                        getFieldingNumbers(play, description)[0] || ""
                     : "";
                 const field = caughtBallFielder || getFieldNumber(play);
                 const fieldingResult = getPrimaryFieldingResult(play, batterId);
