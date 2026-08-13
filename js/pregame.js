@@ -3182,6 +3182,27 @@
         }
         importance += streaks.hits.count >= 3 ? streaks.hits.count : 0;
         importance += streaks.onBase.count >= 5 ? streaks.onBase.count : 0;
+        const targetMonth = date.slice(0, 7);
+        const monthlyHitting = priorHittingLogs
+            .filter((split) => String(split?.date ?? "").slice(0, 7) === targetMonth)
+            .reduce((totals, split) => {
+                const stat = split?.stat ?? {};
+                totals.plateAppearances += statNumber(stat.plateAppearances);
+                totals.atBats += statNumber(stat.atBats);
+                totals.hits += statNumber(stat.hits);
+                return totals;
+            }, { plateAppearances: 0, atBats: 0, hits: 0 });
+        const monthlyAverage = monthlyHitting.atBats
+            ? monthlyHitting.hits / monthlyHitting.atBats
+            : 0;
+        if (monthlyHitting.plateAppearances >= 20 && monthlyAverage >= 0.300) {
+            notes.push({
+                text: `${Number(date.slice(5, 7))}月 打率${formatAverage(monthlyAverage)}` +
+                    `（${monthlyHitting.atBats}打数${monthlyHitting.hits}安打）`,
+                href: hittingGameLogUrl,
+                monthlyAverage: true
+            });
+        }
         groups.forEach((group, index) => {
             const milestoneNotes = remainingMilestones(careers[index], group);
             notes.push(...milestoneNotes.map((text) => ({
@@ -3216,7 +3237,12 @@
         link.target = "_blank";
         link.rel = "noopener noreferrer";
         row.append(link);
-        featured.notes.slice(0, 3).forEach((note) => {
+        const monthlyAverageNote = featured.notes.find((note) => note.monthlyAverage);
+        const displayedNotes = featured.notes
+            .filter((note) => !note.monthlyAverage)
+            .slice(0, 3);
+        if (monthlyAverageNote) displayedNotes.push(monthlyAverageNote);
+        displayedNotes.forEach((note) => {
             const noteLink = el("a", "pregame-featured-note", note.text);
             const statheadUrl = /自己最長(?:更新|タイ|.+まであと\d+)/.test(String(note.text ?? ""))
                 ? window.MLBStatheadLinks?.playerStreakFinderUrl(entry?.person?.id)
