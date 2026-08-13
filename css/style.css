@@ -2680,8 +2680,32 @@ body.app-mode-pregame .score-loading-overlay {
     border-bottom: 1px solid #aab9ad;
 }
 
+.pitch-chart-pitchers {
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
 .pitch-chart-pitcher:last-child {
     border-bottom: 0;
+}
+
+@media screen and (min-width: 1101px) and (hover: hover) and (pointer: fine) {
+    .pitch-chart-pitchers {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .pitch-chart-pitcher {
+        min-width: 0;
+        border-right: 1px solid #aab9ad;
+    }
+
+    .pitch-chart-pitcher:nth-child(2n) {
+        border-right: 0;
+    }
+
+    .pitch-chart-pitcher:last-child:nth-child(odd) {
+        border-right: 1px solid #aab9ad;
+    }
 }
 
 .pitch-chart-pitcher-header {

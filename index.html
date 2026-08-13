@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MLB Scorebook Generator</title>
     <!-- Score notation update: stacked batted-ball symbol, red hits, blue strikeouts, black other results. -->
-    <link rel="stylesheet" href="css/style.css?v=20260813-16">
+    <link rel="stylesheet" href="css/style.css?v=20260813-17">
     <link rel="stylesheet" href="css/pregame.css?v=20260811-10">
 </head>
 
@@ -6064,7 +6064,11 @@
                 return date.toISOString().slice(0, 10);
             };
 
-            const getPitchChartBatterZoneData = async (batterId) => {
+            const getPitchChartBatterZoneData = async (
+                batterId,
+                pitcherHand = "",
+                pitchTypeCode = ""
+            ) => {
                 const officialDate = String(
                     state.gameData?.gameData?.datetime?.officialDate ?? ""
                 ).slice(0, 10);
@@ -6094,32 +6098,42 @@
                         const lines = (await response.text()).replace(/^\uFEFF/, "")
                             .split(/\r?\n/)
                             .filter(Boolean);
-                        if (!lines.length) return { zones: new Map(), endDate };
+                        if (!lines.length) return [];
                         const headers = parsePitchChartCsvLine(lines[0]);
-                        const totals = new Map(
-                            [...Array(9)].map((_, index) => [index + 1, { atBats: 0, hits: 0 }])
-                                .concat([11, 12, 13, 14].map((zone) => [zone, { atBats: 0, hits: 0 }]))
-                        );
-                        lines.slice(1).forEach((line) => {
+                        return lines.slice(1).map((line) => {
                             const values = parsePitchChartCsvLine(line);
                             const row = Object.fromEntries(
                                 headers.map((header, index) => [header, values[index] ?? ""])
                             );
-                            const event = String(row.events ?? "").trim();
-                            const zone = Number(row.zone);
-                            if (!PITCH_CHART_AT_BAT_EVENTS.has(event) || !totals.has(zone)) return;
-                            const total = totals.get(zone);
-                            total.atBats += 1;
-                            if (PITCH_CHART_HIT_EVENTS.has(event)) total.hits += 1;
+                            return {
+                                event: String(row.events ?? "").trim(),
+                                zone: Number(row.zone),
+                                pitchTypeCode: String(row.pitch_type ?? "").toUpperCase(),
+                                pitcherHand: String(row.p_throws ?? "").toUpperCase()
+                            };
                         });
-                        return { zones: totals, endDate };
                     }).catch((error) => {
                         pitchChartBatterZoneCache.delete(cacheKey);
                         throw error;
                     });
                     pitchChartBatterZoneCache.set(cacheKey, request);
                 }
-                return pitchChartBatterZoneCache.get(cacheKey);
+                const rows = await pitchChartBatterZoneCache.get(cacheKey);
+                const normalizedHand = String(pitcherHand ?? "").toUpperCase();
+                const normalizedPitchType = String(pitchTypeCode ?? "").toUpperCase();
+                const totals = new Map(
+                    [...Array(9)].map((_, index) => [index + 1, { atBats: 0, hits: 0 }])
+                        .concat([11, 12, 13, 14].map((zone) => [zone, { atBats: 0, hits: 0 }]))
+                );
+                rows.forEach((row) => {
+                    if (normalizedHand && row.pitcherHand !== normalizedHand) return;
+                    if (normalizedPitchType && row.pitchTypeCode !== normalizedPitchType) return;
+                    if (!PITCH_CHART_AT_BAT_EVENTS.has(row.event) || !totals.has(row.zone)) return;
+                    const total = totals.get(row.zone);
+                    total.atBats += 1;
+                    if (PITCH_CHART_HIT_EVENTS.has(row.event)) total.hits += 1;
+                });
+                return { zones: totals, endDate };
             };
 
             const getPitchChartGeometry = (allPitcherPitches) => {
@@ -6366,7 +6380,8 @@
                 batter,
                 zoneData,
                 allPitcherPitches,
-                status = "ready"
+                status = "ready",
+                conditionText = ""
             ) => {
                 const SVG_NS = "http://www.w3.org/2000/svg";
                 const { width, height, plot, zone } = getPitchChartGeometry(allPitcherPitches);
@@ -6385,11 +6400,11 @@
                 );
                 const description = createElement("div", "pitch-chart-zone-description");
                 description.textContent = status === "loading"
-                    ? "対象試合前日までのデータを取得中…"
+                    ? `${conditionText || "シーズン成績"}｜取得中…`
                     : status === "error"
                         ? "コース別打率を取得できませんでした"
                         : batter
-                            ? "シーズン成績｜各ゾーンの打数はポイントで確認"
+                            ? `${conditionText || "シーズン成績"}｜打数はポイントで確認`
                             : "全投球の打者プルダウンから打者を選択";
                 caption.append(description);
 
@@ -6545,6 +6560,15 @@
                 } = {}) => {
                     const sequence = ++renderSequence;
                     const selectedBatter = batterMap.get(Number(selectedBatterId)) ?? null;
+                    const selectedPitchLabel = selectedPitchType
+                        ? getPitchChartTypeLabel(selectedPitchType)
+                        : "全球種";
+                    const pitcherHandCondition = pitcher.pitcherHand === "L"
+                        ? "対LHP"
+                        : pitcher.pitcherHand === "R"
+                            ? "対RHP"
+                            : "投手左右不明";
+                    const conditionText = `${pitcherHandCondition}｜${selectedPitchLabel}`;
                     const filteredPitches = pitcherPitches.filter((pitch) =>
                         (!selectedPitchType || pitch.pitchTypeCode === selectedPitchType) &&
                         (!selectedBatterId || String(pitch.batterId) === String(selectedBatterId))
@@ -6567,18 +6591,24 @@
                         selectedBatter,
                         null,
                         pitcherPitches,
-                        selectedBatter ? "loading" : "empty"
+                        selectedBatter ? "loading" : "empty",
+                        conditionText
                     );
                     charts.replaceChildren(allFigure, zoneFigure);
                     if (!selectedBatter) return;
-                    getPitchChartBatterZoneData(selectedBatter.id)
+                    getPitchChartBatterZoneData(
+                        selectedBatter.id,
+                        pitcher.pitcherHand,
+                        selectedPitchType
+                    )
                         .then((zoneData) => {
                             if (sequence !== renderSequence || !zoneFigure.isConnected) return;
                             zoneFigure.replaceWith(createBatterZoneMetricFigure(
                                 selectedBatter,
                                 zoneData,
                                 pitcherPitches,
-                                "ready"
+                                "ready",
+                                conditionText
                             ));
                         })
                         .catch((error) => {
@@ -6588,7 +6618,8 @@
                                 selectedBatter,
                                 null,
                                 pitcherPitches,
-                                "error"
+                                "error",
+                                conditionText
                             ));
                         });
                 };
@@ -6610,6 +6641,7 @@
                     document.createTextNode(` ${state[side].name} 投手陣`)
                 );
                 team.append(heading);
+                const pitcherGrid = createElement("div", "pitch-chart-pitchers");
                 const grouped = new Map();
                 pitches
                     .filter((pitch) => pitch.teamSide === side)
@@ -6619,7 +6651,10 @@
                         if (!grouped.has(pitch.pitcherId)) grouped.set(pitch.pitcherId, []);
                         grouped.get(pitch.pitcherId).push(pitch);
                     });
-                grouped.forEach((pitcherPitches) => team.append(buildPitcherChartRow(pitcherPitches)));
+                grouped.forEach((pitcherPitches) =>
+                    pitcherGrid.append(buildPitcherChartRow(pitcherPitches))
+                );
+                team.append(pitcherGrid);
                 return team;
             };
 
