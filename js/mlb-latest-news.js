@@ -2,11 +2,33 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Seager's resurgence gives Rangers hope to break free from .500",
+        "summaryJa": "C.シーガー（TEX）の最新動向をMLB公式が詳報",
+        "slug": "corey-seager-hits-home-run-double-in-rangers-loss-to-angels",
+        "url": "https://www.mlb.com/news/corey-seager-hits-home-run-double-in-rangers-loss-to-angels",
+        "contentDate": "2026-08-13T07:07:32.091Z",
+        "teamIds": [
+            140
+        ],
+        "playerIds": [
+            608369
+        ],
+        "gamePks": [
+            823994
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Dodgers reset with sweep of Royals ahead of crucial set vs. Brewers",
         "summaryJa": "ドジャース、記録達成の最新情報",
         "slug": "dodgers-sweep-royals-to-remain-tied-for-2nd-best-nl-record",
         "url": "https://www.mlb.com/news/dodgers-sweep-royals-to-remain-tied-for-2nd-best-nl-record",
-        "contentDate": "2026-08-13T05:08:29.182Z",
+        "contentDate": "2026-08-13T06:44:00Z",
         "teamIds": [
             119
         ],
@@ -21,6 +43,206 @@
         ],
         "sourceScopes": [
             "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Latest Dodgers injuries & transactions",
+        "summaryJa": "ドジャースの負傷状況をMLB公式が詳報",
+        "slug": "dodgers-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/dodgers-injuries-and-roster-moves",
+        "contentDate": "2026-08-13T06:36:00Z",
+        "teamIds": [
+            119
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Freeman smiles through 'total body soreness' after scary tumble into opposing dugout",
+        "summaryJa": "F.フリーマン（LAD）の負傷状況をMLB公式が詳報",
+        "slug": "freddie-freeman-falls-into-royals-dugout-attempting-catch",
+        "url": "https://www.mlb.com/news/freddie-freeman-falls-into-royals-dugout-attempting-catch",
+        "contentDate": "2026-08-13T06:23:00Z",
+        "teamIds": [
+            119
+        ],
+        "playerIds": [
+            518692
+        ],
+        "gamePks": [
+            823916
+        ],
+        "taxonomy": [
+            "apple-news",
+            "injury"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Everything to know about tonight's MLB at Field of Dreams Game on Netflix",
+        "summaryJa": "フィリーズの最新動向をMLB公式が詳報",
+        "slug": "2026-mlb-at-field-of-dreams-game-on-netflix-date-time-matchup",
+        "url": "https://www.mlb.com/news/2026-mlb-at-field-of-dreams-game-on-netflix-date-time-matchup",
+        "contentDate": "2026-08-13T06:23:00Z",
+        "teamIds": [
+            143,
+            142
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "field-of-dreams"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Klassen picks up first MLB win by going into attack mode",
+        "summaryJa": "G.クラーセン（LAA）、勝利を呼び込む活躍",
+        "slug": "george-klassen-picks-up-first-mlb-win",
+        "url": "https://www.mlb.com/news/george-klassen-picks-up-first-mlb-win",
+        "contentDate": "2026-08-13T06:19:00Z",
+        "teamIds": [
+            108
+        ],
+        "playerIds": [
+            691946
+        ],
+        "gamePks": [
+            823994
+        ],
+        "taxonomy": [
+            "game-recap",
+            "apple-news",
+            "milestone"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "The story of 'Moonlight' Graham, a Minnesota doctor who got a tantalizing taste of the bigs",
+        "summaryJa": "Moonlight Grahamの最新動向をMLB公式が詳報",
+        "slug": "biography-of-field-of-dreams-moonlight-graham",
+        "url": "https://www.mlb.com/news/biography-of-field-of-dreams-moonlight-graham",
+        "contentDate": "2026-08-13T05:44:00Z",
+        "teamIds": [],
+        "playerIds": [
+            115018
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "evergreen",
+            "field-of-dreams",
+            "offbeat",
+            "50-stories-50-states"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "The real ghosts of baseball past",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "field-of-dreams-real-life-players-and-events",
+        "url": "https://www.mlb.com/news/field-of-dreams-real-life-players-and-events",
+        "contentDate": "2026-08-13T05:41:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "field-of-dreams"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "The woman who found the Field of Dreams",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "who-found-the-field-of-dreams",
+        "url": "https://www.mlb.com/news/who-found-the-field-of-dreams",
+        "contentDate": "2026-08-13T05:40:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "offbeat",
+            "headline-breakout",
+            "field-of-dreams"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "W.P. Kinsella: The voice behind 'Field of Dreams'",
+        "summaryJa": "MLBの最新情報を巡る注目点をMLB公式が分析",
+        "slug": "how-w-p-kinsella-s-novel-turned-into-field-of-dreams",
+        "url": "https://www.mlb.com/news/how-w-p-kinsella-s-novel-turned-into-field-of-dreams",
+        "contentDate": "2026-08-13T05:40:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "field-of-dreams",
+            "book-review"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "11 Field of Dreams facts you never knew",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "field-of-dreams-facts-you-may-not-have-known",
+        "url": "https://www.mlb.com/news/field-of-dreams-facts-you-may-not-have-known",
+        "contentDate": "2026-08-13T05:39:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "field-of-dreams",
+            "offbeat",
+            "movies"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "Latest Royals injuries & transactions",
+        "summaryJa": "ロイヤルズの負傷状況をMLB公式が詳報",
+        "slug": "royals-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/royals-injuries-and-roster-moves",
+        "contentDate": "2026-08-13T05:24:00Z",
+        "teamIds": [
+            118
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
             "球団公式"
         ]
     },
@@ -42,7 +264,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -84,31 +305,7 @@
         ]
     },
     {
-        "headline": "Freeman takes scary tumble into opposing dugout, exits later",
-        "summaryJa": "F.フリーマン（LAD）の最新動向をMLB公式が詳報",
-        "slug": "freddie-freeman-falls-into-royals-dugout-attempting-catch",
-        "url": "https://www.mlb.com/news/freddie-freeman-falls-into-royals-dugout-attempting-catch",
-        "contentDate": "2026-08-13T04:50:21.405Z",
-        "teamIds": [
-            119
-        ],
-        "playerIds": [
-            518692
-        ],
-        "gamePks": [
-            823916
-        ],
-        "taxonomy": [
-            "apple-news",
-            "injury"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Salvy exits game with right elbow aggravation",
+        "headline": "Salvy exits game with right elbow aggravation, hopes to play Friday",
         "summaryJa": "S.ペレス（KC）の負傷状況をMLB公式が詳報",
         "slug": "salvador-perez-exits-game-with-elbow-injury",
         "url": "https://www.mlb.com/news/salvador-perez-exits-game-with-elbow-injury",
@@ -433,7 +630,6 @@
             "mlb-top-prospects"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -721,26 +917,6 @@
         ]
     },
     {
-        "headline": "Latest Dodgers injuries & transactions",
-        "summaryJa": "ドジャースの負傷状況をMLB公式が詳報",
-        "slug": "dodgers-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/dodgers-injuries-and-roster-moves",
-        "contentDate": "2026-08-13T01:25:00Z",
-        "teamIds": [
-            119
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "A flair for the dramatic! Campusano caps Padres' dominant homestand with walk-off in extras",
         "summaryJa": "L.キャンプサーノ（SD）、サヨナラ勝利の主役に",
         "slug": "padres-sweep-brewers-luis-campusano-s-walk-off",
@@ -760,7 +936,8 @@
             "takeaways",
             "game-recap",
             "walk-off",
-            "homestand"
+            "homestand",
+            "extra-innings"
         ],
         "sourceScopes": [
             "MLB",
@@ -896,26 +1073,6 @@
         ]
     },
     {
-        "headline": "Latest Royals injuries & transactions",
-        "summaryJa": "ロイヤルズの負傷状況をMLB公式が詳報",
-        "slug": "royals-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/royals-injuries-and-roster-moves",
-        "contentDate": "2026-08-13T00:40:00Z",
-        "teamIds": [
-            118
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Colorado's pitchers walk tightrope, but secure Rockies' first series win in Arizona since '22",
         "summaryJa": "ロッキーズ、マウンドで好投",
         "slug": "rockies-secure-series-win-on-road-vs-d-backs",
@@ -1000,27 +1157,6 @@
         "taxonomy": [
             "apple-news",
             "game-recap"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Everything to know about the 2026 MLB at Field of Dreams Game on Netflix",
-        "summaryJa": "フィリーズの最新動向をMLB公式が詳報",
-        "slug": "2026-mlb-at-field-of-dreams-game-on-netflix-date-time-matchup",
-        "url": "https://www.mlb.com/news/2026-mlb-at-field-of-dreams-game-on-netflix-date-time-matchup",
-        "contentDate": "2026-08-13T00:02:00Z",
-        "teamIds": [
-            143,
-            142
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "field-of-dreams"
         ],
         "sourceScopes": [
             "MLB",
@@ -1118,7 +1254,6 @@
             "rehab"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1468,32 +1603,6 @@
         ]
     },
     {
-        "headline": "Injuries: R. Greene, Eovaldi, Altuve, Buxton, Dodgers, Stowers",
-        "summaryJa": "大谷翔平（LAD）らMLB各球団の最新負傷情報",
-        "slug": "baseball-injury-updates",
-        "url": "https://www.mlb.com/news/baseball-injury-updates",
-        "contentDate": "2026-08-12T21:24:00Z",
-        "teamIds": [],
-        "playerIds": [
-            605483,
-            660271,
-            543135,
-            669065,
-            663460,
-            682985,
-            514888,
-            621439
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "headline-breakout"
-        ],
-        "sourceScopes": [
-            "MLB"
-        ]
-    },
-    {
         "headline": "Latest Marlins injuries & transactions",
         "summaryJa": "マーリンズの負傷状況をMLB公式が詳報",
         "slug": "marlins-injuries-and-roster-moves",
@@ -1740,7 +1849,6 @@
             "hot-streak"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1913,7 +2021,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -7824,29 +7931,6 @@
         ]
     },
     {
-        "headline": "As hometown battles fires, Rasmussen continues dominance in Seattle",
-        "summaryJa": "D.ラスムッセン（TB）、マウンドで好投",
-        "slug": "drew-rasmussen-throws-7-scoreless-innings-in-rays-win",
-        "url": "https://www.mlb.com/news/drew-rasmussen-throws-7-scoreless-innings-in-rays-win",
-        "contentDate": "2026-08-08T05:33:00Z",
-        "teamIds": [
-            139
-        ],
-        "playerIds": [
-            656876
-        ],
-        "gamePks": [
-            823103
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Matthews fights through blister on right foot until exit in 6th frame",
         "summaryJa": "Z.マシューズ（MIN）、記録達成の最新情報",
         "slug": "zebby-matthews-exits-start-with-right-foot-blister",
@@ -9430,30 +9514,6 @@
         ]
     },
     {
-        "headline": "Pivetta to be reevaluated as rehab hits snag with elbow tightness",
-        "summaryJa": "N.ピベッタ（SD）の負傷状況をMLB公式が詳報",
-        "slug": "nick-pivetta-pausing-rehab-due-to-elbow-injury",
-        "url": "https://www.mlb.com/news/nick-pivetta-pausing-rehab-due-to-elbow-injury",
-        "contentDate": "2026-08-07T02:22:25.379Z",
-        "teamIds": [
-            135
-        ],
-        "playerIds": [
-            601713
-        ],
-        "gamePks": [
-            825053
-        ],
-        "taxonomy": [
-            "apple-news",
-            "rehab",
-            "injury"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Tigers climbing back into Wild Card race -- and this time it could be for real",
         "summaryJa": "F.バルデス（DET）、勝利を呼び込む活躍",
         "slug": "dillon-dingler-framber-valdez-lead-tigers-win-vs-mariners",
@@ -10263,6 +10323,30 @@
         ]
     },
     {
+        "headline": "Lodolo (blister) makes rehab start at Triple-A, on track to return soon",
+        "summaryJa": "N.ロドーロ（CIN）、復帰へ向けた最新状況",
+        "slug": "nick-lodolo-nearing-return-to-reds-after-rehab-start",
+        "url": "https://www.mlb.com/news/nick-lodolo-nearing-return-to-reds-after-rehab-start",
+        "contentDate": "2026-08-05T22:31:34.574Z",
+        "teamIds": [
+            113
+        ],
+        "playerIds": [
+            666157
+        ],
+        "gamePks": [
+            824482
+        ],
+        "taxonomy": [
+            "apple-news",
+            "injury",
+            "rehab"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Bradford blanks Giants during 1st big league outing in nearly 2 years",
         "summaryJa": "C.ブラッドフォード（TEX）、記録達成の最新情報",
         "slug": "cody-bradford-scoreless-start-rangers-giants",
@@ -10859,29 +10943,6 @@
         ]
     },
     {
-        "headline": "Ballesteros joins new-look Angels, Soler DFA'd among flurry of roster moves",
-        "summaryJa": "M.バレステロス（LAA）の移籍・契約に関する最新情報",
-        "slug": "jorge-soler-designated-by-angels",
-        "url": "https://www.mlb.com/news/jorge-soler-designated-by-angels",
-        "contentDate": "2026-08-04T22:49:00Z",
-        "teamIds": [
-            108
-        ],
-        "playerIds": [
-            694208
-        ],
-        "gamePks": [
-            824805
-        ],
-        "taxonomy": [
-            "transactions",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "'Whirlwind' for Varsho as Astros get Gold Glove OF help in deal with Toronto",
         "summaryJa": "D.バーショ（HOU）の移籍・契約に関する最新情報",
         "slug": "daulton-varsho-astros-blue-jays-trade",
@@ -11146,6 +11207,22 @@
         ],
         "sourceScopes": [
             "球団公式"
+        ]
+    },
+    {
+        "headline": "Why 'Field of Dreams' created a lasting legacy",
+        "summaryJa": "MLBの最新情報を巡る注目点をMLB公式が分析",
+        "slug": "the-lasting-impact-of-the-film-field-of-dreams",
+        "url": "https://www.mlb.com/news/the-lasting-impact-of-the-film-field-of-dreams",
+        "contentDate": "2026-08-01T16:00:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "field-of-dreams"
+        ],
+        "sourceScopes": [
+            "MLB"
         ]
     },
     {
