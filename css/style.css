@@ -2751,15 +2751,15 @@ body:not(.app-mode-home):not(.app-mode-pregame) .viewer {
 
     body:not(.app-mode-home):not(.app-mode-pregame) {
         height: auto;
-        overflow-x: hidden;
+        overflow-x: auto;
         overflow-y: auto;
     }
 
     body:not(.app-mode-home):not(.app-mode-pregame) .app-main {
         position: static;
-        grid-template-columns: 270px minmax(0, 1fr);
-        width: 100%;
-        min-width: 0;
+        grid-template-columns: 270px max-content;
+        width: max-content;
+        min-width: 100%;
         min-height: calc(100vh - 120px);
         margin-top: 68px;
         margin-bottom: 52px;
@@ -2768,18 +2768,18 @@ body:not(.app-mode-home):not(.app-mode-pregame) .viewer {
     }
 
     body:not(.app-mode-home):not(.app-mode-pregame) .viewer {
-        width: 100%;
-        min-width: 0;
+        width: max-content;
+        min-width: calc(100vw - 270px);
         overflow: visible;
     }
 
     body:not(.app-mode-home):not(.app-mode-pregame) .scorebook-horizontal-scroll {
         display: block;
-        width: 100%;
-        max-width: 100%;
-        overflow-x: auto;
+        width: max-content;
+        max-width: none;
+        overflow-x: visible;
         overflow-y: visible;
-        overscroll-behavior-x: contain;
+        overscroll-behavior-x: auto;
     }
 }
 
