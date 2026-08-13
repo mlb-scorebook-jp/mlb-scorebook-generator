@@ -2,6 +2,170 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Today's Reds-White Sox game moved to 1:10 p.m. ET",
+        "summaryJa": "ホワイトソックスの最新動向をMLB公式が詳報",
+        "slug": "reds-white-sox-aug-13-2026-game-start-time-changed",
+        "url": "https://www.mlb.com/news/reds-white-sox-aug-13-2026-game-start-time-changed",
+        "contentDate": "2026-08-13T15:26:14.707Z",
+        "teamIds": [
+            145,
+            113
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "How Jacob Webb found another level 'real quick' with Cubs",
+        "summaryJa": "J.ウェブ（CHC）を巡る注目点をMLB公式が分析",
+        "slug": "jacob-webb-high-leverage-arm-in-cubs-bullpen",
+        "url": "https://www.mlb.com/news/jacob-webb-high-leverage-arm-in-cubs-bullpen",
+        "contentDate": "2026-08-13T15:05:49.727Z",
+        "teamIds": [
+            112
+        ],
+        "playerIds": [
+            657097
+        ],
+        "gamePks": [
+            822696
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "The Padres are surging. Here's how they can keep it up",
+        "summaryJa": "パドレスを巡る注目点をMLB公式が分析",
+        "slug": "padres-making-2026-playoff-push",
+        "url": "https://www.mlb.com/news/padres-making-2026-playoff-push",
+        "contentDate": "2026-08-13T14:58:30.328Z",
+        "teamIds": [
+            135
+        ],
+        "playerIds": [],
+        "gamePks": [
+            824399
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Mets Reddit AMA: Green's future as manager, pitching plans and more",
+        "summaryJa": "メッツ、マウンドで好投",
+        "slug": "mets-2026-post-deadline-reddit-ama-with-anthony-dicomo",
+        "url": "https://www.mlb.com/news/mets-2026-post-deadline-reddit-ama-with-anthony-dicomo",
+        "contentDate": "2026-08-13T14:57:11.291Z",
+        "teamIds": [
+            121
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Could Olson's 2026 be better than his '23? Here's what the numbers say",
+        "summaryJa": "M.オルソン（ATL）の最新動向をMLB公式が詳報",
+        "slug": "matt-olson-2026-season-compared-with-2023-braves",
+        "url": "https://www.mlb.com/news/matt-olson-2026-season-compared-with-2023-braves",
+        "contentDate": "2026-08-13T14:54:34.569Z",
+        "teamIds": [
+            144
+        ],
+        "playerIds": [
+            621566
+        ],
+        "gamePks": [
+            824882
+        ],
+        "taxonomy": [
+            "apple-news",
+            "long-home-runs"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Everything to know about tonight's MLB at Field of Dreams Game on Netflix (7:30 ET)",
+        "summaryJa": "フィリーズの最新動向をMLB公式が詳報",
+        "slug": "2026-mlb-at-field-of-dreams-game-on-netflix-date-time-matchup",
+        "url": "https://www.mlb.com/news/2026-mlb-at-field-of-dreams-game-on-netflix-date-time-matchup",
+        "contentDate": "2026-08-13T14:35:00Z",
+        "teamIds": [
+            143,
+            142
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "field-of-dreams"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Judge, ALL RISE Foundation host annual ProCamp for Bronx Little Leaguers",
+        "summaryJa": "A.ジャッジ（NYY）の最新動向をMLB公式が詳報",
+        "slug": "aaron-judge-hosts-annual-procamp-for-little-leaguers",
+        "url": "https://www.mlb.com/news/aaron-judge-hosts-annual-procamp-for-little-leaguers",
+        "contentDate": "2026-08-13T14:23:11.412Z",
+        "teamIds": [
+            147
+        ],
+        "playerIds": [
+            592450
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Twins' 2026 2nd-rounder Tinney smacks walk-off in 1st multi-homer game",
+        "summaryJa": "Carson Tinney（MIN）、記録達成の最新情報",
+        "slug": "carson-tinney-hits-walk-off-in-1st-multi-home-run-game",
+        "url": "https://www.mlb.com/news/carson-tinney-hits-walk-off-in-1st-multi-home-run-game",
+        "contentDate": "2026-08-13T13:03:28.229Z",
+        "teamIds": [
+            142
+        ],
+        "playerIds": [
+            806245
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "mlb-top-prospects",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Díaz embraces leadership role on and off the field",
         "summaryJa": "Y.ディアス（TB）の最新動向をMLB公式が詳報",
         "slug": "yandy-diaz-leads-by-example-as-veteran-presence-for-rays",
@@ -106,27 +270,6 @@
         "taxonomy": [
             "apple-news",
             "injury"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Everything to know about tonight's MLB at Field of Dreams Game on Netflix",
-        "summaryJa": "フィリーズの最新動向をMLB公式が詳報",
-        "slug": "2026-mlb-at-field-of-dreams-game-on-netflix-date-time-matchup",
-        "url": "https://www.mlb.com/news/2026-mlb-at-field-of-dreams-game-on-netflix-date-time-matchup",
-        "contentDate": "2026-08-13T06:23:00Z",
-        "teamIds": [
-            143,
-            142
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "field-of-dreams"
         ],
         "sourceScopes": [
             "MLB",
@@ -8092,33 +8235,6 @@
         ]
     },
     {
-        "headline": "Mets' rookie wave leads way to 4th straight win",
-        "summaryJa": "Zac Thornton（NYM）、記録達成の最新情報",
-        "slug": "marcus-semien-zac-thornton-lead-mets-vs-pirates",
-        "url": "https://www.mlb.com/news/marcus-semien-zac-thornton-lead-mets-vs-pirates",
-        "contentDate": "2026-08-08T05:03:00Z",
-        "teamIds": [
-            121
-        ],
-        "playerIds": [
-            804267,
-            805999,
-            701807
-        ],
-        "gamePks": [
-            823349
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap",
-            "defense",
-            "wow"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "After whirlwind week, Gausman delivers 7 strong in impressive Cubs debut",
         "summaryJa": "K.ガーズマン（CHC）、メジャー昇格・初出場に関する最新情報",
         "slug": "kevin-gausman-earns-win-in-cubs-debut-vs-royals",
@@ -8857,24 +8973,6 @@
         ]
     },
     {
-        "headline": "Braves starters allow lots of hits in 0-2 counts. Can they correct course?",
-        "summaryJa": "ブレーブス、マウンドで好投",
-        "slug": "braves-starting-pitchers-in-0-2-counts",
-        "url": "https://www.mlb.com/news/braves-starting-pitchers-in-0-2-counts",
-        "contentDate": "2026-08-07T18:37:47.472Z",
-        "teamIds": [
-            144
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Conn earns call to Triple-A with hopes that A's will follow soon",
         "summaryJa": "Cole Conn（ATH）、メジャー昇格・初出場に関する最新情報",
         "slug": "cole-conn-gets-callup-to-triple-a-las-vegas",
@@ -9134,53 +9232,6 @@
         ]
     },
     {
-        "headline": "Lombard off to hot start with bat -- while 'like a puma' at short",
-        "summaryJa": "G.ロンバード Jr.（NYY）の最新動向をMLB公式が詳報",
-        "slug": "george-lombard-jr-already-impressing-yankees",
-        "url": "https://www.mlb.com/news/george-lombard-jr-already-impressing-yankees",
-        "contentDate": "2026-08-07T12:44:58.261Z",
-        "teamIds": [
-            147
-        ],
-        "playerIds": [
-            806146
-        ],
-        "gamePks": [
-            823515
-        ],
-        "taxonomy": [
-            "apple-news",
-            "milestone"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Padres even season series with D-backs, gain ground in Wild Card race",
-        "summaryJa": "B.ロドリゲス（SD）、勝利を呼び込む活躍",
-        "slug": "padres-beat-d-backs-in-key-national-league-wild-card-battle",
-        "url": "https://www.mlb.com/news/padres-beat-d-backs-in-key-national-league-wild-card-battle",
-        "contentDate": "2026-08-07T06:13:00Z",
-        "teamIds": [
-            135
-        ],
-        "playerIds": [
-            699134
-        ],
-        "gamePks": [
-            825053
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap",
-            "takeaways"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "What did Nats get in Griffin trade headliner? One of MiLB's premier ground-ball artists",
         "summaryJa": "Josh Hartle（WSH）の移籍・契約に関する最新情報",
         "slug": "josh-hartle-joins-nationals-organization",
@@ -9262,27 +9313,6 @@
         "gamePks": [
             824885
         ],
-        "taxonomy": [
-            "apple-news",
-            "mlb-top-prospects"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "'Like a kid on Christmas morning': Jenkins enjoying return and his first multihomer game",
-        "summaryJa": "Walker Jenkins（MIN）、復帰へ向けた最新状況",
-        "slug": "twins-prospect-walker-jenkins-first-career-multihomer-game",
-        "url": "https://www.mlb.com/news/twins-prospect-walker-jenkins-first-career-multihomer-game",
-        "contentDate": "2026-08-07T05:18:00Z",
-        "teamIds": [
-            142
-        ],
-        "playerIds": [
-            805805
-        ],
-        "gamePks": [],
         "taxonomy": [
             "apple-news",
             "mlb-top-prospects"
@@ -9438,29 +9468,6 @@
         "taxonomy": [
             "rehab",
             "injury",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "2026 No. 1 pick Cholowsky swats first pro homer on a mammoth night at High-A",
-        "summaryJa": "Roch Cholowsky（CWS）、本塁打で存在感",
-        "slug": "top-2026-draft-pick-roch-cholowsky-first-pro-home-run",
-        "url": "https://www.mlb.com/news/top-2026-draft-pick-roch-cholowsky-first-pro-home-run",
-        "contentDate": "2026-08-07T03:00:00Z",
-        "teamIds": [
-            145
-        ],
-        "playerIds": [
-            800604
-        ],
-        "gamePks": [
-            824729
-        ],
-        "taxonomy": [
-            "mlb-top-prospects",
             "apple-news"
         ],
         "sourceScopes": [
@@ -9773,30 +9780,6 @@
         "taxonomy": [
             "apple-news",
             "injury"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "'Could we please not?': Gausman says goodbye to Blue Jays without facing them",
-        "summaryJa": "K.ガーズマン（TOR）の最新動向をMLB公式が詳報",
-        "slug": "kevin-gausman-reunites-with-blue-jays-at-wrigley-field",
-        "url": "https://www.mlb.com/news/kevin-gausman-reunites-with-blue-jays-at-wrigley-field",
-        "contentDate": "2026-08-06T18:59:16.457Z",
-        "teamIds": [
-            141,
-            112
-        ],
-        "playerIds": [
-            592332
-        ],
-        "gamePks": [
-            824664
-        ],
-        "taxonomy": [
-            "apple-news",
-            "trade-deadline"
         ],
         "sourceScopes": [
             "球団公式"
@@ -10315,30 +10298,6 @@
             "mlb-top-prospects",
             "apple-news",
             "transactions"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Lodolo (blister) makes rehab start at Triple-A, on track to return soon",
-        "summaryJa": "N.ロドーロ（CIN）、復帰へ向けた最新状況",
-        "slug": "nick-lodolo-nearing-return-to-reds-after-rehab-start",
-        "url": "https://www.mlb.com/news/nick-lodolo-nearing-return-to-reds-after-rehab-start",
-        "contentDate": "2026-08-05T22:31:34.574Z",
-        "teamIds": [
-            113
-        ],
-        "playerIds": [
-            666157
-        ],
-        "gamePks": [
-            824482
-        ],
-        "taxonomy": [
-            "apple-news",
-            "injury",
-            "rehab"
         ],
         "sourceScopes": [
             "球団公式"
