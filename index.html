@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MLB Scorebook Generator</title>
     <!-- Score notation update: stacked batted-ball symbol, red hits, blue strikeouts, black other results. -->
-    <link rel="stylesheet" href="css/style.css?v=20260813-11">
+    <link rel="stylesheet" href="css/style.css?v=20260813-14">
     <link rel="stylesheet" href="css/pregame.css?v=20260811-10">
 </head>
 
@@ -5986,6 +5986,7 @@
                             eventIndex,
                             pitcherId,
                             pitcherName: getPersonName(play?.matchup?.pitcher ?? {}) || "投手名不明",
+                            pitcherHand: String(play?.matchup?.pitchHand?.code ?? "").toUpperCase(),
                             pitcherPitchNumber,
                             batterId: Number(play?.matchup?.batter?.id),
                             batterName: getPersonName(play?.matchup?.batter ?? {}) || "打者名不明",
@@ -6125,25 +6126,31 @@
                         pitchTypeSelect.append(option);
                     });
                     pitchTypeSelect.value = filterOptions.selectedPitchType ?? "";
-
-                    const batterSelect = createElement("select", "pitch-chart-filter-select pitch-chart-batter-select");
-                    batterSelect.setAttribute("aria-label", `${filterOptions.pitcherName}の対戦打者`);
-                    const allBatters = createElement("option", "", "打者：すべて");
-                    allBatters.value = "";
-                    batterSelect.append(allBatters);
-                    filterOptions.batters.forEach(({ id, name }) => {
-                        const option = createElement("option", "", `打者：${name}`);
-                        option.value = String(id);
-                        batterSelect.append(option);
-                    });
-                    batterSelect.value = filterOptions.selectedBatterId ?? "";
-                    filters.append(pitchTypeSelect, batterSelect);
+                    let batterSelect = null;
+                    if (filterOptions.showBatter !== false) {
+                        batterSelect = createElement("select", "pitch-chart-filter-select pitch-chart-batter-select");
+                        batterSelect.setAttribute("aria-label", `${filterOptions.pitcherName}の対戦打者`);
+                        const allBatters = createElement("option", "", "打者：すべて");
+                        allBatters.value = "";
+                        batterSelect.append(allBatters);
+                        filterOptions.batters.forEach(({ id, name }) => {
+                            const option = createElement("option", "", `打者：${name}`);
+                            option.value = String(id);
+                            batterSelect.append(option);
+                        });
+                        batterSelect.value = filterOptions.selectedBatterId ?? "";
+                        filters.append(pitchTypeSelect, batterSelect);
+                    } else {
+                        filters.classList.add("is-pitch-only");
+                        filters.append(pitchTypeSelect);
+                    }
                     caption.append(filters);
 
                     const updateFilteredChart = () => {
                         const selectedPitchType = pitchTypeSelect.value;
-                        const selectedBatterId = batterSelect.value;
-                        const filtered = allPitcherPitches.filter((pitch) =>
+                        const selectedBatterId = batterSelect?.value ?? "";
+                        const filterSource = filterOptions.sourcePitches ?? allPitcherPitches;
+                        const filtered = filterSource.filter((pitch) =>
                             (!selectedPitchType || pitch.pitchTypeCode === selectedPitchType) &&
                             (!selectedBatterId || String(pitch.batterId) === selectedBatterId)
                         );
@@ -6166,7 +6173,7 @@
                         }
                     };
                     pitchTypeSelect.addEventListener("change", updateFilteredChart);
-                    batterSelect.addEventListener("change", updateFilteredChart);
+                    batterSelect?.addEventListener("change", updateFilteredChart);
                 }
                 caption.append(createElement("span", "pitch-chart-count", `${pitches.length}球`));
                 const svg = createSvgElement("svg", {
@@ -6272,6 +6279,18 @@
                     );
                 }
                 const pitcherHeading = createElement("h4", "");
+                const pitcherHandLabel = pitcher.pitcherHand === "L"
+                    ? "（LHP）"
+                    : pitcher.pitcherHand === "R"
+                        ? "（RHP）"
+                        : "";
+                if (pitcherHandLabel) {
+                    pitcherName.append(createElement(
+                        "span",
+                        "pitch-chart-pitcher-hand",
+                        pitcherHandLabel
+                    ));
+                }
                 pitcherHeading.append(pitcherName);
                 header.append(
                     pitcherHeading,
@@ -6299,6 +6318,11 @@
                         });
                     }
                 });
+                const rightPitches = pitcherPitches.filter((pitch) => pitch.batterSide === "R");
+                const leftPitches = pitcherPitches.filter((pitch) => pitch.batterSide === "L");
+                const getSidePitchTypes = (sidePitches) => pitchTypes.filter(({ code }) =>
+                    sidePitches.some((pitch) => pitch.pitchTypeCode === code)
+                );
                 charts.append(
                     createPitchChartSvg(
                         pitcherPitches,
@@ -6314,16 +6338,34 @@
                         }
                     ),
                     createPitchChartSvg(
-                        pitcherPitches.filter((pitch) => pitch.batterSide === "R"),
+                        rightPitches,
                         pitcherPitches,
                         "対右打者",
-                        colorByType
+                        colorByType,
+                        {
+                            pitcherName: pitcher.pitcherName,
+                            pitchTypes: getSidePitchTypes(rightPitches),
+                            batters: [],
+                            sourcePitches: rightPitches,
+                            showBatter: false,
+                            selectedPitchType: "",
+                            selectedBatterId: ""
+                        }
                     ),
                     createPitchChartSvg(
-                        pitcherPitches.filter((pitch) => pitch.batterSide === "L"),
+                        leftPitches,
                         pitcherPitches,
                         "対左打者",
-                        colorByType
+                        colorByType,
+                        {
+                            pitcherName: pitcher.pitcherName,
+                            pitchTypes: getSidePitchTypes(leftPitches),
+                            batters: [],
+                            sourcePitches: leftPitches,
+                            showBatter: false,
+                            selectedPitchType: "",
+                            selectedBatterId: ""
+                        }
                     )
                 );
                 const detail = createElement(

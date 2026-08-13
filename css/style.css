@@ -2685,6 +2685,12 @@ body.app-mode-pregame .score-loading-overlay {
     font-size: 9px;
 }
 
+.pitch-chart-pitcher-hand {
+    margin-left: 4px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
 .pitch-chart-pitcher-link:hover,
 .pitch-chart-pitcher-link:focus-visible {
     color: #174f32;
@@ -2768,7 +2774,8 @@ body.app-mode-pregame .score-loading-overlay {
 }
 
 .pitch-chart-filter-select {
-    width: 110px;
+    flex: 1 1 0;
+    width: 0;
     min-width: 0;
     height: 30px;
     padding: 0 20px 0 7px;
@@ -2785,9 +2792,14 @@ body.app-mode-pregame .score-loading-overlay {
 }
 
 .pitch-chart-batter-select {
+    flex: 1 1 0;
+    width: 0;
+    min-width: 0;
+}
+
+.pitch-chart-filters.is-pitch-only .pitch-chart-filter-select {
     flex: 1 1 auto;
-    width: auto;
-    min-width: 144px;
+    width: 100%;
 }
 
 .pitch-chart-count {
