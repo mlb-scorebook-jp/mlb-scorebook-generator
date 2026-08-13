@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MLB Scorebook Generator</title>
     <!-- Score notation update: stacked batted-ball symbol, red hits, blue strikeouts, black other results. -->
-    <link rel="stylesheet" href="css/style.css?v=20260813-01">
+    <link rel="stylesheet" href="css/style.css?v=20260813-02">
     <link rel="stylesheet" href="css/pregame.css?v=20260811-10">
 </head>
 
@@ -6965,6 +6965,8 @@
                 const printableHeight = (
                     A4_LANDSCAPE_HEIGHT_MM - PRINT_MARGIN_MM * 2
                 ) * CSS_PIXELS_PER_MM;
+                const printableWidthMm = A4_LANDSCAPE_WIDTH_MM - PRINT_MARGIN_MM * 2;
+                const printableHeightMm = A4_LANDSCAPE_HEIGHT_MM - PRINT_MARGIN_MM * 2;
                 const contentWidth = Math.max(
                     content.scrollWidth,
                     content.getBoundingClientRect().width
@@ -6990,14 +6992,20 @@
                 printStage.style.setProperty("--print-scale", String(scale));
                 printStage.style.setProperty(
                     "--print-page-width",
-                    `${printableWidth}px`
+                    `${printableWidthMm}mm`
                 );
                 printStage.style.setProperty(
                     "--print-page-height",
-                    `${printableHeight}px`
+                    `${printableHeightMm}mm`
                 );
-                printStage.style.setProperty("--print-offset-x", `${offsetX}px`);
-                printStage.style.setProperty("--print-offset-y", `${offsetY}px`);
+                printStage.style.setProperty(
+                    "--print-offset-x",
+                    `${offsetX / CSS_PIXELS_PER_MM}mm`
+                );
+                printStage.style.setProperty(
+                    "--print-offset-y",
+                    `${offsetY / CSS_PIXELS_PER_MM}mm`
+                );
 
                 const printContent = document.createElement("div");
                 printContent.className = "scorebook-print-content";
@@ -7010,7 +7018,8 @@
 
                 const pageStyle = document.createElement("style");
                 pageStyle.id = PRINT_PAGE_STYLE_ID;
-                pageStyle.textContent = `@page { size: A4 landscape; margin: ${PRINT_MARGIN_MM}mm; }`;
+                pageStyle.textContent = `@page { size: ${A4_LANDSCAPE_WIDTH_MM}mm ` +
+                    `${A4_LANDSCAPE_HEIGHT_MM}mm; margin: ${PRINT_MARGIN_MM}mm; }`;
                 document.head.append(pageStyle);
                 return true;
             };
