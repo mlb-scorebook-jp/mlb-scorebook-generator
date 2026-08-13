@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MLB Scorebook Generator</title>
     <!-- Score notation update: stacked batted-ball symbol, red hits, blue strikeouts, black other results. -->
-    <link rel="stylesheet" href="css/style.css?v=20260813-02">
+    <link rel="stylesheet" href="css/style.css?v=20260813-03">
     <link rel="stylesheet" href="css/pregame.css?v=20260811-10">
 </head>
 
@@ -602,10 +602,7 @@
             const headerSearchPlaceholder = document.createComment("header game search");
             dom.headerGameSearch.before(headerSearchPlaceholder);
 
-            const getHorizontalScrollTarget = () =>
-                portraitScorebookQuery.matches || touchScorebookQuery.matches
-                    ? dom.scorebookHorizontalScroll
-                    : dom.workspace;
+            const getHorizontalScrollTarget = () => dom.scorebookHorizontalScroll;
 
             const updatePortraitOperationLayout = () => {
                 if (portraitScorebookQuery.matches) {
@@ -7187,15 +7184,8 @@
             });
 
             window.addEventListener("afterprint", clearPrintFit);
-            dom.workspace.addEventListener("scroll", () => {
-                if (!portraitScorebookQuery.matches) {
-                    syncHorizontalScroll(dom.workspace, dom.footerScrollbar);
-                }
-            }, { passive: true });
             dom.scorebookHorizontalScroll.addEventListener("scroll", () => {
-                if (portraitScorebookQuery.matches) {
-                    syncHorizontalScroll(dom.scorebookHorizontalScroll, dom.footerScrollbar);
-                }
+                syncHorizontalScroll(dom.scorebookHorizontalScroll, dom.footerScrollbar);
             }, { passive: true });
             dom.footerScrollbar.addEventListener("scroll", () => {
                 syncHorizontalScroll(dom.footerScrollbar, getHorizontalScrollTarget());

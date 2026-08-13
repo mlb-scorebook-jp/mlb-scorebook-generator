@@ -2739,6 +2739,50 @@ body:not(.app-mode-home):not(.app-mode-pregame) .viewer {
     overflow: visible;
 }
 
+/*
+ * Desktop full-page capture tools scroll window/document, not the former
+ * fixed .app-main viewport. Keep only the scorebook's horizontal axis in an
+ * internal scroller so FireShot and similar tools can advance the page.
+ */
+@media screen and (hover: hover) and (pointer: fine) {
+    html {
+        overflow-y: auto;
+    }
+
+    body:not(.app-mode-home):not(.app-mode-pregame) {
+        height: auto;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+    body:not(.app-mode-home):not(.app-mode-pregame) .app-main {
+        position: static;
+        grid-template-columns: 270px minmax(0, 1fr);
+        width: 100%;
+        min-width: 0;
+        min-height: calc(100vh - 120px);
+        margin-top: 68px;
+        margin-bottom: 52px;
+        overflow: visible;
+        overscroll-behavior-y: auto;
+    }
+
+    body:not(.app-mode-home):not(.app-mode-pregame) .viewer {
+        width: 100%;
+        min-width: 0;
+        overflow: visible;
+    }
+
+    body:not(.app-mode-home):not(.app-mode-pregame) .scorebook-horizontal-scroll {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        overflow-x: auto;
+        overflow-y: visible;
+        overscroll-behavior-x: contain;
+    }
+}
+
 @media screen and (orientation: portrait) and (max-width: 1100px) {
     body:not(.app-mode-home):not(.app-mode-pregame) {
         overflow: hidden;
