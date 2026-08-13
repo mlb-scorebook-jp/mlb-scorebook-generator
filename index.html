@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MLB Scorebook Generator</title>
     <!-- Score notation update: stacked batted-ball symbol, red hits, blue strikeouts, black other results. -->
-    <link rel="stylesheet" href="css/style.css?v=20260813-25">
+    <link rel="stylesheet" href="css/style.css?v=20260814-4">
     <link rel="stylesheet" href="css/pregame.css?v=20260811-10">
 </head>
 
@@ -4109,6 +4109,26 @@
                 return column;
             };
 
+            const placePitchTotalCount = (column) => {
+                const total = column?.querySelector(".pitch-total-count");
+                if (!total) return;
+                const sequence = column.querySelector(".pitch-result-sequence");
+                total.classList.remove("crowded");
+                sequence?.classList.remove("compact-fouls");
+                const overlapsSymbol = () => {
+                    const totalRect = total.getBoundingClientRect();
+                    return [...column.querySelectorAll(".pitch-result-symbol")].some((symbol) => {
+                        const symbolRect = symbol.getBoundingClientRect();
+                        return totalRect.left < symbolRect.right &&
+                            totalRect.right > symbolRect.left &&
+                            totalRect.top < symbolRect.bottom &&
+                            totalRect.bottom > symbolRect.top;
+                    });
+                };
+                if (overlapsSymbol()) sequence?.classList.add("compact-fouls");
+                total.classList.toggle("crowded", overlapsSymbol());
+            };
+
             const createAtBatCell = (side, inning, occurrence, order) => {
                 const cell = createElement("div", "grid-cell atbat-cell");
                 cell.dataset.side = side;
@@ -5377,10 +5397,12 @@
                     cell.classList.toggle("in-progress", Boolean(record.inProgress));
                     const currentPitchColumn = cell.querySelector(".pitch-column");
                     if (currentPitchColumn && (record.pitchResults?.length || record.pitchCount)) {
-                        currentPitchColumn.replaceWith(createPitchColumn(
+                        const replacementPitchColumn = createPitchColumn(
                             record.pitchResults,
                             record.pitchCount
-                        ));
+                        );
+                        currentPitchColumn.replaceWith(replacementPitchColumn);
+                        placePitchTotalCount(replacementPitchColumn);
                     }
                     resultBox.classList.add("has-play");
                     const card = renderPlateAppearance(record);

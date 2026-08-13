@@ -1748,6 +1748,12 @@ body.app-mode-pregame .score-loading-overlay {
     flex-basis: 5px;
 }
 
+.pitch-result-sequence.compact-fouls .pitch-result-symbol.pitch-result-foul {
+    height: 2px;
+    min-height: 2px;
+    flex-basis: 2px;
+}
+
 .pitch-result-symbol.pitch-result-foul .pitch-shape-stroke {
     stroke-width: 0.9;
 }
@@ -1767,6 +1773,14 @@ body.app-mode-pregame .score-loading-overlay {
 
 .pitch-total-count.two-digit {
     right: -2px;
+}
+
+.pitch-total-count.crowded {
+    right: -7px;
+}
+
+.pitch-total-count.two-digit.crowded {
+    right: -11px;
 }
 
 .pitch-shape-stroke {
