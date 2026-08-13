@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MLB Scorebook Generator</title>
     <!-- Score notation update: stacked batted-ball symbol, red hits, blue strikeouts, black other results. -->
-    <link rel="stylesheet" href="css/style.css?v=20260813-15">
+    <link rel="stylesheet" href="css/style.css?v=20260813-16">
     <link rel="stylesheet" href="css/pregame.css?v=20260811-10">
 </head>
 
@@ -5937,6 +5937,14 @@
                 "#315f8f", "#9b3f32", "#537d3e", "#7a5690", "#9a6b25",
                 "#2f7b78", "#815742", "#59636b", "#6b7d2e", "#764b62"
             ];
+            const pitchChartBatterZoneCache = new Map();
+            const PITCH_CHART_HIT_EVENTS = new Set(["single", "double", "triple", "home_run"]);
+            const PITCH_CHART_AT_BAT_EVENTS = new Set([
+                "single", "double", "triple", "home_run", "field_out", "force_out",
+                "grounded_into_double_play", "fielders_choice", "fielders_choice_out",
+                "strikeout", "strikeout_double_play", "double_play", "triple_play",
+                "field_error", "other_out"
+            ]);
 
             const getPitchChartTypeLabel = (code, fallback = "") => {
                 const normalized = String(code ?? "").toUpperCase();
@@ -6025,6 +6033,116 @@
                     : (sorted[middle - 1] + sorted[middle]) / 2;
             };
 
+            const parsePitchChartCsvLine = (line) => {
+                const values = [];
+                let value = "";
+                let quoted = false;
+                for (let index = 0; index < line.length; index += 1) {
+                    const character = line[index];
+                    if (character === '"') {
+                        if (quoted && line[index + 1] === '"') {
+                            value += '"';
+                            index += 1;
+                        } else {
+                            quoted = !quoted;
+                        }
+                    } else if (character === "," && !quoted) {
+                        values.push(value);
+                        value = "";
+                    } else {
+                        value += character;
+                    }
+                }
+                values.push(value);
+                return values;
+            };
+
+            const getPitchChartPreviousDate = (dateText) => {
+                const date = new Date(`${dateText}T12:00:00Z`);
+                if (Number.isNaN(date.getTime())) return "";
+                date.setUTCDate(date.getUTCDate() - 1);
+                return date.toISOString().slice(0, 10);
+            };
+
+            const getPitchChartBatterZoneData = async (batterId) => {
+                const officialDate = String(
+                    state.gameData?.gameData?.datetime?.officialDate ?? ""
+                ).slice(0, 10);
+                const season = Number(
+                    state.gameData?.gameData?.game?.season ?? officialDate.slice(0, 4)
+                );
+                const endDate = getPitchChartPreviousDate(officialDate);
+                if (!Number(batterId) || !season || !endDate) return null;
+                const cacheKey = `${Number(batterId)}:${season}:${endDate}`;
+                if (!pitchChartBatterZoneCache.has(cacheKey)) {
+                    const params = new URLSearchParams({
+                        all: "true",
+                        type: "batter",
+                        player_type: "batter",
+                        hfSea: `${season}|`,
+                        hfGT: "R|",
+                        game_date_gt: `${season}-01-01`,
+                        game_date_lt: endDate
+                    });
+                    params.append("batters_lookup[]", String(batterId));
+                    const request = fetch(
+                        `https://baseballsavant.mlb.com/statcast_search/csv?${params}`
+                    ).then(async (response) => {
+                        if (!response.ok) {
+                            throw new Error(`Baseball Savantを取得できませんでした（${response.status}）`);
+                        }
+                        const lines = (await response.text()).replace(/^\uFEFF/, "")
+                            .split(/\r?\n/)
+                            .filter(Boolean);
+                        if (!lines.length) return { zones: new Map(), endDate };
+                        const headers = parsePitchChartCsvLine(lines[0]);
+                        const totals = new Map(
+                            [...Array(9)].map((_, index) => [index + 1, { atBats: 0, hits: 0 }])
+                                .concat([11, 12, 13, 14].map((zone) => [zone, { atBats: 0, hits: 0 }]))
+                        );
+                        lines.slice(1).forEach((line) => {
+                            const values = parsePitchChartCsvLine(line);
+                            const row = Object.fromEntries(
+                                headers.map((header, index) => [header, values[index] ?? ""])
+                            );
+                            const event = String(row.events ?? "").trim();
+                            const zone = Number(row.zone);
+                            if (!PITCH_CHART_AT_BAT_EVENTS.has(event) || !totals.has(zone)) return;
+                            const total = totals.get(zone);
+                            total.atBats += 1;
+                            if (PITCH_CHART_HIT_EVENTS.has(event)) total.hits += 1;
+                        });
+                        return { zones: totals, endDate };
+                    }).catch((error) => {
+                        pitchChartBatterZoneCache.delete(cacheKey);
+                        throw error;
+                    });
+                    pitchChartBatterZoneCache.set(cacheKey, request);
+                }
+                return pitchChartBatterZoneCache.get(cacheKey);
+            };
+
+            const getPitchChartGeometry = (allPitcherPitches) => {
+                const width = 240;
+                const height = 230;
+                const plot = { left: 18, right: 222, top: 12, bottom: 210 };
+                const zoneTop = medianPitchValue(
+                    allPitcherPitches.map((pitch) => pitch.strikeZoneTop), 3.5
+                );
+                const zoneBottom = medianPitchValue(
+                    allPitcherPitches.map((pitch) => pitch.strikeZoneBottom), 1.5
+                );
+                const plotWidth = plot.right - plot.left;
+                const plotHeight = plot.bottom - plot.top;
+                const zone = {
+                    left: plot.left + plotWidth * 0.24,
+                    right: plot.right - plotWidth * 0.24,
+                    top: plot.top + plotHeight * 0.20,
+                    bottom: plot.bottom - plotHeight * 0.20
+                };
+                return { width, height, plot, zone, zoneTop, zoneBottom };
+            };
+
             const createPitchChartSvg = (
                 pitches,
                 allPitcherPitches,
@@ -6033,26 +6151,10 @@
                 filterOptions = null
             ) => {
                 const SVG_NS = "http://www.w3.org/2000/svg";
-                const width = 240;
-                const height = 230;
-                const plot = { left: 18, right: 222, top: 12, bottom: 210 };
-                const zoneTop = medianPitchValue(
-                    allPitcherPitches.map((pitch) => pitch.strikeZoneTop),
-                    3.5
-                );
-                const zoneBottom = medianPitchValue(
-                    allPitcherPitches.map((pitch) => pitch.strikeZoneBottom),
-                    1.5
-                );
+                const { width, height, plot, zone, zoneTop, zoneBottom } =
+                    getPitchChartGeometry(allPitcherPitches);
                 const plotWidth = plot.right - plot.left;
                 const plotHeight = plot.bottom - plot.top;
-                // Match the existing pitcher zone chart: 24% side insets and 20% vertical insets.
-                const zone = {
-                    left: plot.left + plotWidth * 0.24,
-                    right: plot.right - plotWidth * 0.24,
-                    top: plot.top + plotHeight * 0.20,
-                    bottom: plot.bottom - plotHeight * 0.20
-                };
                 const zoneHalfWidthFeet = 17 / 24;
                 const validPitcherLocations = allPitcherPitches.filter((pitch) =>
                     Number.isFinite(pitch.pX) && Number.isFinite(pitch.pZ)
@@ -6151,6 +6253,10 @@
                     const updateFilteredChart = () => {
                         const selectedPitchType = pitchTypeSelect.value;
                         const selectedBatterId = batterSelect?.value ?? "";
+                        if (typeof filterOptions.onFilterChange === "function") {
+                            filterOptions.onFilterChange({ selectedPitchType, selectedBatterId });
+                            return;
+                        }
                         const filterSource = filterOptions.sourcePitches ?? allPitcherPitches;
                         const filtered = filterSource.filter((pitch) =>
                             (!selectedPitchType || pitch.pitchTypeCode === selectedPitchType) &&
@@ -6256,6 +6362,117 @@
                 return figure;
             };
 
+            const createBatterZoneMetricFigure = (
+                batter,
+                zoneData,
+                allPitcherPitches,
+                status = "ready"
+            ) => {
+                const SVG_NS = "http://www.w3.org/2000/svg";
+                const { width, height, plot, zone } = getPitchChartGeometry(allPitcherPitches);
+                const createSvgElement = (name, attributes = {}) => {
+                    const element = document.createElementNS(SVG_NS, name);
+                    Object.entries(attributes).forEach(([key, value]) =>
+                        element.setAttribute(key, String(value))
+                    );
+                    return element;
+                };
+                const figure = createElement("figure", "pitch-chart-figure pitch-chart-zone-metric");
+                const caption = createElement("figcaption", "pitch-chart-caption has-filters");
+                caption.append(
+                    createElement("strong", "", "対戦打者 コース別打率"),
+                    createElement("span", "pitch-chart-count", batter?.name ?? "打者未選択")
+                );
+                const description = createElement("div", "pitch-chart-zone-description");
+                description.textContent = status === "loading"
+                    ? "対象試合前日までのデータを取得中…"
+                    : status === "error"
+                        ? "コース別打率を取得できませんでした"
+                        : batter
+                            ? "シーズン成績｜各ゾーンの打数はポイントで確認"
+                            : "全投球の打者プルダウンから打者を選択";
+                caption.append(description);
+
+                const svg = createSvgElement("svg", {
+                    class: "pitch-chart-svg",
+                    viewBox: `0 0 ${width} ${height}`,
+                    role: "img",
+                    "aria-label": batter
+                        ? `${batter.name}の対象試合前日までのコース別打率`
+                        : "対戦打者のコース別打率"
+                });
+                svg.append(createSvgElement("rect", {
+                    class: "pitch-chart-plot-bg",
+                    x: plot.left, y: plot.top,
+                    width: plot.right - plot.left,
+                    height: plot.bottom - plot.top
+                }));
+                svg.append(createSvgElement("rect", {
+                    class: "pitch-chart-zone",
+                    x: zone.left, y: zone.top,
+                    width: zone.right - zone.left,
+                    height: zone.bottom - zone.top
+                }));
+                for (let division = 1; division <= 2; division += 1) {
+                    const x = zone.left + ((zone.right - zone.left) * division) / 3;
+                    const y = zone.top + ((zone.bottom - zone.top) * division) / 3;
+                    svg.append(createSvgElement("line", {
+                        class: "pitch-chart-zone-grid-line",
+                        x1: x, y1: zone.top, x2: x, y2: zone.bottom
+                    }));
+                    svg.append(createSvgElement("line", {
+                        class: "pitch-chart-zone-grid-line",
+                        x1: zone.left, y1: y, x2: zone.right, y2: y
+                    }));
+                }
+
+                const zoneCenters = new Map();
+                for (let zoneNumber = 1; zoneNumber <= 9; zoneNumber += 1) {
+                    const index = zoneNumber - 1;
+                    zoneCenters.set(zoneNumber, {
+                        x: zone.left + ((index % 3) + 0.5) * (zone.right - zone.left) / 3,
+                        y: zone.top + (Math.floor(index / 3) + 0.5) * (zone.bottom - zone.top) / 3,
+                        minimum: 1
+                    });
+                }
+                zoneCenters.set(11, {
+                    x: (plot.left + zone.left) / 2, y: (plot.top + zone.top) / 2, minimum: 1
+                });
+                zoneCenters.set(12, {
+                    x: (zone.right + plot.right) / 2, y: (plot.top + zone.top) / 2, minimum: 1
+                });
+                zoneCenters.set(13, {
+                    x: (plot.left + zone.left) / 2, y: (zone.bottom + plot.bottom) / 2, minimum: 1
+                });
+                zoneCenters.set(14, {
+                    x: (zone.right + plot.right) / 2, y: (zone.bottom + plot.bottom) / 2, minimum: 1
+                });
+                zoneCenters.forEach((position, zoneNumber) => {
+                    const total = zoneData?.zones?.get(zoneNumber) ?? { atBats: 0, hits: 0 };
+                    const hasSample = status === "ready" && total.atBats >= position.minimum;
+                    const average = hasSample ? total.hits / total.atBats : NaN;
+                    const text = createSvgElement("text", {
+                        class: hasSample
+                            ? `pitch-chart-zone-value ${average >= 0.3 ? "is-high" : average < 0.2 ? "is-low" : ""}`
+                            : "pitch-chart-zone-value is-empty",
+                        x: position.x,
+                        y: position.y,
+                        "text-anchor": "middle",
+                        "dominant-baseline": "central",
+                        tabindex: "0"
+                    });
+                    text.textContent = hasSample ? average.toFixed(3).replace(/^0/, "") : "—";
+                    const title = createSvgElement("title");
+                    title.textContent = total.atBats
+                        ? `${zoneNumber}ゾーン：${total.atBats}打数${total.hits}安打`
+                        : `${zoneNumber}ゾーン：打数なし`;
+                    text.append(title);
+                    svg.append(text);
+                });
+                figure.append(caption, svg);
+                return figure;
+            };
+
             const buildPitcherChartRow = (pitcherPitches) => {
                 const row = createElement("article", "pitch-chart-pitcher");
                 const pitcher = pitcherPitches[0];
@@ -6320,56 +6537,62 @@
                         });
                     }
                 });
-                const rightPitches = pitcherPitches.filter((pitch) => pitch.batterSide === "R");
-                const leftPitches = pitcherPitches.filter((pitch) => pitch.batterSide === "L");
-                const getSidePitchTypes = (sidePitches) => pitchTypes.filter(({ code }) =>
-                    sidePitches.some((pitch) => pitch.pitchTypeCode === code)
-                );
-                charts.append(
-                    createPitchChartSvg(
-                        pitcherPitches,
+                const batters = [...batterMap.values()];
+                let renderSequence = 0;
+                const renderComparison = ({
+                    selectedPitchType = "",
+                    selectedBatterId = ""
+                } = {}) => {
+                    const sequence = ++renderSequence;
+                    const selectedBatter = batterMap.get(Number(selectedBatterId)) ?? null;
+                    const filteredPitches = pitcherPitches.filter((pitch) =>
+                        (!selectedPitchType || pitch.pitchTypeCode === selectedPitchType) &&
+                        (!selectedBatterId || String(pitch.batterId) === String(selectedBatterId))
+                    );
+                    const allFigure = createPitchChartSvg(
+                        filteredPitches,
                         pitcherPitches,
                         "全投球",
                         colorByType,
                         {
                             pitcherName: pitcher.pitcherName,
                             pitchTypes,
-                            batters: [...batterMap.values()],
-                            selectedPitchType: "",
-                            selectedBatterId: ""
+                            batters,
+                            selectedPitchType,
+                            selectedBatterId,
+                            onFilterChange: renderComparison
                         }
-                    ),
-                    createPitchChartSvg(
-                        rightPitches,
+                    );
+                    const zoneFigure = createBatterZoneMetricFigure(
+                        selectedBatter,
+                        null,
                         pitcherPitches,
-                        "対右打者",
-                        colorByType,
-                        {
-                            pitcherName: pitcher.pitcherName,
-                            pitchTypes: getSidePitchTypes(rightPitches),
-                            batters: [],
-                            sourcePitches: rightPitches,
-                            showBatter: false,
-                            selectedPitchType: "",
-                            selectedBatterId: ""
-                        }
-                    ),
-                    createPitchChartSvg(
-                        leftPitches,
-                        pitcherPitches,
-                        "対左打者",
-                        colorByType,
-                        {
-                            pitcherName: pitcher.pitcherName,
-                            pitchTypes: getSidePitchTypes(leftPitches),
-                            batters: [],
-                            sourcePitches: leftPitches,
-                            showBatter: false,
-                            selectedPitchType: "",
-                            selectedBatterId: ""
-                        }
-                    )
-                );
+                        selectedBatter ? "loading" : "empty"
+                    );
+                    charts.replaceChildren(allFigure, zoneFigure);
+                    if (!selectedBatter) return;
+                    getPitchChartBatterZoneData(selectedBatter.id)
+                        .then((zoneData) => {
+                            if (sequence !== renderSequence || !zoneFigure.isConnected) return;
+                            zoneFigure.replaceWith(createBatterZoneMetricFigure(
+                                selectedBatter,
+                                zoneData,
+                                pitcherPitches,
+                                "ready"
+                            ));
+                        })
+                        .catch((error) => {
+                            console.error("対戦打者のコース別打率を取得できませんでした。", error);
+                            if (sequence !== renderSequence || !zoneFigure.isConnected) return;
+                            zoneFigure.replaceWith(createBatterZoneMetricFigure(
+                                selectedBatter,
+                                null,
+                                pitcherPitches,
+                                "error"
+                            ));
+                        });
+                };
+                renderComparison();
                 const detail = createElement(
                     "div",
                     "pitch-chart-pitch-detail",

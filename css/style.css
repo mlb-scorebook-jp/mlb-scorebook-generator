@@ -2747,7 +2747,7 @@ body.app-mode-pregame .score-loading-overlay {
 
 .pitch-chart-grid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 6px;
 }
 
@@ -2826,6 +2826,40 @@ body.app-mode-pregame .score-loading-overlay {
     grid-row: 1;
     flex: 0 0 auto;
     white-space: nowrap;
+}
+
+.pitch-chart-zone-description {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    min-height: 30px;
+    padding: 7px 4px 0;
+    color: #536158;
+    font-size: 9px;
+    line-height: 1.3;
+}
+
+.pitch-chart-zone-value {
+    fill: #293a2f;
+    font-size: 11px;
+    font-weight: 700;
+    outline: none;
+}
+
+.pitch-chart-zone-value.is-high {
+    fill: #174f32;
+}
+
+.pitch-chart-zone-value.is-low {
+    fill: #6b4a42;
+}
+
+.pitch-chart-zone-value.is-empty {
+    fill: #87928a;
+    font-weight: 500;
+}
+
+.pitch-chart-zone-value:focus-visible {
+    text-decoration: underline;
 }
 
 .pitch-chart-svg {
