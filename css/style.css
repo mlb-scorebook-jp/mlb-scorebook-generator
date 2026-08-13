@@ -2746,13 +2746,18 @@ body:not(.app-mode-home):not(.app-mode-pregame) .viewer {
  */
 @media screen and (hover: hover) and (pointer: fine) {
     html {
+        width: 100%;
+        min-width: 100%;
+        overflow-x: auto;
         overflow-y: auto;
+        scroll-behavior: auto;
     }
 
     body:not(.app-mode-home):not(.app-mode-pregame) {
+        width: max-content;
+        min-width: 100%;
         height: auto;
-        overflow-x: auto;
-        overflow-y: auto;
+        overflow: visible;
     }
 
     body:not(.app-mode-home):not(.app-mode-pregame) .app-main {
