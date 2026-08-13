@@ -2739,7 +2739,7 @@ body.app-mode-pregame .score-loading-overlay {
 }
 
 .pitch-chart-filter-select {
-    width: 68px;
+    width: 92px;
     min-width: 0;
     height: 19px;
     padding: 0 13px 0 3px;
@@ -2754,7 +2754,7 @@ body.app-mode-pregame .score-loading-overlay {
 }
 
 .pitch-chart-batter-select {
-    width: 82px;
+    width: 128px;
 }
 
 .pitch-chart-count {
