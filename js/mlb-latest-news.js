@@ -2,6 +2,63 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Giants call up hot-hitting OF Hill from Triple-A",
+        "summaryJa": "Turner Hill（SF）、メジャー昇格・初出場に関する最新情報",
+        "slug": "turner-hill-called-up-by-giants",
+        "url": "https://www.mlb.com/news/turner-hill-called-up-by-giants",
+        "contentDate": "2026-08-14T20:22:45.851Z",
+        "teamIds": [
+            137
+        ],
+        "playerIds": [
+            806367
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "mlb-top-prospects",
+            "apple-news",
+            "transactions"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "A man has spent 6 days trying to throw a Roy Oswalt perfect game in MVP '05",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "man-trying-to-throw-perfect-game-in-mvp-2005-with-roy-oswalt",
+        "url": "https://www.mlb.com/news/man-trying-to-throw-perfect-game-in-mvp-2005-with-roy-oswalt",
+        "contentDate": "2026-08-14T20:09:40.277Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "Former Mets slugger Huskey, one of last players to wear No. 42, passes away at 54",
+        "summaryJa": "メッツの最新動向をMLB公式が詳報",
+        "slug": "butch-huskey-passes-away",
+        "url": "https://www.mlb.com/news/butch-huskey-passes-away",
+        "contentDate": "2026-08-14T20:02:21.414Z",
+        "teamIds": [
+            121
+        ],
+        "playerIds": [],
+        "gamePks": [
+            823591
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Cabrera (hamstring/adductor strain) set for Sunday return vs. Cardinals",
         "summaryJa": "E.カブレーラ（CHC）の負傷状況をMLB公式が詳報",
         "slug": "edward-cabrera-to-come-off-injured-list-sunday-to-face-cardinals",
@@ -1196,7 +1253,6 @@
             "field-of-dreams"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1539,29 +1595,6 @@
         ]
     },
     {
-        "headline": "Mariners sending Emerson back to Triple-A to continue development (source)",
-        "summaryJa": "C.エマーソン（SEA）の最新動向をMLB公式が詳報",
-        "slug": "mariners-option-colt-emerson-to-triple-a-tacoma",
-        "url": "https://www.mlb.com/news/mariners-option-colt-emerson-to-triple-a-tacoma",
-        "contentDate": "2026-08-14T00:49:48.041Z",
-        "teamIds": [
-            136
-        ],
-        "playerIds": [
-            806068
-        ],
-        "gamePks": [
-            823508
-        ],
-        "taxonomy": [
-            "transactions",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Latest Angels injuries & transactions",
         "summaryJa": "エンゼルスの負傷状況をMLB公式が詳報",
         "slug": "angels-injuries-and-roster-moves",
@@ -1621,7 +1654,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -7124,27 +7156,6 @@
         ]
     },
     {
-        "headline": "New Mets prospect Billy Amick wastes no time making himself at home",
-        "summaryJa": "Billy Amick（NYM）ら注目選手の最新動向",
-        "slug": "mets-prospect-billy-amick-power-display-new-organization",
-        "url": "https://www.mlb.com/news/mets-prospect-billy-amick-power-display-new-organization",
-        "contentDate": "2026-08-10T01:12:39.632Z",
-        "teamIds": [
-            121
-        ],
-        "playerIds": [
-            701771
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "mlb-top-prospects"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Mariners legends do best to prop up club ahead of daunting road trip",
         "summaryJa": "マリナーズの最新動向をMLB公式が詳報",
         "slug": "mariners-finish-tough-nine-game-homestand",
@@ -9118,6 +9129,27 @@
         ]
     },
     {
+        "headline": "1.13 ERA, 0.65 WHIP: MLB's top pitching prospect stays dominant at Double-A",
+        "summaryJa": "K.アンダーソン（SEA）、マウンドで好投",
+        "slug": "mariners-prospect-kade-anderson-9-strikeouts-scoreless-start",
+        "url": "https://www.mlb.com/news/mariners-prospect-kade-anderson-9-strikeouts-scoreless-start",
+        "contentDate": "2026-08-08T04:45:00Z",
+        "teamIds": [
+            136
+        ],
+        "playerIds": [
+            807739
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "mlb-top-prospects"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Louisville native Lile continues to rake against Reds",
         "summaryJa": "D.ライル（WSH）、勝利を呼び込む活躍",
         "slug": "daylen-lile-stays-hot-against-reds-in-nats-win",
@@ -9969,28 +10001,6 @@
         ],
         "playerIds": [],
         "gamePks": [],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "3 questions for Giants after Trade Deadline sell-off",
-        "summaryJa": "M.マイヤー（SF）の移籍・契約に関する最新情報",
-        "slug": "3-questions-for-giants-after-trade-deadline",
-        "url": "https://www.mlb.com/news/3-questions-for-giants-after-trade-deadline",
-        "contentDate": "2026-08-06T14:35:01.267Z",
-        "teamIds": [
-            137
-        ],
-        "playerIds": [
-            691785
-        ],
-        "gamePks": [
-            822866
-        ],
         "taxonomy": [
             "apple-news"
         ],
