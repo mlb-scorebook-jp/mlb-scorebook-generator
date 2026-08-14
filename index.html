@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MLB Scorebook Generator</title>
     <!-- Score notation update: stacked batted-ball symbol, red hits, blue strikeouts, black other results. -->
-    <link rel="stylesheet" href="css/style.css?v=20260814-13">
+    <link rel="stylesheet" href="css/style.css?v=20260814-15">
     <link rel="stylesheet" href="css/pregame.css?v=20260811-10">
 </head>
 
@@ -232,13 +232,23 @@
             <div class="scorebook-horizontal-scroll" id="scorebook-horizontal-scroll">
                 <article class="paper scorebook-page active" id="away-page">
                     <div id="away-sheet"></div>
-                    <section class="pitch-chart-section" id="pitch-chart-section" hidden aria-label="投球チャート"></section>
                 </article>
 
                 <article class="paper scorebook-page" id="home-page">
                     <div id="home-sheet"></div>
                 </article>
             </div>
+
+            <section class="pitch-chart-page" id="pitch-chart-page" hidden aria-label="投球チャートページ">
+                <header class="pitch-chart-page-header">
+                    <div>
+                        <h2>投球チャート</h2>
+                        <p id="pitch-chart-game-label">対象試合</p>
+                    </div>
+                    <button type="button" id="pitch-chart-back-btn">スコアブックへ戻る</button>
+                </header>
+                <section class="pitch-chart-section" id="pitch-chart-section" hidden aria-label="投球チャート"></section>
+            </section>
         </section>
     </main>
 
@@ -571,6 +581,9 @@
                 awayPage: document.getElementById("away-page"),
                 homePage: document.getElementById("home-page"),
                 awaySheet: document.getElementById("away-sheet"),
+                pitchChartPage: document.getElementById("pitch-chart-page"),
+                pitchChartGameLabel: document.getElementById("pitch-chart-game-label"),
+                pitchChartBackButton: document.getElementById("pitch-chart-back-btn"),
                 pitchChartSection: document.getElementById("pitch-chart-section"),
                 homeSheet: document.getElementById("home-sheet"),
                 homeTeam: document.getElementById("home-team"),
@@ -677,7 +690,8 @@
                     view,
                     date: params.get("date") || undefined,
                     gamePk: params.get("gamePk") || undefined,
-                    playerId: params.get("playerId") || undefined
+                    playerId: params.get("playerId") || undefined,
+                    team: params.get("team") || undefined
                 };
             };
 
@@ -705,7 +719,7 @@
                 const params = new URLSearchParams();
                 if (value?.view && value.view !== "home") {
                     params.set("view", value.view);
-                    ["date", "gamePk", "playerId"].forEach((key) => {
+                    ["date", "gamePk", "playerId", "team"].forEach((key) => {
                         if (value[key] !== undefined && value[key] !== null && value[key] !== "") {
                             params.set(key, String(value[key]));
                         }
@@ -723,15 +737,17 @@
 
             const showPortalHome = () => {
                 window.PregameInfo?.close({ preserveShell: true });
-                document.body.classList.remove("app-mode-pregame");
+                document.body.classList.remove("app-mode-pregame", "app-mode-pitch-chart");
                 document.body.classList.add("app-mode-home");
+                dom.pitchChartPage.hidden = true;
                 saveAppSession({ view: "home" });
                 window.scrollTo(0, 0);
             };
 
             const showScorebook = (options = {}) => {
                 window.PregameInfo?.close({ preserveShell: true });
-                document.body.classList.remove("app-mode-home", "app-mode-pregame");
+                document.body.classList.remove("app-mode-home", "app-mode-pregame", "app-mode-pitch-chart");
+                dom.pitchChartPage.hidden = true;
                 if (options?.persist !== false) {
                     saveAppSession({ view: "scorebook", gamePk: state.gamePk || null });
                 }
@@ -739,9 +755,52 @@
                 requestAnimationFrame(refreshHorizontalScrollbar);
             };
 
+            let pitchChartStartSide = "away";
+
+            const applyPitchChartTeamOrder = () => {
+                const teams = dom.pitchChartSection.querySelector(".pitch-chart-teams");
+                if (!teams) return;
+                const first = teams.querySelector(`[data-team-side="${pitchChartStartSide}"]`);
+                const secondSide = pitchChartStartSide === "home" ? "away" : "home";
+                const second = teams.querySelector(`[data-team-side="${secondSide}"]`);
+                if (first && second) teams.replaceChildren(first, second);
+            };
+
+            const updatePitchChartPageHeader = () => {
+                const officialDate = String(
+                    state.gameData?.gameData?.datetime?.officialDate ?? ""
+                ).slice(0, 10).replaceAll("-", "/");
+                const matchup = state.away?.abbreviation && state.home?.abbreviation
+                    ? `${state.away.abbreviation} vs. ${state.home.abbreviation}`
+                    : "対象試合";
+                dom.pitchChartGameLabel.textContent = officialDate
+                    ? `${officialDate}　${matchup}`
+                    : matchup;
+            };
+
+            const showPitchChart = (side = "away", options = {}) => {
+                if (!state.gamePk || !state.gameData) return;
+                pitchChartStartSide = side === "home" ? "home" : "away";
+                window.PregameInfo?.close({ preserveShell: true });
+                document.body.classList.remove("app-mode-home", "app-mode-pregame");
+                document.body.classList.add("app-mode-pitch-chart");
+                dom.pitchChartPage.hidden = false;
+                updatePitchChartPageHeader();
+                applyPitchChartTeamOrder();
+                if (options?.persist !== false) {
+                    saveAppSession({
+                        view: "pitch-chart",
+                        gamePk: String(state.gamePk),
+                        team: pitchChartStartSide
+                    });
+                }
+                window.scrollTo(0, 0);
+            };
+
             const showPregame = async () => {
-                document.body.classList.remove("app-mode-home");
+                document.body.classList.remove("app-mode-home", "app-mode-pitch-chart");
                 document.body.classList.add("app-mode-pregame");
+                dom.pitchChartPage.hidden = true;
                 await window.PregameInfo?.open({
                     gamePk: state.gamePk,
                     gameData: state.gameData,
@@ -753,6 +812,7 @@
             window.MLBAppNavigation = {
                 showPortalHome,
                 showScorebook,
+                showPitchChart,
                 showPregame,
                 loadScorebookGame: async (gamePk) => {
                     const selectedGamePk = Number(gamePk);
@@ -762,8 +822,9 @@
                     await loadGame();
                 },
                 enterPregameShell: () => {
-                    document.body.classList.remove("app-mode-home");
+                    document.body.classList.remove("app-mode-home", "app-mode-pitch-chart");
                     document.body.classList.add("app-mode-pregame");
+                    dom.pitchChartPage.hidden = true;
                 }
             };
 
@@ -5827,7 +5888,17 @@
 
             const buildPitchingTable = (side) => {
                 const box = createElement("section", "table-box");
-                box.append(createElement("div", "table-title", `投手成績　${state[side].name}`));
+                const title = createElement("div", "table-title pitching-table-title");
+                title.append(createElement("span", "", `投手成績　${state[side].name}`));
+                const chartButton = createElement("button", "pitch-chart-open-btn", "投球チャート");
+                chartButton.type = "button";
+                chartButton.disabled = !isGameFinal(state.gameData);
+                if (chartButton.disabled) {
+                    chartButton.title = "試合終了後に投球チャートを表示できます。";
+                }
+                chartButton.addEventListener("click", () => showPitchChart(side));
+                title.append(chartButton);
+                box.append(title);
 
                 const wrap = createElement("div", "pitching-table-wrap");
                 const table = createElement("table", "pitching-table");
@@ -7089,6 +7160,7 @@
 
             const buildPitchChartTeam = (side, pitches) => {
                 const team = createElement("section", "pitch-chart-team");
+                team.dataset.teamSide = side;
                 const heading = createElement("h3", "pitch-chart-team-title");
                 heading.append(
                     createElement("span", "", state[side].abbreviation),
@@ -7129,9 +7201,11 @@
                         createElement("span", "", "捕手視点｜試合終了時点")
                     );
                     const teams = createElement("div", "pitch-chart-teams");
+                    const awayTeam = buildPitchChartTeam("away", pitches);
+                    const homeTeam = buildPitchChartTeam("home", pitches);
                     teams.append(
-                        buildPitchChartTeam("away", pitches),
-                        buildPitchChartTeam("home", pitches)
+                        pitchChartStartSide === "home" ? homeTeam : awayTeam,
+                        pitchChartStartSide === "home" ? awayTeam : homeTeam
                     );
                     dom.pitchChartSection.append(heading, teams);
                     dom.pitchChartSection.onclick = (event) => {
@@ -8473,6 +8547,7 @@
             document.getElementById("portal-pregame-btn").addEventListener("click", showPregame);
             document.getElementById("app-home-link").addEventListener("click", showPortalHome);
             document.getElementById("pregame-brand-home").addEventListener("click", showPortalHome);
+            dom.pitchChartBackButton.addEventListener("click", showScorebook);
 
             dom.saveButton.addEventListener("click", saveSnapshot);
             dom.awayPageButton.addEventListener("click", () => switchPage("away"));
@@ -8529,8 +8604,18 @@
                     return;
                 }
 
+                if (saved.view === "pitch-chart") {
+                    showScorebook({ persist: false });
+                    if (saved.gamePk) {
+                        dom.gameInput.value = String(saved.gamePk);
+                        await loadGame();
+                        showPitchChart(saved.team);
+                    }
+                    return;
+                }
+
                 if (["pregame-top", "pregame-game", "pregame-player"].includes(saved.view)) {
-                    document.body.classList.remove("app-mode-home");
+                    document.body.classList.remove("app-mode-home", "app-mode-pitch-chart");
                     document.body.classList.add("app-mode-pregame");
                     await window.PregameInfo?.open({
                         restoreView: saved.view,
