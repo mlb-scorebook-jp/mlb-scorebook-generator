@@ -2,11 +2,35 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
-        "headline": "Brew Crew rallies in 9th to stun Dodgers, stay atop NL",
+        "headline": "Díaz blows third save in a week, and LA misses chance to tie for NL's best record",
+        "summaryJa": "E.ディアス（LAD）、記録達成の最新情報",
+        "slug": "edwin-diaz-blows-third-save-in-last-four-outings",
+        "url": "https://www.mlb.com/news/edwin-diaz-blows-third-save-in-last-four-outings",
+        "contentDate": "2026-08-14T07:08:53.1Z",
+        "teamIds": [
+            119
+        ],
+        "playerIds": [
+            621242
+        ],
+        "gamePks": [
+            823915
+        ],
+        "taxonomy": [
+            "apple-news",
+            "game-recap-losing"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Brew Crew rallies in 9th to stun Dodgers: 'That's Brewers baseball right there'",
         "summaryJa": "ブルワーズ、記録達成の最新情報",
         "slug": "brewers-rally-in-9th-inning-to-beat-dodgers-keep-nl-best-record",
         "url": "https://www.mlb.com/news/brewers-rally-in-9th-inning-to-beat-dodgers-keep-nl-best-record",
-        "contentDate": "2026-08-14T05:18:40.837Z",
+        "contentDate": "2026-08-14T07:02:00Z",
         "teamIds": [
             158
         ],
@@ -17,7 +41,111 @@
         "taxonomy": [
             "apple-news",
             "game-recap",
-            "clutch-moment"
+            "rally"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "deGrom (right triceps fatigue) will likely undergo imaging Friday",
+        "summaryJa": "J.デグローム（TEX）の負傷状況をMLB公式が詳報",
+        "slug": "jacob-degrom-exits-with-right-triceps-injury-against-angels",
+        "url": "https://www.mlb.com/news/jacob-degrom-exits-with-right-triceps-injury-against-angels",
+        "contentDate": "2026-08-14T06:26:00Z",
+        "teamIds": [
+            140
+        ],
+        "playerIds": [
+            594798
+        ],
+        "gamePks": [
+            823995
+        ],
+        "taxonomy": [
+            "apple-news",
+            "injury"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "'He’s always ready to go': Bryan Reynolds' availability has him in unique company",
+        "summaryJa": "パイレーツの最新動向をMLB公式が詳報",
+        "slug": "bryan-reynolds-availability-reaching-historic-heights",
+        "url": "https://www.mlb.com/news/bryan-reynolds-availability-reaching-historic-heights",
+        "contentDate": "2026-08-14T06:24:09.114Z",
+        "teamIds": [
+            134
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "pit-inside-the-pirates"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Trout throws it back to 2018 with another big night for hot-hitting Halos",
+        "summaryJa": "M.トラウト（LAA）、勝利を呼び込む活躍",
+        "slug": "mike-trout-has-3-hits-as-angels-beat-rangers",
+        "url": "https://www.mlb.com/news/mike-trout-has-3-hits-as-angels-beat-rangers",
+        "contentDate": "2026-08-14T06:05:00Z",
+        "teamIds": [
+            108
+        ],
+        "playerIds": [
+            545361
+        ],
+        "gamePks": [
+            823995
+        ],
+        "taxonomy": [
+            "apple-news",
+            "game-recap"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Latest Rangers injuries & transactions",
+        "summaryJa": "レンジャーズの負傷状況をMLB公式が詳報",
+        "slug": "rangers-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/rangers-injuries-and-roster-moves",
+        "contentDate": "2026-08-14T06:02:00Z",
+        "teamIds": [
+            140
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Watch new acquisition Eyanson on the mound at Double-A for FREE tonight",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "watch-minor-league-baseball-games-for-free-2026",
+        "url": "https://www.mlb.com/news/watch-minor-league-baseball-games-for-free-2026",
+        "contentDate": "2026-08-14T05:25:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "mlb-top-prospects",
+            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
@@ -43,30 +171,6 @@
             "game-recap",
             "pitching",
             "wow"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Trout throws it back to 2018 with another big night for hot-hitting Halos",
-        "summaryJa": "M.トラウト（LAA）、勝利を呼び込む活躍",
-        "slug": "mike-trout-has-3-hits-as-angels-beat-rangers",
-        "url": "https://www.mlb.com/news/mike-trout-has-3-hits-as-angels-beat-rangers",
-        "contentDate": "2026-08-14T05:12:55.453Z",
-        "teamIds": [
-            108
-        ],
-        "playerIds": [
-            545361
-        ],
-        "gamePks": [
-            823995
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap"
         ],
         "sourceScopes": [
             "MLB",
@@ -107,8 +211,7 @@
         ],
         "taxonomy": [
             "apple-news",
-            "long-home-runs",
-            "game-recap-losing"
+            "long-home-runs"
         ],
         "sourceScopes": [
             "MLB",
@@ -219,30 +322,6 @@
             "apple-news",
             "player-tracking",
             "savant"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "deGrom (right triceps fatigue) exits start vs. Angels",
-        "summaryJa": "J.デグローム（TEX）の負傷状況をMLB公式が詳報",
-        "slug": "jacob-degrom-exits-with-right-triceps-injury-against-angels",
-        "url": "https://www.mlb.com/news/jacob-degrom-exits-with-right-triceps-injury-against-angels",
-        "contentDate": "2026-08-14T04:18:00Z",
-        "teamIds": [
-            140
-        ],
-        "playerIds": [
-            594798
-        ],
-        "gamePks": [
-            823995
-        ],
-        "taxonomy": [
-            "apple-news",
-            "injury"
         ],
         "sourceScopes": [
             "MLB",
@@ -423,49 +502,12 @@
             683004
         ],
         "gamePks": [
-            824968
+            823995
         ],
         "taxonomy": [
             "apple-news",
             "injury",
             "rehab"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Latest Rangers injuries & transactions",
-        "summaryJa": "レンジャーズの負傷状況をMLB公式が詳報",
-        "slug": "rangers-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/rangers-injuries-and-roster-moves",
-        "contentDate": "2026-08-14T03:04:00Z",
-        "teamIds": [
-            140
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Watch new acquisition Eyanson on the mound at Double-A for FREE on Friday",
-        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
-        "slug": "watch-minor-league-baseball-games-for-free-2026",
-        "url": "https://www.mlb.com/news/watch-minor-league-baseball-games-for-free-2026",
-        "contentDate": "2026-08-14T02:47:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "mlb-top-prospects",
-            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
@@ -988,6 +1030,30 @@
         ]
     },
     {
+        "headline": "85 pitches, 27 outs: Bucs' Ashcraft goes the distance",
+        "summaryJa": "B.アッシュクラフト（PIT）の最新動向をMLB公式が詳報",
+        "slug": "braxton-ashcraft-throws-85-pitch-complete-game",
+        "url": "https://www.mlb.com/news/braxton-ashcraft-throws-85-pitch-complete-game",
+        "contentDate": "2026-08-13T22:18:00Z",
+        "teamIds": [
+            134
+        ],
+        "playerIds": [
+            677952
+        ],
+        "gamePks": [
+            823829
+        ],
+        "taxonomy": [
+            "apple-news",
+            "game-recap",
+            "payoff-pitch"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
         "headline": "After benches clear and Martin gets ejected, Stewart and Reds get final word vs. White Sox",
         "summaryJa": "D.マーティン（CWS）の最新動向をMLB公式が詳報",
         "slug": "davis-martin-ejected-after-hitting-sal-stewart-with-a-pitch",
@@ -1329,27 +1395,6 @@
         ]
     },
     {
-        "headline": "Twins activate Buxton before MLB at Field of Dreams Game",
-        "summaryJa": "B.バクストン（MIN）、フィールド・オブ・ドリームス戦前に復帰",
-        "slug": "byron-buxton-activated-before-mlb-at-field-of-dreams",
-        "url": "https://www.mlb.com/news/byron-buxton-activated-before-mlb-at-field-of-dreams",
-        "contentDate": "2026-08-13T18:03:25.101Z",
-        "teamIds": [
-            142
-        ],
-        "playerIds": [
-            621439
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "transactions",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB"
-        ]
-    },
-    {
         "headline": "Latest Blue Jays injuries & transactions",
         "summaryJa": "ブルージェイズの負傷状況をMLB公式が詳報",
         "slug": "blue-jays-injuries-and-roster-moves",
@@ -1630,7 +1675,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -2680,7 +2724,6 @@
             "field-of-dreams"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -2723,29 +2766,6 @@
             "injury",
             "transactions",
             "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Harper: Soreness in left knee 'nothing over the top' as Phils prepare for stretch run",
-        "summaryJa": "B.ハーパー（PHI）の負傷状況をMLB公式が詳報",
-        "slug": "bryce-harper-dealing-with-knee-soreness-after-move-back-to-outfield",
-        "url": "https://www.mlb.com/news/bryce-harper-dealing-with-knee-soreness-after-move-back-to-outfield",
-        "contentDate": "2026-08-12T22:51:00Z",
-        "teamIds": [
-            143
-        ],
-        "playerIds": [
-            547180
-        ],
-        "gamePks": [
-            823017
-        ],
-        "taxonomy": [
-            "injury",
-            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
@@ -3426,27 +3446,6 @@
         "gamePks": [
             824241
         ],
-        "taxonomy": [
-            "apple-news",
-            "mlb-top-prospects"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Quick-thinking Phillies prospect tosses glove for an out",
-        "summaryJa": "フィリーズ有望株A.エスコバー、グラブを投げてアウトにする珍プレー",
-        "slug": "phillies-prospect-aroon-escobar-throws-his-glove-for-an-out",
-        "url": "https://www.mlb.com/news/phillies-prospect-aroon-escobar-throws-his-glove-for-an-out",
-        "contentDate": "2026-08-12T13:39:48.654Z",
-        "teamIds": [
-            143
-        ],
-        "playerIds": [
-            800169
-        ],
-        "gamePks": [],
         "taxonomy": [
             "apple-news",
             "mlb-top-prospects"
@@ -6387,26 +6386,6 @@
             "mlb-top-prospects",
             "apple-news",
             "minor-league-baseball"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Glasnow (back) joins Triple-A OKC for second rehab start",
-        "summaryJa": "ドジャース、復帰へ向けた最新状況",
-        "slug": "tyler-glasnow-makes-rehab-start-for-triple-a-oklahoma-city",
-        "url": "https://www.mlb.com/news/tyler-glasnow-makes-rehab-start-for-triple-a-oklahoma-city",
-        "contentDate": "2026-08-10T01:39:05.434Z",
-        "teamIds": [
-            119
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "injury",
-            "rehab"
         ],
         "sourceScopes": [
             "球団公式"
@@ -9738,26 +9717,6 @@
         ],
         "taxonomy": [
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Pirates still searching for post-Deadline surge following another series loss",
-        "summaryJa": "パイレーツの最新動向をMLB公式が詳報",
-        "slug": "pirates-still-waiting-for-post-deadline-upshot-following-another-series-loss",
-        "url": "https://www.mlb.com/news/pirates-still-waiting-for-post-deadline-upshot-following-another-series-loss",
-        "contentDate": "2026-08-06T20:38:40.026Z",
-        "teamIds": [
-            134
-        ],
-        "playerIds": [],
-        "gamePks": [
-            823754
-        ],
-        "taxonomy": [
-            "pit-inside-the-pirates"
         ],
         "sourceScopes": [
             "球団公式"
