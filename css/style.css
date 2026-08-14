@@ -3961,9 +3961,13 @@ body.app-mode-pitch-chart {
 
 body.app-mode-pitch-chart .sidebar,
 body.app-mode-pitch-chart .scorebook-horizontal-scroll,
-body.app-mode-pitch-chart .app-footer,
-body.app-mode-pitch-chart .header-game-search {
+body.app-mode-pitch-chart .app-footer {
     display: none !important;
+}
+
+body.app-mode-pitch-chart .header-game-search {
+    visibility: hidden;
+    pointer-events: none;
 }
 
 body.app-mode-pitch-chart .app-main {

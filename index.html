@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MLB Scorebook Generator</title>
     <!-- Score notation update: stacked batted-ball symbol, red hits, blue strikeouts, black other results. -->
-    <link rel="stylesheet" href="css/style.css?v=20260814-15">
+    <link rel="stylesheet" href="css/style.css?v=20260814-16">
     <link rel="stylesheet" href="css/pregame.css?v=20260811-10">
 </head>
 
@@ -546,6 +546,7 @@
             const dom = {
                 gameInput: document.getElementById("gameday-url"),
                 loadButton: document.getElementById("load-btn"),
+                headerScorebookButton: document.getElementById("header-scorebook-btn"),
                 searchGameYear: document.getElementById("header-game-year"),
                 searchHomeTeam: document.getElementById("header-home-team"),
                 searchAwayTeam: document.getElementById("header-away-team"),
@@ -740,6 +741,7 @@
                 document.body.classList.remove("app-mode-pregame", "app-mode-pitch-chart");
                 document.body.classList.add("app-mode-home");
                 dom.pitchChartPage.hidden = true;
+                dom.headerScorebookButton.textContent = "スコアブック生成";
                 saveAppSession({ view: "home" });
                 window.scrollTo(0, 0);
             };
@@ -748,6 +750,7 @@
                 window.PregameInfo?.close({ preserveShell: true });
                 document.body.classList.remove("app-mode-home", "app-mode-pregame", "app-mode-pitch-chart");
                 dom.pitchChartPage.hidden = true;
+                dom.headerScorebookButton.textContent = "スコアブック生成";
                 if (options?.persist !== false) {
                     saveAppSession({ view: "scorebook", gamePk: state.gamePk || null });
                 }
@@ -785,6 +788,7 @@
                 document.body.classList.remove("app-mode-home", "app-mode-pregame");
                 document.body.classList.add("app-mode-pitch-chart");
                 dom.pitchChartPage.hidden = false;
+                dom.headerScorebookButton.textContent = "スコアへ戻る";
                 updatePitchChartPageHeader();
                 applyPitchChartTeamOrder();
                 if (options?.persist !== false) {
@@ -801,6 +805,7 @@
                 document.body.classList.remove("app-mode-home", "app-mode-pitch-chart");
                 document.body.classList.add("app-mode-pregame");
                 dom.pitchChartPage.hidden = true;
+                dom.headerScorebookButton.textContent = "スコアブック生成";
                 await window.PregameInfo?.open({
                     gamePk: state.gamePk,
                     gameData: state.gameData,
@@ -825,6 +830,7 @@
                     document.body.classList.remove("app-mode-home", "app-mode-pitch-chart");
                     document.body.classList.add("app-mode-pregame");
                     dom.pitchChartPage.hidden = true;
+                    dom.headerScorebookButton.textContent = "スコアブック生成";
                 }
             };
 
