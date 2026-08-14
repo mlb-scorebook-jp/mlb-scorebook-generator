@@ -2,6 +2,46 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Cabrera (hamstring/adductor strain) set for Sunday return vs. Cardinals",
+        "summaryJa": "E.カブレーラ（CHC）の負傷状況をMLB公式が詳報",
+        "slug": "edward-cabrera-to-come-off-injured-list-sunday-to-face-cardinals",
+        "url": "https://www.mlb.com/news/edward-cabrera-to-come-off-injured-list-sunday-to-face-cardinals",
+        "contentDate": "2026-08-14T18:39:38.264Z",
+        "teamIds": [
+            112
+        ],
+        "playerIds": [
+            665795
+        ],
+        "gamePks": [
+            824643
+        ],
+        "taxonomy": [
+            "apple-news",
+            "injury"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Cardinals-Cubs (LIVE), Yankees-Blue Jays highlight Friday baseball slate on Apple TV",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "friday-night-baseball-on-apple-tv-for-2026-mlb-season",
+        "url": "https://www.mlb.com/news/friday-night-baseball-on-apple-tv-for-2026-mlb-season",
+        "contentDate": "2026-08-14T18:20:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
         "headline": "Latest Cubs injuries and transactions",
         "summaryJa": "カブスの負傷状況をMLB公式が詳報",
         "slug": "cubs-injuries-and-roster-moves",
@@ -344,22 +384,6 @@
         ],
         "sourceScopes": [
             "球団公式"
-        ]
-    },
-    {
-        "headline": "Cardinals-Cubs, Yankees-Blue Jays highlight Friday baseball slate on Apple TV",
-        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
-        "slug": "friday-night-baseball-on-apple-tv-for-2026-mlb-season",
-        "url": "https://www.mlb.com/news/friday-night-baseball-on-apple-tv-for-2026-mlb-season",
-        "contentDate": "2026-08-14T15:24:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB"
         ]
     },
     {
@@ -2378,7 +2402,6 @@
             "field-of-dreams"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -9340,31 +9363,6 @@
         "taxonomy": [
             "mlb-top-prospects",
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Cabrera's impending return gives Cubs crucial starting depth after Deadline",
-        "summaryJa": "E.カブレーラ（CHC）、復帰へ向けた最新状況",
-        "slug": "edward-cabrera-braxton-garrett-fortify-cubs-pitching-depth",
-        "url": "https://www.mlb.com/news/edward-cabrera-braxton-garrett-fortify-cubs-pitching-depth",
-        "contentDate": "2026-08-08T00:38:59.011Z",
-        "teamIds": [
-            112
-        ],
-        "playerIds": [
-            665795,
-            666129
-        ],
-        "gamePks": [
-            824081
-        ],
-        "taxonomy": [
-            "apple-news",
-            "injury",
-            "trade-deadline"
         ],
         "sourceScopes": [
             "球団公式"
