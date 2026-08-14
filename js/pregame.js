@@ -1638,8 +1638,11 @@
         dom.title.replaceChildren(...matchupHeading);
         const venue = venueLabel(feed?.gameData?.venue ?? game?.venue) || "球場未定";
         const dateTime = feed?.gameData?.datetime?.dateTime ?? game?.gameDate;
+        const officialDate = feed?.gameData?.datetime?.officialDate ??
+            game?.officialDate ?? String(dateTime ?? "").slice(0, 10);
         dom.subtitle.className = "pregame-matchup-meta-line";
         dom.subtitle.replaceChildren(
+            el("span", "pregame-matchup-date", formatDate(officialDate)),
             el("span", "pregame-matchup-venue", venue),
             el("span", "pregame-matchup-times",
                 `ET ${formatGameTime(dateTime, "America/New_York")}　｜　` +

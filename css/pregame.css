@@ -235,6 +235,7 @@ body.app-mode-pregame .scorebook-horizontal-scroll {
 }
 
 .pregame-matchup-meta-line {
+    position: relative;
     display: grid;
     justify-items: center;
     gap: 3px;
@@ -246,6 +247,14 @@ body.app-mode-pregame .scorebook-horizontal-scroll {
     text-align: center;
 }
 
+.pregame-matchup-date {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateY(calc(-100% - 3px));
+}
+
+.pregame-matchup-date,
 .pregame-matchup-venue,
 .pregame-matchup-times {
     display: block;
@@ -2184,6 +2193,7 @@ a.pregame-metric-value:focus-visible {
 
     .pregame-header-team-name,
     .pregame-header-team small,
+    .pregame-matchup-date,
     .pregame-matchup-venue,
     .pregame-matchup-times {
         white-space: normal;
