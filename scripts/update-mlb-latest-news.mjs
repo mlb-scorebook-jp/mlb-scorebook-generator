@@ -67,6 +67,10 @@ const query = `query Latest{
 }`;
 
 const japaneseSummaries = new Map([
+    ["2026-mlb-at-field-of-dreams-game-on-netflix-date-time-matchup",
+        "フィリーズとツインズ、フィールド・オブ・ドリームス戦で対戦"],
+    ["byron-buxton-activated-before-mlb-at-field-of-dreams",
+        "B.バクストン（MIN）、フィールド・オブ・ドリームス戦前に復帰"],
     ["phillies-vs-twins-2026-field-of-dreams-game-preview",
         "K.シュワーバー（PHI）、フィールド・オブ・ドリームス戦へ"],
     ["jacob-misiorowski-notches-200th-strikeout-of-season-vs-twins",
