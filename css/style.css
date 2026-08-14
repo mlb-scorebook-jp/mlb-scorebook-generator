@@ -2751,26 +2751,31 @@ body.app-mode-pregame .score-loading-overlay {
 }
 
 @media screen and (min-width: 1101px) and (hover: hover) and (pointer: fine) {
+    .pitch-chart-section {
+        width: calc(var(--team-score-width) + var(--team-score-width) + 12px);
+        box-sizing: border-box;
+    }
+
+    .pitch-chart-teams {
+        grid-template-columns: repeat(2, minmax(0, var(--team-score-width)));
+        gap: 12px;
+        padding: 10px 0 0;
+    }
+
     .pitch-chart-pitchers {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns: minmax(0, 1fr);
     }
 
     .pitch-chart-pitcher {
         min-width: 0;
-        border-right: 1px solid #aab9ad;
-    }
-
-    .pitch-chart-pitcher:nth-child(2n) {
         border-right: 0;
-    }
-
-    .pitch-chart-pitcher:last-child:nth-child(odd) {
-        border-right: 1px solid #aab9ad;
     }
 }
 
 .pitch-chart-pitcher-header {
     min-height: 25px;
+    display: flex;
+    flex-wrap: wrap;
     gap: 8px;
 }
 
@@ -2807,6 +2812,17 @@ body.app-mode-pregame .score-loading-overlay {
     font-weight: 700;
 }
 
+.pitch-chart-pitcher-header .pitch-chart-legend {
+    min-width: 0;
+    flex: 1 1 auto;
+    padding: 0;
+}
+
+.pitch-chart-pitcher-total {
+    flex: 0 0 auto;
+    margin-left: auto;
+}
+
 .pitch-chart-legend {
     display: flex;
     min-height: 22px;
@@ -2830,10 +2846,104 @@ body.app-mode-pregame .score-loading-overlay {
     border-radius: 50%;
 }
 
+.pitch-chart-legend-item.is-selected {
+    padding: 1px 3px;
+    outline: 1px solid #536b59;
+    background: #edf2ed;
+}
+
 .pitch-chart-grid {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 6px;
+}
+
+.pitch-mix-controls {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 4px;
+    min-height: 45px;
+    padding: 2px 5px 3px;
+    border-bottom: 1px solid #c4cfc6;
+    box-sizing: border-box;
+}
+
+.pitch-mix-control {
+    display: grid;
+    min-width: 0;
+    gap: 1px;
+    color: #526057;
+    font-size: 9px;
+    font-weight: 700;
+}
+
+.pitch-mix-select {
+    width: 100%;
+    min-width: 0;
+    height: 30px;
+    padding: 0 18px 0 6px;
+    overflow: hidden;
+    color: #26352b;
+    border: 1px solid #718579;
+    border-radius: 2px;
+    background: linear-gradient(180deg, #fbfcfb 0%, #e7ece8 100%);
+    box-sizing: border-box;
+    font-size: 10px;
+    font-weight: 600;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.pitch-mix-body {
+    min-height: 230px;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+.pitch-mix-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    font-size: 10px;
+}
+
+.pitch-mix-table th,
+.pitch-mix-table td {
+    height: 25px;
+    padding: 3px 5px;
+    border: 1px solid #aab9ad;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.pitch-mix-table thead th {
+    background: #edf2ed;
+    font-weight: 700;
+}
+
+.pitch-mix-table tbody th {
+    width: 42%;
+    overflow: hidden;
+    text-align: left;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.pitch-mix-status {
+    padding: 12px 5px;
+    color: #536158;
+    font-size: 9px;
+    text-align: center;
+}
+
+.pitch-mix-game-catchers {
+    min-height: 24px;
+    padding: 5px 8px;
+    border-top: 1px solid #c4cfc6;
+    box-sizing: border-box;
+    color: #304438;
+    font-size: 10px;
+    font-weight: 700;
 }
 
 .pitch-chart-figure {
@@ -3012,6 +3122,10 @@ body.app-mode-pregame .score-loading-overlay {
     .pitch-chart-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
         align-items: start;
+    }
+
+    .pitch-mix-figure {
+        grid-column: 1 / -1;
     }
 
     .pitch-chart-svg {

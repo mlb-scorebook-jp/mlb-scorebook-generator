@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MLB Scorebook Generator</title>
     <!-- Score notation update: stacked batted-ball symbol, red hits, blue strikeouts, black other results. -->
-    <link rel="stylesheet" href="css/style.css?v=20260814-9">
+    <link rel="stylesheet" href="css/style.css?v=20260814-13">
     <link rel="stylesheet" href="css/pregame.css?v=20260811-10">
 </head>
 
@@ -6038,6 +6038,8 @@
                 "#2f7b78", "#815742", "#59636b", "#6b7d2e", "#764b62"
             ];
             const pitchChartBatterZoneCache = new Map();
+            const pitchChartPitchMixCache = new Map();
+            const pitchChartPersonNameCache = new Map();
             const PITCH_CHART_HIT_EVENTS = new Set(["single", "double", "triple", "home_run"]);
             const PITCH_CHART_AT_BAT_EVENTS = new Set([
                 "single", "double", "triple", "home_run", "field_out", "force_out",
@@ -6062,6 +6064,25 @@
                 const pitcherCounts = new Map();
                 const pitcherAppearance = { away: new Map(), home: new Map() };
                 const plays = data?.liveData?.plays?.allPlays ?? [];
+                const boxscoreTeams = data?.liveData?.boxscore?.teams ?? {};
+                const gamePlayers = data?.gameData?.players ?? {};
+                const activeCatchers = { away: null, home: null };
+
+                ["away", "home"].forEach((side) => {
+                    const players = Object.values(boxscoreTeams?.[side]?.players ?? {});
+                    const starter = players.find((player) =>
+                        Number(player?.stats?.fielding?.gamesStarted) > 0 &&
+                        (String(player?.allPositions?.[0]?.code ?? player?.position?.code) === "2")
+                    ) ?? players.find((player) =>
+                        String(player?.position?.code) === "2" &&
+                        player?.gameStatus?.isOnBench !== true
+                    );
+                    if (!starter?.person?.id) return;
+                    activeCatchers[side] = {
+                        id: Number(starter.person.id),
+                        name: getPersonName(starter.person) || starter.person.fullName || "捕手名不明"
+                    };
+                });
 
                 plays.forEach((play) => {
                     const pitcherId = Number(play?.matchup?.pitcher?.id);
@@ -6074,6 +6095,19 @@
                     }
 
                     (play?.playEvents ?? []).forEach((event) => {
+                        const eventType = String(event?.details?.eventType ?? "");
+                        if (
+                            (eventType === "defensive_substitution" || eventType === "defensive_switch") &&
+                            String(event?.position?.code ?? "") === "2" &&
+                            Number(event?.player?.id)
+                        ) {
+                            const catcherId = Number(event.player.id);
+                            const catcherPerson = gamePlayers[`ID${catcherId}`] ?? event.player;
+                            activeCatchers[teamSide] = {
+                                id: catcherId,
+                                name: getPersonName(catcherPerson) || catcherPerson?.fullName || "捕手名不明"
+                            };
+                        }
                         if (!event?.isPitch) return;
                         const atBatIndex = Number(play?.about?.atBatIndex);
                         const eventIndex = Number(event?.index);
@@ -6101,6 +6135,8 @@
                             batterId: Number(play?.matchup?.batter?.id),
                             batterName: getPersonName(play?.matchup?.batter ?? {}) || "打者名不明",
                             batterSide: String(play?.matchup?.batSide?.code ?? "").toUpperCase(),
+                            catcherId: activeCatchers[teamSide]?.id ?? null,
+                            catcherName: activeCatchers[teamSide]?.name ?? "捕手不明",
                             teamSide,
                             appearanceOrder: pitcherAppearance[teamSide].get(pitcherId),
                             atBatPitchNumber: Number(event?.pitchNumber),
@@ -6248,6 +6284,98 @@
                     if (PITCH_CHART_HIT_EVENTS.has(row.event)) total.hits += 1;
                 });
                 return { zones: totals, endDate };
+            };
+
+            const getPitchChartPersonNames = async (personIds) => {
+                const ids = [...new Set(personIds.map(Number).filter(Boolean))];
+                const gamePeople = Object.values(state.gameData?.gameData?.players ?? {});
+                gamePeople.forEach((person) => {
+                    const personId = Number(person?.id);
+                    if (personId && !pitchChartPersonNameCache.has(personId)) {
+                        pitchChartPersonNameCache.set(personId, getPersonName(person) || person.fullName);
+                    }
+                });
+                const missingIds = ids.filter((id) => !pitchChartPersonNameCache.has(id));
+                if (missingIds.length) {
+                    try {
+                        const response = await fetch(
+                            `https://statsapi.mlb.com/api/v1/people?personIds=${missingIds.join(",")}`
+                        );
+                        if (!response.ok) throw new Error(`捕手名を取得できませんでした（${response.status}）`);
+                        const payload = await response.json();
+                        (payload?.people ?? []).forEach((person) => {
+                            pitchChartPersonNameCache.set(
+                                Number(person.id),
+                                getPersonName(person) || person.fullName || `MLBAM ${person.id}`
+                            );
+                        });
+                    } catch (error) {
+                        console.error("投球チャートの捕手名を取得できませんでした。", error);
+                    }
+                }
+                return new Map(ids.map((id) => [
+                    id,
+                    pitchChartPersonNameCache.get(id) || `MLBAM ${id}`
+                ]));
+            };
+
+            const getPitchChartPitchMixData = async (pitcherId) => {
+                const officialDate = String(
+                    state.gameData?.gameData?.datetime?.officialDate ?? ""
+                ).slice(0, 10);
+                const season = Number(
+                    state.gameData?.gameData?.game?.season ?? officialDate.slice(0, 4)
+                );
+                const endDate = getPitchChartPreviousDate(officialDate);
+                if (!Number(pitcherId) || !season || !endDate) return null;
+                const cacheKey = `${Number(pitcherId)}:${season}:${endDate}`;
+                if (!pitchChartPitchMixCache.has(cacheKey)) {
+                    const params = new URLSearchParams({
+                        all: "true",
+                        type: "pitcher",
+                        player_type: "pitcher",
+                        hfSea: `${season}|`,
+                        hfGT: "R|",
+                        game_date_gt: `${season}-01-01`,
+                        game_date_lt: endDate
+                    });
+                    params.append("pitchers_lookup[]", String(pitcherId));
+                    const request = fetch(
+                        `https://baseballsavant.mlb.com/statcast_search/csv?${params}`
+                    ).then(async (response) => {
+                        if (!response.ok) {
+                            throw new Error(`Baseball Savantを取得できませんでした（${response.status}）`);
+                        }
+                        const lines = (await response.text()).replace(/^\uFEFF/, "")
+                            .split(/\r?\n/)
+                            .filter(Boolean);
+                        if (!lines.length) return { rows: [], catcherNames: new Map() };
+                        const headers = parsePitchChartCsvLine(lines[0]);
+                        const rows = lines.slice(1).map((line) => {
+                            const values = parsePitchChartCsvLine(line);
+                            const row = Object.fromEntries(
+                                headers.map((header, index) => [header, values[index] ?? ""])
+                            );
+                            const inningHalf = String(row.inning_topbot ?? "").toLowerCase();
+                            return {
+                                pitchTypeCode: String(row.pitch_type ?? "").toUpperCase(),
+                                catcherId: Number(row.fielder_2),
+                                opponentCode: getMlbTeamDisplayCode(
+                                    inningHalf.startsWith("top") ? row.away_team : row.home_team
+                                )
+                            };
+                        }).filter((row) => row.pitchTypeCode);
+                        const catcherNames = await getPitchChartPersonNames(
+                            rows.map((row) => row.catcherId)
+                        );
+                        return { rows, catcherNames };
+                    }).catch((error) => {
+                        pitchChartPitchMixCache.delete(cacheKey);
+                        throw error;
+                    });
+                    pitchChartPitchMixCache.set(cacheKey, request);
+                }
+                return pitchChartPitchMixCache.get(cacheKey);
             };
 
             const getPitchChartGeometry = (allPitcherPitches) => {
@@ -6645,6 +6773,157 @@
                 return figure;
             };
 
+            const createPitchMixComparisonFigure = (pitcherPitches) => {
+                const pitcher = pitcherPitches[0];
+                const figure = createElement("section", "pitch-chart-figure pitch-mix-figure");
+                const caption = createElement("div", "pitch-chart-caption");
+                caption.append(createElement("strong", "", "球種構成比較"));
+                const controls = createElement("div", "pitch-mix-controls");
+                const catcherSelect = createElement("select", "pitch-mix-select");
+                const opponentSelect = createElement("select", "pitch-mix-select");
+                catcherSelect.setAttribute("aria-label", `${pitcher.pitcherName}の捕手条件`);
+                opponentSelect.setAttribute("aria-label", `${pitcher.pitcherName}の対戦相手条件`);
+                const allCatchers = createElement("option", "", "すべて");
+                allCatchers.value = "";
+                const allOpponents = createElement("option", "", "すべて");
+                allOpponents.value = "";
+                catcherSelect.append(allCatchers);
+                opponentSelect.append(allOpponents);
+                catcherSelect.disabled = true;
+                opponentSelect.disabled = true;
+                const catcherControl = createElement("label", "pitch-mix-control");
+                catcherControl.append(createElement("span", "", "捕手"), catcherSelect);
+                const opponentControl = createElement("label", "pitch-mix-control");
+                opponentControl.append(createElement("span", "", "対戦相手"), opponentSelect);
+                controls.append(catcherControl, opponentControl);
+                const body = createElement("div", "pitch-mix-body");
+                body.append(createElement("div", "pitch-mix-status", "今シーズンの投球データを取得中…"));
+                const gameCatchers = [];
+                const seenGameCatchers = new Set();
+                pitcherPitches.forEach((pitch) => {
+                    const catcherKey = Number(pitch.catcherId) || pitch.catcherName;
+                    if (!catcherKey || seenGameCatchers.has(catcherKey)) return;
+                    seenGameCatchers.add(catcherKey);
+                    gameCatchers.push(pitch.catcherName || "捕手不明");
+                });
+                const catcherInfo = createElement(
+                    "div",
+                    "pitch-mix-game-catchers",
+                    gameCatchers.length ? `捕手：${gameCatchers.join(" → ")}` : "捕手：不明"
+                );
+                figure.append(caption, controls, body, catcherInfo);
+
+                const officialDate = String(
+                    state.gameData?.gameData?.datetime?.officialDate ?? ""
+                ).slice(0, 10);
+                const [, month = "", day = ""] = officialDate.split("-");
+                const opponent = pitcher.teamSide === "away" ? state.home : state.away;
+                const opponentCode = getMlbTeamDisplayCode(opponent);
+                const gameLabel = `${Number(month)}/${Number(day)} vs. ${opponentCode}`;
+                const currentCounts = new Map();
+                pitcherPitches.forEach((pitch) => {
+                    if (!pitch.pitchTypeCode) return;
+                    currentCounts.set(
+                        pitch.pitchTypeCode,
+                        (currentCounts.get(pitch.pitchTypeCode) ?? 0) + 1
+                    );
+                });
+
+                const renderTable = (mixData) => {
+                    const catcherId = Number(catcherSelect.value) || 0;
+                    const selectedOpponent = opponentSelect.value;
+                    const seasonRows = mixData.rows.filter((row) =>
+                        (!catcherId || row.catcherId === catcherId) &&
+                        (!selectedOpponent || row.opponentCode === selectedOpponent)
+                    );
+                    const seasonCounts = new Map();
+                    seasonRows.forEach((row) => seasonCounts.set(
+                        row.pitchTypeCode,
+                        (seasonCounts.get(row.pitchTypeCode) ?? 0) + 1
+                    ));
+                    const fullSeasonCounts = new Map();
+                    mixData.rows.forEach((row) => fullSeasonCounts.set(
+                        row.pitchTypeCode,
+                        (fullSeasonCounts.get(row.pitchTypeCode) ?? 0) + 1
+                    ));
+                    const allTypeCodes = [...new Set([
+                        ...mixData.rows.map((row) => row.pitchTypeCode),
+                        ...currentCounts.keys()
+                    ])].sort((left, right) =>
+                        (fullSeasonCounts.get(right) ?? 0) - (fullSeasonCounts.get(left) ?? 0) ||
+                        (currentCounts.get(right) ?? 0) - (currentCounts.get(left) ?? 0) ||
+                        getPitchChartTypeLabel(left).localeCompare(getPitchChartTypeLabel(right), "ja")
+                    );
+                    const table = createElement("table", "pitch-mix-table");
+                    const head = document.createElement("thead");
+                    const headRow = document.createElement("tr");
+                    ["球種", gameLabel, "今シーズン"].forEach((text) =>
+                        headRow.append(createElement("th", "", text))
+                    );
+                    head.append(headRow);
+                    const tableBody = document.createElement("tbody");
+                    const currentTotal = [...currentCounts.values()].reduce((sum, count) => sum + count, 0);
+                    const seasonTotal = seasonRows.length;
+                    allTypeCodes.forEach((code) => {
+                        const row = document.createElement("tr");
+                        const currentPercent = currentTotal
+                            ? `${Math.round(((currentCounts.get(code) ?? 0) / currentTotal) * 100)}%`
+                            : "0%";
+                        const seasonPercent = seasonTotal
+                            ? `${Math.round(((seasonCounts.get(code) ?? 0) / seasonTotal) * 100)}%`
+                            : "—";
+                        row.append(
+                            createElement("th", "", getPitchChartTypeLabel(code)),
+                            createElement("td", "", currentPercent),
+                            createElement("td", "", seasonPercent)
+                        );
+                        tableBody.append(row);
+                    });
+                    table.append(head, tableBody);
+                    body.replaceChildren(table);
+                    if (!seasonTotal) {
+                        body.append(createElement("div", "pitch-mix-status", "選択条件のデータはありません。"));
+                    }
+                };
+
+                getPitchChartPitchMixData(pitcher.pitcherId)
+                    .then((mixData) => {
+                        if (!mixData) return;
+                        const catcherIds = [...new Set(
+                            mixData.rows.map((row) => row.catcherId).filter(Boolean)
+                        )].sort((left, right) => String(
+                            mixData.catcherNames.get(left) ?? left
+                        ).localeCompare(String(mixData.catcherNames.get(right) ?? right), "ja"));
+                        catcherIds.forEach((id) => {
+                            const option = createElement(
+                                "option", "", mixData.catcherNames.get(id) ?? `MLBAM ${id}`
+                            );
+                            option.value = String(id);
+                            catcherSelect.append(option);
+                        });
+                        const opponents = [...new Set(
+                            mixData.rows.map((row) => row.opponentCode).filter(Boolean)
+                        )].sort();
+                        opponents.forEach((code) => {
+                            const option = createElement("option", "", code);
+                            option.value = code;
+                            opponentSelect.append(option);
+                        });
+                        catcherSelect.disabled = false;
+                        opponentSelect.disabled = false;
+                        catcherSelect.addEventListener("change", () => renderTable(mixData));
+                        opponentSelect.addEventListener("change", () => renderTable(mixData));
+                        renderTable(mixData);
+                    })
+                    .catch((error) => {
+                        console.error("球種構成比較を取得できませんでした。", error);
+                        body.replaceChildren(createElement(
+                            "div", "pitch-mix-status", "球種構成を取得できませんでした。"
+                        ));
+                    });
+                return figure;
+            };
+
             const buildPitcherChartRow = (pitcherPitches) => {
                 const row = createElement("article", "pitch-chart-pitcher");
                 const pitcher = pitcherPitches[0];
@@ -6683,18 +6962,9 @@
                     ));
                 }
                 pitcherHeading.append(pitcherName);
-                header.append(
-                    pitcherHeading,
-                    createElement("span", "", `${pitcherPitches.length}球`)
-                );
                 const legend = createElement("div", "pitch-chart-legend");
-                typeCodes.forEach((code) => {
-                    const item = createElement("span", "pitch-chart-legend-item");
-                    const swatch = createElement("i", "");
-                    swatch.style.backgroundColor = colorByType.get(code);
-                    item.append(swatch, document.createTextNode(getPitchChartTypeLabel(code)));
-                    legend.append(item);
-                });
+                const totalPitchCount = createElement("span", "pitch-chart-pitcher-total", `${pitcherPitches.length}球`);
+                header.append(pitcherHeading, legend, totalPitchCount);
                 const charts = createElement("div", "pitch-chart-grid");
                 const pitchTypes = typeCodes.map((code) => ({
                     code,
@@ -6710,6 +6980,7 @@
                     }
                 });
                 const batters = [...batterMap.values()];
+                const pitchMixFigure = createPitchMixComparisonFigure(pitcherPitches);
                 let renderSequence = 0;
                 const renderComparison = ({
                     selectedPitchType = "",
@@ -6730,6 +7001,32 @@
                         (!selectedPitchType || pitch.pitchTypeCode === selectedPitchType) &&
                         (!selectedBatterId || String(pitch.batterId) === String(selectedBatterId))
                     );
+                    const legendPitches = pitcherPitches.filter((pitch) =>
+                        !selectedBatterId || String(pitch.batterId) === String(selectedBatterId)
+                    );
+                    const legendCounts = new Map();
+                    legendPitches.forEach((pitch) => legendCounts.set(
+                        pitch.pitchTypeCode,
+                        (legendCounts.get(pitch.pitchTypeCode) ?? 0) + 1
+                    ));
+                    legend.replaceChildren();
+                    typeCodes.forEach((code) => {
+                        const pitchCount = legendCounts.get(code) ?? 0;
+                        if (selectedBatterId && pitchCount === 0) return;
+                        const item = createElement(
+                            "span",
+                            `pitch-chart-legend-item${selectedPitchType === code ? " is-selected" : ""}`
+                        );
+                        const swatch = createElement("i", "");
+                        swatch.style.backgroundColor = colorByType.get(code);
+                        item.append(
+                            swatch,
+                            document.createTextNode(
+                                `${getPitchChartTypeLabel(code)} ${pitchCount}球`
+                            )
+                        );
+                        legend.append(item);
+                    });
                     const allFigure = createPitchChartSvg(
                         filteredPitches,
                         pitcherPitches,
@@ -6751,7 +7048,7 @@
                         selectedBatter ? "loading" : "empty",
                         conditionText
                     );
-                    charts.replaceChildren(allFigure, zoneFigure);
+                    charts.replaceChildren(allFigure, zoneFigure, pitchMixFigure);
                     if (!selectedBatter) return;
                     getPitchChartBatterZoneData(
                         selectedBatter.id,
@@ -6786,7 +7083,7 @@
                     "pitch-chart-pitch-detail",
                     "投球点を選択すると球種・球速・結果を表示します。"
                 );
-                row.append(header, legend, charts, detail);
+                row.append(header, charts, detail);
                 return row;
             };
 
