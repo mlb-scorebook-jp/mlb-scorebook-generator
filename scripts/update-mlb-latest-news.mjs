@@ -67,6 +67,8 @@ const query = `query Latest{
 }`;
 
 const japaneseSummaries = new Map([
+    ["phillies-vs-twins-2026-field-of-dreams-game-preview",
+        "K.シュワーバー（PHI）、フィールド・オブ・ドリームス戦へ"],
     ["jacob-misiorowski-notches-200th-strikeout-of-season-vs-twins",
         "J.ミザロウスキー（MIL）、MLB史上2番目の速さでシーズン200奪三振に到達"],
     ["phillies-host-former-players-in-ode-to-moonlight-graham-from-field-of-dreams",
@@ -254,10 +256,10 @@ const summarizeHeadlineJa = (article, subject) => {
     if (/home run|homer|\bhrs?\b|grand slam/.test(text)) {
         return `${subject}、本塁打で存在感`;
     }
-    if (/strikeout|\bk\b|scoreless|shutout|pitch/.test(text)) {
+    if (/\b(?:strikeouts?|scoreless|shutout)\b|\b(?:dominant|stellar|dazzling)\s+(?:start|outing)\b/.test(text)) {
         return `${subject}、マウンドで好投`;
     }
-    if (/win|beat|rout|sweep|comeback/.test(text)) {
+    if (/\b(?:win|wins|won|victory|beat|beats|rout|routs|sweep|sweeps|swept|comeback)\b/.test(text)) {
         return `${subject}、勝利を呼び込む活躍`;
     }
     if (/prospect|ranking|top \d+/.test(text)) {

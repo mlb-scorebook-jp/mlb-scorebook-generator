@@ -1139,7 +1139,7 @@
     },
     {
         "headline": "'Excited to see the corn': Schwarber, Phillies head to Iowa for Field of Dreams Game",
-        "summaryJa": "K.シュワーバー（PHI）、勝利を呼び込む活躍",
+        "summaryJa": "K.シュワーバー（PHI）、フィールド・オブ・ドリームス戦へ",
         "slug": "phillies-vs-twins-2026-field-of-dreams-game-preview",
         "url": "https://www.mlb.com/news/phillies-vs-twins-2026-field-of-dreams-game-preview",
         "contentDate": "2026-08-13T00:12:07.733Z",
