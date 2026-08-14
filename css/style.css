@@ -1761,7 +1761,7 @@ body.app-mode-pregame .score-loading-overlay {
 .pitch-total-count {
     position: absolute;
     right: 2px;
-    bottom: 4px;
+    bottom: 1px;
     z-index: 4;
     color: var(--red);
     font-size: 9px;

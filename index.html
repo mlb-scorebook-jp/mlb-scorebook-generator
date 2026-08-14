@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MLB Scorebook Generator</title>
     <!-- Score notation update: stacked batted-ball symbol, red hits, blue strikeouts, black other results. -->
-    <link rel="stylesheet" href="css/style.css?v=20260814-8">
+    <link rel="stylesheet" href="css/style.css?v=20260814-9">
     <link rel="stylesheet" href="css/pregame.css?v=20260811-10">
 </head>
 
@@ -4152,7 +4152,6 @@
                             totalRect.bottom > symbolRect.top;
                     });
                 };
-                if (overlapsSymbol()) sequence?.classList.add("compact-fouls");
                 total.classList.toggle("crowded", overlapsSymbol());
             };
 
@@ -6284,10 +6283,30 @@
                     getPitchChartGeometry(allPitcherPitches);
                 const plotWidth = plot.right - plot.left;
                 const plotHeight = plot.bottom - plot.top;
-                const zoneHalfWidthFeet = 17 / 24;
+                // Statcast pX is the ball-center position. Include the baseball radius
+                // around the 17-inch plate so the visual zone matches MLB Gameday.
+                const zoneHalfWidthFeet = 10 / 12;
                 const validPitcherLocations = allPitcherPitches.filter((pitch) =>
                     Number.isFinite(pitch.pX) && Number.isFinite(pitch.pZ)
                 );
+                const normalizePitchZ = (pitch) => {
+                    const pitchZoneTop = Number.isFinite(pitch.strikeZoneTop)
+                        ? pitch.strikeZoneTop
+                        : zoneTop;
+                    const pitchZoneBottom = Number.isFinite(pitch.strikeZoneBottom)
+                        ? pitch.strikeZoneBottom
+                        : zoneBottom;
+                    const pitchZoneHeight = pitchZoneTop - pitchZoneBottom;
+                    const fallbackZoneHeight = zoneTop - zoneBottom;
+                    if (pitchZoneHeight > 0) {
+                        return (pitch.pZ - pitchZoneBottom) / pitchZoneHeight;
+                    }
+                    if (fallbackZoneHeight > 0) {
+                        return (pitch.pZ - zoneBottom) / fallbackZoneHeight;
+                    }
+                    return 0.5;
+                };
+                const normalizedPitchZValues = validPitcherLocations.map(normalizePitchZ);
                 const minX = Math.min(
                     -zoneHalfWidthFeet - 0.15,
                     ...validPitcherLocations.map((pitch) => pitch.pX - 0.08)
@@ -6296,13 +6315,13 @@
                     zoneHalfWidthFeet + 0.15,
                     ...validPitcherLocations.map((pitch) => pitch.pX + 0.08)
                 );
-                const minZ = Math.min(
-                    zoneBottom - 0.2,
-                    ...validPitcherLocations.map((pitch) => pitch.pZ - 0.08)
+                const minNormalizedZ = Math.min(
+                    -0.1,
+                    ...normalizedPitchZValues.map((value) => value - 0.04)
                 );
-                const maxZ = Math.max(
-                    zoneTop + 0.2,
-                    ...validPitcherLocations.map((pitch) => pitch.pZ + 0.08)
+                const maxNormalizedZ = Math.max(
+                    1.1,
+                    ...normalizedPitchZValues.map((value) => value + 0.04)
                 );
                 const project = (value, inputStart, inputEnd, outputStart, outputEnd) => {
                     if (inputEnd === inputStart) return (outputStart + outputEnd) / 2;
@@ -6327,14 +6346,15 @@
                         zone.right
                     );
                 };
-                const zScale = (value) => {
-                    if (value < zoneBottom) {
-                        return project(value, minZ, zoneBottom, plot.bottom, zone.bottom);
+                const zScale = (pitch) => {
+                    const value = normalizePitchZ(pitch);
+                    if (value < 0) {
+                        return project(value, minNormalizedZ, 0, plot.bottom, zone.bottom);
                     }
-                    if (value > zoneTop) {
-                        return project(value, zoneTop, maxZ, zone.top, plot.top);
+                    if (value > 1) {
+                        return project(value, 1, maxNormalizedZ, zone.top, plot.top);
                     }
-                    return project(value, zoneBottom, zoneTop, zone.bottom, zone.top);
+                    return project(value, 0, 1, zone.bottom, zone.top);
                 };
                 const createSvgElement = (name, attributes = {}) => {
                     const element = document.createElementNS(SVG_NS, name);
@@ -6468,12 +6488,12 @@
                     group.append(createSvgElement("circle", {
                         class: "pitch-chart-hit-area",
                         cx: xScale(pitch.pX),
-                        cy: zScale(pitch.pZ),
+                        cy: zScale(pitch),
                         r: 9
                     }));
                     group.append(createSvgElement("circle", {
                         cx: xScale(pitch.pX),
-                        cy: zScale(pitch.pZ),
+                        cy: zScale(pitch),
                         r: 3.4,
                         fill: colorByType.get(pitch.pitchTypeCode) ?? "#59636b"
                     }));
