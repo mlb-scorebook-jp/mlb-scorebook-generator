@@ -2,6 +2,54 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "After long journey through injuries in Minors, Tiedemann called up to make MLB debut",
+        "summaryJa": "R.ティードマン（TOR）の負傷状況をMLB公式が詳報",
+        "slug": "ricky-tiedemann-call-up-blue-jays",
+        "url": "https://www.mlb.com/news/ricky-tiedemann-call-up-blue-jays",
+        "contentDate": "2026-08-15T16:29:51.144Z",
+        "teamIds": [
+            141
+        ],
+        "playerIds": [
+            694357
+        ],
+        "gamePks": [
+            822775
+        ],
+        "taxonomy": [
+            "transactions",
+            "mlb-top-prospects",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Vlad out of Toronto lineup day after exiting with head injury",
+        "summaryJa": "V.ゲレーロ Jr.（TOR）の負傷状況をMLB公式が詳報",
+        "slug": "vladimir-guerrero-jr-out-of-blue-jays-lineup-vs-yankees-on-august-15-2026",
+        "url": "https://www.mlb.com/news/vladimir-guerrero-jr-out-of-blue-jays-lineup-vs-yankees-on-august-15-2026",
+        "contentDate": "2026-08-15T16:11:13.298Z",
+        "teamIds": [
+            141
+        ],
+        "playerIds": [
+            665489
+        ],
+        "gamePks": [
+            822775
+        ],
+        "taxonomy": [
+            "apple-news",
+            "injury"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Can these struggling stars rebound for the stretch run?",
         "summaryJa": "C.ラリーの最新動向をMLB公式が詳報",
         "slug": "struggling-stars-look-to-bounce-back-late-in-2026",
@@ -6762,29 +6810,6 @@
         ]
     },
     {
-        "headline": "Blue Jays place Taillon (right forearm tendinitis) on IL, recall Chase Lee",
-        "summaryJa": "J.タイオン（TOR）の負傷状況をMLB公式が詳報",
-        "slug": "jameson-taillon-to-injured-list-with-right-forearm-tendinitis",
-        "url": "https://www.mlb.com/news/jameson-taillon-to-injured-list-with-right-forearm-tendinitis",
-        "contentDate": "2026-08-11T19:45:30.503Z",
-        "teamIds": [
-            141
-        ],
-        "playerIds": [
-            592791
-        ],
-        "gamePks": [
-            822778
-        ],
-        "taxonomy": [
-            "apple-news",
-            "injury"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Feinstein discusses new role as A's interim GM",
         "summaryJa": "アスレチックスの最新動向をMLB公式が詳報",
         "slug": "a-s-interim-general-manager-dan-feinstein-speaks-to-media",
@@ -10679,23 +10704,6 @@
         "playerIds": [],
         "gamePks": [],
         "taxonomy": [],
-        "sourceScopes": [
-            "MLB"
-        ]
-    },
-    {
-        "headline": "In a David vs. Goliath matchup, they turned to the greatest trick play ever executed",
-        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
-        "slug": "the-greatest-trick-play-in-baseball-history",
-        "url": "https://www.mlb.com/news/the-greatest-trick-play-in-baseball-history",
-        "contentDate": "2026-06-17T21:42:40.412Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "50-stories-50-states",
-            "apple-news"
-        ],
         "sourceScopes": [
             "MLB"
         ]
