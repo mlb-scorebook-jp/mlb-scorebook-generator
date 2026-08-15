@@ -2,6 +2,130 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Giants call up hot-hitting OF Hill from Triple-A",
+        "summaryJa": "Turner Hill（SF）、メジャー昇格・初出場に関する最新情報",
+        "slug": "turner-hill-called-up-by-giants",
+        "url": "https://www.mlb.com/news/turner-hill-called-up-by-giants",
+        "contentDate": "2026-08-15T13:15:00Z",
+        "teamIds": [
+            137
+        ],
+        "playerIds": [
+            806367
+        ],
+        "gamePks": [
+            823185
+        ],
+        "taxonomy": [
+            "apple-news",
+            "transactions"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Teen talent leads the way atop Royals' re-ranked Top 30",
+        "summaryJa": "Kendry Chourio（KC）ら注目選手の最新動向",
+        "slug": "royals-2026-updated-top-prospect-rankings",
+        "url": "https://www.mlb.com/news/royals-2026-updated-top-prospect-rankings",
+        "contentDate": "2026-08-15T13:00:33.556Z",
+        "teamIds": [
+            118
+        ],
+        "playerIds": [
+            830402,
+            815843,
+            825412,
+            815789,
+            805799,
+            703610,
+            695556
+        ],
+        "gamePks": [
+            823991
+        ],
+        "taxonomy": [
+            "mlb-top-prospects",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "How historic '26 Draft reshaped White Sox prospect pipeline",
+        "summaryJa": "Roch Cholowsky（CWS）ら注目選手の最新動向",
+        "slug": "white-sox-top-30-prospects-2026-midseason-update",
+        "url": "https://www.mlb.com/news/white-sox-top-30-prospects-2026-midseason-update",
+        "contentDate": "2026-08-15T12:58:20.588Z",
+        "teamIds": [
+            145
+        ],
+        "playerIds": [
+            800604
+        ],
+        "gamePks": [
+            824239
+        ],
+        "taxonomy": [
+            "apple-news",
+            "mlb-top-prospects",
+            "minor-league-baseball"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Strong Draft, surging Brito highlight refreshed Rockies Top 30 Prospects list",
+        "summaryJa": "Ethan Holliday（COL）ら注目選手の最新動向",
+        "slug": "rockies-2026-updated-prospect-rankings",
+        "url": "https://www.mlb.com/news/rockies-2026-updated-prospect-rankings",
+        "contentDate": "2026-08-15T12:57:02.26Z",
+        "teamIds": [
+            115
+        ],
+        "playerIds": [
+            815787,
+            821041,
+            809707,
+            815628,
+            821692
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "mlb-top-prospects",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "New Top 30 prospects are in! Where do Phillies' draftees rank?",
+        "summaryJa": "Gage Wood（PHI）ら注目選手の最新動向",
+        "slug": "phillies-2026-updated-prospect-rankings",
+        "url": "https://www.mlb.com/news/phillies-2026-updated-prospect-rankings",
+        "contentDate": "2026-08-15T12:18:23.341Z",
+        "teamIds": [
+            143
+        ],
+        "playerIds": [
+            805906
+        ],
+        "gamePks": [
+            823671
+        ],
+        "taxonomy": [
+            "mlb-top-prospects",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Veen makes another splash as Rockies win 3rd straight",
         "summaryJa": "Z.ビーン（COL）、記録達成の最新情報",
         "slug": "zac-veen-homers-into-mccovey-cove-in-rockies-win-over-giants",
@@ -101,29 +225,6 @@
         ],
         "sourceScopes": [
             "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Giants call up hot-hitting OF Hill from Triple-A",
-        "summaryJa": "Turner Hill（SF）、メジャー昇格・初出場に関する最新情報",
-        "slug": "turner-hill-called-up-by-giants",
-        "url": "https://www.mlb.com/news/turner-hill-called-up-by-giants",
-        "contentDate": "2026-08-15T06:35:00Z",
-        "teamIds": [
-            137
-        ],
-        "playerIds": [
-            806367
-        ],
-        "gamePks": [
-            823185
-        ],
-        "taxonomy": [
-            "apple-news",
-            "transactions"
-        ],
-        "sourceScopes": [
             "球団公式"
         ]
     },
@@ -5084,29 +5185,6 @@
         ]
     },
     {
-        "headline": "Four-run 5th inning sinks Wheeler in another shaky outing for Phils ace",
-        "summaryJa": "Z.ウィーラー（PHI）、記録達成の最新情報",
-        "slug": "zack-wheeler-start-cardinals-phillies-aug-12-2026",
-        "url": "https://www.mlb.com/news/zack-wheeler-start-cardinals-phillies-aug-12-2026",
-        "contentDate": "2026-08-12T22:25:00Z",
-        "teamIds": [
-            143
-        ],
-        "playerIds": [
-            554430
-        ],
-        "gamePks": [
-            823017
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap-losing"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Blue Jays claim Sewald off waivers to bolster weary bullpen",
         "summaryJa": "P.シーウォルド（TOR）の移籍・契約に関する最新情報",
         "slug": "paul-sewald-claimed-off-waivers-by-blue-jays",
@@ -9149,30 +9227,6 @@
         ]
     },
     {
-        "headline": "Put on a show, Jac! Caglianone clobbers 2 monster HRs in 4-hit night",
-        "summaryJa": "J.カグリアノン（KC）、特大2本塁打を含む4安打",
-        "slug": "jac-caglianone-hits-two-home-runs-in-royals-win-vs-cubs",
-        "url": "https://www.mlb.com/news/jac-caglianone-hits-two-home-runs-in-royals-win-vs-cubs",
-        "contentDate": "2026-08-09T03:44:00Z",
-        "teamIds": [
-            118
-        ],
-        "playerIds": [
-            695506
-        ],
-        "gamePks": [
-            824079
-        ],
-        "taxonomy": [
-            "apple-news",
-            "player-tracking",
-            "game-recap"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Jobe brings the heat in winning first start back from Tommy John surgery",
         "summaryJa": "J.ジョーブ（DET）、手術からの復帰初先発で勝利",
         "slug": "jackson-jobe-pitches-5-scoreless-innings-in-return-from-tommy-john-surgery",
@@ -9550,31 +9604,6 @@
         ],
         "taxonomy": [
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "White Sox call up top pitching prospects Smith (No. 2) and McDougal (No. 4)",
-        "summaryJa": "H.スミス（CWS）、メジャー昇格・初出場に関する最新情報",
-        "slug": "hagen-smith-and-tanner-mcdougal-called-up-white-sox",
-        "url": "https://www.mlb.com/news/hagen-smith-and-tanner-mcdougal-called-up-white-sox",
-        "contentDate": "2026-08-08T23:34:00Z",
-        "teamIds": [
-            145
-        ],
-        "playerIds": [
-            696146,
-            701780
-        ],
-        "gamePks": [
-            824565
-        ],
-        "taxonomy": [
-            "apple-news",
-            "mlb-top-prospects",
-            "transactions"
         ],
         "sourceScopes": [
             "球団公式"
@@ -10524,28 +10553,6 @@
         "taxonomy": [
             "apple-news",
             "trade-deadline"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "McCarthy's Charlie vibes have Rox thinking they found their leadoff answer",
-        "summaryJa": "J.マカーシー（COL）の最新動向をMLB公式が詳報",
-        "slug": "jake-mccarthy-thriving-in-leadoff-spot-for-rockies",
-        "url": "https://www.mlb.com/news/jake-mccarthy-thriving-in-leadoff-spot-for-rockies",
-        "contentDate": "2026-08-05T05:36:45.899Z",
-        "teamIds": [
-            115
-        ],
-        "playerIds": [
-            664983
-        ],
-        "gamePks": [
-            824321
-        ],
-        "taxonomy": [
-            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
