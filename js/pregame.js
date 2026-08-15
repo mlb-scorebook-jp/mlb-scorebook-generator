@@ -3446,9 +3446,10 @@
         name.href = `https://www.mlb.com/player/${data.pitcher.id}`;
         name.target = "_blank";
         name.rel = "noopener noreferrer";
+        const appearances = statNumber(data.seasonStats?.gamesPlayed);
         const starts = statNumber(data.seasonStats?.gamesStarted);
         const seasonGrid = el("div", "pregame-starting-stats");
-        seasonGrid.textContent = `${starts}試合（${starts}先発）　` +
+        seasonGrid.textContent = `${appearances}試合（${starts}先発）　` +
             `${statNumber(data.seasonStats?.wins)}勝${statNumber(data.seasonStats?.losses)}敗　` +
             `防御率${data.seasonStats?.era ?? "-"}`;
         summary.append(name, seasonGrid);
