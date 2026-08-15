@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MLB Scorebook Generator</title>
     <!-- Score notation update: stacked batted-ball symbol, red hits, blue strikeouts, black other results. -->
-    <link rel="stylesheet" href="css/style.css?v=20260814-16">
+    <link rel="stylesheet" href="css/style.css?v=20260815-live-1">
     <link rel="stylesheet" href="css/pregame.css?v=20260814-11">
 </head>
 
@@ -126,6 +126,8 @@
             <div class="status-message" id="status-message">
                 初期表示は9回です。Gameday取得後は実際のイニング数に合わせて自動拡張します。
             </div>
+
+            <div class="live-update-status" id="live-update-status" hidden aria-live="polite"></div>
 
             <hr>
 
@@ -595,6 +597,7 @@
                 inningCount: document.getElementById("inning-count-display"),
                 libraryList: document.getElementById("library-list"),
                 statusMessage: document.getElementById("status-message"),
+                liveUpdateStatus: document.getElementById("live-update-status"),
                 printButton: document.getElementById("print-btn"),
                 jsonButton: document.getElementById("json-btn"),
                 pdfButton: document.getElementById("pdf-btn"),
@@ -737,6 +740,7 @@
             };
 
             const showPortalHome = () => {
+                stopLiveScoreUpdates({ preserveEligibility: true });
                 window.PregameInfo?.close({ preserveShell: true });
                 document.body.classList.remove("app-mode-pregame", "app-mode-pitch-chart");
                 document.body.classList.add("app-mode-home");
@@ -756,6 +760,7 @@
                 }
                 window.scrollTo(0, 0);
                 requestAnimationFrame(refreshHorizontalScrollbar);
+                requestAnimationFrame(() => resumeLiveScoreUpdates());
             };
 
             let pitchChartStartSide = "away";
@@ -783,6 +788,7 @@
 
             const showPitchChart = (side = "away", options = {}) => {
                 if (!state.gamePk || !state.gameData) return;
+                stopLiveScoreUpdates({ preserveEligibility: true });
                 pitchChartStartSide = side === "home" ? "home" : "away";
                 window.PregameInfo?.close({ preserveShell: true });
                 document.body.classList.remove("app-mode-home", "app-mode-pregame");
@@ -802,6 +808,7 @@
             };
 
             const showPregame = async () => {
+                stopLiveScoreUpdates({ preserveEligibility: true });
                 document.body.classList.remove("app-mode-home", "app-mode-pitch-chart");
                 document.body.classList.add("app-mode-pregame");
                 dom.pitchChartPage.hidden = true;
@@ -7291,11 +7298,11 @@
                 dom.inningCount.textContent = String(state.innings);
             };
 
-            const fetchGameData = async (gamePk) => {
+            const fetchGameData = async (gamePk, options = {}) => {
                 const endpoint =
                     `https://statsapi.mlb.com/api/v1.1/game/${gamePk}/feed/live`;
 
-                const response = await fetch(endpoint);
+                const response = await fetch(endpoint, { signal: options.signal });
 
                 if (!response.ok) {
                     throw new Error(
@@ -7304,6 +7311,398 @@
                 }
 
                 return response.json();
+            };
+
+            const LIVE_SCORE_POLL_MS = 5000;
+            const LIVE_SCORE_DELAYED_POLL_MS = 30000;
+            const LIVE_SCORE_FULL_SYNC_MS = 60000;
+            const LIVE_SCORE_FIELDS = [
+                "metaData", "wait", "timeStamp",
+                "gameData", "status", "abstractGameState", "codedGameState",
+                "detailedState", "statusCode",
+                "liveData", "plays", "currentPlay", "result", "event", "eventType",
+                "description", "rbi", "type", "about", "atBatIndex", "halfInning",
+                "isTopInning", "isComplete", "inning", "startTime", "endTime",
+                "matchup", "batter", "pitcher", "id", "playEvents", "index",
+                "playId", "isPitch", "player", "position", "details", "code",
+                "count", "balls", "strikes", "outs"
+            ].join(",");
+            const liveScoreUpdate = {
+                timer: 0,
+                controller: null,
+                active: false,
+                eligible: false,
+                isUpdating: false,
+                generation: 0,
+                lastTimestamp: "",
+                lastAtBatIndex: null,
+                lastFullSyncAt: 0,
+                wasLive: false
+            };
+
+            const isScorebookViewVisible = () =>
+                !document.body.classList.contains("app-mode-home") &&
+                !document.body.classList.contains("app-mode-pregame") &&
+                !document.body.classList.contains("app-mode-pitch-chart");
+
+            const setLiveUpdateStatus = (text = "", status = "", hidden = false) => {
+                dom.liveUpdateStatus.textContent = text;
+                dom.liveUpdateStatus.dataset.state = status;
+                dom.liveUpdateStatus.hidden = hidden || !text;
+            };
+
+            const getLiveScoreMode = (data) => {
+                const status = data?.gameData?.status ?? {};
+                const abstract = String(status?.abstractGameState ?? "").toLowerCase();
+                const coded = String(status?.codedGameState ?? "").toUpperCase();
+                const detailed = String(status?.detailedState ?? "").toLowerCase();
+                if (coded === "F") return "final";
+                if (coded === "D" || detailed.includes("postponed")) return "postponed";
+                if (coded === "O" || detailed.includes("game over") ||
+                    detailed.includes("completed early")) return "game-over";
+                if (["T", "U"].includes(coded) || detailed.includes("suspended")) {
+                    return "suspended";
+                }
+                if (abstract === "live" && detailed.includes("delayed")) return "delayed";
+                if (abstract === "live" && !detailed.includes("warmup")) return "live";
+                return "inactive";
+            };
+
+            const getFeedTimestamp = (data) =>
+                String(data?.metaData?.timeStamp ?? "").trim();
+
+            const getCurrentAtBatIndex = (play) => {
+                const value = Number(play?.about?.atBatIndex ?? play?.atBatIndex);
+                return Number.isInteger(value) ? value : null;
+            };
+
+            const formatLiveUpdateTime = () => new Intl.DateTimeFormat("ja-JP", {
+                hour: "2-digit",
+                minute: "2-digit",
+                second: "2-digit",
+                hour12: false
+            }).format(new Date());
+
+            const fetchLightLiveGameData = async (gamePk, signal) => {
+                const endpoint = `https://statsapi.mlb.com/api/v1.1/game/${gamePk}/feed/live` +
+                    `?fields=${encodeURIComponent(LIVE_SCORE_FIELDS)}`;
+                const response = await fetch(endpoint, {
+                    signal,
+                    cache: "no-store"
+                });
+                if (!response.ok) {
+                    throw new Error(`ライブ更新に失敗しました（${response.status}）`);
+                }
+                return response.json();
+            };
+
+            const mergeLiveCurrentPlay = (payload) => {
+                const incoming = payload?.liveData?.plays?.currentPlay;
+                if (!incoming) return null;
+                const plays = state.gameData?.liveData?.plays;
+                if (!plays) return null;
+                const atBatIndex = getCurrentAtBatIndex(incoming);
+                const allPlays = Array.isArray(plays.allPlays) ? plays.allPlays : [];
+                const existingIndex = allPlays.findIndex((play) =>
+                    getCurrentAtBatIndex(play) === atBatIndex
+                );
+                const existing = existingIndex >= 0 ? allPlays[existingIndex] : {};
+                const merged = {
+                    ...existing,
+                    ...incoming,
+                    result: { ...existing?.result, ...incoming?.result },
+                    about: { ...existing?.about, ...incoming?.about },
+                    count: { ...existing?.count, ...incoming?.count },
+                    matchup: {
+                        ...existing?.matchup,
+                        ...incoming?.matchup,
+                        batter: { ...existing?.matchup?.batter, ...incoming?.matchup?.batter },
+                        pitcher: { ...existing?.matchup?.pitcher, ...incoming?.matchup?.pitcher }
+                    },
+                    playEvents: Array.isArray(incoming?.playEvents)
+                        ? incoming.playEvents
+                        : existing?.playEvents ?? []
+                };
+                if (existingIndex >= 0) allPlays[existingIndex] = merged;
+                else allPlays.push(merged);
+                plays.allPlays = allPlays;
+                plays.currentPlay = merged;
+                state.gameData.metaData = {
+                    ...state.gameData.metaData,
+                    ...payload.metaData
+                };
+                state.gameData.gameData.status = {
+                    ...state.gameData.gameData.status,
+                    ...payload?.gameData?.status
+                };
+                return merged;
+            };
+
+            const updateCurrentPlateAppearanceCell = (atBatIndex) => {
+                if (!Number.isInteger(atBatIndex)) return false;
+                const record = buildPlateAppearanceRecords().find((entry) =>
+                    Number(entry.atBatIndex) === atBatIndex
+                );
+                if (!record) return false;
+                const selector = `.atbat-cell[data-side="${record.side}"]` +
+                    `[data-inning="${record.inning}"]` +
+                    `[data-inning-occurrence="${record.inningOccurrence ?? 1}"]` +
+                    `[data-order="${record.order}"]`;
+                const cell = dom.awaySheet.querySelector(selector);
+                const currentColumn = cell?.querySelector(".pitch-column");
+                if (!cell || !currentColumn) return false;
+                const replacement = createPitchColumn(record.pitchResults, record.pitchCount);
+                currentColumn.replaceWith(replacement);
+                placePitchTotalCount(replacement);
+                cell.classList.toggle("in-progress", Boolean(record.inProgress));
+                return true;
+            };
+
+            const applyLiveFullGameData = (data) => {
+                const scheduleMetadata = state.gameData?.gameData?.schedule;
+                if (scheduleMetadata && data?.gameData) data.gameData.schedule = scheduleMetadata;
+                const scrollTarget = getHorizontalScrollTarget();
+                const horizontalScroll = scrollTarget?.scrollLeft ?? 0;
+                const pageX = window.scrollX;
+                const pageY = window.scrollY;
+                state.gameData = data;
+                state.innings = determineInningCount(data);
+                state.inningColumns = determineInningColumns(data, state.innings);
+                state.defensivePositionHistory = buildDefensivePositionHistory(data);
+                state.away = getTeamState(data, "away");
+                state.home = getTeamState(data, "home");
+                updateSidebar();
+                render();
+                requestAnimationFrame(() => {
+                    const nextTarget = getHorizontalScrollTarget();
+                    if (nextTarget) nextTarget.scrollLeft = horizontalScroll;
+                    window.scrollTo(pageX, pageY);
+                });
+            };
+
+            const scheduleLiveScoreUpdate = (delay) => {
+                window.clearTimeout(liveScoreUpdate.timer);
+                if (!liveScoreUpdate.active) return;
+                liveScoreUpdate.timer = window.setTimeout(pollLiveScore, delay);
+            };
+
+            const stopLiveScoreUpdates = ({ preserveEligibility = false } = {}) => {
+                window.clearTimeout(liveScoreUpdate.timer);
+                liveScoreUpdate.timer = 0;
+                liveScoreUpdate.active = false;
+                liveScoreUpdate.isUpdating = false;
+                liveScoreUpdate.generation += 1;
+                liveScoreUpdate.controller?.abort();
+                liveScoreUpdate.controller = null;
+                if (!preserveEligibility) liveScoreUpdate.eligible = false;
+                setLiveUpdateStatus("", "", true);
+            };
+
+            const synchronizeFullLiveFeed = async (reason, generation) => {
+                const gamePk = Number(state.gamePk);
+                if (!gamePk || generation !== liveScoreUpdate.generation) return null;
+                const data = await fetchGameData(gamePk, {
+                    signal: liveScoreUpdate.controller?.signal
+                });
+                if (generation !== liveScoreUpdate.generation || Number(state.gamePk) !== gamePk) {
+                    return null;
+                }
+                applyLiveFullGameData(data);
+                liveScoreUpdate.lastTimestamp = getFeedTimestamp(data) ||
+                    liveScoreUpdate.lastTimestamp;
+                liveScoreUpdate.lastAtBatIndex = getCurrentAtBatIndex(
+                    data?.liveData?.plays?.currentPlay
+                );
+                liveScoreUpdate.lastFullSyncAt = Date.now();
+                const mode = getLiveScoreMode(data);
+                if (mode === "final") {
+                    setLiveUpdateStatus(
+                        `試合終了・最終同期済み　${formatLiveUpdateTime()}`,
+                        "final"
+                    );
+                } else {
+                    setLiveUpdateStatus(
+                        `LIVE　自動更新中　最終更新 ${formatLiveUpdateTime()}`,
+                        "live"
+                    );
+                }
+                return { data, mode, reason };
+            };
+
+            async function pollLiveScore() {
+                if (!liveScoreUpdate.active || liveScoreUpdate.isUpdating ||
+                    !liveScoreUpdate.eligible || document.hidden || !isScorebookViewVisible()) {
+                    return;
+                }
+                const generation = liveScoreUpdate.generation;
+                const gamePk = Number(state.gamePk);
+                liveScoreUpdate.isUpdating = true;
+                liveScoreUpdate.controller = new AbortController();
+                setLiveUpdateStatus("LIVE　同期中", "syncing");
+                let nextDelay = LIVE_SCORE_POLL_MS;
+                try {
+                    const payload = await fetchLightLiveGameData(
+                        gamePk,
+                        liveScoreUpdate.controller.signal
+                    );
+                    if (generation !== liveScoreUpdate.generation || Number(state.gamePk) !== gamePk) {
+                        return;
+                    }
+                    const mode = getLiveScoreMode(payload);
+                    const timestamp = getFeedTimestamp(payload);
+                    const incoming = payload?.liveData?.plays?.currentPlay;
+                    const atBatIndex = getCurrentAtBatIndex(incoming);
+                    const previousAtBatIndex = liveScoreUpdate.lastAtBatIndex;
+                    const timestampChanged = Boolean(timestamp) &&
+                        timestamp !== liveScoreUpdate.lastTimestamp;
+                    const needsPeriodicSync = Date.now() - liveScoreUpdate.lastFullSyncAt >=
+                        LIVE_SCORE_FULL_SYNC_MS;
+                    let fullSyncResult = null;
+
+                    if (timestampChanged && incoming) {
+                        const merged = mergeLiveCurrentPlay(payload);
+                        liveScoreUpdate.lastTimestamp = timestamp;
+                        liveScoreUpdate.lastAtBatIndex = atBatIndex;
+                        const plateAppearanceChanged = previousAtBatIndex !== null &&
+                            atBatIndex !== previousAtBatIndex;
+                        if (merged?.about?.isComplete || plateAppearanceChanged) {
+                            fullSyncResult = await synchronizeFullLiveFeed(
+                                "plate-appearance-complete",
+                                generation
+                            );
+                        } else if (!updateCurrentPlateAppearanceCell(atBatIndex)) {
+                            fullSyncResult = await synchronizeFullLiveFeed(
+                                "missing-current-cell",
+                                generation
+                            );
+                        }
+                    }
+
+                    if (!fullSyncResult && needsPeriodicSync) {
+                        fullSyncResult = await synchronizeFullLiveFeed("periodic", generation);
+                    }
+
+                    let resolvedMode = fullSyncResult?.mode ?? mode;
+                    if (!fullSyncResult && ["final", "postponed"].includes(resolvedMode)) {
+                        fullSyncResult = await synchronizeFullLiveFeed("terminal", generation);
+                        resolvedMode = fullSyncResult?.mode ?? resolvedMode;
+                    }
+                    if (["final", "postponed"].includes(resolvedMode)) {
+                        liveScoreUpdate.active = false;
+                        if (resolvedMode === "postponed") {
+                            setLiveUpdateStatus("試合延期・自動更新停止", "paused");
+                        }
+                        return;
+                    }
+                    if (resolvedMode === "suspended") {
+                        liveScoreUpdate.active = false;
+                        setLiveUpdateStatus("試合中断・自動更新停止", "paused");
+                        return;
+                    }
+                    if (resolvedMode === "inactive") {
+                        liveScoreUpdate.active = false;
+                        setLiveUpdateStatus("", "", true);
+                        return;
+                    }
+                    if (["delayed", "game-over"].includes(resolvedMode)) {
+                        nextDelay = LIVE_SCORE_DELAYED_POLL_MS;
+                        setLiveUpdateStatus(
+                            resolvedMode === "game-over"
+                                ? "試合終了処理中・Final待ち"
+                                : "試合中断中・30秒間隔で確認",
+                            "waiting"
+                        );
+                    } else {
+                        setLiveUpdateStatus(
+                            `LIVE　自動更新中　最終確認 ${formatLiveUpdateTime()}`,
+                            "live"
+                        );
+                    }
+                } catch (error) {
+                    if (error?.name !== "AbortError") {
+                        console.error("ライブ自動更新に失敗しました。", error);
+                        setLiveUpdateStatus("LIVE　再接続待ち", "paused");
+                        nextDelay = LIVE_SCORE_DELAYED_POLL_MS;
+                    }
+                } finally {
+                    if (generation === liveScoreUpdate.generation) {
+                        liveScoreUpdate.isUpdating = false;
+                        liveScoreUpdate.controller = null;
+                        scheduleLiveScoreUpdate(nextDelay);
+                    }
+                }
+            }
+
+            const startLiveScoreUpdates = () => {
+                if (!liveScoreUpdate.eligible || !state.gamePk || !state.gameData ||
+                    document.hidden || !isScorebookViewVisible()) return;
+                const mode = getLiveScoreMode(state.gameData);
+                if (mode === "final") {
+                    setLiveUpdateStatus("試合終了・最終データ取得済み", "final");
+                    return;
+                }
+                if (mode === "postponed") {
+                    setLiveUpdateStatus("試合延期・自動更新なし", "paused");
+                    return;
+                }
+                if (mode === "suspended") {
+                    setLiveUpdateStatus("試合中断・自動更新停止", "paused");
+                    return;
+                }
+                if (mode === "inactive") {
+                    setLiveUpdateStatus("", "", true);
+                    return;
+                }
+                if (liveScoreUpdate.active) return;
+                liveScoreUpdate.active = true;
+                liveScoreUpdate.wasLive = true;
+                liveScoreUpdate.generation += 1;
+                liveScoreUpdate.lastTimestamp = getFeedTimestamp(state.gameData);
+                liveScoreUpdate.lastAtBatIndex = getCurrentAtBatIndex(
+                    state.gameData?.liveData?.plays?.currentPlay
+                );
+                liveScoreUpdate.lastFullSyncAt = Date.now();
+                const delay = ["delayed", "game-over"].includes(mode)
+                    ? LIVE_SCORE_DELAYED_POLL_MS
+                    : LIVE_SCORE_POLL_MS;
+                setLiveUpdateStatus(
+                    mode === "game-over"
+                        ? "試合終了処理中・Final待ち"
+                        : mode === "delayed"
+                            ? "試合中断中・30秒間隔で確認"
+                            : "LIVE　自動更新中",
+                    mode === "live" ? "live" : "waiting"
+                );
+                scheduleLiveScoreUpdate(delay);
+            };
+
+            const resumeLiveScoreUpdates = async () => {
+                if (!liveScoreUpdate.eligible || !state.gamePk || !state.gameData ||
+                    document.hidden || !isScorebookViewVisible()) return;
+                const initialMode = getLiveScoreMode(state.gameData);
+                if (!["live", "delayed", "game-over"].includes(initialMode)) {
+                    startLiveScoreUpdates();
+                    return;
+                }
+                stopLiveScoreUpdates({ preserveEligibility: true });
+                const generation = liveScoreUpdate.generation;
+                liveScoreUpdate.isUpdating = true;
+                liveScoreUpdate.controller = new AbortController();
+                setLiveUpdateStatus("LIVE　全データ再同期中", "syncing");
+                try {
+                    await synchronizeFullLiveFeed("resume", generation);
+                } catch (error) {
+                    if (error?.name !== "AbortError") {
+                        console.error("ライブデータの再同期に失敗しました。", error);
+                        setLiveUpdateStatus("LIVE　再接続待ち", "paused");
+                    }
+                } finally {
+                    if (generation === liveScoreUpdate.generation) {
+                        liveScoreUpdate.isUpdating = false;
+                        liveScoreUpdate.controller = null;
+                        startLiveScoreUpdates();
+                    }
+                }
             };
 
             const fetchGameScheduleMetadata = async (gamePk) => {
@@ -8100,6 +8499,7 @@
 
             const loadGame = async () => {
                 if (isScoreLoading) return;
+                stopLiveScoreUpdates();
                 const gamePk = extractGamePk(dom.gameInput.value);
 
                 if (!gamePk) {
@@ -8166,7 +8566,14 @@
                     );
                     await waitForScorePaint();
                     completed = true;
+                    liveScoreUpdate.eligible = true;
+                    liveScoreUpdate.lastTimestamp = getFeedTimestamp(data);
+                    liveScoreUpdate.lastAtBatIndex = getCurrentAtBatIndex(
+                        data?.liveData?.plays?.currentPlay
+                    );
+                    liveScoreUpdate.lastFullSyncAt = Date.now();
                     saveAppSession({ view: "scorebook", gamePk: String(gamePk) });
+                    startLiveScoreUpdates();
                 } catch (error) {
                     console.error(error);
                     setStatus(error.message || "試合データを取得できません。", true);
@@ -8214,6 +8621,7 @@
             };
 
             const restoreSnapshot = (snapshot) => {
+                stopLiveScoreUpdates();
                 if (!snapshot?.gamePk || !snapshot?.gameData) {
                     setStatus("保存データを復元できませんでした。", true);
                     return;
@@ -8241,6 +8649,7 @@
                 updateSidebar();
                 render();
                 setStatus(`${snapshot.displayName} を保存データから読み込みました。`);
+                setLiveUpdateStatus("保存データ・自動更新なし", "paused");
             };
 
             const renderScorebookLibrary = () => {
@@ -8569,6 +8978,20 @@
             });
 
             window.addEventListener("afterprint", clearPrintFit);
+            document.addEventListener("visibilitychange", () => {
+                if (document.hidden) {
+                    const shouldResume = liveScoreUpdate.eligible &&
+                        ["live", "delayed", "game-over"].includes(
+                            getLiveScoreMode(state.gameData)
+                        );
+                    stopLiveScoreUpdates({ preserveEligibility: true });
+                    if (shouldResume) {
+                        setLiveUpdateStatus("LIVE　画面復帰まで更新停止", "paused");
+                    }
+                    return;
+                }
+                resumeLiveScoreUpdates();
+            });
             window.addEventListener("scroll", () => {
                 if (!touchScorebookQuery.matches) {
                     syncHorizontalScroll(document.scrollingElement, dom.footerScrollbar);

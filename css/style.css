@@ -951,6 +951,55 @@ body.app-mode-pregame .pregame-brand-home {
     border-top: 1px solid #3b454d;
 }
 
+.live-update-status {
+    min-height: 28px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 8px;
+    padding: 6px 8px;
+    color: #cbd5d9;
+    border: 1px solid #3f4a52;
+    background: rgba(12, 16, 19, 0.42);
+    font-size: 9px;
+    letter-spacing: 0.025em;
+}
+
+.live-update-status[hidden] {
+    display: none;
+}
+
+.live-update-status[data-state="live"]::before {
+    width: 7px;
+    height: 7px;
+    flex: 0 0 7px;
+    border-radius: 50%;
+    background: #d44848;
+    box-shadow: 0 0 0 2px rgba(212, 72, 72, 0.16);
+    content: "";
+}
+
+.live-update-status[data-state="syncing"]::before {
+    width: 7px;
+    height: 7px;
+    flex: 0 0 7px;
+    border: 1px solid #aebbc1;
+    border-top-color: transparent;
+    border-radius: 50%;
+    content: "";
+    animation: score-loading-spin 850ms linear infinite;
+}
+
+.live-update-status[data-state="paused"],
+.live-update-status[data-state="waiting"] {
+    color: #aeb9bf;
+}
+
+.live-update-status[data-state="final"] {
+    color: #c9d8cf;
+    border-color: #53685a;
+}
+
 .game-info {
     border-top: 1px solid #3c464e;
 }
