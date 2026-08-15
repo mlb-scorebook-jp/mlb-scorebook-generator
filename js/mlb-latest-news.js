@@ -2,6 +2,164 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Caglianone continues August heater with career-high 5-RBI night",
+        "summaryJa": "J.キャグリオーン（KC）、記録達成の最新情報",
+        "slug": "jac-caglianone-records-5-rbis-in-royals-win-over-angels",
+        "url": "https://www.mlb.com/news/jac-caglianone-records-5-rbis-in-royals-win-over-angels",
+        "contentDate": "2026-08-15T05:56:00Z",
+        "teamIds": [
+            118
+        ],
+        "playerIds": [
+            695506
+        ],
+        "gamePks": [
+            823993
+        ],
+        "taxonomy": [
+            "apple-news",
+            "game-recap"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Steady Schanuel ties career high with 4 RBIs in Halos' loss",
+        "summaryJa": "N.シャニュエル（LAA）、記録達成の最新情報",
+        "slug": "nolan-schanuel-records-4-rbis-in-angels-loss-to-royals",
+        "url": "https://www.mlb.com/news/nolan-schanuel-records-4-rbis-in-angels-loss-to-royals",
+        "contentDate": "2026-08-15T05:51:33.223Z",
+        "teamIds": [
+            108
+        ],
+        "playerIds": [
+            694384
+        ],
+        "gamePks": [
+            823993
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Mariners show grit in stunning loss to Astros, but time is quickly running out",
+        "summaryJa": "マリナーズを巡る注目点をMLB公式が分析",
+        "slug": "brock-rodden-collects-first-mlb-hit-in-mariners-loss-to-astros",
+        "url": "https://www.mlb.com/news/brock-rodden-collects-first-mlb-hit-in-mariners-loss-to-astros",
+        "contentDate": "2026-08-15T05:46:28.839Z",
+        "teamIds": [
+            136
+        ],
+        "playerIds": [],
+        "gamePks": [
+            824159
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "'Electric' Mateo joins Rays' infield mix; Williams optioned to Triple-A",
+        "summaryJa": "C.ウィリアムズ（TB）の移籍・契約に関する最新情報",
+        "slug": "rays-sign-veteran-jorge-mateo",
+        "url": "https://www.mlb.com/news/rays-sign-veteran-jorge-mateo",
+        "contentDate": "2026-08-15T05:37:00Z",
+        "teamIds": [
+            139
+        ],
+        "playerIds": [
+            700246,
+            622761
+        ],
+        "gamePks": [
+            822942
+        ],
+        "taxonomy": [
+            "apple-news",
+            "transactions"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "First walk-off knock! 2026's No. 6 pick delivers in clutch at High-A",
+        "summaryJa": "Zion Rose（KC）、サヨナラ勝利の主役に",
+        "slug": "royals-prospect-zion-rose-first-walk-off-hit",
+        "url": "https://www.mlb.com/news/royals-prospect-zion-rose-first-walk-off-hit",
+        "contentDate": "2026-08-15T05:34:00Z",
+        "teamIds": [
+            118
+        ],
+        "playerIds": [
+            805799
+        ],
+        "gamePks": [
+            823993
+        ],
+        "taxonomy": [
+            "apple-news",
+            "mlb-top-prospects"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Christian Walk(off)! Astros slugger's winning blast caps 5-run 10th in wild win",
+        "summaryJa": "C.ウォーカー（HOU）、記録達成の最新情報",
+        "slug": "christian-walker-hits-walk-off-home-run-in-astros-win-over-mariners",
+        "url": "https://www.mlb.com/news/christian-walker-hits-walk-off-home-run-in-astros-win-over-mariners",
+        "contentDate": "2026-08-15T05:32:00Z",
+        "teamIds": [
+            117
+        ],
+        "playerIds": [
+            572233
+        ],
+        "gamePks": [
+            824159
+        ],
+        "taxonomy": [
+            "apple-news",
+            "walk-off-hr",
+            "game-recap",
+            "walk-off"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Latest D-backs injuries & transactions",
+        "summaryJa": "ダイヤモンドバックスの負傷状況をMLB公式が詳報",
+        "slug": "d-backs-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/d-backs-injuries-and-roster-moves",
+        "contentDate": "2026-08-15T04:59:00Z",
+        "teamIds": [
+            109
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "McNeil stops just short of cycle as A's begin to play spoiler",
         "summaryJa": "J.マクニール（ATH）の最新動向をMLB公式が詳報",
         "slug": "jeff-mcneil-s-four-hits-lead-a-s-past-rangers",
@@ -43,7 +201,8 @@
         "taxonomy": [
             "apple-news",
             "game-recap",
-            "mlb-top-prospects"
+            "mlb-top-prospects",
+            "style"
         ],
         "sourceScopes": [
             "MLB",
@@ -67,7 +226,8 @@
         ],
         "taxonomy": [
             "apple-news",
-            "game-recap"
+            "game-recap",
+            "payoff-pitch"
         ],
         "sourceScopes": [
             "MLB",
@@ -207,29 +367,6 @@
         ]
     },
     {
-        "headline": "Caglianone continues August heater with career-high 5-RBI night",
-        "summaryJa": "J.キャグリオーン（KC）、記録達成の最新情報",
-        "slug": "jac-caglianone-records-5-rbis-in-royals-win-over-angels",
-        "url": "https://www.mlb.com/news/jac-caglianone-records-5-rbis-in-royals-win-over-angels",
-        "contentDate": "2026-08-15T04:33:01.146Z",
-        "teamIds": [
-            118
-        ],
-        "playerIds": [
-            695506
-        ],
-        "gamePks": [
-            823993
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Padres win 6th straight behind new (temporary) closer",
         "summaryJa": "B.ロドリゲス（SD）、記録達成の最新情報",
         "slug": "luis-campusano-padres-beat-guardians-series-opener",
@@ -295,6 +432,31 @@
         ],
         "taxonomy": [
             "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "White Sox place Martin (blister) on IL; Urquidy gets call to Chicago",
+        "summaryJa": "D.マーティン（CWS）の最新動向をMLB公式が詳報",
+        "slug": "davis-martin-to-il-with-blister-jose-urquidy-joins-white-sox",
+        "url": "https://www.mlb.com/news/davis-martin-to-il-with-blister-jose-urquidy-joins-white-sox",
+        "contentDate": "2026-08-15T04:10:00Z",
+        "teamIds": [
+            145
+        ],
+        "playerIds": [
+            663436,
+            664353
+        ],
+        "gamePks": [
+            824237
+        ],
+        "taxonomy": [
+            "apple-news",
+            "injury",
+            "transactions"
         ],
         "sourceScopes": [
             "球団公式"
@@ -373,7 +535,7 @@
         ]
     },
     {
-        "headline": "The ‘right-handed Schwarber'? Alonso records 2 hits in 1st game batting leadoff",
+        "headline": "The 'right-handed Schwarber'? Alonso records 2 hits in 1st game batting leadoff",
         "summaryJa": "P.アロンゾ（BAL）、記録達成の最新情報",
         "slug": "pete-alonso-hits-leadoff-for-first-time-in-mlb-career",
         "url": "https://www.mlb.com/news/pete-alonso-hits-leadoff-for-first-time-in-mlb-career",
@@ -391,32 +553,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Christian Walk(off)! Astros slugger's winning blast caps 5-run 10th in wild win",
-        "summaryJa": "C.ウォーカー（HOU）、記録達成の最新情報",
-        "slug": "christian-walker-hits-walk-off-home-run-in-astros-win-over-mariners",
-        "url": "https://www.mlb.com/news/christian-walker-hits-walk-off-home-run-in-astros-win-over-mariners",
-        "contentDate": "2026-08-15T03:53:09.486Z",
-        "teamIds": [
-            117
-        ],
-        "playerIds": [
-            572233
-        ],
-        "gamePks": [
-            824159
-        ],
-        "taxonomy": [
-            "apple-news",
-            "walk-off-hr",
-            "game-recap",
-            "walk-off"
-        ],
-        "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -539,6 +675,7 @@
             "game-recap"
         ],
         "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
@@ -1343,26 +1480,6 @@
         ]
     },
     {
-        "headline": "Latest D-backs injuries & transactions",
-        "summaryJa": "ダイヤモンドバックスの負傷状況をMLB公式が詳報",
-        "slug": "d-backs-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/d-backs-injuries-and-roster-moves",
-        "contentDate": "2026-08-15T00:12:00Z",
-        "teamIds": [
-            109
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Latest Angels injuries & transactions",
         "summaryJa": "エンゼルスの負傷状況をMLB公式が詳報",
         "slug": "angels-injuries-and-roster-moves",
@@ -1520,7 +1637,7 @@
         ]
     },
     {
-        "headline": "Ramírez out of starting lineup as Guardians mind hamate recovery",
+        "headline": "J-Ram out of lineup for opener vs. Padres as Guardians mind hamate recovery",
         "summaryJa": "J.ラミレス（CLE）の最新動向をMLB公式が詳報",
         "slug": "jose-ramirez-out-of-guardians-starting-lineup-vs-padres",
         "url": "https://www.mlb.com/news/jose-ramirez-out-of-guardians-starting-lineup-vs-padres",
@@ -1577,31 +1694,6 @@
             "injury",
             "transactions",
             "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "White Sox place Martin (blister) on IL; Urquidy gets call to Chicago",
-        "summaryJa": "D.マーティン（CWS）の最新動向をMLB公式が詳報",
-        "slug": "davis-martin-to-il-with-blister-jose-urquidy-joins-white-sox",
-        "url": "https://www.mlb.com/news/davis-martin-to-il-with-blister-jose-urquidy-joins-white-sox",
-        "contentDate": "2026-08-14T22:39:00Z",
-        "teamIds": [
-            145
-        ],
-        "playerIds": [
-            663436,
-            664353
-        ],
-        "gamePks": [
-            824237
-        ],
-        "taxonomy": [
-            "apple-news",
-            "injury",
-            "transactions"
         ],
         "sourceScopes": [
             "球団公式"
@@ -1720,7 +1812,7 @@
         ]
     },
     {
-        "headline": "Suzuki powers Holmes' first win with Cubs",
+        "headline": "Key takeaways: Cubs 3, Cardinals 0",
         "summaryJa": "C.ホームズ（CHC）、勝利を呼び込む活躍",
         "slug": "clay-holmes-seiya-suzuki-lead-cubs-win-vs-cardinals",
         "url": "https://www.mlb.com/news/clay-holmes-seiya-suzuki-lead-cubs-win-vs-cardinals",
@@ -1739,31 +1831,6 @@
             "apple-news",
             "takeaways",
             "rivalry"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "'Electric' Mateo joins Rays' infield mix; Williams optioned to Triple-A",
-        "summaryJa": "C.ウィリアムズ（TB）の移籍・契約に関する最新情報",
-        "slug": "rays-sign-veteran-jorge-mateo",
-        "url": "https://www.mlb.com/news/rays-sign-veteran-jorge-mateo",
-        "contentDate": "2026-08-14T21:50:00Z",
-        "teamIds": [
-            139
-        ],
-        "playerIds": [
-            700246,
-            622761
-        ],
-        "gamePks": [
-            822942
-        ],
-        "taxonomy": [
-            "apple-news",
-            "transactions"
         ],
         "sourceScopes": [
             "球団公式"
@@ -9550,48 +9617,6 @@
         ],
         "gamePks": [
             823188
-        ],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "'Feels like MLB: The Show': Cameron's video-game-like streak continues",
-        "summaryJa": "N.キャメロン（KC）を巡る注目点をMLB公式が分析",
-        "slug": "noah-cameron-on-recent-hot-streak-for-royals",
-        "url": "https://www.mlb.com/news/noah-cameron-on-recent-hot-streak-for-royals",
-        "contentDate": "2026-08-08T15:54:25.726Z",
-        "teamIds": [
-            118
-        ],
-        "playerIds": [
-            702070
-        ],
-        "gamePks": [
-            824081
-        ],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Still got it! Mariners legends take center stage at Alumni Derby, Romero takes title",
-        "summaryJa": "マリナーズ、勝利を呼び込む活躍",
-        "slug": "stefen-romero-wins-mariners-alumni-home-run-derby",
-        "url": "https://www.mlb.com/news/stefen-romero-wins-mariners-alumni-home-run-derby",
-        "contentDate": "2026-08-08T07:29:22.523Z",
-        "teamIds": [
-            136
-        ],
-        "playerIds": [],
-        "gamePks": [
-            823103
         ],
         "taxonomy": [
             "apple-news"
