@@ -2,6 +2,223 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Veen makes another splash as Rockies win 3rd straight",
+        "summaryJa": "Z.ビーン（COL）、記録達成の最新情報",
+        "slug": "zac-veen-homers-into-mccovey-cove-in-rockies-win-over-giants",
+        "url": "https://www.mlb.com/news/zac-veen-homers-into-mccovey-cove-in-rockies-win-over-giants",
+        "contentDate": "2026-08-15T06:58:00Z",
+        "teamIds": [
+            115
+        ],
+        "playerIds": [
+            691728
+        ],
+        "gamePks": [
+            823185
+        ],
+        "taxonomy": [
+            "apple-news",
+            "game-recap",
+            "mlb-top-prospects",
+            "style"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Ohtani throws off mound; Smith, Rushing take batting practice",
+        "summaryJa": "大谷 翔平（LAD）の負傷状況をMLB公式が詳報",
+        "slug": "shohei-ohtani-will-smith-dalton-rushing-injury-updates",
+        "url": "https://www.mlb.com/news/shohei-ohtani-will-smith-dalton-rushing-injury-updates",
+        "contentDate": "2026-08-15T06:53:00Z",
+        "teamIds": [
+            119
+        ],
+        "playerIds": [
+            660271,
+            687221,
+            669257
+        ],
+        "gamePks": [
+            823913
+        ],
+        "taxonomy": [
+            "apple-news",
+            "rehab",
+            "injury"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Murphy running out of answers for how to get Yelich, Contreras out of their funks",
+        "summaryJa": "R.ギャサー（MIL）を巡る注目点をMLB公式が分析",
+        "slug": "christian-yelich-and-william-contreras-continue-to-struggle-at-the-plate",
+        "url": "https://www.mlb.com/news/christian-yelich-and-william-contreras-continue-to-struggle-at-the-plate",
+        "contentDate": "2026-08-15T06:47:25.708Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [
+            688107,
+            661388,
+            592885
+        ],
+        "gamePks": [
+            823913
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Yamamoto dominates through 6, then Díaz gets redemption with a save",
+        "summaryJa": "山本 由伸（LAD）の最新動向をMLB公式が詳報",
+        "slug": "yoshinobu-yamamoto-throws-6-innings-of-1-run-ball-vs-brewers",
+        "url": "https://www.mlb.com/news/yoshinobu-yamamoto-throws-6-innings-of-1-run-ball-vs-brewers",
+        "contentDate": "2026-08-15T06:35:00Z",
+        "teamIds": [
+            119
+        ],
+        "playerIds": [
+            808967,
+            621242
+        ],
+        "gamePks": [
+            823913
+        ],
+        "taxonomy": [
+            "apple-news",
+            "game-recap",
+            "payoff-pitch"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Giants call up hot-hitting OF Hill from Triple-A",
+        "summaryJa": "Turner Hill（SF）、メジャー昇格・初出場に関する最新情報",
+        "slug": "turner-hill-called-up-by-giants",
+        "url": "https://www.mlb.com/news/turner-hill-called-up-by-giants",
+        "contentDate": "2026-08-15T06:35:00Z",
+        "teamIds": [
+            137
+        ],
+        "playerIds": [
+            806367
+        ],
+        "gamePks": [
+            823185
+        ],
+        "taxonomy": [
+            "apple-news",
+            "transactions"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "McNeil stops just short of cycle as A's begin to play spoiler",
+        "summaryJa": "J.マクニール（ATH）の最新動向をMLB公式が詳報",
+        "slug": "jeff-mcneil-s-four-hits-lead-a-s-past-rangers",
+        "url": "https://www.mlb.com/news/jeff-mcneil-s-four-hits-lead-a-s-past-rangers",
+        "contentDate": "2026-08-15T06:24:00Z",
+        "teamIds": [
+            133
+        ],
+        "playerIds": [
+            643446
+        ],
+        "gamePks": [
+            824968
+        ],
+        "taxonomy": [
+            "apple-news",
+            "game-recap"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Burger delivers clutch HR, but reeling Rangers can't 'stop the bleeding'",
+        "summaryJa": "J.バーガー（TEX）、本塁打で存在感",
+        "slug": "jake-burger-hits-3-run-home-run-in-rangers-loss-to-a-s",
+        "url": "https://www.mlb.com/news/jake-burger-hits-3-run-home-run-in-rangers-loss-to-a-s",
+        "contentDate": "2026-08-15T06:17:27.208Z",
+        "teamIds": [
+            140
+        ],
+        "playerIds": [
+            669394
+        ],
+        "gamePks": [
+            824968
+        ],
+        "taxonomy": [
+            "apple-news",
+            "long-home-runs"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Latest Athletics injuries and transactions",
+        "summaryJa": "アスレチックスの負傷状況をMLB公式が詳報",
+        "slug": "athletics-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/athletics-injuries-and-roster-moves",
+        "contentDate": "2026-08-15T06:17:00Z",
+        "teamIds": [
+            133
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "apple-news",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Wilson day to day with left hand contusion after HBP",
+        "summaryJa": "J.ウィルソン（ATH）の負傷状況をMLB公式が詳報",
+        "slug": "jacob-wilson-exits-with-hand-injury-vs-rangers",
+        "url": "https://www.mlb.com/news/jacob-wilson-exits-with-hand-injury-vs-rangers",
+        "contentDate": "2026-08-15T06:07:00Z",
+        "teamIds": [
+            133
+        ],
+        "playerIds": [
+            805779
+        ],
+        "gamePks": [
+            824968
+        ],
+        "taxonomy": [
+            "apple-news",
+            "injury"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Caglianone continues August heater with career-high 5-RBI night",
         "summaryJa": "J.キャグリオーン（KC）、記録達成の最新情報",
         "slug": "jac-caglianone-records-5-rbis-in-royals-win-over-angels",
@@ -156,81 +373,6 @@
             "exclude-from-personalization"
         ],
         "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "McNeil stops just short of cycle as A's begin to play spoiler",
-        "summaryJa": "J.マクニール（ATH）の最新動向をMLB公式が詳報",
-        "slug": "jeff-mcneil-s-four-hits-lead-a-s-past-rangers",
-        "url": "https://www.mlb.com/news/jeff-mcneil-s-four-hits-lead-a-s-past-rangers",
-        "contentDate": "2026-08-15T04:54:38.203Z",
-        "teamIds": [
-            133
-        ],
-        "playerIds": [
-            643446
-        ],
-        "gamePks": [
-            824968
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Veen makes another splash as Rockies win 3rd straight",
-        "summaryJa": "Z.ビーン（COL）、記録達成の最新情報",
-        "slug": "zac-veen-homers-into-mccovey-cove-in-rockies-win-over-giants",
-        "url": "https://www.mlb.com/news/zac-veen-homers-into-mccovey-cove-in-rockies-win-over-giants",
-        "contentDate": "2026-08-15T04:54:33.184Z",
-        "teamIds": [
-            115
-        ],
-        "playerIds": [
-            691728
-        ],
-        "gamePks": [
-            823185
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap",
-            "mlb-top-prospects",
-            "style"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Yamamoto continues dominance vs. Brewers and bullpen locks down the win",
-        "summaryJa": "山本 由伸（LAD）、勝利を呼び込む活躍",
-        "slug": "yoshinobu-yamamoto-throws-6-innings-of-1-run-ball-vs-brewers",
-        "url": "https://www.mlb.com/news/yoshinobu-yamamoto-throws-6-innings-of-1-run-ball-vs-brewers",
-        "contentDate": "2026-08-15T04:50:00Z",
-        "teamIds": [
-            119
-        ],
-        "playerIds": [
-            808967
-        ],
-        "gamePks": [
-            823913
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap",
-            "payoff-pitch"
-        ],
-        "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -459,33 +601,6 @@
             "transactions"
         ],
         "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Ohtani throws off mound; Smith, Rushing take batting practice",
-        "summaryJa": "大谷 翔平（LAD）の負傷状況をMLB公式が詳報",
-        "slug": "shohei-ohtani-will-smith-dalton-rushing-injury-updates",
-        "url": "https://www.mlb.com/news/shohei-ohtani-will-smith-dalton-rushing-injury-updates",
-        "contentDate": "2026-08-15T04:06:00Z",
-        "teamIds": [
-            119
-        ],
-        "playerIds": [
-            660271,
-            687221,
-            669257
-        ],
-        "gamePks": [
-            823913
-        ],
-        "taxonomy": [
-            "apple-news",
-            "rehab",
-            "injury"
-        ],
-        "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -788,29 +903,6 @@
         ],
         "sourceScopes": [
             "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Wilson exits with left hand contusion after being hit by pitch",
-        "summaryJa": "J.ウィルソン（ATH）の負傷状況をMLB公式が詳報",
-        "slug": "jacob-wilson-exits-with-hand-injury-vs-rangers",
-        "url": "https://www.mlb.com/news/jacob-wilson-exits-with-hand-injury-vs-rangers",
-        "contentDate": "2026-08-15T03:11:19.599Z",
-        "teamIds": [
-            133
-        ],
-        "playerIds": [
-            805779
-        ],
-        "gamePks": [
-            824968
-        ],
-        "taxonomy": [
-            "apple-news",
-            "injury"
-        ],
-        "sourceScopes": [
             "球団公式"
         ]
     },
@@ -1199,29 +1291,6 @@
         ]
     },
     {
-        "headline": "Giants call up hot-hitting OF Hill from Triple-A",
-        "summaryJa": "Turner Hill（SF）、メジャー昇格・初出場に関する最新情報",
-        "slug": "turner-hill-called-up-by-giants",
-        "url": "https://www.mlb.com/news/turner-hill-called-up-by-giants",
-        "contentDate": "2026-08-15T01:52:00Z",
-        "teamIds": [
-            137
-        ],
-        "playerIds": [
-            806367
-        ],
-        "gamePks": [
-            823185
-        ],
-        "taxonomy": [
-            "apple-news",
-            "transactions"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "For 1st time since 2022, SS Abrams to play 2B in coming days for Nats",
         "summaryJa": "C.エイブラムズ（WSH）、記録達成の最新情報",
         "slug": "cj-abrams-to-move-to-second-base-for-nationals",
@@ -1284,7 +1353,6 @@
             "transactions"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1493,27 +1561,6 @@
         "taxonomy": [
             "injury",
             "transactions",
-            "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Latest Athletics injuries and transactions",
-        "summaryJa": "アスレチックスの負傷状況をMLB公式が詳報",
-        "slug": "athletics-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/athletics-injuries-and-roster-moves",
-        "contentDate": "2026-08-14T23:44:00Z",
-        "teamIds": [
-            133
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "apple-news",
             "exclude-from-personalization"
         ],
         "sourceScopes": [
@@ -8432,30 +8479,6 @@
         ]
     },
     {
-        "headline": "Miz blazes his way to 200 K's faster than all but one pitcher in MLB history",
-        "summaryJa": "J.ミザロウスキー（MIL）、MLB史上2番目の速さでシーズン200奪三振に到達",
-        "slug": "jacob-misiorowski-notches-200th-strikeout-of-season-vs-twins",
-        "url": "https://www.mlb.com/news/jacob-misiorowski-notches-200th-strikeout-of-season-vs-twins",
-        "contentDate": "2026-08-10T00:02:00Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [
-            694819
-        ],
-        "gamePks": [
-            823751
-        ],
-        "taxonomy": [
-            "apple-news",
-            "key-moments",
-            "game-recap"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Reflective Wetherholt lifts Cards with clutch game-winning double",
         "summaryJa": "J.ウェザーホルト（STL）、8回の決勝二塁打でカージナルスを勝利へ",
         "slug": "jj-wetherholt-gets-game-winning-hit-vs-rockies",
@@ -10486,29 +10509,6 @@
         ]
     },
     {
-        "headline": "Bradford blanks Giants during 1st big league outing in nearly 2 years",
-        "summaryJa": "C.ブラッドフォード（TEX）、記録達成の最新情報",
-        "slug": "cody-bradford-scoreless-start-rangers-giants",
-        "url": "https://www.mlb.com/news/cody-bradford-scoreless-start-rangers-giants",
-        "contentDate": "2026-08-05T22:28:00Z",
-        "teamIds": [
-            140
-        ],
-        "playerIds": [
-            674003
-        ],
-        "gamePks": [
-            822866
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Vodnik highlights additions as Marlins look inward for post-Deadline boost",
         "summaryJa": "マーリンズの移籍・契約に関する最新情報",
         "slug": "victor-vodnik-highlights-marlins-trade-deadline-additions",
@@ -10674,6 +10674,23 @@
         "playerIds": [],
         "gamePks": [],
         "taxonomy": [],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "In a David vs. Goliath matchup, they turned to the greatest trick play ever executed",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "the-greatest-trick-play-in-baseball-history",
+        "url": "https://www.mlb.com/news/the-greatest-trick-play-in-baseball-history",
+        "contentDate": "2026-06-17T21:42:40.412Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "50-stories-50-states",
+            "apple-news"
+        ],
         "sourceScopes": [
             "MLB"
         ]
