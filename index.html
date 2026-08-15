@@ -5932,10 +5932,10 @@
                 const tbody = document.createElement("tbody");
                 const rowCount = Math.max(
                     4,
-                    Math.min(8, state.away.pitchers.length),
-                    Math.min(8, state.home.pitchers.length)
+                    state.away.pitchers.length,
+                    state.home.pitchers.length
                 );
-                const pitchers = state[side].pitchers.slice(0, rowCount);
+                const pitchers = state[side].pitchers.slice();
                 while (pitchers.length < rowCount) pitchers.push(null);
 
                 pitchers.forEach((pitcher) => {
