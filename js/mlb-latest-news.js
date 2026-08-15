@@ -2,6 +2,91 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Updated Braves' Top 30 Prospects list features new No. 1",
+        "summaryJa": "Eric Hartman（ATL）ら注目選手の最新動向",
+        "slug": "braves-top-30-prospects-2026-midseason-update",
+        "url": "https://www.mlb.com/news/braves-top-30-prospects-2026-midseason-update",
+        "contentDate": "2026-08-15T15:12:28.461Z",
+        "teamIds": [
+            144
+        ],
+        "playerIds": [
+            807080
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "mlb-top-prospects",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "2026 Draftee Lavey's 1st pro hit goes ... over the fence!",
+        "summaryJa": "Robbie Lavey（SD）、記録達成の最新情報",
+        "slug": "padres-2026-draftee-robbie-lavey-slugs-home-run-for-1st-professional-hit",
+        "url": "https://www.mlb.com/news/padres-2026-draftee-robbie-lavey-slugs-home-run-for-1st-professional-hit",
+        "contentDate": "2026-08-15T15:10:22.908Z",
+        "teamIds": [
+            135
+        ],
+        "playerIds": [
+            835215
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "mlb-top-prospects"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "New additions turn Giants' farm into one of the deepest in MLB",
+        "summaryJa": "ジャイアンツら注目選手の最新動向",
+        "slug": "giants-top-30-prospects-2026-midseason-update",
+        "url": "https://www.mlb.com/news/giants-top-30-prospects-2026-midseason-update",
+        "contentDate": "2026-08-15T15:06:07.621Z",
+        "teamIds": [
+            137
+        ],
+        "playerIds": [],
+        "gamePks": [
+            823184
+        ],
+        "taxonomy": [
+            "apple-news",
+            "mlb-top-prospects"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Eyanson, Witherspoon combine for 16 K's to continue strong start in O's organization",
+        "summaryJa": "Anthony Eyanson（BAL）、マウンドで好投",
+        "slug": "anthony-eyanson-kyson-witherspoon-combine-for-16-strikeouts",
+        "url": "https://www.mlb.com/news/anthony-eyanson-kyson-witherspoon-combine-for-16-strikeouts",
+        "contentDate": "2026-08-15T14:00:25.35Z",
+        "teamIds": [
+            110
+        ],
+        "playerIds": [
+            809254,
+            804817
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "mlb-top-prospects"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Cardinals call up No. 3 prospect Báez, slugger to debut at Wrigley",
         "summaryJa": "J.バイエズ（STL）、メジャー昇格・初出場に関する最新情報",
         "slug": "joshua-baez-being-called-up-saturday-to-make-mlb-debut",
@@ -8230,29 +8315,6 @@
         ]
     },
     {
-        "headline": "Newest Padre Hays delivers with home run in first at-bat",
-        "summaryJa": "A.ヘイズ（SD）、トレード期限後にパドレスと契約",
-        "slug": "austin-hays-padres-contract",
-        "url": "https://www.mlb.com/news/austin-hays-padres-contract",
-        "contentDate": "2026-08-10T04:20:00Z",
-        "teamIds": [
-            135
-        ],
-        "playerIds": [
-            669720
-        ],
-        "gamePks": [
-            823268
-        ],
-        "taxonomy": [
-            "apple-news",
-            "transactions"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Stars come out to help lead Padres to series win over Astros",
         "summaryJa": "F.タティース Jr.（SD）、勝利を呼び込む活躍",
         "slug": "padres-hit-4-home-runs-to-take-series-from-astros",
@@ -9543,28 +9605,6 @@
         ]
     },
     {
-        "headline": "Weiss tossed after Sale gets called for run-scoring balk",
-        "summaryJa": "C.セール（ATL）の失点につながるボーク判定でW.ワイス監督が退場",
-        "slug": "walt-weiss-ejected-after-run-scoring-balk-on-chris-sale",
-        "url": "https://www.mlb.com/news/walt-weiss-ejected-after-run-scoring-balk-on-chris-sale",
-        "contentDate": "2026-08-09T00:04:00Z",
-        "teamIds": [
-            144
-        ],
-        "playerIds": [
-            519242
-        ],
-        "gamePks": [
-            823514
-        ],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Jump K's career-high 11 as A's halt 9-game skid, stump scorching Red Sox",
         "summaryJa": "G.ジャンプ（ATH）、勝利を呼び込む活躍",
         "slug": "gage-jump-strikes-out-career-high-11-as-a-s-beat-red-sox",
@@ -10045,30 +10085,6 @@
         ]
     },
     {
-        "headline": "Bassitt tosses 6 scoreless innings in third rehab start",
-        "summaryJa": "C.バシット（BAL）、復帰へ向けた最新状況",
-        "slug": "chris-bassitt-makes-second-triple-a-rehab-start",
-        "url": "https://www.mlb.com/news/chris-bassitt-makes-second-triple-a-rehab-start",
-        "contentDate": "2026-08-08T00:33:00Z",
-        "teamIds": [
-            110
-        ],
-        "playerIds": [
-            605135
-        ],
-        "gamePks": [
-            824807
-        ],
-        "taxonomy": [
-            "apple-news",
-            "injury",
-            "rehab"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Last in bigs in 2024, Jordan Montgomery comes off IL to join Rangers",
         "summaryJa": "J.モンゴメリー（TEX）の最新動向をMLB公式が詳報",
         "slug": "jordan-montgomery-comes-off-il-joins-rangers",
@@ -10374,24 +10390,6 @@
         "taxonomy": [
             "apple-news",
             "game-recap"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Iconic Giants voice Mike Krukow announces retirement at end of season",
-        "summaryJa": "ジャイアンツの最新動向をMLB公式が詳報",
-        "slug": "mike-krukow-announces-retirement-at-end-of-2026-season",
-        "url": "https://www.mlb.com/news/mike-krukow-announces-retirement-at-end-of-2026-season",
-        "contentDate": "2026-08-06T18:00:00Z",
-        "teamIds": [
-            137
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
