@@ -2,6 +2,31 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Cards No. 3 prospect Báez debuting vs. rival Cubs",
+        "summaryJa": "J.バイエズ（STL）、メジャー昇格・初出場に関する最新情報",
+        "slug": "joshua-baez-mlb-debut",
+        "url": "https://www.mlb.com/news/joshua-baez-mlb-debut",
+        "contentDate": "2026-08-15T17:54:08.232Z",
+        "teamIds": [
+            138
+        ],
+        "playerIds": [
+            695491
+        ],
+        "gamePks": [
+            824644
+        ],
+        "taxonomy": [
+            "apple-news",
+            "mlb-top-prospects",
+            "mlb-debut"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "After historic 3-homer game, Whitmore hits 2 more dingers ... and pitches!",
         "summaryJa": "Kelsie Whitmore、本塁打で存在感",
         "slug": "wpbl-star-kelsie-whitmore-hits-2-home-runs-pitches-in-win",
@@ -2597,7 +2622,6 @@
             "field-of-dreams"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -9676,29 +9700,6 @@
         ],
         "taxonomy": [
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Cardinals add Pereira to outfield mix; Velázquez designated for assignment",
-        "summaryJa": "E.ペレーラ（STL）の移籍・契約に関する最新情報",
-        "slug": "cardinals-add-everson-pereira-to-outfield-mix",
-        "url": "https://www.mlb.com/news/cardinals-add-everson-pereira-to-outfield-mix",
-        "contentDate": "2026-08-08T22:18:05.519Z",
-        "teamIds": [
-            138
-        ],
-        "playerIds": [
-            677592
-        ],
-        "gamePks": [
-            823021
-        ],
-        "taxonomy": [
-            "apple-news",
-            "transactions"
         ],
         "sourceScopes": [
             "球団公式"
