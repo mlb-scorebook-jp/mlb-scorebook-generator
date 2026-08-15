@@ -2,6 +2,55 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "After long journey through injuries in Minors, Tiedemann called up to make MLB debut",
+        "summaryJa": "R.ティードマン（TOR）の負傷状況をMLB公式が詳報",
+        "slug": "ricky-tiedemann-call-up-blue-jays",
+        "url": "https://www.mlb.com/news/ricky-tiedemann-call-up-blue-jays",
+        "contentDate": "2026-08-15T19:51:00Z",
+        "teamIds": [
+            141
+        ],
+        "playerIds": [
+            694357
+        ],
+        "gamePks": [
+            822775
+        ],
+        "taxonomy": [
+            "transactions",
+            "mlb-top-prospects",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "After 'crazy few weeks,' Rogers back where it all began for 4th team debut of '26",
+        "summaryJa": "J.ロジャース（DET）、メジャー昇格・初出場に関する最新情報",
+        "slug": "jake-rogers-white-sox-debut-comerica-park-tigers",
+        "url": "https://www.mlb.com/news/jake-rogers-white-sox-debut-comerica-park-tigers",
+        "contentDate": "2026-08-15T19:50:00Z",
+        "teamIds": [
+            116,
+            145
+        ],
+        "playerIds": [
+            668670
+        ],
+        "gamePks": [
+            824239
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "2-for-2! Báez homers twice in debut, including on first pitch he sees",
         "summaryJa": "J.バイエズ（STL）、メジャー昇格・初出場に関する最新情報",
         "slug": "joshua-baez-mlb-debut",
@@ -200,31 +249,6 @@
         ]
     },
     {
-        "headline": "After long journey through injuries in Minors, Tiedemann called up to make MLB debut",
-        "summaryJa": "R.ティードマン（TOR）の負傷状況をMLB公式が詳報",
-        "slug": "ricky-tiedemann-call-up-blue-jays",
-        "url": "https://www.mlb.com/news/ricky-tiedemann-call-up-blue-jays",
-        "contentDate": "2026-08-15T18:14:00Z",
-        "teamIds": [
-            141
-        ],
-        "playerIds": [
-            694357
-        ],
-        "gamePks": [
-            822775
-        ],
-        "taxonomy": [
-            "transactions",
-            "mlb-top-prospects",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Latest Cardinals injuries & transactions",
         "summaryJa": "カージナルスの負傷状況をMLB公式が詳報",
         "slug": "cardinals-injuries-and-roster-moves",
@@ -309,30 +333,6 @@
         ],
         "sourceScopes": [
             "MLB"
-        ]
-    },
-    {
-        "headline": "After 'crazy few weeks,' Rogers back where it all began for 4th team debut of '26",
-        "summaryJa": "J.ロジャース（DET）、メジャー昇格・初出場に関する最新情報",
-        "slug": "jake-rogers-white-sox-debut-comerica-park-tigers",
-        "url": "https://www.mlb.com/news/jake-rogers-white-sox-debut-comerica-park-tigers",
-        "contentDate": "2026-08-15T17:19:44.525Z",
-        "teamIds": [
-            116,
-            145
-        ],
-        "playerIds": [
-            668670
-        ],
-        "gamePks": [
-            824239
-        ],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
         ]
     },
     {
