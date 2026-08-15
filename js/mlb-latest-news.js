@@ -2,6 +2,138 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Schlittler works around traffic to deliver effective 5 1/3-inning start",
+        "summaryJa": "C.シュリットラー（NYY）の最新動向をMLB公式が詳報",
+        "slug": "cam-schlittler-pitches-5-1-3-innings-against-blue-jays",
+        "url": "https://www.mlb.com/news/cam-schlittler-pitches-5-1-3-innings-against-blue-jays",
+        "contentDate": "2026-08-15T21:52:00Z",
+        "teamIds": [
+            147
+        ],
+        "playerIds": [
+            693645
+        ],
+        "gamePks": [
+            822775
+        ],
+        "taxonomy": [
+            "apple-news",
+            "filthy-pitch",
+            "game-recap-losing"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Latest Tigers injuries and transactions",
+        "summaryJa": "タイガースの負傷状況をMLB公式が詳報",
+        "slug": "tigers-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/tigers-injuries-and-roster-moves",
+        "contentDate": "2026-08-15T21:52:00Z",
+        "teamIds": [
+            116
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Chapman looking toward 2027 after season-ending surgery",
+        "summaryJa": "M.チャップマン（SF）の最新動向をMLB公式が詳報",
+        "slug": "matt-chapman-undergoes-season-ending-surgery",
+        "url": "https://www.mlb.com/news/matt-chapman-undergoes-season-ending-surgery",
+        "contentDate": "2026-08-15T21:46:18.48Z",
+        "teamIds": [
+            137
+        ],
+        "playerIds": [
+            656305
+        ],
+        "gamePks": [
+            823184
+        ],
+        "taxonomy": [
+            "apple-news",
+            "injury"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "After 'crazy few weeks,' Rogers back where it all began for 4th team debut of '26",
+        "summaryJa": "J.ロジャース（DET）、メジャー昇格・初出場に関する最新情報",
+        "slug": "jake-rogers-white-sox-debut-comerica-park-tigers",
+        "url": "https://www.mlb.com/news/jake-rogers-white-sox-debut-comerica-park-tigers",
+        "contentDate": "2026-08-15T21:43:00Z",
+        "teamIds": [
+            116,
+            145
+        ],
+        "playerIds": [
+            668670
+        ],
+        "gamePks": [
+            824239
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Latest O's injuries & transactions",
+        "summaryJa": "オリオールズの負傷状況をMLB公式が詳報",
+        "slug": "orioles-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/orioles-injuries-and-roster-moves",
+        "contentDate": "2026-08-15T21:42:00Z",
+        "teamIds": [
+            110
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Latest Reds injuries & transactions",
+        "summaryJa": "レッズの負傷状況をMLB公式が詳報",
+        "slug": "reds-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/reds-injuries-and-roster-moves",
+        "contentDate": "2026-08-15T21:37:00Z",
+        "teamIds": [
+            113
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Latest Astros injuries & transactions",
         "summaryJa": "アストロズの負傷状況をMLB公式が詳報",
         "slug": "astros-injuries-and-roster-moves",
@@ -65,29 +197,6 @@
             "injury",
             "rehab",
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Schlittler works around traffic to deliver effective 5 1/3-inning start",
-        "summaryJa": "C.シュリットラー（NYY）の最新動向をMLB公式が詳報",
-        "slug": "cam-schlittler-pitches-5-1-3-innings-against-blue-jays",
-        "url": "https://www.mlb.com/news/cam-schlittler-pitches-5-1-3-innings-against-blue-jays",
-        "contentDate": "2026-08-15T21:13:00Z",
-        "teamIds": [
-            147
-        ],
-        "playerIds": [
-            693645
-        ],
-        "gamePks": [
-            822775
-        ],
-        "taxonomy": [
-            "apple-news",
-            "filthy-pitch"
         ],
         "sourceScopes": [
             "MLB",
@@ -271,26 +380,22 @@
         ]
     },
     {
-        "headline": "After 'crazy few weeks,' Rogers back where it all began for 4th team debut of '26",
-        "summaryJa": "J.ロジャース（DET）、メジャー昇格・初出場に関する最新情報",
-        "slug": "jake-rogers-white-sox-debut-comerica-park-tigers",
-        "url": "https://www.mlb.com/news/jake-rogers-white-sox-debut-comerica-park-tigers",
-        "contentDate": "2026-08-15T19:50:00Z",
+        "headline": "Latest Pirates injuries & transactions",
+        "summaryJa": "パイレーツの負傷状況をMLB公式が詳報",
+        "slug": "pirates-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/pirates-injuries-and-roster-moves",
+        "contentDate": "2026-08-15T19:23:00Z",
         "teamIds": [
-            116,
-            145
+            134
         ],
-        "playerIds": [
-            668670
-        ],
-        "gamePks": [
-            824239
-        ],
+        "playerIds": [],
+        "gamePks": [],
         "taxonomy": [
-            "apple-news"
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1959,26 +2064,6 @@
         ]
     },
     {
-        "headline": "Latest Pirates injuries & transactions",
-        "summaryJa": "パイレーツの負傷状況をMLB公式が詳報",
-        "slug": "pirates-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/pirates-injuries-and-roster-moves",
-        "contentDate": "2026-08-15T02:37:00Z",
-        "teamIds": [
-            134
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Latest Brewers injuries & transactions",
         "summaryJa": "ブルワーズの負傷状況をMLB公式が詳報",
         "slug": "brewers-injuries-and-roster-moves",
@@ -2086,7 +2171,6 @@
             "game-recap"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -2512,26 +2596,6 @@
         ]
     },
     {
-        "headline": "Latest O's injuries & transactions",
-        "summaryJa": "オリオールズの負傷状況をMLB公式が詳報",
-        "slug": "orioles-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/orioles-injuries-and-roster-moves",
-        "contentDate": "2026-08-14T22:14:00Z",
-        "teamIds": [
-            110
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Key takeaways: Cubs 3, Cardinals 0",
         "summaryJa": "C.ホームズ（CHC）、勝利を呼び込む活躍",
         "slug": "clay-holmes-seiya-suzuki-lead-cubs-win-vs-cardinals",
@@ -2607,46 +2671,6 @@
         "contentDate": "2026-08-14T21:35:00Z",
         "teamIds": [
             114
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Latest Reds injuries & transactions",
-        "summaryJa": "レッズの負傷状況をMLB公式が詳報",
-        "slug": "reds-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/reds-injuries-and-roster-moves",
-        "contentDate": "2026-08-14T21:12:00Z",
-        "teamIds": [
-            113
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Latest Tigers injuries and transactions",
-        "summaryJa": "タイガースの負傷状況をMLB公式が詳報",
-        "slug": "tigers-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/tigers-injuries-and-roster-moves",
-        "contentDate": "2026-08-14T21:07:00Z",
-        "teamIds": [
-            116
         ],
         "playerIds": [],
         "gamePks": [],
@@ -10142,29 +10166,6 @@
         ],
         "taxonomy": [
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Chapman (core muscle) likely to need season-ending surgery",
-        "summaryJa": "M.チャップマン（SF）の最新動向をMLB公式が詳報",
-        "slug": "matt-chapman-likely-to-have-season-ending-surgery",
-        "url": "https://www.mlb.com/news/matt-chapman-likely-to-have-season-ending-surgery",
-        "contentDate": "2026-08-08T02:13:59.76Z",
-        "teamIds": [
-            137
-        ],
-        "playerIds": [
-            656305
-        ],
-        "gamePks": [
-            823191
-        ],
-        "taxonomy": [
-            "apple-news",
-            "injury"
         ],
         "sourceScopes": [
             "球団公式"
