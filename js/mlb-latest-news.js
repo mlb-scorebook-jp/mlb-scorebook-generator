@@ -2,6 +2,32 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Can these struggling stars rebound for the stretch run?",
+        "summaryJa": "C.ラリーの最新動向をMLB公式が詳報",
+        "slug": "struggling-stars-look-to-bounce-back-late-in-2026",
+        "url": "https://www.mlb.com/news/struggling-stars-look-to-bounce-back-late-in-2026",
+        "contentDate": "2026-08-15T15:45:00Z",
+        "teamIds": [],
+        "playerIds": [
+            663728,
+            663656,
+            606466,
+            542432,
+            686613,
+            642547,
+            112116,
+            607208,
+            608369
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
         "headline": "Updated Braves' Top 30 Prospects list features new No. 1",
         "summaryJa": "Eric Hartman（ATL）ら注目選手の最新動向",
         "slug": "braves-top-30-prospects-2026-midseason-update",
@@ -643,32 +669,6 @@
             "apple-news",
             "player-tracking",
             "savant"
-        ],
-        "sourceScopes": [
-            "MLB"
-        ]
-    },
-    {
-        "headline": "Can these struggling stars rebound for the stretch run?",
-        "summaryJa": "C.ラリーの最新動向をMLB公式が詳報",
-        "slug": "struggling-stars-look-to-bounce-back-late-in-2026",
-        "url": "https://www.mlb.com/news/struggling-stars-look-to-bounce-back-late-in-2026",
-        "contentDate": "2026-08-15T04:46:00Z",
-        "teamIds": [],
-        "playerIds": [
-            663728,
-            663656,
-            606466,
-            542432,
-            686613,
-            642547,
-            112116,
-            607208,
-            608369
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
         ],
         "sourceScopes": [
             "MLB"
