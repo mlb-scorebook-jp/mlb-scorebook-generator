@@ -2,11 +2,126 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Latest Rays injuries & transactions",
+        "summaryJa": "レイズの負傷状況をMLB公式が詳報",
+        "slug": "rays-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/rays-injuries-and-roster-moves",
+        "contentDate": "2026-08-15T20:51:00Z",
+        "teamIds": [
+            139
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Misiorowski looking to bring the heat vs. Ohtani, Dodgers in NLCS rematch",
+        "summaryJa": "J.ミザロウスキー（MIL）の最新動向をMLB公式が詳報",
+        "slug": "jacob-misiorowski-faces-dodgers-for-second-time-in-career",
+        "url": "https://www.mlb.com/news/jacob-misiorowski-faces-dodgers-for-second-time-in-career",
+        "contentDate": "2026-08-15T20:45:00Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [
+            694819
+        ],
+        "gamePks": [
+            823913,
+            823914
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Brewers shuffle infield with trade for Ornelas; Bae DFA'd",
+        "summaryJa": "J.オ―ネラス（MIL）の移籍・契約に関する最新情報",
+        "slug": "jonathan-ornelas-acquired-by-brewers-via-trade",
+        "url": "https://www.mlb.com/news/jonathan-ornelas-acquired-by-brewers-via-trade",
+        "contentDate": "2026-08-15T20:13:22.672Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [
+            680716
+        ],
+        "gamePks": [
+            823914
+        ],
+        "taxonomy": [
+            "apple-news",
+            "transactions"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "History at Wrigley! Báez the first ever to homer THREE TIMES in MLB debut",
+        "summaryJa": "J.バイエズ（STL）、メジャー昇格・初出場に関する最新情報",
+        "slug": "joshua-baez-mlb-debut",
+        "url": "https://www.mlb.com/news/joshua-baez-mlb-debut",
+        "contentDate": "2026-08-15T20:08:00Z",
+        "teamIds": [
+            138
+        ],
+        "playerIds": [
+            695491
+        ],
+        "gamePks": [
+            824644
+        ],
+        "taxonomy": [
+            "apple-news",
+            "mlb-top-prospects",
+            "mlb-debut"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "White Sox win series vs. Tigers amid battle in AL Central",
+        "summaryJa": "ホワイトソックス、勝利を呼び込む活躍",
+        "slug": "white-sox-win-series-vs-al-central-rival-tigers",
+        "url": "https://www.mlb.com/news/white-sox-win-series-vs-al-central-rival-tigers",
+        "contentDate": "2026-08-15T20:04:46.753Z",
+        "teamIds": [
+            145
+        ],
+        "playerIds": [],
+        "gamePks": [
+            824239
+        ],
+        "taxonomy": [
+            "apple-news",
+            "game-recap"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "After long journey through injuries in Minors, Tiedemann called up to make MLB debut",
         "summaryJa": "R.ティードマン（TOR）の負傷状況をMLB公式が詳報",
         "slug": "ricky-tiedemann-call-up-blue-jays",
         "url": "https://www.mlb.com/news/ricky-tiedemann-call-up-blue-jays",
-        "contentDate": "2026-08-15T19:51:00Z",
+        "contentDate": "2026-08-15T20:04:00Z",
         "teamIds": [
             141
         ],
@@ -23,6 +138,23 @@
         ],
         "sourceScopes": [
             "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "LIVE: Watch top prospect Arias play at Triple-A for FREE",
+        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
+        "slug": "watch-minor-league-baseball-games-for-free-2026",
+        "url": "https://www.mlb.com/news/watch-minor-league-baseball-games-for-free-2026",
+        "contentDate": "2026-08-15T20:00:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "mlb-top-prospects",
+            "apple-news"
+        ],
+        "sourceScopes": [
             "球団公式"
         ]
     },
@@ -51,28 +183,19 @@
         ]
     },
     {
-        "headline": "2-for-2! Báez homers twice in debut, including on first pitch he sees",
-        "summaryJa": "J.バイエズ（STL）、メジャー昇格・初出場に関する最新情報",
-        "slug": "joshua-baez-mlb-debut",
-        "url": "https://www.mlb.com/news/joshua-baez-mlb-debut",
-        "contentDate": "2026-08-15T19:39:00Z",
-        "teamIds": [
-            138
-        ],
-        "playerIds": [
-            695491
-        ],
-        "gamePks": [
-            824644
-        ],
+        "headline": "Players who homered on first career pitch",
+        "summaryJa": "MLBの最新情報、記録達成の最新情報",
+        "slug": "mlb-rare-feats-home-run-on-1st-career-pitch-c265964496",
+        "url": "https://www.mlb.com/news/mlb-rare-feats-home-run-on-1st-career-pitch-c265964496",
+        "contentDate": "2026-08-15T19:21:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
         "taxonomy": [
-            "apple-news",
-            "mlb-top-prospects",
-            "mlb-debut"
+            "evergreen"
         ],
         "sourceScopes": [
-            "MLB",
-            "球団公式"
+            "MLB"
         ]
     },
     {
@@ -1484,7 +1607,6 @@
             "hot-streak"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1575,7 +1697,6 @@
             "injury"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1803,30 +1924,6 @@
         ]
     },
     {
-        "headline": "Misiorowski looking to bring the heat vs. Ohtani, Dodgers in NLCS rematch",
-        "summaryJa": "J.ミザロウスキー（MIL）の最新動向をMLB公式が詳報",
-        "slug": "jacob-misiorowski-faces-dodgers-for-second-time-in-career",
-        "url": "https://www.mlb.com/news/jacob-misiorowski-faces-dodgers-for-second-time-in-career",
-        "contentDate": "2026-08-15T02:27:51.583Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [
-            694819
-        ],
-        "gamePks": [
-            823913,
-            823914
-        ],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Boone ejected by home-plate ump after arguing strike call on García",
         "summaryJa": "A.ブーン（NYY）の最新動向をMLB公式が詳報",
         "slug": "aaron-boone-ejected-from-yankees-blue-jays",
@@ -1846,7 +1943,6 @@
             "ejection"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1936,23 +2032,6 @@
             "apple-news",
             "injury",
             "transactions"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Watch top prospect Arias play at Triple-A for FREE today",
-        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
-        "slug": "watch-minor-league-baseball-games-for-free-2026",
-        "url": "https://www.mlb.com/news/watch-minor-league-baseball-games-for-free-2026",
-        "contentDate": "2026-08-15T01:32:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "mlb-top-prospects",
-            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
@@ -2355,26 +2434,6 @@
             "apple-news",
             "takeaways",
             "rivalry"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Latest Rays injuries & transactions",
-        "summaryJa": "レイズの負傷状況をMLB公式が詳報",
-        "slug": "rays-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/rays-injuries-and-roster-moves",
-        "contentDate": "2026-08-14T21:44:00Z",
-        "teamIds": [
-            139
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
         ],
         "sourceScopes": [
             "球団公式"
@@ -9264,29 +9323,6 @@
         "taxonomy": [
             "apple-news",
             "mlb-top-prospects"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "5-run rally carries White Sox to a significant 60th victory",
-        "summaryJa": "T.ピーターズ（CWS）らの5得点の反撃で、O.ギーエン永久欠番式後の一戦に勝利",
-        "slug": "white-sox-rally-for-win-after-retiring-ozzie-guillen-s-number",
-        "url": "https://www.mlb.com/news/white-sox-rally-for-win-after-retiring-ozzie-guillen-s-number",
-        "contentDate": "2026-08-09T04:22:00Z",
-        "teamIds": [
-            145
-        ],
-        "playerIds": [
-            671976
-        ],
-        "gamePks": [
-            824565
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap"
         ],
         "sourceScopes": [
             "球団公式"
