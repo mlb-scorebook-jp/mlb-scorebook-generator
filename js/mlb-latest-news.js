@@ -2,6 +2,98 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Norby collects first Rockies hit, makes nifty play in strong all-around showing",
+        "summaryJa": "C.ノービー（COL）、記録達成の最新情報",
+        "slug": "connor-norby-records-first-rockies-hit-in-loss-to-giants",
+        "url": "https://www.mlb.com/news/connor-norby-records-first-rockies-hit-in-loss-to-giants",
+        "contentDate": "2026-08-15T23:52:47.787Z",
+        "teamIds": [
+            115
+        ],
+        "playerIds": [
+            681393
+        ],
+        "gamePks": [
+            823184
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "2026 second-round pick hits HR harder than any Phillie in Statcast era",
+        "summaryJa": "Caden Bogenpohl（PHI）、本塁打で存在感",
+        "slug": "phillies-prospect-caden-bogenpohl-hits-117-1-mph-home-run",
+        "url": "https://www.mlb.com/news/phillies-prospect-caden-bogenpohl-hits-117-1-mph-home-run",
+        "contentDate": "2026-08-15T23:51:00Z",
+        "teamIds": [
+            143
+        ],
+        "playerIds": [
+            806470
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "mlb-top-prospects",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Red Sox eye reinforcements with Anthony, Story, IKF slated for rehab stints",
+        "summaryJa": "R.アンソニー（BOS）、復帰へ向けた最新状況",
+        "slug": "trevor-story-roman-anthony-isiah-kiner-falefa-rehab-assignments",
+        "url": "https://www.mlb.com/news/trevor-story-roman-anthony-isiah-kiner-falefa-rehab-assignments",
+        "contentDate": "2026-08-15T23:50:58.569Z",
+        "teamIds": [
+            111
+        ],
+        "playerIds": [
+            701350,
+            596115,
+            643396
+        ],
+        "gamePks": [
+            823347
+        ],
+        "taxonomy": [
+            "apple-news",
+            "injury",
+            "rehab"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "As home slump continues, Tucker gets game off vs. Brewers",
+        "summaryJa": "K.タッカー（LAD）の最新動向をMLB公式が詳報",
+        "slug": "kyle-tucker-out-of-starting-lineup-vs-brewers",
+        "url": "https://www.mlb.com/news/kyle-tucker-out-of-starting-lineup-vs-brewers",
+        "contentDate": "2026-08-15T23:36:33.183Z",
+        "teamIds": [
+            119
+        ],
+        "playerIds": [
+            663656
+        ],
+        "gamePks": [
+            823914
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "'Hats off to him': Boyd, Cubs on wrong end of historic MLB debut",
         "summaryJa": "M.ボイド（CHC）、メジャー昇格・初出場に関する最新情報",
         "slug": "matthew-boyd-allows-three-home-runs-to-joshua-baez",
@@ -134,7 +226,8 @@
             "long-home-runs"
         ],
         "sourceScopes": [
-            "MLB"
+            "MLB",
+            "球団公式"
         ]
     },
     {
@@ -152,6 +245,26 @@
         ],
         "taxonomy": [
             "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Latest Angels injuries & transactions",
+        "summaryJa": "エンゼルスの負傷状況をMLB公式が詳報",
+        "slug": "angels-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/angels-injuries-and-roster-moves",
+        "contentDate": "2026-08-15T23:15:00Z",
+        "teamIds": [
+            108
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
         ],
         "sourceScopes": [
             "球団公式"
@@ -1754,7 +1867,6 @@
             "game-recap"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1794,27 +1906,6 @@
             "apple-news",
             "injury",
             "rehab"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "2026 second-round pick hits HR harder than any Phillie in Statcast era",
-        "summaryJa": "Caden Bogenpohl（PHI）、本塁打で存在感",
-        "slug": "phillies-prospect-caden-bogenpohl-hits-117-1-mph-home-run",
-        "url": "https://www.mlb.com/news/phillies-prospect-caden-bogenpohl-hits-117-1-mph-home-run",
-        "contentDate": "2026-08-15T04:34:00Z",
-        "teamIds": [
-            143
-        ],
-        "playerIds": [
-            806470
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "mlb-top-prospects",
-            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
@@ -2620,26 +2711,6 @@
             "apple-news",
             "transactions",
             "injury"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Latest Angels injuries & transactions",
-        "summaryJa": "エンゼルスの負傷状況をMLB公式が詳報",
-        "slug": "angels-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/angels-injuries-and-roster-moves",
-        "contentDate": "2026-08-14T23:46:00Z",
-        "teamIds": [
-            108
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
         ],
         "sourceScopes": [
             "球団公式"
@@ -7482,30 +7553,6 @@
         ]
     },
     {
-        "headline": "Feeling urgency after tough road trip, Dodgers conjure some clutch magic",
-        "summaryJa": "F.フリーマン（LAD）、勝利を呼び込む活躍",
-        "slug": "max-muncy-freddie-freeman-give-dodgers-clutch-hits-to-beat-royals",
-        "url": "https://www.mlb.com/news/max-muncy-freddie-freeman-give-dodgers-clutch-hits-to-beat-royals",
-        "contentDate": "2026-08-11T06:49:00Z",
-        "teamIds": [
-            119
-        ],
-        "playerIds": [
-            518692
-        ],
-        "gamePks": [
-            823918
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap",
-            "clutch-moment"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Detmers much better in second start after staying with Angels at Deadline",
         "summaryJa": "R.デトマーズ（LAA）の最新動向をMLB公式が詳報",
         "slug": "reid-detmers-bounces-back-with-strong-start-for-angels",
@@ -8134,7 +8181,7 @@
         ]
     },
     {
-        "headline": "Abreu starts August red-hot with AL Player of Week honors",
+        "headline": "McCarthy starts August red-hot with NL Player of Week honors",
         "summaryJa": "W.アブレイユ（BOS）の最新動向をMLB公式が詳報",
         "slug": "wilyer-abreu-jake-mccarthy-players-of-the-week",
         "url": "https://www.mlb.com/news/wilyer-abreu-jake-mccarthy-players-of-the-week",
@@ -9646,28 +9693,6 @@
         ]
     },
     {
-        "headline": "Liberatore's perplexing mixed-bag season continues with rough outing",
-        "summaryJa": "M.リベラトア（STL）の最新動向をMLB公式が詳報",
-        "slug": "matthew-liberatore-allows-5-earned-runs-in-cardinals-loss",
-        "url": "https://www.mlb.com/news/matthew-liberatore-allows-5-earned-runs-in-cardinals-loss",
-        "contentDate": "2026-08-09T03:57:31.101Z",
-        "teamIds": [
-            138
-        ],
-        "playerIds": [
-            669461
-        ],
-        "gamePks": [
-            823021
-        ],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Jobe brings the heat in winning first start back from Tommy John surgery",
         "summaryJa": "J.ジョーブ（DET）、手術からの復帰初先発で勝利",
         "slug": "jackson-jobe-pitches-5-scoreless-innings-in-return-from-tommy-john-surgery",
@@ -10583,26 +10608,6 @@
         "taxonomy": [
             "apple-news",
             "payoff-pitch"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Rockies use AL-leading Rays as a benchmark in competitive series",
-        "summaryJa": "ロッキーズの最新動向をMLB公式が詳報",
-        "slug": "rockies-can-look-to-rays-success-for-future-plans-as-club",
-        "url": "https://www.mlb.com/news/rockies-can-look-to-rays-success-for-future-plans-as-club",
-        "contentDate": "2026-08-06T00:44:07.975Z",
-        "teamIds": [
-            115
-        ],
-        "playerIds": [],
-        "gamePks": [
-            824322
-        ],
-        "taxonomy": [
-            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
