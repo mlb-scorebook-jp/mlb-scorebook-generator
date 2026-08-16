@@ -6,7 +6,7 @@
         "summaryJa": "F.ペラルタ（TB）、復帰へ向けた最新状況",
         "slug": "freddy-peralta-solid-in-fastball-heavy-start-for-rays",
         "url": "https://www.mlb.com/news/freddy-peralta-solid-in-fastball-heavy-start-for-rays",
-        "contentDate": "2026-08-16T21:30:35.973Z",
+        "contentDate": "2026-08-16T21:57:00Z",
         "teamIds": [
             139
         ],
@@ -18,6 +18,50 @@
         ],
         "taxonomy": [
             "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "McClanahan returning to Rays' rotation for finale against Orioles",
+        "summaryJa": "S.マクラナハン（TB）、復帰へ向けた最新状況",
+        "slug": "shane-mcclanahan-rays-rotation-return",
+        "url": "https://www.mlb.com/news/shane-mcclanahan-rays-rotation-return",
+        "contentDate": "2026-08-16T21:55:52.985Z",
+        "teamIds": [
+            139
+        ],
+        "playerIds": [
+            663556
+        ],
+        "gamePks": [
+            822940
+        ],
+        "taxonomy": [
+            "apple-news",
+            "injury"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Latest Yankees injuries and transactions",
+        "summaryJa": "ヤンキースの負傷状況をMLB公式が詳報",
+        "slug": "yankees-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/yankees-injuries-and-roster-moves",
+        "contentDate": "2026-08-16T21:53:00Z",
+        "teamIds": [
+            147
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
         ],
         "sourceScopes": [
             "球団公式"
@@ -925,7 +969,7 @@
         ]
     },
     {
-        "headline": "LIVE: Báez looks to build on historic 3-HR debut today vs. Cubs (ABC/ESPN App)",
+        "headline": "Báez looks to build on historic 3-HR debut today vs. Cubs (2:15 p.m. CT, ABC/ESPN App)",
         "summaryJa": "J.バイエズ（STL）、メジャー昇格・初出場に関する最新情報",
         "slug": "cardinals-cubs-series-finale-on-abc",
         "url": "https://www.mlb.com/news/cardinals-cubs-series-finale-on-abc",
@@ -944,7 +988,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1022,26 +1065,6 @@
         "contentDate": "2026-08-16T17:13:00Z",
         "teamIds": [
             143
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Latest Yankees injuries and transactions",
-        "summaryJa": "ヤンキースの負傷状況をMLB公式が詳報",
-        "slug": "yankees-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/yankees-injuries-and-roster-moves",
-        "contentDate": "2026-08-16T17:13:00Z",
-        "teamIds": [
-            147
         ],
         "playerIds": [],
         "gamePks": [],
@@ -8448,30 +8471,6 @@
         "taxonomy": [
             "community",
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "McClanahan throws 3 perfect innings in rehab outing, eyes imminent return",
-        "summaryJa": "S.マクラナハン（TB）、復帰へ向けた最新状況",
-        "slug": "shane-mcclanahan-goes-3-scoreless-in-rehab-outing",
-        "url": "https://www.mlb.com/news/shane-mcclanahan-goes-3-scoreless-in-rehab-outing",
-        "contentDate": "2026-08-12T00:54:42.063Z",
-        "teamIds": [
-            139
-        ],
-        "playerIds": [
-            663556
-        ],
-        "gamePks": [
-            824970
-        ],
-        "taxonomy": [
-            "apple-news",
-            "rehab",
-            "injury"
         ],
         "sourceScopes": [
             "球団公式"
