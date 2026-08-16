@@ -2,6 +2,70 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Watch top prospect Hartshorn dig in at High-A for FREE today",
+        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
+        "slug": "watch-minor-league-baseball-games-for-free-2026",
+        "url": "https://www.mlb.com/news/watch-minor-league-baseball-games-for-free-2026",
+        "contentDate": "2026-08-16T07:04:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "mlb-top-prospects",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Bolte's adjustments evident in near-cycle as hot streak continues",
+        "summaryJa": "H.ボルティー（ATH）の最新動向をMLB公式が詳報",
+        "slug": "henry-bolte-hits-3-run-home-run-in-a-s-loss-to-rangers",
+        "url": "https://www.mlb.com/news/henry-bolte-hits-3-run-home-run-in-a-s-loss-to-rangers",
+        "contentDate": "2026-08-16T06:22:29.348Z",
+        "teamIds": [
+            133
+        ],
+        "playerIds": [
+            703607
+        ],
+        "gamePks": [
+            824966
+        ],
+        "taxonomy": [
+            "apple-news",
+            "replay"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Langford's long ball helps Rangers snap out of funk",
+        "summaryJa": "W.ラングフォード（TEX）、勝利を呼び込む活躍",
+        "slug": "wyatt-langford-hits-home-run-in-rangers-win-over-a-s",
+        "url": "https://www.mlb.com/news/wyatt-langford-hits-home-run-in-rangers-win-over-a-s",
+        "contentDate": "2026-08-16T06:02:00Z",
+        "teamIds": [
+            140
+        ],
+        "playerIds": [
+            694671
+        ],
+        "gamePks": [
+            824966
+        ],
+        "taxonomy": [
+            "apple-news",
+            "game-recap"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Trade gem Dobnak fires yet another gem for Royals",
         "summaryJa": "R.ドブナック（KC）の移籍・契約に関する最新情報",
         "slug": "randy-dobnak-continues-to-impress-since-trade-to-royals",
@@ -208,30 +272,6 @@
         ]
     },
     {
-        "headline": "Langford's long ball helps Rangers snap out of funk",
-        "summaryJa": "W.ラングフォード（TEX）、勝利を呼び込む活躍",
-        "slug": "wyatt-langford-hits-home-run-in-rangers-win-over-a-s",
-        "url": "https://www.mlb.com/news/wyatt-langford-hits-home-run-in-rangers-win-over-a-s",
-        "contentDate": "2026-08-16T04:46:36.194Z",
-        "teamIds": [
-            140
-        ],
-        "playerIds": [
-            694671
-        ],
-        "gamePks": [
-            824966
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Padres' bats stymied by Guardians' offspeed-heavy attack in 1-hit effort",
         "summaryJa": "パドレスの最新動向をMLB公式が詳報",
         "slug": "padres-six-game-winning-streak-snapped-in-loss-to-guardians",
@@ -282,7 +322,7 @@
         ]
     },
     {
-        "headline": "Donovan stars as Mariners put it all together for much-needed win over Astros",
+        "headline": "Donovan, Young star as Mariners put it all together for needed win over Astros",
         "summaryJa": "MLBの最新情報、勝利を呼び込む活躍",
         "slug": "mariners-put-together-complete-win-vs-astros",
         "url": "https://www.mlb.com/news/mariners-put-together-complete-win-vs-astros",
@@ -7145,30 +7185,6 @@
         ]
     },
     {
-        "headline": "Muncy delivers AGAIN with bases loaded -- this time with walk-off in 10th",
-        "summaryJa": "M.マンシー（LAD）、延長10回に満塁からサヨナラ打",
-        "slug": "max-muncy-walks-off-royals-in-10th-inning",
-        "url": "https://www.mlb.com/news/max-muncy-walks-off-royals-in-10th-inning",
-        "contentDate": "2026-08-12T06:56:00Z",
-        "teamIds": [
-            119
-        ],
-        "playerIds": [
-            571970
-        ],
-        "gamePks": [
-            823917
-        ],
-        "taxonomy": [
-            "apple-news",
-            "walk-off",
-            "game-recap"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Wilson's errorless streak survives a scare after further review",
         "summaryJa": "アスレチックスの最新動向をMLB公式が詳報",
         "slug": "jacob-wilson-s-errorless-streak-continues-after-review",
@@ -8998,30 +9014,6 @@
         ]
     },
     {
-        "headline": "Cubs' defense reaching historic levels in 2026",
-        "summaryJa": "D.スワンソン（CHC）の最新動向をMLB公式が詳報",
-        "slug": "elite-defense-cubs-2026-dansby-swanson-pete-crow-armstrong",
-        "url": "https://www.mlb.com/news/elite-defense-cubs-2026-dansby-swanson-pete-crow-armstrong",
-        "contentDate": "2026-08-10T14:33:12.129Z",
-        "teamIds": [
-            112
-        ],
-        "playerIds": [
-            621020,
-            691718
-        ],
-        "gamePks": [
-            822697
-        ],
-        "taxonomy": [
-            "apple-news",
-            "hard-throw"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Stream Nats games on Nationals.TV for low price of $34.99",
         "summaryJa": "ナショナルズの最新動向をMLB公式が詳報",
         "slug": "nationals-tv-2026-season",
@@ -9767,26 +9759,6 @@
         ],
         "taxonomy": [
             "mlb-top-prospects",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Rizzs surprised with Mariners HOF nod during Top 50 players ceremony",
-        "summaryJa": "マリナーズら注目選手の最新動向",
-        "slug": "rick-rizzs-to-be-inducted-into-mariners-hall-of-fame",
-        "url": "https://www.mlb.com/news/rick-rizzs-to-be-inducted-into-mariners-hall-of-fame",
-        "contentDate": "2026-08-09T05:34:00Z",
-        "teamIds": [
-            136
-        ],
-        "playerIds": [],
-        "gamePks": [
-            823102
-        ],
-        "taxonomy": [
             "apple-news"
         ],
         "sourceScopes": [
@@ -10555,29 +10527,6 @@
         "taxonomy": [
             "apple-news",
             "payoff-pitch"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "A's 2025 first-rounder Arnold spins career-high 9 K's in scoreless Double-A start",
-        "summaryJa": "J.アーノルド（ATH）、マウンドで好投",
-        "slug": "athletics-prospect-jamie-arnold-career-high-9-strikeouts",
-        "url": "https://www.mlb.com/news/athletics-prospect-jamie-arnold-career-high-9-strikeouts",
-        "contentDate": "2026-08-06T04:03:00Z",
-        "teamIds": [
-            133
-        ],
-        "playerIds": [
-            150374
-        ],
-        "gamePks": [
-            824482
-        ],
-        "taxonomy": [
-            "apple-news",
-            "mlb-top-prospects"
         ],
         "sourceScopes": [
             "球団公式"
