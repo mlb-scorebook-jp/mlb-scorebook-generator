@@ -2,6 +2,48 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "A look back at when Tommy John changed baseball history",
+        "summaryJa": "T.ジョン、記録達成の最新情報",
+        "slug": "tommy-john-surgery-50th-anniversary",
+        "url": "https://www.mlb.com/news/tommy-john-surgery-50th-anniversary",
+        "contentDate": "2026-08-16T17:52:00Z",
+        "teamIds": [],
+        "playerIds": [
+            116550
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "Tommy John, whose surgery blazed a trail for countless players, dies at 83",
+        "summaryJa": "T.ジョン（NYY）の最新動向をMLB公式が詳報",
+        "slug": "tommy-john-passes-away",
+        "url": "https://www.mlb.com/news/tommy-john-passes-away",
+        "contentDate": "2026-08-16T17:40:28.351Z",
+        "teamIds": [
+            147,
+            119,
+            145
+        ],
+        "playerIds": [
+            116550
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "obituary"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Latest Cubs injuries and transactions",
         "summaryJa": "カブスの負傷状況をMLB公式が詳報",
         "slug": "cubs-injuries-and-roster-moves",
@@ -299,22 +341,6 @@
         ],
         "sourceScopes": [
             "球団公式"
-        ]
-    },
-    {
-        "headline": "LIVE: Caminero and the Rays host Alonso and the Orioles on Peacock",
-        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
-        "slug": "mlb-sunday-leadoff-on-nbc-peacock-for-2026-season",
-        "url": "https://www.mlb.com/news/mlb-sunday-leadoff-on-nbc-peacock-for-2026-season",
-        "contentDate": "2026-08-16T16:06:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB"
         ]
     },
     {
@@ -1987,7 +2013,6 @@
             "transactions"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -6518,24 +6543,6 @@
         ]
     },
     {
-        "headline": "Lakers sale 'really has nothing to do with the Dodgers,' per team president",
-        "summaryJa": "ドジャースの最新動向をMLB公式が詳報",
-        "slug": "sale-of-lakers-has-no-impact-on-dodgers",
-        "url": "https://www.mlb.com/news/sale-of-lakers-has-no-impact-on-dodgers",
-        "contentDate": "2026-08-13T02:06:19.963Z",
-        "teamIds": [
-            119
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Angels name Leveque interim pitching coach, Wuertz interim bullpen coach",
         "summaryJa": "エンゼルスの最新動向をMLB公式が詳報",
         "slug": "tim-leveque-named-angels-interim-pitching-coach",
@@ -8651,28 +8658,6 @@
         ]
     },
     {
-        "headline": "Did a midseason reinvention give the White Sox another ace reliever?",
-        "summaryJa": "J.ヒックス（CWS）の最新動向をMLB公式が詳報",
-        "slug": "white-sox-jordan-hicks-midseason-reinvention",
-        "url": "https://www.mlb.com/news/white-sox-jordan-hicks-midseason-reinvention",
-        "contentDate": "2026-08-11T04:49:22.847Z",
-        "teamIds": [
-            145
-        ],
-        "playerIds": [
-            663855
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "player-tracking",
-            "savant"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Kremer gives unfriendly welcome to former team with 7-inning gem",
         "summaryJa": "D.クレイマー（MIN）の最新動向をMLB公式が詳報",
         "slug": "dean-kremer-tosses-7-inning-quality-start-against-former-team",
@@ -10328,31 +10313,6 @@
         ],
         "taxonomy": [
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "It never gets old: Trout homers on birthday for record-tying SIXTH time",
-        "summaryJa": "M.トラウト（LAA）、記録達成の最新情報",
-        "slug": "mike-trout-homers-on-his-birthday-for-the-sixth-time",
-        "url": "https://www.mlb.com/news/mike-trout-homers-on-his-birthday-for-the-sixth-time",
-        "contentDate": "2026-08-08T03:55:00Z",
-        "teamIds": [
-            108
-        ],
-        "playerIds": [
-            545361
-        ],
-        "gamePks": [
-            823836
-        ],
-        "taxonomy": [
-            "apple-news",
-            "leadoff",
-            "first-inning",
-            "game-recap"
         ],
         "sourceScopes": [
             "球団公式"
