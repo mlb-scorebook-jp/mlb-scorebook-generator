@@ -2,6 +2,124 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Kikuchi not worried about rehab stats, ready to return to Halos",
+        "summaryJa": "菊池 雄星（LAA）、復帰へ向けた最新状況",
+        "slug": "yusei-kikuchi-struggles-in-rehab-start-with-single-a",
+        "url": "https://www.mlb.com/news/yusei-kikuchi-struggles-in-rehab-start-with-single-a",
+        "contentDate": "2026-08-16T19:59:00Z",
+        "teamIds": [
+            108
+        ],
+        "playerIds": [
+            579328
+        ],
+        "gamePks": [
+            823991
+        ],
+        "taxonomy": [
+            "apple-news",
+            "injury",
+            "rehab"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Story (sports hernia) kicks off rehab assignment in Triple-A",
+        "summaryJa": "T.ストーリー（BOS）、復帰へ向けた最新状況",
+        "slug": "trevor-story-rehab-assignment-triple-a",
+        "url": "https://www.mlb.com/news/trevor-story-rehab-assignment-triple-a",
+        "contentDate": "2026-08-16T19:47:17.438Z",
+        "teamIds": [
+            111
+        ],
+        "playerIds": [
+            596115
+        ],
+        "gamePks": [
+            823344
+        ],
+        "taxonomy": [
+            "rehab",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Cooperstown calls about Báez's debut cleats -- but they're not his to give away!",
+        "summaryJa": "J.バイエズ（STL）、メジャー昇格・初出場に関する最新情報",
+        "slug": "hall-of-fame-wants-joshua-baez-s-equipment-from-historic-debut",
+        "url": "https://www.mlb.com/news/hall-of-fame-wants-joshua-baez-s-equipment-from-historic-debut",
+        "contentDate": "2026-08-16T19:46:33.012Z",
+        "teamIds": [
+            138
+        ],
+        "playerIds": [
+            695491
+        ],
+        "gamePks": [
+            824642
+        ],
+        "taxonomy": [
+            "apple-news",
+            "mlb-debut",
+            "mlb-top-prospects"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Latest Reds injuries & transactions",
+        "summaryJa": "レッズの負傷状況をMLB公式が詳報",
+        "slug": "reds-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/reds-injuries-and-roster-moves",
+        "contentDate": "2026-08-16T19:46:00Z",
+        "teamIds": [
+            113
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Santillan, Williamson take next steps with successful Triple-A rehab outings",
+        "summaryJa": "T.サンティヤン（CIN）、復帰へ向けた最新状況",
+        "slug": "tony-santillan-brandon-williamson-triple-a-rehab-outings",
+        "url": "https://www.mlb.com/news/tony-santillan-brandon-williamson-triple-a-rehab-outings",
+        "contentDate": "2026-08-16T19:44:45.903Z",
+        "teamIds": [
+            113,
+            416
+        ],
+        "playerIds": [
+            663574,
+            682227
+        ],
+        "gamePks": [
+            824477
+        ],
+        "taxonomy": [
+            "apple-news",
+            "injury",
+            "rehab"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Latest D-backs injuries & transactions",
         "summaryJa": "ダイヤモンドバックスの負傷状況をMLB公式が詳報",
         "slug": "d-backs-injuries-and-roster-moves",
@@ -1142,7 +1260,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1471,30 +1588,6 @@
         ],
         "taxonomy": [
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "After rough rehab start, Kikuchi may require additional outing before return",
-        "summaryJa": "菊池 雄星（LAA）、復帰へ向けた最新状況",
-        "slug": "yusei-kikuchi-struggles-in-rehab-start-with-single-a",
-        "url": "https://www.mlb.com/news/yusei-kikuchi-struggles-in-rehab-start-with-single-a",
-        "contentDate": "2026-08-16T03:25:22.281Z",
-        "teamIds": [
-            108
-        ],
-        "playerIds": [
-            579328
-        ],
-        "gamePks": [
-            823990
-        ],
-        "taxonomy": [
-            "apple-news",
-            "injury",
-            "rehab"
         ],
         "sourceScopes": [
             "球団公式"
@@ -2361,26 +2454,6 @@
         "contentDate": "2026-08-15T21:42:00Z",
         "teamIds": [
             110
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Latest Reds injuries & transactions",
-        "summaryJa": "レッズの負傷状況をMLB公式が詳報",
-        "slug": "reds-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/reds-injuries-and-roster-moves",
-        "contentDate": "2026-08-15T21:37:00Z",
-        "teamIds": [
-            113
         ],
         "playerIds": [],
         "gamePks": [],
@@ -7871,30 +7944,6 @@
         ]
     },
     {
-        "headline": "Deadline prize Rutschman records hit, pair of walks in Red Sox debut",
-        "summaryJa": "A.ラッチマン（BOS）、移籍後初出場で安打と2四球",
-        "slug": "adley-rutschman-red-sox-debut",
-        "url": "https://www.mlb.com/news/adley-rutschman-red-sox-debut",
-        "contentDate": "2026-08-12T03:49:00Z",
-        "teamIds": [
-            111
-        ],
-        "playerIds": [
-            668939
-        ],
-        "gamePks": [
-            822778
-        ],
-        "taxonomy": [
-            "apple-news",
-            "injury",
-            "transactions"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Pagán wins key 14-pitch battle, blesses Reds with win on Pope Hat night in Chicago",
         "summaryJa": "E.パガン（CIN）が14球の勝負を制し、レッズの逆転勝利を呼び込む",
         "slug": "reds-eighth-inning-rally-comeback-win-vs-white-sox",
@@ -8643,26 +8692,6 @@
             "apple-news",
             "long-home-runs",
             "game-recap"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Cardinals exploit Phillies' limited bullpen options, but fall just short",
-        "summaryJa": "カージナルス、勝利を呼び込む活躍",
-        "slug": "cardinals-comeback-efforts-fall-short-against-phillies-bullpen",
-        "url": "https://www.mlb.com/news/cardinals-comeback-efforts-fall-short-against-phillies-bullpen",
-        "contentDate": "2026-08-11T05:22:43.289Z",
-        "teamIds": [
-            138
-        ],
-        "playerIds": [],
-        "gamePks": [
-            823018
-        ],
-        "taxonomy": [
-            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
@@ -9643,29 +9672,6 @@
         ],
         "taxonomy": [
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Reds squander Singer's quality start to close out tough set against Nats",
-        "summaryJa": "B.シンガー（CIN）の最新動向をMLB公式が詳報",
-        "slug": "brady-singer-reds-offense-labor-in-finale-against-nationals",
-        "url": "https://www.mlb.com/news/brady-singer-reds-offense-labor-in-finale-against-nationals",
-        "contentDate": "2026-08-09T23:16:00Z",
-        "teamIds": [
-            113
-        ],
-        "playerIds": [
-            663903
-        ],
-        "gamePks": [
-            822700
-        ],
-        "taxonomy": [
-            "apple-news",
-            "quality-start"
         ],
         "sourceScopes": [
             "球団公式"
