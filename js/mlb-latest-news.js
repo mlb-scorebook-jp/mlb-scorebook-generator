@@ -2,6 +2,154 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Watch top prospect Hartshorn dig in at High-A for FREE today",
+        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
+        "slug": "watch-minor-league-baseball-games-for-free-2026",
+        "url": "https://www.mlb.com/news/watch-minor-league-baseball-games-for-free-2026",
+        "contentDate": "2026-08-16T15:33:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "mlb-top-prospects",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "'No concern' for Alonso after calf cramp, in lineup Sunday vs TB",
+        "summaryJa": "P.アロンゾ（BAL）の最新動向をMLB公式が詳報",
+        "slug": "pete-alonso-calf-cramp-vs-rays",
+        "url": "https://www.mlb.com/news/pete-alonso-calf-cramp-vs-rays",
+        "contentDate": "2026-08-16T15:27:00Z",
+        "teamIds": [
+            110
+        ],
+        "playerIds": [
+            624413
+        ],
+        "gamePks": [
+            822940
+        ],
+        "taxonomy": [
+            "apple-news",
+            "injury"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Yoshida (left hamstring strain), Slaten (elbow inflammation) go on injured list",
+        "summaryJa": "吉田 正尚（BOS）の負傷状況をMLB公式が詳報",
+        "slug": "masataka-yoshida-exits-with-left-leg-injury",
+        "url": "https://www.mlb.com/news/masataka-yoshida-exits-with-left-leg-injury",
+        "contentDate": "2026-08-16T15:25:00Z",
+        "teamIds": [
+            111
+        ],
+        "playerIds": [
+            807799,
+            686580
+        ],
+        "gamePks": [
+            823347
+        ],
+        "taxonomy": [
+            "apple-news",
+            "injury"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Latest Rays injuries & transactions",
+        "summaryJa": "レイズの負傷状況をMLB公式が詳報",
+        "slug": "rays-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/rays-injuries-and-roster-moves",
+        "contentDate": "2026-08-16T15:12:00Z",
+        "teamIds": [
+            139
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Marte returns for D-backs on Sunday after missing a game with left knee soreness",
+        "summaryJa": "K.マーテイ（AZ）の負傷状況をMLB公式が詳報",
+        "slug": "ketel-marte-left-knee-injury",
+        "url": "https://www.mlb.com/news/ketel-marte-left-knee-injury",
+        "contentDate": "2026-08-16T14:58:00Z",
+        "teamIds": [
+            109
+        ],
+        "playerIds": [
+            606466
+        ],
+        "gamePks": [
+            824884
+        ],
+        "taxonomy": [
+            "injury",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Latest D-backs injuries & transactions",
+        "summaryJa": "ダイヤモンドバックスの負傷状況をMLB公式が詳報",
+        "slug": "d-backs-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/d-backs-injuries-and-roster-moves",
+        "contentDate": "2026-08-16T14:54:00Z",
+        "teamIds": [
+            109
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Mariners No. 2 prospect Sloan reaches 100-K mark in latest stellar start",
+        "summaryJa": "R.スローン（SEA）、マウンドで好投",
+        "slug": "mariners-prospect-pitcher-ryan-sloan-reaches-100-strikeouts-in-2026",
+        "url": "https://www.mlb.com/news/mariners-prospect-pitcher-ryan-sloan-reaches-100-strikeouts-in-2026",
+        "contentDate": "2026-08-16T13:58:35.274Z",
+        "teamIds": [
+            136
+        ],
+        "playerIds": [
+            815549
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "mlb-top-prospects"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Tigers add talent, depth to Top 30 prospects at Draft, Trade Deadline",
         "summaryJa": "M.クラーク（DET）の移籍・契約に関する最新情報",
         "slug": "tigers-top-30-prospects-2026-midseason-update",
@@ -94,23 +242,6 @@
         ]
     },
     {
-        "headline": "Watch top prospect Hartshorn dig in at High-A for FREE today",
-        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
-        "slug": "watch-minor-league-baseball-games-for-free-2026",
-        "url": "https://www.mlb.com/news/watch-minor-league-baseball-games-for-free-2026",
-        "contentDate": "2026-08-16T07:04:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "mlb-top-prospects",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Bolte's adjustments evident in near-cycle as hot streak continues",
         "summaryJa": "H.ボルティー（ATH）の最新動向をMLB公式が詳報",
         "slug": "henry-bolte-hits-3-run-home-run-in-a-s-loss-to-rangers",
@@ -174,26 +305,6 @@
         ],
         "taxonomy": [
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Latest D-backs injuries & transactions",
-        "summaryJa": "ダイヤモンドバックスの負傷状況をMLB公式が詳報",
-        "slug": "d-backs-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/d-backs-injuries-and-roster-moves",
-        "contentDate": "2026-08-16T05:27:00Z",
-        "teamIds": [
-            109
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
         ],
         "sourceScopes": [
             "球団公式"
@@ -499,29 +610,6 @@
         ],
         "sourceScopes": [
             "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Yoshida likely headed for IL stint due to left hamstring strain",
-        "summaryJa": "吉田 正尚（BOS）の負傷状況をMLB公式が詳報",
-        "slug": "masataka-yoshida-exits-with-left-leg-injury",
-        "url": "https://www.mlb.com/news/masataka-yoshida-exits-with-left-leg-injury",
-        "contentDate": "2026-08-16T04:19:00Z",
-        "teamIds": [
-            111
-        ],
-        "playerIds": [
-            807799
-        ],
-        "gamePks": [
-            823347
-        ],
-        "taxonomy": [
-            "apple-news",
-            "injury"
-        ],
-        "sourceScopes": [
             "球団公式"
         ]
     },
@@ -980,29 +1068,6 @@
         ]
     },
     {
-        "headline": "'No concern' for Alonso after calf cramp, plans to play Sunday vs TB",
-        "summaryJa": "P.アロンゾ（BAL）の最新動向をMLB公式が詳報",
-        "slug": "pete-alonso-calf-cramp-vs-rays",
-        "url": "https://www.mlb.com/news/pete-alonso-calf-cramp-vs-rays",
-        "contentDate": "2026-08-16T02:49:31.068Z",
-        "teamIds": [
-            110
-        ],
-        "playerIds": [
-            624413
-        ],
-        "gamePks": [
-            822941
-        ],
-        "taxonomy": [
-            "apple-news",
-            "injury"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Mets' 2026 third-rounder -- 'Baseball Jesus' -- rips first pro homer at Single-A",
         "summaryJa": "Aiden Robbins（NYM）、本塁打で存在感",
         "slug": "mets-prospect-aiden-robbins-first-pro-home-run",
@@ -1168,26 +1233,6 @@
         ],
         "sourceScopes": [
             "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Latest Rays injuries & transactions",
-        "summaryJa": "レイズの負傷状況をMLB公式が詳報",
-        "slug": "rays-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/rays-injuries-and-roster-moves",
-        "contentDate": "2026-08-16T01:36:00Z",
-        "teamIds": [
-            139
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
-        ],
-        "sourceScopes": [
             "球団公式"
         ]
     },
@@ -1651,29 +1696,6 @@
             "apple-news",
             "injury",
             "rehab"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Marte (knee) out of Saturday's lineup against Braves",
-        "summaryJa": "K.マーテイ（AZ）の負傷状況をMLB公式が詳報",
-        "slug": "ketel-marte-left-knee-injury",
-        "url": "https://www.mlb.com/news/ketel-marte-left-knee-injury",
-        "contentDate": "2026-08-15T22:55:00Z",
-        "teamIds": [
-            109
-        ],
-        "playerIds": [
-            606466
-        ],
-        "gamePks": [
-            824884
-        ],
-        "taxonomy": [
-            "injury",
-            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
@@ -9433,27 +9455,6 @@
         ],
         "taxonomy": [
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Boston Smith stays on a heater at Double-A after trade to Mariners",
-        "summaryJa": "B.スミス（SEA）の移籍・契約に関する最新情報",
-        "slug": "mariners-prospect-boston-smith-power-display-at-double-a",
-        "url": "https://www.mlb.com/news/mariners-prospect-boston-smith-power-display-at-double-a",
-        "contentDate": "2026-08-10T01:51:00Z",
-        "teamIds": [
-            136
-        ],
-        "playerIds": [
-            695722
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "mlb-top-prospects"
         ],
         "sourceScopes": [
             "球団公式"
