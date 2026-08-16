@@ -2,6 +2,98 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Tigers add talent, depth to Top 30 prospects at Draft, Trade Deadline",
+        "summaryJa": "M.クラーク（DET）の移籍・契約に関する最新情報",
+        "slug": "tigers-top-30-prospects-2026-midseason-update",
+        "url": "https://www.mlb.com/news/tigers-top-30-prospects-2026-midseason-update",
+        "contentDate": "2026-08-16T13:41:59.451Z",
+        "teamIds": [
+            116
+        ],
+        "playerIds": [
+            703601,
+            814307,
+            689981,
+            800522,
+            800614
+        ],
+        "gamePks": [
+            824236
+        ],
+        "taxonomy": [
+            "apple-news",
+            "mlb-top-prospects"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Future foundation remains a focus for Nats as prospect list re-ranked",
+        "summaryJa": "Eli Willits（WSH）ら注目選手の最新動向",
+        "slug": "nationals-2026-updated-prospect-rankings",
+        "url": "https://www.mlb.com/news/nationals-2026-updated-prospect-rankings",
+        "contentDate": "2026-08-16T13:41:12.605Z",
+        "teamIds": [
+            120
+        ],
+        "playerIds": [
+            816113
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "mlb-top-prospects"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Lackey, Houston go from Draft to top of Twins' prospect list",
+        "summaryJa": "Vahn Lackey（MIN）ら注目選手の最新動向",
+        "slug": "twins-2026-updated-prospect-rankings",
+        "url": "https://www.mlb.com/news/twins-2026-updated-prospect-rankings",
+        "contentDate": "2026-08-16T13:34:17.981Z",
+        "teamIds": [
+            142
+        ],
+        "playerIds": [
+            822518,
+            805805,
+            701339
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "mlb-top-prospects",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Deadline moves keep stacking Marlins' farm system",
+        "summaryJa": "マーリンズら注目選手の最新動向",
+        "slug": "marlins-top-30-prospects-2026-midseason-update",
+        "url": "https://www.mlb.com/news/marlins-top-30-prospects-2026-midseason-update",
+        "contentDate": "2026-08-16T13:31:00Z",
+        "teamIds": [
+            146
+        ],
+        "playerIds": [],
+        "gamePks": [
+            824477
+        ],
+        "taxonomy": [
+            "apple-news",
+            "mlb-top-prospects"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Watch top prospect Hartshorn dig in at High-A for FREE today",
         "summaryJa": "MLBの最新情報ら注目選手の最新動向",
         "slug": "watch-minor-league-baseball-games-for-free-2026",
@@ -9497,30 +9589,6 @@
         ]
     },
     {
-        "headline": "Stowers exits Marlins' rout with left hamstring discomfort after 2-run single",
-        "summaryJa": "K.ストワーズ（MIA）、2点適時打後に左ハムストリングの違和感で交代",
-        "slug": "kyle-stowers-exits-marlins-game-with-hamstring-injury",
-        "url": "https://www.mlb.com/news/kyle-stowers-exits-marlins-game-with-hamstring-injury",
-        "contentDate": "2026-08-09T23:45:00Z",
-        "teamIds": [
-            146
-        ],
-        "playerIds": [
-            669065
-        ],
-        "gamePks": [
-            823835
-        ],
-        "taxonomy": [
-            "apple-news",
-            "injury",
-            "game-recap"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Rangers take homestand positives into pivotal AL West road trip",
         "summaryJa": "レンジャーズの最新動向をMLB公式が詳報",
         "slug": "rangers-look-ahead-to-al-west-road-trip-after-loss-to-orioles",
@@ -9715,28 +9783,6 @@
         "taxonomy": [
             "apple-news",
             "game-recap"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Lewis' hot streak has arrived at right time for the Twins",
-        "summaryJa": "R.ルイス（MIN）の最新動向をMLB公式が詳報",
-        "slug": "royce-lewis-riding-career-long-hit-streak",
-        "url": "https://www.mlb.com/news/royce-lewis-riding-career-long-hit-streak",
-        "contentDate": "2026-08-09T18:05:46.396Z",
-        "teamIds": [
-            142
-        ],
-        "playerIds": [
-            668904
-        ],
-        "gamePks": [
-            823751
-        ],
-        "taxonomy": [
-            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
@@ -10128,28 +10174,6 @@
         ]
     },
     {
-        "headline": "With Skubal, Mize gone, Montero filling bigger role in Tigers' rotation",
-        "summaryJa": "K.モンテーロ（DET）の最新動向をMLB公式が詳報",
-        "slug": "keider-montero-makes-start-tigers-lose-to-giants",
-        "url": "https://www.mlb.com/news/keider-montero-makes-start-tigers-lose-to-giants",
-        "contentDate": "2026-08-08T06:53:26.851Z",
-        "teamIds": [
-            116
-        ],
-        "playerIds": [
-            672456
-        ],
-        "gamePks": [
-            823191
-        ],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Waldschmidt's 2nd career HR? Just a walk-off against the Dodgers",
         "summaryJa": "R.ウォルドシュミット（AZ）、記録達成の最新情報",
         "slug": "ryan-waldschmidt-hits-walk-off-home-run-against-dodgers",
@@ -10235,31 +10259,6 @@
         ],
         "taxonomy": [
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Louisville native Lile continues to rake against Reds",
-        "summaryJa": "D.ライル（WSH）、勝利を呼び込む活躍",
-        "slug": "daylen-lile-stays-hot-against-reds-in-nats-win",
-        "url": "https://www.mlb.com/news/daylen-lile-stays-hot-against-reds-in-nats-win",
-        "contentDate": "2026-08-08T04:44:00Z",
-        "teamIds": [
-            120
-        ],
-        "playerIds": [
-            695734
-        ],
-        "gamePks": [
-            822699
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap",
-            "leadoff",
-            "first-inning"
         ],
         "sourceScopes": [
             "球団公式"
