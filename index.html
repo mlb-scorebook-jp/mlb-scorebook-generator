@@ -268,7 +268,7 @@
 
     <script src="js/players.js"></script>
     <script src="js/players-2026-updates.js?v=20260811-1"></script>
-    <script src="js/historical-records.js"></script>
+    <script src="js/historical-records.js?v=20260817-1"></script>
     <script src="js/mlb-business-date.js?v=20260808-1"></script>
     <script src="js/mlb-latest-news.js?v=20260814-summary-1"></script>
     <script src="js/stathead-links.js?v=20260810-1"></script>
@@ -4617,6 +4617,29 @@
             };
 
             const getPrimaryFieldingResult = (play, batterId) => {
+                const batterRunner = (play?.runners ?? []).find((runner) =>
+                    Number(runner?.details?.runner?.id) === Number(batterId) &&
+                    runner?.movement?.isOut
+                );
+                const batterCredits = batterRunner?.credits ?? [];
+                const batterPutouts = batterCredits.filter((credit) =>
+                    String(credit?.credit ?? "").toLowerCase().includes("putout")
+                );
+                const batterAssists = batterCredits.filter((credit) =>
+                    String(credit?.credit ?? "").toLowerCase().includes("assist")
+                );
+                const batterOutBase = normalizeBase(
+                    batterRunner?.movement?.outBase ?? batterRunner?.movement?.end
+                );
+                if (batterPutouts.length === 1 && batterAssists.length === 0 &&
+                    batterOutBase === "1B") {
+                    const putoutFielder = String(
+                        batterPutouts[0]?.position?.code ??
+                        batterPutouts[0]?.position?.abbreviation ?? ""
+                    ).replace(/\D/g, "");
+                    if (putoutFielder) return `${putoutFielder}A`;
+                }
+
                 const description = String(play?.result?.description ?? "");
                 const numbers = getFieldingNumbers(play, description);
                 if (!numbers.length) return "";

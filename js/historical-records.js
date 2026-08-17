@@ -7,6 +7,25 @@
      */
     global.HISTORICAL_RECORDS = Object.freeze([
         Object.freeze({
+            gamePk: 824644,
+            gameDate: "2026-08-15",
+            playerId: 695491,
+            playerName: "J.バイエズ",
+            teamId: 138,
+            recordType: "MLB史上初",
+            recordKey: "mlb-debut-first-three-at-bats-home-runs",
+            recordValue: 3,
+            priority: -1,
+            comparisonTarget: "MLBデビュー戦の初打席から3打席連続本塁打",
+            sourceTitle: "3 HRs in 1st 3 at-bats?! Cards prospect Báez first to accomplish feat in epic big league debut",
+            sourceUrl: "https://www.mlb.com/news/joshua-baez-mlb-debut",
+            displayText: "STL　J.バイエズ　デビュー戦で初打席から3打席連続本塁打（MLB史上初）",
+            dedupeTokens: Object.freeze([
+                "J.バイエズ",
+                "初打席から3打席連続本塁打"
+            ])
+        }),
+        Object.freeze({
             gamePk: 166301,
             gameDate: "1974-04-08",
             playerId: 110001,
