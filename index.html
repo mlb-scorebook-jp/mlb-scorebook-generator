@@ -4244,6 +4244,34 @@
                 total.classList.toggle("crowded", overlapsSymbol());
             };
 
+            const separateHomeRunFromPitchTotal = (cell, card) => {
+                if (!cell || !card?.classList.contains("template-home_run")) return;
+                const total = cell.querySelector(".pitch-total-count");
+                const homeRunCount = card.querySelector(".home-run-count");
+                const resultBox = cell.querySelector(".result-box");
+                if (!total || !homeRunCount || !resultBox) return;
+
+                card.classList.remove("avoid-pitch-total");
+                card.style.removeProperty("--home-run-collision-shift");
+
+                const totalRect = total.getBoundingClientRect();
+                const countRect = homeRunCount.getBoundingClientRect();
+                const overlaps = totalRect.left < countRect.right &&
+                    totalRect.right > countRect.left &&
+                    totalRect.top < countRect.bottom &&
+                    totalRect.bottom > countRect.top;
+                if (!overlaps) return;
+
+                const resultRect = resultBox.getBoundingClientRect();
+                const requestedShift = Math.ceil(totalRect.right - countRect.left + 2);
+                const availableShift = Math.max(0, Math.floor(resultRect.right - countRect.right - 1));
+                const shift = Math.min(requestedShift, availableShift);
+                if (shift <= 0) return;
+
+                card.style.setProperty("--home-run-collision-shift", `${shift}px`);
+                card.classList.add("avoid-pitch-total");
+            };
+
             const createAtBatCell = (side, inning, occurrence, order) => {
                 const cell = createElement("div", "grid-cell atbat-cell");
                 cell.dataset.side = side;
@@ -5549,6 +5577,7 @@
                     const card = renderPlateAppearance(record);
                     record.renderedCard = card;
                     resultBox.append(card);
+                    separateHomeRunFromPitchTotal(cell, card);
                 });
                 populateMultiOutConnections(records);
                 populateSubstitutionIndicators();

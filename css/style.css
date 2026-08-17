@@ -2256,6 +2256,11 @@ body.app-mode-pregame .score-loading-overlay {
     white-space: nowrap;
 }
 
+/* Move only a colliding season home-run count; every other score mark stays fixed. */
+.play-card.template-home_run.avoid-pitch-total .home-run-count {
+    translate: var(--home-run-collision-shift, 0) 0;
+}
+
 .play-center-mark {
     z-index: 7;
     color: var(--ink);
