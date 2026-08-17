@@ -2,6 +2,82 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Henry Davis belongs in the Gold Glove conversation, if not more. Here's why.",
+        "summaryJa": "パイレーツを巡る注目点をMLB公式が分析",
+        "slug": "how-henry-davis-has-blossomed-into-one-of-the-best-defensive-catchers-in-baseball",
+        "url": "https://www.mlb.com/news/how-henry-davis-has-blossomed-into-one-of-the-best-defensive-catchers-in-baseball",
+        "contentDate": "2026-08-17T17:45:23.122Z",
+        "teamIds": [
+            134
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "pit-inside-the-pirates"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "MLB approves Padres' sale to José E. Feliciano and Kwanza Jones",
+        "summaryJa": "パドレスの最新動向をMLB公式が詳報",
+        "slug": "padres-sale-to-jose-e-feliciano-and-kwanza-jones-approved-by-mlb",
+        "url": "https://www.mlb.com/news/padres-sale-to-jose-e-feliciano-and-kwanza-jones-approved-by-mlb",
+        "contentDate": "2026-08-17T17:38:11.638Z",
+        "teamIds": [
+            135
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "LHP 'Tugboat' Wilkinson, acquired in Bailey trade, gets call from Giants (source)",
+        "summaryJa": "Matt Wilkinson（SF）の移籍・契約に関する最新情報",
+        "slug": "matt-tugboat-wilkinson-called-up-by-giants",
+        "url": "https://www.mlb.com/news/matt-tugboat-wilkinson-called-up-by-giants",
+        "contentDate": "2026-08-17T17:21:53.703Z",
+        "teamIds": [
+            137
+        ],
+        "playerIds": [
+            683363
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "mlb-top-prospects"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "Latest Cardinals injuries & transactions",
+        "summaryJa": "カージナルスの負傷状況をMLB公式が詳報",
+        "slug": "cardinals-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/cardinals-injuries-and-roster-moves",
+        "contentDate": "2026-08-17T17:18:00Z",
+        "teamIds": [
+            138
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "In his year on the sidelines, López embracing the side quest",
         "summaryJa": "P.ロペス（MIN）、復帰へ向けた最新状況",
         "slug": "pablo-lopez-broadcaster-interpreter-tommy-john-rehab",
@@ -185,26 +261,6 @@
         ],
         "sourceScopes": [
             "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Latest Cardinals injuries & transactions",
-        "summaryJa": "カージナルスの負傷状況をMLB公式が詳報",
-        "slug": "cardinals-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/cardinals-injuries-and-roster-moves",
-        "contentDate": "2026-08-17T14:54:00Z",
-        "teamIds": [
-            138
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
-        ],
-        "sourceScopes": [
             "球団公式"
         ]
     },
@@ -1619,7 +1675,6 @@
             "game-recap"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -2147,24 +2202,6 @@
         ],
         "sourceScopes": [
             "球団公式"
-        ]
-    },
-    {
-        "headline": "A look back at when Tommy John changed baseball history",
-        "summaryJa": "T.ジョン、記録達成の最新情報",
-        "slug": "tommy-john-surgery-50th-anniversary",
-        "url": "https://www.mlb.com/news/tommy-john-surgery-50th-anniversary",
-        "contentDate": "2026-08-16T17:52:00Z",
-        "teamIds": [],
-        "playerIds": [
-            116550
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB"
         ]
     },
     {
@@ -8477,47 +8514,6 @@
         ],
         "taxonomy": [
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Lake Bachar traveled an unlikely path from college football to MLB reliever",
-        "summaryJa": "パイレーツを巡る注目点をMLB公式が分析",
-        "slug": "how-lake-bachar-went-from-college-football-to-mlb-reliever",
-        "url": "https://www.mlb.com/news/how-lake-bachar-went-from-college-football-to-mlb-reliever",
-        "contentDate": "2026-08-12T06:27:00Z",
-        "teamIds": [
-            134
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "pit-inside-the-pirates"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Tatis climbs to No. 2 behind Manny on Padres all-time HR list",
-        "summaryJa": "F.タティース Jr.（SD）、球団通算本塁打で歴代2位へ浮上",
-        "slug": "fernando-tatis-jr-takes-2nd-on-padres-all-time-homer-list",
-        "url": "https://www.mlb.com/news/fernando-tatis-jr-takes-2nd-on-padres-all-time-homer-list",
-        "contentDate": "2026-08-12T06:25:00Z",
-        "teamIds": [
-            135
-        ],
-        "playerIds": [
-            665487
-        ],
-        "gamePks": [
-            823264
-        ],
-        "taxonomy": [
-            "apple-news",
-            "milestone"
         ],
         "sourceScopes": [
             "球団公式"
