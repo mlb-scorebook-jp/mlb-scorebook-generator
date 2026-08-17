@@ -2,6 +2,98 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Oneil Cruz returning from 60-day injured list",
+        "summaryJa": "O.クルーズ（PIT）の負傷状況をMLB公式が詳報",
+        "slug": "oneil-cruz-activated-off-injured-list",
+        "url": "https://www.mlb.com/news/oneil-cruz-activated-off-injured-list",
+        "contentDate": "2026-08-17T19:25:35.932Z",
+        "teamIds": [
+            134
+        ],
+        "playerIds": [
+            665833
+        ],
+        "gamePks": [
+            823343
+        ],
+        "taxonomy": [
+            "apple-news",
+            "transactions"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "McClanahan returns to Rays' rotation for finale against Orioles",
+        "summaryJa": "S.マクラナハン（TB）、復帰へ向けた最新状況",
+        "slug": "shane-mcclanahan-rays-rotation-return",
+        "url": "https://www.mlb.com/news/shane-mcclanahan-rays-rotation-return",
+        "contentDate": "2026-08-17T18:19:00Z",
+        "teamIds": [
+            139
+        ],
+        "playerIds": [
+            663556
+        ],
+        "gamePks": [
+            822939
+        ],
+        "taxonomy": [
+            "apple-news",
+            "injury",
+            "transactions"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "LHP Tugboat Wilkinson -- who throws an 'Invisiball' -- gets call from Giants (source)",
+        "summaryJa": "Matt Wilkinson（SF）の最新動向をMLB公式が詳報",
+        "slug": "matt-tugboat-wilkinson-called-up-by-giants",
+        "url": "https://www.mlb.com/news/matt-tugboat-wilkinson-called-up-by-giants",
+        "contentDate": "2026-08-17T18:12:00Z",
+        "teamIds": [
+            137
+        ],
+        "playerIds": [
+            683363
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "mlb-top-prospects"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Don't let this new Mariner's size fool you ... he once took down a bull",
+        "summaryJa": "B.ロッデン（SEA）、メジャー昇格・初出場に関する最新情報",
+        "slug": "mariners-prospect-brock-rodden-shines-in-debut",
+        "url": "https://www.mlb.com/news/mariners-prospect-brock-rodden-shines-in-debut",
+        "contentDate": "2026-08-17T18:05:53.54Z",
+        "teamIds": [
+            136
+        ],
+        "playerIds": [
+            801126
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "mlb-top-prospects"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Henry Davis belongs in the Gold Glove conversation, if not more. Here's why.",
         "summaryJa": "パイレーツを巡る注目点をMLB公式が分析",
         "slug": "how-henry-davis-has-blossomed-into-one-of-the-best-defensive-catchers-in-baseball",
@@ -34,27 +126,6 @@
         "sourceScopes": [
             "MLB",
             "球団公式"
-        ]
-    },
-    {
-        "headline": "LHP 'Tugboat' Wilkinson, acquired in Bailey trade, gets call from Giants (source)",
-        "summaryJa": "Matt Wilkinson（SF）の移籍・契約に関する最新情報",
-        "slug": "matt-tugboat-wilkinson-called-up-by-giants",
-        "url": "https://www.mlb.com/news/matt-tugboat-wilkinson-called-up-by-giants",
-        "contentDate": "2026-08-17T17:21:53.703Z",
-        "teamIds": [
-            137
-        ],
-        "playerIds": [
-            683363
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "mlb-top-prospects"
-        ],
-        "sourceScopes": [
-            "MLB"
         ]
     },
     {
@@ -178,7 +249,9 @@
         "teamIds": [],
         "playerIds": [],
         "gamePks": [],
-        "taxonomy": [],
+        "taxonomy": [
+            "apple-news"
+        ],
         "sourceScopes": [
             "MLB",
             "球団公式"
@@ -367,7 +440,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -636,7 +708,7 @@
         ]
     },
     {
-        "headline": "Top 2 in Power Rankings may not look like this for long",
+        "headline": "How do Power Rankings look with just 6 weeks(!) left in season?",
         "summaryJa": "MLBの最新情報ら注目選手の最新動向",
         "slug": "mlb-power-rankings-for-week-of-august-16",
         "url": "https://www.mlb.com/news/mlb-power-rankings-for-week-of-august-16",
@@ -1612,29 +1684,6 @@
         ]
     },
     {
-        "headline": "McClanahan returning to Rays' rotation for finale against Orioles",
-        "summaryJa": "S.マクラナハン（TB）、復帰へ向けた最新状況",
-        "slug": "shane-mcclanahan-rays-rotation-return",
-        "url": "https://www.mlb.com/news/shane-mcclanahan-rays-rotation-return",
-        "contentDate": "2026-08-16T21:55:52.985Z",
-        "teamIds": [
-            139
-        ],
-        "playerIds": [
-            663556
-        ],
-        "gamePks": [
-            822940
-        ],
-        "taxonomy": [
-            "apple-news",
-            "injury"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Latest Yankees injuries and transactions",
         "summaryJa": "ヤンキースの負傷状況をMLB公式が詳報",
         "slug": "yankees-injuries-and-roster-moves",
@@ -2248,7 +2297,6 @@
             "transactions"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -7946,24 +7994,6 @@
         ]
     },
     {
-        "headline": "'We have to compete': Don Kelly upset with lack of fight shown against Marlins",
-        "summaryJa": "パイレーツを巡る注目点をMLB公式が分析",
-        "slug": "mistakes-once-again-costly-for-pirates-as-frustrating-stretch-continues",
-        "url": "https://www.mlb.com/news/mistakes-once-again-costly-for-pirates-as-frustrating-stretch-continues",
-        "contentDate": "2026-08-13T01:37:57.643Z",
-        "teamIds": [
-            134
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "pit-inside-the-pirates"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "A flair for the dramatic! Campusano caps Padres' dominant homestand with walk-off in extras",
         "summaryJa": "L.キャンプサーノ（SD）、サヨナラ勝利の主役に",
         "slug": "padres-sweep-brewers-luis-campusano-s-walk-off",
@@ -9524,26 +9554,6 @@
         ]
     },
     {
-        "headline": "Ichiro! Lou! Rizzs! Legends come home for packed 50 Seasons Celebration",
-        "summaryJa": "マリナーズの最新動向をMLB公式が詳報",
-        "slug": "mariners-50-seasons-celebration-best-moments",
-        "url": "https://www.mlb.com/news/mariners-50-seasons-celebration-best-moments",
-        "contentDate": "2026-08-10T15:00:34.565Z",
-        "teamIds": [
-            136
-        ],
-        "playerIds": [],
-        "gamePks": [
-            823512
-        ],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Stream Nats games on Nationals.TV for low price of $34.99",
         "summaryJa": "ナショナルズの最新動向をMLB公式が詳報",
         "slug": "nationals-tv-2026-season",
@@ -9808,28 +9818,6 @@
         "gamePks": [],
         "taxonomy": [
             "minor-league-baseball",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "New Giant Mayer nears rehab assignment, excited for 'next chapter'",
-        "summaryJa": "M.マイヤー（SF）、少年時代から応援したジャイアンツ加入に意欲",
-        "slug": "marcelo-mayer-excited-to-join-giants-after-trade-from-red-sox",
-        "url": "https://www.mlb.com/news/marcelo-mayer-excited-to-join-giants-after-trade-from-red-sox",
-        "contentDate": "2026-08-10T02:12:00Z",
-        "teamIds": [
-            137
-        ],
-        "playerIds": [
-            691785
-        ],
-        "gamePks": [
-            823190
-        ],
-        "taxonomy": [
             "apple-news"
         ],
         "sourceScopes": [
