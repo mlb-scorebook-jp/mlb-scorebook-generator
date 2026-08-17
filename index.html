@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MLB Scorebook Generator</title>
     <!-- Score notation update: stacked batted-ball symbol, red hits, blue strikeouts, black other results. -->
-    <link rel="stylesheet" href="css/style.css?v=20260815-live-1">
+    <link rel="stylesheet" href="css/style.css?v=20260817-postseason-1">
     <link rel="stylesheet" href="css/pregame.css?v=20260817-6">
 </head>
 
@@ -6093,6 +6093,36 @@
             const buildTeamPanelTitle = (side) => {
                 const team = state[side];
                 const title = createElement("div", "team-panel-title");
+                const gameType = String(
+                    state.gameData?.gameData?.game?.type ??
+                    state.gameData?.gameData?.game?.gameType ??
+                    ""
+                ).toUpperCase();
+                const seriesDescription = String(
+                    state.gameData?.gameData?.game?.seriesDescription ??
+                    state.gameData?.gameData?.game?.description ??
+                    ""
+                );
+                const awayLeagueId = Number(state.gameData?.gameData?.teams?.away?.league?.id);
+                const homeLeagueId = Number(state.gameData?.gameData?.teams?.home?.league?.id);
+                const sharedLeagueId = awayLeagueId && awayLeagueId === homeLeagueId ? awayLeagueId : null;
+                const leagueCode = sharedLeagueId === 103
+                    ? "AL"
+                    : sharedLeagueId === 104
+                        ? "NL"
+                        : /american league|\bAL\b/i.test(seriesDescription)
+                            ? "AL"
+                            : /national league|\bNL\b/i.test(seriesDescription)
+                                ? "NL"
+                                : "";
+                const postseasonLabel = ({
+                    F: `${leagueCode ? `${leagueCode}` : ""}ワイルドカード`,
+                    D: `${leagueCode ? `${leagueCode}` : ""}ディビジョンシリーズ`,
+                    L: `${leagueCode ? `${leagueCode}` : ""}リーグ優勝決定戦`,
+                    W: "ワールドシリーズ",
+                    P: "ポストシーズン",
+                    C: "ポストシーズン"
+                })[gameType] ?? "";
                 const mainLine = createElement(
                     "div",
                     "team-panel-title-main"
@@ -6108,6 +6138,11 @@
                             `${team.wins}-${team.losses}`
                         )
                     );
+                }
+
+                if (postseasonLabel) {
+                    title.classList.add("has-postseason-label");
+                    title.append(createElement("div", "team-panel-title-postseason", postseasonLabel));
                 }
 
                 title.append(mainLine);

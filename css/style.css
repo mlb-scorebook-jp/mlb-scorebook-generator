@@ -1513,6 +1513,23 @@ body.app-mode-pregame .score-loading-overlay {
     font-size: 15px;
     font-weight: 700;
 }
+
+.team-panel-title.has-postseason-label {
+    box-sizing: border-box;
+    display: grid;
+    grid-template-rows: 9px 17px 10px;
+    align-content: center;
+    gap: 0;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+.team-panel-title-postseason {
+    font-size: 9px;
+    font-weight: 700;
+    line-height: 1;
+    white-space: nowrap;
+}
 .team-panel-title-main {
     display: flex;
     align-items: baseline;
