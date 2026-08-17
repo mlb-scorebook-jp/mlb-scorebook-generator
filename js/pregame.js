@@ -464,6 +464,40 @@
         return "";
     };
 
+    const postseasonLeagueCode = (game) => {
+        const category = gameLeagueCategory(game);
+        if (["AL", "NL"].includes(category)) return category;
+        const description = String(game?.seriesDescription ?? "").toLowerCase();
+        if (/american league|\bal\b/.test(description)) return "AL";
+        if (/national league|\bnl\b/.test(description)) return "NL";
+        return "";
+    };
+
+    const gameScheduleCategory = (game) => {
+        const gameType = String(game?.gameType ?? "").toUpperCase();
+        const league = postseasonLeagueCode(game);
+        if (gameType === "F") {
+            return league ? `${league}ワイルドカードシリーズ` : "ワイルドカードシリーズ";
+        }
+        if (gameType === "D") {
+            return league ? `${league}ディビジョンシリーズ` : "ディビジョンシリーズ";
+        }
+        if (gameType === "L") {
+            return league ? `${league}リーグ優勝決定戦` : "リーグ優勝決定戦";
+        }
+        if (gameType === "W") return "ワールドシリーズ";
+        if (["P", "C"].includes(gameType)) return "ポストシーズン";
+        return gameLeagueCategory(game);
+    };
+
+    const GAME_CATEGORY_ORDER = Object.freeze([
+        "AL", "NL", "INTERLEAGUE",
+        "ALワイルドカードシリーズ", "NLワイルドカードシリーズ", "ワイルドカードシリーズ",
+        "ALディビジョンシリーズ", "NLディビジョンシリーズ", "ディビジョンシリーズ",
+        "ALリーグ優勝決定戦", "NLリーグ優勝決定戦", "リーグ優勝決定戦",
+        "ワールドシリーズ", "ポストシーズン"
+    ]);
+
     const setGameCardTeamColors = (card, awayTeam, homeTeam) => {
         card.style.setProperty(
             "--pregame-away-color",
@@ -1480,16 +1514,55 @@
         ).catch(() => null);
         const standings = new Map();
         (payload?.records ?? []).forEach((record) => {
-            (record?.teamRecords ?? []).forEach((teamRecord) => {
+            const divisionTeams = record?.teamRecords ?? [];
+            const secondPlace = divisionTeams.find((teamRecord) =>
+                Number.parseInt(teamRecord?.divisionRank, 10) === 2
+            ) ?? divisionTeams[1] ?? null;
+            divisionTeams.forEach((teamRecord) => {
                 standings.set(Number(teamRecord?.team?.id), {
                     division: divisionJapaneseLabel(record?.division?.name ?? teamRecord?.team?.division?.name),
                     rank: Number.parseInt(teamRecord?.divisionRank, 10),
                     wins: Number.parseInt(teamRecord?.wins, 10),
-                    losses: Number.parseInt(teamRecord?.losses, 10)
+                    losses: Number.parseInt(teamRecord?.losses, 10),
+                    leagueCode: Number(record?.division?.league?.id ?? teamRecord?.team?.league?.id) === 104
+                        ? "NL"
+                        : "AL",
+                    wildCardRank: Number.parseInt(teamRecord?.wildCardRank, 10),
+                    divisionLeader: teamRecord?.divisionLeader === true ||
+                        Number.parseInt(teamRecord?.divisionRank, 10) === 1,
+                    secondPlaceTeam: secondPlace?.team ?? null,
+                    secondPlaceGamesBack: secondPlace?.divisionGamesBack ?? secondPlace?.gamesBack ?? null
                 });
             });
         });
         return standings;
+    };
+
+    const formatStandingsGap = (value) => {
+        const text = String(value ?? "").trim();
+        if (!text || text === "-" || text === "—") return "0.0";
+        const number = Number.parseFloat(text.replace("+", ""));
+        return Number.isFinite(number) ? number.toFixed(1) : text;
+    };
+
+    const wildCardLine = (standing) => {
+        if (!standing) return "順位未確定";
+        if (standing.divisionLeader) {
+            const opponent = standing.secondPlaceTeam
+                ? teamJapaneseShortName(standing.secondPlaceTeam)
+                : "2位チーム";
+            return `同地区2位 ${opponent}と${formatStandingsGap(standing.secondPlaceGamesBack)}差`;
+        }
+        const rank = Number.isFinite(standing.wildCardRank)
+            ? `${standing.wildCardRank}位`
+            : "順位未確定";
+        return `${standing.leagueCode}ワイルドカード ${rank}`;
+    };
+
+    const shouldShowWildCard = (officialDate) => {
+        const match = String(officialDate ?? "").match(/^\d{4}-(\d{2})-(\d{2})$/);
+        if (!match) return false;
+        return Number(match[1]) >= 8;
     };
 
     const isDesktopGameDetailLayout = () =>
@@ -1567,6 +1640,10 @@
         seriesStanding,
         pregameRecords
     ) => {
+        const dateTime = feed?.gameData?.datetime?.dateTime ?? game?.gameDate;
+        const officialDate = feed?.gameData?.datetime?.officialDate ??
+            game?.officialDate ?? String(dateTime ?? "").slice(0, 10);
+        const showWildCard = shouldShowWildCard(officialDate);
         const teamBlock = (team) => {
             const block = el("span", "pregame-header-team");
             const standing = standings.get(Number(team?.id));
@@ -1619,12 +1696,14 @@
                     })()
                 )] : []),
                 el("small", "", `${standing?.division ?? "所属地区未確定"}　${rank}`),
+                ...(showWildCard ? [el("small", "pregame-header-wild-card", wildCardLine(standing))] : []),
                 links
             );
             return block;
         };
         dom.title.className = "pregame-matchup-heading";
         if (seriesStanding) dom.title.classList.add("pregame-series-standing-active");
+        if (showWildCard) dom.title.classList.add("pregame-wild-card-active");
         dom.title.parentElement?.classList.add("pregame-matchup-title-block");
         const matchupHeading = seriesStanding
             ? [
@@ -1637,9 +1716,6 @@
             : [teamBlock(awayTeam), el("span", "pregame-header-versus", "VS."), teamBlock(homeTeam)];
         dom.title.replaceChildren(...matchupHeading);
         const venue = venueLabel(feed?.gameData?.venue ?? game?.venue) || "球場未定";
-        const dateTime = feed?.gameData?.datetime?.dateTime ?? game?.gameDate;
-        const officialDate = feed?.gameData?.datetime?.officialDate ??
-            game?.officialDate ?? String(dateTime ?? "").slice(0, 10);
         dom.subtitle.className = "pregame-matchup-meta-line";
         dom.subtitle.replaceChildren(
             el("span", "pregame-matchup-date", formatDate(officialDate)),
@@ -1823,29 +1899,34 @@
                     return card;
                 };
 
-                const gamesByLeague = new Map([
-                    ["AL", []],
-                    ["NL", []],
-                    ["INTERLEAGUE", []]
-                ]);
+                const gamesByLeague = new Map();
                 games.forEach((game) => {
-                    const category = gameLeagueCategory(game);
-                    if (gamesByLeague.has(category)) gamesByLeague.get(category).push(game);
+                    const category = gameScheduleCategory(game);
+                    if (!category) return;
+                    if (!gamesByLeague.has(category)) gamesByLeague.set(category, []);
+                    gamesByLeague.get(category).push(game);
                 });
 
-                gamesByLeague.forEach((categoryGames, category) => {
-                    if (!categoryGames.length) return;
-                    const group = el("section", "pregame-league-group");
-                    const heading = el("div", "pregame-league-header");
-                    heading.append(
-                        el("h4", "", category),
-                        el("span", "", `${categoryGames.length}試合`)
-                    );
-                    const grid = el("div", "pregame-card-grid pregame-league-grid");
-                    categoryGames.forEach((game) => grid.append(createGameCard(game)));
-                    group.append(heading, grid);
-                    gamesSection.append(group);
-                });
+                [...gamesByLeague.entries()]
+                    .sort(([left], [right]) => {
+                        const leftIndex = GAME_CATEGORY_ORDER.indexOf(left);
+                        const rightIndex = GAME_CATEGORY_ORDER.indexOf(right);
+                        return (leftIndex < 0 ? GAME_CATEGORY_ORDER.length : leftIndex) -
+                            (rightIndex < 0 ? GAME_CATEGORY_ORDER.length : rightIndex);
+                    })
+                    .forEach(([category, categoryGames]) => {
+                        if (!categoryGames.length) return;
+                        const group = el("section", "pregame-league-group");
+                        const heading = el("div", "pregame-league-header");
+                        heading.append(
+                            el("h4", "", category),
+                            el("span", "", `${categoryGames.length}試合`)
+                        );
+                        const grid = el("div", "pregame-card-grid pregame-league-grid");
+                        categoryGames.forEach((game) => grid.append(createGameCard(game)));
+                        group.append(heading, grid);
+                        gamesSection.append(group);
+                    });
             }
             dashboard.append(gamesSection);
             dom.content.replaceChildren(dashboard);

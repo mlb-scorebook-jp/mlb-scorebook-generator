@@ -139,6 +139,23 @@ body.app-mode-pregame .scorebook-horizontal-scroll {
     white-space: nowrap;
 }
 
+.pregame-header-wild-card {
+    color: #c7d0d5 !important;
+}
+
+/* Keep the matchup card at its existing height when the late-season line is present. */
+.pregame-matchup-heading.pregame-wild-card-active .pregame-header-team {
+    gap: 0;
+}
+
+.pregame-matchup-heading.pregame-wild-card-active + .pregame-matchup-meta-line {
+    margin-top: 2px !important;
+}
+
+.pregame-matchup-heading.pregame-wild-card-active + .pregame-matchup-meta-line .pregame-score-load-button {
+    margin-top: 3px;
+}
+
 .pregame-team-official-links {
     display: inline-flex;
     align-items: center;
