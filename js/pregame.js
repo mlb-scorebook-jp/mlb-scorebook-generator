@@ -2027,7 +2027,7 @@
                     }
                     const rosterStatus = person.pregameRosterState?.rosterStatus;
                     const playerStatus = rosterStatus
-                        ? `${rosterStatus}${game ? "" : "｜試合なし"}`
+                        ? rosterStatus
                         : (game ? statusLabel(game) : "試合なし");
                     card.append(
                         el("strong", "", playerName(person)),
