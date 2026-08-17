@@ -2,6 +2,133 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Yankees Magazine: Heading Home",
+        "summaryJa": "Babe Ruth（NYY）の最新動向をMLB公式が詳報",
+        "slug": "yankees-magazine-babe-ruth-in-baltimore",
+        "url": "https://www.mlb.com/news/yankees-magazine-babe-ruth-in-baltimore",
+        "contentDate": "2026-08-17T14:28:51.803Z",
+        "teamIds": [
+            147
+        ],
+        "playerIds": [
+            121578
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "nyy-yankees-magazine",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Q&A with Andy Green: Mets manager talks recent surge, leadership style",
+        "summaryJa": "メッツの最新動向をMLB公式が詳報",
+        "slug": "andy-green-on-managing-2026-mets",
+        "url": "https://www.mlb.com/news/andy-green-on-managing-2026-mets",
+        "contentDate": "2026-08-17T14:25:40.48Z",
+        "teamIds": [
+            121
+        ],
+        "playerIds": [],
+        "gamePks": [
+            823589
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Cubs' rotation looks braced for October push",
+        "summaryJa": "E.カブレーラ（CHC）の最新動向をMLB公式が詳報",
+        "slug": "edward-cabrera-cubs-rotation-braced-for-october",
+        "url": "https://www.mlb.com/news/edward-cabrera-cubs-rotation-braced-for-october",
+        "contentDate": "2026-08-17T14:14:31.988Z",
+        "teamIds": [
+            112
+        ],
+        "playerIds": [
+            665795
+        ],
+        "gamePks": [
+            824641
+        ],
+        "taxonomy": [
+            "apple-news",
+            "injury"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "How does the Phillies' path to postseason stack up with fellow NL contenders?",
+        "summaryJa": "フィリーズを巡る注目点をMLB公式が分析",
+        "slug": "phillies-remaining-schedule-in-wild-card-playoff-race",
+        "url": "https://www.mlb.com/news/phillies-remaining-schedule-in-wild-card-playoff-race",
+        "contentDate": "2026-08-17T14:01:58.4Z",
+        "teamIds": [
+            143
+        ],
+        "playerIds": [],
+        "gamePks": [
+            823427
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Which Braves predictions have come true? And what to expect for the end of '26",
+        "summaryJa": "ブレーブスの最新動向をMLB公式が詳報",
+        "slug": "analyzing-braves-2026-predictions-as-postseason-nears",
+        "url": "https://www.mlb.com/news/analyzing-braves-2026-predictions-as-postseason-nears",
+        "contentDate": "2026-08-17T14:00:13.669Z",
+        "teamIds": [
+            144
+        ],
+        "playerIds": [],
+        "gamePks": [
+            823668
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Analyzing Posada's HOF case on his birthday",
+        "summaryJa": "ヤンキースの最新動向をMLB公式が詳報",
+        "slug": "jorge-posada-hall-of-fame-case",
+        "url": "https://www.mlb.com/news/jorge-posada-hall-of-fame-case",
+        "contentDate": "2026-08-17T13:58:07.336Z",
+        "teamIds": [
+            147
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Do Blue Jays have real shot at Wild Card? 3 reasons why they just might",
         "summaryJa": "ブルージェイズを巡る注目点をMLB公式が分析",
         "slug": "why-blue-jays-have-chance-at-al-wild-card-spot",
@@ -16,6 +143,7 @@
             "apple-news"
         ],
         "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
@@ -201,7 +329,6 @@
             "team-shutout"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -227,27 +354,6 @@
         "gamePks": [],
         "taxonomy": [
             "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB"
-        ]
-    },
-    {
-        "headline": "33 innings. 8 hours. 3 fires. 1 call to the cops. The epic saga of baseball's longest game",
-        "summaryJa": "W.ボッグスの最新動向をMLB公式が詳報",
-        "slug": "the-longest-professional-baseball-game-ever-played",
-        "url": "https://www.mlb.com/news/the-longest-professional-baseball-game-ever-played",
-        "contentDate": "2026-08-17T02:29:00Z",
-        "teamIds": [],
-        "playerIds": [
-            111153,
-            121222
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "evergreen",
-            "offbeat"
         ],
         "sourceScopes": [
             "MLB"
@@ -369,6 +475,26 @@
         ]
     },
     {
+        "headline": "Latest Guardians injuries and transactions",
+        "summaryJa": "ガーディアンズの負傷状況をMLB公式が詳報",
+        "slug": "guardians-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/guardians-injuries-and-roster-moves",
+        "contentDate": "2026-08-17T01:41:00Z",
+        "teamIds": [
+            114
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Veen confidently dashes home on wild pitch that barely gets away from catcher",
         "summaryJa": "Z.ビーン（COL）、勝利を呼び込む活躍",
         "slug": "zac-veen-scores-on-wild-pitch-in-rockies-win-over-giants",
@@ -386,27 +512,6 @@
         "taxonomy": [
             "apple-news",
             "game-recap"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Latest Guardians injuries and transactions",
-        "summaryJa": "ガーディアンズの負傷状況をMLB公式が詳報",
-        "slug": "guardians-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/guardians-injuries-and-roster-moves",
-        "contentDate": "2026-08-17T01:41:00Z",
-        "teamIds": [
-            114
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
         ],
         "sourceScopes": [
             "球団公式"
@@ -454,6 +559,29 @@
             "exclude-from-personalization"
         ],
         "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Whitlock embracing heart for humanity as Jimmy Fund captain",
+        "summaryJa": "G.ウィットロック（BOS）の最新動向をMLB公式が詳報",
+        "slug": "garrett-whitlock-talks-jimmy-fund-captain-s-role",
+        "url": "https://www.mlb.com/news/garrett-whitlock-talks-jimmy-fund-captain-s-role",
+        "contentDate": "2026-08-17T01:29:53.448Z",
+        "teamIds": [
+            111
+        ],
+        "playerIds": [
+            676477
+        ],
+        "gamePks": [
+            824725
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
@@ -524,7 +652,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -754,7 +881,6 @@
             "key-moments"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -801,7 +927,6 @@
             "game-recap"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1088,7 +1213,6 @@
             "mlb-debut"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -6356,31 +6480,6 @@
         ]
     },
     {
-        "headline": "Rodón on verge of returning to Yanks following 7-K rehab outing",
-        "summaryJa": "C.ロドン（NYY）、復帰へ向けた最新状況",
-        "slug": "carlos-rodon-strikes-out-seven-in-double-a-rehab-outing",
-        "url": "https://www.mlb.com/news/carlos-rodon-strikes-out-seven-in-double-a-rehab-outing",
-        "contentDate": "2026-08-14T01:54:00Z",
-        "teamIds": [
-            147,
-            1956
-        ],
-        "playerIds": [
-            607074
-        ],
-        "gamePks": [
-            823508
-        ],
-        "taxonomy": [
-            "apple-news",
-            "injury",
-            "rehab"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Is it 'Have a catch' or 'Play catch'? Hall of Famers have strong feelings",
         "summaryJa": "フィリーズの最新動向をMLB公式が詳報",
         "slug": "have-a-catch-or-play-catch-debate",
@@ -6971,29 +7070,6 @@
             823017
         ],
         "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "'Excited to see the corn': Schwarber, Phillies head to Iowa for Field of Dreams Game",
-        "summaryJa": "K.シュワーバー（PHI）、フィールド・オブ・ドリームス戦へ",
-        "slug": "phillies-vs-twins-2026-field-of-dreams-game-preview",
-        "url": "https://www.mlb.com/news/phillies-vs-twins-2026-field-of-dreams-game-preview",
-        "contentDate": "2026-08-13T15:30:00Z",
-        "teamIds": [
-            143
-        ],
-        "playerIds": [
-            656941
-        ],
-        "gamePks": [
-            823669
-        ],
-        "taxonomy": [
-            "field-of-dreams",
             "apple-news"
         ],
         "sourceScopes": [
@@ -8078,29 +8154,6 @@
         ]
     },
     {
-        "headline": "New season of Café con Lindor features Eladio Carrión in Episode 1",
-        "summaryJa": "F.リンドー（NYM）の最新動向をMLB公式が詳報",
-        "slug": "francisco-lindor-new-season-cafe-con-lindor-podcast",
-        "url": "https://www.mlb.com/news/francisco-lindor-new-season-cafe-con-lindor-podcast",
-        "contentDate": "2026-08-12T16:15:10.663Z",
-        "teamIds": [
-            121
-        ],
-        "playerIds": [
-            596019
-        ],
-        "gamePks": [
-            824883
-        ],
-        "taxonomy": [
-            "cafe-con-lindor",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Lindor says he wants to stay with Mets: 'We have not taken a step backwards'",
         "summaryJa": "F.リンドー（NYM）の最新動向をMLB公式が詳報",
         "slug": "francisco-lindor-discusses-future-with-mets",
@@ -8626,31 +8679,6 @@
         ]
     },
     {
-        "headline": "Pérez blanks Mets in encouraging night for Braves' injury-riddled rotation",
-        "summaryJa": "M.ペレス（ATL）がメッツ打線を無失点、離脱者相次ぐ先発陣を支える",
-        "slug": "martin-perez-extends-scoreless-streak-in-win-over-mets",
-        "url": "https://www.mlb.com/news/martin-perez-extends-scoreless-streak-in-win-over-mets",
-        "contentDate": "2026-08-12T04:25:00Z",
-        "teamIds": [
-            144
-        ],
-        "playerIds": [
-            527048
-        ],
-        "gamePks": [
-            824886
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap",
-            "pitching",
-            "omg"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Angels relieve pitching coaches Maddux, Chiti, Scott of duties",
         "summaryJa": "エンゼルスの最新動向をMLB公式が詳報",
         "slug": "angels-dismiss-mike-maddux-dom-chiti-darryl-scott",
@@ -8751,31 +8779,6 @@
         ],
         "taxonomy": [
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "PCA, Suzuki provide one-two punch as Cubs' offense wears down Nats",
-        "summaryJa": "鈴木誠也とP.クロウ＝アームストロングが本塁打、カブス打線をけん引",
-        "slug": "pete-crow-armstrong-seiya-suzuki-homer-in-cubs-win",
-        "url": "https://www.mlb.com/news/pete-crow-armstrong-seiya-suzuki-homer-in-cubs-win",
-        "contentDate": "2026-08-12T02:50:00Z",
-        "teamIds": [
-            112
-        ],
-        "playerIds": [
-            673548,
-            691718
-        ],
-        "gamePks": [
-            822697
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap",
-            "takeaways"
         ],
         "sourceScopes": [
             "球団公式"
