@@ -2,6 +2,141 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Latest Reds injuries & transactions",
+        "summaryJa": "レッズの負傷状況をMLB公式が詳報",
+        "slug": "reds-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/reds-injuries-and-roster-moves",
+        "contentDate": "2026-08-17T15:38:00Z",
+        "teamIds": [
+            113
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "After nearly 2,000 attempts, the Oswalt MVP '05 perfecto has been pitched!",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "jay-lucarelli-pitches-roy-oswalt-perfect-game-in-mvp-2005",
+        "url": "https://www.mlb.com/news/jay-lucarelli-pitches-roy-oswalt-perfect-game-in-mvp-2005",
+        "contentDate": "2026-08-17T15:31:42.74Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Romero wins inaugural Rawlings Gold Glove Award in AUSL",
+        "summaryJa": "MLBの最新情報、勝利を呼び込む活躍",
+        "slug": "sydney-romero-gold-glove-award-ausl",
+        "url": "https://www.mlb.com/news/sydney-romero-gold-glove-award-ausl",
+        "contentDate": "2026-08-17T15:28:50.144Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "athletes-unlimited-softball-league",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "Picking the top 10 most clutch moments in baseball history",
+        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
+        "slug": "top-clutch-moments-in-baseball-history",
+        "url": "https://www.mlb.com/news/top-clutch-moments-in-baseball-history",
+        "contentDate": "2026-08-17T15:21:26.519Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "rankings"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "The Dodgers have a bullpen problem. Here's what may have caused it",
+        "summaryJa": "E.ディアス（LAD）の最新動向をMLB公式が詳報",
+        "slug": "edwin-diaz-dodgers-bullpen-have-caused-trouble-for-champs",
+        "url": "https://www.mlb.com/news/edwin-diaz-dodgers-bullpen-have-caused-trouble-for-champs",
+        "contentDate": "2026-08-17T15:03:22.066Z",
+        "teamIds": [
+            119
+        ],
+        "playerIds": [
+            621242
+        ],
+        "gamePks": [
+            824320
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "How unexpected production sparked the Padres' Wild Card push",
+        "summaryJa": "T.フランス（SD）を巡る注目点をMLB公式が分析",
+        "slug": "role-players-continue-driving-padres-wild-card-run",
+        "url": "https://www.mlb.com/news/role-players-continue-driving-padres-wild-card-run",
+        "contentDate": "2026-08-17T15:00:12.525Z",
+        "teamIds": [
+            135
+        ],
+        "playerIds": [
+            664034
+        ],
+        "gamePks": [
+            823589
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Latest Cardinals injuries & transactions",
+        "summaryJa": "カージナルスの負傷状況をMLB公式が詳報",
+        "slug": "cardinals-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/cardinals-injuries-and-roster-moves",
+        "contentDate": "2026-08-17T14:54:00Z",
+        "teamIds": [
+            138
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Yankees Magazine: Heading Home",
         "summaryJa": "Babe Ruth（NYY）の最新動向をMLB公式が詳報",
         "slug": "yankees-magazine-babe-ruth-in-baltimore",
@@ -256,7 +391,6 @@
             "relief-performance"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -280,7 +414,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -518,6 +651,26 @@
         ]
     },
     {
+        "headline": "Latest Dodgers injuries & transactions",
+        "summaryJa": "ドジャースの負傷状況をMLB公式が詳報",
+        "slug": "dodgers-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/dodgers-injuries-and-roster-moves",
+        "contentDate": "2026-08-17T01:31:00Z",
+        "teamIds": [
+            119
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "'Bleachers are empty': Cards make statement as offense shines vs. Cubs",
         "summaryJa": "A.バールソン（STL）、勝利を呼び込む活躍",
         "slug": "alec-burleson-cardinals-win-series-vs-cubs",
@@ -536,27 +689,6 @@
             "apple-news",
             "game-recap",
             "long-home-runs"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Latest Dodgers injuries & transactions",
-        "summaryJa": "ドジャースの負傷状況をMLB公式が詳報",
-        "slug": "dodgers-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/dodgers-injuries-and-roster-moves",
-        "contentDate": "2026-08-17T01:31:00Z",
-        "teamIds": [
-            119
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
         ],
         "sourceScopes": [
             "球団公式"
@@ -1013,34 +1145,6 @@
         ]
     },
     {
-        "headline": "Injuries: Bellinger, Dansby, McClanahan, Wood, Trea, Dodgers",
-        "summaryJa": "大谷翔平（LAD）らMLB各球団の最新負傷情報",
-        "slug": "baseball-injury-updates",
-        "url": "https://www.mlb.com/news/baseball-injury-updates",
-        "contentDate": "2026-08-16T23:22:00Z",
-        "teamIds": [],
-        "playerIds": [
-            660271,
-            607074,
-            607192,
-            592450,
-            641355,
-            663556,
-            695578,
-            607208,
-            621020,
-            680736
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "headline-breakout"
-        ],
-        "sourceScopes": [
-            "MLB"
-        ]
-    },
-    {
         "headline": "After Lee's slam, Twins offense takes foot off gas as frustrating month continues",
         "summaryJa": "ツインズの最新動向をMLB公式が詳報",
         "slug": "brooks-lee-hits-grand-slam-in-loss-to-phillies",
@@ -1079,7 +1183,6 @@
             "style"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1336,7 +1439,7 @@
         ]
     },
     {
-        "headline": "Family affair: Brewers' Carsten Sabathia III hits first pro homer with Hall of Famer dad in stands",
+        "headline": "Brewers' Carsten Sabathia III hits first pro homer with Hall of Famer dad in stands",
         "summaryJa": "Carsten Sabathia III（MIL）、本塁打で存在感",
         "slug": "brewers-carsten-sabathia-iii-hits-first-professional-homer",
         "url": "https://www.mlb.com/news/brewers-carsten-sabathia-iii-hits-first-professional-homer",
@@ -1652,26 +1755,6 @@
             "injury",
             "transactions",
             "apple-news",
-            "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Latest Reds injuries & transactions",
-        "summaryJa": "レッズの負傷状況をMLB公式が詳報",
-        "slug": "reds-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/reds-injuries-and-roster-moves",
-        "contentDate": "2026-08-16T19:46:00Z",
-        "teamIds": [
-            113
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
             "exclude-from-personalization"
         ],
         "sourceScopes": [
@@ -3712,26 +3795,6 @@
         "contentDate": "2026-08-15T18:20:00Z",
         "teamIds": [
             145
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Latest Cardinals injuries & transactions",
-        "summaryJa": "カージナルスの負傷状況をMLB公式が詳報",
-        "slug": "cardinals-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/cardinals-injuries-and-roster-moves",
-        "contentDate": "2026-08-15T18:10:00Z",
-        "teamIds": [
-            138
         ],
         "playerIds": [],
         "gamePks": [],
@@ -9133,30 +9196,6 @@
         ]
     },
     {
-        "headline": "Merrill the masher! Slugger belts 3rd HR in as many games in Padres' win",
-        "summaryJa": "J.メリル（SD）、記録達成の最新情報",
-        "slug": "jackson-merrill-s-go-ahead-home-run-leads-padres-to-win",
-        "url": "https://www.mlb.com/news/jackson-merrill-s-go-ahead-home-run-leads-padres-to-win",
-        "contentDate": "2026-08-11T05:29:00Z",
-        "teamIds": [
-            135
-        ],
-        "playerIds": [
-            701538
-        ],
-        "gamePks": [
-            823265
-        ],
-        "taxonomy": [
-            "apple-news",
-            "long-home-runs",
-            "game-recap"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "How NL Player of the Week McCarthy turned his game around",
         "summaryJa": "J.マカーシー（COL）を巡る注目点をMLB公式が分析",
         "slug": "jake-mccarthy-reacts-to-winning-nl-player-of-the-week",
@@ -10164,29 +10203,6 @@
         ],
         "taxonomy": [
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Longtime Astros scout adds 1st-round Draft pick to stellar résumé",
-        "summaryJa": "Logan Hughes（HOU）、記録達成の最新情報",
-        "slug": "astros-jim-stevenson-scouted-1st-round-pick-logan-hughes",
-        "url": "https://www.mlb.com/news/astros-jim-stevenson-scouted-1st-round-pick-logan-hughes",
-        "contentDate": "2026-08-07T16:00:46.255Z",
-        "teamIds": [
-            117
-        ],
-        "playerIds": [
-            813314
-        ],
-        "gamePks": [
-            823266
-        ],
-        "taxonomy": [
-            "apple-news",
-            "mlb-draft"
         ],
         "sourceScopes": [
             "球団公式"
