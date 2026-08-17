@@ -728,10 +728,6 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
     align-items: flex-start;
 }
 
-.pregame-person-card-static {
-    cursor: default;
-}
-
 .pregame-matchup-title {
     display: flex;
     align-items: baseline;

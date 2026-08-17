@@ -2049,14 +2049,11 @@
                         ?? (Number(person?.currentTeam?.id) === Number(person.pregameTeamId)
                             ? person.currentTeam
                             : { id: person.pregameTeamId });
-                    const card = el(game ? "button" : "div", "pregame-person-card");
-                    if (game) {
-                        card.type = "button";
-                        card.dataset.pregamePlayer = String(person.id);
-                        card.dataset.pregameGame = String(game.gamePk);
-                    } else {
-                        card.classList.add("pregame-person-card-static");
-                    }
+                    const card = el("button", "pregame-person-card");
+                    card.type = "button";
+                    card.dataset.pregamePlayer = String(person.id);
+                    if (person.pregameTeamId) card.dataset.pregameTeam = String(person.pregameTeamId);
+                    if (game) card.dataset.pregameGame = String(game.gamePk);
                     const rosterStatus = person.pregameRosterState?.rosterStatus;
                     const playerStatus = rosterStatus
                         ? rosterStatus
@@ -3026,21 +3023,29 @@
         return wrapper;
     };
 
-    const renderPlayerDetail = async (playerId, gamePk) => {
+    const renderPlayerDetail = async (playerId, gamePk, teamId = null) => {
+        const validGamePk = Number.isFinite(Number(gamePk)) && Number(gamePk) > 0;
         placeHeaderActions(false);
         savePregameSession("pregame-player", {
             playerId: Number(playerId),
-            gamePk: Number(gamePk)
+            ...(validGamePk ? { gamePk: Number(gamePk) } : {}),
+            ...(Number(teamId) ? { team: Number(teamId) } : {})
         });
         dom.view.classList.add("pregame-player-detail-active");
         setLoading(true);
         try {
-            const game = gameIndex.get(Number(gamePk)) ?? currentContext?.scheduleGame ?? {};
+            const game = validGamePk
+                ? gameIndex.get(Number(gamePk)) ?? currentContext?.scheduleGame ?? {}
+                : {};
             const date = String(game?.officialDate ?? currentDate);
             const season = Number(date.slice(0, 4));
-            const [feed, articles] = await Promise.all([
-                getFeed(gamePk),
-                getGameArticles(gamePk)
+            const [feed, articles, teamPayload] = await Promise.all([
+                validGamePk ? getFeed(gamePk) : Promise.resolve(null),
+                validGamePk ? getGameArticles(gamePk) : Promise.resolve([]),
+                !validGamePk && Number(teamId)
+                    ? fetchJson(`${API_ROOT}/v1/teams/${Number(teamId)}`, `pregame:team-details:${Number(teamId)}`)
+                        .catch(() => null)
+                    : Promise.resolve(null)
             ]);
             const person = getPlayerFromFeed(feed, playerId) ??
                 (await fetchJson(`${API_ROOT}/v1/people/${playerId}`, `pregame:person:${playerId}`))?.people?.[0];
@@ -3152,7 +3157,9 @@
 
             const playerTeam = [feed?.gameData?.teams?.away, feed?.gameData?.teams?.home]
                 .find((team) => Number(team?.id) === Number(person?.currentTeam?.id)) ??
-                feed?.gameData?.teams?.[gameInfo?.side] ?? person?.currentTeam;
+                feed?.gameData?.teams?.[gameInfo?.side] ??
+                teamPayload?.teams?.[0] ??
+                person?.currentTeam;
             setPlayerHeader(person, playerTeam, date);
             const battingSummary = el("div", "pregame-batting-summary");
             let yearlyBattingTable = null;
@@ -3256,11 +3263,13 @@
                 grid.append(...recentSections, currentSection);
             }
 
-            const todaySection = section("今日の情報", statusLabel(game));
+            const todaySection = section("今日の情報", validGamePk ? statusLabel(game) : "試合なし");
             todaySection.classList.add("pregame-span-6");
             const todayList = el("ul", "pregame-data-list");
             const todayLines = [];
-            if (gameInfo?.battingOrder) {
+            if (!validGamePk) {
+                todayLines.push("本日の試合なし");
+            } else if (gameInfo?.battingOrder) {
                 todayLines.push(`スタメン：${gameInfo.battingOrder}番 ${positionLabel(gameInfo.position)}`);
             } else if (gameInfo?.appeared) {
                 todayLines.push(`途中出場：${positionLabel(gameInfo.position)}`);
@@ -4033,12 +4042,12 @@
             await renderGameDetail(Number(context.gamePk));
             return;
         }
-        if (
-            context?.restoreView === "pregame-player" &&
-            Number(context?.playerId) &&
-            Number(context?.gamePk)
-        ) {
-            await renderPlayerDetail(Number(context.playerId), Number(context.gamePk));
+        if (context?.restoreView === "pregame-player" && Number(context?.playerId)) {
+            await renderPlayerDetail(
+                Number(context.playerId),
+                Number(context?.gamePk),
+                Number(context?.team)
+            );
             return;
         }
         await renderTop();
@@ -4108,7 +4117,8 @@
                 scrollCompactPregameToTop();
                 renderPlayerDetail(
                     Number(playerCard.dataset.pregamePlayer),
-                    Number(playerCard.dataset.pregameGame)
+                    Number(playerCard.dataset.pregameGame),
+                    Number(playerCard.dataset.pregameTeam)
                 );
                 return;
             }
