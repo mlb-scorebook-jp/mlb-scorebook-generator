@@ -443,9 +443,19 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
 }
 
 .pregame-today-control {
-    display: grid;
+    display: none;
     justify-items: center;
     gap: 2px;
+}
+
+.pregame-date-step-controls {
+    display: flex;
+    gap: 4px;
+}
+
+.pregame-date-step-controls button {
+    width: 31px;
+    padding: 0;
 }
 
 .pregame-today-control small {
@@ -2308,8 +2318,13 @@ a.pregame-metric-value:focus-visible {
     }
 
     .pregame-today-control {
+        display: grid;
         grid-column: 1 / -1;
         width: 100%;
+    }
+
+    .pregame-date-step-controls {
+        display: none;
     }
 
     .pregame-today-control small {

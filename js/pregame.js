@@ -883,7 +883,7 @@
             teamId = event.teamId;
             if (event.rosterStatus !== undefined) rosterStatus = event.rosterStatus;
         });
-        return teamId ? { teamId, rosterStatus, active: Number(activeTeamId) === Number(teamId) } : null;
+        return { teamId: teamId || null, rosterStatus, active: Boolean(teamId) && Number(activeTeamId) === Number(teamId) };
     };
 
     const getActiveRosterIds = async (teamId, date) => {
@@ -1968,9 +1968,9 @@
                     if (team?.id) teamGame.set(Number(team.id), game);
                 });
             });
-            const gameTeamIds = [...teamGame.keys()];
+            const rosterTeamIds = [...MLB_TEAM_IDS];
             const [rosterEntries, japaneseTransactions, japaneseGameHistories] = await Promise.all([
-                Promise.all(gameTeamIds.map(async (teamId) => [
+                Promise.all(rosterTeamIds.map(async (teamId) => [
                     teamId,
                     await getActiveRosterIds(teamId, date)
                 ])),
@@ -1996,7 +1996,7 @@
                         activeTeamId: activeTeamByPlayer.get(Number(person.id)) ?? null,
                         minorTeams
                     });
-                    return rosterState?.teamId && teamGame.has(rosterState.teamId)
+                    return rosterState
                         ? { ...person, pregameTeamId: rosterState.teamId, pregameRosterState: rosterState }
                         : null;
                 })
@@ -2010,16 +2010,25 @@
             );
             const japaneseGrid = el("div", "pregame-card-grid");
             if (!todaysJapanese.length) {
-                japaneseSection.append(empty("この日に試合がある日本人選手は見つかりませんでした。"));
+                japaneseSection.append(empty("対象日までにMLB登録された日本人選手は見つかりませんでした。"));
             } else {
                 todaysJapanese.forEach((person) => {
                     const game = teamGame.get(Number(person.pregameTeamId));
                     const officialTeam = [game?.teams?.away?.team, game?.teams?.home?.team]
-                        .find((team) => Number(team?.id) === Number(person.pregameTeamId));
-                    const card = el("button", "pregame-person-card");
-                    card.type = "button";
-                    card.dataset.pregamePlayer = String(person.id);
-                    card.dataset.pregameGame = String(game.gamePk);
+                        .find((team) => Number(team?.id) === Number(person.pregameTeamId))
+                        ?? (Number(person?.currentTeam?.id) === Number(person.pregameTeamId)
+                            ? person.currentTeam
+                            : { id: person.pregameTeamId });
+                    const card = el(game ? "button" : "div", "pregame-person-card");
+                    if (game) {
+                        card.type = "button";
+                        card.dataset.pregamePlayer = String(person.id);
+                        card.dataset.pregameGame = String(game.gamePk);
+                    }
+                    const rosterStatus = person.pregameRosterState?.rosterStatus;
+                    const playerStatus = rosterStatus
+                        ? `${rosterStatus}${game ? "" : "｜試合なし"}`
+                        : (game ? statusLabel(game) : "試合なし");
                     card.append(
                         el("strong", "", playerName(person)),
                         el("small", "", `${teamCode(officialTeam)} / ${positionLabel(person.primaryPosition?.abbreviation)}`),
@@ -2028,9 +2037,7 @@
                             person.pregameRosterState?.active && isLive(game)
                                 ? "pregame-live-badge"
                                 : "pregame-status-badge",
-                            person.pregameRosterState?.active
-                                ? statusLabel(game)
-                                : person.pregameRosterState?.rosterStatus || "MLBロースター外"
+                            playerStatus
                         )
                     );
                     japaneseGrid.append(card);
@@ -4025,6 +4032,8 @@
         dom.title = document.getElementById("pregame-title");
         dom.subtitle = document.getElementById("pregame-subtitle");
         dom.dateInput = document.getElementById("pregame-date");
+        dom.previousDateButton = document.getElementById("pregame-prev-date-btn");
+        dom.nextDateButton = document.getElementById("pregame-next-date-btn");
         dom.todayButton = document.getElementById("pregame-today-btn");
         dom.homeButton = document.getElementById("pregame-home-btn");
         dom.closeButton = document.getElementById("pregame-close-btn");
@@ -4041,6 +4050,13 @@
             currentDate = selectedDate;
             await renderTop();
         });
+        const moveDate = async (days) => {
+            currentDate = shiftDate(currentDate || currentMlbDate(), days);
+            dom.dateInput.value = currentDate;
+            await renderTop();
+        };
+        dom.previousDateButton?.addEventListener("click", () => moveDate(-1));
+        dom.nextDateButton?.addEventListener("click", () => moveDate(1));
         dom.todayButton?.addEventListener("click", async () => {
             currentDate = currentEasternDate();
             dom.dateInput.value = currentDate;
