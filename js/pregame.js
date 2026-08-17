@@ -9,6 +9,7 @@
     const gameIndex = new Map();
     let currentContext = null;
     let currentDate = "";
+    let currentPlayerView = null;
 
     const dom = {};
     let headerActionsAnchor = null;
@@ -392,6 +393,8 @@
     ).toUpperCase();
 
     const teamJapaneseName = (team) => {
+        const idName = window.MLB_SCOREBOOK_TEAM_NAMES_BY_ID?.[Number(team?.id)];
+        if (idName) return idName;
         const candidates = [team?.name, team?.teamName, team?.clubName];
         for (const candidate of candidates) {
             const converted = window.MLB_SCOREBOOK_NHK_TEAM_NAMES?.[normalizeKey(candidate)];
@@ -1978,6 +1981,7 @@
     };
 
     const renderTop = async () => {
+        currentPlayerView = null;
         placeHeaderActions(false);
         savePregameSession("pregame-top");
         dom.view.classList.remove("pregame-player-detail-active");
@@ -3160,6 +3164,15 @@
                 feed?.gameData?.teams?.[gameInfo?.side] ??
                 teamPayload?.teams?.[0] ??
                 person?.currentTeam;
+            currentPlayerView = {
+                playerId: Number(playerId),
+                teamId: Number(playerTeam?.id) || Number(teamId) || null
+            };
+            savePregameSession("pregame-player", {
+                playerId: Number(playerId),
+                ...(validGamePk ? { gamePk: Number(gamePk) } : {}),
+                ...(currentPlayerView.teamId ? { team: currentPlayerView.teamId } : {})
+            });
             setPlayerHeader(person, playerTeam, date);
             const battingSummary = el("div", "pregame-batting-summary");
             let yearlyBattingTable = null;
@@ -3831,6 +3844,7 @@
     };
 
     const renderGameDetail = async (gamePk) => {
+        currentPlayerView = null;
         placeHeaderActions(true);
         savePregameSession("pregame-game", { gamePk: Number(gamePk) });
         dom.view.classList.remove("pregame-player-detail-active");
@@ -4065,6 +4079,26 @@
         window.scrollTo(0, 0);
     };
 
+    const renderSelectedDate = async () => {
+        if (!currentPlayerView?.playerId) {
+            await renderTop();
+            return;
+        }
+        const games = await getSchedule(currentDate).catch(() => []);
+        const teamId = Number(currentPlayerView.teamId);
+        const game = teamId
+            ? games.find((entry) => [
+                Number(entry?.teams?.away?.team?.id),
+                Number(entry?.teams?.home?.team?.id)
+            ].includes(teamId))
+            : null;
+        await renderPlayerDetail(
+            currentPlayerView.playerId,
+            Number(game?.gamePk),
+            teamId
+        );
+    };
+
     const initialize = () => {
         dom.viewer = document.querySelector(".viewer");
         dom.view = document.getElementById("pregame-view");
@@ -4091,12 +4125,12 @@
             const selectedDate = String(dom.dateInput.value ?? "");
             if (!/^\d{4}-\d{2}-\d{2}$/.test(selectedDate)) return;
             currentDate = selectedDate;
-            await renderTop();
+            await renderSelectedDate();
         });
         const moveDate = async (days) => {
             currentDate = shiftDate(currentDate || currentMlbDate(), days);
             dom.dateInput.value = currentDate;
-            await renderTop();
+            await renderSelectedDate();
         };
         dom.previousDateButton?.addEventListener("click", () => moveDate(-1));
         dom.nextDateButton?.addEventListener("click", () => moveDate(1));
@@ -4104,7 +4138,7 @@
         dom.todayButton?.addEventListener("click", async () => {
             currentDate = currentEasternDate();
             dom.dateInput.value = currentDate;
-            await renderTop();
+            await renderSelectedDate();
         });
         dom.tomorrowButton?.addEventListener("click", () => moveDate(1));
         dom.homeButton.addEventListener("click", renderTop);

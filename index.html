@@ -284,7 +284,7 @@
     <script src="js/mlb-business-date.js?v=20260808-1"></script>
     <script src="js/mlb-latest-news.js?v=20260814-summary-1"></script>
     <script src="js/stathead-links.js?v=20260810-1"></script>
-    <script src="js/pregame.js?v=20260817-10"></script>
+    <script src="js/pregame.js?v=20260817-12"></script>
 
     <script>
         (() => {
@@ -1207,6 +1207,9 @@
                 [136, "seattlemariners"], [138, "stlouiscardinals"], [139, "tampabayrays"],
                 [140, "texasrangers"], [141, "torontobluejays"], [120, "washingtonnationals"]
             ].map(([id, nameKey]) => ({ id, name: NHK_TEAM_NAMES[nameKey] })));
+            window.MLB_SCOREBOOK_TEAM_NAMES_BY_ID = Object.freeze(Object.fromEntries(
+                MLB_TEAM_SEARCH_OPTIONS.map((team) => [team.id, team.name])
+            ));
 
             const getMlbTeamPageUrl = (teamId) => {
                 const slug = MLB_TEAM_SLUGS_BY_ID[Number(teamId)];
