@@ -556,6 +556,13 @@
         return "予定";
     };
 
+    const japanesePlayerGameStatusLabel = (game) => {
+        const label = statusLabel(game);
+        if (label === "終了") return "試合終了";
+        if (["開始前", "予定"].includes(label)) return "試合前";
+        return label;
+    };
+
     const statusReasonLabel = (reason) => {
         const value = String(reason ?? "").trim();
         const normalized = value.toLowerCase();
@@ -788,7 +795,7 @@
     const injuredListStatus = (description) => {
         const text = String(description ?? "");
         const days = text.match(/(\d+)-day injured list/i)?.[1];
-        return days ? `IL ${days}日間` : "IL";
+        return days ? `${days}日間IL` : "IL";
     };
 
     const japanesePlayerLogGroups = (person) => {
@@ -830,6 +837,7 @@
             date: String(split?.date ?? ""),
             order: 1,
             teamId: Number(split?.team?.id) || null,
+            team: split?.team ?? null,
             qualifies: true,
             rosterStatus: ""
         }));
@@ -841,13 +849,16 @@
                 const toTeamId = Number(transaction?.toTeam?.id);
                 const fromTeamId = Number(transaction?.fromTeam?.id);
                 let teamId;
+                let team;
                 let rosterStatus;
                 const description = String(transaction?.description ?? "");
                 if (["DFA", "REL", "URL", "NTC"].includes(code) && MLB_TEAM_IDS.has(fromTeamId)) {
                     teamId = null;
+                    team = null;
                     rosterStatus = code === "DFA" ? "FA" : "自由契約";
                 } else if (MLB_TEAM_IDS.has(toTeamId)) {
                     teamId = toTeamId;
+                    team = transaction?.toTeam ?? { id: toTeamId };
                     if (code === "SC" && /placed|transferred/i.test(description) && /injured list/i.test(description)) {
                         rosterStatus = injuredListStatus(description);
                     } else if (code === "SC" && /activated/i.test(description)) {
@@ -857,6 +868,7 @@
                     }
                 } else if (MLB_TEAM_IDS.has(fromTeamId) && ["OPT", "DES", "ASG"].includes(code)) {
                     teamId = fromTeamId;
+                    team = transaction?.fromTeam ?? { id: fromTeamId };
                     if (code === "OPT") rosterStatus = minorTeamStatus(transaction, minorTeams);
                     if (code === "DES") rosterStatus = "DFA";
                 } else {
@@ -866,24 +878,41 @@
                     date: transactionDate(transaction),
                     order: 2,
                     teamId,
+                    team,
                     qualifies: isMlbRosterTransaction(transaction, MLB_TEAM_IDS),
                     rosterStatus
                 });
             });
         if (activeTeamId) {
-            events.push({ date, order: 3, teamId: activeTeamId, qualifies: true, rosterStatus: "" });
+            events.push({
+                date,
+                order: 3,
+                teamId: activeTeamId,
+                team: Number(person?.currentTeam?.id) === Number(activeTeamId)
+                    ? person.currentTeam
+                    : { id: activeTeamId },
+                qualifies: true,
+                rosterStatus: ""
+            });
         }
         events.sort((left, right) =>
             left.date.localeCompare(right.date) || left.order - right.order
         );
         if (!events.some((event) => event.qualifies)) return null;
         let teamId = null;
+        let team = null;
         let rosterStatus = "";
         events.forEach((event) => {
             teamId = event.teamId;
+            if (event.team !== undefined) team = event.team;
             if (event.rosterStatus !== undefined) rosterStatus = event.rosterStatus;
         });
-        return { teamId: teamId || null, rosterStatus, active: Boolean(teamId) && Number(activeTeamId) === Number(teamId) };
+        return {
+            teamId: teamId || null,
+            team,
+            rosterStatus,
+            active: Boolean(teamId) && Number(activeTeamId) === Number(teamId)
+        };
     };
 
     const getActiveRosterIds = async (teamId, date) => {
@@ -2016,6 +2045,7 @@
                     const game = teamGame.get(Number(person.pregameTeamId));
                     const officialTeam = [game?.teams?.away?.team, game?.teams?.home?.team]
                         .find((team) => Number(team?.id) === Number(person.pregameTeamId))
+                        ?? person.pregameRosterState?.team
                         ?? (Number(person?.currentTeam?.id) === Number(person.pregameTeamId)
                             ? person.currentTeam
                             : { id: person.pregameTeamId });
@@ -2024,14 +2054,16 @@
                         card.type = "button";
                         card.dataset.pregamePlayer = String(person.id);
                         card.dataset.pregameGame = String(game.gamePk);
+                    } else {
+                        card.classList.add("pregame-person-card-static");
                     }
                     const rosterStatus = person.pregameRosterState?.rosterStatus;
                     const playerStatus = rosterStatus
                         ? rosterStatus
-                        : (game ? statusLabel(game) : "試合なし");
+                        : (game ? japanesePlayerGameStatusLabel(game) : "試合なし");
                     card.append(
                         el("strong", "", playerName(person)),
-                        el("small", "", `${teamCode(officialTeam)} / ${positionLabel(person.primaryPosition?.abbreviation)}`),
+                        el("small", "", `${teamJapaneseName(officialTeam)} / ${positionLabel(person.primaryPosition?.abbreviation)}`),
                         el(
                             "span",
                             person.pregameRosterState?.active && isLive(game)
