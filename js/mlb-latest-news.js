@@ -2,6 +2,48 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Do Blue Jays have real shot at Wild Card? 3 reasons why they just might",
+        "summaryJa": "ブルージェイズを巡る注目点をMLB公式が分析",
+        "slug": "why-blue-jays-have-chance-at-al-wild-card-spot",
+        "url": "https://www.mlb.com/news/why-blue-jays-have-chance-at-al-wild-card-spot",
+        "contentDate": "2026-08-17T13:45:48.007Z",
+        "teamIds": [
+            141
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Angels' restocked farm system reflected in new Top 30 Prospects list",
+        "summaryJa": "Jared Grindlinger（LAA）ら注目選手の最新動向",
+        "slug": "angels-top-30-prospects-2026-midseason-update",
+        "url": "https://www.mlb.com/news/angels-top-30-prospects-2026-midseason-update",
+        "contentDate": "2026-08-17T13:22:01.549Z",
+        "teamIds": [
+            108
+        ],
+        "playerIds": [
+            828796,
+            805796
+        ],
+        "gamePks": [
+            823991
+        ],
+        "taxonomy": [
+            "mlb-top-prospects",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Bo knows slugging! Giants' No. 8 prospect fuels surging system with torrid night",
         "summaryJa": "B.デビッドソン（SF）ら注目選手の最新動向",
         "slug": "giants-bo-davidson-logs-career-high-eight-rbis-at-triple-a",
@@ -10007,28 +10049,6 @@
             "apple-news",
             "game-recap",
             "payoff-pitch"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Rare stumble doesn't wipe smile off Ureña after faceoff with an idol",
-        "summaryJa": "W.ウレーニャ（LAA）の最新動向をMLB公式が詳報",
-        "slug": "walbert-urena-struggles-in-angels-loss-to-marlins",
-        "url": "https://www.mlb.com/news/walbert-urena-struggles-in-angels-loss-to-marlins",
-        "contentDate": "2026-08-09T01:00:33.102Z",
-        "teamIds": [
-            108
-        ],
-        "playerIds": [
-            700712
-        ],
-        "gamePks": [
-            823834
-        ],
-        "taxonomy": [
-            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
