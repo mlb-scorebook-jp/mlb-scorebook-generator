@@ -1565,6 +1565,17 @@
         return Number(match[1]) >= 8;
     };
 
+    const wildCardLink = (standing) => {
+        const wrapper = el("small", "pregame-header-wild-card");
+        const link = el("a", "pregame-header-wild-card-link", wildCardLine(standing));
+        link.href = "https://www.mlb.com/standings/wild-card";
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+        link.setAttribute("aria-label", `${wildCardLine(standing)}：MLB公式順位表を開く`);
+        wrapper.append(link);
+        return wrapper;
+    };
+
     const isDesktopGameDetailLayout = () =>
         navigator.maxTouchPoints === 0 &&
         window.matchMedia("screen and (min-width: 1101px) and (hover: hover) and (pointer: fine)").matches;
@@ -1696,7 +1707,7 @@
                     })()
                 )] : []),
                 el("small", "", `${standing?.division ?? "所属地区未確定"}　${rank}`),
-                ...(showWildCard ? [el("small", "pregame-header-wild-card", wildCardLine(standing))] : []),
+                ...(showWildCard ? [wildCardLink(standing)] : []),
                 links
             );
             return block;
