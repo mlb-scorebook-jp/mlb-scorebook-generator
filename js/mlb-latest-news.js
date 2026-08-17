@@ -8787,24 +8787,6 @@
         ]
     },
     {
-        "headline": "Paul Skenes exits early, offense quiet in Pirates' loss to Marlins",
-        "summaryJa": "パイレーツの最新動向をMLB公式が詳報",
-        "slug": "paul-skenes-exits-early-offense-quiet-in-pirates-loss-to-marlins",
-        "url": "https://www.mlb.com/news/paul-skenes-exits-early-offense-quiet-in-pirates-loss-to-marlins",
-        "contentDate": "2026-08-12T01:23:18.982Z",
-        "teamIds": [
-            134
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "pit-inside-the-pirates"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Feinstein discusses new role as A's interim GM",
         "summaryJa": "アスレチックスの最新動向をMLB公式が詳報",
         "slug": "a-s-interim-general-manager-dan-feinstein-speaks-to-media",
@@ -9193,29 +9175,6 @@
             "apple-news",
             "injury",
             "transactions"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Buxton (hip) could return by weekend; Ryan tosses on flat ground",
-        "summaryJa": "B.バクストン（MIN）、復帰へ向けた最新状況",
-        "slug": "byron-buxton-takes-on-field-batting-practice-runs-bases-for-first-time",
-        "url": "https://www.mlb.com/news/byron-buxton-takes-on-field-batting-practice-runs-bases-for-first-time",
-        "contentDate": "2026-08-11T00:09:00Z",
-        "teamIds": [
-            142
-        ],
-        "playerIds": [
-            621439,
-            657746
-        ],
-        "gamePks": [
-            823675
-        ],
-        "taxonomy": [
-            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
@@ -10182,52 +10141,6 @@
         ],
         "taxonomy": [
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Last in bigs in 2024, Jordan Montgomery comes off IL to join Rangers",
-        "summaryJa": "J.モンゴメリー（TEX）の最新動向をMLB公式が詳報",
-        "slug": "jordan-montgomery-comes-off-il-joins-rangers",
-        "url": "https://www.mlb.com/news/jordan-montgomery-comes-off-il-joins-rangers",
-        "contentDate": "2026-08-07T23:31:00Z",
-        "teamIds": [
-            140
-        ],
-        "playerIds": [
-            656756
-        ],
-        "gamePks": [
-            822863
-        ],
-        "taxonomy": [
-            "apple-news",
-            "transactions"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Conn earns call to Triple-A with hopes that A's will follow soon",
-        "summaryJa": "Cole Conn（ATH）、メジャー昇格・初出場に関する最新情報",
-        "slug": "cole-conn-gets-callup-to-triple-a-las-vegas",
-        "url": "https://www.mlb.com/news/cole-conn-gets-callup-to-triple-a-las-vegas",
-        "contentDate": "2026-08-07T18:30:16.856Z",
-        "teamIds": [
-            133
-        ],
-        "playerIds": [
-            813833
-        ],
-        "gamePks": [
-            824727
-        ],
-        "taxonomy": [
-            "apple-news",
-            "minor-league-baseball"
         ],
         "sourceScopes": [
             "球団公式"
