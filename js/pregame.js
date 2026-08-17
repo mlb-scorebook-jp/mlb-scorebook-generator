@@ -4075,7 +4075,9 @@
         dom.dateInput = document.getElementById("pregame-date");
         dom.previousDateButton = document.getElementById("pregame-prev-date-btn");
         dom.nextDateButton = document.getElementById("pregame-next-date-btn");
+        dom.yesterdayButton = document.getElementById("pregame-yesterday-btn");
         dom.todayButton = document.getElementById("pregame-today-btn");
+        dom.tomorrowButton = document.getElementById("pregame-tomorrow-btn");
         dom.homeButton = document.getElementById("pregame-home-btn");
         dom.closeButton = document.getElementById("pregame-close-btn");
         dom.headerActions = document.querySelector(".pregame-header-actions");
@@ -4098,11 +4100,13 @@
         };
         dom.previousDateButton?.addEventListener("click", () => moveDate(-1));
         dom.nextDateButton?.addEventListener("click", () => moveDate(1));
+        dom.yesterdayButton?.addEventListener("click", () => moveDate(-1));
         dom.todayButton?.addEventListener("click", async () => {
             currentDate = currentEasternDate();
             dom.dateInput.value = currentDate;
             await renderTop();
         });
+        dom.tomorrowButton?.addEventListener("click", () => moveDate(1));
         dom.homeButton.addEventListener("click", renderTop);
         dom.closeButton.addEventListener("click", () => {
             if (window.MLBAppNavigation?.showScorebook) {

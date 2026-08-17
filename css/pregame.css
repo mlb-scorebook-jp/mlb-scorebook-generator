@@ -2339,6 +2339,18 @@ a.pregame-metric-value:focus-visible {
         width: 100%;
     }
 
+    .pregame-relative-date-buttons {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 7px;
+        width: 100%;
+    }
+
+    .pregame-relative-date-buttons button {
+        width: 100%;
+        min-width: 0;
+    }
+
     .pregame-date-step-controls {
         display: none;
     }
