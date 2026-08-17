@@ -442,6 +442,20 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
     box-shadow: 0 0 0 1px rgba(145, 172, 184, 0.3);
 }
 
+.pregame-today-control {
+    display: grid;
+    justify-items: center;
+    gap: 2px;
+}
+
+.pregame-today-control small {
+    color: #9eabb3;
+    font-size: 8px;
+    font-weight: 500;
+    line-height: 1;
+    white-space: nowrap;
+}
+
 .pregame-header-actions button,
 .pregame-action-button {
     min-height: 31px;
@@ -2036,6 +2050,10 @@ a.pregame-metric-value:focus-visible {
         font-size: 11px;
     }
 
+    body.app-mode-pregame .app-header > .pregame-header-actions-global .pregame-today-control {
+        flex: 0 0 auto;
+    }
+
     .pregame-statcast-metrics {
         grid-template-columns: 1fr;
     }
@@ -2287,6 +2305,15 @@ a.pregame-metric-value:focus-visible {
         width: 100%;
         font-size: 14px;
         text-align: left;
+    }
+
+    .pregame-today-control {
+        grid-column: 1 / -1;
+        width: 100%;
+    }
+
+    .pregame-today-control small {
+        font-size: 11px;
     }
 
     .pregame-date-control input,

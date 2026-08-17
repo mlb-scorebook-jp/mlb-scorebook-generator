@@ -7,7 +7,7 @@
     <title>MLB Scorebook Generator</title>
     <!-- Score notation update: stacked batted-ball symbol, red hits, blue strikeouts, black other results. -->
     <link rel="stylesheet" href="css/style.css?v=20260815-live-1">
-    <link rel="stylesheet" href="css/pregame.css?v=20260817-2">
+    <link rel="stylesheet" href="css/pregame.css?v=20260817-3">
 </head>
 
 <body class="app-mode-home">
@@ -223,6 +223,10 @@
                             <span>現地日付</span>
                             <input type="date" id="pregame-date" aria-label="試合前情報の日付">
                         </label>
+                        <span class="pregame-today-control">
+                            <button type="button" id="pregame-today-btn">今日</button>
+                            <small>※現地時間基準</small>
+                        </span>
                         <button type="button" id="pregame-home-btn">TOP</button>
                         <button type="button" id="pregame-close-btn">スコアブックへ戻る</button>
                     </div>
@@ -272,7 +276,7 @@
     <script src="js/mlb-business-date.js?v=20260808-1"></script>
     <script src="js/mlb-latest-news.js?v=20260814-summary-1"></script>
     <script src="js/stathead-links.js?v=20260810-1"></script>
-    <script src="js/pregame.js?v=20260817-4"></script>
+    <script src="js/pregame.js?v=20260817-6"></script>
 
     <script>
         (() => {

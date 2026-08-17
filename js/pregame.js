@@ -421,6 +421,7 @@
         143: "#e81828", 144: "#ce1141", 145: "#27251f", 146: "#00a3e0",
         147: "#0c2340", 158: "#12284b"
     };
+    const MLB_TEAM_IDS = new Set(Object.keys(TEAM_CARD_COLORS).map(Number));
 
     const TEAM_SOCIAL_ACCOUNTS = {
         108: ["angels", "angels"], 109: ["dbacks", "dbacks"],
@@ -527,6 +528,17 @@
     };
 
     const currentMlbDate = () => window.MLBGameDate.getTodayGameDate();
+
+    const currentEasternDate = (now = new Date()) => {
+        const parts = new Intl.DateTimeFormat("en-US", {
+            timeZone: "America/New_York",
+            year: "numeric",
+            month: "2-digit",
+            day: "2-digit"
+        }).formatToParts(now);
+        const values = Object.fromEntries(parts.map((part) => [part.type, part.value]));
+        return `${values.year}-${values.month}-${values.day}`;
+    };
 
     const getStatus = (game) => String(
         game?.status?.detailedState ?? game?.status?.abstractGameState ?? "Scheduled"
@@ -727,9 +739,151 @@
             `pregame:japanese:${season}`
         );
         return (payload?.people ?? []).filter((person) =>
-            String(person?.birthCountry ?? person?.country ?? "").toLowerCase() === "japan" &&
-            Number(person?.currentTeam?.id)
+            String(person?.birthCountry ?? person?.country ?? "").toLowerCase() === "japan"
         );
+    };
+
+    const getJapanesePlayerTransactions = async (people, season, date) => {
+        const playerIds = people.map((person) => Number(person?.id)).filter(Boolean);
+        if (!playerIds.length) return [];
+        const params = new URLSearchParams({
+            playerId: playerIds.join(","),
+            startDate: `${season}-01-01`,
+            endDate: date
+        });
+        const payload = await fetchJson(
+            `${API_ROOT}/v1/transactions?${params}`,
+            `pregame:japanese-transactions:${season}:${date}:${playerIds.join("-")}`
+        ).catch(() => null);
+        return payload?.transactions ?? [];
+    };
+
+    const getMinorTeamDetails = async (transactions) => {
+        const teamIds = [...new Set(transactions
+            .filter((transaction) => ["OPT", "ASG"].includes(String(transaction?.typeCode ?? "").toUpperCase()))
+            .map((transaction) => Number(transaction?.toTeam?.id))
+            .filter((teamId) => teamId && !MLB_TEAM_IDS.has(teamId)))];
+        const entries = await Promise.all(teamIds.map(async (teamId) => {
+            const payload = await fetchJson(
+                `${API_ROOT}/v1/teams/${teamId}`,
+                `pregame:team-details:${teamId}`
+            ).catch(() => null);
+            return [teamId, payload?.teams?.[0] ?? null];
+        }));
+        return new Map(entries);
+    };
+
+    const minorTeamStatus = (transaction, minorTeams) => {
+        const teamId = Number(transaction?.toTeam?.id);
+        const team = minorTeams.get(teamId) ?? transaction?.toTeam ?? {};
+        const abbreviation = String(team?.sport?.abbreviation ?? "").toUpperCase();
+        const sportName = String(team?.sport?.name ?? "");
+        const level = ({ AAA: "3A", AA: "2A", "A+": "High-A", A: "1A", ROK: "ルーキー" })[abbreviation]
+            ?? ({ "TRIPLE-A": "3A", "DOUBLE-A": "2A" })[sportName.toUpperCase()]
+            ?? sportName
+            ?? "マイナー";
+        return `${level} ${team?.name ?? transaction?.toTeam?.name ?? "所属"}`;
+    };
+
+    const injuredListStatus = (description) => {
+        const text = String(description ?? "");
+        const days = text.match(/(\d+)-day injured list/i)?.[1];
+        return days ? `IL ${days}日間` : "IL";
+    };
+
+    const japanesePlayerLogGroups = (person) => {
+        const position = String(person?.primaryPosition?.abbreviation ?? "").toUpperCase();
+        if (position === "TWP") return ["hitting", "pitching"];
+        return [position === "P" ? "pitching" : "hitting"];
+    };
+
+    const getJapanesePlayerGameHistory = async (person, season, date) => {
+        const logs = await Promise.all(
+            japanesePlayerLogGroups(person).map((group) =>
+                getPlayerGameLog(person.id, season, group).catch(() => [])
+            )
+        );
+        return logs.flat().filter((split) => String(split?.date ?? "") < date);
+    };
+
+    const transactionDate = (transaction) => String(
+        transaction?.date ?? transaction?.effectiveDate ?? ""
+    ).slice(0, 10);
+
+    const isMlbRosterTransaction = (transaction, mlbTeamIds) => {
+        const code = String(transaction?.typeCode ?? "").toUpperCase();
+        const toTeamId = Number(transaction?.toTeam?.id);
+        if (!mlbTeamIds.has(toTeamId)) return false;
+        if (["CU", "SE", "CP", "R5"].includes(code)) return true;
+        return code === "SC" && /injured list|activated/i.test(String(transaction?.description ?? ""));
+    };
+
+    const japanesePlayerTeamAtDate = ({
+        person,
+        date,
+        gameHistory,
+        transactions,
+        activeTeamId,
+        minorTeams
+    }) => {
+        const events = gameHistory.map((split) => ({
+            date: String(split?.date ?? ""),
+            order: 1,
+            teamId: Number(split?.team?.id) || null,
+            qualifies: true,
+            rosterStatus: ""
+        }));
+        transactions
+            .filter((transaction) => Number(transaction?.person?.id) === Number(person?.id))
+            .filter((transaction) => transactionDate(transaction) <= date)
+            .forEach((transaction) => {
+                const code = String(transaction?.typeCode ?? "").toUpperCase();
+                const toTeamId = Number(transaction?.toTeam?.id);
+                const fromTeamId = Number(transaction?.fromTeam?.id);
+                let teamId;
+                let rosterStatus;
+                const description = String(transaction?.description ?? "");
+                if (["DFA", "REL", "URL", "NTC"].includes(code) && MLB_TEAM_IDS.has(fromTeamId)) {
+                    teamId = null;
+                    rosterStatus = code === "DFA" ? "FA" : "自由契約";
+                } else if (MLB_TEAM_IDS.has(toTeamId)) {
+                    teamId = toTeamId;
+                    if (code === "SC" && /placed|transferred/i.test(description) && /injured list/i.test(description)) {
+                        rosterStatus = injuredListStatus(description);
+                    } else if (code === "SC" && /activated/i.test(description)) {
+                        rosterStatus = "";
+                    } else if (["CU", "SE", "CP", "R5", "TR"].includes(code)) {
+                        rosterStatus = "";
+                    }
+                } else if (MLB_TEAM_IDS.has(fromTeamId) && ["OPT", "DES", "ASG"].includes(code)) {
+                    teamId = fromTeamId;
+                    if (code === "OPT") rosterStatus = minorTeamStatus(transaction, minorTeams);
+                    if (code === "DES") rosterStatus = "DFA";
+                } else {
+                    return;
+                }
+                events.push({
+                    date: transactionDate(transaction),
+                    order: 2,
+                    teamId,
+                    qualifies: isMlbRosterTransaction(transaction, MLB_TEAM_IDS),
+                    rosterStatus
+                });
+            });
+        if (activeTeamId) {
+            events.push({ date, order: 3, teamId: activeTeamId, qualifies: true, rosterStatus: "" });
+        }
+        events.sort((left, right) =>
+            left.date.localeCompare(right.date) || left.order - right.order
+        );
+        if (!events.some((event) => event.qualifies)) return null;
+        let teamId = null;
+        let rosterStatus = "";
+        events.forEach((event) => {
+            teamId = event.teamId;
+            if (event.rosterStatus !== undefined) rosterStatus = event.rosterStatus;
+        });
+        return teamId ? { teamId, rosterStatus, active: Number(activeTeamId) === Number(teamId) } : null;
     };
 
     const getActiveRosterIds = async (teamId, date) => {
@@ -1814,34 +1968,54 @@
                     if (team?.id) teamGame.set(Number(team.id), game);
                 });
             });
-            const japaneseTeamIds = [...new Set(japanesePlayers
-                .map((person) => Number(person?.currentTeam?.id))
-                .filter((teamId) => teamGame.has(teamId)))];
-            const rosterEntries = await Promise.all(japaneseTeamIds.map(async (teamId) => [
-                teamId,
-                await getActiveRosterIds(teamId, date)
-            ]));
-            const activeRosterByTeam = new Map(rosterEntries);
+            const gameTeamIds = [...teamGame.keys()];
+            const [rosterEntries, japaneseTransactions, japaneseGameHistories] = await Promise.all([
+                Promise.all(gameTeamIds.map(async (teamId) => [
+                    teamId,
+                    await getActiveRosterIds(teamId, date)
+                ])),
+                getJapanesePlayerTransactions(japanesePlayers, season, date),
+                Promise.all(japanesePlayers.map(async (person) => [
+                    Number(person.id),
+                    await getJapanesePlayerGameHistory(person, season, date)
+                ]))
+            ]);
+            const activeTeamByPlayer = new Map();
+            rosterEntries.forEach(([teamId, rosterIds]) => {
+                rosterIds.forEach((playerId) => activeTeamByPlayer.set(Number(playerId), Number(teamId)));
+            });
+            const gameHistoryByPlayer = new Map(japaneseGameHistories);
+            const minorTeams = await getMinorTeamDetails(japaneseTransactions);
             const todaysJapanese = japanesePlayers
-                .filter((person) => {
-                    const teamId = Number(person?.currentTeam?.id);
-                    return teamGame.has(teamId) && activeRosterByTeam.get(teamId)?.has(Number(person.id));
+                .map((person) => {
+                    const rosterState = japanesePlayerTeamAtDate({
+                        person,
+                        date,
+                        gameHistory: gameHistoryByPlayer.get(Number(person.id)) ?? [],
+                        transactions: japaneseTransactions,
+                        activeTeamId: activeTeamByPlayer.get(Number(person.id)) ?? null,
+                        minorTeams
+                    });
+                    return rosterState?.teamId && teamGame.has(rosterState.teamId)
+                        ? { ...person, pregameTeamId: rosterState.teamId, pregameRosterState: rosterState }
+                        : null;
                 })
+                .filter(Boolean)
                 .sort((a, b) => playerName(a).localeCompare(playerName(b), "ja"));
 
             const dashboard = el("div", "pregame-dashboard");
             const japaneseSection = section(
                 "日本人選手",
-                `${todaysJapanese.length}人 / MLB公式登録`
+                `${todaysJapanese.length}人 / 対象日までにMLB登録`
             );
             const japaneseGrid = el("div", "pregame-card-grid");
             if (!todaysJapanese.length) {
                 japaneseSection.append(empty("この日に試合がある日本人選手は見つかりませんでした。"));
             } else {
                 todaysJapanese.forEach((person) => {
-                    const game = teamGame.get(Number(person.currentTeam.id));
+                    const game = teamGame.get(Number(person.pregameTeamId));
                     const officialTeam = [game?.teams?.away?.team, game?.teams?.home?.team]
-                        .find((team) => Number(team?.id) === Number(person.currentTeam.id));
+                        .find((team) => Number(team?.id) === Number(person.pregameTeamId));
                     const card = el("button", "pregame-person-card");
                     card.type = "button";
                     card.dataset.pregamePlayer = String(person.id);
@@ -1849,7 +2023,15 @@
                     card.append(
                         el("strong", "", playerName(person)),
                         el("small", "", `${teamCode(officialTeam)} / ${positionLabel(person.primaryPosition?.abbreviation)}`),
-                        el("span", isLive(game) ? "pregame-live-badge" : "pregame-status-badge", statusLabel(game))
+                        el(
+                            "span",
+                            person.pregameRosterState?.active && isLive(game)
+                                ? "pregame-live-badge"
+                                : "pregame-status-badge",
+                            person.pregameRosterState?.active
+                                ? statusLabel(game)
+                                : person.pregameRosterState?.rosterStatus || "MLBロースター外"
+                        )
                     );
                     japaneseGrid.append(card);
                 });
@@ -3843,6 +4025,7 @@
         dom.title = document.getElementById("pregame-title");
         dom.subtitle = document.getElementById("pregame-subtitle");
         dom.dateInput = document.getElementById("pregame-date");
+        dom.todayButton = document.getElementById("pregame-today-btn");
         dom.homeButton = document.getElementById("pregame-home-btn");
         dom.closeButton = document.getElementById("pregame-close-btn");
         dom.headerActions = document.querySelector(".pregame-header-actions");
@@ -3856,6 +4039,11 @@
             const selectedDate = String(dom.dateInput.value ?? "");
             if (!/^\d{4}-\d{2}-\d{2}$/.test(selectedDate)) return;
             currentDate = selectedDate;
+            await renderTop();
+        });
+        dom.todayButton?.addEventListener("click", async () => {
+            currentDate = currentEasternDate();
+            dom.dateInput.value = currentDate;
             await renderTop();
         });
         dom.homeButton.addEventListener("click", renderTop);
