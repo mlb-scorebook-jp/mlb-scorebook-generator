@@ -2,6 +2,117 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "LIVE: Watch top prospect Hartshorn at High-A for FREE",
+        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
+        "slug": "watch-minor-league-baseball-games-for-free-2026",
+        "url": "https://www.mlb.com/news/watch-minor-league-baseball-games-for-free-2026",
+        "contentDate": "2026-08-16T23:51:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "mlb-top-prospects",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Ortiz, Chaparro platoon providing offensive pop for Nats' revamped lineup",
+        "summaryJa": "A.オルティーズ（WSH）、本塁打で存在感",
+        "slug": "abimelec-ortiz-hits-historic-homer-in-nationals-loss-to-mets",
+        "url": "https://www.mlb.com/news/abimelec-ortiz-hits-historic-homer-in-nationals-loss-to-mets",
+        "contentDate": "2026-08-16T23:48:08.423Z",
+        "teamIds": [
+            120
+        ],
+        "playerIds": [
+            694673,
+            665953
+        ],
+        "gamePks": [
+            823590
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Scott pitches into 7th, picks up win as Mets sweep Nats",
+        "summaryJa": "C.スコット（NYM）、記録達成の最新情報",
+        "slug": "mets-complete-sweep-of-nationals",
+        "url": "https://www.mlb.com/news/mets-complete-sweep-of-nationals",
+        "contentDate": "2026-08-16T23:47:00Z",
+        "teamIds": [
+            121
+        ],
+        "playerIds": [
+            681035
+        ],
+        "gamePks": [
+            823590
+        ],
+        "taxonomy": [
+            "apple-news",
+            "game-recap"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Mize weathers lengthy rain-delayed start to earn first Padres win",
+        "summaryJa": "C.マイズ（SD）、マウンドで好投",
+        "slug": "casey-mize-six-scoreless-innings-padres-blank-guardians",
+        "url": "https://www.mlb.com/news/casey-mize-six-scoreless-innings-padres-blank-guardians",
+        "contentDate": "2026-08-16T23:45:50.086Z",
+        "teamIds": [
+            135
+        ],
+        "playerIds": [
+            663554
+        ],
+        "gamePks": [
+            824397
+        ],
+        "taxonomy": [
+            "apple-news",
+            "game-recap",
+            "team-shutout"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Bucs erupt for 7 early runs, nab needed series win in rain-soaked finale",
+        "summaryJa": "パイレーツ、勝利を呼び込む活躍",
+        "slug": "pirates-beat-red-sox-win-series",
+        "url": "https://www.mlb.com/news/pirates-beat-red-sox-win-series",
+        "contentDate": "2026-08-16T23:42:00Z",
+        "teamIds": [
+            134
+        ],
+        "playerIds": [],
+        "gamePks": [
+            823344
+        ],
+        "taxonomy": [
+            "apple-news",
+            "game-recap"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Veen confidently dashes home on wild pitch that barely gets away from catcher",
         "summaryJa": "Z.ビーン（COL）、勝利を呼び込む活躍",
         "slug": "zac-veen-scores-on-wild-pitch-in-rockies-win-over-giants",
@@ -176,6 +287,7 @@
             "game-recap"
         ],
         "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
@@ -289,28 +401,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Bucs erupt for 7 early runs, nab needed series win in rain-soaked finale",
-        "summaryJa": "パイレーツ、勝利を呼び込む活躍",
-        "slug": "pirates-beat-red-sox-win-series",
-        "url": "https://www.mlb.com/news/pirates-beat-red-sox-win-series",
-        "contentDate": "2026-08-16T22:53:23.615Z",
-        "teamIds": [
-            134
-        ],
-        "playerIds": [],
-        "gamePks": [
-            823344
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap"
-        ],
-        "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -939,7 +1029,6 @@
             "transactions"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -964,30 +1053,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Scott pitches into 7th, picks up win as Mets sweep Nats",
-        "summaryJa": "C.スコット（NYM）、記録達成の最新情報",
-        "slug": "mets-complete-sweep-of-nationals",
-        "url": "https://www.mlb.com/news/mets-complete-sweep-of-nationals",
-        "contentDate": "2026-08-16T20:24:57.022Z",
-        "teamIds": [
-            121
-        ],
-        "playerIds": [
-            681035
-        ],
-        "gamePks": [
-            823590
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap"
-        ],
-        "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1102,23 +1167,6 @@
             "transactions",
             "apple-news",
             "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "LIVE: Watch top prospect Hartshorn at High-A for FREE",
-        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
-        "slug": "watch-minor-league-baseball-games-for-free-2026",
-        "url": "https://www.mlb.com/news/watch-minor-league-baseball-games-for-free-2026",
-        "contentDate": "2026-08-16T19:59:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "mlb-top-prospects",
-            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
@@ -2741,7 +2789,6 @@
             "key-moments"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -10090,29 +10137,6 @@
         ]
     },
     {
-        "headline": "Nats No. 4 prospect King homers off of 3-time All-Star at Triple-A",
-        "summaryJa": "S.キング（WSH）、本塁打で存在感",
-        "slug": "nationals-prospect-seaver-king-homers-off-of-carlos-rodon-at-triple-a",
-        "url": "https://www.mlb.com/news/nationals-prospect-seaver-king-homers-off-of-carlos-rodon-at-triple-a",
-        "contentDate": "2026-08-09T14:04:28.578Z",
-        "teamIds": [
-            120
-        ],
-        "playerIds": [
-            814409
-        ],
-        "gamePks": [
-            822700
-        ],
-        "taxonomy": [
-            "mlb-top-prospects",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Pfaadt continues to dazzle (7 IP, 0 R) despite D-backs' extras defeat",
         "summaryJa": "B.フォート（AZ）、マウンドで好投",
         "slug": "brandon-pfaadt-holds-dodgers-scoreless-in-d-backs-loss",
@@ -10512,29 +10536,6 @@
         ],
         "taxonomy": [
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Last in bigs in 2024, Jordan Montgomery comes off IL to join Rangers",
-        "summaryJa": "J.モンゴメリー（TEX）の最新動向をMLB公式が詳報",
-        "slug": "jordan-montgomery-comes-off-il-joins-rangers",
-        "url": "https://www.mlb.com/news/jordan-montgomery-comes-off-il-joins-rangers",
-        "contentDate": "2026-08-07T23:31:00Z",
-        "teamIds": [
-            140
-        ],
-        "playerIds": [
-            656756
-        ],
-        "gamePks": [
-            822863
-        ],
-        "taxonomy": [
-            "apple-news",
-            "transactions"
         ],
         "sourceScopes": [
             "球団公式"
