@@ -2,6 +2,81 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Burleson retakes RBI lead, Mathews racks up K's as Cards win twin bill opener",
+        "summaryJa": "A.バールソン（STL）、勝利を呼び込む活躍",
+        "slug": "cardinals-beat-reds-in-opening-game-of-doubleheader",
+        "url": "https://www.mlb.com/news/cardinals-beat-reds-in-opening-game-of-doubleheader",
+        "contentDate": "2026-08-17T20:50:20.164Z",
+        "teamIds": [
+            138
+        ],
+        "playerIds": [
+            676475,
+            687273
+        ],
+        "gamePks": [
+            824514
+        ],
+        "taxonomy": [
+            "apple-news",
+            "game-recap"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Griffin no longer needs splint, could return within 3 weeks",
+        "summaryJa": "K.グリフィン（PIT）の負傷状況をMLB公式が詳報",
+        "slug": "konnor-griffin-finger-injury-progress",
+        "url": "https://www.mlb.com/news/konnor-griffin-finger-injury-progress",
+        "contentDate": "2026-08-17T20:41:51.013Z",
+        "teamIds": [
+            134
+        ],
+        "playerIds": [
+            804606
+        ],
+        "gamePks": [
+            823343
+        ],
+        "taxonomy": [
+            "apple-news",
+            "injury"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Alonso, Carroll nab Player of the Week honors",
+        "summaryJa": "P.アロンゾ（BAL）の最新動向をMLB公式が詳報",
+        "slug": "pete-alonso-corbin-carroll-named-players-of-the-week",
+        "url": "https://www.mlb.com/news/pete-alonso-corbin-carroll-named-players-of-the-week",
+        "contentDate": "2026-08-17T20:34:39.795Z",
+        "teamIds": [
+            110,
+            109,
+            118
+        ],
+        "playerIds": [
+            624413,
+            682998,
+            686475
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "players-of-the-week",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Oneil Cruz returning from 60-day injured list",
         "summaryJa": "O.クルーズ（PIT）の負傷状況をMLB公式が詳報",
         "slug": "oneil-cruz-activated-off-injured-list",
@@ -419,7 +494,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -683,22 +757,6 @@
             527048,
             641778
         ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB"
-        ]
-    },
-    {
-        "headline": "Top 5 series to watch this week",
-        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
-        "slug": "mlb-series-to-watch-week-of-august-17-2026",
-        "url": "https://www.mlb.com/news/mlb-series-to-watch-week-of-august-17-2026",
-        "contentDate": "2026-08-17T02:23:00Z",
-        "teamIds": [],
-        "playerIds": [],
         "gamePks": [],
         "taxonomy": [
             "apple-news"
@@ -1565,7 +1623,6 @@
             "game-recap"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -7314,32 +7371,6 @@
         ]
     },
     {
-        "headline": "These 5 Cardinals have something to prove down the stretch",
-        "summaryJa": "H.ドビンズ（STL）の最新動向をMLB公式が詳報",
-        "slug": "cardinals-who-have-chance-for-larger-role-for-rest-of-2026",
-        "url": "https://www.mlb.com/news/cardinals-who-have-chance-for-larger-role-for-rest-of-2026",
-        "contentDate": "2026-08-13T16:04:16.327Z",
-        "teamIds": [
-            138
-        ],
-        "playerIds": [
-            690928,
-            669461,
-            699625,
-            669357,
-            691458
-        ],
-        "gamePks": [
-            823017
-        ],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "How Jacob Webb found another level 'real quick' with Cubs",
         "summaryJa": "J.ウェブ（CHC）を巡る注目点をMLB公式が分析",
         "slug": "jacob-webb-high-leverage-arm-in-cubs-bullpen",
@@ -8841,29 +8872,6 @@
         ]
     },
     {
-        "headline": "Pozo exits with left index finger pain after being hit by swing against Twins",
-        "summaryJa": "Y.ポゾ（BAL）の最新動向をMLB公式が詳報",
-        "slug": "yohel-pozo-exits-vs-twins-after-being-hit-by-swing",
-        "url": "https://www.mlb.com/news/yohel-pozo-exits-vs-twins-after-being-hit-by-swing",
-        "contentDate": "2026-08-12T03:42:00Z",
-        "teamIds": [
-            110
-        ],
-        "playerIds": [
-            650968
-        ],
-        "gamePks": [
-            823673
-        ],
-        "taxonomy": [
-            "injury",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Tigers surging so strong even rival Guardians can't slow them down",
         "summaryJa": "タイガースがガーディアンズを退け、好調を維持",
         "slug": "kevin-mcgonigle-tigers-beat-guardians",
@@ -9081,28 +9089,6 @@
         "taxonomy": [
             "apple-news",
             "payoff-pitch"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Royals battle, almost spoil Skubal's LA debut as Caglianone stays hot",
-        "summaryJa": "J.キャグリオーン（KC）、メジャー昇格・初出場に関する最新情報",
-        "slug": "jac-caglianone-royals-show-fight-vs-tarik-skubal-dodgers",
-        "url": "https://www.mlb.com/news/jac-caglianone-royals-show-fight-vs-tarik-skubal-dodgers",
-        "contentDate": "2026-08-11T06:23:09.862Z",
-        "teamIds": [
-            118
-        ],
-        "playerIds": [
-            695506
-        ],
-        "gamePks": [
-            823918
-        ],
-        "taxonomy": [
-            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
@@ -10109,28 +10095,6 @@
         "taxonomy": [
             "apple-news",
             "game-recap"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Carroll's girlfriend steals show with anthem, then Carroll steals a HR!",
-        "summaryJa": "C.キャロル（AZ）の恋人が国歌斉唱、本人は本塁打をもぎ取る好守",
-        "slug": "corbin-carroll-s-girlfriend-emma-broyles-sings-national-anthem",
-        "url": "https://www.mlb.com/news/corbin-carroll-s-girlfriend-emma-broyles-sings-national-anthem",
-        "contentDate": "2026-08-08T23:53:12.446Z",
-        "teamIds": [
-            109
-        ],
-        "playerIds": [
-            682998
-        ],
-        "gamePks": [
-            825049
-        ],
-        "taxonomy": [
-            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
