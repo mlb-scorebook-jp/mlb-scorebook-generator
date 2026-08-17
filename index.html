@@ -4292,6 +4292,7 @@
                 const fragment = document.createDocumentFragment();
                 const players = state[side].players[order - 1] ?? [];
                 const rowHeight = 56;
+                const substitutionEntries = getSubstitutionNameSupplements();
 
                 const makeStackCell = (className, valueGetter) => {
                     const cell = createElement("div", `grid-cell player-cell ${className}`);
@@ -4309,7 +4310,21 @@
                         const entry = createElement("div", "lineup-entry", value);
                         if (className.includes("name-cell")) {
                             entry.textContent = "";
-                            entry.append(createPlayerProfileLink(player?.person ?? {}, value));
+                            const nameContent = createElement("span", "lineup-name-content");
+                            nameContent.append(createPlayerProfileLink(player?.person ?? {}, value));
+                            const playerId = Number(player?.person?.id);
+                            const supplement = substitutionEntries.get(`${side}-${playerId}`);
+                            if (supplement) {
+                                nameContent.append(
+                                    document.createTextNode(" "),
+                                    createElement(
+                                        "span",
+                                        "lineup-substitution-supplement",
+                                        `（${supplement}）`
+                                    )
+                                );
+                            }
+                            entry.append(nameContent);
                         }
                         if (className.includes("position-cell")) {
                             entry.classList.add("position-history");
@@ -5743,6 +5758,7 @@
                             side: displaySide,
                             teamSide: fieldingEntry ? fieldingSide : battingSide,
                             inning,
+                            halfInning: String(play?.about?.halfInning ?? "").toLowerCase(),
                             inningOccurrence,
                             order,
                             playerId,
@@ -5754,6 +5770,35 @@
                     });
                 });
                 return indicators;
+            };
+
+            const getSubstitutionNameSupplements = () => {
+                const supplements = new Map();
+                const roleLabels = {
+                    "pinch-hitter": "PH",
+                    "pinch-runner": "PR",
+                    defense: "守備"
+                };
+                getSubstitutionIndicators().forEach((item) => {
+                    const roleLabel = roleLabels[item.role];
+                    if (!roleLabel) return;
+                    const player = (state[item.teamSide]?.players ?? [])
+                        .flat()
+                        .find((candidate) => Number(candidate?.person?.id) === item.playerId);
+                    const battingOrder = Number.parseInt(player?.battingOrder, 10);
+                    if (Number.isFinite(battingOrder) && battingOrder % 100 === 0) return;
+                    const half = item.halfInning === "top"
+                        ? "表"
+                        : item.halfInning === "bottom"
+                            ? "裏"
+                            : "";
+                    if (!half) return;
+                    const key = `${item.teamSide}-${item.playerId}`;
+                    if (!supplements.has(key)) {
+                        supplements.set(key, `${item.inning}${half} ${roleLabel}`);
+                    }
+                });
+                return supplements;
             };
 
             const createSubstitutionIndicator = (items, cell) => {
