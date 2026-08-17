@@ -2,6 +2,78 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "In his year on the sidelines, López embracing the side quest",
+        "summaryJa": "P.ロペス（MIN）、復帰へ向けた最新状況",
+        "slug": "pablo-lopez-broadcaster-interpreter-tommy-john-rehab",
+        "url": "https://www.mlb.com/news/pablo-lopez-broadcaster-interpreter-tommy-john-rehab",
+        "contentDate": "2026-08-17T16:52:24.309Z",
+        "teamIds": [
+            142
+        ],
+        "playerIds": [
+            641154
+        ],
+        "gamePks": [
+            823668
+        ],
+        "taxonomy": [
+            "apple-news",
+            "injury",
+            "players-weekend"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Rays have become 'Orioles 2.0' with recent acquisitions",
+        "summaryJa": "B.ベイカー（BAL）の最新動向をMLB公式が詳報",
+        "slug": "former-orioles-players-reunite-rays-roster-postseason-push",
+        "url": "https://www.mlb.com/news/former-orioles-players-reunite-rays-roster-postseason-push",
+        "contentDate": "2026-08-17T16:39:15.193Z",
+        "teamIds": [
+            110,
+            139
+        ],
+        "playerIds": [
+            641329,
+            656775,
+            669330,
+            622761
+        ],
+        "gamePks": [
+            822939
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "As White Sox-Cubs takes center stage, Windy City envisions all-Chicago World Series",
+        "summaryJa": "ホワイトソックスの最新動向をMLB公式が詳報",
+        "slug": "white-sox-cubs-world-series-matchup-possibility",
+        "url": "https://www.mlb.com/news/white-sox-cubs-world-series-matchup-possibility",
+        "contentDate": "2026-08-17T16:13:24.251Z",
+        "teamIds": [
+            145,
+            112
+        ],
+        "playerIds": [],
+        "gamePks": [
+            824641
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Latest Reds injuries & transactions",
         "summaryJa": "レッズの負傷状況をMLB公式が詳報",
         "slug": "reds-injuries-and-roster-moves",
@@ -54,8 +126,8 @@
         ]
     },
     {
-        "headline": "Picking the top 10 most clutch moments in baseball history",
-        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
+        "headline": "What's the most clutch moment in baseball history?",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
         "slug": "top-clutch-moments-in-baseball-history",
         "url": "https://www.mlb.com/news/top-clutch-moments-in-baseball-history",
         "contentDate": "2026-08-17T15:21:26.519Z",
@@ -174,7 +246,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -528,7 +599,7 @@
         ]
     },
     {
-        "headline": "Pitchers laud Tommy John as 'trailblazer'",
+        "headline": "MLB players -- and TJ surgery patients -- discuss Tommy John's legacy",
         "summaryJa": "T.ジョンの最新動向をMLB公式が詳報",
         "slug": "mlb-players-react-to-the-death-of-tommy-john",
         "url": "https://www.mlb.com/news/mlb-players-react-to-the-death-of-tommy-john",
@@ -710,7 +781,8 @@
             824725
         ],
         "taxonomy": [
-            "apple-news"
+            "apple-news",
+            "players-weekend"
         ],
         "sourceScopes": [
             "MLB",
@@ -1756,6 +1828,27 @@
             "transactions",
             "apple-news",
             "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Card collecting both a 'hobby and semi-obsession' for Straw",
+        "summaryJa": "M.ストロー（TOR）の最新動向をMLB公式が詳報",
+        "slug": "myles-straw-blue-jays-card-collecting-connoisseur",
+        "url": "https://www.mlb.com/news/myles-straw-blue-jays-card-collecting-connoisseur",
+        "contentDate": "2026-08-16T19:45:00Z",
+        "teamIds": [
+            141
+        ],
+        "playerIds": [
+            664702
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "players-weekend"
         ],
         "sourceScopes": [
             "球団公式"
@@ -3833,6 +3926,27 @@
         ]
     },
     {
+        "headline": "From bass to snook, Caissie becoming avid fisherman in Miami",
+        "summaryJa": "O.ケイシー（MIA）の最新動向をMLB公式が詳報",
+        "slug": "owen-caissie-fisherman-marlins",
+        "url": "https://www.mlb.com/news/owen-caissie-fisherman-marlins",
+        "contentDate": "2026-08-15T15:23:14.316Z",
+        "teamIds": [
+            146
+        ],
+        "playerIds": [
+            683357
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "players-weekend"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Updated Braves' Top 30 Prospects list features new No. 1",
         "summaryJa": "Eric Hartman（ATL）ら注目選手の最新動向",
         "slug": "braves-top-30-prospects-2026-midseason-update",
@@ -3890,6 +4004,28 @@
         "taxonomy": [
             "apple-news",
             "mlb-top-prospects"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "From Bieber to Metallica, Mets rookies Ewing, Benge strike a chord on and off field",
+        "summaryJa": "C.ベンジ（NYM）の最新動向をMLB公式が詳報",
+        "slug": "aj-ewing-carson-benge-guitars-players-weekend-mets",
+        "url": "https://www.mlb.com/news/aj-ewing-carson-benge-guitars-players-weekend-mets",
+        "contentDate": "2026-08-15T14:46:58.898Z",
+        "teamIds": [
+            121
+        ],
+        "playerIds": [
+            701807,
+            805999
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "players-weekend"
         ],
         "sourceScopes": [
             "球団公式"
@@ -7045,27 +7181,6 @@
         ]
     },
     {
-        "headline": "How much did Dylan Cease’s original painting sell for?",
-        "summaryJa": "D.シース（TOR）を巡る注目点をMLB公式が分析",
-        "slug": "dylan-cease-artwork-blue-jays-sportsnet-auction",
-        "url": "https://www.mlb.com/news/dylan-cease-artwork-blue-jays-sportsnet-auction",
-        "contentDate": "2026-08-13T16:17:29.395Z",
-        "teamIds": [
-            141
-        ],
-        "playerIds": [
-            656302
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "mlb",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Royals' teenage top prospect has presence well beyond his years",
         "summaryJa": "Kendry Chourio（KC）ら注目選手の最新動向",
         "slug": "kendry-chourio-royals-top-prospect-thriving-in-minor-leagues",
@@ -8217,49 +8332,6 @@
         ]
     },
     {
-        "headline": "Lindor says he wants to stay with Mets: 'We have not taken a step backwards'",
-        "summaryJa": "F.リンドー（NYM）の最新動向をMLB公式が詳報",
-        "slug": "francisco-lindor-discusses-future-with-mets",
-        "url": "https://www.mlb.com/news/francisco-lindor-discusses-future-with-mets",
-        "contentDate": "2026-08-12T16:03:18.302Z",
-        "teamIds": [
-            121
-        ],
-        "playerIds": [
-            596019
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "TA recalls Field of Dreams walk-off: 'Just a moment of happiness'",
-        "summaryJa": "T.アンダーソン（CWS）、サヨナラ勝利の主役に",
-        "slug": "tim-anderson-remembers-field-of-dreams-game",
-        "url": "https://www.mlb.com/news/tim-anderson-remembers-field-of-dreams-game",
-        "contentDate": "2026-08-12T15:59:59.488Z",
-        "teamIds": [
-            145
-        ],
-        "playerIds": [
-            641313
-        ],
-        "gamePks": [
-            824562
-        ],
-        "taxonomy": [
-            "apple-news",
-            "field-of-dreams"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "O's land 18-year-old OF Rivas from Sox to complete Adley deal",
         "summaryJa": "オリオールズ、ラッチマンのトレード後日指名で18歳外野手H.リバスを獲得",
         "slug": "orioles-acquire-harold-rivas-complete-adley-rutschman-deal",
@@ -8542,29 +8614,6 @@
         ]
     },
     {
-        "headline": "Homerless for a year, Walls socks 2 in 30 minutes as Rays roll to 8th straight win",
-        "summaryJa": "T.ウォールズ（TB）が30分で2本塁打、レイズは8連勝",
-        "slug": "taylor-walls-hits-first-and-second-homers-of-season",
-        "url": "https://www.mlb.com/news/taylor-walls-hits-first-and-second-homers-of-season",
-        "contentDate": "2026-08-12T05:35:00Z",
-        "teamIds": [
-            139
-        ],
-        "playerIds": [
-            670764
-        ],
-        "gamePks": [
-            824970
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Pérez passes latest test in quest to be one of MLB's elite starters",
         "summaryJa": "E.ペレス（MIA）が7回無失点、エース級への成長を示す",
         "slug": "eury-perez-throws-seven-scoreless-innings-vs-pirates",
@@ -8648,24 +8697,6 @@
         "taxonomy": [
             "apple-news",
             "mlb-top-prospects"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "These 11 moments and sights made MiLB at Field of Dreams magical",
-        "summaryJa": "マイナー版『フィールド・オブ・ドリームス』を彩った11の名場面",
-        "slug": "moments-that-made-milb-at-field-of-dreams-magical-2026",
-        "url": "https://www.mlb.com/news/moments-that-made-milb-at-field-of-dreams-magical-2026",
-        "contentDate": "2026-08-12T04:44:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "mlb-top-prospects",
-            "apple-news",
-            "field-of-dreams"
         ],
         "sourceScopes": [
             "球団公式"
@@ -8953,26 +8984,6 @@
         "taxonomy": [
             "apple-news",
             "injury"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Checking in on all 9 players in the O's Deadline haul",
-        "summaryJa": "オリオールズの移籍・契約に関する最新情報",
-        "slug": "orioles-2026-trade-deadline-acquisitions-update",
-        "url": "https://www.mlb.com/news/orioles-2026-trade-deadline-acquisitions-update",
-        "contentDate": "2026-08-11T14:59:38.961Z",
-        "teamIds": [
-            110
-        ],
-        "playerIds": [],
-        "gamePks": [
-            823673
-        ],
-        "taxonomy": [
-            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
@@ -10091,29 +10102,6 @@
             "apple-news",
             "game-recap",
             "payoff-pitch"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Alcantara sets 3rd Marlins franchise record of '26, this time for career innings",
-        "summaryJa": "S.アルカンタラ（MIA）、今季3度目のマーリンズ投球回記録を樹立",
-        "slug": "sandy-alcantara-sets-marlins-franchise-record-for-innings-pitched",
-        "url": "https://www.mlb.com/news/sandy-alcantara-sets-marlins-franchise-record-for-innings-pitched",
-        "contentDate": "2026-08-09T00:25:00Z",
-        "teamIds": [
-            146
-        ],
-        "playerIds": [
-            645261
-        ],
-        "gamePks": [
-            823834
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap"
         ],
         "sourceScopes": [
             "球団公式"
