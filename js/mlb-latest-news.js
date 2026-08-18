@@ -2,6 +2,116 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Latest Pirates injuries & transactions",
+        "summaryJa": "パイレーツの負傷状況をMLB公式が詳報",
+        "slug": "pirates-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/pirates-injuries-and-roster-moves",
+        "contentDate": "2026-08-18T19:48:00Z",
+        "teamIds": [
+            134
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Yankees activate Rodón for 1st start since June tonight vs. O's",
+        "summaryJa": "C.ロドン（NYY）、記録達成の最新情報",
+        "slug": "carlos-rodon-activated-start-vs-orioles",
+        "url": "https://www.mlb.com/news/carlos-rodon-activated-start-vs-orioles",
+        "contentDate": "2026-08-18T19:32:00Z",
+        "teamIds": [
+            147
+        ],
+        "playerIds": [
+            607074
+        ],
+        "gamePks": [
+            824803
+        ],
+        "taxonomy": [
+            "transactions",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Latest Yankees injuries and transactions",
+        "summaryJa": "ヤンキースの負傷状況をMLB公式が詳報",
+        "slug": "yankees-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/yankees-injuries-and-roster-moves",
+        "contentDate": "2026-08-18T19:30:00Z",
+        "teamIds": [
+            147
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Red Sox No. 2 prospect Gonzales has 1st multi-homer game, gets bump to Double-A",
+        "summaryJa": "Justin Gonzales（BOS）、メジャー昇格・初出場に関する最新情報",
+        "slug": "red-sox-prospect-justin-gonzales-promoted-to-double-a",
+        "url": "https://www.mlb.com/news/red-sox-prospect-justin-gonzales-promoted-to-double-a",
+        "contentDate": "2026-08-18T19:19:35.745Z",
+        "teamIds": [
+            111
+        ],
+        "playerIds": [
+            821100
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "mlb-top-prospects",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Cardinals' excellent farm system got even better after Draft, Deadline",
+        "summaryJa": "Rainiel Rodriguez（STL）ら注目選手の最新動向",
+        "slug": "cardinals-top-30-prospects-2026-midseason-update",
+        "url": "https://www.mlb.com/news/cardinals-top-30-prospects-2026-midseason-update",
+        "contentDate": "2026-08-18T19:18:35.317Z",
+        "teamIds": [
+            138
+        ],
+        "playerIds": [
+            823787,
+            824604,
+            695491,
+            825484,
+            815119
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "mlb-top-prospects"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Meet 'PoKikémon,' the alter ego of beloved Dodgers utility man",
         "summaryJa": "Enrique Hernández（LAD）の最新動向をMLB公式が詳報",
         "slug": "kike-hernandez-posts-about-card-collecting-as-pokikemon",
@@ -850,7 +960,6 @@
             "game-recap"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1316,26 +1425,6 @@
         "taxonomy": [
             "apple-news",
             "injury"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Latest Yankees injuries and transactions",
-        "summaryJa": "ヤンキースの負傷状況をMLB公式が詳報",
-        "slug": "yankees-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/yankees-injuries-and-roster-moves",
-        "contentDate": "2026-08-18T00:45:00Z",
-        "teamIds": [
-            147
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
         ],
         "sourceScopes": [
             "球団公式"
@@ -1846,26 +1935,6 @@
         ]
     },
     {
-        "headline": "Latest Pirates injuries & transactions",
-        "summaryJa": "パイレーツの負傷状況をMLB公式が詳報",
-        "slug": "pirates-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/pirates-injuries-and-roster-moves",
-        "contentDate": "2026-08-17T22:12:00Z",
-        "teamIds": [
-            134
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Latest Tigers injuries and transactions",
         "summaryJa": "タイガースの負傷状況をMLB公式が詳報",
         "slug": "tigers-injuries-and-roster-moves",
@@ -1920,29 +1989,6 @@
             "injury",
             "transactions",
             "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Yanks set to activate Rodón for Tuesday start vs. O's",
-        "summaryJa": "C.ロドン（NYY）の最新動向をMLB公式が詳報",
-        "slug": "carlos-rodon-activated-start-vs-orioles",
-        "url": "https://www.mlb.com/news/carlos-rodon-activated-start-vs-orioles",
-        "contentDate": "2026-08-17T21:23:01.295Z",
-        "teamIds": [
-            147
-        ],
-        "playerIds": [
-            607074
-        ],
-        "gamePks": [
-            824803
-        ],
-        "taxonomy": [
-            "transactions",
-            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
@@ -5532,30 +5578,6 @@
         ]
     },
     {
-        "headline": "Cardinals call up No. 3 prospect Báez, slugger to debut at Wrigley",
-        "summaryJa": "J.バイエズ（STL）、メジャー昇格・初出場に関する最新情報",
-        "slug": "joshua-baez-being-called-up-saturday-to-make-mlb-debut",
-        "url": "https://www.mlb.com/news/joshua-baez-being-called-up-saturday-to-make-mlb-debut",
-        "contentDate": "2026-08-15T13:48:00Z",
-        "teamIds": [
-            138
-        ],
-        "playerIds": [
-            695491
-        ],
-        "gamePks": [
-            824643
-        ],
-        "taxonomy": [
-            "apple-news",
-            "mlb-top-prospects",
-            "transactions"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Giants call up hot-hitting OF Hill from Triple-A",
         "summaryJa": "Turner Hill（SF）、メジャー昇格・初出場に関する最新情報",
         "slug": "turner-hill-called-up-by-giants",
@@ -6773,30 +6795,6 @@
         "taxonomy": [
             "apple-news",
             "injury"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Anthony 'getting closer' to rehab assignment as recovery ramps up",
-        "summaryJa": "R.アンソニー（BOS）、復帰へ向けた最新状況",
-        "slug": "roman-anthony-nearing-minor-league-rehab-assignment-for-red-sox",
-        "url": "https://www.mlb.com/news/roman-anthony-nearing-minor-league-rehab-assignment-for-red-sox",
-        "contentDate": "2026-08-14T22:23:32.211Z",
-        "teamIds": [
-            111
-        ],
-        "playerIds": [
-            701350
-        ],
-        "gamePks": [
-            823346
-        ],
-        "taxonomy": [
-            "apple-news",
-            "injury",
-            "rehab"
         ],
         "sourceScopes": [
             "球団公式"
