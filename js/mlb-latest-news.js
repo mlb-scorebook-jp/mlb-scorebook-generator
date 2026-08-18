@@ -2,6 +2,114 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Red-hot Bolte looking to build on lessons from rookie season",
+        "summaryJa": "H.ボルティー（ATH）の最新動向をMLB公式が詳報",
+        "slug": "henry-bolte-growing-with-athletics-in-breakout-rookie-season",
+        "url": "https://www.mlb.com/news/henry-bolte-growing-with-athletics-in-breakout-rookie-season",
+        "contentDate": "2026-08-18T17:55:28.485Z",
+        "teamIds": [
+            133
+        ],
+        "playerIds": [
+            703607
+        ],
+        "gamePks": [
+            824075
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "OMG! Fan favorite Iglesias returning to Citi Field for 1st pitch",
+        "summaryJa": "J.イグレシアス（NYM）、復帰へ向けた最新状況",
+        "slug": "jose-iglesias-returns-to-citi-field-first-pitch",
+        "url": "https://www.mlb.com/news/jose-iglesias-returns-to-citi-field-first-pitch",
+        "contentDate": "2026-08-18T17:48:55.166Z",
+        "teamIds": [
+            121
+        ],
+        "playerIds": [
+            578428
+        ],
+        "gamePks": [
+            823586
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Mariners celebrating longtime broadcaster Rick Rizzs during final home series Sept. 25-27",
+        "summaryJa": "マリナーズの最新動向をMLB公式が詳報",
+        "slug": "rick-rizzs-gets-weekend-celebration-from-mariners",
+        "url": "https://www.mlb.com/news/rick-rizzs-gets-weekend-celebration-from-mariners",
+        "contentDate": "2026-08-18T17:46:19.928Z",
+        "teamIds": [
+            136
+        ],
+        "playerIds": [],
+        "gamePks": [
+            823749
+        ],
+        "taxonomy": [],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Hao-Yu Lee sets single-season record for hits by a player born in Taiwan",
+        "summaryJa": "李（り） 灝宇（こうう）（DET）、記録達成の最新情報",
+        "slug": "hao-yu-lee-sets-taiwanese-record-for-hits-in-a-season",
+        "url": "https://www.mlb.com/news/hao-yu-lee-sets-taiwanese-record-for-hits-in-a-season",
+        "contentDate": "2026-08-18T17:23:52.237Z",
+        "teamIds": [
+            116
+        ],
+        "playerIds": [
+            701678
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "world-baseball-classic",
+            "mlb-international"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "This Russian tennis superstar is a massive Reds fan -- and he can prove it",
+        "summaryJa": "レッズの最新動向をMLB公式が詳報",
+        "slug": "daniil-medvedev-throws-out-first-pitch-at-reds-game",
+        "url": "https://www.mlb.com/news/daniil-medvedev-throws-out-first-pitch-at-reds-game",
+        "contentDate": "2026-08-18T17:15:14.458Z",
+        "teamIds": [
+            113
+        ],
+        "playerIds": [],
+        "gamePks": [
+            824475
+        ],
+        "taxonomy": [
+            "apple-news",
+            "offbeat"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "This top reliever’s stellar season is fueled by … orange juice?",
         "summaryJa": "L.ウィーバー（PIT）の最新動向をMLB公式が詳報",
         "slug": "luke-weaver-talks-orange-juice",
@@ -1025,7 +1133,6 @@
             "ejection"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1401,7 +1508,6 @@
             "injury"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1773,7 +1879,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1858,7 +1963,6 @@
         "gamePks": [],
         "taxonomy": [],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -7980,28 +8084,6 @@
         ]
     },
     {
-        "headline": "Mariners drop sixth straight -- and this time, offense isn't the culprit",
-        "summaryJa": "マリナーズの最新動向をMLB公式が詳報",
-        "slug": "bryce-miller-struggles-as-mariners-lose-sixth-straight",
-        "url": "https://www.mlb.com/news/bryce-miller-struggles-as-mariners-lose-sixth-straight",
-        "contentDate": "2026-08-13T04:43:22.016Z",
-        "teamIds": [
-            136
-        ],
-        "playerIds": [],
-        "gamePks": [
-            823511
-        ],
-        "taxonomy": [
-            "apple-news",
-            "leadoff",
-            "first-inning"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Clark's 12-pitch at-bat becomes pivotal in Tigers' loss",
         "summaryJa": "M.クラーク（DET）の最新動向をMLB公式が詳報",
         "slug": "max-clark-battles-guardians-closer-cade-smith-for-12-pitches",
@@ -8040,28 +8122,6 @@
         ],
         "taxonomy": [
             "injury",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Stewart's 2 hits bookend Reds' frustrating offensive output",
-        "summaryJa": "S.スチュワート（CIN）の最新動向をMLB公式が詳報",
-        "slug": "reds-offense-stymied-by-luis-castillo",
-        "url": "https://www.mlb.com/news/reds-offense-stymied-by-luis-castillo",
-        "contentDate": "2026-08-13T03:52:41.533Z",
-        "teamIds": [
-            113
-        ],
-        "playerIds": [
-            701398
-        ],
-        "gamePks": [
-            824562
-        ],
-        "taxonomy": [
             "apple-news"
         ],
         "sourceScopes": [
@@ -8512,29 +8572,6 @@
         ],
         "taxonomy": [
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Welcome home! Clark makes Comerica Park debut after long road trip",
-        "summaryJa": "M.クラーク（DET）、長期遠征を終え本拠地コメリカ・パーク初登場",
-        "slug": "tigers-max-clark-makes-comerica-park-debut-after-road-trip",
-        "url": "https://www.mlb.com/news/tigers-max-clark-makes-comerica-park-debut-after-road-trip",
-        "contentDate": "2026-08-12T14:55:37.971Z",
-        "teamIds": [
-            116
-        ],
-        "playerIds": [
-            703601
-        ],
-        "gamePks": [
-            824241
-        ],
-        "taxonomy": [
-            "apple-news",
-            "mlb-top-prospects"
         ],
         "sourceScopes": [
             "球団公式"
@@ -9513,29 +9550,6 @@
         ],
         "gamePks": [
             822700
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Jump K's career-high 11 as A's halt 9-game skid, stump scorching Red Sox",
-        "summaryJa": "G.ジャンプ（ATH）、勝利を呼び込む活躍",
-        "slug": "gage-jump-strikes-out-career-high-11-as-a-s-beat-red-sox",
-        "url": "https://www.mlb.com/news/gage-jump-strikes-out-career-high-11-as-a-s-beat-red-sox",
-        "contentDate": "2026-08-08T23:59:00Z",
-        "teamIds": [
-            133
-        ],
-        "playerIds": [
-            695611
-        ],
-        "gamePks": [
-            824726
         ],
         "taxonomy": [
             "apple-news",
