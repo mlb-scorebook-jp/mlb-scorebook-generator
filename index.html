@@ -8913,12 +8913,33 @@
             const A4_LANDSCAPE_WIDTH_MM = 297;
             const A4_LANDSCAPE_HEIGHT_MM = 210;
             const PRINT_MARGIN_MM = 6;
+            // Safari can round a transformed page outward when creating a PDF.
+            // Keep the spread slightly inside the printable box so the home
+            // team's right border is never clipped by that rounding.
+            const PRINT_EDGE_SAFETY_MM = 4;
             const CSS_PIXELS_PER_MM = 96 / 25.4;
+            let printOriginalDocumentTitle = null;
+
+            const getScorebookPrintTitle = () => {
+                const officialDate = String(
+                    state.gameData?.gameData?.datetime?.officialDate ?? ""
+                ).slice(0, 10);
+                const [year, month, day] = officialDate.split("-");
+                const awayCode = String(state.away?.abbreviation ?? "AWAY").trim();
+                const homeCode = String(state.home?.abbreviation ?? "HOME").trim();
+                if (!year || !month || !day) return "MLB_Scorebook";
+                return `${year}_${Number(month)}_${Number(day)}_` +
+                    `${awayCode}＠${homeCode}_scorebook`;
+            };
 
             const clearPrintFit = () => {
                 document.body.classList.remove("print-stage-active");
                 document.getElementById(PRINT_STAGE_ID)?.remove();
                 document.getElementById(PRINT_PAGE_STYLE_ID)?.remove();
+                if (printOriginalDocumentTitle !== null) {
+                    document.title = printOriginalDocumentTitle;
+                    printOriginalDocumentTitle = null;
+                }
             };
 
             const preparePrintFit = () => {
@@ -8934,6 +8955,8 @@
                 ) * CSS_PIXELS_PER_MM;
                 const printableWidthMm = A4_LANDSCAPE_WIDTH_MM - PRINT_MARGIN_MM * 2;
                 const printableHeightMm = A4_LANDSCAPE_HEIGHT_MM - PRINT_MARGIN_MM * 2;
+                const safeWidth = printableWidth - PRINT_EDGE_SAFETY_MM * 2 * CSS_PIXELS_PER_MM;
+                const safeHeight = printableHeight - PRINT_EDGE_SAFETY_MM * 2 * CSS_PIXELS_PER_MM;
                 const contentWidth = Math.max(
                     content.scrollWidth,
                     content.getBoundingClientRect().width
@@ -8946,8 +8969,8 @@
 
                 const scale = Math.min(
                     1,
-                    printableWidth / contentWidth,
-                    printableHeight / contentHeight
+                    safeWidth / contentWidth,
+                    safeHeight / contentHeight
                 );
                 const outputWidth = contentWidth * scale;
                 const outputHeight = contentHeight * scale;
@@ -8996,6 +9019,8 @@
                     setStatus("印刷対象を生成してからPRINTを実行してください。", true);
                     return;
                 }
+                printOriginalDocumentTitle = document.title;
+                document.title = getScorebookPrintTitle();
                 requestAnimationFrame(() => {
                     requestAnimationFrame(() => window.print());
                 });
