@@ -2,6 +2,54 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "'An amazing game': Cubs outlast White Sox in Crosstown contest for the ages",
+        "summaryJa": "P.クローアームストロング（CHC）、サヨナラ勝利の主役に",
+        "slug": "pete-crow-armstrong-hits-walk-off-homer-for-cubs-to-beat-white-sox",
+        "url": "https://www.mlb.com/news/pete-crow-armstrong-hits-walk-off-homer-for-cubs-to-beat-white-sox",
+        "contentDate": "2026-08-18T06:15:00Z",
+        "teamIds": [
+            112
+        ],
+        "playerIds": [
+            691718
+        ],
+        "gamePks": [
+            824641
+        ],
+        "taxonomy": [
+            "apple-news",
+            "takeaways"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "PCA secures 2nd straight 30-30 season -- boosts MVP case -- in epic way",
+        "summaryJa": "P.クローアームストロング（CHC）、記録達成の最新情報",
+        "slug": "pete-crow-armstrong-records-second-straight-30-30-season",
+        "url": "https://www.mlb.com/news/pete-crow-armstrong-records-second-straight-30-30-season",
+        "contentDate": "2026-08-18T06:12:42.946Z",
+        "teamIds": [
+            112
+        ],
+        "playerIds": [
+            691718
+        ],
+        "gamePks": [
+            824641
+        ],
+        "taxonomy": [
+            "apple-news",
+            "key-moments",
+            "game-recap"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Wheeler looks for sharper outing vs. Marlins",
         "summaryJa": "Z.ウィーラー（PHI）の最新動向をMLB公式が詳報",
         "slug": "zack-wheeler-takes-on-marlins-on-tuesday-at-home",
@@ -15,6 +63,28 @@
         ],
         "gamePks": [
             823423
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Only thing missing from Johnston's pitching debut for Rox? A 500-foot Ohtani HR",
+        "summaryJa": "T.ジョンストン（COL）、メジャー昇格・初出場に関する最新情報",
+        "slug": "troy-johnston-makes-first-mlb-pitching-appearance-for-rockies",
+        "url": "https://www.mlb.com/news/troy-johnston-makes-first-mlb-pitching-appearance-for-rockies",
+        "contentDate": "2026-08-18T05:54:25.458Z",
+        "teamIds": [
+            115
+        ],
+        "playerIds": [
+            687859
+        ],
+        "gamePks": [
+            824320
         ],
         "taxonomy": [
             "apple-news"
@@ -488,30 +558,6 @@
         "taxonomy": [
             "apple-news",
             "game-recap"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "PCA caps wild win over White Sox with walk-off homer",
-        "summaryJa": "P.クローアームストロング（CHC）、サヨナラ勝利の主役に",
-        "slug": "pete-crow-armstrong-hits-walk-off-homer-for-cubs-to-beat-white-sox",
-        "url": "https://www.mlb.com/news/pete-crow-armstrong-hits-walk-off-homer-for-cubs-to-beat-white-sox",
-        "contentDate": "2026-08-18T03:49:57.851Z",
-        "teamIds": [
-            112
-        ],
-        "playerIds": [
-            691718
-        ],
-        "gamePks": [
-            824641
-        ],
-        "taxonomy": [
-            "apple-news",
-            "takeaways"
         ],
         "sourceScopes": [
             "MLB",
@@ -7651,28 +7697,6 @@
         ]
     },
     {
-        "headline": "How Jacob Webb found another level 'real quick' with Cubs",
-        "summaryJa": "J.ウェブ（CHC）を巡る注目点をMLB公式が分析",
-        "slug": "jacob-webb-high-leverage-arm-in-cubs-bullpen",
-        "url": "https://www.mlb.com/news/jacob-webb-high-leverage-arm-in-cubs-bullpen",
-        "contentDate": "2026-08-13T15:05:49.727Z",
-        "teamIds": [
-            112
-        ],
-        "playerIds": [
-            657097
-        ],
-        "gamePks": [
-            822696
-        ],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "The Padres are surging. Here's how they can keep it up",
         "summaryJa": "パドレスを巡る注目点をMLB公式が分析",
         "slug": "padres-making-2026-playoff-push",
@@ -9456,30 +9480,6 @@
         "taxonomy": [
             "apple-news",
             "game-recap"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "McCarthy's 4 hits, 2 homers power Rockies to victory over Cardinals",
-        "summaryJa": "J.マカーシー（COL）、本塁打で存在感",
-        "slug": "jake-mccarthy-hits-2-home-runs-rockies-beat-cardinals",
-        "url": "https://www.mlb.com/news/jake-mccarthy-hits-2-home-runs-rockies-beat-cardinals",
-        "contentDate": "2026-08-09T05:05:00Z",
-        "teamIds": [
-            115
-        ],
-        "playerIds": [
-            664983
-        ],
-        "gamePks": [
-            823021
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap",
-            "performance"
         ],
         "sourceScopes": [
             "球団公式"
