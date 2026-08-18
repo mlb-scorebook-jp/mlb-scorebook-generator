@@ -2130,6 +2130,12 @@ body.app-mode-pregame .score-loading-overlay {
     stroke: none;
 }
 
+/* 1B to home: connect the centers of the 1B, 2B, 3B, and home quadrants. */
+.play-card .runner-history-svg.runner-history-second-third-home {
+    width: 36px;
+    height: 36px;
+}
+
 /* 2B to home via 3B: keep the bent pass arrow inside the upper-left quarter. */
 .play-card .runner-history-svg.runner-history-third-home,
 .play-card .runner-history-svg.runner-history-poe-third-home {
