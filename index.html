@@ -3218,13 +3218,31 @@
                     return slots;
                 }
 
-                Object.values(playerMap)
-                    .filter((player) => player?.stats?.batting)
-                    .slice(0, 9)
-                    .forEach((player, index) => {
-                        slots[index].push(enrichPlayerHandedness(data, player));
+                const scheduleLineups = data?.gameData?.schedule?.lineups;
+                const publishedLineup = side === "away"
+                    ? scheduleLineups?.awayPlayers
+                    : scheduleLineups?.homePlayers;
+                if (Array.isArray(publishedLineup) && publishedLineup.length === 9) {
+                    publishedLineup.forEach((person, index) => {
+                        const playerId = Number(person?.id);
+                        if (!playerId) return;
+                        const boxscorePlayer = playerMap[`ID${playerId}`] ?? {};
+                        const position = person?.primaryPosition ?? boxscorePlayer?.position ?? {};
+                        slots[index].push(enrichPlayerHandedness(data, {
+                            ...boxscorePlayer,
+                            battingOrder: String((index + 1) * 100),
+                            person: { ...person, ...boxscorePlayer?.person },
+                            position,
+                            allPositions: boxscorePlayer?.allPositions?.length
+                                ? boxscorePlayer.allPositions
+                                : [position]
+                        }));
                     });
+                    return slots;
+                }
 
+                // Until MLB publishes an actual batting order in either official
+                // source, keep every hitter slot blank.
                 return slots;
             };
 
@@ -7863,7 +7881,8 @@
             const fetchGameScheduleMetadata = async (gamePk) => {
                 const params = new URLSearchParams({
                     sportId: "1",
-                    gamePks: String(gamePk)
+                    gamePks: String(gamePk),
+                    hydrate: "lineups"
                 });
                 const response = await fetch(
                     `https://statsapi.mlb.com/api/v1/schedule?${params}`
@@ -8707,6 +8726,8 @@
                         : "";
                     if (supplementalResults[3].status === "fulfilled") {
                         data.gameData.schedule = supplementalResults[3].value;
+                        state.away = getTeamState(data, "away");
+                        state.home = getTeamState(data, "home");
                     }
 
                     updateSidebar();
