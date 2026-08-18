@@ -2,6 +2,92 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Meet 'PoKikémon,' the alter ego of beloved Dodgers utility man",
+        "summaryJa": "Enrique Hernández（LAD）の最新動向をMLB公式が詳報",
+        "slug": "kike-hernandez-posts-about-card-collecting-as-pokikemon",
+        "url": "https://www.mlb.com/news/kike-hernandez-posts-about-card-collecting-as-pokikemon",
+        "contentDate": "2026-08-18T18:58:08.607Z",
+        "teamIds": [
+            119
+        ],
+        "playerIds": [
+            571771
+        ],
+        "gamePks": [
+            824319
+        ],
+        "taxonomy": [
+            "apple-news",
+            "players-weekend"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Shrewd trades, strong Drafts boost D-backs' farm system",
+        "summaryJa": "ダイヤモンドバックスの移籍・契約に関する最新情報",
+        "slug": "diamondbacks-2026-updated-prospect-rankings",
+        "url": "https://www.mlb.com/news/diamondbacks-2026-updated-prospect-rankings",
+        "contentDate": "2026-08-18T18:27:49.969Z",
+        "teamIds": [
+            109
+        ],
+        "playerIds": [],
+        "gamePks": [
+            824723
+        ],
+        "taxonomy": [
+            "apple-news",
+            "mlb-top-prospects"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "How did this Russian tennis superstar turn into a huge Reds fan?",
+        "summaryJa": "レッズを巡る注目点をMLB公式が分析",
+        "slug": "daniil-medvedev-throws-out-first-pitch-at-reds-game",
+        "url": "https://www.mlb.com/news/daniil-medvedev-throws-out-first-pitch-at-reds-game",
+        "contentDate": "2026-08-18T18:07:00Z",
+        "teamIds": [
+            113
+        ],
+        "playerIds": [],
+        "gamePks": [
+            824475
+        ],
+        "taxonomy": [
+            "apple-news",
+            "offbeat"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Latest Brewers injuries & transactions",
+        "summaryJa": "ブルワーズの負傷状況をMLB公式が詳報",
+        "slug": "brewers-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/brewers-injuries-and-roster-moves",
+        "contentDate": "2026-08-18T17:58:00Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Red-hot Bolte looking to build on lessons from rookie season",
         "summaryJa": "H.ボルティー（ATH）の最新動向をMLB公式が詳報",
         "slug": "henry-bolte-growing-with-athletics-in-breakout-rookie-season",
@@ -88,28 +174,6 @@
         ]
     },
     {
-        "headline": "This Russian tennis superstar is a massive Reds fan -- and he can prove it",
-        "summaryJa": "レッズの最新動向をMLB公式が詳報",
-        "slug": "daniil-medvedev-throws-out-first-pitch-at-reds-game",
-        "url": "https://www.mlb.com/news/daniil-medvedev-throws-out-first-pitch-at-reds-game",
-        "contentDate": "2026-08-18T17:15:14.458Z",
-        "teamIds": [
-            113
-        ],
-        "playerIds": [],
-        "gamePks": [
-            824475
-        ],
-        "taxonomy": [
-            "apple-news",
-            "offbeat"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
         "headline": "This top reliever’s stellar season is fueled by … orange juice?",
         "summaryJa": "L.ウィーバー（PIT）の最新動向をMLB公式が詳報",
         "slug": "luke-weaver-talks-orange-juice",
@@ -166,7 +230,9 @@
         "playerIds": [
             641820
         ],
-        "gamePks": [],
+        "gamePks": [
+            824803
+        ],
         "taxonomy": [
             "apple-news",
             "retirement"
@@ -457,7 +523,7 @@
         ]
     },
     {
-        "headline": "PCA secures 2nd straight 30-30 season -- boosts MVP case -- in epic way",
+        "headline": "PCA secures 2nd straight 30-30 season -- & boosts MVP case -- in epic way",
         "summaryJa": "P.クローアームストロング（CHC）、記録達成の最新情報",
         "slug": "pete-crow-armstrong-records-second-straight-30-30-season",
         "url": "https://www.mlb.com/news/pete-crow-armstrong-records-second-straight-30-30-season",
@@ -2357,26 +2423,6 @@
         "taxonomy": [
             "mlb-top-prospects",
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Latest Brewers injuries & transactions",
-        "summaryJa": "ブルワーズの負傷状況をMLB公式が詳報",
-        "slug": "brewers-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/brewers-injuries-and-roster-moves",
-        "contentDate": "2026-08-17T04:32:00Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
         ],
         "sourceScopes": [
             "球団公式"
@@ -6488,30 +6534,6 @@
         ],
         "gamePks": [
             824159
-        ],
-        "taxonomy": [
-            "apple-news",
-            "injury",
-            "rehab"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Glasnow strikes out 8 in sharp rehab start, expects to make one more",
-        "summaryJa": "T.グラスナウ（LAD）、復帰へ向けた最新状況",
-        "slug": "tyler-glasnow-strikes-out-8-in-rehab-start",
-        "url": "https://www.mlb.com/news/tyler-glasnow-strikes-out-8-in-rehab-start",
-        "contentDate": "2026-08-15T02:33:32.635Z",
-        "teamIds": [
-            119
-        ],
-        "playerIds": [
-            607192
-        ],
-        "gamePks": [
-            823913
         ],
         "taxonomy": [
             "apple-news",
