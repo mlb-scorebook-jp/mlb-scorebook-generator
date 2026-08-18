@@ -4256,20 +4256,27 @@
 
                 const totalRect = total.getBoundingClientRect();
                 const countRect = homeRunCount.getBoundingClientRect();
+                const safetyGap = 3;
                 const overlaps = totalRect.left < countRect.right &&
-                    totalRect.right > countRect.left &&
+                    totalRect.right + safetyGap > countRect.left &&
                     totalRect.top < countRect.bottom &&
                     totalRect.bottom > countRect.top;
                 if (!overlaps) return;
 
                 const resultRect = resultBox.getBoundingClientRect();
-                const requestedShift = Math.ceil(totalRect.right - countRect.left + 2);
+                const requestedShift = Math.ceil(totalRect.right - countRect.left + safetyGap);
                 const availableShift = Math.max(0, Math.floor(resultRect.right - countRect.right - 1));
                 const shift = Math.min(requestedShift, availableShift);
                 if (shift <= 0) return;
 
                 card.style.setProperty("--home-run-collision-shift", `${shift}px`);
                 card.classList.add("avoid-pitch-total");
+            };
+
+            const refreshHomeRunPitchTotalSpacing = () => {
+                dom.awaySheet?.querySelectorAll(".play-card.template-home_run").forEach((card) => {
+                    separateHomeRunFromPitchTotal(card.closest(".atbat-cell"), card);
+                });
             };
 
             const createAtBatCell = (side, inning, occurrence, order) => {
@@ -7431,6 +7438,7 @@
                 dom.homePage.classList.remove("active");
                 requestAnimationFrame(() => {
                     updatePortraitScorebookScale();
+                    refreshHomeRunPitchTotalSpacing();
                     refreshHorizontalScrollbar();
                 });
             };
@@ -9156,6 +9164,7 @@
             const refreshPortraitLayout = () => {
                 updatePortraitOperationLayout();
                 updatePortraitScorebookScale();
+                refreshHomeRunPitchTotalSpacing();
                 refreshHorizontalScrollbar();
             };
             window.addEventListener("resize", refreshPortraitLayout, { passive: true });
