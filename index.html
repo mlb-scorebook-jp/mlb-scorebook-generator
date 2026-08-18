@@ -2640,22 +2640,32 @@
 
                     let gamesSinceBenchStart = 1;
                     let previousBenchGame = null;
+                    let consecutiveBenchStarts = 1;
+                    let countingConsecutiveBenchStarts = true;
                     const previousGames = schedule
                         .filter((game) => Number(game?.gamePk) !== Number(currentGamePk))
                         .reverse();
                     for (const game of previousGames) {
                         const gamePk = Number(game?.gamePk);
-                        if (!isPlayerStarterInBoxscore(
+                        const started = isPlayerStarterInBoxscore(
                             boxscoreByGame.get(gamePk),
                             teamId,
                             player.id
-                        )) {
-                            previousBenchGame = game;
+                        );
+                        if (!started) {
+                            if (!previousBenchGame) previousBenchGame = game;
+                            if (countingConsecutiveBenchStarts) {
+                                consecutiveBenchStarts += 1;
+                                continue;
+                            }
                             break;
                         }
+                        countingConsecutiveBenchStarts = false;
                         gamesSinceBenchStart += 1;
                     }
-                    const benchText = previousBenchGame
+                    const benchText = consecutiveBenchStarts > 1
+                        ? `${consecutiveBenchStarts}試合連続ベンチスタート`
+                        : previousBenchGame
                         ? `${gamesSinceBenchStart}試合ぶりのベンチスタート`
                         : "今季初のベンチスタート";
                     return {
