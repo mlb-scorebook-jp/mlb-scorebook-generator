@@ -2,6 +2,52 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "As Paredes' career progresses, his abuela is always with him in spirit",
+        "summaryJa": "I.パレイデス（HOU）の最新動向をMLB公式が詳報",
+        "slug": "isaac-paredes-credits-baseball-career-to-grandmother",
+        "url": "https://www.mlb.com/news/isaac-paredes-credits-baseball-career-to-grandmother",
+        "contentDate": "2026-08-18T20:39:40.462Z",
+        "teamIds": [
+            117
+        ],
+        "playerIds": [
+            670623
+        ],
+        "gamePks": [
+            824154
+        ],
+        "taxonomy": [
+            "apple-news",
+            "players-weekend"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Griffin no longer needs splint, could return within 3 weeks",
+        "summaryJa": "K.グリフィン（PIT）の負傷状況をMLB公式が詳報",
+        "slug": "konnor-griffin-finger-injury-progress",
+        "url": "https://www.mlb.com/news/konnor-griffin-finger-injury-progress",
+        "contentDate": "2026-08-18T20:08:00Z",
+        "teamIds": [
+            134
+        ],
+        "playerIds": [
+            804606
+        ],
+        "gamePks": [
+            823343
+        ],
+        "taxonomy": [
+            "apple-news",
+            "injury"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Latest Pirates injuries & transactions",
         "summaryJa": "パイレーツの負傷状況をMLB公式が詳報",
         "slug": "pirates-injuries-and-roster-moves",
@@ -43,6 +89,23 @@
         "sourceScopes": [
             "MLB",
             "球団公式"
+        ]
+    },
+    {
+        "headline": "Prospect storylines to follow for the remainder of the season",
+        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
+        "slug": "prospect-storylines-to-follow-for-the-remainder-of-2026",
+        "url": "https://www.mlb.com/news/prospect-storylines-to-follow-for-the-remainder-of-2026",
+        "contentDate": "2026-08-18T19:30:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "mlb-top-prospects",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB"
         ]
     },
     {
@@ -1494,7 +1557,6 @@
             "transactions"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -2009,29 +2071,6 @@
             "injury",
             "transactions",
             "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Griffin no longer needs splint, could return within 3 weeks",
-        "summaryJa": "K.グリフィン（PIT）の負傷状況をMLB公式が詳報",
-        "slug": "konnor-griffin-finger-injury-progress",
-        "url": "https://www.mlb.com/news/konnor-griffin-finger-injury-progress",
-        "contentDate": "2026-08-17T20:41:51.013Z",
-        "teamIds": [
-            134
-        ],
-        "playerIds": [
-            804606
-        ],
-        "gamePks": [
-            823343
-        ],
-        "taxonomy": [
-            "apple-news",
-            "injury"
         ],
         "sourceScopes": [
             "球団公式"
@@ -8529,28 +8568,6 @@
             "apple-news",
             "injury",
             "game-recap"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Who will be the HR king? We haven't had a race this close in over 40 years",
-        "summaryJa": "40年以上ぶりの大接戦、今季の本塁打王争いを展望",
-        "slug": "who-will-win-the-mlb-home-run-race",
-        "url": "https://www.mlb.com/news/who-will-win-the-mlb-home-run-race",
-        "contentDate": "2026-08-12T15:05:00Z",
-        "teamIds": [],
-        "playerIds": [
-            670541,
-            621566,
-            656941,
-            691406
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "home-run-leaders"
         ],
         "sourceScopes": [
             "球団公式"
