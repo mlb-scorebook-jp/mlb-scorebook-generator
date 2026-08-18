@@ -530,8 +530,6 @@
         return value.toISOString().slice(0, 10);
     };
 
-    const currentMlbDate = () => window.MLBGameDate.getTodayGameDate();
-
     const currentEasternDate = (now = new Date()) => {
         const parts = new Intl.DateTimeFormat("en-US", {
             timeZone: "America/New_York",
@@ -542,6 +540,8 @@
         const values = Object.fromEntries(parts.map((part) => [part.type, part.value]));
         return `${values.year}-${values.month}-${values.day}`;
     };
+
+    const currentMlbDate = () => currentEasternDate();
 
     const getStatus = (game) => String(
         game?.status?.detailedState ?? game?.status?.abstractGameState ?? "Scheduled"
@@ -4108,6 +4108,7 @@
         dom.subtitle = document.getElementById("pregame-subtitle");
         dom.dateInput = document.getElementById("pregame-date");
         dom.previousDateButton = document.getElementById("pregame-prev-date-btn");
+        dom.desktopTodayButton = document.getElementById("pregame-desktop-today-btn");
         dom.nextDateButton = document.getElementById("pregame-next-date-btn");
         dom.yesterdayButton = document.getElementById("pregame-yesterday-btn");
         dom.todayButton = document.getElementById("pregame-today-btn");
@@ -4135,11 +4136,13 @@
         dom.previousDateButton?.addEventListener("click", () => moveDate(-1));
         dom.nextDateButton?.addEventListener("click", () => moveDate(1));
         dom.yesterdayButton?.addEventListener("click", () => moveDate(-1));
-        dom.todayButton?.addEventListener("click", async () => {
+        const moveToToday = async () => {
             currentDate = currentEasternDate();
             dom.dateInput.value = currentDate;
             await renderSelectedDate();
-        });
+        };
+        dom.desktopTodayButton?.addEventListener("click", moveToToday);
+        dom.todayButton?.addEventListener("click", moveToToday);
         dom.tomorrowButton?.addEventListener("click", () => moveDate(1));
         dom.homeButton.addEventListener("click", renderTop);
         dom.closeButton.addEventListener("click", () => {

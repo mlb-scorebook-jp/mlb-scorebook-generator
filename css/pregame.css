@@ -458,6 +458,11 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
     padding: 0;
 }
 
+.pregame-date-step-controls #pregame-desktop-today-btn {
+    width: auto;
+    padding-inline: 10px;
+}
+
 .pregame-today-control small {
     color: #9eabb3;
     font-size: 8px;
