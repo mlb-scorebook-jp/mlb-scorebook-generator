@@ -2,6 +2,173 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Watch newly acquired top prospect Nimmala at Double-A for FREE on Sunday",
+        "summaryJa": "MLBの最新情報の移籍・契約に関する最新情報",
+        "slug": "watch-minor-league-baseball-games-for-free-2026",
+        "url": "https://www.mlb.com/news/watch-minor-league-baseball-games-for-free-2026",
+        "contentDate": "2026-08-18T22:00:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "mlb-top-prospects",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Dodgers closer Díaz heading back to IL (reports)",
+        "summaryJa": "E.ディアス（LAD）の負傷状況をMLB公式が詳報",
+        "slug": "edwin-diaz-injured-list",
+        "url": "https://www.mlb.com/news/edwin-diaz-injured-list",
+        "contentDate": "2026-08-18T21:46:19.826Z",
+        "teamIds": [
+            119
+        ],
+        "playerIds": [
+            621242
+        ],
+        "gamePks": [
+            824319
+        ],
+        "taxonomy": [
+            "injury",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "Latest Rays injuries & transactions",
+        "summaryJa": "レイズの負傷状況をMLB公式が詳報",
+        "slug": "rays-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/rays-injuries-and-roster-moves",
+        "contentDate": "2026-08-18T21:46:00Z",
+        "teamIds": [
+            139
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Latest Guardians injuries and transactions",
+        "summaryJa": "ガーディアンズの負傷状況をMLB公式が詳報",
+        "slug": "guardians-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/guardians-injuries-and-roster-moves",
+        "contentDate": "2026-08-18T21:39:00Z",
+        "teamIds": [
+            114
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Movers of AUSL Series 2: Landry leaps, Palacios takes top spot",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "ausl-series-2-update",
+        "url": "https://www.mlb.com/news/ausl-series-2-update",
+        "contentDate": "2026-08-18T21:32:46.498Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "athletes-unlimited-softball-league"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "Turang returns to Brewers lineup after missing 4 games",
+        "summaryJa": "B.テュラング（MIL）、復帰へ向けた最新状況",
+        "slug": "brice-turang-returns-to-brewers-lineup-vs-mariners",
+        "url": "https://www.mlb.com/news/brice-turang-returns-to-brewers-lineup-vs-mariners",
+        "contentDate": "2026-08-18T21:21:15.943Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [
+            668930
+        ],
+        "gamePks": [
+            823749
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "DeLauter (left hamstring) improving, but out of lineup for Giants opener",
+        "summaryJa": "C.デローター（CLE）の最新動向をMLB公式が詳報",
+        "slug": "chase-delauter-out-of-guardians-lineup-left-hamstring-tightness",
+        "url": "https://www.mlb.com/news/chase-delauter-out-of-guardians-lineup-left-hamstring-tightness",
+        "contentDate": "2026-08-18T21:03:44.639Z",
+        "teamIds": [
+            114
+        ],
+        "playerIds": [
+            800050
+        ],
+        "gamePks": [
+            824398
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "All-Star catcher Goodman (shoulder strain) placed on IL",
+        "summaryJa": "H.グッドマン（COL）の負傷状況をMLB公式が詳報",
+        "slug": "hunter-goodman-rockies-injured-list-shoulder-strain",
+        "url": "https://www.mlb.com/news/hunter-goodman-rockies-injured-list-shoulder-strain",
+        "contentDate": "2026-08-18T21:00:30.622Z",
+        "teamIds": [
+            115
+        ],
+        "playerIds": [
+            696100
+        ],
+        "gamePks": [
+            824319
+        ],
+        "taxonomy": [
+            "apple-news",
+            "injury"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "As Paredes' career progresses, his abuela is always with him in spirit",
         "summaryJa": "I.パレイデス（HOU）の最新動向をMLB公式が詳報",
         "slug": "isaac-paredes-credits-baseball-career-to-grandmother",
@@ -668,7 +835,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -782,23 +948,6 @@
         "taxonomy": [
             "apple-news",
             "transactions"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Watch newly acquired top prospect Nimmala at Double-A for FREE on Sunday",
-        "summaryJa": "MLBの最新情報の移籍・契約に関する最新情報",
-        "slug": "watch-minor-league-baseball-games-for-free-2026",
-        "url": "https://www.mlb.com/news/watch-minor-league-baseball-games-for-free-2026",
-        "contentDate": "2026-08-18T05:38:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "mlb-top-prospects",
-            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
@@ -959,7 +1108,6 @@
             "game-recap"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1229,7 +1377,6 @@
             "game-recap"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1254,7 +1401,6 @@
             "game-recap"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1471,29 +1617,6 @@
         ]
     },
     {
-        "headline": "Goodman (left shoulder inflammation) scratched again in opener vs. LA",
-        "summaryJa": "H.グッドマン（COL）の最新動向をMLB公式が詳報",
-        "slug": "hunter-goodman-out-of-rockies-lineup-with-shoulder-inflammation",
-        "url": "https://www.mlb.com/news/hunter-goodman-out-of-rockies-lineup-with-shoulder-inflammation",
-        "contentDate": "2026-08-18T01:08:00Z",
-        "teamIds": [
-            115
-        ],
-        "playerIds": [
-            696100
-        ],
-        "gamePks": [
-            824320
-        ],
-        "taxonomy": [
-            "apple-news",
-            "injury"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Smith (neck inflammation) could start rehab soon on road back from IL",
         "summaryJa": "W.スミス（LAD）の負傷状況をMLB公式が詳報",
         "slug": "will-smith-working-toward-returning-to-dodgers-from-injured-list",
@@ -1558,37 +1681,6 @@
         ],
         "sourceScopes": [
             "球団公式"
-        ]
-    },
-    {
-        "headline": "Injuries: Dansby, Fried, Rodón, Griffin, Story, Dodgers, Padres",
-        "summaryJa": "大谷翔平（LAD）らMLB各球団の最新負傷情報",
-        "slug": "baseball-injury-updates",
-        "url": "https://www.mlb.com/news/baseball-injury-updates",
-        "contentDate": "2026-08-18T00:30:00Z",
-        "teamIds": [],
-        "playerIds": [
-            607074,
-            607192,
-            592450,
-            641355,
-            621020,
-            680736,
-            804606,
-            656811,
-            596115,
-            807799,
-            601713,
-            592094,
-            608331
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "headline-breakout"
-        ],
-        "sourceScopes": [
-            "MLB"
         ]
     },
     {
@@ -2044,26 +2136,6 @@
         "contentDate": "2026-08-17T21:31:00Z",
         "teamIds": [
             113
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Latest Rays injuries & transactions",
-        "summaryJa": "レイズの負傷状況をMLB公式が詳報",
-        "slug": "rays-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/rays-injuries-and-roster-moves",
-        "contentDate": "2026-08-17T21:22:00Z",
-        "teamIds": [
-            139
         ],
         "playerIds": [],
         "gamePks": [],
@@ -2680,26 +2752,6 @@
         ],
         "taxonomy": [
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Latest Guardians injuries and transactions",
-        "summaryJa": "ガーディアンズの負傷状況をMLB公式が詳報",
-        "slug": "guardians-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/guardians-injuries-and-roster-moves",
-        "contentDate": "2026-08-17T01:41:00Z",
-        "teamIds": [
-            114
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
         ],
         "sourceScopes": [
             "球団公式"
@@ -7195,33 +7247,6 @@
         ]
     },
     {
-        "headline": "How does Brewers' farm look after Draft, Deadline? Re-ranking the Top 30",
-        "summaryJa": "J.マデイ（MIL）ら注目選手の最新動向",
-        "slug": "brewers-top-30-prospects-2026-midseason-update",
-        "url": "https://www.mlb.com/news/brewers-top-30-prospects-2026-midseason-update",
-        "contentDate": "2026-08-14T14:50:49.116Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [
-            815908,
-            821270,
-            815304,
-            800325,
-            815816
-        ],
-        "gamePks": [
-            823913
-        ],
-        "taxonomy": [
-            "apple-news",
-            "mlb-top-prospects"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Reds' re-ranked Top 30 comprises nearly half international players",
         "summaryJa": "Alfredo Duno（CIN）ら注目選手の最新動向",
         "slug": "reds-top-30-prospects-2026-midseason-update",
@@ -7791,29 +7816,6 @@
         ],
         "gamePks": [
             824561
-        ],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Time running short for Guardians to ignite offense",
-        "summaryJa": "J.ラミレス（CLE）の最新動向をMLB公式が詳報",
-        "slug": "guardians-offense-struggles-al-wild-card-race",
-        "url": "https://www.mlb.com/news/guardians-offense-struggles-al-wild-card-race",
-        "contentDate": "2026-08-13T23:22:10.319Z",
-        "teamIds": [
-            114
-        ],
-        "playerIds": [
-            608070,
-            677587
-        ],
-        "gamePks": [
-            824238
         ],
         "taxonomy": [
             "apple-news"
