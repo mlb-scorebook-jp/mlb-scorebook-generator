@@ -5035,6 +5035,7 @@
                                 shape: "",
                                 segments: [],
                                 runnerAdvancePath: "",
+                                samePlayError: false,
                                 pickoffErrorBase: "",
                                 pickoffErrorLabel: "",
                                 ghostRunner: true,
@@ -5091,6 +5092,7 @@
                         shape: display.shape,
                         segments: [],
                         runnerAdvancePath: "",
+                        samePlayError: false,
                         pickoffErrorBase: "",
                         pickoffErrorLabel: "",
                         toSecond: "",
@@ -5162,6 +5164,7 @@
                                 "3B-score": "error-third-home"
                             };
                             target.runnerAdvancePath = errorAdvancePaths[errorAdvance] ?? "";
+                            target.samePlayError = Boolean(target.runnerAdvancePath);
                             const errorLabel = `E${errorFielder || "?"}`;
                             const errorEnd = normalizeBase(end);
                             if (errorEnd === "2B") target.toSecond = errorLabel;
@@ -5537,6 +5540,7 @@
 
             const renderPlateAppearance = (record) => {
                 const card = createElement("div", `play-card template-${record.templateId}`);
+                if (record.samePlayError) card.classList.add("has-same-play-error");
                 const stage = createElement("div", "diamond-stage");
                 const anchorNames = ["topLeft", "topRight", "center", "bottomLeft", "bottomRight"];
                 const slots = Object.fromEntries(anchorNames.map((name) => [
@@ -5605,7 +5609,7 @@
                 }
                 if (record.toSecond) slots.topRight.append(createElement(
                     "div",
-                    `score-symbol runner-note to-second${record.toSecond === "S" ? " stolen-base-note" : ""}`,
+                    `score-symbol runner-note to-second${record.toSecond === "S" ? " stolen-base-note" : ""}${record.samePlayError && /^E/.test(record.toSecond) ? " same-play-error-note" : ""}`,
                     record.toSecond
                 ));
                 if (record.toThird) slots.topLeft.append(createElement(

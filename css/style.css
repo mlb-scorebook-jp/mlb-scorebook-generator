@@ -2377,6 +2377,22 @@ body.app-mode-pregame .score-loading-overlay {
     text-align: right;
 }
 
+/* A hit and the following fielding error are one continuous play.
+ * Keep E8 above the upward advance arrow so it reads from the batted-ball
+ * mark at first base to the error at second base. */
+.play-card.has-same-play-error .score-anchor.top-right {
+    top: -4px;
+}
+
+.play-card.has-same-play-error .score-anchor.top-right .same-play-error-note {
+    transform: translateY(-2px);
+}
+
+.play-card.has-same-play-error .runner-history-svg.runner-history-first-second {
+    z-index: 9;
+    overflow: visible;
+}
+
 .runner-note.to-third {
     text-align: left;
 }
