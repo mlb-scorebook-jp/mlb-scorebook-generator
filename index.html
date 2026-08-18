@@ -2613,7 +2613,7 @@
                     const startRate = completedTeamGames > 0
                         ? starts / completedTeamGames
                         : 0;
-                    if (!player.japanese && (completedTeamGames < 30 || startRate < 0.85)) {
+                    if (!player.japanese && (completedTeamGames < 30 || startRate < 0.80)) {
                         return null;
                     }
 
