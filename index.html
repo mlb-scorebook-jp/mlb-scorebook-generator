@@ -5127,17 +5127,50 @@
                             : activeRunner.get(Number(runnerId)) || fallbackTarget;
                         if (!target) return;
 
-                        const origin = movement?.originBase || (isCurrentBatter ? "home" : "");
+                        const origin = movement?.originBase || movement?.start ||
+                            (isCurrentBatter ? "home" : "");
                         const end = movement?.end;
+                        const runnerEventType = String(
+                            runner?.details?.eventType ?? ""
+                        ).toLowerCase();
 
-                        // Red path records only the batter-runner's result in this plate appearance.
-                        if (target.isHit && isCurrentBatter) addPathSegments(target, origin, end);
+                        // Red path stops at the base credited by the hit. MLB can add a
+                        // second movement for the same batter-runner when an error lets
+                        // him advance farther; that movement must not turn a single into
+                        // a double (or a double into a triple) on the scorebook.
+                        if (target.isHit && isCurrentBatter &&
+                            ["single", "double", "triple", "home_run"]
+                                .includes(runnerEventType)) {
+                            addPathSegments(target, origin, end);
+                        }
+
+                        if (target.isHit && isCurrentBatter && runnerEventType.includes("error")) {
+                            const errorCredit = (runner?.credits ?? []).find((credit) =>
+                                String(credit?.credit ?? "").toLowerCase().includes("error")
+                            );
+                            const errorFielder = String(
+                                errorCredit?.position?.code ??
+                                errorCredit?.position?.abbreviation ?? ""
+                            ).replace(/\D/g, "") || getFieldNumber(play);
+                            const errorAdvance = `${normalizeBase(origin)}-${normalizeBase(end)}`;
+                            const errorAdvancePaths = {
+                                "1B-2B": "first-second",
+                                "1B-3B": "second-third",
+                                "1B-score": "second-third-home",
+                                "2B-3B": "error-second-third",
+                                "2B-score": "third-home",
+                                "3B-score": "error-third-home"
+                            };
+                            target.runnerAdvancePath = errorAdvancePaths[errorAdvance] ?? "";
+                            const errorLabel = `E${errorFielder || "?"}`;
+                            const errorEnd = normalizeBase(end);
+                            if (errorEnd === "2B") target.toSecond = errorLabel;
+                            if (errorEnd === "3B") target.toThird = errorLabel;
+                            if (["home", "score"].includes(errorEnd)) target.toHome = errorLabel;
+                        }
 
                         // Later advances belong to the runner history of the original score cell.
                         if (!isCurrentBatter && origin && end) {
-                            const runnerEventType = String(
-                                runner?.details?.eventType ?? ""
-                            ).toLowerCase();
                             const runnerEventDescription = getRunnerEventDescription(
                                 play,
                                 runner
@@ -5454,9 +5487,12 @@
                 svg.classList.add("runner-history-svg", `runner-history-${type}`);
                 const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
                 const paths = {
+                    "first-second": "M52 52 L52 9",
                     "second-third": "M52 52 L52 9 L9 9",
                     "second-third-home": "M52 52 L52 9 L9 9 L9 52",
                     "third-home": "M52 9 L9 9 L9 52",
+                    "error-second-third": "M52 9 L9 9",
+                    "error-third-home": "M9 9 L9 52",
                     "poe-second-third": "M52 9 L9 9",
                     "poe-second-third-home": "M52 9 L9 9 L9 52",
                     "poe-third-home": "M9 9 L9 52"
