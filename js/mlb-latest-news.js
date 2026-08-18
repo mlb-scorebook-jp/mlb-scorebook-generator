@@ -2,20 +2,70 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
-        "headline": "Top 10 times one player put his whole team on his back",
-        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
-        "slug": "top-put-em-on-your-back-performances-in-baseball-history",
-        "url": "https://www.mlb.com/news/top-put-em-on-your-back-performances-in-baseball-history",
-        "contentDate": "2026-08-18T15:25:00.548Z",
-        "teamIds": [],
-        "playerIds": [],
+        "headline": "This top reliever’s stellar season is fueled by … orange juice?",
+        "summaryJa": "L.ウィーバー（PIT）の最新動向をMLB公式が詳報",
+        "slug": "luke-weaver-talks-orange-juice",
+        "url": "https://www.mlb.com/news/luke-weaver-talks-orange-juice",
+        "contentDate": "2026-08-18T16:33:50.722Z",
+        "teamIds": [
+            134
+        ],
+        "playerIds": [
+            596133
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "players-weekend",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Marte heading for MRI on knee after placement on restricted list (source)",
+        "summaryJa": "K.マーテイ（AZ）の最新動向をMLB公式が詳報",
+        "slug": "ketel-marte-heading-for-mri-on-knee-after-restricted-list-placement",
+        "url": "https://www.mlb.com/news/ketel-marte-heading-for-mri-on-knee-after-restricted-list-placement",
+        "contentDate": "2026-08-18T16:27:54.368Z",
+        "teamIds": [
+            109
+        ],
+        "playerIds": [
+            606466
+        ],
+        "gamePks": [
+            824723
+        ],
+        "taxonomy": [
+            "apple-news",
+            "injury"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "After two inspirational comebacks, Mancini announces retirement",
+        "summaryJa": "T.マンシーニ（BAL）の最新動向をMLB公式が詳報",
+        "slug": "trey-mancini-announces-retirement",
+        "url": "https://www.mlb.com/news/trey-mancini-announces-retirement",
+        "contentDate": "2026-08-18T16:19:30.662Z",
+        "teamIds": [
+            110
+        ],
+        "playerIds": [
+            641820
+        ],
         "gamePks": [],
         "taxonomy": [
             "apple-news",
-            "rankings"
+            "retirement"
         ],
         "sourceScopes": [
-            "MLB"
+            "MLB",
+            "球団公式"
         ]
     },
     {
@@ -929,7 +979,6 @@
             "transactions"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -6115,24 +6164,6 @@
         ]
     },
     {
-        "headline": "Pirates Insider: Important signs developing for team to shake slow stretch",
-        "summaryJa": "パイレーツの移籍・契約に関する最新情報",
-        "slug": "pirates-offense-stays-hot-in-series-opening-win-over-red-sox",
-        "url": "https://www.mlb.com/news/pirates-offense-stays-hot-in-series-opening-win-over-red-sox",
-        "contentDate": "2026-08-15T03:23:00Z",
-        "teamIds": [
-            134
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "pit-inside-the-pirates"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Jobe has wobbly outing in second start back from Tommy John surgery",
         "summaryJa": "J.ジョーブ（DET）、記録達成の最新情報",
         "slug": "jackson-jobe-struggles-in-2nd-start-after-tommy-john-surgery",
@@ -8825,32 +8856,6 @@
         ]
     },
     {
-        "headline": "Down to their final strike, Smith saves Astros in 9th ... then Peña wins it in 10th",
-        "summaryJa": "J.ペーニャ（HOU）、記録達成の最新情報",
-        "slug": "jeremy-pena-astros-beat-giants-in-extra-innings",
-        "url": "https://www.mlb.com/news/jeremy-pena-astros-beat-giants-in-extra-innings",
-        "contentDate": "2026-08-11T06:20:00Z",
-        "teamIds": [
-            117
-        ],
-        "playerIds": [
-            665161,
-            701358
-        ],
-        "gamePks": [
-            823189
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap",
-            "clutch-moment",
-            "extra-innings"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "'Trying to be a spark,' Gelof returns from IL with longest HR of his career",
         "summaryJa": "Z.ゲロフ（ATH）の負傷状況をMLB公式が詳報",
         "slug": "zack-gelof-reinstated-from-injured-list",
@@ -9445,30 +9450,6 @@
         ],
         "taxonomy": [
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "E-Rod's 115-pitch gem helps D-backs secure season series vs. LA for 1st time since '18",
-        "summaryJa": "E.ロドリゲス（AZ）が115球の好投、ドジャースとのシーズン対戦勝ち越しに貢献",
-        "slug": "eduardo-rodriguez-lead-d-backs-to-series-win-over-dodgers",
-        "url": "https://www.mlb.com/news/eduardo-rodriguez-lead-d-backs-to-series-win-over-dodgers",
-        "contentDate": "2026-08-10T00:33:00Z",
-        "teamIds": [
-            109
-        ],
-        "playerIds": [
-            593958
-        ],
-        "gamePks": [
-            825050
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap",
-            "payoff-pitch"
         ],
         "sourceScopes": [
             "球団公式"
