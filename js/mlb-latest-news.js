@@ -2,6 +2,99 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Crunch time starts now for Rangers after difficult road trip",
+        "summaryJa": "J.バーガー（TEX）、復帰へ向けた最新状況",
+        "slug": "rangers-return-home-for-big-games-after-tough-road-trip",
+        "url": "https://www.mlb.com/news/rangers-return-home-for-big-games-after-tough-road-trip",
+        "contentDate": "2026-08-18T13:54:36.828Z",
+        "teamIds": [
+            140
+        ],
+        "playerIds": [
+            669394,
+            694671
+        ],
+        "gamePks": [
+            822859
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Bagwell opens up about journey to sobriety",
+        "summaryJa": "J.バグウェル（HOU）の最新動向をMLB公式が詳報",
+        "slug": "jeff-bagwell-discusses-post-playing-life-sobriety",
+        "url": "https://www.mlb.com/news/jeff-bagwell-discusses-post-playing-life-sobriety",
+        "contentDate": "2026-08-18T13:32:31.063Z",
+        "teamIds": [
+            117
+        ],
+        "playerIds": [
+            110432
+        ],
+        "gamePks": [
+            824154
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Venezuela’s championship culture could help Brewers in October",
+        "summaryJa": "A.センザテーラ（MIL）の最新動向をMLB公式が詳報",
+        "slug": "antonio-senzatela-joins-teammates-from-team-venezuela-on-brewers",
+        "url": "https://www.mlb.com/news/antonio-senzatela-joins-teammates-from-team-venezuela-on-brewers",
+        "contentDate": "2026-08-18T13:27:23.562Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [
+            622608
+        ],
+        "gamePks": [
+            823749
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "'Very few people' like Messick, who's shining one year after debut",
+        "summaryJa": "P.メシック（CLE）、メジャー昇格・初出場に関する最新情報",
+        "slug": "parker-messick-shining-guardians-one-year-mlb-debut",
+        "url": "https://www.mlb.com/news/parker-messick-shining-guardians-one-year-mlb-debut",
+        "contentDate": "2026-08-18T12:53:24.288Z",
+        "teamIds": [
+            114
+        ],
+        "playerIds": [
+            800048
+        ],
+        "gamePks": [
+            824398
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "'An amazing game': Cubs outlast White Sox in Crosstown contest for the ages",
         "summaryJa": "P.クローアームストロング（CHC）、サヨナラ勝利の主役に",
         "slug": "pete-crow-armstrong-hits-walk-off-homer-for-cubs-to-beat-white-sox",
@@ -612,7 +705,6 @@
             "game-recap"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -918,6 +1010,37 @@
         ]
     },
     {
+        "headline": "Injuries: Dansby, Fried, Rodón, Griffin, Story, Dodgers, Padres",
+        "summaryJa": "大谷翔平（LAD）らMLB各球団の最新負傷情報",
+        "slug": "baseball-injury-updates",
+        "url": "https://www.mlb.com/news/baseball-injury-updates",
+        "contentDate": "2026-08-18T00:30:00Z",
+        "teamIds": [],
+        "playerIds": [
+            607074,
+            607192,
+            592450,
+            641355,
+            621020,
+            680736,
+            804606,
+            656811,
+            596115,
+            807799,
+            601713,
+            592094,
+            608331
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "headline-breakout"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
         "headline": "Here are the current top prospects at each position",
         "summaryJa": "Rainiel Rodriguezら注目選手の最新動向",
         "slug": "top-mlb-prospects-at-each-position-in-season-2026",
@@ -1120,7 +1243,6 @@
             "transactions"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1145,7 +1267,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1700,7 +1821,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -2028,7 +2148,7 @@
         ]
     },
     {
-        "headline": "How do Power Rankings look with just 6 weeks(!) left in season?",
+        "headline": "D-backs rise in latest Power Rankings",
         "summaryJa": "MLBの最新情報ら注目選手の最新動向",
         "slug": "mlb-power-rankings-for-week-of-august-16",
         "url": "https://www.mlb.com/news/mlb-power-rankings-for-week-of-august-16",
@@ -2042,7 +2162,6 @@
             "power-rankings"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -7015,28 +7134,6 @@
         ]
     },
     {
-        "headline": "Brew Crew rallies in 9th to stun Dodgers: 'That's Brewers baseball right there'",
-        "summaryJa": "ブルワーズ、記録達成の最新情報",
-        "slug": "brewers-rally-in-9th-inning-to-beat-dodgers-keep-nl-best-record",
-        "url": "https://www.mlb.com/news/brewers-rally-in-9th-inning-to-beat-dodgers-keep-nl-best-record",
-        "contentDate": "2026-08-14T07:02:00Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [],
-        "gamePks": [
-            823915
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap",
-            "rally"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Trout throws it back to 2018 with another big night for hot-hitting Halos",
         "summaryJa": "M.トラウト（LAA）、勝利を呼び込む活躍",
         "slug": "mike-trout-has-3-hits-as-angels-beat-rangers",
@@ -7258,27 +7355,6 @@
             "apple-news",
             "injury",
             "rehab"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Guardians No. 2 prospect finds a different way to extend his home run streak",
-        "summaryJa": "R.ベラスケス（CLE）、本塁打で存在感",
-        "slug": "guardians-prospect-ralphy-velazquez-power-surge-triple-a",
-        "url": "https://www.mlb.com/news/guardians-prospect-ralphy-velazquez-power-surge-triple-a",
-        "contentDate": "2026-08-14T03:33:00Z",
-        "teamIds": [
-            114
-        ],
-        "playerIds": [
-            806252
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "mlb-top-prospects"
         ],
         "sourceScopes": [
             "球団公式"
@@ -9336,26 +9412,6 @@
         ]
     },
     {
-        "headline": "Astros hoping to regroup after dropping back-to-back series",
-        "summaryJa": "アストロズの最新動向をMLB公式が詳報",
-        "slug": "astros-drop-series-against-padres-with-finale-loss",
-        "url": "https://www.mlb.com/news/astros-drop-series-against-padres-with-finale-loss",
-        "contentDate": "2026-08-10T04:34:18.013Z",
-        "teamIds": [
-            117
-        ],
-        "playerIds": [],
-        "gamePks": [
-            823268
-        ],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Nationals' high-scoring offense also MLB's youngest all-time",
         "summaryJa": "ナショナルズの最新動向をMLB公式が詳報",
         "slug": "2026-nationals-have-youngest-lineup-ever",
@@ -9480,30 +9536,6 @@
         "taxonomy": [
             "apple-news",
             "game-recap"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "deGrom wanted to stay a Ranger at the Deadline. This start proves why",
-        "summaryJa": "J.デグロム（TEX）が本来の投球を取り戻し、プレーオフ争いをけん引",
-        "slug": "jacob-degrom-pitches-five-innings-in-rangers-win-vs-orioles",
-        "url": "https://www.mlb.com/news/jacob-degrom-pitches-five-innings-in-rangers-win-vs-orioles",
-        "contentDate": "2026-08-09T03:20:00Z",
-        "teamIds": [
-            140
-        ],
-        "playerIds": [
-            594798
-        ],
-        "gamePks": [
-            822864
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap",
-            "payoff-pitch"
         ],
         "sourceScopes": [
             "球団公式"
