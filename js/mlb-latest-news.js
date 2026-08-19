@@ -160,8 +160,8 @@
         ]
     },
     {
-        "headline": "Here's where Brewers' 22-0 romp ranks among largest shutout wins",
-        "summaryJa": "MLBの最新情報、マウンドで好投",
+        "headline": "Here's where Brewers' 22-0 romp ranks among largest blowouts",
+        "summaryJa": "MLBの最新情報、勝利を呼び込む活躍",
         "slug": "largest-margins-of-victory-in-mlb-history",
         "url": "https://www.mlb.com/news/largest-margins-of-victory-in-mlb-history",
         "contentDate": "2026-08-19T05:21:25.085Z",
