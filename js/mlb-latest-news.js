@@ -2,6 +2,74 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "5 big questions about Joshua Báez's future",
+        "summaryJa": "J.バイエズ（STL）を巡る注目点をMLB公式が分析",
+        "slug": "how-joshua-baez-fits-in-cardinals-long-term-plans",
+        "url": "https://www.mlb.com/news/how-joshua-baez-fits-in-cardinals-long-term-plans",
+        "contentDate": "2026-08-19T16:11:12.402Z",
+        "teamIds": [
+            138
+        ],
+        "playerIds": [
+            695491
+        ],
+        "gamePks": [
+            824476
+        ],
+        "taxonomy": [
+            "apple-news",
+            "mlb-top-prospects"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Antonacci takes painful path to White Sox history",
+        "summaryJa": "S.アントナッチ（CWS）、記録達成の最新情報",
+        "slug": "sam-antonacci-matches-white-sox-record-for-hit-by-pitches",
+        "url": "https://www.mlb.com/news/sam-antonacci-matches-white-sox-record-for-hit-by-pitches",
+        "contentDate": "2026-08-19T15:54:46.339Z",
+        "teamIds": [
+            145
+        ],
+        "playerIds": [
+            803011
+        ],
+        "gamePks": [
+            824640
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Mariners' 1st-rounder Reese hits 2nd pro homer to continue torrid start to career",
+        "summaryJa": "Ace Reese（SEA）、記録達成の最新情報",
+        "slug": "mariners-1st-round-pick-ace-reese-homers-three-hits",
+        "url": "https://www.mlb.com/news/mariners-1st-round-pick-ace-reese-homers-three-hits",
+        "contentDate": "2026-08-19T15:53:35.763Z",
+        "teamIds": [
+            136
+        ],
+        "playerIds": [
+            814505
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "mlb-top-prospects"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Lee breaks Chang's MLB hits record for players born in Taiwan",
         "summaryJa": "李（り） 灝宇（こうう）（DET）、記録達成の最新情報",
         "slug": "hao-yu-lee-sets-record-for-taiwanese-born-players",
@@ -1021,7 +1089,6 @@
             "hot-streak"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1180,7 +1247,6 @@
             "mlb-top-prospects"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -6256,29 +6322,6 @@
         ]
     },
     {
-        "headline": "Báez sends Memphis Redbirds' clubhouse into frenzy with historic third homer",
-        "summaryJa": "J.バイエズ（STL）、本塁打で存在感",
-        "slug": "jurrangelo-cijntje-captures-joshua-baez-s-home-run-on-camera-phone",
-        "url": "https://www.mlb.com/news/jurrangelo-cijntje-captures-joshua-baez-s-home-run-on-camera-phone",
-        "contentDate": "2026-08-16T01:38:48.273Z",
-        "teamIds": [
-            138,
-            235
-        ],
-        "playerIds": [
-            695491
-        ],
-        "gamePks": [
-            824644
-        ],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "A tale of two trades: Dion, Cruz charting opposite paths with Nats",
         "summaryJa": "W.ディオン（WSH）の移籍・契約に関する最新情報",
         "slug": "will-dion-hitless-long-relief-yovanny-cruz-blows-save",
@@ -7998,29 +8041,6 @@
         ]
     },
     {
-        "headline": "Mariners' No. 1 farmhand is now the best pitching prospect in baseball",
-        "summaryJa": "K.アンダーソン（SEA）ら注目選手の最新動向",
-        "slug": "mariners-top-30-prospects-2026-midseason-update",
-        "url": "https://www.mlb.com/news/mariners-top-30-prospects-2026-midseason-update",
-        "contentDate": "2026-08-14T16:06:42.363Z",
-        "teamIds": [
-            136
-        ],
-        "playerIds": [
-            807739
-        ],
-        "gamePks": [
-            824159
-        ],
-        "taxonomy": [
-            "mlb-top-prospects",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Rangers' quality Draft helps shape new Top 30 prospects list",
         "summaryJa": "レンジャーズら注目選手の最新動向",
         "slug": "rangers-top-30-prospects-2026-midseason-update",
@@ -8492,28 +8512,6 @@
         ],
         "taxonomy": [
             "field-of-dreams",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "White Sox not dwelling on frustrating loss with crucial Detroit series next",
-        "summaryJa": "D.マーティン（CWS）の最新動向をMLB公式が詳報",
-        "slug": "davis-martin-andrew-benintendi-not-enough-in-white-sox-loss",
-        "url": "https://www.mlb.com/news/davis-martin-andrew-benintendi-not-enough-in-white-sox-loss",
-        "contentDate": "2026-08-13T23:32:11.906Z",
-        "teamIds": [
-            145
-        ],
-        "playerIds": [
-            663436
-        ],
-        "gamePks": [
-            824561
-        ],
-        "taxonomy": [
             "apple-news"
         ],
         "sourceScopes": [
