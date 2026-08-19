@@ -2,6 +2,68 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Romano revives career with help of old friend",
+        "summaryJa": "J.ロマーノ（COL）の最新動向をMLB公式が詳報",
+        "slug": "jordan-romano-finds-success-since-joining-rockies",
+        "url": "https://www.mlb.com/news/jordan-romano-finds-success-since-joining-rockies",
+        "contentDate": "2026-08-19T17:11:43.8Z",
+        "teamIds": [
+            115
+        ],
+        "playerIds": [
+            605447
+        ],
+        "gamePks": [
+            824318
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Watch newly acquired top prospect Nimmala at Double-A for FREE on Sunday",
+        "summaryJa": "MLBの最新情報の移籍・契約に関する最新情報",
+        "slug": "watch-minor-league-baseball-games-for-free-2026",
+        "url": "https://www.mlb.com/news/watch-minor-league-baseball-games-for-free-2026",
+        "contentDate": "2026-08-19T17:00:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "mlb-top-prospects",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Crafty lefty Cortes agrees to Major League deal with Phillies (source)",
+        "summaryJa": "N.コーテズ（PHI）の移籍・契約に関する最新情報",
+        "slug": "nestor-cortes-phillies-deal",
+        "url": "https://www.mlb.com/news/nestor-cortes-phillies-deal",
+        "contentDate": "2026-08-19T16:59:49.004Z",
+        "teamIds": [
+            143
+        ],
+        "playerIds": [
+            641482
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "transactions",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "5 big questions about Joshua Báez's future",
         "summaryJa": "J.バイエズ（STL）を巡る注目点をMLB公式が分析",
         "slug": "how-joshua-baez-fits-in-cardinals-long-term-plans",
@@ -482,23 +544,6 @@
         ]
     },
     {
-        "headline": "Watch newly acquired top prospect Nimmala at Double-A for FREE on Sunday",
-        "summaryJa": "MLBの最新情報の移籍・契約に関する最新情報",
-        "slug": "watch-minor-league-baseball-games-for-free-2026",
-        "url": "https://www.mlb.com/news/watch-minor-league-baseball-games-for-free-2026",
-        "contentDate": "2026-08-19T05:15:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "mlb-top-prospects",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Latest Rockies injuries & transactions",
         "summaryJa": "ロッキーズの負傷状況をMLB公式が詳報",
         "slug": "rockies-injuries-and-roster-moves",
@@ -793,7 +838,6 @@
             "game-recap"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1268,7 +1312,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -9229,36 +9272,6 @@
         ],
         "taxonomy": [
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Veen makes Prospect Team of Week",
-        "summaryJa": "Z.ビーンら注目選手の最新動向",
-        "slug": "prospect-team-of-the-week-august-10-2026",
-        "url": "https://www.mlb.com/news/prospect-team-of-the-week-august-10-2026",
-        "contentDate": "2026-08-10T21:23:48.708Z",
-        "teamIds": [],
-        "playerIds": [
-            691728,
-            695722,
-            815824,
-            801126,
-            807727,
-            815929,
-            806223,
-            813841,
-            807739,
-            806265,
-            695066
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "minor-league-baseball",
-            "mlb-top-prospects"
         ],
         "sourceScopes": [
             "球団公式"
