@@ -2,6 +2,44 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Top prospect Rojas crushes 17th homer, stays hot after trade to Mets",
+        "summaryJa": "J.ロハス（NYM）の移籍・契約に関する最新情報",
+        "slug": "mets-prospect-jefferson-rojas-hits-17th-homer",
+        "url": "https://www.mlb.com/news/mets-prospect-jefferson-rojas-hits-17th-homer",
+        "contentDate": "2026-08-19T13:26:17.101Z",
+        "teamIds": [
+            121
+        ],
+        "playerIds": [
+            800473
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "mlb-top-prospects"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Major investor signs on with women's AUSL",
+        "summaryJa": "MLBの最新情報の移籍・契約に関する最新情報",
+        "slug": "rule42-sports-group-major-investment-ausl",
+        "url": "https://www.mlb.com/news/rule42-sports-group-major-investment-ausl",
+        "contentDate": "2026-08-19T11:58:27.539Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "leagueid-6044"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
         "headline": "8 players who have soared past expectations in 2026",
         "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
         "slug": "mlb-players-exceeding-expectations-2026",
@@ -520,7 +558,7 @@
         ]
     },
     {
-        "headline": "In 2nd game at Fenway, Rutschman's 1st Red Sox HR ignites immediate rally",
+        "headline": "In 2nd game at Fenway, Rutschman's 1st Red Sox HR ignites rally",
         "summaryJa": "A.ラッチマン（BOS）、記録達成の最新情報",
         "slug": "adley-rutschman-hits-first-home-run-with-red-sox",
         "url": "https://www.mlb.com/news/adley-rutschman-hits-first-home-run-with-red-sox",
@@ -587,6 +625,28 @@
         ],
         "sourceScopes": [
             "球団公式"
+        ]
+    },
+    {
+        "headline": "Which 1B are best at receiving throws? New data has the answer",
+        "summaryJa": "A.バールソンの最新動向をMLB公式が詳報",
+        "slug": "breaking-down-first-base-throw-receiving-data",
+        "url": "https://www.mlb.com/news/breaking-down-first-base-throw-receiving-data",
+        "contentDate": "2026-08-19T04:06:00Z",
+        "teamIds": [],
+        "playerIds": [
+            676475,
+            518692,
+            621566
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "player-tracking",
+            "savant",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB"
         ]
     },
     {
@@ -1526,7 +1586,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1682,7 +1741,7 @@
         ]
     },
     {
-        "headline": "Marte returning to Phoenix for MRI on knee, Lovullo focusing on series in Boston",
+        "headline": "Marte returning to Phoenix for MRI on knee; Lovullo focusing on series in Boston",
         "summaryJa": "K.マーテイ（AZ）、復帰へ向けた最新状況",
         "slug": "ketel-marte-heading-for-mri-on-knee-after-restricted-list-placement",
         "url": "https://www.mlb.com/news/ketel-marte-heading-for-mri-on-knee-after-restricted-list-placement",
@@ -2364,7 +2423,6 @@
             "offbeat"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -7872,29 +7930,6 @@
         "gamePks": [],
         "taxonomy": [
             "field-of-dreams"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Mets' Top 30 Prospects list gets full update after Deadline moves",
-        "summaryJa": "J.ロハス（NYM）ら注目選手の最新動向",
-        "slug": "mets-top-30-prospects-2026-midseason-update",
-        "url": "https://www.mlb.com/news/mets-top-30-prospects-2026-midseason-update",
-        "contentDate": "2026-08-14T15:30:09.872Z",
-        "teamIds": [
-            121
-        ],
-        "playerIds": [
-            800473
-        ],
-        "gamePks": [
-            823591
-        ],
-        "taxonomy": [
-            "apple-news",
-            "mlb-top-prospects"
         ],
         "sourceScopes": [
             "球団公式"
