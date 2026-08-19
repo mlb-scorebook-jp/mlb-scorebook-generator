@@ -2,8 +2,203 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
-        "headline": "Top prospect Rojas crushes 17th homer, stays hot after trade to Mets",
-        "summaryJa": "J.ロハス（NYM）の移籍・契約に関する最新情報",
+        "headline": "Lee breaks Chang's MLB hits record for players born in Taiwan",
+        "summaryJa": "李（り） 灝宇（こうう）（DET）、記録達成の最新情報",
+        "slug": "hao-yu-lee-sets-record-for-taiwanese-born-players",
+        "url": "https://www.mlb.com/news/hao-yu-lee-sets-record-for-taiwanese-born-players",
+        "contentDate": "2026-08-19T15:46:14.86Z",
+        "teamIds": [
+            116
+        ],
+        "playerIds": [
+            701678
+        ],
+        "gamePks": [
+            823342
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Duran earns first career win in impressive Royals debut",
+        "summaryJa": "C.デュラン（KC）、メジャー昇格・初出場に関する最新情報",
+        "slug": "carlos-duran-impresses-in-royals-debut-earns-first-mlb-win",
+        "url": "https://www.mlb.com/news/carlos-duran-impresses-in-royals-debut-earns-first-mlb-win",
+        "contentDate": "2026-08-19T15:45:31.639Z",
+        "teamIds": [
+            118
+        ],
+        "playerIds": [
+            679922
+        ],
+        "gamePks": [
+            824076
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "MLB's biggest 'Survivor' fan? Q&A with Nats lefty Cosgrove",
+        "summaryJa": "T.コスグローブ（WSH）の最新動向をMLB公式が詳報",
+        "slug": "tom-cosgrove-nationals-question-and-answer-session",
+        "url": "https://www.mlb.com/news/tom-cosgrove-nationals-question-and-answer-session",
+        "contentDate": "2026-08-19T15:30:31.315Z",
+        "teamIds": [
+            120
+        ],
+        "playerIds": [
+            676680
+        ],
+        "gamePks": [
+            822860
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "MLB Network documentary on baseball's role after 9/11 to premiere Sept. 10",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "mlb-network-to-premiere-new-original-documentary-on-9-11",
+        "url": "https://www.mlb.com/news/mlb-network-to-premiere-new-original-documentary-on-9-11",
+        "contentDate": "2026-08-19T15:27:55.148Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "mlb-network"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "Latest Tigers injuries and transactions",
+        "summaryJa": "タイガースの負傷状況をMLB公式が詳報",
+        "slug": "tigers-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/tigers-injuries-and-roster-moves",
+        "contentDate": "2026-08-19T15:20:00Z",
+        "teamIds": [
+            116
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Marte returning to Phoenix for MRI on knee; Lovullo focusing on series in Boston",
+        "summaryJa": "K.マーテイ（AZ）、復帰へ向けた最新状況",
+        "slug": "ketel-marte-heading-for-mri-on-knee-after-restricted-list-placement",
+        "url": "https://www.mlb.com/news/ketel-marte-heading-for-mri-on-knee-after-restricted-list-placement",
+        "contentDate": "2026-08-19T15:10:00Z",
+        "teamIds": [
+            109
+        ],
+        "playerIds": [
+            606466
+        ],
+        "gamePks": [
+            824723
+        ],
+        "taxonomy": [
+            "apple-news",
+            "injury"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "How Matt Olson became a king of scoops at first base",
+        "summaryJa": "M.オルソン（ATL）を巡る注目点をMLB公式が分析",
+        "slug": "matt-olson-among-leaders-in-new-first-base-scoops-stat",
+        "url": "https://www.mlb.com/news/matt-olson-among-leaders-in-new-first-base-scoops-stat",
+        "contentDate": "2026-08-19T14:58:17.968Z",
+        "teamIds": [
+            144
+        ],
+        "playerIds": [
+            621566
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "savant"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "How an arm-angle tweak sparked Fairbanks' strong second half",
+        "summaryJa": "P.フェアバンクス（MIA）を巡る注目点をMLB公式が分析",
+        "slug": "pete-fairbanks-new-arm-angle-leads-to-second-half-success",
+        "url": "https://www.mlb.com/news/pete-fairbanks-new-arm-angle-leads-to-second-half-success",
+        "contentDate": "2026-08-19T14:56:15.184Z",
+        "teamIds": [
+            146
+        ],
+        "playerIds": [
+            664126
+        ],
+        "gamePks": [
+            823424
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "How Trout -- with help from Tiger Woods -- built his golf course",
+        "summaryJa": "M.トラウト（LAA）を巡る注目点をMLB公式が分析",
+        "slug": "mike-trout-discusses-building-his-golf-course",
+        "url": "https://www.mlb.com/news/mike-trout-discusses-building-his-golf-course",
+        "contentDate": "2026-08-19T14:52:43.387Z",
+        "teamIds": [
+            108
+        ],
+        "playerIds": [
+            545361
+        ],
+        "gamePks": [
+            824155
+        ],
+        "taxonomy": [
+            "apple-news",
+            "players-weekend"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Mets' new top prospect has been crushing it since arriving at Deadline",
+        "summaryJa": "J.ロハス（NYM）、記録達成の最新情報",
         "slug": "mets-prospect-jefferson-rojas-hits-17th-homer",
         "url": "https://www.mlb.com/news/mets-prospect-jefferson-rojas-hits-17th-homer",
         "contentDate": "2026-08-19T13:26:17.101Z",
@@ -19,11 +214,12 @@
             "mlb-top-prospects"
         ],
         "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
     {
-        "headline": "Major investor signs on with women's AUSL",
+        "headline": "Major investor signs on with AUSL",
         "summaryJa": "MLBの最新情報の移籍・契約に関する最新情報",
         "slug": "rule42-sports-group-major-investment-ausl",
         "url": "https://www.mlb.com/news/rule42-sports-group-major-investment-ausl",
@@ -297,7 +493,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -920,7 +1115,7 @@
         ]
     },
     {
-        "headline": "No. 9 prospect Pecko to make Major League debut, starting Wednesday against Angels",
+        "headline": "No. 9 prospect Pecko to make Major League debut in tonight's start vs. Angels",
         "summaryJa": "Ethan Pecko（HOU）、メジャー昇格・初出場に関する最新情報",
         "slug": "ethan-pecko-promotion-to-majors-by-astros",
         "url": "https://www.mlb.com/news/ethan-pecko-promotion-to-majors-by-astros",
@@ -1122,7 +1317,6 @@
             "abs"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1192,7 +1386,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1449,7 +1642,7 @@
         ]
     },
     {
-        "headline": "Dodgers closer Díaz heads back to IL with neck inflammation",
+        "headline": "Díaz heading back to IL with neck inflammation",
         "summaryJa": "E.ディアス（LAD）の負傷状況をMLB公式が詳報",
         "slug": "edwin-diaz-injured-list",
         "url": "https://www.mlb.com/news/edwin-diaz-injured-list",
@@ -1468,7 +1661,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1737,30 +1929,6 @@
             "injury"
         ],
         "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Marte returning to Phoenix for MRI on knee; Lovullo focusing on series in Boston",
-        "summaryJa": "K.マーテイ（AZ）、復帰へ向けた最新状況",
-        "slug": "ketel-marte-heading-for-mri-on-knee-after-restricted-list-placement",
-        "url": "https://www.mlb.com/news/ketel-marte-heading-for-mri-on-knee-after-restricted-list-placement",
-        "contentDate": "2026-08-18T22:58:00Z",
-        "teamIds": [
-            109
-        ],
-        "playerIds": [
-            606466
-        ],
-        "gamePks": [
-            824723
-        ],
-        "taxonomy": [
-            "apple-news",
-            "injury"
-        ],
-        "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -2227,26 +2395,6 @@
         ]
     },
     {
-        "headline": "Latest Tigers injuries and transactions",
-        "summaryJa": "タイガースの負傷状況をMLB公式が詳報",
-        "slug": "tigers-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/tigers-injuries-and-roster-moves",
-        "contentDate": "2026-08-18T21:37:00Z",
-        "teamIds": [
-            116
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "As Paredes' career progresses, his abuela is always with him in spirit",
         "summaryJa": "I.パレイデス（HOU）の最新動向をMLB公式が詳報",
         "slug": "isaac-paredes-credits-baseball-career-to-grandmother",
@@ -2462,29 +2610,6 @@
             823749
         ],
         "taxonomy": [],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Hao-Yu Lee sets single-season record for hits by a player born in Taiwan",
-        "summaryJa": "李（り） 灝宇（こうう）（DET）、記録達成の最新情報",
-        "slug": "hao-yu-lee-sets-taiwanese-record-for-hits-in-a-season",
-        "url": "https://www.mlb.com/news/hao-yu-lee-sets-taiwanese-record-for-hits-in-a-season",
-        "contentDate": "2026-08-18T17:23:52.237Z",
-        "teamIds": [
-            116
-        ],
-        "playerIds": [
-            701678
-        ],
-        "gamePks": [
-            823341
-        ],
-        "taxonomy": [
-            "world-baseball-classic",
-            "mlb-international"
-        ],
         "sourceScopes": [
             "球団公式"
         ]
@@ -8079,27 +8204,6 @@
         ]
     },
     {
-        "headline": "For baseball's youngest pitcher, it's never too early to fulfill your dreams",
-        "summaryJa": "D.フエンテス（ATL）の最新動向をMLB公式が詳報",
-        "slug": "didier-fuentes-youngest-pitcher-in-mlb-turned-star-reliever",
-        "url": "https://www.mlb.com/news/didier-fuentes-youngest-pitcher-in-mlb-turned-star-reliever",
-        "contentDate": "2026-08-14T12:53:53.959Z",
-        "teamIds": [
-            144
-        ],
-        "playerIds": [
-            800311
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "mlb-international",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Trout throws it back to 2018 with another big night for hot-hitting Halos",
         "summaryJa": "M.トラウト（LAA）、勝利を呼び込む活躍",
         "slug": "mike-trout-has-3-hits-as-angels-beat-rangers",
@@ -8461,29 +8565,6 @@
         ]
     },
     {
-        "headline": "Royals' teenage top prospect has presence well beyond his years",
-        "summaryJa": "Kendry Chourio（KC）ら注目選手の最新動向",
-        "slug": "kendry-chourio-royals-top-prospect-thriving-in-minor-leagues",
-        "url": "https://www.mlb.com/news/kendry-chourio-royals-top-prospect-thriving-in-minor-leagues",
-        "contentDate": "2026-08-13T16:11:06.789Z",
-        "teamIds": [
-            118
-        ],
-        "playerIds": [
-            830402
-        ],
-        "gamePks": [
-            823916
-        ],
-        "taxonomy": [
-            "apple-news",
-            "mlb-top-prospects"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "3 Giants rookies to keep an eye on",
         "summaryJa": "Drew Cavanaugh（SF）の最新動向をMLB公式が詳報",
         "slug": "drew-cavanaugh-blade-tidwell-victor-bericoto-impressing-in-2026",
@@ -8777,26 +8858,6 @@
         ]
     },
     {
-        "headline": "Daughter of former Angel leads her team to Little League World Series",
-        "summaryJa": "C.ラスムスの最新動向をMLB公式が詳報",
-        "slug": "kinley-rasmus-daughter-of-cory-rasmus-stars-in-little-league-world-series",
-        "url": "https://www.mlb.com/news/kinley-rasmus-daughter-of-cory-rasmus-stars-in-little-league-world-series",
-        "contentDate": "2026-08-12T19:31:09.996Z",
-        "teamIds": [],
-        "playerIds": [
-            458675,
-            474284
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "llws",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Altuve (left foot contusion) out of lineup after getting hit by pitch",
         "summaryJa": "J.アルトゥーベ（HOU）の負傷状況をMLB公式が詳報",
         "slug": "jose-altuve-leaves-game-with-foot-injury",
@@ -8944,29 +9005,6 @@
         "taxonomy": [
             "apple-news",
             "takeaways"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Pérez passes latest test in quest to be one of MLB's elite starters",
-        "summaryJa": "E.ペレス（MIA）が7回無失点、エース級への成長を示す",
-        "slug": "eury-perez-throws-seven-scoreless-innings-vs-pirates",
-        "url": "https://www.mlb.com/news/eury-perez-throws-seven-scoreless-innings-vs-pirates",
-        "contentDate": "2026-08-12T05:21:00Z",
-        "teamIds": [
-            146
-        ],
-        "playerIds": [
-            516811
-        ],
-        "gamePks": [
-            823832
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap"
         ],
         "sourceScopes": [
             "球団公式"
@@ -9555,28 +9593,6 @@
         "gamePks": [],
         "taxonomy": [
             "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Reds ace Burns bullish on rising Nats SS, a former Wake Forest teammate",
-        "summaryJa": "S.キング（WSH）の最新動向をMLB公式が詳報",
-        "slug": "seaver-king-chase-burns-teammates-at-wake-forest",
-        "url": "https://www.mlb.com/news/seaver-king-chase-burns-teammates-at-wake-forest",
-        "contentDate": "2026-08-10T13:12:00Z",
-        "teamIds": [
-            120
-        ],
-        "playerIds": [
-            814409,
-            695505
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "mlb-top-prospects"
         ],
         "sourceScopes": [
             "球団公式"
