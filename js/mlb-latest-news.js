@@ -2,6 +2,45 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "8 players who have soared past expectations in 2026",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "mlb-players-exceeding-expectations-2026",
+        "url": "https://www.mlb.com/news/mlb-players-exceeding-expectations-2026",
+        "contentDate": "2026-08-19T07:09:40.748Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "Murakami's homer, Fedde's bulk outing not enough for Sox against Cubs",
+        "summaryJa": "村上 宗隆（CWS）、サヨナラ勝利の主役に",
+        "slug": "white-sox-suffer-second-straight-walk-off-loss-against-cubs",
+        "url": "https://www.mlb.com/news/white-sox-suffer-second-straight-walk-off-loss-against-cubs",
+        "contentDate": "2026-08-19T06:28:58.203Z",
+        "teamIds": [
+            145
+        ],
+        "playerIds": [
+            808959,
+            607200
+        ],
+        "gamePks": [
+            824639
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "7-RBI night! No one on the Red Sox farm has been raking like their No. 4 prospect",
         "summaryJa": "Franklin Primera（BOS）ら注目選手の最新動向",
         "slug": "red-sox-prospect-franklin-primera-2026-breakout-season",
@@ -21,6 +60,30 @@
             "mlb-top-prospects"
         ],
         "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Gausman 'doing well' after exiting start with cramp in non-pitching hand",
+        "summaryJa": "K.ガーズマン（CHC）の最新動向をMLB公式が詳報",
+        "slug": "kevin-gausman-exits-start-vs-white-sox-with-left-thumb-cramp",
+        "url": "https://www.mlb.com/news/kevin-gausman-exits-start-vs-white-sox-with-left-thumb-cramp",
+        "contentDate": "2026-08-19T05:49:00Z",
+        "teamIds": [
+            112
+        ],
+        "playerIds": [
+            592332
+        ],
+        "gamePks": [
+            824639
+        ],
+        "taxonomy": [
+            "apple-news",
+            "injury"
+        ],
+        "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
@@ -1187,30 +1250,6 @@
         ]
     },
     {
-        "headline": "Gausman exits after 4 1/3 innings with left hand cramp",
-        "summaryJa": "K.ガーズマン（CHC）の最新動向をMLB公式が詳報",
-        "slug": "kevin-gausman-exits-start-vs-white-sox-with-left-thumb-cramp",
-        "url": "https://www.mlb.com/news/kevin-gausman-exits-start-vs-white-sox-with-left-thumb-cramp",
-        "contentDate": "2026-08-19T02:21:00Z",
-        "teamIds": [
-            112
-        ],
-        "playerIds": [
-            592332
-        ],
-        "gamePks": [
-            824639
-        ],
-        "taxonomy": [
-            "apple-news",
-            "injury"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
         "headline": "With return comes majestic HR for Cruz, who aims to make up for lost time",
         "summaryJa": "O.クルーズ（PIT）の負傷状況をMLB公式が詳報",
         "slug": "oneil-cruz-homers-in-return-from-injured-list",
@@ -1798,7 +1837,6 @@
             "injury"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -7683,31 +7721,6 @@
         "taxonomy": [
             "apple-news",
             "injury"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Key takeaways: Cubs 3, Cardinals 0",
-        "summaryJa": "C.ホームズ（CHC）、勝利を呼び込む活躍",
-        "slug": "clay-holmes-seiya-suzuki-lead-cubs-win-vs-cardinals",
-        "url": "https://www.mlb.com/news/clay-holmes-seiya-suzuki-lead-cubs-win-vs-cardinals",
-        "contentDate": "2026-08-14T22:05:00Z",
-        "teamIds": [
-            112
-        ],
-        "playerIds": [
-            605280,
-            673548
-        ],
-        "gamePks": [
-            824643
-        ],
-        "taxonomy": [
-            "apple-news",
-            "takeaways",
-            "rivalry"
         ],
         "sourceScopes": [
             "球団公式"
