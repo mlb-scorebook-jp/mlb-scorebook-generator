@@ -2,6 +2,157 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Bogaerts exits with apparent injury in New York finale",
+        "summaryJa": "X.ボガーツ（SD）の負傷状況をMLB公式が詳報",
+        "slug": "xander-bogaerts-exits-padres-game-with-injury",
+        "url": "https://www.mlb.com/news/xander-bogaerts-exits-padres-game-with-injury",
+        "contentDate": "2026-08-19T19:50:30.393Z",
+        "teamIds": [
+            135
+        ],
+        "playerIds": [
+            593428
+        ],
+        "gamePks": [
+            823587
+        ],
+        "taxonomy": [
+            "apple-news",
+            "injury"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "'This is where I want to be': Behind Townsend's perfect marriage with Chicago",
+        "summaryJa": "Cade Townsend（CHC）の最新動向をMLB公式が詳報",
+        "slug": "cade-townsend-cubs-2026-first-round-draft-pick-visits-wrigley-field",
+        "url": "https://www.mlb.com/news/cade-townsend-cubs-2026-first-round-draft-pick-visits-wrigley-field",
+        "contentDate": "2026-08-19T19:39:54.221Z",
+        "teamIds": [
+            112
+        ],
+        "playerIds": [
+            807254
+        ],
+        "gamePks": [
+            824640
+        ],
+        "taxonomy": [
+            "apple-news",
+            "mlb-top-prospects"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Latest Yankees injuries and transactions",
+        "summaryJa": "ヤンキースの負傷状況をMLB公式が詳報",
+        "slug": "yankees-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/yankees-injuries-and-roster-moves",
+        "contentDate": "2026-08-19T19:31:00Z",
+        "teamIds": [
+            147
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "MLB Together teaches mental wellness at RBI World Series",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "rbi-world-series-mlb-together-mental-wellness-event-2026",
+        "url": "https://www.mlb.com/news/rbi-world-series-mlb-together-mental-wellness-event-2026",
+        "contentDate": "2026-08-19T19:29:49.732Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "mlb-community-org",
+            "softball",
+            "rbi-world-series"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "How one family's kindness helped Dubón fulfill his big league dreams",
+        "summaryJa": "M.デュボーン（ATL）を巡る注目点をMLB公式が分析",
+        "slug": "mauricio-dubon-had-inspiring-journey-from-honduras-to-mlb",
+        "url": "https://www.mlb.com/news/mauricio-dubon-had-inspiring-journey-from-honduras-to-mlb",
+        "contentDate": "2026-08-19T19:27:50.821Z",
+        "teamIds": [
+            144
+        ],
+        "playerIds": [
+            643289
+        ],
+        "gamePks": [
+            823664
+        ],
+        "taxonomy": [
+            "apple-news",
+            "players-weekend"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Could Green manage Mets in '27? He'll be considered -- if he's interested",
+        "summaryJa": "A.グリーン（NYM）の最新動向をMLB公式が詳報",
+        "slug": "steve-cohen-andy-green-potential-2027-role-with-mets",
+        "url": "https://www.mlb.com/news/steve-cohen-andy-green-potential-2027-role-with-mets",
+        "contentDate": "2026-08-19T19:13:39.899Z",
+        "teamIds": [
+            121
+        ],
+        "playerIds": [
+            433477
+        ],
+        "gamePks": [
+            823587
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Latest Red Sox injuries & transactions",
+        "summaryJa": "レッドソックスの負傷状況をMLB公式が詳報",
+        "slug": "red-sox-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/red-sox-injuries-and-roster-moves",
+        "contentDate": "2026-08-19T19:12:00Z",
+        "teamIds": [
+            111
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Bregman, Cubs find common ground in autism advocacy",
         "summaryJa": "A.ブレグマン（CHC）の最新動向をMLB公式が詳報",
         "slug": "alex-bregman-foundation-autism-awareness-2026",
@@ -92,7 +243,7 @@
         ]
     },
     {
-        "headline": "Cohen reiterates commitment to Stearns, but says Mets took 'too much risk' in offseason",
+        "headline": "Cohen: Mets took 'too much risk' with offseason overhaul",
         "summaryJa": "メッツの最新動向をMLB公式が詳報",
         "slug": "steve-cohen-talks-david-stearns-mets-front-office-decisions",
         "url": "https://www.mlb.com/news/steve-cohen-talks-david-stearns-mets-front-office-decisions",
@@ -386,7 +537,6 @@
             "injury"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -578,7 +728,6 @@
             "injury"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1510,7 +1659,6 @@
             "long-home-runs"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1838,26 +1986,6 @@
         ]
     },
     {
-        "headline": "Latest Red Sox injuries & transactions",
-        "summaryJa": "レッドソックスの負傷状況をMLB公式が詳報",
-        "slug": "red-sox-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/red-sox-injuries-and-roster-moves",
-        "contentDate": "2026-08-19T01:34:00Z",
-        "teamIds": [
-            111
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Díaz heading back to IL with neck inflammation",
         "summaryJa": "E.ディアス（LAD）の負傷状況をMLB公式が詳報",
         "slug": "edwin-diaz-injured-list",
@@ -1881,7 +2009,7 @@
         ]
     },
     {
-        "headline": "10 top prospects who could be called up SOON",
+        "headline": "Could Franklin Arias be headed to The Show soon?",
         "summaryJa": "K.アンダーソン、メジャー昇格・初出場に関する最新情報",
         "slug": "prospects-who-could-get-mlb-callup-in-season-2026",
         "url": "https://www.mlb.com/news/prospects-who-could-get-mlb-callup-in-season-2026",
@@ -1905,7 +2033,6 @@
             "mlb-top-prospects"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -2310,26 +2437,6 @@
         "contentDate": "2026-08-18T22:42:00Z",
         "teamIds": [
             158
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Latest Yankees injuries and transactions",
-        "summaryJa": "ヤンキースの負傷状況をMLB公式が詳報",
-        "slug": "yankees-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/yankees-injuries-and-roster-moves",
-        "contentDate": "2026-08-18T22:28:00Z",
-        "teamIds": [
-            147
         ],
         "playerIds": [],
         "gamePks": [],
@@ -6595,28 +6702,6 @@
         ]
     },
     {
-        "headline": "'Hats off to him': Boyd, Cubs on wrong end of historic MLB debut",
-        "summaryJa": "M.ボイド（CHC）、メジャー昇格・初出場に関する最新情報",
-        "slug": "matthew-boyd-allows-three-home-runs-to-joshua-baez",
-        "url": "https://www.mlb.com/news/matthew-boyd-allows-three-home-runs-to-joshua-baez",
-        "contentDate": "2026-08-15T23:34:04.766Z",
-        "teamIds": [
-            112
-        ],
-        "playerIds": [
-            571510
-        ],
-        "gamePks": [
-            824644
-        ],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "A 'broken record' for Yanks: Schlittler shines, but bats can't back him up",
         "summaryJa": "C.シュリットラー（NYY）、記録達成の最新情報",
         "slug": "cam-schlittler-pitches-5-1-3-innings-against-blue-jays",
@@ -7687,30 +7772,6 @@
         ]
     },
     {
-        "headline": "Lindor sparks sleepy Mets bats and kicks off comeback victory",
-        "summaryJa": "F.リンドー（NYM）、勝利を呼び込む活躍",
-        "slug": "francisco-lindor-mets-beat-nationals",
-        "url": "https://www.mlb.com/news/francisco-lindor-mets-beat-nationals",
-        "contentDate": "2026-08-15T03:17:00Z",
-        "teamIds": [
-            121
-        ],
-        "playerIds": [
-            596019
-        ],
-        "gamePks": [
-            823591
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap",
-            "hot-streak"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "'El Caballo' a dark horse for Cy Young Award thanks to career-best stretch",
         "summaryJa": "S.アルカンタラ（MIA）の最新動向をMLB公式が詳報",
         "slug": "sandy-alcantara-making-cy-young-award-case",
@@ -7752,29 +7813,6 @@
             "apple-news",
             "rehab",
             "injury"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Sale joins elite, veteran company after latest gem vs. D-backs",
-        "summaryJa": "C.セール（ATL）の最新動向をMLB公式が詳報",
-        "slug": "chris-sale-strikes-out-nine-against-diamondbacks",
-        "url": "https://www.mlb.com/news/chris-sale-strikes-out-nine-against-diamondbacks",
-        "contentDate": "2026-08-15T03:02:00Z",
-        "teamIds": [
-            144
-        ],
-        "playerIds": [
-            519242
-        ],
-        "gamePks": [
-            824882
-        ],
-        "taxonomy": [
-            "apple-news",
-            "payoff-pitch"
         ],
         "sourceScopes": [
             "球団公式"
@@ -8622,26 +8660,6 @@
         "taxonomy": [
             "apple-news",
             "mlb-top-prospects"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "The Padres are surging. Here's how they can keep it up",
-        "summaryJa": "パドレスを巡る注目点をMLB公式が分析",
-        "slug": "padres-making-2026-playoff-push",
-        "url": "https://www.mlb.com/news/padres-making-2026-playoff-push",
-        "contentDate": "2026-08-13T14:58:30.328Z",
-        "teamIds": [
-            135
-        ],
-        "playerIds": [],
-        "gamePks": [
-            824399
-        ],
-        "taxonomy": [
-            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
