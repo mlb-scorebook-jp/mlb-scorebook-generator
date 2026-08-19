@@ -2,6 +2,137 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Bregman, Cubs find common ground in autism advocacy",
+        "summaryJa": "A.ブレグマン（CHC）の最新動向をMLB公式が詳報",
+        "slug": "alex-bregman-foundation-autism-awareness-2026",
+        "url": "https://www.mlb.com/news/alex-bregman-foundation-autism-awareness-2026",
+        "contentDate": "2026-08-19T19:03:46.536Z",
+        "teamIds": [
+            112
+        ],
+        "playerIds": [
+            608324
+        ],
+        "gamePks": [
+            824640
+        ],
+        "taxonomy": [
+            "players-weekend",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Pirates acquire veteran catcher Bethancourt from Yankees",
+        "summaryJa": "C.ベサンコート（PIT）の移籍・契約に関する最新情報",
+        "slug": "christian-bethancourt-traded-to-pirates-from-yankees",
+        "url": "https://www.mlb.com/news/christian-bethancourt-traded-to-pirates-from-yankees",
+        "contentDate": "2026-08-19T18:59:00.057Z",
+        "teamIds": [
+            134
+        ],
+        "playerIds": [
+            542194
+        ],
+        "gamePks": [
+            823342
+        ],
+        "taxonomy": [
+            "trades",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Starting on 7 days' rest, Skenes (4 walks) still searching for command",
+        "summaryJa": "P.スキーンズ（PIT）の最新動向をMLB公式が詳報",
+        "slug": "paul-skenes-faces-tigers-in-pittsburgh",
+        "url": "https://www.mlb.com/news/paul-skenes-faces-tigers-in-pittsburgh",
+        "contentDate": "2026-08-19T18:33:00Z",
+        "teamIds": [
+            134
+        ],
+        "playerIds": [
+            694973
+        ],
+        "gamePks": [
+            823342
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Latest Cubs injuries and transactions",
+        "summaryJa": "カブスの負傷状況をMLB公式が詳報",
+        "slug": "cubs-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/cubs-injuries-and-roster-moves",
+        "contentDate": "2026-08-19T18:19:00Z",
+        "teamIds": [
+            112
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Cohen reiterates commitment to Stearns, but says Mets took 'too much risk' in offseason",
+        "summaryJa": "メッツの最新動向をMLB公式が詳報",
+        "slug": "steve-cohen-talks-david-stearns-mets-front-office-decisions",
+        "url": "https://www.mlb.com/news/steve-cohen-talks-david-stearns-mets-front-office-decisions",
+        "contentDate": "2026-08-19T18:06:36.633Z",
+        "teamIds": [
+            121
+        ],
+        "playerIds": [],
+        "gamePks": [
+            823587
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Latest White Sox injuries & transactions",
+        "summaryJa": "ホワイトソックスの負傷状況をMLB公式が詳報",
+        "slug": "white-sox-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/white-sox-injuries-and-roster-moves",
+        "contentDate": "2026-08-19T17:55:00Z",
+        "teamIds": [
+            145
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Romano revives career with help of old friend",
         "summaryJa": "J.ロマーノ（COL）の最新動向をMLB公式が詳報",
         "slug": "jordan-romano-finds-success-since-joining-rockies",
@@ -519,7 +650,6 @@
             "game-recap"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1334,28 +1464,6 @@
         ]
     },
     {
-        "headline": "After being pushed back, Skenes set to face Tigers on 7 days' rest",
-        "summaryJa": "P.スキーンズ（PIT）の最新動向をMLB公式が詳報",
-        "slug": "paul-skenes-faces-tigers-in-pittsburgh",
-        "url": "https://www.mlb.com/news/paul-skenes-faces-tigers-in-pittsburgh",
-        "contentDate": "2026-08-19T03:15:28.762Z",
-        "teamIds": [
-            134
-        ],
-        "playerIds": [
-            694973
-        ],
-        "gamePks": [
-            823342
-        ],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Dynamic duo of Bohm, Stott come to rescue as Phils win fifth straight",
         "summaryJa": "Z.ウィーラー（PHI）、勝利を呼び込む活躍",
         "slug": "alec-bohm-bryson-stott-lead-phillies-to-fifth-straight-win",
@@ -1656,7 +1764,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1842,7 +1949,6 @@
             "injury"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -2171,26 +2277,6 @@
         "taxonomy": [
             "apple-news",
             "injury"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Latest Cubs injuries and transactions",
-        "summaryJa": "カブスの負傷状況をMLB公式が詳報",
-        "slug": "cubs-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/cubs-injuries-and-roster-moves",
-        "contentDate": "2026-08-18T22:43:00Z",
-        "teamIds": [
-            112
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
         ],
         "sourceScopes": [
             "球団公式"
@@ -3773,26 +3859,6 @@
             "apple-news",
             "injury",
             "transactions"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Latest White Sox injuries & transactions",
-        "summaryJa": "ホワイトソックスの負傷状況をMLB公式が詳報",
-        "slug": "white-sox-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/white-sox-injuries-and-roster-moves",
-        "contentDate": "2026-08-17T23:20:00Z",
-        "teamIds": [
-            145
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
         ],
         "sourceScopes": [
             "球団公式"
@@ -5863,29 +5929,6 @@
         ]
     },
     {
-        "headline": "Skenes fine with extra rest as Bucs push his next start back to Wednesday",
-        "summaryJa": "P.スキーンズ（PIT）の最新動向をMLB公式が詳報",
-        "slug": "paul-skenes-start-pushed-back-until-wednesday-vs-tigers",
-        "url": "https://www.mlb.com/news/paul-skenes-start-pushed-back-until-wednesday-vs-tigers",
-        "contentDate": "2026-08-16T05:20:00Z",
-        "teamIds": [
-            134
-        ],
-        "playerIds": [
-            694973,
-            669199
-        ],
-        "gamePks": [
-            823347
-        ],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "D-backs finally putting pieces together as NL Wild Card battle heats up",
         "summaryJa": "N.アレナド（AZ）、勝利を呼び込む活躍",
         "slug": "nolan-arenado-eduardo-rodriguez-help-d-backs-win-series",
@@ -7927,29 +7970,6 @@
         ]
     },
     {
-        "headline": "Holmes takes perfect game into sixth as Cubs get glimpse of new-look rotation",
-        "summaryJa": "C.ホームズ（CHC）の最新動向をMLB公式が詳報",
-        "slug": "clay-holmes-pitches-five-perfect-innings-in-second-cubs-start",
-        "url": "https://www.mlb.com/news/clay-holmes-pitches-five-perfect-innings-in-second-cubs-start",
-        "contentDate": "2026-08-14T23:11:52.804Z",
-        "teamIds": [
-            112
-        ],
-        "playerIds": [
-            605280
-        ],
-        "gamePks": [
-            824643
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "J-Ram out of lineup for opener vs. Padres as Guardians mind hamate recovery",
         "summaryJa": "J.ラミレス（CLE）の最新動向をMLB公式が詳報",
         "slug": "jose-ramirez-out-of-guardians-starting-lineup-vs-padres",
@@ -7963,29 +7983,6 @@
         ],
         "gamePks": [
             824399
-        ],
-        "taxonomy": [
-            "apple-news",
-            "injury"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Soto (calf strain) vows to return to Mets before season's end",
-        "summaryJa": "J.ソト（NYM）の負傷状況をMLB公式が詳報",
-        "slug": "juan-soto-discusses-recovery-from-left-calf-injury",
-        "url": "https://www.mlb.com/news/juan-soto-discusses-recovery-from-left-calf-injury",
-        "contentDate": "2026-08-14T22:21:15.244Z",
-        "teamIds": [
-            121
-        ],
-        "playerIds": [
-            665742
-        ],
-        "gamePks": [
-            823591
         ],
         "taxonomy": [
             "apple-news",
