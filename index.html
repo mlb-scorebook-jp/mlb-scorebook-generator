@@ -4510,9 +4510,9 @@
                     [/center[- ]right(?: field)?/, "8•9"],
                     [/left[- ]center(?: field)?/, "7•8"],
                     [/center[- ]left(?: field)?/, "8•7"],
-                    [/left fielder|to left field|into left field|down the left field line/, "7"],
+                    [/left fielder|to left field|into left field|down the left[- ]field line/, "7"],
                     [/center fielder|to center field|into center field/, "8"],
-                    [/right fielder|to right field|into right field|down the right field line/, "9"]
+                    [/right fielder|to right field|into right field|down the right[- ]field line/, "9"]
                 ];
                 return checks.find(([pattern]) => pattern.test(text))?.[1] ?? "";
             };
