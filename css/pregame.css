@@ -546,6 +546,107 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
     font-weight: 700;
 }
 
+.pregame-japanese-daily-group + .pregame-japanese-daily-group {
+    border-top: 1px solid #46535c;
+}
+
+.pregame-japanese-daily-heading {
+    margin: 0;
+    padding: 8px 12px;
+    color: #dce5e9;
+    border-bottom: 1px solid #46535c;
+    background: #20282e;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+}
+
+.pregame-japanese-daily-scroll {
+    width: 100%;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+}
+
+.pregame-japanese-daily-table {
+    width: 100%;
+    min-width: 820px;
+    border-collapse: collapse;
+    table-layout: fixed;
+    font-size: 10px;
+    font-variant-numeric: tabular-nums;
+}
+
+.pregame-japanese-daily-table th,
+.pregame-japanese-daily-table td {
+    height: 29px;
+    padding: 5px 7px;
+    border-right: 1px solid #3d4950;
+    border-bottom: 1px solid #344047;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.pregame-japanese-daily-table th:last-child,
+.pregame-japanese-daily-table td:last-child {
+    border-right: 0;
+}
+
+.pregame-japanese-daily-table th {
+    color: #b8c4ca;
+    background: #171e22;
+    font-weight: 700;
+}
+
+.pregame-japanese-daily-table td:nth-child(2) {
+    color: #f0f4f6;
+    font-weight: 700;
+}
+
+.pregame-japanese-daily-table th:first-child,
+.pregame-japanese-daily-table td:first-child {
+    width: 78px;
+}
+
+.pregame-japanese-daily-table th:nth-child(2),
+.pregame-japanese-daily-table td:nth-child(2) {
+    width: 126px;
+}
+
+.pregame-japanese-daily-table th:nth-child(3),
+.pregame-japanese-daily-table td:nth-child(3) {
+    width: 76px;
+}
+
+.pregame-japanese-daily-table td.pregame-japanese-daily-live {
+    color: #181609;
+    background: #f1d86e;
+    font-weight: 800;
+}
+
+.pregame-japanese-daily-inactive {
+    display: grid;
+    gap: 7px;
+    padding: 10px 12px;
+    border-top: 1px solid #46535c;
+    background: #181f23;
+    font-size: 10px;
+}
+
+.pregame-japanese-daily-inactive-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 5px 12px;
+}
+
+.pregame-japanese-daily-inactive-row strong {
+    min-width: 58px;
+    color: #aebbc1;
+}
+
+.pregame-japanese-daily-inactive-row span {
+    color: #e1e7ea;
+}
+
 .pregame-league-group + .pregame-league-group {
     border-top: 1px solid #344047;
 }

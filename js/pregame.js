@@ -939,6 +939,212 @@
         `pregame:feed:${gamePk}`
     );
 
+    const isDailyJapaneseGameLive = (game) => /live|progress|delay|review|challenge/i.test(
+        `${game?.status?.detailedState ?? ""} ${game?.status?.abstractGameState ?? ""}`
+    );
+
+    const getDailyJapaneseFeed = async (game) => {
+        if (!isDailyJapaneseGameLive(game)) return getFeed(game.gamePk);
+        const response = await fetch(`${API_ROOT}/v1.1/game/${game.gamePk}/feed/live`);
+        if (!response.ok) throw new Error(`MLB公式データを取得できませんでした（${response.status}）`);
+        return response.json();
+    };
+
+    const japanesePlayerDailyRoles = (person) => {
+        const position = String(person?.primaryPosition?.abbreviation ?? "").toUpperCase();
+        return {
+            hitter: position !== "P" || position === "TWP",
+            pitcher: position === "P" || position === "TWP"
+        };
+    };
+
+    const teamSideInGame = (game, teamId) =>
+        Number(game?.teams?.away?.team?.id) === Number(teamId) ? "away" :
+            Number(game?.teams?.home?.team?.id) === Number(teamId) ? "home" : "";
+
+    const dailyOpponent = (game, side) =>
+        game?.teams?.[side === "away" ? "home" : "away"]?.team ?? {};
+
+    const hasDailyBattingAppearance = (entry) =>
+        statNumber(entry?.stats?.batting?.gamesPlayed) > 0 ||
+        Boolean(String(entry?.battingOrder ?? "").trim());
+
+    const hasDailyPitchingAppearance = (entry) => {
+        const pitching = entry?.stats?.pitching ?? {};
+        return statNumber(pitching.gamesPlayed) > 0 ||
+            statNumber(pitching.numberOfPitches ?? pitching.pitchesThrown) > 0 ||
+            inningsToOuts(pitching.inningsPitched) > 0;
+    };
+
+    const dailyAppearanceStatus = (appearances) => {
+        const live = appearances.find(({ game }) => isDailyJapaneseGameLive(game));
+        if (live) return { label: gameCardStatusLabel(live.game), live: true };
+        return { label: "試合終了", live: false };
+    };
+
+    const dailyOpponentLabel = (appearances) => {
+        const codes = [...new Set(appearances.map(({ game, side }) =>
+            teamCode(dailyOpponent(game, side))
+        ).filter(Boolean))];
+        return codes.length ? `vs.${codes.join("/")}` : "vs.-";
+    };
+
+    const buildJapaneseDailyStats = async (people, gamesByTeam) => {
+        const relevantGames = [...new Map(people.flatMap((person) =>
+            (gamesByTeam.get(Number(person.pregameTeamId)) ?? [])
+                .filter((game) => isDailyJapaneseGameLive(game) || isFinal(game))
+                .map((game) => [Number(game.gamePk), game])
+        )).values()];
+        const feedEntries = await Promise.all(relevantGames.map(async (game) => [
+            Number(game.gamePk),
+            await getDailyJapaneseFeed(game).catch(() => null)
+        ]));
+        const feeds = new Map(feedEntries);
+        const hitters = [];
+        const pitchers = [];
+        const absent = [];
+        const noPitching = [];
+        const noGame = [];
+
+        people.forEach((person) => {
+            const teamId = Number(person.pregameTeamId);
+            const games = gamesByTeam.get(teamId) ?? [];
+            const roles = japanesePlayerDailyRoles(person);
+            if (!games.length) {
+                noGame.push(playerName(person));
+                return;
+            }
+            const appearances = games.map((game) => {
+                const side = teamSideInGame(game, teamId);
+                const feed = feeds.get(Number(game.gamePk));
+                const entry = side
+                    ? feed?.liveData?.boxscore?.teams?.[side]?.players?.[`ID${person.id}`]
+                    : null;
+                return { game, side, entry };
+            });
+            const battingAppearances = appearances.filter(({ entry }) =>
+                hasDailyBattingAppearance(entry)
+            );
+            const pitchingAppearances = appearances.filter(({ entry }) =>
+                hasDailyPitchingAppearance(entry)
+            );
+
+            if (battingAppearances.length) {
+                const stats = battingAppearances.reduce((total, { entry }) => {
+                    const batting = entry?.stats?.batting ?? {};
+                    ["atBats", "hits", "homeRuns", "rbi", "stolenBases", "strikeOuts", "baseOnBalls"]
+                        .forEach((field) => { total[field] += statNumber(batting[field]); });
+                    return total;
+                }, { atBats: 0, hits: 0, homeRuns: 0, rbi: 0, stolenBases: 0, strikeOuts: 0, baseOnBalls: 0 });
+                hitters.push({
+                    person,
+                    ...dailyAppearanceStatus(battingAppearances),
+                    opponent: dailyOpponentLabel(battingAppearances),
+                    stats
+                });
+            } else if (roles.hitter) {
+                absent.push(playerName(person));
+            }
+
+            if (pitchingAppearances.length) {
+                const stats = pitchingAppearances.reduce((total, { entry }) => {
+                    const pitching = entry?.stats?.pitching ?? {};
+                    total.outs += inningsToOuts(pitching.inningsPitched);
+                    total.pitches += statNumber(pitching.numberOfPitches ?? pitching.pitchesThrown);
+                    ["hits", "runs", "earnedRuns", "strikeOuts", "baseOnBalls"]
+                        .forEach((field) => { total[field] += statNumber(pitching[field]); });
+                    return total;
+                }, { outs: 0, pitches: 0, hits: 0, runs: 0, earnedRuns: 0, strikeOuts: 0, baseOnBalls: 0 });
+                pitchers.push({
+                    person,
+                    ...dailyAppearanceStatus(pitchingAppearances),
+                    opponent: dailyOpponentLabel(pitchingAppearances),
+                    stats: { ...stats, inningsPitched: formatInnings(stats.outs) }
+                });
+            } else if (roles.pitcher) {
+                noPitching.push(playerName(person));
+            }
+        });
+
+        return { hitters, pitchers, absent, noPitching, noGame };
+    };
+
+    const renderJapaneseDailyTable = (title, columns, rows) => {
+        const block = el("section", "pregame-japanese-daily-group");
+        block.append(el("h4", "pregame-japanese-daily-heading", title));
+        if (!rows.length) {
+            block.append(empty(`${title}の出場選手はいません。`));
+            return block;
+        }
+        const scroller = el("div", "pregame-japanese-daily-scroll");
+        const table = el("table", "pregame-japanese-daily-table");
+        const head = el("thead");
+        const headRow = el("tr");
+        columns.forEach(({ label }) => headRow.append(el("th", "", label)));
+        head.append(headRow);
+        const body = el("tbody");
+        rows.forEach((row) => {
+            const tableRow = el("tr");
+            tableRow.dataset.pregamePlayer = String(row.person.id);
+            columns.forEach(({ field, value }) => {
+                const cell = el("td", field === "status" && row.live ? "pregame-japanese-daily-live" : "");
+                cell.textContent = String(value ? value(row) : row.stats[field] ?? "-");
+                tableRow.append(cell);
+            });
+            body.append(tableRow);
+        });
+        table.append(head, body);
+        scroller.append(table);
+        block.append(scroller);
+        return block;
+    };
+
+    const renderJapaneseDailyStats = (daily) => {
+        const wrapper = section("日本人選手 当日成績一覧");
+        wrapper.classList.add("pregame-japanese-daily-section");
+        const commonColumns = [
+            { label: "試合状況", field: "status", value: (row) => row.label },
+            { label: "選手名", field: "player", value: (row) => playerName(row.person) },
+            { label: "対戦相手", field: "opponent", value: (row) => row.opponent }
+        ];
+        wrapper.append(
+            renderJapaneseDailyTable("野手", [
+                ...commonColumns,
+                { label: "打数", field: "atBats" },
+                { label: "安打", field: "hits" },
+                { label: "本塁打", field: "homeRuns" },
+                { label: "打点", field: "rbi" },
+                { label: "盗塁", field: "stolenBases" },
+                { label: "三振", field: "strikeOuts" },
+                { label: "四球", field: "baseOnBalls" }
+            ], daily.hitters),
+            renderJapaneseDailyTable("投手", [
+                ...commonColumns,
+                { label: "投球回", field: "inningsPitched" },
+                { label: "球数", field: "pitches" },
+                { label: "被安打", field: "hits" },
+                { label: "失点", field: "runs" },
+                { label: "自責点", field: "earnedRuns" },
+                { label: "奪三振", field: "strikeOuts" },
+                { label: "四球", field: "baseOnBalls" }
+            ], daily.pitchers)
+        );
+        const inactive = el("div", "pregame-japanese-daily-inactive");
+        [
+            ["欠場", daily.absent],
+            ["登板なし", daily.noPitching],
+            ["試合なし", daily.noGame]
+        ].forEach(([label, names]) => {
+            if (!names.length) return;
+            const row = el("div", "pregame-japanese-daily-inactive-row");
+            row.append(el("strong", "", label));
+            names.forEach((name) => row.append(el("span", "", name)));
+            inactive.append(row);
+        });
+        if (inactive.childElementCount) wrapper.append(inactive);
+        return wrapper;
+    };
+
     const getPlayerGameLog = async (playerId, season, group) => {
         const payload = await fetchJson(
             `${API_ROOT}/v1/people/${playerId}/stats?stats=gameLog&group=${group}&season=${season}&gameType=R`,
@@ -1996,9 +2202,14 @@
                 getSeasonJapanesePlayers(season)
             ]);
             const teamGame = new Map();
+            const teamGames = new Map();
             games.forEach((game) => {
                 [game?.teams?.away?.team, game?.teams?.home?.team].forEach((team) => {
-                    if (team?.id) teamGame.set(Number(team.id), game);
+                    if (!team?.id) return;
+                    const teamId = Number(team.id);
+                    teamGame.set(teamId, game);
+                    if (!teamGames.has(teamId)) teamGames.set(teamId, []);
+                    teamGames.get(teamId).push(game);
                 });
             });
             const rosterTeamIds = [...MLB_TEAM_IDS];
@@ -2078,6 +2289,9 @@
                 japaneseSection.append(japaneseGrid);
             }
             dashboard.append(japaneseSection);
+            dashboard.append(renderJapaneseDailyStats(
+                await buildJapaneseDailyStats(todaysJapanese, teamGames)
+            ));
 
             const gamesSection = section("全試合", `${games.length}試合`);
             gamesSection.classList.add("pregame-games-section");
