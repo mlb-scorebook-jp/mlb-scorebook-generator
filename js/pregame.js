@@ -1026,7 +1026,17 @@
                 const entry = side
                     ? feed?.liveData?.boxscore?.teams?.[side]?.players?.[`ID${person.id}`]
                     : null;
-                return { game, side, entry };
+                const decisions = feed?.liveData?.decisions ?? {};
+                return {
+                    game,
+                    side,
+                    entry,
+                    decision: {
+                        wins: Number(decisions?.winner?.id) === Number(person.id) ? 1 : 0,
+                        losses: Number(decisions?.loser?.id) === Number(person.id) ? 1 : 0,
+                        saves: Number(decisions?.save?.id) === Number(person.id) ? 1 : 0
+                    }
+                };
             });
             const battingAppearances = appearances.filter(({ entry }) =>
                 hasDailyBattingAppearance(entry)
@@ -1053,14 +1063,16 @@
             }
 
             if (pitchingAppearances.length) {
-                const stats = pitchingAppearances.reduce((total, { entry }) => {
+                const stats = pitchingAppearances.reduce((total, { entry, decision }) => {
                     const pitching = entry?.stats?.pitching ?? {};
                     total.outs += inningsToOuts(pitching.inningsPitched);
                     total.pitches += statNumber(pitching.numberOfPitches ?? pitching.pitchesThrown);
                     ["hits", "runs", "earnedRuns", "strikeOuts", "baseOnBalls"]
                         .forEach((field) => { total[field] += statNumber(pitching[field]); });
+                    ["wins", "losses", "saves"]
+                        .forEach((field) => { total[field] += statNumber(decision?.[field]); });
                     return total;
-                }, { outs: 0, pitches: 0, hits: 0, runs: 0, earnedRuns: 0, strikeOuts: 0, baseOnBalls: 0 });
+                }, { outs: 0, pitches: 0, hits: 0, runs: 0, earnedRuns: 0, strikeOuts: 0, baseOnBalls: 0, wins: 0, losses: 0, saves: 0 });
                 pitchers.push({
                     person,
                     ...dailyAppearanceStatus(pitchingAppearances),
@@ -1115,6 +1127,21 @@
             { label: "選手名", field: "player", value: (row) => playerName(row.person) },
             { label: "対戦相手", field: "opponent", value: (row) => row.opponent }
         ];
+        const pitcherColumns = commonColumns.map((column) => column.field !== "player"
+            ? column
+            : {
+                ...column,
+                value: (row) => {
+                    const decisions = [
+                        ["wins", "W"],
+                        ["losses", "L"],
+                        ["saves", "S"]
+                    ].filter(([field]) => statNumber(row.stats[field]) > 0)
+                        .map(([, label]) => `（${label}）`)
+                        .join("");
+                    return `${playerName(row.person)}${decisions}`;
+                }
+            });
         tables.append(
             renderJapaneseDailyTable("野手", [
                 ...commonColumns,
@@ -1127,7 +1154,7 @@
                 { label: "四球", field: "baseOnBalls" }
             ], daily.hitters),
             renderJapaneseDailyTable("投手", [
-                ...commonColumns,
+                ...pitcherColumns,
                 { label: "投球回", field: "inningsPitched" },
                 { label: "球数", field: "pitches" },
                 { label: "被安打", field: "hits" },
