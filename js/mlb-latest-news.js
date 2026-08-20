@@ -670,7 +670,7 @@
         ]
     },
     {
-        "headline": "Alonso stunned over momentum-shifting foul call: 'I thought it was fair'",
+        "headline": "Alonso laments disputed foul call: ‘I thought it was fair.’",
         "summaryJa": "P.アロンゾ（BAL）の最新動向をMLB公式が詳報",
         "slug": "orioles-lose-to-yankees-after-disputed-foul-call-on-pete-alonso",
         "url": "https://www.mlb.com/news/orioles-lose-to-yankees-after-disputed-foul-call-on-pete-alonso",
