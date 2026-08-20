@@ -2,6 +2,47 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Don't look now, but the Mets are playing ... amazin'",
+        "summaryJa": "メッツの最新動向をMLB公式が詳報",
+        "slug": "mets-august-surge-has-been-fun-to-watch",
+        "url": "https://www.mlb.com/news/mets-august-surge-has-been-fun-to-watch",
+        "contentDate": "2026-08-20T14:08:47.583Z",
+        "teamIds": [
+            121
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "King homers for 3rd straight game in pro third-base debut",
+        "summaryJa": "S.キング（WSH）、メジャー昇格・初出場に関する最新情報",
+        "slug": "king-homers-for-3rd-straight-game-in-pro-3rd-base-debut",
+        "url": "https://www.mlb.com/news/king-homers-for-3rd-straight-game-in-pro-3rd-base-debut",
+        "contentDate": "2026-08-20T14:02:24.117Z",
+        "teamIds": [
+            120,
+            534
+        ],
+        "playerIds": [
+            814409
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "120-affiliate",
+            "apple-news",
+            "mlb-top-prospects"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Deadline pickup Manfredi works scoreless relief outing in big league debut",
         "summaryJa": "Mark Manfredi（COL）、メジャー昇格・初出場に関する最新情報",
         "slug": "mark-manfredi-makes-major-league-debut-for-rockies",
@@ -767,7 +808,7 @@
         ]
     },
     {
-        "headline": "Yanks push past Orioles after disputed foul call on Alonso blast",
+        "headline": "Yanks push past Orioles after foul call on Alonso blast",
         "summaryJa": "G.ロンバード Jr.（NYY）の最新動向をMLB公式が詳報",
         "slug": "yankees-capitalize-on-disputed-foul-call-on-pete-alonso",
         "url": "https://www.mlb.com/news/yankees-capitalize-on-disputed-foul-call-on-pete-alonso",
@@ -7609,29 +7650,6 @@
         ]
     },
     {
-        "headline": "Mets' 2026 third-rounder -- 'Baseball Jesus' -- rips first pro homer at Single-A",
-        "summaryJa": "Aiden Robbins（NYM）、本塁打で存在感",
-        "slug": "mets-prospect-aiden-robbins-first-pro-home-run",
-        "url": "https://www.mlb.com/news/mets-prospect-aiden-robbins-first-pro-home-run",
-        "contentDate": "2026-08-16T02:18:00Z",
-        "teamIds": [
-            121
-        ],
-        "playerIds": [
-            828657
-        ],
-        "gamePks": [
-            823588
-        ],
-        "taxonomy": [
-            "mlb-top-prospects",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "deGrom (triceps fatigue) gets good news, but unlikely to make next start",
         "summaryJa": "J.デグローム（TEX）の負傷状況をMLB公式が詳報",
         "slug": "jacob-degrom-unlikely-to-make-next-start-due-to-triceps-injury",
@@ -9205,30 +9223,6 @@
             "game-recap",
             "apple-news",
             "milestone"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Unfazed in facing PCA, hometown Cubs, Kent earns ovation after MLB debut",
-        "summaryJa": "Jackson Kent（WSH）、メジャー昇格・初出場に関する最新情報",
-        "slug": "jackson-kent-makes-mlb-debut-vs-cubs",
-        "url": "https://www.mlb.com/news/jackson-kent-makes-mlb-debut-vs-cubs",
-        "contentDate": "2026-08-13T03:24:00Z",
-        "teamIds": [
-            120
-        ],
-        "playerIds": [
-            800600
-        ],
-        "gamePks": [
-            822698
-        ],
-        "taxonomy": [
-            "apple-news",
-            "mlb-debut",
-            "mlb-top-prospects"
         ],
         "sourceScopes": [
             "球団公式"
