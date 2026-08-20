@@ -2,11 +2,129 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Misiorowski set to face childhood favorite Sale in matchup of NL Cy Young contenders",
+        "summaryJa": "J.ミザロウスキー（MIL）の最新動向をMLB公式が詳報",
+        "slug": "jacob-misiorowski-faces-chris-sale-as-brewers-host-braves",
+        "url": "https://www.mlb.com/news/jacob-misiorowski-faces-chris-sale-as-brewers-host-braves",
+        "contentDate": "2026-08-20T19:40:44.362Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [
+            694819,
+            519242
+        ],
+        "gamePks": [
+            823747
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Latest Royals injuries & transactions",
+        "summaryJa": "ロイヤルズの負傷状況をMLB公式が詳報",
+        "slug": "royals-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/royals-injuries-and-roster-moves",
+        "contentDate": "2026-08-20T19:15:00Z",
+        "teamIds": [
+            118
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Garcia exits Royals' series finale against A's with left hamstring injury",
+        "summaryJa": "M.ガルシア（KC）の負傷状況をMLB公式が詳報",
+        "slug": "maikel-garcia-exits-left-leg-injury",
+        "url": "https://www.mlb.com/news/maikel-garcia-exits-left-leg-injury",
+        "contentDate": "2026-08-20T19:07:00Z",
+        "teamIds": [
+            118
+        ],
+        "playerIds": [
+            672580
+        ],
+        "gamePks": [
+            824074
+        ],
+        "taxonomy": [
+            "apple-news",
+            "injury"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Latest Blue Jays injuries & transactions",
+        "summaryJa": "ブルージェイズの負傷状況をMLB公式が詳報",
+        "slug": "blue-jays-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/blue-jays-injuries-and-roster-moves",
+        "contentDate": "2026-08-20T18:59:00Z",
+        "teamIds": [
+            141
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Injuries: Judge, Dodgers, Vladdy, Peña, K. Marte, Royals",
+        "summaryJa": "大谷翔平（LAD）らMLB各球団の最新負傷情報",
+        "slug": "baseball-injury-updates",
+        "url": "https://www.mlb.com/news/baseball-injury-updates",
+        "contentDate": "2026-08-20T18:58:00Z",
+        "teamIds": [],
+        "playerIds": [
+            641355,
+            621020,
+            596115,
+            608331,
+            800050,
+            606466,
+            807799,
+            592450,
+            519317,
+            665489,
+            571448,
+            621242,
+            680736,
+            660271
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "headline-breakout"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
         "headline": "Latest Athletics injuries and transactions",
         "summaryJa": "アスレチックスの負傷状況をMLB公式が詳報",
         "slug": "athletics-injuries-and-roster-moves",
         "url": "https://www.mlb.com/news/athletics-injuries-and-roster-moves",
-        "contentDate": "2026-08-20T17:53:00Z",
+        "contentDate": "2026-08-20T18:54:00Z",
         "teamIds": [
             133
         ],
@@ -42,6 +160,7 @@
             "injury"
         ],
         "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
@@ -78,46 +197,6 @@
         "contentDate": "2026-08-20T17:20:00Z",
         "teamIds": [
             158
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Latest Royals injuries & transactions",
-        "summaryJa": "ロイヤルズの負傷状況をMLB公式が詳報",
-        "slug": "royals-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/royals-injuries-and-roster-moves",
-        "contentDate": "2026-08-20T17:07:00Z",
-        "teamIds": [
-            118
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Latest Blue Jays injuries & transactions",
-        "summaryJa": "ブルージェイズの負傷状況をMLB公式が詳報",
-        "slug": "blue-jays-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/blue-jays-injuries-and-roster-moves",
-        "contentDate": "2026-08-20T17:04:00Z",
-        "teamIds": [
-            141
         ],
         "playerIds": [],
         "gamePks": [],
@@ -1123,7 +1202,7 @@
         ]
     },
     {
-        "headline": "Hitter Power Rankings: Fresh faces join familiar names at the top",
+        "headline": "Huge shakeup in latest Hitter Power Rankings",
         "summaryJa": "Y.アルバレスら注目選手の最新動向",
         "slug": "mlb-hitter-power-rankings-august-20-2026",
         "url": "https://www.mlb.com/news/mlb-hitter-power-rankings-august-20-2026",
@@ -1247,38 +1326,6 @@
         ],
         "sourceScopes": [
             "球団公式"
-        ]
-    },
-    {
-        "headline": "Injuries: Judge, Dodgers, Vladdy, Peña, K. Marte, Red Sox",
-        "summaryJa": "大谷翔平（LAD）らMLB各球団の最新負傷情報",
-        "slug": "baseball-injury-updates",
-        "url": "https://www.mlb.com/news/baseball-injury-updates",
-        "contentDate": "2026-08-20T03:48:00Z",
-        "teamIds": [],
-        "playerIds": [
-            641355,
-            621020,
-            596115,
-            608331,
-            800050,
-            606466,
-            807799,
-            592450,
-            519317,
-            665489,
-            571448,
-            621242,
-            680736,
-            660271
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "headline-breakout"
-        ],
-        "sourceScopes": [
-            "MLB"
         ]
     },
     {
@@ -1437,7 +1484,6 @@
             "game-recap"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -5809,6 +5855,30 @@
         ]
     },
     {
+        "headline": "Swanson (oblique strain) to IL a crucial blow for Cubs' infield during stretch run",
+        "summaryJa": "D.スワンソン（CHC）の負傷状況をMLB公式が詳報",
+        "slug": "dansby-swanson-exits-with-left-side-discomfort",
+        "url": "https://www.mlb.com/news/dansby-swanson-exits-with-left-side-discomfort",
+        "contentDate": "2026-08-17T23:18:00Z",
+        "teamIds": [
+            112
+        ],
+        "playerIds": [
+            621020
+        ],
+        "gamePks": [
+            824642,
+            824641
+        ],
+        "taxonomy": [
+            "apple-news",
+            "injury"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Bender slated to begin rehab assignment on road back to Marlins",
         "summaryJa": "A.ベンダー（MIA）、復帰へ向けた最新状況",
         "slug": "anthony-bender-to-start-rehab-assignment-with-triple-a-jacksonville",
@@ -8162,29 +8232,6 @@
         ]
     },
     {
-        "headline": "'Johnny Rockets' joins Brewers, gets 1st big league start",
-        "summaryJa": "J.オ―ネラス（MIL）の移籍・契約に関する最新情報",
-        "slug": "jonathan-ornelas-acquired-by-brewers-via-trade",
-        "url": "https://www.mlb.com/news/jonathan-ornelas-acquired-by-brewers-via-trade",
-        "contentDate": "2026-08-15T22:36:00Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [
-            680716
-        ],
-        "gamePks": [
-            823914
-        ],
-        "taxonomy": [
-            "apple-news",
-            "transactions"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "White Sox earn series win vs. rival Tigers but 'still have a lot more to go'",
         "summaryJa": "ホワイトソックス、勝利を呼び込む活躍",
         "slug": "white-sox-win-series-vs-al-central-rival-tigers",
@@ -8619,29 +8666,6 @@
             "walk-off-hr",
             "game-recap",
             "walk-off"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Garcia (3-for-5), Pasquantino (1-for-4) stay on track in rehab assignments",
-        "summaryJa": "V.パスクァンティーノ（KC）、復帰へ向けた最新状況",
-        "slug": "maikel-garcia-and-vinnie-pasquantino-rehab-updates",
-        "url": "https://www.mlb.com/news/maikel-garcia-and-vinnie-pasquantino-rehab-updates",
-        "contentDate": "2026-08-15T04:41:07.985Z",
-        "teamIds": [
-            118
-        ],
-        "playerIds": [
-            686469,
-            672580
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "injury",
-            "rehab"
         ],
         "sourceScopes": [
             "球団公式"
