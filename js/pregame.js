@@ -958,6 +958,11 @@
         };
     };
 
+    const isJapaneseDailyStatsVisible = (person) => !(
+        /(?:^|\s)(?:\d+日間)?IL(?:\s|$)|3A|2A|High-A|1A|ルーキー|マイナー|リハビリ/i
+            .test(String(person?.pregameRosterState?.rosterStatus ?? ""))
+    );
+
     const teamSideInGame = (game, teamId) =>
         Number(game?.teams?.away?.team?.id) === Number(teamId) ? "away" :
             Number(game?.teams?.home?.team?.id) === Number(teamId) ? "home" : "";
@@ -990,7 +995,8 @@
     };
 
     const buildJapaneseDailyStats = async (people, gamesByTeam) => {
-        const relevantGames = [...new Map(people.flatMap((person) =>
+        const visiblePeople = people.filter(isJapaneseDailyStatsVisible);
+        const relevantGames = [...new Map(visiblePeople.flatMap((person) =>
             (gamesByTeam.get(Number(person.pregameTeamId)) ?? [])
                 .filter((game) => isDailyJapaneseGameLive(game) || isFinal(game))
                 .map((game) => [Number(game.gamePk), game])
@@ -1006,7 +1012,7 @@
         const noPitching = [];
         const noGame = [];
 
-        people.forEach((person) => {
+        visiblePeople.forEach((person) => {
             const teamId = Number(person.pregameTeamId);
             const games = gamesByTeam.get(teamId) ?? [];
             const roles = japanesePlayerDailyRoles(person);
@@ -1102,12 +1108,14 @@
     const renderJapaneseDailyStats = (daily) => {
         const wrapper = section("日本人選手 当日成績一覧");
         wrapper.classList.add("pregame-japanese-daily-section");
+        const layout = el("div", "pregame-japanese-daily-layout");
+        const tables = el("div", "pregame-japanese-daily-tables");
         const commonColumns = [
             { label: "試合状況", field: "status", value: (row) => row.label },
             { label: "選手名", field: "player", value: (row) => playerName(row.person) },
             { label: "対戦相手", field: "opponent", value: (row) => row.opponent }
         ];
-        wrapper.append(
+        tables.append(
             renderJapaneseDailyTable("野手", [
                 ...commonColumns,
                 { label: "打数", field: "atBats" },
@@ -1141,7 +1149,9 @@
             names.forEach((name) => row.append(el("span", "", name)));
             inactive.append(row);
         });
-        if (inactive.childElementCount) wrapper.append(inactive);
+        layout.append(tables);
+        if (inactive.childElementCount) layout.append(inactive);
+        wrapper.append(layout);
         return wrapper;
     };
 
@@ -2246,7 +2256,6 @@
                 })
                 .filter(Boolean)
                 .sort((a, b) => playerName(a).localeCompare(playerName(b), "ja"));
-
             const dashboard = el("div", "pregame-dashboard");
             const japaneseSection = section(
                 "日本人選手",

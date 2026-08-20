@@ -546,6 +546,17 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
     font-weight: 700;
 }
 
+.pregame-japanese-daily-layout {
+    display: grid;
+    grid-template-columns: 650px minmax(260px, 1fr);
+    align-items: stretch;
+}
+
+.pregame-japanese-daily-tables {
+    min-width: 0;
+    border-right: 1px solid #46535c;
+}
+
 .pregame-japanese-daily-group + .pregame-japanese-daily-group {
     border-top: 1px solid #46535c;
 }
@@ -567,8 +578,8 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
 }
 
 .pregame-japanese-daily-table {
-    width: 100%;
-    min-width: 820px;
+    width: 650px;
+    min-width: 650px;
     border-collapse: collapse;
     table-layout: fixed;
     font-size: 10px;
@@ -603,17 +614,22 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
 
 .pregame-japanese-daily-table th:first-child,
 .pregame-japanese-daily-table td:first-child {
-    width: 78px;
+    width: 82px;
 }
 
 .pregame-japanese-daily-table th:nth-child(2),
 .pregame-japanese-daily-table td:nth-child(2) {
-    width: 126px;
+    width: 132px;
 }
 
 .pregame-japanese-daily-table th:nth-child(3),
 .pregame-japanese-daily-table td:nth-child(3) {
-    width: 76px;
+    width: 80px;
+}
+
+.pregame-japanese-daily-table th:nth-child(n + 4),
+.pregame-japanese-daily-table td:nth-child(n + 4) {
+    width: 46px;
 }
 
 .pregame-japanese-daily-table td.pregame-japanese-daily-live {
@@ -624,27 +640,46 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
 
 .pregame-japanese-daily-inactive {
     display: grid;
+    grid-auto-rows: max-content;
+    align-content: start;
     gap: 7px;
     padding: 10px 12px;
-    border-top: 1px solid #46535c;
     background: #181f23;
     font-size: 10px;
+}
+
+@media (max-width: 1000px) {
+    .pregame-japanese-daily-layout {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .pregame-japanese-daily-tables {
+        border-right: 0;
+    }
+
+    .pregame-japanese-daily-inactive {
+        border-top: 1px solid #46535c;
+    }
 }
 
 .pregame-japanese-daily-inactive-row {
     display: flex;
     flex-wrap: wrap;
+    align-content: flex-start;
     align-items: baseline;
     gap: 5px 12px;
 }
 
 .pregame-japanese-daily-inactive-row strong {
+    flex-basis: 100%;
     min-width: 58px;
     color: #aebbc1;
 }
 
 .pregame-japanese-daily-inactive-row span {
     color: #e1e7ea;
+    font-size: 12px;
+    font-weight: 600;
 }
 
 .pregame-league-group + .pregame-league-group {
