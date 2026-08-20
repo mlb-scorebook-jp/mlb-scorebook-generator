@@ -2,6 +2,70 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Trio of Brewers relievers delivers in series win -- and will be key in October",
+        "summaryJa": "ブルワーズ、勝利を呼び込む活躍",
+        "slug": "brewers-bullpen-helps-deliver-series-win-over-mariners",
+        "url": "https://www.mlb.com/news/brewers-bullpen-helps-deliver-series-win-over-mariners",
+        "contentDate": "2026-08-20T23:23:00Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [],
+        "gamePks": [
+            823747
+        ],
+        "taxonomy": [
+            "apple-news",
+            "game-recap"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "'This is us': Royals win 5th in a row for 1st 4-game sweep of A's in 32 years!",
+        "summaryJa": "ロイヤルズ、記録達成の最新情報",
+        "slug": "royals-earn-first-four-game-sweep-of-athletics-since-1994",
+        "url": "https://www.mlb.com/news/royals-earn-first-four-game-sweep-of-athletics-since-1994",
+        "contentDate": "2026-08-20T23:17:00Z",
+        "teamIds": [
+            118
+        ],
+        "playerIds": [],
+        "gamePks": [
+            824074
+        ],
+        "taxonomy": [
+            "apple-news",
+            "game-recap",
+            "leadoff",
+            "first-inning"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Latest Yankees injuries and transactions",
+        "summaryJa": "ヤンキースの負傷状況をMLB公式が詳報",
+        "slug": "yankees-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/yankees-injuries-and-roster-moves",
+        "contentDate": "2026-08-20T23:10:00Z",
+        "teamIds": [
+            147
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Kay's kids-inspired cleats have special meaning ahead of Players' Weekend",
         "summaryJa": "A.ケイ（CWS）の最新動向をMLB公式が詳報",
         "slug": "anthony-kay-wears-custom-cleats-for-players-weekend",
@@ -65,6 +129,26 @@
         ]
     },
     {
+        "headline": "Latest Nationals injuries & transactions",
+        "summaryJa": "ナショナルズの負傷状況をMLB公式が詳報",
+        "slug": "nationals-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/nationals-injuries-and-roster-moves",
+        "contentDate": "2026-08-20T22:55:00Z",
+        "teamIds": [
+            120
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Mariners to call up baseball's top-ranked pitching prospect (source)",
         "summaryJa": "K.アンダーソン（SEA）、メジャー昇格・初出場に関する最新情報",
         "slug": "kade-anderson-mariners-callup",
@@ -84,6 +168,26 @@
         ],
         "sourceScopes": [
             "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Latest Angels injuries & transactions",
+        "summaryJa": "エンゼルスの負傷状況をMLB公式が詳報",
+        "slug": "angels-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/angels-injuries-and-roster-moves",
+        "contentDate": "2026-08-20T22:48:00Z",
+        "teamIds": [
+            108
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
             "球団公式"
         ]
     },
@@ -272,26 +376,6 @@
         ]
     },
     {
-        "headline": "Latest Yankees injuries and transactions",
-        "summaryJa": "ヤンキースの負傷状況をMLB公式が詳報",
-        "slug": "yankees-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/yankees-injuries-and-roster-moves",
-        "contentDate": "2026-08-20T22:05:00Z",
-        "teamIds": [
-            147
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Blue Jays bats keep persisting despite the rash of injury scares",
         "summaryJa": "S.ビーバー（TOR）の負傷状況をMLB公式が詳報",
         "slug": "blue-jays-survive-injuries-to-secure-series-win-vs-tampa-bay",
@@ -471,11 +555,13 @@
     },
     {
         "headline": "Adell makes quick return after powering through knee injury",
-        "summaryJa": "J.アデルの負傷状況をMLB公式が詳報",
+        "summaryJa": "J.アデル（CLE）の負傷状況をMLB公式が詳報",
         "slug": "jo-adell-nearing-return-from-knee-injury",
         "url": "https://www.mlb.com/news/jo-adell-nearing-return-from-knee-injury",
         "contentDate": "2026-08-20T21:30:00Z",
-        "teamIds": [],
+        "teamIds": [
+            114
+        ],
         "playerIds": [
             666176,
             800050
@@ -489,50 +575,6 @@
         ],
         "sourceScopes": [
             "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Royals' 5th straight win nets first 4-game sweep of A's in 32 years!",
-        "summaryJa": "ロイヤルズ、記録達成の最新情報",
-        "slug": "royals-earn-first-four-game-sweep-of-athletics-since-1994",
-        "url": "https://www.mlb.com/news/royals-earn-first-four-game-sweep-of-athletics-since-1994",
-        "contentDate": "2026-08-20T21:30:00Z",
-        "teamIds": [
-            118
-        ],
-        "playerIds": [],
-        "gamePks": [
-            824074
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap",
-            "leadoff",
-            "first-inning"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Trio of Brewers relievers delivers in series win -- and will be key in October",
-        "summaryJa": "ブルワーズ、勝利を呼び込む活躍",
-        "slug": "brewers-bullpen-helps-deliver-series-win-over-mariners",
-        "url": "https://www.mlb.com/news/brewers-bullpen-helps-deliver-series-win-over-mariners",
-        "contentDate": "2026-08-20T21:29:35.714Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [],
-        "gamePks": [
-            823747
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap"
-        ],
-        "sourceScopes": [
             "球団公式"
         ]
     },
@@ -2441,26 +2483,6 @@
         ],
         "taxonomy": [
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Latest Nationals injuries & transactions",
-        "summaryJa": "ナショナルズの負傷状況をMLB公式が詳報",
-        "slug": "nationals-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/nationals-injuries-and-roster-moves",
-        "contentDate": "2026-08-20T00:31:00Z",
-        "teamIds": [
-            120
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
         ],
         "sourceScopes": [
             "球団公式"
@@ -4857,26 +4879,6 @@
         "contentDate": "2026-08-18T22:56:00Z",
         "teamIds": [
             142
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Latest Angels injuries & transactions",
-        "summaryJa": "エンゼルスの負傷状況をMLB公式が詳報",
-        "slug": "angels-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/angels-injuries-and-roster-moves",
-        "contentDate": "2026-08-18T22:54:00Z",
-        "teamIds": [
-            108
         ],
         "playerIds": [],
         "gamePks": [],
