@@ -2778,21 +2778,28 @@
         return sectionElement;
     };
 
-    const longestSeasonStreak = (splits, qualifies, { ignore = () => false } = {}) => {
+    const seasonBestStreakHistory = (splits, qualifies, { ignore = () => false } = {}) => {
         const ordered = [...splits].sort((a, b) => String(a?.date).localeCompare(String(b?.date)));
         let current = [];
-        let best = [];
+        const completed = [];
         ordered.forEach((split) => {
             if (ignore(split)) return;
             if (qualifies(split)) {
                 current.push(split);
-                if (current.length >= best.length) best = [...current];
             } else {
+                if (current.length) completed.push({ entries: current, active: false });
                 current = [];
             }
         });
-        const active = current.length > 0 && current.length === best.length;
-        return { entries: best, active };
+        if (current.length) completed.push({ entries: current, active: true });
+
+        let seasonBest = 0;
+        return completed.filter((streak) => {
+            const count = streak.entries.length;
+            if (count < seasonBest) return false;
+            seasonBest = Math.max(seasonBest, count);
+            return true;
+        });
     };
 
     const seasonRecordFromStreak = (streak, label, minimum = 2) => {
@@ -2871,11 +2878,14 @@
                 ["出塁", (split) => statNumber(split?.stat?.hits) + statNumber(split?.stat?.baseOnBalls) + statNumber(split?.stat?.hitByPitch) > 0],
                 ["打点", (split) => statNumber(split?.stat?.rbi) > 0]
             ].forEach(([label, qualifies]) => {
-                const record = seasonRecordFromStreak(
-                    longestSeasonStreak(logs.hitting, qualifies, { ignore: (split) => !played(split) }),
-                    label
-                );
-                if (record) records.push(record);
+                seasonBestStreakHistory(
+                    logs.hitting,
+                    qualifies,
+                    { ignore: (split) => !played(split) }
+                ).forEach((streak) => {
+                    const record = seasonRecordFromStreak(streak, label);
+                    if (record) records.push(record);
+                });
             });
             const firstHomeRun = [...logs.hitting]
                 .sort((a, b) => String(a?.date).localeCompare(String(b?.date)))
@@ -2888,23 +2898,26 @@
         }
         if (logs.pitching?.length) {
             const starts = logs.pitching.filter((split) => statNumber(split?.stat?.gamesStarted) > 0);
-            const qualityStarts = longestSeasonStreak(
+            const qualityStarts = seasonBestStreakHistory(
                 starts,
                 (split) => inningsToOuts(split?.stat?.inningsPitched) >= 18 && statNumber(split?.stat?.earnedRuns) <= 3
             );
-            const qsRecord = seasonRecordFromStreak(qualityStarts, "QS");
-            if (qsRecord) records.push(qsRecord);
+            qualityStarts.forEach((streak) => {
+                const qsRecord = seasonRecordFromStreak(streak, "QS");
+                if (qsRecord) records.push(qsRecord);
+            });
             const decisions = logs.pitching.filter((split) =>
                 statNumber(split?.stat?.wins) > 0 || statNumber(split?.stat?.losses) > 0
             );
-            const winStreak = seasonRecordFromStreak(
-                longestSeasonStreak(decisions, (split) => statNumber(split?.stat?.wins) > 0),
-                "勝"
-            );
-            if (winStreak) {
+            seasonBestStreakHistory(
+                decisions,
+                (split) => statNumber(split?.stat?.wins) > 0
+            ).forEach((streak) => {
+                const winStreak = seasonRecordFromStreak(streak, "勝");
+                if (!winStreak) return;
                 winStreak.text = winStreak.text.replace(/(\d+)試合連続勝$/, "$1連勝");
                 records.push(winStreak);
-            }
+            });
             let completeGamesSeen = statNumber(priorCareerCompleteGames);
             [...logs.pitching]
                 .sort((a, b) => String(a?.date).localeCompare(String(b?.date)))
