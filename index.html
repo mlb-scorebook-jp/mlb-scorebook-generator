@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MLB Scorebook Generator</title>
     <!-- Score notation update: stacked batted-ball symbol, red hits, blue strikeouts, black other results. -->
-    <link rel="stylesheet" href="css/style.css?v=20260821-print-paper-1">
+    <link rel="stylesheet" href="css/style.css?v=20260821-print-mac-2">
     <link rel="stylesheet" href="css/pregame.css?v=20260820-daily-stats-4">
 </head>
 
@@ -272,13 +272,6 @@
             <div class="footer-scrollbar-spacer" id="footer-scrollbar-spacer"></div>
         </div>
         <div class="footer-actions">
-            <label class="print-paper-control" for="print-paper-size">
-                <span>用紙</span>
-                <select id="print-paper-size" aria-label="印刷用紙サイズ">
-                    <option value="a4">A4横</option>
-                    <option value="a3">A3横</option>
-                </select>
-            </label>
             <button type="button" id="pdf-btn">PDF</button>
             <button type="button" id="png-btn">PNG</button>
             <button type="button" id="print-btn">PRINT</button>
@@ -618,7 +611,6 @@
                 libraryList: document.getElementById("library-list"),
                 statusMessage: document.getElementById("status-message"),
                 liveUpdateStatus: document.getElementById("live-update-status"),
-                printPaperSize: document.getElementById("print-paper-size"),
                 printButton: document.getElementById("print-btn"),
                 jsonButton: document.getElementById("json-btn"),
                 pdfButton: document.getElementById("pdf-btn"),
@@ -8966,36 +8958,17 @@
                 }
             };
 
-            const PRINT_PAGE_STYLE_ID = "scorebook-print-page";
+            const PRINT_PAGE_STYLE_ID = "print-a4-landscape-page";
             const PRINT_STAGE_ID = "scorebook-print-stage";
-            const PRINT_PAPER_STORAGE_KEY = "mlb-scorebook-print-paper-v1";
-            const PRINT_PAPER_SIZES = {
-                a4: { widthMm: 297, heightMm: 210 },
-                a3: { widthMm: 420, heightMm: 297 }
-            };
+            const A4_LANDSCAPE_WIDTH_MM = 297;
+            const A4_LANDSCAPE_HEIGHT_MM = 210;
             const PRINT_MARGIN_MM = 6;
             // Safari can round a transformed page outward when creating a PDF.
             // Keep the spread slightly inside the printable box so the home
             // team's right border is never clipped by that rounding.
-            const PRINT_EDGE_SAFETY_MM = 2;
+            const PRINT_EDGE_SAFETY_MM = 4;
             const CSS_PIXELS_PER_MM = 96 / 25.4;
             let printOriginalDocumentTitle = null;
-
-            const getSelectedPrintPaper = () => {
-                const key = dom.printPaperSize?.value;
-                return PRINT_PAPER_SIZES[key] ?? PRINT_PAPER_SIZES.a4;
-            };
-
-            const restorePrintPaperSize = () => {
-                let saved = "a4";
-                try {
-                    saved = localStorage.getItem(PRINT_PAPER_STORAGE_KEY) || "a4";
-                } catch (_error) {
-                    // Private browsing can block storage; A4 remains the safe default.
-                }
-                if (!PRINT_PAPER_SIZES[saved]) saved = "a4";
-                if (dom.printPaperSize) dom.printPaperSize.value = saved;
-            };
 
             const getScorebookPrintTitle = () => {
                 const officialDate = String(
@@ -9024,49 +8997,25 @@
                 const content = dom.awaySheet.firstElementChild;
                 if (!content) return false;
 
-                const paper = getSelectedPrintPaper();
-
                 const printableWidth = (
-                    paper.widthMm - PRINT_MARGIN_MM * 2
+                    A4_LANDSCAPE_WIDTH_MM - PRINT_MARGIN_MM * 2
                 ) * CSS_PIXELS_PER_MM;
                 const printableHeight = (
-                    paper.heightMm - PRINT_MARGIN_MM * 2
+                    A4_LANDSCAPE_HEIGHT_MM - PRINT_MARGIN_MM * 2
                 ) * CSS_PIXELS_PER_MM;
-                const printableWidthMm = paper.widthMm - PRINT_MARGIN_MM * 2;
-                const printableHeightMm = paper.heightMm - PRINT_MARGIN_MM * 2;
+                const printableWidthMm = A4_LANDSCAPE_WIDTH_MM - PRINT_MARGIN_MM * 2;
+                const printableHeightMm = A4_LANDSCAPE_HEIGHT_MM - PRINT_MARGIN_MM * 2;
                 const safeWidth = printableWidth - PRINT_EDGE_SAFETY_MM * 2 * CSS_PIXELS_PER_MM;
                 const safeHeight = printableHeight - PRINT_EDGE_SAFETY_MM * 2 * CSS_PIXELS_PER_MM;
-                const printStage = document.createElement("section");
-                printStage.id = PRINT_STAGE_ID;
-                printStage.setAttribute("aria-hidden", "true");
-                printStage.style.setProperty(
-                    "--print-page-width",
-                    `${printableWidthMm}mm`
-                );
-                printStage.style.setProperty(
-                    "--print-page-height",
-                    `${printableHeightMm}mm`
-                );
-                const printContent = document.createElement("div");
-                printContent.className = "scorebook-print-content";
-                printContent.append(content.cloneNode(true));
-                printStage.append(printContent);
-                printStage.classList.add("print-measure-stage");
-                document.body.append(printStage);
-
-                // Measure the compact print-only clone, never the wide screen layout.
                 const contentWidth = Math.max(
-                    printContent.scrollWidth,
-                    printContent.getBoundingClientRect().width
+                    content.scrollWidth,
+                    content.getBoundingClientRect().width
                 );
                 const contentHeight = Math.max(
-                    printContent.scrollHeight,
-                    printContent.getBoundingClientRect().height
+                    content.scrollHeight,
+                    content.getBoundingClientRect().height
                 );
-                if (!(contentWidth > 0 && contentHeight > 0)) {
-                    clearPrintFit();
-                    return false;
-                }
+                if (!(contentWidth > 0 && contentHeight > 0)) return false;
 
                 const scale = Math.min(
                     1,
@@ -9077,9 +9026,18 @@
                 const outputHeight = contentHeight * scale;
                 const offsetX = Math.max(0, (printableWidth - outputWidth) / 2);
                 const offsetY = Math.max(0, (printableHeight - outputHeight) / 2);
-                printContent.style.width = `${contentWidth}px`;
-                printContent.style.height = `${contentHeight}px`;
+                const printStage = document.createElement("section");
+                printStage.id = PRINT_STAGE_ID;
+                printStage.setAttribute("aria-hidden", "true");
                 printStage.style.setProperty("--print-scale", String(scale));
+                printStage.style.setProperty(
+                    "--print-page-width",
+                    `${printableWidthMm}mm`
+                );
+                printStage.style.setProperty(
+                    "--print-page-height",
+                    `${printableHeightMm}mm`
+                );
                 printStage.style.setProperty(
                     "--print-offset-x",
                     `${offsetX / CSS_PIXELS_PER_MM}mm`
@@ -9088,13 +9046,20 @@
                     "--print-offset-y",
                     `${offsetY / CSS_PIXELS_PER_MM}mm`
                 );
-                printStage.classList.remove("print-measure-stage");
+
+                const printContent = document.createElement("div");
+                printContent.className = "scorebook-print-content";
+                printContent.style.width = `${contentWidth}px`;
+                printContent.style.height = `${contentHeight}px`;
+                printContent.append(content.cloneNode(true));
+                printStage.append(printContent);
+                document.body.append(printStage);
                 document.body.classList.add("print-stage-active");
 
                 const pageStyle = document.createElement("style");
                 pageStyle.id = PRINT_PAGE_STYLE_ID;
-                pageStyle.textContent = `@page { size: ${paper.widthMm}mm ` +
-                    `${paper.heightMm}mm; margin: ${PRINT_MARGIN_MM}mm; }`;
+                pageStyle.textContent = `@page { size: ${A4_LANDSCAPE_WIDTH_MM}mm ` +
+                    `${A4_LANDSCAPE_HEIGHT_MM}mm; margin: ${PRINT_MARGIN_MM}mm; }`;
                 document.head.append(pageStyle);
                 return true;
             };
@@ -9256,13 +9221,6 @@
             dom.homePageButton.addEventListener("click", () => switchPage("home"));
             dom.printButton.addEventListener("click", printFullScorebook);
             dom.pdfButton.addEventListener("click", printFullScorebook);
-            dom.printPaperSize?.addEventListener("change", () => {
-                try {
-                    localStorage.setItem(PRINT_PAPER_STORAGE_KEY, dom.printPaperSize.value);
-                } catch (_error) {
-                    // The selection still works for the current tab without storage.
-                }
-            });
             dom.jsonButton.addEventListener("click", exportJson);
 
             dom.pngButton.addEventListener("click", () => {
@@ -9355,7 +9313,6 @@
             };
 
             const initializeApp = async () => {
-                restorePrintPaperSize();
                 renderScorebookLibrary();
                 render();
                 requestAnimationFrame(refreshHorizontalScrollbar);

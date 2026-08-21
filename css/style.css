@@ -3568,26 +3568,6 @@ body.app-mode-pregame .score-loading-overlay {
     gap: 8px;
 }
 
-.print-paper-control {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    color: #aeb9bf;
-    font-size: 9px;
-    white-space: nowrap;
-}
-
-.print-paper-control select {
-    height: 32px;
-    padding: 0 24px 0 9px;
-    color: #e7ecef;
-    border: 1px solid #4d5962;
-    border-radius: 2px;
-    background: #2c353c;
-    font-size: 10px;
-    font-weight: 700;
-}
-
 .app-footer button {
     min-width: 76px;
     height: 32px;
@@ -4040,9 +4020,6 @@ body:not(.app-mode-home):not(.app-mode-pregame) .viewer {
         gap: 4px;
     }
 
-    .print-paper-control {
-        display: none;
-    }
 }
 
 @media screen and (orientation: portrait) and (max-width: 767px) {
@@ -4145,10 +4122,10 @@ body.app-mode-pitch-chart .viewer {
     }
 
     body.print-stage-active {
-        width: auto;
-        height: auto;
-        max-width: none;
-        max-height: none;
+        width: 285mm;
+        height: 198mm;
+        max-width: 285mm;
+        max-height: 198mm;
         overflow: hidden !important;
     }
 
@@ -4247,76 +4224,6 @@ body.app-mode-pitch-chart .viewer {
 
 #scorebook-print-stage {
     display: none;
-    --order-width: 28px;
-    --number-width: 22px;
-    --name-width: 120px;
-    --position-width: 22px;
-    --hand-width: 26px;
-    --inning-width: 48px;
-    --stat-width: 18px;
-    --team-score-width: calc(
-        var(--order-width) +
-        var(--number-width) +
-        var(--name-width) +
-        var(--position-width) +
-        var(--hand-width) +
-        var(--inning-width) +
-        var(--inning-width) +
-        var(--inning-width) +
-        var(--inning-width) +
-        var(--inning-width) +
-        var(--inning-width) +
-        var(--inning-width) +
-        var(--inning-width) +
-        var(--inning-width) +
-        var(--stat-width) +
-        var(--stat-width) +
-        var(--stat-width) +
-        var(--stat-width) +
-        var(--stat-width) +
-        var(--stat-width)
-    );
-    --challenge-width: calc(
-        var(--inning-width) +
-        var(--inning-width) +
-        var(--inning-width) +
-        var(--inning-width) +
-        var(--inning-width) +
-        var(--stat-width) +
-        var(--stat-width) +
-        var(--stat-width) +
-        var(--stat-width) +
-        var(--stat-width) +
-        var(--stat-width)
-    );
-}
-
-#scorebook-print-stage .dual-score-layout {
-    gap: 8px;
-}
-
-#scorebook-print-stage .score-header-area {
-    gap: 8px;
-}
-
-#scorebook-print-stage .score-grid-header > div,
-#scorebook-print-stage .score-grid-cell,
-#scorebook-print-stage .pitching-table th,
-#scorebook-print-stage .pitching-table td {
-    padding-right: 2px;
-    padding-left: 2px;
-}
-
-#scorebook-print-stage.print-measure-stage {
-    position: fixed;
-    top: 0;
-    left: -100000px;
-    display: block;
-    width: max-content;
-    height: auto;
-    overflow: visible;
-    visibility: hidden;
-    pointer-events: none;
 }
 
 /* =========================================================
