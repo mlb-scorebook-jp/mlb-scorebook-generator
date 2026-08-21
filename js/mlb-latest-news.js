@@ -2,6 +2,69 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Holliday's Players' Weekend bat features ... his dog Coconut!",
+        "summaryJa": "J.ホリデイ（BAL）の最新動向をMLB公式が詳報",
+        "slug": "jackson-holliday-players-weekend-bat-dog-coconut",
+        "url": "https://www.mlb.com/news/jackson-holliday-players-weekend-bat-dog-coconut",
+        "contentDate": "2026-08-21T21:37:53.169Z",
+        "teamIds": [
+            110
+        ],
+        "playerIds": [
+            702616
+        ],
+        "gamePks": [
+            824800
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Winn (left thumb injury) not in starting lineup for 2nd straight game",
+        "summaryJa": "M.ウィン（STL）の負傷状況をMLB公式が詳報",
+        "slug": "masyn-winn-out-of-cardinals-starting-lineup-with-left-thumb-injury",
+        "url": "https://www.mlb.com/news/masyn-winn-out-of-cardinals-starting-lineup-with-left-thumb-injury",
+        "contentDate": "2026-08-21T21:37:13.448Z",
+        "teamIds": [
+            138
+        ],
+        "playerIds": [
+            691026
+        ],
+        "gamePks": [
+            823420
+        ],
+        "taxonomy": [
+            "apple-news",
+            "injury"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Iowa throws combo no-no in the LLWS ... and the starter homers for the only run!",
+        "summaryJa": "MLBの最新情報、本塁打で存在感",
+        "slug": "iowa-throws-combined-no-hitter-in-2026-little-league-world-series",
+        "url": "https://www.mlb.com/news/iowa-throws-combined-no-hitter-in-2026-little-league-world-series",
+        "contentDate": "2026-08-21T21:10:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "llws",
+            "youth-baseball",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
         "headline": "O's closer Bautista (shoulder surgery) to begin rehab assignment Sunday",
         "summaryJa": "F.ボティースタ（BAL）、復帰へ向けた最新状況",
         "slug": "felix-bautista-orioles-rehab-assignment-start",
@@ -22,7 +85,29 @@
             "rehab"
         ],
         "sourceScopes": [
+            "MLB",
             "球団公式"
+        ]
+    },
+    {
+        "headline": "Jennie Finch Empowerment Award a springboard for young, proud honorees",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "jennie-finch-empowerment-award-opens-opportunities-beyond-softball",
+        "url": "https://www.mlb.com/news/jennie-finch-empowerment-award-opens-opportunities-beyond-softball",
+        "contentDate": "2026-08-21T20:07:23.444Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "jennie-finch",
+            "youth-baseball",
+            "softball",
+            "apple-news",
+            "rbi-program",
+            "rbi-world-series"
+        ],
+        "sourceScopes": [
+            "MLB"
         ]
     },
     {
@@ -1273,28 +1358,6 @@
         ]
     },
     {
-        "headline": "Guerrero (concussion recovery) doubles in Single-A rehab game",
-        "summaryJa": "V.ゲレーロ Jr.（TOR）、復帰へ向けた最新状況",
-        "slug": "vladimir-guerrero-jr-starts-rehab-assignment-with-single-a-dunedin",
-        "url": "https://www.mlb.com/news/vladimir-guerrero-jr-starts-rehab-assignment-with-single-a-dunedin",
-        "contentDate": "2026-08-21T00:30:10.433Z",
-        "teamIds": [
-            141
-        ],
-        "playerIds": [
-            665489
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "injury",
-            "rehab"
-        ],
-        "sourceScopes": [
-            "MLB"
-        ]
-    },
-    {
         "headline": "For Brewers’ former Little Leaguers, playing in Williamsport a full-circle moment",
         "summaryJa": "J.バウアーズ（MIL）の最新動向をMLB公式が詳報",
         "slug": "brewers-to-face-braves-in-mlb-s-little-league-classic",
@@ -1319,7 +1382,6 @@
             "players-weekend-related"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1365,7 +1427,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -6940,29 +7001,6 @@
         "taxonomy": [
             "apple-news",
             "long-home-runs"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Marmol ejected from nightcap vs. Reds after taking exception to pair of calls",
-        "summaryJa": "O.マーモル（STL）の最新動向をMLB公式が詳報",
-        "slug": "oliver-marmol-ejected-from-game-vs-reds",
-        "url": "https://www.mlb.com/news/oliver-marmol-ejected-from-game-vs-reds",
-        "contentDate": "2026-08-18T03:28:42.185Z",
-        "teamIds": [
-            138
-        ],
-        "playerIds": [
-            458538
-        ],
-        "gamePks": [
-            824478
-        ],
-        "taxonomy": [
-            "apple-news",
-            "ejection"
         ],
         "sourceScopes": [
             "球団公式"
