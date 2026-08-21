@@ -2,6 +2,218 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Brandon Lowe's farming future part of how Pirates will celebrate Players' Weekend",
+        "summaryJa": "パイレーツを巡る注目点をMLB公式が分析",
+        "slug": "brandon-lowe-s-farming-future-part-of-players-weekend-showcase",
+        "url": "https://www.mlb.com/news/brandon-lowe-s-farming-future-part-of-players-weekend-showcase",
+        "contentDate": "2026-08-21T17:00:35.221Z",
+        "teamIds": [
+            134
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Here's how Diaz remembers his late brother before every game",
+        "summaryJa": "Y.ディアス（HOU）を巡る注目点をMLB公式が分析",
+        "slug": "yainer-diaz-remembers-late-brother-issael-before-every-game",
+        "url": "https://www.mlb.com/news/yainer-diaz-remembers-late-brother-issael-before-every-game",
+        "contentDate": "2026-08-21T16:54:00.061Z",
+        "teamIds": [
+            117
+        ],
+        "playerIds": [
+            673237
+        ],
+        "gamePks": [
+            824152
+        ],
+        "taxonomy": [
+            "apple-news",
+            "players-weekend"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "NBA superstar has sage advice for Rangers' playoff push",
+        "summaryJa": "レンジャーズの最新動向をMLB公式が詳報",
+        "slug": "cade-cunningham-advice-for-texas-rangers",
+        "url": "https://www.mlb.com/news/cade-cunningham-advice-for-texas-rangers",
+        "contentDate": "2026-08-21T16:46:25.896Z",
+        "teamIds": [
+            140
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "mlb-life",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "De Paula's 3rd homer in 4 games propels Double-A Tulsa to win",
+        "summaryJa": "J.デポーラ（LAD）、記録達成の最新情報",
+        "slug": "josue-de-paula-hits-3rd-home-run-in-4-games",
+        "url": "https://www.mlb.com/news/josue-de-paula-hits-3rd-home-run-in-4-games",
+        "contentDate": "2026-08-21T16:16:05.961Z",
+        "teamIds": [
+            119
+        ],
+        "playerIds": [
+            800543
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "mlb-top-prospects",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "'Down syndrome is cool': Burger's daughter inspires foundation's mission",
+        "summaryJa": "J.バーガー（TEX）の最新動向をMLB公式が詳報",
+        "slug": "jake-burger-s-daughter-inspires-foundation-s-mission",
+        "url": "https://www.mlb.com/news/jake-burger-s-daughter-inspires-foundation-s-mission",
+        "contentDate": "2026-08-21T16:00:00Z",
+        "teamIds": [
+            140
+        ],
+        "playerIds": [
+            669394
+        ],
+        "gamePks": [
+            822861
+        ],
+        "taxonomy": [
+            "apple-news",
+            "players-weekend"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "As Paredes' career progresses, his abuela is always with him in spirit",
+        "summaryJa": "I.パレイデス（HOU）の最新動向をMLB公式が詳報",
+        "slug": "isaac-paredes-credits-baseball-career-to-grandmother",
+        "url": "https://www.mlb.com/news/isaac-paredes-credits-baseball-career-to-grandmother",
+        "contentDate": "2026-08-21T15:56:00Z",
+        "teamIds": [
+            117
+        ],
+        "playerIds": [
+            670623
+        ],
+        "gamePks": [
+            824154
+        ],
+        "taxonomy": [
+            "apple-news",
+            "players-weekend"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Sale-Miz a clash of Cy contenders in matinee mound masterclass (4 ET)",
+        "summaryJa": "J.ミザロウスキー（MIL）の最新動向をMLB公式が詳報",
+        "slug": "jacob-misiorowski-faces-chris-sale-as-brewers-host-braves",
+        "url": "https://www.mlb.com/news/jacob-misiorowski-faces-chris-sale-as-brewers-host-braves",
+        "contentDate": "2026-08-21T15:55:00Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [
+            694819,
+            519242
+        ],
+        "gamePks": [
+            823747
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "5 reasons why the Cardinals have gotten back to winning after the Deadline",
+        "summaryJa": "J.ウォーカー（STL）を巡る注目点をMLB公式が分析",
+        "slug": "jordan-walker-alec-burleson-reasons-why-cardinals-are-winning",
+        "url": "https://www.mlb.com/news/jordan-walker-alec-burleson-reasons-why-cardinals-are-winning",
+        "contentDate": "2026-08-21T15:53:51.617Z",
+        "teamIds": [
+            138
+        ],
+        "playerIds": [
+            691023,
+            691026,
+            676475,
+            676617
+        ],
+        "gamePks": [
+            823420
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "AL-best Rays, clash of AL West rivals highlight 'Friday Night Baseball' slate on Apple TV",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "friday-night-baseball-on-apple-tv-for-2026-mlb-season",
+        "url": "https://www.mlb.com/news/friday-night-baseball-on-apple-tv-for-2026-mlb-season",
+        "contentDate": "2026-08-21T15:46:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "This new ballpark was a decade and a half in the making -- and it was worth the wait",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "richmond-carmax-park-baseball-traveler",
+        "url": "https://www.mlb.com/news/richmond-carmax-park-baseball-traveler",
+        "contentDate": "2026-08-21T15:41:03.375Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "baseball-traveler",
+            "minor-league-baseball",
+            "apple-news",
+            "offbeat"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Reds, Cincinnati Children’s collaborate to paint cleats for MLB Players’ Weekend",
         "summaryJa": "レッズの最新動向をMLB公式が詳報",
         "slug": "reds-cincinnati-children-s-collaborate-to-paint-cleats-for-mlb-players-weekend",
@@ -40,7 +252,7 @@
         ]
     },
     {
-        "headline": "When not painting corners, Lowder brushes up on another talent",
+        "headline": "When he's not painting corners, he's drawing big leaguers",
         "summaryJa": "R.ラウダ―（CIN）の最新動向をMLB公式が詳報",
         "slug": "rhett-lowder-love-for-drawing-players-weekend",
         "url": "https://www.mlb.com/news/rhett-lowder-love-for-drawing-players-weekend",
@@ -123,6 +335,7 @@
             "players-weekend"
         ],
         "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
@@ -151,7 +364,7 @@
         ]
     },
     {
-        "headline": "Julio's alter ego, 'DJ Pleno,' brings joy outside of baseball",
+        "headline": "This 3-time All-Star has a DJ alter ego",
         "summaryJa": "J.ロドリゲス（SEA）の最新動向をMLB公式が詳報",
         "slug": "julio-rodriguez-performs-as-dj-pleno",
         "url": "https://www.mlb.com/news/julio-rodriguez-performs-as-dj-pleno",
@@ -279,6 +492,7 @@
             "mlb-top-prospects"
         ],
         "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
@@ -528,7 +742,6 @@
             "injury"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -844,38 +1057,6 @@
         "sourceScopes": [
             "MLB",
             "球団公式"
-        ]
-    },
-    {
-        "headline": "Injuries: Judge, Dodgers, Vladdy, Peña, K. Marte, Royals",
-        "summaryJa": "大谷翔平（LAD）らMLB各球団の最新負傷情報",
-        "slug": "baseball-injury-updates",
-        "url": "https://www.mlb.com/news/baseball-injury-updates",
-        "contentDate": "2026-08-21T02:13:00Z",
-        "teamIds": [],
-        "playerIds": [
-            641355,
-            621020,
-            596115,
-            608331,
-            800050,
-            606466,
-            807799,
-            592450,
-            519317,
-            665489,
-            571448,
-            621242,
-            680736,
-            660271
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "headline-breakout"
-        ],
-        "sourceScopes": [
-            "MLB"
         ]
     },
     {
@@ -1334,7 +1515,6 @@
             "game-recap"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1382,7 +1562,6 @@
             "payoff-pitch"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1425,24 +1604,6 @@
         ],
         "sourceScopes": [
             "球団公式"
-        ]
-    },
-    {
-        "headline": "Reds rookie in position for feat not seen in 76 years",
-        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
-        "slug": "most-rbis-by-a-rookie-in-a-single-season",
-        "url": "https://www.mlb.com/news/most-rbis-by-a-rookie-in-a-single-season",
-        "contentDate": "2026-08-20T21:45:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "evergreen",
-            "rankings",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB"
         ]
     },
     {
@@ -1608,30 +1769,6 @@
             "players-weekend"
         ],
         "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Misiorowski set to face childhood favorite Sale in matchup of NL Cy Young contenders",
-        "summaryJa": "J.ミザロウスキー（MIL）の最新動向をMLB公式が詳報",
-        "slug": "jacob-misiorowski-faces-chris-sale-as-brewers-host-braves",
-        "url": "https://www.mlb.com/news/jacob-misiorowski-faces-chris-sale-as-brewers-host-braves",
-        "contentDate": "2026-08-20T19:40:44.362Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [
-            694819,
-            519242
-        ],
-        "gamePks": [
-            823747
-        ],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1826,23 +1963,6 @@
         ]
     },
     {
-        "headline": "Ranking the Top 10 moments of baserunning brilliance",
-        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
-        "slug": "top-baserunning-exploits-in-baseball-history",
-        "url": "https://www.mlb.com/news/top-baserunning-exploits-in-baseball-history",
-        "contentDate": "2026-08-20T15:25:11.536Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "rankings",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB"
-        ]
-    },
-    {
         "headline": "Lombard showing that his bat can be as good as his defense in Majors",
         "summaryJa": "G.ロンバード Jr.（NYY）を巡る注目点をMLB公式が分析",
         "slug": "george-lombard-jr-hitting-well-to-begin-mlb-career",
@@ -1926,7 +2046,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -2863,29 +2982,6 @@
         "taxonomy": [
             "mlb-top-prospects",
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "'Down syndrome is cool': Burger's daughter inspires foundation's mission",
-        "summaryJa": "J.バーガー（TEX）の最新動向をMLB公式が詳報",
-        "slug": "jake-burger-s-daughter-inspires-foundation-s-mission",
-        "url": "https://www.mlb.com/news/jake-burger-s-daughter-inspires-foundation-s-mission",
-        "contentDate": "2026-08-20T02:49:09.778Z",
-        "teamIds": [
-            140
-        ],
-        "playerIds": [
-            669394
-        ],
-        "gamePks": [
-            822861
-        ],
-        "taxonomy": [
-            "apple-news",
-            "players-weekend"
         ],
         "sourceScopes": [
             "球団公式"
@@ -5712,29 +5808,6 @@
         ]
     },
     {
-        "headline": "As Paredes' career progresses, his abuela is always with him in spirit",
-        "summaryJa": "I.パレイデス（HOU）の最新動向をMLB公式が詳報",
-        "slug": "isaac-paredes-credits-baseball-career-to-grandmother",
-        "url": "https://www.mlb.com/news/isaac-paredes-credits-baseball-career-to-grandmother",
-        "contentDate": "2026-08-18T20:39:40.462Z",
-        "teamIds": [
-            117
-        ],
-        "playerIds": [
-            670623
-        ],
-        "gamePks": [
-            824154
-        ],
-        "taxonomy": [
-            "apple-news",
-            "players-weekend"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Griffin no longer needs splint, could return within 3 weeks",
         "summaryJa": "K.グリフィン（PIT）の負傷状況をMLB公式が詳報",
         "slug": "konnor-griffin-finger-injury-progress",
@@ -6843,29 +6916,6 @@
         ]
     },
     {
-        "headline": "Smith (neck inflammation) could start rehab soon on road back from IL",
-        "summaryJa": "W.スミス（LAD）の負傷状況をMLB公式が詳報",
-        "slug": "will-smith-working-toward-returning-to-dodgers-from-injured-list",
-        "url": "https://www.mlb.com/news/will-smith-working-toward-returning-to-dodgers-from-injured-list",
-        "contentDate": "2026-08-18T00:41:09.416Z",
-        "teamIds": [
-            119
-        ],
-        "playerIds": [
-            669257
-        ],
-        "gamePks": [
-            824320
-        ],
-        "taxonomy": [
-            "injury",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Yanks place Fried back on IL with bone bruise in left elbow",
         "summaryJa": "M.フリード（NYY）の最新動向をMLB公式が詳報",
         "slug": "max-fried-bone-bruise-left-elbow",
@@ -7005,30 +7055,6 @@
         ],
         "taxonomy": [
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Burleson retakes RBI lead, Mathews racks up K's as Cards win twin bill opener",
-        "summaryJa": "A.バールソン（STL）、勝利を呼び込む活躍",
-        "slug": "cardinals-beat-reds-in-opening-game-of-doubleheader",
-        "url": "https://www.mlb.com/news/cardinals-beat-reds-in-opening-game-of-doubleheader",
-        "contentDate": "2026-08-17T22:22:00Z",
-        "teamIds": [
-            138
-        ],
-        "playerIds": [
-            676475,
-            687273
-        ],
-        "gamePks": [
-            824514
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap"
         ],
         "sourceScopes": [
             "球団公式"
@@ -8832,29 +8858,6 @@
         "taxonomy": [
             "apple-news",
             "players-weekend"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Giants call up hot-hitting OF Hill from Triple-A",
-        "summaryJa": "Turner Hill（SF）、メジャー昇格・初出場に関する最新情報",
-        "slug": "turner-hill-called-up-by-giants",
-        "url": "https://www.mlb.com/news/turner-hill-called-up-by-giants",
-        "contentDate": "2026-08-15T13:15:00Z",
-        "teamIds": [
-            137
-        ],
-        "playerIds": [
-            806367
-        ],
-        "gamePks": [
-            823185
-        ],
-        "taxonomy": [
-            "apple-news",
-            "transactions"
         ],
         "sourceScopes": [
             "球団公式"
