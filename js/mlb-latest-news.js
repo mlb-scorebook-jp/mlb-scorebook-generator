@@ -2,6 +2,49 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Latest Brewers injuries & transactions",
+        "summaryJa": "ブルワーズの負傷状況をMLB公式が詳報",
+        "slug": "brewers-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/brewers-injuries-and-roster-moves",
+        "contentDate": "2026-08-21T18:40:00Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Trammell's impact can be seen throughout Tigers' infield",
+        "summaryJa": "A.トラメル（DET）の最新動向をMLB公式が詳報",
+        "slug": "tigers-have-fielded-infield-of-players-taught-by-alan-trammell",
+        "url": "https://www.mlb.com/news/tigers-have-fielded-infield-of-players-taught-by-alan-trammell",
+        "contentDate": "2026-08-21T18:22:34.412Z",
+        "teamIds": [
+            116
+        ],
+        "playerIds": [
+            123437
+        ],
+        "gamePks": [
+            824072
+        ],
+        "taxonomy": [
+            "apple-news",
+            "players-weekend"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Reds 1st-rounder Lebron stays HOT with 4th homer in just 8 professional games",
         "summaryJa": "Justin Lebron（CIN）、記録達成の最新情報",
         "slug": "reds-1st-round-draft-pick-justin-lebron-hits-4th-home-run",
@@ -20,6 +63,24 @@
         ],
         "sourceScopes": [
             "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Save a Pet at the Park: Adoptable cats and puppies at Friday's game",
+        "summaryJa": "フィリーズの最新動向をMLB公式が詳報",
+        "slug": "save-a-pet-at-the-park-adoptable-cats-and-puppies-at-friday-s-game",
+        "url": "https://www.mlb.com/news/featured/save-a-pet-at-the-park-adoptable-cats-and-puppies-at-friday-s-game",
+        "contentDate": "2026-08-21T17:11:19.202Z",
+        "teamIds": [
+            143
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "community"
+        ],
+        "sourceScopes": [
             "球団公式"
         ]
     },
@@ -1857,26 +1918,6 @@
             "apple-news",
             "injury",
             "milestone"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Latest Brewers injuries & transactions",
-        "summaryJa": "ブルワーズの負傷状況をMLB公式が詳報",
-        "slug": "brewers-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/brewers-injuries-and-roster-moves",
-        "contentDate": "2026-08-20T17:20:00Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
         ],
         "sourceScopes": [
             "球団公式"
@@ -9115,28 +9156,6 @@
             "apple-news",
             "injury",
             "rehab"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Jobe has wobbly outing in second start back from Tommy John surgery",
-        "summaryJa": "J.ジョーブ（DET）、記録達成の最新情報",
-        "slug": "jackson-jobe-struggles-in-2nd-start-after-tommy-john-surgery",
-        "url": "https://www.mlb.com/news/jackson-jobe-struggles-in-2nd-start-after-tommy-john-surgery",
-        "contentDate": "2026-08-15T03:17:48.389Z",
-        "teamIds": [
-            116
-        ],
-        "playerIds": [
-            695549
-        ],
-        "gamePks": [
-            824237
-        ],
-        "taxonomy": [
-            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
