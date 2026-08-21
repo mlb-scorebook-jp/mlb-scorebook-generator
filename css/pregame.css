@@ -2508,6 +2508,43 @@ a.pregame-metric-value:focus-visible {
         font-size: 15px;
     }
 
+    .pregame-relative-date-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 4px;
+        width: 100%;
+    }
+
+    .pregame-relative-date-buttons #pregame-yesterday-btn,
+    .pregame-relative-date-buttons #pregame-tomorrow-btn {
+        flex: 0 0 44px;
+        width: 44px;
+        min-width: 44px;
+        padding: 0;
+        font-size: 0;
+    }
+
+    .pregame-relative-date-buttons #pregame-yesterday-btn::before,
+    .pregame-relative-date-buttons #pregame-tomorrow-btn::before {
+        font-size: 15px;
+        line-height: 1;
+    }
+
+    .pregame-relative-date-buttons #pregame-yesterday-btn::before {
+        content: "◀";
+    }
+
+    .pregame-relative-date-buttons #pregame-tomorrow-btn::before {
+        content: "▶";
+    }
+
+    .pregame-relative-date-buttons #pregame-today-btn {
+        flex: 0 0 62px;
+        width: 62px;
+        min-width: 62px;
+        padding-inline: 8px;
+    }
+
     .pregame-loading,
     .pregame-error,
     .pregame-empty {
