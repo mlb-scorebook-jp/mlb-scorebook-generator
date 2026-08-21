@@ -2,6 +2,91 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "How rare is a 15-HR year at Double-A as a teen? Cards prospect joins star-studded list",
+        "summaryJa": "Rainiel Rodriguez（STL）、本塁打で存在感",
+        "slug": "cardinals-prospect-rainiel-rodriguez-15-homers-double-a-teenager",
+        "url": "https://www.mlb.com/news/cardinals-prospect-rainiel-rodriguez-15-homers-double-a-teenager",
+        "contentDate": "2026-08-21T05:51:00Z",
+        "teamIds": [
+            138
+        ],
+        "playerIds": [
+            823787
+        ],
+        "gamePks": [
+            824474
+        ],
+        "taxonomy": [
+            "apple-news",
+            "mlb-top-prospects"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Latest Rangers injuries & transactions",
+        "summaryJa": "レンジャーズの負傷状況をMLB公式が詳報",
+        "slug": "rangers-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/rangers-injuries-and-roster-moves",
+        "contentDate": "2026-08-21T05:31:00Z",
+        "teamIds": [
+            140
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Astros suffer most lopsided loss in nearly 3 years against Angels",
+        "summaryJa": "P.ランバート（HOU）の最新動向をMLB公式が詳報",
+        "slug": "astros-blown-out-in-15-run-loss-to-angels",
+        "url": "https://www.mlb.com/news/astros-blown-out-in-15-run-loss-to-angels",
+        "contentDate": "2026-08-21T05:16:25.141Z",
+        "teamIds": [
+            117
+        ],
+        "playerIds": [
+            663567
+        ],
+        "gamePks": [
+            824153
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Latest Astros injuries & transactions",
+        "summaryJa": "アストロズの負傷状況をMLB公式が詳報",
+        "slug": "astros-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/astros-injuries-and-roster-moves",
+        "contentDate": "2026-08-21T05:16:00Z",
+        "teamIds": [
+            117
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "transactions",
+            "injury",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Latest Nationals injuries & transactions",
         "summaryJa": "ナショナルズの負傷状況をMLB公式が詳報",
         "slug": "nationals-injuries-and-roster-moves",
@@ -918,26 +1003,6 @@
         ],
         "sourceScopes": [
             "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Latest Astros injuries & transactions",
-        "summaryJa": "アストロズの負傷状況をMLB公式が詳報",
-        "slug": "astros-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/astros-injuries-and-roster-moves",
-        "contentDate": "2026-08-20T22:34:00Z",
-        "teamIds": [
-            117
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "transactions",
-            "injury",
-            "exclude-from-personalization"
-        ],
-        "sourceScopes": [
             "球団公式"
         ]
     },
@@ -5228,26 +5293,6 @@
         ]
     },
     {
-        "headline": "Latest Rangers injuries & transactions",
-        "summaryJa": "レンジャーズの負傷状況をMLB公式が詳報",
-        "slug": "rangers-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/rangers-injuries-and-roster-moves",
-        "contentDate": "2026-08-18T23:55:00Z",
-        "teamIds": [
-            140
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Texas Rangers Baseball Foundation celebrates opening of Mansfield Miracle League Field",
         "summaryJa": "レンジャーズの最新動向をMLB公式が詳報",
         "slug": "texas-rangers-baseball-foundation-celebrates-opening-of-mansfield-miracle-league-field",
@@ -6663,29 +6708,6 @@
         "taxonomy": [
             "apple-news",
             "transactions"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Story could return from sports hernia surgery this weekend",
-        "summaryJa": "T.ストーリー（BOS）の負傷状況をMLB公式が詳報",
-        "slug": "trevor-story-could-return-from-injury-earlier-than-scheduled",
-        "url": "https://www.mlb.com/news/trevor-story-could-return-from-injury-earlier-than-scheduled",
-        "contentDate": "2026-08-18T01:31:00Z",
-        "teamIds": [
-            111
-        ],
-        "playerIds": [
-            596115
-        ],
-        "gamePks": [
-            824725
-        ],
-        "taxonomy": [
-            "apple-news",
-            "injury"
         ],
         "sourceScopes": [
             "球団公式"
@@ -8957,31 +8979,6 @@
         ],
         "taxonomy": [
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Christian Walk(off)! Astros slugger's winning blast caps 5-run 10th in wild win",
-        "summaryJa": "C.ウォーカー（HOU）、記録達成の最新情報",
-        "slug": "christian-walker-hits-walk-off-home-run-in-astros-win-over-mariners",
-        "url": "https://www.mlb.com/news/christian-walker-hits-walk-off-home-run-in-astros-win-over-mariners",
-        "contentDate": "2026-08-15T05:32:00Z",
-        "teamIds": [
-            117
-        ],
-        "playerIds": [
-            572233
-        ],
-        "gamePks": [
-            824159
-        ],
-        "taxonomy": [
-            "apple-news",
-            "walk-off-hr",
-            "game-recap",
-            "walk-off"
         ],
         "sourceScopes": [
             "球団公式"
