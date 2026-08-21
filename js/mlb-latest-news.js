@@ -2,6 +2,200 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Reds, Cincinnati Children’s collaborate to paint cleats for MLB Players’ Weekend",
+        "summaryJa": "レッズの最新動向をMLB公式が詳報",
+        "slug": "reds-cincinnati-children-s-collaborate-to-paint-cleats-for-mlb-players-weekend",
+        "url": "https://www.mlb.com/news/reds-cincinnati-children-s-collaborate-to-paint-cleats-for-mlb-players-weekend",
+        "contentDate": "2026-08-21T15:30:26.185Z",
+        "teamIds": [
+            113
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "community"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Yankees Magazine: Family Matters",
+        "summaryJa": "C.ロドン（NYY）の最新動向をMLB公式が詳報",
+        "slug": "yankees-magazine-carlos-rodon-x4232",
+        "url": "https://www.mlb.com/news/yankees-magazine-carlos-rodon-x4232",
+        "contentDate": "2026-08-21T15:21:35.96Z",
+        "teamIds": [
+            147
+        ],
+        "playerIds": [
+            607074
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "nyy-yankees-magazine"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "When not painting corners, Lowder brushes up on another talent",
+        "summaryJa": "R.ラウダ―（CIN）の最新動向をMLB公式が詳報",
+        "slug": "rhett-lowder-love-for-drawing-players-weekend",
+        "url": "https://www.mlb.com/news/rhett-lowder-love-for-drawing-players-weekend",
+        "contentDate": "2026-08-21T15:20:00Z",
+        "teamIds": [
+            113
+        ],
+        "playerIds": [
+            695076
+        ],
+        "gamePks": [
+            824476,
+            824474
+        ],
+        "taxonomy": [
+            "apple-news",
+            "players-weekend"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Eyanson goes career-best 7 innings with 8 K's",
+        "summaryJa": "Anthony Eyanson（BAL）ら注目選手の最新動向",
+        "slug": "orioles-prospect-anthony-eyanson-pitches-career-best-7-innings",
+        "url": "https://www.mlb.com/news/orioles-prospect-anthony-eyanson-pitches-career-best-7-innings",
+        "contentDate": "2026-08-21T15:13:06.465Z",
+        "teamIds": [
+            110
+        ],
+        "playerIds": [
+            809254
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "mlb-top-prospects"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "One potential prospect callup for each team",
+        "summaryJa": "MLBの最新情報、メジャー昇格・初出場に関する最新情報",
+        "slug": "one-potential-prospect-callup-for-each-team-2026",
+        "url": "https://www.mlb.com/news/one-potential-prospect-callup-for-each-team-2026",
+        "contentDate": "2026-08-21T15:13:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "mlb-top-prospects",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Is there anybody in baseball that Holliday doesn't know? It doesn't seem like it",
+        "summaryJa": "J.ホリデイ（BAL）の最新動向をMLB公式が詳報",
+        "slug": "jackson-holliday-forming-relationships-with-players-across-baseball",
+        "url": "https://www.mlb.com/news/jackson-holliday-forming-relationships-with-players-across-baseball",
+        "contentDate": "2026-08-21T15:09:00Z",
+        "teamIds": [
+            110
+        ],
+        "playerIds": [
+            702616
+        ],
+        "gamePks": [
+            824800
+        ],
+        "taxonomy": [
+            "apple-news",
+            "players-weekend"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Red-hot Hoerner's luck is turning, adding another year to his robot-like consistency",
+        "summaryJa": "N.ホーナー（CHC）の最新動向をMLB公式が詳報",
+        "slug": "cubs-nico-hoerner-remarkable-year-by-year-consistency",
+        "url": "https://www.mlb.com/news/cubs-nico-hoerner-remarkable-year-by-year-consistency",
+        "contentDate": "2026-08-21T14:23:32.722Z",
+        "teamIds": [
+            112
+        ],
+        "playerIds": [
+            663538
+        ],
+        "gamePks": [
+            823101
+        ],
+        "taxonomy": [
+            "apple-news",
+            "savant"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Julio's alter ego, 'DJ Pleno,' brings joy outside of baseball",
+        "summaryJa": "J.ロドリゲス（SEA）の最新動向をMLB公式が詳報",
+        "slug": "julio-rodriguez-performs-as-dj-pleno",
+        "url": "https://www.mlb.com/news/julio-rodriguez-performs-as-dj-pleno",
+        "contentDate": "2026-08-21T14:14:00Z",
+        "teamIds": [
+            136
+        ],
+        "playerIds": [
+            677594
+        ],
+        "gamePks": [
+            823748
+        ],
+        "taxonomy": [
+            "apple-news",
+            "players-weekend"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Card collecting both a 'hobby and semi-obsession' for Straw",
+        "summaryJa": "M.ストロー（TOR）の最新動向をMLB公式が詳報",
+        "slug": "myles-straw-blue-jays-card-collecting-connoisseur",
+        "url": "https://www.mlb.com/news/myles-straw-blue-jays-card-collecting-connoisseur",
+        "contentDate": "2026-08-21T14:10:00Z",
+        "teamIds": [
+            141
+        ],
+        "playerIds": [
+            664702
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "players-weekend"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Though he's right-handed, Legumina's left arm may be his most valuable",
         "summaryJa": "C.レグミーナ（TB）の最新動向をMLB公式が詳報",
         "slug": "casey-legumina-tells-his-life-baseball-journey-through-tattoos",
@@ -17,30 +211,6 @@
         "taxonomy": [
             "players-weekend",
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "When not painting corners, Lowder brushes up on another talent",
-        "summaryJa": "R.ラウダ―（CIN）の最新動向をMLB公式が詳報",
-        "slug": "rhett-lowder-love-for-drawing-players-weekend",
-        "url": "https://www.mlb.com/news/rhett-lowder-love-for-drawing-players-weekend",
-        "contentDate": "2026-08-21T13:57:00Z",
-        "teamIds": [
-            113
-        ],
-        "playerIds": [
-            695076
-        ],
-        "gamePks": [
-            824476,
-            824474
-        ],
-        "taxonomy": [
-            "apple-news",
-            "players-weekend"
         ],
         "sourceScopes": [
             "球団公式"
@@ -428,30 +598,6 @@
             "mlb-top-prospects"
         ],
         "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Julio's alter ego, 'DJ Pleno,' brings joy outside of baseball",
-        "summaryJa": "J.ロドリゲス（SEA）の最新動向をMLB公式が詳報",
-        "slug": "julio-rodriguez-performs-as-dj-pleno",
-        "url": "https://www.mlb.com/news/julio-rodriguez-performs-as-dj-pleno",
-        "contentDate": "2026-08-21T04:01:00Z",
-        "teamIds": [
-            136
-        ],
-        "playerIds": [
-            677594
-        ],
-        "gamePks": [
-            823748
-        ],
-        "taxonomy": [
-            "apple-news",
-            "players-weekend"
-        ],
-        "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -939,24 +1085,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "One potential prospect callup for each team",
-        "summaryJa": "MLBの最新情報、メジャー昇格・初出場に関する最新情報",
-        "slug": "one-potential-prospect-callup-for-each-team-2026",
-        "url": "https://www.mlb.com/news/one-potential-prospect-callup-for-each-team-2026",
-        "contentDate": "2026-08-20T23:30:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "mlb-top-prospects",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1698,23 +1826,6 @@
         ]
     },
     {
-        "headline": "Kinley Rasmus, the 9th girl to ever pitch in LLWS, dominates on mound (and at SS)",
-        "summaryJa": "MLBの最新情報、記録達成の最新情報",
-        "slug": "alabama-female-little-leaguer-kinley-rasmus-strikes-out-eight",
-        "url": "https://www.mlb.com/news/alabama-female-little-leaguer-kinley-rasmus-strikes-out-eight",
-        "contentDate": "2026-08-20T15:51:38.927Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "llws",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB"
-        ]
-    },
-    {
         "headline": "Ranking the Top 10 moments of baserunning brilliance",
         "summaryJa": "MLBの最新情報ら注目選手の最新動向",
         "slug": "top-baserunning-exploits-in-baseball-history",
@@ -1783,7 +1894,7 @@
         ]
     },
     {
-        "headline": "Chappell Roan Night is coming to her hometown team -- and Chappell Roan approves",
+        "headline": "Chappell Roan Night is coming to her hometown MiLB team -- and Chappell Roan approves",
         "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
         "slug": "chappell-roan-night-coming-to-springfield-cardinals",
         "url": "https://www.mlb.com/news/chappell-roan-night-coming-to-springfield-cardinals",
@@ -1797,7 +1908,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -2977,29 +3087,6 @@
         "taxonomy": [
             "apple-news",
             "extra-innings"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Is there anybody in baseball that Holliday doesn't know? It doesn't seem like it",
-        "summaryJa": "J.ホリデイ（BAL）の最新動向をMLB公式が詳報",
-        "slug": "jackson-holliday-forming-relationships-with-players-across-baseball",
-        "url": "https://www.mlb.com/news/jackson-holliday-forming-relationships-with-players-across-baseball",
-        "contentDate": "2026-08-20T01:23:50.377Z",
-        "teamIds": [
-            110
-        ],
-        "playerIds": [
-            702616
-        ],
-        "gamePks": [
-            824800
-        ],
-        "taxonomy": [
-            "apple-news",
-            "players-weekend"
         ],
         "sourceScopes": [
             "球団公式"
@@ -6854,30 +6941,6 @@
         ]
     },
     {
-        "headline": "Swanson (oblique strain) to IL a crucial blow for Cubs' infield during stretch run",
-        "summaryJa": "D.スワンソン（CHC）の負傷状況をMLB公式が詳報",
-        "slug": "dansby-swanson-exits-with-left-side-discomfort",
-        "url": "https://www.mlb.com/news/dansby-swanson-exits-with-left-side-discomfort",
-        "contentDate": "2026-08-17T23:18:00Z",
-        "teamIds": [
-            112
-        ],
-        "playerIds": [
-            621020
-        ],
-        "gamePks": [
-            824642,
-            824641
-        ],
-        "taxonomy": [
-            "apple-news",
-            "injury"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Bender slated to begin rehab assignment on road back to Marlins",
         "summaryJa": "A.ベンダー（MIA）、復帰へ向けた最新状況",
         "slug": "anthony-bender-to-start-rehab-assignment-with-triple-a-jacksonville",
@@ -7243,24 +7306,6 @@
         "gamePks": [
             823668
         ],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Analyzing Posada's HOF case on his birthday",
-        "summaryJa": "ヤンキースの最新動向をMLB公式が詳報",
-        "slug": "jorge-posada-hall-of-fame-case",
-        "url": "https://www.mlb.com/news/jorge-posada-hall-of-fame-case",
-        "contentDate": "2026-08-17T13:58:07.336Z",
-        "teamIds": [
-            147
-        ],
-        "playerIds": [],
-        "gamePks": [],
         "taxonomy": [
             "apple-news"
         ],
@@ -8030,27 +8075,6 @@
             "apple-news",
             "injury",
             "rehab"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Card collecting both a 'hobby and semi-obsession' for Straw",
-        "summaryJa": "M.ストロー（TOR）の最新動向をMLB公式が詳報",
-        "slug": "myles-straw-blue-jays-card-collecting-connoisseur",
-        "url": "https://www.mlb.com/news/myles-straw-blue-jays-card-collecting-connoisseur",
-        "contentDate": "2026-08-16T19:45:00Z",
-        "teamIds": [
-            141
-        ],
-        "playerIds": [
-            664702
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "players-weekend"
         ],
         "sourceScopes": [
             "球団公式"
@@ -9113,29 +9137,6 @@
             "apple-news",
             "payoff-pitch",
             "game-recap"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Pagán gets 'real good' update on fingers and can 'throw as many splitters as I need to'",
-        "summaryJa": "E.パガーン（CIN）の負傷状況をMLB公式が詳報",
-        "slug": "emilio-pagan-has-no-structural-damage-on-injured-fingers",
-        "url": "https://www.mlb.com/news/emilio-pagan-has-no-structural-damage-on-injured-fingers",
-        "contentDate": "2026-08-14T21:40:54.205Z",
-        "teamIds": [
-            113
-        ],
-        "playerIds": [
-            641941
-        ],
-        "gamePks": [
-            824479
-        ],
-        "taxonomy": [
-            "apple-news",
-            "injury"
         ],
         "sourceScopes": [
             "球団公式"
