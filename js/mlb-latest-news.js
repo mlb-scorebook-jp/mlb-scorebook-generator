@@ -2,6 +2,51 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Reds 1st-rounder Lebron stays HOT with 4th homer in just 8 professional games",
+        "summaryJa": "Justin Lebron（CIN）、記録達成の最新情報",
+        "slug": "reds-1st-round-draft-pick-justin-lebron-hits-4th-home-run",
+        "url": "https://www.mlb.com/news/reds-1st-round-draft-pick-justin-lebron-hits-4th-home-run",
+        "contentDate": "2026-08-21T17:18:53.535Z",
+        "teamIds": [
+            113
+        ],
+        "playerIds": [
+            807311
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "mlb-top-prospects"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "For Cole family, baseball and philanthropy go hand in hand",
+        "summaryJa": "G.コール（NYY）の最新動向をMLB公式が詳報",
+        "slug": "gerrit-and-amy-cole-giving-back-with-charitable-foundation",
+        "url": "https://www.mlb.com/news/gerrit-and-amy-cole-giving-back-with-charitable-foundation",
+        "contentDate": "2026-08-21T17:07:27.403Z",
+        "teamIds": [
+            147
+        ],
+        "playerIds": [
+            543037
+        ],
+        "gamePks": [
+            823510
+        ],
+        "taxonomy": [
+            "players-weekend",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Brandon Lowe's farming future part of how Pirates will celebrate Players' Weekend",
         "summaryJa": "パイレーツを巡る注目点をMLB公式が分析",
         "slug": "brandon-lowe-s-farming-future-part-of-players-weekend-showcase",
@@ -1375,7 +1420,6 @@
             "mlb-top-prospects"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -9116,30 +9160,6 @@
         "taxonomy": [
             "apple-news",
             "cy-young-award"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "'Back to my roots': Burns re-emerges as dominant self in scoreless showing vs. Marlins",
-        "summaryJa": "C.バーンズ（CIN）、マウンドで好投",
-        "slug": "chase-burns-start-vs-marlins-august-14",
-        "url": "https://www.mlb.com/news/chase-burns-start-vs-marlins-august-14",
-        "contentDate": "2026-08-15T02:06:00Z",
-        "teamIds": [
-            113
-        ],
-        "playerIds": [
-            695505
-        ],
-        "gamePks": [
-            824479
-        ],
-        "taxonomy": [
-            "apple-news",
-            "payoff-pitch",
-            "game-recap"
         ],
         "sourceScopes": [
             "球団公式"
