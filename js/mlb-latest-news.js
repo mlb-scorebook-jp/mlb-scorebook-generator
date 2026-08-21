@@ -2,6 +2,46 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "O's closer Bautista (shoulder surgery) to begin rehab assignment Sunday",
+        "summaryJa": "F.ボティースタ（BAL）、復帰へ向けた最新状況",
+        "slug": "felix-bautista-orioles-rehab-assignment-start",
+        "url": "https://www.mlb.com/news/felix-bautista-orioles-rehab-assignment-start",
+        "contentDate": "2026-08-21T20:27:22.052Z",
+        "teamIds": [
+            110
+        ],
+        "playerIds": [
+            642585
+        ],
+        "gamePks": [
+            824800
+        ],
+        "taxonomy": [
+            "apple-news",
+            "injury",
+            "rehab"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "MLB continues tradition of awarding college scholarships to 12 Nike RBI Athletes",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "mlb-continues-in-tradition-of-awarding-college-scholarships-to-12-nike-rbi-athletes",
+        "url": "https://www.mlb.com/news/mlb-continues-in-tradition-of-awarding-college-scholarships-to-12-nike-rbi-athletes",
+        "contentDate": "2026-08-21T20:01:55.16Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "mlb"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
         "headline": "Latest Brewers injuries & transactions",
         "summaryJa": "ブルワーズの負傷状況をMLB公式が詳報",
         "slug": "brewers-injuries-and-roster-moves",
@@ -234,7 +274,7 @@
         ]
     },
     {
-        "headline": "Sale-Miz a clash of Cy contenders in matinee mound masterclass (4 ET)",
+        "headline": "Misiorowski set to face childhood favorite Sale in matchup of NL Cy contenders",
         "summaryJa": "J.ミザロウスキー（MIL）の最新動向をMLB公式が詳報",
         "slug": "jacob-misiorowski-faces-chris-sale-as-brewers-host-braves",
         "url": "https://www.mlb.com/news/jacob-misiorowski-faces-chris-sale-as-brewers-host-braves",
@@ -253,7 +293,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -2006,7 +2045,7 @@
         ]
     },
     {
-        "headline": "Elite all season but especially in August, Yamamoto faces potent Bucs on Friday",
+        "headline": "Elite all season but especially in August, Yamamoto faces potent Bucs tonight",
         "summaryJa": "山本 由伸（LAD）の最新動向をMLB公式が詳報",
         "slug": "yamamoto-looks-to-continue-stellar-august-against-pirates",
         "url": "https://www.mlb.com/news/yamamoto-looks-to-continue-stellar-august-against-pirates",
@@ -7858,28 +7897,6 @@
         ],
         "taxonomy": [
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Orioles take sole possession of 3rd Wild Card with 3rd straight win vs. AL-best Rays",
-        "summaryJa": "オリオールズ、記録達成の最新情報",
-        "slug": "orioles-score-10-runs-defeat-rays-third-straight-game",
-        "url": "https://www.mlb.com/news/orioles-score-10-runs-defeat-rays-third-straight-game",
-        "contentDate": "2026-08-16T23:04:00Z",
-        "teamIds": [
-            110
-        ],
-        "playerIds": [],
-        "gamePks": [
-            822940
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap",
-            "style"
         ],
         "sourceScopes": [
             "球団公式"
