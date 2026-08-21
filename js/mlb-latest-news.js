@@ -2,6 +2,94 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Though he's right-handed, Legumina's left arm may be his most valuable",
+        "summaryJa": "C.レグミーナ（TB）の最新動向をMLB公式が詳報",
+        "slug": "casey-legumina-tells-his-life-baseball-journey-through-tattoos",
+        "url": "https://www.mlb.com/news/casey-legumina-tells-his-life-baseball-journey-through-tattoos",
+        "contentDate": "2026-08-21T14:00:00Z",
+        "teamIds": [
+            139
+        ],
+        "playerIds": [
+            668984
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "players-weekend",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "When not painting corners, Lowder brushes up on another talent",
+        "summaryJa": "R.ラウダ―（CIN）の最新動向をMLB公式が詳報",
+        "slug": "rhett-lowder-love-for-drawing-players-weekend",
+        "url": "https://www.mlb.com/news/rhett-lowder-love-for-drawing-players-weekend",
+        "contentDate": "2026-08-21T13:57:00Z",
+        "teamIds": [
+            113
+        ],
+        "playerIds": [
+            695076
+        ],
+        "gamePks": [
+            824476,
+            824474
+        ],
+        "taxonomy": [
+            "apple-news",
+            "players-weekend"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Padres aren't lacking for starters now, but the opposite brings its own challenge",
+        "summaryJa": "パドレスの最新動向をMLB公式が詳報",
+        "slug": "padres-have-decisions-to-make-for-starting-rotation",
+        "url": "https://www.mlb.com/news/padres-have-decisions-to-make-for-starting-rotation",
+        "contentDate": "2026-08-21T12:53:23.11Z",
+        "teamIds": [
+            135
+        ],
+        "playerIds": [],
+        "gamePks": [
+            823262
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "The new batting stance that turned Benge's rookie season around",
+        "summaryJa": "C.ベンジ（NYM）の最新動向をMLB公式が詳報",
+        "slug": "mets-carson-benge-batting-stance-change",
+        "url": "https://www.mlb.com/news/mets-carson-benge-batting-stance-change",
+        "contentDate": "2026-08-21T12:50:06.598Z",
+        "teamIds": [
+            121
+        ],
+        "playerIds": [
+            701807
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "player-tracking",
+            "savant"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "How rare is a 15-HR year at Double-A as a teen? Cards prospect joins star-studded list",
         "summaryJa": "Rainiel Rodriguez（STL）、本塁打で存在感",
         "slug": "cardinals-prospect-rainiel-rodriguez-15-homers-double-a-teenager",
@@ -501,8 +589,8 @@
         ]
     },
     {
-        "headline": "This pitcher has a 10.35 ERA  ... and a 0.85 ERA. Let's explain",
-        "summaryJa": "B.ベイヨ（BOS）を巡る注目点をMLB公式が分析",
+        "headline": "He was MLB's worst starter, and now he's the best reliever -- all in one season",
+        "summaryJa": "B.ベイヨ（BOS）の最新動向をMLB公式が詳報",
         "slug": "bryan-bello-unprecedented-2026-performance",
         "url": "https://www.mlb.com/news/bryan-bello-unprecedented-2026-performance",
         "contentDate": "2026-08-21T02:40:00Z",
@@ -522,7 +610,7 @@
         ]
     },
     {
-        "headline": "Meet the ex-pitcher changing the game one pair of custom cleats at a time",
+        "headline": "Hundreds of MLB players swear by this ex-pitcher's customized cleats",
         "summaryJa": "J.ガスリーの最新動向をMLB公式が詳報",
         "slug": "jeremy-guthrie-custom-cleats-players-weekend",
         "url": "https://www.mlb.com/news/featured/jeremy-guthrie-custom-cleats-players-weekend",
@@ -1588,7 +1676,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -2441,27 +2528,6 @@
         ]
     },
     {
-        "headline": "Though he's right-handed, Legumina's left arm may be his most valuable",
-        "summaryJa": "C.レグミーナ（TB）の最新動向をMLB公式が詳報",
-        "slug": "casey-legumina-tells-his-life-baseball-journey-through-tattoos",
-        "url": "https://www.mlb.com/news/casey-legumina-tells-his-life-baseball-journey-through-tattoos",
-        "contentDate": "2026-08-20T03:40:59.184Z",
-        "teamIds": [
-            139
-        ],
-        "playerIds": [
-            668984
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "players-weekend",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Nola continues resurgence with 7-inning gem to extend Phils' win streak to six",
         "summaryJa": "A.ノラ（PHI）、勝利を呼び込む活躍",
         "slug": "aaron-nola-tosses-seven-innings-in-sweep-of-marlins",
@@ -3250,30 +3316,6 @@
             "walk-off-hr",
             "walk-off",
             "game-recap"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "When not painting corners, Lowder brushes up on another talent",
-        "summaryJa": "R.ラウダ―（CIN）の最新動向をMLB公式が詳報",
-        "slug": "rhett-lowder-love-for-drawing-players-weekend",
-        "url": "https://www.mlb.com/news/rhett-lowder-love-for-drawing-players-weekend",
-        "contentDate": "2026-08-19T23:01:36.957Z",
-        "teamIds": [
-            113
-        ],
-        "playerIds": [
-            695076
-        ],
-        "gamePks": [
-            824476,
-            824474
-        ],
-        "taxonomy": [
-            "apple-news",
-            "players-weekend"
         ],
         "sourceScopes": [
             "球団公式"
@@ -8428,32 +8470,6 @@
         ]
     },
     {
-        "headline": "Power of post-Deadline Mets on display in spirited walk-off",
-        "summaryJa": "F.リンドー（NYM）、サヨナラ勝利の主役に",
-        "slug": "francisco-lindor-mets-walk-off-nationals-after-comeback",
-        "url": "https://www.mlb.com/news/francisco-lindor-mets-walk-off-nationals-after-comeback",
-        "contentDate": "2026-08-16T01:58:00Z",
-        "teamIds": [
-            121
-        ],
-        "playerIds": [
-            596019,
-            642376,
-            701807
-        ],
-        "gamePks": [
-            823588
-        ],
-        "taxonomy": [
-            "apple-news",
-            "walk-off",
-            "game-recap"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "HBP? Nope. HR? Yes! Marlins 1st-rounder takes one deep after almost taking one for team",
         "summaryJa": "Jacob Lombard（MIA）、記録達成の最新情報",
         "slug": "marlins-prospect-jacob-lombard-homers-after-near-hit-by-pitch",
@@ -8979,30 +8995,6 @@
         ],
         "taxonomy": [
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Rodriguez, 'one of the best relievers in baseball,' secures 1st career save",
-        "summaryJa": "B.ロドリゲス（SD）、記録達成の最新情報",
-        "slug": "luis-campusano-padres-beat-guardians-series-opener",
-        "url": "https://www.mlb.com/news/luis-campusano-padres-beat-guardians-series-opener",
-        "contentDate": "2026-08-15T04:20:00Z",
-        "teamIds": [
-            135
-        ],
-        "playerIds": [
-            699134
-        ],
-        "gamePks": [
-            824399
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap",
-            "win-streak"
         ],
         "sourceScopes": [
             "球団公式"
