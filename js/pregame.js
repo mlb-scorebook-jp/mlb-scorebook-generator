@@ -4087,7 +4087,7 @@
                 previousBox.append(row);
             });
         } else {
-            previousBox.append(el("strong", "", data.hasCareerAppearance ? "今季初登板" : "MLB初登板"));
+            previousBox.append(el("strong", "", data.hasCareerAppearance ? "今季初登板" : "キャリア初登板"));
         }
         column.append(previousBox);
         return column;

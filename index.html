@@ -285,7 +285,7 @@
     <script src="js/mlb-business-date.js?v=20260808-1"></script>
     <script src="js/mlb-latest-news.js?v=20260814-summary-1"></script>
     <script src="js/stathead-links.js?v=20260810-1"></script>
-    <script src="js/pregame.js?v=20260820-daily-stats-7"></script>
+    <script src="js/pregame.js?v=20260821-career-first-1"></script>
 
     <script>
         (() => {
@@ -1458,30 +1458,32 @@
 
             const CAREER_FIRST_DEFINITIONS = Object.freeze({
                 hitting: [
-                    { field: "gamesPlayed", currentField: "gamesPlayed", label: "MLB初出場" },
-                    { field: "hits", currentField: "hits", label: "MLB初安打" },
-                    { field: "homeRuns", currentField: "homeRuns", label: "MLB初本塁打" },
-                    { field: "rbi", currentField: "rbi", label: "MLB初打点" },
-                    { field: "stolenBases", currentField: "stolenBases", label: "MLB初盗塁" }
+                    { field: "gamesPlayed", currentField: "gamesPlayed", label: "キャリア初出場" },
+                    { field: "gamesStarted", currentField: "gamesStarted", label: "キャリア初先発" },
+                    { field: "plateAppearances", currentField: "plateAppearances", label: "キャリア初打席" },
+                    { field: "hits", currentField: "hits", label: "キャリア初安打" },
+                    { field: "homeRuns", currentField: "homeRuns", label: "キャリア初本塁打" },
+                    { field: "rbi", currentField: "rbi", label: "キャリア初打点" },
+                    { field: "stolenBases", currentField: "stolenBases", label: "キャリア初盗塁" }
                 ],
                 pitching: [
-                    { field: "gamesPlayed", currentField: "gamesPlayed", label: "MLB初登板" },
-                    { field: "gamesStarted", currentField: "gamesStarted", label: "MLB初先発" },
-                    { field: "wins", currentField: "wins", label: "MLB初勝利" },
-                    { field: "strikeOuts", currentField: "strikeOuts", label: "MLB初奪三振" },
-                    { field: "saves", currentField: "saves", label: "MLB初セーブ" },
-                    { field: "holds", currentField: "holds", label: "MLB初ホールド" }
+                    { field: "gamesPlayed", currentField: "gamesPlayed", label: "キャリア初登板" },
+                    { field: "gamesStarted", currentField: "gamesStarted", label: "キャリア初先発" },
+                    { field: "wins", currentField: "wins", label: "キャリア初勝利" },
+                    { field: "strikeOuts", currentField: "strikeOuts", label: "キャリア初奪三振" },
+                    { field: "saves", currentField: "saves", label: "キャリア初セーブ" },
+                    { field: "holds", currentField: "holds", label: "キャリア初ホールド" }
                 ]
             });
 
             const TEAM_FIRST_DEFINITIONS = Object.freeze({
                 hitting: CAREER_FIRST_DEFINITIONS.hitting.map((definition) => ({
                     ...definition,
-                    label: definition.label.replace(/^MLB初/, "移籍後初")
+                    label: definition.label.replace(/^キャリア初/, "移籍後初")
                 })),
                 pitching: CAREER_FIRST_DEFINITIONS.pitching.map((definition) => ({
                     ...definition,
-                    label: definition.label.replace(/^MLB初/, "移籍後初")
+                    label: definition.label.replace(/^キャリア初/, "移籍後初")
                 }))
             });
 
@@ -1847,6 +1849,10 @@
                         !groups.includes("pitching")) {
                         groups.push("pitching");
                     }
+                    const isPositionPlayerPitching =
+                        hasCurrentGamePitchingAppearance(player) &&
+                        !isPitcherCandidate(player) &&
+                        !isTwoWayCandidate(player);
                     const playerNotes = [];
 
                     for (const group of groups) {
@@ -1942,12 +1948,39 @@
                             if (!Number.isFinite(total) || gameValue <= 0) return;
                             const beforeGame = Math.max(0, total - gameValue);
                             if (beforeGame !== 0 || total <= 0) return;
+                            const positionPlayerSuffix =
+                                group === "pitching" &&
+                                definition.field === "gamesPlayed" &&
+                                isPositionPlayerPitching
+                                    ? "（野手登板）"
+                                    : "";
                             playerNotes.push({
-                                text: `${code}　${getPersonName(player.person)}　${definition.label}`,
+                                text: `${code}　${getPersonName(player.person)}　` +
+                                    `${definition.label}${positionPlayerSuffix}`,
                                 priority: -3,
                                 importance: 100 - index
                             });
                         });
+
+                        if (group === "pitching" && isPositionPlayerPitching) {
+                            const careerAppearances = Number(career?.gamesPlayed);
+                            const laterSameDayAppearances = laterSameDaySplits.reduce(
+                                (sum, split) => sum +
+                                    (Number(split?.stat?.gamesPlayed) || 0),
+                                0
+                            );
+                            const currentAppearances = Number(current?.gamesPlayed) || 0;
+                            const appearancesBeforeGame = careerAppearances -
+                                laterSameDayAppearances - currentAppearances;
+                            if (Number.isFinite(appearancesBeforeGame) &&
+                                appearancesBeforeGame > 0) {
+                                playerNotes.push({
+                                    text: `${code}　${getPersonName(player.person)}　野手登板`,
+                                    priority: -2,
+                                    importance: 90
+                                });
+                            }
+                        }
 
                         CAREER_MILESTONE_DEFINITIONS[group].forEach((definition) => {
                             const laterSameDayValue = laterSameDaySplits.reduce(
