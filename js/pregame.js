@@ -1894,6 +1894,14 @@
         dom.loading.hidden = !loading;
     };
 
+    const syncDateControl = (date) => {
+        const normalizedDate = String(date ?? "").slice(0, 10);
+        if (dom.dateInput) dom.dateInput.value = normalizedDate;
+        if (dom.mobileDateDisplay) {
+            dom.mobileDateDisplay.textContent = normalizedDate.replaceAll("-", "/");
+        }
+    };
+
     const setHeader = (title, subtitle) => {
         dom.title.parentElement?.classList.remove("pregame-matchup-title-block");
         dom.title.className = "";
@@ -2230,7 +2238,7 @@
         dom.view.classList.remove("pregame-player-detail-active");
         setLoading(true);
         const date = currentDate || currentMlbDate();
-        if (dom.dateInput) dom.dateInput.value = date;
+        syncDateControl(date);
         setHeader("試合前情報", formatDate(date));
         try {
             const season = Number(date.slice(0, 4));
@@ -4300,6 +4308,7 @@
             document.getElementById("header-game-date")?.value?.split("|")?.[0] ??
             currentMlbDate()
         ).slice(0, 10);
+        syncDateControl(currentDate);
         dom.viewer.classList.add("pregame-active");
         dom.view.hidden = false;
         if (context?.restoreView === "pregame-game" && Number(context?.gamePk)) {
@@ -4357,6 +4366,7 @@
         dom.title = document.getElementById("pregame-title");
         dom.subtitle = document.getElementById("pregame-subtitle");
         dom.dateInput = document.getElementById("pregame-date");
+        dom.mobileDateDisplay = document.getElementById("pregame-mobile-date-display");
         dom.previousDateButton = document.getElementById("pregame-prev-date-btn");
         dom.desktopTodayButton = document.getElementById("pregame-desktop-today-btn");
         dom.nextDateButton = document.getElementById("pregame-next-date-btn");
@@ -4376,11 +4386,12 @@
             const selectedDate = String(dom.dateInput.value ?? "");
             if (!/^\d{4}-\d{2}-\d{2}$/.test(selectedDate)) return;
             currentDate = selectedDate;
+            syncDateControl(currentDate);
             await renderSelectedDate();
         });
         const moveDate = async (days) => {
             currentDate = shiftDate(currentDate || currentMlbDate(), days);
-            dom.dateInput.value = currentDate;
+            syncDateControl(currentDate);
             await renderSelectedDate();
         };
         dom.previousDateButton?.addEventListener("click", () => moveDate(-1));
@@ -4388,7 +4399,7 @@
         dom.yesterdayButton?.addEventListener("click", () => moveDate(-1));
         const moveToToday = async () => {
             currentDate = currentEasternDate();
-            dom.dateInput.value = currentDate;
+            syncDateControl(currentDate);
             await renderSelectedDate();
         };
         dom.desktopTodayButton?.addEventListener("click", moveToToday);

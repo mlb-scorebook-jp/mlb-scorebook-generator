@@ -442,6 +442,10 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
     box-shadow: 0 0 0 1px rgba(145, 172, 184, 0.3);
 }
 
+.pregame-mobile-date-display {
+    display: none;
+}
+
 .pregame-today-control {
     display: none;
     justify-items: center;
@@ -2497,7 +2501,7 @@ a.pregame-metric-value:focus-visible {
     }
 
     .pregame-today-control small {
-        font-size: 11px;
+        display: none;
     }
 
     .pregame-date-control input,
@@ -2506,6 +2510,27 @@ a.pregame-metric-value:focus-visible {
         width: 100%;
         min-height: 44px;
         font-size: 15px;
+    }
+
+    .pregame-date-control input {
+        grid-column: 1;
+        grid-row: 2;
+        color: transparent;
+    }
+
+    .pregame-mobile-date-display {
+        z-index: 1;
+        display: flex;
+        grid-column: 1;
+        grid-row: 2;
+        align-items: center;
+        min-width: 0;
+        padding: 0 34px 0 11px;
+        color: #eef3f5;
+        font-size: 15px;
+        font-weight: 700;
+        letter-spacing: 0;
+        pointer-events: none;
     }
 
     .pregame-relative-date-buttons {
@@ -2543,6 +2568,13 @@ a.pregame-metric-value:focus-visible {
         width: 62px;
         min-width: 62px;
         padding-inline: 8px;
+    }
+
+    body.app-mode-pregame.pregame-game-detail-active .pregame-date-control,
+    body.app-mode-pregame.pregame-game-detail-active .pregame-date-step-controls,
+    body.app-mode-pregame.pregame-game-detail-active .pregame-today-control,
+    body.app-mode-pregame.pregame-game-detail-active #pregame-home-btn {
+        display: none !important;
     }
 
     .pregame-loading,
