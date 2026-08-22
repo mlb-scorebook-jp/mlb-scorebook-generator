@@ -2634,6 +2634,18 @@
         })
     });
 
+    const FRANCHISE_RECORD_FIELDS = Object.freeze({
+        homeRuns: "homeRuns",
+        hits: "hits",
+        runsBattedIn: "rbi",
+        stolenBases: "stolenBases",
+        runs: "runs",
+        wins: "wins",
+        strikeouts: "strikeOuts",
+        saves: "saves",
+        gamesPlayed: "gamesPlayed"
+    });
+
     const getOfficialFranchiseRecordsUrl = (teamId) => {
         const slug = window.MLB_SCOREBOOK_TEAM_SLUGS_BY_ID?.[Number(teamId)];
         return slug ? `https://www.mlb.com/${slug}/stats/all-time-totals` : "";
@@ -2650,7 +2662,7 @@
                     statType: "career",
                     sportId: "1",
                     teamId: String(numericTeamId),
-                    limit: "15"
+                    limit: "16"
                 });
                 const payload = await fetchJson(
                     `${API_ROOT}/v1/stats/leaders?${params}`,
@@ -2659,6 +2671,7 @@
                 return (payload?.leagueLeaders ?? []).flatMap((category) =>
                     (category?.leaders ?? []).map((leader) => ({
                         group,
+                        category: String(category?.leaderCategory ?? ""),
                         label: categories[category?.leaderCategory] ?? "",
                         rank: Number(leader?.rank),
                         value: Number(leader?.value),
@@ -2667,9 +2680,40 @@
                 );
             }));
         return groups.flat().filter((leader) =>
-            leader.label && leader.rank >= 1 && leader.rank <= 15 &&
+            leader.label && leader.rank >= 1 && leader.rank <= 16 &&
             Number.isFinite(leader.playerId) && Number.isFinite(leader.value)
         );
+    };
+
+    const getPlayerFranchiseStatsBeforeDate = async (person, teamId, group, date) => {
+        const playerId = Number(person?.id);
+        const numericTeamId = Number(teamId);
+        const debutDate = String(person?.mlbDebutDate ?? "");
+        const endDate = previousDate(date);
+        if (!playerId || !numericTeamId || !/^\d{4}-\d{2}-\d{2}$/.test(debutDate)) {
+            return null;
+        }
+        const params = new URLSearchParams({
+            stats: "byDateRange",
+            group,
+            gameType: "R",
+            sportIds: "1",
+            startDate: debutDate,
+            endDate
+        });
+        const payload = await fetchJson(
+            `${API_ROOT}/v1/people/${playerId}/stats?${params}`,
+            `pregame:franchise-stats:${playerId}:${numericTeamId}:${group}:${endDate}`
+        ).catch(() => null);
+        const splits = (payload?.stats ?? []).flatMap((entry) => entry?.splits ?? [])
+            .filter((split) => Number(split?.team?.id) === numericTeamId);
+        if (!splits.length) return null;
+        return splits.reduce((totals, split) => {
+            Object.values(FRANCHISE_RECORD_FIELDS).forEach((field) => {
+                totals[field] = (totals[field] ?? 0) + statNumber(split?.stat?.[field]);
+            });
+            return totals;
+        }, {});
     };
 
     const getOfficialTeamScheduleUrl = (team, gameDate) => {
@@ -4076,13 +4120,51 @@
         );
         const franchiseRecordsUrl = getOfficialFranchiseRecordsUrl(entry?.teamId);
         const franchiseLeaders = await getFranchiseLeaders(entry?.teamId);
-        const franchiseNotes = franchiseLeaders
-            .filter((leader) => leader.playerId === playerId && groups.includes(leader.group))
-            .map((leader) => ({
-                text: `球団歴代${leader.label}${leader.rank}位（${leader.value}）`,
-                href: franchiseRecordsUrl,
-                franchiseRecord: true
-            }));
+        const franchiseNotes = [];
+        for (const group of groups) {
+            const playerLeaders = franchiseLeaders.filter((leader) =>
+                leader.group === group && leader.playerId === playerId
+            );
+            if (!playerLeaders.length) continue;
+            const pregameStats = await getPlayerFranchiseStatsBeforeDate(
+                profile,
+                entry?.teamId,
+                group,
+                date
+            );
+            if (!pregameStats) continue;
+            playerLeaders.forEach((officialPlayerLeader) => {
+                const field = FRANCHISE_RECORD_FIELDS[officialPlayerLeader.category];
+                const total = statNumber(pregameStats?.[field]);
+                const categoryLeaders = franchiseLeaders
+                    .filter((leader) =>
+                        leader.group === group &&
+                        leader.category === officialPlayerLeader.category &&
+                        leader.playerId !== playerId
+                    )
+                    .sort((left, right) => right.value - left.value);
+                const pregameRank = categoryLeaders.filter((leader) =>
+                    leader.value > total
+                ).length + 1;
+                if (pregameRank > 15) return;
+
+                const nextLeader = pregameRank > 1
+                    ? categoryLeaders[pregameRank - 2]
+                    : null;
+                const remaining = nextLeader ? nextLeader.value + 1 - total : 0;
+                const showStrikeoutCountdown =
+                    officialPlayerLeader.category === "strikeouts" &&
+                    remaining >= 1 && remaining <= 10;
+                franchiseNotes.push({
+                    text: showStrikeoutCountdown
+                        ? `球団歴代${officialPlayerLeader.label}${pregameRank - 1}位` +
+                            `（${nextLeader.value}）まであと${remaining}`
+                        : `球団歴代${officialPlayerLeader.label}${pregameRank}位（${total}）`,
+                    href: franchiseRecordsUrl,
+                    franchiseRecord: true
+                });
+            });
+        }
         notes.push(...franchiseNotes);
         importance += franchiseNotes.length * 15;
         const streaks = getHittingStreaks(priorHittingLogs);
