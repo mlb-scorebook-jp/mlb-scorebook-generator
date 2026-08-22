@@ -286,7 +286,7 @@
     <script src="js/mlb-business-date.js?v=20260808-1"></script>
     <script src="js/mlb-latest-news.js?v=20260814-summary-1"></script>
     <script src="js/stathead-links.js?v=20260810-1"></script>
-    <script src="js/pregame.js?v=20260822-franchise-pregame-1"></script>
+    <script src="js/pregame.js?v=20260822-franchise-countdown-1"></script>
 
     <script>
         (() => {
@@ -1323,6 +1323,18 @@
                 })
             });
 
+            const FRANCHISE_RECORD_FIELDS = Object.freeze({
+                homeRuns: "homeRuns",
+                hits: "hits",
+                runsBattedIn: "rbi",
+                stolenBases: "stolenBases",
+                runs: "runs",
+                wins: "wins",
+                strikeouts: "strikeOuts",
+                saves: "saves",
+                gamesPlayed: "gamesPlayed"
+            });
+
             const getOfficialFranchiseRecordsUrl = (teamId) => {
                 const teamUrl = getMlbTeamPageUrl(teamId);
                 return teamUrl ? `${teamUrl}/stats/all-time-totals` : "";
@@ -1342,7 +1354,7 @@
                             statType: "career",
                             sportId: "1",
                             teamId: String(numericTeamId),
-                            limit: "15"
+                            limit: "16"
                         });
                         const response = await fetch(
                             `https://statsapi.mlb.com/api/v1/stats/leaders?${params}`
@@ -1361,7 +1373,7 @@
                         );
                     }))
                     .then((groups) => groups.flat().filter((leader) =>
-                        leader.label && leader.rank >= 1 && leader.rank <= 15 &&
+                        leader.label && leader.rank >= 1 && leader.rank <= 16 &&
                         Number.isFinite(leader.playerId) && Number.isFinite(leader.value)
                     ))
                     .catch(() => []);
@@ -1378,7 +1390,26 @@
                 const playerById = new Map(players.map((player) => [Number(player?.id), player]));
                 const link = getOfficialFranchiseRecordsUrl(team?.id);
                 return leaders
-                    .filter((leader) => appearedIds.has(leader.playerId))
+                    .filter((leader) =>
+                        leader.rank <= 15 && appearedIds.has(leader.playerId)
+                    )
+                    .filter((leader) => {
+                        const player = playerById.get(leader.playerId);
+                        const field = FRANCHISE_RECORD_FIELDS[leader.category];
+                        const current = leader.group === "pitching"
+                            ? player?.currentGamePitching
+                            : player?.currentGameBatting;
+                        const gameValue = Number(current?.[field]) || 0;
+                        if (gameValue <= 0) return false;
+                        const pregameValue = leader.value - gameValue;
+                        const pregameRank = leaders.filter((candidate) =>
+                            candidate.group === leader.group &&
+                            candidate.category === leader.category &&
+                            candidate.playerId !== leader.playerId &&
+                            candidate.value > pregameValue
+                        ).length + 1;
+                        return pregameRank > leader.rank;
+                    })
                     .map((leader) => ({
                         text: `${code}　${getPersonName(playerById.get(leader.playerId)?.person)}　` +
                             `球団歴代${leader.label}${leader.rank}位（${leader.value}）`,

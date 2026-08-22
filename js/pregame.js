@@ -4152,14 +4152,12 @@
                     ? categoryLeaders[pregameRank - 2]
                     : null;
                 const remaining = nextLeader ? nextLeader.value + 1 - total : 0;
-                const showStrikeoutCountdown =
-                    officialPlayerLeader.category === "strikeouts" &&
-                    remaining >= 1 && remaining <= 10;
+                const countdownLimit = officialPlayerLeader.category === "strikeouts" ? 10 : 5;
+                const showCountdown = remaining >= 1 && remaining <= countdownLimit;
+                if (!showCountdown) return;
                 franchiseNotes.push({
-                    text: showStrikeoutCountdown
-                        ? `球団歴代${officialPlayerLeader.label}${pregameRank - 1}位` +
-                            `（${nextLeader.value}）まであと${remaining}`
-                        : `球団歴代${officialPlayerLeader.label}${pregameRank}位（${total}）`,
+                    text: `球団歴代${officialPlayerLeader.label}${pregameRank - 1}位` +
+                        `（${nextLeader.value}）まであと${remaining}`,
                     href: franchiseRecordsUrl,
                     franchiseRecord: true
                 });
