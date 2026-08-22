@@ -2,6 +2,30 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Stanton strains left calf while running, may not return in 2026",
+        "summaryJa": "G.スタントン（NYY）、復帰へ向けた最新状況",
+        "slug": "giancarlo-stanton-left-calf-strain-could-end-2026-season",
+        "url": "https://www.mlb.com/news/giancarlo-stanton-left-calf-strain-could-end-2026-season",
+        "contentDate": "2026-08-22T15:56:34.592Z",
+        "teamIds": [
+            147
+        ],
+        "playerIds": [
+            519317
+        ],
+        "gamePks": [
+            823509
+        ],
+        "taxonomy": [
+            "apple-news",
+            "injury"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "10 slow starters who have turned their seasons around",
         "summaryJa": "F.タティース Jr.の最新動向をMLB公式が詳報",
         "slug": "10-slow-starters-who-have-turned-their-2026-seasons-around",
@@ -858,6 +882,36 @@
         ]
     },
     {
+        "headline": "Injuries: Judge, Peña, Crochet, Dodgers, Abrams, Vladdy",
+        "summaryJa": "大谷翔平（LAD）らMLB各球団の最新負傷情報",
+        "slug": "baseball-injury-updates",
+        "url": "https://www.mlb.com/news/baseball-injury-updates",
+        "contentDate": "2026-08-22T04:01:00Z",
+        "teamIds": [],
+        "playerIds": [
+            641355,
+            596115,
+            608331,
+            592450,
+            519317,
+            665489,
+            641857,
+            665161,
+            676979,
+            607192,
+            621242,
+            669257
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "headline-breakout"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
         "headline": "To infinity and GONE! Isbel blasts off with Buzz Lightyear Players' Weekend bat",
         "summaryJa": "K.イズベル（KC）、本塁打で存在感",
         "slug": "kyle-isbel-homers-with-buzz-lightyear-bat-for-players-weekend",
@@ -1044,7 +1098,6 @@
             "ejection"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1161,6 +1214,7 @@
             "mlb-top-prospects"
         ],
         "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
@@ -1181,7 +1235,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1515,7 +1568,6 @@
             "wow"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -7073,29 +7125,6 @@
             "injury",
             "transactions",
             "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Pool work for Judge may be final step before hitting progression begins",
-        "summaryJa": "A.ジャッジ（NYY）の最新動向をMLB公式が詳報",
-        "slug": "aaron-judge-to-start-hitting-progression-for-yankees",
-        "url": "https://www.mlb.com/news/aaron-judge-to-start-hitting-progression-for-yankees",
-        "contentDate": "2026-08-18T22:27:41.922Z",
-        "teamIds": [
-            147
-        ],
-        "playerIds": [
-            592450
-        ],
-        "gamePks": [
-            824803
-        ],
-        "taxonomy": [
-            "apple-news",
-            "injury"
         ],
         "sourceScopes": [
             "球団公式"
