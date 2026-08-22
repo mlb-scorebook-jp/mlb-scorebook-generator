@@ -2,6 +2,74 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Vlad Jr. returns from IL as Blue Jays continue pivotal series vs. Yanks",
+        "summaryJa": "V.ゲレーロ Jr.（TOR）、復帰へ向けた最新状況",
+        "slug": "vladimir-guerrero-jr-concussion-il-blue-jays-return",
+        "url": "https://www.mlb.com/news/vladimir-guerrero-jr-concussion-il-blue-jays-return",
+        "contentDate": "2026-08-22T18:11:00Z",
+        "teamIds": [
+            141
+        ],
+        "playerIds": [
+            665489
+        ],
+        "gamePks": [
+            823509
+        ],
+        "taxonomy": [
+            "injury",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Latest Brewers injuries & transactions",
+        "summaryJa": "ブルワーズの負傷状況をMLB公式が詳報",
+        "slug": "brewers-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/brewers-injuries-and-roster-moves",
+        "contentDate": "2026-08-22T18:01:00Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Woodruff won't need shoulder surgery, holds out faint hope for '26 return",
+        "summaryJa": "B.ウッドラフ（MIL）、復帰へ向けた最新状況",
+        "slug": "brandon-woodruff-says-he-won-t-need-shoulder-surgery",
+        "url": "https://www.mlb.com/news/brandon-woodruff-says-he-won-t-need-shoulder-surgery",
+        "contentDate": "2026-08-22T17:57:59.124Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [
+            605540
+        ],
+        "gamePks": [
+            823743
+        ],
+        "taxonomy": [
+            "apple-news",
+            "injury"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Latest Yankees injuries and transactions",
         "summaryJa": "ヤンキースの負傷状況をMLB公式が詳報",
         "slug": "yankees-injuries-and-roster-moves",
@@ -18,30 +86,6 @@
             "exclude-from-personalization"
         ],
         "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Vlad Jr. returning from IL as Blue Jays continue pivotal series vs. Yanks",
-        "summaryJa": "V.ゲレーロ Jr.（TOR）、復帰へ向けた最新状況",
-        "slug": "vladimir-guerrero-jr-concussion-il-blue-jays-return",
-        "url": "https://www.mlb.com/news/vladimir-guerrero-jr-concussion-il-blue-jays-return",
-        "contentDate": "2026-08-22T17:34:00Z",
-        "teamIds": [
-            141
-        ],
-        "playerIds": [
-            665489
-        ],
-        "gamePks": [
-            823509
-        ],
-        "taxonomy": [
-            "injury",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -114,6 +158,23 @@
         "taxonomy": [
             "injury",
             "headline-breakout"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "Everything you need to know about 2026 Little League Classic (ESPN, Sunday, 7 p.m. ET)",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "little-league-classic-2026-date-matchup-location-and-more",
+        "url": "https://www.mlb.com/news/little-league-classic-2026-date-matchup-location-and-more",
+        "contentDate": "2026-08-22T17:01:42.162Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "little-league-classic",
+            "apple-news"
         ],
         "sourceScopes": [
             "MLB"
@@ -505,7 +566,6 @@
             "hot-streak"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -2230,26 +2290,6 @@
         ]
     },
     {
-        "headline": "Latest Brewers injuries & transactions",
-        "summaryJa": "ブルワーズの負傷状況をMLB公式が詳報",
-        "slug": "brewers-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/brewers-injuries-and-roster-moves",
-        "contentDate": "2026-08-21T18:40:00Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Trammell's impact can be seen throughout Tigers' infield",
         "summaryJa": "A.トラメル（DET）の最新動向をMLB公式が詳報",
         "slug": "tigers-have-fielded-infield-of-players-taught-by-alan-trammell",
@@ -2806,23 +2846,6 @@
         ],
         "sourceScopes": [
             "球団公式"
-        ]
-    },
-    {
-        "headline": "Everything you need to know about 2026 MLB Players' Weekend",
-        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
-        "slug": "mlb-players-weekend-2026-date-themes-events-and-more",
-        "url": "https://www.mlb.com/news/mlb-players-weekend-2026-date-themes-events-and-more",
-        "contentDate": "2026-08-21T04:43:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "players-weekend"
-        ],
-        "sourceScopes": [
-            "MLB"
         ]
     },
     {
