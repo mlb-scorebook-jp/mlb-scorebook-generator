@@ -286,7 +286,7 @@
     <script src="js/mlb-business-date.js?v=20260808-1"></script>
     <script src="js/mlb-latest-news.js?v=20260814-summary-1"></script>
     <script src="js/stathead-links.js?v=20260810-1"></script>
-    <script src="js/pregame.js?v=20260822-pregame-scroll-top-2"></script>
+    <script src="js/pregame.js?v=20260822-franchise-records-1"></script>
 
     <script>
         (() => {
@@ -1304,7 +1304,89 @@
             const playerSearchGameFeedCache = new Map();
             let playerSearchResultsGeneration = 0;
             const officialGameArticlesCache = new Map();
+            const franchiseLeadersCache = new Map();
             let allTimeStrikeoutLeadersRequest = null;
+
+            const FRANCHISE_RECORD_CATEGORIES = Object.freeze({
+                hitting: Object.freeze({
+                    homeRuns: "本塁打",
+                    hits: "安打",
+                    runsBattedIn: "打点",
+                    stolenBases: "盗塁",
+                    runs: "得点"
+                }),
+                pitching: Object.freeze({
+                    wins: "勝利",
+                    strikeouts: "奪三振",
+                    saves: "セーブ",
+                    gamesPlayed: "登板"
+                })
+            });
+
+            const getOfficialFranchiseRecordsUrl = (teamId) => {
+                const teamUrl = getMlbTeamPageUrl(teamId);
+                return teamUrl ? `${teamUrl}/stats/all-time-totals` : "";
+            };
+
+            const fetchFranchiseLeaders = async (teamId) => {
+                const numericTeamId = Number(teamId);
+                if (!Number.isFinite(numericTeamId)) return [];
+                if (franchiseLeadersCache.has(numericTeamId)) {
+                    return franchiseLeadersCache.get(numericTeamId);
+                }
+                const request = Promise.all(Object.entries(FRANCHISE_RECORD_CATEGORIES)
+                    .map(async ([group, categories]) => {
+                        const params = new URLSearchParams({
+                            leaderCategories: Object.keys(categories).join(","),
+                            statGroup: group,
+                            statType: "career",
+                            sportId: "1",
+                            teamId: String(numericTeamId),
+                            limit: "15"
+                        });
+                        const response = await fetch(
+                            `https://statsapi.mlb.com/api/v1/stats/leaders?${params}`
+                        );
+                        if (!response.ok) return [];
+                        const payload = await response.json();
+                        return (payload?.leagueLeaders ?? []).flatMap((category) =>
+                            (category?.leaders ?? []).map((leader) => ({
+                                group,
+                                category: String(category?.leaderCategory ?? ""),
+                                label: categories[category?.leaderCategory] ?? "",
+                                rank: Number(leader?.rank),
+                                value: Number(leader?.value),
+                                playerId: Number(leader?.person?.id)
+                            }))
+                        );
+                    }))
+                    .then((groups) => groups.flat().filter((leader) =>
+                        leader.label && leader.rank >= 1 && leader.rank <= 15 &&
+                        Number.isFinite(leader.playerId) && Number.isFinite(leader.value)
+                    ))
+                    .catch(() => []);
+                franchiseLeadersCache.set(numericTeamId, request);
+                return request;
+            };
+
+            const buildFranchiseRecordNotes = async (players, team, code) => {
+                const leaders = await fetchFranchiseLeaders(team?.id);
+                if (!leaders.length) return [];
+                const appearedIds = new Set(players
+                    .filter((player) => player?.appearedInCurrentGame)
+                    .map((player) => Number(player?.id)));
+                const playerById = new Map(players.map((player) => [Number(player?.id), player]));
+                const link = getOfficialFranchiseRecordsUrl(team?.id);
+                return leaders
+                    .filter((leader) => appearedIds.has(leader.playerId))
+                    .map((leader) => ({
+                        text: `${code}　${getPersonName(playerById.get(leader.playerId)?.person)}　` +
+                            `球団歴代${leader.label}${leader.rank}位（${leader.value}）`,
+                        priority: 0,
+                        link,
+                        linkType: "mlb-official-record"
+                    }));
+            };
 
             const getSpecialNoteText = (note) =>
                 typeof note === "object" && note !== null
@@ -2876,6 +2958,36 @@
                 return count >= 3 ? { type: latest, count } : null;
             };
 
+            const getTeamShutoutResult = (schedule, teamId, gamePk) => {
+                const shutouts = schedule.filter((game) => {
+                    const away = game?.teams?.away ?? {};
+                    const home = game?.teams?.home ?? {};
+                    const isAway = Number(away?.team?.id) === Number(teamId);
+                    const team = isAway ? away : home;
+                    const opponent = isAway ? home : away;
+                    const teamScore = Number(team?.score);
+                    const opponentScore = Number(opponent?.score);
+                    return Number.isFinite(teamScore) && Number.isFinite(opponentScore) &&
+                        teamScore !== opponentScore && (teamScore === 0 || opponentScore === 0);
+                }).sort((left, right) =>
+                    String(left?.officialDate ?? left?.gameDate ?? "").localeCompare(
+                        String(right?.officialDate ?? right?.gameDate ?? "")
+                    ) || (Number(left?.gamePk) || 0) - (Number(right?.gamePk) || 0)
+                );
+                const current = shutouts.find((game) => Number(game?.gamePk) === Number(gamePk));
+                if (!current) return null;
+                const away = current?.teams?.away ?? {};
+                const home = current?.teams?.home ?? {};
+                const isAway = Number(away?.team?.id) === Number(teamId);
+                const teamScore = Number((isAway ? away : home)?.score);
+                return {
+                    type: teamScore === 0 ? "loss" : "win",
+                    count: shutouts.findIndex((game) =>
+                        Number(game?.gamePk) === Number(gamePk)
+                    ) + 1
+                };
+            };
+
             const fetchStreakNotes = async (data, gamePk) => {
                 const gameFinal = isGameFinal(data);
                 const liveRevision = (data?.liveData?.plays?.allPlays ?? []).reduce(
@@ -2976,6 +3088,11 @@
                             code,
                             context
                         ));
+                        notes.push(...await buildFranchiseRecordNotes(
+                            analyzed,
+                            team,
+                            code
+                        ));
                     }
                     notes.push(...await buildJapaneseHitterHomeRunNotes(
                         analyzed,
@@ -3045,6 +3162,20 @@
                         notes.push({
                             text: `${code}　${teamStreak.count}${teamStreak.type === "win" ? "連勝" : "連敗"}`,
                             priority: -1
+                        });
+                    }
+                    const shutoutResult = gameFinal && gameType === "R"
+                        ? getTeamShutoutResult(scheduleThroughCurrent, team?.id, gamePk)
+                        : null;
+                    if (shutoutResult) {
+                        notes.push({
+                            text: `${code}　今季${shutoutResult.count}度目の` +
+                                `完封${shutoutResult.type === "win" ? "勝ち" : "負け"}`,
+                            priority: -2,
+                            link: getMlbTeamPageUrl(team?.id)
+                                ? `${getMlbTeamPageUrl(team.id)}/schedule/${officialDate.slice(0, 7)}`
+                                : "",
+                            linkType: "mlb-official-record"
                         });
                     }
                     const lineupStatusNotes = await getLineupStatusNotes(
@@ -6253,7 +6384,9 @@
                             const sourceLink = createElement(
                                 "a",
                                 "special-note-source-link",
-                                "コメントあり"
+                                noteData.linkType === "mlb-official-record"
+                                    ? "MLB公式"
+                                    : "コメントあり"
                             );
                             sourceLink.href = noteData.link;
                             sourceLink.target = "_blank";
