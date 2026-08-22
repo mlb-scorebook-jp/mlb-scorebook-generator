@@ -2,6 +2,75 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Dodgers call up former D-backs OF Thomas as Pages heads to IL",
+        "summaryJa": "A.トーマス（LAD）の負傷状況をMLB公式が詳報",
+        "slug": "alek-thomas-dodgers-callup-andy-pages-injured-list",
+        "url": "https://www.mlb.com/news/alek-thomas-dodgers-callup-andy-pages-injured-list",
+        "contentDate": "2026-08-22T19:42:55.711Z",
+        "teamIds": [
+            119
+        ],
+        "playerIds": [
+            677950,
+            681624
+        ],
+        "gamePks": [
+            823910
+        ],
+        "taxonomy": [
+            "injury",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Weathers exits start against Blue Jays with forearm discomfort",
+        "summaryJa": "R.ウェザーズ（NYY）の負傷状況をMLB公式が詳報",
+        "slug": "ryan-weathers-exits-yankees-game-with-injury",
+        "url": "https://www.mlb.com/news/ryan-weathers-exits-yankees-game-with-injury",
+        "contentDate": "2026-08-22T19:38:00Z",
+        "teamIds": [
+            147
+        ],
+        "playerIds": [
+            677960
+        ],
+        "gamePks": [
+            823509
+        ],
+        "taxonomy": [
+            "apple-news",
+            "injury"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Latest Marlins injuries & transactions",
+        "summaryJa": "マーリンズの負傷状況をMLB公式が詳報",
+        "slug": "marlins-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/marlins-injuries-and-roster-moves",
+        "contentDate": "2026-08-22T19:16:00Z",
+        "teamIds": [
+            146
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Vlad Jr. returns from IL as Blue Jays continue pivotal series vs. Yanks",
         "summaryJa": "V.ゲレーロ Jr.（TOR）、復帰へ向けた最新状況",
         "slug": "vladimir-guerrero-jr-concussion-il-blue-jays-return",
@@ -861,7 +930,6 @@
             "injury"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1543,7 +1611,6 @@
             "hard-throw"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -2157,26 +2224,6 @@
         "taxonomy": [
             "transactions",
             "injury",
-            "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Latest Marlins injuries & transactions",
-        "summaryJa": "マーリンズの負傷状況をMLB公式が詳報",
-        "slug": "marlins-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/marlins-injuries-and-roster-moves",
-        "contentDate": "2026-08-21T22:23:00Z",
-        "teamIds": [
-            146
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
             "exclude-from-personalization"
         ],
         "sourceScopes": [
@@ -6003,30 +6050,6 @@
         ]
     },
     {
-        "headline": "Ohtani secures 6th straight 30-HR season to keep pace with PCA in tight NL MVP race",
-        "summaryJa": "大谷 翔平（LAD）、記録達成の最新情報",
-        "slug": "shohei-ohtani-hits-30th-home-run-of-season-vs-rockies",
-        "url": "https://www.mlb.com/news/shohei-ohtani-hits-30th-home-run-of-season-vs-rockies",
-        "contentDate": "2026-08-19T05:02:00Z",
-        "teamIds": [
-            119
-        ],
-        "playerIds": [
-            660271
-        ],
-        "gamePks": [
-            824319
-        ],
-        "taxonomy": [
-            "apple-news",
-            "long-home-runs",
-            "game-recap"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Mayer plays rehab game, moves closer to Giants debut",
         "summaryJa": "M.マイヤー（SF）、復帰へ向けた最新状況",
         "slug": "marcelo-mayer-rehab-game-triple-a-sacramento",
@@ -6659,29 +6682,6 @@
         "taxonomy": [
             "apple-news",
             "game-recap"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "'Big-time challenge' gets Rodón out of jam in strong return from IL",
-        "summaryJa": "C.ロドン（NYY）、復帰へ向けた最新状況",
-        "slug": "carlos-rodon-activated-start-vs-orioles",
-        "url": "https://www.mlb.com/news/carlos-rodon-activated-start-vs-orioles",
-        "contentDate": "2026-08-19T03:06:00Z",
-        "teamIds": [
-            147
-        ],
-        "playerIds": [
-            607074
-        ],
-        "gamePks": [
-            824803
-        ],
-        "taxonomy": [
-            "apple-news",
-            "abs"
         ],
         "sourceScopes": [
             "球団公式"
