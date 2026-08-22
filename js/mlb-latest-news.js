@@ -2,6 +2,188 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Latest Cardinals injuries & transactions",
+        "summaryJa": "カージナルスの負傷状況をMLB公式が詳報",
+        "slug": "cardinals-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/cardinals-injuries-and-roster-moves",
+        "contentDate": "2026-08-22T21:35:00Z",
+        "teamIds": [
+            138
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Cardinals place Dobbins (flexor strain) on IL, recall Mathews to start at Philly",
+        "summaryJa": "H.ドビンズ（STL）の負傷状況をMLB公式が詳報",
+        "slug": "hunter-dobbins-cardinals-injured-list-right-flexor-strain",
+        "url": "https://www.mlb.com/news/hunter-dobbins-cardinals-injured-list-right-flexor-strain",
+        "contentDate": "2026-08-22T21:17:43.783Z",
+        "teamIds": [
+            138
+        ],
+        "playerIds": [
+            690928
+        ],
+        "gamePks": [
+            823422
+        ],
+        "taxonomy": [
+            "injury",
+            "transactions"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Latest Astros injuries & transactions",
+        "summaryJa": "アストロズの負傷状況をMLB公式が詳報",
+        "slug": "astros-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/astros-injuries-and-roster-moves",
+        "contentDate": "2026-08-22T21:15:00Z",
+        "teamIds": [
+            117
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "transactions",
+            "injury",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Vlad Jr. returns from IL as Blue Jays continue pivotal series vs. Yanks",
+        "summaryJa": "V.ゲレーロ Jr.（TOR）、復帰へ向けた最新状況",
+        "slug": "vladimir-guerrero-jr-concussion-il-blue-jays-return",
+        "url": "https://www.mlb.com/news/vladimir-guerrero-jr-concussion-il-blue-jays-return",
+        "contentDate": "2026-08-22T21:08:00Z",
+        "teamIds": [
+            141
+        ],
+        "playerIds": [
+            665489
+        ],
+        "gamePks": [
+            823509
+        ],
+        "taxonomy": [
+            "injury",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Dylan Cease boosts Cy Young case against Yankees",
+        "summaryJa": "D.シース（TOR）の最新動向をMLB公式が詳報",
+        "slug": "dylan-cease-boosts-cy-young-case-against-yankees",
+        "url": "https://www.mlb.com/news/dylan-cease-boosts-cy-young-case-against-yankees",
+        "contentDate": "2026-08-22T21:04:12.336Z",
+        "teamIds": [
+            141
+        ],
+        "playerIds": [
+            656302
+        ],
+        "gamePks": [
+            823509
+        ],
+        "taxonomy": [
+            "apple-news",
+            "takeaways",
+            "game-recap"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Weathers exits start against Blue Jays with forearm discomfort",
+        "summaryJa": "R.ウェザーズ（NYY）の負傷状況をMLB公式が詳報",
+        "slug": "ryan-weathers-exits-yankees-game-with-injury",
+        "url": "https://www.mlb.com/news/ryan-weathers-exits-yankees-game-with-injury",
+        "contentDate": "2026-08-22T20:59:00Z",
+        "teamIds": [
+            147
+        ],
+        "playerIds": [
+            677960
+        ],
+        "gamePks": [
+            823509
+        ],
+        "taxonomy": [
+            "apple-news",
+            "injury",
+            "game-recap-losing"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Bauers sees 11 pitches for a walk -- then goes one better for big HR",
+        "summaryJa": "J.バウアーズ（MIL）、本塁打で存在感",
+        "slug": "jake-bauers-homers-as-brewers-beat-braves",
+        "url": "https://www.mlb.com/news/jake-bauers-homers-as-brewers-beat-braves",
+        "contentDate": "2026-08-22T20:55:19.592Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [
+            641343
+        ],
+        "gamePks": [
+            823743
+        ],
+        "taxonomy": [
+            "apple-news",
+            "game-recap"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Latest Phillies injuries & transactions",
+        "summaryJa": "フィリーズの負傷状況をMLB公式が詳報",
+        "slug": "phillies-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/phillies-injuries-and-roster-moves",
+        "contentDate": "2026-08-22T20:50:00Z",
+        "teamIds": [
+            143
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Dodgers call up former D-backs OF Thomas as Pages heads to IL",
         "summaryJa": "A.トーマス（LAD）の負傷状況をMLB公式が詳報",
         "slug": "alek-thomas-dodgers-callup-andy-pages-injured-list",
@@ -27,30 +209,6 @@
         ]
     },
     {
-        "headline": "Weathers exits start against Blue Jays with forearm discomfort",
-        "summaryJa": "R.ウェザーズ（NYY）の負傷状況をMLB公式が詳報",
-        "slug": "ryan-weathers-exits-yankees-game-with-injury",
-        "url": "https://www.mlb.com/news/ryan-weathers-exits-yankees-game-with-injury",
-        "contentDate": "2026-08-22T19:38:00Z",
-        "teamIds": [
-            147
-        ],
-        "playerIds": [
-            677960
-        ],
-        "gamePks": [
-            823509
-        ],
-        "taxonomy": [
-            "apple-news",
-            "injury"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Latest Marlins injuries & transactions",
         "summaryJa": "マーリンズの負傷状況をMLB公式が詳報",
         "slug": "marlins-injuries-and-roster-moves",
@@ -67,30 +225,6 @@
             "exclude-from-personalization"
         ],
         "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Vlad Jr. returns from IL as Blue Jays continue pivotal series vs. Yanks",
-        "summaryJa": "V.ゲレーロ Jr.（TOR）、復帰へ向けた最新状況",
-        "slug": "vladimir-guerrero-jr-concussion-il-blue-jays-return",
-        "url": "https://www.mlb.com/news/vladimir-guerrero-jr-concussion-il-blue-jays-return",
-        "contentDate": "2026-08-22T18:11:00Z",
-        "teamIds": [
-            141
-        ],
-        "playerIds": [
-            665489
-        ],
-        "gamePks": [
-            823509
-        ],
-        "taxonomy": [
-            "injury",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -435,7 +569,6 @@
             "game-recap"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -748,7 +881,6 @@
             "game-recap"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -885,26 +1017,6 @@
         ],
         "taxonomy": [
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Latest Cardinals injuries & transactions",
-        "summaryJa": "カージナルスの負傷状況をMLB公式が詳報",
-        "slug": "cardinals-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/cardinals-injuries-and-roster-moves",
-        "contentDate": "2026-08-22T04:49:00Z",
-        "teamIds": [
-            138
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
         ],
         "sourceScopes": [
             "球団公式"
@@ -1312,7 +1424,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -2171,26 +2282,6 @@
         ]
     },
     {
-        "headline": "Latest Phillies injuries & transactions",
-        "summaryJa": "フィリーズの負傷状況をMLB公式が詳報",
-        "slug": "phillies-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/phillies-injuries-and-roster-moves",
-        "contentDate": "2026-08-21T22:38:00Z",
-        "teamIds": [
-            143
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Latest O's injuries & transactions",
         "summaryJa": "オリオールズの負傷状況をMLB公式が詳報",
         "slug": "orioles-injuries-and-roster-moves",
@@ -2204,26 +2295,6 @@
         "taxonomy": [
             "injury",
             "transactions",
-            "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Latest Astros injuries & transactions",
-        "summaryJa": "アストロズの負傷状況をMLB公式が詳報",
-        "slug": "astros-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/astros-injuries-and-roster-moves",
-        "contentDate": "2026-08-21T22:23:00Z",
-        "teamIds": [
-            117
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "transactions",
-            "injury",
             "exclude-from-personalization"
         ],
         "sourceScopes": [
@@ -6211,30 +6282,6 @@
         ]
     },
     {
-        "headline": "Winn's career-high 3 extra-base hits back Leahy's strong start",
-        "summaryJa": "M.ウィン（STL）、記録達成の最新情報",
-        "slug": "masyn-winn-records-three-extra-base-hits-in-cardinals-win",
-        "url": "https://www.mlb.com/news/masyn-winn-records-three-extra-base-hits-in-cardinals-win",
-        "contentDate": "2026-08-19T04:18:00Z",
-        "teamIds": [
-            138
-        ],
-        "playerIds": [
-            691026,
-            681517
-        ],
-        "gamePks": [
-            824475
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Rodríguez's gaffe a microcosm of worst loss in Mariners history",
         "summaryJa": "J.ロドリゲス（SEA）の最新動向をMLB公式が詳報",
         "slug": "julio-rodriguez-throws-ball-into-stands-in-mariners-loss-to-brewers",
@@ -9182,30 +9229,6 @@
         ],
         "taxonomy": [
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "McAdoo channels Vladdy Jr. as Blue Jays continue stunning climb",
-        "summaryJa": "C.マカドゥー（TOR）、勝利を呼び込む活躍",
-        "slug": "charles-mcadoo-drives-in-2-as-blue-jays-beat-yankees",
-        "url": "https://www.mlb.com/news/charles-mcadoo-drives-in-2-as-blue-jays-beat-yankees",
-        "contentDate": "2026-08-15T22:53:00Z",
-        "teamIds": [
-            141
-        ],
-        "playerIds": [
-            807727
-        ],
-        "gamePks": [
-            822775
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap",
-            "takeaways"
         ],
         "sourceScopes": [
             "球団公式"
