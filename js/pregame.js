@@ -1126,8 +1126,15 @@
                 !isFinal(game) &&
                 Number(game?.teams?.[side]?.probablePitcher?.id) === Number(person.id)
             );
+            if (battingAppearances.length) {
+                roles = {
+                    ...roles,
+                    hitter: true,
+                    twoWay: roles.twoWay || roles.pitcher
+                };
+            }
             if (pitchingAppearances.length || probableAppearances.length) {
-                roles = { ...roles, pitcher: true, hitter: roles.twoWay };
+                roles = { ...roles, pitcher: true };
             }
 
             if (battingAppearances.length && roles.hitter) {
