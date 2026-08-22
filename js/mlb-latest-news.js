@@ -2,6 +2,55 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "10 slow starters who have turned their seasons around",
+        "summaryJa": "F.タティース Jr.の最新動向をMLB公式が詳報",
+        "slug": "10-slow-starters-who-have-turned-their-2026-seasons-around",
+        "url": "https://www.mlb.com/news/10-slow-starters-who-have-turned-their-2026-seasons-around",
+        "contentDate": "2026-08-22T15:35:00Z",
+        "teamIds": [],
+        "playerIds": [
+            665487,
+            681082,
+            608324,
+            702332,
+            680757,
+            516811,
+            694297,
+            681517,
+            702070,
+            669432
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Witherspoon twirls 5 no-hit frames, continuing dominance since trade to Orioles' system",
+        "summaryJa": "Kyson Witherspoon（BAL）の移籍・契約に関する最新情報",
+        "slug": "orioles-prospect-kyson-witherspoon-pitches-5-no-hit-innings",
+        "url": "https://www.mlb.com/news/orioles-prospect-kyson-witherspoon-pitches-5-no-hit-innings",
+        "contentDate": "2026-08-22T14:45:00.328Z",
+        "teamIds": [
+            110
+        ],
+        "playerIds": [
+            804817
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "mlb-top-prospects",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "New defensive metric shows Burleson rates among best at first base",
         "summaryJa": "A.バールソン（STL）を巡る注目点をMLB公式が分析",
         "slug": "alec-burleson-defensive-metrics-first-base-cardinals",
@@ -338,34 +387,6 @@
             114
         ],
         "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "10 slow starters who have turned their seasons around",
-        "summaryJa": "F.タティース Jr.の最新動向をMLB公式が詳報",
-        "slug": "10-slow-starters-who-have-turned-their-2026-seasons-around",
-        "url": "https://www.mlb.com/news/10-slow-starters-who-have-turned-their-2026-seasons-around",
-        "contentDate": "2026-08-22T05:31:00Z",
-        "teamIds": [],
-        "playerIds": [
-            665487,
-            681082,
-            608324,
-            702332,
-            680757,
-            516811,
-            694297,
-            681517,
-            702070,
-            669432
-        ],
         "gamePks": [],
         "taxonomy": [
             "apple-news"
@@ -7300,28 +7321,6 @@
         ],
         "gamePks": [
             822938
-        ],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Pinch-hitting resurgence fueling Orioles' playoff push",
-        "summaryJa": "T.オニール（BAL）の最新動向をMLB公式が詳報",
-        "slug": "tyler-o-neill-leading-orioles-pinch-hit-resurgence",
-        "url": "https://www.mlb.com/news/tyler-o-neill-leading-orioles-pinch-hit-resurgence",
-        "contentDate": "2026-08-18T15:01:14.859Z",
-        "teamIds": [
-            110
-        ],
-        "playerIds": [
-            641933
-        ],
-        "gamePks": [
-            824803
         ],
         "taxonomy": [
             "apple-news"
