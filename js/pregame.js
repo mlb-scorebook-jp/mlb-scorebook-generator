@@ -950,11 +950,40 @@
         return response.json();
     };
 
-    const japanesePlayerDailyRoles = (person) => {
-        const position = String(person?.primaryPosition?.abbreviation ?? "").toUpperCase();
+    const getJapaneseDailyPitcherRoles = async (teamId, date) => {
+        const [activeRoster, depthChart] = await Promise.all([
+            getActiveRosterPlayers(teamId, date),
+            fetchJson(
+                `${API_ROOT}/v1/teams/${teamId}/roster/depthChart?date=${date}&hydrate=person`,
+                `pregame:depth-chart:${teamId}:${date}`
+            ).catch(() => null)
+        ]);
+        const activePositions = new Map(activeRoster.map((entry) => [
+            Number(entry?.person?.id),
+            String(entry?.position?.abbreviation ?? entry?.person?.primaryPosition?.abbreviation ?? "")
+                .toUpperCase()
+        ]));
+        const relieverIds = new Set((depthChart?.roster ?? [])
+            .filter((entry) => String(entry?.position?.abbreviation ?? "").toUpperCase() === "P")
+            .map((entry) => Number(entry?.person?.id)));
+        return { activePositions, relieverIds };
+    };
+
+    const japanesePlayerDailyRoles = (person, officialRoles = null) => {
+        const position = String(
+            officialRoles?.activePositions?.get(Number(person?.id)) ??
+            person?.primaryPosition?.abbreviation ??
+            ""
+        ).toUpperCase();
+        const twoWay = position === "TWP";
+        const pitcher = position === "P" || twoWay;
         return {
-            hitter: position !== "P" || position === "TWP",
-            pitcher: position === "P" || position === "TWP"
+            hitter: !pitcher || twoWay,
+            pitcher,
+            twoWay,
+            pitcherRole: pitcher
+                ? (officialRoles?.relieverIds?.has(Number(person?.id)) ? "reliever" : "starter")
+                : ""
         };
     };
 
@@ -996,6 +1025,15 @@
 
     const buildJapaneseDailyStats = async (people, gamesByTeam) => {
         const visiblePeople = people.filter(isJapaneseDailyStatsVisible);
+        const date = String(currentDate ?? "");
+        const teamIds = [...new Set(visiblePeople
+            .map((person) => Number(person.pregameTeamId))
+            .filter(Boolean))];
+        const officialRoleEntries = await Promise.all(teamIds.map(async (teamId) => [
+            teamId,
+            await getJapaneseDailyPitcherRoles(teamId, date).catch(() => null)
+        ]));
+        const officialRolesByTeam = new Map(officialRoleEntries);
         const relevantGames = [...new Map(visiblePeople.flatMap((person) =>
             (gamesByTeam.get(Number(person.pregameTeamId)) ?? [])
                 .filter((game) => isDailyJapaneseGameLive(game) || isFinal(game))
@@ -1009,13 +1047,15 @@
         const hitters = [];
         const pitchers = [];
         const absent = [];
+        const bullpenWaiting = [];
         const noPitching = [];
         const noGame = [];
 
         visiblePeople.forEach((person) => {
             const teamId = Number(person.pregameTeamId);
             const games = gamesByTeam.get(teamId) ?? [];
-            const roles = japanesePlayerDailyRoles(person);
+            const officialRoles = officialRolesByTeam.get(teamId);
+            let roles = japanesePlayerDailyRoles(person, officialRoles);
             if (!games.length) {
                 noGame.push(playerName(person));
                 return;
@@ -1044,8 +1084,15 @@
             const pitchingAppearances = appearances.filter(({ entry }) =>
                 hasDailyPitchingAppearance(entry)
             );
+            const probableAppearances = appearances.filter(({ game, side }) =>
+                !isFinal(game) &&
+                Number(game?.teams?.[side]?.probablePitcher?.id) === Number(person.id)
+            );
+            if (pitchingAppearances.length || probableAppearances.length) {
+                roles = { ...roles, pitcher: true, hitter: roles.twoWay };
+            }
 
-            if (battingAppearances.length) {
+            if (battingAppearances.length && roles.hitter) {
                 const stats = battingAppearances.reduce((total, { entry }) => {
                     const batting = entry?.stats?.batting ?? {};
                     ["atBats", "hits", "homeRuns", "rbi", "stolenBases", "strikeOuts", "baseOnBalls"]
@@ -1058,7 +1105,7 @@
                     opponent: dailyOpponentLabel(battingAppearances),
                     stats
                 });
-            } else if (roles.hitter) {
+            } else if (roles.hitter && !probableAppearances.length) {
                 absent.push(playerName(person));
             }
 
@@ -1079,12 +1126,32 @@
                     opponent: dailyOpponentLabel(pitchingAppearances),
                     stats: { ...stats, inningsPitched: formatInnings(stats.outs) }
                 });
-            } else if (roles.pitcher) {
-                noPitching.push(playerName(person));
+            } else if (probableAppearances.length) {
+                const statusGame = probableAppearances.find(({ game }) =>
+                    isDailyJapaneseGameLive(game)
+                ) ?? probableAppearances[0];
+                pitchers.push({
+                    person,
+                    label: gameCardStatusLabel(statusGame.game),
+                    live: isDailyJapaneseGameLive(statusGame.game),
+                    opponent: dailyOpponentLabel(probableAppearances),
+                    stats: {
+                        inningsPitched: "0.0", pitches: 0, hits: 0, runs: 0,
+                        earnedRuns: 0, strikeOuts: 0, baseOnBalls: 0,
+                        wins: 0, losses: 0, saves: 0
+                    }
+                });
+            } else if (roles.pitcher && !roles.twoWay) {
+                const allGamesFinal = games.every((game) => isFinal(game));
+                if (roles.pitcherRole === "reliever" && !allGamesFinal) {
+                    bullpenWaiting.push(playerName(person));
+                } else {
+                    noPitching.push(playerName(person));
+                }
             }
         });
 
-        return { hitters, pitchers, absent, noPitching, noGame };
+        return { hitters, pitchers, absent, bullpenWaiting, noPitching, noGame };
     };
 
     const renderJapaneseDailyTable = (title, columns, rows) => {
@@ -1167,6 +1234,7 @@
         const inactive = el("div", "pregame-japanese-daily-inactive");
         [
             ["欠場", daily.absent],
+            ["ブルペン待機", daily.bullpenWaiting],
             ["登板なし", daily.noPitching],
             ["試合なし", daily.noGame]
         ].forEach(([label, names]) => {
