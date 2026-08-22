@@ -2,6 +2,30 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "New defensive metric shows Burleson rates among best at first base",
+        "summaryJa": "A.バールソン（STL）を巡る注目点をMLB公式が分析",
+        "slug": "alec-burleson-defensive-metrics-first-base-cardinals",
+        "url": "https://www.mlb.com/news/alec-burleson-defensive-metrics-first-base-cardinals",
+        "contentDate": "2026-08-22T14:22:07.564Z",
+        "teamIds": [
+            138
+        ],
+        "playerIds": [
+            676475
+        ],
+        "gamePks": [
+            823422
+        ],
+        "taxonomy": [
+            "apple-news",
+            "defense",
+            "player-tracking"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "'Play Gasolina': Palencia returns to Cubs' bullpen, though not to 9th-inning role",
         "summaryJa": "D.パレンシア（CHC）の負傷状況をMLB公式が詳報",
         "slug": "daniel-palencia-activated-from-injured-list",
@@ -7099,31 +7123,6 @@
         "taxonomy": [
             "apple-news",
             "injury"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Cardinals' excellent farm system got even better after Draft, Deadline",
-        "summaryJa": "Rainiel Rodriguez（STL）ら注目選手の最新動向",
-        "slug": "cardinals-top-30-prospects-2026-midseason-update",
-        "url": "https://www.mlb.com/news/cardinals-top-30-prospects-2026-midseason-update",
-        "contentDate": "2026-08-18T19:18:35.317Z",
-        "teamIds": [
-            138
-        ],
-        "playerIds": [
-            823787,
-            824604,
-            695491,
-            825484,
-            815119
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "mlb-top-prospects"
         ],
         "sourceScopes": [
             "球団公式"
