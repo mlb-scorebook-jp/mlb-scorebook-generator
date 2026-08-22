@@ -999,6 +999,31 @@
     const dailyOpponent = (game, side) =>
         game?.teams?.[side === "away" ? "home" : "away"]?.team ?? {};
 
+    const mlbGamedayUrl = (game) => {
+        const gamePk = Number(game?.gamePk);
+        if (!gamePk) return "";
+        const teamSlug = (team) => String(
+            team?.clubName ?? team?.teamName ?? team?.name ?? "team"
+        ).toLowerCase()
+            .replace(/[^a-z0-9]+/g, "-")
+            .replace(/^-+|-+$/g, "") || "team";
+        const away = teamSlug(game?.teams?.away?.team);
+        const home = teamSlug(game?.teams?.home?.team);
+        const date = String(game?.officialDate ?? currentDate ?? "");
+        const datePath = /^\d{4}-\d{2}-\d{2}$/.test(date) ? date.replaceAll("-", "/") : "";
+        const state = isFinal(game) ? "final" : isDailyJapaneseGameLive(game) ? "live" : "preview";
+        return datePath
+            ? `https://www.mlb.com/gameday/${away}-vs-${home}/${datePath}/${gamePk}/${state}`
+            : `https://www.mlb.com/gameday/${gamePk}/${state}`;
+    };
+
+    const dailyGamedayUrl = (appearances) => {
+        const selected = appearances.find(({ game }) => isDailyJapaneseGameLive(game)) ??
+            appearances.find(({ game }) => !isFinal(game)) ??
+            appearances.at(-1);
+        return mlbGamedayUrl(selected?.game);
+    };
+
     const hasDailyBattingAppearance = (entry) =>
         statNumber(entry?.stats?.batting?.gamesPlayed) > 0 ||
         Boolean(String(entry?.battingOrder ?? "").trim());
@@ -1057,7 +1082,7 @@
             const officialRoles = officialRolesByTeam.get(teamId);
             let roles = japanesePlayerDailyRoles(person, officialRoles);
             if (!games.length) {
-                noGame.push(playerName(person));
+                noGame.push({ name: playerName(person), gameUrl: "" });
                 return;
             }
             const appearances = games.map((game) => {
@@ -1103,10 +1128,14 @@
                     person,
                     ...dailyAppearanceStatus(battingAppearances),
                     opponent: dailyOpponentLabel(battingAppearances),
+                    gameUrl: dailyGamedayUrl(battingAppearances),
                     stats
                 });
             } else if (roles.hitter && !probableAppearances.length) {
-                absent.push(playerName(person));
+                absent.push({
+                    name: playerName(person),
+                    gameUrl: dailyGamedayUrl(appearances)
+                });
             }
 
             if (pitchingAppearances.length) {
@@ -1124,6 +1153,7 @@
                     person,
                     ...dailyAppearanceStatus(pitchingAppearances),
                     opponent: dailyOpponentLabel(pitchingAppearances),
+                    gameUrl: dailyGamedayUrl(pitchingAppearances),
                     stats: { ...stats, inningsPitched: formatInnings(stats.outs) }
                 });
             } else if (probableAppearances.length) {
@@ -1135,6 +1165,7 @@
                     label: gameCardStatusLabel(statusGame.game),
                     live: isDailyJapaneseGameLive(statusGame.game),
                     opponent: dailyOpponentLabel(probableAppearances),
+                    gameUrl: mlbGamedayUrl(statusGame.game),
                     stats: {
                         inningsPitched: "0.0", pitches: 0, hits: 0, runs: 0,
                         earnedRuns: 0, strikeOuts: 0, baseOnBalls: 0,
@@ -1144,9 +1175,15 @@
             } else if (roles.pitcher && !roles.twoWay) {
                 const allGamesFinal = games.every((game) => isFinal(game));
                 if (roles.pitcherRole === "reliever" && !allGamesFinal) {
-                    bullpenWaiting.push(playerName(person));
+                    bullpenWaiting.push({
+                        name: playerName(person),
+                        gameUrl: dailyGamedayUrl(appearances)
+                    });
                 } else {
-                    noPitching.push(playerName(person));
+                    noPitching.push({
+                        name: playerName(person),
+                        gameUrl: dailyGamedayUrl(appearances)
+                    });
                 }
             }
         });
@@ -1173,7 +1210,16 @@
             tableRow.dataset.pregamePlayer = String(row.person.id);
             columns.forEach(({ field, value }) => {
                 const cell = el("td", field === "status" && row.live ? "pregame-japanese-daily-live" : "");
-                cell.textContent = String(value ? value(row) : row.stats[field] ?? "-");
+                const text = String(value ? value(row) : row.stats[field] ?? "-");
+                if (field === "player" && row.gameUrl) {
+                    const link = el("a", "pregame-player-link", text);
+                    link.href = row.gameUrl;
+                    link.target = "_blank";
+                    link.rel = "noopener noreferrer";
+                    cell.append(link);
+                } else {
+                    cell.textContent = text;
+                }
                 tableRow.append(cell);
             });
             body.append(tableRow);
@@ -1241,7 +1287,20 @@
             if (!names.length) return;
             const row = el("div", "pregame-japanese-daily-inactive-row");
             row.append(el("strong", "", label));
-            names.forEach((name) => row.append(el("span", "", name)));
+            names.forEach((entry) => {
+                const item = typeof entry === "string" ? { name: entry, gameUrl: "" } : entry;
+                const name = el("span");
+                if (item.gameUrl) {
+                    const link = el("a", "pregame-player-link", item.name);
+                    link.href = item.gameUrl;
+                    link.target = "_blank";
+                    link.rel = "noopener noreferrer";
+                    name.append(link);
+                } else {
+                    name.textContent = item.name;
+                }
+                row.append(name);
+            });
             inactive.append(row);
         });
         layout.append(tables);
