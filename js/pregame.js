@@ -14,6 +14,22 @@
     const dom = {};
     let headerActionsAnchor = null;
 
+    const scrollPregameToTop = () => {
+        const reset = () => {
+            window.scrollTo(0, 0);
+            document.documentElement.scrollTop = 0;
+            document.body.scrollTop = 0;
+            [document.querySelector(".app-main"), dom.viewer, dom.view]
+                .filter(Boolean)
+                .forEach((node) => {
+                    node.scrollLeft = 0;
+                    node.scrollTop = 0;
+                });
+        };
+        reset();
+        requestAnimationFrame(reset);
+    };
+
     const placeHeaderActions = (inAppHeader = false) => {
         if (!dom.headerActions || !dom.appHeader || !headerActionsAnchor) return;
         if (inAppHeader) {
@@ -951,30 +967,18 @@
     };
 
     const getJapaneseDailyPitcherRoles = async (teamId, date) => {
-        const [activeRoster, depthChart] = await Promise.all([
-            getActiveRosterPlayers(teamId, date),
-            fetchJson(
-                `${API_ROOT}/v1/teams/${teamId}/roster/depthChart?date=${date}&hydrate=person`,
-                `pregame:depth-chart:${teamId}:${date}`
-            ).catch(() => null)
-        ]);
-        const activePositions = new Map(activeRoster.map((entry) => [
-            Number(entry?.person?.id),
-            String(entry?.position?.abbreviation ?? entry?.person?.primaryPosition?.abbreviation ?? "")
-                .toUpperCase()
-        ]));
+        const depthChart = await fetchJson(
+            `${API_ROOT}/v1/teams/${teamId}/roster/depthChart?date=${date}`,
+            `pregame:depth-chart:${teamId}:${date}`
+        ).catch(() => null);
         const relieverIds = new Set((depthChart?.roster ?? [])
             .filter((entry) => String(entry?.position?.abbreviation ?? "").toUpperCase() === "P")
             .map((entry) => Number(entry?.person?.id)));
-        return { activePositions, relieverIds };
+        return { relieverIds };
     };
 
     const japanesePlayerDailyRoles = (person, officialRoles = null) => {
-        const position = String(
-            officialRoles?.activePositions?.get(Number(person?.id)) ??
-            person?.primaryPosition?.abbreviation ??
-            ""
-        ).toUpperCase();
+        const position = String(person?.primaryPosition?.abbreviation ?? "").toUpperCase();
         const twoWay = position === "TWP";
         const pitcher = position === "P" || twoWay;
         return {
@@ -1052,6 +1056,15 @@
         const visiblePeople = people.filter(isJapaneseDailyStatsVisible);
         const date = String(currentDate ?? "");
         const teamIds = [...new Set(visiblePeople
+            .filter((person) => {
+                const position = String(person?.primaryPosition?.abbreviation ?? "").toUpperCase();
+                const games = gamesByTeam.get(Number(person.pregameTeamId)) ?? [];
+                const isProbable = games.some((game) => {
+                    const side = teamSideInGame(game, person.pregameTeamId);
+                    return Number(game?.teams?.[side]?.probablePitcher?.id) === Number(person.id);
+                });
+                return position === "P" && games.some((game) => !isFinal(game)) && !isProbable;
+            })
             .map((person) => Number(person.pregameTeamId))
             .filter(Boolean))];
         const officialRoleEntries = await Promise.all(teamIds.map(async (teamId) => [
@@ -2359,6 +2372,7 @@
     };
 
     const renderTop = async () => {
+        scrollPregameToTop();
         currentPlayerView = null;
         placeHeaderActions(false);
         savePregameSession("pregame-top");
@@ -3426,6 +3440,7 @@
     };
 
     const renderPlayerDetail = async (playerId, gamePk, teamId = null) => {
+        scrollPregameToTop();
         const validGamePk = Number.isFinite(Number(gamePk)) && Number(gamePk) > 0;
         placeHeaderActions(false);
         savePregameSession("pregame-player", {
@@ -4242,6 +4257,7 @@
     };
 
     const renderGameDetail = async (gamePk) => {
+        scrollPregameToTop();
         currentPlayerView = null;
         placeHeaderActions(true);
         savePregameSession("pregame-game", { gamePk: Number(gamePk) });
@@ -4473,11 +4489,6 @@
         if (!preserveShell) document.body.classList.remove("app-mode-pregame");
     };
 
-    const scrollCompactPregameToTop = () => {
-        if (!window.matchMedia("(max-width: 1024px)").matches) return;
-        window.scrollTo(0, 0);
-    };
-
     const renderSelectedDate = async () => {
         if (!currentPlayerView?.playerId) {
             await renderTop();
@@ -4556,7 +4567,6 @@
         dom.content.addEventListener("click", (event) => {
             const playerCard = event.target.closest("[data-pregame-player]");
             if (playerCard) {
-                scrollCompactPregameToTop();
                 renderPlayerDetail(
                     Number(playerCard.dataset.pregamePlayer),
                     Number(playerCard.dataset.pregameGame),
@@ -4566,7 +4576,6 @@
             }
             const gameCard = event.target.closest("[data-pregame-game]");
             if (gameCard) {
-                scrollCompactPregameToTop();
                 renderGameDetail(Number(gameCard.dataset.pregameGame));
             }
         });
