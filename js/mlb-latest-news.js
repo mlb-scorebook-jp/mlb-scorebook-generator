@@ -2,11 +2,11 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
-        "headline": "Stanton strains left calf while running, may not return in 2026",
+        "headline": "Stanton strains left calf while running, might not return in 2026",
         "summaryJa": "G.スタントン（NYY）、復帰へ向けた最新状況",
         "slug": "giancarlo-stanton-left-calf-strain-could-end-2026-season",
         "url": "https://www.mlb.com/news/giancarlo-stanton-left-calf-strain-could-end-2026-season",
-        "contentDate": "2026-08-22T15:56:34.592Z",
+        "contentDate": "2026-08-22T16:48:00Z",
         "teamIds": [
             147
         ],
@@ -19,6 +19,55 @@
         "taxonomy": [
             "apple-news",
             "injury"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Breaking down 7 bullpens that could be headed to postseason",
+        "summaryJa": "アストロズの最新動向をMLB公式が詳報",
+        "slug": "mlb-bullpens-that-are-built-for-stretch-run",
+        "url": "https://www.mlb.com/news/mlb-bullpens-that-are-built-for-stretch-run",
+        "contentDate": "2026-08-22T16:30:00Z",
+        "teamIds": [
+            117,
+            135,
+            111,
+            158,
+            119,
+            145,
+            114
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Vlad Jr. returning from IL as Blue Jays continue pivotal series vs. Yanks",
+        "summaryJa": "V.ゲレーロ Jr.（TOR）、復帰へ向けた最新状況",
+        "slug": "vladimir-guerrero-jr-concussion-il-blue-jays-return",
+        "url": "https://www.mlb.com/news/vladimir-guerrero-jr-concussion-il-blue-jays-return",
+        "contentDate": "2026-08-22T16:08:00Z",
+        "teamIds": [
+            141
+        ],
+        "playerIds": [
+            665489
+        ],
+        "gamePks": [
+            823509
+        ],
+        "taxonomy": [
+            "injury",
+            "apple-news"
         ],
         "sourceScopes": [
             "MLB",
@@ -389,31 +438,6 @@
             "apple-news",
             "game-recap",
             "walk-off"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Which contenders’ bullpens are built to hold up for the stretch run?",
-        "summaryJa": "アストロズの最新動向をMLB公式が詳報",
-        "slug": "mlb-bullpens-that-are-built-for-stretch-run",
-        "url": "https://www.mlb.com/news/mlb-bullpens-that-are-built-for-stretch-run",
-        "contentDate": "2026-08-22T05:31:34.009Z",
-        "teamIds": [
-            117,
-            135,
-            111,
-            158,
-            119,
-            145,
-            114
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
         ],
         "sourceScopes": [
             "MLB",
@@ -1122,29 +1146,6 @@
         ],
         "sourceScopes": [
             "球団公式"
-        ]
-    },
-    {
-        "headline": "Toglia exits Friday game after dislocating right shoulder on diving catch",
-        "summaryJa": "M.トリア（CIN）の負傷状況をMLB公式が詳報",
-        "slug": "michael-toglia-exits-game-with-right-shoulder-injury",
-        "url": "https://www.mlb.com/news/michael-toglia-exits-game-with-right-shoulder-injury",
-        "contentDate": "2026-08-22T02:46:11.691Z",
-        "teamIds": [
-            113
-        ],
-        "playerIds": [
-            669911
-        ],
-        "gamePks": [
-            825045
-        ],
-        "taxonomy": [
-            "apple-news",
-            "injury"
-        ],
-        "sourceScopes": [
-            "MLB"
         ]
     },
     {
@@ -1954,29 +1955,6 @@
             "injury",
             "transactions",
             "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Blue Jays expect Vlad back today for pivotal Yankees series",
-        "summaryJa": "V.ゲレーロ Jr.（TOR）、復帰へ向けた最新状況",
-        "slug": "vladimir-guerrero-jr-concussion-il-blue-jays-return",
-        "url": "https://www.mlb.com/news/vladimir-guerrero-jr-concussion-il-blue-jays-return",
-        "contentDate": "2026-08-21T23:02:04.764Z",
-        "teamIds": [
-            141
-        ],
-        "playerIds": [
-            665489
-        ],
-        "gamePks": [
-            823510
-        ],
-        "taxonomy": [
-            "injury",
-            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
