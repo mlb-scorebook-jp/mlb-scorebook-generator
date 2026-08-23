@@ -2,6 +2,29 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "McLean fires 6 scoreless innings, handles bases-loaded jam with ease",
+        "summaryJa": "N.マクリーン（NYM）、マウンドで好投",
+        "slug": "nolan-mclean-pitches-six-scoreless-innings-vs-white-sox",
+        "url": "https://www.mlb.com/news/nolan-mclean-pitches-six-scoreless-innings-vs-white-sox",
+        "contentDate": "2026-08-23T21:44:00Z",
+        "teamIds": [
+            121
+        ],
+        "playerIds": [
+            690997
+        ],
+        "gamePks": [
+            824558
+        ],
+        "taxonomy": [
+            "apple-news",
+            "game-recap-losing"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Muncy's clutch homer seals series win after A's claw back from 6-0 hole",
         "summaryJa": "M.マンシー（ATH）、本塁打で存在感",
         "slug": "athletics-rally-from-six-run-deficit-for-series-win-vs-astros",
@@ -22,6 +45,7 @@
             "clutch-moment"
         ],
         "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
@@ -45,7 +69,32 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB"
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Martinez twirls six innings of one-hit ball, carrying Rays to much-needed win",
+        "summaryJa": "N.マルティネス（TB）、勝利を呼び込む活躍",
+        "slug": "nick-martinez-rays-beat-orioles-in-series-finale",
+        "url": "https://www.mlb.com/news/nick-martinez-rays-beat-orioles-in-series-finale",
+        "contentDate": "2026-08-23T21:37:00Z",
+        "teamIds": [
+            139
+        ],
+        "playerIds": [
+            607259
+        ],
+        "gamePks": [
+            824799
+        ],
+        "taxonomy": [
+            "apple-news",
+            "game-recap"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
         ]
     },
     {
@@ -297,30 +346,6 @@
         ]
     },
     {
-        "headline": "Martinez twirls six innings of one-hit ball in win over Orioles",
-        "summaryJa": "N.マルティネス（TB）、勝利を呼び込む活躍",
-        "slug": "nick-martinez-rays-beat-orioles-in-series-finale",
-        "url": "https://www.mlb.com/news/nick-martinez-rays-beat-orioles-in-series-finale",
-        "contentDate": "2026-08-23T20:51:00Z",
-        "teamIds": [
-            139
-        ],
-        "playerIds": [
-            607259
-        ],
-        "gamePks": [
-            824799
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Latest D-backs injuries & transactions",
         "summaryJa": "ダイヤモンドバックスの負傷状況をMLB公式が詳報",
         "slug": "d-backs-injuries-and-roster-moves",
@@ -335,29 +360,6 @@
             "injury",
             "transactions",
             "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "McLean fires 6 scoreless innings, handles bases-loaded jam with ease",
-        "summaryJa": "N.マクリーン（NYM）、マウンドで好投",
-        "slug": "nolan-mclean-pitches-six-scoreless-innings-vs-white-sox",
-        "url": "https://www.mlb.com/news/nolan-mclean-pitches-six-scoreless-innings-vs-white-sox",
-        "contentDate": "2026-08-23T20:47:00Z",
-        "teamIds": [
-            121
-        ],
-        "playerIds": [
-            690997
-        ],
-        "gamePks": [
-            824558
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap-losing"
         ],
         "sourceScopes": [
             "球団公式"
@@ -1157,7 +1159,6 @@
             "injury"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -9811,29 +9812,6 @@
         "taxonomy": [
             "apple-news",
             "replay"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Langford's long ball helps Rangers snap out of funk",
-        "summaryJa": "W.ラングフォード（TEX）、勝利を呼び込む活躍",
-        "slug": "wyatt-langford-hits-home-run-in-rangers-win-over-a-s",
-        "url": "https://www.mlb.com/news/wyatt-langford-hits-home-run-in-rangers-win-over-a-s",
-        "contentDate": "2026-08-16T06:02:00Z",
-        "teamIds": [
-            140
-        ],
-        "playerIds": [
-            694671
-        ],
-        "gamePks": [
-            824966
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap"
         ],
         "sourceScopes": [
             "球団公式"
