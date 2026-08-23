@@ -2,6 +2,29 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Giants top prospect Gonzalez continues tear with 4-hit game",
+        "summaryJa": "Josuar Gonzalez（SF）ら注目選手の最新動向",
+        "slug": "giants-top-prospect-gonzalez-continues-tear-with-4-hit-game",
+        "url": "https://www.mlb.com/news/giants-top-prospect-gonzalez-continues-tear-with-4-hit-game",
+        "contentDate": "2026-08-23T14:26:57.261Z",
+        "teamIds": [
+            137
+        ],
+        "playerIds": [
+            829034
+        ],
+        "gamePks": [
+            824720
+        ],
+        "taxonomy": [
+            "apple-news",
+            "mlb-top-prospects"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "'We didn't add on': A hot four innings fizzles out in Twins' loss to Padres",
         "summaryJa": "ツインズ、本塁打で存在感",
         "slug": "luke-keaschall-hits-first-leadoff-homer-in-loss-to-padres",
@@ -9654,30 +9677,6 @@
         "taxonomy": [
             "apple-news",
             "mlb-top-prospects"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Gilbert's 3-hit day, Hill's RBI in debut propel Giants over Rockies",
-        "summaryJa": "Turner Hill（SF）、メジャー昇格・初出場に関する最新情報",
-        "slug": "drew-gilbert-and-turner-hill-lead-giants-over-rockies",
-        "url": "https://www.mlb.com/news/drew-gilbert-and-turner-hill-lead-giants-over-rockies",
-        "contentDate": "2026-08-16T00:58:00Z",
-        "teamIds": [
-            137
-        ],
-        "playerIds": [
-            806367,
-            687551
-        ],
-        "gamePks": [
-            823184
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap"
         ],
         "sourceScopes": [
             "球団公式"
