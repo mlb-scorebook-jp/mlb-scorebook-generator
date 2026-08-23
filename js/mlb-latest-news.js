@@ -2,6 +2,81 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Rodríguez returns after elbow surgery to bolster Rays' bullpen",
+        "summaryJa": "M.ロドリゲス（TB）の負傷状況をMLB公式が詳報",
+        "slug": "manuel-rodriguez-activated-from-60-day-injured-list",
+        "url": "https://www.mlb.com/news/manuel-rodriguez-activated-from-60-day-injured-list",
+        "contentDate": "2026-08-23T15:30:55.218Z",
+        "teamIds": [
+            139
+        ],
+        "playerIds": [
+            655889
+        ],
+        "gamePks": [
+            824799
+        ],
+        "taxonomy": [
+            "apple-news",
+            "transactions",
+            "injury"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Yankees activate Bellinger, but lose LHP Weathers (flexor strain) to IL",
+        "summaryJa": "C.ベリンジャー（NYY）の負傷状況をMLB公式が詳報",
+        "slug": "cody-bellinger-yankees-hamstring-injury-rehab",
+        "url": "https://www.mlb.com/news/cody-bellinger-yankees-hamstring-injury-rehab",
+        "contentDate": "2026-08-23T15:16:00Z",
+        "teamIds": [
+            147
+        ],
+        "playerIds": [
+            641355
+        ],
+        "gamePks": [
+            823509
+        ],
+        "taxonomy": [
+            "apple-news",
+            "injury",
+            "rehab"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Weathers placed on IL with left forearm flexor strain day after early exit",
+        "summaryJa": "R.ウェザーズ（NYY）の負傷状況をMLB公式が詳報",
+        "slug": "ryan-weathers-exits-yankees-game-with-injury",
+        "url": "https://www.mlb.com/news/ryan-weathers-exits-yankees-game-with-injury",
+        "contentDate": "2026-08-23T15:12:00Z",
+        "teamIds": [
+            147
+        ],
+        "playerIds": [
+            677960
+        ],
+        "gamePks": [
+            823509
+        ],
+        "taxonomy": [
+            "apple-news",
+            "injury",
+            "game-recap-losing"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Giants top prospect Gonzalez continues tear with 4-hit game",
         "summaryJa": "Josuar Gonzalez（SF）ら注目選手の最新動向",
         "slug": "giants-top-prospect-gonzalez-continues-tear-with-4-hit-game",
@@ -1154,8 +1229,8 @@
         ]
     },
     {
-        "headline": "Lost and found! White Sox fan gets purse contents back after viral HR celebration",
-        "summaryJa": "J.ロジャース（CWS）、本塁打で存在感",
+        "headline": "Don't worry, she got everything back! White Sox fan catches walk-off, purse explodes",
+        "summaryJa": "J.ロジャース（CWS）、サヨナラ勝利の主役に",
         "slug": "white-sox-fan-loses-items-from-purse-while-retrieving-home-run-ball",
         "url": "https://www.mlb.com/news/white-sox-fan-loses-items-from-purse-while-retrieving-home-run-ball",
         "contentDate": "2026-08-23T00:45:00Z",
@@ -1376,7 +1451,6 @@
             "players-weekend"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1540,31 +1614,6 @@
         ]
     },
     {
-        "headline": "Weathers exits start with forearm discomfort, will undergo imaging",
-        "summaryJa": "R.ウェザーズ（NYY）の負傷状況をMLB公式が詳報",
-        "slug": "ryan-weathers-exits-yankees-game-with-injury",
-        "url": "https://www.mlb.com/news/ryan-weathers-exits-yankees-game-with-injury",
-        "contentDate": "2026-08-22T22:28:00Z",
-        "teamIds": [
-            147
-        ],
-        "playerIds": [
-            677960
-        ],
-        "gamePks": [
-            823509
-        ],
-        "taxonomy": [
-            "apple-news",
-            "injury",
-            "game-recap-losing"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
         "headline": "If it were up to Ohtani, he'd be pitching 'in a few days'",
         "summaryJa": "大谷 翔平（LAD）、復帰へ向けた最新状況",
         "slug": "shohei-ohtani-progress-toward-pitching-return",
@@ -1718,30 +1767,6 @@
         ]
     },
     {
-        "headline": "‘I’m ready to go’: Bellinger (hamstring) eyeing Sunday return to Yanks",
-        "summaryJa": "C.ベリンジャー（NYY）の負傷状況をMLB公式が詳報",
-        "slug": "cody-bellinger-yankees-hamstring-injury-rehab",
-        "url": "https://www.mlb.com/news/cody-bellinger-yankees-hamstring-injury-rehab",
-        "contentDate": "2026-08-22T21:44:00Z",
-        "teamIds": [
-            147
-        ],
-        "playerIds": [
-            641355
-        ],
-        "gamePks": [
-            823509
-        ],
-        "taxonomy": [
-            "apple-news",
-            "injury",
-            "rehab"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Latest Yankees injuries and transactions",
         "summaryJa": "ヤンキースの負傷状況をMLB公式が詳報",
         "slug": "yankees-injuries-and-roster-moves",
@@ -1821,7 +1846,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -8648,30 +8672,6 @@
         ],
         "taxonomy": [
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "With 3 K's in return to Rays, McClanahan shows he's ready for stretch run",
-        "summaryJa": "S.マクラナハン（TB）、復帰へ向けた最新状況",
-        "slug": "shane-mcclanahan-rays-rotation-return",
-        "url": "https://www.mlb.com/news/shane-mcclanahan-rays-rotation-return",
-        "contentDate": "2026-08-18T04:14:00Z",
-        "teamIds": [
-            139
-        ],
-        "playerIds": [
-            663556
-        ],
-        "gamePks": [
-            822939
-        ],
-        "taxonomy": [
-            "apple-news",
-            "injury",
-            "transactions"
         ],
         "sourceScopes": [
             "球団公式"
