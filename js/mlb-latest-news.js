@@ -2,6 +2,55 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "The Mountain on the horizon: O's Bautista starts rehab, 1st game in 13 months",
+        "summaryJa": "F.ボティースタ（BAL）、復帰へ向けた最新状況",
+        "slug": "felix-bautista-orioles-rehab-assignment-start",
+        "url": "https://www.mlb.com/news/felix-bautista-orioles-rehab-assignment-start",
+        "contentDate": "2026-08-23T17:56:00Z",
+        "teamIds": [
+            110
+        ],
+        "playerIds": [
+            642585
+        ],
+        "gamePks": [
+            824799
+        ],
+        "taxonomy": [
+            "apple-news",
+            "injury",
+            "rehab"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "King designated for assignment; Ralston recalled from Triple-A",
+        "summaryJa": "J.キング（MIA）の移籍・契約に関する最新情報",
+        "slug": "john-king-designated-for-assignment-by-marlins",
+        "url": "https://www.mlb.com/news/john-king-designated-for-assignment-by-marlins",
+        "contentDate": "2026-08-23T17:53:00Z",
+        "teamIds": [
+            146
+        ],
+        "playerIds": [
+            667463,
+            667652
+        ],
+        "gamePks": [
+            823827
+        ],
+        "taxonomy": [
+            "transactions",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Latest Rangers injuries & transactions",
         "summaryJa": "レンジャーズの負傷状況をMLB公式が詳報",
         "slug": "rangers-injuries-and-roster-moves",
@@ -317,30 +366,6 @@
         ],
         "sourceScopes": [
             "MLB"
-        ]
-    },
-    {
-        "headline": "King designated for assignment; Ralston recalled",
-        "summaryJa": "J.キング（MIA）の移籍・契約に関する最新情報",
-        "slug": "john-king-designated-for-assignment-by-marlins",
-        "url": "https://www.mlb.com/news/john-king-designated-for-assignment-by-marlins",
-        "contentDate": "2026-08-23T16:39:38.262Z",
-        "teamIds": [
-            146
-        ],
-        "playerIds": [
-            667463,
-            667652
-        ],
-        "gamePks": [
-            823827
-        ],
-        "taxonomy": [
-            "transactions",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
         ]
     },
     {
@@ -1719,7 +1744,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -3602,30 +3626,6 @@
         ],
         "taxonomy": [
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "O's closer Bautista (shoulder surgery) to begin rehab assignment Sunday",
-        "summaryJa": "F.ボティースタ（BAL）、復帰へ向けた最新状況",
-        "slug": "felix-bautista-orioles-rehab-assignment-start",
-        "url": "https://www.mlb.com/news/felix-bautista-orioles-rehab-assignment-start",
-        "contentDate": "2026-08-21T20:27:22.052Z",
-        "teamIds": [
-            110
-        ],
-        "playerIds": [
-            642585
-        ],
-        "gamePks": [
-            824800
-        ],
-        "taxonomy": [
-            "apple-news",
-            "injury",
-            "rehab"
         ],
         "sourceScopes": [
             "球団公式"
