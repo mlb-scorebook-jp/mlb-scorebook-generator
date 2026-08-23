@@ -2,6 +2,87 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "King designated for assignment; Ralston recalled",
+        "summaryJa": "J.キング（MIA）の移籍・契約に関する最新情報",
+        "slug": "john-king-designated-for-assignment-by-marlins",
+        "url": "https://www.mlb.com/news/john-king-designated-for-assignment-by-marlins",
+        "contentDate": "2026-08-23T16:39:38.262Z",
+        "teamIds": [
+            146
+        ],
+        "playerIds": [
+            667463,
+            667652
+        ],
+        "gamePks": [
+            823827
+        ],
+        "taxonomy": [
+            "transactions",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Latest Athletics injuries and transactions",
+        "summaryJa": "アスレチックスの負傷状況をMLB公式が詳報",
+        "slug": "athletics-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/athletics-injuries-and-roster-moves",
+        "contentDate": "2026-08-23T16:26:00Z",
+        "teamIds": [
+            133
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "apple-news",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Latest Cardinals injuries & transactions",
+        "summaryJa": "カージナルスの負傷状況をMLB公式が詳報",
+        "slug": "cardinals-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/cardinals-injuries-and-roster-moves",
+        "contentDate": "2026-08-23T16:22:00Z",
+        "teamIds": [
+            138
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Phillies invite fans to first-ever Open House & Watch Party in Cadillac Hall of Fame Club on Sunday, August 30",
+        "summaryJa": "フィリーズの最新動向をMLB公式が詳報",
+        "slug": "phillies-invite-fans-to-first-ever-open-house-watch-party-in-cadillac-hall-of-fame-club-at-citizens-bank-park-on-sunday-august-30",
+        "url": "https://www.mlb.com/news/phillies-invite-fans-to-first-ever-open-house-watch-party-in-cadillac-hall-of-fame-club-at-citizens-bank-park-on-sunday-august-30",
+        "contentDate": "2026-08-23T16:21:43.145Z",
+        "teamIds": [
+            143
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Rodríguez returns after elbow surgery to bolster Rays' bullpen",
         "summaryJa": "M.ロドリゲス（TB）の負傷状況をMLB公式が詳報",
         "slug": "manuel-rodriguez-activated-from-60-day-injured-list",
@@ -1787,26 +1868,6 @@
         ]
     },
     {
-        "headline": "Latest Cardinals injuries & transactions",
-        "summaryJa": "カージナルスの負傷状況をMLB公式が詳報",
-        "slug": "cardinals-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/cardinals-injuries-and-roster-moves",
-        "contentDate": "2026-08-22T21:35:00Z",
-        "teamIds": [
-            138
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Latest Astros injuries & transactions",
         "summaryJa": "アストロズの負傷状況をMLB公式が詳報",
         "slug": "astros-injuries-and-roster-moves",
@@ -3416,27 +3477,6 @@
         "taxonomy": [
             "injury",
             "transactions",
-            "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Latest Athletics injuries and transactions",
-        "summaryJa": "アスレチックスの負傷状況をMLB公式が詳報",
-        "slug": "athletics-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/athletics-injuries-and-roster-moves",
-        "contentDate": "2026-08-21T22:58:00Z",
-        "teamIds": [
-            133
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "apple-news",
             "exclude-from-personalization"
         ],
         "sourceScopes": [
@@ -8747,29 +8787,6 @@
         ]
     },
     {
-        "headline": "Sánchez's home dominance continues as Phillies stay in Wild Card run",
-        "summaryJa": "C.サンチェス（PHI）の最新動向をMLB公式が詳報",
-        "slug": "cristopher-sanchez-faces-marlins-on-monday-at-home",
-        "url": "https://www.mlb.com/news/cristopher-sanchez-faces-marlins-on-monday-at-home",
-        "contentDate": "2026-08-18T03:58:00Z",
-        "teamIds": [
-            143
-        ],
-        "playerIds": [
-            650911
-        ],
-        "gamePks": [
-            823427
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Fresh, strong and efficient, Baker gives Rays 5 outs in his MLB-leading 35th save",
         "summaryJa": "B.ベイカー（TB）、記録達成の最新情報",
         "slug": "bryan-baker-records-5-out-save-to-help-rays-beat-orioles",
@@ -9654,29 +9671,6 @@
         "taxonomy": [
             "apple-news",
             "game-recap"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "HBP? Nope. HR? Yes! Marlins 1st-rounder takes one deep after almost taking one for team",
-        "summaryJa": "Jacob Lombard（MIA）、記録達成の最新情報",
-        "slug": "marlins-prospect-jacob-lombard-homers-after-near-hit-by-pitch",
-        "url": "https://www.mlb.com/news/marlins-prospect-jacob-lombard-homers-after-near-hit-by-pitch",
-        "contentDate": "2026-08-16T01:53:00Z",
-        "teamIds": [
-            146
-        ],
-        "playerIds": [
-            813075
-        ],
-        "gamePks": [
-            824480
-        ],
-        "taxonomy": [
-            "apple-news",
-            "mlb-top-prospects"
         ],
         "sourceScopes": [
             "球団公式"
