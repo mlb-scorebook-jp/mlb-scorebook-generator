@@ -2,6 +2,75 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Donovan scratched after being hit on head in batting cages",
+        "summaryJa": "B.ドノバン（SEA）の最新動向をMLB公式が詳報",
+        "slug": "brendan-donovan-scratched-ahead-of-mariners-game",
+        "url": "https://www.mlb.com/news/brendan-donovan-scratched-ahead-of-mariners-game",
+        "contentDate": "2026-08-22T23:53:19.359Z",
+        "teamIds": [
+            136
+        ],
+        "playerIds": [
+            680977
+        ],
+        "gamePks": [
+            823100
+        ],
+        "taxonomy": [
+            "apple-news",
+            "injury"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Freeland (neck stiffness) 'feels good,' hopes to make his next start",
+        "summaryJa": "K.フリーランド（COL）の負傷状況をMLB公式が詳報",
+        "slug": "kyle-freeland-plays-long-toss-in-recovery-from-neck-injury",
+        "url": "https://www.mlb.com/news/kyle-freeland-plays-long-toss-in-recovery-from-neck-injury",
+        "contentDate": "2026-08-22T23:51:38.037Z",
+        "teamIds": [
+            115
+        ],
+        "playerIds": [
+            607536
+        ],
+        "gamePks": [
+            824316
+        ],
+        "taxonomy": [
+            "apple-news",
+            "injury"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Arraez exits after third inning with lower body cramping",
+        "summaryJa": "L.アラエズ（PHI）の最新動向をMLB公式が詳報",
+        "slug": "luis-arraez-exits-with-lower-body-cramping-against-cardinals",
+        "url": "https://www.mlb.com/news/luis-arraez-exits-with-lower-body-cramping-against-cardinals",
+        "contentDate": "2026-08-22T23:40:58.526Z",
+        "teamIds": [
+            143
+        ],
+        "playerIds": [
+            650333
+        ],
+        "gamePks": [
+            823422
+        ],
+        "taxonomy": [
+            "injury",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Lost and found! White Sox fan gets purse contents back after viral HR celebration",
         "summaryJa": "J.ロジャース（CWS）、本塁打で存在感",
         "slug": "white-sox-fan-loses-items-from-purse-while-retrieving-home-run-ball",
@@ -3673,28 +3742,6 @@
         "taxonomy": [
             "apple-news",
             "players-weekend"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Mariners to call up baseball's top-ranked pitching prospect (source)",
-        "summaryJa": "K.アンダーソン（SEA）、メジャー昇格・初出場に関する最新情報",
-        "slug": "kade-anderson-mariners-callup",
-        "url": "https://www.mlb.com/news/kade-anderson-mariners-callup",
-        "contentDate": "2026-08-20T22:54:00Z",
-        "teamIds": [
-            136
-        ],
-        "playerIds": [
-            807739
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "transactions",
-            "apple-news",
-            "mlb-top-prospects"
         ],
         "sourceScopes": [
             "球団公式"
@@ -9567,30 +9614,6 @@
             "apple-news",
             "pitching",
             "wow"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Karros placed on concussion IL after collision with Tovar",
-        "summaryJa": "K.ケアロス（COL）の負傷状況をMLB公式が詳報",
-        "slug": "kyle-karros-exits-game-after-infield-collision",
-        "url": "https://www.mlb.com/news/kyle-karros-exits-game-after-infield-collision",
-        "contentDate": "2026-08-12T18:51:00Z",
-        "teamIds": [
-            115
-        ],
-        "playerIds": [
-            691720
-        ],
-        "gamePks": [
-            825046
-        ],
-        "taxonomy": [
-            "apple-news",
-            "injury",
-            "game-recap"
         ],
         "sourceScopes": [
             "球団公式"
