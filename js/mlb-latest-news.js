@@ -2,6 +2,26 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "'We didn't add on': A hot four innings fizzles out in Twins' loss to Padres",
+        "summaryJa": "ツインズ、本塁打で存在感",
+        "slug": "luke-keaschall-hits-first-leadoff-homer-in-loss-to-padres",
+        "url": "https://www.mlb.com/news/luke-keaschall-hits-first-leadoff-homer-in-loss-to-padres",
+        "contentDate": "2026-08-23T06:06:52.163Z",
+        "teamIds": [
+            142
+        ],
+        "playerIds": [],
+        "gamePks": [
+            823261
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Latest Nationals injuries & transactions",
         "summaryJa": "ナショナルズの負傷状況をMLB公式が詳報",
         "slug": "nationals-injuries-and-roster-moves",
@@ -22,7 +42,7 @@
         ]
     },
     {
-        "headline": "Watch newly acquired top prospect Nimmala at Double-A for FREE on Sunday",
+        "headline": "Watch newly acquired top prospect Nimmala at Double-A for FREE today",
         "summaryJa": "MLBの最新情報の移籍・契約に関する最新情報",
         "slug": "watch-minor-league-baseball-games-for-free-2026",
         "url": "https://www.mlb.com/news/watch-minor-league-baseball-games-for-free-2026",
@@ -39,7 +59,7 @@
         ]
     },
     {
-        "headline": "Mize exits start with ankle sprain, hopes to make next start",
+        "headline": "Mize exits with ankle sprain, hopes to make next start",
         "summaryJa": "C.マイズ（SD）の負傷状況をMLB公式が詳報",
         "slug": "casey-mize-exits-padres-start-in-3rd-inning-with-ankle-injury",
         "url": "https://www.mlb.com/news/casey-mize-exits-padres-start-in-3rd-inning-with-ankle-injury",
@@ -56,6 +76,29 @@
         "taxonomy": [
             "injury",
             "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "3-HR night -- 14 in August! -- reinforces no one is hotter than Guards' No. 2 prospect",
+        "summaryJa": "R.ベラスケス（CLE）、本塁打で存在感",
+        "slug": "guardians-prospect-ralphy-velazquez-3-homer-night-triple-a",
+        "url": "https://www.mlb.com/news/guardians-prospect-ralphy-velazquez-3-homer-night-triple-a",
+        "contentDate": "2026-08-23T05:41:00Z",
+        "teamIds": [
+            114
+        ],
+        "playerIds": [
+            806252
+        ],
+        "gamePks": [
+            824316
+        ],
+        "taxonomy": [
+            "apple-news",
+            "mlb-top-prospects"
         ],
         "sourceScopes": [
             "球団公式"
@@ -8391,28 +8434,6 @@
         ]
     },
     {
-        "headline": "Team Venezuela’s championship culture could help Brewers in October",
-        "summaryJa": "A.センザテーラ（MIL）の最新動向をMLB公式が詳報",
-        "slug": "antonio-senzatela-joins-teammates-from-team-venezuela-on-brewers",
-        "url": "https://www.mlb.com/news/antonio-senzatela-joins-teammates-from-team-venezuela-on-brewers",
-        "contentDate": "2026-08-18T13:27:23.562Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [
-            622608
-        ],
-        "gamePks": [
-            823749
-        ],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "'Very few people' are like Messick, who's shining one year after debut",
         "summaryJa": "P.メシック（CLE）、メジャー昇格・初出場に関する最新情報",
         "slug": "parker-messick-shining-guardians-one-year-mlb-debut",
@@ -9191,28 +9212,6 @@
         ]
     },
     {
-        "headline": "Bibee's start spoiled by flat offensive showing as Guards drop 5th straight series",
-        "summaryJa": "T.バイビー（CLE）、記録達成の最新情報",
-        "slug": "tanner-bibee-pitches-6-innings-in-guardians-loss-to-padres",
-        "url": "https://www.mlb.com/news/tanner-bibee-pitches-6-innings-in-guardians-loss-to-padres",
-        "contentDate": "2026-08-17T02:07:44.859Z",
-        "teamIds": [
-            114
-        ],
-        "playerIds": [
-            676440
-        ],
-        "gamePks": [
-            824397
-        ],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "'Sloppy' Giants let game slip away in rough sixth inning",
         "summaryJa": "ジャイアンツの最新動向をMLB公式が詳報",
         "slug": "giants-walk-10-batters-in-loss-to-rockies",
@@ -9521,29 +9520,6 @@
         "taxonomy": [
             "apple-news",
             "obituary"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Lackey, Houston go from Draft to top of Twins' prospect list",
-        "summaryJa": "Vahn Lackey（MIN）ら注目選手の最新動向",
-        "slug": "twins-2026-updated-prospect-rankings",
-        "url": "https://www.mlb.com/news/twins-2026-updated-prospect-rankings",
-        "contentDate": "2026-08-16T13:34:17.981Z",
-        "teamIds": [
-            142
-        ],
-        "playerIds": [
-            822518,
-            805805,
-            701339
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "mlb-top-prospects",
-            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
