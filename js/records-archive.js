@@ -188,6 +188,8 @@
             : orderValue(right).localeCompare(orderValue(left)));
     };
     const previous = (target, scope = "type") => {
+        if (scope === "player" && !number(target?.playerId)) return null;
+        if (scope === "team" && !number(target?.teamId)) return null;
         const before = orderValue(target);
         return records.filter((record) => {
             if (record.archiveKey === archiveKey(target) || orderValue(record) >= before) return false;

@@ -20,9 +20,15 @@ const startDate = option("start", `${year}-03-01`);
 const endDate = option("end", year === Number(yesterday.slice(0, 4)) ? yesterday : `${year}-12-31`);
 const concurrency = Math.max(1, Math.min(5, Number(option("concurrency", 3)) || 3));
 const force = hasFlag("force") || hasFlag("rebuild");
-const outputPath = path.join(ROOT, "data", "records", `${year}.json`);
-const progressPath = path.join(ROOT, "data", "records", `.build-${year}-progress.json`);
-const reportPath = path.join(ROOT, "data", "records", `${year}-build-report.json`);
+const gameTypes = option("game-types", "R").split(",").map((value) => value.trim().toUpperCase()).filter(Boolean);
+const trialLabel = option("trial").replace(/[^a-zA-Z0-9_-]/g, "");
+const outputDirectory = trialLabel
+    ? path.join(ROOT, "data", "records", "trials")
+    : path.join(ROOT, "data", "records");
+const outputBase = trialLabel || String(year);
+const outputPath = path.join(outputDirectory, `${outputBase}.json`);
+const progressPath = path.join(outputDirectory, `.build-${outputBase}-progress.json`);
+const reportPath = path.join(outputDirectory, `${outputBase}-build-report.json`);
 const startedAt = new Date();
 let apiRequests = 0;
 let scheduleEntries = 0;
@@ -114,7 +120,7 @@ const mergeRecords = (...groups) => {
     );
 };
 const fetchSchedule = async () => {
-    const params = new URLSearchParams({ sportId: "1", startDate, endDate, gameType: "R",
+    const params = new URLSearchParams({ sportId: "1", startDate, endDate, gameTypes: gameTypes.join(","),
         hydrate: "team,linescore,venue" });
     const response = await fetch(`${API_ROOT}/v1/schedule?${params}`);
     if (!response.ok) throw new Error(`Schedule HTTP ${response.status}`);
@@ -185,7 +191,7 @@ const byRecordType = Object.fromEntries([...records.reduce((map, record) => {
 }, new Map())].sort(([a], [b]) => a.localeCompare(b)));
 const finishedAt = new Date();
 const report = {
-    year, range: { startDate, endDate }, startedAt: startedAt.toISOString(),
+    year, gameTypes, trial: trialLabel || null, range: { startDate, endDate }, startedAt: startedAt.toISOString(),
     finishedAt: finishedAt.toISOString(), elapsedSeconds: Math.round((finishedAt - startedAt) / 100) / 10,
     scheduleEntries, finalGames: games.length, processed: processed.size,
     processedThisRun: succeededThisRun, skipped, failed: failures.size,

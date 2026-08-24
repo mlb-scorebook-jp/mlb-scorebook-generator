@@ -372,6 +372,7 @@
             category,
             date: game.officialDate || state.date,
             season: number(String(game.officialDate || state.date).slice(0, 4)),
+            gameType: text(game?.gameType || "R").toUpperCase(),
             gamePk: number(game.gamePk),
             playerId: player?.id ? number(player.id) : null,
             playerName: player ? playerDisplayName(player) : "",

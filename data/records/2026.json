@@ -38,7 +38,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:823081:team-139:0:",
     "description": "両軍合計12投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_RUN_INNING",
@@ -78,7 +79,8 @@
     "archiveKey": "LARGE_RUN_INNING:823081:team-138:6:",
     "description": "6回に8得点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "TWO_HIT_SAME_INNING",
@@ -119,7 +121,8 @@
     "archiveKey": "TWO_HIT_SAME_INNING:823081:663743:6:",
     "description": "6回に2安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "TWO_HIT_SAME_INNING",
@@ -160,7 +163,8 @@
     "archiveKey": "TWO_HIT_SAME_INNING:823081:676475:6:",
     "description": "6回に2安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "TWO_OUTS_SAME_INNING",
@@ -201,7 +205,8 @@
     "archiveKey": "TWO_OUTS_SAME_INNING:823081:656775:6:",
     "description": "6回に2度打者アウト",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "FOUR_STRIKEOUT_INNING",
@@ -246,7 +251,8 @@
     "archiveKey": "FOUR_STRIKEOUT_INNING:822839:656546:9:",
     "description": "9回に4奪三振",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -287,7 +293,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:822838:team-133:0:",
     "description": "両軍合計15投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -328,7 +335,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:823161:team-114:0:",
     "description": "両軍合計13投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -369,7 +377,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:823241:team-147:0:",
     "description": "両軍合計12投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -410,7 +419,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:823488:team-140:0:",
     "description": "両軍合計12投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_HIT",
@@ -450,7 +460,8 @@
     "archiveKey": "ALL_STARTERS_HIT:823651:team-134:0:",
     "description": "先発野手全員安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -491,7 +502,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:823651:team-134:0:",
     "description": "両軍合計12投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "HIT_DEFICIT_WIN",
@@ -533,7 +545,8 @@
     "archiveKey": "HIT_DEFICIT_WIN:823651:team-121:0:",
     "description": "相手より6本少ない安打数で勝利",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_RUN_INNING",
@@ -573,7 +586,8 @@
     "archiveKey": "LARGE_RUN_INNING:824213:team-117:6:",
     "description": "6回に8得点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -614,7 +628,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:824540:team-111:0:",
     "description": "両軍合計14投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "WALKOFF_GRAND_SLAM",
@@ -655,7 +670,8 @@
     "archiveKey": "WALKOFF_GRAND_SLAM:824945:642086:0:",
     "description": "サヨナラ満塁本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LEADOFF_FIRST_PITCH_HR",
@@ -697,7 +713,8 @@
     "archiveKey": "LEADOFF_FIRST_PITCH_HR:822837:543807:0:",
     "description": "初回先頭打者初球本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "FIVE_HIT_GAME",
@@ -739,7 +756,8 @@
     "archiveKey": "FIVE_HIT_GAME:823079:650490:0:",
     "description": "1試合5安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "TWO_OUTS_SAME_INNING",
@@ -780,7 +798,8 @@
     "archiveKey": "TWO_OUTS_SAME_INNING:824215:621043:2:",
     "description": "2回に2度打者アウト",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_WORST",
@@ -826,7 +845,8 @@
     "archiveKey": "JAPANESE_CAREER_WORST:824700:684007:0:wildPitches",
     "description": "1暴投でキャリアワーストタイ",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_HIT",
@@ -866,7 +886,8 @@
     "archiveKey": "ALL_STARTERS_HIT:823484:team-120:0:",
     "description": "先発野手全員安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_RBI_GAME",
@@ -907,7 +928,8 @@
     "archiveKey": "LARGE_RBI_GAME:823890:678246:0:",
     "description": "1試合6打点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_HIGH",
@@ -953,7 +975,8 @@
     "archiveKey": "JAPANESE_CAREER_HIGH:823972:808963:0:strikeOuts",
     "description": "4奪三振でキャリア最多タイ",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_HIT",
@@ -993,7 +1016,8 @@
     "archiveKey": "ALL_STARTERS_HIT:824214:team-117:0:",
     "description": "先発野手全員安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -1034,7 +1058,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:825108:team-116:0:",
     "description": "両軍合計12投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "IMMACULATE_INNING",
@@ -1080,7 +1105,8 @@
     "archiveKey": "IMMACULATE_INNING:825108:647336:5:",
     "description": "5回 イマキュレート・イニング",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "TWO_OUTS_SAME_INNING",
@@ -1121,7 +1147,8 @@
     "archiveKey": "TWO_OUTS_SAME_INNING:825108:678009:7:",
     "description": "7回に2度打者アウト",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_HIT",
@@ -1161,7 +1188,8 @@
     "archiveKey": "ALL_STARTERS_HIT:822836:team-141:0:",
     "description": "先発野手全員安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_HIT",
@@ -1201,7 +1229,8 @@
     "archiveKey": "ALL_STARTERS_HIT:823322:team-137:0:",
     "description": "先発野手全員安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -1242,7 +1271,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:823078:team-121:0:",
     "description": "両軍合計13投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -1283,7 +1313,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:823483:team-120:0:",
     "description": "両軍合計12投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_WORST",
@@ -1329,7 +1360,8 @@
     "archiveKey": "JAPANESE_CAREER_WORST:823970:808967:0:hitBatsmen",
     "description": "1与死球でキャリアワーストタイ",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_HIT",
@@ -1369,7 +1401,8 @@
     "archiveKey": "ALL_STARTERS_HIT:824136:team-118:0:",
     "description": "先発野手全員安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_HR_INNING",
@@ -1409,7 +1442,8 @@
     "archiveKey": "LARGE_HR_INNING:824133:team-142:9:",
     "description": "9回にチーム3本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_HIT",
@@ -1449,7 +1483,8 @@
     "archiveKey": "ALL_STARTERS_HIT:825105:team-144:0:",
     "description": "先発野手全員安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_RUN_INNING",
@@ -1489,7 +1524,8 @@
     "archiveKey": "LARGE_RUN_INNING:825105:team-144:5:",
     "description": "5回に8得点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_HIT",
@@ -1529,7 +1565,8 @@
     "archiveKey": "ALL_STARTERS_HIT:822758:team-120:0:",
     "description": "先発野手全員安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "TWO_HIT_SAME_INNING",
@@ -1570,7 +1607,8 @@
     "archiveKey": "TWO_HIT_SAME_INNING:824377:607208:1:",
     "description": "1回に2安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -1611,7 +1649,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:823569:team-146:0:",
     "description": "両軍合計13投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "HIT_DEFICIT_WIN",
@@ -1653,7 +1692,8 @@
     "archiveKey": "HIT_DEFICIT_WIN:823569:team-147:0:",
     "description": "相手より9本少ない安打数で勝利",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "TWO_OUTS_SAME_INNING",
@@ -1694,7 +1734,8 @@
     "archiveKey": "TWO_OUTS_SAME_INNING:824134:695506:6:",
     "description": "6回に2度打者アウト",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_SCORE",
@@ -1734,7 +1775,8 @@
     "archiveKey": "ALL_STARTERS_SCORE:824295:team-116:0:",
     "description": "先発野手全員得点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "EXTREME_WALKS",
@@ -1774,7 +1816,8 @@
     "archiveKey": "EXTREME_WALKS:825027:team-117:0:",
     "description": "チーム13四球",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_HIGH",
@@ -1820,7 +1863,8 @@
     "archiveKey": "JAPANESE_CAREER_HIGH:825027:837227:0:outs",
     "description": "5回2/3でキャリア最多",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_HIGH",
@@ -1866,7 +1910,8 @@
     "archiveKey": "JAPANESE_CAREER_HIGH:825027:837227:0:strikeOuts",
     "description": "9奪三振でキャリア最多",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_WORST",
@@ -1912,7 +1957,8 @@
     "archiveKey": "JAPANESE_CAREER_WORST:825027:837227:0:hits",
     "description": "3被安打でキャリアワーストタイ",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_HIGH",
@@ -1958,7 +2004,8 @@
     "archiveKey": "JAPANESE_CAREER_HIGH:822756:808963:0:strikeOuts",
     "description": "5奪三振でキャリア最多",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_WORST",
@@ -2004,7 +2051,8 @@
     "archiveKey": "JAPANESE_CAREER_WORST:822756:808963:0:earnedRuns",
     "description": "6自責点でキャリアワースト",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_WORST",
@@ -2050,7 +2098,8 @@
     "archiveKey": "JAPANESE_CAREER_WORST:822756:808963:0:homeRuns",
     "description": "2被本塁打でキャリアワーストタイ",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_WORST",
@@ -2096,7 +2145,8 @@
     "archiveKey": "JAPANESE_CAREER_WORST:822756:808963:0:runs",
     "description": "6失点でキャリアワースト",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -2137,7 +2187,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:824053:team-136:0:",
     "description": "両軍合計12投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_HIT",
@@ -2177,7 +2228,8 @@
     "archiveKey": "ALL_STARTERS_HIT:825025:team-133:0:",
     "description": "先発野手全員安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -2218,7 +2270,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:825025:team-117:0:",
     "description": "両軍合計13投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "EXTREME_WALKS",
@@ -2258,7 +2311,8 @@
     "archiveKey": "EXTREME_WALKS:825025:team-117:0:",
     "description": "両軍合計20四球",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_RBI_GAME",
@@ -2299,7 +2353,8 @@
     "archiveKey": "LARGE_RBI_GAME:825025:667670:0:",
     "description": "1試合6打点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -2340,7 +2395,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:825102:team-144:0:",
     "description": "両軍合計12投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_HR_INNING",
@@ -2380,7 +2436,8 @@
     "archiveKey": "LARGE_HR_INNING:822755:team-120:8:",
     "description": "8回にチーム3本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LEADOFF_FIRST_PITCH_HR",
@@ -2422,7 +2479,8 @@
     "archiveKey": "LEADOFF_FIRST_PITCH_HR:824052:687263:0:",
     "description": "初回先頭打者初球本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_RUN_INNING",
@@ -2462,7 +2520,8 @@
     "archiveKey": "LARGE_RUN_INNING:824376:team-115:5:",
     "description": "5回に8得点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "TWO_HIT_SAME_INNING",
@@ -2503,7 +2562,8 @@
     "archiveKey": "TWO_HIT_SAME_INNING:824376:650489:5:",
     "description": "5回に2安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LEADOFF_FIRST_PITCH_HR",
@@ -2545,7 +2605,8 @@
     "archiveKey": "LEADOFF_FIRST_PITCH_HR:822916:680977:0:",
     "description": "初回先頭打者初球本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -2586,7 +2647,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:823648:team-109:0:",
     "description": "両軍合計12投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "FOUR_SB_GAME",
@@ -2628,7 +2690,8 @@
     "archiveKey": "FOUR_SB_GAME:823887:805300:0:",
     "description": "1試合4盗塁",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_SCORE",
@@ -2668,7 +2731,8 @@
     "archiveKey": "ALL_STARTERS_SCORE:824455:team-114:0:",
     "description": "先発野手全員得点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -2709,7 +2773,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:823319:team-115:0:",
     "description": "両軍合計13投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "WALKOFF_GRAND_SLAM",
@@ -2750,7 +2815,8 @@
     "archiveKey": "WALKOFF_GRAND_SLAM:823319:593428:0:",
     "description": "サヨナラ満塁本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_SCORE",
@@ -2790,7 +2856,8 @@
     "archiveKey": "ALL_STARTERS_SCORE:823156:team-136:0:",
     "description": "先発野手全員得点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_WORST",
@@ -2836,7 +2903,8 @@
     "archiveKey": "JAPANESE_CAREER_WORST:823156:837227:0:baseOnBalls",
     "description": "4与四球でキャリアワーストタイ",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_WORST",
@@ -2882,7 +2950,8 @@
     "archiveKey": "JAPANESE_CAREER_WORST:823156:837227:0:hitBatsmen",
     "description": "1与死球でキャリアワースト",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_WORST",
@@ -2928,7 +2997,8 @@
     "archiveKey": "JAPANESE_CAREER_WORST:823156:837227:0:wildPitches",
     "description": "1暴投でキャリアワースト",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_LARGE_HR",
@@ -2968,7 +3038,8 @@
     "archiveKey": "COMBINED_LARGE_HR:823968:team-140:0:",
     "description": "両軍合計7本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "THREE_HR_GAME",
@@ -3012,7 +3083,8 @@
     "archiveKey": "THREE_HR_GAME:823968:571970:0:",
     "description": "1試合3本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_HR_INNING",
@@ -3052,7 +3124,8 @@
     "archiveKey": "LARGE_HR_INNING:824941:team-144:6:",
     "description": "6回にチーム3本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -3093,7 +3166,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:823155:team-117:0:",
     "description": "両軍合計12投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "HIT_DEFICIT_WIN",
@@ -3135,7 +3209,8 @@
     "archiveKey": "HIT_DEFICIT_WIN:823155:team-136:0:",
     "description": "相手より10本少ない安打数で勝利",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_WORST",
@@ -3181,7 +3256,8 @@
     "archiveKey": "JAPANESE_CAREER_WORST:823644:673540:0:earnedRuns",
     "description": "7自責点でキャリアワースト",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_WORST",
@@ -3227,7 +3303,8 @@
     "archiveKey": "JAPANESE_CAREER_WORST:823644:673540:0:homeRuns",
     "description": "2被本塁打でキャリアワーストタイ",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_WORST",
@@ -3273,7 +3350,8 @@
     "archiveKey": "JAPANESE_CAREER_WORST:823644:673540:0:runs",
     "description": "7失点でキャリアワースト",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LEADOFF_FIRST_PITCH_HR",
@@ -3315,7 +3393,8 @@
     "archiveKey": "LEADOFF_FIRST_PITCH_HR:824129:672580:0:",
     "description": "初回先頭打者初球本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "EXTREME_WALKS",
@@ -3355,7 +3434,8 @@
     "archiveKey": "EXTREME_WALKS:824535:team-108:0:",
     "description": "両軍合計18四球",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -3396,7 +3476,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:824697:team-134:0:",
     "description": "両軍合計13投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_HIGH",
@@ -3442,7 +3523,8 @@
     "archiveKey": "JAPANESE_CAREER_HIGH:823966:808963:0:strikeOuts",
     "description": "6奪三振でキャリア最多",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_WORST",
@@ -3488,7 +3570,8 @@
     "archiveKey": "JAPANESE_CAREER_WORST:823966:808963:0:baseOnBalls",
     "description": "5与四球でキャリアワーストタイ",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_WORST",
@@ -3534,7 +3617,8 @@
     "archiveKey": "JAPANESE_CAREER_WORST:823966:808963:0:wildPitches",
     "description": "1暴投でキャリアワーストタイ",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LEADOFF_FIRST_PITCH_HR",
@@ -3576,7 +3660,8 @@
     "archiveKey": "LEADOFF_FIRST_PITCH_HR:823966:660271:0:",
     "description": "初回先頭打者初球本塁打",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -3617,7 +3702,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:824126:team-145:0:",
     "description": "両軍合計14投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_HIT",
@@ -3657,7 +3743,8 @@
     "archiveKey": "ALL_STARTERS_HIT:824293:team-116:0:",
     "description": "先発野手全員安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_RUN_INNING",
@@ -3697,7 +3784,8 @@
     "archiveKey": "LARGE_RUN_INNING:823400:team-134:6:",
     "description": "6回に10得点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "TWO_HIT_SAME_INNING",
@@ -3738,7 +3826,8 @@
     "archiveKey": "TWO_HIT_SAME_INNING:823400:664040:6:",
     "description": "6回に2安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "TWO_HIT_SAME_INNING",
@@ -3779,7 +3868,8 @@
     "archiveKey": "TWO_HIT_SAME_INNING:823400:668804:6:",
     "description": "6回に2安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_LARGE_HR",
@@ -3819,7 +3909,8 @@
     "archiveKey": "COMBINED_LARGE_HR:823563:team-108:0:",
     "description": "両軍合計7本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_LARGE_HR",
@@ -3859,7 +3950,8 @@
     "archiveKey": "COMBINED_LARGE_HR:824856:team-109:0:",
     "description": "両軍合計7本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LEADOFF_FIRST_PITCH_HR",
@@ -3901,7 +3993,8 @@
     "archiveKey": "LEADOFF_FIRST_PITCH_HR:824856:606466:0:",
     "description": "初回先頭打者初球本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_HIT",
@@ -3941,7 +4034,8 @@
     "archiveKey": "ALL_STARTERS_HIT:824937:team-146:0:",
     "description": "先発野手全員安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_HR_INNING",
@@ -3981,7 +4075,8 @@
     "archiveKey": "LARGE_HR_INNING:823562:team-108:1:",
     "description": "1回にチーム3本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "THREE_CONSECUTIVE_HR",
@@ -4026,7 +4121,8 @@
     "archiveKey": "THREE_CONSECUTIVE_HR:823562:545361:0:",
     "description": "3者連続本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -4067,7 +4163,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:823802:team-141:0:",
     "description": "両軍合計12投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "TWO_HIT_SAME_INNING",
@@ -4108,7 +4205,8 @@
     "archiveKey": "TWO_HIT_SAME_INNING:824210:543877:3:",
     "description": "3回に2安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_HIGH",
@@ -4154,7 +4252,8 @@
     "archiveKey": "JAPANESE_CAREER_HIGH:823477:684007:0:strikeOuts",
     "description": "11奪三振でキャリア最多タイ",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_WORST",
@@ -4200,7 +4299,8 @@
     "archiveKey": "JAPANESE_CAREER_WORST:823477:684007:0:wildPitches",
     "description": "1暴投でキャリアワーストタイ",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_RBI_GAME",
@@ -4241,7 +4341,8 @@
     "archiveKey": "LARGE_RBI_GAME:824532:701398:0:",
     "description": "1試合6打点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_HIT",
@@ -4281,7 +4382,8 @@
     "archiveKey": "ALL_STARTERS_HIT:824855:team-109:0:",
     "description": "先発野手全員安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_HIT",
@@ -4321,7 +4423,8 @@
     "archiveKey": "ALL_STARTERS_HIT:823396:team-134:0:",
     "description": "先発野手全員安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -4362,7 +4465,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:823396:team-120:0:",
     "description": "両軍合計13投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "HIT_DEFICIT_WIN",
@@ -4404,7 +4508,8 @@
     "archiveKey": "HIT_DEFICIT_WIN:823396:team-120:0:",
     "description": "相手より5本少ない安打数で勝利",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_HIT",
@@ -4444,7 +4549,8 @@
     "archiveKey": "ALL_STARTERS_HIT:822752:team-137:0:",
     "description": "先発野手全員安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_WORST",
@@ -4490,7 +4596,8 @@
     "archiveKey": "JAPANESE_CAREER_WORST:824373:608372:0:wildPitches",
     "description": "1暴投でキャリアワーストタイ",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_WORST",
@@ -4536,7 +4643,8 @@
     "archiveKey": "JAPANESE_CAREER_WORST:824693:673540:0:homeRuns",
     "description": "2被本塁打でキャリアワーストタイ",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_WORST",
@@ -4582,7 +4690,8 @@
     "archiveKey": "JAPANESE_CAREER_WORST:824693:673540:0:runs",
     "description": "7失点でキャリアワーストタイ",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_HIT",
@@ -4622,7 +4731,8 @@
     "archiveKey": "ALL_STARTERS_HIT:822751:team-137:0:",
     "description": "先発野手全員安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LEADOFF_FIRST_PITCH_HR",
@@ -4664,7 +4774,8 @@
     "archiveKey": "LEADOFF_FIRST_PITCH_HR:822751:695578:0:",
     "description": "初回先頭打者初球本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -4705,7 +4816,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:823394:team-139:0:",
     "description": "両軍合計16投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_HR_INNING",
@@ -4745,7 +4857,8 @@
     "archiveKey": "LARGE_HR_INNING:823558:team-147:3:",
     "description": "3回にチーム3本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -4786,7 +4899,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:825020:team-145:0:",
     "description": "両軍合計12投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "EXTREME_WALKS",
@@ -4826,7 +4940,8 @@
     "archiveKey": "EXTREME_WALKS:825020:team-145:0:",
     "description": "両軍合計18四球",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LEADOFF_FIRST_PITCH_HR",
@@ -4868,7 +4983,8 @@
     "archiveKey": "LEADOFF_FIRST_PITCH_HR:823150:608701:0:",
     "description": "初回先頭打者初球本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -4909,7 +5025,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:823475:team-144:0:",
     "description": "両軍合計12投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_HIT",
@@ -4949,7 +5066,8 @@
     "archiveKey": "ALL_STARTERS_HIT:824371:team-115:0:",
     "description": "先発野手全員安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_HIT",
@@ -4989,7 +5107,8 @@
     "archiveKey": "ALL_STARTERS_HIT:824371:team-119:0:",
     "description": "先発野手全員安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_WORST",
@@ -5035,7 +5154,8 @@
     "archiveKey": "JAPANESE_CAREER_WORST:824371:808963:0:hitBatsmen",
     "description": "1与死球でキャリアワーストタイ",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_WORST",
@@ -5081,7 +5201,8 @@
     "archiveKey": "JAPANESE_CAREER_WORST:824371:808963:0:hits",
     "description": "7被安打でキャリアワースト",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_WORST",
@@ -5127,7 +5248,8 @@
     "archiveKey": "JAPANESE_CAREER_WORST:824371:808963:0:wildPitches",
     "description": "1暴投でキャリアワーストタイ",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -5168,7 +5290,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:824691:team-121:0:",
     "description": "両軍合計12投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_RUN_INNING",
@@ -5208,7 +5331,8 @@
     "archiveKey": "LARGE_RUN_INNING:825100:team-141:1:",
     "description": "1回に8得点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "TWO_HIT_SAME_INNING",
@@ -5249,7 +5373,8 @@
     "archiveKey": "TWO_HIT_SAME_INNING:825100:664770:1:",
     "description": "1回に2安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -5290,7 +5415,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:824125:team-110:0:",
     "description": "両軍合計13投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "HIT_DEFICIT_WIN",
@@ -5332,7 +5458,8 @@
     "archiveKey": "HIT_DEFICIT_WIN:824125:team-110:0:",
     "description": "相手より8本少ない安打数で勝利",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -5373,7 +5500,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:824776:team-116:0:",
     "description": "両軍合計12投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "EXTREME_WALKS",
@@ -5413,7 +5541,8 @@
     "archiveKey": "EXTREME_WALKS:822747:team-120:0:",
     "description": "チーム12四球",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_HIT",
@@ -5453,7 +5582,8 @@
     "archiveKey": "ALL_STARTERS_HIT:824448:team-114:0:",
     "description": "先発野手全員安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_HR_INNING",
@@ -5493,7 +5623,8 @@
     "archiveKey": "LARGE_HR_INNING:825099:team-145:2:",
     "description": "2回にチーム3本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "THREE_CONSECUTIVE_HR",
@@ -5538,7 +5669,8 @@
     "archiveKey": "THREE_CONSECUTIVE_HR:825099:808959:0:",
     "description": "3者連続本塁打",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_LARGE_HR",
@@ -5578,7 +5710,8 @@
     "archiveKey": "COMBINED_LARGE_HR:822748:team-144:0:",
     "description": "両軍合計7本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_HIT",
@@ -5618,7 +5751,8 @@
     "archiveKey": "ALL_STARTERS_HIT:824367:team-115:0:",
     "description": "先発野手全員安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "TWO_OUTS_SAME_INNING",
@@ -5659,7 +5793,8 @@
     "archiveKey": "TWO_OUTS_SAME_INNING:824367:681198:2:",
     "description": "2回に2度打者アウト",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LEADOFF_FIRST_PITCH_HR",
@@ -5701,7 +5836,8 @@
     "archiveKey": "LEADOFF_FIRST_PITCH_HR:822745:695578:0:",
     "description": "初回先頭打者初球本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -5742,7 +5878,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:824689:team-143:0:",
     "description": "両軍合計12投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_HR_INNING",
@@ -5782,7 +5919,8 @@
     "archiveKey": "LARGE_HR_INNING:822909:team-133:1:",
     "description": "1回にチーム3本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LEADOFF_FIRST_PITCH_HR",
@@ -5824,7 +5962,8 @@
     "archiveKey": "LEADOFF_FIRST_PITCH_HR:822909:701762:0:",
     "description": "初回先頭打者初球本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_HIT",
@@ -5864,7 +6003,8 @@
     "archiveKey": "ALL_STARTERS_HIT:823232:team-146:0:",
     "description": "先発野手全員安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_HIT",
@@ -5904,7 +6044,8 @@
     "archiveKey": "ALL_STARTERS_HIT:823638:team-115:0:",
     "description": "先発野手全員安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_LARGE_HR",
@@ -5944,7 +6085,8 @@
     "archiveKey": "COMBINED_LARGE_HR:824529:team-116:0:",
     "description": "両軍合計8本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -5985,7 +6127,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:824529:team-116:0:",
     "description": "両軍合計12投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_LARGE_HR",
@@ -6025,7 +6168,8 @@
     "archiveKey": "COMBINED_LARGE_HR:824854:team-111:0:",
     "description": "両軍合計7本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_HR_INNING",
@@ -6065,7 +6209,8 @@
     "archiveKey": "LARGE_HR_INNING:824854:team-110:1:",
     "description": "1回にチーム3本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_RBI_GAME",
@@ -6106,7 +6251,8 @@
     "archiveKey": "LARGE_RBI_GAME:824854:668939:0:",
     "description": "1試合6打点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_HIT",
@@ -6146,7 +6292,8 @@
     "archiveKey": "ALL_STARTERS_HIT:823070:team-136:0:",
     "description": "先発野手全員安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_LARGE_HR",
@@ -6186,7 +6333,8 @@
     "archiveKey": "COMBINED_LARGE_HR:823070:team-136:0:",
     "description": "両軍合計8本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -6227,7 +6375,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:823070:team-136:0:",
     "description": "両軍合計13投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_HIT",
@@ -6267,7 +6416,8 @@
     "archiveKey": "ALL_STARTERS_HIT:823960:team-119:0:",
     "description": "先発野手全員安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_SCORE",
@@ -6307,7 +6457,8 @@
     "archiveKey": "ALL_STARTERS_SCORE:823960:team-119:0:",
     "description": "先発野手全員得点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_WORST",
@@ -6353,7 +6504,8 @@
     "archiveKey": "JAPANESE_CAREER_WORST:823960:808963:0:hitBatsmen",
     "description": "1与死球でキャリアワーストタイ",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_WORST",
@@ -6399,7 +6551,8 @@
     "archiveKey": "JAPANESE_CAREER_WORST:823960:808963:0:hits",
     "description": "7被安打でキャリアワーストタイ",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_WORST",
@@ -6445,7 +6598,8 @@
     "archiveKey": "JAPANESE_CAREER_WORST:823960:808963:0:homeRuns",
     "description": "3被本塁打でキャリアワースト",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_WORST",
@@ -6491,7 +6645,8 @@
     "archiveKey": "JAPANESE_CAREER_WORST:823960:808963:0:wildPitches",
     "description": "1暴投でキャリアワーストタイ",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "TWO_OUTS_SAME_INNING",
@@ -6532,7 +6687,8 @@
     "archiveKey": "TWO_OUTS_SAME_INNING:824121:686469:8:",
     "description": "8回に2度打者アウト",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_HIT",
@@ -6572,7 +6728,8 @@
     "archiveKey": "ALL_STARTERS_HIT:824851:team-111:0:",
     "description": "先発野手全員安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_SCORE",
@@ -6612,7 +6769,8 @@
     "archiveKey": "ALL_STARTERS_SCORE:824851:team-111:0:",
     "description": "先発野手全員得点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_HR_INNING",
@@ -6652,7 +6810,8 @@
     "archiveKey": "LARGE_HR_INNING:824851:team-111:9:",
     "description": "9回にチーム3本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_RBI_INNING",
@@ -6693,7 +6852,8 @@
     "archiveKey": "LARGE_RBI_INNING:824851:575929:9:",
     "description": "1イニングで4打点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_RBI_INNING",
@@ -6734,7 +6894,8 @@
     "archiveKey": "LARGE_RBI_INNING:824851:655316:9:",
     "description": "1イニングで4打点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_RUN_INNING",
@@ -6774,7 +6935,8 @@
     "archiveKey": "LARGE_RUN_INNING:824851:team-111:9:",
     "description": "9回に10得点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "TWO_HIT_SAME_INNING",
@@ -6815,7 +6977,8 @@
     "archiveKey": "TWO_HIT_SAME_INNING:824851:575929:9:",
     "description": "9回に2安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "TWO_HIT_SAME_INNING",
@@ -6856,7 +7019,8 @@
     "archiveKey": "TWO_HIT_SAME_INNING:824851:678882:9:",
     "description": "9回に2安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_WORST",
@@ -6902,7 +7066,8 @@
     "archiveKey": "JAPANESE_CAREER_WORST:823637:673540:0:hitBatsmen",
     "description": "1与死球でキャリアワーストタイ",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_HIT",
@@ -6942,7 +7107,8 @@
     "archiveKey": "ALL_STARTERS_HIT:824122:team-108:0:",
     "description": "先発野手全員安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "TWO_OUTS_SAME_INNING",
@@ -6983,7 +7149,8 @@
     "archiveKey": "TWO_OUTS_SAME_INNING:825094:543510:7:",
     "description": "7回に2度打者アウト",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -7024,7 +7191,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:823961:team-146:0:",
     "description": "両軍合計12投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_HIT",
@@ -7064,7 +7232,8 @@
     "archiveKey": "ALL_STARTERS_HIT:824609:team-108:0:",
     "description": "先発野手全員安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "HIT_DEFICIT_WIN",
@@ -7106,7 +7275,8 @@
     "archiveKey": "HIT_DEFICIT_WIN:824609:team-145:0:",
     "description": "相手より5本少ない安打数で勝利",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_HIT",
@@ -7146,7 +7316,8 @@
     "archiveKey": "ALL_STARTERS_HIT:823390:team-138:0:",
     "description": "先発野手全員安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LEADOFF_FIRST_PITCH_HR",
@@ -7188,7 +7359,8 @@
     "archiveKey": "LEADOFF_FIRST_PITCH_HR:823636:666182:0:",
     "description": "初回先頭打者初球本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "TWO_OUTS_SAME_INNING",
@@ -7229,7 +7401,8 @@
     "archiveKey": "TWO_OUTS_SAME_INNING:823636:682626:4:",
     "description": "4回に2度打者アウト",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_SCORE",
@@ -7269,7 +7442,8 @@
     "archiveKey": "ALL_STARTERS_SCORE:823798:team-158:0:",
     "description": "先発野手全員得点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_RUN_INNING",
@@ -7309,7 +7483,8 @@
     "archiveKey": "LARGE_RUN_INNING:823798:team-158:6:",
     "description": "6回に8得点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "TWO_HIT_SAME_INNING",
@@ -7350,7 +7525,8 @@
     "archiveKey": "TWO_HIT_SAME_INNING:823798:666152:6:",
     "description": "6回に2安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -7391,7 +7567,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:825017:team-118:0:",
     "description": "両軍合計12投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "HIT_DEFICIT_WIN",
@@ -7433,7 +7610,8 @@
     "archiveKey": "HIT_DEFICIT_WIN:823717:team-136:0:",
     "description": "相手より5本少ない安打数で勝利",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -7474,7 +7652,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:823471:team-137:0:",
     "description": "両軍合計12投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LEADOFF_FIRST_PITCH_HR",
@@ -7516,7 +7695,8 @@
     "archiveKey": "LEADOFF_FIRST_PITCH_HR:823471:607208:0:",
     "description": "初回先頭打者初球本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "HIT_DEFICIT_WIN",
@@ -7558,7 +7738,8 @@
     "archiveKey": "HIT_DEFICIT_WIN:824848:team-110:0:",
     "description": "相手より6本少ない安打数で勝利",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_HIT",
@@ -7598,7 +7779,8 @@
     "archiveKey": "ALL_STARTERS_HIT:824850:team-117:0:",
     "description": "先発野手全員安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -7639,7 +7821,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:825012:team-114:0:",
     "description": "両軍合計12投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_HIGH",
@@ -7685,7 +7868,8 @@
     "archiveKey": "JAPANESE_CAREER_HIGH:823067:808963:0:outs",
     "description": "6回でキャリア最多タイ",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_WORST",
@@ -7731,7 +7915,8 @@
     "archiveKey": "JAPANESE_CAREER_WORST:823067:808963:0:hitBatsmen",
     "description": "1与死球でキャリアワーストタイ",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "RUN_WITHOUT_HIT",
@@ -7773,7 +7958,8 @@
     "archiveKey": "RUN_WITHOUT_HIT:823388:team-134:2:",
     "description": "2回 無安打で5得点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "TWO_OUTS_SAME_INNING",
@@ -7814,7 +8000,8 @@
     "archiveKey": "TWO_OUTS_SAME_INNING:823388:665833:2:",
     "description": "2回に2度打者アウト",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_RUN_INNING",
@@ -7854,7 +8041,8 @@
     "archiveKey": "LARGE_RUN_INNING:823715:team-141:8:",
     "description": "8回に8得点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_WORST",
@@ -7900,7 +8088,8 @@
     "archiveKey": "JAPANESE_CAREER_WORST:824685:684007:0:wildPitches",
     "description": "1暴投でキャリアワーストタイ",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_SCORE",
@@ -7940,7 +8129,8 @@
     "archiveKey": "ALL_STARTERS_SCORE:825014:team-114:0:",
     "description": "先発野手全員得点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "TWO_HIT_SAME_INNING",
@@ -7981,7 +8171,8 @@
     "archiveKey": "TWO_HIT_SAME_INNING:823555:691176:8:",
     "description": "8回に2安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_HIT",
@@ -8021,7 +8212,8 @@
     "archiveKey": "ALL_STARTERS_HIT:823875:team-143:0:",
     "description": "先発野手全員安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -8062,7 +8254,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:824769:team-117:0:",
     "description": "両軍合計12投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_HR_INNING",
@@ -8102,7 +8295,8 @@
     "archiveKey": "LARGE_HR_INNING:823143:team-144:6:",
     "description": "6回にチーム3本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_WORST",
@@ -8148,7 +8342,8 @@
     "archiveKey": "JAPANESE_CAREER_WORST:824201:808967:0:wildPitches",
     "description": "1暴投でキャリアワーストタイ",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -8189,7 +8384,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:823873:team-110:0:",
     "description": "両軍合計12投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_RBI_GAME",
@@ -8230,7 +8426,8 @@
     "archiveKey": "LARGE_RBI_GAME:824198:681624:0:",
     "description": "1試合6打点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "THREE_HR_GAME",
@@ -8274,7 +8471,8 @@
     "archiveKey": "THREE_HR_GAME:824198:681624:0:",
     "description": "1試合3本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -8315,7 +8513,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:824683:team-113:0:",
     "description": "両軍合計12投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_HIT",
@@ -8355,7 +8554,8 @@
     "archiveKey": "ALL_STARTERS_HIT:823467:team-133:0:",
     "description": "先発野手全員安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -8396,7 +8596,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:823551:team-140:0:",
     "description": "両軍合計12投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_HIT",
@@ -8436,7 +8637,8 @@
     "archiveKey": "ALL_STARTERS_HIT:824117:team-114:0:",
     "description": "先発野手全員安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_HIGH",
@@ -8482,7 +8684,8 @@
     "archiveKey": "JAPANESE_CAREER_HIGH:823303:673513:0:outs",
     "description": "2回2/3でキャリア最多",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -8523,7 +8726,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:823466:team-115:0:",
     "description": "両軍合計13投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "HIT_DEFICIT_WIN",
@@ -8565,7 +8769,8 @@
     "archiveKey": "HIT_DEFICIT_WIN:824443:team-114:0:",
     "description": "相手より5本少ない安打数で勝利",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_RBI_GAME",
@@ -8606,7 +8811,8 @@
     "archiveKey": "LARGE_RBI_GAME:824607:670042:0:",
     "description": "1試合7打点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "FIVE_HIT_GAME",
@@ -8648,7 +8854,8 @@
     "archiveKey": "FIVE_HIT_GAME:822820:676391:0:",
     "description": "1試合5安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_HIT",
@@ -8688,7 +8895,8 @@
     "archiveKey": "ALL_STARTERS_HIT:823224:team-134:0:",
     "description": "先発野手全員安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "TWO_HIT_SAME_INNING",
@@ -8729,7 +8937,8 @@
     "archiveKey": "TWO_HIT_SAME_INNING:823224:656811:7:",
     "description": "7回に2安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "FOUR_STRIKEOUT_INNING",
@@ -8774,7 +8983,8 @@
     "archiveKey": "FOUR_STRIKEOUT_INNING:823304:695243:9:",
     "description": "9回に4奪三振",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -8815,7 +9025,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:824444:team-142:0:",
     "description": "両軍合計12投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -8856,7 +9067,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:823221:team-134:0:",
     "description": "両軍合計14投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_WORST",
@@ -8902,7 +9114,8 @@
     "archiveKey": "JAPANESE_CAREER_WORST:823463:608372:0:homeRuns",
     "description": "3被本塁打でキャリアワーストタイ",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -8943,7 +9156,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:824113:team-116:0:",
     "description": "両軍合計12投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_WORST",
@@ -8989,7 +9203,8 @@
     "archiveKey": "JAPANESE_CAREER_WORST:823953:808963:0:hitBatsmen",
     "description": "1与死球でキャリアワーストタイ",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -9030,7 +9245,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:822817:team-139:0:",
     "description": "両軍合計12投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "TWO_OUTS_SAME_INNING",
@@ -9071,7 +9287,8 @@
     "archiveKey": "TWO_OUTS_SAME_INNING:823790:592885:4:",
     "description": "4回に2度打者アウト",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_WORST",
@@ -9117,7 +9334,8 @@
     "archiveKey": "JAPANESE_CAREER_WORST:823951:808967:0:homeRuns",
     "description": "3被本塁打でキャリアワースト",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_WORST",
@@ -9163,7 +9381,8 @@
     "archiveKey": "JAPANESE_CAREER_WORST:824197:837227:0:earnedRuns",
     "description": "6自責点でキャリアワースト",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_WORST",
@@ -9209,7 +9428,8 @@
     "archiveKey": "JAPANESE_CAREER_WORST:824197:837227:0:hitBatsmen",
     "description": "2与死球でキャリアワースト",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_WORST",
@@ -9255,7 +9475,8 @@
     "archiveKey": "JAPANESE_CAREER_WORST:824197:837227:0:hits",
     "description": "5被安打でキャリアワースト",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_WORST",
@@ -9301,7 +9522,8 @@
     "archiveKey": "JAPANESE_CAREER_WORST:824197:837227:0:homeRuns",
     "description": "2被本塁打でキャリアワースト",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_WORST",
@@ -9347,7 +9569,8 @@
     "archiveKey": "JAPANESE_CAREER_WORST:824197:837227:0:runs",
     "description": "6失点でキャリアワースト",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LEADOFF_FIRST_PITCH_HR",
@@ -9389,7 +9612,8 @@
     "archiveKey": "LEADOFF_FIRST_PITCH_HR:824843:502671:0:",
     "description": "初回先頭打者初球本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -9430,7 +9654,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:822815:team-139:0:",
     "description": "両軍合計12投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "WALKOFF_GRAND_SLAM",
@@ -9471,7 +9696,8 @@
     "archiveKey": "WALKOFF_GRAND_SLAM:822815:662139:0:",
     "description": "サヨナラ満塁本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LEADOFF_FIRST_PITCH_HR",
@@ -9513,7 +9739,8 @@
     "archiveKey": "LEADOFF_FIRST_PITCH_HR:823710:621439:0:",
     "description": "初回先頭打者初球本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -9554,7 +9781,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:824195:team-136:0:",
     "description": "両軍合計12投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_LARGE_HR",
@@ -9594,7 +9822,8 @@
     "archiveKey": "COMBINED_LARGE_HR:823630:team-116:0:",
     "description": "両軍合計7本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_RBI_GAME",
@@ -9635,7 +9864,8 @@
     "archiveKey": "LARGE_RBI_GAME:824517:668709:0:",
     "description": "1試合6打点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -9676,7 +9906,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:823061:team-118:0:",
     "description": "両軍合計13投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -9717,7 +9948,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:824037:team-119:0:",
     "description": "両軍合計12投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "TWO_OUTS_SAME_INNING",
@@ -9758,7 +9990,8 @@
     "archiveKey": "TWO_OUTS_SAME_INNING:824360:606466:1:",
     "description": "1回に2度打者アウト",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_HIT",
@@ -9798,7 +10031,8 @@
     "archiveKey": "ALL_STARTERS_HIT:824601:team-112:0:",
     "description": "先発野手全員安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_RUN_INNING",
@@ -9838,7 +10072,8 @@
     "archiveKey": "LARGE_RUN_INNING:822981:team-146:10:",
     "description": "10回に8得点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_SCORE",
@@ -9878,7 +10113,8 @@
     "archiveKey": "ALL_STARTERS_SCORE:824038:team-119:0:",
     "description": "先発野手全員得点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "TWO_OUTS_SAME_INNING",
@@ -9919,7 +10155,8 @@
     "archiveKey": "TWO_OUTS_SAME_INNING:824038:660271:6:",
     "description": "6回に2度打者アウト",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_LARGE_HR",
@@ -9959,7 +10196,8 @@
     "archiveKey": "COMBINED_LARGE_HR:824600:team-112:0:",
     "description": "両軍合計7本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "RUN_WITHOUT_HIT",
@@ -10001,7 +10239,8 @@
     "archiveKey": "RUN_WITHOUT_HIT:823138:team-136:6:",
     "description": "6回 無安打で3得点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_HIGH",
@@ -10047,7 +10286,8 @@
     "archiveKey": "JAPANESE_CAREER_HIGH:824034:808963:0:outs",
     "description": "7回でキャリア最多",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_HIGH",
@@ -10093,7 +10333,8 @@
     "archiveKey": "JAPANESE_CAREER_HIGH:824034:808963:0:strikeOuts",
     "description": "8奪三振でキャリア最多",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_WORST",
@@ -10139,7 +10380,8 @@
     "archiveKey": "JAPANESE_CAREER_WORST:824034:808963:0:wildPitches",
     "description": "1暴投でキャリアワーストタイ",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_LARGE_HR",
@@ -10179,7 +10421,8 @@
     "archiveKey": "COMBINED_LARGE_HR:824436:team-113:0:",
     "description": "両軍合計7本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -10220,7 +10463,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:824599:team-112:0:",
     "description": "両軍合計12投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_RBI_INNING",
@@ -10261,7 +10505,8 @@
     "archiveKey": "LARGE_RBI_INNING:825006:664056:8:",
     "description": "1イニングで4打点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_RUN_INNING",
@@ -10301,7 +10546,8 @@
     "archiveKey": "LARGE_RUN_INNING:825006:team-137:8:",
     "description": "8回に8得点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -10342,7 +10588,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:822734:team-121:0:",
     "description": "両軍合計14投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_RUN_INNING",
@@ -10382,7 +10629,8 @@
     "archiveKey": "LARGE_RUN_INNING:822734:team-121:12:",
     "description": "12回に10得点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "TWO_HIT_SAME_INNING",
@@ -10423,7 +10671,8 @@
     "archiveKey": "TWO_HIT_SAME_INNING:822734:666182:12:",
     "description": "12回に2安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "TWO_HIT_SAME_INNING",
@@ -10464,7 +10713,8 @@
     "archiveKey": "TWO_HIT_SAME_INNING:822734:701807:12:",
     "description": "12回に2安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LEADOFF_FIRST_PITCH_HR",
@@ -10506,7 +10756,8 @@
     "archiveKey": "LEADOFF_FIRST_PITCH_HR:823549:502671:0:",
     "description": "初回先頭打者初球本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_WORST",
@@ -10552,7 +10803,8 @@
     "archiveKey": "JAPANESE_CAREER_WORST:823705:837227:0:hits",
     "description": "5被安打でキャリアワーストタイ",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_WORST",
@@ -10598,7 +10850,8 @@
     "archiveKey": "JAPANESE_CAREER_WORST:823705:837227:0:homeRuns",
     "description": "2被本塁打でキャリアワーストタイ",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "TWO_OUTS_SAME_INNING",
@@ -10639,7 +10892,8 @@
     "archiveKey": "TWO_OUTS_SAME_INNING:823867:683357:5:",
     "description": "5回に2度打者アウト",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "HIT_DEFICIT_WIN",
@@ -10681,7 +10935,8 @@
     "archiveKey": "HIT_DEFICIT_WIN:824035:team-108:0:",
     "description": "相手より5本少ない安打数で勝利",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_HIT",
@@ -10721,7 +10976,8 @@
     "archiveKey": "ALL_STARTERS_HIT:825087:team-109:0:",
     "description": "先発野手全員安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -10762,7 +11018,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:823302:team-119:0:",
     "description": "両軍合計12投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_SCORE",
@@ -10802,7 +11059,8 @@
     "archiveKey": "ALL_STARTERS_SCORE:824033:team-133:0:",
     "description": "先発野手全員得点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "TWO_OUTS_SAME_INNING",
@@ -10843,7 +11101,8 @@
     "archiveKey": "TWO_OUTS_SAME_INNING:824033:641680:3:",
     "description": "3回に2度打者アウト",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LEADOFF_FIRST_PITCH_HR",
@@ -10885,7 +11144,8 @@
     "archiveKey": "LEADOFF_FIRST_PITCH_HR:823299:660271:0:",
     "description": "初回先頭打者初球本塁打",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "POSITION_PLAYER_STRIKEOUT",
@@ -10926,7 +11186,8 @@
     "archiveKey": "POSITION_PLAYER_STRIKEOUT:823866:691594:0:",
     "description": "野手登板で奪三振",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_RUN_INNING",
@@ -10966,7 +11227,8 @@
     "archiveKey": "LARGE_RUN_INNING:823223:team-145:4:",
     "description": "4回に9得点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LEADOFF_FIRST_PITCH_HR",
@@ -11008,7 +11270,8 @@
     "archiveKey": "LEADOFF_FIRST_PITCH_HR:824029:687263:0:",
     "description": "初回先頭打者初球本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LEADOFF_FIRST_PITCH_HR",
@@ -11050,7 +11313,8 @@
     "archiveKey": "LEADOFF_FIRST_PITCH_HR:824842:805808:0:",
     "description": "初回先頭打者初球本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -11091,7 +11355,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:824922:team-120:0:",
     "description": "両軍合計13投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_HIT",
@@ -11131,7 +11396,8 @@
     "archiveKey": "ALL_STARTERS_HIT:823222:team-137:0:",
     "description": "先発野手全員安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_RBI_GAME",
@@ -11172,7 +11438,8 @@
     "archiveKey": "LARGE_RBI_GAME:823787:606192:0:",
     "description": "1試合6打点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LEADOFF_FIRST_PITCH_HR",
@@ -11214,7 +11481,8 @@
     "archiveKey": "LEADOFF_FIRST_PITCH_HR:822813:687462:0:",
     "description": "初回先頭打者初球本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_WORST",
@@ -11260,7 +11528,8 @@
     "archiveKey": "JAPANESE_CAREER_WORST:823786:808967:0:hitBatsmen",
     "description": "1与死球でキャリアワーストタイ",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_WORST",
@@ -11306,7 +11575,8 @@
     "archiveKey": "JAPANESE_CAREER_WORST:823786:808967:0:hits",
     "description": "7被安打でキャリアワーストタイ",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_WORST",
@@ -11352,7 +11622,8 @@
     "archiveKey": "JAPANESE_CAREER_WORST:823786:808967:0:wildPitches",
     "description": "1暴投でキャリアワーストタイ",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "WALKOFF_GRAND_SLAM",
@@ -11393,7 +11664,8 @@
     "archiveKey": "WALKOFF_GRAND_SLAM:823861:681715:0:",
     "description": "サヨナラ満塁本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_WORST",
@@ -11439,7 +11711,8 @@
     "archiveKey": "JAPANESE_CAREER_WORST:824676:684007:0:hitBatsmen",
     "description": "1与死球でキャリアワーストタイ",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_WORST",
@@ -11485,7 +11758,8 @@
     "archiveKey": "JAPANESE_CAREER_WORST:824676:684007:0:homeRuns",
     "description": "3被本塁打でキャリアワーストタイ",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -11526,7 +11800,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:824759:team-142:0:",
     "description": "両軍合計13投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_NO_HITTER",
@@ -11567,7 +11842,8 @@
     "archiveKey": "COMBINED_NO_HITTER:822899:team-117:0:",
     "description": "継投ノーヒッター（3投手）",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_HIGH",
@@ -11613,7 +11889,8 @@
     "archiveKey": "JAPANESE_CAREER_HIGH:822899:837227:0:outs",
     "description": "6回でキャリア最多",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_WORST",
@@ -11659,7 +11936,8 @@
     "archiveKey": "JAPANESE_CAREER_WORST:822899:837227:0:baseOnBalls",
     "description": "4与四球でキャリアワーストタイ",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_LARGE_HR",
@@ -11699,7 +11977,8 @@
     "archiveKey": "COMBINED_LARGE_HR:824437:team-120:0:",
     "description": "両軍合計7本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -11740,7 +12019,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:824838:team-139:0:",
     "description": "両軍合計13投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_RUN_INNING",
@@ -11780,7 +12060,8 @@
     "archiveKey": "LARGE_RUN_INNING:822898:team-140:1:",
     "description": "1回に8得点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_SCORE",
@@ -11820,7 +12101,8 @@
     "archiveKey": "ALL_STARTERS_SCORE:823949:team-119:0:",
     "description": "先発野手全員得点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_LARGE_HR",
@@ -11860,7 +12142,8 @@
     "archiveKey": "COMBINED_LARGE_HR:823949:team-115:0:",
     "description": "両軍合計8本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_HIT",
@@ -11900,7 +12183,8 @@
     "archiveKey": "ALL_STARTERS_HIT:824106:team-147:0:",
     "description": "先発野手全員安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_LARGE_HR",
@@ -11940,7 +12224,8 @@
     "archiveKey": "COMBINED_LARGE_HR:824106:team-147:0:",
     "description": "両軍合計7本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_RBI_GAME",
@@ -11981,7 +12266,8 @@
     "archiveKey": "LARGE_RBI_GAME:824275:687093:0:",
     "description": "1試合6打点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "HIT_DEFICIT_WIN",
@@ -12023,7 +12309,8 @@
     "archiveKey": "HIT_DEFICIT_WIN:822809:team-141:0:",
     "description": "相手より6本少ない安打数で勝利",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "HIT_DEFICIT_WIN",
@@ -12065,7 +12352,8 @@
     "archiveKey": "HIT_DEFICIT_WIN:823783:team-158:0:",
     "description": "相手より5本少ない安打数で勝利",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_HIT",
@@ -12105,7 +12393,8 @@
     "archiveKey": "ALL_STARTERS_HIT:824756:team-111:0:",
     "description": "先発野手全員安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_RBI_GAME",
@@ -12146,7 +12435,8 @@
     "archiveKey": "LARGE_RBI_GAME:824836:677942:0:",
     "description": "1試合6打点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_WORST",
@@ -12192,7 +12482,8 @@
     "archiveKey": "JAPANESE_CAREER_WORST:822732:673513:0:hitBatsmen",
     "description": "1与死球でキャリアワーストタイ",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_WORST",
@@ -12238,7 +12529,8 @@
     "archiveKey": "JAPANESE_CAREER_WORST:823055:684007:0:hitBatsmen",
     "description": "2与死球でキャリアワースト",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_WORST",
@@ -12284,7 +12576,8 @@
     "archiveKey": "JAPANESE_CAREER_WORST:823055:684007:0:homeRuns",
     "description": "3被本塁打でキャリアワーストタイ",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -12325,7 +12618,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:823135:team-109:0:",
     "description": "両軍合計13投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "TWO_OUTS_SAME_INNING",
@@ -12366,7 +12660,8 @@
     "archiveKey": "TWO_OUTS_SAME_INNING:823135:606466:6:",
     "description": "6回に2度打者アウト",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -12407,7 +12702,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:823623:team-146:0:",
     "description": "両軍合計13投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "HIT_DEFICIT_WIN",
@@ -12449,7 +12745,8 @@
     "archiveKey": "HIT_DEFICIT_WIN:823623:team-121:0:",
     "description": "相手より5本少ない安打数で勝利",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -12490,7 +12787,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:824353:team-137:0:",
     "description": "両軍合計12投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -12531,7 +12829,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:825002:team-147:0:",
     "description": "両軍合計12投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_SCORE",
@@ -12571,7 +12870,8 @@
     "archiveKey": "ALL_STARTERS_SCORE:822975:team-108:0:",
     "description": "先発野手全員得点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "TWO_OUTS_SAME_INNING",
@@ -12612,7 +12912,8 @@
     "archiveKey": "TWO_OUTS_SAME_INNING:823375:682848:2:",
     "description": "2回に2度打者アウト",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_HIGH",
@@ -12658,7 +12959,8 @@
     "archiveKey": "JAPANESE_CAREER_HIGH:823944:808967:0:strikeOuts",
     "description": "10奪三振でキャリア最多タイ",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_WORST",
@@ -12704,7 +13006,8 @@
     "archiveKey": "JAPANESE_CAREER_WORST:823944:808967:0:hitBatsmen",
     "description": "1与死球でキャリアワーストタイ",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_HIGH",
@@ -12750,7 +13053,8 @@
     "archiveKey": "JAPANESE_CAREER_HIGH:824187:837227:0:outs",
     "description": "6回でキャリア最多タイ",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_HIT",
@@ -12790,7 +13094,8 @@
     "archiveKey": "ALL_STARTERS_HIT:824354:team-137:0:",
     "description": "先発野手全員安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_SCORE",
@@ -12830,7 +13135,8 @@
     "archiveKey": "ALL_STARTERS_SCORE:824354:team-137:0:",
     "description": "先発野手全員得点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "FIVE_HIT_GAME",
@@ -12872,7 +13178,8 @@
     "archiveKey": "FIVE_HIT_GAME:824354:808982:0:",
     "description": "1試合5安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "POSITION_PLAYER_STRIKEOUT",
@@ -12913,7 +13220,8 @@
     "archiveKey": "POSITION_PLAYER_STRIKEOUT:824354:664954:0:",
     "description": "野手登板で奪三振",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "TWO_HIT_SAME_INNING",
@@ -12954,7 +13262,8 @@
     "archiveKey": "TWO_HIT_SAME_INNING:824354:808982:5:",
     "description": "5回に2安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_HIT",
@@ -12994,7 +13303,8 @@
     "archiveKey": "ALL_STARTERS_HIT:824430:team-111:0:",
     "description": "先発野手全員安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "TWO_OUTS_SAME_INNING",
@@ -13035,7 +13345,8 @@
     "archiveKey": "TWO_OUTS_SAME_INNING:824430:691785:7:",
     "description": "7回に2度打者アウト",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LEADOFF_FIRST_PITCH_HR",
@@ -13077,7 +13388,8 @@
     "archiveKey": "LEADOFF_FIRST_PITCH_HR:824512:660670:0:",
     "description": "初回先頭打者初球本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_HIT",
@@ -13117,7 +13429,8 @@
     "archiveKey": "ALL_STARTERS_HIT:825001:team-133:0:",
     "description": "先発野手全員安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_SCORE",
@@ -13157,7 +13470,8 @@
     "archiveKey": "ALL_STARTERS_SCORE:825001:team-147:0:",
     "description": "先発野手全員得点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_RBI_INNING",
@@ -13198,7 +13512,8 @@
     "archiveKey": "LARGE_RBI_INNING:825001:700250:3:",
     "description": "1イニングで4打点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_RUN_INNING",
@@ -13238,7 +13553,8 @@
     "archiveKey": "LARGE_RUN_INNING:825001:team-147:3:",
     "description": "3回に13得点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "TWO_HIT_SAME_INNING",
@@ -13279,7 +13595,8 @@
     "archiveKey": "TWO_HIT_SAME_INNING:825001:641355:3:",
     "description": "3回に2安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "TWO_HIT_SAME_INNING",
@@ -13320,7 +13637,8 @@
     "archiveKey": "TWO_HIT_SAME_INNING:825001:683011:3:",
     "description": "3回に2安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "TWO_HIT_SAME_INNING",
@@ -13361,7 +13679,8 @@
     "archiveKey": "TWO_HIT_SAME_INNING:825001:700250:3:",
     "description": "3回に2安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_LARGE_HR",
@@ -13401,7 +13720,8 @@
     "archiveKey": "COMBINED_LARGE_HR:822974:team-116:0:",
     "description": "両軍合計7本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_HR_INNING",
@@ -13441,7 +13761,8 @@
     "archiveKey": "LARGE_HR_INNING:822974:team-116:3:",
     "description": "3回にチーム3本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "THREE_CONSECUTIVE_HR",
@@ -13486,7 +13807,8 @@
     "archiveKey": "THREE_CONSECUTIVE_HR:822974:693307:0:",
     "description": "3者連続本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_HR_INNING",
@@ -13526,7 +13848,8 @@
     "archiveKey": "LARGE_HR_INNING:822728:team-146:5:",
     "description": "5回にチーム3本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "THREE_CONSECUTIVE_HR",
@@ -13571,7 +13894,8 @@
     "archiveKey": "THREE_CONSECUTIVE_HR:822728:691788:0:",
     "description": "3者連続本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "TWO_OUTS_SAME_INNING",
@@ -13612,7 +13936,8 @@
     "archiveKey": "TWO_OUTS_SAME_INNING:824188:694728:8:",
     "description": "8回に2度打者アウト",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -13653,7 +13978,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:824671:team-133:0:",
     "description": "両軍合計15投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_HIT",
@@ -13693,7 +14019,8 @@
     "archiveKey": "ALL_STARTERS_HIT:824755:team-111:0:",
     "description": "先発野手全員安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -13734,7 +14061,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:823698:team-118:0:",
     "description": "両軍合計12投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_HIT",
@@ -13774,7 +14102,8 @@
     "archiveKey": "ALL_STARTERS_HIT:823779:team-137:0:",
     "description": "先発野手全員安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_SCORE",
@@ -13814,7 +14143,8 @@
     "archiveKey": "ALL_STARTERS_SCORE:823779:team-137:0:",
     "description": "先発野手全員得点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LEADOFF_FIRST_PITCH_HR",
@@ -13856,7 +14186,8 @@
     "archiveKey": "LEADOFF_FIRST_PITCH_HR:823779:669477:0:",
     "description": "初回先頭打者初球本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "TWO_HIT_SAME_INNING",
@@ -13897,7 +14228,8 @@
     "archiveKey": "TWO_HIT_SAME_INNING:823779:808982:7:",
     "description": "7回に2安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_WORST",
@@ -13943,7 +14275,8 @@
     "archiveKey": "JAPANESE_CAREER_WORST:824672:684007:0:homeRuns",
     "description": "4被本塁打でキャリアワースト",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "TWO_HIT_SAME_INNING",
@@ -13984,7 +14317,8 @@
     "archiveKey": "TWO_HIT_SAME_INNING:824753:621493:1:",
     "description": "1回に2安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_HIGH",
@@ -14030,7 +14364,8 @@
     "archiveKey": "JAPANESE_CAREER_HIGH:823943:808963:0:outs",
     "description": "7回でキャリア最多タイ",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_HIGH",
@@ -14076,7 +14411,8 @@
     "archiveKey": "JAPANESE_CAREER_HIGH:823943:808963:0:strikeOuts",
     "description": "10奪三振でキャリア最多",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_HIT",
@@ -14116,7 +14452,8 @@
     "archiveKey": "ALL_STARTERS_HIT:824271:team-116:0:",
     "description": "先発野手全員安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_LARGE_HR",
@@ -14156,7 +14493,8 @@
     "archiveKey": "COMBINED_LARGE_HR:824673:team-137:0:",
     "description": "両軍合計8本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_RBI_GAME",
@@ -14197,7 +14535,8 @@
     "archiveKey": "LARGE_RBI_GAME:824673:656305:0:",
     "description": "1試合8打点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "TWO_HIT_SAME_INNING",
@@ -14238,7 +14577,8 @@
     "archiveKey": "TWO_HIT_SAME_INNING:824673:669477:6:",
     "description": "6回に2安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "TWO_HIT_SAME_INNING",
@@ -14279,7 +14619,8 @@
     "archiveKey": "TWO_HIT_SAME_INNING:824673:813841:6:",
     "description": "6回に2安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_RBI_GAME",
@@ -14320,7 +14661,8 @@
     "archiveKey": "LARGE_RBI_GAME:825073:671277:0:",
     "description": "1試合6打点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_RUN_INNING",
@@ -14360,7 +14702,8 @@
     "archiveKey": "LARGE_RUN_INNING:823942:team-119:1:",
     "description": "1回に9得点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "TWO_HIT_SAME_INNING",
@@ -14401,7 +14744,8 @@
     "archiveKey": "TWO_HIT_SAME_INNING:823942:660271:1:",
     "description": "1回に2安打",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_HIT",
@@ -14441,7 +14785,8 @@
     "archiveKey": "ALL_STARTERS_HIT:824184:team-117:0:",
     "description": "先発野手全員安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_SCORE",
@@ -14481,7 +14826,8 @@
     "archiveKey": "ALL_STARTERS_SCORE:824184:team-117:0:",
     "description": "先発野手全員得点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_WORST",
@@ -14527,7 +14873,8 @@
     "archiveKey": "JAPANESE_CAREER_WORST:824184:837227:0:hits",
     "description": "5被安打でキャリアワーストタイ",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "FIVE_HIT_GAME",
@@ -14569,7 +14916,8 @@
     "archiveKey": "FIVE_HIT_GAME:823291:701807:0:",
     "description": "1試合5安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_WORST",
@@ -14615,7 +14963,8 @@
     "archiveKey": "JAPANESE_CAREER_WORST:823291:673513:0:homeRuns",
     "description": "2被本塁打でキャリアワーストタイ",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -14656,7 +15005,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:823941:team-108:0:",
     "description": "両軍合計12投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "FIVE_HIT_GAME",
@@ -14698,7 +15048,8 @@
     "archiveKey": "FIVE_HIT_GAME:823941:665861:0:",
     "description": "1試合5安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_RBI_GAME",
@@ -14739,7 +15090,8 @@
     "archiveKey": "LARGE_RBI_GAME:823941:665861:0:",
     "description": "1試合6打点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -14780,7 +15132,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:824268:team-136:0:",
     "description": "両軍合計12投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "HIT_DEFICIT_WIN",
@@ -14822,7 +15175,8 @@
     "archiveKey": "HIT_DEFICIT_WIN:824268:team-116:0:",
     "description": "相手より5本少ない安打数で勝利",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_HIT",
@@ -14862,7 +15216,8 @@
     "archiveKey": "ALL_STARTERS_HIT:824349:team-158:0:",
     "description": "先発野手全員安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LEADOFF_FIRST_PITCH_HR",
@@ -14904,7 +15259,8 @@
     "archiveKey": "LEADOFF_FIRST_PITCH_HR:822972:650490:0:",
     "description": "初回先頭打者初球本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "HIT_DEFICIT_WIN",
@@ -14946,7 +15302,8 @@
     "archiveKey": "HIT_DEFICIT_WIN:823218:team-120:0:",
     "description": "相手より5本少ない安打数で勝利",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -14987,7 +15344,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:824427:team-147:0:",
     "description": "両軍合計14投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_LARGE_HR",
@@ -15027,7 +15385,8 @@
     "archiveKey": "COMBINED_LARGE_HR:824998:team-158:0:",
     "description": "両軍合計11本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -15068,7 +15427,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:824998:team-158:0:",
     "description": "両軍合計14投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LEADOFF_FIRST_PITCH_HR",
@@ -15110,7 +15470,8 @@
     "archiveKey": "LEADOFF_FIRST_PITCH_HR:824998:669127:0:",
     "description": "初回先頭打者初球本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -15151,7 +15512,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:823290:team-113:0:",
     "description": "両軍合計14投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_SCORE",
@@ -15191,7 +15553,8 @@
     "archiveKey": "ALL_STARTERS_SCORE:823374:team-119:0:",
     "description": "先発野手全員得点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_RUN_INNING",
@@ -15231,7 +15594,8 @@
     "archiveKey": "LARGE_RUN_INNING:823374:team-119:7:",
     "description": "7回に10得点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_LARGE_HR",
@@ -15271,7 +15635,8 @@
     "archiveKey": "COMBINED_LARGE_HR:824267:team-142:0:",
     "description": "両軍合計8本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LEADOFF_FIRST_PITCH_HR",
@@ -15313,7 +15678,8 @@
     "archiveKey": "LEADOFF_FIRST_PITCH_HR:824267:621439:0:",
     "description": "初回先頭打者初球本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -15354,7 +15720,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:822804:team-143:0:",
     "description": "両軍合計13投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "WALKOFF_GRAND_SLAM",
@@ -15395,7 +15762,8 @@
     "archiveKey": "WALKOFF_GRAND_SLAM:823215:805811:0:",
     "description": "サヨナラ満塁本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -15436,7 +15804,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:824103:team-140:0:",
     "description": "両軍合計13投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_HIT",
@@ -15476,7 +15845,8 @@
     "archiveKey": "ALL_STARTERS_HIT:824266:team-142:0:",
     "description": "先発野手全員安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "TWO_OUTS_SAME_INNING",
@@ -15517,7 +15887,8 @@
     "archiveKey": "TWO_OUTS_SAME_INNING:823371:663968:5:",
     "description": "5回に2度打者アウト",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_SCORE",
@@ -15557,7 +15928,8 @@
     "archiveKey": "ALL_STARTERS_SCORE:824265:team-116:0:",
     "description": "先発野手全員得点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_HIT",
@@ -15597,7 +15969,8 @@
     "archiveKey": "ALL_STARTERS_HIT:822726:team-136:0:",
     "description": "先発野手全員安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_RBI_GAME",
@@ -15638,7 +16011,8 @@
     "archiveKey": "LARGE_RBI_GAME:823617:666182:0:",
     "description": "1試合6打点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_HIT",
@@ -15678,7 +16052,8 @@
     "archiveKey": "ALL_STARTERS_HIT:824020:team-108:0:",
     "description": "先発野手全員安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -15719,7 +16094,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:824102:team-117:0:",
     "description": "両軍合計13投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_HR_INNING",
@@ -15759,7 +16135,8 @@
     "archiveKey": "LARGE_HR_INNING:824102:team-117:1:",
     "description": "1回にチーム3本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_RBI_GAME",
@@ -15800,7 +16177,8 @@
     "archiveKey": "LARGE_RBI_GAME:824102:670541:0:",
     "description": "1試合6打点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_RBI_INNING",
@@ -15841,7 +16219,8 @@
     "archiveKey": "LARGE_RBI_INNING:824102:670541:1:",
     "description": "1イニングで6打点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_RUN_INNING",
@@ -15881,7 +16260,8 @@
     "archiveKey": "LARGE_RUN_INNING:824102:team-117:1:",
     "description": "1回に9得点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "TWO_HIT_SAME_INNING",
@@ -15922,7 +16302,8 @@
     "archiveKey": "TWO_HIT_SAME_INNING:824102:670541:1:",
     "description": "1回に2安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "TWO_HR_SAME_INNING",
@@ -15964,7 +16345,8 @@
     "archiveKey": "TWO_HR_SAME_INNING:824102:670541:1:",
     "description": "1回に2本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_WORST",
@@ -16010,7 +16392,8 @@
     "archiveKey": "JAPANESE_CAREER_WORST:824588:808963:0:earnedRuns",
     "description": "7自責点でキャリアワースト",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_WORST",
@@ -16056,7 +16439,8 @@
     "archiveKey": "JAPANESE_CAREER_WORST:824588:808963:0:hits",
     "description": "7被安打でキャリアワーストタイ",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_WORST",
@@ -16102,7 +16486,8 @@
     "archiveKey": "JAPANESE_CAREER_WORST:824588:808963:0:runs",
     "description": "7失点でキャリアワースト",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LEADOFF_FIRST_PITCH_HR",
@@ -16144,7 +16529,8 @@
     "archiveKey": "LEADOFF_FIRST_PITCH_HR:823213:691718:0:",
     "description": "初回先頭打者初球本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_LARGE_HR",
@@ -16184,7 +16570,8 @@
     "archiveKey": "COMBINED_LARGE_HR:823694:team-138:0:",
     "description": "両軍合計7本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_HR_INNING",
@@ -16224,7 +16611,8 @@
     "archiveKey": "LARGE_HR_INNING:823694:team-138:7:",
     "description": "7回にチーム3本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_HIT",
@@ -16264,7 +16652,8 @@
     "archiveKey": "ALL_STARTERS_HIT:822722:team-120:0:",
     "description": "先発野手全員安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -16305,7 +16694,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:822801:team-147:0:",
     "description": "両軍合計12投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -16346,7 +16736,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:824021:team-139:0:",
     "description": "両軍合計12投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_HR_INNING",
@@ -16386,7 +16777,8 @@
     "archiveKey": "LARGE_HR_INNING:824586:team-145:6:",
     "description": "6回にチーム3本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LEADOFF_FIRST_PITCH_HR",
@@ -16428,7 +16820,8 @@
     "archiveKey": "LEADOFF_FIRST_PITCH_HR:824751:694671:0:",
     "description": "初回先頭打者初球本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_HIT",
@@ -16468,7 +16861,8 @@
     "archiveKey": "ALL_STARTERS_HIT:824994:team-115:0:",
     "description": "先発野手全員安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_SCORE",
@@ -16508,7 +16902,8 @@
     "archiveKey": "ALL_STARTERS_SCORE:824994:team-115:0:",
     "description": "先発野手全員得点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_LARGE_HR",
@@ -16548,7 +16943,8 @@
     "archiveKey": "COMBINED_LARGE_HR:824994:team-115:0:",
     "description": "両軍合計8本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "FIVE_HIT_GAME",
@@ -16590,7 +16986,8 @@
     "archiveKey": "FIVE_HIT_GAME:824994:696100:0:",
     "description": "1試合5安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_WORST",
@@ -16636,7 +17033,8 @@
     "archiveKey": "JAPANESE_CAREER_WORST:824994:608372:0:runs",
     "description": "8失点でキャリアワースト",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_RBI_GAME",
@@ -16677,7 +17075,8 @@
     "archiveKey": "LARGE_RBI_GAME:824994:650489:0:",
     "description": "1試合7打点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "TWO_OUTS_SAME_INNING",
@@ -16718,7 +17117,8 @@
     "archiveKey": "TWO_OUTS_SAME_INNING:824994:681198:5:",
     "description": "5回に2度打者アウト",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_LARGE_HR",
@@ -16758,7 +17158,8 @@
     "archiveKey": "COMBINED_LARGE_HR:824181:team-116:0:",
     "description": "両軍合計7本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_RBI_GAME",
@@ -16799,7 +17200,8 @@
     "archiveKey": "LARGE_RBI_GAME:824181:690993:0:",
     "description": "1試合6打点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "THREE_HR_GAME",
@@ -16843,7 +17245,8 @@
     "archiveKey": "THREE_HR_GAME:824181:690993:0:",
     "description": "1試合3本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_RBI_GAME",
@@ -16884,7 +17287,8 @@
     "archiveKey": "LARGE_RBI_GAME:824505:553993:0:",
     "description": "1試合6打点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -16925,7 +17329,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:824666:team-115:0:",
     "description": "両軍合計12投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "CYCLE",
@@ -16972,7 +17377,8 @@
     "archiveKey": "CYCLE:824666:691718:0:",
     "description": "サイクル安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_HIT",
@@ -17012,7 +17418,8 @@
     "archiveKey": "ALL_STARTERS_HIT:823535:team-147:0:",
     "description": "先発野手全員安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "TWO_OUTS_SAME_INNING",
@@ -17053,7 +17460,8 @@
     "archiveKey": "TWO_OUTS_SAME_INNING:823535:683011:4:",
     "description": "4回に2度打者アウト",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_WORST",
@@ -17099,7 +17507,8 @@
     "archiveKey": "JAPANESE_CAREER_WORST:824504:673540:0:homeRuns",
     "description": "2被本塁打でキャリアワーストタイ",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -17140,7 +17549,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:823450:team-146:0:",
     "description": "両軍合計12投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_HIT",
@@ -17180,7 +17590,8 @@
     "archiveKey": "ALL_STARTERS_HIT:823536:team-147:0:",
     "description": "先発野手全員安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_HR_INNING",
@@ -17220,7 +17631,8 @@
     "archiveKey": "LARGE_HR_INNING:824913:team-137:2:",
     "description": "2回にチーム3本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_HIT",
@@ -17260,7 +17672,8 @@
     "archiveKey": "ALL_STARTERS_HIT:824992:team-134:0:",
     "description": "先発野手全員安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_RBI_GAME",
@@ -17301,7 +17714,8 @@
     "archiveKey": "LARGE_RBI_GAME:824992:656811:0:",
     "description": "1試合6打点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_WORST",
@@ -17347,7 +17761,8 @@
     "archiveKey": "JAPANESE_CAREER_WORST:822886:673513:0:wildPitches",
     "description": "1暴投でキャリアワーストタイ",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -17388,7 +17803,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:823853:team-137:0:",
     "description": "両軍合計13投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_HIGH",
@@ -17434,7 +17850,8 @@
     "archiveKey": "JAPANESE_CAREER_HIGH:824179:837227:0:outs",
     "description": "6回でキャリア最多タイ",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_HIGH",
@@ -17480,7 +17897,8 @@
     "archiveKey": "JAPANESE_CAREER_HIGH:824179:837227:0:strikeOuts",
     "description": "11奪三振でキャリア最多",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_WORST",
@@ -17526,7 +17944,8 @@
     "archiveKey": "JAPANESE_CAREER_WORST:824179:837227:0:hits",
     "description": "6被安打でキャリアワースト",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_RBI_GAME",
@@ -17567,7 +17986,8 @@
     "archiveKey": "LARGE_RBI_GAME:824663:608348:0:",
     "description": "1試合6打点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "TWO_OUTS_SAME_INNING",
@@ -17608,7 +18028,8 @@
     "archiveKey": "TWO_OUTS_SAME_INNING:824663:683737:1:",
     "description": "1回に2度打者アウト",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_LARGE_HR",
@@ -17648,7 +18069,8 @@
     "archiveKey": "COMBINED_LARGE_HR:824990:team-108:0:",
     "description": "両軍合計9本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_HR_INNING",
@@ -17688,7 +18110,8 @@
     "archiveKey": "LARGE_HR_INNING:824990:team-108:4:",
     "description": "4回にチーム3本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "CYCLE",
@@ -17735,7 +18158,8 @@
     "archiveKey": "CYCLE:823447:547180:0:",
     "description": "サイクル安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_RBI_GAME",
@@ -17776,7 +18200,8 @@
     "archiveKey": "LARGE_RBI_GAME:823447:656941:0:",
     "description": "1試合6打点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_RBI_INNING",
@@ -17817,7 +18242,8 @@
     "archiveKey": "LARGE_RBI_INNING:823447:656941:3:",
     "description": "1イニングで4打点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_RUN_INNING",
@@ -17857,7 +18283,8 @@
     "archiveKey": "LARGE_RUN_INNING:823447:team-143:3:",
     "description": "3回に8得点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "THREE_HR_GAME",
@@ -17901,7 +18328,8 @@
     "archiveKey": "THREE_HR_GAME:823447:656941:0:",
     "description": "1試合3本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "TWO_HIT_SAME_INNING",
@@ -17942,7 +18370,8 @@
     "archiveKey": "TWO_HIT_SAME_INNING:823447:547180:3:",
     "description": "3回に2安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "TWO_HIT_SAME_INNING",
@@ -17983,7 +18412,8 @@
     "archiveKey": "TWO_HIT_SAME_INNING:823447:656941:3:",
     "description": "3回に2安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "TWO_HR_SAME_INNING",
@@ -18025,7 +18455,8 @@
     "archiveKey": "TWO_HR_SAME_INNING:823447:656941:3:",
     "description": "3回に2本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_RBI_GAME",
@@ -18066,7 +18497,8 @@
     "archiveKey": "LARGE_RBI_GAME:823532:701398:0:",
     "description": "1試合6打点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LEADOFF_FIRST_PITCH_HR",
@@ -18108,7 +18540,8 @@
     "archiveKey": "LEADOFF_FIRST_PITCH_HR:824180:683953:0:",
     "description": "初回先頭打者初球本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_HIT",
@@ -18148,7 +18581,8 @@
     "archiveKey": "ALL_STARTERS_HIT:825068:team-142:0:",
     "description": "先発野手全員安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_RUN_INNING",
@@ -18188,7 +18622,8 @@
     "archiveKey": "LARGE_RUN_INNING:825068:team-142:5:",
     "description": "5回に10得点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "TWO_HIT_SAME_INNING",
@@ -18229,7 +18664,8 @@
     "archiveKey": "TWO_HIT_SAME_INNING:825068:605170:5:",
     "description": "5回に2安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "TWO_HIT_SAME_INNING",
@@ -18270,7 +18706,8 @@
     "archiveKey": "TWO_HIT_SAME_INNING:825068:668952:5:",
     "description": "5回に2安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "TWO_HIT_SAME_INNING",
@@ -18311,7 +18748,8 @@
     "archiveKey": "TWO_HIT_SAME_INNING:825068:686797:5:",
     "description": "5回に2安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "TWO_HIT_SAME_INNING",
@@ -18352,7 +18790,8 @@
     "archiveKey": "TWO_HIT_SAME_INNING:825068:807712:5:",
     "description": "5回に2安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "TWO_OUTS_SAME_INNING",
@@ -18393,7 +18832,8 @@
     "archiveKey": "TWO_OUTS_SAME_INNING:825068:668904:4:",
     "description": "4回に2度打者アウト",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_LARGE_HR",
@@ -18433,7 +18873,8 @@
     "archiveKey": "COMBINED_LARGE_HR:824095:team-138:0:",
     "description": "両軍合計8本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -18474,7 +18915,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:824095:team-138:0:",
     "description": "両軍合計14投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_RUN_INNING",
@@ -18514,7 +18956,8 @@
     "archiveKey": "LARGE_RUN_INNING:824908:team-158:2:",
     "description": "2回に8得点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "TWO_HIT_SAME_INNING",
@@ -18555,7 +18998,8 @@
     "archiveKey": "TWO_HIT_SAME_INNING:824908:661388:2:",
     "description": "2回に2安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_HIT",
@@ -18595,7 +19039,8 @@
     "archiveKey": "ALL_STARTERS_HIT:822718:team-143:0:",
     "description": "先発野手全員安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -18636,7 +19081,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:822718:team-143:0:",
     "description": "両軍合計12投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_RUN_INNING",
@@ -18676,7 +19122,8 @@
     "archiveKey": "LARGE_RUN_INNING:822718:team-143:9:",
     "description": "9回に8得点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "TWO_HIT_SAME_INNING",
@@ -18717,7 +19164,8 @@
     "archiveKey": "TWO_HIT_SAME_INNING:822718:607208:9:",
     "description": "9回に2安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -18758,7 +19206,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:822799:team-117:0:",
     "description": "両軍合計13投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_HR_INNING",
@@ -18798,7 +19247,8 @@
     "archiveKey": "LARGE_HR_INNING:822799:team-117:4:",
     "description": "4回にチーム3本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "THREE_CONSECUTIVE_HR",
@@ -18843,7 +19293,8 @@
     "archiveKey": "THREE_CONSECUTIVE_HR:822799:673237:0:",
     "description": "3者連続本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_WORST",
@@ -18889,7 +19340,8 @@
     "archiveKey": "JAPANESE_CAREER_WORST:823286:673513:0:wildPitches",
     "description": "1暴投でキャリアワーストタイ",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_WORST",
@@ -18935,7 +19387,8 @@
     "archiveKey": "JAPANESE_CAREER_WORST:823614:673540:0:baseOnBalls",
     "description": "5与四球でキャリアワーストタイ",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_WORST",
@@ -18981,7 +19434,8 @@
     "archiveKey": "JAPANESE_CAREER_WORST:823614:673540:0:earnedRuns",
     "description": "7自責点でキャリアワーストタイ",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_WORST",
@@ -19027,7 +19481,8 @@
     "archiveKey": "JAPANESE_CAREER_WORST:823614:673540:0:hitBatsmen",
     "description": "1与死球でキャリアワーストタイ",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_WORST",
@@ -19073,7 +19528,8 @@
     "archiveKey": "JAPANESE_CAREER_WORST:823614:673540:0:homeRuns",
     "description": "2被本塁打でキャリアワーストタイ",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_WORST",
@@ -19119,7 +19575,8 @@
     "archiveKey": "JAPANESE_CAREER_WORST:823614:673540:0:runs",
     "description": "7失点でキャリアワーストタイ",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_HIT",
@@ -19159,7 +19616,8 @@
     "archiveKey": "ALL_STARTERS_HIT:823041:team-109:0:",
     "description": "先発野手全員安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_RBI_GAME",
@@ -19200,7 +19658,8 @@
     "archiveKey": "LARGE_RBI_GAME:823613:621020:0:",
     "description": "1試合7打点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -19241,7 +19700,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:824018:team-110:0:",
     "description": "両軍合計14投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -19282,7 +19742,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:824583:team-114:0:",
     "description": "両軍合計12投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_RBI_GAME",
@@ -19323,7 +19784,8 @@
     "archiveKey": "LARGE_RBI_GAME:822961:691406:0:",
     "description": "1試合6打点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "THREE_HR_GAME",
@@ -19367,7 +19829,8 @@
     "archiveKey": "THREE_HR_GAME:822961:691406:0:",
     "description": "1試合3本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -19408,7 +19871,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:823612:team-112:0:",
     "description": "両軍合計12投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_HIGH",
@@ -19454,7 +19918,8 @@
     "archiveKey": "JAPANESE_CAREER_HIGH:824258:837227:0:outs",
     "description": "6回でキャリア最多タイ",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_WORST",
@@ -19500,7 +19965,8 @@
     "archiveKey": "JAPANESE_CAREER_WORST:823285:808963:0:baseOnBalls",
     "description": "5与四球でキャリアワーストタイ",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_WORST",
@@ -19546,7 +20012,8 @@
     "archiveKey": "JAPANESE_CAREER_WORST:823285:808963:0:hitBatsmen",
     "description": "1与死球でキャリアワーストタイ",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_WORST",
@@ -19592,7 +20059,8 @@
     "archiveKey": "JAPANESE_CAREER_WORST:823285:808963:0:wildPitches",
     "description": "1暴投でキャリアワーストタイ",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_WORST",
@@ -19638,7 +20106,8 @@
     "archiveKey": "JAPANESE_CAREER_WORST:823688:608372:0:earnedRuns",
     "description": "7自責点でキャリアワーストタイ",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "TWO_OUTS_SAME_INNING",
@@ -19679,7 +20148,8 @@
     "archiveKey": "TWO_OUTS_SAME_INNING:824014:641680:5:",
     "description": "5回に2度打者アウト",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_SCORE",
@@ -19719,7 +20189,8 @@
     "archiveKey": "ALL_STARTERS_SCORE:824582:team-145:0:",
     "description": "先発野手全員得点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -19760,7 +20231,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:824582:team-118:0:",
     "description": "両軍合計12投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_RBI_GAME",
@@ -19801,7 +20273,8 @@
     "archiveKey": "LARGE_RBI_GAME:824582:671976:0:",
     "description": "1試合6打点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_RBI_INNING",
@@ -19842,7 +20315,8 @@
     "archiveKey": "LARGE_RBI_INNING:824582:678246:3:",
     "description": "1イニングで4打点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_RUN_INNING",
@@ -19882,7 +20356,8 @@
     "archiveKey": "LARGE_RUN_INNING:824582:team-145:3:",
     "description": "3回に10得点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "TWO_HIT_SAME_INNING",
@@ -19923,7 +20398,8 @@
     "archiveKey": "TWO_HIT_SAME_INNING:824582:678246:3:",
     "description": "3回に2安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "TWO_HIT_SAME_INNING",
@@ -19964,7 +20440,8 @@
     "archiveKey": "TWO_HIT_SAME_INNING:824582:803011:3:",
     "description": "3回に2安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_SCORE",
@@ -20004,7 +20481,8 @@
     "archiveKey": "ALL_STARTERS_SCORE:823283:team-119:0:",
     "description": "先発野手全員得点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_HR_INNING",
@@ -20044,7 +20522,8 @@
     "archiveKey": "LARGE_HR_INNING:823283:team-119:6:",
     "description": "6回にチーム3本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_RUN_INNING",
@@ -20084,7 +20563,8 @@
     "archiveKey": "LARGE_RUN_INNING:823283:team-119:6:",
     "description": "6回に9得点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "THREE_HR_GAME",
@@ -20128,7 +20608,8 @@
     "archiveKey": "THREE_HR_GAME:823689:696100:0:",
     "description": "1試合3本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LEADOFF_FIRST_PITCH_HR",
@@ -20170,7 +20651,8 @@
     "archiveKey": "LEADOFF_FIRST_PITCH_HR:823770:694192:0:",
     "description": "初回先頭打者初球本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LEADOFF_FIRST_PITCH_HR",
@@ -20212,7 +20694,8 @@
     "archiveKey": "LEADOFF_FIRST_PITCH_HR:822795:592626:0:",
     "description": "初回先頭打者初球本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -20253,7 +20736,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:823769:team-112:0:",
     "description": "両軍合計12投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "HIT_DEFICIT_WIN",
@@ -20295,7 +20779,8 @@
     "archiveKey": "HIT_DEFICIT_WIN:823769:team-112:0:",
     "description": "相手より6本少ない安打数で勝利",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -20336,7 +20821,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:824580:team-118:0:",
     "description": "両軍合計12投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_LARGE_HR",
@@ -20376,7 +20862,8 @@
     "archiveKey": "COMBINED_LARGE_HR:823444:team-134:0:",
     "description": "両軍合計7本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_HIT",
@@ -20416,7 +20903,8 @@
     "archiveKey": "ALL_STARTERS_HIT:823771:team-113:0:",
     "description": "先発野手全員安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_HIT",
@@ -20456,7 +20944,8 @@
     "archiveKey": "ALL_STARTERS_HIT:824822:team-145:0:",
     "description": "先発野手全員安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_HIT",
@@ -20496,7 +20985,8 @@
     "archiveKey": "ALL_STARTERS_HIT:824986:team-119:0:",
     "description": "先発野手全員安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_HR_INNING",
@@ -20536,7 +21026,8 @@
     "archiveKey": "LARGE_HR_INNING:823528:team-116:1:",
     "description": "1回にチーム3本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LEADOFF_FIRST_PITCH_HR",
@@ -20578,7 +21069,8 @@
     "archiveKey": "LEADOFF_FIRST_PITCH_HR:824096:695600:0:",
     "description": "初回先頭打者初球本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_HIT",
@@ -20618,7 +21110,8 @@
     "archiveKey": "ALL_STARTERS_HIT:824661:team-112:0:",
     "description": "先発野手全員安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_LARGE_HR",
@@ -20658,7 +21151,8 @@
     "archiveKey": "COMBINED_LARGE_HR:824661:team-135:0:",
     "description": "両軍合計9本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_WORST",
@@ -20704,7 +21198,8 @@
     "archiveKey": "JAPANESE_CAREER_WORST:824174:837227:0:baseOnBalls",
     "description": "5与四球でキャリアワースト",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_WORST",
@@ -20750,7 +21245,8 @@
     "archiveKey": "JAPANESE_CAREER_WORST:824174:837227:0:homeRuns",
     "description": "2被本塁打でキャリアワーストタイ",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_LARGE_HR",
@@ -20790,7 +21286,8 @@
     "archiveKey": "COMBINED_LARGE_HR:824660:team-135:0:",
     "description": "両軍合計9本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_RBI_GAME",
@@ -20831,7 +21328,8 @@
     "archiveKey": "LARGE_RBI_GAME:824660:621020:0:",
     "description": "1試合8打点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_RUN_INNING",
@@ -20871,7 +21369,8 @@
     "archiveKey": "LARGE_RUN_INNING:824660:team-112:8:",
     "description": "8回に8得点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "THREE_HR_GAME",
@@ -20915,7 +21414,8 @@
     "archiveKey": "THREE_HR_GAME:824660:621020:0:",
     "description": "1試合3本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "TWO_HIT_SAME_INNING",
@@ -20956,7 +21456,8 @@
     "archiveKey": "TWO_HIT_SAME_INNING:824660:683737:8:",
     "description": "8回に2安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_HIT",
@@ -20996,7 +21497,8 @@
     "archiveKey": "ALL_STARTERS_HIT:823935:team-135:0:",
     "description": "先発野手全員安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_WORST",
@@ -21042,7 +21544,8 @@
     "archiveKey": "JAPANESE_CAREER_WORST:823935:673513:0:wildPitches",
     "description": "1暴投でキャリアワーストタイ",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_WORST",
@@ -21088,7 +21591,8 @@
     "archiveKey": "JAPANESE_CAREER_WORST:823935:808963:0:hits",
     "description": "7被安打でキャリアワーストタイ",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_WORST",
@@ -21134,7 +21638,8 @@
     "archiveKey": "JAPANESE_CAREER_WORST:823935:808963:0:homeRuns",
     "description": "3被本塁打でキャリアワーストタイ",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_WORST",
@@ -21180,7 +21685,8 @@
     "archiveKey": "JAPANESE_CAREER_WORST:823935:808963:0:wildPitches",
     "description": "1暴投でキャリアワーストタイ",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "TWO_OUTS_SAME_INNING",
@@ -21221,7 +21727,8 @@
     "archiveKey": "TWO_OUTS_SAME_INNING:824335:691720:6:",
     "description": "6回に2度打者アウト",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_HIT",
@@ -21261,7 +21768,8 @@
     "archiveKey": "ALL_STARTERS_HIT:824416:team-145:0:",
     "description": "先発野手全員安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -21302,7 +21810,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:824906:team-138:0:",
     "description": "両軍合計12投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_RBI_GAME",
@@ -21343,7 +21852,8 @@
     "archiveKey": "LARGE_RBI_GAME:824336:664983:0:",
     "description": "1試合6打点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LEADOFF_FIRST_PITCH_HR",
@@ -21385,7 +21895,8 @@
     "archiveKey": "LEADOFF_FIRST_PITCH_HR:824336:664983:0:",
     "description": "初回先頭打者初球本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -21426,7 +21937,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:824417:team-145:0:",
     "description": "両軍合計13投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "HIT_DEFICIT_WIN",
@@ -21468,7 +21980,8 @@
     "archiveKey": "HIT_DEFICIT_WIN:824904:team-144:0:",
     "description": "相手より5本少ない安打数で勝利",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -21509,7 +22022,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:825062:team-158:0:",
     "description": "両軍合計14投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LEADOFF_FIRST_PITCH_HR",
@@ -21551,7 +22065,8 @@
     "archiveKey": "LEADOFF_FIRST_PITCH_HR:822716:695578:0:",
     "description": "初回先頭打者初球本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_LARGE_HR",
@@ -21591,7 +22106,8 @@
     "archiveKey": "COMBINED_LARGE_HR:823526:team-142:0:",
     "description": "両軍合計8本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_HIGH",
@@ -21637,7 +22153,8 @@
     "archiveKey": "JAPANESE_CAREER_HIGH:823932:808967:0:strikeOuts",
     "description": "10奪三振でキャリア最多タイ",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_RBI_GAME",
@@ -21678,7 +22195,8 @@
     "archiveKey": "LARGE_RBI_GAME:824171:670541:0:",
     "description": "1試合6打点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_WORST",
@@ -21724,7 +22242,8 @@
     "archiveKey": "JAPANESE_CAREER_WORST:824658:684007:0:wildPitches",
     "description": "1暴投でキャリアワーストタイ",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LEADOFF_FIRST_PITCH_HR",
@@ -21766,7 +22285,8 @@
     "archiveKey": "LEADOFF_FIRST_PITCH_HR:824658:802139:0:",
     "description": "初回先頭打者初球本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_LARGE_HR",
@@ -21806,7 +22326,8 @@
     "archiveKey": "COMBINED_LARGE_HR:824903:team-121:0:",
     "description": "両軍合計7本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "HIT_DEFICIT_WIN",
@@ -21848,7 +22369,8 @@
     "archiveKey": "HIT_DEFICIT_WIN:825063:team-109:0:",
     "description": "相手より8本少ない安打数で勝利",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -21889,7 +22411,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:824010:team-111:0:",
     "description": "両軍合計12投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -21930,7 +22453,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:824413:team-145:0:",
     "description": "両軍合計12投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "TWO_HIT_SAME_INNING",
@@ -21971,7 +22495,8 @@
     "archiveKey": "TWO_HIT_SAME_INNING:824902:643289:9:",
     "description": "9回に2安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_HIT",
@@ -22011,7 +22536,8 @@
     "archiveKey": "ALL_STARTERS_HIT:824980:team-146:0:",
     "description": "先発野手全員安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_RBI_GAME",
@@ -22052,7 +22578,8 @@
     "archiveKey": "LARGE_RBI_GAME:824980:641680:0:",
     "description": "1試合6打点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "FIVE_HIT_GAME",
@@ -22094,7 +22621,8 @@
     "archiveKey": "FIVE_HIT_GAME:824089:686475:0:",
     "description": "1試合5安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -22135,7 +22663,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:824900:team-121:0:",
     "description": "両軍合計13投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -22176,7 +22705,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:822713:team-117:0:",
     "description": "両軍合計12投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "HIT_DEFICIT_WIN",
@@ -22218,7 +22748,8 @@
     "archiveKey": "HIT_DEFICIT_WIN:822713:team-117:0:",
     "description": "相手より5本少ない安打数で勝利",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "TWO_OUTS_SAME_INNING",
@@ -22259,7 +22790,8 @@
     "archiveKey": "TWO_OUTS_SAME_INNING:823035:592885:7:",
     "description": "7回に2度打者アウト",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_RBI_GAME",
@@ -22300,7 +22832,8 @@
     "archiveKey": "LARGE_RBI_GAME:823361:656811:0:",
     "description": "1試合10打点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "THREE_HR_GAME",
@@ -22344,7 +22877,8 @@
     "archiveKey": "THREE_HR_GAME:823361:656811:0:",
     "description": "1試合3本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_HIT",
@@ -22384,7 +22918,8 @@
     "archiveKey": "ALL_STARTERS_HIT:823607:team-118:0:",
     "description": "先発野手全員安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -22425,7 +22960,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:823607:team-118:0:",
     "description": "両軍合計12投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "FIVE_HIT_GAME",
@@ -22467,7 +23003,8 @@
     "archiveKey": "FIVE_HIT_GAME:823607:686475:0:",
     "description": "1試合5安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -22508,7 +23045,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:823847:team-136:0:",
     "description": "両軍合計12投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "TWO_OUTS_SAME_INNING",
@@ -22549,7 +23087,8 @@
     "archiveKey": "TWO_OUTS_SAME_INNING:823605:666182:8:",
     "description": "8回に2度打者アウト",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -22590,7 +23129,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:823684:team-114:0:",
     "description": "両軍合計14投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_WORST",
@@ -22636,7 +23176,8 @@
     "archiveKey": "JAPANESE_CAREER_WORST:823928:808963:0:wildPitches",
     "description": "1暴投でキャリアワーストタイ",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_LARGE_HR",
@@ -22676,7 +23217,8 @@
     "archiveKey": "COMBINED_LARGE_HR:824496:team-143:0:",
     "description": "両軍合計7本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_HR_INNING",
@@ -22716,7 +23258,8 @@
     "archiveKey": "LARGE_HR_INNING:824496:team-113:4:",
     "description": "4回にチーム4本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "THREE_CONSECUTIVE_HR",
@@ -22761,7 +23304,8 @@
     "archiveKey": "THREE_CONSECUTIVE_HR:824496:682829:0:",
     "description": "3者連続本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_LARGE_HR",
@@ -22801,7 +23345,8 @@
     "archiveKey": "COMBINED_LARGE_HR:824815:team-112:0:",
     "description": "両軍合計9本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "HIT_DEFICIT_WIN",
@@ -22843,7 +23388,8 @@
     "archiveKey": "HIT_DEFICIT_WIN:824815:team-112:0:",
     "description": "相手より6本少ない安打数で勝利",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_HR_INNING",
@@ -22883,7 +23429,8 @@
     "archiveKey": "LARGE_HR_INNING:824815:team-112:5:",
     "description": "5回にチーム3本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_HIT",
@@ -22923,7 +23470,8 @@
     "archiveKey": "ALL_STARTERS_HIT:822877:team-140:0:",
     "description": "先発野手全員安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -22964,7 +23512,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:822954:team-147:0:",
     "description": "両軍合計13投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -23005,7 +23554,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:823359:team-144:0:",
     "description": "両軍合計12投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LEADOFF_FIRST_PITCH_HR",
@@ -23047,7 +23597,8 @@
     "archiveKey": "LEADOFF_FIRST_PITCH_HR:823606:657041:0:",
     "description": "初回先頭打者初球本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "HIT_DEFICIT_WIN",
@@ -23089,7 +23640,8 @@
     "archiveKey": "HIT_DEFICIT_WIN:824816:team-110:0:",
     "description": "相手より6本少ない安打数で勝利",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -23130,7 +23682,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:823200:team-115:0:",
     "description": "両軍合計12投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_SCORE",
@@ -23170,7 +23723,8 @@
     "archiveKey": "ALL_STARTERS_SCORE:824575:team-145:0:",
     "description": "先発野手全員得点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "CYCLE",
@@ -23217,7 +23771,8 @@
     "archiveKey": "CYCLE:824575:671976:0:",
     "description": "サイクル安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_RUN_INNING",
@@ -23257,7 +23812,8 @@
     "archiveKey": "LARGE_RUN_INNING:824575:team-145:7:",
     "description": "7回に8得点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "POSITION_PLAYER_STRIKEOUT",
@@ -23298,7 +23854,8 @@
     "archiveKey": "POSITION_PLAYER_STRIKEOUT:824575:666126:0:",
     "description": "野手登板で奪三振",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "TWO_HIT_SAME_INNING",
@@ -23339,7 +23896,8 @@
     "archiveKey": "TWO_HIT_SAME_INNING:824575:671976:7:",
     "description": "7回に2安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_HR_INNING",
@@ -23379,7 +23937,8 @@
     "archiveKey": "LARGE_HR_INNING:822711:team-147:8:",
     "description": "8回にチーム3本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LEADOFF_FIRST_PITCH_HR",
@@ -23421,7 +23980,8 @@
     "archiveKey": "LEADOFF_FIRST_PITCH_HR:822711:695578:0:",
     "description": "初回先頭打者初球本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_WORST",
@@ -23467,7 +24027,8 @@
     "archiveKey": "JAPANESE_CAREER_WORST:823276:673513:0:hitBatsmen",
     "description": "1与死球でキャリアワーストタイ",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_RBI_GAME",
@@ -23508,7 +24069,8 @@
     "archiveKey": "LARGE_RBI_GAME:823357:699013:0:",
     "description": "1試合6打点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_WORST",
@@ -23554,7 +24116,8 @@
     "archiveKey": "JAPANESE_CAREER_WORST:823926:808967:0:earnedRuns",
     "description": "6自責点でキャリアワーストタイ",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_WORST",
@@ -23600,7 +24163,8 @@
     "archiveKey": "JAPANESE_CAREER_WORST:823926:808967:0:runs",
     "description": "6失点でキャリアワーストタイ",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -23641,7 +24205,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:824492:team-112:0:",
     "description": "両軍合計12投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -23682,7 +24247,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:822876:team-117:0:",
     "description": "両軍合計13投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -23723,7 +24289,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:822951:team-136:0:",
     "description": "両軍合計12投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -23764,7 +24331,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:823029:team-144:0:",
     "description": "両軍合計12投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_HIT",
@@ -23804,7 +24372,8 @@
     "archiveKey": "ALL_STARTERS_HIT:823358:team-134:0:",
     "description": "先発野手全員安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_SCORE",
@@ -23844,7 +24413,8 @@
     "archiveKey": "ALL_STARTERS_SCORE:823358:team-134:0:",
     "description": "先発野手全員得点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_RUN_INNING",
@@ -23884,7 +24454,8 @@
     "archiveKey": "LARGE_RUN_INNING:823358:team-134:4:",
     "description": "4回に10得点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "TWO_HIT_SAME_INNING",
@@ -23925,7 +24496,8 @@
     "archiveKey": "TWO_HIT_SAME_INNING:823358:669707:4:",
     "description": "4回に2安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -23966,7 +24538,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:823842:team-114:0:",
     "description": "両軍合計12投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -24007,7 +24580,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:823925:team-109:0:",
     "description": "両軍合計12投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LEADOFF_FIRST_PITCH_HR",
@@ -24049,7 +24623,8 @@
     "archiveKey": "LEADOFF_FIRST_PITCH_HR:823925:660271:0:",
     "description": "初回先頭打者初球本塁打",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -24090,7 +24665,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:824814:team-118:0:",
     "description": "両軍合計12投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_HIT",
@@ -24130,7 +24706,8 @@
     "archiveKey": "ALL_STARTERS_HIT:822789:team-145:0:",
     "description": "先発野手全員安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_HIT",
@@ -24170,7 +24747,8 @@
     "archiveKey": "ALL_STARTERS_HIT:824901:team-144:0:",
     "description": "先発野手全員安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_HIT",
@@ -24210,7 +24788,8 @@
     "archiveKey": "ALL_STARTERS_HIT:824981:team-120:0:",
     "description": "先発野手全員安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_SCORE",
@@ -24250,7 +24829,8 @@
     "archiveKey": "ALL_STARTERS_SCORE:824981:team-120:0:",
     "description": "先発野手全員得点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_RBI_GAME",
@@ -24291,7 +24871,8 @@
     "archiveKey": "LARGE_RBI_GAME:824981:665953:0:",
     "description": "1試合8打点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -24332,7 +24913,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:824169:team-110:0:",
     "description": "両軍合計12投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -24373,7 +24955,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:824412:team-134:0:",
     "description": "両軍合計13投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -24414,7 +24997,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:824899:team-140:0:",
     "description": "両軍合計13投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LEADOFF_FIRST_PITCH_HR",
@@ -24456,7 +25040,8 @@
     "archiveKey": "LEADOFF_FIRST_PITCH_HR:824979:805779:0:",
     "description": "初回先頭打者初球本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -24497,7 +25082,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:823521:team-119:0:",
     "description": "両軍合計12投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_HIGH",
@@ -24543,7 +25129,8 @@
     "archiveKey": "JAPANESE_CAREER_HIGH:823523:808967:0:outs",
     "description": "9回でキャリア最多",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_SCORE",
@@ -24583,7 +25170,8 @@
     "archiveKey": "ALL_STARTERS_SCORE:824086:team-135:0:",
     "description": "先発野手全員得点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "TWO_HIT_SAME_INNING",
@@ -24624,7 +25212,8 @@
     "archiveKey": "TWO_HIT_SAME_INNING:824086:823550:9:",
     "description": "9回に2安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "TWO_OUTS_SAME_INNING",
@@ -24665,7 +25254,8 @@
     "archiveKey": "TWO_OUTS_SAME_INNING:824086:666023:9:",
     "description": "9回に2度打者アウト",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "TWO_OUTS_SAME_INNING",
@@ -24706,7 +25296,8 @@
     "archiveKey": "TWO_OUTS_SAME_INNING:824086:687749:8:",
     "description": "8回に2度打者アウト",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_LARGE_HR",
@@ -24746,7 +25337,8 @@
     "archiveKey": "COMBINED_LARGE_HR:824330:team-113:0:",
     "description": "両軍合計8本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "THREE_HR_GAME",
@@ -24790,7 +25382,8 @@
     "archiveKey": "THREE_HR_GAME:824330:696100:0:",
     "description": "1試合3本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "RUN_WITHOUT_HIT",
@@ -24832,7 +25425,8 @@
     "archiveKey": "RUN_WITHOUT_HIT:824739:team-111:3:",
     "description": "3回 無安打で3得点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "FIVE_HIT_GAME",
@@ -24874,7 +25468,8 @@
     "archiveKey": "FIVE_HIT_GAME:824897:686948:0:",
     "description": "1試合5安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "TWO_HIT_SAME_INNING",
@@ -24915,7 +25510,8 @@
     "archiveKey": "TWO_HIT_SAME_INNING:823112:645302:7:",
     "description": "7回に2安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_LARGE_HR",
@@ -24955,7 +25551,8 @@
     "archiveKey": "COMBINED_LARGE_HR:823436:team-119:0:",
     "description": "両軍合計7本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_LARGE_HR",
@@ -24995,7 +25592,8 @@
     "archiveKey": "COMBINED_LARGE_HR:824410:team-142:0:",
     "description": "両軍合計7本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -25036,7 +25634,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:824654:team-116:0:",
     "description": "両軍合計14投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_HIT",
@@ -25076,7 +25675,8 @@
     "archiveKey": "ALL_STARTERS_HIT:822871:team-140:0:",
     "description": "先発野手全員安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_HIGH",
@@ -25122,7 +25722,8 @@
     "archiveKey": "JAPANESE_CAREER_HIGH:824165:837227:0:outs",
     "description": "6回でキャリア最多タイ",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "TRIPLE_PLAY",
@@ -25163,7 +25764,8 @@
     "archiveKey": "TRIPLE_PLAY:824165:team-146:8:",
     "description": "8回 三重殺",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "POSITION_PLAYER_MULTI_STRIKEOUT",
@@ -25203,7 +25805,8 @@
     "archiveKey": "POSITION_PLAYER_MULTI_STRIKEOUT:824652:668670:0:",
     "description": "野手登板で2奪三振",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -25244,7 +25847,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:825056:team-133:0:",
     "description": "両軍合計13投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_HR_INNING",
@@ -25284,7 +25888,8 @@
     "archiveKey": "LARGE_HR_INNING:825055:team-109:5:",
     "description": "5回にチーム3本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "TWO_HIT_SAME_INNING",
@@ -25325,7 +25930,8 @@
     "archiveKey": "TWO_HIT_SAME_INNING:823042:672515:8:",
     "description": "8回に2安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "TWO_OUTS_SAME_INNING",
@@ -25366,7 +25972,8 @@
     "archiveKey": "TWO_OUTS_SAME_INNING:823042:596146:8:",
     "description": "8回に2度打者アウト",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "IMMACULATE_INNING",
@@ -25412,7 +26019,8 @@
     "archiveKey": "IMMACULATE_INNING:824406:668909:4:",
     "description": "4回 イマキュレート・イニング",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -25453,7 +26061,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:823196:team-108:0:",
     "description": "両軍合計12投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_HIGH",
@@ -25499,7 +26108,8 @@
     "archiveKey": "JAPANESE_CAREER_HIGH:823601:808963:0:outs",
     "description": "7回でキャリア最多タイ",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_WORST",
@@ -25545,7 +26155,8 @@
     "archiveKey": "JAPANESE_CAREER_WORST:823601:808963:0:wildPitches",
     "description": "1暴投でキャリアワーストタイ",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -25586,7 +26197,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:823843:team-135:0:",
     "description": "両軍合計13投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -25627,7 +26239,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:824573:team-117:0:",
     "description": "両軍合計12投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_RUN_INNING",
@@ -25667,7 +26280,8 @@
     "archiveKey": "LARGE_RUN_INNING:824573:team-117:6:",
     "description": "6回に8得点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "TWO_HIT_SAME_INNING",
@@ -25708,7 +26322,8 @@
     "archiveKey": "TWO_HIT_SAME_INNING:824573:514888:6:",
     "description": "6回に2安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "POSITION_PLAYER_STRIKEOUT",
@@ -25749,7 +26364,8 @@
     "archiveKey": "POSITION_PLAYER_STRIKEOUT:823355:682997:0:",
     "description": "野手登板で奪三振",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_HIT",
@@ -25789,7 +26405,8 @@
     "archiveKey": "ALL_STARTERS_HIT:823755:team-158:0:",
     "description": "先発野手全員安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_LARGE_HR",
@@ -25829,7 +26446,8 @@
     "archiveKey": "COMBINED_LARGE_HR:824572:team-117:0:",
     "description": "両軍合計8本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_RBI_GAME",
@@ -25870,7 +26488,8 @@
     "archiveKey": "LARGE_RBI_GAME:824572:808959:0:",
     "description": "1試合6打点",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -25911,7 +26530,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:824810:team-144:0:",
     "description": "両軍合計12投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_HIT",
@@ -25951,7 +26571,8 @@
     "archiveKey": "ALL_STARTERS_HIT:823597:team-121:0:",
     "description": "先発野手全員安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_RBI_GAME",
@@ -25992,7 +26613,8 @@
     "archiveKey": "LARGE_RBI_GAME:823597:596019:0:",
     "description": "1試合6打点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -26033,7 +26655,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:824570:team-147:0:",
     "description": "両軍合計14投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_HIT",
@@ -26073,7 +26696,8 @@
     "archiveKey": "ALL_STARTERS_HIT:823193:team-158:0:",
     "description": "先発野手全員安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "FIVE_HIT_GAME",
@@ -26115,7 +26739,8 @@
     "archiveKey": "FIVE_HIT_GAME:823275:665487:0:",
     "description": "1試合5安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_HIT",
@@ -26155,7 +26780,8 @@
     "archiveKey": "ALL_STARTERS_HIT:823350:team-134:0:",
     "description": "先発野手全員安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -26196,7 +26822,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:823350:team-109:0:",
     "description": "両軍合計13投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_LARGE_HR",
@@ -26236,7 +26863,8 @@
     "archiveKey": "COMBINED_LARGE_HR:823923:team-136:0:",
     "description": "両軍合計7本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LEADOFF_FIRST_PITCH_HR",
@@ -26278,7 +26906,8 @@
     "archiveKey": "LEADOFF_FIRST_PITCH_HR:822947:650490:0:",
     "description": "初回先頭打者初球本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "POSITION_PLAYER_STRIKEOUT",
@@ -26319,7 +26948,8 @@
     "archiveKey": "POSITION_PLAYER_STRIKEOUT:823192:683734:0:",
     "description": "野手登板で奪三振",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -26360,7 +26990,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:824242:team-110:0:",
     "description": "両軍合計14投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -26401,7 +27032,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:824487:team-114:0:",
     "description": "両軍合計12投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -26442,7 +27074,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:824567:team-147:0:",
     "description": "両軍合計12投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -26483,7 +27116,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:822946:team-140:0:",
     "description": "両軍合計12投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "HIT_DEFICIT_WIN",
@@ -26525,7 +27159,8 @@
     "archiveKey": "HIT_DEFICIT_WIN:823674:team-142:0:",
     "description": "相手より5本少ない安打数で勝利",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "WALKOFF_GRAND_SLAM",
@@ -26566,7 +27201,8 @@
     "archiveKey": "WALKOFF_GRAND_SLAM:823674:665019:0:",
     "description": "サヨナラ満塁本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_HIGH",
@@ -26612,7 +27248,8 @@
     "archiveKey": "JAPANESE_CAREER_HIGH:823272:673513:0:outs",
     "description": "3回でキャリア最多",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "POSITION_PLAYER_STRIKEOUT",
@@ -26653,7 +27290,8 @@
     "archiveKey": "POSITION_PLAYER_STRIKEOUT:824164:670032:0:",
     "description": "野手登板で奪三振",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "HIT_DEFICIT_WIN",
@@ -26695,7 +27333,8 @@
     "archiveKey": "HIT_DEFICIT_WIN:823920:team-111:0:",
     "description": "相手より6本少ない安打数で勝利",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_HIT",
@@ -26735,7 +27374,8 @@
     "archiveKey": "ALL_STARTERS_HIT:824326:team-118:0:",
     "description": "先発野手全員安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -26776,7 +27416,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:824405:team-109:0:",
     "description": "両軍合計12投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_HR_INNING",
@@ -26816,7 +27457,8 @@
     "archiveKey": "LARGE_HR_INNING:823919:team-111:3:",
     "description": "3回にチーム3本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_LARGE_HR",
@@ -26856,7 +27498,8 @@
     "archiveKey": "COMBINED_LARGE_HR:823520:team-138:0:",
     "description": "両軍合計10本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_HR_INNING",
@@ -26896,7 +27539,8 @@
     "archiveKey": "LARGE_HR_INNING:823520:team-138:8:",
     "description": "8回にチーム3本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_HR_INNING",
@@ -26936,7 +27580,8 @@
     "archiveKey": "LARGE_HR_INNING:823520:team-147:7:",
     "description": "7回にチーム3本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_RBI_GAME",
@@ -26977,7 +27622,8 @@
     "archiveKey": "LARGE_RBI_GAME:823520:676475:0:",
     "description": "1試合6打点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "THREE_HR_GAME",
@@ -27021,7 +27667,8 @@
     "archiveKey": "THREE_HR_GAME:823520:676475:0:",
     "description": "1試合3本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -27062,7 +27709,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:824321:team-139:0:",
     "description": "両軍合計14投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "HIT_DEFICIT_WIN",
@@ -27104,7 +27752,8 @@
     "archiveKey": "HIT_DEFICIT_WIN:824805:team-110:0:",
     "description": "相手より6本少ない安打数で勝利",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -27145,7 +27794,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:823429:team-120:0:",
     "description": "両軍合計16投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "HIT_DEFICIT_WIN",
@@ -27187,7 +27837,8 @@
     "archiveKey": "HIT_DEFICIT_WIN:824158:team-141:0:",
     "description": "相手より5本少ない安打数で勝利",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LEADOFF_FIRST_PITCH_HR",
@@ -27229,7 +27880,8 @@
     "archiveKey": "LEADOFF_FIRST_PITCH_HR:824646:691718:0:",
     "description": "初回先頭打者初球本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "TWO_OUTS_SAME_INNING",
@@ -27270,7 +27922,8 @@
     "archiveKey": "TWO_OUTS_SAME_INNING:825052:543510:4:",
     "description": "4回に2度打者アウト",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_HIT",
@@ -27310,7 +27963,8 @@
     "archiveKey": "ALL_STARTERS_HIT:823430:team-143:0:",
     "description": "先発野手全員安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "HIT_DEFICIT_WIN",
@@ -27352,7 +28006,8 @@
     "archiveKey": "HIT_DEFICIT_WIN:824664:team-112:0:",
     "description": "相手より6本少ない安打数で勝利",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -27393,7 +28048,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:824729:team-145:0:",
     "description": "両軍合計17投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -27434,7 +28090,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:824885:team-146:0:",
     "description": "両軍合計12投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "HIT_DEFICIT_WIN",
@@ -27476,7 +28133,8 @@
     "archiveKey": "HIT_DEFICIT_WIN:823024:team-138:0:",
     "description": "相手より5本少ない安打数で勝利",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "HIT_DEFICIT_WIN",
@@ -27518,7 +28176,8 @@
     "archiveKey": "HIT_DEFICIT_WIN:823191:team-137:0:",
     "description": "相手より6本少ない安打数で勝利",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -27559,7 +28218,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:823515:team-144:0:",
     "description": "両軍合計12投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "HIT_DEFICIT_WIN",
@@ -27601,7 +28261,8 @@
     "archiveKey": "HIT_DEFICIT_WIN:823836:team-108:0:",
     "description": "相手より6本少ない安打数で勝利",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_RBI_GAME",
@@ -27642,7 +28303,8 @@
     "archiveKey": "LARGE_RBI_GAME:824566:682657:0:",
     "description": "1試合6打点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_HIT",
@@ -27682,7 +28344,8 @@
     "archiveKey": "ALL_STARTERS_HIT:824727:team-111:0:",
     "description": "先発野手全員安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LEADOFF_FIRST_PITCH_HR",
@@ -27724,7 +28387,8 @@
     "archiveKey": "LEADOFF_FIRST_PITCH_HR:823021:664983:0:",
     "description": "初回先頭打者初球本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -27765,7 +28429,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:823102:team-139:0:",
     "description": "両軍合計12投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -27806,7 +28471,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:823426:team-141:0:",
     "description": "両軍合計13投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_WORST",
@@ -27852,7 +28518,8 @@
     "archiveKey": "JAPANESE_CAREER_WORST:825049:808967:0:hitBatsmen",
     "description": "1与死球でキャリアワーストタイ",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "FIVE_HIT_GAME",
@@ -27894,7 +28561,8 @@
     "archiveKey": "FIVE_HIT_GAME:823345:666182:0:",
     "description": "1試合5安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -27935,7 +28603,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:823425:team-141:0:",
     "description": "両軍合計13投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_HIT",
@@ -27975,7 +28644,8 @@
     "archiveKey": "ALL_STARTERS_HIT:824078:team-112:0:",
     "description": "先発野手全員安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -28016,7 +28686,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:824564:team-114:0:",
     "description": "両軍合計14投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -28057,7 +28728,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:823998:team-140:0:",
     "description": "両軍合計13投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_RUN_INNING",
@@ -28097,7 +28769,8 @@
     "archiveKey": "LARGE_RUN_INNING:824969:team-139:8:",
     "description": "8回に8得点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "TWO_HIT_SAME_INNING",
@@ -28138,7 +28811,8 @@
     "archiveKey": "TWO_HIT_SAME_INNING:824969:666018:8:",
     "description": "8回に2安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_HIT",
@@ -28178,7 +28852,8 @@
     "archiveKey": "ALL_STARTERS_HIT:823264:team-135:0:",
     "description": "先発野手全員安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LEADOFF_FIRST_PITCH_HR",
@@ -28220,7 +28895,8 @@
     "archiveKey": "LEADOFF_FIRST_PITCH_HR:824563:686668:0:",
     "description": "初回先頭打者初球本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_LARGE_HR",
@@ -28260,7 +28936,8 @@
     "archiveKey": "COMBINED_LARGE_HR:824970:team-139:0:",
     "description": "両軍合計7本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_RBI_GAME",
@@ -28301,7 +28978,8 @@
     "archiveKey": "LARGE_RBI_GAME:822698:608324:0:",
     "description": "1試合7打点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "THREE_HR_GAME",
@@ -28345,7 +29023,8 @@
     "archiveKey": "THREE_HR_GAME:822698:608324:0:",
     "description": "1試合3本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_RBI_GAME",
@@ -28386,7 +29065,8 @@
     "archiveKey": "LARGE_RBI_GAME:823829:804668:0:",
     "description": "1試合6打点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_WORST",
@@ -28432,7 +29112,8 @@
     "archiveKey": "JAPANESE_CAREER_WORST:823915:808963:0:baseOnBalls",
     "description": "5与四球でキャリアワーストタイ",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_HIT",
@@ -28472,7 +29153,8 @@
     "archiveKey": "ALL_STARTERS_HIT:823995:team-108:0:",
     "description": "先発野手全員安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -28513,7 +29195,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:824561:team-113:0:",
     "description": "両軍合計12投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -28554,7 +29237,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:822942:team-110:0:",
     "description": "両軍合計13投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_WORST",
@@ -28600,7 +29284,8 @@
     "archiveKey": "JAPANESE_CAREER_WORST:823591:673540:0:hitBatsmen",
     "description": "1与死球でキャリアワーストタイ",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -28641,7 +29326,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:822775:team-147:0:",
     "description": "両軍合計12投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "TWO_HIT_SAME_INNING",
@@ -28682,7 +29368,8 @@
     "archiveKey": "TWO_HIT_SAME_INNING:823184:808982:4:",
     "description": "4回に2安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "FIVE_HIT_GAME",
@@ -28724,7 +29411,8 @@
     "archiveKey": "FIVE_HIT_GAME:823671:664761:0:",
     "description": "1試合5安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "THREE_HR_GAME",
@@ -28768,7 +29456,8 @@
     "archiveKey": "THREE_HR_GAME:824644:695491:0:",
     "description": "1試合3本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "TWO_OUTS_SAME_INNING",
@@ -28809,7 +29498,8 @@
     "archiveKey": "TWO_OUTS_SAME_INNING:822940:687637:6:",
     "description": "6回に2度打者アウト",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_HIT",
@@ -28849,7 +29539,8 @@
     "archiveKey": "ALL_STARTERS_HIT:823182:team-137:0:",
     "description": "先発野手全員安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -28890,7 +29581,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:823182:team-115:0:",
     "description": "両軍合計12投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "TWO_OUTS_SAME_INNING",
@@ -28931,7 +29623,8 @@
     "archiveKey": "TWO_OUTS_SAME_INNING:824477:640459:9:",
     "description": "9回に2度打者アウト",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LEADOFF_FIRST_PITCH_HR",
@@ -28973,7 +29666,8 @@
     "archiveKey": "LEADOFF_FIRST_PITCH_HR:824077:643446:0:",
     "description": "初回先頭打者初球本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LEADOFF_FIRST_PITCH_HR",
@@ -29015,7 +29709,8 @@
     "archiveKey": "LEADOFF_FIRST_PITCH_HR:824641:691718:0:",
     "description": "初回先頭打者初球本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_HIT",
@@ -29055,7 +29750,8 @@
     "archiveKey": "ALL_STARTERS_HIT:822938:team-141:0:",
     "description": "先発野手全員安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LEADOFF_FIRST_PITCH_HR",
@@ -29097,7 +29793,8 @@
     "archiveKey": "LEADOFF_FIRST_PITCH_HR:823586:665487:0:",
     "description": "初回先頭打者初球本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_SCORE",
@@ -29137,7 +29834,8 @@
     "archiveKey": "ALL_STARTERS_SCORE:823749:team-158:0:",
     "description": "先発野手全員得点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_RBI_INNING",
@@ -29178,7 +29876,8 @@
     "archiveKey": "LARGE_RBI_INNING:823749:800325:8:",
     "description": "1イニングで4打点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_RUN_INNING",
@@ -29218,7 +29917,8 @@
     "archiveKey": "LARGE_RUN_INNING:823749:team-158:8:",
     "description": "8回に9得点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "TWO_HIT_SAME_INNING",
@@ -29259,7 +29959,8 @@
     "archiveKey": "TWO_HIT_SAME_INNING:823749:800325:8:",
     "description": "8回に2安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_RBI_GAME",
@@ -29300,7 +30001,8 @@
     "archiveKey": "LARGE_RBI_GAME:824398:666176:0:",
     "description": "1試合6打点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "TWO_HIT_SAME_INNING",
@@ -29341,7 +30043,8 @@
     "archiveKey": "TWO_HIT_SAME_INNING:824076:672580:8:",
     "description": "8回に2安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -29382,7 +30085,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:824318:team-119:0:",
     "description": "両軍合計13投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_WORST",
@@ -29428,7 +30132,8 @@
     "archiveKey": "JAPANESE_CAREER_WORST:824318:808963:0:hits",
     "description": "7被安打でキャリアワーストタイ",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LEADOFF_FIRST_PITCH_HR",
@@ -29470,7 +30175,8 @@
     "archiveKey": "LEADOFF_FIRST_PITCH_HR:824722:686765:0:",
     "description": "初回先頭打者初球本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -29511,7 +30217,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:824801:team-147:0:",
     "description": "両軍合計12投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_SCORE",
@@ -29551,7 +30258,8 @@
     "archiveKey": "ALL_STARTERS_SCORE:824153:team-108:0:",
     "description": "先発野手全員得点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "FIVE_HIT_GAME",
@@ -29593,7 +30301,8 @@
     "archiveKey": "FIVE_HIT_GAME:824153:687263:0:",
     "description": "1試合5安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_RBI_GAME",
@@ -29634,7 +30343,8 @@
     "archiveKey": "LARGE_RBI_GAME:824153:687263:0:",
     "description": "1試合7打点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "TWO_HIT_SAME_INNING",
@@ -29675,7 +30385,8 @@
     "archiveKey": "TWO_HIT_SAME_INNING:824474:665877:9:",
     "description": "9回に2安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "HIT_DEFICIT_WIN",
@@ -29717,7 +30428,8 @@
     "archiveKey": "HIT_DEFICIT_WIN:823510:team-147:0:",
     "description": "相手より5本少ない安打数で勝利",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -29758,7 +30470,8 @@
     "archiveKey": "COMBINED_MANY_PITCHERS:823911:team-134:0:",
     "description": "両軍合計12投手を起用",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "JAPANESE_CAREER_WORST",
@@ -29804,7 +30517,8 @@
     "archiveKey": "JAPANESE_CAREER_WORST:823911:808967:0:hitBatsmen",
     "description": "2与死球でキャリアワースト",
     "isJapanesePlayer": true,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_HR_INNING",
@@ -29844,7 +30558,8 @@
     "archiveKey": "LARGE_HR_INNING:824559:team-145:6:",
     "description": "6回にチーム3本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "THREE_CONSECUTIVE_HR",
@@ -29889,7 +30604,8 @@
     "archiveKey": "THREE_CONSECUTIVE_HR:824559:678246:0:",
     "description": "3者連続本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LEADOFF_FIRST_PITCH_HR",
@@ -29931,7 +30647,8 @@
     "archiveKey": "LEADOFF_FIRST_PITCH_HR:823100:668227:0:",
     "description": "初回先頭打者初球本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "ALL_STARTERS_HIT",
@@ -29971,7 +30688,8 @@
     "archiveKey": "ALL_STARTERS_HIT:823422:team-143:0:",
     "description": "先発野手全員安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "COMBINED_LARGE_HR",
@@ -30011,7 +30729,8 @@
     "archiveKey": "COMBINED_LARGE_HR:824560:team-121:0:",
     "description": "両軍合計7本塁打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "CYCLE",
@@ -30058,7 +30777,8 @@
     "archiveKey": "CYCLE:825044:668709:0:",
     "description": "サイクル安打",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_RBI_INNING",
@@ -30099,7 +30819,8 @@
     "archiveKey": "LARGE_RBI_INNING:823099:699393:8:",
     "description": "1イニングで4打点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   },
   {
     "recordType": "LARGE_RUN_INNING",
@@ -30139,6 +30860,7 @@
     "archiveKey": "LARGE_RUN_INNING:823099:team-112:8:",
     "description": "8回に9得点",
     "isJapanesePlayer": false,
-    "apiConfirmed": true
+    "apiConfirmed": true,
+    "gameType": "R"
   }
 ]
