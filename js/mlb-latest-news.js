@@ -2,6 +2,89 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Latest Red Sox injuries & transactions",
+        "summaryJa": "レッドソックスの負傷状況をMLB公式が詳報",
+        "slug": "red-sox-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/red-sox-injuries-and-roster-moves",
+        "contentDate": "2026-08-24T22:25:00Z",
+        "teamIds": [
+            111
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Latest Tigers injuries and transactions",
+        "summaryJa": "タイガースの負傷状況をMLB公式が詳報",
+        "slug": "tigers-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/tigers-injuries-and-roster-moves",
+        "contentDate": "2026-08-24T22:16:00Z",
+        "teamIds": [
+            116
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "A new era in Padres baseball begins today",
+        "summaryJa": "パドレスの最新動向をMLB公式が詳報",
+        "slug": "jones-feliciano-padres-ownership-group-takes-over",
+        "url": "https://www.mlb.com/news/jones-feliciano-padres-ownership-group-takes-over",
+        "contentDate": "2026-08-24T22:15:00Z",
+        "teamIds": [
+            135
+        ],
+        "playerIds": [],
+        "gamePks": [
+            823260
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Old target, new opportunity: Tigers add Kinley to bullpen",
+        "summaryJa": "T.キンリー（DET）の移籍・契約に関する最新情報",
+        "slug": "tyler-kinley-signs-with-tigers",
+        "url": "https://www.mlb.com/news/tyler-kinley-signs-with-tigers",
+        "contentDate": "2026-08-24T22:07:34.803Z",
+        "teamIds": [
+            116
+        ],
+        "playerIds": [
+            641755
+        ],
+        "gamePks": [
+            824235
+        ],
+        "taxonomy": [
+            "transactions",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Latest Nationals injuries & transactions",
         "summaryJa": "ナショナルズの負傷状況をMLB公式が詳報",
         "slug": "nationals-injuries-and-roster-moves",
@@ -488,6 +571,7 @@
             "apple-news"
         ],
         "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
@@ -506,26 +590,6 @@
         "gamePks": [],
         "taxonomy": [
             "mlb-top-prospects",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "A new era in Padres baseball begins today",
-        "summaryJa": "パドレスの最新動向をMLB公式が詳報",
-        "slug": "jones-feliciano-padres-ownership-group-takes-over",
-        "url": "https://www.mlb.com/news/jones-feliciano-padres-ownership-group-takes-over",
-        "contentDate": "2026-08-24T07:40:00Z",
-        "teamIds": [
-            135
-        ],
-        "playerIds": [],
-        "gamePks": [
-            823260
-        ],
-        "taxonomy": [
             "apple-news"
         ],
         "sourceScopes": [
@@ -1119,26 +1183,6 @@
         ]
     },
     {
-        "headline": "Latest Red Sox injuries & transactions",
-        "summaryJa": "レッドソックスの負傷状況をMLB公式が詳報",
-        "slug": "red-sox-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/red-sox-injuries-and-roster-moves",
-        "contentDate": "2026-08-24T00:17:00Z",
-        "teamIds": [
-            111
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Neto caps torrid road trip as Angels' late rally falls short",
         "summaryJa": "Z.ネト（LAA）の最新動向をMLB公式が詳報",
         "slug": "zach-neto-hot-road-trip-angels-rangers",
@@ -1642,7 +1686,6 @@
             "game-recap"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -2319,26 +2362,6 @@
         "contentDate": "2026-08-23T17:17:00Z",
         "teamIds": [
             145
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Latest Tigers injuries and transactions",
-        "summaryJa": "タイガースの負傷状況をMLB公式が詳報",
-        "slug": "tigers-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/tigers-injuries-and-roster-moves",
-        "contentDate": "2026-08-23T17:13:00Z",
-        "teamIds": [
-            116
         ],
         "playerIds": [],
         "gamePks": [],
@@ -9812,31 +9835,6 @@
         ],
         "taxonomy": [
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Detroit prospect debuts with feat not seen by a Tiger in 114 years",
-        "summaryJa": "Brett Callahan（DET）、メジャー昇格・初出場に関する最新情報",
-        "slug": "brett-callahan-2-run-triple-first-pitch-mlb-debut",
-        "url": "https://www.mlb.com/news/brett-callahan-2-run-triple-first-pitch-mlb-debut",
-        "contentDate": "2026-08-16T22:38:01.16Z",
-        "teamIds": [
-            116
-        ],
-        "playerIds": [
-            814430
-        ],
-        "gamePks": [
-            824236
-        ],
-        "taxonomy": [
-            "apple-news",
-            "mlb-top-prospects",
-            "milestone",
-            "mlb-debut"
         ],
         "sourceScopes": [
             "球団公式"
