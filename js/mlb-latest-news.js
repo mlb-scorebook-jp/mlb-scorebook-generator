@@ -2,6 +2,24 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Here are the 2026 Arizona Fall League teams and schedule",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "arizona-fall-league-schedule-teams-2026",
+        "url": "https://www.mlb.com/news/arizona-fall-league-schedule-teams-2026",
+        "contentDate": "2026-08-24T17:53:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "arizona-fall-league",
+            "mlb-top-prospects",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
         "headline": "5 compelling series to watch this week",
         "summaryJa": "レンジャーズの最新動向をMLB公式が詳報",
         "slug": "mlb-series-to-watch-week-of-aug-24-2026",
@@ -884,7 +902,6 @@
             "game-recap"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
