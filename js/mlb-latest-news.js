@@ -2,6 +2,139 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Rox calling up No. 20 prospect for MLB debut vs. Nats (source)",
+        "summaryJa": "M.アダムズ（COL）、メジャー昇格・初出場に関する最新情報",
+        "slug": "mason-adams-callup-for-mlb-debut",
+        "url": "https://www.mlb.com/news/mason-adams-callup-for-mlb-debut",
+        "contentDate": "2026-08-24T23:37:00Z",
+        "teamIds": [
+            115
+        ],
+        "playerIds": [
+            690279
+        ],
+        "gamePks": [
+            822695
+        ],
+        "taxonomy": [
+            "apple-news",
+            "mlb-top-prospects",
+            "transactions"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Injuries: Yankees, Dodgers, Red Sox, Woodruff, Soto, Abrams",
+        "summaryJa": "大谷翔平（LAD）らMLB各球団の最新負傷情報",
+        "slug": "baseball-injury-updates",
+        "url": "https://www.mlb.com/news/baseball-injury-updates",
+        "contentDate": "2026-08-24T23:33:00Z",
+        "teamIds": [],
+        "playerIds": [
+            641355,
+            596115,
+            608331,
+            592450,
+            519317,
+            641857,
+            676979,
+            607192,
+            621242,
+            669257,
+            681624,
+            682928,
+            695578,
+            605540,
+            686217,
+            701350,
+            669003,
+            677960
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "headline-breakout"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "Latest White Sox injuries & transactions",
+        "summaryJa": "ホワイトソックスの負傷状況をMLB公式が詳報",
+        "slug": "white-sox-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/white-sox-injuries-and-roster-moves",
+        "contentDate": "2026-08-24T23:27:00Z",
+        "teamIds": [
+            145
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "'He's a gamer, a dog': Bonemer to add center field to his defensive repertoire",
+        "summaryJa": "Caleb Bonemer（CWS）の最新動向をMLB公式が詳報",
+        "slug": "white-sox-to-start-playing-caleb-bonemer-in-center-field",
+        "url": "https://www.mlb.com/news/white-sox-to-start-playing-caleb-bonemer-in-center-field",
+        "contentDate": "2026-08-24T23:22:18.38Z",
+        "teamIds": [
+            145
+        ],
+        "playerIds": [
+            815352
+        ],
+        "gamePks": [
+            824557
+        ],
+        "taxonomy": [
+            "apple-news",
+            "mlb-top-prospects"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Outfielder Casey makes Prospect Team of the Week",
+        "summaryJa": "Rainiel Rodriguezら注目選手の最新動向",
+        "slug": "prospect-team-of-the-week-august-24-2026",
+        "url": "https://www.mlb.com/news/prospect-team-of-the-week-august-24-2026",
+        "contentDate": "2026-08-24T23:01:00Z",
+        "teamIds": [],
+        "playerIds": [
+            823787,
+            806252,
+            807267,
+            825927,
+            814409,
+            805805,
+            806978,
+            814457,
+            695518,
+            821783,
+            691384
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "minor-league-baseball",
+            "mlb-top-prospects"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "GM Dana Brown, Astros mutually agree to part ways",
         "summaryJa": "アストロズの最新動向をMLB公式が詳報",
         "slug": "dana-brown-astros-part-ways",
@@ -202,7 +335,7 @@
         ]
     },
     {
-        "headline": "Neto has epic week, but Tatis Jr. does him one better to nab two awards",
+        "headline": "Neto has epic week, but Tatis does him one better to nab two awards",
         "summaryJa": "F.タティース Jr.（LAA）の最新動向をMLB公式が詳報",
         "slug": "zach-neto-fernando-tatis-jr-named-players-of-the-week",
         "url": "https://www.mlb.com/news/zach-neto-fernando-tatis-jr-named-players-of-the-week",
@@ -240,30 +373,6 @@
             "injury",
             "transactions",
             "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Rox calling up No. 20 prospect for MLB debut vs. Nats (source)",
-        "summaryJa": "M.アダムズ（COL）、メジャー昇格・初出場に関する最新情報",
-        "slug": "mason-adams-callup-for-mlb-debut",
-        "url": "https://www.mlb.com/news/mason-adams-callup-for-mlb-debut",
-        "contentDate": "2026-08-24T19:43:54.95Z",
-        "teamIds": [
-            115
-        ],
-        "playerIds": [
-            690279
-        ],
-        "gamePks": [
-            822695
-        ],
-        "taxonomy": [
-            "apple-news",
-            "mlb-top-prospects",
-            "transactions"
         ],
         "sourceScopes": [
             "球団公式"
@@ -753,42 +862,6 @@
         "sourceScopes": [
             "MLB",
             "球団公式"
-        ]
-    },
-    {
-        "headline": "Injuries: Yankees, Dodgers, Red Sox, Woodruff, Soto, Abrams",
-        "summaryJa": "大谷翔平（LAD）らMLB各球団の最新負傷情報",
-        "slug": "baseball-injury-updates",
-        "url": "https://www.mlb.com/news/baseball-injury-updates",
-        "contentDate": "2026-08-24T01:55:00Z",
-        "teamIds": [],
-        "playerIds": [
-            641355,
-            596115,
-            608331,
-            592450,
-            519317,
-            641857,
-            676979,
-            607192,
-            621242,
-            669257,
-            681624,
-            682928,
-            695578,
-            605540,
-            686217,
-            701350,
-            669003,
-            677960
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "headline-breakout"
-        ],
-        "sourceScopes": [
-            "MLB"
         ]
     },
     {
@@ -2360,26 +2433,6 @@
         "contentDate": "2026-08-23T17:21:00Z",
         "teamIds": [
             147
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Latest White Sox injuries & transactions",
-        "summaryJa": "ホワイトソックスの負傷状況をMLB公式が詳報",
-        "slug": "white-sox-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/white-sox-injuries-and-roster-moves",
-        "contentDate": "2026-08-23T17:17:00Z",
-        "teamIds": [
-            145
         ],
         "playerIds": [],
         "gamePks": [],
@@ -9445,33 +9498,6 @@
         ]
     },
     {
-        "headline": "Cease garners first-place votes in latest Cy Young poll",
-        "summaryJa": "C.シュリットラーの最新動向をMLB公式が詳報",
-        "slug": "cam-schlittler-jacob-misiorowski-lead-fifth-2026-cy-young-poll",
-        "url": "https://www.mlb.com/news/cam-schlittler-jacob-misiorowski-lead-fifth-2026-cy-young-poll",
-        "contentDate": "2026-08-18T04:00:00Z",
-        "teamIds": [],
-        "playerIds": [
-            693645,
-            656302,
-            656876,
-            800048,
-            543243,
-            694819,
-            650911,
-            519242,
-            808967,
-            695505
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "D-backs star Marte placed on restricted list after not showing up at Fenway",
         "summaryJa": "K.マーテイ（AZ）を巡る注目点をMLB公式が分析",
         "slug": "ketel-marte-restricted-list-d-backs",
@@ -9643,27 +9669,6 @@
             "apple-news",
             "injury",
             "players-weekend"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "As White Sox-Cubs takes center stage, Windy City envisions all-Chicago World Series",
-        "summaryJa": "ホワイトソックスの最新動向をMLB公式が詳報",
-        "slug": "white-sox-cubs-world-series-matchup-possibility",
-        "url": "https://www.mlb.com/news/white-sox-cubs-world-series-matchup-possibility",
-        "contentDate": "2026-08-17T16:13:24.251Z",
-        "teamIds": [
-            145,
-            112
-        ],
-        "playerIds": [],
-        "gamePks": [
-            824641
-        ],
-        "taxonomy": [
-            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
