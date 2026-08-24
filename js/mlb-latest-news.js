@@ -2,6 +2,163 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Recent injuries, innings limits present challenging puzzle for Cardinals rotation",
+        "summaryJa": "カージナルスの負傷状況をMLB公式が詳報",
+        "slug": "cardinals-pitching-injuries-innings-limits-present-possible-dilemma",
+        "url": "https://www.mlb.com/news/cardinals-pitching-injuries-innings-limits-present-possible-dilemma",
+        "contentDate": "2026-08-24T15:40:52.128Z",
+        "teamIds": [
+            138
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "In top spot for 1st time this season, new No. 1 takes down Dodgers in Power Rankings",
+        "summaryJa": "MLBの最新情報、記録達成の最新情報",
+        "slug": "mlb-power-rankings-for-the-week-of-august-23-2026",
+        "url": "https://www.mlb.com/news/mlb-power-rankings-for-the-week-of-august-23-2026",
+        "contentDate": "2026-08-24T15:35:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "power-rankings",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Top bigger than sports moments in baseball history",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "top-bigger-than-sports-moments-in-baseball-history",
+        "url": "https://www.mlb.com/news/top-bigger-than-sports-moments-in-baseball-history",
+        "contentDate": "2026-08-24T15:25:31.496Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "rankings"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "'I haven't done my job': Díaz prepares for new role after return from IL",
+        "summaryJa": "E.ディアス（LAD）の負傷状況をMLB公式が詳報",
+        "slug": "edwin-diaz-won-t-return-to-closer-role-after-injury-rehab",
+        "url": "https://www.mlb.com/news/edwin-diaz-won-t-return-to-closer-role-after-injury-rehab",
+        "contentDate": "2026-08-24T15:01:23.121Z",
+        "teamIds": [
+            119
+        ],
+        "playerIds": [
+            621242
+        ],
+        "gamePks": [
+            824881
+        ],
+        "taxonomy": [
+            "apple-news",
+            "injury"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "A new era in Padres baseball begins today",
+        "summaryJa": "パドレスの最新動向をMLB公式が詳報",
+        "slug": "jones-feliciano-padres-ownership-group-takes-over",
+        "url": "https://www.mlb.com/news/jones-feliciano-padres-ownership-group-takes-over",
+        "contentDate": "2026-08-24T15:00:00Z",
+        "teamIds": [
+            135
+        ],
+        "playerIds": [],
+        "gamePks": [
+            823260
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "GM Dana Brown, Astros mutually agree to part ways",
+        "summaryJa": "アストロズの最新動向をMLB公式が詳報",
+        "slug": "dana-brown-astros-part-ways",
+        "url": "https://www.mlb.com/news/dana-brown-astros-part-ways",
+        "contentDate": "2026-08-24T14:36:00Z",
+        "teamIds": [
+            117
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "From software to softball, Williams a two-sport star for Cubs, Bandits",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "sami-williams-success-with-cubs-bandits",
+        "url": "https://www.mlb.com/news/sami-williams-success-with-cubs-bandits",
+        "contentDate": "2026-08-24T14:23:44.323Z",
+        "teamIds": [
+            6480,
+            112
+        ],
+        "playerIds": [],
+        "gamePks": [
+            825041
+        ],
+        "taxonomy": [
+            "apple-news",
+            "leagueid-6044"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Two crucial areas where Toronto could close the gap in Wild Card race",
+        "summaryJa": "ブルージェイズの最新動向をMLB公式が詳報",
+        "slug": "holding-baserunners-defense-could-be-key-for-blue-jays",
+        "url": "https://www.mlb.com/news/holding-baserunners-defense-could-be-key-for-blue-jays",
+        "contentDate": "2026-08-24T14:12:08.058Z",
+        "teamIds": [
+            141
+        ],
+        "playerIds": [],
+        "gamePks": [
+            822773
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Benge emerging as NL Rookie of the Year contender",
         "summaryJa": "C.ベンジ（NYM）の最新動向をMLB公式が詳報",
         "slug": "carson-benge-building-case-for-2026-nl-rookie-of-the-year",
@@ -87,24 +244,6 @@
         "gamePks": [
             823505
         ],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "GM Dana Brown, Astros mutually agree to part ways",
-        "summaryJa": "アストロズの最新動向をMLB公式が詳報",
-        "slug": "dana-brown-astros-part-ways",
-        "url": "https://www.mlb.com/news/dana-brown-astros-part-ways",
-        "contentDate": "2026-08-24T13:30:24.334Z",
-        "teamIds": [
-            117
-        ],
-        "playerIds": [],
-        "gamePks": [],
         "taxonomy": [
             "apple-news"
         ],
@@ -309,24 +448,6 @@
         "taxonomy": [
             "walk-off",
             "game-recap",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "In top spot for 1st time this season, new No. 1 takes down Dodgers in Power Rankings",
-        "summaryJa": "MLBの最新情報、記録達成の最新情報",
-        "slug": "mlb-power-rankings-for-the-week-of-august-23-2026",
-        "url": "https://www.mlb.com/news/mlb-power-rankings-for-the-week-of-august-23-2026",
-        "contentDate": "2026-08-24T02:43:57.015Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "power-rankings",
             "apple-news"
         ],
         "sourceScopes": [
@@ -1445,7 +1566,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1742,7 +1862,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -7491,23 +7610,6 @@
         ]
     },
     {
-        "headline": "LIVE: Watch Single-A prospects play for FREE",
-        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
-        "slug": "watch-minor-league-baseball-games-for-free-2026",
-        "url": "https://www.mlb.com/news/watch-minor-league-baseball-games-for-free-2026",
-        "contentDate": "2026-08-20T00:53:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "mlb-top-prospects",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "After overcoming injuries, Tolman called up by Nationals with emotional video",
         "summaryJa": "ナショナルズの負傷状況をMLB公式が詳報",
         "slug": "erik-tolman-called-up-by-nationals-after-overcoming-injuries",
@@ -7579,28 +7681,6 @@
         ],
         "gamePks": [
             823664
-        ],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "As Cards manage Leahy's workload, could he move to bullpen?",
-        "summaryJa": "K.レイヒー（STL）の最新動向をMLB公式が詳報",
-        "slug": "cardinals-managing-kyle-leahy-s-innings-this-season",
-        "url": "https://www.mlb.com/news/cardinals-managing-kyle-leahy-s-innings-this-season",
-        "contentDate": "2026-08-19T23:26:25.686Z",
-        "teamIds": [
-            138
-        ],
-        "playerIds": [
-            681517
-        ],
-        "gamePks": [
-            824476
         ],
         "taxonomy": [
             "apple-news"
@@ -7800,29 +7880,6 @@
         ]
     },
     {
-        "headline": "Vladdy (concussion) continues to progress, on track to return this weekend",
-        "summaryJa": "V.ゲレーロ Jr.（TOR）、復帰へ向けた最新状況",
-        "slug": "vladimir-guerrero-jr-hits-from-cage-during-concussion-recovery",
-        "url": "https://www.mlb.com/news/vladimir-guerrero-jr-hits-from-cage-during-concussion-recovery",
-        "contentDate": "2026-08-19T21:36:00Z",
-        "teamIds": [
-            141
-        ],
-        "playerIds": [
-            665489
-        ],
-        "gamePks": [
-            822937
-        ],
-        "taxonomy": [
-            "apple-news",
-            "injury"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Bogaerts not expected to miss time after exiting game with hamstring cramp",
         "summaryJa": "X.ボガーツ（SD）の負傷状況をMLB公式が詳報",
         "slug": "xander-bogaerts-exits-padres-game-with-injury",
@@ -7886,29 +7943,6 @@
         "taxonomy": [
             "trades",
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "'This is where I want to be': Behind Townsend's perfect marriage with Chicago",
-        "summaryJa": "Cade Townsend（CHC）の最新動向をMLB公式が詳報",
-        "slug": "cade-townsend-cubs-2026-first-round-draft-pick-visits-wrigley-field",
-        "url": "https://www.mlb.com/news/cade-townsend-cubs-2026-first-round-draft-pick-visits-wrigley-field",
-        "contentDate": "2026-08-19T19:39:54.221Z",
-        "teamIds": [
-            112
-        ],
-        "playerIds": [
-            807254
-        ],
-        "gamePks": [
-            824640
-        ],
-        "taxonomy": [
-            "apple-news",
-            "mlb-top-prospects"
         ],
         "sourceScopes": [
             "球団公式"
@@ -8830,28 +8864,6 @@
         "playerIds": [],
         "gamePks": [
             822859
-        ],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "OMG! Fan favorite Iglesias returns to Citi Field for 1st pitch",
-        "summaryJa": "J.イグレシアス（NYM）、復帰へ向けた最新状況",
-        "slug": "jose-iglesias-returns-to-citi-field-first-pitch",
-        "url": "https://www.mlb.com/news/jose-iglesias-returns-to-citi-field-first-pitch",
-        "contentDate": "2026-08-18T23:19:00Z",
-        "teamIds": [
-            121
-        ],
-        "playerIds": [
-            578428
-        ],
-        "gamePks": [
-            823586
         ],
         "taxonomy": [
             "apple-news"
