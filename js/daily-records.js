@@ -2,7 +2,7 @@
 
 (() => {
     const API_ROOT = "https://statsapi.mlb.com/api";
-    const CACHE_PREFIX = "mlb-daily-records-phase1-v7:";
+    const CACHE_PREFIX = "mlb-daily-records-phase1-v8:";
     const MAX_CONCURRENT_GAMES = 3;
     const RECORD_THRESHOLDS = Object.freeze({
         inningHits: 2,
@@ -149,10 +149,13 @@
         .replace(/[^a-z0-9]+/g, "-")
         .replace(/^-+|-+$/g, "");
     const gamedayUrl = (game) => {
+        const officialUrl = window.MLBRecordsArchive?.gamedayUrlForGame?.(game);
+        if (officialUrl) return officialUrl;
         const away = game?.teams?.away?.team ?? {};
         const home = game?.teams?.home?.team ?? {};
         const matchup = `${slugify(away.name)}-vs-${slugify(home.name)}`;
-        return `https://www.mlb.com/gameday/${matchup}/${game.officialDate || state.date}/` +
+        const date = text(game.officialDate || state.date).replaceAll("-", "/");
+        return `https://www.mlb.com/gameday/${matchup}/${date}/` +
             `${game.gamePk}/final`;
     };
     const isFinal = (game) => {
@@ -199,17 +202,16 @@
     };
     const fetchCareerGameLogs = async (playerId, group, game, signal) => {
         const targetDate = text(game?.officialDate || state.date);
-        const cacheKey = `${playerId}:${group}:${targetDate}:${number(game?.gamePk)}`;
-        if (careerHistoryRequests.has(cacheKey)) return careerHistoryRequests.get(cacheKey);
-        const request = (async () => {
+        const cacheKey = `${playerId}:${group}`;
+        let request = careerHistoryRequests.get(cacheKey);
+        if (!request) request = (async () => {
             const yearResult = await fetchJson(
                 `${API_ROOT}/v1/people/${playerId}/stats?stats=yearByYear&group=${group}&gameType=R`,
                 signal
             );
-            const targetSeason = number(targetDate.slice(0, 4));
             const seasons = unique((yearResult.data?.stats ?? []).flatMap((block) =>
                 (block?.splits ?? []).map((split) => number(split?.season))
-            )).filter((season) => season && season <= targetSeason).sort((a, b) => a - b);
+            )).filter(Boolean).sort((a, b) => a - b);
             const logs = [];
             for (const season of seasons) {
                 const result = await fetchJson(
@@ -219,23 +221,26 @@
                 );
                 (result.data?.stats ?? []).forEach((block) => {
                     (block?.splits ?? []).forEach((split) => {
-                        const splitDate = text(split?.date).slice(0, 10);
-                        const splitGamePk = number(split?.game?.gamePk);
-                        if (splitGamePk === number(game?.gamePk) || splitDate > targetDate) return;
-                        if (splitDate === targetDate) {
-                            const splitNumber = number(split?.game?.gameNumber);
-                            const targetNumber = number(game?.gameNumber);
-                            if (!targetNumber || !splitNumber || splitNumber >= targetNumber) return;
-                        }
-                        logs.push(split?.stat ?? {});
+                        logs.push({
+                            date: text(split?.date).slice(0, 10),
+                            gamePk: number(split?.game?.gamePk),
+                            gameNumber: number(split?.game?.gameNumber),
+                            stat: split?.stat ?? {}
+                        });
                     });
                 });
             }
             return logs;
         })();
-        careerHistoryRequests.set(cacheKey, request);
+        if (!careerHistoryRequests.has(cacheKey)) careerHistoryRequests.set(cacheKey, request);
         try {
-            return await request;
+            const logs = await request;
+            return logs.filter((split) => {
+                if (split.gamePk === number(game?.gamePk) || split.date > targetDate) return false;
+                if (split.date !== targetDate) return true;
+                const targetNumber = number(game?.gameNumber);
+                return Boolean(targetNumber && split.gameNumber && split.gameNumber < targetNumber);
+            }).map((split) => split.stat);
         } catch (error) {
             careerHistoryRequests.delete(cacheKey);
             throw error;
@@ -404,7 +409,7 @@
         });
     };
 
-    const analyzeGame = async (game, playByPlay, boxscore, signal) => {
+    const analyzeGame = async (game, playByPlay, boxscore, signal, { includeArticles = true } = {}) => {
         const records = [];
         const plays = (playByPlay?.allPlays ?? []).filter((play) => play?.about?.isComplete);
         const playerGame = new Map();
@@ -890,7 +895,7 @@
         }
 
         const result = dedupeRecords(records);
-        if (result.length) {
+        if (result.length && includeArticles) {
             const articles = await fetchOfficialArticles(game.gamePk, signal).catch(() => []);
             const links = articles.slice(0, 2).map((article) => ({
                 headline: text(article?.headline),
@@ -901,12 +906,18 @@
         return result;
     };
 
-    const analyzeOneGame = async (game, signal, japanesePlayers) => {
+    const analyzeOneGame = async (game, signal, japanesePlayers, { includeArticles = true } = {}) => {
         const [playResult, boxResult] = await Promise.all([
             fetchJson(`${API_ROOT}/v1/game/${game.gamePk}/playByPlay`, signal),
             fetchJson(`${API_ROOT}/v1/game/${game.gamePk}/boxscore`, signal)
         ]);
-        const records = await analyzeGame(game, playResult.data, boxResult.data, signal);
+        const records = await analyzeGame(
+            game,
+            playResult.data,
+            boxResult.data,
+            signal,
+            { includeArticles }
+        );
         const careerRecords = await japaneseCareerRecords(game, boxResult.data, japanesePlayers, signal);
         const japaneseIds = new Set(japanesePlayers.keys());
         records.forEach((record) => {
@@ -1252,9 +1263,11 @@
         open,
         close,
         thresholds: RECORD_THRESHOLDS,
-        recordCatalog: RECORD_CATALOG
+        recordCatalog: RECORD_CATALOG,
+        archiveBuilder: Object.freeze({ analyzeGame, analyzeOneGame, fetchJapanesePlayers })
     });
 
+    if (typeof document === "undefined") return;
     if (document.readyState === "loading") {
         document.addEventListener("DOMContentLoaded", initialize, { once: true });
     } else {

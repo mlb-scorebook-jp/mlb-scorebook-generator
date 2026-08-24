@@ -3,6 +3,31 @@
 (() => {
     const INDEX_URL = "data/records/index.json";
     const LOCAL_KEY = "mlb-records-archive-overlay-v1";
+    const TEAM_SLUG_BY_ID = Object.freeze({
+        108: "angels", 109: "d-backs", 110: "orioles", 111: "red-sox", 112: "cubs",
+        113: "reds", 114: "guardians", 115: "rockies", 116: "tigers", 117: "astros",
+        118: "royals", 119: "dodgers", 120: "nationals", 121: "mets", 133: "athletics",
+        134: "pirates", 135: "padres", 136: "mariners", 137: "giants", 138: "cardinals",
+        139: "rays", 140: "rangers", 141: "blue-jays", 142: "twins", 143: "phillies",
+        144: "braves", 145: "white-sox", 146: "marlins", 147: "yankees", 158: "brewers"
+    });
+    const FULL_TEAM_SLUGS = Object.freeze({
+        "los-angeles-angels": "angels", "arizona-diamondbacks": "d-backs",
+        "baltimore-orioles": "orioles", "boston-red-sox": "red-sox",
+        "chicago-cubs": "cubs", "cincinnati-reds": "reds",
+        "cleveland-guardians": "guardians", "colorado-rockies": "rockies",
+        "detroit-tigers": "tigers", "houston-astros": "astros",
+        "kansas-city-royals": "royals", "los-angeles-dodgers": "dodgers",
+        "washington-nationals": "nationals", "new-york-mets": "mets",
+        "athletics": "athletics", "pittsburgh-pirates": "pirates",
+        "san-diego-padres": "padres", "seattle-mariners": "mariners",
+        "san-francisco-giants": "giants", "st-louis-cardinals": "cardinals",
+        "tampa-bay-rays": "rays", "texas-rangers": "rangers",
+        "toronto-blue-jays": "blue-jays", "minnesota-twins": "twins",
+        "philadelphia-phillies": "phillies", "atlanta-braves": "braves",
+        "chicago-white-sox": "white-sox", "miami-marlins": "marlins",
+        "new-york-yankees": "yankees", "milwaukee-brewers": "brewers"
+    });
     let loaded = false;
     let loadPromise = null;
     let metadata = { startDate: "2026-01-01", years: [2026] };
@@ -28,12 +53,30 @@
         text(record.gameDate || ""),
         String(number(record.gamePk)).padStart(9, "0")
     ].join("|");
+    const gamedayUrlForGame = (game) => {
+        const away = game?.teams?.away?.team ?? {};
+        const home = game?.teams?.home?.team ?? {};
+        const awaySlug = TEAM_SLUG_BY_ID[number(away.id)];
+        const homeSlug = TEAM_SLUG_BY_ID[number(home.id)];
+        const date = text(game?.officialDate).replaceAll("-", "/");
+        if (!awaySlug || !homeSlug || !date || !number(game?.gamePk)) return "";
+        return `https://www.mlb.com/gameday/${awaySlug}-vs-${homeSlug}/${date}/${number(game.gamePk)}/final`;
+    };
+    const repairGamedayUrl = (value) => {
+        let url = text(value);
+        Object.entries(FULL_TEAM_SLUGS).forEach(([full, club]) => {
+            url = url.replace(`/gameday/${full}-vs-`, `/gameday/${club}-vs-`)
+                .replace(`-vs-${full}/`, `-vs-${club}/`);
+        });
+        return url.replace(/\/(\d{4})-(\d{2})-(\d{2})\//, "/$1/$2/$3/");
+    };
     const normalizeRecord = (record) => ({
         ...record,
         archiveKey: archiveKey(record),
         description: text(record.description || record.fact),
         isJapanesePlayer: record.isJapanesePlayer === true || record.category === "japanese",
         apiConfirmed: record.apiConfirmed !== false && record.apiStatus !== "unconfirmed",
+        gamedayUrl: repairGamedayUrl(record.gamedayUrl),
         historicalContext: record.historicalContext ?? { status: "needs-review", text: "", sources: [] }
     });
     const merge = (...groups) => {
@@ -173,7 +216,7 @@
 
     window.MLBRecordsArchive = Object.freeze({
         load, absorb, search, previous, rangeLabel, archiveKey, normalizeSearch,
-        buildArchiveForDateRange,
+        buildArchiveForDateRange, gamedayUrlForGame, repairGamedayUrl,
         getAll: () => [...records]
     });
 })();
