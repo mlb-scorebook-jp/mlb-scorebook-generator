@@ -7264,31 +7264,6 @@
         ]
     },
     {
-        "headline": "With a pair of hits (including a HR) for Nashville, Frelick could be following Pratt back to the bigs",
-        "summaryJa": "C.プラット（MIL）の負傷状況をMLB公式が詳報",
-        "slug": "cooper-pratt-reinstated-from-injured-list",
-        "url": "https://www.mlb.com/news/cooper-pratt-reinstated-from-injured-list",
-        "contentDate": "2026-08-20T01:13:00Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [
-            806198,
-            686217
-        ],
-        "gamePks": [
-            823748
-        ],
-        "taxonomy": [
-            "apple-news",
-            "transactions",
-            "injury"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Hoskins (back) placed on IL; Adell, DeLauter out of Wednesday's lineup",
         "summaryJa": "R.ホスキンズ（CLE）の負傷状況をMLB公式が詳報",
         "slug": "rhys-hoskins-placed-on-injured-list-with-back-injury",
