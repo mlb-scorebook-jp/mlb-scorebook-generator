@@ -51,6 +51,8 @@ body.app-mode-daily-records #header-daily-records-btn {
 }
 
 .daily-records-header,
+.daily-records-modes,
+.daily-records-search-panel,
 .daily-records-summary,
 .daily-records-progress,
 .daily-records-category,
@@ -58,6 +60,120 @@ body.app-mode-daily-records #header-daily-records-btn {
 .daily-records-error {
     border: 1px solid #46545c;
     background: #1c252a;
+}
+
+.daily-records-modes {
+    display: flex;
+    margin-top: 10px;
+    padding: 5px;
+}
+
+.daily-records-modes button {
+    min-width: 120px;
+    height: 32px;
+    color: #b9c6cb;
+    border: 1px solid transparent;
+    background: transparent;
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.daily-records-modes button.active {
+    color: #f3f7f8;
+    border-color: #667982;
+    background: #344149;
+}
+
+.daily-records-search-panel {
+    margin-top: 10px;
+    padding: 14px;
+}
+
+.daily-records-search-panel[hidden] {
+    display: none !important;
+}
+
+.daily-records-search-primary input {
+    width: 100%;
+    height: 42px;
+    padding: 0 13px;
+    color: #f1f5f6;
+    border: 1px solid #687b84;
+    border-radius: 2px;
+    background: #11191d;
+    font-size: 14px;
+}
+
+.daily-records-search-filters {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin-top: 9px;
+}
+
+.daily-records-search-filters label,
+.daily-records-search-filters select {
+    height: 31px;
+    color: #dce5e8;
+    border: 1px solid #596b74;
+    border-radius: 2px;
+    background: #29353b;
+    font-size: 10px;
+}
+
+.daily-records-search-filters label {
+    display: inline-flex;
+    align-items: center;
+    padding: 0 9px;
+}
+
+.daily-records-search-filters select {
+    padding: 0 8px;
+}
+
+.daily-records-archive-range,
+.daily-records-search-summary {
+    margin: 10px 0 0;
+    color: #9facb2;
+    font-size: 10px;
+}
+
+.daily-records-search-results {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-top: 12px;
+    border-top: 1px solid #39464d;
+    border-left: 1px solid #39464d;
+}
+
+.daily-records-search-results .daily-record-card {
+    border-right: 1px solid #39464d;
+}
+
+.daily-record-previous {
+    margin: 7px 0 0;
+    padding-top: 7px;
+    color: #aebbc0;
+    border-top: 1px dashed #46545c;
+    font-size: 10px;
+    line-height: 1.5;
+}
+
+.daily-record-previous a,
+.daily-record-history-button {
+    margin-left: 7px;
+    color: #bdd8e1;
+}
+
+.daily-record-history-button {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    font: inherit;
+    text-decoration: underline;
+    cursor: pointer;
 }
 
 .daily-records-header {
@@ -293,6 +409,15 @@ body.app-mode-daily-records #header-daily-records-btn {
     }
 
     .daily-records-list {
+        grid-template-columns: 1fr;
+    }
+
+    .daily-records-modes button {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .daily-records-search-results {
         grid-template-columns: 1fr;
     }
 

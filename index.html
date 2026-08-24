@@ -8,7 +8,7 @@
     <!-- Score notation update: stacked batted-ball symbol, red hits, blue strikeouts, black other results. -->
     <link rel="stylesheet" href="css/style.css?v=20260821-print-mac-2">
     <link rel="stylesheet" href="css/pregame.css?v=20260821-mobile-game-detail-1">
-    <link rel="stylesheet" href="css/daily-records.css?v=20260824-phase1-2">
+    <link rel="stylesheet" href="css/daily-records.css?v=20260824-phase2-1">
 </head>
 
 <body class="app-mode-home">
@@ -264,6 +264,36 @@
                         <button type="button" id="daily-records-refresh">再調査</button>
                     </div>
                 </header>
+                <nav class="daily-records-modes" aria-label="本日の記録メニュー">
+                    <button type="button" id="daily-records-mode-today" class="active">本日の記録</button>
+                    <button type="button" id="daily-records-mode-search">記録検索</button>
+                </nav>
+                <section class="daily-records-search-panel" id="daily-records-search-panel" hidden>
+                    <div class="daily-records-search-primary">
+                        <input type="search" id="daily-records-search-input"
+                            placeholder="記録・選手・チームを検索" aria-label="記録検索">
+                    </div>
+                    <div class="daily-records-search-filters">
+                        <label><input type="checkbox" id="daily-records-search-japanese"> 日本人のみ</label>
+                        <select id="daily-records-search-category" aria-label="カテゴリ">
+                            <option value="all">全記録</option>
+                            <option value="individual">個人記録</option>
+                            <option value="team">チーム／試合記録</option>
+                            <option value="special">特殊事象</option>
+                            <option value="japanese">日本人選手</option>
+                        </select>
+                        <select id="daily-records-search-season" aria-label="シーズン">
+                            <option value="all">全シーズン</option>
+                        </select>
+                        <select id="daily-records-search-order" aria-label="並び順">
+                            <option value="newest">新しい順</option>
+                            <option value="oldest">古い順</option>
+                        </select>
+                    </div>
+                    <p class="daily-records-archive-range" id="daily-records-archive-range"></p>
+                    <div class="daily-records-search-summary" id="daily-records-search-summary"></div>
+                    <div class="daily-records-search-results" id="daily-records-search-results"></div>
+                </section>
                 <div class="daily-records-summary" id="daily-records-summary" aria-live="polite"></div>
                 <div class="daily-records-progress" id="daily-records-progress" hidden>
                     <span class="daily-records-spinner" aria-hidden="true"></span>
@@ -313,7 +343,8 @@
     <script src="js/mlb-business-date.js?v=20260808-1"></script>
     <script src="js/mlb-latest-news.js?v=20260814-summary-1"></script>
     <script src="js/stathead-links.js?v=20260810-1"></script>
-    <script src="js/daily-records.js?v=20260824-phase1-2"></script>
+    <script src="js/records-archive.js?v=20260824-phase2-1"></script>
+    <script src="js/daily-records.js?v=20260824-phase2-1"></script>
     <script src="js/pregame.js?v=20260822-two-way-daily-1"></script>
 
     <script>

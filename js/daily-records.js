@@ -34,7 +34,7 @@
         TWO_HR_SAME_INNING: ["1イニング2本塁打", "複数本塁打", "two homers inning"],
         TWO_HIT_SAME_INNING: ["1イニング2安打", "two hits inning"],
         LARGE_RBI_INNING: ["1イニング大量打点", "multiple RBI inning"],
-        THREE_HR_GAME: ["1試合3本塁打", "3HR", "three homer game"],
+        THREE_HR_GAME: ["1試合3本塁打", "3本塁打", "3HR", "3ホーマー", "three homer game"],
         FIVE_HIT_GAME: ["1試合5安打", "5安打", "five hit game"],
         SIX_HIT_GAME: ["1試合6安打", "6安打", "six hit game"],
         CYCLE: ["サイクル安打", "サイクル", "cycle"],
@@ -45,7 +45,7 @@
         THREE_CONSECUTIVE_HR: ["3者連続本塁打", "back-to-back-to-back"],
         FOUR_CONSECUTIVE_HR: ["4者連続本塁打", "four consecutive homers"],
         WALKOFF_GRAND_SLAM: ["サヨナラ満塁本塁打", "walk-off grand slam"],
-        FOUR_STRIKEOUT_INNING: ["1イニング4奪三振", "4奪三振", "four strikeout inning"],
+        FOUR_STRIKEOUT_INNING: ["1イニング4奪三振", "4奪三振", "4K", "1イニング4K", "4 strikeouts", "four strikeout inning"],
         IMMACULATE_INNING: ["イマキュレート・イニング", "イマキュレート", "9球3奪三振", "immaculate inning", "immaculate"],
         POSITION_PLAYER_STRIKEOUT: ["野手登板で奪三振", "position player strikeout"],
         POSITION_PLAYER_MULTI_STRIKEOUT: ["野手登板で複数奪三振"],
@@ -97,7 +97,8 @@
         date: "",
         controller: null,
         generation: 0,
-        running: false
+        running: false,
+        mode: "today"
     };
     const dom = {};
     const careerHistoryRequests = new Map();
@@ -371,9 +372,12 @@
             playerName: player ? playerDisplayName(player) : "",
             teamId: number(team?.id) || null,
             teamCode: teamCode(team),
+            teamName: text(team?.name),
             opponentId: number(opponent?.id) || null,
             opponentCode: teamCode(opponent),
+            opponentName: text(opponent?.name),
             inning: inning ? number(inning) : null,
+            gameDate: text(game?.gameDate),
             battingSide: category !== "special" || player ? side : null,
             pitchingSide: recordType.includes("STRIKEOUT") ||
                 recordType.includes("PITCHING") || recordType.includes("IMMACULATE")
@@ -933,7 +937,7 @@
 
     const setRunning = (running, message = "") => {
         state.running = running;
-        dom.progress.hidden = !running;
+        dom.progress.hidden = !running || state.mode === "search";
         dom.progressText.textContent = message || "MLB公式データを調査しています…";
         [dom.date, dom.prev, dom.today, dom.next, dom.refresh].forEach((node) => {
             node.disabled = running;
@@ -967,7 +971,12 @@
         if (title) anchor.title = title;
         return anchor;
     };
-    const renderRecord = (record) => {
+    const showRecordHistory = async (recordType) => {
+        await setMode("search");
+        dom.searchInput.value = recordType;
+        renderArchiveSearch({ recordType });
+    };
+    const renderRecord = (record, { showPrevious = true } = {}) => {
         const card = document.createElement("article");
         card.className = "daily-record-card";
         card.dataset.recordType = record.recordType;
@@ -995,7 +1004,75 @@
             ));
         });
         card.append(header, fact, links);
+        if (showPrevious && window.MLBRecordsArchive) {
+            const previous = window.MLBRecordsArchive.previous(record);
+            const previousLine = document.createElement("p");
+            previousLine.className = "daily-record-previous";
+            if (previous) {
+                previousLine.append(document.createTextNode(
+                    `前回：${dateLabel(previous.date)}　${previous.playerName || previous.teamCode}` +
+                    `${previous.teamCode ? `（${previous.teamCode}）` : ""}`
+                ));
+                if (previous.gamedayUrl) {
+                    previousLine.append(link("前回のGameday", previous.gamedayUrl));
+                }
+            } else {
+                previousLine.append(document.createTextNode("アーカイブ内に過去例なし"));
+            }
+            const history = document.createElement("button");
+            history.type = "button";
+            history.className = "daily-record-history-button";
+            history.textContent = "全履歴を見る";
+            history.addEventListener("click", () => showRecordHistory(record.recordType));
+            previousLine.append(history);
+            card.append(previousLine);
+        }
         return card;
+    };
+
+    const populateArchiveSeasons = () => {
+        const current = dom.searchSeason.value || "all";
+        const seasons = unique(window.MLBRecordsArchive.getAll().map((record) => number(record.season)))
+            .filter(Boolean).sort((a, b) => b - a);
+        dom.searchSeason.replaceChildren(new Option("全シーズン", "all"));
+        seasons.forEach((season) => dom.searchSeason.append(new Option(`${season}年`, String(season))));
+        dom.searchSeason.value = seasons.includes(number(current)) ? current : "all";
+    };
+    const renderArchiveSearch = ({ recordType = "" } = {}) => {
+        const results = window.MLBRecordsArchive.search({
+            query: recordType ? "" : dom.searchInput.value,
+            recordType,
+            japaneseOnly: dom.searchJapanese.checked,
+            category: dom.searchCategory.value,
+            season: dom.searchSeason.value,
+            order: dom.searchOrder.value
+        });
+        dom.searchSummary.textContent = `${results.length}件`;
+        dom.searchResults.replaceChildren();
+        if (!results.length) {
+            const empty = document.createElement("div");
+            empty.className = "daily-records-empty";
+            empty.textContent = "条件に一致する記録はありません";
+            dom.searchResults.append(empty);
+            return;
+        }
+        results.forEach((record) => dom.searchResults.append(renderRecord(record, { showPrevious: false })));
+    };
+    const setMode = async (mode) => {
+        state.mode = mode === "search" ? "search" : "today";
+        const searching = state.mode === "search";
+        dom.modeToday.classList.toggle("active", !searching);
+        dom.modeSearch.classList.toggle("active", searching);
+        dom.searchPanel.hidden = !searching;
+        dom.summary.hidden = searching;
+        dom.progress.hidden = searching || !state.running;
+        dom.content.hidden = searching;
+        if (searching) {
+            await window.MLBRecordsArchive.load();
+            populateArchiveSeasons();
+            dom.archiveRange.textContent = `検索対象期間：${window.MLBRecordsArchive.rangeLabel()}`;
+            renderArchiveSearch();
+        }
     };
     const renderPayload = (payload, fromCache = false) => {
         renderSummary(payload, fromCache);
@@ -1037,6 +1114,7 @@
         if (!force) {
             const cached = readCache(date);
             if (cached) {
+                await window.MLBRecordsArchive?.absorb(cached.records);
                 renderPayload(cached, true);
                 return;
             }
@@ -1094,6 +1172,7 @@
                     left.fact.localeCompare(right.fact, "ja")
                 )
             };
+            await window.MLBRecordsArchive?.absorb(payload.records);
             writeCache(payload);
             renderPayload(payload);
         } catch (error) {
@@ -1145,11 +1224,28 @@
         dom.progress = document.getElementById("daily-records-progress");
         dom.progressText = document.getElementById("daily-records-progress-text");
         dom.content = document.getElementById("daily-records-content");
+        dom.modeToday = document.getElementById("daily-records-mode-today");
+        dom.modeSearch = document.getElementById("daily-records-mode-search");
+        dom.searchPanel = document.getElementById("daily-records-search-panel");
+        dom.searchInput = document.getElementById("daily-records-search-input");
+        dom.searchJapanese = document.getElementById("daily-records-search-japanese");
+        dom.searchCategory = document.getElementById("daily-records-search-category");
+        dom.searchSeason = document.getElementById("daily-records-search-season");
+        dom.searchOrder = document.getElementById("daily-records-search-order");
+        dom.archiveRange = document.getElementById("daily-records-archive-range");
+        dom.searchSummary = document.getElementById("daily-records-search-summary");
+        dom.searchResults = document.getElementById("daily-records-search-results");
         dom.date.addEventListener("change", () => setDate(dom.date.value));
         dom.prev.addEventListener("click", () => setDate(addDays(state.date, -1)));
         dom.today.addEventListener("click", () => setDate(currentSiteDate()));
         dom.next.addEventListener("click", () => setDate(addDays(state.date, 1)));
         dom.refresh.addEventListener("click", () => investigate({ force: true }));
+        dom.modeToday.addEventListener("click", () => setMode("today"));
+        dom.modeSearch.addEventListener("click", () => setMode("search"));
+        [dom.searchInput, dom.searchJapanese, dom.searchCategory, dom.searchSeason, dom.searchOrder]
+            .forEach((node) => node.addEventListener(node === dom.searchInput ? "input" : "change", () =>
+                renderArchiveSearch()
+            ));
     };
 
     window.DailyRecords = Object.freeze({
