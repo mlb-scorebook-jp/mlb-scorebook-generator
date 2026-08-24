@@ -106,7 +106,7 @@
         ]
     },
     {
-        "headline": "A new era in Padres baseball begins today",
+        "headline": "A new era in Padres baseball begins today (Watch new ownership press conference, 1 PT)",
         "summaryJa": "パドレスの最新動向をMLB公式が詳報",
         "slug": "jones-feliciano-padres-ownership-group-takes-over",
         "url": "https://www.mlb.com/news/jones-feliciano-padres-ownership-group-takes-over",
