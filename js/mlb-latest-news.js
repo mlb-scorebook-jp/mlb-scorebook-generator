@@ -2,6 +2,33 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "5 compelling series to watch this week",
+        "summaryJa": "レンジャーズの最新動向をMLB公式が詳報",
+        "slug": "mlb-series-to-watch-week-of-aug-24-2026",
+        "url": "https://www.mlb.com/news/mlb-series-to-watch-week-of-aug-24-2026",
+        "contentDate": "2026-08-24T17:25:00Z",
+        "teamIds": [
+            140,
+            145,
+            112,
+            109,
+            119,
+            116,
+            111,
+            147,
+            136,
+            141
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
         "headline": "Recent injuries, innings limits present challenging puzzle for Cardinals rotation",
         "summaryJa": "カージナルスの負傷状況をMLB公式が詳報",
         "slug": "cardinals-pitching-injuries-innings-limits-present-possible-dilemma",
@@ -74,6 +101,7 @@
             "injury"
         ],
         "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
@@ -453,33 +481,6 @@
         "sourceScopes": [
             "MLB",
             "球団公式"
-        ]
-    },
-    {
-        "headline": "Skubal vs. Tigers, Red Sox-Yankees showdown among 5 series to watch this week",
-        "summaryJa": "レンジャーズを巡る注目点をMLB公式が分析",
-        "slug": "mlb-series-to-watch-week-of-aug-24-2026",
-        "url": "https://www.mlb.com/news/mlb-series-to-watch-week-of-aug-24-2026",
-        "contentDate": "2026-08-24T02:42:40.117Z",
-        "teamIds": [
-            140,
-            145,
-            112,
-            109,
-            119,
-            116,
-            111,
-            147,
-            136,
-            141
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB"
         ]
     },
     {
@@ -1205,7 +1206,6 @@
             "rankings"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
