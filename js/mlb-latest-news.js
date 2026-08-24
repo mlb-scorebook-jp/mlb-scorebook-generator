@@ -2,6 +2,75 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Latest Brewers injuries & transactions",
+        "summaryJa": "ブルワーズの負傷状況をMLB公式が詳報",
+        "slug": "brewers-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/brewers-injuries-and-roster-moves",
+        "contentDate": "2026-08-24T05:16:00Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Mitchell's bruised forearm can't overshadow memories he'll take from Little League Classic",
+        "summaryJa": "G.ミッチェル（MIL）の最新動向をMLB公式が詳報",
+        "slug": "garrett-mitchell-exits-hit-by-pitch-2026-little-league-classic",
+        "url": "https://www.mlb.com/news/garrett-mitchell-exits-hit-by-pitch-2026-little-league-classic",
+        "contentDate": "2026-08-24T04:00:00Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [
+            669003
+        ],
+        "gamePks": [
+            823745
+        ],
+        "taxonomy": [
+            "injury",
+            "apple-news",
+            "little-league-classic"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Little Leaguers begged for a HR from Harris, and he delivered at the perfect time",
+        "summaryJa": "M.ハリスⅡ（ATL）、本塁打で存在感",
+        "slug": "mauricio-dubon-michael-harris-ii-braves-win-2026-little-league-classic",
+        "url": "https://www.mlb.com/news/mauricio-dubon-michael-harris-ii-braves-win-2026-little-league-classic",
+        "contentDate": "2026-08-24T03:43:00Z",
+        "teamIds": [
+            144
+        ],
+        "playerIds": [
+            671739
+        ],
+        "gamePks": [
+            823745
+        ],
+        "taxonomy": [
+            "little-league-classic",
+            "apple-news",
+            "game-recap"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "MLB's No. 6 prospect achieves first 25/25 season for any Dodger in 2026",
         "summaryJa": "J.デポーラ（LAD）、本塁打で存在感",
         "slug": "dodgers-prospect-josue-de-paula-25-homer-25-stolen-base-season",
@@ -93,29 +162,6 @@
         ]
     },
     {
-        "headline": "Clutch knocks from Dubón, Harris help Braves take Little League Classic",
-        "summaryJa": "ブレーブス、勝利を呼び込む活躍",
-        "slug": "mauricio-dubon-michael-harris-ii-braves-win-2026-little-league-classic",
-        "url": "https://www.mlb.com/news/mauricio-dubon-michael-harris-ii-braves-win-2026-little-league-classic",
-        "contentDate": "2026-08-24T02:37:54.132Z",
-        "teamIds": [
-            144
-        ],
-        "playerIds": [],
-        "gamePks": [
-            823745
-        ],
-        "taxonomy": [
-            "little-league-classic",
-            "apple-news",
-            "game-recap"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Stowers (left hamstring strain) to be reinstated from IL (source)",
         "summaryJa": "K.ストワーズ（MIA）の負傷状況をMLB公式が詳報",
         "slug": "kyle-stowers-reinstated-from-injured-list-hamstring-strain",
@@ -132,30 +178,6 @@
             "apple-news",
             "injury",
             "transactions"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Mitchell departs Little League Classic with bruised forearm after HBP",
-        "summaryJa": "G.ミッチェル（MIL）の最新動向をMLB公式が詳報",
-        "slug": "garrett-mitchell-exits-hit-by-pitch-2026-little-league-classic",
-        "url": "https://www.mlb.com/news/garrett-mitchell-exits-hit-by-pitch-2026-little-league-classic",
-        "contentDate": "2026-08-24T02:21:00Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [
-            669003
-        ],
-        "gamePks": [
-            823745
-        ],
-        "taxonomy": [
-            "injury",
-            "apple-news",
-            "little-league-classic"
         ],
         "sourceScopes": [
             "球団公式"
@@ -466,23 +488,6 @@
         "taxonomy": [
             "apple-news",
             "payoff-pitch"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "LIVE: Watch Single-A prospects play for FREE",
-        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
-        "slug": "watch-minor-league-baseball-games-for-free-2026",
-        "url": "https://www.mlb.com/news/watch-minor-league-baseball-games-for-free-2026",
-        "contentDate": "2026-08-24T00:53:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "mlb-top-prospects",
-            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
@@ -1155,23 +1160,6 @@
         ]
     },
     {
-        "headline": "Everything you need to know about 2026 Little League Classic (LIVE on ESPN)",
-        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
-        "slug": "little-league-classic-2026-date-matchup-location-and-more",
-        "url": "https://www.mlb.com/news/little-league-classic-2026-date-matchup-location-and-more",
-        "contentDate": "2026-08-23T22:55:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "little-league-classic",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Espada away from Astros on Sunday due to family emergency",
         "summaryJa": "アストロズの移籍・契約に関する最新情報",
         "slug": "joe-espada-astros-manager-dealing-with-family-emergency",
@@ -1463,26 +1451,6 @@
         "taxonomy": [
             "apple-news",
             "takeaways"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Latest Brewers injuries & transactions",
-        "summaryJa": "ブルワーズの負傷状況をMLB公式が詳報",
-        "slug": "brewers-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/brewers-injuries-and-roster-moves",
-        "contentDate": "2026-08-23T21:08:00Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
         ],
         "sourceScopes": [
             "球団公式"
@@ -7159,29 +7127,6 @@
         ]
     },
     {
-        "headline": "Crafty lefty Cortes agrees to Major League deal with Phillies",
-        "summaryJa": "N.コーテズ（PHI）の移籍・契約に関する最新情報",
-        "slug": "nestor-cortes-phillies-deal",
-        "url": "https://www.mlb.com/news/nestor-cortes-phillies-deal",
-        "contentDate": "2026-08-20T02:38:00Z",
-        "teamIds": [
-            143
-        ],
-        "playerIds": [
-            641482
-        ],
-        "gamePks": [
-            823424
-        ],
-        "taxonomy": [
-            "transactions",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Story, IKF rehab in Triple-A as they near return to Red Sox",
         "summaryJa": "T.ストーリー（BOS）、復帰へ向けた最新状況",
         "slug": "trevor-story-isiah-kiner-falefa-rehab-assignments-red-sox",
@@ -7319,6 +7264,31 @@
         ]
     },
     {
+        "headline": "With a pair of hits (including a HR) for Nashville, Frelick could be following Pratt back to the bigs",
+        "summaryJa": "C.プラット（MIL）の負傷状況をMLB公式が詳報",
+        "slug": "cooper-pratt-reinstated-from-injured-list",
+        "url": "https://www.mlb.com/news/cooper-pratt-reinstated-from-injured-list",
+        "contentDate": "2026-08-20T01:13:00Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [
+            806198,
+            686217
+        ],
+        "gamePks": [
+            823748
+        ],
+        "taxonomy": [
+            "apple-news",
+            "transactions",
+            "injury"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Hoskins (back) placed on IL; Adell, DeLauter out of Wednesday's lineup",
         "summaryJa": "R.ホスキンズ（CLE）の負傷状況をMLB公式が詳報",
         "slug": "rhys-hoskins-placed-on-injured-list-with-back-injury",
@@ -7408,6 +7378,23 @@
             823342
         ],
         "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "LIVE: Watch Single-A prospects play for FREE",
+        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
+        "slug": "watch-minor-league-baseball-games-for-free-2026",
+        "url": "https://www.mlb.com/news/watch-minor-league-baseball-games-for-free-2026",
+        "contentDate": "2026-08-20T00:53:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "mlb-top-prospects",
             "apple-news"
         ],
         "sourceScopes": [
@@ -8193,6 +8180,30 @@
             "apple-news",
             "game-recap",
             "mlb-top-prospects"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Mahle's strong start spoiled as bats struggle to get timely hits",
+        "summaryJa": "T.マリー（ATL）の最新動向をMLB公式が詳報",
+        "slug": "tyler-mahle-makes-strong-start-but-braves-bats-struggle",
+        "url": "https://www.mlb.com/news/tyler-mahle-makes-strong-start-but-braves-bats-struggle",
+        "contentDate": "2026-08-19T04:37:29.754Z",
+        "teamIds": [
+            144
+        ],
+        "playerIds": [
+            641816
+        ],
+        "gamePks": [
+            823667
+        ],
+        "taxonomy": [
+            "apple-news",
+            "pitching",
+            "omg"
         ],
         "sourceScopes": [
             "球団公式"
@@ -9616,6 +9627,27 @@
         "gamePks": [
             823991
         ],
+        "taxonomy": [
+            "mlb-top-prospects",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Bo knows slugging! Giants' No. 8 prospect fuels surging system with torrid night",
+        "summaryJa": "B.デビッドソン（SF）ら注目選手の最新動向",
+        "slug": "giants-bo-davidson-logs-career-high-eight-rbis-at-triple-a",
+        "url": "https://www.mlb.com/news/giants-bo-davidson-logs-career-high-eight-rbis-at-triple-a",
+        "contentDate": "2026-08-17T05:15:00Z",
+        "teamIds": [
+            137
+        ],
+        "playerIds": [
+            815589
+        ],
+        "gamePks": [],
         "taxonomy": [
             "mlb-top-prospects",
             "apple-news"
