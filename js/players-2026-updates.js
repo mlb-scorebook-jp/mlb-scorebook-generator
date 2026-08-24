@@ -18,6 +18,7 @@ Object.assign(NHK_PLAYER_NAMES, {
     juliangarcia: "J.ガルシア",
     landynvidourek: "L.ビドゥレック",
     loutrivinoiii: "L.トリビーノ Ⅲ",
+    naoyukiuwasawa: "上沢 直之",
     nicksogard: "N.ソガード",
     quinnmathews: "Q.マシューズ",
     rudymartinjr: "R.マーティン Jr.",
