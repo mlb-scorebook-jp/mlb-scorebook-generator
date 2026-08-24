@@ -8,6 +8,7 @@
     <!-- Score notation update: stacked batted-ball symbol, red hits, blue strikeouts, black other results. -->
     <link rel="stylesheet" href="css/style.css?v=20260821-print-mac-2">
     <link rel="stylesheet" href="css/pregame.css?v=20260821-mobile-game-detail-1">
+    <link rel="stylesheet" href="css/daily-records.css?v=20260824-phase1-2">
 </head>
 
 <body class="app-mode-home">
@@ -30,6 +31,7 @@
         <nav class="app-primary-nav" aria-label="メインナビゲーション">
             <button type="button" id="header-scorebook-btn">スコアブック生成</button>
             <button type="button" id="generate-btn">試合前情報</button>
+            <button type="button" id="header-daily-records-btn">本日の記録</button>
         </nav>
 
         <section class="header-game-search" aria-label="試合検索">
@@ -245,6 +247,31 @@
                 <div class="pregame-content" id="pregame-content"></div>
             </section>
 
+            <section class="daily-records-page" id="daily-records-page" hidden aria-label="本日の記録">
+                <header class="daily-records-header">
+                    <div>
+                        <h2>本日の記録</h2>
+                        <p>MLB公式APIで確認できる珍記録・特殊事象</p>
+                    </div>
+                    <div class="daily-records-date-actions">
+                        <label for="daily-records-date">
+                            <span>対象日</span>
+                            <input type="date" id="daily-records-date">
+                        </label>
+                        <button type="button" id="daily-records-prev" aria-label="前日">◀</button>
+                        <button type="button" id="daily-records-today">今日</button>
+                        <button type="button" id="daily-records-next" aria-label="翌日">▶</button>
+                        <button type="button" id="daily-records-refresh">再調査</button>
+                    </div>
+                </header>
+                <div class="daily-records-summary" id="daily-records-summary" aria-live="polite"></div>
+                <div class="daily-records-progress" id="daily-records-progress" hidden>
+                    <span class="daily-records-spinner" aria-hidden="true"></span>
+                    <span id="daily-records-progress-text">MLB公式データを調査しています…</span>
+                </div>
+                <div class="daily-records-content" id="daily-records-content"></div>
+            </section>
+
             <div class="scorebook-horizontal-scroll" id="scorebook-horizontal-scroll">
                 <article class="paper scorebook-page active" id="away-page">
                     <div id="away-sheet"></div>
@@ -286,6 +313,7 @@
     <script src="js/mlb-business-date.js?v=20260808-1"></script>
     <script src="js/mlb-latest-news.js?v=20260814-summary-1"></script>
     <script src="js/stathead-links.js?v=20260810-1"></script>
+    <script src="js/daily-records.js?v=20260824-phase1-2"></script>
     <script src="js/pregame.js?v=20260822-two-way-daily-1"></script>
 
     <script>
@@ -756,7 +784,10 @@
             const showPortalHome = () => {
                 stopLiveScoreUpdates({ preserveEligibility: true });
                 window.PregameInfo?.close({ preserveShell: true });
-                document.body.classList.remove("app-mode-pregame", "app-mode-pitch-chart");
+                window.DailyRecords?.close({ preserveShell: true });
+                document.body.classList.remove(
+                    "app-mode-pregame", "app-mode-pitch-chart", "app-mode-daily-records"
+                );
                 document.body.classList.add("app-mode-home");
                 dom.pitchChartPage.hidden = true;
                 dom.headerScorebookButton.textContent = "スコアブック生成";
@@ -766,7 +797,11 @@
 
             const showScorebook = (options = {}) => {
                 window.PregameInfo?.close({ preserveShell: true });
-                document.body.classList.remove("app-mode-home", "app-mode-pregame", "app-mode-pitch-chart");
+                window.DailyRecords?.close({ preserveShell: true });
+                document.body.classList.remove(
+                    "app-mode-home", "app-mode-pregame", "app-mode-pitch-chart",
+                    "app-mode-daily-records"
+                );
                 dom.pitchChartPage.hidden = true;
                 dom.headerScorebookButton.textContent = "スコアブック生成";
                 if (options?.persist !== false) {
@@ -805,7 +840,10 @@
                 stopLiveScoreUpdates({ preserveEligibility: true });
                 pitchChartStartSide = side === "home" ? "home" : "away";
                 window.PregameInfo?.close({ preserveShell: true });
-                document.body.classList.remove("app-mode-home", "app-mode-pregame");
+                window.DailyRecords?.close({ preserveShell: true });
+                document.body.classList.remove(
+                    "app-mode-home", "app-mode-pregame", "app-mode-daily-records"
+                );
                 document.body.classList.add("app-mode-pitch-chart");
                 dom.pitchChartPage.hidden = false;
                 dom.headerScorebookButton.textContent = "スコアへ戻る";
@@ -823,7 +861,10 @@
 
             const showPregame = async () => {
                 stopLiveScoreUpdates({ preserveEligibility: true });
-                document.body.classList.remove("app-mode-home", "app-mode-pitch-chart");
+                window.DailyRecords?.close({ preserveShell: true });
+                document.body.classList.remove(
+                    "app-mode-home", "app-mode-pitch-chart", "app-mode-daily-records"
+                );
                 document.body.classList.add("app-mode-pregame");
                 dom.pitchChartPage.hidden = true;
                 dom.headerScorebookButton.textContent = "スコアブック生成";
@@ -835,11 +876,28 @@
                 window.scrollTo(0, 0);
             };
 
+            const showDailyRecords = async (options = {}) => {
+                stopLiveScoreUpdates({ preserveEligibility: true });
+                window.PregameInfo?.close({ preserveShell: true });
+                document.body.classList.remove(
+                    "app-mode-home", "app-mode-pregame", "app-mode-pitch-chart"
+                );
+                document.body.classList.add("app-mode-daily-records");
+                dom.pitchChartPage.hidden = true;
+                dom.headerScorebookButton.textContent = "スコアブック生成";
+                await window.DailyRecords?.open({
+                    date: options.date,
+                    force: Boolean(options.force)
+                });
+                window.scrollTo(0, 0);
+            };
+
             window.MLBAppNavigation = {
                 showPortalHome,
                 showScorebook,
                 showPitchChart,
                 showPregame,
+                showDailyRecords,
                 loadScorebookGame: async (gamePk) => {
                     const selectedGamePk = Number(gamePk);
                     if (!selectedGamePk) return;
@@ -848,7 +906,9 @@
                     await loadGame();
                 },
                 enterPregameShell: () => {
-                    document.body.classList.remove("app-mode-home", "app-mode-pitch-chart");
+                    document.body.classList.remove(
+                        "app-mode-home", "app-mode-pitch-chart", "app-mode-daily-records"
+                    );
                     document.body.classList.add("app-mode-pregame");
                     dom.pitchChartPage.hidden = true;
                     dom.headerScorebookButton.textContent = "スコアブック生成";
@@ -1478,6 +1538,10 @@
                 officialGameArticlesCache.set(key, request);
                 return request;
             };
+
+            window.MLBOfficialArticles = Object.freeze({
+                fetch: fetchOfficialGameArticles
+            });
 
             const findOfficialAbsenceArticle = (articles, player, officialDate) => {
                 const playerId = String(player?.id ?? player?.person?.id ?? "");
@@ -9462,6 +9526,11 @@
                 setStatus("試合前情報を表示しています。");
             });
 
+            document.getElementById("header-daily-records-btn").addEventListener(
+                "click",
+                () => showDailyRecords()
+            );
+
             document.getElementById("header-scorebook-btn").addEventListener("click", showScorebook);
             document.getElementById("portal-scorebook-btn").addEventListener("click", showScorebook);
             document.getElementById("portal-pregame-btn").addEventListener("click", showPregame);
@@ -9559,6 +9628,11 @@
                         playerId: saved.playerId
                     });
                     window.scrollTo(0, 0);
+                    return;
+                }
+
+                if (saved.view === "daily-records") {
+                    await showDailyRecords({ persist: false, date: saved.date });
                     return;
                 }
 

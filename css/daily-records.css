@@ -1,0 +1,302 @@
+.daily-records-page[hidden] {
+    display: none !important;
+}
+
+body.app-mode-daily-records {
+    width: 100%;
+    min-width: 100%;
+    height: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+body.app-mode-daily-records .sidebar,
+body.app-mode-daily-records .scorebook-horizontal-scroll,
+body.app-mode-daily-records .pitch-chart-page,
+body.app-mode-daily-records .pregame-view,
+body.app-mode-daily-records .app-footer {
+    display: none !important;
+}
+
+body.app-mode-daily-records .header-game-search {
+    visibility: hidden;
+    pointer-events: none;
+}
+
+body.app-mode-daily-records .app-main {
+    display: block;
+    width: 100%;
+    min-height: calc(100vh - 68px);
+    margin-top: 68px;
+    overflow: visible;
+}
+
+body.app-mode-daily-records .viewer {
+    width: 100%;
+    min-width: 0;
+    min-height: calc(100vh - 68px);
+    overflow: visible;
+}
+
+body.app-mode-daily-records #header-daily-records-btn {
+    border-color: #b1c5ce;
+    background: linear-gradient(180deg, #53656f 0%, #394750 100%);
+}
+
+.daily-records-page {
+    width: min(1480px, calc(100% - 32px));
+    margin: 0 auto;
+    padding: 16px 0 36px;
+    color: #dfe7ea;
+}
+
+.daily-records-header,
+.daily-records-summary,
+.daily-records-progress,
+.daily-records-category,
+.daily-records-empty,
+.daily-records-error {
+    border: 1px solid #46545c;
+    background: #1c252a;
+}
+
+.daily-records-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    padding: 15px 17px;
+}
+
+.daily-records-header h2,
+.daily-records-header p {
+    margin: 0;
+}
+
+.daily-records-header h2 {
+    font-size: 21px;
+}
+
+.daily-records-header p {
+    margin-top: 5px;
+    color: #9eacb3;
+    font-size: 11px;
+}
+
+.daily-records-date-actions {
+    display: flex;
+    align-items: flex-end;
+    gap: 6px;
+}
+
+.daily-records-date-actions label {
+    display: grid;
+    gap: 3px;
+}
+
+.daily-records-date-actions label span {
+    color: #aab6bc;
+    font-size: 9px;
+}
+
+.daily-records-date-actions input,
+.daily-records-date-actions button {
+    height: 34px;
+    color: #f2f6f7;
+    border: 1px solid #62737c;
+    border-radius: 2px;
+    background: linear-gradient(180deg, #3d4b53, #2b353b);
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.daily-records-date-actions input {
+    width: 132px;
+    padding: 0 9px;
+    color-scheme: dark;
+}
+
+.daily-records-date-actions button {
+    min-width: 38px;
+    padding: 0 11px;
+    cursor: pointer;
+}
+
+.daily-records-date-actions #daily-records-refresh {
+    min-width: 76px;
+    margin-left: 5px;
+}
+
+.daily-records-date-actions button:disabled {
+    cursor: wait;
+    opacity: 0.55;
+}
+
+.daily-records-summary {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 18px;
+    margin-top: 10px;
+    padding: 10px 13px;
+    color: #bac6cb;
+    font-size: 11px;
+}
+
+.daily-records-summary strong {
+    color: #edf3f5;
+}
+
+.daily-records-progress {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin-top: 10px;
+    padding: 12px 13px;
+    font-size: 12px;
+}
+
+.daily-records-progress[hidden] {
+    display: none;
+}
+
+.daily-records-spinner {
+    width: 14px;
+    height: 14px;
+    border: 2px solid #657780;
+    border-top-color: #dce7eb;
+    border-radius: 50%;
+    animation: daily-records-spin 0.8s linear infinite;
+}
+
+@keyframes daily-records-spin {
+    to { transform: rotate(360deg); }
+}
+
+.daily-records-content {
+    display: grid;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.daily-records-category > h3 {
+    margin: 0;
+    padding: 9px 12px;
+    border-bottom: 1px solid #46545c;
+    background: #263139;
+    font-size: 13px;
+}
+
+.daily-records-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.daily-record-card {
+    min-width: 0;
+    padding: 12px 13px;
+    border-bottom: 1px solid #39464d;
+}
+
+.daily-record-card:nth-child(odd) {
+    border-right: 1px solid #39464d;
+}
+
+.daily-record-card-header {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+}
+
+.daily-record-team {
+    color: #9ec2cf;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.daily-record-subject {
+    color: #f1f5f6;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.daily-record-fact {
+    margin: 7px 0 8px;
+    color: #e7edef;
+    font-size: 13px;
+    line-height: 1.55;
+}
+
+.daily-record-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 9px;
+}
+
+.daily-record-links a {
+    display: inline-flex;
+    min-height: 27px;
+    align-items: center;
+    padding: 0 9px;
+    color: #e8f0f3;
+    border: 1px solid #60747e;
+    border-radius: 2px;
+    background: #2c3940;
+    font-size: 10px;
+    text-decoration: none;
+}
+
+.daily-records-empty,
+.daily-records-error {
+    padding: 24px 16px;
+    text-align: center;
+}
+
+.daily-records-error {
+    color: #ffb4b4;
+}
+
+@media screen and (max-width: 767px) {
+    body.app-mode-daily-records .app-main {
+        min-height: calc(100vh - 58px);
+        margin-top: 58px;
+    }
+
+    .daily-records-page {
+        width: calc(100% - 16px);
+        padding-top: 8px;
+    }
+
+    .daily-records-header {
+        display: grid;
+        padding: 12px;
+    }
+
+    .daily-records-date-actions {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 34px 52px 34px;
+    }
+
+    .daily-records-date-actions label {
+        grid-column: 1 / -1;
+    }
+
+    .daily-records-date-actions input {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .daily-records-date-actions #daily-records-refresh {
+        grid-column: 1 / -1;
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .daily-records-list {
+        grid-template-columns: 1fr;
+    }
+
+    .daily-record-card:nth-child(odd) {
+        border-right: 0;
+    }
+}
