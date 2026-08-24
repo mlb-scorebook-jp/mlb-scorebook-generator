@@ -1601,6 +1601,19 @@
                 }))
             });
 
+            const didPlayerHitInFirstPlateAppearance = (playerId, allPlays = []) => {
+                const firstPlateAppearance = (allPlays ?? [])
+                    .filter((play) =>
+                        Number(play?.matchup?.batter?.id) === Number(playerId)
+                    )
+                    .sort((left, right) =>
+                        (Number(left?.atBatIndex) || 0) - (Number(right?.atBatIndex) || 0)
+                    )[0];
+                const eventType = String(firstPlateAppearance?.result?.eventType ?? "")
+                    .toLowerCase();
+                return ["single", "double", "triple", "home_run"].includes(eventType);
+            };
+
             const CONSECUTIVE_SEASON_DEFINITIONS = Object.freeze({
                 hitting: [
                     { field: "homeRuns", minimum: 20, step: 10, unit: "本塁打" },
@@ -2031,6 +2044,7 @@
                                 });
                                 const sourceCode = MLB_TEAM_CODES_BY_ID[sourceTeamId];
 
+                                const achievedTeamFirsts = [];
                                 TEAM_FIRST_DEFINITIONS[group].forEach((definition, index) => {
                                     const gameValue = Number(
                                         current?.[definition.currentField]
@@ -2042,13 +2056,52 @@
                                         0
                                     );
                                     if (priorValue !== 0) return;
-                                    playerNotes.push({
-                                        text: `${code}　${getPersonName(player.person)}　` +
-                                            `${sourceCode}から${definition.label}`,
-                                        priority: -2,
-                                        importance: 95 - index
-                                    });
+                                    achievedTeamFirsts.push({ definition, index });
                                 });
+
+                                if (achievedTeamFirsts.length) {
+                                    let labels = achievedTeamFirsts.map(({ definition }) => ({
+                                        field: definition.field,
+                                        text: definition.label
+                                    }));
+                                    if (group === "hitting") {
+                                        const hasFirstPlateAppearance = labels.some(({ field }) =>
+                                            field === "plateAppearances"
+                                        );
+                                        const hasFirstHit = labels.some(({ field }) => field === "hits");
+                                        const firstPlateAppearanceWasHit =
+                                            hasFirstPlateAppearance && hasFirstHit &&
+                                            didPlayerHitInFirstPlateAppearance(
+                                                player.id,
+                                                context.allPlays
+                                            );
+                                        labels = labels
+                                            .filter(({ field }) =>
+                                                field !== "plateAppearances" &&
+                                                !(firstPlateAppearanceWasHit && field === "hits")
+                                            );
+                                        if (firstPlateAppearanceWasHit) {
+                                            const insertAt = Math.min(2, labels.length);
+                                            labels.splice(insertAt, 0, {
+                                                field: "firstPlateAppearanceHit",
+                                                text: "移籍後初打席で初安打"
+                                            });
+                                        }
+                                    }
+                                    if (labels.length) {
+                                        const combinedLabel = labels.map(({ text }, index) =>
+                                            index === 0 ? text : text.replace(/^移籍後/, "")
+                                        ).join("・");
+                                        playerNotes.push({
+                                            text: `${code}　${getPersonName(player.person)}　` +
+                                                `${sourceCode}から${combinedLabel}`,
+                                            priority: -2,
+                                            importance: Math.max(
+                                                ...achievedTeamFirsts.map(({ index }) => 95 - index)
+                                            )
+                                        });
+                                    }
+                                }
                             }
                         }
 
@@ -2119,6 +2172,7 @@
                                 });
                                 return;
                             }
+                            if (gameValue <= 0) return;
                             if (next) {
                                 const remaining = next - total;
                                 if (remaining >= 1 && remaining <= 5) {
@@ -3035,7 +3089,8 @@
                 const context = {
                     officialDate,
                     gamePk: Number(gamePk),
-                    gameNumber: Number(data?.gameData?.game?.gameNumber) || 1
+                    gameNumber: Number(data?.gameData?.game?.gameNumber) || 1,
+                    allPlays: data?.liveData?.plays?.allPlays ?? []
                 };
 
                 const request = Promise.all(["away", "home"].map(async (side) => {
