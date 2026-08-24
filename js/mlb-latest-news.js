@@ -2,6 +2,25 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "New Padres owners want to make one thing clear: 'We are all in'",
+        "summaryJa": "パドレスの最新動向をMLB公式が詳報",
+        "slug": "padres-introduce-new-owners-kwanza-jones-jose-e-feliciano",
+        "url": "https://www.mlb.com/news/padres-introduce-new-owners-kwanza-jones-jose-e-feliciano",
+        "contentDate": "2026-08-24T22:35:30.099Z",
+        "teamIds": [
+            135
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Latest Red Sox injuries & transactions",
         "summaryJa": "レッドソックスの負傷状況をMLB公式が詳報",
         "slug": "red-sox-injuries-and-roster-moves",
@@ -881,7 +900,6 @@
             "first-inning"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
