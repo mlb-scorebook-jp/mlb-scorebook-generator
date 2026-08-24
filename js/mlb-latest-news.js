@@ -2,6 +2,25 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "GM Dana Brown, Astros mutually agree to part ways",
+        "summaryJa": "アストロズの最新動向をMLB公式が詳報",
+        "slug": "dana-brown-astros-part-ways",
+        "url": "https://www.mlb.com/news/dana-brown-astros-part-ways",
+        "contentDate": "2026-08-24T22:47:00Z",
+        "teamIds": [
+            117
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "New Padres owners want to make one thing clear: 'We are all in'",
         "summaryJa": "パドレスの最新動向をMLB公式が詳報",
         "slug": "padres-introduce-new-owners-kwanza-jones-jose-e-feliciano",
@@ -366,25 +385,6 @@
         "taxonomy": [
             "apple-news",
             "injury"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "GM Dana Brown, Astros mutually agree to part ways",
-        "summaryJa": "アストロズの最新動向をMLB公式が詳報",
-        "slug": "dana-brown-astros-part-ways",
-        "url": "https://www.mlb.com/news/dana-brown-astros-part-ways",
-        "contentDate": "2026-08-24T14:36:00Z",
-        "teamIds": [
-            117
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
         ],
         "sourceScopes": [
             "MLB",
