@@ -2,6 +2,30 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Neto has epic week, but Tatis Jr. does him one better to nab two awards",
+        "summaryJa": "F.タティース Jr.（LAA）の最新動向をMLB公式が詳報",
+        "slug": "zach-neto-fernando-tatis-jr-named-players-of-the-week",
+        "url": "https://www.mlb.com/news/zach-neto-fernando-tatis-jr-named-players-of-the-week",
+        "contentDate": "2026-08-24T20:41:32.981Z",
+        "teamIds": [
+            108,
+            135
+        ],
+        "playerIds": [
+            665487,
+            687263
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "players-of-the-week",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Stowers (left hamstring strain) to be reinstated from IL",
         "summaryJa": "K.ストワーズ（MIA）の負傷状況をMLB公式が詳報",
         "slug": "kyle-stowers-reinstated-from-injured-list-hamstring-strain",
@@ -432,7 +456,7 @@
         ]
     },
     {
-        "headline": "Watch LIVE: New SD owners Kwanza Jones, José E. Feliciano press conference",
+        "headline": "A new era in Padres baseball begins today",
         "summaryJa": "パドレスの最新動向をMLB公式が詳報",
         "slug": "jones-feliciano-padres-ownership-group-takes-over",
         "url": "https://www.mlb.com/news/jones-feliciano-padres-ownership-group-takes-over",
@@ -7897,29 +7921,6 @@
         ]
     },
     {
-        "headline": "Bogaerts not expected to miss time after exiting game with hamstring cramp",
-        "summaryJa": "X.ボガーツ（SD）の負傷状況をMLB公式が詳報",
-        "slug": "xander-bogaerts-exits-padres-game-with-injury",
-        "url": "https://www.mlb.com/news/xander-bogaerts-exits-padres-game-with-injury",
-        "contentDate": "2026-08-19T21:12:00Z",
-        "teamIds": [
-            135
-        ],
-        "playerIds": [
-            593428
-        ],
-        "gamePks": [
-            823587
-        ],
-        "taxonomy": [
-            "apple-news",
-            "injury"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Basallo reinstated from IL, inserted into O's lineup vs. Yankees",
         "summaryJa": "S.バサイヨ（BAL）の負傷状況をMLB公式が詳報",
         "slug": "samuel-basallo-reinstated-by-orioles-shoulder-injury",
@@ -9960,27 +9961,6 @@
         "taxonomy": [
             "apple-news",
             "replay"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Detmers earns first home win with 11 K's in 8 scoreless frames",
-        "summaryJa": "エンゼルス、マウンドで好投",
-        "slug": "reid-detmers-strikes-out-11-royals-in-win",
-        "url": "https://www.mlb.com/news/reid-detmers-strikes-out-11-royals-in-win",
-        "contentDate": "2026-08-16T04:48:00Z",
-        "teamIds": [
-            108
-        ],
-        "playerIds": [],
-        "gamePks": [
-            823990
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap"
         ],
         "sourceScopes": [
             "球団公式"
