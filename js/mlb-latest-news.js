@@ -2,6 +2,50 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Latest Rockies injuries & transactions",
+        "summaryJa": "ロッキーズの負傷状況をMLB公式が詳報",
+        "slug": "rockies-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/rockies-injuries-and-roster-moves",
+        "contentDate": "2026-08-24T19:45:00Z",
+        "teamIds": [
+            115
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Rox calling up No. 20 prospect for MLB debut vs. Nats (source)",
+        "summaryJa": "M.アダムズ（COL）、メジャー昇格・初出場に関する最新情報",
+        "slug": "mason-adams-callup-for-mlb-debut",
+        "url": "https://www.mlb.com/news/mason-adams-callup-for-mlb-debut",
+        "contentDate": "2026-08-24T19:43:54.95Z",
+        "teamIds": [
+            115
+        ],
+        "playerIds": [
+            690279
+        ],
+        "gamePks": [
+            822695
+        ],
+        "taxonomy": [
+            "apple-news",
+            "mlb-top-prospects",
+            "transactions"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Here are the 2026 Arizona Fall League teams and schedule",
         "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
         "slug": "arizona-fall-league-schedule-teams-2026",
@@ -120,26 +164,6 @@
         ],
         "sourceScopes": [
             "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "A new era in Padres baseball begins today (Watch new ownership press conference, 1 PT)",
-        "summaryJa": "パドレスの最新動向をMLB公式が詳報",
-        "slug": "jones-feliciano-padres-ownership-group-takes-over",
-        "url": "https://www.mlb.com/news/jones-feliciano-padres-ownership-group-takes-over",
-        "contentDate": "2026-08-24T15:00:00Z",
-        "teamIds": [
-            135
-        ],
-        "playerIds": [],
-        "gamePks": [
-            823260
-        ],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
             "球団公式"
         ]
     },
@@ -380,6 +404,26 @@
         "gamePks": [],
         "taxonomy": [
             "mlb-top-prospects",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Watch LIVE: New SD owners Kwanza Jones, José E. Feliciano press conference",
+        "summaryJa": "パドレスの最新動向をMLB公式が詳報",
+        "slug": "jones-feliciano-padres-ownership-group-takes-over",
+        "url": "https://www.mlb.com/news/jones-feliciano-padres-ownership-group-takes-over",
+        "contentDate": "2026-08-24T07:40:00Z",
+        "teamIds": [
+            135
+        ],
+        "playerIds": [],
+        "gamePks": [
+            823260
+        ],
+        "taxonomy": [
             "apple-news"
         ],
         "sourceScopes": [
@@ -2032,26 +2076,6 @@
         ],
         "taxonomy": [
             "injury"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Latest Rockies injuries & transactions",
-        "summaryJa": "ロッキーズの負傷状況をMLB公式が詳報",
-        "slug": "rockies-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/rockies-injuries-and-roster-moves",
-        "contentDate": "2026-08-23T18:54:00Z",
-        "teamIds": [
-            115
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
         ],
         "sourceScopes": [
             "球団公式"
@@ -6892,29 +6916,6 @@
         ],
         "taxonomy": [
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Freeland exits with neck tightness in fourth inning against Dodgers",
-        "summaryJa": "K.フリーランド（COL）の負傷状況をMLB公式が詳報",
-        "slug": "kyle-freeland-exits-rockies-game-with-injury",
-        "url": "https://www.mlb.com/news/kyle-freeland-exits-rockies-game-with-injury",
-        "contentDate": "2026-08-20T04:50:00Z",
-        "teamIds": [
-            115
-        ],
-        "playerIds": [
-            607536
-        ],
-        "gamePks": [
-            824318
-        ],
-        "taxonomy": [
-            "apple-news",
-            "injury"
         ],
         "sourceScopes": [
             "球団公式"
