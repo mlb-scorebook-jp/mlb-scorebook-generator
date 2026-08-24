@@ -2,6 +2,7 @@
 
 (() => {
     const INDEX_URL = "data/records/index.json";
+    const COVERAGE_URL = "data/records/coverage.json";
     const LOCAL_KEY = "mlb-records-archive-overlay-v1";
     const TEAM_SLUG_BY_ID = Object.freeze({
         108: "angels", 109: "d-backs", 110: "orioles", 111: "red-sox", 112: "cubs",
@@ -31,6 +32,7 @@
     let loaded = false;
     let loadPromise = null;
     let metadata = { startDate: "2026-01-01", years: [2026] };
+    let coverage = { records: {} };
     let records = [];
     let sharedArchiveKeys = new Set();
 
@@ -127,7 +129,10 @@
         loadPromise = (async () => {
             let shared = [];
             try {
-                metadata = await fetchJson(INDEX_URL);
+                [metadata, coverage] = await Promise.all([
+                    fetchJson(INDEX_URL),
+                    fetchJson(COVERAGE_URL).catch(() => ({ records: {} }))
+                ]);
                 const years = Array.isArray(metadata.years) ? metadata.years : [];
                 const yearly = await Promise.all(years.map((year) =>
                     fetchJson(`data/records/${year}.json`).catch(() => [])
@@ -204,6 +209,7 @@
         const start = dates[0] || text(metadata.startDate) || "2026-01-01";
         return `${start.slice(0, 4)}年〜`;
     };
+    const coverageFor = (recordType) => coverage?.records?.[recordType]?.coverage ?? null;
     const buildArchiveForDateRange = async (startDate, endDate, analyzeDate) => {
         if (typeof analyzeDate !== "function") throw new TypeError("日付解析関数が必要です。");
         const cursor = new Date(`${startDate}T12:00:00Z`);
@@ -219,6 +225,7 @@
     window.MLBRecordsArchive = Object.freeze({
         load, absorb, search, previous, rangeLabel, archiveKey, normalizeSearch,
         buildArchiveForDateRange, gamedayUrlForGame, repairGamedayUrl,
+        coverageFor,
         getAll: () => [...records]
     });
 })();

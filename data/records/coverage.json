@@ -1,0 +1,8512 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-08-24T14:28:03.328Z",
+  "verifiedThrough": "2026-08-23",
+  "definitions": {
+    "coverageStartYear": "必要データ欠損なく、その年以降の全対象試合を継続判定できると確認した最古年",
+    "statuses": [
+      "investigating",
+      "complete",
+      "partial",
+      "unavailable"
+    ],
+    "outcomes": [
+      "checked",
+      "notDetected",
+      "detected",
+      "insufficientData"
+    ]
+  },
+  "records": {
+    "JAPANESE_CAREER_HIGH": {
+      "recordType": "JAPANESE_CAREER_HIGH",
+      "coverage": {
+        "coverageStartYear": null,
+        "coverageStartDate": null,
+        "candidateStartYear": null,
+        "endYear": 2026,
+        "verifiedThrough": "2026-08-23",
+        "status": "investigating",
+        "complete": false,
+        "requiredData": [
+          "boxscore",
+          "playerStats",
+          "careerGameLog"
+        ],
+        "sampleVerifiedYears": [],
+        "partialYears": [
+          1901,
+          1910,
+          1920,
+          1930,
+          1940,
+          1941,
+          1942,
+          1943,
+          1944,
+          1945,
+          1946,
+          1947,
+          1948,
+          1949,
+          1950,
+          1951,
+          1952,
+          1953,
+          1954,
+          1955,
+          1956,
+          1957,
+          1958,
+          1959,
+          1960,
+          1970,
+          1980,
+          1990,
+          1995,
+          2000,
+          2005,
+          2010,
+          2015,
+          2018,
+          2020,
+          2021
+        ],
+        "unavailableYears": [],
+        "insufficientData": [
+          {
+            "year": 2021,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2020,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2018,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2015,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2010,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2005,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2000,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1995,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1990,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1980,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1970,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1960,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1959,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1958,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1957,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1956,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1955,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1954,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1953,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1952,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1951,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1950,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1949,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1948,
+            "passingSamples": 4,
+            "testedSamples": 6
+          },
+          {
+            "year": 1947,
+            "passingSamples": 4,
+            "testedSamples": 6
+          },
+          {
+            "year": 1946,
+            "passingSamples": 4,
+            "testedSamples": 6
+          },
+          {
+            "year": 1945,
+            "passingSamples": 5,
+            "testedSamples": 6
+          },
+          {
+            "year": 1944,
+            "passingSamples": 4,
+            "testedSamples": 6
+          },
+          {
+            "year": 1943,
+            "passingSamples": 5,
+            "testedSamples": 6
+          },
+          {
+            "year": 1942,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1941,
+            "passingSamples": 5,
+            "testedSamples": 6
+          },
+          {
+            "year": 1940,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1930,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1920,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1910,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1901,
+            "passingSamples": 6,
+            "testedSamples": 6
+          }
+        ],
+        "note": "日本人キャリア記録は選手ごとのMLBデビュー以降を母集団とし、別途Game Log完全性監査が必要。"
+      }
+    },
+    "JAPANESE_CAREER_WORST": {
+      "recordType": "JAPANESE_CAREER_WORST",
+      "coverage": {
+        "coverageStartYear": null,
+        "coverageStartDate": null,
+        "candidateStartYear": null,
+        "endYear": 2026,
+        "verifiedThrough": "2026-08-23",
+        "status": "investigating",
+        "complete": false,
+        "requiredData": [
+          "boxscore",
+          "playerStats",
+          "careerGameLog"
+        ],
+        "sampleVerifiedYears": [],
+        "partialYears": [
+          1901,
+          1910,
+          1920,
+          1930,
+          1940,
+          1941,
+          1942,
+          1943,
+          1944,
+          1945,
+          1946,
+          1947,
+          1948,
+          1949,
+          1950,
+          1951,
+          1952,
+          1953,
+          1954,
+          1955,
+          1956,
+          1957,
+          1958,
+          1959,
+          1960,
+          1970,
+          1980,
+          1990,
+          1995,
+          2000,
+          2005,
+          2010,
+          2015,
+          2018,
+          2020,
+          2021
+        ],
+        "unavailableYears": [],
+        "insufficientData": [
+          {
+            "year": 2021,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2020,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2018,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2015,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2010,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2005,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2000,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1995,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1990,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1980,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1970,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1960,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1959,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1958,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1957,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1956,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1955,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1954,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1953,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1952,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1951,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1950,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1949,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1948,
+            "passingSamples": 4,
+            "testedSamples": 6
+          },
+          {
+            "year": 1947,
+            "passingSamples": 4,
+            "testedSamples": 6
+          },
+          {
+            "year": 1946,
+            "passingSamples": 4,
+            "testedSamples": 6
+          },
+          {
+            "year": 1945,
+            "passingSamples": 5,
+            "testedSamples": 6
+          },
+          {
+            "year": 1944,
+            "passingSamples": 4,
+            "testedSamples": 6
+          },
+          {
+            "year": 1943,
+            "passingSamples": 5,
+            "testedSamples": 6
+          },
+          {
+            "year": 1942,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1941,
+            "passingSamples": 5,
+            "testedSamples": 6
+          },
+          {
+            "year": 1940,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1930,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1920,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1910,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1901,
+            "passingSamples": 6,
+            "testedSamples": 6
+          }
+        ],
+        "note": "日本人キャリア記録は選手ごとのMLBデビュー以降を母集団とし、別途Game Log完全性監査が必要。"
+      }
+    },
+    "TWO_HR_SAME_INNING": {
+      "recordType": "TWO_HR_SAME_INNING",
+      "coverage": {
+        "coverageStartYear": null,
+        "coverageStartDate": null,
+        "candidateStartYear": 1951,
+        "endYear": 2026,
+        "verifiedThrough": "2026-08-23",
+        "status": "investigating",
+        "complete": false,
+        "requiredData": [
+          "playByPlay",
+          "completePlays",
+          "eventType",
+          "inning",
+          "batter"
+        ],
+        "sampleVerifiedYears": [
+          1951,
+          1952,
+          1953,
+          1954,
+          1956,
+          1957,
+          1958,
+          1959,
+          1960,
+          1970,
+          1980,
+          1990,
+          1995,
+          2000,
+          2005,
+          2010,
+          2015,
+          2018,
+          2020,
+          2021
+        ],
+        "partialYears": [
+          1950,
+          1955
+        ],
+        "unavailableYears": [
+          1901,
+          1910,
+          1920,
+          1930,
+          1940,
+          1941,
+          1942,
+          1943,
+          1944,
+          1945,
+          1946,
+          1947,
+          1948,
+          1949
+        ],
+        "insufficientData": [
+          {
+            "year": 2021,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2020,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2018,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2015,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2010,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2005,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2000,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1995,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1990,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1980,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1970,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1960,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1959,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1958,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1957,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1956,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1955,
+            "passingSamples": 5,
+            "testedSamples": 6
+          },
+          {
+            "year": 1954,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1953,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1952,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1951,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1950,
+            "passingSamples": 4,
+            "testedSamples": 6
+          },
+          {
+            "year": 1949,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1948,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1947,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1946,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1945,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1944,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1943,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1942,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1941,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1940,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1930,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1920,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1910,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1901,
+            "passingSamples": 0,
+            "testedSamples": 6
+          }
+        ],
+        "note": "サンプル確認だけでは完全カバレッジと断定しない。境界年の全試合監査後にcoverageStartYearを確定する。"
+      }
+    },
+    "TWO_HIT_SAME_INNING": {
+      "recordType": "TWO_HIT_SAME_INNING",
+      "coverage": {
+        "coverageStartYear": null,
+        "coverageStartDate": null,
+        "candidateStartYear": 1951,
+        "endYear": 2026,
+        "verifiedThrough": "2026-08-23",
+        "status": "investigating",
+        "complete": false,
+        "requiredData": [
+          "playByPlay",
+          "completePlays",
+          "eventType",
+          "inning",
+          "batter"
+        ],
+        "sampleVerifiedYears": [
+          1951,
+          1952,
+          1953,
+          1954,
+          1956,
+          1957,
+          1958,
+          1959,
+          1960,
+          1970,
+          1980,
+          1990,
+          1995,
+          2000,
+          2005,
+          2010,
+          2015,
+          2018,
+          2020,
+          2021
+        ],
+        "partialYears": [
+          1950,
+          1955
+        ],
+        "unavailableYears": [
+          1901,
+          1910,
+          1920,
+          1930,
+          1940,
+          1941,
+          1942,
+          1943,
+          1944,
+          1945,
+          1946,
+          1947,
+          1948,
+          1949
+        ],
+        "insufficientData": [
+          {
+            "year": 2021,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2020,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2018,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2015,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2010,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2005,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2000,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1995,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1990,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1980,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1970,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1960,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1959,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1958,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1957,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1956,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1955,
+            "passingSamples": 5,
+            "testedSamples": 6
+          },
+          {
+            "year": 1954,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1953,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1952,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1951,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1950,
+            "passingSamples": 4,
+            "testedSamples": 6
+          },
+          {
+            "year": 1949,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1948,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1947,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1946,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1945,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1944,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1943,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1942,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1941,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1940,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1930,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1920,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1910,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1901,
+            "passingSamples": 0,
+            "testedSamples": 6
+          }
+        ],
+        "note": "サンプル確認だけでは完全カバレッジと断定しない。境界年の全試合監査後にcoverageStartYearを確定する。"
+      }
+    },
+    "LARGE_RBI_INNING": {
+      "recordType": "LARGE_RBI_INNING",
+      "coverage": {
+        "coverageStartYear": null,
+        "coverageStartDate": null,
+        "candidateStartYear": 1951,
+        "endYear": 2026,
+        "verifiedThrough": "2026-08-23",
+        "status": "investigating",
+        "complete": false,
+        "requiredData": [
+          "playByPlay",
+          "completePlays",
+          "rbi",
+          "inning",
+          "batter"
+        ],
+        "sampleVerifiedYears": [
+          1951,
+          1952,
+          1953,
+          1954,
+          1956,
+          1957,
+          1958,
+          1959,
+          1960,
+          1970,
+          1980,
+          1990,
+          1995,
+          2000,
+          2005,
+          2010,
+          2015,
+          2018,
+          2020,
+          2021
+        ],
+        "partialYears": [
+          1950,
+          1955
+        ],
+        "unavailableYears": [
+          1901,
+          1910,
+          1920,
+          1930,
+          1940,
+          1941,
+          1942,
+          1943,
+          1944,
+          1945,
+          1946,
+          1947,
+          1948,
+          1949
+        ],
+        "insufficientData": [
+          {
+            "year": 2021,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2020,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2018,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2015,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2010,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2005,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2000,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1995,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1990,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1980,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1970,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1960,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1959,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1958,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1957,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1956,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1955,
+            "passingSamples": 5,
+            "testedSamples": 6
+          },
+          {
+            "year": 1954,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1953,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1952,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1951,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1950,
+            "passingSamples": 4,
+            "testedSamples": 6
+          },
+          {
+            "year": 1949,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1948,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1947,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1946,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1945,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1944,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1943,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1942,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1941,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1940,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1930,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1920,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1910,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1901,
+            "passingSamples": 0,
+            "testedSamples": 6
+          }
+        ],
+        "note": "サンプル確認だけでは完全カバレッジと断定しない。境界年の全試合監査後にcoverageStartYearを確定する。"
+      }
+    },
+    "THREE_HR_GAME": {
+      "recordType": "THREE_HR_GAME",
+      "coverage": {
+        "coverageStartYear": null,
+        "coverageStartDate": null,
+        "candidateStartYear": 1951,
+        "endYear": 2026,
+        "verifiedThrough": "2026-08-23",
+        "status": "investigating",
+        "complete": false,
+        "requiredData": [
+          "playByPlay",
+          "completePlays",
+          "eventType",
+          "batter"
+        ],
+        "sampleVerifiedYears": [
+          1951,
+          1952,
+          1953,
+          1954,
+          1956,
+          1957,
+          1958,
+          1959,
+          1960,
+          1970,
+          1980,
+          1990,
+          1995,
+          2000,
+          2005,
+          2010,
+          2015,
+          2018,
+          2020,
+          2021
+        ],
+        "partialYears": [
+          1950,
+          1955
+        ],
+        "unavailableYears": [
+          1901,
+          1910,
+          1920,
+          1930,
+          1940,
+          1941,
+          1942,
+          1943,
+          1944,
+          1945,
+          1946,
+          1947,
+          1948,
+          1949
+        ],
+        "insufficientData": [
+          {
+            "year": 2021,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2020,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2018,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2015,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2010,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2005,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2000,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1995,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1990,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1980,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1970,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1960,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1959,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1958,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1957,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1956,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1955,
+            "passingSamples": 5,
+            "testedSamples": 6
+          },
+          {
+            "year": 1954,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1953,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1952,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1951,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1950,
+            "passingSamples": 4,
+            "testedSamples": 6
+          },
+          {
+            "year": 1949,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1948,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1947,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1946,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1945,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1944,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1943,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1942,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1941,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1940,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1930,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1920,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1910,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1901,
+            "passingSamples": 0,
+            "testedSamples": 6
+          }
+        ],
+        "note": "サンプル確認だけでは完全カバレッジと断定しない。境界年の全試合監査後にcoverageStartYearを確定する。"
+      }
+    },
+    "FIVE_HIT_GAME": {
+      "recordType": "FIVE_HIT_GAME",
+      "coverage": {
+        "coverageStartYear": null,
+        "coverageStartDate": null,
+        "candidateStartYear": 1951,
+        "endYear": 2026,
+        "verifiedThrough": "2026-08-23",
+        "status": "investigating",
+        "complete": false,
+        "requiredData": [
+          "playByPlay",
+          "completePlays",
+          "eventType",
+          "batter"
+        ],
+        "sampleVerifiedYears": [
+          1951,
+          1952,
+          1953,
+          1954,
+          1956,
+          1957,
+          1958,
+          1959,
+          1960,
+          1970,
+          1980,
+          1990,
+          1995,
+          2000,
+          2005,
+          2010,
+          2015,
+          2018,
+          2020,
+          2021
+        ],
+        "partialYears": [
+          1950,
+          1955
+        ],
+        "unavailableYears": [
+          1901,
+          1910,
+          1920,
+          1930,
+          1940,
+          1941,
+          1942,
+          1943,
+          1944,
+          1945,
+          1946,
+          1947,
+          1948,
+          1949
+        ],
+        "insufficientData": [
+          {
+            "year": 2021,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2020,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2018,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2015,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2010,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2005,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2000,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1995,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1990,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1980,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1970,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1960,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1959,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1958,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1957,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1956,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1955,
+            "passingSamples": 5,
+            "testedSamples": 6
+          },
+          {
+            "year": 1954,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1953,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1952,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1951,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1950,
+            "passingSamples": 4,
+            "testedSamples": 6
+          },
+          {
+            "year": 1949,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1948,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1947,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1946,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1945,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1944,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1943,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1942,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1941,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1940,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1930,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1920,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1910,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1901,
+            "passingSamples": 0,
+            "testedSamples": 6
+          }
+        ],
+        "note": "サンプル確認だけでは完全カバレッジと断定しない。境界年の全試合監査後にcoverageStartYearを確定する。"
+      }
+    },
+    "SIX_HIT_GAME": {
+      "recordType": "SIX_HIT_GAME",
+      "coverage": {
+        "coverageStartYear": null,
+        "coverageStartDate": null,
+        "candidateStartYear": 1951,
+        "endYear": 2026,
+        "verifiedThrough": "2026-08-23",
+        "status": "investigating",
+        "complete": false,
+        "requiredData": [
+          "playByPlay",
+          "completePlays",
+          "eventType",
+          "batter"
+        ],
+        "sampleVerifiedYears": [
+          1951,
+          1952,
+          1953,
+          1954,
+          1956,
+          1957,
+          1958,
+          1959,
+          1960,
+          1970,
+          1980,
+          1990,
+          1995,
+          2000,
+          2005,
+          2010,
+          2015,
+          2018,
+          2020,
+          2021
+        ],
+        "partialYears": [
+          1950,
+          1955
+        ],
+        "unavailableYears": [
+          1901,
+          1910,
+          1920,
+          1930,
+          1940,
+          1941,
+          1942,
+          1943,
+          1944,
+          1945,
+          1946,
+          1947,
+          1948,
+          1949
+        ],
+        "insufficientData": [
+          {
+            "year": 2021,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2020,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2018,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2015,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2010,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2005,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2000,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1995,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1990,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1980,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1970,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1960,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1959,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1958,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1957,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1956,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1955,
+            "passingSamples": 5,
+            "testedSamples": 6
+          },
+          {
+            "year": 1954,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1953,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1952,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1951,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1950,
+            "passingSamples": 4,
+            "testedSamples": 6
+          },
+          {
+            "year": 1949,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1948,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1947,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1946,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1945,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1944,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1943,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1942,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1941,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1940,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1930,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1920,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1910,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1901,
+            "passingSamples": 0,
+            "testedSamples": 6
+          }
+        ],
+        "note": "サンプル確認だけでは完全カバレッジと断定しない。境界年の全試合監査後にcoverageStartYearを確定する。"
+      }
+    },
+    "CYCLE": {
+      "recordType": "CYCLE",
+      "coverage": {
+        "coverageStartYear": null,
+        "coverageStartDate": null,
+        "candidateStartYear": 1951,
+        "endYear": 2026,
+        "verifiedThrough": "2026-08-23",
+        "status": "investigating",
+        "complete": false,
+        "requiredData": [
+          "playByPlay",
+          "completePlays",
+          "eventType",
+          "batter"
+        ],
+        "sampleVerifiedYears": [
+          1951,
+          1952,
+          1953,
+          1954,
+          1956,
+          1957,
+          1958,
+          1959,
+          1960,
+          1970,
+          1980,
+          1990,
+          1995,
+          2000,
+          2005,
+          2010,
+          2015,
+          2018,
+          2020,
+          2021
+        ],
+        "partialYears": [
+          1950,
+          1955
+        ],
+        "unavailableYears": [
+          1901,
+          1910,
+          1920,
+          1930,
+          1940,
+          1941,
+          1942,
+          1943,
+          1944,
+          1945,
+          1946,
+          1947,
+          1948,
+          1949
+        ],
+        "insufficientData": [
+          {
+            "year": 2021,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2020,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2018,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2015,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2010,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2005,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2000,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1995,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1990,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1980,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1970,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1960,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1959,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1958,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1957,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1956,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1955,
+            "passingSamples": 5,
+            "testedSamples": 6
+          },
+          {
+            "year": 1954,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1953,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1952,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1951,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1950,
+            "passingSamples": 4,
+            "testedSamples": 6
+          },
+          {
+            "year": 1949,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1948,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1947,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1946,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1945,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1944,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1943,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1942,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1941,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1940,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1930,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1920,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1910,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1901,
+            "passingSamples": 0,
+            "testedSamples": 6
+          }
+        ],
+        "note": "サンプル確認だけでは完全カバレッジと断定しない。境界年の全試合監査後にcoverageStartYearを確定する。"
+      }
+    },
+    "LEADOFF_FIRST_PITCH_HR": {
+      "recordType": "LEADOFF_FIRST_PITCH_HR",
+      "coverage": {
+        "coverageStartYear": null,
+        "coverageStartDate": null,
+        "candidateStartYear": 1951,
+        "endYear": 2026,
+        "verifiedThrough": "2026-08-23",
+        "status": "investigating",
+        "complete": false,
+        "requiredData": [
+          "playByPlay",
+          "completePlays",
+          "eventType",
+          "inning",
+          "batter",
+          "pitchEvents",
+          "pitchNumber"
+        ],
+        "sampleVerifiedYears": [
+          1951,
+          1952,
+          1953,
+          1954,
+          1956,
+          1957,
+          1958,
+          1959,
+          1960,
+          1970,
+          1980,
+          1990,
+          1995,
+          2000,
+          2005,
+          2010,
+          2015,
+          2018,
+          2020,
+          2021
+        ],
+        "partialYears": [
+          1950,
+          1955
+        ],
+        "unavailableYears": [
+          1901,
+          1910,
+          1920,
+          1930,
+          1940,
+          1941,
+          1942,
+          1943,
+          1944,
+          1945,
+          1946,
+          1947,
+          1948,
+          1949
+        ],
+        "insufficientData": [
+          {
+            "year": 2021,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2020,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2018,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2015,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2010,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2005,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2000,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1995,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1990,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1980,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1970,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1960,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1959,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1958,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1957,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1956,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1955,
+            "passingSamples": 5,
+            "testedSamples": 6
+          },
+          {
+            "year": 1954,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1953,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1952,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1951,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1950,
+            "passingSamples": 4,
+            "testedSamples": 6
+          },
+          {
+            "year": 1949,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1948,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1947,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1946,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1945,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1944,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1943,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1942,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1941,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1940,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1930,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1920,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1910,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1901,
+            "passingSamples": 0,
+            "testedSamples": 6
+          }
+        ],
+        "note": "サンプル確認だけでは完全カバレッジと断定しない。境界年の全試合監査後にcoverageStartYearを確定する。"
+      }
+    },
+    "FOUR_SB_GAME": {
+      "recordType": "FOUR_SB_GAME",
+      "coverage": {
+        "coverageStartYear": null,
+        "coverageStartDate": null,
+        "candidateStartYear": 1951,
+        "endYear": 2026,
+        "verifiedThrough": "2026-08-23",
+        "status": "investigating",
+        "complete": false,
+        "requiredData": [
+          "playByPlay",
+          "completePlays",
+          "eventType",
+          "runners"
+        ],
+        "sampleVerifiedYears": [
+          1951,
+          1952,
+          1953,
+          1954,
+          1956,
+          1957,
+          1958,
+          1959,
+          1960,
+          1970,
+          1980,
+          1990,
+          1995,
+          2000,
+          2005,
+          2010,
+          2015,
+          2018,
+          2020,
+          2021
+        ],
+        "partialYears": [
+          1950,
+          1955
+        ],
+        "unavailableYears": [
+          1901,
+          1910,
+          1920,
+          1930,
+          1940,
+          1941,
+          1942,
+          1943,
+          1944,
+          1945,
+          1946,
+          1947,
+          1948,
+          1949
+        ],
+        "insufficientData": [
+          {
+            "year": 2021,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2020,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2018,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2015,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2010,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2005,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2000,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1995,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1990,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1980,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1970,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1960,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1959,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1958,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1957,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1956,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1955,
+            "passingSamples": 5,
+            "testedSamples": 6
+          },
+          {
+            "year": 1954,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1953,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1952,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1951,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1950,
+            "passingSamples": 4,
+            "testedSamples": 6
+          },
+          {
+            "year": 1949,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1948,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1947,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1946,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1945,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1944,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1943,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1942,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1941,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1940,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1930,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1920,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1910,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1901,
+            "passingSamples": 0,
+            "testedSamples": 6
+          }
+        ],
+        "note": "サンプル確認だけでは完全カバレッジと断定しない。境界年の全試合監査後にcoverageStartYearを確定する。"
+      }
+    },
+    "LARGE_RBI_GAME": {
+      "recordType": "LARGE_RBI_GAME",
+      "coverage": {
+        "coverageStartYear": null,
+        "coverageStartDate": null,
+        "candidateStartYear": 1951,
+        "endYear": 2026,
+        "verifiedThrough": "2026-08-23",
+        "status": "investigating",
+        "complete": false,
+        "requiredData": [
+          "playByPlay",
+          "completePlays",
+          "rbi",
+          "batter"
+        ],
+        "sampleVerifiedYears": [
+          1951,
+          1952,
+          1953,
+          1954,
+          1956,
+          1957,
+          1958,
+          1959,
+          1960,
+          1970,
+          1980,
+          1990,
+          1995,
+          2000,
+          2005,
+          2010,
+          2015,
+          2018,
+          2020,
+          2021
+        ],
+        "partialYears": [
+          1950,
+          1955
+        ],
+        "unavailableYears": [
+          1901,
+          1910,
+          1920,
+          1930,
+          1940,
+          1941,
+          1942,
+          1943,
+          1944,
+          1945,
+          1946,
+          1947,
+          1948,
+          1949
+        ],
+        "insufficientData": [
+          {
+            "year": 2021,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2020,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2018,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2015,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2010,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2005,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2000,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1995,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1990,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1980,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1970,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1960,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1959,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1958,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1957,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1956,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1955,
+            "passingSamples": 5,
+            "testedSamples": 6
+          },
+          {
+            "year": 1954,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1953,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1952,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1951,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1950,
+            "passingSamples": 4,
+            "testedSamples": 6
+          },
+          {
+            "year": 1949,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1948,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1947,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1946,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1945,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1944,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1943,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1942,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1941,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1940,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1930,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1920,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1910,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1901,
+            "passingSamples": 0,
+            "testedSamples": 6
+          }
+        ],
+        "note": "サンプル確認だけでは完全カバレッジと断定しない。境界年の全試合監査後にcoverageStartYearを確定する。"
+      }
+    },
+    "TWO_OUTS_SAME_INNING": {
+      "recordType": "TWO_OUTS_SAME_INNING",
+      "coverage": {
+        "coverageStartYear": null,
+        "coverageStartDate": null,
+        "candidateStartYear": 1951,
+        "endYear": 2026,
+        "verifiedThrough": "2026-08-23",
+        "status": "investigating",
+        "complete": false,
+        "requiredData": [
+          "playByPlay",
+          "completePlays",
+          "eventType",
+          "inning",
+          "batter"
+        ],
+        "sampleVerifiedYears": [
+          1951,
+          1952,
+          1953,
+          1954,
+          1956,
+          1957,
+          1958,
+          1959,
+          1960,
+          1970,
+          1980,
+          1990,
+          1995,
+          2000,
+          2005,
+          2010,
+          2015,
+          2018,
+          2020,
+          2021
+        ],
+        "partialYears": [
+          1950,
+          1955
+        ],
+        "unavailableYears": [
+          1901,
+          1910,
+          1920,
+          1930,
+          1940,
+          1941,
+          1942,
+          1943,
+          1944,
+          1945,
+          1946,
+          1947,
+          1948,
+          1949
+        ],
+        "insufficientData": [
+          {
+            "year": 2021,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2020,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2018,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2015,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2010,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2005,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2000,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1995,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1990,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1980,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1970,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1960,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1959,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1958,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1957,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1956,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1955,
+            "passingSamples": 5,
+            "testedSamples": 6
+          },
+          {
+            "year": 1954,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1953,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1952,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1951,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1950,
+            "passingSamples": 4,
+            "testedSamples": 6
+          },
+          {
+            "year": 1949,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1948,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1947,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1946,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1945,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1944,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1943,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1942,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1941,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1940,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1930,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1920,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1910,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1901,
+            "passingSamples": 0,
+            "testedSamples": 6
+          }
+        ],
+        "note": "サンプル確認だけでは完全カバレッジと断定しない。境界年の全試合監査後にcoverageStartYearを確定する。"
+      }
+    },
+    "THREE_CONSECUTIVE_HR": {
+      "recordType": "THREE_CONSECUTIVE_HR",
+      "coverage": {
+        "coverageStartYear": null,
+        "coverageStartDate": null,
+        "candidateStartYear": 1951,
+        "endYear": 2026,
+        "verifiedThrough": "2026-08-23",
+        "status": "investigating",
+        "complete": false,
+        "requiredData": [
+          "playByPlay",
+          "completePlays",
+          "eventType",
+          "inning",
+          "batter"
+        ],
+        "sampleVerifiedYears": [
+          1951,
+          1952,
+          1953,
+          1954,
+          1956,
+          1957,
+          1958,
+          1959,
+          1960,
+          1970,
+          1980,
+          1990,
+          1995,
+          2000,
+          2005,
+          2010,
+          2015,
+          2018,
+          2020,
+          2021
+        ],
+        "partialYears": [
+          1950,
+          1955
+        ],
+        "unavailableYears": [
+          1901,
+          1910,
+          1920,
+          1930,
+          1940,
+          1941,
+          1942,
+          1943,
+          1944,
+          1945,
+          1946,
+          1947,
+          1948,
+          1949
+        ],
+        "insufficientData": [
+          {
+            "year": 2021,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2020,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2018,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2015,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2010,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2005,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2000,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1995,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1990,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1980,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1970,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1960,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1959,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1958,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1957,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1956,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1955,
+            "passingSamples": 5,
+            "testedSamples": 6
+          },
+          {
+            "year": 1954,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1953,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1952,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1951,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1950,
+            "passingSamples": 4,
+            "testedSamples": 6
+          },
+          {
+            "year": 1949,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1948,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1947,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1946,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1945,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1944,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1943,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1942,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1941,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1940,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1930,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1920,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1910,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1901,
+            "passingSamples": 0,
+            "testedSamples": 6
+          }
+        ],
+        "note": "サンプル確認だけでは完全カバレッジと断定しない。境界年の全試合監査後にcoverageStartYearを確定する。"
+      }
+    },
+    "FOUR_CONSECUTIVE_HR": {
+      "recordType": "FOUR_CONSECUTIVE_HR",
+      "coverage": {
+        "coverageStartYear": null,
+        "coverageStartDate": null,
+        "candidateStartYear": 1951,
+        "endYear": 2026,
+        "verifiedThrough": "2026-08-23",
+        "status": "investigating",
+        "complete": false,
+        "requiredData": [
+          "playByPlay",
+          "completePlays",
+          "eventType",
+          "inning",
+          "batter"
+        ],
+        "sampleVerifiedYears": [
+          1951,
+          1952,
+          1953,
+          1954,
+          1956,
+          1957,
+          1958,
+          1959,
+          1960,
+          1970,
+          1980,
+          1990,
+          1995,
+          2000,
+          2005,
+          2010,
+          2015,
+          2018,
+          2020,
+          2021
+        ],
+        "partialYears": [
+          1950,
+          1955
+        ],
+        "unavailableYears": [
+          1901,
+          1910,
+          1920,
+          1930,
+          1940,
+          1941,
+          1942,
+          1943,
+          1944,
+          1945,
+          1946,
+          1947,
+          1948,
+          1949
+        ],
+        "insufficientData": [
+          {
+            "year": 2021,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2020,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2018,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2015,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2010,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2005,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2000,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1995,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1990,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1980,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1970,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1960,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1959,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1958,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1957,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1956,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1955,
+            "passingSamples": 5,
+            "testedSamples": 6
+          },
+          {
+            "year": 1954,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1953,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1952,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1951,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1950,
+            "passingSamples": 4,
+            "testedSamples": 6
+          },
+          {
+            "year": 1949,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1948,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1947,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1946,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1945,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1944,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1943,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1942,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1941,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1940,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1930,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1920,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1910,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1901,
+            "passingSamples": 0,
+            "testedSamples": 6
+          }
+        ],
+        "note": "サンプル確認だけでは完全カバレッジと断定しない。境界年の全試合監査後にcoverageStartYearを確定する。"
+      }
+    },
+    "WALKOFF_GRAND_SLAM": {
+      "recordType": "WALKOFF_GRAND_SLAM",
+      "coverage": {
+        "coverageStartYear": null,
+        "coverageStartDate": null,
+        "candidateStartYear": 1951,
+        "endYear": 2026,
+        "verifiedThrough": "2026-08-23",
+        "status": "investigating",
+        "complete": false,
+        "requiredData": [
+          "playByPlay",
+          "completePlays",
+          "eventType",
+          "inning",
+          "rbi",
+          "runners"
+        ],
+        "sampleVerifiedYears": [
+          1951,
+          1952,
+          1953,
+          1954,
+          1956,
+          1957,
+          1958,
+          1959,
+          1960,
+          1970,
+          1980,
+          1990,
+          1995,
+          2000,
+          2005,
+          2010,
+          2015,
+          2018,
+          2020,
+          2021
+        ],
+        "partialYears": [
+          1950,
+          1955
+        ],
+        "unavailableYears": [
+          1901,
+          1910,
+          1920,
+          1930,
+          1940,
+          1941,
+          1942,
+          1943,
+          1944,
+          1945,
+          1946,
+          1947,
+          1948,
+          1949
+        ],
+        "insufficientData": [
+          {
+            "year": 2021,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2020,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2018,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2015,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2010,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2005,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2000,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1995,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1990,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1980,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1970,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1960,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1959,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1958,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1957,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1956,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1955,
+            "passingSamples": 5,
+            "testedSamples": 6
+          },
+          {
+            "year": 1954,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1953,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1952,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1951,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1950,
+            "passingSamples": 4,
+            "testedSamples": 6
+          },
+          {
+            "year": 1949,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1948,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1947,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1946,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1945,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1944,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1943,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1942,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1941,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1940,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1930,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1920,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1910,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1901,
+            "passingSamples": 0,
+            "testedSamples": 6
+          }
+        ],
+        "note": "サンプル確認だけでは完全カバレッジと断定しない。境界年の全試合監査後にcoverageStartYearを確定する。"
+      }
+    },
+    "FOUR_STRIKEOUT_INNING": {
+      "recordType": "FOUR_STRIKEOUT_INNING",
+      "coverage": {
+        "coverageStartYear": null,
+        "coverageStartDate": null,
+        "candidateStartYear": 1951,
+        "endYear": 2026,
+        "verifiedThrough": "2026-08-23",
+        "status": "investigating",
+        "complete": false,
+        "requiredData": [
+          "playByPlay",
+          "completePlays",
+          "eventType",
+          "inning",
+          "pitcher"
+        ],
+        "sampleVerifiedYears": [
+          1951,
+          1952,
+          1953,
+          1954,
+          1956,
+          1957,
+          1958,
+          1959,
+          1960,
+          1970,
+          1980,
+          1990,
+          1995,
+          2000,
+          2005,
+          2010,
+          2015,
+          2018,
+          2020,
+          2021
+        ],
+        "partialYears": [
+          1950,
+          1955
+        ],
+        "unavailableYears": [
+          1901,
+          1910,
+          1920,
+          1930,
+          1940,
+          1941,
+          1942,
+          1943,
+          1944,
+          1945,
+          1946,
+          1947,
+          1948,
+          1949
+        ],
+        "insufficientData": [
+          {
+            "year": 2021,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2020,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2018,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2015,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2010,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2005,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2000,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1995,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1990,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1980,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1970,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1960,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1959,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1958,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1957,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1956,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1955,
+            "passingSamples": 5,
+            "testedSamples": 6
+          },
+          {
+            "year": 1954,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1953,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1952,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1951,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1950,
+            "passingSamples": 4,
+            "testedSamples": 6
+          },
+          {
+            "year": 1949,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1948,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1947,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1946,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1945,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1944,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1943,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1942,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1941,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1940,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1930,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1920,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1910,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1901,
+            "passingSamples": 0,
+            "testedSamples": 6
+          }
+        ],
+        "note": "サンプル確認だけでは完全カバレッジと断定しない。境界年の全試合監査後にcoverageStartYearを確定する。"
+      }
+    },
+    "IMMACULATE_INNING": {
+      "recordType": "IMMACULATE_INNING",
+      "coverage": {
+        "coverageStartYear": null,
+        "coverageStartDate": null,
+        "candidateStartYear": 1951,
+        "endYear": 2026,
+        "verifiedThrough": "2026-08-23",
+        "status": "investigating",
+        "complete": false,
+        "requiredData": [
+          "playByPlay",
+          "completePlays",
+          "eventType",
+          "inning",
+          "pitcher",
+          "pitchEvents",
+          "pitchCall",
+          "count"
+        ],
+        "sampleVerifiedYears": [
+          1951,
+          1952,
+          1953,
+          1954,
+          1956,
+          1957,
+          1958,
+          1959,
+          1960,
+          1970,
+          1980,
+          1990,
+          1995,
+          2000,
+          2005,
+          2010,
+          2015,
+          2018,
+          2020,
+          2021
+        ],
+        "partialYears": [
+          1950,
+          1955
+        ],
+        "unavailableYears": [
+          1901,
+          1910,
+          1920,
+          1930,
+          1940,
+          1941,
+          1942,
+          1943,
+          1944,
+          1945,
+          1946,
+          1947,
+          1948,
+          1949
+        ],
+        "insufficientData": [
+          {
+            "year": 2021,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2020,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2018,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2015,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2010,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2005,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2000,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1995,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1990,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1980,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1970,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1960,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1959,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1958,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1957,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1956,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1955,
+            "passingSamples": 5,
+            "testedSamples": 6
+          },
+          {
+            "year": 1954,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1953,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1952,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1951,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1950,
+            "passingSamples": 4,
+            "testedSamples": 6
+          },
+          {
+            "year": 1949,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1948,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1947,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1946,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1945,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1944,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1943,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1942,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1941,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1940,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1930,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1920,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1910,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1901,
+            "passingSamples": 0,
+            "testedSamples": 6
+          }
+        ],
+        "note": "サンプル確認だけでは完全カバレッジと断定しない。境界年の全試合監査後にcoverageStartYearを確定する。"
+      }
+    },
+    "POSITION_PLAYER_STRIKEOUT": {
+      "recordType": "POSITION_PLAYER_STRIKEOUT",
+      "coverage": {
+        "coverageStartYear": null,
+        "coverageStartDate": null,
+        "candidateStartYear": 1901,
+        "endYear": 2026,
+        "verifiedThrough": "2026-08-23",
+        "status": "investigating",
+        "complete": false,
+        "requiredData": [
+          "boxscore",
+          "playerStats",
+          "pitchers",
+          "positions",
+          "peoplePosition"
+        ],
+        "sampleVerifiedYears": [
+          1901,
+          1910,
+          1930,
+          1940,
+          1949,
+          1950,
+          1951,
+          1952,
+          1953,
+          1954,
+          1955,
+          1956,
+          1957,
+          1958,
+          1959,
+          1960,
+          1970,
+          1980,
+          1990,
+          1995,
+          2000,
+          2005,
+          2010,
+          2015,
+          2018,
+          2020,
+          2021
+        ],
+        "partialYears": [
+          1920,
+          1941,
+          1942,
+          1943,
+          1944,
+          1945,
+          1946,
+          1947,
+          1948
+        ],
+        "unavailableYears": [],
+        "insufficientData": [
+          {
+            "year": 2021,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2020,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2018,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2015,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2010,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2005,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2000,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1995,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1990,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1980,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1970,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1960,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1959,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1958,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1957,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1956,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1955,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1954,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1953,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1952,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1951,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1950,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1949,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1948,
+            "passingSamples": 4,
+            "testedSamples": 6
+          },
+          {
+            "year": 1947,
+            "passingSamples": 4,
+            "testedSamples": 6
+          },
+          {
+            "year": 1946,
+            "passingSamples": 4,
+            "testedSamples": 6
+          },
+          {
+            "year": 1945,
+            "passingSamples": 4,
+            "testedSamples": 6
+          },
+          {
+            "year": 1944,
+            "passingSamples": 2,
+            "testedSamples": 6
+          },
+          {
+            "year": 1943,
+            "passingSamples": 4,
+            "testedSamples": 6
+          },
+          {
+            "year": 1942,
+            "passingSamples": 4,
+            "testedSamples": 6
+          },
+          {
+            "year": 1941,
+            "passingSamples": 4,
+            "testedSamples": 6
+          },
+          {
+            "year": 1940,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1930,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1920,
+            "passingSamples": 5,
+            "testedSamples": 6
+          },
+          {
+            "year": 1910,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1901,
+            "passingSamples": 6,
+            "testedSamples": 6
+          }
+        ],
+        "note": "サンプル確認だけでは完全カバレッジと断定しない。境界年の全試合監査後にcoverageStartYearを確定する。"
+      }
+    },
+    "POSITION_PLAYER_MULTI_STRIKEOUT": {
+      "recordType": "POSITION_PLAYER_MULTI_STRIKEOUT",
+      "coverage": {
+        "coverageStartYear": null,
+        "coverageStartDate": null,
+        "candidateStartYear": 1901,
+        "endYear": 2026,
+        "verifiedThrough": "2026-08-23",
+        "status": "investigating",
+        "complete": false,
+        "requiredData": [
+          "boxscore",
+          "playerStats",
+          "pitchers",
+          "positions",
+          "peoplePosition"
+        ],
+        "sampleVerifiedYears": [
+          1901,
+          1910,
+          1930,
+          1940,
+          1949,
+          1950,
+          1951,
+          1952,
+          1953,
+          1954,
+          1955,
+          1956,
+          1957,
+          1958,
+          1959,
+          1960,
+          1970,
+          1980,
+          1990,
+          1995,
+          2000,
+          2005,
+          2010,
+          2015,
+          2018,
+          2020,
+          2021
+        ],
+        "partialYears": [
+          1920,
+          1941,
+          1942,
+          1943,
+          1944,
+          1945,
+          1946,
+          1947,
+          1948
+        ],
+        "unavailableYears": [],
+        "insufficientData": [
+          {
+            "year": 2021,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2020,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2018,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2015,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2010,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2005,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2000,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1995,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1990,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1980,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1970,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1960,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1959,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1958,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1957,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1956,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1955,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1954,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1953,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1952,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1951,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1950,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1949,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1948,
+            "passingSamples": 4,
+            "testedSamples": 6
+          },
+          {
+            "year": 1947,
+            "passingSamples": 4,
+            "testedSamples": 6
+          },
+          {
+            "year": 1946,
+            "passingSamples": 4,
+            "testedSamples": 6
+          },
+          {
+            "year": 1945,
+            "passingSamples": 4,
+            "testedSamples": 6
+          },
+          {
+            "year": 1944,
+            "passingSamples": 2,
+            "testedSamples": 6
+          },
+          {
+            "year": 1943,
+            "passingSamples": 4,
+            "testedSamples": 6
+          },
+          {
+            "year": 1942,
+            "passingSamples": 4,
+            "testedSamples": 6
+          },
+          {
+            "year": 1941,
+            "passingSamples": 4,
+            "testedSamples": 6
+          },
+          {
+            "year": 1940,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1930,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1920,
+            "passingSamples": 5,
+            "testedSamples": 6
+          },
+          {
+            "year": 1910,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1901,
+            "passingSamples": 6,
+            "testedSamples": 6
+          }
+        ],
+        "note": "サンプル確認だけでは完全カバレッジと断定しない。境界年の全試合監査後にcoverageStartYearを確定する。"
+      }
+    },
+    "POSITION_PLAYER_WIN": {
+      "recordType": "POSITION_PLAYER_WIN",
+      "coverage": {
+        "coverageStartYear": null,
+        "coverageStartDate": null,
+        "candidateStartYear": 1901,
+        "endYear": 2026,
+        "verifiedThrough": "2026-08-23",
+        "status": "investigating",
+        "complete": false,
+        "requiredData": [
+          "boxscore",
+          "playerStats",
+          "pitchers",
+          "positions",
+          "peoplePosition"
+        ],
+        "sampleVerifiedYears": [
+          1901,
+          1910,
+          1930,
+          1940,
+          1949,
+          1950,
+          1951,
+          1952,
+          1953,
+          1954,
+          1955,
+          1956,
+          1957,
+          1958,
+          1959,
+          1960,
+          1970,
+          1980,
+          1990,
+          1995,
+          2000,
+          2005,
+          2010,
+          2015,
+          2018,
+          2020,
+          2021
+        ],
+        "partialYears": [
+          1920,
+          1941,
+          1942,
+          1943,
+          1944,
+          1945,
+          1946,
+          1947,
+          1948
+        ],
+        "unavailableYears": [],
+        "insufficientData": [
+          {
+            "year": 2021,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2020,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2018,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2015,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2010,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2005,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2000,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1995,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1990,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1980,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1970,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1960,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1959,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1958,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1957,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1956,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1955,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1954,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1953,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1952,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1951,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1950,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1949,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1948,
+            "passingSamples": 4,
+            "testedSamples": 6
+          },
+          {
+            "year": 1947,
+            "passingSamples": 4,
+            "testedSamples": 6
+          },
+          {
+            "year": 1946,
+            "passingSamples": 4,
+            "testedSamples": 6
+          },
+          {
+            "year": 1945,
+            "passingSamples": 4,
+            "testedSamples": 6
+          },
+          {
+            "year": 1944,
+            "passingSamples": 2,
+            "testedSamples": 6
+          },
+          {
+            "year": 1943,
+            "passingSamples": 4,
+            "testedSamples": 6
+          },
+          {
+            "year": 1942,
+            "passingSamples": 4,
+            "testedSamples": 6
+          },
+          {
+            "year": 1941,
+            "passingSamples": 4,
+            "testedSamples": 6
+          },
+          {
+            "year": 1940,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1930,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1920,
+            "passingSamples": 5,
+            "testedSamples": 6
+          },
+          {
+            "year": 1910,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1901,
+            "passingSamples": 6,
+            "testedSamples": 6
+          }
+        ],
+        "note": "サンプル確認だけでは完全カバレッジと断定しない。境界年の全試合監査後にcoverageStartYearを確定する。"
+      }
+    },
+    "POSITION_PLAYER_SAVE": {
+      "recordType": "POSITION_PLAYER_SAVE",
+      "coverage": {
+        "coverageStartYear": null,
+        "coverageStartDate": null,
+        "candidateStartYear": 1901,
+        "endYear": 2026,
+        "verifiedThrough": "2026-08-23",
+        "status": "investigating",
+        "complete": false,
+        "requiredData": [
+          "boxscore",
+          "playerStats",
+          "pitchers",
+          "positions",
+          "peoplePosition"
+        ],
+        "sampleVerifiedYears": [
+          1901,
+          1910,
+          1930,
+          1940,
+          1949,
+          1950,
+          1951,
+          1952,
+          1953,
+          1954,
+          1955,
+          1956,
+          1957,
+          1958,
+          1959,
+          1960,
+          1970,
+          1980,
+          1990,
+          1995,
+          2000,
+          2005,
+          2010,
+          2015,
+          2018,
+          2020,
+          2021
+        ],
+        "partialYears": [
+          1920,
+          1941,
+          1942,
+          1943,
+          1944,
+          1945,
+          1946,
+          1947,
+          1948
+        ],
+        "unavailableYears": [],
+        "insufficientData": [
+          {
+            "year": 2021,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2020,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2018,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2015,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2010,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2005,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2000,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1995,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1990,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1980,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1970,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1960,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1959,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1958,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1957,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1956,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1955,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1954,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1953,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1952,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1951,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1950,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1949,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1948,
+            "passingSamples": 4,
+            "testedSamples": 6
+          },
+          {
+            "year": 1947,
+            "passingSamples": 4,
+            "testedSamples": 6
+          },
+          {
+            "year": 1946,
+            "passingSamples": 4,
+            "testedSamples": 6
+          },
+          {
+            "year": 1945,
+            "passingSamples": 4,
+            "testedSamples": 6
+          },
+          {
+            "year": 1944,
+            "passingSamples": 2,
+            "testedSamples": 6
+          },
+          {
+            "year": 1943,
+            "passingSamples": 4,
+            "testedSamples": 6
+          },
+          {
+            "year": 1942,
+            "passingSamples": 4,
+            "testedSamples": 6
+          },
+          {
+            "year": 1941,
+            "passingSamples": 4,
+            "testedSamples": 6
+          },
+          {
+            "year": 1940,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1930,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1920,
+            "passingSamples": 5,
+            "testedSamples": 6
+          },
+          {
+            "year": 1910,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1901,
+            "passingSamples": 6,
+            "testedSamples": 6
+          }
+        ],
+        "note": "サンプル確認だけでは完全カバレッジと断定しない。境界年の全試合監査後にcoverageStartYearを確定する。"
+      }
+    },
+    "LOW_HIT_WIN": {
+      "recordType": "LOW_HIT_WIN",
+      "coverage": {
+        "coverageStartYear": null,
+        "coverageStartDate": null,
+        "candidateStartYear": 1901,
+        "endYear": 2026,
+        "verifiedThrough": "2026-08-23",
+        "status": "investigating",
+        "complete": false,
+        "requiredData": [
+          "boxscore",
+          "teamStats",
+          "linescore"
+        ],
+        "sampleVerifiedYears": [
+          1901,
+          1910,
+          1920,
+          1930,
+          1940,
+          1941,
+          1942,
+          1943,
+          1944,
+          1945,
+          1946,
+          1947,
+          1948,
+          1949,
+          1950,
+          1951,
+          1952,
+          1953,
+          1954,
+          1955,
+          1956,
+          1957,
+          1958,
+          1959,
+          1960,
+          1970,
+          1980,
+          1990,
+          1995,
+          2000,
+          2005,
+          2010,
+          2015,
+          2018,
+          2020,
+          2021
+        ],
+        "partialYears": [],
+        "unavailableYears": [],
+        "insufficientData": [
+          {
+            "year": 2021,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2020,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2018,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2015,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2010,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2005,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2000,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1995,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1990,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1980,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1970,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1960,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1959,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1958,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1957,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1956,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1955,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1954,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1953,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1952,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1951,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1950,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1949,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1948,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1947,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1946,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1945,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1944,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1943,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1942,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1941,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1940,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1930,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1920,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1910,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1901,
+            "passingSamples": 6,
+            "testedSamples": 6
+          }
+        ],
+        "note": "サンプル確認だけでは完全カバレッジと断定しない。境界年の全試合監査後にcoverageStartYearを確定する。"
+      }
+    },
+    "RUN_WITHOUT_HIT": {
+      "recordType": "RUN_WITHOUT_HIT",
+      "coverage": {
+        "coverageStartYear": null,
+        "coverageStartDate": null,
+        "candidateStartYear": 1951,
+        "endYear": 2026,
+        "verifiedThrough": "2026-08-23",
+        "status": "investigating",
+        "complete": false,
+        "requiredData": [
+          "playByPlay",
+          "completePlays",
+          "inning",
+          "eventType",
+          "linescore"
+        ],
+        "sampleVerifiedYears": [
+          1951,
+          1952,
+          1953,
+          1954,
+          1956,
+          1957,
+          1958,
+          1959,
+          1960,
+          1970,
+          1980,
+          1990,
+          1995,
+          2000,
+          2005,
+          2010,
+          2015,
+          2018,
+          2020,
+          2021
+        ],
+        "partialYears": [
+          1950,
+          1955
+        ],
+        "unavailableYears": [
+          1901,
+          1910,
+          1920,
+          1930,
+          1940,
+          1941,
+          1942,
+          1943,
+          1944,
+          1945,
+          1946,
+          1947,
+          1948,
+          1949
+        ],
+        "insufficientData": [
+          {
+            "year": 2021,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2020,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2018,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2015,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2010,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2005,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2000,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1995,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1990,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1980,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1970,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1960,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1959,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1958,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1957,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1956,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1955,
+            "passingSamples": 5,
+            "testedSamples": 6
+          },
+          {
+            "year": 1954,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1953,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1952,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1951,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1950,
+            "passingSamples": 4,
+            "testedSamples": 6
+          },
+          {
+            "year": 1949,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1948,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1947,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1946,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1945,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1944,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1943,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1942,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1941,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1940,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1930,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1920,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1910,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1901,
+            "passingSamples": 0,
+            "testedSamples": 6
+          }
+        ],
+        "note": "サンプル確認だけでは完全カバレッジと断定しない。境界年の全試合監査後にcoverageStartYearを確定する。"
+      }
+    },
+    "HIT_DEFICIT_WIN": {
+      "recordType": "HIT_DEFICIT_WIN",
+      "coverage": {
+        "coverageStartYear": null,
+        "coverageStartDate": null,
+        "candidateStartYear": 1901,
+        "endYear": 2026,
+        "verifiedThrough": "2026-08-23",
+        "status": "investigating",
+        "complete": false,
+        "requiredData": [
+          "boxscore",
+          "teamStats",
+          "linescore"
+        ],
+        "sampleVerifiedYears": [
+          1901,
+          1910,
+          1920,
+          1930,
+          1940,
+          1941,
+          1942,
+          1943,
+          1944,
+          1945,
+          1946,
+          1947,
+          1948,
+          1949,
+          1950,
+          1951,
+          1952,
+          1953,
+          1954,
+          1955,
+          1956,
+          1957,
+          1958,
+          1959,
+          1960,
+          1970,
+          1980,
+          1990,
+          1995,
+          2000,
+          2005,
+          2010,
+          2015,
+          2018,
+          2020,
+          2021
+        ],
+        "partialYears": [],
+        "unavailableYears": [],
+        "insufficientData": [
+          {
+            "year": 2021,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2020,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2018,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2015,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2010,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2005,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2000,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1995,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1990,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1980,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1970,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1960,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1959,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1958,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1957,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1956,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1955,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1954,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1953,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1952,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1951,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1950,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1949,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1948,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1947,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1946,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1945,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1944,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1943,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1942,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1941,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1940,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1930,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1920,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1910,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1901,
+            "passingSamples": 6,
+            "testedSamples": 6
+          }
+        ],
+        "note": "サンプル確認だけでは完全カバレッジと断定しない。境界年の全試合監査後にcoverageStartYearを確定する。"
+      }
+    },
+    "LARGE_RUN_INNING": {
+      "recordType": "LARGE_RUN_INNING",
+      "coverage": {
+        "coverageStartYear": null,
+        "coverageStartDate": null,
+        "candidateStartYear": 1951,
+        "endYear": 2026,
+        "verifiedThrough": "2026-08-23",
+        "status": "investigating",
+        "complete": false,
+        "requiredData": [
+          "playByPlay",
+          "completePlays",
+          "inning",
+          "rbi",
+          "linescore"
+        ],
+        "sampleVerifiedYears": [
+          1951,
+          1952,
+          1953,
+          1954,
+          1956,
+          1957,
+          1958,
+          1959,
+          1960,
+          1970,
+          1980,
+          1990,
+          1995,
+          2000,
+          2005,
+          2010,
+          2015,
+          2018,
+          2020,
+          2021
+        ],
+        "partialYears": [
+          1950,
+          1955
+        ],
+        "unavailableYears": [
+          1901,
+          1910,
+          1920,
+          1930,
+          1940,
+          1941,
+          1942,
+          1943,
+          1944,
+          1945,
+          1946,
+          1947,
+          1948,
+          1949
+        ],
+        "insufficientData": [
+          {
+            "year": 2021,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2020,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2018,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2015,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2010,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2005,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2000,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1995,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1990,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1980,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1970,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1960,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1959,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1958,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1957,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1956,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1955,
+            "passingSamples": 5,
+            "testedSamples": 6
+          },
+          {
+            "year": 1954,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1953,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1952,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1951,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1950,
+            "passingSamples": 4,
+            "testedSamples": 6
+          },
+          {
+            "year": 1949,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1948,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1947,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1946,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1945,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1944,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1943,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1942,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1941,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1940,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1930,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1920,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1910,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1901,
+            "passingSamples": 0,
+            "testedSamples": 6
+          }
+        ],
+        "note": "サンプル確認だけでは完全カバレッジと断定しない。境界年の全試合監査後にcoverageStartYearを確定する。"
+      }
+    },
+    "LARGE_HR_INNING": {
+      "recordType": "LARGE_HR_INNING",
+      "coverage": {
+        "coverageStartYear": null,
+        "coverageStartDate": null,
+        "candidateStartYear": 1951,
+        "endYear": 2026,
+        "verifiedThrough": "2026-08-23",
+        "status": "investigating",
+        "complete": false,
+        "requiredData": [
+          "playByPlay",
+          "completePlays",
+          "eventType",
+          "inning"
+        ],
+        "sampleVerifiedYears": [
+          1951,
+          1952,
+          1953,
+          1954,
+          1956,
+          1957,
+          1958,
+          1959,
+          1960,
+          1970,
+          1980,
+          1990,
+          1995,
+          2000,
+          2005,
+          2010,
+          2015,
+          2018,
+          2020,
+          2021
+        ],
+        "partialYears": [
+          1950,
+          1955
+        ],
+        "unavailableYears": [
+          1901,
+          1910,
+          1920,
+          1930,
+          1940,
+          1941,
+          1942,
+          1943,
+          1944,
+          1945,
+          1946,
+          1947,
+          1948,
+          1949
+        ],
+        "insufficientData": [
+          {
+            "year": 2021,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2020,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2018,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2015,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2010,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2005,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2000,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1995,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1990,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1980,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1970,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1960,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1959,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1958,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1957,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1956,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1955,
+            "passingSamples": 5,
+            "testedSamples": 6
+          },
+          {
+            "year": 1954,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1953,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1952,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1951,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1950,
+            "passingSamples": 4,
+            "testedSamples": 6
+          },
+          {
+            "year": 1949,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1948,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1947,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1946,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1945,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1944,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1943,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1942,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1941,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1940,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1930,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1920,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1910,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1901,
+            "passingSamples": 0,
+            "testedSamples": 6
+          }
+        ],
+        "note": "サンプル確認だけでは完全カバレッジと断定しない。境界年の全試合監査後にcoverageStartYearを確定する。"
+      }
+    },
+    "COMBINED_LARGE_HR": {
+      "recordType": "COMBINED_LARGE_HR",
+      "coverage": {
+        "coverageStartYear": null,
+        "coverageStartDate": null,
+        "candidateStartYear": 1901,
+        "endYear": 2026,
+        "verifiedThrough": "2026-08-23",
+        "status": "investigating",
+        "complete": false,
+        "requiredData": [
+          "boxscore",
+          "teamStats"
+        ],
+        "sampleVerifiedYears": [
+          1901,
+          1910,
+          1920,
+          1930,
+          1940,
+          1941,
+          1942,
+          1943,
+          1944,
+          1945,
+          1946,
+          1947,
+          1948,
+          1949,
+          1950,
+          1951,
+          1952,
+          1953,
+          1954,
+          1955,
+          1956,
+          1957,
+          1958,
+          1959,
+          1960,
+          1970,
+          1980,
+          1990,
+          1995,
+          2000,
+          2005,
+          2010,
+          2015,
+          2018,
+          2020,
+          2021
+        ],
+        "partialYears": [],
+        "unavailableYears": [],
+        "insufficientData": [
+          {
+            "year": 2021,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2020,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2018,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2015,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2010,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2005,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2000,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1995,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1990,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1980,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1970,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1960,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1959,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1958,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1957,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1956,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1955,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1954,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1953,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1952,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1951,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1950,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1949,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1948,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1947,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1946,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1945,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1944,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1943,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1942,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1941,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1940,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1930,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1920,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1910,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1901,
+            "passingSamples": 6,
+            "testedSamples": 6
+          }
+        ],
+        "note": "サンプル確認だけでは完全カバレッジと断定しない。境界年の全試合監査後にcoverageStartYearを確定する。"
+      }
+    },
+    "COMBINED_MANY_PITCHERS": {
+      "recordType": "COMBINED_MANY_PITCHERS",
+      "coverage": {
+        "coverageStartYear": null,
+        "coverageStartDate": null,
+        "candidateStartYear": 1901,
+        "endYear": 2026,
+        "verifiedThrough": "2026-08-23",
+        "status": "investigating",
+        "complete": false,
+        "requiredData": [
+          "boxscore",
+          "pitchers"
+        ],
+        "sampleVerifiedYears": [
+          1901,
+          1910,
+          1920,
+          1930,
+          1940,
+          1941,
+          1942,
+          1943,
+          1944,
+          1945,
+          1946,
+          1947,
+          1948,
+          1949,
+          1950,
+          1951,
+          1952,
+          1953,
+          1954,
+          1955,
+          1956,
+          1957,
+          1958,
+          1959,
+          1960,
+          1970,
+          1980,
+          1990,
+          1995,
+          2000,
+          2005,
+          2010,
+          2015,
+          2018,
+          2020,
+          2021
+        ],
+        "partialYears": [],
+        "unavailableYears": [],
+        "insufficientData": [
+          {
+            "year": 2021,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2020,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2018,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2015,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2010,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2005,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2000,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1995,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1990,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1980,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1970,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1960,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1959,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1958,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1957,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1956,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1955,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1954,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1953,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1952,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1951,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1950,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1949,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1948,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1947,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1946,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1945,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1944,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1943,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1942,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1941,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1940,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1930,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1920,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1910,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1901,
+            "passingSamples": 6,
+            "testedSamples": 6
+          }
+        ],
+        "note": "サンプル確認だけでは完全カバレッジと断定しない。境界年の全試合監査後にcoverageStartYearを確定する。"
+      }
+    },
+    "EXTREME_WALKS": {
+      "recordType": "EXTREME_WALKS",
+      "coverage": {
+        "coverageStartYear": null,
+        "coverageStartDate": null,
+        "candidateStartYear": 1901,
+        "endYear": 2026,
+        "verifiedThrough": "2026-08-23",
+        "status": "investigating",
+        "complete": false,
+        "requiredData": [
+          "boxscore",
+          "teamStats"
+        ],
+        "sampleVerifiedYears": [
+          1901,
+          1910,
+          1920,
+          1930,
+          1940,
+          1941,
+          1942,
+          1943,
+          1944,
+          1945,
+          1946,
+          1947,
+          1948,
+          1949,
+          1950,
+          1951,
+          1952,
+          1953,
+          1954,
+          1955,
+          1956,
+          1957,
+          1958,
+          1959,
+          1960,
+          1970,
+          1980,
+          1990,
+          1995,
+          2000,
+          2005,
+          2010,
+          2015,
+          2018,
+          2020,
+          2021
+        ],
+        "partialYears": [],
+        "unavailableYears": [],
+        "insufficientData": [
+          {
+            "year": 2021,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2020,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2018,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2015,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2010,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2005,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2000,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1995,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1990,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1980,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1970,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1960,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1959,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1958,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1957,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1956,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1955,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1954,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1953,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1952,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1951,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1950,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1949,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1948,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1947,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1946,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1945,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1944,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1943,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1942,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1941,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1940,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1930,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1920,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1910,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1901,
+            "passingSamples": 6,
+            "testedSamples": 6
+          }
+        ],
+        "note": "サンプル確認だけでは完全カバレッジと断定しない。境界年の全試合監査後にcoverageStartYearを確定する。"
+      }
+    },
+    "COMBINED_NO_HITTER": {
+      "recordType": "COMBINED_NO_HITTER",
+      "coverage": {
+        "coverageStartYear": null,
+        "coverageStartDate": null,
+        "candidateStartYear": 1901,
+        "endYear": 2026,
+        "verifiedThrough": "2026-08-23",
+        "status": "investigating",
+        "complete": false,
+        "requiredData": [
+          "boxscore",
+          "teamStats",
+          "pitchers",
+          "linescore"
+        ],
+        "sampleVerifiedYears": [
+          1901,
+          1910,
+          1920,
+          1930,
+          1940,
+          1941,
+          1942,
+          1943,
+          1944,
+          1945,
+          1946,
+          1947,
+          1948,
+          1949,
+          1950,
+          1951,
+          1952,
+          1953,
+          1954,
+          1955,
+          1956,
+          1957,
+          1958,
+          1959,
+          1960,
+          1970,
+          1980,
+          1990,
+          1995,
+          2000,
+          2005,
+          2010,
+          2015,
+          2018,
+          2020,
+          2021
+        ],
+        "partialYears": [],
+        "unavailableYears": [],
+        "insufficientData": [
+          {
+            "year": 2021,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2020,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2018,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2015,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2010,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2005,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2000,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1995,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1990,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1980,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1970,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1960,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1959,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1958,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1957,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1956,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1955,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1954,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1953,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1952,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1951,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1950,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1949,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1948,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1947,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1946,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1945,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1944,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1943,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1942,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1941,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1940,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1930,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1920,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1910,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1901,
+            "passingSamples": 6,
+            "testedSamples": 6
+          }
+        ],
+        "note": "サンプル確認だけでは完全カバレッジと断定しない。境界年の全試合監査後にcoverageStartYearを確定する。"
+      }
+    },
+    "NO_HIT_LOSS": {
+      "recordType": "NO_HIT_LOSS",
+      "coverage": {
+        "coverageStartYear": null,
+        "coverageStartDate": null,
+        "candidateStartYear": 1901,
+        "endYear": 2026,
+        "verifiedThrough": "2026-08-23",
+        "status": "investigating",
+        "complete": false,
+        "requiredData": [
+          "boxscore",
+          "teamStats",
+          "linescore"
+        ],
+        "sampleVerifiedYears": [
+          1901,
+          1910,
+          1920,
+          1930,
+          1940,
+          1941,
+          1942,
+          1943,
+          1944,
+          1945,
+          1946,
+          1947,
+          1948,
+          1949,
+          1950,
+          1951,
+          1952,
+          1953,
+          1954,
+          1955,
+          1956,
+          1957,
+          1958,
+          1959,
+          1960,
+          1970,
+          1980,
+          1990,
+          1995,
+          2000,
+          2005,
+          2010,
+          2015,
+          2018,
+          2020,
+          2021
+        ],
+        "partialYears": [],
+        "unavailableYears": [],
+        "insufficientData": [
+          {
+            "year": 2021,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2020,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2018,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2015,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2010,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2005,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2000,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1995,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1990,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1980,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1970,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1960,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1959,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1958,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1957,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1956,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1955,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1954,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1953,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1952,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1951,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1950,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1949,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1948,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1947,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1946,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1945,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1944,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1943,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1942,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1941,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1940,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1930,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1920,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1910,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1901,
+            "passingSamples": 6,
+            "testedSamples": 6
+          }
+        ],
+        "note": "サンプル確認だけでは完全カバレッジと断定しない。境界年の全試合監査後にcoverageStartYearを確定する。"
+      }
+    },
+    "TRIPLE_PLAY": {
+      "recordType": "TRIPLE_PLAY",
+      "coverage": {
+        "coverageStartYear": null,
+        "coverageStartDate": null,
+        "candidateStartYear": 1951,
+        "endYear": 2026,
+        "verifiedThrough": "2026-08-23",
+        "status": "investigating",
+        "complete": false,
+        "requiredData": [
+          "playByPlay",
+          "completePlays",
+          "eventType",
+          "runners"
+        ],
+        "sampleVerifiedYears": [
+          1951,
+          1952,
+          1953,
+          1954,
+          1956,
+          1957,
+          1958,
+          1959,
+          1960,
+          1970,
+          1980,
+          1990,
+          1995,
+          2000,
+          2005,
+          2010,
+          2015,
+          2018,
+          2020,
+          2021
+        ],
+        "partialYears": [
+          1950,
+          1955
+        ],
+        "unavailableYears": [
+          1901,
+          1910,
+          1920,
+          1930,
+          1940,
+          1941,
+          1942,
+          1943,
+          1944,
+          1945,
+          1946,
+          1947,
+          1948,
+          1949
+        ],
+        "insufficientData": [
+          {
+            "year": 2021,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2020,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2018,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2015,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2010,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2005,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2000,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1995,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1990,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1980,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1970,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1960,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1959,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1958,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1957,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1956,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1955,
+            "passingSamples": 5,
+            "testedSamples": 6
+          },
+          {
+            "year": 1954,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1953,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1952,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1951,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1950,
+            "passingSamples": 4,
+            "testedSamples": 6
+          },
+          {
+            "year": 1949,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1948,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1947,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1946,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1945,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1944,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1943,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1942,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1941,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1940,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1930,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1920,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1910,
+            "passingSamples": 0,
+            "testedSamples": 6
+          },
+          {
+            "year": 1901,
+            "passingSamples": 0,
+            "testedSamples": 6
+          }
+        ],
+        "note": "サンプル確認だけでは完全カバレッジと断定しない。境界年の全試合監査後にcoverageStartYearを確定する。"
+      }
+    },
+    "ALL_STARTERS_HIT": {
+      "recordType": "ALL_STARTERS_HIT",
+      "coverage": {
+        "coverageStartYear": null,
+        "coverageStartDate": null,
+        "candidateStartYear": 1901,
+        "endYear": 2026,
+        "verifiedThrough": "2026-08-23",
+        "status": "investigating",
+        "complete": false,
+        "requiredData": [
+          "boxscore",
+          "playerStats",
+          "battingOrder"
+        ],
+        "sampleVerifiedYears": [
+          1901,
+          1910,
+          1930,
+          1940,
+          1949,
+          1950,
+          1951,
+          1952,
+          1953,
+          1954,
+          1955,
+          1956,
+          1957,
+          1958,
+          1959,
+          1960,
+          1970,
+          1980,
+          1990,
+          1995,
+          2000,
+          2005,
+          2010,
+          2015,
+          2018,
+          2020,
+          2021
+        ],
+        "partialYears": [
+          1920,
+          1941,
+          1942,
+          1943,
+          1944,
+          1945,
+          1946,
+          1947,
+          1948
+        ],
+        "unavailableYears": [],
+        "insufficientData": [
+          {
+            "year": 2021,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2020,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2018,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2015,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2010,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2005,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2000,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1995,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1990,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1980,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1970,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1960,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1959,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1958,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1957,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1956,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1955,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1954,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1953,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1952,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1951,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1950,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1949,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1948,
+            "passingSamples": 4,
+            "testedSamples": 6
+          },
+          {
+            "year": 1947,
+            "passingSamples": 4,
+            "testedSamples": 6
+          },
+          {
+            "year": 1946,
+            "passingSamples": 4,
+            "testedSamples": 6
+          },
+          {
+            "year": 1945,
+            "passingSamples": 4,
+            "testedSamples": 6
+          },
+          {
+            "year": 1944,
+            "passingSamples": 2,
+            "testedSamples": 6
+          },
+          {
+            "year": 1943,
+            "passingSamples": 4,
+            "testedSamples": 6
+          },
+          {
+            "year": 1942,
+            "passingSamples": 4,
+            "testedSamples": 6
+          },
+          {
+            "year": 1941,
+            "passingSamples": 4,
+            "testedSamples": 6
+          },
+          {
+            "year": 1940,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1930,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1920,
+            "passingSamples": 5,
+            "testedSamples": 6
+          },
+          {
+            "year": 1910,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1901,
+            "passingSamples": 6,
+            "testedSamples": 6
+          }
+        ],
+        "note": "サンプル確認だけでは完全カバレッジと断定しない。境界年の全試合監査後にcoverageStartYearを確定する。"
+      }
+    },
+    "ALL_STARTERS_SCORE": {
+      "recordType": "ALL_STARTERS_SCORE",
+      "coverage": {
+        "coverageStartYear": null,
+        "coverageStartDate": null,
+        "candidateStartYear": 1901,
+        "endYear": 2026,
+        "verifiedThrough": "2026-08-23",
+        "status": "investigating",
+        "complete": false,
+        "requiredData": [
+          "boxscore",
+          "playerStats",
+          "battingOrder"
+        ],
+        "sampleVerifiedYears": [
+          1901,
+          1910,
+          1930,
+          1940,
+          1949,
+          1950,
+          1951,
+          1952,
+          1953,
+          1954,
+          1955,
+          1956,
+          1957,
+          1958,
+          1959,
+          1960,
+          1970,
+          1980,
+          1990,
+          1995,
+          2000,
+          2005,
+          2010,
+          2015,
+          2018,
+          2020,
+          2021
+        ],
+        "partialYears": [
+          1920,
+          1941,
+          1942,
+          1943,
+          1944,
+          1945,
+          1946,
+          1947,
+          1948
+        ],
+        "unavailableYears": [],
+        "insufficientData": [
+          {
+            "year": 2021,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2020,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2018,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2015,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2010,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2005,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 2000,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1995,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1990,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1980,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1970,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1960,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1959,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1958,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1957,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1956,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1955,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1954,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1953,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1952,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1951,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1950,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1949,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1948,
+            "passingSamples": 4,
+            "testedSamples": 6
+          },
+          {
+            "year": 1947,
+            "passingSamples": 4,
+            "testedSamples": 6
+          },
+          {
+            "year": 1946,
+            "passingSamples": 4,
+            "testedSamples": 6
+          },
+          {
+            "year": 1945,
+            "passingSamples": 4,
+            "testedSamples": 6
+          },
+          {
+            "year": 1944,
+            "passingSamples": 2,
+            "testedSamples": 6
+          },
+          {
+            "year": 1943,
+            "passingSamples": 4,
+            "testedSamples": 6
+          },
+          {
+            "year": 1942,
+            "passingSamples": 4,
+            "testedSamples": 6
+          },
+          {
+            "year": 1941,
+            "passingSamples": 4,
+            "testedSamples": 6
+          },
+          {
+            "year": 1940,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1930,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1920,
+            "passingSamples": 5,
+            "testedSamples": 6
+          },
+          {
+            "year": 1910,
+            "passingSamples": 6,
+            "testedSamples": 6
+          },
+          {
+            "year": 1901,
+            "passingSamples": 6,
+            "testedSamples": 6
+          }
+        ],
+        "note": "サンプル確認だけでは完全カバレッジと断定しない。境界年の全試合監査後にcoverageStartYearを確定する。"
+      }
+    }
+  }
+}
