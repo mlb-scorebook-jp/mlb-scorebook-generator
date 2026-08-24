@@ -2,6 +2,26 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Latest Rays injuries & transactions",
+        "summaryJa": "レイズの負傷状況をMLB公式が詳報",
+        "slug": "rays-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/rays-injuries-and-roster-moves",
+        "contentDate": "2026-08-23T23:41:00Z",
+        "teamIds": [
+            139
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Key takeaways: Cubs 19, Mariners 2",
         "summaryJa": "I.ハップ（CHC）、勝利を呼び込む活躍",
         "slug": "ian-happ-hits-grand-slam-as-cubs-win-vs-mariners",
@@ -41,6 +61,30 @@
             "pit-inside-the-pirates"
         ],
         "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "X-rays negative after Stott (contusion) fouls pitch off right foot",
+        "summaryJa": "B.ストット（PHI）の最新動向をMLB公式が詳報",
+        "slug": "bryson-stott-exits-game-with-right-foot-contusion",
+        "url": "https://www.mlb.com/news/bryson-stott-exits-game-with-right-foot-contusion",
+        "contentDate": "2026-08-23T23:40:00Z",
+        "teamIds": [
+            143
+        ],
+        "playerIds": [
+            681082
+        ],
+        "gamePks": [
+            823421
+        ],
+        "taxonomy": [
+            "apple-news",
+            "injury"
+        ],
+        "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
@@ -87,6 +131,31 @@
             "little-league-classic"
         ],
         "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Salvy's 1st steal since 2021 sparks Royals to 8th straight win",
+        "summaryJa": "S.ペレス（KC）、記録達成の最新情報",
+        "slug": "salvador-perez-steals-his-first-base-since-2021",
+        "url": "https://www.mlb.com/news/salvador-perez-steals-his-first-base-since-2021",
+        "contentDate": "2026-08-23T23:30:00Z",
+        "teamIds": [
+            118
+        ],
+        "playerIds": [
+            521692
+        ],
+        "gamePks": [
+            824071
+        ],
+        "taxonomy": [
+            "apple-news",
+            "game-recap"
+        ],
+        "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
@@ -136,6 +205,28 @@
         ]
     },
     {
+        "headline": "Cards prospects Rainiel Rodriguez, Jesús Báez go back-to-back TWICE ... and that's not all",
+        "summaryJa": "Rainiel Rodriguez（STL）、本塁打で存在感",
+        "slug": "cardinals-prospects-rainiel-rodriguez-jesus-baez-homer-back-to-back-twice",
+        "url": "https://www.mlb.com/news/cardinals-prospects-rainiel-rodriguez-jesus-baez-homer-back-to-back-twice",
+        "contentDate": "2026-08-23T23:25:29.354Z",
+        "teamIds": [
+            138
+        ],
+        "playerIds": [
+            823787,
+            800305
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "mlb-top-prospects",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "‘Hopefully, it’s nothing crazy’: Giants await MRIs on Adames (elbow), Bericoto (knee)",
         "summaryJa": "W.アダーメス（SF）の負傷状況をMLB公式が詳報",
         "slug": "willy-adames-victor-bericoto-giants-injury-updates",
@@ -156,7 +247,6 @@
             "injury"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -224,6 +314,26 @@
         ]
     },
     {
+        "headline": "Cards head home after 11-game trip as near victory becomes stunning loss",
+        "summaryJa": "カージナルス、サヨナラ勝利の主役に",
+        "slug": "cardinals-swept-by-phillies-after-ninth-inning-walk-off",
+        "url": "https://www.mlb.com/news/cardinals-swept-by-phillies-after-ninth-inning-walk-off",
+        "contentDate": "2026-08-23T23:08:51.825Z",
+        "teamIds": [
+            138
+        ],
+        "playerIds": [],
+        "gamePks": [
+            823421
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Braves' love of the game hits new level ahead of Little League Classic",
         "summaryJa": "ブレーブスの最新動向をMLB公式が詳報",
         "slug": "braves-players-discuss-2026-little-league-classic-festivities",
@@ -263,7 +373,6 @@
             "transactions"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -855,29 +964,6 @@
             "game-recap"
         ],
         "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Salvy's 1st steal since 2021 sparks Royals to 8th straight win",
-        "summaryJa": "S.ペレス（KC）、記録達成の最新情報",
-        "slug": "salvador-perez-steals-his-first-base-since-2021",
-        "url": "https://www.mlb.com/news/salvador-perez-steals-his-first-base-since-2021",
-        "contentDate": "2026-08-23T21:04:00Z",
-        "teamIds": [
-            118
-        ],
-        "playerIds": [
-            521692
-        ],
-        "gamePks": [
-            824071
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap"
-        ],
-        "sourceScopes": [
             "MLB",
             "球団公式"
         ]
@@ -971,30 +1057,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Stott exits in 8th inning after fouling pitch off right foot",
-        "summaryJa": "B.ストット（PHI）、記録達成の最新情報",
-        "slug": "bryson-stott-exits-game-with-right-foot-contusion",
-        "url": "https://www.mlb.com/news/bryson-stott-exits-game-with-right-foot-contusion",
-        "contentDate": "2026-08-23T20:09:17.405Z",
-        "teamIds": [
-            143
-        ],
-        "playerIds": [
-            681082
-        ],
-        "gamePks": [
-            823421
-        ],
-        "taxonomy": [
-            "apple-news",
-            "injury"
-        ],
-        "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1217,6 +1279,7 @@
             "apple-news"
         ],
         "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
@@ -1357,26 +1420,6 @@
         "contentDate": "2026-08-23T17:35:00Z",
         "teamIds": [
             140
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Latest Rays injuries & transactions",
-        "summaryJa": "レイズの負傷状況をMLB公式が詳報",
-        "slug": "rays-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/rays-injuries-and-roster-moves",
-        "contentDate": "2026-08-23T17:27:00Z",
-        "teamIds": [
-            139
         ],
         "playerIds": [],
         "gamePks": [],
@@ -1942,31 +1985,6 @@
         ]
     },
     {
-        "headline": "'Just a blast out there': Anderson shows upside in highly anticipated debut",
-        "summaryJa": "K.アンダーソン（SEA）、メジャー昇格・初出場に関する最新情報",
-        "slug": "kade-anderson-makes-mlb-debut",
-        "url": "https://www.mlb.com/news/kade-anderson-makes-mlb-debut",
-        "contentDate": "2026-08-23T04:41:00Z",
-        "teamIds": [
-            136
-        ],
-        "playerIds": [
-            807739
-        ],
-        "gamePks": [
-            823100
-        ],
-        "taxonomy": [
-            "apple-news",
-            "mlb-top-prospects",
-            "mlb-debut"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Red Sox rip Giants' hearts out, then tear Abreu's jersey in walk-off celebration",
         "summaryJa": "W.アブレイユ（BOS）、サヨナラ勝利の主役に",
         "slug": "wilyer-abreu-red-sox-rally-in-ninth-to-walk-off-giants",
@@ -1987,6 +2005,30 @@
             "takeaways",
             "walk-off",
             "game-recap"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "'Just a blast out there': Anderson shows upside in highly anticipated debut",
+        "summaryJa": "K.アンダーソン（SEA）、メジャー昇格・初出場に関する最新情報",
+        "slug": "kade-anderson-makes-mlb-debut",
+        "url": "https://www.mlb.com/news/kade-anderson-makes-mlb-debut",
+        "contentDate": "2026-08-23T04:41:00Z",
+        "teamIds": [
+            136
+        ],
+        "playerIds": [
+            807739
+        ],
+        "gamePks": [
+            823100
+        ],
+        "taxonomy": [
+            "apple-news",
+            "mlb-top-prospects",
+            "mlb-debut"
         ],
         "sourceScopes": [
             "球団公式"
@@ -6557,29 +6599,6 @@
             "clutch-moment",
             "game-recap",
             "mlb-top-prospects"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Cards' top pitching prospect Doyle is dialed in during 2nd half of 2026",
-        "summaryJa": "Liam Doyle（STL）、記録達成の最新情報",
-        "slug": "cardinals-prospect-liam-doyle-strong-second-half-2026",
-        "url": "https://www.mlb.com/news/cardinals-prospect-liam-doyle-strong-second-half-2026",
-        "contentDate": "2026-08-20T03:50:00Z",
-        "teamIds": [
-            138
-        ],
-        "playerIds": [
-            824604
-        ],
-        "gamePks": [
-            824476
-        ],
-        "taxonomy": [
-            "mlb-top-prospects",
-            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
