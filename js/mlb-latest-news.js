@@ -2,6 +2,29 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Kodai Senga, closer? Here's why it could work",
+        "summaryJa": "千賀 滉大（NYM）を巡る注目点をMLB公式が分析",
+        "slug": "mets-kodai-senga-closer-statcast-analysis",
+        "url": "https://www.mlb.com/news/mets-kodai-senga-closer-statcast-analysis",
+        "contentDate": "2026-08-25T12:17:34.889Z",
+        "teamIds": [
+            121
+        ],
+        "playerIds": [
+            673540
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "player-tracking",
+            "savant"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Cronenworth's big night undone by Padres' costly mistakes in extras",
         "summaryJa": "J.クロネンワース（SD）の最新動向をMLB公式が詳報",
         "slug": "jake-cronenworth-shines-despite-padres-12-inning-loss-to-pirates",
@@ -1279,24 +1302,6 @@
         "sourceScopes": [
             "MLB",
             "球団公式"
-        ]
-    },
-    {
-        "headline": "Here are the 2026 Arizona Fall League teams and schedule",
-        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
-        "slug": "arizona-fall-league-schedule-teams-2026",
-        "url": "https://www.mlb.com/news/arizona-fall-league-schedule-teams-2026",
-        "contentDate": "2026-08-24T17:53:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "arizona-fall-league",
-            "mlb-top-prospects",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB"
         ]
     },
     {
@@ -8554,29 +8559,6 @@
         ],
         "taxonomy": [
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Thornton, Mets can't overcome Tatis in loss to San Diego",
-        "summaryJa": "Zac Thornton（NYM）の最新動向をMLB公式が詳報",
-        "slug": "zac-thornton-mets-loss-padres",
-        "url": "https://www.mlb.com/news/zac-thornton-mets-loss-padres",
-        "contentDate": "2026-08-19T04:13:00Z",
-        "teamIds": [
-            121
-        ],
-        "playerIds": [
-            804267
-        ],
-        "gamePks": [
-            823586
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap-losing"
         ],
         "sourceScopes": [
             "球団公式"
