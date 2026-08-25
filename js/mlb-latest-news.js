@@ -2,6 +2,120 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Fairbanks lands back on IL with nerve irritation issue",
+        "summaryJa": "P.フェアバンクス（MIA）の負傷状況をMLB公式が詳報",
+        "slug": "pete-fairbanks-exits-with-injury-in-ninth-inning",
+        "url": "https://www.mlb.com/news/pete-fairbanks-exits-with-injury-in-ninth-inning",
+        "contentDate": "2026-08-25T18:49:00Z",
+        "teamIds": [
+            146
+        ],
+        "playerIds": [
+            664126
+        ],
+        "gamePks": [
+            823828
+        ],
+        "taxonomy": [
+            "apple-news",
+            "injury"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Latest Nationals injuries & transactions",
+        "summaryJa": "ナショナルズの負傷状況をMLB公式が詳報",
+        "slug": "nationals-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/nationals-injuries-and-roster-moves",
+        "contentDate": "2026-08-25T18:47:00Z",
+        "teamIds": [
+            120
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Bieber (shoulder) goes on IL, dealing another blow to Blue Jays",
+        "summaryJa": "S.ビーバー（TOR）の負傷状況をMLB公式が詳報",
+        "slug": "shane-bieber-injured-list-shoulder-injury",
+        "url": "https://www.mlb.com/news/shane-bieber-injured-list-shoulder-injury",
+        "contentDate": "2026-08-25T18:39:00Z",
+        "teamIds": [
+            141
+        ],
+        "playerIds": [
+            669456
+        ],
+        "gamePks": [
+            822773
+        ],
+        "taxonomy": [
+            "injury",
+            "apple-news",
+            "transactions"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Latest Yankees injuries and transactions",
+        "summaryJa": "ヤンキースの負傷状況をMLB公式が詳報",
+        "slug": "yankees-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/yankees-injuries-and-roster-moves",
+        "contentDate": "2026-08-25T18:30:00Z",
+        "teamIds": [
+            147
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Glasnow comes off IL for first start since early May",
+        "summaryJa": "T.グラスナウ（LAD）の負傷状況をMLB公式が詳報",
+        "slug": "tyler-glasnow-activated-from-injured-list-vs-braves",
+        "url": "https://www.mlb.com/news/tyler-glasnow-activated-from-injured-list-vs-braves",
+        "contentDate": "2026-08-25T18:24:45.772Z",
+        "teamIds": [
+            119
+        ],
+        "playerIds": [
+            607192
+        ],
+        "gamePks": [
+            823910
+        ],
+        "taxonomy": [
+            "injury",
+            "rehab",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "This key change(up) could unlock big success for A's prospect",
         "summaryJa": "J.アーノルド（ATH）ら注目選手の最新動向",
         "slug": "athletics-prospect-jamie-arnold-talks-throwing-more-changeups",
@@ -18,30 +132,6 @@
         ],
         "taxonomy": [
             "mlb-top-prospects",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Glasnow set for return to Dodgers, making first start since May 6",
-        "summaryJa": "T.グラスナウ（LAD）、復帰へ向けた最新状況",
-        "slug": "tyler-glasnow-return-dodgers-rotation",
-        "url": "https://www.mlb.com/news/tyler-glasnow-return-dodgers-rotation",
-        "contentDate": "2026-08-25T17:25:00Z",
-        "teamIds": [
-            119
-        ],
-        "playerIds": [
-            607192
-        ],
-        "gamePks": [
-            823910
-        ],
-        "taxonomy": [
-            "injury",
-            "rehab",
             "apple-news"
         ],
         "sourceScopes": [
@@ -87,26 +177,6 @@
         ],
         "taxonomy": [
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Latest Yankees injuries and transactions",
-        "summaryJa": "ヤンキースの負傷状況をMLB公式が詳報",
-        "slug": "yankees-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/yankees-injuries-and-roster-moves",
-        "contentDate": "2026-08-25T15:49:00Z",
-        "teamIds": [
-            147
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
         ],
         "sourceScopes": [
             "球団公式"
@@ -239,7 +309,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -789,6 +858,7 @@
             "apple-news"
         ],
         "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
@@ -1078,30 +1148,6 @@
         "taxonomy": [
             "apple-news",
             "game-recap"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Fairbanks' nerve irritation issue arises again, exits in 9th inning",
-        "summaryJa": "P.フェアバンクス（MIA）の負傷状況をMLB公式が詳報",
-        "slug": "pete-fairbanks-exits-with-injury-in-ninth-inning",
-        "url": "https://www.mlb.com/news/pete-fairbanks-exits-with-injury-in-ninth-inning",
-        "contentDate": "2026-08-25T03:02:00Z",
-        "teamIds": [
-            146
-        ],
-        "playerIds": [
-            664126
-        ],
-        "gamePks": [
-            823828
-        ],
-        "taxonomy": [
-            "apple-news",
-            "injury"
         ],
         "sourceScopes": [
             "MLB",
@@ -1663,26 +1709,6 @@
         ]
     },
     {
-        "headline": "Latest Nationals injuries & transactions",
-        "summaryJa": "ナショナルズの負傷状況をMLB公式が詳報",
-        "slug": "nationals-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/nationals-injuries-and-roster-moves",
-        "contentDate": "2026-08-24T21:51:00Z",
-        "teamIds": [
-            120
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Latest Marlins injuries & transactions",
         "summaryJa": "マーリンズの負傷状況をMLB公式が詳報",
         "slug": "marlins-injuries-and-roster-moves",
@@ -1723,33 +1749,6 @@
         ],
         "sourceScopes": [
             "球団公式"
-        ]
-    },
-    {
-        "headline": "5 compelling series to watch this week",
-        "summaryJa": "レンジャーズの最新動向をMLB公式が詳報",
-        "slug": "mlb-series-to-watch-week-of-aug-24-2026",
-        "url": "https://www.mlb.com/news/mlb-series-to-watch-week-of-aug-24-2026",
-        "contentDate": "2026-08-24T17:25:00Z",
-        "teamIds": [
-            140,
-            145,
-            112,
-            109,
-            119,
-            116,
-            111,
-            147,
-            136,
-            141
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB"
         ]
     },
     {
@@ -1807,7 +1806,6 @@
             "injury"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -8907,28 +8905,6 @@
         ],
         "taxonomy": [
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Kirk, Blue Jays exorcise their Trop tribulations with 10-run performance",
-        "summaryJa": "ブルージェイズの最新動向をMLB公式が詳報",
-        "slug": "alejandro-kirk-blue-jays-offense-outburst-defeats-rays",
-        "url": "https://www.mlb.com/news/alejandro-kirk-blue-jays-offense-outburst-defeats-rays",
-        "contentDate": "2026-08-19T03:45:00Z",
-        "teamIds": [
-            141
-        ],
-        "playerIds": [],
-        "gamePks": [
-            822938
-        ],
-        "taxonomy": [
-            "game-recap",
-            "apple-news",
-            "hot-streak"
         ],
         "sourceScopes": [
             "球団公式"
