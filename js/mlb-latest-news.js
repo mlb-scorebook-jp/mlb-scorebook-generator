@@ -2,6 +2,28 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Brewers get sparkplug Frelick back from injured list",
+        "summaryJa": "S.フリーリック（MIL）の負傷状況をMLB公式が詳報",
+        "slug": "brewers-sal-frelick-activated-off-injured-list",
+        "url": "https://www.mlb.com/news/brewers-sal-frelick-activated-off-injured-list",
+        "contentDate": "2026-08-25T19:47:27.874Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [
+            686217
+        ],
+        "gamePks": [
+            823585
+        ],
+        "taxonomy": [
+            "transactions"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Winn (thumb fracture) goes on IL; Gorman recalled",
         "summaryJa": "M.ウィン（STL）の負傷状況をMLB公式が詳報",
         "slug": "masyn-winn-placed-on-injured-list-nolan-gorman-recalled",
@@ -7187,27 +7209,6 @@
         "taxonomy": [
             "apple-news",
             "players-weekend"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Trio of Brewers relievers delivers in series win -- and will be key in October",
-        "summaryJa": "ブルワーズ、勝利を呼び込む活躍",
-        "slug": "brewers-bullpen-helps-deliver-series-win-over-mariners",
-        "url": "https://www.mlb.com/news/brewers-bullpen-helps-deliver-series-win-over-mariners",
-        "contentDate": "2026-08-20T23:23:00Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [],
-        "gamePks": [
-            823747
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap"
         ],
         "sourceScopes": [
             "球団公式"
