@@ -451,7 +451,7 @@
         ]
     },
     {
-        "headline": "There's a tectonic shift at the top of our latest MVP poll",
+        "headline": "There's a seismic shift at the top of our latest MVP poll",
         "summaryJa": "P.クローアームストロングの最新動向をMLB公式が詳報",
         "slug": "yordan-alvarez-pete-crow-armstrong-lead-fifth-2026-mvp-poll",
         "url": "https://www.mlb.com/news/yordan-alvarez-pete-crow-armstrong-lead-fifth-2026-mvp-poll",
