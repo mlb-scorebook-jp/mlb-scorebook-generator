@@ -2,8 +2,32 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Glasnow set for return to Dodgers, making first start since May 6",
+        "summaryJa": "T.グラスナウ（LAD）、復帰へ向けた最新状況",
+        "slug": "tyler-glasnow-return-dodgers-rotation",
+        "url": "https://www.mlb.com/news/tyler-glasnow-return-dodgers-rotation",
+        "contentDate": "2026-08-25T17:25:00Z",
+        "teamIds": [
+            119
+        ],
+        "playerIds": [
+            607192
+        ],
+        "gamePks": [
+            823910
+        ],
+        "taxonomy": [
+            "injury",
+            "rehab",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Tempers flare between D-backs, Cubs over sign-stealing",
-        "summaryJa": "M.ケリー（AZ）の移籍・契約に関する最新情報",
+        "summaryJa": "ダイヤモンドバックスの移籍・契約に関する最新情報",
         "slug": "d-backs-cubs-argue-over-sign-stealing",
         "url": "https://www.mlb.com/news/d-backs-cubs-argue-over-sign-stealing",
         "contentDate": "2026-08-25T17:13:02.448Z",
@@ -11,9 +35,7 @@
             109,
             112
         ],
-        "playerIds": [
-            518876
-        ],
+        "playerIds": [],
         "gamePks": [
             825041
         ],
@@ -4653,30 +4675,6 @@
         "taxonomy": [
             "apple-news",
             "players-weekend"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Glasnow set for Tuesday return as Dodgers' rotation rounds into form",
-        "summaryJa": "T.グラスナウ（LAD）、復帰へ向けた最新状況",
-        "slug": "tyler-glasnow-return-dodgers-rotation",
-        "url": "https://www.mlb.com/news/tyler-glasnow-return-dodgers-rotation",
-        "contentDate": "2026-08-22T22:57:10.436Z",
-        "teamIds": [
-            119
-        ],
-        "playerIds": [
-            607192
-        ],
-        "gamePks": [
-            823910
-        ],
-        "taxonomy": [
-            "injury",
-            "rehab",
-            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
