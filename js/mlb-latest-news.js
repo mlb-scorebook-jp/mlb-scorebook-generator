@@ -2,6 +2,167 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Yanks add veteran Topa to bullpen, move Stanton to 60-day IL",
+        "summaryJa": "J.トパ（NYY）の移籍・契約に関する最新情報",
+        "slug": "yankees-sign-justin-topa-to-mlb-deal",
+        "url": "https://www.mlb.com/news/yankees-sign-justin-topa-to-mlb-deal",
+        "contentDate": "2026-08-25T21:32:00Z",
+        "teamIds": [
+            147
+        ],
+        "playerIds": [
+            623437
+        ],
+        "gamePks": [
+            823505
+        ],
+        "taxonomy": [
+            "transactions"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Latest Royals injuries & transactions",
+        "summaryJa": "ロイヤルズの負傷状況をMLB公式が詳報",
+        "slug": "royals-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/royals-injuries-and-roster-moves",
+        "contentDate": "2026-08-25T21:32:00Z",
+        "teamIds": [
+            118
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Bieber (shoulder) goes on IL, dealing another blow to Blue Jays",
+        "summaryJa": "S.ビーバー（TOR）の負傷状況をMLB公式が詳報",
+        "slug": "shane-bieber-injured-list-shoulder-injury",
+        "url": "https://www.mlb.com/news/shane-bieber-injured-list-shoulder-injury",
+        "contentDate": "2026-08-25T21:26:00Z",
+        "teamIds": [
+            141
+        ],
+        "playerIds": [
+            669456
+        ],
+        "gamePks": [
+            822773
+        ],
+        "taxonomy": [
+            "injury",
+            "apple-news",
+            "transactions"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Crawford activated from IL, will move back to shortstop full-time",
+        "summaryJa": "J.クロフォード（SEA）の負傷状況をMLB公式が詳報",
+        "slug": "jp-crawford-activated-from-injured-list-by-mariners",
+        "url": "https://www.mlb.com/news/jp-crawford-activated-from-injured-list-by-mariners",
+        "contentDate": "2026-08-25T21:08:30.356Z",
+        "teamIds": [
+            136
+        ],
+        "playerIds": [
+            641487
+        ],
+        "gamePks": [
+            823098
+        ],
+        "taxonomy": [
+            "apple-news",
+            "injury",
+            "transactions"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Donovan still has concussion symptoms after 'freak accident' in batting cage",
+        "summaryJa": "B.ドノバン（SEA）の負傷状況をMLB公式が詳報",
+        "slug": "mariners-give-injury-updates-on-brendan-donovan-j-p-crawford",
+        "url": "https://www.mlb.com/news/mariners-give-injury-updates-on-brendan-donovan-j-p-crawford",
+        "contentDate": "2026-08-25T21:01:00Z",
+        "teamIds": [
+            136
+        ],
+        "playerIds": [
+            680977,
+            641487,
+            666374,
+            681867
+        ],
+        "gamePks": [
+            823097
+        ],
+        "taxonomy": [
+            "apple-news",
+            "injury"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Fairbanks lands back on IL with nerve irritation issue",
+        "summaryJa": "P.フェアバンクス（MIA）の負傷状況をMLB公式が詳報",
+        "slug": "pete-fairbanks-exits-with-injury-in-ninth-inning",
+        "url": "https://www.mlb.com/news/pete-fairbanks-exits-with-injury-in-ninth-inning",
+        "contentDate": "2026-08-25T21:01:00Z",
+        "teamIds": [
+            146
+        ],
+        "playerIds": [
+            664126
+        ],
+        "gamePks": [
+            823828
+        ],
+        "taxonomy": [
+            "apple-news",
+            "injury"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Latest Marlins injuries & transactions",
+        "summaryJa": "マーリンズの負傷状況をMLB公式が詳報",
+        "slug": "marlins-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/marlins-injuries-and-roster-moves",
+        "contentDate": "2026-08-25T20:45:00Z",
+        "teamIds": [
+            146
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Watch Triple-A prospects play for FREE on Thursday",
         "summaryJa": "MLBの最新情報ら注目選手の最新動向",
         "slug": "watch-minor-league-baseball-games-for-free-2026",
@@ -123,52 +284,6 @@
         ]
     },
     {
-        "headline": "Yanks add veteran Topa to bullpen, move Stanton to 60-day IL",
-        "summaryJa": "J.トパ（NYY）の移籍・契約に関する最新情報",
-        "slug": "yankees-sign-justin-topa-to-mlb-deal",
-        "url": "https://www.mlb.com/news/yankees-sign-justin-topa-to-mlb-deal",
-        "contentDate": "2026-08-25T19:05:06.094Z",
-        "teamIds": [
-            147
-        ],
-        "playerIds": [
-            623437
-        ],
-        "gamePks": [
-            823505
-        ],
-        "taxonomy": [
-            "transactions"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Fairbanks lands back on IL with nerve irritation issue",
-        "summaryJa": "P.フェアバンクス（MIA）の負傷状況をMLB公式が詳報",
-        "slug": "pete-fairbanks-exits-with-injury-in-ninth-inning",
-        "url": "https://www.mlb.com/news/pete-fairbanks-exits-with-injury-in-ninth-inning",
-        "contentDate": "2026-08-25T18:49:00Z",
-        "teamIds": [
-            146
-        ],
-        "playerIds": [
-            664126
-        ],
-        "gamePks": [
-            823828
-        ],
-        "taxonomy": [
-            "apple-news",
-            "injury"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Latest Nationals injuries & transactions",
         "summaryJa": "ナショナルズの負傷状況をMLB公式が詳報",
         "slug": "nationals-injuries-and-roster-moves",
@@ -185,31 +300,6 @@
             "exclude-from-personalization"
         ],
         "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Bieber (shoulder) goes on IL, dealing another blow to Blue Jays",
-        "summaryJa": "S.ビーバー（TOR）の負傷状況をMLB公式が詳報",
-        "slug": "shane-bieber-injured-list-shoulder-injury",
-        "url": "https://www.mlb.com/news/shane-bieber-injured-list-shoulder-injury",
-        "contentDate": "2026-08-25T18:39:00Z",
-        "teamIds": [
-            141
-        ],
-        "playerIds": [
-            669456
-        ],
-        "gamePks": [
-            822773
-        ],
-        "taxonomy": [
-            "injury",
-            "apple-news",
-            "transactions"
-        ],
-        "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1342,32 +1432,6 @@
         ]
     },
     {
-        "headline": "Donovan still has concussion symptoms; Crawford to be activated soon",
-        "summaryJa": "B.ドノバン（SEA）の負傷状況をMLB公式が詳報",
-        "slug": "mariners-give-injury-updates-on-brendan-donovan-j-p-crawford",
-        "url": "https://www.mlb.com/news/mariners-give-injury-updates-on-brendan-donovan-j-p-crawford",
-        "contentDate": "2026-08-25T02:10:39.59Z",
-        "teamIds": [
-            136
-        ],
-        "playerIds": [
-            680977,
-            641487,
-            666374,
-            681867
-        ],
-        "gamePks": [
-            823097
-        ],
-        "taxonomy": [
-            "apple-news",
-            "injury"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Latest D-backs injuries & transactions",
         "summaryJa": "ダイヤモンドバックスの負傷状況をMLB公式が詳報",
         "slug": "d-backs-injuries-and-roster-moves",
@@ -1768,26 +1832,6 @@
         "taxonomy": [
             "transactions",
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Latest Marlins injuries & transactions",
-        "summaryJa": "マーリンズの負傷状況をMLB公式が詳報",
-        "slug": "marlins-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/marlins-injuries-and-roster-moves",
-        "contentDate": "2026-08-24T21:03:00Z",
-        "teamIds": [
-            146
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
         ],
         "sourceScopes": [
             "球団公式"
@@ -3674,26 +3718,6 @@
             "apple-news",
             "transactions",
             "injury"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Latest Royals injuries & transactions",
-        "summaryJa": "ロイヤルズの負傷状況をMLB公式が詳報",
-        "slug": "royals-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/royals-injuries-and-roster-moves",
-        "contentDate": "2026-08-23T16:55:00Z",
-        "teamIds": [
-            118
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
         ],
         "sourceScopes": [
             "球団公式"
@@ -6300,25 +6324,6 @@
         "taxonomy": [
             "apple-news",
             "players-weekend"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Kade Anderson joins Skenes, Strasburg as college aces to enjoy meteoric rise",
-        "summaryJa": "K.アンダーソンら注目選手の最新動向",
-        "slug": "kade-anderson-among-top-pitching-prospects-past-20-years",
-        "url": "https://www.mlb.com/news/kade-anderson-among-top-pitching-prospects-past-20-years",
-        "contentDate": "2026-08-21T23:40:00Z",
-        "teamIds": [],
-        "playerIds": [
-            807739
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "mlb-top-prospects",
-            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
