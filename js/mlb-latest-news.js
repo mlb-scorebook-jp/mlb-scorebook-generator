@@ -2,6 +2,113 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "White Sox faulty with controllables as effort slips in 9-run loss to Rangers",
+        "summaryJa": "ホワイトソックスの最新動向をMLB公式が詳報",
+        "slug": "white-sox-lose-in-blowout-to-rangers",
+        "url": "https://www.mlb.com/news/white-sox-lose-in-blowout-to-rangers",
+        "contentDate": "2026-08-25T05:40:38.322Z",
+        "teamIds": [
+            145
+        ],
+        "playerIds": [],
+        "gamePks": [
+            824557
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Wheeler allows 4 HRs in loss to Mariners as troubling trends continue",
+        "summaryJa": "Z.ウィーラー（PHI）、本塁打で存在感",
+        "slug": "zack-wheeler-starts-vs-mariners-august-24",
+        "url": "https://www.mlb.com/news/zack-wheeler-starts-vs-mariners-august-24",
+        "contentDate": "2026-08-25T05:39:00Z",
+        "teamIds": [
+            143
+        ],
+        "playerIds": [
+            554430
+        ],
+        "gamePks": [
+            823097
+        ],
+        "taxonomy": [
+            "apple-news",
+            "game-recap-losing"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Rookie Klassen learns important lesson in limiting damage",
+        "summaryJa": "G.クラーセン（LAA）の最新動向をMLB公式が詳報",
+        "slug": "george-klassen-strikes-out-3-in-angels-loss-to-guardians",
+        "url": "https://www.mlb.com/news/george-klassen-strikes-out-3-in-angels-loss-to-guardians",
+        "contentDate": "2026-08-25T05:29:31.773Z",
+        "teamIds": [
+            108
+        ],
+        "playerIds": [
+            691946
+        ],
+        "gamePks": [
+            823992
+        ],
+        "taxonomy": [
+            "apple-news",
+            "payoff-pitch"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Watch Triple-A prospects play for FREE on Thursday",
+        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
+        "slug": "watch-minor-league-baseball-games-for-free-2026",
+        "url": "https://www.mlb.com/news/watch-minor-league-baseball-games-for-free-2026",
+        "contentDate": "2026-08-25T05:28:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "mlb-top-prospects",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Pederson ejected after ABS challenge denied, banging bat in Rangers' dugout",
+        "summaryJa": "J.ピーダーソン（TEX）の最新動向をMLB公式が詳報",
+        "slug": "joc-pederson-ejected-from-game-vs-white-sox",
+        "url": "https://www.mlb.com/news/joc-pederson-ejected-from-game-vs-white-sox",
+        "contentDate": "2026-08-25T05:17:00Z",
+        "teamIds": [
+            140
+        ],
+        "playerIds": [
+            592626
+        ],
+        "gamePks": [
+            824557
+        ],
+        "taxonomy": [
+            "apple-news",
+            "ejection"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "41 swings, 0 whiffs?! Valdez's bizarre night nearly makes history",
         "summaryJa": "F.バルデス（DET）の最新動向をMLB公式が詳報",
         "slug": "framber-valdez-zero-swings-misses-rays-tigers",
@@ -115,53 +222,6 @@
         "taxonomy": [
             "apple-news",
             "game-recap"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Wheeler allows 4 HRs in loss to Mariners as troubling trends continue",
-        "summaryJa": "Z.ウィーラー（PHI）、本塁打で存在感",
-        "slug": "zack-wheeler-starts-vs-mariners-august-24",
-        "url": "https://www.mlb.com/news/zack-wheeler-starts-vs-mariners-august-24",
-        "contentDate": "2026-08-25T04:27:00Z",
-        "teamIds": [
-            143
-        ],
-        "playerIds": [
-            554430
-        ],
-        "gamePks": [
-            823097
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap-losing"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Pederson ejected after ABS challenge denied, banging bat in Rangers' dugout",
-        "summaryJa": "J.ピーダーソン（TEX）の最新動向をMLB公式が詳報",
-        "slug": "joc-pederson-ejected-from-game-vs-white-sox",
-        "url": "https://www.mlb.com/news/joc-pederson-ejected-from-game-vs-white-sox",
-        "contentDate": "2026-08-25T04:25:00Z",
-        "teamIds": [
-            140
-        ],
-        "playerIds": [
-            592626
-        ],
-        "gamePks": [
-            824557
-        ],
-        "taxonomy": [
-            "apple-news",
-            "ejection"
         ],
         "sourceScopes": [
             "MLB",
@@ -875,23 +935,6 @@
             "injury",
             "transactions",
             "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Watch Triple-A prospects play for FREE on Thursday",
-        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
-        "slug": "watch-minor-league-baseball-games-for-free-2026",
-        "url": "https://www.mlb.com/news/watch-minor-league-baseball-games-for-free-2026",
-        "contentDate": "2026-08-24T23:34:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "mlb-top-prospects",
-            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
@@ -5916,27 +5959,6 @@
         ]
     },
     {
-        "headline": "De Paula's 3rd homer in 4 games propels Double-A Tulsa to win",
-        "summaryJa": "J.デポーラ（LAD）、記録達成の最新情報",
-        "slug": "josue-de-paula-hits-3rd-home-run-in-4-games",
-        "url": "https://www.mlb.com/news/josue-de-paula-hits-3rd-home-run-in-4-games",
-        "contentDate": "2026-08-21T16:16:05.961Z",
-        "teamIds": [
-            119
-        ],
-        "playerIds": [
-            800543
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "mlb-top-prospects",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "'Down syndrome is cool': Burger's daughter inspires foundation's mission",
         "summaryJa": "J.バーガー（TEX）の最新動向をMLB公式が詳報",
         "slug": "jake-burger-s-daughter-inspires-foundation-s-mission",
@@ -6689,28 +6711,6 @@
             "apple-news",
             "little-league-classic",
             "players-weekend-related"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "How Jesús Luzardo blossomed into a frontline pitcher",
-        "summaryJa": "J.ルザルド（PHI）を巡る注目点をMLB公式が分析",
-        "slug": "jesus-luzardo-august-2026-breakdown",
-        "url": "https://www.mlb.com/news/jesus-luzardo-august-2026-breakdown",
-        "contentDate": "2026-08-21T00:15:00Z",
-        "teamIds": [
-            143
-        ],
-        "playerIds": [
-            666200
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "savant",
-            "player-tracking",
-            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
@@ -7672,29 +7672,6 @@
         ]
     },
     {
-        "headline": "Yanks push past Orioles after foul call on Alonso blast",
-        "summaryJa": "G.ロンバード Jr.（NYY）の最新動向をMLB公式が詳報",
-        "slug": "yankees-capitalize-on-disputed-foul-call-on-pete-alonso",
-        "url": "https://www.mlb.com/news/yankees-capitalize-on-disputed-foul-call-on-pete-alonso",
-        "contentDate": "2026-08-20T03:42:00Z",
-        "teamIds": [
-            147
-        ],
-        "playerIds": [
-            806146
-        ],
-        "gamePks": [
-            824801
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "'Tugboat' kicks off Giants' shutout win with stout showing vs. team that drafted him",
         "summaryJa": "Matt Wilkinson（SF）、メジャー昇格・初出場に関する最新情報",
         "slug": "matt-wilkinson-delivers-scoreless-outing-in-mlb-debut",
@@ -8371,27 +8348,6 @@
         ]
     },
     {
-        "headline": "How Matt Olson became a king of scoops at first base",
-        "summaryJa": "M.オルソン（ATL）を巡る注目点をMLB公式が分析",
-        "slug": "matt-olson-among-leaders-in-new-first-base-scoops-stat",
-        "url": "https://www.mlb.com/news/matt-olson-among-leaders-in-new-first-base-scoops-stat",
-        "contentDate": "2026-08-19T14:58:17.968Z",
-        "teamIds": [
-            144
-        ],
-        "playerIds": [
-            621566
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "savant"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "How an arm-angle tweak sparked Fairbanks' strong second half",
         "summaryJa": "P.フェアバンクス（MIA）を巡る注目点をMLB公式が分析",
         "slug": "pete-fairbanks-new-arm-angle-leads-to-second-half-success",
@@ -8632,29 +8588,6 @@
             824723
         ],
         "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Walk-off fireworks! Tolbert ties it, Witt wins it in the 9th",
-        "summaryJa": "B.ウィット Jr.（KC）、記録達成の最新情報",
-        "slug": "bobby-witt-jr-hits-walk-off-single-against-athletics",
-        "url": "https://www.mlb.com/news/bobby-witt-jr-hits-walk-off-single-against-athletics",
-        "contentDate": "2026-08-19T03:48:00Z",
-        "teamIds": [
-            118
-        ],
-        "playerIds": [
-            677951
-        ],
-        "gamePks": [
-            824075
-        ],
-        "taxonomy": [
-            "game-recap",
             "apple-news"
         ],
         "sourceScopes": [
@@ -9093,49 +9026,6 @@
         ]
     },
     {
-        "headline": "Bagwell opens up about journey to sobriety",
-        "summaryJa": "J.バグウェル（HOU）の最新動向をMLB公式が詳報",
-        "slug": "jeff-bagwell-discusses-post-playing-life-sobriety",
-        "url": "https://www.mlb.com/news/jeff-bagwell-discusses-post-playing-life-sobriety",
-        "contentDate": "2026-08-18T13:32:31.063Z",
-        "teamIds": [
-            117
-        ],
-        "playerIds": [
-            110432
-        ],
-        "gamePks": [
-            824154
-        ],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Despite extras loss, South Siders relish 'electric atmosphere' at Wrigley",
-        "summaryJa": "ホワイトソックスの最新動向をMLB公式が詳報",
-        "slug": "white-sox-fall-to-cubs-in-extra-innings-loss-at-wrigley-field",
-        "url": "https://www.mlb.com/news/white-sox-fall-to-cubs-in-extra-innings-loss-at-wrigley-field",
-        "contentDate": "2026-08-18T05:21:55.454Z",
-        "teamIds": [
-            145
-        ],
-        "playerIds": [],
-        "gamePks": [
-            824641
-        ],
-        "taxonomy": [
-            "apple-news",
-            "clutch-moment"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "McCullough's ejection punctuates frustrating Wild Card setback",
         "summaryJa": "マーリンズの最新動向をMLB公式が詳報",
         "slug": "clayton-mccullough-ejected-after-arguing-replay-review",
@@ -9273,30 +9163,6 @@
             "apple-news",
             "injury",
             "players-weekend"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Angels' restocked farm system reflected in new Top 30 Prospects list",
-        "summaryJa": "Jared Grindlinger（LAA）ら注目選手の最新動向",
-        "slug": "angels-top-30-prospects-2026-midseason-update",
-        "url": "https://www.mlb.com/news/angels-top-30-prospects-2026-midseason-update",
-        "contentDate": "2026-08-17T13:22:01.549Z",
-        "teamIds": [
-            108
-        ],
-        "playerIds": [
-            828796,
-            805796
-        ],
-        "gamePks": [
-            823991
-        ],
-        "taxonomy": [
-            "mlb-top-prospects",
-            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
