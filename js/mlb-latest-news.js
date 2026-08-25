@@ -2,6 +2,71 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Key takeaways: Pirates 3, Padres 2",
+        "summaryJa": "J.クロネンワース（SD）の最新動向をMLB公式が詳報",
+        "slug": "jake-cronenworth-shines-despite-padres-12-inning-loss-to-pirates",
+        "url": "https://www.mlb.com/news/jake-cronenworth-shines-despite-padres-12-inning-loss-to-pirates",
+        "contentDate": "2026-08-25T06:09:33.306Z",
+        "teamIds": [
+            135
+        ],
+        "playerIds": [
+            630105
+        ],
+        "gamePks": [
+            823260
+        ],
+        "taxonomy": [
+            "apple-news",
+            "takeaways",
+            "clutch-moment"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Nick Gonzales comes through with clutch hit, as Pirates outlast Padres in 12",
+        "summaryJa": "パイレーツの最新動向をMLB公式が詳報",
+        "slug": "nick-gonzales-comes-through-with-clutch-hit-as-pirates-outlast-padres-in-12",
+        "url": "https://www.mlb.com/news/nick-gonzales-comes-through-with-clutch-hit-as-pirates-outlast-padres-in-12",
+        "contentDate": "2026-08-25T06:08:30.408Z",
+        "teamIds": [
+            134
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "pit-inside-the-pirates"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "'We can't chance that': DeLauter (left hamstring) scratched vs. Angels",
+        "summaryJa": "C.デローター（CLE）の負傷状況をMLB公式が詳報",
+        "slug": "chase-delauter-scratched-due-to-hamstring-injury",
+        "url": "https://www.mlb.com/news/chase-delauter-scratched-due-to-hamstring-injury",
+        "contentDate": "2026-08-25T06:07:00Z",
+        "teamIds": [
+            114
+        ],
+        "playerIds": [
+            800050
+        ],
+        "gamePks": [
+            823992
+        ],
+        "taxonomy": [
+            "apple-news",
+            "injury"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "White Sox faulty with controllables as effort slips in 9-run loss to Rangers",
         "summaryJa": "ホワイトソックスの最新動向をMLB公式が詳報",
         "slug": "white-sox-lose-in-blowout-to-rangers",
@@ -642,30 +707,6 @@
         ]
     },
     {
-        "headline": "DeLauter (left hamstring tightness) scratched vs. Angels",
-        "summaryJa": "C.デローター（CLE）の負傷状況をMLB公式が詳報",
-        "slug": "chase-delauter-scratched-due-to-hamstring-injury",
-        "url": "https://www.mlb.com/news/chase-delauter-scratched-due-to-hamstring-injury",
-        "contentDate": "2026-08-25T01:57:40.589Z",
-        "teamIds": [
-            114
-        ],
-        "playerIds": [
-            800050
-        ],
-        "gamePks": [
-            823992
-        ],
-        "taxonomy": [
-            "apple-news",
-            "injury"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Latest D-backs injuries & transactions",
         "summaryJa": "ダイヤモンドバックスの負傷状況をMLB公式が詳報",
         "slug": "d-backs-injuries-and-roster-moves",
@@ -789,7 +830,6 @@
             "injury"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1136,6 +1176,23 @@
         ]
     },
     {
+        "headline": "How stickball became the signature sport of New York City",
+        "summaryJa": "MLBの最新情報の移籍・契約に関する最新情報",
+        "slug": "stickball-origins-in-new-york-city",
+        "url": "https://www.mlb.com/news/stickball-origins-in-new-york-city",
+        "contentDate": "2026-08-24T21:21:31.075Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "50-stories-50-states",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
         "headline": "Latest Marlins injuries & transactions",
         "summaryJa": "マーリンズの負傷状況をMLB公式が詳報",
         "slug": "marlins-injuries-and-roster-moves",
@@ -1177,6 +1234,24 @@
         "sourceScopes": [
             "MLB",
             "球団公式"
+        ]
+    },
+    {
+        "headline": "Here are the 2026 Arizona Fall League teams and schedule",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "arizona-fall-league-schedule-teams-2026",
+        "url": "https://www.mlb.com/news/arizona-fall-league-schedule-teams-2026",
+        "contentDate": "2026-08-24T17:53:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "arizona-fall-league",
+            "mlb-top-prospects",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB"
         ]
     },
     {
@@ -1374,7 +1449,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1397,6 +1471,7 @@
             "apple-news"
         ],
         "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
@@ -8103,28 +8178,6 @@
         ]
     },
     {
-        "headline": "King turns in another quality start, but Padres drop series finale to Mets",
-        "summaryJa": "パドレスの最新動向をMLB公式が詳報",
-        "slug": "michael-king-delivers-quality-start-in-loss-to-mets",
-        "url": "https://www.mlb.com/news/michael-king-delivers-quality-start-in-loss-to-mets",
-        "contentDate": "2026-08-19T22:07:00Z",
-        "teamIds": [
-            135
-        ],
-        "playerIds": [],
-        "gamePks": [
-            823587
-        ],
-        "taxonomy": [
-            "apple-news",
-            "takeaways",
-            "game-recap-losing"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Basallo reinstated from IL, inserted into O's lineup vs. Yankees",
         "summaryJa": "S.バサイヨ（BAL）の負傷状況をMLB公式が詳報",
         "slug": "samuel-basallo-reinstated-by-orioles-shoulder-injury",
@@ -8911,30 +8964,6 @@
         "taxonomy": [
             "apple-news",
             "transactions"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Griffin no longer needs splint, could return within 3 weeks",
-        "summaryJa": "K.グリフィン（PIT）の負傷状況をMLB公式が詳報",
-        "slug": "konnor-griffin-finger-injury-progress",
-        "url": "https://www.mlb.com/news/konnor-griffin-finger-injury-progress",
-        "contentDate": "2026-08-18T20:08:00Z",
-        "teamIds": [
-            134
-        ],
-        "playerIds": [
-            804606
-        ],
-        "gamePks": [
-            823343,
-            823341
-        ],
-        "taxonomy": [
-            "apple-news",
-            "injury"
         ],
         "sourceScopes": [
             "球団公式"
