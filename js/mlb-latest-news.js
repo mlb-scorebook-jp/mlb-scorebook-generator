@@ -2,6 +2,86 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "O'Hoppe embraced his Triple-A return, and it reignited his love for the game",
+        "summaryJa": "L.オホッピー（TEX）、復帰へ向けた最新状況",
+        "slug": "logan-o-hoppe-discusses-being-optioned-to-triple-a",
+        "url": "https://www.mlb.com/news/logan-o-hoppe-discusses-being-optioned-to-triple-a",
+        "contentDate": "2026-08-25T15:59:49.564Z",
+        "teamIds": [
+            140
+        ],
+        "playerIds": [
+            681351
+        ],
+        "gamePks": [
+            824556
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Latest Yankees injuries and transactions",
+        "summaryJa": "ヤンキースの負傷状況をMLB公式が詳報",
+        "slug": "yankees-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/yankees-injuries-and-roster-moves",
+        "contentDate": "2026-08-25T15:49:00Z",
+        "teamIds": [
+            147
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "This extra-innings thriller ended on a ... hit-by-pitch?",
+        "summaryJa": "パイレーツ、マウンドで好投",
+        "slug": "pirates-win-over-padres-ends-in-wacky-hit-by-pitch-strikeout",
+        "url": "https://www.mlb.com/news/pirates-win-over-padres-ends-in-wacky-hit-by-pitch-strikeout",
+        "contentDate": "2026-08-25T15:28:56.499Z",
+        "teamIds": [
+            134,
+            135
+        ],
+        "playerIds": [],
+        "gamePks": [
+            823260
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "Ranking the Top 10 legendary walk-offs of all time",
+        "summaryJa": "MLBの最新情報、サヨナラ勝利の主役に",
+        "slug": "top-legendary-walk-offs-in-baseball-history",
+        "url": "https://www.mlb.com/news/top-legendary-walk-offs-in-baseball-history",
+        "contentDate": "2026-08-25T15:25:02.437Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "rankings"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
         "headline": "There's a seismic shift at the top of our latest MVP poll",
         "summaryJa": "P.クローアームストロングの最新動向をMLB公式が詳報",
         "slug": "yordan-alvarez-pete-crow-armstrong-lead-fifth-2026-mvp-poll",
@@ -305,7 +385,6 @@
             "savant"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1055,6 +1134,42 @@
         ]
     },
     {
+        "headline": "Injuries: Yankees, Dodgers, Red Sox, Woodruff, Soto, Abrams",
+        "summaryJa": "大谷翔平（LAD）らMLB各球団の最新負傷情報",
+        "slug": "baseball-injury-updates",
+        "url": "https://www.mlb.com/news/baseball-injury-updates",
+        "contentDate": "2026-08-25T02:10:00Z",
+        "teamIds": [],
+        "playerIds": [
+            641355,
+            596115,
+            608331,
+            592450,
+            519317,
+            641857,
+            676979,
+            607192,
+            621242,
+            669257,
+            681624,
+            682928,
+            695578,
+            605540,
+            686217,
+            701350,
+            669003,
+            677960
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "headline-breakout"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
         "headline": "Latest D-backs injuries & transactions",
         "summaryJa": "ダイヤモンドバックスの負傷状況をMLB公式が詳報",
         "slug": "d-backs-injuries-and-roster-moves",
@@ -1094,7 +1209,6 @@
             "injury"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1740,7 +1854,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -3381,26 +3494,6 @@
         "contentDate": "2026-08-23T17:35:00Z",
         "teamIds": [
             140
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Latest Yankees injuries and transactions",
-        "summaryJa": "ヤンキースの負傷状況をMLB公式が詳報",
-        "slug": "yankees-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/yankees-injuries-and-roster-moves",
-        "contentDate": "2026-08-23T17:21:00Z",
-        "teamIds": [
-            147
         ],
         "playerIds": [],
         "gamePks": [],
@@ -8643,29 +8736,6 @@
         ],
         "taxonomy": [
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Quantrill continues strong run in rotation with 7 scoreless innings",
-        "summaryJa": "C.クアントリル（TEX）、マウンドで好投",
-        "slug": "cal-quantrill-leads-rangers-to-win-over-nationals",
-        "url": "https://www.mlb.com/news/cal-quantrill-leads-rangers-to-win-over-nationals",
-        "contentDate": "2026-08-19T05:22:00Z",
-        "teamIds": [
-            140
-        ],
-        "playerIds": [
-            615698
-        ],
-        "gamePks": [
-            822859
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap"
         ],
         "sourceScopes": [
             "球団公式"
