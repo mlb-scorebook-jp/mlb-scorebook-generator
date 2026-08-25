@@ -2,6 +2,98 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Crane: Astros needed change at top; Espada decision will come after season",
+        "summaryJa": "アストロズの最新動向をMLB公式が詳報",
+        "slug": "jim-crane-addresses-parting-with-dana-brown",
+        "url": "https://www.mlb.com/news/jim-crane-addresses-parting-with-dana-brown",
+        "contentDate": "2026-08-25T23:13:06.912Z",
+        "teamIds": [
+            117
+        ],
+        "playerIds": [],
+        "gamePks": [
+            823505
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Judge takes another step toward return: 'He looks good'",
+        "summaryJa": "A.ジャッジ（NYY）、復帰へ向けた最新状況",
+        "slug": "aaron-judge-takes-batting-practice-in-indoor-cages",
+        "url": "https://www.mlb.com/news/aaron-judge-takes-batting-practice-in-indoor-cages",
+        "contentDate": "2026-08-25T23:13:00Z",
+        "teamIds": [
+            147
+        ],
+        "playerIds": [
+            592450
+        ],
+        "gamePks": [
+            823505
+        ],
+        "taxonomy": [
+            "injury",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Winn (thumb fracture) goes on IL; Gorman recalled",
+        "summaryJa": "M.ウィン（STL）の負傷状況をMLB公式が詳報",
+        "slug": "masyn-winn-placed-on-injured-list-nolan-gorman-recalled",
+        "url": "https://www.mlb.com/news/masyn-winn-placed-on-injured-list-nolan-gorman-recalled",
+        "contentDate": "2026-08-25T23:13:00Z",
+        "teamIds": [
+            138
+        ],
+        "playerIds": [
+            691026
+        ],
+        "gamePks": [
+            823016
+        ],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Fitting right in as Mets' top prospect, Rojas hits 20-homer mark for first time",
+        "summaryJa": "J.ロハス（NYM）、本塁打で存在感",
+        "slug": "mets-prospect-jefferson-rojas-reaches-20-homer-mark",
+        "url": "https://www.mlb.com/news/mets-prospect-jefferson-rojas-reaches-20-homer-mark",
+        "contentDate": "2026-08-25T23:09:00Z",
+        "teamIds": [
+            121
+        ],
+        "playerIds": [
+            800473
+        ],
+        "gamePks": [
+            823585
+        ],
+        "taxonomy": [
+            "mlb-top-prospects",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Latest Dodgers injuries & transactions",
         "summaryJa": "ドジャースの負傷状況をMLB公式が詳報",
         "slug": "dodgers-injuries-and-roster-moves",
@@ -106,21 +198,22 @@
         ]
     },
     {
-        "headline": "Judge takes indoor BP against overhand pitching for first time since going on IL",
-        "summaryJa": "A.ジャッジ（NYY）の最新動向をMLB公式が詳報",
-        "slug": "aaron-judge-takes-batting-practice-in-indoor-cages",
-        "url": "https://www.mlb.com/news/aaron-judge-takes-batting-practice-in-indoor-cages",
-        "contentDate": "2026-08-25T22:33:45.071Z",
+        "headline": "Frelick rejoins Brewers after IL stint despite torn labrum",
+        "summaryJa": "S.フリーリック（MIL）の負傷状況をMLB公式が詳報",
+        "slug": "brewers-sal-frelick-activated-off-injured-list",
+        "url": "https://www.mlb.com/news/brewers-sal-frelick-activated-off-injured-list",
+        "contentDate": "2026-08-25T22:34:00Z",
         "teamIds": [
-            147
+            158
         ],
         "playerIds": [
-            592450
+            686217
         ],
         "gamePks": [
-            823505
+            823585
         ],
         "taxonomy": [
+            "transactions",
             "injury",
             "apple-news"
         ],
@@ -527,54 +620,6 @@
         ],
         "sourceScopes": [
             "MLB"
-        ]
-    },
-    {
-        "headline": "Brewers get sparkplug Frelick back from injured list",
-        "summaryJa": "S.フリーリック（MIL）の負傷状況をMLB公式が詳報",
-        "slug": "brewers-sal-frelick-activated-off-injured-list",
-        "url": "https://www.mlb.com/news/brewers-sal-frelick-activated-off-injured-list",
-        "contentDate": "2026-08-25T19:47:27.874Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [
-            686217
-        ],
-        "gamePks": [
-            823585
-        ],
-        "taxonomy": [
-            "transactions"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Winn (thumb fracture) goes on IL; Gorman recalled",
-        "summaryJa": "M.ウィン（STL）の負傷状況をMLB公式が詳報",
-        "slug": "masyn-winn-placed-on-injured-list-nolan-gorman-recalled",
-        "url": "https://www.mlb.com/news/masyn-winn-placed-on-injured-list-nolan-gorman-recalled",
-        "contentDate": "2026-08-25T19:34:41.274Z",
-        "teamIds": [
-            138
-        ],
-        "playerIds": [
-            691026
-        ],
-        "gamePks": [
-            823016
-        ],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
         ]
     },
     {
@@ -8095,7 +8140,7 @@
         ]
     },
     {
-        "headline": "Hitter Power Rankings: Fresh faces join familiar names at the top",
+        "headline": "Murakami rises in latest Hitter Power Rankings",
         "summaryJa": "Y.アルバレスら注目選手の最新動向",
         "slug": "mlb-hitter-power-rankings-august-20-2026",
         "url": "https://www.mlb.com/news/mlb-hitter-power-rankings-august-20-2026",
@@ -8871,29 +8916,6 @@
         ],
         "taxonomy": [
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Thornton, Mets can't overcome Tatis in loss to San Diego",
-        "summaryJa": "Zac Thornton（NYM）の最新動向をMLB公式が詳報",
-        "slug": "zac-thornton-mets-loss-padres",
-        "url": "https://www.mlb.com/news/zac-thornton-mets-loss-padres",
-        "contentDate": "2026-08-19T04:13:00Z",
-        "teamIds": [
-            121
-        ],
-        "playerIds": [
-            804267
-        ],
-        "gamePks": [
-            823586
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap-losing"
         ],
         "sourceScopes": [
             "球団公式"
