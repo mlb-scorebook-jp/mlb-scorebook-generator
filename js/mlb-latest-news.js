@@ -2,6 +2,89 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "White Sox faulty with controllables as effort slips in 9-run loss to Rangers",
+        "summaryJa": "ホワイトソックスの最新動向をMLB公式が詳報",
+        "slug": "white-sox-lose-in-blowout-to-rangers",
+        "url": "https://www.mlb.com/news/white-sox-lose-in-blowout-to-rangers",
+        "contentDate": "2026-08-25T05:40:38.322Z",
+        "teamIds": [
+            145
+        ],
+        "playerIds": [],
+        "gamePks": [
+            824557
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Wheeler allows 4 HRs in loss to Mariners as troubling trends continue",
+        "summaryJa": "Z.ウィーラー（PHI）、本塁打で存在感",
+        "slug": "zack-wheeler-starts-vs-mariners-august-24",
+        "url": "https://www.mlb.com/news/zack-wheeler-starts-vs-mariners-august-24",
+        "contentDate": "2026-08-25T05:39:00Z",
+        "teamIds": [
+            143
+        ],
+        "playerIds": [
+            554430
+        ],
+        "gamePks": [
+            823097
+        ],
+        "taxonomy": [
+            "apple-news",
+            "game-recap-losing"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Rookie Klassen learns important lesson in limiting damage",
+        "summaryJa": "G.クラーセン（LAA）の最新動向をMLB公式が詳報",
+        "slug": "george-klassen-strikes-out-3-in-angels-loss-to-guardians",
+        "url": "https://www.mlb.com/news/george-klassen-strikes-out-3-in-angels-loss-to-guardians",
+        "contentDate": "2026-08-25T05:29:31.773Z",
+        "teamIds": [
+            108
+        ],
+        "playerIds": [
+            691946
+        ],
+        "gamePks": [
+            823992
+        ],
+        "taxonomy": [
+            "apple-news",
+            "payoff-pitch"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Watch Triple-A prospects play for FREE on Thursday",
+        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
+        "slug": "watch-minor-league-baseball-games-for-free-2026",
+        "url": "https://www.mlb.com/news/watch-minor-league-baseball-games-for-free-2026",
+        "contentDate": "2026-08-25T05:28:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "mlb-top-prospects",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Pederson ejected after ABS challenge denied, banging bat in Rangers' dugout",
         "summaryJa": "J.ピーダーソン（TEX）の最新動向をMLB公式が詳報",
         "slug": "joc-pederson-ejected-from-game-vs-white-sox",
@@ -142,29 +225,6 @@
         ],
         "sourceScopes": [
             "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Wheeler allows 4 HRs in loss to Mariners as troubling trends continue",
-        "summaryJa": "Z.ウィーラー（PHI）、本塁打で存在感",
-        "slug": "zack-wheeler-starts-vs-mariners-august-24",
-        "url": "https://www.mlb.com/news/zack-wheeler-starts-vs-mariners-august-24",
-        "contentDate": "2026-08-25T04:27:00Z",
-        "teamIds": [
-            143
-        ],
-        "playerIds": [
-            554430
-        ],
-        "gamePks": [
-            823097
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap-losing"
-        ],
-        "sourceScopes": [
             "球団公式"
         ]
     },
@@ -875,23 +935,6 @@
             "injury",
             "transactions",
             "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Watch Triple-A prospects play for FREE on Thursday",
-        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
-        "slug": "watch-minor-league-baseball-games-for-free-2026",
-        "url": "https://www.mlb.com/news/watch-minor-league-baseball-games-for-free-2026",
-        "contentDate": "2026-08-24T23:34:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "mlb-top-prospects",
-            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
@@ -8983,27 +9026,6 @@
         ]
     },
     {
-        "headline": "Despite extras loss, South Siders relish 'electric atmosphere' at Wrigley",
-        "summaryJa": "ホワイトソックスの最新動向をMLB公式が詳報",
-        "slug": "white-sox-fall-to-cubs-in-extra-innings-loss-at-wrigley-field",
-        "url": "https://www.mlb.com/news/white-sox-fall-to-cubs-in-extra-innings-loss-at-wrigley-field",
-        "contentDate": "2026-08-18T05:21:55.454Z",
-        "teamIds": [
-            145
-        ],
-        "playerIds": [],
-        "gamePks": [
-            824641
-        ],
-        "taxonomy": [
-            "apple-news",
-            "clutch-moment"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "McCullough's ejection punctuates frustrating Wild Card setback",
         "summaryJa": "マーリンズの最新動向をMLB公式が詳報",
         "slug": "clayton-mccullough-ejected-after-arguing-replay-review",
@@ -9141,30 +9163,6 @@
             "apple-news",
             "injury",
             "players-weekend"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Angels' restocked farm system reflected in new Top 30 Prospects list",
-        "summaryJa": "Jared Grindlinger（LAA）ら注目選手の最新動向",
-        "slug": "angels-top-30-prospects-2026-midseason-update",
-        "url": "https://www.mlb.com/news/angels-top-30-prospects-2026-midseason-update",
-        "contentDate": "2026-08-17T13:22:01.549Z",
-        "teamIds": [
-            108
-        ],
-        "playerIds": [
-            828796,
-            805796
-        ],
-        "gamePks": [
-            823991
-        ],
-        "taxonomy": [
-            "mlb-top-prospects",
-            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
