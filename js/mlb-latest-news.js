@@ -2,6 +2,75 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Winn (thumb fracture) goes on IL; Gorman recalled",
+        "summaryJa": "M.ウィン（STL）の負傷状況をMLB公式が詳報",
+        "slug": "masyn-winn-placed-on-injured-list-nolan-gorman-recalled",
+        "url": "https://www.mlb.com/news/masyn-winn-placed-on-injured-list-nolan-gorman-recalled",
+        "contentDate": "2026-08-25T19:34:41.274Z",
+        "teamIds": [
+            138
+        ],
+        "playerIds": [
+            691026
+        ],
+        "gamePks": [
+            823016
+        ],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Playoff seeding at stake as division leaders Dodgers, Braves set for key clash",
+        "summaryJa": "ドジャースの最新動向をMLB公式が詳報",
+        "slug": "dodgers-braves-series-preview-august-2026",
+        "url": "https://www.mlb.com/news/dodgers-braves-series-preview-august-2026",
+        "contentDate": "2026-08-25T19:10:00Z",
+        "teamIds": [
+            119,
+            144
+        ],
+        "playerIds": [],
+        "gamePks": [
+            824881
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Yanks add veteran Topa to bullpen, move Stanton to 60-day IL",
+        "summaryJa": "J.トパ（NYY）の移籍・契約に関する最新情報",
+        "slug": "yankees-sign-justin-topa-to-mlb-deal",
+        "url": "https://www.mlb.com/news/yankees-sign-justin-topa-to-mlb-deal",
+        "contentDate": "2026-08-25T19:05:06.094Z",
+        "teamIds": [
+            147
+        ],
+        "playerIds": [
+            623437
+        ],
+        "gamePks": [
+            823505
+        ],
+        "taxonomy": [
+            "transactions"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Fairbanks lands back on IL with nerve irritation issue",
         "summaryJa": "P.フェアバンクス（MIA）の負傷状況をMLB公式が詳報",
         "slug": "pete-fairbanks-exits-with-injury-in-ninth-inning",
@@ -460,28 +529,6 @@
         ]
     },
     {
-        "headline": "Playoff seeding at stake as division leaders Dodgers, Braves set for key clash",
-        "summaryJa": "ドジャースの最新動向をMLB公式が詳報",
-        "slug": "dodgers-braves-series-preview-august-2026",
-        "url": "https://www.mlb.com/news/dodgers-braves-series-preview-august-2026",
-        "contentDate": "2026-08-25T13:29:22.337Z",
-        "teamIds": [
-            119,
-            144
-        ],
-        "playerIds": [],
-        "gamePks": [
-            824881
-        ],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
         "headline": "An overdue first visit to the Hall of Fame definitely won't be the last",
         "summaryJa": "ブルワーズ、勝利を呼び込む活躍",
         "slug": "observations-from-a-first-baseball-hall-of-fame-visit",
@@ -680,6 +727,28 @@
         ]
     },
     {
+        "headline": "Burns gets knocked off his game against scuffling Giants",
+        "summaryJa": "C.バーンズ（CIN）の最新動向をMLB公式が詳報",
+        "slug": "chase-burns-allows-five-runs-in-loss-against-giants",
+        "url": "https://www.mlb.com/news/chase-burns-allows-five-runs-in-loss-against-giants",
+        "contentDate": "2026-08-25T07:03:00Z",
+        "teamIds": [
+            113
+        ],
+        "playerIds": [
+            695505
+        ],
+        "gamePks": [
+            823183
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Devers brings healing power to banged-up club with tape-measure tater",
         "summaryJa": "R.デバース（SF）、本塁打で存在感",
         "slug": "rafael-devers-hits-3-run-homer-as-giants-beat-reds",
@@ -698,29 +767,6 @@
             "apple-news",
             "game-recap",
             "long-home-runs"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Burns gets knocked off his game against scuffling Giants",
-        "summaryJa": "C.バーンズ（CIN）の最新動向をMLB公式が詳報",
-        "slug": "chase-burns-allows-five-runs-in-loss-against-giants",
-        "url": "https://www.mlb.com/news/chase-burns-allows-five-runs-in-loss-against-giants",
-        "contentDate": "2026-08-25T07:03:00Z",
-        "teamIds": [
-            113
-        ],
-        "playerIds": [
-            695505
-        ],
-        "gamePks": [
-            823183
-        ],
-        "taxonomy": [
-            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
@@ -6975,30 +7021,6 @@
             "apple-news",
             "rehab",
             "injury"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Bellinger begins rehab assignment, hoping to return by weekend",
-        "summaryJa": "C.ベリンジャー（NYY）、復帰へ向けた最新状況",
-        "slug": "cody-bellinger-begins-rehab-assignment",
-        "url": "https://www.mlb.com/news/cody-bellinger-begins-rehab-assignment",
-        "contentDate": "2026-08-21T03:48:00Z",
-        "teamIds": [
-            147
-        ],
-        "playerIds": [
-            641355
-        ],
-        "gamePks": [
-            824802
-        ],
-        "taxonomy": [
-            "apple-news",
-            "injury",
-            "rehab"
         ],
         "sourceScopes": [
             "球団公式"
