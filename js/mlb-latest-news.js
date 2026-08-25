@@ -223,8 +223,8 @@
         ]
     },
     {
-        "headline": "Good company: Raleigh joins skipper as only Mariners catchers with 3-HR game",
-        "summaryJa": "C.ラリー（SEA）、本塁打で存在感",
+        "headline": "Raleigh’s big bat returns with first three-homer game",
+        "summaryJa": "C.ラリー（SEA）、復帰へ向けた最新状況",
         "slug": "cal-raleigh-first-career-three-homer-night-mariners-win",
         "url": "https://www.mlb.com/news/cal-raleigh-first-career-three-homer-night-mariners-win",
         "contentDate": "2026-08-25T06:21:00Z",
