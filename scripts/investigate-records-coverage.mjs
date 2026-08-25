@@ -3,6 +3,7 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
+import vm from "node:vm";
 import { fileURLToPath } from "node:url";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -14,11 +15,47 @@ const option = (name, fallback = "") => {
 };
 const years = option("years", "2021,2020,2018,2015,2010,2005,2000,1995,1990,1980,1970,1960,1950,1940,1930,1920,1910,1901")
     .split(",").map(Number).filter(Number.isInteger);
-const samplesPerYear = Math.max(3, Math.min(12, Number(option("samples", 6)) || 6));
+const sampleOption = option("samples", "6");
+const auditAllGames = sampleOption.toLowerCase() === "all";
+const samplesPerYear = auditAllGames ? null : Math.max(3, Math.min(24, Number(sampleOption) || 6));
+const concurrency = Math.max(1, Math.min(5, Number(option("concurrency", 3)) || 3));
+const backfill = args.includes("--backfill");
+const verifyPhase1 = args.includes("--verify-phase1");
+const force = args.includes("--force");
 const output = path.join(ROOT, "data", "records", "coverage.json");
 const reportOutput = path.join(ROOT, "data", "records", "coverage-investigation-report.json");
+const yearlyAuditDirectory = path.join(ROOT, "data", "records", "coverage-audits");
 const currentArchiveReport = path.join(ROOT, "data", "records", "2026-build-report.json");
 let apiRequests = 0;
+let basicApiRequests = 0;
+let analyzer = null;
+let archive = null;
+const nativeFetch = globalThis.fetch;
+globalThis.fetch = async (...fetchArgs) => {
+    apiRequests += 1;
+    return nativeFetch(...fetchArgs);
+};
+
+if (backfill) {
+    globalThis.window = globalThis;
+    const memoryStorage = new Map();
+    globalThis.localStorage = {
+        getItem: (key) => memoryStorage.get(key) ?? null,
+        setItem: (key, value) => memoryStorage.set(key, String(value)),
+        removeItem: (key) => memoryStorage.delete(key),
+        key: (index) => [...memoryStorage.keys()][index] ?? null,
+        get length() { return memoryStorage.size; }
+    };
+    const playerNamesSource = (await fs.readFile(path.join(ROOT, "js", "players.js"), "utf8"))
+        .replace(/^const NHK_PLAYER_NAMES\s*=/, "globalThis.NHK_PLAYER_NAMES =");
+    vm.runInThisContext(playerNamesSource, { filename: "js/players.js" });
+    await import(path.join(ROOT, "js", "players-2026-updates.js"));
+    await import(path.join(ROOT, "js", "records-archive.js"));
+    await import(path.join(ROOT, "js", "daily-records.js"));
+    analyzer = globalThis.DailyRecords?.archiveBuilder;
+    archive = globalThis.MLBRecordsArchive;
+    if (!analyzer || !archive) throw new Error("Phase 1共通判定ロジックを読み込めませんでした。");
+}
 
 const REQUIREMENTS = Object.freeze({
     JAPANESE_CAREER_HIGH: ["boxscore", "playerStats", "careerGameLog"],
@@ -30,7 +67,7 @@ const REQUIREMENTS = Object.freeze({
     FIVE_HIT_GAME: ["playByPlay", "completePlays", "eventType", "batter"],
     SIX_HIT_GAME: ["playByPlay", "completePlays", "eventType", "batter"],
     CYCLE: ["playByPlay", "completePlays", "eventType", "batter"],
-    LEADOFF_FIRST_PITCH_HR: ["playByPlay", "completePlays", "eventType", "inning", "batter", "pitchEvents", "pitchNumber"],
+    LEADOFF_FIRST_PITCH_HR: ["playByPlay", "completePlays", "eventType", "inning", "batter", "pitchEvents", "pitchNumber", "verifiedPitchSequence"],
     FOUR_SB_GAME: ["playByPlay", "completePlays", "eventType", "runners"],
     LARGE_RBI_GAME: ["playByPlay", "completePlays", "rbi", "batter"],
     TWO_OUTS_SAME_INNING: ["playByPlay", "completePlays", "eventType", "inning", "batter"],
@@ -38,7 +75,7 @@ const REQUIREMENTS = Object.freeze({
     FOUR_CONSECUTIVE_HR: ["playByPlay", "completePlays", "eventType", "inning", "batter"],
     WALKOFF_GRAND_SLAM: ["playByPlay", "completePlays", "eventType", "inning", "rbi", "runners"],
     FOUR_STRIKEOUT_INNING: ["playByPlay", "completePlays", "eventType", "inning", "pitcher"],
-    IMMACULATE_INNING: ["playByPlay", "completePlays", "eventType", "inning", "pitcher", "pitchEvents", "pitchCall", "count"],
+    IMMACULATE_INNING: ["playByPlay", "completePlays", "eventType", "inning", "pitcher", "pitchEvents", "pitchCall", "count", "verifiedPitchSequence"],
     POSITION_PLAYER_STRIKEOUT: ["boxscore", "playerStats", "pitchers", "positions", "peoplePosition"],
     POSITION_PLAYER_MULTI_STRIKEOUT: ["boxscore", "playerStats", "pitchers", "positions", "peoplePosition"],
     POSITION_PLAYER_WIN: ["boxscore", "playerStats", "pitchers", "positions", "peoplePosition"],
@@ -60,7 +97,7 @@ const REQUIREMENTS = Object.freeze({
 
 const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 const fetchJson = async (url) => {
-    apiRequests += 1;
+    basicApiRequests += 1;
     let lastError;
     for (let attempt = 0; attempt < 3; attempt += 1) {
         try {
@@ -80,6 +117,27 @@ const atomicWrite = async (file, value) => {
     JSON.parse(json);
     await fs.writeFile(temporary, json, "utf8");
     await fs.rename(temporary, file);
+};
+const normalizeRecord = (record) => ({
+    ...record,
+        ruleVersion: "daily-records-phase1-v9",
+    uniqueKey: archive.archiveKey(record),
+    archiveKey: archive.archiveKey(record),
+    description: String(record.description || record.fact || ""),
+    isJapanesePlayer: record.category === "japanese" || record.isJapanesePlayer === true,
+    apiConfirmed: record.apiConfirmed !== false && record.apiStatus !== "unconfirmed",
+    gamedayUrl: archive.repairGamedayUrl(record.gamedayUrl),
+    articleUrls: Array.isArray(record.articleUrls) ? record.articleUrls : [],
+    historicalContext: record.historicalContext ?? { status: "needs-review", text: "", sources: [] }
+});
+const mergeRecords = (...groups) => {
+    const merged = new Map();
+    groups.flat().filter(Boolean).forEach((record) => {
+        const normalized = normalizeRecord(record);
+        merged.set(normalized.uniqueKey, { ...merged.get(normalized.uniqueKey), ...normalized });
+    });
+    return [...merged.values()].sort((a, b) => String(a.date).localeCompare(String(b.date)) ||
+        Number(a.gamePk) - Number(b.gamePk) || String(a.uniqueKey).localeCompare(String(b.uniqueKey)));
 };
 const readJson = async (file, fallback) => {
     try { return JSON.parse(await fs.readFile(file, "utf8")); }
@@ -122,76 +180,202 @@ const inspect = (game, boxscore, pbp) => {
         pitchCall: pitches.some((pitch) => pitch?.details?.call?.code || pitch?.details?.description),
         pitchNumber: pitches.some((pitch) => pitch?.pitchNumber !== undefined || pitch?.index !== undefined),
         count: pitches.some((pitch) => pitch?.count?.balls !== undefined && pitch?.count?.strikes !== undefined),
+        verifiedPitchSequence: pitches.length > 0 && pitches.every((pitch) =>
+            Boolean(pitch?.startTime || pitch?.endTime) ||
+            (Number.isFinite(Number(pitch?.pitchData?.coordinates?.pX)) &&
+                Number.isFinite(Number(pitch?.pitchData?.coordinates?.pZ)))
+        ),
         careerGameLog: null
     };
     return { capabilities, counts: { players: players.length, plays: plays.length, completePlays: complete.length,
         playEvents: events.length, pitches: pitches.length } };
 };
-const statusFor = (results, requirements) => {
+const statusFor = (results, requirements, fullAudit = false) => {
     const relevant = requirements.filter((field) => field !== "careerGameLog");
     const tested = results.length;
     const passing = results.filter((result) => relevant.every((field) => result.capabilities[field] === true)).length;
     if (!tested || passing === 0) return { status: "unavailable", passing, tested };
     if (passing === tested && requirements.includes("careerGameLog")) return { status: "partial", passing, tested };
-    if (passing === tested) return { status: "sample-verified", passing, tested };
+    if (passing === tested) return { status: fullAudit ? "complete" : "sample-verified", passing, tested };
     return { status: "partial", passing, tested };
 };
 
 const startedAt = new Date();
 const previousReport = await readJson(reportOutput, null);
+const savedYearResults = [];
+try {
+    const files = (await fs.readdir(yearlyAuditDirectory)).filter((file) => /^\d{4}\.json$/.test(file));
+    for (const file of files) savedYearResults.push(await readJson(path.join(yearlyAuditDirectory, file), null));
+} catch (_error) {
+    // The directory is created after the first completed yearly audit.
+}
 const archiveReport = await readJson(currentArchiveReport, null);
 const verifiedThrough = archiveReport?.range?.endDate || new Date().toISOString().slice(0, 10);
 const yearResults = [];
 for (const year of years) {
+    const yearStartedAt = Date.now();
     const scheduleUrl = `${API_ROOT}/v1/schedule?sportId=1&gameTypes=R&startDate=${year}-01-01&endDate=${year}-12-31&hydrate=team,linescore`;
     const schedule = await fetchJson(scheduleUrl);
     const games = (schedule.data?.dates ?? []).flatMap((date) => date?.games ?? [])
         .filter((game) => Number(game?.gamePk) && (game?.status?.codedGameState === "F" || game?.status?.abstractGameState === "Final"));
-    const samples = chooseSamples(games, samplesPerYear);
-    const inspected = [];
-    for (const game of samples) {
-        const [box, pbp] = await Promise.all([
-            fetchJson(`${API_ROOT}/v1/game/${game.gamePk}/boxscore`),
-            fetchJson(`${API_ROOT}/v1/game/${game.gamePk}/playByPlay`)
-        ]);
-        inspected.push({ gamePk: Number(game.gamePk), date: game.officialDate,
-            endpoints: { boxscore: box.ok, playByPlay: pbp.ok },
-            ...inspect(game, box.data, pbp.data) });
-    }
+    const samples = auditAllGames ? games : chooseSamples(games, samplesPerYear);
+    const progressFile = path.join(ROOT, "data", "records", `.coverage-audit-${year}-progress.json`);
+    const priorYearResult = (previousReport?.years ?? []).find((entry) => Number(entry.year) === year);
+    const existingBackfillPath = path.join(ROOT, "data", "records", "backfill", `${year}.json`);
+    const fallbackProgress = force ? { inspected: [], records: [] } : {
+        inspected: backfill ? (priorYearResult?.samples ?? []).filter((sample) => sample.recordsAnalyzed) : [],
+        records: backfill ? await readJson(existingBackfillPath, []) : []
+    };
+    const progress = auditAllGames && !force ? await readJson(progressFile, fallbackProgress) : fallbackProgress;
+    const inspectedByPk = new Map((progress.inspected ?? []).map((entry) => [Number(entry.gamePk), entry]));
+    let backfillRecords = backfill ? mergeRecords(progress.records ?? []) : [];
+    const japanesePlayers = backfill
+        ? await analyzer.fetchJapanesePlayers(year, new AbortController().signal)
+        : new Map();
+    let cursor = 0;
+    let completed = 0;
+    let checkpointing = Promise.resolve();
+    const checkpoint = () => {
+        if (!auditAllGames) return Promise.resolve();
+        checkpointing = checkpointing.then(() => atomicWrite(progressFile, {
+            year, updatedAt: new Date().toISOString(), inspected: [...inspectedByPk.values()],
+            records: backfillRecords
+        }));
+        return checkpointing;
+    };
+    const worker = async () => {
+        while (cursor < samples.length) {
+            const game = samples[cursor++];
+            if (inspectedByPk.has(Number(game.gamePk))) continue;
+            const [box, pbp] = await Promise.all([
+                fetchJson(`${API_ROOT}/v1/game/${game.gamePk}/boxscore`),
+                fetchJson(`${API_ROOT}/v1/game/${game.gamePk}/playByPlay`)
+            ]);
+            const audit = inspect(game, box.data, pbp.data);
+            let recordsAnalyzed = false;
+            let phase1Match = null;
+            let phase1Error = "";
+            if (backfill && box.ok && pbp.ok) {
+                try {
+                    const detected = await analyzer.analyzeGame(game, pbp.data, box.data,
+                        new AbortController().signal, { includeArticles: false });
+                    const career = await analyzer.japaneseCareerRecords(game, box.data, japanesePlayers,
+                        new AbortController().signal).catch(() => []);
+                    const eligible = new Set(Object.entries(REQUIREMENTS)
+                        .filter(([, required]) => required.filter((field) => field !== "careerGameLog")
+                            .every((field) => audit.capabilities[field] === true))
+                        .map(([recordType]) => recordType));
+                    backfillRecords = mergeRecords(backfillRecords,
+                        [...detected, ...career].filter((record) => eligible.has(record.recordType)));
+                    if (verifyPhase1) {
+                        const comparison = await analyzer.analyzeGame(game, pbp.data, box.data,
+                            new AbortController().signal, { includeArticles: false });
+                        const left = mergeRecords(detected).map((record) => record.uniqueKey).sort();
+                        const right = mergeRecords(comparison).map((record) => record.uniqueKey).sort();
+                        phase1Match = JSON.stringify(left) === JSON.stringify(right);
+                    }
+                    recordsAnalyzed = true;
+                } catch (error) {
+                    phase1Error = error?.message || String(error);
+                }
+            }
+            inspectedByPk.set(Number(game.gamePk), { gamePk: Number(game.gamePk), date: game.officialDate,
+                coverageChecked: true, recordsAnalyzed, phase1Match, phase1Error,
+                endpoints: { boxscore: box.ok, playByPlay: pbp.ok }, ...audit });
+            completed += 1;
+            if (completed % 25 === 0) {
+                await checkpoint();
+                process.stdout.write(`\r${year}: ${inspectedByPk.size}/${samples.length}`);
+            }
+        }
+    };
+    await Promise.all(Array.from({ length: Math.min(concurrency, samples.length || 1) }, worker));
+    await checkpoint();
+    const inspected = [...inspectedByPk.values()].sort((a, b) => a.date.localeCompare(b.date) || a.gamePk - b.gamePk);
     const recordTypes = Object.fromEntries(Object.entries(REQUIREMENTS).map(([recordType, required]) =>
-        [recordType, statusFor(inspected, required)]));
-    yearResults.push({ year, schedule: { ok: schedule.ok, games: games.length }, samples: inspected, recordTypes });
+        [recordType, statusFor(inspected, required, auditAllGames)]));
+    const completedYearResult = { year, auditMode: auditAllGames ? "all-games" : "sample",
+        schedule: { ok: schedule.ok, games: games.length }, samples: inspected, recordTypes };
+    yearResults.push(completedYearResult);
+    if (auditAllGames) await atomicWrite(path.join(yearlyAuditDirectory, `${year}.json`), completedYearResult);
+    if (backfill) {
+        const backfillDirectory = path.join(ROOT, "data", "records", "backfill");
+        const byRecordType = Object.fromEntries([...backfillRecords.reduce((map, record) => {
+            map.set(record.recordType, (map.get(record.recordType) || 0) + 1);
+            return map;
+        }, new Map())].sort(([a], [b]) => a.localeCompare(b)));
+        const insufficientByType = Object.fromEntries(Object.entries(REQUIREMENTS).map(([recordType, required]) => [
+            recordType,
+            inspected.filter((sample) => required.filter((field) => field !== "careerGameLog")
+                .some((field) => sample.capabilities[field] !== true)).length
+        ]));
+        await atomicWrite(path.join(backfillDirectory, `${year}.json`), backfillRecords);
+        await atomicWrite(path.join(backfillDirectory, `${year}-build-report.json`), {
+            year, provisional: true, ruleVersion: "daily-records-phase1-v8",
+            generatedAt: new Date().toISOString(), uniqueGames: inspected.length,
+            coverageChecked: inspected.filter((sample) => sample.coverageChecked).length,
+            recordsAnalyzed: inspected.filter((sample) => sample.recordsAnalyzed).length,
+            phase1Errors: inspected.filter((sample) => sample.phase1Error)
+                .map((sample) => ({ gamePk: sample.gamePk, error: sample.phase1Error })),
+            phase1Compared: inspected.filter((sample) => sample.phase1Match !== null).length,
+            phase1Mismatches: inspected.filter((sample) => sample.phase1Match === false)
+                .map((sample) => sample.gamePk),
+            recordsDetected: backfillRecords.length,
+            japaneseRecords: backfillRecords.filter((record) => record.isJapanesePlayer).length,
+            duplicateUniqueKeys: backfillRecords.length - new Set(backfillRecords.map((record) => record.uniqueKey)).size,
+            invalidGamePks: inspected.filter((sample) => !Number(sample.gamePk)).length,
+            outputBytes: Buffer.byteLength(JSON.stringify(backfillRecords)),
+            elapsedSeconds: Math.round((Date.now() - yearStartedAt) / 100) / 10,
+            byRecordType, insufficientByType,
+            apiRequests, basicApiRequests,
+            additionalApiRequests: Math.max(0, apiRequests - basicApiRequests)
+        });
+    }
+    if (auditAllGames) await fs.rm(progressFile, { force: true });
     console.log(`${year}: games=${games.length}, samples=${inspected.length}`);
 }
 
 const mergedYearResults = [...new Map([
     ...(previousReport?.years ?? []),
+    ...savedYearResults.filter(Boolean),
     ...yearResults
 ].map((entry) => [Number(entry.year), entry])).values()].sort((a, b) => b.year - a.year);
 
 const now = new Date().toISOString();
 const records = Object.fromEntries(Object.entries(REQUIREMENTS).map(([recordType, requiredData]) => {
-    const verifiedYears = mergedYearResults.filter((year) => year.recordTypes[recordType].status === "sample-verified")
+    const verifiedYears = mergedYearResults.filter((year) => ["sample-verified", "complete"].includes(year.recordTypes[recordType].status))
         .map((year) => year.year).sort((a, b) => a - b);
     const partialYears = mergedYearResults.filter((year) => year.recordTypes[recordType].status === "partial")
         .map((year) => year.year).sort((a, b) => a - b);
     const unavailableYears = mergedYearResults.filter((year) => year.recordTypes[recordType].status === "unavailable")
         .map((year) => year.year).sort((a, b) => a - b);
     const candidateStartYear = verifiedYears[0] ?? null;
+    const completeYears = mergedYearResults.filter((year) => year.recordTypes[recordType].status === "complete")
+        .map((year) => year.year).sort((a, b) => a - b);
+    const knownGaps = mergedYearResults.flatMap((year) => year.samples
+        .filter((sample) => requiredData.filter((field) => field !== "careerGameLog")
+            .some((field) => sample.capabilities[field] !== true))
+        .map((sample) => ({ year: year.year, gamePk: sample.gamePk, date: sample.date,
+            reason: requiredData.filter((field) => field !== "careerGameLog")
+                .filter((field) => sample.capabilities[field] !== true).join(",") })))
+        .slice(0, 5000);
     return [recordType, {
         recordType,
         coverage: {
             coverageStartYear: null,
             coverageStartDate: null,
             candidateStartYear,
+            strictCoverageStartYear: null,
             endYear: 2026,
             verifiedThrough,
             status: "investigating",
             complete: false,
             requiredData,
             sampleVerifiedYears: verifiedYears,
+            completeAuditYears: completeYears,
             partialYears,
             unavailableYears,
+            knownGaps,
             insufficientData: mergedYearResults.map((year) => ({ year: year.year,
                 passingSamples: year.recordTypes[recordType].passing,
                 testedSamples: year.recordTypes[recordType].tested })),
@@ -210,7 +394,8 @@ const coverage = { schemaVersion: 1, generatedAt: now, verifiedThrough,
 const report = { generatedAt: now, startedAt: startedAt.toISOString(), finishedAt: now,
     apiRequests: Number(previousReport?.apiRequests || 0) + apiRequests,
     yearsRequested: [...new Set([...(previousReport?.yearsRequested ?? []), ...years])].sort((a, b) => b - a),
-    samplesPerYear, requirements: REQUIREMENTS, years: mergedYearResults };
+    auditMode: auditAllGames ? "all-games" : "sample", samplesPerYear, concurrency,
+    requirements: REQUIREMENTS, years: mergedYearResults };
 await atomicWrite(output, coverage);
 await atomicWrite(reportOutput, report);
 console.log(`Coverage investigation complete: ${apiRequests} API requests`);

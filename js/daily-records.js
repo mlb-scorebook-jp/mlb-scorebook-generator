@@ -410,6 +410,15 @@
         });
     };
 
+    // Older reconstructed feeds may synthesize only the decisive strikes for a
+    // strikeout (three apparent pitches with no balls).  Such events are useful
+    // for the play result, but cannot prove pitch-sequence records.
+    const hasVerifiedPitchSequence = (pitches) => pitches.length > 0 && pitches.every((pitch) =>
+        Boolean(pitch?.startTime || pitch?.endTime) ||
+        (Number.isFinite(Number(pitch?.pitchData?.coordinates?.pX)) &&
+            Number.isFinite(Number(pitch?.pitchData?.coordinates?.pZ)))
+    );
+
     const analyzeGame = async (game, playByPlay, boxscore, signal, { includeArticles = true } = {}) => {
         const records = [];
         const plays = (playByPlay?.allPlays ?? []).filter((play) => play?.about?.isComplete);
@@ -597,7 +606,7 @@
             const firstPitches = (firstPlay?.playEvents ?? []).filter((event) => event?.isPitch);
             if (number(firstPlay?.about?.inning) === 1 &&
                 text(firstPlay?.result?.eventType).toLowerCase() === "home_run" &&
-                firstPitches.length === 1) {
+                firstPitches.length === 1 && hasVerifiedPitchSequence(firstPitches)) {
                 records.push(makeRecord({
                     game, boxscore, recordType: "LEADOFF_FIRST_PITCH_HR", category: "individual",
                     player: firstPlay?.matchup?.batter, side,
@@ -661,7 +670,8 @@
                     evidence: `同一投手・同一イニングのstrikeout ${line.strikeouts}件`
                 }));
             }
-            const allStrikes = line.pitches.length === 9 && line.pitches.every((pitch) =>
+            const allStrikes = hasVerifiedPitchSequence(line.pitches) &&
+                line.pitches.length === 9 && line.pitches.every((pitch) =>
                 pitch?.details?.isStrike === true
             );
             if (line.plateAppearances === 3 && line.strikeouts === 3 && allStrikes) {
@@ -844,8 +854,11 @@
                 const hasNonPitcherPosition = (entry?.allPositions ?? []).some((position) =>
                     text(position?.type).toLowerCase() !== "pitcher"
                 );
-                const hasBattingOrder = Boolean(text(entry?.battingOrder));
-                if (hasNonPitcherPosition || hasBattingOrder) {
+                // Before the universal DH, ordinary pitchers also had a batting
+                // order slot.  A battingOrder value therefore does not prove a
+                // position player pitched; require an actual non-pitcher fielding
+                // position in this game's Boxscore.
+                if (hasNonPitcherPosition) {
                     positionCandidates.push({ side, playerId: number(pitcherId), entry });
                 }
             });
@@ -1265,7 +1278,12 @@
         close,
         thresholds: RECORD_THRESHOLDS,
         recordCatalog: RECORD_CATALOG,
-        archiveBuilder: Object.freeze({ analyzeGame, analyzeOneGame, fetchJapanesePlayers })
+        archiveBuilder: Object.freeze({
+            analyzeGame,
+            analyzeOneGame,
+            fetchJapanesePlayers,
+            japaneseCareerRecords
+        })
     });
 
     if (typeof document === "undefined") return;
