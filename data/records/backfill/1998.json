@@ -26848,7 +26848,7 @@
       "自己ワースト",
       "career worst"
     ],
-    "category": "japanese",
+    "category": "individual",
     "date": "1998-09-12",
     "season": 1998,
     "gameType": "R",
@@ -26886,7 +26886,7 @@
     "uniqueKey": "JAPANESE_CAREER_WORST:217678:118623:0:hitBatsmen",
     "archiveKey": "JAPANESE_CAREER_WORST:217678:118623:0:hitBatsmen",
     "description": "1与死球でキャリアワーストタイ",
-    "isJapanesePlayer": true,
+    "isJapanesePlayer": false,
     "apiConfirmed": true
   },
   {

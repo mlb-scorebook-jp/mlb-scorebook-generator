@@ -50,6 +50,7 @@ if (backfill) {
         .replace(/^const NHK_PLAYER_NAMES\s*=/, "globalThis.NHK_PLAYER_NAMES =");
     vm.runInThisContext(playerNamesSource, { filename: "js/players.js" });
     await import(path.join(ROOT, "js", "players-2026-updates.js"));
+    await import(path.join(ROOT, "js", "japanese-players.js"));
     await import(path.join(ROOT, "js", "records-archive.js"));
     await import(path.join(ROOT, "js", "daily-records.js"));
     analyzer = globalThis.DailyRecords?.archiveBuilder;

@@ -1959,7 +1959,7 @@
       "自己最多",
       "career high"
     ],
-    "category": "japanese",
+    "category": "individual",
     "date": "1995-05-09",
     "season": 1995,
     "gameType": "R",
@@ -1997,7 +1997,7 @@
     "uniqueKey": "JAPANESE_CAREER_HIGH:209078:118623:0:strikeOuts",
     "archiveKey": "JAPANESE_CAREER_HIGH:209078:118623:0:strikeOuts",
     "description": "1奪三振でキャリア最多タイ",
-    "isJapanesePlayer": true,
+    "isJapanesePlayer": false,
     "apiConfirmed": true
   },
   {
@@ -2262,7 +2262,7 @@
       "自己最多",
       "career high"
     ],
-    "category": "japanese",
+    "category": "individual",
     "date": "1995-05-11",
     "season": 1995,
     "gameType": "R",
@@ -2300,7 +2300,7 @@
     "uniqueKey": "JAPANESE_CAREER_HIGH:209103:118623:0:strikeOuts",
     "archiveKey": "JAPANESE_CAREER_HIGH:209103:118623:0:strikeOuts",
     "description": "1奪三振でキャリア最多タイ",
-    "isJapanesePlayer": true,
+    "isJapanesePlayer": false,
     "apiConfirmed": true
   },
   {
@@ -2310,7 +2310,7 @@
       "自己ワースト",
       "career worst"
     ],
-    "category": "japanese",
+    "category": "individual",
     "date": "1995-05-11",
     "season": 1995,
     "gameType": "R",
@@ -2348,7 +2348,7 @@
     "uniqueKey": "JAPANESE_CAREER_WORST:209103:118623:0:hitBatsmen",
     "archiveKey": "JAPANESE_CAREER_WORST:209103:118623:0:hitBatsmen",
     "description": "1与死球でキャリアワースト",
-    "isJapanesePlayer": true,
+    "isJapanesePlayer": false,
     "apiConfirmed": true
   },
   {
@@ -2880,7 +2880,7 @@
       "自己最多",
       "career high"
     ],
-    "category": "japanese",
+    "category": "individual",
     "date": "1995-05-15",
     "season": 1995,
     "gameType": "R",
@@ -2918,7 +2918,7 @@
     "uniqueKey": "JAPANESE_CAREER_HIGH:209156:118623:0:outs",
     "archiveKey": "JAPANESE_CAREER_HIGH:209156:118623:0:outs",
     "description": "2回でキャリア最多",
-    "isJapanesePlayer": true,
+    "isJapanesePlayer": false,
     "apiConfirmed": true
   },
   {
@@ -2928,7 +2928,7 @@
       "自己ワースト",
       "career worst"
     ],
-    "category": "japanese",
+    "category": "individual",
     "date": "1995-05-15",
     "season": 1995,
     "gameType": "R",
@@ -2966,7 +2966,7 @@
     "uniqueKey": "JAPANESE_CAREER_WORST:209156:118623:0:wildPitches",
     "archiveKey": "JAPANESE_CAREER_WORST:209156:118623:0:wildPitches",
     "description": "1暴投でキャリアワースト",
-    "isJapanesePlayer": true,
+    "isJapanesePlayer": false,
     "apiConfirmed": true
   },
   {
@@ -3510,7 +3510,7 @@
       "自己最多",
       "career high"
     ],
-    "category": "japanese",
+    "category": "individual",
     "date": "1995-05-18",
     "season": 1995,
     "gameType": "R",
@@ -3548,7 +3548,7 @@
     "uniqueKey": "JAPANESE_CAREER_HIGH:209193:118623:0:strikeOuts",
     "archiveKey": "JAPANESE_CAREER_HIGH:209193:118623:0:strikeOuts",
     "description": "1奪三振でキャリア最多タイ",
-    "isJapanesePlayer": true,
+    "isJapanesePlayer": false,
     "apiConfirmed": true
   },
   {
@@ -3558,7 +3558,7 @@
       "自己ワースト",
       "career worst"
     ],
-    "category": "japanese",
+    "category": "individual",
     "date": "1995-05-18",
     "season": 1995,
     "gameType": "R",
@@ -3596,7 +3596,7 @@
     "uniqueKey": "JAPANESE_CAREER_WORST:209193:118623:0:baseOnBalls",
     "archiveKey": "JAPANESE_CAREER_WORST:209193:118623:0:baseOnBalls",
     "description": "1与四球でキャリアワーストタイ",
-    "isJapanesePlayer": true,
+    "isJapanesePlayer": false,
     "apiConfirmed": true
   },
   {
@@ -3777,7 +3777,7 @@
       "自己最多",
       "career high"
     ],
-    "category": "japanese",
+    "category": "individual",
     "date": "1995-05-19",
     "season": 1995,
     "gameType": "R",
@@ -3815,7 +3815,7 @@
     "uniqueKey": "JAPANESE_CAREER_HIGH:209206:118623:0:outs",
     "archiveKey": "JAPANESE_CAREER_HIGH:209206:118623:0:outs",
     "description": "2回でキャリア最多タイ",
-    "isJapanesePlayer": true,
+    "isJapanesePlayer": false,
     "apiConfirmed": true
   },
   {
@@ -4939,7 +4939,7 @@
       "自己最多",
       "career high"
     ],
-    "category": "japanese",
+    "category": "individual",
     "date": "1995-05-27",
     "season": 1995,
     "gameType": "R",
@@ -4977,7 +4977,7 @@
     "uniqueKey": "JAPANESE_CAREER_HIGH:209302:118623:0:outs",
     "archiveKey": "JAPANESE_CAREER_HIGH:209302:118623:0:outs",
     "description": "2回でキャリア最多タイ",
-    "isJapanesePlayer": true,
+    "isJapanesePlayer": false,
     "apiConfirmed": true
   },
   {
@@ -5724,7 +5724,7 @@
       "自己ワースト",
       "career worst"
     ],
-    "category": "japanese",
+    "category": "individual",
     "date": "1995-05-30",
     "season": 1995,
     "gameType": "R",
@@ -5762,7 +5762,7 @@
     "uniqueKey": "JAPANESE_CAREER_WORST:209339:118623:0:baseOnBalls",
     "archiveKey": "JAPANESE_CAREER_WORST:209339:118623:0:baseOnBalls",
     "description": "3与四球でキャリアワースト",
-    "isJapanesePlayer": true,
+    "isJapanesePlayer": false,
     "apiConfirmed": true
   },
   {
@@ -7817,7 +7817,7 @@
       "自己最多",
       "career high"
     ],
-    "category": "japanese",
+    "category": "individual",
     "date": "1995-06-14",
     "season": 1995,
     "gameType": "R",
@@ -7855,7 +7855,7 @@
     "uniqueKey": "JAPANESE_CAREER_HIGH:209531:118623:0:outs",
     "archiveKey": "JAPANESE_CAREER_HIGH:209531:118623:0:outs",
     "description": "2回でキャリア最多タイ",
-    "isJapanesePlayer": true,
+    "isJapanesePlayer": false,
     "apiConfirmed": true
   },
   {
@@ -7961,7 +7961,7 @@
       "自己ワースト",
       "career worst"
     ],
-    "category": "japanese",
+    "category": "individual",
     "date": "1995-06-14",
     "season": 1995,
     "gameType": "R",
@@ -7999,7 +7999,7 @@
     "uniqueKey": "JAPANESE_CAREER_WORST:209531:118623:0:homeRuns",
     "archiveKey": "JAPANESE_CAREER_WORST:209531:118623:0:homeRuns",
     "description": "1被本塁打でキャリアワーストタイ",
-    "isJapanesePlayer": true,
+    "isJapanesePlayer": false,
     "apiConfirmed": true
   },
   {
@@ -8534,7 +8534,7 @@
       "自己最多",
       "career high"
     ],
-    "category": "japanese",
+    "category": "individual",
     "date": "1995-06-17",
     "season": 1995,
     "gameType": "R",
@@ -8572,7 +8572,7 @@
     "uniqueKey": "JAPANESE_CAREER_HIGH:209570:118623:0:outs",
     "archiveKey": "JAPANESE_CAREER_HIGH:209570:118623:0:outs",
     "description": "2回でキャリア最多タイ",
-    "isJapanesePlayer": true,
+    "isJapanesePlayer": false,
     "apiConfirmed": true
   },
   {
@@ -8582,7 +8582,7 @@
       "自己最多",
       "career high"
     ],
-    "category": "japanese",
+    "category": "individual",
     "date": "1995-06-17",
     "season": 1995,
     "gameType": "R",
@@ -8620,7 +8620,7 @@
     "uniqueKey": "JAPANESE_CAREER_HIGH:209570:118623:0:strikeOuts",
     "archiveKey": "JAPANESE_CAREER_HIGH:209570:118623:0:strikeOuts",
     "description": "3奪三振でキャリア最多",
-    "isJapanesePlayer": true,
+    "isJapanesePlayer": false,
     "apiConfirmed": true
   },
   {
@@ -8630,7 +8630,7 @@
       "自己ワースト",
       "career worst"
     ],
-    "category": "japanese",
+    "category": "individual",
     "date": "1995-06-17",
     "season": 1995,
     "gameType": "R",
@@ -8668,7 +8668,7 @@
     "uniqueKey": "JAPANESE_CAREER_WORST:209570:118623:0:earnedRuns",
     "archiveKey": "JAPANESE_CAREER_WORST:209570:118623:0:earnedRuns",
     "description": "4自責点でキャリアワーストタイ",
-    "isJapanesePlayer": true,
+    "isJapanesePlayer": false,
     "apiConfirmed": true
   },
   {
@@ -8678,7 +8678,7 @@
       "自己ワースト",
       "career worst"
     ],
-    "category": "japanese",
+    "category": "individual",
     "date": "1995-06-17",
     "season": 1995,
     "gameType": "R",
@@ -8716,7 +8716,7 @@
     "uniqueKey": "JAPANESE_CAREER_WORST:209570:118623:0:hits",
     "archiveKey": "JAPANESE_CAREER_WORST:209570:118623:0:hits",
     "description": "7被安打でキャリアワースト",
-    "isJapanesePlayer": true,
+    "isJapanesePlayer": false,
     "apiConfirmed": true
   },
   {
@@ -8726,7 +8726,7 @@
       "自己ワースト",
       "career worst"
     ],
-    "category": "japanese",
+    "category": "individual",
     "date": "1995-06-17",
     "season": 1995,
     "gameType": "R",
@@ -8764,7 +8764,7 @@
     "uniqueKey": "JAPANESE_CAREER_WORST:209570:118623:0:homeRuns",
     "archiveKey": "JAPANESE_CAREER_WORST:209570:118623:0:homeRuns",
     "description": "2被本塁打でキャリアワースト",
-    "isJapanesePlayer": true,
+    "isJapanesePlayer": false,
     "apiConfirmed": true
   },
   {
@@ -8774,7 +8774,7 @@
       "自己ワースト",
       "career worst"
     ],
-    "category": "japanese",
+    "category": "individual",
     "date": "1995-06-17",
     "season": 1995,
     "gameType": "R",
@@ -8812,7 +8812,7 @@
     "uniqueKey": "JAPANESE_CAREER_WORST:209570:118623:0:runs",
     "archiveKey": "JAPANESE_CAREER_WORST:209570:118623:0:runs",
     "description": "4失点でキャリアワーストタイ",
-    "isJapanesePlayer": true,
+    "isJapanesePlayer": false,
     "apiConfirmed": true
   },
   {
@@ -9949,7 +9949,7 @@
       "自己最多",
       "career high"
     ],
-    "category": "japanese",
+    "category": "individual",
     "date": "1995-06-28",
     "season": 1995,
     "gameType": "R",
@@ -9987,7 +9987,7 @@
     "uniqueKey": "JAPANESE_CAREER_HIGH:209713:118623:0:outs",
     "archiveKey": "JAPANESE_CAREER_HIGH:209713:118623:0:outs",
     "description": "2回でキャリア最多タイ",
-    "isJapanesePlayer": true,
+    "isJapanesePlayer": false,
     "apiConfirmed": true
   },
   {
@@ -10525,7 +10525,7 @@
       "自己最多",
       "career high"
     ],
-    "category": "japanese",
+    "category": "individual",
     "date": "1995-06-30",
     "season": 1995,
     "gameType": "R",
@@ -10563,7 +10563,7 @@
     "uniqueKey": "JAPANESE_CAREER_HIGH:209736:118623:0:outs",
     "archiveKey": "JAPANESE_CAREER_HIGH:209736:118623:0:outs",
     "description": "2回でキャリア最多タイ",
-    "isJapanesePlayer": true,
+    "isJapanesePlayer": false,
     "apiConfirmed": true
   },
   {
@@ -10573,7 +10573,7 @@
       "自己ワースト",
       "career worst"
     ],
-    "category": "japanese",
+    "category": "individual",
     "date": "1995-06-30",
     "season": 1995,
     "gameType": "R",
@@ -10611,7 +10611,7 @@
     "uniqueKey": "JAPANESE_CAREER_WORST:209736:118623:0:hitBatsmen",
     "archiveKey": "JAPANESE_CAREER_WORST:209736:118623:0:hitBatsmen",
     "description": "1与死球でキャリアワーストタイ",
-    "isJapanesePlayer": true,
+    "isJapanesePlayer": false,
     "apiConfirmed": true
   },
   {
@@ -11652,7 +11652,7 @@
       "自己ワースト",
       "career worst"
     ],
-    "category": "japanese",
+    "category": "individual",
     "date": "1995-07-06",
     "season": 1995,
     "gameType": "R",
@@ -11690,7 +11690,7 @@
     "uniqueKey": "JAPANESE_CAREER_WORST:209818:118623:0:wildPitches",
     "archiveKey": "JAPANESE_CAREER_WORST:209818:118623:0:wildPitches",
     "description": "1暴投でキャリアワーストタイ",
-    "isJapanesePlayer": true,
+    "isJapanesePlayer": false,
     "apiConfirmed": true
   },
   {
@@ -14481,7 +14481,7 @@
       "自己最多",
       "career high"
     ],
-    "category": "japanese",
+    "category": "individual",
     "date": "1995-07-28",
     "season": 1995,
     "gameType": "R",
@@ -14519,7 +14519,7 @@
     "uniqueKey": "JAPANESE_CAREER_HIGH:210090:118623:0:outs",
     "archiveKey": "JAPANESE_CAREER_HIGH:210090:118623:0:outs",
     "description": "2回でキャリア最多タイ",
-    "isJapanesePlayer": true,
+    "isJapanesePlayer": false,
     "apiConfirmed": true
   },
   {
@@ -15387,7 +15387,7 @@
       "自己最多",
       "career high"
     ],
-    "category": "japanese",
+    "category": "individual",
     "date": "1995-08-04",
     "season": 1995,
     "gameType": "R",
@@ -15425,7 +15425,7 @@
     "uniqueKey": "JAPANESE_CAREER_HIGH:210171:118623:0:outs",
     "archiveKey": "JAPANESE_CAREER_HIGH:210171:118623:0:outs",
     "description": "2回でキャリア最多タイ",
-    "isJapanesePlayer": true,
+    "isJapanesePlayer": false,
     "apiConfirmed": true
   },
   {
@@ -16855,7 +16855,7 @@
       "自己ワースト",
       "career worst"
     ],
-    "category": "japanese",
+    "category": "individual",
     "date": "1995-08-10",
     "season": 1995,
     "gameType": "R",
@@ -16893,7 +16893,7 @@
     "uniqueKey": "JAPANESE_CAREER_WORST:210253:118623:0:hitBatsmen",
     "archiveKey": "JAPANESE_CAREER_WORST:210253:118623:0:hitBatsmen",
     "description": "1与死球でキャリアワーストタイ",
-    "isJapanesePlayer": true,
+    "isJapanesePlayer": false,
     "apiConfirmed": true
   },
   {
@@ -17776,7 +17776,7 @@
       "自己最多",
       "career high"
     ],
-    "category": "japanese",
+    "category": "individual",
     "date": "1995-08-19",
     "season": 1995,
     "gameType": "R",
@@ -17814,7 +17814,7 @@
     "uniqueKey": "JAPANESE_CAREER_HIGH:210368:118623:0:outs",
     "archiveKey": "JAPANESE_CAREER_HIGH:210368:118623:0:outs",
     "description": "3回でキャリア最多",
-    "isJapanesePlayer": true,
+    "isJapanesePlayer": false,
     "apiConfirmed": true
   },
   {
@@ -18934,7 +18934,7 @@
       "自己ワースト",
       "career worst"
     ],
-    "category": "japanese",
+    "category": "individual",
     "date": "1995-08-25",
     "season": 1995,
     "gameType": "R",
@@ -18972,7 +18972,7 @@
     "uniqueKey": "JAPANESE_CAREER_WORST:210448:118623:0:earnedRuns",
     "archiveKey": "JAPANESE_CAREER_WORST:210448:118623:0:earnedRuns",
     "description": "6自責点でキャリアワースト",
-    "isJapanesePlayer": true,
+    "isJapanesePlayer": false,
     "apiConfirmed": true
   },
   {
@@ -18982,7 +18982,7 @@
       "自己ワースト",
       "career worst"
     ],
-    "category": "japanese",
+    "category": "individual",
     "date": "1995-08-25",
     "season": 1995,
     "gameType": "R",
@@ -19020,7 +19020,7 @@
     "uniqueKey": "JAPANESE_CAREER_WORST:210448:118623:0:hitBatsmen",
     "archiveKey": "JAPANESE_CAREER_WORST:210448:118623:0:hitBatsmen",
     "description": "1与死球でキャリアワーストタイ",
-    "isJapanesePlayer": true,
+    "isJapanesePlayer": false,
     "apiConfirmed": true
   },
   {
@@ -19030,7 +19030,7 @@
       "自己ワースト",
       "career worst"
     ],
-    "category": "japanese",
+    "category": "individual",
     "date": "1995-08-25",
     "season": 1995,
     "gameType": "R",
@@ -19068,7 +19068,7 @@
     "uniqueKey": "JAPANESE_CAREER_WORST:210448:118623:0:runs",
     "archiveKey": "JAPANESE_CAREER_WORST:210448:118623:0:runs",
     "description": "6失点でキャリアワースト",
-    "isJapanesePlayer": true,
+    "isJapanesePlayer": false,
     "apiConfirmed": true
   },
   {
@@ -19813,7 +19813,7 @@
       "自己ワースト",
       "career worst"
     ],
-    "category": "japanese",
+    "category": "individual",
     "date": "1995-08-27",
     "season": 1995,
     "gameType": "R",
@@ -19851,7 +19851,7 @@
     "uniqueKey": "JAPANESE_CAREER_WORST:210476:118623:0:baseOnBalls",
     "archiveKey": "JAPANESE_CAREER_WORST:210476:118623:0:baseOnBalls",
     "description": "3与四球でキャリアワーストタイ",
-    "isJapanesePlayer": true,
+    "isJapanesePlayer": false,
     "apiConfirmed": true
   },
   {
@@ -22270,7 +22270,7 @@
       "自己ワースト",
       "career worst"
     ],
-    "category": "japanese",
+    "category": "individual",
     "date": "1995-09-12",
     "season": 1995,
     "gameType": "R",
@@ -22308,7 +22308,7 @@
     "uniqueKey": "JAPANESE_CAREER_WORST:210683:118623:0:hitBatsmen",
     "archiveKey": "JAPANESE_CAREER_WORST:210683:118623:0:hitBatsmen",
     "description": "1与死球でキャリアワーストタイ",
-    "isJapanesePlayer": true,
+    "isJapanesePlayer": false,
     "apiConfirmed": true
   },
   {

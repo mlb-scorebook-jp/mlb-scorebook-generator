@@ -765,6 +765,7 @@
             `pregame:japanese:${season}`
         );
         return (payload?.people ?? []).filter((person) =>
+            globalThis.MLBJapanesePlayers?.isJapanesePlayer(person) ??
             String(person?.birthCountry ?? person?.country ?? "").toLowerCase() === "japan"
         );
     };
@@ -3585,9 +3586,8 @@
                 `pregame:player-profile-xref:${playerId}`
             ).catch(() => null);
             const battingProfile = battingProfilePayload?.people?.[0] ?? person;
-            const isJapanesePlayer = String(
-                battingProfile?.birthCountry ?? person?.birthCountry ?? ""
-            ).toLowerCase() === "japan";
+            const isJapanesePlayer = globalThis.MLBJapanesePlayers?.isJapanesePlayer(battingProfile) ??
+                String(battingProfile?.birthCountry ?? person?.birthCountry ?? "").toLowerCase() === "japan";
             const debutDate = /^\d{4}-\d{2}-\d{2}$/.test(String(battingProfile?.mlbDebutDate ?? ""))
                 ? battingProfile.mlbDebutDate
                 : `${season}-01-01`;

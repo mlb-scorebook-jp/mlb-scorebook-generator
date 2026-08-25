@@ -16947,7 +16947,7 @@
       "自己最多",
       "career high"
     ],
-    "category": "japanese",
+    "category": "individual",
     "date": "1990-09-10",
     "season": 1990,
     "gameType": "R",
@@ -16985,7 +16985,7 @@
     "uniqueKey": "JAPANESE_CAREER_HIGH:200552:112252:0:outs",
     "archiveKey": "JAPANESE_CAREER_HIGH:200552:112252:0:outs",
     "description": "1回でキャリア最多タイ",
-    "isJapanesePlayer": true,
+    "isJapanesePlayer": false,
     "apiConfirmed": true
   },
   {
@@ -16995,7 +16995,7 @@
       "自己最多",
       "career high"
     ],
-    "category": "japanese",
+    "category": "individual",
     "date": "1990-09-10",
     "season": 1990,
     "gameType": "R",
@@ -17033,7 +17033,7 @@
     "uniqueKey": "JAPANESE_CAREER_HIGH:200552:112252:0:strikeOuts",
     "archiveKey": "JAPANESE_CAREER_HIGH:200552:112252:0:strikeOuts",
     "description": "1奪三振でキャリア最多タイ",
-    "isJapanesePlayer": true,
+    "isJapanesePlayer": false,
     "apiConfirmed": true
   },
   {
@@ -17043,7 +17043,7 @@
       "自己ワースト",
       "career worst"
     ],
-    "category": "japanese",
+    "category": "individual",
     "date": "1990-09-10",
     "season": 1990,
     "gameType": "R",
@@ -17081,7 +17081,7 @@
     "uniqueKey": "JAPANESE_CAREER_WORST:200552:112252:0:baseOnBalls",
     "archiveKey": "JAPANESE_CAREER_WORST:200552:112252:0:baseOnBalls",
     "description": "1与四球でキャリアワーストタイ",
-    "isJapanesePlayer": true,
+    "isJapanesePlayer": false,
     "apiConfirmed": true
   },
   {
@@ -17347,7 +17347,7 @@
       "自己最多",
       "career high"
     ],
-    "category": "japanese",
+    "category": "individual",
     "date": "1990-09-12",
     "season": 1990,
     "gameType": "R",
@@ -17385,7 +17385,7 @@
     "uniqueKey": "JAPANESE_CAREER_HIGH:200577:112252:0:outs",
     "archiveKey": "JAPANESE_CAREER_HIGH:200577:112252:0:outs",
     "description": "1回でキャリア最多タイ",
-    "isJapanesePlayer": true,
+    "isJapanesePlayer": false,
     "apiConfirmed": true
   },
   {
@@ -17905,7 +17905,7 @@
       "自己最多",
       "career high"
     ],
-    "category": "japanese",
+    "category": "individual",
     "date": "1990-09-16",
     "season": 1990,
     "gameType": "R",
@@ -17943,7 +17943,7 @@
     "uniqueKey": "JAPANESE_CAREER_HIGH:200623:112252:0:outs",
     "archiveKey": "JAPANESE_CAREER_HIGH:200623:112252:0:outs",
     "description": "6回1/3でキャリア最多",
-    "isJapanesePlayer": true,
+    "isJapanesePlayer": false,
     "apiConfirmed": true
   },
   {
@@ -17953,7 +17953,7 @@
       "自己最多",
       "career high"
     ],
-    "category": "japanese",
+    "category": "individual",
     "date": "1990-09-16",
     "season": 1990,
     "gameType": "R",
@@ -17991,7 +17991,7 @@
     "uniqueKey": "JAPANESE_CAREER_HIGH:200623:112252:0:strikeOuts",
     "archiveKey": "JAPANESE_CAREER_HIGH:200623:112252:0:strikeOuts",
     "description": "6奪三振でキャリア最多",
-    "isJapanesePlayer": true,
+    "isJapanesePlayer": false,
     "apiConfirmed": true
   },
   {
@@ -18001,7 +18001,7 @@
       "自己ワースト",
       "career worst"
     ],
-    "category": "japanese",
+    "category": "individual",
     "date": "1990-09-16",
     "season": 1990,
     "gameType": "R",
@@ -18039,7 +18039,7 @@
     "uniqueKey": "JAPANESE_CAREER_WORST:200623:112252:0:hits",
     "archiveKey": "JAPANESE_CAREER_WORST:200623:112252:0:hits",
     "description": "1被安打でキャリアワースト",
-    "isJapanesePlayer": true,
+    "isJapanesePlayer": false,
     "apiConfirmed": true
   },
   {
@@ -19200,7 +19200,7 @@
       "自己ワースト",
       "career worst"
     ],
-    "category": "japanese",
+    "category": "individual",
     "date": "1990-09-27",
     "season": 1990,
     "gameType": "R",
@@ -19238,7 +19238,7 @@
     "uniqueKey": "JAPANESE_CAREER_WORST:200755:112252:0:baseOnBalls",
     "archiveKey": "JAPANESE_CAREER_WORST:200755:112252:0:baseOnBalls",
     "description": "2与四球でキャリアワースト",
-    "isJapanesePlayer": true,
+    "isJapanesePlayer": false,
     "apiConfirmed": true
   },
   {
@@ -19248,7 +19248,7 @@
       "自己ワースト",
       "career worst"
     ],
-    "category": "japanese",
+    "category": "individual",
     "date": "1990-09-27",
     "season": 1990,
     "gameType": "R",
@@ -19286,7 +19286,7 @@
     "uniqueKey": "JAPANESE_CAREER_WORST:200755:112252:0:hits",
     "archiveKey": "JAPANESE_CAREER_WORST:200755:112252:0:hits",
     "description": "1被安打でキャリアワーストタイ",
-    "isJapanesePlayer": true,
+    "isJapanesePlayer": false,
     "apiConfirmed": true
   },
   {
@@ -19296,7 +19296,7 @@
       "自己ワースト",
       "career worst"
     ],
-    "category": "japanese",
+    "category": "individual",
     "date": "1990-09-27",
     "season": 1990,
     "gameType": "R",
@@ -19334,7 +19334,7 @@
     "uniqueKey": "JAPANESE_CAREER_WORST:200755:112252:0:wildPitches",
     "archiveKey": "JAPANESE_CAREER_WORST:200755:112252:0:wildPitches",
     "description": "1暴投でキャリアワースト",
-    "isJapanesePlayer": true,
+    "isJapanesePlayer": false,
     "apiConfirmed": true
   },
   {
@@ -19563,7 +19563,7 @@
       "自己ワースト",
       "career worst"
     ],
-    "category": "japanese",
+    "category": "individual",
     "date": "1990-09-30",
     "season": 1990,
     "gameType": "R",
@@ -19601,7 +19601,7 @@
     "uniqueKey": "JAPANESE_CAREER_WORST:200790:112252:0:earnedRuns",
     "archiveKey": "JAPANESE_CAREER_WORST:200790:112252:0:earnedRuns",
     "description": "2自責点でキャリアワースト",
-    "isJapanesePlayer": true,
+    "isJapanesePlayer": false,
     "apiConfirmed": true
   },
   {
@@ -19611,7 +19611,7 @@
       "自己ワースト",
       "career worst"
     ],
-    "category": "japanese",
+    "category": "individual",
     "date": "1990-09-30",
     "season": 1990,
     "gameType": "R",
@@ -19649,7 +19649,7 @@
     "uniqueKey": "JAPANESE_CAREER_WORST:200790:112252:0:hits",
     "archiveKey": "JAPANESE_CAREER_WORST:200790:112252:0:hits",
     "description": "4被安打でキャリアワースト",
-    "isJapanesePlayer": true,
+    "isJapanesePlayer": false,
     "apiConfirmed": true
   },
   {
@@ -19659,7 +19659,7 @@
       "自己ワースト",
       "career worst"
     ],
-    "category": "japanese",
+    "category": "individual",
     "date": "1990-09-30",
     "season": 1990,
     "gameType": "R",
@@ -19697,7 +19697,7 @@
     "uniqueKey": "JAPANESE_CAREER_WORST:200790:112252:0:runs",
     "archiveKey": "JAPANESE_CAREER_WORST:200790:112252:0:runs",
     "description": "2失点でキャリアワースト",
-    "isJapanesePlayer": true,
+    "isJapanesePlayer": false,
     "apiConfirmed": true
   },
   {
@@ -20004,7 +20004,7 @@
       "自己ワースト",
       "career worst"
     ],
-    "category": "japanese",
+    "category": "individual",
     "date": "1990-10-03",
     "season": 1990,
     "gameType": "R",
@@ -20042,7 +20042,7 @@
     "uniqueKey": "JAPANESE_CAREER_WORST:200822:112252:0:wildPitches",
     "archiveKey": "JAPANESE_CAREER_WORST:200822:112252:0:wildPitches",
     "description": "1暴投でキャリアワーストタイ",
-    "isJapanesePlayer": true,
+    "isJapanesePlayer": false,
     "apiConfirmed": true
   },
   {

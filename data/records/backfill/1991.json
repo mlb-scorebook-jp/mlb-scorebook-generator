@@ -49,7 +49,7 @@
       "自己ワースト",
       "career worst"
     ],
-    "category": "japanese",
+    "category": "individual",
     "date": "1991-04-09",
     "season": 1991,
     "gameType": "R",
@@ -87,7 +87,7 @@
     "uniqueKey": "JAPANESE_CAREER_WORST:200845:112252:0:baseOnBalls",
     "archiveKey": "JAPANESE_CAREER_WORST:200845:112252:0:baseOnBalls",
     "description": "2与四球でキャリアワーストタイ",
-    "isJapanesePlayer": true,
+    "isJapanesePlayer": false,
     "apiConfirmed": true
   },
   {
@@ -741,7 +741,7 @@
       "自己ワースト",
       "career worst"
     ],
-    "category": "japanese",
+    "category": "individual",
     "date": "1991-04-14",
     "season": 1991,
     "gameType": "R",
@@ -779,7 +779,7 @@
     "uniqueKey": "JAPANESE_CAREER_WORST:200906:112252:0:baseOnBalls",
     "archiveKey": "JAPANESE_CAREER_WORST:200906:112252:0:baseOnBalls",
     "description": "2与四球でキャリアワーストタイ",
-    "isJapanesePlayer": true,
+    "isJapanesePlayer": false,
     "apiConfirmed": true
   },
   {
@@ -876,7 +876,7 @@
       "自己ワースト",
       "career worst"
     ],
-    "category": "japanese",
+    "category": "individual",
     "date": "1991-04-16",
     "season": 1991,
     "gameType": "R",
@@ -914,7 +914,7 @@
     "uniqueKey": "JAPANESE_CAREER_WORST:200928:112252:0:hitBatsmen",
     "archiveKey": "JAPANESE_CAREER_WORST:200928:112252:0:hitBatsmen",
     "description": "1与死球でキャリアワースト",
-    "isJapanesePlayer": true,
+    "isJapanesePlayer": false,
     "apiConfirmed": true
   },
   {
@@ -2218,7 +2218,7 @@
       "自己ワースト",
       "career worst"
     ],
-    "category": "japanese",
+    "category": "individual",
     "date": "1991-05-08",
     "season": 1991,
     "gameType": "R",
@@ -2256,7 +2256,7 @@
     "uniqueKey": "JAPANESE_CAREER_WORST:201157:112252:0:baseOnBalls",
     "archiveKey": "JAPANESE_CAREER_WORST:201157:112252:0:baseOnBalls",
     "description": "2与四球でキャリアワーストタイ",
-    "isJapanesePlayer": true,
+    "isJapanesePlayer": false,
     "apiConfirmed": true
   },
   {
@@ -2266,7 +2266,7 @@
       "自己ワースト",
       "career worst"
     ],
-    "category": "japanese",
+    "category": "individual",
     "date": "1991-05-08",
     "season": 1991,
     "gameType": "R",
@@ -2304,7 +2304,7 @@
     "uniqueKey": "JAPANESE_CAREER_WORST:201157:112252:0:earnedRuns",
     "archiveKey": "JAPANESE_CAREER_WORST:201157:112252:0:earnedRuns",
     "description": "3自責点でキャリアワースト",
-    "isJapanesePlayer": true,
+    "isJapanesePlayer": false,
     "apiConfirmed": true
   },
   {
@@ -2314,7 +2314,7 @@
       "自己ワースト",
       "career worst"
     ],
-    "category": "japanese",
+    "category": "individual",
     "date": "1991-05-08",
     "season": 1991,
     "gameType": "R",
@@ -2352,7 +2352,7 @@
     "uniqueKey": "JAPANESE_CAREER_WORST:201157:112252:0:runs",
     "archiveKey": "JAPANESE_CAREER_WORST:201157:112252:0:runs",
     "description": "3失点でキャリアワースト",
-    "isJapanesePlayer": true,
+    "isJapanesePlayer": false,
     "apiConfirmed": true
   },
   {
@@ -2575,7 +2575,7 @@
       "自己ワースト",
       "career worst"
     ],
-    "category": "japanese",
+    "category": "individual",
     "date": "1991-05-12",
     "season": 1991,
     "gameType": "R",
@@ -2613,7 +2613,7 @@
     "uniqueKey": "JAPANESE_CAREER_WORST:201209:112252:0:baseOnBalls",
     "archiveKey": "JAPANESE_CAREER_WORST:201209:112252:0:baseOnBalls",
     "description": "2与四球でキャリアワーストタイ",
-    "isJapanesePlayer": true,
+    "isJapanesePlayer": false,
     "apiConfirmed": true
   },
   {
@@ -3700,7 +3700,7 @@
       "自己ワースト",
       "career worst"
     ],
-    "category": "japanese",
+    "category": "individual",
     "date": "1991-05-24",
     "season": 1991,
     "gameType": "R",
@@ -3738,7 +3738,7 @@
     "uniqueKey": "JAPANESE_CAREER_WORST:201338:112252:0:baseOnBalls",
     "archiveKey": "JAPANESE_CAREER_WORST:201338:112252:0:baseOnBalls",
     "description": "2与四球でキャリアワーストタイ",
-    "isJapanesePlayer": true,
+    "isJapanesePlayer": false,
     "apiConfirmed": true
   },
   {
@@ -3917,7 +3917,7 @@
       "自己ワースト",
       "career worst"
     ],
-    "category": "japanese",
+    "category": "individual",
     "date": "1991-05-26",
     "season": 1991,
     "gameType": "R",
@@ -3955,7 +3955,7 @@
     "uniqueKey": "JAPANESE_CAREER_WORST:201364:112252:0:homeRuns",
     "archiveKey": "JAPANESE_CAREER_WORST:201364:112252:0:homeRuns",
     "description": "1被本塁打でキャリアワースト",
-    "isJapanesePlayer": true,
+    "isJapanesePlayer": false,
     "apiConfirmed": true
   },
   {
@@ -4391,7 +4391,7 @@
       "自己ワースト",
       "career worst"
     ],
-    "category": "japanese",
+    "category": "individual",
     "date": "1991-05-31",
     "season": 1991,
     "gameType": "R",
@@ -4429,7 +4429,7 @@
     "uniqueKey": "JAPANESE_CAREER_WORST:201431:112252:0:baseOnBalls",
     "archiveKey": "JAPANESE_CAREER_WORST:201431:112252:0:baseOnBalls",
     "description": "2与四球でキャリアワーストタイ",
-    "isJapanesePlayer": true,
+    "isJapanesePlayer": false,
     "apiConfirmed": true
   },
   {
@@ -4740,7 +4740,7 @@
       "自己ワースト",
       "career worst"
     ],
-    "category": "japanese",
+    "category": "individual",
     "date": "1991-06-05",
     "season": 1991,
     "gameType": "R",
@@ -4778,7 +4778,7 @@
     "uniqueKey": "JAPANESE_CAREER_WORST:201480:112252:0:hitBatsmen",
     "archiveKey": "JAPANESE_CAREER_WORST:201480:112252:0:hitBatsmen",
     "description": "1与死球でキャリアワーストタイ",
-    "isJapanesePlayer": true,
+    "isJapanesePlayer": false,
     "apiConfirmed": true
   },
   {
@@ -5559,7 +5559,7 @@
       "自己ワースト",
       "career worst"
     ],
-    "category": "japanese",
+    "category": "individual",
     "date": "1991-06-12",
     "season": 1991,
     "gameType": "R",
@@ -5597,7 +5597,7 @@
     "uniqueKey": "JAPANESE_CAREER_WORST:201567:112252:0:homeRuns",
     "archiveKey": "JAPANESE_CAREER_WORST:201567:112252:0:homeRuns",
     "description": "1被本塁打でキャリアワーストタイ",
-    "isJapanesePlayer": true,
+    "isJapanesePlayer": false,
     "apiConfirmed": true
   },
   {
@@ -6767,7 +6767,7 @@
       "自己ワースト",
       "career worst"
     ],
-    "category": "japanese",
+    "category": "individual",
     "date": "1991-06-20",
     "season": 1991,
     "gameType": "R",
@@ -6805,7 +6805,7 @@
     "uniqueKey": "JAPANESE_CAREER_WORST:201669:112252:0:wildPitches",
     "archiveKey": "JAPANESE_CAREER_WORST:201669:112252:0:wildPitches",
     "description": "1暴投でキャリアワーストタイ",
-    "isJapanesePlayer": true,
+    "isJapanesePlayer": false,
     "apiConfirmed": true
   },
   {
@@ -7768,7 +7768,7 @@
       "自己ワースト",
       "career worst"
     ],
-    "category": "japanese",
+    "category": "individual",
     "date": "1991-06-27",
     "season": 1991,
     "gameType": "R",
@@ -7806,7 +7806,7 @@
     "uniqueKey": "JAPANESE_CAREER_WORST:201752:112252:0:baseOnBalls",
     "archiveKey": "JAPANESE_CAREER_WORST:201752:112252:0:baseOnBalls",
     "description": "3与四球でキャリアワースト",
-    "isJapanesePlayer": true,
+    "isJapanesePlayer": false,
     "apiConfirmed": true
   },
   {
@@ -7816,7 +7816,7 @@
       "自己ワースト",
       "career worst"
     ],
-    "category": "japanese",
+    "category": "individual",
     "date": "1991-06-27",
     "season": 1991,
     "gameType": "R",
@@ -7854,7 +7854,7 @@
     "uniqueKey": "JAPANESE_CAREER_WORST:201752:112252:0:earnedRuns",
     "archiveKey": "JAPANESE_CAREER_WORST:201752:112252:0:earnedRuns",
     "description": "4自責点でキャリアワースト",
-    "isJapanesePlayer": true,
+    "isJapanesePlayer": false,
     "apiConfirmed": true
   },
   {
@@ -7864,7 +7864,7 @@
       "自己ワースト",
       "career worst"
     ],
-    "category": "japanese",
+    "category": "individual",
     "date": "1991-06-27",
     "season": 1991,
     "gameType": "R",
@@ -7902,7 +7902,7 @@
     "uniqueKey": "JAPANESE_CAREER_WORST:201752:112252:0:homeRuns",
     "archiveKey": "JAPANESE_CAREER_WORST:201752:112252:0:homeRuns",
     "description": "1被本塁打でキャリアワーストタイ",
-    "isJapanesePlayer": true,
+    "isJapanesePlayer": false,
     "apiConfirmed": true
   },
   {
@@ -7912,7 +7912,7 @@
       "自己ワースト",
       "career worst"
     ],
-    "category": "japanese",
+    "category": "individual",
     "date": "1991-06-27",
     "season": 1991,
     "gameType": "R",
@@ -7950,7 +7950,7 @@
     "uniqueKey": "JAPANESE_CAREER_WORST:201752:112252:0:runs",
     "archiveKey": "JAPANESE_CAREER_WORST:201752:112252:0:runs",
     "description": "4失点でキャリアワースト",
-    "isJapanesePlayer": true,
+    "isJapanesePlayer": false,
     "apiConfirmed": true
   },
   {
@@ -8607,7 +8607,7 @@
       "自己ワースト",
       "career worst"
     ],
-    "category": "japanese",
+    "category": "individual",
     "date": "1991-07-01",
     "season": 1991,
     "gameType": "R",
@@ -8645,7 +8645,7 @@
     "uniqueKey": "JAPANESE_CAREER_WORST:201798:112252:0:homeRuns",
     "archiveKey": "JAPANESE_CAREER_WORST:201798:112252:0:homeRuns",
     "description": "1被本塁打でキャリアワーストタイ",
-    "isJapanesePlayer": true,
+    "isJapanesePlayer": false,
     "apiConfirmed": true
   },
   {
@@ -8998,7 +8998,7 @@
       "自己ワースト",
       "career worst"
     ],
-    "category": "japanese",
+    "category": "individual",
     "date": "1991-07-05",
     "season": 1991,
     "gameType": "R",
@@ -9036,7 +9036,7 @@
     "uniqueKey": "JAPANESE_CAREER_WORST:201853:112252:0:homeRuns",
     "archiveKey": "JAPANESE_CAREER_WORST:201853:112252:0:homeRuns",
     "description": "1被本塁打でキャリアワーストタイ",
-    "isJapanesePlayer": true,
+    "isJapanesePlayer": false,
     "apiConfirmed": true
   },
   {
@@ -12131,7 +12131,7 @@
       "自己ワースト",
       "career worst"
     ],
-    "category": "japanese",
+    "category": "individual",
     "date": "1991-07-31",
     "season": 1991,
     "gameType": "R",
@@ -12169,7 +12169,7 @@
     "uniqueKey": "JAPANESE_CAREER_WORST:202127:112252:0:homeRuns",
     "archiveKey": "JAPANESE_CAREER_WORST:202127:112252:0:homeRuns",
     "description": "1被本塁打でキャリアワーストタイ",
-    "isJapanesePlayer": true,
+    "isJapanesePlayer": false,
     "apiConfirmed": true
   },
   {
@@ -13126,7 +13126,7 @@
       "自己ワースト",
       "career worst"
     ],
-    "category": "japanese",
+    "category": "individual",
     "date": "1991-08-11",
     "season": 1991,
     "gameType": "R",
@@ -13164,7 +13164,7 @@
     "uniqueKey": "JAPANESE_CAREER_WORST:202262:112252:0:hitBatsmen",
     "archiveKey": "JAPANESE_CAREER_WORST:202262:112252:0:hitBatsmen",
     "description": "1与死球でキャリアワーストタイ",
-    "isJapanesePlayer": true,
+    "isJapanesePlayer": false,
     "apiConfirmed": true
   },
   {
@@ -13776,7 +13776,7 @@
       "自己ワースト",
       "career worst"
     ],
-    "category": "japanese",
+    "category": "individual",
     "date": "1991-08-19",
     "season": 1991,
     "gameType": "R",
@@ -13814,7 +13814,7 @@
     "uniqueKey": "JAPANESE_CAREER_WORST:202363:112252:0:homeRuns",
     "archiveKey": "JAPANESE_CAREER_WORST:202363:112252:0:homeRuns",
     "description": "1被本塁打でキャリアワーストタイ",
-    "isJapanesePlayer": true,
+    "isJapanesePlayer": false,
     "apiConfirmed": true
   },
   {
@@ -15234,7 +15234,7 @@
       "自己ワースト",
       "career worst"
     ],
-    "category": "japanese",
+    "category": "individual",
     "date": "1991-09-06",
     "season": 1991,
     "gameType": "R",
@@ -15272,7 +15272,7 @@
     "uniqueKey": "JAPANESE_CAREER_WORST:202575:112252:0:baseOnBalls",
     "archiveKey": "JAPANESE_CAREER_WORST:202575:112252:0:baseOnBalls",
     "description": "3与四球でキャリアワーストタイ",
-    "isJapanesePlayer": true,
+    "isJapanesePlayer": false,
     "apiConfirmed": true
   },
   {
@@ -15282,7 +15282,7 @@
       "自己ワースト",
       "career worst"
     ],
-    "category": "japanese",
+    "category": "individual",
     "date": "1991-09-06",
     "season": 1991,
     "gameType": "R",
@@ -15320,7 +15320,7 @@
     "uniqueKey": "JAPANESE_CAREER_WORST:202575:112252:0:wildPitches",
     "archiveKey": "JAPANESE_CAREER_WORST:202575:112252:0:wildPitches",
     "description": "1暴投でキャリアワーストタイ",
-    "isJapanesePlayer": true,
+    "isJapanesePlayer": false,
     "apiConfirmed": true
   },
   {
@@ -16929,7 +16929,7 @@
       "自己ワースト",
       "career worst"
     ],
-    "category": "japanese",
+    "category": "individual",
     "date": "1991-09-29",
     "season": 1991,
     "gameType": "R",
@@ -16967,7 +16967,7 @@
     "uniqueKey": "JAPANESE_CAREER_WORST:202853:112252:0:hitBatsmen",
     "archiveKey": "JAPANESE_CAREER_WORST:202853:112252:0:hitBatsmen",
     "description": "1与死球でキャリアワーストタイ",
-    "isJapanesePlayer": true,
+    "isJapanesePlayer": false,
     "apiConfirmed": true
   },
   {
@@ -17105,7 +17105,7 @@
       "自己ワースト",
       "career worst"
     ],
-    "category": "japanese",
+    "category": "individual",
     "date": "1991-10-02",
     "season": 1991,
     "gameType": "R",
@@ -17143,7 +17143,7 @@
     "uniqueKey": "JAPANESE_CAREER_WORST:202891:112252:0:homeRuns",
     "archiveKey": "JAPANESE_CAREER_WORST:202891:112252:0:homeRuns",
     "description": "1被本塁打でキャリアワーストタイ",
-    "isJapanesePlayer": true,
+    "isJapanesePlayer": false,
     "apiConfirmed": true
   },
   {

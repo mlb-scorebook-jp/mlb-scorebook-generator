@@ -182,6 +182,7 @@
             signal
         );
         const players = (data?.people ?? []).filter((person) =>
+            globalThis.MLBJapanesePlayers?.isJapanesePlayer(person) ??
             text(person?.birthCountry ?? person?.country).toLowerCase() === "japan"
         );
         return new Map(players.map((person) => [number(person.id), person]));
@@ -1014,7 +1015,14 @@
         subject.className = "daily-record-subject";
         subject.textContent = record.playerName ||
             `${record.teamCode} 対 ${record.opponentCode || "相手"}`;
+        const achievedDate = document.createElement("time");
+        achievedDate.className = "daily-record-date";
+        achievedDate.dateTime = text(record.date);
+        achievedDate.textContent = /^\d{4}-\d{2}-\d{2}$/.test(text(record.date))
+            ? text(record.date).replaceAll("-", "/")
+            : "";
         header.append(team, subject);
+        if (achievedDate.textContent) header.append(achievedDate);
         const fact = document.createElement("p");
         fact.className = "daily-record-fact";
         fact.textContent = record.fact;

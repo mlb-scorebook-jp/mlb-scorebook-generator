@@ -35,6 +35,7 @@
     let coverage = { records: {} };
     let records = [];
     let sharedArchiveKeys = new Set();
+    const LOAD_BATCH_SIZE = 6;
 
     const text = (value) => String(value ?? "").trim();
     const number = (value) => Number.isFinite(Number(value)) ? Number(value) : 0;
@@ -123,6 +124,24 @@
         if (!response.ok) throw new Error(String(response.status));
         return response.json();
     };
+    const archiveSources = () => {
+        if (Array.isArray(metadata.archives)) return metadata.archives
+            .map((entry) => ({ year: number(entry?.year), path: text(entry?.path) }))
+            .filter((entry) => entry.year && entry.path);
+        return (Array.isArray(metadata.years) ? metadata.years : [])
+            .map((year) => ({ year: number(year), path: `${number(year)}.json` }));
+    };
+    const loadYearlyArchives = async () => {
+        const sources = archiveSources();
+        const yearly = [];
+        for (let start = 0; start < sources.length; start += LOAD_BATCH_SIZE) {
+            const batch = sources.slice(start, start + LOAD_BATCH_SIZE);
+            yearly.push(...await Promise.all(batch.map(({ path }) =>
+                fetchJson(`data/records/${path}`).catch(() => [])
+            )));
+        }
+        return yearly.flat();
+    };
     const load = async () => {
         if (loaded) return records;
         if (loadPromise) return loadPromise;
@@ -133,11 +152,7 @@
                     fetchJson(INDEX_URL),
                     fetchJson(COVERAGE_URL).catch(() => ({ records: {} }))
                 ]);
-                const years = Array.isArray(metadata.years) ? metadata.years : [];
-                const yearly = await Promise.all(years.map((year) =>
-                    fetchJson(`data/records/${year}.json`).catch(() => [])
-                ));
-                shared = yearly.flat();
+                shared = await loadYearlyArchives();
             } catch (_error) {
                 // file:// preview may not allow JSON fetch; the local overlay remains usable.
             }
@@ -174,6 +189,7 @@
         record.description,
         record.fact,
         record.date,
+        text(record.date).replaceAll("-", "/"),
         record.season,
         record.isJapanesePlayer ? "日本人" : ""
     ].join(" "));
@@ -226,6 +242,7 @@
         load, absorb, search, previous, rangeLabel, archiveKey, normalizeSearch,
         buildArchiveForDateRange, gamedayUrlForGame, repairGamedayUrl,
         coverageFor,
+        getMetadata: () => ({ ...metadata }),
         getAll: () => [...records]
     });
 })();

@@ -18564,7 +18564,7 @@
       "自己最多",
       "career high"
     ],
-    "category": "japanese",
+    "category": "individual",
     "date": "1996-07-16",
     "season": 1996,
     "gameType": "R",
@@ -18602,7 +18602,7 @@
     "uniqueKey": "JAPANESE_CAREER_HIGH:212218:118623:0:outs",
     "archiveKey": "JAPANESE_CAREER_HIGH:212218:118623:0:outs",
     "description": "3回でキャリア最多タイ",
-    "isJapanesePlayer": true,
+    "isJapanesePlayer": false,
     "apiConfirmed": true
   },
   {
@@ -18612,7 +18612,7 @@
       "自己ワースト",
       "career worst"
     ],
-    "category": "japanese",
+    "category": "individual",
     "date": "1996-07-16",
     "season": 1996,
     "gameType": "R",
@@ -18650,7 +18650,7 @@
     "uniqueKey": "JAPANESE_CAREER_WORST:212218:118623:0:earnedRuns",
     "archiveKey": "JAPANESE_CAREER_WORST:212218:118623:0:earnedRuns",
     "description": "9自責点でキャリアワースト",
-    "isJapanesePlayer": true,
+    "isJapanesePlayer": false,
     "apiConfirmed": true
   },
   {
@@ -18660,7 +18660,7 @@
       "自己ワースト",
       "career worst"
     ],
-    "category": "japanese",
+    "category": "individual",
     "date": "1996-07-16",
     "season": 1996,
     "gameType": "R",
@@ -18698,7 +18698,7 @@
     "uniqueKey": "JAPANESE_CAREER_WORST:212218:118623:0:hits",
     "archiveKey": "JAPANESE_CAREER_WORST:212218:118623:0:hits",
     "description": "9被安打でキャリアワースト",
-    "isJapanesePlayer": true,
+    "isJapanesePlayer": false,
     "apiConfirmed": true
   },
   {
@@ -18708,7 +18708,7 @@
       "自己ワースト",
       "career worst"
     ],
-    "category": "japanese",
+    "category": "individual",
     "date": "1996-07-16",
     "season": 1996,
     "gameType": "R",
@@ -18746,7 +18746,7 @@
     "uniqueKey": "JAPANESE_CAREER_WORST:212218:118623:0:homeRuns",
     "archiveKey": "JAPANESE_CAREER_WORST:212218:118623:0:homeRuns",
     "description": "3被本塁打でキャリアワースト",
-    "isJapanesePlayer": true,
+    "isJapanesePlayer": false,
     "apiConfirmed": true
   },
   {
@@ -18756,7 +18756,7 @@
       "自己ワースト",
       "career worst"
     ],
-    "category": "japanese",
+    "category": "individual",
     "date": "1996-07-16",
     "season": 1996,
     "gameType": "R",
@@ -18794,7 +18794,7 @@
     "uniqueKey": "JAPANESE_CAREER_WORST:212218:118623:0:runs",
     "archiveKey": "JAPANESE_CAREER_WORST:212218:118623:0:runs",
     "description": "9失点でキャリアワースト",
-    "isJapanesePlayer": true,
+    "isJapanesePlayer": false,
     "apiConfirmed": true
   },
   {
