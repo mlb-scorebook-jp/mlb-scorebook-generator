@@ -2,7 +2,120 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
-        "headline": "Fairbanks's nerve irritation issue arises again, exits in 9th inning",
+        "headline": "Down under: Red Sox's rally sparked by bottom of lineup",
+        "summaryJa": "M.ギャスパー（BOS）の最新動向をMLB公式が詳報",
+        "slug": "red-sox-get-offensive-boost-from-bottom-of-the-order",
+        "url": "https://www.mlb.com/news/red-sox-get-offensive-boost-from-bottom-of-the-order",
+        "contentDate": "2026-08-25T03:57:00Z",
+        "teamIds": [
+            111
+        ],
+        "playerIds": [
+            681508,
+            678011
+        ],
+        "gamePks": [
+            823828
+        ],
+        "taxonomy": [
+            "apple-news",
+            "game-recap"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Espada back with Astros after family emergency, will manage opener in Bronx",
+        "summaryJa": "J.エスパーダ（HOU）、復帰へ向けた最新状況",
+        "slug": "joe-espada-to-return-after-family-emergency",
+        "url": "https://www.mlb.com/news/joe-espada-to-return-after-family-emergency",
+        "contentDate": "2026-08-25T03:50:00Z",
+        "teamIds": [
+            117
+        ],
+        "playerIds": [
+            440053
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Tovar avoids serious wrist injury as Rockies unravel in loss",
+        "summaryJa": "E.トバ―（COL）の負傷状況をMLB公式が詳報",
+        "slug": "ezequiel-tovar-left-wrist-injury-rockies",
+        "url": "https://www.mlb.com/news/ezequiel-tovar-left-wrist-injury-rockies",
+        "contentDate": "2026-08-25T03:46:00Z",
+        "teamIds": [
+            115
+        ],
+        "playerIds": [
+            678662
+        ],
+        "gamePks": [
+            822695
+        ],
+        "taxonomy": [
+            "apple-news",
+            "injury"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "GM Dana Brown, Astros mutually agree to part ways",
+        "summaryJa": "アストロズの最新動向をMLB公式が詳報",
+        "slug": "dana-brown-astros-part-ways",
+        "url": "https://www.mlb.com/news/dana-brown-astros-part-ways",
+        "contentDate": "2026-08-25T03:45:00Z",
+        "teamIds": [
+            117
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "'Now we go': With Abrams back in the lineup, Nats' bats come alive",
+        "summaryJa": "C.エイブラムズ（WSH）、復帰へ向けた最新状況",
+        "slug": "nationals-offense-breaks-out-in-cj-abrams-return-to-lineup",
+        "url": "https://www.mlb.com/news/nationals-offense-breaks-out-in-cj-abrams-return-to-lineup",
+        "contentDate": "2026-08-25T03:36:00Z",
+        "teamIds": [
+            120
+        ],
+        "playerIds": [
+            682928,
+            695734
+        ],
+        "gamePks": [
+            822695
+        ],
+        "taxonomy": [
+            "apple-news",
+            "game-recap"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Fairbanks' nerve irritation issue arises again, exits in 9th inning",
         "summaryJa": "P.フェアバンクス（MIA）の負傷状況をMLB公式が詳報",
         "slug": "pete-fairbanks-exits-with-injury-in-ninth-inning",
         "url": "https://www.mlb.com/news/pete-fairbanks-exits-with-injury-in-ninth-inning",
@@ -226,31 +339,6 @@
         ]
     },
     {
-        "headline": "Nats' bats wake up with 13-run outburst against Rockies",
-        "summaryJa": "C.エイブラムズ（WSH）、復帰へ向けた最新状況",
-        "slug": "nationals-offense-breaks-out-in-cj-abrams-return-to-lineup",
-        "url": "https://www.mlb.com/news/nationals-offense-breaks-out-in-cj-abrams-return-to-lineup",
-        "contentDate": "2026-08-25T01:59:14.276Z",
-        "teamIds": [
-            120
-        ],
-        "playerIds": [
-            682928,
-            695734
-        ],
-        "gamePks": [
-            822695
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
         "headline": "DeLauter (left hamstring tightness) scratched vs. Angels",
         "summaryJa": "C.デローター（CLE）の負傷状況をMLB公式が詳報",
         "slug": "chase-delauter-scratched-due-to-hamstring-injury",
@@ -271,54 +359,6 @@
         ],
         "sourceScopes": [
             "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Down under: Red Sox's rally sparked by bottom of lineup",
-        "summaryJa": "M.ギャスパー（BOS）の最新動向をMLB公式が詳報",
-        "slug": "red-sox-get-offensive-boost-from-bottom-of-the-order",
-        "url": "https://www.mlb.com/news/red-sox-get-offensive-boost-from-bottom-of-the-order",
-        "contentDate": "2026-08-25T01:56:30.79Z",
-        "teamIds": [
-            111
-        ],
-        "playerIds": [
-            681508,
-            678011
-        ],
-        "gamePks": [
-            823828
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Tovar exits with strained left wrist after diving attempt",
-        "summaryJa": "E.トバ―（COL）の負傷状況をMLB公式が詳報",
-        "slug": "ezequiel-tovar-left-wrist-injury-rockies",
-        "url": "https://www.mlb.com/news/ezequiel-tovar-left-wrist-injury-rockies",
-        "contentDate": "2026-08-25T01:54:00Z",
-        "teamIds": [
-            115
-        ],
-        "playerIds": [
-            678662
-        ],
-        "gamePks": [
-            822695
-        ],
-        "taxonomy": [
-            "apple-news",
-            "injury"
-        ],
-        "sourceScopes": [
             "球団公式"
         ]
     },
@@ -499,7 +539,7 @@
         ]
     },
     {
-        "headline": "These 10 farm systems have the best outfield prospects",
+        "headline": "Top 10 farm systems by outfield prospects",
         "summaryJa": "MLBの最新情報ら注目選手の最新動向",
         "slug": "top-10-organizations-based-on-outfield-prospects-2026",
         "url": "https://www.mlb.com/news/top-10-organizations-based-on-outfield-prospects-2026",
@@ -574,27 +614,6 @@
             "exclude-from-personalization"
         ],
         "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Espada back with Astros after family emergency, will manage opener in Bronx",
-        "summaryJa": "J.エスパーダ（HOU）、復帰へ向けた最新状況",
-        "slug": "joe-espada-to-return-after-family-emergency",
-        "url": "https://www.mlb.com/news/joe-espada-to-return-after-family-emergency",
-        "contentDate": "2026-08-24T23:37:13.935Z",
-        "teamIds": [
-            117
-        ],
-        "playerIds": [
-            440053
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -730,25 +749,6 @@
             "mlb-top-prospects"
         ],
         "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "GM Dana Brown, Astros mutually agree to part ways",
-        "summaryJa": "アストロズの最新動向をMLB公式が詳報",
-        "slug": "dana-brown-astros-part-ways",
-        "url": "https://www.mlb.com/news/dana-brown-astros-part-ways",
-        "contentDate": "2026-08-24T22:47:00Z",
-        "teamIds": [
-            117
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
