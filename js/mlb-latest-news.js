@@ -2,6 +2,29 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "This key change(up) could unlock big success for A's prospect",
+        "summaryJa": "J.アーノルド（ATH）ら注目選手の最新動向",
+        "slug": "athletics-prospect-jamie-arnold-talks-throwing-more-changeups",
+        "url": "https://www.mlb.com/news/athletics-prospect-jamie-arnold-talks-throwing-more-changeups",
+        "contentDate": "2026-08-25T17:59:17.657Z",
+        "teamIds": [
+            133
+        ],
+        "playerIds": [
+            701364
+        ],
+        "gamePks": [
+            824962
+        ],
+        "taxonomy": [
+            "mlb-top-prospects",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Glasnow set for return to Dodgers, making first start since May 6",
         "summaryJa": "T.グラスナウ（LAD）、復帰へ向けた最新状況",
         "slug": "tyler-glasnow-return-dodgers-rotation",
@@ -90,7 +113,7 @@
         ]
     },
     {
-        "headline": "This extra-innings thriller ended on a ... hit-by-pitch?",
+        "headline": "This extra-innings thriller ended on a ... hit-by-pitch K?",
         "summaryJa": "パイレーツ、マウンドで好投",
         "slug": "pirates-win-over-padres-ends-in-wacky-hit-by-pitch-strikeout",
         "url": "https://www.mlb.com/news/pirates-win-over-padres-ends-in-wacky-hit-by-pitch-strikeout",
@@ -218,6 +241,25 @@
         "sourceScopes": [
             "MLB",
             "球団公式"
+        ]
+    },
+    {
+        "headline": "How Chicago's 'Take Me Out to the Ballgame' tradition has stood the test of time",
+        "summaryJa": "カブスを巡る注目点をMLB公式が分析",
+        "slug": "why-cubs-fans-sing-take-me-out-to-the-ballgame",
+        "url": "https://www.mlb.com/news/why-cubs-fans-sing-take-me-out-to-the-ballgame",
+        "contentDate": "2026-08-25T14:51:00Z",
+        "teamIds": [
+            112
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "evergreen",
+            "50-stories-50-states"
+        ],
+        "sourceScopes": [
+            "MLB"
         ]
     },
     {
@@ -1014,7 +1056,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -9296,29 +9337,6 @@
             "injury",
             "apple-news",
             "transactions"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Bolte's adjustments evident in near-cycle as hot streak continues",
-        "summaryJa": "H.ボルティー（ATH）の最新動向をMLB公式が詳報",
-        "slug": "henry-bolte-hits-3-run-home-run-in-a-s-loss-to-rangers",
-        "url": "https://www.mlb.com/news/henry-bolte-hits-3-run-home-run-in-a-s-loss-to-rangers",
-        "contentDate": "2026-08-16T06:22:29.348Z",
-        "teamIds": [
-            133
-        ],
-        "playerIds": [
-            703607
-        ],
-        "gamePks": [
-            824966
-        ],
-        "taxonomy": [
-            "apple-news",
-            "replay"
         ],
         "sourceScopes": [
             "球団公式"
