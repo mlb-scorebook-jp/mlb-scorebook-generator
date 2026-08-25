@@ -2,6 +2,30 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Cronenworth's big night undone by Padres' costly mistakes in extras",
+        "summaryJa": "J.クロネンワース（SD）の最新動向をMLB公式が詳報",
+        "slug": "jake-cronenworth-shines-despite-padres-12-inning-loss-to-pirates",
+        "url": "https://www.mlb.com/news/jake-cronenworth-shines-despite-padres-12-inning-loss-to-pirates",
+        "contentDate": "2026-08-25T07:29:00Z",
+        "teamIds": [
+            135
+        ],
+        "playerIds": [
+            630105
+        ],
+        "gamePks": [
+            823260
+        ],
+        "taxonomy": [
+            "apple-news",
+            "takeaways",
+            "clutch-moment"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Latest Guardians injuries and transactions",
         "summaryJa": "ガーディアンズの負傷状況をMLB公式が詳報",
         "slug": "guardians-injuries-and-roster-moves",
@@ -245,30 +269,6 @@
         ],
         "sourceScopes": [
             "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Key takeaways: Pirates 3, Padres 2",
-        "summaryJa": "J.クロネンワース（SD）の最新動向をMLB公式が詳報",
-        "slug": "jake-cronenworth-shines-despite-padres-12-inning-loss-to-pirates",
-        "url": "https://www.mlb.com/news/jake-cronenworth-shines-despite-padres-12-inning-loss-to-pirates",
-        "contentDate": "2026-08-25T06:09:33.306Z",
-        "teamIds": [
-            135
-        ],
-        "playerIds": [
-            630105
-        ],
-        "gamePks": [
-            823260
-        ],
-        "taxonomy": [
-            "apple-news",
-            "takeaways",
-            "clutch-moment"
-        ],
-        "sourceScopes": [
             "球団公式"
         ]
     },
