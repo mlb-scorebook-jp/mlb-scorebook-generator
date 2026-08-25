@@ -1,0 +1,420 @@
+{
+  "year": 1943,
+  "schedule": {
+    "ok": true,
+    "games": 1769
+  },
+  "samples": [
+    {
+      "gamePk": 802022,
+      "date": "1943-04-04",
+      "endpoints": {
+        "boxscore": true,
+        "playByPlay": true
+      },
+      "capabilities": {
+        "schedule": true,
+        "linescore": true,
+        "boxscore": true,
+        "teamStats": true,
+        "playerStats": true,
+        "battingOrder": true,
+        "pitchers": true,
+        "positions": true,
+        "peoplePosition": true,
+        "playByPlay": true,
+        "completePlays": false,
+        "eventType": false,
+        "inning": false,
+        "batter": false,
+        "pitcher": false,
+        "runners": false,
+        "rbi": false,
+        "pitchEvents": false,
+        "pitchCall": false,
+        "pitchNumber": false,
+        "count": false,
+        "careerGameLog": null
+      },
+      "counts": {
+        "players": 23,
+        "plays": 0,
+        "completePlays": 0,
+        "playEvents": 0,
+        "pitches": 0
+      }
+    },
+    {
+      "gamePk": 801926,
+      "date": "1943-05-30",
+      "endpoints": {
+        "boxscore": true,
+        "playByPlay": true
+      },
+      "capabilities": {
+        "schedule": true,
+        "linescore": true,
+        "boxscore": true,
+        "teamStats": true,
+        "playerStats": true,
+        "battingOrder": true,
+        "pitchers": true,
+        "positions": true,
+        "peoplePosition": true,
+        "playByPlay": true,
+        "completePlays": false,
+        "eventType": false,
+        "inning": false,
+        "batter": false,
+        "pitcher": false,
+        "runners": false,
+        "rbi": false,
+        "pitchEvents": false,
+        "pitchCall": false,
+        "pitchNumber": false,
+        "count": false,
+        "careerGameLog": null
+      },
+      "counts": {
+        "players": 60,
+        "plays": 0,
+        "completePlays": 0,
+        "playEvents": 0,
+        "pitches": 0
+      }
+    },
+    {
+      "gamePk": 801812,
+      "date": "1943-06-29",
+      "endpoints": {
+        "boxscore": true,
+        "playByPlay": true
+      },
+      "capabilities": {
+        "schedule": true,
+        "linescore": true,
+        "boxscore": true,
+        "teamStats": true,
+        "playerStats": true,
+        "battingOrder": false,
+        "pitchers": true,
+        "positions": false,
+        "peoplePosition": true,
+        "playByPlay": true,
+        "completePlays": false,
+        "eventType": false,
+        "inning": false,
+        "batter": false,
+        "pitcher": false,
+        "runners": false,
+        "rbi": false,
+        "pitchEvents": false,
+        "pitchCall": false,
+        "pitchNumber": false,
+        "count": false,
+        "careerGameLog": null
+      },
+      "counts": {
+        "players": 69,
+        "plays": 0,
+        "completePlays": 0,
+        "playEvents": 0,
+        "pitches": 0
+      }
+    },
+    {
+      "gamePk": 122311,
+      "date": "1943-07-30",
+      "endpoints": {
+        "boxscore": true,
+        "playByPlay": true
+      },
+      "capabilities": {
+        "schedule": true,
+        "linescore": true,
+        "boxscore": true,
+        "teamStats": true,
+        "playerStats": true,
+        "battingOrder": true,
+        "pitchers": true,
+        "positions": true,
+        "peoplePosition": true,
+        "playByPlay": true,
+        "completePlays": false,
+        "eventType": false,
+        "inning": false,
+        "batter": false,
+        "pitcher": false,
+        "runners": false,
+        "rbi": false,
+        "pitchEvents": false,
+        "pitchCall": false,
+        "pitchNumber": false,
+        "count": false,
+        "careerGameLog": null
+      },
+      "counts": {
+        "players": 78,
+        "plays": 0,
+        "completePlays": 0,
+        "playEvents": 0,
+        "pitches": 0
+      }
+    },
+    {
+      "gamePk": 122552,
+      "date": "1943-08-29",
+      "endpoints": {
+        "boxscore": true,
+        "playByPlay": true
+      },
+      "capabilities": {
+        "schedule": true,
+        "linescore": true,
+        "boxscore": true,
+        "teamStats": true,
+        "playerStats": true,
+        "battingOrder": true,
+        "pitchers": true,
+        "positions": true,
+        "peoplePosition": true,
+        "playByPlay": true,
+        "completePlays": false,
+        "eventType": false,
+        "inning": false,
+        "batter": false,
+        "pitcher": false,
+        "runners": false,
+        "rbi": false,
+        "pitchEvents": false,
+        "pitchCall": false,
+        "pitchNumber": false,
+        "count": false,
+        "careerGameLog": null
+      },
+      "counts": {
+        "players": 77,
+        "plays": 0,
+        "completePlays": 0,
+        "playEvents": 0,
+        "pitches": 0
+      }
+    },
+    {
+      "gamePk": 801503,
+      "date": "1943-10-17",
+      "endpoints": {
+        "boxscore": true,
+        "playByPlay": true
+      },
+      "capabilities": {
+        "schedule": true,
+        "linescore": true,
+        "boxscore": true,
+        "teamStats": true,
+        "playerStats": false,
+        "battingOrder": false,
+        "pitchers": true,
+        "positions": false,
+        "peoplePosition": false,
+        "playByPlay": true,
+        "completePlays": false,
+        "eventType": false,
+        "inning": false,
+        "batter": false,
+        "pitcher": false,
+        "runners": false,
+        "rbi": false,
+        "pitchEvents": false,
+        "pitchCall": false,
+        "pitchNumber": false,
+        "count": false,
+        "careerGameLog": null
+      },
+      "counts": {
+        "players": 0,
+        "plays": 0,
+        "completePlays": 0,
+        "playEvents": 0,
+        "pitches": 0
+      }
+    }
+  ],
+  "recordTypes": {
+    "JAPANESE_CAREER_HIGH": {
+      "status": "partial",
+      "passing": 5,
+      "tested": 6
+    },
+    "JAPANESE_CAREER_WORST": {
+      "status": "partial",
+      "passing": 5,
+      "tested": 6
+    },
+    "TWO_HR_SAME_INNING": {
+      "status": "unavailable",
+      "passing": 0,
+      "tested": 6
+    },
+    "TWO_HIT_SAME_INNING": {
+      "status": "unavailable",
+      "passing": 0,
+      "tested": 6
+    },
+    "LARGE_RBI_INNING": {
+      "status": "unavailable",
+      "passing": 0,
+      "tested": 6
+    },
+    "THREE_HR_GAME": {
+      "status": "unavailable",
+      "passing": 0,
+      "tested": 6
+    },
+    "FIVE_HIT_GAME": {
+      "status": "unavailable",
+      "passing": 0,
+      "tested": 6
+    },
+    "SIX_HIT_GAME": {
+      "status": "unavailable",
+      "passing": 0,
+      "tested": 6
+    },
+    "CYCLE": {
+      "status": "unavailable",
+      "passing": 0,
+      "tested": 6
+    },
+    "LEADOFF_FIRST_PITCH_HR": {
+      "status": "unavailable",
+      "passing": 0,
+      "tested": 6
+    },
+    "FOUR_SB_GAME": {
+      "status": "unavailable",
+      "passing": 0,
+      "tested": 6
+    },
+    "LARGE_RBI_GAME": {
+      "status": "unavailable",
+      "passing": 0,
+      "tested": 6
+    },
+    "TWO_OUTS_SAME_INNING": {
+      "status": "unavailable",
+      "passing": 0,
+      "tested": 6
+    },
+    "THREE_CONSECUTIVE_HR": {
+      "status": "unavailable",
+      "passing": 0,
+      "tested": 6
+    },
+    "FOUR_CONSECUTIVE_HR": {
+      "status": "unavailable",
+      "passing": 0,
+      "tested": 6
+    },
+    "WALKOFF_GRAND_SLAM": {
+      "status": "unavailable",
+      "passing": 0,
+      "tested": 6
+    },
+    "FOUR_STRIKEOUT_INNING": {
+      "status": "unavailable",
+      "passing": 0,
+      "tested": 6
+    },
+    "IMMACULATE_INNING": {
+      "status": "unavailable",
+      "passing": 0,
+      "tested": 6
+    },
+    "POSITION_PLAYER_STRIKEOUT": {
+      "status": "partial",
+      "passing": 4,
+      "tested": 6
+    },
+    "POSITION_PLAYER_MULTI_STRIKEOUT": {
+      "status": "partial",
+      "passing": 4,
+      "tested": 6
+    },
+    "POSITION_PLAYER_WIN": {
+      "status": "partial",
+      "passing": 4,
+      "tested": 6
+    },
+    "POSITION_PLAYER_SAVE": {
+      "status": "partial",
+      "passing": 4,
+      "tested": 6
+    },
+    "LOW_HIT_WIN": {
+      "status": "sample-verified",
+      "passing": 6,
+      "tested": 6
+    },
+    "RUN_WITHOUT_HIT": {
+      "status": "unavailable",
+      "passing": 0,
+      "tested": 6
+    },
+    "HIT_DEFICIT_WIN": {
+      "status": "sample-verified",
+      "passing": 6,
+      "tested": 6
+    },
+    "LARGE_RUN_INNING": {
+      "status": "unavailable",
+      "passing": 0,
+      "tested": 6
+    },
+    "LARGE_HR_INNING": {
+      "status": "unavailable",
+      "passing": 0,
+      "tested": 6
+    },
+    "COMBINED_LARGE_HR": {
+      "status": "sample-verified",
+      "passing": 6,
+      "tested": 6
+    },
+    "COMBINED_MANY_PITCHERS": {
+      "status": "sample-verified",
+      "passing": 6,
+      "tested": 6
+    },
+    "EXTREME_WALKS": {
+      "status": "sample-verified",
+      "passing": 6,
+      "tested": 6
+    },
+    "COMBINED_NO_HITTER": {
+      "status": "sample-verified",
+      "passing": 6,
+      "tested": 6
+    },
+    "NO_HIT_LOSS": {
+      "status": "sample-verified",
+      "passing": 6,
+      "tested": 6
+    },
+    "TRIPLE_PLAY": {
+      "status": "unavailable",
+      "passing": 0,
+      "tested": 6
+    },
+    "ALL_STARTERS_HIT": {
+      "status": "partial",
+      "passing": 4,
+      "tested": 6
+    },
+    "ALL_STARTERS_SCORE": {
+      "status": "partial",
+      "passing": 4,
+      "tested": 6
+    }
+  }
+}

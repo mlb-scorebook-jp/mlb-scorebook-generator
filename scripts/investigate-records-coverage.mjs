@@ -220,7 +220,8 @@ for (const year of years) {
         .filter((game) => Number(game?.gamePk) && (game?.status?.codedGameState === "F" || game?.status?.abstractGameState === "Final"));
     const samples = auditAllGames ? games : chooseSamples(games, samplesPerYear);
     const progressFile = path.join(ROOT, "data", "records", `.coverage-audit-${year}-progress.json`);
-    const priorYearResult = (previousReport?.years ?? []).find((entry) => Number(entry.year) === year);
+    const priorYearResult = savedYearResults.find((entry) => Number(entry?.year) === year)
+        ?? (previousReport?.years ?? []).find((entry) => Number(entry.year) === year);
     const existingBackfillPath = path.join(ROOT, "data", "records", "backfill", `${year}.json`);
     const fallbackProgress = force ? { inspected: [], records: [] } : {
         inspected: backfill ? (priorYearResult?.samples ?? []).filter((sample) => sample.recordsAnalyzed) : [],
@@ -311,7 +312,7 @@ for (const year of years) {
         ]));
         await atomicWrite(path.join(backfillDirectory, `${year}.json`), backfillRecords);
         await atomicWrite(path.join(backfillDirectory, `${year}-build-report.json`), {
-            year, provisional: true, ruleVersion: "daily-records-phase1-v8",
+            year, provisional: true, ruleVersion: "daily-records-phase1-v9",
             generatedAt: new Date().toISOString(), uniqueGames: inspected.length,
             coverageChecked: inspected.filter((sample) => sample.coverageChecked).length,
             recordsAnalyzed: inspected.filter((sample) => sample.recordsAnalyzed).length,
@@ -391,11 +392,19 @@ const coverage = { schemaVersion: 1, generatedAt: now, verifiedThrough,
         statuses: ["investigating", "complete", "partial", "unavailable"],
         outcomes: ["checked", "notDetected", "detected", "insufficientData"]
     }, records };
-const report = { generatedAt: now, startedAt: startedAt.toISOString(), finishedAt: now,
+const report = { schemaVersion: 2, generatedAt: now, startedAt: startedAt.toISOString(), finishedAt: now,
     apiRequests: Number(previousReport?.apiRequests || 0) + apiRequests,
     yearsRequested: [...new Set([...(previousReport?.yearsRequested ?? []), ...years])].sort((a, b) => b - a),
     auditMode: auditAllGames ? "all-games" : "sample", samplesPerYear, concurrency,
-    requirements: REQUIREMENTS, years: mergedYearResults };
+    requirements: REQUIREMENTS,
+    yearFiles: mergedYearResults.map((year) => ({
+        year: year.year,
+        path: `coverage-audits/${year.year}.json`,
+        auditMode: year.auditMode,
+        scheduleGames: Number(year.schedule?.games || 0),
+        sampleCount: Array.isArray(year.samples) ? year.samples.length : 0
+    }))
+};
 await atomicWrite(output, coverage);
 await atomicWrite(reportOutput, report);
 console.log(`Coverage investigation complete: ${apiRequests} API requests`);
