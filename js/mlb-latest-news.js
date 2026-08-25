@@ -2,6 +2,63 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Watch Triple-A prospects play for FREE on Thursday",
+        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
+        "slug": "watch-minor-league-baseball-games-for-free-2026",
+        "url": "https://www.mlb.com/news/watch-minor-league-baseball-games-for-free-2026",
+        "contentDate": "2026-08-25T22:00:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "mlb-top-prospects",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Almost 40 years ago, Dolly Parton visited Yankee Stadium and showed off her swing",
+        "summaryJa": "ヤンキースを巡る注目点をMLB公式が分析",
+        "slug": "dolly-parton-visit-to-yankee-stadium",
+        "url": "https://www.mlb.com/news/dolly-parton-visit-to-yankee-stadium",
+        "contentDate": "2026-08-25T21:39:36.594Z",
+        "teamIds": [
+            147
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "offbeat"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Latest Tigers injuries and transactions",
+        "summaryJa": "タイガースの負傷状況をMLB公式が詳報",
+        "slug": "tigers-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/tigers-injuries-and-roster-moves",
+        "contentDate": "2026-08-25T21:38:00Z",
+        "teamIds": [
+            116
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Yanks add veteran Topa to bullpen, move Stanton to 60-day IL",
         "summaryJa": "J.トパ（NYY）の移籍・契約に関する最新情報",
         "slug": "yankees-sign-justin-topa-to-mlb-deal",
@@ -90,6 +147,7 @@
             "transactions"
         ],
         "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
@@ -143,6 +201,26 @@
         ]
     },
     {
+        "headline": "Latest Mets injuries & transactions",
+        "summaryJa": "メッツの負傷状況をMLB公式が詳報",
+        "slug": "mets-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/mets-injuries-and-roster-moves",
+        "contentDate": "2026-08-25T21:00:00Z",
+        "teamIds": [
+            121
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Latest Marlins injuries & transactions",
         "summaryJa": "マーリンズの負傷状況をMLB公式が詳報",
         "slug": "marlins-injuries-and-roster-moves",
@@ -157,23 +235,6 @@
             "injury",
             "transactions",
             "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Watch Triple-A prospects play for FREE on Thursday",
-        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
-        "slug": "watch-minor-league-baseball-games-for-free-2026",
-        "url": "https://www.mlb.com/news/watch-minor-league-baseball-games-for-free-2026",
-        "contentDate": "2026-08-25T20:35:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "mlb-top-prospects",
-            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
@@ -1020,7 +1081,6 @@
             "game-recap"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1762,26 +1822,6 @@
         "contentDate": "2026-08-24T22:25:00Z",
         "teamIds": [
             111
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Latest Tigers injuries and transactions",
-        "summaryJa": "タイガースの負傷状況をMLB公式が詳報",
-        "slug": "tigers-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/tigers-injuries-and-roster-moves",
-        "contentDate": "2026-08-24T22:16:00Z",
-        "teamIds": [
-            116
         ],
         "playerIds": [],
         "gamePks": [],
@@ -4878,26 +4918,6 @@
         ]
     },
     {
-        "headline": "Latest Mets injuries & transactions",
-        "summaryJa": "メッツの負傷状況をMLB公式が詳報",
-        "slug": "mets-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/mets-injuries-and-roster-moves",
-        "contentDate": "2026-08-22T22:39:00Z",
-        "teamIds": [
-            121
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Harris offers insight during Braves' recent skid: 'Can’t think about who's behind you'",
         "summaryJa": "M.ハリスⅡ（ATL）の最新動向をMLB公式が詳報",
         "slug": "braves-offense-again-comes-up-short-in-loss-to-brewers",
@@ -7330,30 +7350,6 @@
         ]
     },
     {
-        "headline": "Judge hits off tee, swinging bat for 1st time since injury",
-        "summaryJa": "A.ジャッジ（NYY）の負傷状況をMLB公式が詳報",
-        "slug": "aaron-judge-hits-off-tee-in-rehab-from-injury",
-        "url": "https://www.mlb.com/news/aaron-judge-hits-off-tee-in-rehab-from-injury",
-        "contentDate": "2026-08-20T22:09:23.525Z",
-        "teamIds": [
-            147
-        ],
-        "playerIds": [
-            592450
-        ],
-        "gamePks": [
-            824802
-        ],
-        "taxonomy": [
-            "apple-news",
-            "injury",
-            "rehab"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Blue Jays bats keep persisting despite the rash of injury scares",
         "summaryJa": "S.ビーバー（TOR）の負傷状況をMLB公式が詳報",
         "slug": "blue-jays-survive-injuries-to-secure-series-win-vs-tampa-bay",
@@ -8843,6 +8839,29 @@
         ],
         "taxonomy": [
             "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Thornton, Mets can't overcome Tatis in loss to San Diego",
+        "summaryJa": "Zac Thornton（NYM）の最新動向をMLB公式が詳報",
+        "slug": "zac-thornton-mets-loss-padres",
+        "url": "https://www.mlb.com/news/zac-thornton-mets-loss-padres",
+        "contentDate": "2026-08-19T04:13:00Z",
+        "teamIds": [
+            121
+        ],
+        "playerIds": [
+            804267
+        ],
+        "gamePks": [
+            823586
+        ],
+        "taxonomy": [
+            "apple-news",
+            "game-recap-losing"
         ],
         "sourceScopes": [
             "球団公式"
