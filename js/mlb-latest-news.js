@@ -2,6 +2,30 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Tempers flare between D-backs, Cubs over sign-stealing",
+        "summaryJa": "M.ケリー（AZ）の移籍・契約に関する最新情報",
+        "slug": "d-backs-cubs-argue-over-sign-stealing",
+        "url": "https://www.mlb.com/news/d-backs-cubs-argue-over-sign-stealing",
+        "contentDate": "2026-08-25T17:13:02.448Z",
+        "teamIds": [
+            109,
+            112
+        ],
+        "playerIds": [
+            518876
+        ],
+        "gamePks": [
+            825041
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "O'Hoppe embraced his Triple-A return, and it reignited his love for the game",
         "summaryJa": "L.オホッピー（TEX）、復帰へ向けた最新状況",
         "slug": "logan-o-hoppe-discusses-being-optioned-to-triple-a",
@@ -198,8 +222,8 @@
         ]
     },
     {
-        "headline": "Yankees' offense owes a huge thanks to rocksteady rotation",
-        "summaryJa": "ヤンキースの最新動向をMLB公式が詳報",
+        "headline": "How have Yanks stayed in division hunt without Judge?",
+        "summaryJa": "ヤンキースを巡る注目点をMLB公式が分析",
         "slug": "yankees-rotation-has-been-strength-of-2026-team",
         "url": "https://www.mlb.com/news/yankees-rotation-has-been-strength-of-2026-team",
         "contentDate": "2026-08-25T14:45:00.468Z",
@@ -1489,7 +1513,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -7827,30 +7850,6 @@
         ]
     },
     {
-        "headline": "Shaw begins rehab assignment; Milner throws a scoreless inning",
-        "summaryJa": "M.ショー（CHC）、復帰へ向けた最新状況",
-        "slug": "matt-shaw-rehab-assignment-triple-a-iowa",
-        "url": "https://www.mlb.com/news/matt-shaw-rehab-assignment-triple-a-iowa",
-        "contentDate": "2026-08-20T04:26:31.935Z",
-        "teamIds": [
-            112
-        ],
-        "playerIds": [
-            807713,
-            571948
-        ],
-        "gamePks": [
-            824640
-        ],
-        "taxonomy": [
-            "rehab",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Espada explains ejection after Trout hit-by-pitch on check swing",
         "summaryJa": "アストロズを巡る注目点をMLB公式が分析",
         "slug": "joe-espada-ejected-after-mike-trout-hit-by-pitch",
@@ -9187,29 +9186,6 @@
         ],
         "taxonomy": [
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "D-backs star Marte placed on restricted list after not showing up at Fenway",
-        "summaryJa": "K.マーテイ（AZ）を巡る注目点をMLB公式が分析",
-        "slug": "ketel-marte-restricted-list-d-backs",
-        "url": "https://www.mlb.com/news/ketel-marte-restricted-list-d-backs",
-        "contentDate": "2026-08-18T03:36:00Z",
-        "teamIds": [
-            109
-        ],
-        "playerIds": [
-            606466
-        ],
-        "gamePks": [
-            824725
-        ],
-        "taxonomy": [
-            "apple-news",
-            "transactions"
         ],
         "sourceScopes": [
             "球団公式"
