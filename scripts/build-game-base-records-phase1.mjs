@@ -41,6 +41,13 @@ const write = async (file, value) => { const tmp=`${file}.tmp-${process.pid}`; c
 const unpack = (columns,row) => Object.fromEntries(columns.map((key,index)=>[key,row[index]??null]));
 const missing = (row, field) => row == null || row[field] == null || (row.missingMask??[]).includes(field);
 const ip = (outs) => `${Math.floor(outs/3)}.${outs%3}`;
+const inningRuns = (g, inning, side) => {
+  const value = side === "away" ? inning.awayRuns : inning.homeRuns;
+  if (value != null) return { value, notPlayed: false };
+  const isLast = inning === g.innings.at(-1);
+  const homeDidNotBat = side === "home" && isLast && g.homeScore > g.awayScore;
+  return homeDidNotBat ? { value: null, notPlayed: true } : { value: null, notPlayed: false };
+};
 const nameMaps = async () => {
   const players=new Map(), games=new Map(), teams=new Map(), japanese=new Set();
   for(const year of YEARS){for(const r of await read(path.join(RECORDS,`${year}.json`))){
@@ -84,8 +91,9 @@ const detect=(g,add,ins)=>{
  if(g.finalEligible!==true)return;
  for(const side of ["away","home"]){const t=g[side],o=g[side==="away"?"home":"away"],won=t.R>o.R;
   for(const b of t.batters){
-   for(const [field,type,n,label] of [["HR","FOUR_HR_GAME",4,"本塁打"],["H","SEVEN_HIT_GAME",7,"安打"],["RBI","TEN_RBI_GAME",10,"打点"],["SB","FIVE_SB_GAME",5,"盗塁"],["2B","FOUR_DOUBLE_GAME",4,"二塁打"],["3B","THREE_TRIPLE_GAME",3,"三塁打"]]){if(missing(b,field)){mark(type);continue;}if(b[field]>=n)add(g,type,side,{player:b,fact:`1試合${b[field]}${label}`,details:{[field]:b[field]}});}
+   for(const [field,type,n,label] of [["HR","FOUR_HR_GAME",4,"本塁打"],["H","SEVEN_HIT_GAME",7,"安打"],["RBI","TEN_RBI_GAME",10,"打点"],["SB","FIVE_SB_GAME",5,"盗塁"],["2B","FOUR_DOUBLE_GAME",4,"二塁打"],["3B","THREE_TRIPLE_GAME",3,"三塁打"]]){if(!missing(b,field)&&b[field]>=n)add(g,type,side,{player:b,fact:`1試合${b[field]}${label}`,details:{[field]:b[field]}});}
   }
+  for(const [field,type] of [["HR","FOUR_HR_GAME"],["H","SEVEN_HIT_GAME"],["RBI","TEN_RBI_GAME"],["SB","FIVE_SB_GAME"],["2B","FOUR_DOUBLE_GAME"],["3B","THREE_TRIPLE_GAME"]])if(!t.batters.length||t.batters.every((b)=>missing(b,field)))mark(type);
   for(const p of t.pitchers){
    if(t.pitchers.length===1&&p.completedGameDerived==null){for(const type of ["SOLO_NO_HITTER","SHUTOUT","ONE_HIT_COMPLETE_GAME","NO_WALK_SHUTOUT","MADDUX"])mark(type);}
    if(t.pitchers.length===1&&p.H==null){mark("SOLO_NO_HITTER");mark("ONE_HIT_COMPLETE_GAME");}
@@ -102,14 +110,14 @@ const detect=(g,add,ins)=>{
    const pp=posPlayer(p); if(pp===null){mark("POSITION_PLAYER");continue;} if(pp){if(p.R===0)add(g,"POSITION_PLAYER_SCORELESS",side,{player:p,fact:"野手登板で無失点",details:{outs:p.outs,runs:0},category:"special"});if(p.outs>=6)add(g,"POSITION_PLAYER_TWO_INNINGS",side,{player:p,fact:`野手登板で${ip(p.outs)}回`,details:{outs:p.outs},category:"special"});if(p.H===0)add(g,"POSITION_PLAYER_NO_HIT",side,{player:p,fact:"野手登板で被安打0",details:{hits:0,outs:p.outs},category:"special"});}
    const b=t.batters.find(x=>x.playerId===p.playerId);if(b&&b.HR>=1){add(g,"HOMER_AND_PITCH",side,{player:p,fact:"本塁打＋登板",details:{homeRuns:b.HR,outs:p.outs},category:"special"});if(p.wins>=1)add(g,"HOMER_AND_WIN",side,{player:p,fact:"本塁打＋勝利投手",details:{homeRuns:b.HR},category:"special"});if(p.saves>=1)add(g,"HOMER_AND_SAVE",side,{player:p,fact:"本塁打＋セーブ",details:{homeRuns:b.HR},category:"special"});}if(b&&b.H>=2)add(g,"MULTI_HIT_AND_PITCH",side,{player:p,fact:`${b.H}安打＋登板`,details:{hits:b.H,outs:p.outs},category:"special"});
   }
-  for(const inn of g.innings){const runs=side==="away"?inn.awayRuns:inn.homeRuns;if(runs==null){mark("TEN_RUN_INNING");continue;}if(runs>=10)add(g,"TEN_RUN_INNING",side,{fact:`${inn.inningNumber}回${side==="away"?"表":"裏"} 1イニングに${runs}得点`,details:{runs},category:"team",inning:inn.inningNumber});}
+  for(const inn of g.innings){const half=inningRuns(g,inn,side);if(half.notPlayed)continue;const runs=half.value;if(runs==null){mark("TEN_RUN_INNING");continue;}if(runs>=10)add(g,"TEN_RUN_INNING",side,{fact:`${inn.inningNumber}回${side==="away"?"表":"裏"} 1イニングに${runs}得点`,details:{runs},category:"team",inning:inn.inningNumber});}
   if(t.R==null){mark("TWENTY_RUN_GAME");mark("TWENTY_FIVE_RUN_GAME");mark("NO_HIT_WIN");}
   if(t.H==null){mark("TWENTY_HIT_TEAM_GAME");mark("NO_HIT_WIN");}
   if(t.HR==null)mark("SIX_HR_TEAM_GAME");
   if(t.SO==null)mark("THIRTY_COMBINED_STRIKEOUTS");
   if(t.R>=25)add(g,"TWENTY_FIVE_RUN_GAME",side,{fact:`チーム${t.R}得点`,details:{runs:t.R},category:"team"});else if(t.R>=20)add(g,"TWENTY_RUN_GAME",side,{fact:`チーム${t.R}得点`,details:{runs:t.R},category:"team"});
   if(t.H>=20)add(g,"TWENTY_HIT_TEAM_GAME",side,{fact:`チーム${t.H}安打`,details:{hits:t.H},category:"team"});if(t.HR>=6)add(g,"SIX_HR_TEAM_GAME",side,{fact:`チーム${t.HR}本塁打`,details:{homeRuns:t.HR},category:"team"});if(won&&t.H===0)add(g,"NO_HIT_WIN",side,{fact:"無安打で勝利",details:{runs:t.R},category:"team"});
-  if(won&&g.innings.length){let a=0,h=0,maxDef=0,after8=null;for(const inn of g.innings){if(inn.awayRuns==null||inn.homeRuns==null){mark("COMEBACK");maxDef=null;break;}if(inn.inningNumber===9)after8=(side==="away"?h-a:a-h);a+=inn.awayRuns;if(side==="home")maxDef=Math.max(maxDef,a-h);h+=inn.homeRuns;if(side==="away")maxDef=Math.max(maxDef,h-a);}if(maxDef>=10)add(g,"TEN_RUN_COMEBACK",side,{fact:`${maxDef}点差から逆転勝利`,details:{deficit:maxDef},category:"team"});if(after8>=5)add(g,"NINTH_INNING_FIVE_RUN_COMEBACK",side,{fact:`9回${after8}点差から逆転勝利`,details:{deficit:after8},category:"team"});}
+  if(won&&g.innings.length){let a=0,h=0,maxDef=0,after8=null;for(const inn of g.innings){const ar=inningRuns(g,inn,"away"),hr=inningRuns(g,inn,"home");if(ar.value==null||(!hr.notPlayed&&hr.value==null)){mark("COMEBACK");maxDef=null;break;}if(inn.inningNumber===9)after8=(side==="away"?h-a:a-h);a+=ar.value;if(side==="home")maxDef=Math.max(maxDef,a-h);if(!hr.notPlayed)h+=hr.value;if(side==="away")maxDef=Math.max(maxDef,h-a);}if(maxDef>=10)add(g,"TEN_RUN_COMEBACK",side,{fact:`${maxDef}点差から逆転勝利`,details:{deficit:maxDef},category:"team"});if(after8>=5)add(g,"NINTH_INNING_FIVE_RUN_COMEBACK",side,{fact:`9回${after8}点差から逆転勝利`,details:{deficit:after8},category:"team"});}
  }
  if(g.away.HR==null||g.home.HR==null)mark("TEN_COMBINED_HR");
  if(g.away.HR!=null&&g.home.HR!=null&&g.away.HR+g.home.HR>=10)add(g,"TEN_COMBINED_HR","home",{fact:`両軍合計${g.away.HR+g.home.HR}本塁打`,details:{homeRuns:g.away.HR+g.home.HR},category:"team"});
