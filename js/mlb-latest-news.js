@@ -2,6 +2,74 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Vintage J-Ram steals show in Guards' 'heart-pumper' of a comeback",
+        "summaryJa": "J.ラミレス（CLE）、勝利を呼び込む活躍",
+        "slug": "jose-ramirez-has-5-rbis-as-guardians-beat-angels",
+        "url": "https://www.mlb.com/news/jose-ramirez-has-5-rbis-as-guardians-beat-angels",
+        "contentDate": "2026-08-26T07:50:00Z",
+        "teamIds": [
+            114
+        ],
+        "playerIds": [
+            608070
+        ],
+        "gamePks": [
+            823989
+        ],
+        "taxonomy": [
+            "apple-news",
+            "game-recap",
+            "performance"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Latest Guardians injuries and transactions",
+        "summaryJa": "ガーディアンズの負傷状況をMLB公式が詳報",
+        "slug": "guardians-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/guardians-injuries-and-roster-moves",
+        "contentDate": "2026-08-26T07:46:00Z",
+        "teamIds": [
+            114
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "DeLauter (left hamstring) doesn't start, but returns to action in comeback win",
+        "summaryJa": "C.デローター（CLE）の負傷状況をMLB公式が詳報",
+        "slug": "chase-delauter-scratched-due-to-hamstring-injury",
+        "url": "https://www.mlb.com/news/chase-delauter-scratched-due-to-hamstring-injury",
+        "contentDate": "2026-08-26T07:40:00Z",
+        "teamIds": [
+            114
+        ],
+        "playerIds": [
+            800050
+        ],
+        "gamePks": [
+            824962
+        ],
+        "taxonomy": [
+            "apple-news",
+            "injury"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Grissom's first career 2-HR game could signal end of August slump",
         "summaryJa": "V.グリッソム（LAA）の移籍・契約に関する最新情報",
         "slug": "vaughn-grissom-homers-twice-in-angels-loss-to-guardians",
@@ -356,32 +424,6 @@
             "game-recap"
         ],
         "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "J-Ram's 5 RBIs, Kwan's 5 hits lead Guards' biggest comeback of season",
-        "summaryJa": "S.クワン（CLE）、勝利を呼び込む活躍",
-        "slug": "jose-ramirez-has-5-rbis-as-guardians-beat-angels",
-        "url": "https://www.mlb.com/news/jose-ramirez-has-5-rbis-as-guardians-beat-angels",
-        "contentDate": "2026-08-26T05:27:50.502Z",
-        "teamIds": [
-            114
-        ],
-        "playerIds": [
-            680757,
-            608070
-        ],
-        "gamePks": [
-            823989
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap",
-            "clutch-moment"
-        ],
-        "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1401,26 +1443,6 @@
         ]
     },
     {
-        "headline": "Latest Guardians injuries and transactions",
-        "summaryJa": "ガーディアンズの負傷状況をMLB公式が詳報",
-        "slug": "guardians-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/guardians-injuries-and-roster-moves",
-        "contentDate": "2026-08-26T02:09:00Z",
-        "teamIds": [
-            114
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Romero, Uribe toss scoreless frames to begin rehab assignments",
         "summaryJa": "A.ウリーベ（MIL）、復帰へ向けた最新状況",
         "slug": "jojo-romero-abner-uribe-begin-rehab-assignments-for-brewers",
@@ -1440,29 +1462,6 @@
             "apple-news",
             "injury",
             "rehab"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "DeLauter (left hamstring tightness) misses second straight game",
-        "summaryJa": "C.デローター（CLE）の負傷状況をMLB公式が詳報",
-        "slug": "chase-delauter-scratched-due-to-hamstring-injury",
-        "url": "https://www.mlb.com/news/chase-delauter-scratched-due-to-hamstring-injury",
-        "contentDate": "2026-08-26T01:23:00Z",
-        "teamIds": [
-            114
-        ],
-        "playerIds": [
-            800050
-        ],
-        "gamePks": [
-            824962
-        ],
-        "taxonomy": [
-            "apple-news",
-            "injury"
         ],
         "sourceScopes": [
             "球団公式"
