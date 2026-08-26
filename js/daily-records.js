@@ -2,7 +2,7 @@
 
 (() => {
     const API_ROOT = "https://statsapi.mlb.com/api";
-    const CACHE_PREFIX = "mlb-daily-records-phase1-v12:";
+    const CACHE_PREFIX = "mlb-daily-records-phase1-v13:";
     const MAX_CONCURRENT_GAMES = 3;
     const RECORD_THRESHOLDS = Object.freeze({
         inningHits: 2,
@@ -117,6 +117,10 @@
         CROSS_DATE_CONSECUTIVE_HOME_RUNS: [
             "日付を跨いで連続打数本塁打", "連続打数本塁打", "前日から連続本塁打",
             "consecutive at-bat home runs", "consecutive at-bat homers"
+        ],
+        MLB_ALL_TIME_STRIKEOUT_RANK: [
+            "MLB歴代奪三振", "MLB最多奪三振", "歴代奪三振", "通算奪三振順位",
+            "all-time strikeouts", "career strikeout rank"
         ]
     });
     const HIT_EVENTS = new Set(["single", "double", "triple", "home_run"]);
@@ -157,6 +161,7 @@
     const dom = {};
     const careerHistoryRequests = new Map();
     const crossDatePlayByPlayRequests = new Map();
+    let allTimeStrikeoutLeadersRequest = null;
 
     const number = (value) => Number.isFinite(Number(value)) ? Number(value) : 0;
     const text = (value) => String(value ?? "").trim();
@@ -367,6 +372,76 @@
                     });
                 }
             }
+        }
+        return records;
+    };
+
+    const fetchAllTimeStrikeoutLeaders = async (signal) => {
+        if (allTimeStrikeoutLeadersRequest) return allTimeStrikeoutLeadersRequest;
+        const params = new URLSearchParams({
+            leaderCategories: "strikeouts",
+            statGroup: "pitching",
+            statType: "career",
+            sportId: "1",
+            limit: "20"
+        });
+        allTimeStrikeoutLeadersRequest = fetchJson(
+            `${API_ROOT}/v1/stats/leaders?${params}`,
+            signal
+        ).then(({ data }) => (data?.leagueLeaders?.[0]?.leaders ?? [])
+            .map((leader) => ({
+                rank: number(leader?.rank),
+                playerId: number(leader?.person?.id),
+                value: number(leader?.value)
+            }))
+            .filter((leader) => leader.rank && leader.playerId && leader.value)
+        ).catch((error) => {
+            allTimeStrikeoutLeadersRequest = null;
+            throw error;
+        });
+        return allTimeStrikeoutLeadersRequest;
+    };
+
+    const buildAllTimeStrikeoutRankRecords = async (game, boxscore, signal) => {
+        // The leaderboard endpoint represents the present-day totals. Restrict
+        // this comparison to today's MLB business date so an old scorecard is
+        // never decorated with a player's later career rank.
+        if (text(game?.officialDate) !== currentSiteDate()) return [];
+        const leaders = await fetchAllTimeStrikeoutLeaders(signal).catch(() => []);
+        if (!leaders.length) return [];
+        const records = [];
+        for (const side of ["away", "home"]) {
+            const entries = Object.values(boxTeamForSide(boxscore, side)?.players ?? {});
+            entries.forEach((entry) => {
+                const gameStrikeouts = number(entry?.stats?.pitching?.strikeOuts);
+                if (!gameStrikeouts) return;
+                const playerId = number(entry?.person?.id);
+                const official = leaders.find((leader) => leader.playerId === playerId);
+                if (!official || official.rank > 15) return;
+                const next = leaders.find((leader) => leader.rank > official.rank);
+                if (!next) return;
+                const beforeGame = official.value - gameStrikeouts;
+                if (beforeGame > next.value || official.value <= next.value) return;
+                const fact = official.rank === 1
+                    ? `MLB最多となる通算${official.value}奪三振達成`
+                    : `MLB歴代${official.rank}位となる通算${official.value}奪三振達成`;
+                records.push(makeRecord({
+                    game,
+                    boxscore,
+                    recordType: "MLB_ALL_TIME_STRIKEOUT_RANK",
+                    category: "individual",
+                    fact,
+                    player: entry.person,
+                    side,
+                    details: {
+                        rank: official.rank,
+                        careerStrikeouts: official.value,
+                        gameStrikeouts,
+                        passedPlayerValue: next.value
+                    },
+                    evidence: "MLB公式 通算奪三振リーダー＋当該試合Boxscore"
+                }));
+            });
         }
         return records;
     };
@@ -586,6 +661,7 @@
         playByPlay,
         boxscore,
         priorGamesByTeam,
+        japanesePlayers,
         signal
     ) => {
         if (text(game?.gameType).toUpperCase() !== "R") return [];
@@ -666,14 +742,15 @@
                 details: { atBats: count, crossedDate: true },
                 evidence: "MLB公式Play-by-Play（前試合から当該試合）"
             }));
-            if (crossedDateForHomeRuns && homeRuns >= 3) {
+            if (crossedDateForHomeRuns && homeRuns >= 2) {
                 add(
                     "CROSS_DATE_CONSECUTIVE_HOME_RUNS",
                     `${homeRuns}打数連続本塁打（前日から）`,
                     homeRuns
                 );
             }
-            if (crossedDateForHits && hits >= 3 && hits !== homeRuns) {
+            const hitMinimum = japanesePlayers.has(number(candidate.player?.id)) ? 3 : 4;
+            if (crossedDateForHits && hits >= hitMinimum && hits !== homeRuns) {
                 add(
                     "CROSS_DATE_CONSECUTIVE_HITS",
                     `${hits}打数連続安打（前日から）`,
@@ -1424,6 +1501,12 @@
             playResult.data,
             boxResult.data,
             priorGamesByTeam,
+            japanesePlayers,
+            signal
+        ));
+        records.push(...await buildAllTimeStrikeoutRankRecords(
+            game,
+            boxResult.data,
             signal
         ));
         const careerRecords = await japaneseCareerRecords(game, boxResult.data, japanesePlayers, signal);

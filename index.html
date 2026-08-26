@@ -350,7 +350,7 @@
     <script src="js/mlb-latest-news.js?v=20260814-summary-1"></script>
     <script src="js/stathead-links.js?v=20260810-1"></script>
     <script src="js/records-archive.js?v=20260826-phase2-12"></script>
-    <script src="js/daily-records.js?v=20260826-phase2-12"></script>
+    <script src="js/daily-records.js?v=20260826-all-time-rank-1"></script>
     <script src="js/pregame.js?v=20260825-phase2-9"></script>
 
     <script>
@@ -3437,7 +3437,8 @@
                         // When every hit in the streak is a home run, the home-run
                         // note alone is more specific. Show the hit note once its
                         // streak grows beyond the consecutive home-run count.
-                        if (hitAtBats >= 2 && hitAtBats !== homeRunAtBats) {
+                        const crossGameHitMinimum = isJapanesePlayer(player.person) ? 3 : 4;
+                        if (hitAtBats >= crossGameHitMinimum && hitAtBats !== homeRunAtBats) {
                             notes.push({
                                 text: `${code}　${getPersonName(player.person)}　` +
                                     `${hitAtBats}打数連続安打（前日から）`,
