@@ -2,6 +2,28 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Cease's painting gets new home in gallery display, charity merchandise collection",
+        "summaryJa": "D.シース（TOR）の最新動向をMLB公式が詳報",
+        "slug": "dylan-cease-painting-at-art-gallery-of-toronto-event",
+        "url": "https://www.mlb.com/news/dylan-cease-painting-at-art-gallery-of-toronto-event",
+        "contentDate": "2026-08-26T12:51:33.831Z",
+        "teamIds": [
+            141
+        ],
+        "playerIds": [
+            656302
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "offbeat"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Esmerlyn Valdez working, adjusting and eying more opportunities to punch back",
         "summaryJa": "パイレーツの最新動向をMLB公式が詳報",
         "slug": "esmerlyn-valdez-working-adjusting-and-eying-more-opportunities-to-punch-back",
@@ -281,7 +303,6 @@
             "game-recap"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -617,6 +638,7 @@
             "apple-news"
         ],
         "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
@@ -1224,24 +1246,6 @@
         ],
         "sourceScopes": [
             "球団公式"
-        ]
-    },
-    {
-        "headline": "Immaculate innings: 3 strikeouts on 9 pitches",
-        "summaryJa": "MLBの最新情報、マウンドで好投",
-        "slug": "immaculate-innings-c265720420",
-        "url": "https://www.mlb.com/news/immaculate-innings-c265720420",
-        "contentDate": "2026-08-26T03:04:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "evergreen",
-            "rare-feat",
-            "rankings"
-        ],
-        "sourceScopes": [
-            "MLB"
         ]
     },
     {
