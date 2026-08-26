@@ -8623,6 +8623,29 @@
         ]
     },
     {
+        "headline": "Seven runs in the eighth give the Royals nine to surge past A's",
+        "summaryJa": "V.パスクァンティーノ（KC）、勝利を呼び込む活躍",
+        "slug": "vinnie-pasquantino-leads-royals-comeback-win-vs-a-s",
+        "url": "https://www.mlb.com/news/vinnie-pasquantino-leads-royals-comeback-win-vs-a-s",
+        "contentDate": "2026-08-20T05:21:00Z",
+        "teamIds": [
+            118
+        ],
+        "playerIds": [
+            686469
+        ],
+        "gamePks": [
+            824076
+        ],
+        "taxonomy": [
+            "game-recap",
+            "rally"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Astros' bullpen remains lights-out to back Pecko's MLB debut",
         "summaryJa": "Ethan Pecko（HOU）、メジャー昇格・初出場に関する最新情報",
         "slug": "astros-beat-angels-to-end-losing-streak",
