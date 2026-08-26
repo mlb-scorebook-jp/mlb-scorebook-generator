@@ -2,6 +2,162 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Grissom's first career 2-HR game could signal end of August slump",
+        "summaryJa": "V.グリッソム（LAA）の移籍・契約に関する最新情報",
+        "slug": "vaughn-grissom-homers-twice-in-angels-loss-to-guardians",
+        "url": "https://www.mlb.com/news/vaughn-grissom-homers-twice-in-angels-loss-to-guardians",
+        "contentDate": "2026-08-26T06:57:15.439Z",
+        "teamIds": [
+            108
+        ],
+        "playerIds": [
+            687093
+        ],
+        "gamePks": [
+            823989
+        ],
+        "taxonomy": [
+            "apple-news",
+            "milestone"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Holmes' best start as a Cub spoiled by D-backs' walk-off in 5-run comeback",
+        "summaryJa": "カブス、サヨナラ勝利の主役に",
+        "slug": "clay-holmes-tosses-seven-scoreless-in-cubs-loss-to-d-backs",
+        "url": "https://www.mlb.com/news/clay-holmes-tosses-seven-scoreless-in-cubs-loss-to-d-backs",
+        "contentDate": "2026-08-26T06:42:00Z",
+        "teamIds": [
+            112
+        ],
+        "playerIds": [],
+        "gamePks": [
+            825042
+        ],
+        "taxonomy": [
+            "apple-news",
+            "game-recap-losing"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Latest Padres injuries and transactions",
+        "summaryJa": "パドレスの負傷状況をMLB公式が詳報",
+        "slug": "padres-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/padres-injuries-and-roster-moves",
+        "contentDate": "2026-08-26T06:42:00Z",
+        "teamIds": [
+            135
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Padres' quiet bats squander King's 7 scoreless vs. Pirates",
+        "summaryJa": "M.キング（SD）、マウンドで好投",
+        "slug": "michael-king-pitches-seven-innings-in-padres-loss-to-pirates",
+        "url": "https://www.mlb.com/news/michael-king-pitches-seven-innings-in-padres-loss-to-pirates",
+        "contentDate": "2026-08-26T06:36:37.603Z",
+        "teamIds": [
+            135
+        ],
+        "playerIds": [
+            650633
+        ],
+        "gamePks": [
+            823259
+        ],
+        "taxonomy": [
+            "takeaways",
+            "apple-news",
+            "payoff-pitch"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "'He's human': Miller's dominant streak without allowing a HR abruptly ends",
+        "summaryJa": "M.ミラー（SD）、本塁打で存在感",
+        "slug": "mason-miller-allows-first-homer-of-season-in-padres-loss-to-pirates",
+        "url": "https://www.mlb.com/news/mason-miller-allows-first-homer-of-season-in-padres-loss-to-pirates",
+        "contentDate": "2026-08-26T06:36:00Z",
+        "teamIds": [
+            135
+        ],
+        "playerIds": [
+            695243
+        ],
+        "gamePks": [
+            823259
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Walk-off Waldschmidt! Rookie's pinch-hit HR caps D-backs' comeback vs. Cubs",
+        "summaryJa": "R.ウォルドシュミット（AZ）、サヨナラ勝利の主役に",
+        "slug": "ryan-waldschmidt-hits-walk-off-pinch-hit-homer-in-5-run-comeback",
+        "url": "https://www.mlb.com/news/ryan-waldschmidt-hits-walk-off-pinch-hit-homer-in-5-run-comeback",
+        "contentDate": "2026-08-26T06:28:00Z",
+        "teamIds": [
+            109
+        ],
+        "playerIds": [
+            814439
+        ],
+        "gamePks": [
+            825042
+        ],
+        "taxonomy": [
+            "game-recap",
+            "apple-news",
+            "walk-off",
+            "walk-off-hr"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Latest Twins injuries & transactions",
+        "summaryJa": "ツインズの負傷状況をMLB公式が詳報",
+        "slug": "twins-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/twins-injuries-and-roster-moves",
+        "contentDate": "2026-08-26T06:18:00Z",
+        "teamIds": [
+            142
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Paul Skenes, Oneil Cruz carry Pirates to another victory over Padres",
         "summaryJa": "パイレーツ、勝利を呼び込む活躍",
         "slug": "paul-skenes-oneil-cruz-carry-pirates-to-another-victory-over-padres",
@@ -430,27 +586,6 @@
         ]
     },
     {
-        "headline": "Holmes' best start as a Cub spoiled by D-backs' walk-off",
-        "summaryJa": "カブス、サヨナラ勝利の主役に",
-        "slug": "clay-holmes-tosses-seven-scoreless-in-cubs-loss-to-d-backs",
-        "url": "https://www.mlb.com/news/clay-holmes-tosses-seven-scoreless-in-cubs-loss-to-d-backs",
-        "contentDate": "2026-08-26T04:46:35.408Z",
-        "teamIds": [
-            112
-        ],
-        "playerIds": [],
-        "gamePks": [
-            825042
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap-losing"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Peters homers in 4th straight game, flirts with cycle in big night at plate",
         "summaryJa": "T.ピーターズ（CWS）、記録達成の最新情報",
         "slug": "tristan-peters-homers-in-fourth-straight-game-white-sox-beat-rangers",
@@ -501,32 +636,6 @@
         ]
     },
     {
-        "headline": "Waldschmidt completes D-backs' 5-run comeback over Cubs with pinch-homer",
-        "summaryJa": "R.ウォルドシュミット（AZ）、サヨナラ勝利の主役に",
-        "slug": "ryan-waldschmidt-hits-walk-off-pinch-hit-homer-in-5-run-comeback",
-        "url": "https://www.mlb.com/news/ryan-waldschmidt-hits-walk-off-pinch-hit-homer-in-5-run-comeback",
-        "contentDate": "2026-08-26T04:36:54.589Z",
-        "teamIds": [
-            109
-        ],
-        "playerIds": [
-            814439
-        ],
-        "gamePks": [
-            825042
-        ],
-        "taxonomy": [
-            "game-recap",
-            "apple-news",
-            "walk-off",
-            "walk-off-hr"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Crawford activated from IL, starting at 3B vs. Phillies",
         "summaryJa": "J.クロフォード（SEA）の負傷状況をMLB公式が詳報",
         "slug": "jp-crawford-activated-from-injured-list-by-mariners",
@@ -564,27 +673,6 @@
         ],
         "sourceScopes": [
             "MLB"
-        ]
-    },
-    {
-        "headline": "Key takeaways: Pirates 1, Padres 0",
-        "summaryJa": "パドレス、本塁打で存在感",
-        "slug": "mason-miller-allows-first-homer-of-season-in-padres-loss-to-pirates",
-        "url": "https://www.mlb.com/news/mason-miller-allows-first-homer-of-season-in-padres-loss-to-pirates",
-        "contentDate": "2026-08-26T04:17:56.896Z",
-        "teamIds": [
-            135
-        ],
-        "playerIds": [],
-        "gamePks": [
-            823259
-        ],
-        "taxonomy": [
-            "apple-news",
-            "takeaways"
-        ],
-        "sourceScopes": [
-            "球団公式"
         ]
     },
     {
@@ -1459,26 +1547,6 @@
         ],
         "sourceScopes": [
             "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Latest Padres injuries and transactions",
-        "summaryJa": "パドレスの負傷状況をMLB公式が詳報",
-        "slug": "padres-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/padres-injuries-and-roster-moves",
-        "contentDate": "2026-08-26T00:31:00Z",
-        "teamIds": [
-            135
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
-        ],
-        "sourceScopes": [
             "球団公式"
         ]
     },
@@ -3052,26 +3120,6 @@
         "taxonomy": [
             "apple-news",
             "injury"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Latest Twins injuries & transactions",
-        "summaryJa": "ツインズの負傷状況をMLB公式が詳報",
-        "slug": "twins-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/twins-injuries-and-roster-moves",
-        "contentDate": "2026-08-25T01:24:00Z",
-        "teamIds": [
-            142
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
         ],
         "sourceScopes": [
             "球団公式"
@@ -8897,28 +8945,6 @@
         "playerIds": [],
         "gamePks": [
             823342
-        ],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Smith-Shawver shows promise, but falters in 5th as Braves swept by Twins",
-        "summaryJa": "A.スミスショーバー（ATL）、記録達成の最新情報",
-        "slug": "aj-smith-shawver-makes-second-start-of-season-vs-twins",
-        "url": "https://www.mlb.com/news/aj-smith-shawver-makes-second-start-of-season-vs-twins",
-        "contentDate": "2026-08-19T23:47:00Z",
-        "teamIds": [
-            144
-        ],
-        "playerIds": [
-            700363
-        ],
-        "gamePks": [
-            823664
         ],
         "taxonomy": [
             "apple-news"
