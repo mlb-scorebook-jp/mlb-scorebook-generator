@@ -2,6 +2,27 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Angels' 3rd-rounder goes yard TWICE ... off a rehabbing big leaguer!",
+        "summaryJa": "Gavin Grahovac（LAA）、復帰へ向けた最新状況",
+        "slug": "angels-2026-draft-pick-gavin-grahovac-hits-2-home-runs",
+        "url": "https://www.mlb.com/news/angels-2026-draft-pick-gavin-grahovac-hits-2-home-runs",
+        "contentDate": "2026-08-26T14:05:30.819Z",
+        "teamIds": [
+            108
+        ],
+        "playerIds": [
+            800606
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "mlb-top-prospects",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Cease's painting gets new home in gallery display, charity merchandise collection",
         "summaryJa": "D.シース（TOR）の最新動向をMLB公式が詳報",
         "slug": "dylan-cease-painting-at-art-gallery-of-toronto-event",
@@ -9286,31 +9307,6 @@
         "taxonomy": [
             "injury",
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Kikuchi's next start will be with Angels, but timing still undecided",
-        "summaryJa": "菊池 雄星（LAA）、復帰へ向けた最新状況",
-        "slug": "yusei-kikuchi-struggles-in-rehab-start-with-single-a",
-        "url": "https://www.mlb.com/news/yusei-kikuchi-struggles-in-rehab-start-with-single-a",
-        "contentDate": "2026-08-18T22:46:00Z",
-        "teamIds": [
-            108
-        ],
-        "playerIds": [
-            579328
-        ],
-        "gamePks": [
-            823991,
-            824154
-        ],
-        "taxonomy": [
-            "apple-news",
-            "injury",
-            "rehab"
         ],
         "sourceScopes": [
             "球団公式"
