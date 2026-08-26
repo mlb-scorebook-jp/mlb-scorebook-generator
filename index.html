@@ -3434,7 +3434,10 @@
                         const homeRunAtBats = Number(
                             player?.crossGameAtBatStreaks?.homeRuns
                         ) || 0;
-                        if (hitAtBats >= 2) {
+                        // When every hit in the streak is a home run, the home-run
+                        // note alone is more specific. Show the hit note once its
+                        // streak grows beyond the consecutive home-run count.
+                        if (hitAtBats >= 2 && hitAtBats !== homeRunAtBats) {
                             notes.push({
                                 text: `${code}　${getPersonName(player.person)}　` +
                                     `${hitAtBats}打数連続安打（前日から）`,
