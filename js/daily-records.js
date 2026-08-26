@@ -2,7 +2,7 @@
 
 (() => {
     const API_ROOT = "https://statsapi.mlb.com/api";
-    const CACHE_PREFIX = "mlb-daily-records-phase1-v13:";
+    const CACHE_PREFIX = "mlb-daily-records-phase1-v15:";
     const MAX_CONCURRENT_GAMES = 3;
     const RECORD_THRESHOLDS = Object.freeze({
         inningHits: 2,
@@ -417,10 +417,12 @@
                 if (!gameStrikeouts) return;
                 const playerId = number(entry?.person?.id);
                 const official = leaders.find((leader) => leader.playerId === playerId);
-                if (!official || official.rank > 15) return;
+                if (!official || official.rank > 10) return;
                 const next = leaders.find((leader) => leader.rank > official.rank);
                 if (!next) return;
                 const beforeGame = official.value - gameStrikeouts;
+                // Register the record only when this game's strikeouts moved the
+                // pitcher past the player immediately below the achieved rank.
                 if (beforeGame > next.value || official.value <= next.value) return;
                 const fact = official.rank === 1
                     ? `MLB最多となる通算${official.value}奪三振達成`
@@ -437,6 +439,7 @@
                         rank: official.rank,
                         careerStrikeouts: official.value,
                         gameStrikeouts,
+                        beforeGameStrikeouts: beforeGame,
                         passedPlayerValue: next.value
                     },
                     evidence: "MLB公式 通算奪三振リーダー＋当該試合Boxscore"
