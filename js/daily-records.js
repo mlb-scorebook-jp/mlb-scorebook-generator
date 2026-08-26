@@ -2,7 +2,7 @@
 
 (() => {
     const API_ROOT = "https://statsapi.mlb.com/api";
-    const CACHE_PREFIX = "mlb-daily-records-phase1-v10:";
+    const CACHE_PREFIX = "mlb-daily-records-phase1-v11:";
     const MAX_CONCURRENT_GAMES = 3;
     const RECORD_THRESHOLDS = Object.freeze({
         inningHits: 2,
@@ -95,7 +95,15 @@
         TEN_RUN_COMEBACK: ["10点差から逆転勝利", "10点差逆転"],
         NINTH_INNING_FIVE_RUN_COMEBACK: ["9回5点差から逆転勝利", "9回開始時5点差"],
         FIFTEEN_INNING_GAME: ["延長15回", "15回", "延長18回"],
-        EIGHTEEN_INNING_GAME: ["延長18回", "18回", "延長15回"]
+        EIGHTEEN_INNING_GAME: ["延長18回", "18回", "延長15回"],
+        CROSS_DATE_CONSECUTIVE_HITS: [
+            "日付を跨いで連続打数安打", "連続打数安打", "前日から連続安打",
+            "consecutive at-bat hits"
+        ],
+        CROSS_DATE_CONSECUTIVE_HOME_RUNS: [
+            "日付を跨いで連続打数本塁打", "連続打数本塁打", "前日から連続本塁打",
+            "consecutive at-bat home runs", "consecutive at-bat homers"
+        ]
     });
     const HIT_EVENTS = new Set(["single", "double", "triple", "home_run"]);
     const STRIKEOUT_EVENTS = new Set(["strikeout", "strikeout_double_play"]);
@@ -134,6 +142,7 @@
     };
     const dom = {};
     const careerHistoryRequests = new Map();
+    const crossDatePlayByPlayRequests = new Map();
 
     const number = (value) => Number.isFinite(Number(value)) ? Number(value) : 0;
     const text = (value) => String(value ?? "").trim();
@@ -493,6 +502,163 @@
         (Number.isFinite(Number(pitch?.pitchData?.coordinates?.pX)) &&
             Number.isFinite(Number(pitch?.pitchData?.coordinates?.pZ)))
     );
+
+    const OFFICIAL_AT_BAT_OUT_EVENTS = new Set([
+        "strikeout", "strikeout_double_play", "field_out", "force_out",
+        "grounded_into_double_play", "double_play", "triple_play", "field_error",
+        "fielders_choice", "fielders_choice_out"
+    ]);
+    const NON_AT_BAT_EVENTS = new Set([
+        "walk", "intent_walk", "intentional_walk", "hit_by_pitch", "sac_fly",
+        "sac_fly_double_play", "sac_bunt", "sac_bunt_double_play",
+        "catcher_interf", "catcher_interference"
+    ]);
+
+    const officialAtBatResults = (plays, playerId) => (plays ?? [])
+        .filter((play) => number(play?.matchup?.batter?.id) === number(playerId) &&
+            play?.about?.isComplete !== false)
+        .sort((left, right) =>
+            number(left?.about?.atBatIndex) - number(right?.about?.atBatIndex)
+        )
+        .flatMap((play) => {
+            const eventType = text(play?.result?.eventType).toLowerCase();
+            if (HIT_EVENTS.has(eventType)) {
+                return [{ hit: true, homeRun: eventType === "home_run" }];
+            }
+            if (OFFICIAL_AT_BAT_OUT_EVENTS.has(eventType)) {
+                return [{ hit: false, homeRun: false }];
+            }
+            if (NON_AT_BAT_EVENTS.has(eventType)) return [];
+            return [{ hit: false, homeRun: false }];
+        });
+
+    const countOpeningAtBatResults = (results, field) => {
+        let count = 0;
+        for (const result of results) {
+            if (!result[field]) break;
+            count += 1;
+        }
+        return count;
+    };
+
+    const fetchCrossDatePlayByPlay = async (gamePk, signal) => {
+        const key = number(gamePk);
+        if (!key) return null;
+        if (crossDatePlayByPlayRequests.has(key)) {
+            return crossDatePlayByPlayRequests.get(key);
+        }
+        const request = fetchJson(`${API_ROOT}/v1/game/${key}/playByPlay`, signal)
+            .then((result) => result.data)
+            .catch(() => {
+                crossDatePlayByPlayRequests.delete(key);
+                return null;
+            });
+        crossDatePlayByPlayRequests.set(key, request);
+        return request;
+    };
+
+    const buildCrossDateAtBatRecords = async (
+        game,
+        playByPlay,
+        boxscore,
+        priorGamesByTeam,
+        signal
+    ) => {
+        if (text(game?.gameType).toUpperCase() !== "R") return [];
+        const currentDate = text(game?.officialDate || state.date);
+        const currentPlays = playByPlay?.allPlays ?? [];
+        const candidates = new Map();
+
+        currentPlays.forEach((play) => {
+            if (play?.about?.isComplete === false) return;
+            const player = play?.matchup?.batter;
+            const playerId = number(player?.id);
+            if (!playerId || candidates.has(playerId)) return;
+            const side = text(play?.about?.halfInning).toLowerCase() === "top"
+                ? "away"
+                : "home";
+            const currentResults = officialAtBatResults(currentPlays, playerId);
+            const hits = countOpeningAtBatResults(currentResults, "hit");
+            const homeRuns = countOpeningAtBatResults(currentResults, "homeRun");
+            if (!hits && !homeRuns) return;
+            candidates.set(playerId, { player, side, hits, homeRuns });
+        });
+
+        const records = [];
+        for (const candidate of candidates.values()) {
+            const team = sideTeam(game, boxscore, candidate.side);
+            const previousGames = priorGamesByTeam.get(number(team?.id)) ?? [];
+            let hits = candidate.hits;
+            let homeRuns = candidate.homeRuns;
+            let hitActive = hits > 0;
+            let homeRunActive = homeRuns > 0;
+            let crossedDateForHits = false;
+            let crossedDateForHomeRuns = false;
+
+            for (const previousGame of previousGames) {
+                if (!hitActive && !homeRunActive) break;
+                const previousDate = text(previousGame?.officialDate);
+                if (!previousDate || previousDate > currentDate ||
+                    number(previousGame?.gamePk) === number(game?.gamePk)) continue;
+                if (previousDate === currentDate &&
+                    number(previousGame?.gameNumber) >= number(game?.gameNumber)) continue;
+                const crossesDate = previousDate < currentDate;
+                const previousPlayByPlay = await fetchCrossDatePlayByPlay(
+                    previousGame?.gamePk,
+                    signal
+                );
+                if (!previousPlayByPlay) break;
+                const previousResults = officialAtBatResults(
+                    previousPlayByPlay?.allPlays,
+                    candidate.player?.id
+                );
+                if (!previousResults.length) continue;
+
+                for (let index = previousResults.length - 1; index >= 0; index -= 1) {
+                    const result = previousResults[index];
+                    if (hitActive) {
+                        if (result.hit) {
+                            hits += 1;
+                            crossedDateForHits ||= crossesDate;
+                        } else hitActive = false;
+                    }
+                    if (homeRunActive) {
+                        if (result.homeRun) {
+                            homeRuns += 1;
+                            crossedDateForHomeRuns ||= crossesDate;
+                        } else homeRunActive = false;
+                    }
+                }
+            }
+
+            const add = (recordType, fact, count) => records.push(makeRecord({
+                game,
+                boxscore,
+                recordType,
+                category: "individual",
+                fact,
+                player: candidate.player,
+                side: candidate.side,
+                details: { atBats: count, crossedDate: true },
+                evidence: "MLB公式Play-by-Play（前試合から当該試合）"
+            }));
+            if (crossedDateForHomeRuns && homeRuns >= 3) {
+                add(
+                    "CROSS_DATE_CONSECUTIVE_HOME_RUNS",
+                    `${homeRuns}打数連続本塁打（前日から）`,
+                    homeRuns
+                );
+            }
+            if (crossedDateForHits && hits >= 3 && hits !== homeRuns) {
+                add(
+                    "CROSS_DATE_CONSECUTIVE_HITS",
+                    `${hits}打数連続安打（前日から）`,
+                    hits
+                );
+            }
+        }
+        return records;
+    };
 
     const analyzeGame = async (game, playByPlay, boxscore, signal, { includeArticles = true } = {}) => {
         const records = [];
@@ -1114,7 +1280,21 @@
         return result;
     };
 
-    const analyzeOneGame = async (game, signal, japanesePlayers, { includeArticles = true } = {}) => {
+    const analyzeOneGame = async (
+        game,
+        signal,
+        japanesePlayers,
+        priorGamesByTeam = new Map(),
+        options = {}
+    ) => {
+        // Keep the archive builder's former four-argument call compatible. It
+        // intentionally supplies no prior-game map, so historical backfills are
+        // not changed by this daily-only feature.
+        if (!(priorGamesByTeam instanceof Map)) {
+            options = priorGamesByTeam ?? {};
+            priorGamesByTeam = new Map();
+        }
+        const { includeArticles = true } = options;
         const [playResult, boxResult] = await Promise.all([
             fetchJson(`${API_ROOT}/v1/game/${game.gamePk}/playByPlay`, signal),
             fetchJson(`${API_ROOT}/v1/game/${game.gamePk}/boxscore`, signal)
@@ -1126,6 +1306,13 @@
             signal,
             { includeArticles }
         );
+        records.push(...await buildCrossDateAtBatRecords(
+            game,
+            playResult.data,
+            boxResult.data,
+            priorGamesByTeam,
+            signal
+        ));
         const careerRecords = await japaneseCareerRecords(game, boxResult.data, japanesePlayers, signal);
         const japaneseIds = new Set(japanesePlayers.keys());
         records.forEach((record) => {
@@ -1405,6 +1592,38 @@
             const games = (schedule?.dates ?? []).flatMap((item) => item?.games ?? [])
                 .filter((game) => number(game?.gamePk));
             const finalGames = games.filter(isFinal);
+            const historyParams = new URLSearchParams({
+                sportId: "1",
+                startDate: addDays(date, -30),
+                endDate: addDays(date, -1),
+                gameType: "R",
+                hydrate: "team"
+            });
+            const { data: historySchedule } = await fetchJson(
+                `${API_ROOT}/v1/schedule?${historyParams}`,
+                state.controller.signal
+            ).catch(() => ({ data: { dates: [] } }));
+            const priorGamesByTeam = new Map();
+            [
+                ...(historySchedule?.dates ?? []).flatMap((item) => item?.games ?? []),
+                ...finalGames
+            ]
+                .filter((game) => isFinal(game) && text(game?.gameType).toUpperCase() === "R")
+                .sort((left, right) =>
+                    text(right?.officialDate).localeCompare(text(left?.officialDate)) ||
+                    number(right?.gameNumber) - number(left?.gameNumber)
+                )
+                .forEach((game) => {
+                    [game?.teams?.away?.team?.id, game?.teams?.home?.team?.id]
+                        .map(number)
+                        .filter(Boolean)
+                        .forEach((teamId) => {
+                            if (!priorGamesByTeam.has(teamId)) {
+                                priorGamesByTeam.set(teamId, []);
+                            }
+                            priorGamesByTeam.get(teamId).push(game);
+                        });
+                });
             setRunning(true, "日本人選手の対象者を確認しています…");
             const japanesePlayers = await fetchJapanesePlayers(
                 number(date.slice(0, 4)),
@@ -1413,7 +1632,12 @@
             const gameRecords = await mapWithConcurrency(
                 finalGames,
                 MAX_CONCURRENT_GAMES,
-                (game) => analyzeOneGame(game, state.controller.signal, japanesePlayers),
+                (game) => analyzeOneGame(
+                    game,
+                    state.controller.signal,
+                    japanesePlayers,
+                    priorGamesByTeam
+                ),
                 (completed, total) => {
                     if (generation !== state.generation) return;
                     setRunning(true, `Final試合を解析しています… ${completed}/${total}`);
