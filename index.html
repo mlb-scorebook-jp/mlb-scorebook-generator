@@ -1979,10 +1979,20 @@
 
                 const rank = Number(officialLeader.rank);
                 if (rank > 10) return null;
+                const nextLeader = leaders.find((leader) => Number(leader.rank) > rank);
+                if (!nextLeader) return null;
+                const beforeGameTotal = total - gameStrikeouts;
+                // Show this note only in the game where the pitcher actually
+                // moved into the achieved all-time rank. Remaining at the same
+                // rank while adding strikeouts is not a new milestone.
+                if (beforeGameTotal > nextLeader.value || total <= nextLeader.value) {
+                    return null;
+                }
 
                 return {
-                    text: `${code}　${getPersonName(player.person)}　` +
-                        `MLB歴代${rank}位となる${total}奪三振達成`,
+                    text: `${code}　${getPersonName(player.person)}　` + (rank === 1
+                        ? `MLB最多となる${total}奪三振達成`
+                        : `MLB歴代${rank}位となる${total}奪三振達成`),
                     priority: 0,
                     importance: total
                 };
