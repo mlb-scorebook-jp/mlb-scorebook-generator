@@ -1399,6 +1399,7 @@
             const teamSeasonHitterCache = new Map();
             const seasonPlayerListCache = new Map();
             const playerSearchGameFeedCache = new Map();
+            const crossGameAtBatFeedCache = new Map();
             let playerSearchResultsGeneration = 0;
             const officialGameArticlesCache = new Map();
             const franchiseLeadersCache = new Map();
@@ -3062,6 +3063,138 @@
                 };
             };
 
+            const OFFICIAL_AT_BAT_HIT_EVENTS = new Set([
+                "single", "double", "triple", "home_run"
+            ]);
+            const OFFICIAL_AT_BAT_OUT_EVENTS = new Set([
+                "strikeout", "strikeout_double_play", "field_out", "force_out",
+                "grounded_into_double_play", "double_play", "triple_play",
+                "field_error", "fielders_choice", "fielders_choice_out"
+            ]);
+            const NON_AT_BAT_EVENTS = new Set([
+                "walk", "intent_walk", "intentional_walk", "hit_by_pitch",
+                "sac_fly", "sac_fly_double_play", "sac_bunt",
+                "sac_bunt_double_play", "catcher_interf", "catcher_interference"
+            ]);
+
+            const getPlayerOfficialAtBatResults = (allPlays, playerId) =>
+                (allPlays ?? [])
+                    .filter((play) =>
+                        Number(play?.matchup?.batter?.id) === Number(playerId) &&
+                        play?.about?.isComplete !== false
+                    )
+                    .sort((left, right) =>
+                        (Number(left?.about?.atBatIndex) || 0) -
+                        (Number(right?.about?.atBatIndex) || 0)
+                    )
+                    .flatMap((play) => {
+                        const eventType = String(play?.result?.eventType ?? "")
+                            .toLowerCase();
+                        if (OFFICIAL_AT_BAT_HIT_EVENTS.has(eventType)) {
+                            return [{ hit: true, homeRun: eventType === "home_run" }];
+                        }
+                        if (OFFICIAL_AT_BAT_OUT_EVENTS.has(eventType)) {
+                            return [{ hit: false, homeRun: false }];
+                        }
+                        if (NON_AT_BAT_EVENTS.has(eventType)) return [];
+                        // An unknown completed result must break the candidate instead
+                        // of being skipped; this favors a safe false-negative over a
+                        // false consecutive-at-bat record.
+                        return [{ hit: false, homeRun: false }];
+                    });
+
+            const fetchCrossGameAtBatFeed = (gamePk) => {
+                const key = Number(gamePk);
+                if (!Number.isFinite(key)) return Promise.resolve(null);
+                if (crossGameAtBatFeedCache.has(key)) {
+                    return crossGameAtBatFeedCache.get(key);
+                }
+                const request = fetch(
+                    `https://statsapi.mlb.com/api/v1.1/game/${key}/feed/live`
+                ).then((response) => response.ok ? response.json() : null)
+                    .catch(() => null);
+                crossGameAtBatFeedCache.set(key, request);
+                return request;
+            };
+
+            const getCrossGameAtBatStreaks = async (
+                playerId,
+                currentAllPlays,
+                priorHittingGames
+            ) => {
+                const currentAtBats = getPlayerOfficialAtBatResults(
+                    currentAllPlays,
+                    playerId
+                );
+                if (!currentAtBats.length) return { hits: 0, homeRuns: 0 };
+
+                const countOpeningResults = (field) => {
+                    let count = 0;
+                    for (const result of currentAtBats) {
+                        if (!result[field]) break;
+                        count += 1;
+                    }
+                    return count;
+                };
+                // Preserve the maximum cross-game streak reached in this game even
+                // if a later at-bat ends it; special notes describe game events.
+                const currentHitCount = countOpeningResults("hit");
+                const currentHomeRunCount = countOpeningResults("homeRun");
+                if (!currentHitCount && !currentHomeRunCount) {
+                    return { hits: 0, homeRuns: 0 };
+                }
+
+                let hits = currentHitCount;
+                let homeRuns = currentHomeRunCount;
+                let hitActive = currentHitCount > 0;
+                let homeRunActive = currentHomeRunCount > 0;
+                let crossedGameForHits = false;
+                let crossedGameForHomeRuns = false;
+                const previousGames = [...(priorHittingGames ?? [])].sort((left, right) =>
+                    String(right?.date ?? "").localeCompare(String(left?.date ?? "")) ||
+                    (Number(right?.game?.gameNumber) || Number(right?.game?.gamePk) || 0) -
+                    (Number(left?.game?.gameNumber) || Number(left?.game?.gamePk) || 0)
+                );
+
+                for (const split of previousGames) {
+                    if (!hitActive && !homeRunActive) break;
+                    const previousGamePk = Number(split?.game?.gamePk);
+                    if (!Number.isFinite(previousGamePk)) break;
+                    const previousFeed = await fetchCrossGameAtBatFeed(previousGamePk);
+                    if (!previousFeed) break;
+                    const previousAtBats = getPlayerOfficialAtBatResults(
+                        previousFeed?.liveData?.plays?.allPlays,
+                        playerId
+                    );
+                    if (!previousAtBats.length) continue;
+
+                    for (let index = previousAtBats.length - 1; index >= 0; index -= 1) {
+                        const result = previousAtBats[index];
+                        if (hitActive) {
+                            if (result.hit) {
+                                hits += 1;
+                                crossedGameForHits = true;
+                            } else {
+                                hitActive = false;
+                            }
+                        }
+                        if (homeRunActive) {
+                            if (result.homeRun) {
+                                homeRuns += 1;
+                                crossedGameForHomeRuns = true;
+                            } else {
+                                homeRunActive = false;
+                            }
+                        }
+                    }
+                }
+
+                return {
+                    hits: crossedGameForHits && hits >= 2 ? hits : 0,
+                    homeRuns: crossedGameForHomeRuns && homeRuns >= 2 ? homeRuns : 0
+                };
+            };
+
             const getRosterCandidatesForSide = (data, side, roster) => {
                 const playerMap = data?.liveData?.boxscore?.teams?.[side]?.players ?? {};
                 const source = roster.length ? roster : Object.values(playerMap).map((player) => ({
@@ -3212,6 +3345,14 @@
                             (total, split) => total + getPlateAppearances(split?.stat),
                             0
                         );
+                        const crossGameAtBatStreaks = participation.appeared.has(player.id) &&
+                            !isPitcherCandidate(player)
+                            ? await getCrossGameAtBatStreaks(
+                                player.id,
+                                context.allPlays,
+                                priorHittingGames
+                            )
+                            : { hits: 0, homeRuns: 0 };
                         const streaks = summarizeCurrentStreaks(
                             gameLogSplits,
                             context
@@ -3243,6 +3384,7 @@
                         return {
                             ...player,
                             ...streaks,
+                            crossGameAtBatStreaks,
                             gameLogSplits,
                             appearedInCurrentGame: participation.appeared.has(player.id),
                             seasonHittingRole: priorHittingGames.length >= 3 ||
@@ -3287,6 +3429,26 @@
                         context,
                         code
                     ));
+                    analyzed.forEach((player) => {
+                        const hitAtBats = Number(player?.crossGameAtBatStreaks?.hits) || 0;
+                        const homeRunAtBats = Number(
+                            player?.crossGameAtBatStreaks?.homeRuns
+                        ) || 0;
+                        if (hitAtBats >= 2) {
+                            notes.push({
+                                text: `${code}　${getPersonName(player.person)}　` +
+                                    `${hitAtBats}打数連続安打（前日から）`,
+                                priority: 1
+                            });
+                        }
+                        if (homeRunAtBats >= 2) {
+                            notes.push({
+                                text: `${code}　${getPersonName(player.person)}　` +
+                                    `${homeRunAtBats}打数連続本塁打（前日から）`,
+                                priority: 0
+                            });
+                        }
+                    });
                     if (gameFinal && hitLeader) {
                         const stoppedSuffix = hitLeader.hitStreakStopped ? "でストップ" : "";
                         const personalSuffix = getPersonalStreakSuffix(
