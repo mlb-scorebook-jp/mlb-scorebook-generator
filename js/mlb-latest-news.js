@@ -2,6 +2,24 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Esmerlyn Valdez working, adjusting and eying more opportunities to punch back",
+        "summaryJa": "パイレーツの最新動向をMLB公式が詳報",
+        "slug": "esmerlyn-valdez-working-adjusting-and-eying-more-opportunities-to-punch-back",
+        "url": "https://www.mlb.com/news/esmerlyn-valdez-working-adjusting-and-eying-more-opportunities-to-punch-back",
+        "contentDate": "2026-08-26T11:41:50.736Z",
+        "teamIds": [
+            134
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "pit-inside-the-pirates"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Vintage J-Ram steals show in Guards' 'heart-pumper' of a comeback",
         "summaryJa": "J.ラミレス（CLE）、勝利を呼び込む活躍",
         "slug": "jose-ramirez-has-5-rbis-as-guardians-beat-angels",
@@ -8887,28 +8905,6 @@
             "apple-news",
             "extra-innings",
             "game-recap"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Starting on 7 days' rest, Skenes (4 walks) still searching for command",
-        "summaryJa": "P.スキーンズ（PIT）の最新動向をMLB公式が詳報",
-        "slug": "paul-skenes-faces-tigers-in-pittsburgh",
-        "url": "https://www.mlb.com/news/paul-skenes-faces-tigers-in-pittsburgh",
-        "contentDate": "2026-08-20T00:54:00Z",
-        "teamIds": [
-            134
-        ],
-        "playerIds": [
-            694973
-        ],
-        "gamePks": [
-            823342
-        ],
-        "taxonomy": [
-            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
