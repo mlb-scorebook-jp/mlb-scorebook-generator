@@ -107,6 +107,30 @@
     const text = (value) => String(value ?? "").trim();
     const unique = (values) => [...new Set(values.filter(Boolean))];
     const dateLabel = (date) => text(date).replaceAll("-", "/");
+    const inningHalf = (side) => side === "away" ? "表" : side === "home" ? "裏" : "";
+    const pitchingInningHalf = (side) => inningHalf(side === "away" ? "home" : side === "home" ? "away" : "");
+    const displayFact = (record) => {
+        const inning = number(record?.inning);
+        if (!inning) return text(record?.fact);
+        const battingHalf = inningHalf(record?.battingSide);
+        const pitchingHalf = pitchingInningHalf(record?.pitchingSide);
+        if (record?.recordType === "TWO_HIT_SAME_INNING" && battingHalf && number(record?.details?.hits)) {
+            return `${inning}回${battingHalf} 1イニングに${number(record?.details?.hits)}安打`;
+        }
+        if (record?.recordType === "TWO_HR_SAME_INNING" && battingHalf && number(record?.details?.homeRuns)) {
+            return `${inning}回${battingHalf} 1イニングに${number(record?.details?.homeRuns)}本塁打`;
+        }
+        if (record?.recordType === "LARGE_RUN_INNING" && battingHalf && number(record?.details?.runs)) {
+            return `${inning}回${battingHalf} 1イニングに${number(record?.details?.runs)}得点`;
+        }
+        if (record?.recordType === "LARGE_HR_INNING" && battingHalf && number(record?.details?.homeRuns)) {
+            return `${inning}回${battingHalf} 1イニングに${number(record?.details?.homeRuns)}本塁打`;
+        }
+        if (record?.recordType === "IMMACULATE_INNING" && pitchingHalf) {
+            return `${inning}回${pitchingHalf} イマキュレート・イニング達成`;
+        }
+        return text(record?.fact);
+    };
     const nowIso = () => new Date().toISOString();
     const formatCheckedAt = (value) => {
         const date = new Date(value);
@@ -514,7 +538,7 @@
                 records.push(makeRecord({
                     game, boxscore, recordType: "TWO_HR_SAME_INNING", category: "individual",
                     player: line.player, side: line.side, inning: line.inning,
-                    fact: `${line.inning}回に${line.homeRuns}本塁打`,
+                    fact: `${line.inning}回${inningHalf(line.side)} 1イニングに${line.homeRuns}本塁打`,
                     details: { homeRuns: line.homeRuns },
                     evidence: `同一イニングのhome_run ${line.homeRuns}件`
                 }));
@@ -523,7 +547,7 @@
                 records.push(makeRecord({
                     game, boxscore, recordType: "TWO_HIT_SAME_INNING", category: "individual",
                     player: line.player, side: line.side, inning: line.inning,
-                    fact: `${line.inning}回に${line.hits}安打`, details: { hits: line.hits },
+                    fact: `${line.inning}回${inningHalf(line.side)} 1イニングに${line.hits}安打`, details: { hits: line.hits },
                     evidence: `同一イニングの安打イベント ${line.hits}件`
                 }));
             }
@@ -679,7 +703,7 @@
                 records.push(makeRecord({
                     game, boxscore, recordType: "IMMACULATE_INNING", category: "individual",
                     player: line.pitcher, side: line.side, inning: line.inning,
-                    fact: `${line.inning}回 イマキュレート・イニング`,
+                    fact: `${line.inning}回${pitchingInningHalf(line.side)} イマキュレート・イニング達成`,
                     details: { pitches: 9, strikeouts: 3, battersFaced: 3 },
                     evidence: "1投手が3打者を9球すべてストライクで3者連続三振"
                 }));
@@ -761,7 +785,7 @@
                 if (number(line.runs) >= RECORD_THRESHOLDS.inningRuns) {
                     records.push(makeRecord({
                         game, boxscore, recordType: "LARGE_RUN_INNING", category: "team", side,
-                        inning: inning?.num, fact: `${number(inning?.num)}回に${number(line.runs)}得点`,
+                        inning: inning?.num, fact: `${number(inning?.num)}回${inningHalf(side)} 1イニングに${number(line.runs)}得点`,
                         details: { runs: number(line.runs) },
                         evidence: `Linescoreのイニング得点 ${number(line.runs)}`
                     }));
@@ -773,7 +797,7 @@
                 records.push(makeRecord({
                     game, boxscore, recordType: "LARGE_HR_INNING", category: "team",
                     side: line.side, inning: line.inning,
-                    fact: `${line.inning}回にチーム${line.homeRuns}本塁打`,
+                    fact: `${line.inning}回${inningHalf(line.side)} 1イニングに${line.homeRuns}本塁打`,
                     details: { homeRuns: line.homeRuns },
                     evidence: `同一チーム・同一イニングのhome_run ${line.homeRuns}件`
                 }));
@@ -1025,7 +1049,7 @@
         if (achievedDate.textContent) header.append(achievedDate);
         const fact = document.createElement("p");
         fact.className = "daily-record-fact";
-        fact.textContent = record.fact;
+        fact.textContent = displayFact(record);
         const links = document.createElement("div");
         links.className = "daily-record-links";
         links.append(link("Gameday", record.gamedayUrl));
