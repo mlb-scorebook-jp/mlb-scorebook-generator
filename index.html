@@ -8,7 +8,7 @@
     <!-- Score notation update: stacked batted-ball symbol, red hits, blue strikeouts, black other results. -->
     <link rel="stylesheet" href="css/style.css?v=20260821-print-mac-2">
     <link rel="stylesheet" href="css/pregame.css?v=20260821-mobile-game-detail-1">
-    <link rel="stylesheet" href="css/daily-records.css?v=20260825-phase2-9">
+    <link rel="stylesheet" href="css/daily-records.css?v=20260826-history-loading">
 </head>
 
 <body class="app-mode-home">
@@ -291,6 +291,11 @@
                         </select>
                     </div>
                     <p class="daily-records-archive-range" id="daily-records-archive-range"></p>
+                    <div class="daily-records-archive-loading" id="daily-records-archive-loading"
+                        role="status" aria-live="polite" hidden>
+                        <span class="daily-records-spinner" aria-hidden="true"></span>
+                        <span id="daily-records-archive-loading-text">記録アーカイブを読み込んでいます…</span>
+                    </div>
                     <div class="daily-records-search-summary" id="daily-records-search-summary"></div>
                     <div class="daily-records-search-results" id="daily-records-search-results"></div>
                 </section>
@@ -345,7 +350,7 @@
     <script src="js/mlb-latest-news.js?v=20260814-summary-1"></script>
     <script src="js/stathead-links.js?v=20260810-1"></script>
     <script src="js/records-archive.js?v=20260826-game-base-phase1"></script>
-    <script src="js/daily-records.js?v=20260826-game-base-phase1"></script>
+    <script src="js/daily-records.js?v=20260826-history-loading"></script>
     <script src="js/pregame.js?v=20260825-phase2-9"></script>
 
     <script>
