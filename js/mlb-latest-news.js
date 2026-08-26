@@ -2,6 +2,137 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Top 10 nastiest pitches: Ryan's heater, Mo's cutter & more",
+        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
+        "slug": "top-nastiest-pitches-in-baseball-history",
+        "url": "https://www.mlb.com/news/top-nastiest-pitches-in-baseball-history",
+        "contentDate": "2026-08-26T15:25:09.598Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "rankings"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "Furious George punches out 9 in gem -- and wants more",
+        "summaryJa": "G.カービー（SEA）、マウンドで好投",
+        "slug": "george-kirby-has-9-strikeouts-as-mariners-win-vs-phillies",
+        "url": "https://www.mlb.com/news/george-kirby-has-9-strikeouts-as-mariners-win-vs-phillies",
+        "contentDate": "2026-08-26T15:13:00Z",
+        "teamIds": [
+            136
+        ],
+        "playerIds": [
+            669923
+        ],
+        "gamePks": [
+            823098
+        ],
+        "taxonomy": [
+            "apple-news",
+            "game-recap"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Pirates' No. 2 prospect Florentino walks it off in 11th for High-A Greensboro",
+        "summaryJa": "Edward Florentino（PIT）、記録達成の最新情報",
+        "slug": "pirates-prospect-edward-florentino-hits-11th-inning-walk-off-home-run",
+        "url": "https://www.mlb.com/news/pirates-prospect-edward-florentino-hits-11th-inning-walk-off-home-run",
+        "contentDate": "2026-08-26T15:11:44.426Z",
+        "teamIds": [
+            134
+        ],
+        "playerIds": [
+            821273
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "mlb-top-prospects"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Emotional Alcantara takes his place on leaders wall in Marlins Museum",
+        "summaryJa": "S.アルカンタラ（MIA）の最新動向をMLB公式が詳報",
+        "slug": "sandy-alcantara-honored-by-marlins-museum-at-loandepot-park",
+        "url": "https://www.mlb.com/news/sandy-alcantara-honored-by-marlins-museum-at-loandepot-park",
+        "contentDate": "2026-08-26T14:55:57.006Z",
+        "teamIds": [
+            146
+        ],
+        "playerIds": [
+            645261
+        ],
+        "gamePks": [
+            823825
+        ],
+        "taxonomy": [
+            "apple-news",
+            "milestone"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Big Dumper homers in 4th straight AB to continue surge",
+        "summaryJa": "C.ラリー（SEA）、記録達成の最新情報",
+        "slug": "cal-raleigh-homers-for-second-straight-game-vs-phillies",
+        "url": "https://www.mlb.com/news/cal-raleigh-homers-for-second-straight-game-vs-phillies",
+        "contentDate": "2026-08-26T14:54:20.048Z",
+        "teamIds": [
+            136
+        ],
+        "playerIds": [
+            663728
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "This Tigers prospect has jaw-dropping -- and parking lot! -- power",
+        "summaryJa": "Z.ホープ（DET）ら注目選手の最新動向",
+        "slug": "tigers-prospect-zyhir-hope-known-for-his-powerful-bat",
+        "url": "https://www.mlb.com/news/tigers-prospect-zyhir-hope-known-for-his-powerful-bat",
+        "contentDate": "2026-08-26T14:49:29.256Z",
+        "teamIds": [
+            116
+        ],
+        "playerIds": [
+            814307
+        ],
+        "gamePks": [
+            824234
+        ],
+        "taxonomy": [
+            "apple-news",
+            "mlb-top-prospects"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Angels' 3rd-rounder goes yard TWICE ... off a rehabbing big leaguer!",
         "summaryJa": "Gavin Grahovac（LAA）、復帰へ向けた最新状況",
         "slug": "angels-2026-draft-pick-gavin-grahovac-hits-2-home-runs",
@@ -396,30 +527,6 @@
         ]
     },
     {
-        "headline": "Furious George punches out 9 in gem -- and wants more",
-        "summaryJa": "G.カービー（SEA）、マウンドで好投",
-        "slug": "george-kirby-has-9-strikeouts-as-mariners-win-vs-phillies",
-        "url": "https://www.mlb.com/news/george-kirby-has-9-strikeouts-as-mariners-win-vs-phillies",
-        "contentDate": "2026-08-26T05:47:00Z",
-        "teamIds": [
-            136
-        ],
-        "playerIds": [
-            669923
-        ],
-        "gamePks": [
-            823098
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Reds' offensive blunders continue despite Singer's solid start",
         "summaryJa": "B.シンガー（CIN）の最新動向をMLB公式が詳報",
         "slug": "brady-singer-pushes-through-start-against-giants",
@@ -636,7 +743,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -664,7 +770,7 @@
         ]
     },
     {
-        "headline": "GRAND DURAN! 11th-inning slam lifts Sox over Marlins",
+        "headline": "Grand Duran! 11th-inning slam lifts Sox over Marlins",
         "summaryJa": "J.デュラン（BOS）、記録達成の最新情報",
         "slug": "jarren-duran-hits-grand-slam-in-11th-inning-as-red-sox-beat-marlins",
         "url": "https://www.mlb.com/news/jarren-duran-hits-grand-slam-in-11th-inning-as-red-sox-beat-marlins",
@@ -779,7 +885,7 @@
         ]
     },
     {
-        "headline": "After disheartening stretch, Astros do what they need to in morale-lifting win",
+        "headline": "Yordan's go-ahead triple caps back-and-forth Bronx thriller",
         "summaryJa": "Y.ディアス（HOU）、勝利を呼び込む活躍",
         "slug": "alvarez-diaz-help-astros-complete-comeback-over-yankees",
         "url": "https://www.mlb.com/news/alvarez-diaz-help-astros-complete-comeback-over-yankees",
@@ -1675,7 +1781,6 @@
             "japanese-language"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1738,7 +1843,6 @@
             "offbeat"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1798,7 +1902,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -5633,29 +5736,6 @@
         ]
     },
     {
-        "headline": "As Kade grabs spotlight in The Show, Sloan stacks up 11 K's at Double-A",
-        "summaryJa": "R.スローン（SEA）、マウンドで好投",
-        "slug": "mariners-prospect-ryan-sloan-ties-career-high-11-strikeouts",
-        "url": "https://www.mlb.com/news/mariners-prospect-ryan-sloan-ties-career-high-11-strikeouts",
-        "contentDate": "2026-08-23T03:54:00Z",
-        "teamIds": [
-            136
-        ],
-        "playerIds": [
-            815549
-        ],
-        "gamePks": [
-            823100
-        ],
-        "taxonomy": [
-            "apple-news",
-            "mlb-top-prospects"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "‘That’s the guy that we needed’: Skubal (11 K's) shows Dodgers what he can do",
         "summaryJa": "T.スクーバル（LAD）、マウンドで好投",
         "slug": "tarik-skubal-11-strikeouts-seven-innings-dodgers-pirates",
@@ -8891,27 +8971,6 @@
         ]
     },
     {
-        "headline": "Tigers' 2026 first-rounder begins pro career with two straight scoreless starts",
-        "summaryJa": "Cameron Flukey（DET）、マウンドで好投",
-        "slug": "tigers-prospect-cameron-flukey-2-straight-scoreless-starts-pro-ball",
-        "url": "https://www.mlb.com/news/tigers-prospect-cameron-flukey-2-straight-scoreless-starts-pro-ball",
-        "contentDate": "2026-08-20T01:58:00Z",
-        "teamIds": [
-            116
-        ],
-        "playerIds": [
-            805619
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "mlb-top-prospects",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "'You're so pretty': Tolle brings his mother's words with him to every start",
         "summaryJa": "P.トーリー（BOS）の最新動向をMLB公式が詳報",
         "slug": "payton-tolle-has-mother-s-words-on-his-glove",
@@ -8953,24 +9012,6 @@
             "apple-news",
             "extra-innings",
             "game-recap"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Pirates Insider: Why Wednesday's walk-off win might've saved their season",
-        "summaryJa": "パイレーツ、サヨナラ勝利の主役に",
-        "slug": "pirates-insider-why-wednesday-s-walkoff-win-might-ve-saved-their-season",
-        "url": "https://www.mlb.com/news/pirates-insider-why-wednesday-s-walkoff-win-might-ve-saved-their-season",
-        "contentDate": "2026-08-20T00:11:35.784Z",
-        "teamIds": [
-            134
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "pit-inside-the-pirates"
         ],
         "sourceScopes": [
             "球団公式"
@@ -9216,26 +9257,6 @@
         ],
         "gamePks": [
             824075
-        ],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Marlins knock Wheeler around, but can't come out with a win",
-        "summaryJa": "マーリンズ、勝利を呼び込む活躍",
-        "slug": "marlins-lose-bullpen-game-to-phillies-with-quiet-offense",
-        "url": "https://www.mlb.com/news/marlins-lose-bullpen-game-to-phillies-with-quiet-offense",
-        "contentDate": "2026-08-19T04:01:32.88Z",
-        "teamIds": [
-            146
-        ],
-        "playerIds": [],
-        "gamePks": [
-            823423
         ],
         "taxonomy": [
             "apple-news"
