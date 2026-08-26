@@ -44,6 +44,7 @@
         .replace(/\s+/g, "");
     const queryTerms = (value) => text(value).normalize("NFKC").split(/\s+/)
         .map(normalizeSearch).filter(Boolean);
+    const EXACT_ALIAS_TERMS = new Set(["ph"]);
     const archiveKey = (record) => [
         text(record.recordType),
         number(record.gamePk),
@@ -216,6 +217,15 @@
         if (record.recordType === "LARGE_RUN_INNING" && values.some((other) => other.recordType === "TEN_RUN_INNING" && sameInning(other))) return true;
         if (record.recordType === "COMBINED_LARGE_HR" && values.some((other) => other.recordType === "TEN_COMBINED_HR" && number(other.gamePk) === number(record.gamePk))) return true;
         if (record.recordType === "SHUTOUT" && values.some((other) => ["NO_WALK_SHUTOUT", "MADDUX"].includes(other.recordType) && samePlayer(other))) return true;
+        const moreSpecific = {
+            PINCH_HIT_HOME_RUN: ["PINCH_HIT_GRAND_SLAM", "PINCH_HIT_WALKOFF_HOME_RUN", "PINCH_HIT_WALKOFF_GRAND_SLAM"],
+            PINCH_HIT_GRAND_SLAM: ["PINCH_HIT_WALKOFF_GRAND_SLAM"],
+            PINCH_HIT_WALKOFF_HOME_RUN: ["PINCH_HIT_WALKOFF_GRAND_SLAM"],
+            WALKOFF_HOME_RUN: ["PINCH_HIT_WALKOFF_HOME_RUN", "PINCH_HIT_WALKOFF_GRAND_SLAM", "WALKOFF_GRAND_SLAM"],
+            WALKOFF_GRAND_SLAM: ["PINCH_HIT_WALKOFF_GRAND_SLAM"],
+            SOLO_NO_HITTER: ["PERFECT_GAME"]
+        }[record.recordType];
+        if (moreSpecific?.some((type) => values.some((other) => other.recordType === type && samePlayer(other)))) return true;
         return false;
     };
     const search = ({ query = "", category = "all", season = "all", japaneseOnly = false,
@@ -228,7 +238,9 @@
             if (category !== "all" && record.category !== category) return false;
             if (season !== "all" && number(record.season) !== number(season)) return false;
             const haystack = searchableText(record);
-            return terms.every((term) => haystack.includes(term));
+            return terms.every((term) => EXACT_ALIAS_TERMS.has(term)
+                ? (record.aliases ?? []).some((alias) => normalizeSearch(alias) === term)
+                : haystack.includes(term));
         });
         return filtered.sort((left, right) => order === "oldest"
             ? orderValue(left).localeCompare(orderValue(right))

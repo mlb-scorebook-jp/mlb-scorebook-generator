@@ -1,0 +1,12 @@
+{
+  "evidenceVersion": "phase2-12-pbp-evidence-v2",
+  "candidateCounts": {
+    "pinchHit": 6137,
+    "walkoff": 11416,
+    "perfectGame": 18
+  },
+  "uniqueCandidates": 16536,
+  "completed": 16536,
+  "failures": [],
+  "updatedAt": "2026-08-26T11:16:14.672Z"
+}

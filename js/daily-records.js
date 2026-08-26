@@ -2,7 +2,7 @@
 
 (() => {
     const API_ROOT = "https://statsapi.mlb.com/api";
-    const CACHE_PREFIX = "mlb-daily-records-phase1-v11:";
+    const CACHE_PREFIX = "mlb-daily-records-phase1-v12:";
     const MAX_CONCURRENT_GAMES = 3;
     const RECORD_THRESHOLDS = Object.freeze({
         inningHits: 2,
@@ -96,6 +96,20 @@
         NINTH_INNING_FIVE_RUN_COMEBACK: ["9回5点差から逆転勝利", "9回開始時5点差"],
         FIFTEEN_INNING_GAME: ["延長15回", "15回", "延長18回"],
         EIGHTEEN_INNING_GAME: ["延長18回", "18回", "延長15回"],
+        PINCH_HIT_HOME_RUN: ["代打本塁打", "代打ホームラン", "ピンチヒッター", "pinch hit", "pinch-hit", "PH"],
+        PINCH_HIT_GRAND_SLAM: ["代打満塁本塁打", "代打満塁ホームラン", "pinch-hit grand slam", "PH"],
+        PINCH_HIT_WALKOFF_HOME_RUN: ["代打サヨナラ本塁打", "代打サヨナラホームラン", "pinch-hit walk-off home run", "PH"],
+        PINCH_HIT_WALKOFF_GRAND_SLAM: ["代打サヨナラ満塁本塁打", "代打サヨナラ満塁ホームラン", "pinch-hit walk-off grand slam", "PH"],
+        WALKOFF_HOME_RUN: ["サヨナラ本塁打", "サヨナラホームラン", "walk-off home run"],
+        WALKOFF_HIT: ["サヨナラ安打", "サヨナラヒット", "walk-off hit"],
+        WALKOFF_FORCED_RUN: ["サヨナラ押し出し", "サヨナラ四球", "サヨナラ死球", "walk-off walk", "walk-off hit by pitch"],
+        WALKOFF_WILD_PITCH: ["サヨナラ暴投", "walk-off wild pitch"],
+        WALKOFF_PASSED_BALL: ["サヨナラ捕逸", "walk-off passed ball"],
+        WALKOFF_ERROR: ["サヨナラ失策", "サヨナラエラー", "walk-off error"],
+        WALKOFF_BALK: ["サヨナラボーク", "walk-off balk"],
+        WALKOFF_DROPPED_THIRD_STRIKE: ["サヨナラ振り逃げ", "振り逃げ", "walk-off dropped third strike"],
+        WALKOFF_SPECIAL_PLAY: ["サヨナラ特殊プレー", "walk-off special play"],
+        PERFECT_GAME: ["完全試合", "パーフェクトゲーム", "perfect game"],
         CROSS_DATE_CONSECUTIVE_HITS: [
             "日付を跨いで連続打数安打", "連続打数安打", "前日から連続安打",
             "consecutive at-bat hits"
@@ -490,6 +504,16 @@
                 other.recordType === "TEN_COMBINED_HR" && other.gamePk === record.gamePk)) return false;
             if (record.recordType === "SHUTOUT" && uniqueRecords.some((other) =>
                 ["NO_WALK_SHUTOUT", "MADDUX"].includes(other.recordType) && samePlayer(record, other))) return false;
+            const moreSpecific = {
+                PINCH_HIT_HOME_RUN: ["PINCH_HIT_GRAND_SLAM", "PINCH_HIT_WALKOFF_HOME_RUN", "PINCH_HIT_WALKOFF_GRAND_SLAM"],
+                PINCH_HIT_GRAND_SLAM: ["PINCH_HIT_WALKOFF_GRAND_SLAM"],
+                PINCH_HIT_WALKOFF_HOME_RUN: ["PINCH_HIT_WALKOFF_GRAND_SLAM"],
+                WALKOFF_HOME_RUN: ["PINCH_HIT_WALKOFF_HOME_RUN", "PINCH_HIT_WALKOFF_GRAND_SLAM", "WALKOFF_GRAND_SLAM"],
+                WALKOFF_GRAND_SLAM: ["PINCH_HIT_WALKOFF_GRAND_SLAM"],
+                SOLO_NO_HITTER: ["PERFECT_GAME"]
+            }[record.recordType];
+            if (moreSpecific?.some((type) => uniqueRecords.some((other) =>
+                other.recordType === type && samePlayer(record, other)))) return false;
             return true;
         });
     };
@@ -889,6 +913,74 @@
         }
 
         const lastPlay = plays.at(-1);
+        const lastEventType = text(lastPlay?.result?.eventType).toLowerCase();
+        const lastScoringRunners = (lastPlay?.runners ?? []).filter((runner) =>
+            runner?.movement?.end === "score" && runner?.movement?.isOut !== true);
+        const lastOccupiedBases = new Set((lastPlay?.runners ?? []).map((runner) =>
+            text(runner?.movement?.start)).filter((base) => ["1B", "2B", "3B"].includes(base)));
+        const isWalkoff = Boolean(lastPlay && battingSideForPlay(lastPlay) === "home" &&
+            lastScoringRunners.length > 0 &&
+            number(lastPlay?.result?.homeScore) > number(lastPlay?.result?.awayScore));
+        const lastBatterId = number(lastPlay?.matchup?.batter?.id);
+        const isPinchHit = (lastPlay?.playEvents ?? []).some((event) => {
+            const eventType = text(event?.details?.eventType).toLowerCase();
+            const description = `${text(event?.details?.event)} ${text(event?.details?.description)}`;
+            return number(event?.player?.id) === lastBatterId &&
+                ["offensive_substitution", "pinch_hitter"].includes(eventType) &&
+                /pinch[- ]?hitter|代打/i.test(description);
+        });
+        const lastHalf = `${number(lastPlay?.about?.inning)}回裏`;
+        const addLastPlayRecord = (recordType, fact, details = {}) => records.push(makeRecord({
+            game, boxscore, recordType, category: "individual",
+            player: lastPlay?.matchup?.batter, side: "home", inning: lastPlay?.about?.inning,
+            fact, details: { inning: lastPlay?.about?.inning, ...details },
+            evidence: "最終完了プレーのPBPでホームが勝ち越し"
+        }));
+
+        plays.filter((play) => text(play?.result?.eventType).toLowerCase() === "home_run")
+            .forEach((play) => {
+                const batterId = number(play?.matchup?.batter?.id);
+                const pinchHit = (play?.playEvents ?? []).some((event) => {
+                    const eventType = text(event?.details?.eventType).toLowerCase();
+                    const description = `${text(event?.details?.event)} ${text(event?.details?.description)}`;
+                    return number(event?.player?.id) === batterId &&
+                        ["offensive_substitution", "pinch_hitter"].includes(eventType) &&
+                        /pinch[- ]?hitter|代打/i.test(description);
+                });
+                if (!pinchHit) return;
+                const scoringRunners = (play?.runners ?? []).filter((runner) =>
+                    runner?.movement?.end === "score" && runner?.movement?.isOut !== true);
+                const grandSlam = scoringRunners.length >= 4;
+                const walkoff = play === lastPlay && isWalkoff;
+                const recordType = walkoff && grandSlam ? "PINCH_HIT_WALKOFF_GRAND_SLAM"
+                    : walkoff ? "PINCH_HIT_WALKOFF_HOME_RUN"
+                    : grandSlam ? "PINCH_HIT_GRAND_SLAM" : "PINCH_HIT_HOME_RUN";
+                const fact = walkoff && grandSlam ? "代打サヨナラ満塁本塁打"
+                    : walkoff ? "代打サヨナラ本塁打"
+                    : grandSlam ? "代打満塁本塁打" : "代打本塁打";
+                records.push(makeRecord({ game, boxscore, recordType, category: "individual",
+                    player: play?.matchup?.batter, side: battingSideForPlay(play), inning: play?.about?.inning,
+                    fact, details: { inning: play?.about?.inning },
+                    evidence: "同一打席PBPの代打交代アクションと本塁打" }));
+            });
+        if (isWalkoff && !isPinchHit) {
+            if (lastEventType === "home_run" && lastScoringRunners.length < 4) {
+                addLastPlayRecord("WALKOFF_HOME_RUN", "サヨナラ本塁打");
+            } else if (["single", "double", "triple"].includes(lastEventType)) {
+                addLastPlayRecord("WALKOFF_HIT", `${lastHalf} サヨナラ安打`, { eventType: lastEventType });
+            } else if (["walk", "intent_walk", "intentional_walk", "hit_by_pitch"].includes(lastEventType) &&
+                lastOccupiedBases.size === 3) {
+                addLastPlayRecord("WALKOFF_FORCED_RUN", `${lastHalf} サヨナラ押し出し${lastEventType === "hit_by_pitch" ? "死球" : "四球"}`, { eventType: lastEventType });
+            } else if (lastEventType === "wild_pitch") addLastPlayRecord("WALKOFF_WILD_PITCH", `${lastHalf} サヨナラ暴投`);
+            else if (lastEventType === "passed_ball") addLastPlayRecord("WALKOFF_PASSED_BALL", `${lastHalf} サヨナラ捕逸`);
+            else if (["field_error", "error"].includes(lastEventType)) addLastPlayRecord("WALKOFF_ERROR", `${lastHalf} サヨナラ失策`);
+            else if (lastEventType === "balk") addLastPlayRecord("WALKOFF_BALK", `${lastHalf} サヨナラボーク`);
+            else if (lastEventType.includes("strikeout")) addLastPlayRecord("WALKOFF_DROPPED_THIRD_STRIKE", `${lastHalf} サヨナラ振り逃げ`);
+            else if (["fielders_choice", "sac_fly", "sac_bunt"].includes(lastEventType)) {
+                const label = { fielders_choice: "野選", sac_fly: "犠牲フライ", sac_bunt: "犠牲バント" }[lastEventType];
+                addLastPlayRecord("WALKOFF_SPECIAL_PLAY", `${lastHalf} サヨナラ${label}`, { eventType: lastEventType });
+            }
+        }
         if (lastPlay && battingSideForPlay(lastPlay) === "home" &&
             text(lastPlay?.result?.eventType).toLowerCase() === "home_run" &&
             number(lastPlay?.result?.homeScore) > number(lastPlay?.result?.awayScore) &&
@@ -1168,6 +1260,21 @@
 
         // Phase 1 game-base-safe records. These use only the same final
         // Boxscore/Linescore fields persisted by game-base schemaVersion 1.
+        const perfectGamePbpVerified = (pitchingSide) => {
+            const opponentPlays = plays.filter((play) =>
+                battingSideForPlay(play) === oppositeSide(pitchingSide));
+            return opponentPlays.length > 0 && !opponentPlays.some((play) => {
+            const eventType = text(play?.result?.eventType).toLowerCase();
+            if (["single", "double", "triple", "home_run", "walk", "intent_walk",
+                "intentional_walk", "hit_by_pitch", "field_error", "catcher_interf",
+                "catcher_interference"].includes(eventType)) return true;
+            const batterId = number(play?.matchup?.batter?.id);
+                return (play?.runners ?? []).some((runner) =>
+                number(runner?.details?.runner?.id) === batterId &&
+                runner?.movement?.isOut !== true &&
+                Boolean(runner?.movement?.end));
+            });
+        };
         for (const side of ["away", "home"]) {
             const team = boxTeamForSide(boxscore, side);
             const opponent = boxTeamForSide(boxscore, oppositeSide(side));
@@ -1207,6 +1314,12 @@
                 const played = number(game?.linescore?.currentInning || (game?.linescore?.innings ?? []).at(-1)?.num);
                 if (complete && number(opponentBatting.hits) === 0 && pitcherIds.length === 1 &&
                     scheduled >= 9 && played >= scheduled && outs >= scheduled * 3) add("SOLO_NO_HITTER", "ノーヒットノーラン", { outs });
+                if (perfectGamePbpVerified(side) && complete && number(opponentBatting.hits) === 0 &&
+                    pitcherIds.length === 1 && scheduled >= 9 && played >= scheduled &&
+                    outs >= scheduled * 3 && number(pitching.baseOnBalls) === 0 &&
+                    number(pitching.hitBatsmen) === 0) {
+                    add("PERFECT_GAME", "完全試合", { outs, battersFaced: number(pitching.battersFaced) });
+                }
                 if (shutout) add("SHUTOUT", `${Math.floor(outs / 3)}.${outs % 3}回を完封`, { outs });
                 if (complete && number(pitching.hits) === 1) add("ONE_HIT_COMPLETE_GAME",
                     `${Math.floor(outs / 3)}.${outs % 3}回を1安打完投`, { outs, hits: 1, runs: number(pitching.runs) });

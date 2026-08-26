@@ -1,0 +1,200 @@
+{
+  "schemaVersion": 1,
+  "ruleVersion": "daily-records-phase2-12-v1",
+  "candidateCounts": {
+    "pinchHit": 6137,
+    "walkoff": 11416,
+    "perfectGame": 18
+  },
+  "uniqueCandidateGamePks": 16536,
+  "duplicateCandidatesRemoved": 1035,
+  "pbpFetched": 16536,
+  "pbpFetchedThisRun": 0,
+  "cacheReusedThisRun": 16536,
+  "evidenceGames": 16536,
+  "pbpParseErrors": 0,
+  "apiFailures": [],
+  "detectedRecords": 16081,
+  "insertedRecords": 16081,
+  "existingRecordsBeforePhase2_12": 57473,
+  "finalRecords": 73554,
+  "byRecordType": {
+    "PINCH_HIT_HOME_RUN": 4757,
+    "WALKOFF_FORCED_RUN": 483,
+    "WALKOFF_HIT": 6278,
+    "WALKOFF_ERROR": 231,
+    "WALKOFF_PASSED_BALL": 28,
+    "WALKOFF_HOME_RUN": 2735,
+    "PINCH_HIT_WALKOFF_HOME_RUN": 248,
+    "WALKOFF_SPECIAL_PLAY": 764,
+    "PERFECT_GAME": 17,
+    "WALKOFF_WILD_PITCH": 181,
+    "WALKOFF_BALK": 19,
+    "PINCH_HIT_GRAND_SLAM": 312,
+    "PINCH_HIT_WALKOFF_GRAND_SLAM": 25,
+    "WALKOFF_DROPPED_THIRD_STRIKE": 3
+  },
+  "insertedByRecordType": {
+    "PINCH_HIT_HOME_RUN": 4757,
+    "WALKOFF_FORCED_RUN": 483,
+    "WALKOFF_HIT": 6278,
+    "WALKOFF_ERROR": 231,
+    "WALKOFF_PASSED_BALL": 28,
+    "WALKOFF_HOME_RUN": 2735,
+    "PINCH_HIT_WALKOFF_HOME_RUN": 248,
+    "WALKOFF_SPECIAL_PLAY": 764,
+    "PERFECT_GAME": 17,
+    "WALKOFF_WILD_PITCH": 181,
+    "WALKOFF_BALK": 19,
+    "PINCH_HIT_GRAND_SLAM": 312,
+    "PINCH_HIT_WALKOFF_GRAND_SLAM": 25,
+    "WALKOFF_DROPPED_THIRD_STRIKE": 3
+  },
+  "unresolvedPlayerIds": [],
+  "oldest": {
+    "PINCH_HIT_HOME_RUN": {
+      "date": "1964-04-14",
+      "gamePk": 148533,
+      "playerName": "Joe Gaines"
+    },
+    "WALKOFF_FORCED_RUN": {
+      "date": "1964-04-15",
+      "gamePk": 148540,
+      "playerName": "Bill Virdon"
+    },
+    "WALKOFF_HIT": {
+      "date": "1964-04-17",
+      "gamePk": 148555,
+      "playerName": "Don Zimmer"
+    },
+    "WALKOFF_ERROR": {
+      "date": "1964-04-26",
+      "gamePk": 148625,
+      "playerName": "Vic Power"
+    },
+    "WALKOFF_PASSED_BALL": {
+      "date": "1964-05-06",
+      "gamePk": 148711,
+      "playerName": "Bill Skowron"
+    },
+    "WALKOFF_HOME_RUN": {
+      "date": "1964-05-09",
+      "gamePk": 148732,
+      "playerName": "Don Lock"
+    },
+    "PINCH_HIT_WALKOFF_HOME_RUN": {
+      "date": "1964-05-23",
+      "gamePk": 148868,
+      "playerName": "Felix Mantilla"
+    },
+    "WALKOFF_SPECIAL_PLAY": {
+      "date": "1964-05-24",
+      "gamePk": 148885,
+      "playerName": "Luis Aparicio"
+    },
+    "PERFECT_GAME": {
+      "date": "1964-06-21",
+      "gamePk": 149162,
+      "playerName": "Jim Bunning"
+    },
+    "WALKOFF_WILD_PITCH": {
+      "date": "1964-07-14",
+      "gamePk": 149379,
+      "playerName": "Marty Keough"
+    },
+    "WALKOFF_BALK": {
+      "date": "1965-04-28",
+      "gamePk": 150269,
+      "playerName": "T.ペレス"
+    },
+    "PINCH_HIT_GRAND_SLAM": {
+      "date": "1965-05-16",
+      "gamePk": 150441,
+      "playerName": "Fred Whitfield"
+    },
+    "PINCH_HIT_WALKOFF_GRAND_SLAM": {
+      "date": "1967-06-11",
+      "gamePk": 153923,
+      "playerName": "Don Pavletich"
+    },
+    "WALKOFF_DROPPED_THIRD_STRIKE": {
+      "date": "1986-06-16",
+      "gamePk": 191112,
+      "playerName": "George Hendrick"
+    }
+  },
+  "newest": {
+    "PINCH_HIT_HOME_RUN": {
+      "date": "2021-10-03",
+      "gamePk": 632245,
+      "playerName": "K.デービス"
+    },
+    "WALKOFF_FORCED_RUN": {
+      "date": "2021-09-28",
+      "gamePk": 632316,
+      "playerName": "J.カストロ"
+    },
+    "WALKOFF_HIT": {
+      "date": "2021-10-03",
+      "gamePk": 632239,
+      "playerName": "A.ジャッジ"
+    },
+    "WALKOFF_ERROR": {
+      "date": "2021-09-03",
+      "gamePk": 632645,
+      "playerName": "B.ポージー"
+    },
+    "WALKOFF_PASSED_BALL": {
+      "date": "2021-09-15",
+      "gamePk": 632486,
+      "playerName": "J.セグーラ"
+    },
+    "WALKOFF_HOME_RUN": {
+      "date": "2021-10-03",
+      "gamePk": 632253,
+      "playerName": "J.バンミーター"
+    },
+    "PINCH_HIT_WALKOFF_HOME_RUN": {
+      "date": "2021-07-20",
+      "gamePk": 633199,
+      "playerName": "W.スミス"
+    },
+    "WALKOFF_SPECIAL_PLAY": {
+      "date": "2021-09-28",
+      "gamePk": 632666,
+      "playerName": "J.マッキャン"
+    },
+    "PERFECT_GAME": {
+      "date": "2012-08-15",
+      "gamePk": 319490,
+      "playerName": "F.ヘルナンデス"
+    },
+    "WALKOFF_WILD_PITCH": {
+      "date": "2021-09-20",
+      "gamePk": 632408,
+      "playerName": "Lewis Brinson"
+    },
+    "WALKOFF_BALK": {
+      "date": "2018-08-18",
+      "gamePk": 531257,
+      "playerName": "K.シーガー"
+    },
+    "PINCH_HIT_GRAND_SLAM": {
+      "date": "2021-09-24",
+      "gamePk": 632356,
+      "playerName": "C.ピンダ―"
+    },
+    "PINCH_HIT_WALKOFF_GRAND_SLAM": {
+      "date": "2021-09-05",
+      "gamePk": 632610,
+      "playerName": "D.ボーゲルバック"
+    },
+    "WALKOFF_DROPPED_THIRD_STRIKE": {
+      "date": "2017-06-28",
+      "gamePk": 491270,
+      "playerName": "C.メイビン"
+    }
+  },
+  "gameBaseSchemaVersion": 1,
+  "generatedAt": "2026-08-26T11:16:15.682Z"
+}
