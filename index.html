@@ -2911,6 +2911,14 @@
                     if (previousAppearanceIndex < 0) return null;
                     const gamesSinceAppearance = previousGames.length - previousAppearanceIndex;
                     if (gamesSinceAppearance < 2) return null;
+                    const previousAppearanceDate = String(
+                        previousGames[previousAppearanceIndex]?.officialDate ??
+                        previousGames[previousAppearanceIndex]?.gameDate ?? ""
+                    ).slice(0, 10);
+                    const formatReturnDate = (date) => {
+                        const [, month, day] = String(date ?? "").split("-");
+                        return month && day ? `${Number(month)}月${Number(day)}日以来` : "";
+                    };
 
                     const transactions = await fetchPlayerRosterTransactions(
                         player.id,
@@ -2930,9 +2938,11 @@
                         );
                     });
                     if (promotedToday) {
+                        const dateReference = formatReturnDate(previousAppearanceDate);
                         return {
                             text: `${code}　${getPersonName(player.person)}　` +
-                                `${gamesSinceAppearance}試合ぶりのメジャー昇格`,
+                                `${gamesSinceAppearance}試合ぶりのメジャー昇格` +
+                                (dateReference ? `（${dateReference}）` : ""),
                             priority: 0,
                             kind: "roster-return",
                             playerId: player.id
@@ -2950,9 +2960,12 @@
                             !/recalled|selected the contract/i.test(description);
                     });
                     if (!appearedIds.has(player.id) || !activatedToday) return null;
+                    const dateReference = formatReturnDate(previousAppearanceDate);
+                    const appearanceLabel = isPitcherCandidate(player) ? "登板" : "出場";
                     return {
                         text: `${code}　${getPersonName(player.person)}　` +
-                            `${gamesSinceAppearance}試合ぶりの出場`,
+                            `${gamesSinceAppearance}試合ぶりの${appearanceLabel}` +
+                            (dateReference ? `（${dateReference}）` : ""),
                         priority: 1,
                         kind: "roster-return",
                         playerId: player.id
