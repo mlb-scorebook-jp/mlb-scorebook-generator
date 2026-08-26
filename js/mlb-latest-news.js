@@ -2,6 +2,67 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Angels' 3rd-rounder goes yard TWICE ... off a rehabbing big leaguer!",
+        "summaryJa": "Gavin Grahovac（LAA）、復帰へ向けた最新状況",
+        "slug": "angels-2026-draft-pick-gavin-grahovac-hits-2-home-runs",
+        "url": "https://www.mlb.com/news/angels-2026-draft-pick-gavin-grahovac-hits-2-home-runs",
+        "contentDate": "2026-08-26T14:05:30.819Z",
+        "teamIds": [
+            108
+        ],
+        "playerIds": [
+            800606
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "mlb-top-prospects",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Cease's painting gets new home in gallery display, charity merchandise collection",
+        "summaryJa": "D.シース（TOR）の最新動向をMLB公式が詳報",
+        "slug": "dylan-cease-painting-at-art-gallery-of-toronto-event",
+        "url": "https://www.mlb.com/news/dylan-cease-painting-at-art-gallery-of-toronto-event",
+        "contentDate": "2026-08-26T12:51:33.831Z",
+        "teamIds": [
+            141
+        ],
+        "playerIds": [
+            656302
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "offbeat"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Esmerlyn Valdez working, adjusting and eying more opportunities to punch back",
+        "summaryJa": "パイレーツの最新動向をMLB公式が詳報",
+        "slug": "esmerlyn-valdez-working-adjusting-and-eying-more-opportunities-to-punch-back",
+        "url": "https://www.mlb.com/news/esmerlyn-valdez-working-adjusting-and-eying-more-opportunities-to-punch-back",
+        "contentDate": "2026-08-26T11:41:50.736Z",
+        "teamIds": [
+            134
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "pit-inside-the-pirates"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Vintage J-Ram steals show in Guards' 'heart-pumper' of a comeback",
         "summaryJa": "J.ラミレス（CLE）、勝利を呼び込む活躍",
         "slug": "jose-ramirez-has-5-rbis-as-guardians-beat-angels",
@@ -263,7 +324,6 @@
             "game-recap"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -599,6 +659,7 @@
             "apple-news"
         ],
         "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
@@ -1206,24 +1267,6 @@
         ],
         "sourceScopes": [
             "球団公式"
-        ]
-    },
-    {
-        "headline": "Immaculate innings: 3 strikeouts on 9 pitches",
-        "summaryJa": "MLBの最新情報、マウンドで好投",
-        "slug": "immaculate-innings-c265720420",
-        "url": "https://www.mlb.com/news/immaculate-innings-c265720420",
-        "contentDate": "2026-08-26T03:04:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "evergreen",
-            "rare-feat",
-            "rankings"
-        ],
-        "sourceScopes": [
-            "MLB"
         ]
     },
     {
@@ -8605,6 +8648,29 @@
         ]
     },
     {
+        "headline": "Seven runs in the eighth give the Royals nine to surge past A's",
+        "summaryJa": "V.パスクァンティーノ（KC）、勝利を呼び込む活躍",
+        "slug": "vinnie-pasquantino-leads-royals-comeback-win-vs-a-s",
+        "url": "https://www.mlb.com/news/vinnie-pasquantino-leads-royals-comeback-win-vs-a-s",
+        "contentDate": "2026-08-20T05:21:00Z",
+        "teamIds": [
+            118
+        ],
+        "playerIds": [
+            686469
+        ],
+        "gamePks": [
+            824076
+        ],
+        "taxonomy": [
+            "game-recap",
+            "rally"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Astros' bullpen remains lights-out to back Pecko's MLB debut",
         "summaryJa": "Ethan Pecko（HOU）、メジャー昇格・初出場に関する最新情報",
         "slug": "astros-beat-angels-to-end-losing-streak",
@@ -8887,28 +8953,6 @@
             "apple-news",
             "extra-innings",
             "game-recap"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Starting on 7 days' rest, Skenes (4 walks) still searching for command",
-        "summaryJa": "P.スキーンズ（PIT）の最新動向をMLB公式が詳報",
-        "slug": "paul-skenes-faces-tigers-in-pittsburgh",
-        "url": "https://www.mlb.com/news/paul-skenes-faces-tigers-in-pittsburgh",
-        "contentDate": "2026-08-20T00:54:00Z",
-        "teamIds": [
-            134
-        ],
-        "playerIds": [
-            694973
-        ],
-        "gamePks": [
-            823342
-        ],
-        "taxonomy": [
-            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
@@ -9263,31 +9307,6 @@
         "taxonomy": [
             "injury",
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Kikuchi's next start will be with Angels, but timing still undecided",
-        "summaryJa": "菊池 雄星（LAA）、復帰へ向けた最新状況",
-        "slug": "yusei-kikuchi-struggles-in-rehab-start-with-single-a",
-        "url": "https://www.mlb.com/news/yusei-kikuchi-struggles-in-rehab-start-with-single-a",
-        "contentDate": "2026-08-18T22:46:00Z",
-        "teamIds": [
-            108
-        ],
-        "playerIds": [
-            579328
-        ],
-        "gamePks": [
-            823991,
-            824154
-        ],
-        "taxonomy": [
-            "apple-news",
-            "injury",
-            "rehab"
         ],
         "sourceScopes": [
             "球団公式"
