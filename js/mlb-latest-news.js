@@ -2,6 +2,87 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Sullivan brings a lot more than baseball to Rockies",
+        "summaryJa": "B.サリバン（COL）の最新動向をMLB公式が詳報",
+        "slug": "brett-sullivan-valuable-asset-for-rockies",
+        "url": "https://www.mlb.com/news/brett-sullivan-valuable-asset-for-rockies",
+        "contentDate": "2026-08-26T17:57:26.553Z",
+        "teamIds": [
+            115
+        ],
+        "playerIds": [
+            664954
+        ],
+        "gamePks": [
+            822692
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Adell makes 'pretty surreal' return to Angel Stadium for first time since trade",
+        "summaryJa": "J.アデル（LAA）、復帰へ向けた最新状況",
+        "slug": "jo-adell-returns-to-angel-stadium-for-first-time-since-trade",
+        "url": "https://www.mlb.com/news/jo-adell-returns-to-angel-stadium-for-first-time-since-trade",
+        "contentDate": "2026-08-26T17:31:55.461Z",
+        "teamIds": [
+            108
+        ],
+        "playerIds": [
+            666176
+        ],
+        "gamePks": [
+            823988
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Watch Triple-A prospects play for FREE on Thursday",
+        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
+        "slug": "watch-minor-league-baseball-games-for-free-2026",
+        "url": "https://www.mlb.com/news/watch-minor-league-baseball-games-for-free-2026",
+        "contentDate": "2026-08-26T17:30:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "mlb-top-prospects",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Understanding how the Brewers' brand of baseball works, and whether it can last",
+        "summaryJa": "ブルワーズを巡る注目点をMLB公式が分析",
+        "slug": "2026-brewers-offense-what-is-working",
+        "url": "https://www.mlb.com/news/2026-brewers-offense-what-is-working",
+        "contentDate": "2026-08-26T17:21:00Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "player-tracking",
+            "savant"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Cubs set franchise record for consecutive runs scored during West Coast trip",
         "summaryJa": "カブス、記録達成の最新情報",
         "slug": "cubs-score-franchise-record-30-consecutive-runs",
@@ -121,26 +202,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Understanding how the Brewers' brand of baseball works, and whether it can last",
-        "summaryJa": "ブルワーズを巡る注目点をMLB公式が分析",
-        "slug": "2026-brewers-offense-what-is-working",
-        "url": "https://www.mlb.com/news/2026-brewers-offense-what-is-working",
-        "contentDate": "2026-08-26T15:51:00Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "player-tracking",
-            "savant"
-        ],
-        "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -732,23 +793,6 @@
             "injury",
             "transactions",
             "game-recap"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Watch Triple-A prospects play for FREE on Thursday",
-        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
-        "slug": "watch-minor-league-baseball-games-for-free-2026",
-        "url": "https://www.mlb.com/news/watch-minor-league-baseball-games-for-free-2026",
-        "contentDate": "2026-08-26T05:27:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "mlb-top-prospects",
-            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
@@ -9208,30 +9252,6 @@
         "taxonomy": [
             "apple-news",
             "players-weekend"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Klassen pitches through 'jelly' legs early en route to dominating Astros",
-        "summaryJa": "G.クラーセン（LAA）、マウンドで好投",
-        "slug": "george-klassen-pitches-scoreless-start-in-angels-win-over-astros",
-        "url": "https://www.mlb.com/news/george-klassen-pitches-scoreless-start-in-angels-win-over-astros",
-        "contentDate": "2026-08-19T04:45:00Z",
-        "teamIds": [
-            108
-        ],
-        "playerIds": [
-            691946
-        ],
-        "gamePks": [
-            824154
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap",
-            "mlb-top-prospects"
         ],
         "sourceScopes": [
             "球団公式"
