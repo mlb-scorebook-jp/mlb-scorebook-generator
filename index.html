@@ -1876,6 +1876,33 @@
                 return request;
             };
 
+            const fetchPlayerRosterTransactions = async (playerId, officialDate) => {
+                const season = Number(String(officialDate).slice(0, 4));
+                if (!Number.isFinite(playerId) || !Number.isFinite(season)) return [];
+                const cacheKey = `roster:${playerId}:${officialDate}`;
+                if (playerTransactionsCache.has(cacheKey)) {
+                    return playerTransactionsCache.get(cacheKey);
+                }
+                const params = new URLSearchParams({
+                    playerId: String(playerId),
+                    startDate: `${season}-02-01`,
+                    endDate: officialDate
+                });
+                const request = fetch(
+                    `https://statsapi.mlb.com/api/v1/transactions?${params}`
+                ).then(async (response) => {
+                    if (!response.ok) return [];
+                    const payload = await response.json();
+                    return (payload?.transactions ?? []).sort((left, right) =>
+                        String(left?.effectiveDate ?? left?.date ?? "").localeCompare(
+                            String(right?.effectiveDate ?? right?.date ?? "")
+                        )
+                    );
+                }).catch(() => []);
+                playerTransactionsCache.set(cacheKey, request);
+                return request;
+            };
+
             const fetchPlayerCareerStats = async (player, group, officialDate) => {
                 const playerId = Number(player?.id);
                 const debutDate = String(player?.person?.mlbDebutDate ?? "");
@@ -2847,6 +2874,96 @@
                 return `（${Number(month)}月${Number(day)}日 vs ${opponent}以来）`;
             };
 
+            const buildRosterReturnNotes = async (
+                players,
+                schedule,
+                appearedIds,
+                currentGamePk,
+                teamId,
+                code,
+                officialDate
+            ) => {
+                const scheduleGamePks = new Set(schedule.map((game) => Number(game?.gamePk)));
+                const previousGames = schedule.filter((game) =>
+                    Number(game?.gamePk) !== Number(currentGamePk)
+                );
+                const notes = (await mapWithConcurrency(players, 6, async (player) => {
+                    const group = isPitcherCandidate(player) ? "pitching" : "hitting";
+                    const splits = group === "hitting"
+                        ? (player.gameLogSplits ?? [])
+                        : await fetchPlayerRegularSeasonGameLog(
+                            player.id,
+                            Number(String(officialDate).slice(0, 4)),
+                            group
+                        );
+                    const appearanceGamePks = new Set((splits ?? [])
+                        .map((split) => Number(split?.game?.gamePk))
+                        .filter((gamePk) => scheduleGamePks.has(gamePk) &&
+                            gamePk !== Number(currentGamePk))
+                    );
+                    let previousAppearanceIndex = -1;
+                    for (let index = previousGames.length - 1; index >= 0; index -= 1) {
+                        if (appearanceGamePks.has(Number(previousGames[index]?.gamePk))) {
+                            previousAppearanceIndex = index;
+                            break;
+                        }
+                    }
+                    if (previousAppearanceIndex < 0) return null;
+                    const gamesSinceAppearance = previousGames.length - previousAppearanceIndex;
+                    if (gamesSinceAppearance < 2) return null;
+
+                    const transactions = await fetchPlayerRosterTransactions(
+                        player.id,
+                        officialDate
+                    );
+                    const promotedToday = transactions.some((transaction) => {
+                        const date = String(
+                            transaction?.effectiveDate ?? transaction?.date ?? ""
+                        ).slice(0, 10);
+                        const codeValue = String(transaction?.typeCode ?? "").toUpperCase();
+                        const description = String(transaction?.description ?? "");
+                        const toTeamId = Number(transaction?.toTeam?.id);
+                        return date === officialDate &&
+                            (!toTeamId || toTeamId === Number(teamId)) && (
+                            codeValue === "CU" || codeValue === "SE" ||
+                            /recalled|selected the contract/i.test(description)
+                        );
+                    });
+                    if (promotedToday) {
+                        return {
+                            text: `${code}　${getPersonName(player.person)}　` +
+                                `${gamesSinceAppearance}試合ぶりのメジャー昇格`,
+                            priority: 0,
+                            kind: "roster-return",
+                            playerId: player.id
+                        };
+                    }
+                    const activatedToday = transactions.some((transaction) => {
+                        const date = String(
+                            transaction?.effectiveDate ?? transaction?.date ?? ""
+                        ).slice(0, 10);
+                        const description = String(transaction?.description ?? "");
+                        const toTeamId = Number(transaction?.toTeam?.id);
+                        return date === officialDate &&
+                            (!toTeamId || toTeamId === Number(teamId)) &&
+                            /activated|reinstated/i.test(description) &&
+                            !/recalled|selected the contract/i.test(description);
+                    });
+                    if (!appearedIds.has(player.id) || !activatedToday) return null;
+                    return {
+                        text: `${code}　${getPersonName(player.person)}　` +
+                            `${gamesSinceAppearance}試合ぶりの出場`,
+                        priority: 1,
+                        kind: "roster-return",
+                        playerId: player.id
+                    };
+                })).filter(Boolean);
+                return {
+                    notes,
+                    handledPlayerIds: new Set(notes.map((note) => Number(note.playerId)))
+                };
+            };
+
             const getLineupStatusNotes = async (
                 players,
                 schedule,
@@ -2855,10 +2972,12 @@
                 currentGamePk,
                 teamId,
                 code,
-                gameFinal
+                gameFinal,
+                handledPlayerIds = new Set()
             ) => {
                 const scheduleGamePks = new Set(schedule.map((game) => Number(game?.gamePk)));
                 const preliminary = players.map((player) => {
+                    if (handledPlayerIds.has(Number(player.id))) return null;
                     if (starterIds.has(player.id)) return null;
                     const appearances = (player.gameLogSplits ?? []).filter((split) =>
                         scheduleGamePks.has(Number(split?.game?.gamePk))
@@ -3541,6 +3660,16 @@
                             linkType: "mlb-official-record"
                         });
                     }
+                    const rosterReturn = await buildRosterReturnNotes(
+                        analyzed,
+                        scheduleThroughCurrent,
+                        participation.appeared,
+                        gamePk,
+                        team?.id,
+                        code,
+                        officialDate
+                    );
+                    notes.push(...rosterReturn.notes);
                     const lineupStatusNotes = await getLineupStatusNotes(
                         analyzed.filter(isAbsenceEligibleFielder),
                         scheduleThroughCurrent,
@@ -3549,7 +3678,8 @@
                         gamePk,
                         team?.id,
                         code,
-                        gameFinal
+                        gameFinal,
+                        rosterReturn.handledPlayerIds
                     );
                     const absenceNotes = lineupStatusNotes.filter((note) =>
                         note.kind === "absence"
