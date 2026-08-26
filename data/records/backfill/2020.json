@@ -1,5 +1,52 @@
 [
   {
+    "recordType": "ONE_HIT_COMPLETE_GAME",
+    "aliases": [
+      "1安打完投",
+      "1安打完封",
+      "one hitter"
+    ],
+    "category": "individual",
+    "date": "2020-07-23",
+    "season": 2020,
+    "gameType": "R",
+    "gamePk": 630851,
+    "playerId": 543037,
+    "playerName": "選手ID 543037",
+    "teamId": 147,
+    "teamCode": "NYY",
+    "teamName": "New York Yankees",
+    "opponentId": 120,
+    "opponentCode": "WSH",
+    "opponentName": "Washington Nationals",
+    "inning": null,
+    "gameDate": "2020-07-23",
+    "battingSide": "away",
+    "pitchingSide": null,
+    "fact": "5.0回を1安打完投",
+    "description": "5.0回を1安打完投",
+    "details": {
+      "outs": 15,
+      "hits": 1,
+      "runs": 1
+    },
+    "evidence": "game-base v1",
+    "apiStatus": "confirmed",
+    "apiConfirmed": true,
+    "historicalContext": {
+      "status": "needs-review",
+      "text": "",
+      "sources": []
+    },
+    "gamedayUrl": "https://www.mlb.com/gameday/yankees-vs-nationals/2020/07/23/630851/final",
+    "articleUrls": [],
+    "feedUpdatedAt": "",
+    "ruleVersion": "daily-records-game-base-phase1-v1",
+    "isJapanesePlayer": false,
+    "archiveKey": "ONE_HIT_COMPLETE_GAME:630851:543037:0:",
+    "uniqueKey": "ONE_HIT_COMPLETE_GAME:630851:543037:0:"
+  },
+  {
     "recordType": "ALL_STARTERS_HIT",
     "aliases": [
       "全先発野手安打"
@@ -256,6 +303,95 @@
     "description": "初回先頭打者初球本塁打",
     "isJapanesePlayer": false,
     "apiConfirmed": true
+  },
+  {
+    "recordType": "NO_WALK_SHUTOUT",
+    "aliases": [
+      "無四球完封",
+      "四球なし完封"
+    ],
+    "category": "individual",
+    "date": "2020-07-24",
+    "season": 2020,
+    "gameType": "R",
+    "gamePk": 631641,
+    "playerId": 543294,
+    "playerName": "K.ヘンドリクス",
+    "teamId": 112,
+    "teamCode": "CHC",
+    "teamName": "Chicago Cubs",
+    "opponentId": 158,
+    "opponentCode": "MIL",
+    "opponentName": "Milwaukee Brewers",
+    "inning": null,
+    "gameDate": "2020-07-24",
+    "battingSide": "home",
+    "pitchingSide": "home",
+    "fact": "無四球完封",
+    "description": "無四球完封",
+    "details": {
+      "walks": 0
+    },
+    "evidence": "game-base v1",
+    "apiStatus": "confirmed",
+    "apiConfirmed": true,
+    "historicalContext": {
+      "status": "needs-review",
+      "text": "",
+      "sources": []
+    },
+    "gamedayUrl": "https://www.mlb.com/gameday/brewers-vs-cubs/2020/07/24/631641/final",
+    "articleUrls": [],
+    "feedUpdatedAt": "",
+    "ruleVersion": "daily-records-game-base-phase1-v1",
+    "isJapanesePlayer": false,
+    "archiveKey": "NO_WALK_SHUTOUT:631641:543294:0:",
+    "uniqueKey": "NO_WALK_SHUTOUT:631641:543294:0:"
+  },
+  {
+    "recordType": "SHUTOUT",
+    "aliases": [
+      "完封",
+      "完封勝利",
+      "shutout"
+    ],
+    "category": "individual",
+    "date": "2020-07-24",
+    "season": 2020,
+    "gameType": "R",
+    "gamePk": 631641,
+    "playerId": 543294,
+    "playerName": "K.ヘンドリクス",
+    "teamId": 112,
+    "teamCode": "CHC",
+    "teamName": "Chicago Cubs",
+    "opponentId": 158,
+    "opponentCode": "MIL",
+    "opponentName": "Milwaukee Brewers",
+    "inning": null,
+    "gameDate": "2020-07-24",
+    "battingSide": "home",
+    "pitchingSide": "home",
+    "fact": "9.0回を完封",
+    "description": "9.0回を完封",
+    "details": {
+      "outs": 27
+    },
+    "evidence": "game-base v1",
+    "apiStatus": "confirmed",
+    "apiConfirmed": true,
+    "historicalContext": {
+      "status": "needs-review",
+      "text": "",
+      "sources": []
+    },
+    "gamedayUrl": "https://www.mlb.com/gameday/brewers-vs-cubs/2020/07/24/631641/final",
+    "articleUrls": [],
+    "feedUpdatedAt": "",
+    "ruleVersion": "daily-records-game-base-phase1-v1",
+    "isJapanesePlayer": false,
+    "archiveKey": "SHUTOUT:631641:543294:0:",
+    "uniqueKey": "SHUTOUT:631641:543294:0:"
   },
   {
     "recordType": "ALL_STARTERS_SCORE",
@@ -1079,6 +1215,50 @@
     "apiConfirmed": true
   },
   {
+    "recordType": "THIRTY_COMBINED_STRIKEOUTS",
+    "aliases": [
+      "両軍合計30奪三振",
+      "30奪三振"
+    ],
+    "category": "team",
+    "date": "2020-07-27",
+    "season": 2020,
+    "gameType": "R",
+    "gamePk": 630969,
+    "playerId": null,
+    "playerName": "",
+    "teamId": 139,
+    "teamCode": "TB",
+    "teamName": "Tampa Bay Rays",
+    "opponentId": 144,
+    "opponentCode": "ATL",
+    "opponentName": "Atlanta Braves",
+    "inning": null,
+    "gameDate": "2020-07-27",
+    "battingSide": null,
+    "pitchingSide": "home",
+    "fact": "両軍合計31奪三振",
+    "description": "両軍合計31奪三振",
+    "details": {
+      "strikeouts": 31
+    },
+    "evidence": "game-base v1",
+    "apiStatus": "confirmed",
+    "apiConfirmed": true,
+    "historicalContext": {
+      "status": "needs-review",
+      "text": "",
+      "sources": []
+    },
+    "gamedayUrl": "https://www.mlb.com/gameday/braves-vs-rays/2020/07/27/630969/final",
+    "articleUrls": [],
+    "feedUpdatedAt": "",
+    "ruleVersion": "daily-records-game-base-phase1-v1",
+    "isJapanesePlayer": false,
+    "archiveKey": "THIRTY_COMBINED_STRIKEOUTS:630969:team-139:0:",
+    "uniqueKey": "THIRTY_COMBINED_STRIKEOUTS:630969:team-139:0:"
+  },
+  {
     "recordType": "COMBINED_MANY_PITCHERS",
     "aliases": [
       "両軍合計大量投手起用"
@@ -1205,6 +1385,50 @@
     "description": "両軍合計12投手を起用",
     "isJapanesePlayer": false,
     "apiConfirmed": true
+  },
+  {
+    "recordType": "SIX_HR_TEAM_GAME",
+    "aliases": [
+      "チーム6本塁打",
+      "6本塁打"
+    ],
+    "category": "team",
+    "date": "2020-07-27",
+    "season": 2020,
+    "gameType": "R",
+    "gamePk": 631489,
+    "playerId": null,
+    "playerName": "",
+    "teamId": 118,
+    "teamCode": "KC",
+    "teamName": "Kansas City Royals",
+    "opponentId": 116,
+    "opponentCode": "DET",
+    "opponentName": "Detroit Tigers",
+    "inning": null,
+    "gameDate": "2020-07-27",
+    "battingSide": null,
+    "pitchingSide": null,
+    "fact": "チーム6本塁打",
+    "description": "チーム6本塁打",
+    "details": {
+      "homeRuns": 6
+    },
+    "evidence": "game-base v1",
+    "apiStatus": "confirmed",
+    "apiConfirmed": true,
+    "historicalContext": {
+      "status": "needs-review",
+      "text": "",
+      "sources": []
+    },
+    "gamedayUrl": "https://www.mlb.com/gameday/royals-vs-tigers/2020/07/27/631489/final",
+    "articleUrls": [],
+    "feedUpdatedAt": "",
+    "ruleVersion": "daily-records-game-base-phase1-v1",
+    "isJapanesePlayer": false,
+    "archiveKey": "SIX_HR_TEAM_GAME:631489:team-118:0:",
+    "uniqueKey": "SIX_HR_TEAM_GAME:631489:team-118:0:"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -2313,6 +2537,50 @@
     "apiConfirmed": true
   },
   {
+    "recordType": "TWENTY_HIT_TEAM_GAME",
+    "aliases": [
+      "チーム20安打",
+      "20安打"
+    ],
+    "category": "team",
+    "date": "2020-08-01",
+    "season": 2020,
+    "gameType": "R",
+    "gamePk": 631413,
+    "playerId": null,
+    "playerName": "",
+    "teamId": 145,
+    "teamCode": "CWS",
+    "teamName": "Chicago White Sox",
+    "opponentId": 118,
+    "opponentCode": "KC",
+    "opponentName": "Kansas City Royals",
+    "inning": null,
+    "gameDate": "2020-08-01",
+    "battingSide": null,
+    "pitchingSide": null,
+    "fact": "チーム21安打",
+    "description": "チーム21安打",
+    "details": {
+      "hits": 21
+    },
+    "evidence": "game-base v1",
+    "apiStatus": "confirmed",
+    "apiConfirmed": true,
+    "historicalContext": {
+      "status": "needs-review",
+      "text": "",
+      "sources": []
+    },
+    "gamedayUrl": "https://www.mlb.com/gameday/white-sox-vs-royals/2020/08/01/631413/final",
+    "articleUrls": [],
+    "feedUpdatedAt": "",
+    "ruleVersion": "daily-records-game-base-phase1-v1",
+    "isJapanesePlayer": false,
+    "archiveKey": "TWENTY_HIT_TEAM_GAME:631413:team-145:0:",
+    "uniqueKey": "TWENTY_HIT_TEAM_GAME:631413:team-145:0:"
+  },
+  {
     "recordType": "COMBINED_MANY_PITCHERS",
     "aliases": [
       "両軍合計大量投手起用"
@@ -2487,6 +2755,51 @@
     "description": "7回に2安打",
     "isJapanesePlayer": false,
     "apiConfirmed": true
+  },
+  {
+    "recordType": "SHUTOUT",
+    "aliases": [
+      "完封",
+      "完封勝利",
+      "shutout"
+    ],
+    "category": "individual",
+    "date": "2020-08-02",
+    "season": 2020,
+    "gameType": "R",
+    "gamePk": 631469,
+    "playerId": 545333,
+    "playerName": "選手ID 545333",
+    "teamId": 113,
+    "teamCode": "CIN",
+    "teamName": "Cincinnati Reds",
+    "opponentId": 116,
+    "opponentCode": "DET",
+    "opponentName": "Detroit Tigers",
+    "inning": null,
+    "gameDate": "2020-08-02",
+    "battingSide": "away",
+    "pitchingSide": "away",
+    "fact": "7.0回を完封",
+    "description": "7.0回を完封",
+    "details": {
+      "outs": 21
+    },
+    "evidence": "game-base v1",
+    "apiStatus": "confirmed",
+    "apiConfirmed": true,
+    "historicalContext": {
+      "status": "needs-review",
+      "text": "",
+      "sources": []
+    },
+    "gamedayUrl": "https://www.mlb.com/gameday/reds-vs-tigers/2020/08/02/631469/final",
+    "articleUrls": [],
+    "feedUpdatedAt": "",
+    "ruleVersion": "daily-records-game-base-phase1-v1",
+    "isJapanesePlayer": false,
+    "archiveKey": "SHUTOUT:631469:545333:0:",
+    "uniqueKey": "SHUTOUT:631469:545333:0:"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -3607,6 +3920,50 @@
     "apiConfirmed": true
   },
   {
+    "recordType": "TEN_RUN_INNING",
+    "aliases": [
+      "1イニング10得点",
+      "大量得点イニング"
+    ],
+    "category": "team",
+    "date": "2020-08-06",
+    "season": 2020,
+    "gameType": "R",
+    "gamePk": 631571,
+    "playerId": null,
+    "playerName": "",
+    "teamId": 114,
+    "teamCode": "CLE",
+    "teamName": "Cleveland Indians",
+    "opponentId": 113,
+    "opponentCode": "CIN",
+    "opponentName": "Cincinnati Reds",
+    "inning": 7,
+    "gameDate": "2020-08-06",
+    "battingSide": null,
+    "pitchingSide": null,
+    "fact": "7回裏 1イニングに10得点",
+    "description": "7回裏 1イニングに10得点",
+    "details": {
+      "runs": 10
+    },
+    "evidence": "game-base v1",
+    "apiStatus": "confirmed",
+    "apiConfirmed": true,
+    "historicalContext": {
+      "status": "needs-review",
+      "text": "",
+      "sources": []
+    },
+    "gamedayUrl": "https://www.mlb.com/gameday/reds-vs-guardians/2020/08/06/631571/final",
+    "articleUrls": [],
+    "feedUpdatedAt": "",
+    "ruleVersion": "daily-records-game-base-phase1-v1",
+    "isJapanesePlayer": false,
+    "archiveKey": "TEN_RUN_INNING:631571:team-114:7:",
+    "uniqueKey": "TEN_RUN_INNING:631571:team-114:7:"
+  },
+  {
     "recordType": "TWO_HIT_SAME_INNING",
     "aliases": [
       "1イニング2安打",
@@ -4335,6 +4692,94 @@
     "description": "両軍合計9本塁打",
     "isJapanesePlayer": false,
     "apiConfirmed": true
+  },
+  {
+    "recordType": "POSITION_PLAYER_SCORELESS",
+    "aliases": [
+      "野手登板で無失点"
+    ],
+    "category": "special",
+    "date": "2020-08-09",
+    "season": 2020,
+    "gameType": "R",
+    "gamePk": 631075,
+    "playerId": 608348,
+    "playerName": "C.ケリー",
+    "teamId": 109,
+    "teamCode": "AZ",
+    "teamName": "Arizona Diamondbacks",
+    "opponentId": 135,
+    "opponentCode": "SD",
+    "opponentName": "San Diego Padres",
+    "inning": null,
+    "gameDate": "2020-08-09",
+    "battingSide": null,
+    "pitchingSide": null,
+    "fact": "野手登板で無失点",
+    "description": "野手登板で無失点",
+    "details": {
+      "outs": 3,
+      "runs": 0
+    },
+    "evidence": "game-base v1",
+    "apiStatus": "confirmed",
+    "apiConfirmed": true,
+    "historicalContext": {
+      "status": "needs-review",
+      "text": "",
+      "sources": []
+    },
+    "gamedayUrl": "https://www.mlb.com/gameday/d-backs-vs-padres/2020/08/09/631075/final",
+    "articleUrls": [],
+    "feedUpdatedAt": "",
+    "ruleVersion": "daily-records-game-base-phase1-v1",
+    "isJapanesePlayer": false,
+    "archiveKey": "POSITION_PLAYER_SCORELESS:631075:608348:0:",
+    "uniqueKey": "POSITION_PLAYER_SCORELESS:631075:608348:0:"
+  },
+  {
+    "recordType": "SIX_HR_TEAM_GAME",
+    "aliases": [
+      "チーム6本塁打",
+      "6本塁打"
+    ],
+    "category": "team",
+    "date": "2020-08-09",
+    "season": 2020,
+    "gameType": "R",
+    "gamePk": 631075,
+    "playerId": null,
+    "playerName": "",
+    "teamId": 135,
+    "teamCode": "SD",
+    "teamName": "San Diego Padres",
+    "opponentId": 109,
+    "opponentCode": "AZ",
+    "opponentName": "Arizona Diamondbacks",
+    "inning": null,
+    "gameDate": "2020-08-09",
+    "battingSide": null,
+    "pitchingSide": null,
+    "fact": "チーム6本塁打",
+    "description": "チーム6本塁打",
+    "details": {
+      "homeRuns": 6
+    },
+    "evidence": "game-base v1",
+    "apiStatus": "confirmed",
+    "apiConfirmed": true,
+    "historicalContext": {
+      "status": "needs-review",
+      "text": "",
+      "sources": []
+    },
+    "gamedayUrl": "https://www.mlb.com/gameday/d-backs-vs-padres/2020/08/09/631075/final",
+    "articleUrls": [],
+    "feedUpdatedAt": "",
+    "ruleVersion": "daily-records-game-base-phase1-v1",
+    "isJapanesePlayer": false,
+    "archiveKey": "SIX_HR_TEAM_GAME:631075:team-135:0:",
+    "uniqueKey": "SIX_HR_TEAM_GAME:631075:team-135:0:"
   },
   {
     "recordType": "TWO_HIT_SAME_INNING",
@@ -5501,6 +5946,50 @@
     "apiConfirmed": true
   },
   {
+    "recordType": "SIX_HR_TEAM_GAME",
+    "aliases": [
+      "チーム6本塁打",
+      "6本塁打"
+    ],
+    "category": "team",
+    "date": "2020-08-12",
+    "season": 2020,
+    "gameType": "R",
+    "gamePk": 630902,
+    "playerId": null,
+    "playerName": "",
+    "teamId": 141,
+    "teamCode": "TOR",
+    "teamName": "Toronto Blue Jays",
+    "opponentId": 146,
+    "opponentCode": "MIA",
+    "opponentName": "Miami Marlins",
+    "inning": null,
+    "gameDate": "2020-08-12",
+    "battingSide": null,
+    "pitchingSide": null,
+    "fact": "チーム7本塁打",
+    "description": "チーム7本塁打",
+    "details": {
+      "homeRuns": 7
+    },
+    "evidence": "game-base v1",
+    "apiStatus": "confirmed",
+    "apiConfirmed": true,
+    "historicalContext": {
+      "status": "needs-review",
+      "text": "",
+      "sources": []
+    },
+    "gamedayUrl": "https://www.mlb.com/gameday/marlins-vs-blue-jays/2020/08/12/630902/final",
+    "articleUrls": [],
+    "feedUpdatedAt": "",
+    "ruleVersion": "daily-records-game-base-phase1-v1",
+    "isJapanesePlayer": false,
+    "archiveKey": "SIX_HR_TEAM_GAME:630902:team-141:0:",
+    "uniqueKey": "SIX_HR_TEAM_GAME:630902:team-141:0:"
+  },
+  {
     "recordType": "TWO_OUTS_SAME_INNING",
     "aliases": [
       "同一イニングで2アウト",
@@ -6013,6 +6502,95 @@
     "apiConfirmed": true
   },
   {
+    "recordType": "POSITION_PLAYER_NO_HIT",
+    "aliases": [
+      "野手登板で被安打0",
+      "野手登板でノーヒット"
+    ],
+    "category": "special",
+    "date": "2020-08-13",
+    "season": 2020,
+    "gameType": "R",
+    "gamePk": 631142,
+    "playerId": 435522,
+    "playerName": "N.ウォーカー",
+    "teamId": 143,
+    "teamCode": "PHI",
+    "teamName": "Philadelphia Phillies",
+    "opponentId": 110,
+    "opponentCode": "BAL",
+    "opponentName": "Baltimore Orioles",
+    "inning": null,
+    "gameDate": "2020-08-13",
+    "battingSide": null,
+    "pitchingSide": null,
+    "fact": "野手登板で被安打0",
+    "description": "野手登板で被安打0",
+    "details": {
+      "hits": 0,
+      "outs": 2
+    },
+    "evidence": "game-base v1",
+    "apiStatus": "confirmed",
+    "apiConfirmed": true,
+    "historicalContext": {
+      "status": "needs-review",
+      "text": "",
+      "sources": []
+    },
+    "gamedayUrl": "https://www.mlb.com/gameday/orioles-vs-phillies/2020/08/13/631142/final",
+    "articleUrls": [],
+    "feedUpdatedAt": "",
+    "ruleVersion": "daily-records-game-base-phase1-v1",
+    "isJapanesePlayer": false,
+    "archiveKey": "POSITION_PLAYER_NO_HIT:631142:435522:0:",
+    "uniqueKey": "POSITION_PLAYER_NO_HIT:631142:435522:0:"
+  },
+  {
+    "recordType": "POSITION_PLAYER_SCORELESS",
+    "aliases": [
+      "野手登板で無失点"
+    ],
+    "category": "special",
+    "date": "2020-08-13",
+    "season": 2020,
+    "gameType": "R",
+    "gamePk": 631142,
+    "playerId": 435522,
+    "playerName": "N.ウォーカー",
+    "teamId": 143,
+    "teamCode": "PHI",
+    "teamName": "Philadelphia Phillies",
+    "opponentId": 110,
+    "opponentCode": "BAL",
+    "opponentName": "Baltimore Orioles",
+    "inning": null,
+    "gameDate": "2020-08-13",
+    "battingSide": null,
+    "pitchingSide": null,
+    "fact": "野手登板で無失点",
+    "description": "野手登板で無失点",
+    "details": {
+      "outs": 2,
+      "runs": 0
+    },
+    "evidence": "game-base v1",
+    "apiStatus": "confirmed",
+    "apiConfirmed": true,
+    "historicalContext": {
+      "status": "needs-review",
+      "text": "",
+      "sources": []
+    },
+    "gamedayUrl": "https://www.mlb.com/gameday/orioles-vs-phillies/2020/08/13/631142/final",
+    "articleUrls": [],
+    "feedUpdatedAt": "",
+    "ruleVersion": "daily-records-game-base-phase1-v1",
+    "isJapanesePlayer": false,
+    "archiveKey": "POSITION_PLAYER_SCORELESS:631142:435522:0:",
+    "uniqueKey": "POSITION_PLAYER_SCORELESS:631142:435522:0:"
+  },
+  {
     "recordType": "LARGE_RBI_GAME",
     "aliases": [
       "1試合大量打点",
@@ -6096,6 +6674,50 @@
     "description": "両軍合計8本塁打",
     "isJapanesePlayer": false,
     "apiConfirmed": true
+  },
+  {
+    "recordType": "SIX_HR_TEAM_GAME",
+    "aliases": [
+      "チーム6本塁打",
+      "6本塁打"
+    ],
+    "category": "team",
+    "date": "2020-08-13",
+    "season": 2020,
+    "gameType": "R",
+    "gamePk": 631351,
+    "playerId": null,
+    "playerName": "",
+    "teamId": 119,
+    "teamCode": "LAD",
+    "teamName": "Los Angeles Dodgers",
+    "opponentId": 135,
+    "opponentCode": "SD",
+    "opponentName": "San Diego Padres",
+    "inning": null,
+    "gameDate": "2020-08-13",
+    "battingSide": null,
+    "pitchingSide": null,
+    "fact": "チーム6本塁打",
+    "description": "チーム6本塁打",
+    "details": {
+      "homeRuns": 6
+    },
+    "evidence": "game-base v1",
+    "apiStatus": "confirmed",
+    "apiConfirmed": true,
+    "historicalContext": {
+      "status": "needs-review",
+      "text": "",
+      "sources": []
+    },
+    "gamedayUrl": "https://www.mlb.com/gameday/padres-vs-dodgers/2020/08/13/631351/final",
+    "articleUrls": [],
+    "feedUpdatedAt": "",
+    "ruleVersion": "daily-records-game-base-phase1-v1",
+    "isJapanesePlayer": false,
+    "archiveKey": "SIX_HR_TEAM_GAME:631351:team-119:0:",
+    "uniqueKey": "SIX_HR_TEAM_GAME:631351:team-119:0:"
   },
   {
     "recordType": "THREE_HR_GAME",
@@ -6229,6 +6851,183 @@
     "apiConfirmed": true
   },
   {
+    "recordType": "MULTI_HIT_AND_PITCH",
+    "aliases": [
+      "複数安打＋登板"
+    ],
+    "category": "special",
+    "date": "2020-08-13",
+    "season": 2020,
+    "gameType": "R",
+    "gamePk": 631650,
+    "playerId": 606299,
+    "playerName": "J.ペラーザ",
+    "teamId": 111,
+    "teamCode": "BOS",
+    "teamName": "Boston Red Sox",
+    "opponentId": 139,
+    "opponentCode": "TB",
+    "opponentName": "Tampa Bay Rays",
+    "inning": null,
+    "gameDate": "2020-08-13",
+    "battingSide": null,
+    "pitchingSide": null,
+    "fact": "2安打＋登板",
+    "description": "2安打＋登板",
+    "details": {
+      "hits": 2,
+      "outs": 1
+    },
+    "evidence": "game-base v1",
+    "apiStatus": "confirmed",
+    "apiConfirmed": true,
+    "historicalContext": {
+      "status": "needs-review",
+      "text": "",
+      "sources": []
+    },
+    "gamedayUrl": "https://www.mlb.com/gameday/rays-vs-red-sox/2020/08/13/631650/final",
+    "articleUrls": [],
+    "feedUpdatedAt": "",
+    "ruleVersion": "daily-records-game-base-phase1-v1",
+    "isJapanesePlayer": false,
+    "archiveKey": "MULTI_HIT_AND_PITCH:631650:606299:0:",
+    "uniqueKey": "MULTI_HIT_AND_PITCH:631650:606299:0:"
+  },
+  {
+    "recordType": "MULTI_HIT_AND_PITCH",
+    "aliases": [
+      "複数安打＋登板"
+    ],
+    "category": "special",
+    "date": "2020-08-13",
+    "season": 2020,
+    "gameType": "R",
+    "gamePk": 631650,
+    "playerId": 608700,
+    "playerName": "K.プラウェッキー",
+    "teamId": 111,
+    "teamCode": "BOS",
+    "teamName": "Boston Red Sox",
+    "opponentId": 139,
+    "opponentCode": "TB",
+    "opponentName": "Tampa Bay Rays",
+    "inning": null,
+    "gameDate": "2020-08-13",
+    "battingSide": null,
+    "pitchingSide": null,
+    "fact": "2安打＋登板",
+    "description": "2安打＋登板",
+    "details": {
+      "hits": 2,
+      "outs": 2
+    },
+    "evidence": "game-base v1",
+    "apiStatus": "confirmed",
+    "apiConfirmed": true,
+    "historicalContext": {
+      "status": "needs-review",
+      "text": "",
+      "sources": []
+    },
+    "gamedayUrl": "https://www.mlb.com/gameday/rays-vs-red-sox/2020/08/13/631650/final",
+    "articleUrls": [],
+    "feedUpdatedAt": "",
+    "ruleVersion": "daily-records-game-base-phase1-v1",
+    "isJapanesePlayer": false,
+    "archiveKey": "MULTI_HIT_AND_PITCH:631650:608700:0:",
+    "uniqueKey": "MULTI_HIT_AND_PITCH:631650:608700:0:"
+  },
+  {
+    "recordType": "POSITION_PLAYER_NO_HIT",
+    "aliases": [
+      "野手登板で被安打0",
+      "野手登板でノーヒット"
+    ],
+    "category": "special",
+    "date": "2020-08-13",
+    "season": 2020,
+    "gameType": "R",
+    "gamePk": 631650,
+    "playerId": 608700,
+    "playerName": "K.プラウェッキー",
+    "teamId": 111,
+    "teamCode": "BOS",
+    "teamName": "Boston Red Sox",
+    "opponentId": 139,
+    "opponentCode": "TB",
+    "opponentName": "Tampa Bay Rays",
+    "inning": null,
+    "gameDate": "2020-08-13",
+    "battingSide": null,
+    "pitchingSide": null,
+    "fact": "野手登板で被安打0",
+    "description": "野手登板で被安打0",
+    "details": {
+      "hits": 0,
+      "outs": 2
+    },
+    "evidence": "game-base v1",
+    "apiStatus": "confirmed",
+    "apiConfirmed": true,
+    "historicalContext": {
+      "status": "needs-review",
+      "text": "",
+      "sources": []
+    },
+    "gamedayUrl": "https://www.mlb.com/gameday/rays-vs-red-sox/2020/08/13/631650/final",
+    "articleUrls": [],
+    "feedUpdatedAt": "",
+    "ruleVersion": "daily-records-game-base-phase1-v1",
+    "isJapanesePlayer": false,
+    "archiveKey": "POSITION_PLAYER_NO_HIT:631650:608700:0:",
+    "uniqueKey": "POSITION_PLAYER_NO_HIT:631650:608700:0:"
+  },
+  {
+    "recordType": "POSITION_PLAYER_SCORELESS",
+    "aliases": [
+      "野手登板で無失点"
+    ],
+    "category": "special",
+    "date": "2020-08-13",
+    "season": 2020,
+    "gameType": "R",
+    "gamePk": 631650,
+    "playerId": 608700,
+    "playerName": "K.プラウェッキー",
+    "teamId": 111,
+    "teamCode": "BOS",
+    "teamName": "Boston Red Sox",
+    "opponentId": 139,
+    "opponentCode": "TB",
+    "opponentName": "Tampa Bay Rays",
+    "inning": null,
+    "gameDate": "2020-08-13",
+    "battingSide": null,
+    "pitchingSide": null,
+    "fact": "野手登板で無失点",
+    "description": "野手登板で無失点",
+    "details": {
+      "outs": 2,
+      "runs": 0
+    },
+    "evidence": "game-base v1",
+    "apiStatus": "confirmed",
+    "apiConfirmed": true,
+    "historicalContext": {
+      "status": "needs-review",
+      "text": "",
+      "sources": []
+    },
+    "gamedayUrl": "https://www.mlb.com/gameday/rays-vs-red-sox/2020/08/13/631650/final",
+    "articleUrls": [],
+    "feedUpdatedAt": "",
+    "ruleVersion": "daily-records-game-base-phase1-v1",
+    "isJapanesePlayer": false,
+    "archiveKey": "POSITION_PLAYER_SCORELESS:631650:608700:0:",
+    "uniqueKey": "POSITION_PLAYER_SCORELESS:631650:608700:0:"
+  },
+  {
     "recordType": "COMBINED_LARGE_HR",
     "aliases": [
       "両軍合計大量本塁打"
@@ -6313,6 +7112,50 @@
     "apiConfirmed": true
   },
   {
+    "recordType": "SIX_HR_TEAM_GAME",
+    "aliases": [
+      "チーム6本塁打",
+      "6本塁打"
+    ],
+    "category": "team",
+    "date": "2020-08-14",
+    "season": 2020,
+    "gameType": "R",
+    "gamePk": 630903,
+    "playerId": null,
+    "playerName": "",
+    "teamId": 141,
+    "teamCode": "TOR",
+    "teamName": "Toronto Blue Jays",
+    "opponentId": 139,
+    "opponentCode": "TB",
+    "opponentName": "Tampa Bay Rays",
+    "inning": null,
+    "gameDate": "2020-08-14",
+    "battingSide": null,
+    "pitchingSide": null,
+    "fact": "チーム6本塁打",
+    "description": "チーム6本塁打",
+    "details": {
+      "homeRuns": 6
+    },
+    "evidence": "game-base v1",
+    "apiStatus": "confirmed",
+    "apiConfirmed": true,
+    "historicalContext": {
+      "status": "needs-review",
+      "text": "",
+      "sources": []
+    },
+    "gamedayUrl": "https://www.mlb.com/gameday/rays-vs-blue-jays/2020/08/14/630903/final",
+    "articleUrls": [],
+    "feedUpdatedAt": "",
+    "ruleVersion": "daily-records-game-base-phase1-v1",
+    "isJapanesePlayer": false,
+    "archiveKey": "SIX_HR_TEAM_GAME:630903:team-141:0:",
+    "uniqueKey": "SIX_HR_TEAM_GAME:630903:team-141:0:"
+  },
+  {
     "recordType": "HIT_DEFICIT_WIN",
     "aliases": [
       "少ない安打数で勝利"
@@ -6355,6 +7198,50 @@
     "description": "相手より5本少ない安打数で勝利",
     "isJapanesePlayer": false,
     "apiConfirmed": true
+  },
+  {
+    "recordType": "NINTH_INNING_FIVE_RUN_COMEBACK",
+    "aliases": [
+      "9回5点差から逆転勝利",
+      "9回開始時5点差"
+    ],
+    "category": "team",
+    "date": "2020-08-14",
+    "season": 2020,
+    "gameType": "R",
+    "gamePk": 631022,
+    "playerId": null,
+    "playerName": "",
+    "teamId": 133,
+    "teamCode": "OAK",
+    "teamName": "Oakland Athletics",
+    "opponentId": 137,
+    "opponentCode": "SF",
+    "opponentName": "San Francisco Giants",
+    "inning": null,
+    "gameDate": "2020-08-14",
+    "battingSide": null,
+    "pitchingSide": null,
+    "fact": "9回5点差から逆転勝利",
+    "description": "9回5点差から逆転勝利",
+    "details": {
+      "deficit": 5
+    },
+    "evidence": "game-base v1",
+    "apiStatus": "confirmed",
+    "apiConfirmed": true,
+    "historicalContext": {
+      "status": "needs-review",
+      "text": "",
+      "sources": []
+    },
+    "gamedayUrl": "https://www.mlb.com/gameday/athletics-vs-giants/2020/08/14/631022/final",
+    "articleUrls": [],
+    "feedUpdatedAt": "",
+    "ruleVersion": "daily-records-game-base-phase1-v1",
+    "isJapanesePlayer": false,
+    "archiveKey": "NINTH_INNING_FIVE_RUN_COMEBACK:631022:team-133:0:",
+    "uniqueKey": "NINTH_INNING_FIVE_RUN_COMEBACK:631022:team-133:0:"
   },
   {
     "recordType": "TWO_OUTS_SAME_INNING",
@@ -6949,6 +7836,50 @@
     "apiConfirmed": true
   },
   {
+    "recordType": "POSITION_PLAYER_SCORELESS",
+    "aliases": [
+      "野手登板で無失点"
+    ],
+    "category": "special",
+    "date": "2020-08-16",
+    "season": 2020,
+    "gameType": "R",
+    "gamePk": 631024,
+    "playerId": 623168,
+    "playerName": "選手ID 623168",
+    "teamId": 137,
+    "teamCode": "SF",
+    "teamName": "San Francisco Giants",
+    "opponentId": 133,
+    "opponentCode": "OAK",
+    "opponentName": "Oakland Athletics",
+    "inning": null,
+    "gameDate": "2020-08-16",
+    "battingSide": null,
+    "pitchingSide": null,
+    "fact": "野手登板で無失点",
+    "description": "野手登板で無失点",
+    "details": {
+      "outs": 3,
+      "runs": 0
+    },
+    "evidence": "game-base v1",
+    "apiStatus": "confirmed",
+    "apiConfirmed": true,
+    "historicalContext": {
+      "status": "needs-review",
+      "text": "",
+      "sources": []
+    },
+    "gamedayUrl": "https://www.mlb.com/gameday/athletics-vs-giants/2020/08/16/631024/final",
+    "articleUrls": [],
+    "feedUpdatedAt": "",
+    "ruleVersion": "daily-records-game-base-phase1-v1",
+    "isJapanesePlayer": false,
+    "archiveKey": "POSITION_PLAYER_SCORELESS:631024:623168:0:",
+    "uniqueKey": "POSITION_PLAYER_SCORELESS:631024:623168:0:"
+  },
+  {
     "recordType": "TWO_HIT_SAME_INNING",
     "aliases": [
       "1イニング2安打",
@@ -7378,6 +8309,50 @@
     "description": "3回にチーム3本塁打",
     "isJapanesePlayer": false,
     "apiConfirmed": true
+  },
+  {
+    "recordType": "SIX_HR_TEAM_GAME",
+    "aliases": [
+      "チーム6本塁打",
+      "6本塁打"
+    ],
+    "category": "team",
+    "date": "2020-08-17",
+    "season": 2020,
+    "gameType": "R",
+    "gamePk": 631493,
+    "playerId": null,
+    "playerName": "",
+    "teamId": 145,
+    "teamCode": "CWS",
+    "teamName": "Chicago White Sox",
+    "opponentId": 116,
+    "opponentCode": "DET",
+    "opponentName": "Detroit Tigers",
+    "inning": null,
+    "gameDate": "2020-08-17",
+    "battingSide": null,
+    "pitchingSide": null,
+    "fact": "チーム6本塁打",
+    "description": "チーム6本塁打",
+    "details": {
+      "homeRuns": 6
+    },
+    "evidence": "game-base v1",
+    "apiStatus": "confirmed",
+    "apiConfirmed": true,
+    "historicalContext": {
+      "status": "needs-review",
+      "text": "",
+      "sources": []
+    },
+    "gamedayUrl": "https://www.mlb.com/gameday/tigers-vs-white-sox/2020/08/17/631493/final",
+    "articleUrls": [],
+    "feedUpdatedAt": "",
+    "ruleVersion": "daily-records-game-base-phase1-v1",
+    "isJapanesePlayer": false,
+    "archiveKey": "SIX_HR_TEAM_GAME:631493:team-145:0:",
+    "uniqueKey": "SIX_HR_TEAM_GAME:631493:team-145:0:"
   },
   {
     "recordType": "ALL_STARTERS_HIT",
@@ -7857,6 +8832,143 @@
     "apiConfirmed": true
   },
   {
+    "recordType": "MADDUX",
+    "aliases": [
+      "100球未満完封",
+      "マダックス",
+      "Maddux"
+    ],
+    "category": "individual",
+    "date": "2020-08-19",
+    "season": 2020,
+    "gameType": "R",
+    "gamePk": 631422,
+    "playerId": 545333,
+    "playerName": "選手ID 545333",
+    "teamId": 113,
+    "teamCode": "CIN",
+    "teamName": "Cincinnati Reds",
+    "opponentId": 118,
+    "opponentCode": "KC",
+    "opponentName": "Kansas City Royals",
+    "inning": null,
+    "gameDate": "2020-08-19",
+    "battingSide": "away",
+    "pitchingSide": "away",
+    "fact": "97球で完封",
+    "description": "97球で完封",
+    "details": {
+      "pitches": 97
+    },
+    "evidence": "game-base v1",
+    "apiStatus": "confirmed",
+    "apiConfirmed": true,
+    "historicalContext": {
+      "status": "needs-review",
+      "text": "",
+      "sources": []
+    },
+    "gamedayUrl": "https://www.mlb.com/gameday/reds-vs-royals/2020/08/19/631422/final",
+    "articleUrls": [],
+    "feedUpdatedAt": "",
+    "ruleVersion": "daily-records-game-base-phase1-v1",
+    "isJapanesePlayer": false,
+    "archiveKey": "MADDUX:631422:545333:0:",
+    "uniqueKey": "MADDUX:631422:545333:0:"
+  },
+  {
+    "recordType": "ONE_HIT_COMPLETE_GAME",
+    "aliases": [
+      "1安打完投",
+      "1安打完封",
+      "one hitter"
+    ],
+    "category": "individual",
+    "date": "2020-08-19",
+    "season": 2020,
+    "gameType": "R",
+    "gamePk": 631422,
+    "playerId": 545333,
+    "playerName": "選手ID 545333",
+    "teamId": 113,
+    "teamCode": "CIN",
+    "teamName": "Cincinnati Reds",
+    "opponentId": 118,
+    "opponentCode": "KC",
+    "opponentName": "Kansas City Royals",
+    "inning": null,
+    "gameDate": "2020-08-19",
+    "battingSide": "away",
+    "pitchingSide": null,
+    "fact": "7.0回を1安打完投",
+    "description": "7.0回を1安打完投",
+    "details": {
+      "outs": 21,
+      "hits": 1,
+      "runs": 0
+    },
+    "evidence": "game-base v1",
+    "apiStatus": "confirmed",
+    "apiConfirmed": true,
+    "historicalContext": {
+      "status": "needs-review",
+      "text": "",
+      "sources": []
+    },
+    "gamedayUrl": "https://www.mlb.com/gameday/reds-vs-royals/2020/08/19/631422/final",
+    "articleUrls": [],
+    "feedUpdatedAt": "",
+    "ruleVersion": "daily-records-game-base-phase1-v1",
+    "isJapanesePlayer": false,
+    "archiveKey": "ONE_HIT_COMPLETE_GAME:631422:545333:0:",
+    "uniqueKey": "ONE_HIT_COMPLETE_GAME:631422:545333:0:"
+  },
+  {
+    "recordType": "SHUTOUT",
+    "aliases": [
+      "完封",
+      "完封勝利",
+      "shutout"
+    ],
+    "category": "individual",
+    "date": "2020-08-19",
+    "season": 2020,
+    "gameType": "R",
+    "gamePk": 631422,
+    "playerId": 545333,
+    "playerName": "選手ID 545333",
+    "teamId": 113,
+    "teamCode": "CIN",
+    "teamName": "Cincinnati Reds",
+    "opponentId": 118,
+    "opponentCode": "KC",
+    "opponentName": "Kansas City Royals",
+    "inning": null,
+    "gameDate": "2020-08-19",
+    "battingSide": "away",
+    "pitchingSide": "away",
+    "fact": "7.0回を完封",
+    "description": "7.0回を完封",
+    "details": {
+      "outs": 21
+    },
+    "evidence": "game-base v1",
+    "apiStatus": "confirmed",
+    "apiConfirmed": true,
+    "historicalContext": {
+      "status": "needs-review",
+      "text": "",
+      "sources": []
+    },
+    "gamedayUrl": "https://www.mlb.com/gameday/reds-vs-royals/2020/08/19/631422/final",
+    "articleUrls": [],
+    "feedUpdatedAt": "",
+    "ruleVersion": "daily-records-game-base-phase1-v1",
+    "isJapanesePlayer": false,
+    "archiveKey": "SHUTOUT:631422:545333:0:",
+    "uniqueKey": "SHUTOUT:631422:545333:0:"
+  },
+  {
     "recordType": "ALL_STARTERS_HIT",
     "aliases": [
       "全先発野手安打"
@@ -7897,6 +9009,50 @@
     "description": "先発野手全員安打",
     "isJapanesePlayer": false,
     "apiConfirmed": true
+  },
+  {
+    "recordType": "TWENTY_HIT_TEAM_GAME",
+    "aliases": [
+      "チーム20安打",
+      "20安打"
+    ],
+    "category": "team",
+    "date": "2020-08-19",
+    "season": 2020,
+    "gameType": "R",
+    "gamePk": 631522,
+    "playerId": null,
+    "playerName": "",
+    "teamId": 117,
+    "teamCode": "HOU",
+    "teamName": "Houston Astros",
+    "opponentId": 115,
+    "opponentCode": "COL",
+    "opponentName": "Colorado Rockies",
+    "inning": null,
+    "gameDate": "2020-08-19",
+    "battingSide": null,
+    "pitchingSide": null,
+    "fact": "チーム20安打",
+    "description": "チーム20安打",
+    "details": {
+      "hits": 20
+    },
+    "evidence": "game-base v1",
+    "apiStatus": "confirmed",
+    "apiConfirmed": true,
+    "historicalContext": {
+      "status": "needs-review",
+      "text": "",
+      "sources": []
+    },
+    "gamedayUrl": "https://www.mlb.com/gameday/astros-vs-rockies/2020/08/19/631522/final",
+    "articleUrls": [],
+    "feedUpdatedAt": "",
+    "ruleVersion": "daily-records-game-base-phase1-v1",
+    "isJapanesePlayer": false,
+    "archiveKey": "TWENTY_HIT_TEAM_GAME:631522:team-117:0:",
+    "uniqueKey": "TWENTY_HIT_TEAM_GAME:631522:team-117:0:"
   },
   {
     "recordType": "JAPANESE_CAREER_HIGH",
@@ -8257,6 +9413,50 @@
     "apiConfirmed": true
   },
   {
+    "recordType": "SIX_HR_TEAM_GAME",
+    "aliases": [
+      "チーム6本塁打",
+      "6本塁打"
+    ],
+    "category": "team",
+    "date": "2020-08-21",
+    "season": 2020,
+    "gameType": "R",
+    "gamePk": 631633,
+    "playerId": null,
+    "playerName": "",
+    "teamId": 145,
+    "teamCode": "CWS",
+    "teamName": "Chicago White Sox",
+    "opponentId": 112,
+    "opponentCode": "CHC",
+    "opponentName": "Chicago Cubs",
+    "inning": null,
+    "gameDate": "2020-08-21",
+    "battingSide": null,
+    "pitchingSide": null,
+    "fact": "チーム6本塁打",
+    "description": "チーム6本塁打",
+    "details": {
+      "homeRuns": 6
+    },
+    "evidence": "game-base v1",
+    "apiStatus": "confirmed",
+    "apiConfirmed": true,
+    "historicalContext": {
+      "status": "needs-review",
+      "text": "",
+      "sources": []
+    },
+    "gamedayUrl": "https://www.mlb.com/gameday/white-sox-vs-cubs/2020/08/21/631633/final",
+    "articleUrls": [],
+    "feedUpdatedAt": "",
+    "ruleVersion": "daily-records-game-base-phase1-v1",
+    "isJapanesePlayer": false,
+    "archiveKey": "SIX_HR_TEAM_GAME:631633:team-145:0:",
+    "uniqueKey": "SIX_HR_TEAM_GAME:631633:team-145:0:"
+  },
+  {
     "recordType": "TWO_OUTS_SAME_INNING",
     "aliases": [
       "同一イニングで2アウト",
@@ -8555,6 +9755,50 @@
     "apiConfirmed": true
   },
   {
+    "recordType": "SIX_HR_TEAM_GAME",
+    "aliases": [
+      "チーム6本塁打",
+      "6本塁打"
+    ],
+    "category": "team",
+    "date": "2020-08-22",
+    "season": 2020,
+    "gameType": "R",
+    "gamePk": 631079,
+    "playerId": null,
+    "playerName": "",
+    "teamId": 135,
+    "teamCode": "SD",
+    "teamName": "San Diego Padres",
+    "opponentId": 117,
+    "opponentCode": "HOU",
+    "opponentName": "Houston Astros",
+    "inning": null,
+    "gameDate": "2020-08-22",
+    "battingSide": null,
+    "pitchingSide": null,
+    "fact": "チーム6本塁打",
+    "description": "チーム6本塁打",
+    "details": {
+      "homeRuns": 6
+    },
+    "evidence": "game-base v1",
+    "apiStatus": "confirmed",
+    "apiConfirmed": true,
+    "historicalContext": {
+      "status": "needs-review",
+      "text": "",
+      "sources": []
+    },
+    "gamedayUrl": "https://www.mlb.com/gameday/astros-vs-padres/2020/08/22/631079/final",
+    "articleUrls": [],
+    "feedUpdatedAt": "",
+    "ruleVersion": "daily-records-game-base-phase1-v1",
+    "isJapanesePlayer": false,
+    "archiveKey": "SIX_HR_TEAM_GAME:631079:team-135:0:",
+    "uniqueKey": "SIX_HR_TEAM_GAME:631079:team-135:0:"
+  },
+  {
     "recordType": "THREE_HR_GAME",
     "aliases": [
       "1試合3本塁打",
@@ -8818,6 +10062,94 @@
     "apiConfirmed": true
   },
   {
+    "recordType": "SIX_HR_TEAM_GAME",
+    "aliases": [
+      "チーム6本塁打",
+      "6本塁打"
+    ],
+    "category": "team",
+    "date": "2020-08-23",
+    "season": 2020,
+    "gameType": "R",
+    "gamePk": 631354,
+    "playerId": null,
+    "playerName": "",
+    "teamId": 119,
+    "teamCode": "LAD",
+    "teamName": "Los Angeles Dodgers",
+    "opponentId": 115,
+    "opponentCode": "COL",
+    "opponentName": "Colorado Rockies",
+    "inning": null,
+    "gameDate": "2020-08-23",
+    "battingSide": null,
+    "pitchingSide": null,
+    "fact": "チーム7本塁打",
+    "description": "チーム7本塁打",
+    "details": {
+      "homeRuns": 7
+    },
+    "evidence": "game-base v1",
+    "apiStatus": "confirmed",
+    "apiConfirmed": true,
+    "historicalContext": {
+      "status": "needs-review",
+      "text": "",
+      "sources": []
+    },
+    "gamedayUrl": "https://www.mlb.com/gameday/rockies-vs-dodgers/2020/08/23/631354/final",
+    "articleUrls": [],
+    "feedUpdatedAt": "",
+    "ruleVersion": "daily-records-game-base-phase1-v1",
+    "isJapanesePlayer": false,
+    "archiveKey": "SIX_HR_TEAM_GAME:631354:team-119:0:",
+    "uniqueKey": "SIX_HR_TEAM_GAME:631354:team-119:0:"
+  },
+  {
+    "recordType": "TEN_COMBINED_HR",
+    "aliases": [
+      "両軍合計10本塁打",
+      "10本塁打"
+    ],
+    "category": "team",
+    "date": "2020-08-23",
+    "season": 2020,
+    "gameType": "R",
+    "gamePk": 631354,
+    "playerId": null,
+    "playerName": "",
+    "teamId": 119,
+    "teamCode": "LAD",
+    "teamName": "Los Angeles Dodgers",
+    "opponentId": 115,
+    "opponentCode": "COL",
+    "opponentName": "Colorado Rockies",
+    "inning": null,
+    "gameDate": "2020-08-23",
+    "battingSide": null,
+    "pitchingSide": null,
+    "fact": "両軍合計10本塁打",
+    "description": "両軍合計10本塁打",
+    "details": {
+      "homeRuns": 10
+    },
+    "evidence": "game-base v1",
+    "apiStatus": "confirmed",
+    "apiConfirmed": true,
+    "historicalContext": {
+      "status": "needs-review",
+      "text": "",
+      "sources": []
+    },
+    "gamedayUrl": "https://www.mlb.com/gameday/rockies-vs-dodgers/2020/08/23/631354/final",
+    "articleUrls": [],
+    "feedUpdatedAt": "",
+    "ruleVersion": "daily-records-game-base-phase1-v1",
+    "isJapanesePlayer": false,
+    "archiveKey": "TEN_COMBINED_HR:631354:team-119:0:",
+    "uniqueKey": "TEN_COMBINED_HR:631354:team-119:0:"
+  },
+  {
     "recordType": "COMBINED_MANY_PITCHERS",
     "aliases": [
       "両軍合計大量投手起用"
@@ -9072,6 +10404,95 @@
     "description": "4回に2度打者アウト",
     "isJapanesePlayer": false,
     "apiConfirmed": true
+  },
+  {
+    "recordType": "POSITION_PLAYER_NO_HIT",
+    "aliases": [
+      "野手登板で被安打0",
+      "野手登板でノーヒット"
+    ],
+    "category": "special",
+    "date": "2020-08-24",
+    "season": 2020,
+    "gameType": "R",
+    "gamePk": 631439,
+    "playerId": 621532,
+    "playerName": "選手ID 621532",
+    "teamId": 108,
+    "teamCode": "LAA",
+    "teamName": "Los Angeles Angels",
+    "opponentId": 117,
+    "opponentCode": "HOU",
+    "opponentName": "Houston Astros",
+    "inning": null,
+    "gameDate": "2020-08-24",
+    "battingSide": null,
+    "pitchingSide": null,
+    "fact": "野手登板で被安打0",
+    "description": "野手登板で被安打0",
+    "details": {
+      "hits": 0,
+      "outs": 3
+    },
+    "evidence": "game-base v1",
+    "apiStatus": "confirmed",
+    "apiConfirmed": true,
+    "historicalContext": {
+      "status": "needs-review",
+      "text": "",
+      "sources": []
+    },
+    "gamedayUrl": "https://www.mlb.com/gameday/angels-vs-astros/2020/08/24/631439/final",
+    "articleUrls": [],
+    "feedUpdatedAt": "",
+    "ruleVersion": "daily-records-game-base-phase1-v1",
+    "isJapanesePlayer": false,
+    "archiveKey": "POSITION_PLAYER_NO_HIT:631439:621532:0:",
+    "uniqueKey": "POSITION_PLAYER_NO_HIT:631439:621532:0:"
+  },
+  {
+    "recordType": "POSITION_PLAYER_SCORELESS",
+    "aliases": [
+      "野手登板で無失点"
+    ],
+    "category": "special",
+    "date": "2020-08-24",
+    "season": 2020,
+    "gameType": "R",
+    "gamePk": 631439,
+    "playerId": 621532,
+    "playerName": "選手ID 621532",
+    "teamId": 108,
+    "teamCode": "LAA",
+    "teamName": "Los Angeles Angels",
+    "opponentId": 117,
+    "opponentCode": "HOU",
+    "opponentName": "Houston Astros",
+    "inning": null,
+    "gameDate": "2020-08-24",
+    "battingSide": null,
+    "pitchingSide": null,
+    "fact": "野手登板で無失点",
+    "description": "野手登板で無失点",
+    "details": {
+      "outs": 3,
+      "runs": 0
+    },
+    "evidence": "game-base v1",
+    "apiStatus": "confirmed",
+    "apiConfirmed": true,
+    "historicalContext": {
+      "status": "needs-review",
+      "text": "",
+      "sources": []
+    },
+    "gamedayUrl": "https://www.mlb.com/gameday/angels-vs-astros/2020/08/24/631439/final",
+    "articleUrls": [],
+    "feedUpdatedAt": "",
+    "ruleVersion": "daily-records-game-base-phase1-v1",
+    "isJapanesePlayer": false,
+    "archiveKey": "POSITION_PLAYER_SCORELESS:631439:621532:0:",
+    "uniqueKey": "POSITION_PLAYER_SCORELESS:631439:621532:0:"
   },
   {
     "recordType": "ALL_STARTERS_HIT",
@@ -9330,6 +10751,98 @@
     "apiConfirmed": true
   },
   {
+    "recordType": "SHUTOUT",
+    "aliases": [
+      "完封",
+      "完封勝利",
+      "shutout"
+    ],
+    "category": "individual",
+    "date": "2020-08-25",
+    "season": 2020,
+    "gameType": "R",
+    "gamePk": 631499,
+    "playerId": 608337,
+    "playerName": "選手ID 608337",
+    "teamId": 145,
+    "teamCode": "CWS",
+    "teamName": "Chicago White Sox",
+    "opponentId": 134,
+    "opponentCode": "PIT",
+    "opponentName": "Pittsburgh Pirates",
+    "inning": null,
+    "gameDate": "2020-08-25",
+    "battingSide": "home",
+    "pitchingSide": "home",
+    "fact": "9.0回を完封",
+    "description": "9.0回を完封",
+    "details": {
+      "outs": 27
+    },
+    "evidence": "game-base v1",
+    "apiStatus": "confirmed",
+    "apiConfirmed": true,
+    "historicalContext": {
+      "status": "needs-review",
+      "text": "",
+      "sources": []
+    },
+    "gamedayUrl": "https://www.mlb.com/gameday/pirates-vs-white-sox/2020/08/25/631499/final",
+    "articleUrls": [],
+    "feedUpdatedAt": "",
+    "ruleVersion": "daily-records-game-base-phase1-v1",
+    "isJapanesePlayer": false,
+    "archiveKey": "SHUTOUT:631499:608337:0:",
+    "uniqueKey": "SHUTOUT:631499:608337:0:"
+  },
+  {
+    "recordType": "SOLO_NO_HITTER",
+    "aliases": [
+      "ノーヒットノーラン",
+      "ノーヒッター",
+      "単独ノーヒッター",
+      "no hitter",
+      "no-hitter"
+    ],
+    "category": "individual",
+    "date": "2020-08-25",
+    "season": 2020,
+    "gameType": "R",
+    "gamePk": 631499,
+    "playerId": 608337,
+    "playerName": "選手ID 608337",
+    "teamId": 145,
+    "teamCode": "CWS",
+    "teamName": "Chicago White Sox",
+    "opponentId": 134,
+    "opponentCode": "PIT",
+    "opponentName": "Pittsburgh Pirates",
+    "inning": null,
+    "gameDate": "2020-08-25",
+    "battingSide": "home",
+    "pitchingSide": "home",
+    "fact": "ノーヒットノーラン",
+    "description": "ノーヒットノーラン",
+    "details": {
+      "outs": 27
+    },
+    "evidence": "game-base v1",
+    "apiStatus": "confirmed",
+    "apiConfirmed": true,
+    "historicalContext": {
+      "status": "needs-review",
+      "text": "",
+      "sources": []
+    },
+    "gamedayUrl": "https://www.mlb.com/gameday/pirates-vs-white-sox/2020/08/25/631499/final",
+    "articleUrls": [],
+    "feedUpdatedAt": "",
+    "ruleVersion": "daily-records-game-base-phase1-v1",
+    "isJapanesePlayer": false,
+    "archiveKey": "SOLO_NO_HITTER:631499:608337:0:",
+    "uniqueKey": "SOLO_NO_HITTER:631499:608337:0:"
+  },
+  {
     "recordType": "JAPANESE_CAREER_HIGH",
     "aliases": [
       "日本人選手キャリア最多",
@@ -9515,6 +11028,139 @@
     "description": "両軍合計12投手を起用",
     "isJapanesePlayer": false,
     "apiConfirmed": true
+  },
+  {
+    "recordType": "POSITION_PLAYER_NO_HIT",
+    "aliases": [
+      "野手登板で被安打0",
+      "野手登板でノーヒット"
+    ],
+    "category": "special",
+    "date": "2020-08-28",
+    "season": 2020,
+    "gameType": "R",
+    "gamePk": 630980,
+    "playerId": 621011,
+    "playerName": "M.シュロック",
+    "teamId": 138,
+    "teamCode": "STL",
+    "teamName": "St. Louis Cardinals",
+    "opponentId": 114,
+    "opponentCode": "CLE",
+    "opponentName": "Cleveland Indians",
+    "inning": null,
+    "gameDate": "2020-08-28",
+    "battingSide": null,
+    "pitchingSide": null,
+    "fact": "野手登板で被安打0",
+    "description": "野手登板で被安打0",
+    "details": {
+      "hits": 0,
+      "outs": 3
+    },
+    "evidence": "game-base v1",
+    "apiStatus": "confirmed",
+    "apiConfirmed": true,
+    "historicalContext": {
+      "status": "needs-review",
+      "text": "",
+      "sources": []
+    },
+    "gamedayUrl": "https://www.mlb.com/gameday/guardians-vs-cardinals/2020/08/28/630980/final",
+    "articleUrls": [],
+    "feedUpdatedAt": "",
+    "ruleVersion": "daily-records-game-base-phase1-v1",
+    "isJapanesePlayer": false,
+    "archiveKey": "POSITION_PLAYER_NO_HIT:630980:621011:0:",
+    "uniqueKey": "POSITION_PLAYER_NO_HIT:630980:621011:0:"
+  },
+  {
+    "recordType": "POSITION_PLAYER_SCORELESS",
+    "aliases": [
+      "野手登板で無失点"
+    ],
+    "category": "special",
+    "date": "2020-08-28",
+    "season": 2020,
+    "gameType": "R",
+    "gamePk": 630980,
+    "playerId": 621011,
+    "playerName": "M.シュロック",
+    "teamId": 138,
+    "teamCode": "STL",
+    "teamName": "St. Louis Cardinals",
+    "opponentId": 114,
+    "opponentCode": "CLE",
+    "opponentName": "Cleveland Indians",
+    "inning": null,
+    "gameDate": "2020-08-28",
+    "battingSide": null,
+    "pitchingSide": null,
+    "fact": "野手登板で無失点",
+    "description": "野手登板で無失点",
+    "details": {
+      "outs": 3,
+      "runs": 0
+    },
+    "evidence": "game-base v1",
+    "apiStatus": "confirmed",
+    "apiConfirmed": true,
+    "historicalContext": {
+      "status": "needs-review",
+      "text": "",
+      "sources": []
+    },
+    "gamedayUrl": "https://www.mlb.com/gameday/guardians-vs-cardinals/2020/08/28/630980/final",
+    "articleUrls": [],
+    "feedUpdatedAt": "",
+    "ruleVersion": "daily-records-game-base-phase1-v1",
+    "isJapanesePlayer": false,
+    "archiveKey": "POSITION_PLAYER_SCORELESS:630980:621011:0:",
+    "uniqueKey": "POSITION_PLAYER_SCORELESS:630980:621011:0:"
+  },
+  {
+    "recordType": "TWENTY_HIT_TEAM_GAME",
+    "aliases": [
+      "チーム20安打",
+      "20安打"
+    ],
+    "category": "team",
+    "date": "2020-08-28",
+    "season": 2020,
+    "gameType": "R",
+    "gamePk": 630980,
+    "playerId": null,
+    "playerName": "",
+    "teamId": 114,
+    "teamCode": "CLE",
+    "teamName": "Cleveland Indians",
+    "opponentId": 138,
+    "opponentCode": "STL",
+    "opponentName": "St. Louis Cardinals",
+    "inning": null,
+    "gameDate": "2020-08-28",
+    "battingSide": null,
+    "pitchingSide": null,
+    "fact": "チーム20安打",
+    "description": "チーム20安打",
+    "details": {
+      "hits": 20
+    },
+    "evidence": "game-base v1",
+    "apiStatus": "confirmed",
+    "apiConfirmed": true,
+    "historicalContext": {
+      "status": "needs-review",
+      "text": "",
+      "sources": []
+    },
+    "gamedayUrl": "https://www.mlb.com/gameday/guardians-vs-cardinals/2020/08/28/630980/final",
+    "articleUrls": [],
+    "feedUpdatedAt": "",
+    "ruleVersion": "daily-records-game-base-phase1-v1",
+    "isJapanesePlayer": false,
+    "archiveKey": "TWENTY_HIT_TEAM_GAME:630980:team-114:0:",
+    "uniqueKey": "TWENTY_HIT_TEAM_GAME:630980:team-114:0:"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -10158,6 +11804,50 @@
     "apiConfirmed": true
   },
   {
+    "recordType": "TEN_RUN_INNING",
+    "aliases": [
+      "1イニング10得点",
+      "大量得点イニング"
+    ],
+    "category": "team",
+    "date": "2020-08-30",
+    "season": 2020,
+    "gameType": "R",
+    "gamePk": 631135,
+    "playerId": null,
+    "playerName": "",
+    "teamId": 144,
+    "teamCode": "ATL",
+    "teamName": "Atlanta Braves",
+    "opponentId": 143,
+    "opponentCode": "PHI",
+    "opponentName": "Philadelphia Phillies",
+    "inning": 2,
+    "gameDate": "2020-08-30",
+    "battingSide": null,
+    "pitchingSide": null,
+    "fact": "2回表 1イニングに10得点",
+    "description": "2回表 1イニングに10得点",
+    "details": {
+      "runs": 10
+    },
+    "evidence": "game-base v1",
+    "apiStatus": "confirmed",
+    "apiConfirmed": true,
+    "historicalContext": {
+      "status": "needs-review",
+      "text": "",
+      "sources": []
+    },
+    "gamedayUrl": "https://www.mlb.com/gameday/braves-vs-phillies/2020/08/30/631135/final",
+    "articleUrls": [],
+    "feedUpdatedAt": "",
+    "ruleVersion": "daily-records-game-base-phase1-v1",
+    "isJapanesePlayer": false,
+    "archiveKey": "TEN_RUN_INNING:631135:team-144:2:",
+    "uniqueKey": "TEN_RUN_INNING:631135:team-144:2:"
+  },
+  {
     "recordType": "TWO_HIT_SAME_INNING",
     "aliases": [
       "1イニング2安打",
@@ -10369,6 +12059,50 @@
     "description": "両軍合計7本塁打",
     "isJapanesePlayer": false,
     "apiConfirmed": true
+  },
+  {
+    "recordType": "SIX_HR_TEAM_GAME",
+    "aliases": [
+      "チーム6本塁打",
+      "6本塁打"
+    ],
+    "category": "team",
+    "date": "2020-08-30",
+    "season": 2020,
+    "gameType": "R",
+    "gamePk": 631584,
+    "playerId": null,
+    "playerName": "",
+    "teamId": 112,
+    "teamCode": "CHC",
+    "teamName": "Chicago Cubs",
+    "opponentId": 113,
+    "opponentCode": "CIN",
+    "opponentName": "Cincinnati Reds",
+    "inning": null,
+    "gameDate": "2020-08-30",
+    "battingSide": null,
+    "pitchingSide": null,
+    "fact": "チーム6本塁打",
+    "description": "チーム6本塁打",
+    "details": {
+      "homeRuns": 6
+    },
+    "evidence": "game-base v1",
+    "apiStatus": "confirmed",
+    "apiConfirmed": true,
+    "historicalContext": {
+      "status": "needs-review",
+      "text": "",
+      "sources": []
+    },
+    "gamedayUrl": "https://www.mlb.com/gameday/cubs-vs-reds/2020/08/30/631584/final",
+    "articleUrls": [],
+    "feedUpdatedAt": "",
+    "ruleVersion": "daily-records-game-base-phase1-v1",
+    "isJapanesePlayer": false,
+    "archiveKey": "SIX_HR_TEAM_GAME:631584:team-112:0:",
+    "uniqueKey": "SIX_HR_TEAM_GAME:631584:team-112:0:"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -10900,6 +12634,95 @@
     "apiConfirmed": true
   },
   {
+    "recordType": "TWENTY_HIT_TEAM_GAME",
+    "aliases": [
+      "チーム20安打",
+      "20安打"
+    ],
+    "category": "team",
+    "date": "2020-09-01",
+    "season": 2020,
+    "gameType": "R",
+    "gamePk": 631528,
+    "playerId": null,
+    "playerName": "",
+    "teamId": 137,
+    "teamCode": "SF",
+    "teamName": "San Francisco Giants",
+    "opponentId": 115,
+    "opponentCode": "COL",
+    "opponentName": "Colorado Rockies",
+    "inning": null,
+    "gameDate": "2020-09-01",
+    "battingSide": null,
+    "pitchingSide": null,
+    "fact": "チーム27安打",
+    "description": "チーム27安打",
+    "details": {
+      "hits": 27
+    },
+    "evidence": "game-base v1",
+    "apiStatus": "confirmed",
+    "apiConfirmed": true,
+    "historicalContext": {
+      "status": "needs-review",
+      "text": "",
+      "sources": []
+    },
+    "gamedayUrl": "https://www.mlb.com/gameday/giants-vs-rockies/2020/09/01/631528/final",
+    "articleUrls": [],
+    "feedUpdatedAt": "",
+    "ruleVersion": "daily-records-game-base-phase1-v1",
+    "isJapanesePlayer": false,
+    "archiveKey": "TWENTY_HIT_TEAM_GAME:631528:team-137:0:",
+    "uniqueKey": "TWENTY_HIT_TEAM_GAME:631528:team-137:0:"
+  },
+  {
+    "recordType": "TWENTY_RUN_GAME",
+    "aliases": [
+      "チーム20得点",
+      "20得点",
+      "25得点"
+    ],
+    "category": "team",
+    "date": "2020-09-01",
+    "season": 2020,
+    "gameType": "R",
+    "gamePk": 631528,
+    "playerId": null,
+    "playerName": "",
+    "teamId": 137,
+    "teamCode": "SF",
+    "teamName": "San Francisco Giants",
+    "opponentId": 115,
+    "opponentCode": "COL",
+    "opponentName": "Colorado Rockies",
+    "inning": null,
+    "gameDate": "2020-09-01",
+    "battingSide": null,
+    "pitchingSide": null,
+    "fact": "チーム23得点",
+    "description": "チーム23得点",
+    "details": {
+      "runs": 23
+    },
+    "evidence": "game-base v1",
+    "apiStatus": "confirmed",
+    "apiConfirmed": true,
+    "historicalContext": {
+      "status": "needs-review",
+      "text": "",
+      "sources": []
+    },
+    "gamedayUrl": "https://www.mlb.com/gameday/giants-vs-rockies/2020/09/01/631528/final",
+    "articleUrls": [],
+    "feedUpdatedAt": "",
+    "ruleVersion": "daily-records-game-base-phase1-v1",
+    "isJapanesePlayer": false,
+    "archiveKey": "TWENTY_RUN_GAME:631528:team-137:0:",
+    "uniqueKey": "TWENTY_RUN_GAME:631528:team-137:0:"
+  },
+  {
     "recordType": "TWO_OUTS_SAME_INNING",
     "aliases": [
       "同一イニングで2アウト",
@@ -11069,6 +12892,94 @@
     "description": "1試合7打点",
     "isJapanesePlayer": false,
     "apiConfirmed": true
+  },
+  {
+    "recordType": "POSITION_PLAYER_TWO_INNINGS",
+    "aliases": [
+      "野手登板で2イニング",
+      "野手登板で2回"
+    ],
+    "category": "special",
+    "date": "2020-09-01",
+    "season": 2020,
+    "gameType": "R",
+    "gamePk": 631586,
+    "playerId": 571602,
+    "playerName": "M.デビッドソン",
+    "teamId": 113,
+    "teamCode": "CIN",
+    "teamName": "Cincinnati Reds",
+    "opponentId": 138,
+    "opponentCode": "STL",
+    "opponentName": "St. Louis Cardinals",
+    "inning": null,
+    "gameDate": "2020-09-01",
+    "battingSide": null,
+    "pitchingSide": null,
+    "fact": "野手登板で2.0回",
+    "description": "野手登板で2.0回",
+    "details": {
+      "outs": 6
+    },
+    "evidence": "game-base v1",
+    "apiStatus": "confirmed",
+    "apiConfirmed": true,
+    "historicalContext": {
+      "status": "needs-review",
+      "text": "",
+      "sources": []
+    },
+    "gamedayUrl": "https://www.mlb.com/gameday/cardinals-vs-reds/2020/09/01/631586/final",
+    "articleUrls": [],
+    "feedUpdatedAt": "",
+    "ruleVersion": "daily-records-game-base-phase1-v1",
+    "isJapanesePlayer": false,
+    "archiveKey": "POSITION_PLAYER_TWO_INNINGS:631586:571602:0:",
+    "uniqueKey": "POSITION_PLAYER_TWO_INNINGS:631586:571602:0:"
+  },
+  {
+    "recordType": "TWENTY_HIT_TEAM_GAME",
+    "aliases": [
+      "チーム20安打",
+      "20安打"
+    ],
+    "category": "team",
+    "date": "2020-09-01",
+    "season": 2020,
+    "gameType": "R",
+    "gamePk": 631586,
+    "playerId": null,
+    "playerName": "",
+    "teamId": 138,
+    "teamCode": "STL",
+    "teamName": "St. Louis Cardinals",
+    "opponentId": 113,
+    "opponentCode": "CIN",
+    "opponentName": "Cincinnati Reds",
+    "inning": null,
+    "gameDate": "2020-09-01",
+    "battingSide": null,
+    "pitchingSide": null,
+    "fact": "チーム23安打",
+    "description": "チーム23安打",
+    "details": {
+      "hits": 23
+    },
+    "evidence": "game-base v1",
+    "apiStatus": "confirmed",
+    "apiConfirmed": true,
+    "historicalContext": {
+      "status": "needs-review",
+      "text": "",
+      "sources": []
+    },
+    "gamedayUrl": "https://www.mlb.com/gameday/cardinals-vs-reds/2020/09/01/631586/final",
+    "articleUrls": [],
+    "feedUpdatedAt": "",
+    "ruleVersion": "daily-records-game-base-phase1-v1",
+    "isJapanesePlayer": false,
+    "archiveKey": "TWENTY_HIT_TEAM_GAME:631586:team-138:0:",
+    "uniqueKey": "TWENTY_HIT_TEAM_GAME:631586:team-138:0:"
   },
   {
     "recordType": "TWO_HIT_SAME_INNING",
@@ -12681,6 +14592,50 @@
     "apiConfirmed": true
   },
   {
+    "recordType": "TEN_RUN_INNING",
+    "aliases": [
+      "1イニング10得点",
+      "大量得点イニング"
+    ],
+    "category": "team",
+    "date": "2020-09-07",
+    "season": 2020,
+    "gameType": "R",
+    "gamePk": 630859,
+    "playerId": null,
+    "playerName": "",
+    "teamId": 141,
+    "teamCode": "TOR",
+    "teamName": "Toronto Blue Jays",
+    "opponentId": 147,
+    "opponentCode": "NYY",
+    "opponentName": "New York Yankees",
+    "inning": 6,
+    "gameDate": "2020-09-07",
+    "battingSide": null,
+    "pitchingSide": null,
+    "fact": "6回裏 1イニングに10得点",
+    "description": "6回裏 1イニングに10得点",
+    "details": {
+      "runs": 10
+    },
+    "evidence": "game-base v1",
+    "apiStatus": "confirmed",
+    "apiConfirmed": true,
+    "historicalContext": {
+      "status": "needs-review",
+      "text": "",
+      "sources": []
+    },
+    "gamedayUrl": "https://www.mlb.com/gameday/yankees-vs-blue-jays/2020/09/07/630859/final",
+    "articleUrls": [],
+    "feedUpdatedAt": "",
+    "ruleVersion": "daily-records-game-base-phase1-v1",
+    "isJapanesePlayer": false,
+    "archiveKey": "TEN_RUN_INNING:630859:team-141:6:",
+    "uniqueKey": "TEN_RUN_INNING:630859:team-141:6:"
+  },
+  {
     "recordType": "COMBINED_MANY_PITCHERS",
     "aliases": [
       "両軍合計大量投手起用"
@@ -13104,6 +15059,94 @@
     "apiConfirmed": true
   },
   {
+    "recordType": "SIX_HR_TEAM_GAME",
+    "aliases": [
+      "チーム6本塁打",
+      "6本塁打"
+    ],
+    "category": "team",
+    "date": "2020-09-09",
+    "season": 2020,
+    "gameType": "R",
+    "gamePk": 630439,
+    "playerId": null,
+    "playerName": "",
+    "teamId": 144,
+    "teamCode": "ATL",
+    "teamName": "Atlanta Braves",
+    "opponentId": 146,
+    "opponentCode": "MIA",
+    "opponentName": "Miami Marlins",
+    "inning": null,
+    "gameDate": "2020-09-09",
+    "battingSide": null,
+    "pitchingSide": null,
+    "fact": "チーム7本塁打",
+    "description": "チーム7本塁打",
+    "details": {
+      "homeRuns": 7
+    },
+    "evidence": "game-base v1",
+    "apiStatus": "confirmed",
+    "apiConfirmed": true,
+    "historicalContext": {
+      "status": "needs-review",
+      "text": "",
+      "sources": []
+    },
+    "gamedayUrl": "https://www.mlb.com/gameday/marlins-vs-braves/2020/09/09/630439/final",
+    "articleUrls": [],
+    "feedUpdatedAt": "",
+    "ruleVersion": "daily-records-game-base-phase1-v1",
+    "isJapanesePlayer": false,
+    "archiveKey": "SIX_HR_TEAM_GAME:630439:team-144:0:",
+    "uniqueKey": "SIX_HR_TEAM_GAME:630439:team-144:0:"
+  },
+  {
+    "recordType": "TEN_RUN_INNING",
+    "aliases": [
+      "1イニング10得点",
+      "大量得点イニング"
+    ],
+    "category": "team",
+    "date": "2020-09-09",
+    "season": 2020,
+    "gameType": "R",
+    "gamePk": 630439,
+    "playerId": null,
+    "playerName": "",
+    "teamId": 144,
+    "teamCode": "ATL",
+    "teamName": "Atlanta Braves",
+    "opponentId": 146,
+    "opponentCode": "MIA",
+    "opponentName": "Miami Marlins",
+    "inning": 2,
+    "gameDate": "2020-09-09",
+    "battingSide": null,
+    "pitchingSide": null,
+    "fact": "2回裏 1イニングに11得点",
+    "description": "2回裏 1イニングに11得点",
+    "details": {
+      "runs": 11
+    },
+    "evidence": "game-base v1",
+    "apiStatus": "confirmed",
+    "apiConfirmed": true,
+    "historicalContext": {
+      "status": "needs-review",
+      "text": "",
+      "sources": []
+    },
+    "gamedayUrl": "https://www.mlb.com/gameday/marlins-vs-braves/2020/09/09/630439/final",
+    "articleUrls": [],
+    "feedUpdatedAt": "",
+    "ruleVersion": "daily-records-game-base-phase1-v1",
+    "isJapanesePlayer": false,
+    "archiveKey": "TEN_RUN_INNING:630439:team-144:2:",
+    "uniqueKey": "TEN_RUN_INNING:630439:team-144:2:"
+  },
+  {
     "recordType": "THREE_HR_GAME",
     "aliases": [
       "1試合3本塁打",
@@ -13148,6 +15191,95 @@
     "description": "1試合3本塁打",
     "isJapanesePlayer": false,
     "apiConfirmed": true
+  },
+  {
+    "recordType": "TWENTY_FIVE_RUN_GAME",
+    "aliases": [
+      "チーム25得点",
+      "25得点",
+      "20得点"
+    ],
+    "category": "team",
+    "date": "2020-09-09",
+    "season": 2020,
+    "gameType": "R",
+    "gamePk": 630439,
+    "playerId": null,
+    "playerName": "",
+    "teamId": 144,
+    "teamCode": "ATL",
+    "teamName": "Atlanta Braves",
+    "opponentId": 146,
+    "opponentCode": "MIA",
+    "opponentName": "Miami Marlins",
+    "inning": null,
+    "gameDate": "2020-09-09",
+    "battingSide": null,
+    "pitchingSide": null,
+    "fact": "チーム29得点",
+    "description": "チーム29得点",
+    "details": {
+      "runs": 29
+    },
+    "evidence": "game-base v1",
+    "apiStatus": "confirmed",
+    "apiConfirmed": true,
+    "historicalContext": {
+      "status": "needs-review",
+      "text": "",
+      "sources": []
+    },
+    "gamedayUrl": "https://www.mlb.com/gameday/marlins-vs-braves/2020/09/09/630439/final",
+    "articleUrls": [],
+    "feedUpdatedAt": "",
+    "ruleVersion": "daily-records-game-base-phase1-v1",
+    "isJapanesePlayer": false,
+    "archiveKey": "TWENTY_FIVE_RUN_GAME:630439:team-144:0:",
+    "uniqueKey": "TWENTY_FIVE_RUN_GAME:630439:team-144:0:"
+  },
+  {
+    "recordType": "TWENTY_HIT_TEAM_GAME",
+    "aliases": [
+      "チーム20安打",
+      "20安打"
+    ],
+    "category": "team",
+    "date": "2020-09-09",
+    "season": 2020,
+    "gameType": "R",
+    "gamePk": 630439,
+    "playerId": null,
+    "playerName": "",
+    "teamId": 144,
+    "teamCode": "ATL",
+    "teamName": "Atlanta Braves",
+    "opponentId": 146,
+    "opponentCode": "MIA",
+    "opponentName": "Miami Marlins",
+    "inning": null,
+    "gameDate": "2020-09-09",
+    "battingSide": null,
+    "pitchingSide": null,
+    "fact": "チーム23安打",
+    "description": "チーム23安打",
+    "details": {
+      "hits": 23
+    },
+    "evidence": "game-base v1",
+    "apiStatus": "confirmed",
+    "apiConfirmed": true,
+    "historicalContext": {
+      "status": "needs-review",
+      "text": "",
+      "sources": []
+    },
+    "gamedayUrl": "https://www.mlb.com/gameday/marlins-vs-braves/2020/09/09/630439/final",
+    "articleUrls": [],
+    "feedUpdatedAt": "",
+    "ruleVersion": "daily-records-game-base-phase1-v1",
+    "isJapanesePlayer": false,
+    "archiveKey": "TWENTY_HIT_TEAM_GAME:630439:team-144:0:",
+    "uniqueKey": "TWENTY_HIT_TEAM_GAME:630439:team-144:0:"
   },
   {
     "recordType": "TWO_HIT_SAME_INNING",
@@ -13364,6 +15496,50 @@
     "apiConfirmed": true
   },
   {
+    "recordType": "TWENTY_HIT_TEAM_GAME",
+    "aliases": [
+      "チーム20安打",
+      "20安打"
+    ],
+    "category": "team",
+    "date": "2020-09-09",
+    "season": 2020,
+    "gameType": "R",
+    "gamePk": 631461,
+    "playerId": null,
+    "playerName": "",
+    "teamId": 158,
+    "teamCode": "MIL",
+    "teamName": "Milwaukee Brewers",
+    "opponentId": 116,
+    "opponentCode": "DET",
+    "opponentName": "Detroit Tigers",
+    "inning": null,
+    "gameDate": "2020-09-09",
+    "battingSide": null,
+    "pitchingSide": null,
+    "fact": "チーム21安打",
+    "description": "チーム21安打",
+    "details": {
+      "hits": 21
+    },
+    "evidence": "game-base v1",
+    "apiStatus": "confirmed",
+    "apiConfirmed": true,
+    "historicalContext": {
+      "status": "needs-review",
+      "text": "",
+      "sources": []
+    },
+    "gamedayUrl": "https://www.mlb.com/gameday/brewers-vs-tigers/2020/09/09/631461/final",
+    "articleUrls": [],
+    "feedUpdatedAt": "",
+    "ruleVersion": "daily-records-game-base-phase1-v1",
+    "isJapanesePlayer": false,
+    "archiveKey": "TWENTY_HIT_TEAM_GAME:631461:team-158:0:",
+    "uniqueKey": "TWENTY_HIT_TEAM_GAME:631461:team-158:0:"
+  },
+  {
     "recordType": "COMBINED_MANY_PITCHERS",
     "aliases": [
       "両軍合計大量投手起用"
@@ -13405,6 +15581,50 @@
     "description": "両軍合計13投手を起用",
     "isJapanesePlayer": false,
     "apiConfirmed": true
+  },
+  {
+    "recordType": "THIRTY_COMBINED_STRIKEOUTS",
+    "aliases": [
+      "両軍合計30奪三振",
+      "30奪三振"
+    ],
+    "category": "team",
+    "date": "2020-09-10",
+    "season": 2020,
+    "gameType": "R",
+    "gamePk": 630957,
+    "playerId": null,
+    "playerName": "",
+    "teamId": 139,
+    "teamCode": "TB",
+    "teamName": "Tampa Bay Rays",
+    "opponentId": 111,
+    "opponentCode": "BOS",
+    "opponentName": "Boston Red Sox",
+    "inning": null,
+    "gameDate": "2020-09-10",
+    "battingSide": null,
+    "pitchingSide": "home",
+    "fact": "両軍合計30奪三振",
+    "description": "両軍合計30奪三振",
+    "details": {
+      "strikeouts": 30
+    },
+    "evidence": "game-base v1",
+    "apiStatus": "confirmed",
+    "apiConfirmed": true,
+    "historicalContext": {
+      "status": "needs-review",
+      "text": "",
+      "sources": []
+    },
+    "gamedayUrl": "https://www.mlb.com/gameday/red-sox-vs-rays/2020/09/10/630957/final",
+    "articleUrls": [],
+    "feedUpdatedAt": "",
+    "ruleVersion": "daily-records-game-base-phase1-v1",
+    "isJapanesePlayer": false,
+    "archiveKey": "THIRTY_COMBINED_STRIKEOUTS:630957:team-139:0:",
+    "uniqueKey": "THIRTY_COMBINED_STRIKEOUTS:630957:team-139:0:"
   },
   {
     "recordType": "ALL_STARTERS_HIT",
@@ -13661,6 +15881,50 @@
     "apiConfirmed": true
   },
   {
+    "recordType": "TEN_RUN_INNING",
+    "aliases": [
+      "1イニング10得点",
+      "大量得点イニング"
+    ],
+    "category": "team",
+    "date": "2020-09-11",
+    "season": 2020,
+    "gameType": "R",
+    "gamePk": 630868,
+    "playerId": null,
+    "playerName": "",
+    "teamId": 121,
+    "teamCode": "NYM",
+    "teamName": "New York Mets",
+    "opponentId": 141,
+    "opponentCode": "TOR",
+    "opponentName": "Toronto Blue Jays",
+    "inning": 4,
+    "gameDate": "2020-09-11",
+    "battingSide": null,
+    "pitchingSide": null,
+    "fact": "4回表 1イニングに10得点",
+    "description": "4回表 1イニングに10得点",
+    "details": {
+      "runs": 10
+    },
+    "evidence": "game-base v1",
+    "apiStatus": "confirmed",
+    "apiConfirmed": true,
+    "historicalContext": {
+      "status": "needs-review",
+      "text": "",
+      "sources": []
+    },
+    "gamedayUrl": "https://www.mlb.com/gameday/mets-vs-blue-jays/2020/09/11/630868/final",
+    "articleUrls": [],
+    "feedUpdatedAt": "",
+    "ruleVersion": "daily-records-game-base-phase1-v1",
+    "isJapanesePlayer": false,
+    "archiveKey": "TEN_RUN_INNING:630868:team-121:4:",
+    "uniqueKey": "TEN_RUN_INNING:630868:team-121:4:"
+  },
+  {
     "recordType": "COMBINED_MANY_PITCHERS",
     "aliases": [
       "両軍合計大量投手起用"
@@ -13831,6 +16095,140 @@
     "description": "1試合6打点",
     "isJapanesePlayer": false,
     "apiConfirmed": true
+  },
+  {
+    "recordType": "SHUTOUT",
+    "aliases": [
+      "完封",
+      "完封勝利",
+      "shutout"
+    ],
+    "category": "individual",
+    "date": "2020-09-11",
+    "season": 2020,
+    "gameType": "R",
+    "gamePk": 631184,
+    "playerId": 543037,
+    "playerName": "選手ID 543037",
+    "teamId": 147,
+    "teamCode": "NYY",
+    "teamName": "New York Yankees",
+    "opponentId": 110,
+    "opponentCode": "BAL",
+    "opponentName": "Baltimore Orioles",
+    "inning": null,
+    "gameDate": "2020-09-11",
+    "battingSide": "home",
+    "pitchingSide": "home",
+    "fact": "7.0回を完封",
+    "description": "7.0回を完封",
+    "details": {
+      "outs": 21
+    },
+    "evidence": "game-base v1",
+    "apiStatus": "confirmed",
+    "apiConfirmed": true,
+    "historicalContext": {
+      "status": "needs-review",
+      "text": "",
+      "sources": []
+    },
+    "gamedayUrl": "https://www.mlb.com/gameday/orioles-vs-yankees/2020/09/11/631184/final",
+    "articleUrls": [],
+    "feedUpdatedAt": "",
+    "ruleVersion": "daily-records-game-base-phase1-v1",
+    "isJapanesePlayer": false,
+    "archiveKey": "SHUTOUT:631184:543037:0:",
+    "uniqueKey": "SHUTOUT:631184:543037:0:"
+  },
+  {
+    "recordType": "NO_WALK_SHUTOUT",
+    "aliases": [
+      "無四球完封",
+      "四球なし完封"
+    ],
+    "category": "individual",
+    "date": "2020-09-11",
+    "season": 2020,
+    "gameType": "R",
+    "gamePk": 631310,
+    "playerId": 605400,
+    "playerName": "選手ID 605400",
+    "teamId": 143,
+    "teamCode": "PHI",
+    "teamName": "Philadelphia Phillies",
+    "opponentId": 146,
+    "opponentCode": "MIA",
+    "opponentName": "Miami Marlins",
+    "inning": null,
+    "gameDate": "2020-09-11",
+    "battingSide": "away",
+    "pitchingSide": "away",
+    "fact": "無四球完封",
+    "description": "無四球完封",
+    "details": {
+      "walks": 0
+    },
+    "evidence": "game-base v1",
+    "apiStatus": "confirmed",
+    "apiConfirmed": true,
+    "historicalContext": {
+      "status": "needs-review",
+      "text": "",
+      "sources": []
+    },
+    "gamedayUrl": "https://www.mlb.com/gameday/phillies-vs-marlins/2020/09/11/631310/final",
+    "articleUrls": [],
+    "feedUpdatedAt": "",
+    "ruleVersion": "daily-records-game-base-phase1-v1",
+    "isJapanesePlayer": false,
+    "archiveKey": "NO_WALK_SHUTOUT:631310:605400:0:",
+    "uniqueKey": "NO_WALK_SHUTOUT:631310:605400:0:"
+  },
+  {
+    "recordType": "SHUTOUT",
+    "aliases": [
+      "完封",
+      "完封勝利",
+      "shutout"
+    ],
+    "category": "individual",
+    "date": "2020-09-11",
+    "season": 2020,
+    "gameType": "R",
+    "gamePk": 631310,
+    "playerId": 605400,
+    "playerName": "選手ID 605400",
+    "teamId": 143,
+    "teamCode": "PHI",
+    "teamName": "Philadelphia Phillies",
+    "opponentId": 146,
+    "opponentCode": "MIA",
+    "opponentName": "Miami Marlins",
+    "inning": null,
+    "gameDate": "2020-09-11",
+    "battingSide": "away",
+    "pitchingSide": "away",
+    "fact": "7.0回を完封",
+    "description": "7.0回を完封",
+    "details": {
+      "outs": 21
+    },
+    "evidence": "game-base v1",
+    "apiStatus": "confirmed",
+    "apiConfirmed": true,
+    "historicalContext": {
+      "status": "needs-review",
+      "text": "",
+      "sources": []
+    },
+    "gamedayUrl": "https://www.mlb.com/gameday/phillies-vs-marlins/2020/09/11/631310/final",
+    "articleUrls": [],
+    "feedUpdatedAt": "",
+    "ruleVersion": "daily-records-game-base-phase1-v1",
+    "isJapanesePlayer": false,
+    "archiveKey": "SHUTOUT:631310:605400:0:",
+    "uniqueKey": "SHUTOUT:631310:605400:0:"
   },
   {
     "recordType": "WALKOFF_GRAND_SLAM",
@@ -14219,6 +16617,96 @@
     "apiConfirmed": true
   },
   {
+    "recordType": "MADDUX",
+    "aliases": [
+      "100球未満完封",
+      "マダックス",
+      "Maddux"
+    ],
+    "category": "individual",
+    "date": "2020-09-13",
+    "season": 2020,
+    "gameType": "R",
+    "gamePk": 631060,
+    "playerId": 605182,
+    "playerName": "選手ID 605182",
+    "teamId": 135,
+    "teamCode": "SD",
+    "teamName": "San Diego Padres",
+    "opponentId": 137,
+    "opponentCode": "SF",
+    "opponentName": "San Francisco Giants",
+    "inning": null,
+    "gameDate": "2020-09-13",
+    "battingSide": "home",
+    "pitchingSide": "home",
+    "fact": "99球で完封",
+    "description": "99球で完封",
+    "details": {
+      "pitches": 99
+    },
+    "evidence": "game-base v1",
+    "apiStatus": "confirmed",
+    "apiConfirmed": true,
+    "historicalContext": {
+      "status": "needs-review",
+      "text": "",
+      "sources": []
+    },
+    "gamedayUrl": "https://www.mlb.com/gameday/giants-vs-padres/2020/09/13/631060/final",
+    "articleUrls": [],
+    "feedUpdatedAt": "",
+    "ruleVersion": "daily-records-game-base-phase1-v1",
+    "isJapanesePlayer": false,
+    "archiveKey": "MADDUX:631060:605182:0:",
+    "uniqueKey": "MADDUX:631060:605182:0:"
+  },
+  {
+    "recordType": "SHUTOUT",
+    "aliases": [
+      "完封",
+      "完封勝利",
+      "shutout"
+    ],
+    "category": "individual",
+    "date": "2020-09-13",
+    "season": 2020,
+    "gameType": "R",
+    "gamePk": 631060,
+    "playerId": 605182,
+    "playerName": "選手ID 605182",
+    "teamId": 135,
+    "teamCode": "SD",
+    "teamName": "San Diego Padres",
+    "opponentId": 137,
+    "opponentCode": "SF",
+    "opponentName": "San Francisco Giants",
+    "inning": null,
+    "gameDate": "2020-09-13",
+    "battingSide": "home",
+    "pitchingSide": "home",
+    "fact": "7.0回を完封",
+    "description": "7.0回を完封",
+    "details": {
+      "outs": 21
+    },
+    "evidence": "game-base v1",
+    "apiStatus": "confirmed",
+    "apiConfirmed": true,
+    "historicalContext": {
+      "status": "needs-review",
+      "text": "",
+      "sources": []
+    },
+    "gamedayUrl": "https://www.mlb.com/gameday/giants-vs-padres/2020/09/13/631060/final",
+    "articleUrls": [],
+    "feedUpdatedAt": "",
+    "ruleVersion": "daily-records-game-base-phase1-v1",
+    "isJapanesePlayer": false,
+    "archiveKey": "SHUTOUT:631060:605182:0:",
+    "uniqueKey": "SHUTOUT:631060:605182:0:"
+  },
+  {
     "recordType": "HIT_DEFICIT_WIN",
     "aliases": [
       "少ない安打数で勝利"
@@ -14261,6 +16749,98 @@
     "description": "相手より6本少ない安打数で勝利",
     "isJapanesePlayer": false,
     "apiConfirmed": true
+  },
+  {
+    "recordType": "SHUTOUT",
+    "aliases": [
+      "完封",
+      "完封勝利",
+      "shutout"
+    ],
+    "category": "individual",
+    "date": "2020-09-13",
+    "season": 2020,
+    "gameType": "R",
+    "gamePk": 631286,
+    "playerId": 621219,
+    "playerName": "選手ID 621219",
+    "teamId": 112,
+    "teamCode": "CHC",
+    "teamName": "Chicago Cubs",
+    "opponentId": 158,
+    "opponentCode": "MIL",
+    "opponentName": "Milwaukee Brewers",
+    "inning": null,
+    "gameDate": "2020-09-13",
+    "battingSide": "away",
+    "pitchingSide": "away",
+    "fact": "9.0回を完封",
+    "description": "9.0回を完封",
+    "details": {
+      "outs": 27
+    },
+    "evidence": "game-base v1",
+    "apiStatus": "confirmed",
+    "apiConfirmed": true,
+    "historicalContext": {
+      "status": "needs-review",
+      "text": "",
+      "sources": []
+    },
+    "gamedayUrl": "https://www.mlb.com/gameday/cubs-vs-brewers/2020/09/13/631286/final",
+    "articleUrls": [],
+    "feedUpdatedAt": "",
+    "ruleVersion": "daily-records-game-base-phase1-v1",
+    "isJapanesePlayer": false,
+    "archiveKey": "SHUTOUT:631286:621219:0:",
+    "uniqueKey": "SHUTOUT:631286:621219:0:"
+  },
+  {
+    "recordType": "SOLO_NO_HITTER",
+    "aliases": [
+      "ノーヒットノーラン",
+      "ノーヒッター",
+      "単独ノーヒッター",
+      "no hitter",
+      "no-hitter"
+    ],
+    "category": "individual",
+    "date": "2020-09-13",
+    "season": 2020,
+    "gameType": "R",
+    "gamePk": 631286,
+    "playerId": 621219,
+    "playerName": "選手ID 621219",
+    "teamId": 112,
+    "teamCode": "CHC",
+    "teamName": "Chicago Cubs",
+    "opponentId": 158,
+    "opponentCode": "MIL",
+    "opponentName": "Milwaukee Brewers",
+    "inning": null,
+    "gameDate": "2020-09-13",
+    "battingSide": "away",
+    "pitchingSide": "away",
+    "fact": "ノーヒットノーラン",
+    "description": "ノーヒットノーラン",
+    "details": {
+      "outs": 27
+    },
+    "evidence": "game-base v1",
+    "apiStatus": "confirmed",
+    "apiConfirmed": true,
+    "historicalContext": {
+      "status": "needs-review",
+      "text": "",
+      "sources": []
+    },
+    "gamedayUrl": "https://www.mlb.com/gameday/cubs-vs-brewers/2020/09/13/631286/final",
+    "articleUrls": [],
+    "feedUpdatedAt": "",
+    "ruleVersion": "daily-records-game-base-phase1-v1",
+    "isJapanesePlayer": false,
+    "archiveKey": "SOLO_NO_HITTER:631286:621219:0:",
+    "uniqueKey": "SOLO_NO_HITTER:631286:621219:0:"
   },
   {
     "recordType": "TWO_OUTS_SAME_INNING",
@@ -14347,6 +16927,51 @@
     "description": "両軍合計12投手を起用",
     "isJapanesePlayer": false,
     "apiConfirmed": true
+  },
+  {
+    "recordType": "SHUTOUT",
+    "aliases": [
+      "完封",
+      "完封勝利",
+      "shutout"
+    ],
+    "category": "individual",
+    "date": "2020-09-13",
+    "season": 2020,
+    "gameType": "R",
+    "gamePk": 631401,
+    "playerId": 641745,
+    "playerName": "選手ID 641745",
+    "teamId": 118,
+    "teamCode": "KC",
+    "teamName": "Kansas City Royals",
+    "opponentId": 134,
+    "opponentCode": "PIT",
+    "opponentName": "Pittsburgh Pirates",
+    "inning": null,
+    "gameDate": "2020-09-13",
+    "battingSide": "home",
+    "pitchingSide": "home",
+    "fact": "9.0回を完封",
+    "description": "9.0回を完封",
+    "details": {
+      "outs": 27
+    },
+    "evidence": "game-base v1",
+    "apiStatus": "confirmed",
+    "apiConfirmed": true,
+    "historicalContext": {
+      "status": "needs-review",
+      "text": "",
+      "sources": []
+    },
+    "gamedayUrl": "https://www.mlb.com/gameday/pirates-vs-royals/2020/09/13/631401/final",
+    "articleUrls": [],
+    "feedUpdatedAt": "",
+    "ruleVersion": "daily-records-game-base-phase1-v1",
+    "isJapanesePlayer": false,
+    "archiveKey": "SHUTOUT:631401:641745:0:",
+    "uniqueKey": "SHUTOUT:631401:641745:0:"
   },
   {
     "recordType": "TWO_HIT_SAME_INNING",
@@ -14438,6 +17063,95 @@
     "description": "1与死球でキャリアワーストタイ",
     "isJapanesePlayer": true,
     "apiConfirmed": true
+  },
+  {
+    "recordType": "SHUTOUT",
+    "aliases": [
+      "完封",
+      "完封勝利",
+      "shutout"
+    ],
+    "category": "individual",
+    "date": "2020-09-14",
+    "season": 2020,
+    "gameType": "R",
+    "gamePk": 631054,
+    "playerId": 501985,
+    "playerName": "選手ID 501985",
+    "teamId": 133,
+    "teamCode": "OAK",
+    "teamName": "Oakland Athletics",
+    "opponentId": 136,
+    "opponentCode": "SEA",
+    "opponentName": "Seattle Mariners",
+    "inning": null,
+    "gameDate": "2020-09-14",
+    "battingSide": "away",
+    "pitchingSide": "away",
+    "fact": "7.0回を完封",
+    "description": "7.0回を完封",
+    "details": {
+      "outs": 21
+    },
+    "evidence": "game-base v1",
+    "apiStatus": "confirmed",
+    "apiConfirmed": true,
+    "historicalContext": {
+      "status": "needs-review",
+      "text": "",
+      "sources": []
+    },
+    "gamedayUrl": "https://www.mlb.com/gameday/athletics-vs-mariners/2020/09/14/631054/final",
+    "articleUrls": [],
+    "feedUpdatedAt": "",
+    "ruleVersion": "daily-records-game-base-phase1-v1",
+    "isJapanesePlayer": false,
+    "archiveKey": "SHUTOUT:631054:501985:0:",
+    "uniqueKey": "SHUTOUT:631054:501985:0:"
+  },
+  {
+    "recordType": "THIRTY_COMBINED_STRIKEOUTS",
+    "aliases": [
+      "両軍合計30奪三振",
+      "30奪三振"
+    ],
+    "category": "team",
+    "date": "2020-09-14",
+    "season": 2020,
+    "gameType": "R",
+    "gamePk": 631288,
+    "playerId": null,
+    "playerName": "",
+    "teamId": 158,
+    "teamCode": "MIL",
+    "teamName": "Milwaukee Brewers",
+    "opponentId": 138,
+    "opponentCode": "STL",
+    "opponentName": "St. Louis Cardinals",
+    "inning": null,
+    "gameDate": "2020-09-14",
+    "battingSide": null,
+    "pitchingSide": "home",
+    "fact": "両軍合計32奪三振",
+    "description": "両軍合計32奪三振",
+    "details": {
+      "strikeouts": 32
+    },
+    "evidence": "game-base v1",
+    "apiStatus": "confirmed",
+    "apiConfirmed": true,
+    "historicalContext": {
+      "status": "needs-review",
+      "text": "",
+      "sources": []
+    },
+    "gamedayUrl": "https://www.mlb.com/gameday/cardinals-vs-brewers/2020/09/14/631288/final",
+    "articleUrls": [],
+    "feedUpdatedAt": "",
+    "ruleVersion": "daily-records-game-base-phase1-v1",
+    "isJapanesePlayer": false,
+    "archiveKey": "THIRTY_COMBINED_STRIKEOUTS:631288:team-158:0:",
+    "uniqueKey": "THIRTY_COMBINED_STRIKEOUTS:631288:team-158:0:"
   },
   {
     "recordType": "LARGE_HR_INNING",
@@ -14893,6 +17607,95 @@
     "apiConfirmed": true
   },
   {
+    "recordType": "SIX_HR_TEAM_GAME",
+    "aliases": [
+      "チーム6本塁打",
+      "6本塁打"
+    ],
+    "category": "team",
+    "date": "2020-09-15",
+    "season": 2020,
+    "gameType": "R",
+    "gamePk": 631195,
+    "playerId": null,
+    "playerName": "",
+    "teamId": 147,
+    "teamCode": "NYY",
+    "teamName": "New York Yankees",
+    "opponentId": 141,
+    "opponentCode": "TOR",
+    "opponentName": "Toronto Blue Jays",
+    "inning": null,
+    "gameDate": "2020-09-15",
+    "battingSide": null,
+    "pitchingSide": null,
+    "fact": "チーム6本塁打",
+    "description": "チーム6本塁打",
+    "details": {
+      "homeRuns": 6
+    },
+    "evidence": "game-base v1",
+    "apiStatus": "confirmed",
+    "apiConfirmed": true,
+    "historicalContext": {
+      "status": "needs-review",
+      "text": "",
+      "sources": []
+    },
+    "gamedayUrl": "https://www.mlb.com/gameday/blue-jays-vs-yankees/2020/09/15/631195/final",
+    "articleUrls": [],
+    "feedUpdatedAt": "",
+    "ruleVersion": "daily-records-game-base-phase1-v1",
+    "isJapanesePlayer": false,
+    "archiveKey": "SIX_HR_TEAM_GAME:631195:team-147:0:",
+    "uniqueKey": "SIX_HR_TEAM_GAME:631195:team-147:0:"
+  },
+  {
+    "recordType": "TWENTY_RUN_GAME",
+    "aliases": [
+      "チーム20得点",
+      "20得点",
+      "25得点"
+    ],
+    "category": "team",
+    "date": "2020-09-15",
+    "season": 2020,
+    "gameType": "R",
+    "gamePk": 631195,
+    "playerId": null,
+    "playerName": "",
+    "teamId": 147,
+    "teamCode": "NYY",
+    "teamName": "New York Yankees",
+    "opponentId": 141,
+    "opponentCode": "TOR",
+    "opponentName": "Toronto Blue Jays",
+    "inning": null,
+    "gameDate": "2020-09-15",
+    "battingSide": null,
+    "pitchingSide": null,
+    "fact": "チーム20得点",
+    "description": "チーム20得点",
+    "details": {
+      "runs": 20
+    },
+    "evidence": "game-base v1",
+    "apiStatus": "confirmed",
+    "apiConfirmed": true,
+    "historicalContext": {
+      "status": "needs-review",
+      "text": "",
+      "sources": []
+    },
+    "gamedayUrl": "https://www.mlb.com/gameday/blue-jays-vs-yankees/2020/09/15/631195/final",
+    "articleUrls": [],
+    "feedUpdatedAt": "",
+    "ruleVersion": "daily-records-game-base-phase1-v1",
+    "isJapanesePlayer": false,
+    "archiveKey": "TWENTY_RUN_GAME:631195:team-147:0:",
+    "uniqueKey": "TWENTY_RUN_GAME:631195:team-147:0:"
+  },
+  {
     "recordType": "TWO_OUTS_SAME_INNING",
     "aliases": [
       "同一イニングで2アウト",
@@ -15234,6 +18037,50 @@
     "apiConfirmed": true
   },
   {
+    "recordType": "SIX_HR_TEAM_GAME",
+    "aliases": [
+      "チーム6本塁打",
+      "6本塁打"
+    ],
+    "category": "team",
+    "date": "2020-09-16",
+    "season": 2020,
+    "gameType": "R",
+    "gamePk": 631189,
+    "playerId": null,
+    "playerName": "",
+    "teamId": 147,
+    "teamCode": "NYY",
+    "teamName": "New York Yankees",
+    "opponentId": 141,
+    "opponentCode": "TOR",
+    "opponentName": "Toronto Blue Jays",
+    "inning": null,
+    "gameDate": "2020-09-16",
+    "battingSide": null,
+    "pitchingSide": null,
+    "fact": "チーム7本塁打",
+    "description": "チーム7本塁打",
+    "details": {
+      "homeRuns": 7
+    },
+    "evidence": "game-base v1",
+    "apiStatus": "confirmed",
+    "apiConfirmed": true,
+    "historicalContext": {
+      "status": "needs-review",
+      "text": "",
+      "sources": []
+    },
+    "gamedayUrl": "https://www.mlb.com/gameday/blue-jays-vs-yankees/2020/09/16/631189/final",
+    "articleUrls": [],
+    "feedUpdatedAt": "",
+    "ruleVersion": "daily-records-game-base-phase1-v1",
+    "isJapanesePlayer": false,
+    "archiveKey": "SIX_HR_TEAM_GAME:631189:team-147:0:",
+    "uniqueKey": "SIX_HR_TEAM_GAME:631189:team-147:0:"
+  },
+  {
     "recordType": "THREE_HR_GAME",
     "aliases": [
       "1試合3本塁打",
@@ -15321,6 +18168,51 @@
     "description": "両軍合計13投手を起用",
     "isJapanesePlayer": false,
     "apiConfirmed": true
+  },
+  {
+    "recordType": "SHUTOUT",
+    "aliases": [
+      "完封",
+      "完封勝利",
+      "shutout"
+    ],
+    "category": "individual",
+    "date": "2020-09-16",
+    "season": 2020,
+    "gameType": "R",
+    "gamePk": 631434,
+    "playerId": 502043,
+    "playerName": "選手ID 502043",
+    "teamId": 140,
+    "teamCode": "TEX",
+    "teamName": "Texas Rangers",
+    "opponentId": 117,
+    "opponentCode": "HOU",
+    "opponentName": "Houston Astros",
+    "inning": null,
+    "gameDate": "2020-09-16",
+    "battingSide": "away",
+    "pitchingSide": "away",
+    "fact": "9.0回を完封",
+    "description": "9.0回を完封",
+    "details": {
+      "outs": 27
+    },
+    "evidence": "game-base v1",
+    "apiStatus": "confirmed",
+    "apiConfirmed": true,
+    "historicalContext": {
+      "status": "needs-review",
+      "text": "",
+      "sources": []
+    },
+    "gamedayUrl": "https://www.mlb.com/gameday/rangers-vs-astros/2020/09/16/631434/final",
+    "articleUrls": [],
+    "feedUpdatedAt": "",
+    "ruleVersion": "daily-records-game-base-phase1-v1",
+    "isJapanesePlayer": false,
+    "archiveKey": "SHUTOUT:631434:502043:0:",
+    "uniqueKey": "SHUTOUT:631434:502043:0:"
   },
   {
     "recordType": "COMBINED_MANY_PITCHERS",
@@ -15624,6 +18516,50 @@
     "apiConfirmed": true
   },
   {
+    "recordType": "SIX_HR_TEAM_GAME",
+    "aliases": [
+      "チーム6本塁打",
+      "6本塁打"
+    ],
+    "category": "team",
+    "date": "2020-09-17",
+    "season": 2020,
+    "gameType": "R",
+    "gamePk": 631190,
+    "playerId": null,
+    "playerName": "",
+    "teamId": 147,
+    "teamCode": "NYY",
+    "teamName": "New York Yankees",
+    "opponentId": 141,
+    "opponentCode": "TOR",
+    "opponentName": "Toronto Blue Jays",
+    "inning": null,
+    "gameDate": "2020-09-17",
+    "battingSide": null,
+    "pitchingSide": null,
+    "fact": "チーム6本塁打",
+    "description": "チーム6本塁打",
+    "details": {
+      "homeRuns": 6
+    },
+    "evidence": "game-base v1",
+    "apiStatus": "confirmed",
+    "apiConfirmed": true,
+    "historicalContext": {
+      "status": "needs-review",
+      "text": "",
+      "sources": []
+    },
+    "gamedayUrl": "https://www.mlb.com/gameday/blue-jays-vs-yankees/2020/09/17/631190/final",
+    "articleUrls": [],
+    "feedUpdatedAt": "",
+    "ruleVersion": "daily-records-game-base-phase1-v1",
+    "isJapanesePlayer": false,
+    "archiveKey": "SIX_HR_TEAM_GAME:631190:team-147:0:",
+    "uniqueKey": "SIX_HR_TEAM_GAME:631190:team-147:0:"
+  },
+  {
     "recordType": "THREE_CONSECUTIVE_HR",
     "aliases": [
       "3者連続本塁打",
@@ -15669,6 +18605,96 @@
     "description": "3者連続本塁打",
     "isJapanesePlayer": false,
     "apiConfirmed": true
+  },
+  {
+    "recordType": "MADDUX",
+    "aliases": [
+      "100球未満完封",
+      "マダックス",
+      "Maddux"
+    ],
+    "category": "individual",
+    "date": "2020-09-18",
+    "season": 2020,
+    "gameType": "R",
+    "gamePk": 630907,
+    "playerId": 621107,
+    "playerName": "選手ID 621107",
+    "teamId": 143,
+    "teamCode": "PHI",
+    "teamName": "Philadelphia Phillies",
+    "opponentId": 141,
+    "opponentCode": "TOR",
+    "opponentName": "Toronto Blue Jays",
+    "inning": null,
+    "gameDate": "2020-09-18",
+    "battingSide": "away",
+    "pitchingSide": "away",
+    "fact": "92球で完封",
+    "description": "92球で完封",
+    "details": {
+      "pitches": 92
+    },
+    "evidence": "game-base v1",
+    "apiStatus": "confirmed",
+    "apiConfirmed": true,
+    "historicalContext": {
+      "status": "needs-review",
+      "text": "",
+      "sources": []
+    },
+    "gamedayUrl": "https://www.mlb.com/gameday/phillies-vs-blue-jays/2020/09/18/630907/final",
+    "articleUrls": [],
+    "feedUpdatedAt": "",
+    "ruleVersion": "daily-records-game-base-phase1-v1",
+    "isJapanesePlayer": false,
+    "archiveKey": "MADDUX:630907:621107:0:",
+    "uniqueKey": "MADDUX:630907:621107:0:"
+  },
+  {
+    "recordType": "SHUTOUT",
+    "aliases": [
+      "完封",
+      "完封勝利",
+      "shutout"
+    ],
+    "category": "individual",
+    "date": "2020-09-18",
+    "season": 2020,
+    "gameType": "R",
+    "gamePk": 630907,
+    "playerId": 621107,
+    "playerName": "選手ID 621107",
+    "teamId": 143,
+    "teamCode": "PHI",
+    "teamName": "Philadelphia Phillies",
+    "opponentId": 141,
+    "opponentCode": "TOR",
+    "opponentName": "Toronto Blue Jays",
+    "inning": null,
+    "gameDate": "2020-09-18",
+    "battingSide": "away",
+    "pitchingSide": "away",
+    "fact": "7.0回を完封",
+    "description": "7.0回を完封",
+    "details": {
+      "outs": 21
+    },
+    "evidence": "game-base v1",
+    "apiStatus": "confirmed",
+    "apiConfirmed": true,
+    "historicalContext": {
+      "status": "needs-review",
+      "text": "",
+      "sources": []
+    },
+    "gamedayUrl": "https://www.mlb.com/gameday/phillies-vs-blue-jays/2020/09/18/630907/final",
+    "articleUrls": [],
+    "feedUpdatedAt": "",
+    "ruleVersion": "daily-records-game-base-phase1-v1",
+    "isJapanesePlayer": false,
+    "archiveKey": "SHUTOUT:630907:621107:0:",
+    "uniqueKey": "SHUTOUT:630907:621107:0:"
   },
   {
     "recordType": "JAPANESE_CAREER_WORST",
@@ -15810,6 +18836,95 @@
     "apiConfirmed": true
   },
   {
+    "recordType": "POSITION_PLAYER_NO_HIT",
+    "aliases": [
+      "野手登板で被安打0",
+      "野手登板でノーヒット"
+    ],
+    "category": "special",
+    "date": "2020-09-18",
+    "season": 2020,
+    "gameType": "R",
+    "gamePk": 631213,
+    "playerId": 453943,
+    "playerName": "T.フレイジャー",
+    "teamId": 121,
+    "teamCode": "NYM",
+    "teamName": "New York Mets",
+    "opponentId": 144,
+    "opponentCode": "ATL",
+    "opponentName": "Atlanta Braves",
+    "inning": null,
+    "gameDate": "2020-09-18",
+    "battingSide": null,
+    "pitchingSide": null,
+    "fact": "野手登板で被安打0",
+    "description": "野手登板で被安打0",
+    "details": {
+      "hits": 0,
+      "outs": 3
+    },
+    "evidence": "game-base v1",
+    "apiStatus": "confirmed",
+    "apiConfirmed": true,
+    "historicalContext": {
+      "status": "needs-review",
+      "text": "",
+      "sources": []
+    },
+    "gamedayUrl": "https://www.mlb.com/gameday/braves-vs-mets/2020/09/18/631213/final",
+    "articleUrls": [],
+    "feedUpdatedAt": "",
+    "ruleVersion": "daily-records-game-base-phase1-v1",
+    "isJapanesePlayer": false,
+    "archiveKey": "POSITION_PLAYER_NO_HIT:631213:453943:0:",
+    "uniqueKey": "POSITION_PLAYER_NO_HIT:631213:453943:0:"
+  },
+  {
+    "recordType": "POSITION_PLAYER_SCORELESS",
+    "aliases": [
+      "野手登板で無失点"
+    ],
+    "category": "special",
+    "date": "2020-09-18",
+    "season": 2020,
+    "gameType": "R",
+    "gamePk": 631213,
+    "playerId": 453943,
+    "playerName": "T.フレイジャー",
+    "teamId": 121,
+    "teamCode": "NYM",
+    "teamName": "New York Mets",
+    "opponentId": 144,
+    "opponentCode": "ATL",
+    "opponentName": "Atlanta Braves",
+    "inning": null,
+    "gameDate": "2020-09-18",
+    "battingSide": null,
+    "pitchingSide": null,
+    "fact": "野手登板で無失点",
+    "description": "野手登板で無失点",
+    "details": {
+      "outs": 3,
+      "runs": 0
+    },
+    "evidence": "game-base v1",
+    "apiStatus": "confirmed",
+    "apiConfirmed": true,
+    "historicalContext": {
+      "status": "needs-review",
+      "text": "",
+      "sources": []
+    },
+    "gamedayUrl": "https://www.mlb.com/gameday/braves-vs-mets/2020/09/18/631213/final",
+    "articleUrls": [],
+    "feedUpdatedAt": "",
+    "ruleVersion": "daily-records-game-base-phase1-v1",
+    "isJapanesePlayer": false,
+    "archiveKey": "POSITION_PLAYER_SCORELESS:631213:453943:0:",
+    "uniqueKey": "POSITION_PLAYER_SCORELESS:631213:453943:0:"
+  },
+  {
     "recordType": "POSITION_PLAYER_STRIKEOUT",
     "aliases": [
       "野手登板で奪三振",
@@ -15851,6 +18966,50 @@
     "description": "野手登板で奪三振",
     "isJapanesePlayer": false,
     "apiConfirmed": true
+  },
+  {
+    "recordType": "SIX_HR_TEAM_GAME",
+    "aliases": [
+      "チーム6本塁打",
+      "6本塁打"
+    ],
+    "category": "team",
+    "date": "2020-09-18",
+    "season": 2020,
+    "gameType": "R",
+    "gamePk": 631213,
+    "playerId": null,
+    "playerName": "",
+    "teamId": 144,
+    "teamCode": "ATL",
+    "teamName": "Atlanta Braves",
+    "opponentId": 121,
+    "opponentCode": "NYM",
+    "opponentName": "New York Mets",
+    "inning": null,
+    "gameDate": "2020-09-18",
+    "battingSide": null,
+    "pitchingSide": null,
+    "fact": "チーム6本塁打",
+    "description": "チーム6本塁打",
+    "details": {
+      "homeRuns": 6
+    },
+    "evidence": "game-base v1",
+    "apiStatus": "confirmed",
+    "apiConfirmed": true,
+    "historicalContext": {
+      "status": "needs-review",
+      "text": "",
+      "sources": []
+    },
+    "gamedayUrl": "https://www.mlb.com/gameday/braves-vs-mets/2020/09/18/631213/final",
+    "articleUrls": [],
+    "feedUpdatedAt": "",
+    "ruleVersion": "daily-records-game-base-phase1-v1",
+    "isJapanesePlayer": false,
+    "archiveKey": "SIX_HR_TEAM_GAME:631213:team-144:0:",
+    "uniqueKey": "SIX_HR_TEAM_GAME:631213:team-144:0:"
   },
   {
     "recordType": "LARGE_RBI_GAME",
@@ -16676,6 +19835,50 @@
     "apiConfirmed": true
   },
   {
+    "recordType": "POSITION_PLAYER_SCORELESS",
+    "aliases": [
+      "野手登板で無失点"
+    ],
+    "category": "special",
+    "date": "2020-09-23",
+    "season": 2020,
+    "gameType": "R",
+    "gamePk": 630892,
+    "playerId": 571788,
+    "playerName": "B.ホルト",
+    "teamId": 120,
+    "teamCode": "WSH",
+    "teamName": "Washington Nationals",
+    "opponentId": 143,
+    "opponentCode": "PHI",
+    "opponentName": "Philadelphia Phillies",
+    "inning": null,
+    "gameDate": "2020-09-23",
+    "battingSide": null,
+    "pitchingSide": null,
+    "fact": "野手登板で無失点",
+    "description": "野手登板で無失点",
+    "details": {
+      "outs": 1,
+      "runs": 0
+    },
+    "evidence": "game-base v1",
+    "apiStatus": "confirmed",
+    "apiConfirmed": true,
+    "historicalContext": {
+      "status": "needs-review",
+      "text": "",
+      "sources": []
+    },
+    "gamedayUrl": "https://www.mlb.com/gameday/phillies-vs-nationals/2020/09/23/630892/final",
+    "articleUrls": [],
+    "feedUpdatedAt": "",
+    "ruleVersion": "daily-records-game-base-phase1-v1",
+    "isJapanesePlayer": false,
+    "archiveKey": "POSITION_PLAYER_SCORELESS:630892:571788:0:",
+    "uniqueKey": "POSITION_PLAYER_SCORELESS:630892:571788:0:"
+  },
+  {
     "recordType": "TWO_OUTS_SAME_INNING",
     "aliases": [
       "同一イニングで2アウト",
@@ -16887,6 +20090,50 @@
     "description": "1試合6打点",
     "isJapanesePlayer": false,
     "apiConfirmed": true
+  },
+  {
+    "recordType": "THIRTY_COMBINED_STRIKEOUTS",
+    "aliases": [
+      "両軍合計30奪三振",
+      "30奪三振"
+    ],
+    "category": "team",
+    "date": "2020-09-23",
+    "season": 2020,
+    "gameType": "R",
+    "gamePk": 631534,
+    "playerId": null,
+    "playerName": "",
+    "teamId": 114,
+    "teamCode": "CLE",
+    "teamName": "Cleveland Indians",
+    "opponentId": 145,
+    "opponentCode": "CWS",
+    "opponentName": "Chicago White Sox",
+    "inning": null,
+    "gameDate": "2020-09-23",
+    "battingSide": null,
+    "pitchingSide": "home",
+    "fact": "両軍合計30奪三振",
+    "description": "両軍合計30奪三振",
+    "details": {
+      "strikeouts": 30
+    },
+    "evidence": "game-base v1",
+    "apiStatus": "confirmed",
+    "apiConfirmed": true,
+    "historicalContext": {
+      "status": "needs-review",
+      "text": "",
+      "sources": []
+    },
+    "gamedayUrl": "https://www.mlb.com/gameday/white-sox-vs-guardians/2020/09/23/631534/final",
+    "articleUrls": [],
+    "feedUpdatedAt": "",
+    "ruleVersion": "daily-records-game-base-phase1-v1",
+    "isJapanesePlayer": false,
+    "archiveKey": "THIRTY_COMBINED_STRIKEOUTS:631534:team-114:0:",
+    "uniqueKey": "THIRTY_COMBINED_STRIKEOUTS:631534:team-114:0:"
   },
   {
     "recordType": "ALL_STARTERS_HIT",

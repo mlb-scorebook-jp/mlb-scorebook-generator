@@ -2,7 +2,7 @@
 
 (() => {
     const API_ROOT = "https://statsapi.mlb.com/api";
-    const CACHE_PREFIX = "mlb-daily-records-phase1-v8:";
+    const CACHE_PREFIX = "mlb-daily-records-phase1-v10:";
     const MAX_CONCURRENT_GAMES = 3;
     const RECORD_THRESHOLDS = Object.freeze({
         inningHits: 2,
@@ -63,7 +63,39 @@
         NO_HIT_LOSS: ["被安打0で敗戦", "no-hit loss"],
         TRIPLE_PLAY: ["三重殺", "triple play"],
         ALL_STARTERS_HIT: ["全先発野手安打"],
-        ALL_STARTERS_SCORE: ["全先発野手得点"]
+        ALL_STARTERS_SCORE: ["全先発野手得点"],
+        FOUR_HR_GAME: ["1試合4本塁打", "4本塁打", "4HR", "four homer game"],
+        SEVEN_HIT_GAME: ["1試合7安打", "7安打", "5安打", "6安打", "seven hit game"],
+        TEN_RBI_GAME: ["1試合10打点", "10打点", "大量打点"],
+        FIVE_SB_GAME: ["1試合5盗塁", "5盗塁", "4盗塁"],
+        FOUR_DOUBLE_GAME: ["1試合4二塁打", "4二塁打"],
+        THREE_TRIPLE_GAME: ["1試合3三塁打", "3三塁打"],
+        SOLO_NO_HITTER: ["ノーヒットノーラン", "ノーヒッター", "単独ノーヒッター", "no hitter", "no-hitter"],
+        SHUTOUT: ["完封", "完封勝利", "shutout"],
+        ONE_HIT_COMPLETE_GAME: ["1安打完投", "one hitter"],
+        NO_WALK_SHUTOUT: ["無四球完封", "四球なし完封"],
+        FIFTEEN_STRIKEOUT_GAME: ["15奪三振", "15K", "20奪三振"],
+        TWENTY_STRIKEOUT_GAME: ["20奪三振", "20K", "15奪三振"],
+        MADDUX: ["100球未満完封", "マダックス", "Maddux"],
+        POSITION_PLAYER_SCORELESS: ["野手登板で無失点"],
+        POSITION_PLAYER_TWO_INNINGS: ["野手登板で2イニング", "野手登板で2回"],
+        POSITION_PLAYER_NO_HIT: ["野手登板で被安打0", "野手登板でノーヒット"],
+        HOMER_AND_PITCH: ["本塁打＋登板", "ホームランと登板"],
+        MULTI_HIT_AND_PITCH: ["複数安打＋登板"],
+        HOMER_AND_WIN: ["本塁打＋勝利投手"],
+        HOMER_AND_SAVE: ["本塁打＋セーブ"],
+        TEN_RUN_INNING: ["1イニング10得点", "大量得点イニング"],
+        TWENTY_RUN_GAME: ["チーム20得点", "20得点", "25得点"],
+        TWENTY_FIVE_RUN_GAME: ["チーム25得点", "25得点", "20得点"],
+        TWENTY_HIT_TEAM_GAME: ["チーム20安打", "20安打"],
+        SIX_HR_TEAM_GAME: ["チーム6本塁打", "6本塁打"],
+        TEN_COMBINED_HR: ["両軍合計10本塁打", "10本塁打"],
+        THIRTY_COMBINED_STRIKEOUTS: ["両軍合計30奪三振", "30奪三振"],
+        NO_HIT_WIN: ["無安打で勝利", "0安打で勝利"],
+        TEN_RUN_COMEBACK: ["10点差から逆転勝利", "10点差逆転"],
+        NINTH_INNING_FIVE_RUN_COMEBACK: ["9回5点差から逆転勝利", "9回開始時5点差"],
+        FIFTEEN_INNING_GAME: ["延長15回", "15回", "延長18回"],
+        EIGHTEEN_INNING_GAME: ["延長18回", "18回", "延長15回"]
     });
     const HIT_EVENTS = new Set(["single", "double", "triple", "home_run"]);
     const STRIKEOUT_EVENTS = new Set(["strikeout", "strikeout_double_play"]);
@@ -426,11 +458,29 @@
 
     const dedupeRecords = (records) => {
         const seen = new Set();
-        return records.filter((record) => {
+        const uniqueRecords = records.filter((record) => {
             const key = [record.gamePk, record.recordType, record.playerId, record.teamId,
                 record.inning, record.fact].join(":");
             if (seen.has(key)) return false;
             seen.add(key);
+            return true;
+        });
+        const samePlayer = (left, right) => left.gamePk === right.gamePk && left.playerId &&
+            left.playerId === right.playerId;
+        const sameTeam = (left, right) => left.gamePk === right.gamePk && left.teamId === right.teamId;
+        const upper = { THREE_HR_GAME: "FOUR_HR_GAME", FIVE_HIT_GAME: "SEVEN_HIT_GAME",
+            SIX_HIT_GAME: "SEVEN_HIT_GAME", FOUR_SB_GAME: "FIVE_SB_GAME" };
+        return uniqueRecords.filter((record) => {
+            if (upper[record.recordType] && uniqueRecords.some((other) =>
+                other.recordType === upper[record.recordType] && samePlayer(record, other))) return false;
+            if (record.recordType === "LOW_HIT_WIN" && uniqueRecords.some((other) =>
+                other.recordType === "NO_HIT_WIN" && sameTeam(record, other))) return false;
+            if (record.recordType === "LARGE_RUN_INNING" && uniqueRecords.some((other) =>
+                other.recordType === "TEN_RUN_INNING" && sameTeam(record, other) && other.inning === record.inning)) return false;
+            if (record.recordType === "COMBINED_LARGE_HR" && uniqueRecords.some((other) =>
+                other.recordType === "TEN_COMBINED_HR" && other.gamePk === record.gamePk)) return false;
+            if (record.recordType === "SHUTOUT" && uniqueRecords.some((other) =>
+                ["NO_WALK_SHUTOUT", "MADDUX"].includes(other.recordType) && samePlayer(record, other))) return false;
             return true;
         });
     };
@@ -930,8 +980,127 @@
                         details: { saves: pitching.saves }, evidence: "野手登録選手のBoxscoreでsaves=1"
                     }));
                 }
+                const outs = number(pitching.outs);
+                if (number(pitching.runs) === 0) {
+                    records.push(makeRecord({ game, boxscore, recordType: "POSITION_PLAYER_SCORELESS",
+                        category: "special", player: person, side, fact: "野手登板で無失点",
+                        details: { outs, runs: 0 }, evidence: "野手登録選手のBoxscore投手成績" }));
+                }
+                if (outs >= 6) {
+                    records.push(makeRecord({ game, boxscore, recordType: "POSITION_PLAYER_TWO_INNINGS",
+                        category: "special", player: person, side,
+                        fact: `野手登板で${Math.floor(outs / 3)}.${outs % 3}回`, details: { outs },
+                        evidence: "野手登録選手のBoxscore投球アウト数" }));
+                }
+                if (number(pitching.hits) === 0) {
+                    records.push(makeRecord({ game, boxscore, recordType: "POSITION_PLAYER_NO_HIT",
+                        category: "special", player: person, side, fact: "野手登板で被安打0",
+                        details: { hits: 0, outs }, evidence: "野手登録選手のBoxscore投手成績" }));
+                }
             });
         }
+
+        // Phase 1 game-base-safe records. These use only the same final
+        // Boxscore/Linescore fields persisted by game-base schemaVersion 1.
+        for (const side of ["away", "home"]) {
+            const team = boxTeamForSide(boxscore, side);
+            const opponent = boxTeamForSide(boxscore, oppositeSide(side));
+            const batting = team?.teamStats?.batting ?? {};
+            const opponentBatting = opponent?.teamStats?.batting ?? {};
+            const runs = number(batting.runs ?? game?.teams?.[side]?.score);
+            const opponentRuns = number(opponentBatting.runs ?? game?.teams?.[oppositeSide(side)]?.score);
+            const won = runs > opponentRuns;
+            (team?.batters ?? []).forEach((playerId) => {
+                const entry = team?.players?.[`ID${playerId}`];
+                const stats = entry?.stats?.batting ?? {};
+                const add = (recordType, fact, details) => records.push(makeRecord({
+                    game, boxscore, recordType, category: "individual", player: entry?.person,
+                    side, fact, details, evidence: "Final Boxscore"
+                }));
+                if (number(stats.homeRuns) >= 4) add("FOUR_HR_GAME", `1試合${number(stats.homeRuns)}本塁打`, { homeRuns: number(stats.homeRuns) });
+                if (number(stats.hits) >= 7) add("SEVEN_HIT_GAME", `1試合${number(stats.hits)}安打`, { hits: number(stats.hits) });
+                if (number(stats.rbi) >= 10) add("TEN_RBI_GAME", `1試合${number(stats.rbi)}打点`, { rbi: number(stats.rbi) });
+                if (number(stats.stolenBases) >= 5) add("FIVE_SB_GAME", `1試合${number(stats.stolenBases)}盗塁`, { stolenBases: number(stats.stolenBases) });
+                if (number(stats.doubles) >= 4) add("FOUR_DOUBLE_GAME", `1試合${number(stats.doubles)}二塁打`, { doubles: number(stats.doubles) });
+                if (number(stats.triples) >= 3) add("THREE_TRIPLE_GAME", `1試合${number(stats.triples)}三塁打`, { triples: number(stats.triples) });
+            });
+            const pitcherIds = team?.pitchers ?? [];
+            const teamOuts = pitcherIds.reduce((sum, playerId) => sum +
+                number(team?.players?.[`ID${playerId}`]?.stats?.pitching?.outs), 0);
+            pitcherIds.forEach((playerId) => {
+                const entry = team?.players?.[`ID${playerId}`];
+                const pitching = entry?.stats?.pitching ?? {};
+                const outs = number(pitching.outs);
+                const complete = pitcherIds.length === 1 && outs === teamOuts;
+                const shutout = complete && opponentRuns === 0;
+                const add = (recordType, fact, details, category = "individual") => records.push(makeRecord({
+                    game, boxscore, recordType, category, player: entry?.person, side, fact,
+                    details, evidence: "Final Boxscore/Linescore"
+                }));
+                const scheduled = number(game?.linescore?.scheduledInnings);
+                const played = number(game?.linescore?.currentInning || (game?.linescore?.innings ?? []).at(-1)?.num);
+                if (complete && number(opponentBatting.hits) === 0 && pitcherIds.length === 1 &&
+                    scheduled >= 9 && played >= scheduled && outs >= scheduled * 3) add("SOLO_NO_HITTER", "ノーヒットノーラン", { outs });
+                if (shutout) add("SHUTOUT", `${Math.floor(outs / 3)}.${outs % 3}回を完封`, { outs });
+                if (complete && number(pitching.hits) === 1) add("ONE_HIT_COMPLETE_GAME",
+                    `${Math.floor(outs / 3)}.${outs % 3}回を1安打完投`, { outs, hits: 1, runs: number(pitching.runs) });
+                if (shutout && number(pitching.baseOnBalls) === 0) add("NO_WALK_SHUTOUT", "無四球完封", { walks: 0 });
+                const strikeouts = number(pitching.strikeOuts);
+                if (strikeouts >= 20) add("TWENTY_STRIKEOUT_GAME", `${strikeouts}奪三振`, { strikeouts });
+                else if (strikeouts >= 15) add("FIFTEEN_STRIKEOUT_GAME", `${strikeouts}奪三振`, { strikeouts });
+                const pitches = Number(pitching.numberOfPitches ?? pitching.pitchesThrown);
+                if (shutout && Number.isFinite(pitches) && pitches <= 99) add("MADDUX", `${pitches}球で完封`, { pitches });
+                const battingEntry = team?.players?.[`ID${playerId}`]?.stats?.batting ?? {};
+                if (number(battingEntry.homeRuns) >= 1) {
+                    add("HOMER_AND_PITCH", "本塁打＋登板", { homeRuns: number(battingEntry.homeRuns), outs }, "special");
+                    if (number(pitching.wins) >= 1) add("HOMER_AND_WIN", "本塁打＋勝利投手", { homeRuns: number(battingEntry.homeRuns) }, "special");
+                    if (number(pitching.saves) >= 1) add("HOMER_AND_SAVE", "本塁打＋セーブ", { homeRuns: number(battingEntry.homeRuns) }, "special");
+                }
+                if (number(battingEntry.hits) >= 2) add("MULTI_HIT_AND_PITCH", `${number(battingEntry.hits)}安打＋登板`, { hits: number(battingEntry.hits), outs }, "special");
+            });
+            (game?.linescore?.innings ?? []).forEach((line) => {
+                const inningRuns = number(line?.[side]?.runs);
+                if (inningRuns >= 10) records.push(makeRecord({ game, boxscore,
+                    recordType: "TEN_RUN_INNING", category: "team", side, inning: line?.num,
+                    fact: `${number(line?.num)}回${inningHalf(side)} 1イニングに${inningRuns}得点`,
+                    details: { runs: inningRuns }, evidence: "Linescore" }));
+            });
+            const teamHits = number(batting.hits);
+            const teamHomers = number(batting.homeRuns);
+            const teamRecord = (recordType, fact, details) => records.push(makeRecord({ game,
+                boxscore, recordType, category: "team", side, fact, details, evidence: "Final Boxscore" }));
+            if (runs >= 25) teamRecord("TWENTY_FIVE_RUN_GAME", `チーム${runs}得点`, { runs });
+            else if (runs >= 20) teamRecord("TWENTY_RUN_GAME", `チーム${runs}得点`, { runs });
+            if (teamHits >= 20) teamRecord("TWENTY_HIT_TEAM_GAME", `チーム${teamHits}安打`, { hits: teamHits });
+            if (teamHomers >= 6) teamRecord("SIX_HR_TEAM_GAME", `チーム${teamHomers}本塁打`, { homeRuns: teamHomers });
+            if (won && teamHits === 0) teamRecord("NO_HIT_WIN", "無安打で勝利", { runs });
+            if (won && (game?.linescore?.innings ?? []).length) {
+                let away = 0; let home = 0; let maximum = 0; let afterEight = null; let valid = true;
+                for (const line of game.linescore.innings) {
+                    if (line?.away?.runs == null || line?.home?.runs == null) { valid = false; break; }
+                    if (number(line.num) === 9) afterEight = side === "away" ? home - away : away - home;
+                    away += number(line.away.runs);
+                    if (side === "home") maximum = Math.max(maximum, away - home);
+                    home += number(line.home.runs);
+                    if (side === "away") maximum = Math.max(maximum, home - away);
+                }
+                if (valid && maximum >= 10) teamRecord("TEN_RUN_COMEBACK", `${maximum}点差から逆転勝利`, { deficit: maximum });
+                if (valid && afterEight >= 5) teamRecord("NINTH_INNING_FIVE_RUN_COMEBACK", `9回${afterEight}点差から逆転勝利`, { deficit: afterEight });
+            }
+        }
+        const awayBat = boxTeamForSide(boxscore, "away")?.teamStats?.batting ?? {};
+        const homeBat = boxTeamForSide(boxscore, "home")?.teamStats?.batting ?? {};
+        const combinedHr = number(awayBat.homeRuns) + number(homeBat.homeRuns);
+        const combinedSo = number(awayBat.strikeOuts) + number(homeBat.strikeOuts);
+        if (combinedHr >= 10) records.push(makeRecord({ game, boxscore, recordType: "TEN_COMBINED_HR",
+            category: "team", fact: `両軍合計${combinedHr}本塁打`, details: { homeRuns: combinedHr }, evidence: "Final Boxscore" }));
+        if (combinedSo >= 30) records.push(makeRecord({ game, boxscore, recordType: "THIRTY_COMBINED_STRIKEOUTS",
+            category: "team", fact: `両軍合計${combinedSo}奪三振`, details: { strikeouts: combinedSo }, evidence: "Final Boxscore" }));
+        const playedInnings = number(game?.linescore?.currentInning || (game?.linescore?.innings ?? []).at(-1)?.num);
+        if (playedInnings >= 18) records.push(makeRecord({ game, boxscore, recordType: "EIGHTEEN_INNING_GAME",
+            category: "team", fact: `延長${playedInnings}回`, details: { innings: playedInnings }, evidence: "Linescore" }));
+        else if (playedInnings >= 15) records.push(makeRecord({ game, boxscore, recordType: "FIFTEEN_INNING_GAME",
+            category: "team", fact: `延長${playedInnings}回`, details: { innings: playedInnings }, evidence: "Linescore" }));
 
         const result = dedupeRecords(records);
         if (result.length && includeArticles) {

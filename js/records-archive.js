@@ -35,7 +35,7 @@
     let coverage = { records: {} };
     let records = [];
     let sharedArchiveKeys = new Set();
-    const LOAD_BATCH_SIZE = 6;
+    const LOAD_BATCH_SIZE = 3;
 
     const text = (value) => String(value ?? "").trim();
     const number = (value) => Number.isFinite(Number(value)) ? Number(value) : 0;
@@ -120,9 +120,17 @@
         }
     };
     const fetchJson = async (url) => {
-        const response = await fetch(url, { cache: "no-store" });
-        if (!response.ok) throw new Error(String(response.status));
-        return response.json();
+        let lastError;
+        for (let attempt = 0; attempt < 2; attempt += 1) {
+            try {
+                const response = await fetch(url, { cache: "no-store" });
+                if (!response.ok) throw new Error(String(response.status));
+                return response.json();
+            } catch (error) {
+                lastError = error;
+            }
+        }
+        throw lastError;
     };
     const archiveSources = () => {
         if (Array.isArray(metadata.archives)) return metadata.archives
@@ -193,10 +201,28 @@
         record.season,
         record.isJapanesePlayer ? "日本人" : ""
     ].join(" "));
+    const superseded = (record, values) => {
+        const samePlayer = (other) => number(record.playerId) &&
+            number(other.playerId) === number(record.playerId) && number(other.gamePk) === number(record.gamePk);
+        const sameTeam = (other) => number(other.teamId) === number(record.teamId) &&
+            number(other.gamePk) === number(record.gamePk);
+        const sameInning = (other) => sameTeam(other) && number(other.inning) === number(record.inning);
+        const upper = {
+            THREE_HR_GAME: ["FOUR_HR_GAME"], FIVE_HIT_GAME: ["SEVEN_HIT_GAME"],
+            SIX_HIT_GAME: ["SEVEN_HIT_GAME"], FOUR_SB_GAME: ["FIVE_SB_GAME"]
+        }[record.recordType];
+        if (upper?.some((type) => values.some((other) => other.recordType === type && samePlayer(other)))) return true;
+        if (record.recordType === "LOW_HIT_WIN" && values.some((other) => other.recordType === "NO_HIT_WIN" && sameTeam(other))) return true;
+        if (record.recordType === "LARGE_RUN_INNING" && values.some((other) => other.recordType === "TEN_RUN_INNING" && sameInning(other))) return true;
+        if (record.recordType === "COMBINED_LARGE_HR" && values.some((other) => other.recordType === "TEN_COMBINED_HR" && number(other.gamePk) === number(record.gamePk))) return true;
+        if (record.recordType === "SHUTOUT" && values.some((other) => ["NO_WALK_SHUTOUT", "MADDUX"].includes(other.recordType) && samePlayer(other))) return true;
+        return false;
+    };
     const search = ({ query = "", category = "all", season = "all", japaneseOnly = false,
         order = "newest", recordType = "" } = {}) => {
         const terms = queryTerms(query);
         const filtered = records.filter((record) => {
+            if (superseded(record, records)) return false;
             if (recordType && record.recordType !== recordType) return false;
             if (japaneseOnly && !record.isJapanesePlayer) return false;
             if (category !== "all" && record.category !== category) return false;
