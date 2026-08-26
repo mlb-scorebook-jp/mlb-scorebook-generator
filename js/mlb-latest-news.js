@@ -2,6 +2,149 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Cubs set franchise record for consecutive runs scored during West Coast trip",
+        "summaryJa": "カブス、記録達成の最新情報",
+        "slug": "cubs-score-franchise-record-30-consecutive-runs",
+        "url": "https://www.mlb.com/news/cubs-score-franchise-record-30-consecutive-runs",
+        "contentDate": "2026-08-26T16:36:15.636Z",
+        "teamIds": [
+            112
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Latest Tigers injuries and transactions",
+        "summaryJa": "タイガースの負傷状況をMLB公式が詳報",
+        "slug": "tigers-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/tigers-injuries-and-roster-moves",
+        "contentDate": "2026-08-26T16:05:00Z",
+        "teamIds": [
+            116
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "From Walker winning Derby to Wetherholt's breakout, how can Cards build off fun '26?",
+        "summaryJa": "カージナルスを巡る注目点をMLB公式が分析",
+        "slug": "the-cardinals-have-exceeded-expectations-in-2026-season",
+        "url": "https://www.mlb.com/news/the-cardinals-have-exceeded-expectations-in-2026-season",
+        "contentDate": "2026-08-26T15:59:00Z",
+        "teamIds": [
+            138
+        ],
+        "playerIds": [],
+        "gamePks": [
+            823015
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Could Buxton's injury pave the way for top prospect Jenkins' callup?",
+        "summaryJa": "Walker Jenkins（MIN）の負傷状況をMLB公式が詳報",
+        "slug": "walker-jenkins-callup-an-option-for-twins-with-byron-buxton-injury",
+        "url": "https://www.mlb.com/news/walker-jenkins-callup-an-option-for-twins-with-byron-buxton-injury",
+        "contentDate": "2026-08-26T15:58:36.777Z",
+        "teamIds": [
+            142
+        ],
+        "playerIds": [
+            805805
+        ],
+        "gamePks": [
+            824963
+        ],
+        "taxonomy": [
+            "apple-news",
+            "minor-league-baseball",
+            "mlb-top-prospects"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "White Sox share this trait with reigning NCAAM champions",
+        "summaryJa": "ホワイトソックスの最新動向をMLB公式が詳報",
+        "slug": "white-sox-similar-in-nature-to-michigan-men-s-basketball",
+        "url": "https://www.mlb.com/news/white-sox-similar-in-nature-to-michigan-men-s-basketball",
+        "contentDate": "2026-08-26T15:57:13.451Z",
+        "teamIds": [
+            145
+        ],
+        "playerIds": [],
+        "gamePks": [
+            824555
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "How Daniel Guerrero overhauled Royals' international scouting operation",
+        "summaryJa": "ロイヤルズを巡る注目点をMLB公式が分析",
+        "slug": "how-daniel-guerrero-reshaped-royals-international-scouting",
+        "url": "https://www.mlb.com/news/how-daniel-guerrero-reshaped-royals-international-scouting",
+        "contentDate": "2026-08-26T15:55:45.901Z",
+        "teamIds": [
+            118
+        ],
+        "playerIds": [],
+        "gamePks": [
+            822772
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Understanding how the Brewers' brand of baseball works, and whether it can last",
+        "summaryJa": "ブルワーズを巡る注目点をMLB公式が分析",
+        "slug": "2026-brewers-offense-what-is-working",
+        "url": "https://www.mlb.com/news/2026-brewers-offense-what-is-working",
+        "contentDate": "2026-08-26T15:51:00Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "player-tracking",
+            "savant"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Top 10 nastiest pitches: Ryan's heater, Mo's cutter & more",
         "summaryJa": "MLBの最新情報ら注目選手の最新動向",
         "slug": "top-nastiest-pitches-in-baseball-history",
@@ -820,8 +963,8 @@
         ]
     },
     {
-        "headline": "Flip tag! This player went above and beyond on his rehab assignment",
-        "summaryJa": "B.アレキサンダー（BAL）、復帰へ向けた最新状況",
+        "headline": "10 out of 10 on this incredible somersault tag",
+        "summaryJa": "B.アレキサンダー（BAL）の最新動向をMLB公式が詳報",
         "slug": "blaze-alexander-flip-tag",
         "url": "https://www.mlb.com/news/blaze-alexander-flip-tag",
         "contentDate": "2026-08-26T04:37:38.724Z",
@@ -1168,7 +1311,6 @@
             "payoff-pitch"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1328,7 +1470,6 @@
             "game-recap"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -2241,26 +2382,6 @@
         ],
         "sourceScopes": [
             "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Latest Tigers injuries and transactions",
-        "summaryJa": "タイガースの負傷状況をMLB公式が詳報",
-        "slug": "tigers-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/tigers-injuries-and-roster-moves",
-        "contentDate": "2026-08-25T21:38:00Z",
-        "teamIds": [
-            116
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
-        ],
-        "sourceScopes": [
             "球団公式"
         ]
     },
@@ -6396,29 +6517,6 @@
         ]
     },
     {
-        "headline": "Woodruff won't need shoulder surgery, holds out faint hope for '26 return",
-        "summaryJa": "B.ウッドラフ（MIL）、復帰へ向けた最新状況",
-        "slug": "brandon-woodruff-says-he-won-t-need-shoulder-surgery",
-        "url": "https://www.mlb.com/news/brandon-woodruff-says-he-won-t-need-shoulder-surgery",
-        "contentDate": "2026-08-22T17:57:59.124Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [
-            605540
-        ],
-        "gamePks": [
-            823743
-        ],
-        "taxonomy": [
-            "apple-news",
-            "injury"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Breaking down 7 bullpens that could be headed to postseason",
         "summaryJa": "アストロズの最新動向をMLB公式が詳報",
         "slug": "mlb-bullpens-that-are-built-for-stretch-run",
@@ -6509,30 +6607,6 @@
             "apple-news",
             "defense",
             "player-tracking"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "'Play Gasolina': Palencia returns to Cubs' bullpen, though not to 9th-inning role",
-        "summaryJa": "D.パレンシア（CHC）の負傷状況をMLB公式が詳報",
-        "slug": "daniel-palencia-activated-from-injured-list",
-        "url": "https://www.mlb.com/news/daniel-palencia-activated-from-injured-list",
-        "contentDate": "2026-08-22T06:52:00Z",
-        "teamIds": [
-            112
-        ],
-        "playerIds": [
-            694037
-        ],
-        "gamePks": [
-            823101
-        ],
-        "taxonomy": [
-            "transactions",
-            "injury",
-            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
@@ -8571,34 +8645,6 @@
         ]
     },
     {
-        "headline": "Houston enjoying one of Minors' biggest breakouts in 2026",
-        "summaryJa": "Franklin Ariasら注目選手の最新動向",
-        "slug": "biggest-breakouts-on-top-100-prospects-list-2026",
-        "url": "https://www.mlb.com/news/biggest-breakouts-on-top-100-prospects-list-2026",
-        "contentDate": "2026-08-20T14:45:00Z",
-        "teamIds": [],
-        "playerIds": [
-            808265,
-            809254,
-            815394,
-            807080,
-            815824,
-            701339,
-            827267,
-            815896,
-            804526,
-            800537
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "mlb-top-prospects",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Don't look now, but the Mets are playing ... amazin'",
         "summaryJa": "メッツの最新動向をMLB公式が詳報",
         "slug": "mets-august-surge-has-been-fun-to-watch",
@@ -8728,29 +8774,6 @@
         ]
     },
     {
-        "headline": "Seven runs in the eighth give the Royals nine to surge past A's",
-        "summaryJa": "V.パスクァンティーノ（KC）、勝利を呼び込む活躍",
-        "slug": "vinnie-pasquantino-leads-royals-comeback-win-vs-a-s",
-        "url": "https://www.mlb.com/news/vinnie-pasquantino-leads-royals-comeback-win-vs-a-s",
-        "contentDate": "2026-08-20T05:21:00Z",
-        "teamIds": [
-            118
-        ],
-        "playerIds": [
-            686469
-        ],
-        "gamePks": [
-            824076
-        ],
-        "taxonomy": [
-            "game-recap",
-            "rally"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Astros' bullpen remains lights-out to back Pecko's MLB debut",
         "summaryJa": "Ethan Pecko（HOU）、メジャー昇格・初出場に関する最新情報",
         "slug": "astros-beat-angels-to-end-losing-streak",
@@ -8839,35 +8862,6 @@
         "taxonomy": [
             "players-weekend",
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Murakami rises in latest Hitter Power Rankings",
-        "summaryJa": "Y.アルバレスら注目選手の最新動向",
-        "slug": "mlb-hitter-power-rankings-august-20-2026",
-        "url": "https://www.mlb.com/news/mlb-hitter-power-rankings-august-20-2026",
-        "contentDate": "2026-08-20T04:00:10.765Z",
-        "teamIds": [],
-        "playerIds": [
-            670541,
-            691718,
-            660271,
-            624413,
-            682928,
-            676475,
-            808959,
-            701538,
-            608324,
-            695506
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "rankings",
-            "hitter-power-rankings"
         ],
         "sourceScopes": [
             "球団公式"
