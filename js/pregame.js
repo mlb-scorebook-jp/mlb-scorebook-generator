@@ -534,14 +534,25 @@
         return year && month && day ? `${year}/${Number(month)}/${Number(day)}` : String(date ?? "-");
     };
 
+    const parseMlbDate = (date) => {
+        const normalized = String(date ?? "").slice(0, 10);
+        if (!/^\d{4}-\d{2}-\d{2}$/.test(normalized)) return null;
+        const value = new Date(`${normalized}T00:00:00Z`);
+        return Number.isFinite(value.getTime()) && value.toISOString().slice(0, 10) === normalized
+            ? value
+            : null;
+    };
+
     const previousDate = (date) => {
-        const value = new Date(`${String(date).slice(0, 10)}T00:00:00Z`);
+        const value = parseMlbDate(date);
+        if (!value) return "";
         value.setUTCDate(value.getUTCDate() - 1);
         return value.toISOString().slice(0, 10);
     };
 
     const shiftDate = (date, days) => {
-        const value = new Date(`${String(date).slice(0, 10)}T00:00:00Z`);
+        const value = parseMlbDate(date);
+        if (!value) return "";
         value.setUTCDate(value.getUTCDate() + days);
         return value.toISOString().slice(0, 10);
     };
@@ -3977,7 +3988,8 @@
     ]);
 
     const getPreviousMonthKey = (date) => {
-        const value = new Date(`${String(date).slice(0, 10)}T00:00:00Z`);
+        const value = parseMlbDate(date);
+        if (!value) return "";
         value.setUTCMonth(value.getUTCMonth() - 1);
         return value.toISOString().slice(0, 7);
     };
