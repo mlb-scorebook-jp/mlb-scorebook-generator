@@ -4334,6 +4334,11 @@
 
     const appearanceOpponent = (appearance) => `vs. ${teamCode(appearance?.opponent)}`;
 
+    const appearanceGamedayUrl = (appearance) => {
+        const gamePk = Number(appearance?.game?.gamePk);
+        return gamePk ? `https://www.mlb.com/gameday/${gamePk}` : "";
+    };
+
     const renderStartingPitcher = (data, team) => {
         const column = el("article", "pregame-starting-pitcher");
         const summary = el("div", "pregame-starting-summary");
@@ -4390,8 +4395,23 @@
                 const walksAndHitByPitch = statNumber(stat.baseOnBalls) + statNumber(stat.hitBatsmen);
                 const decision = pitcherDecision(stat);
                 const row = el("div", "pregame-appearance-row");
+                const gamedayUrl = appearanceGamedayUrl(appearance);
+                const label = el(
+                    gamedayUrl ? "a" : "strong",
+                    "pregame-appearance-label",
+                    appearanceLabel(index)
+                );
+                if (gamedayUrl) {
+                    label.href = gamedayUrl;
+                    label.target = "_blank";
+                    label.rel = "noopener noreferrer";
+                    label.setAttribute(
+                        "aria-label",
+                        `${appearanceLabel(index)}のGamedayを新しいタブで開く`
+                    );
+                }
                 row.append(
-                    el("strong", "pregame-appearance-label", appearanceLabel(index)),
+                    label,
                     el("span", "pregame-appearance-date", compactDate(appearance?.date)),
                     el("span", "pregame-appearance-opponent", appearanceOpponent(appearance)),
                     el("span", "pregame-appearance-decision", decision),

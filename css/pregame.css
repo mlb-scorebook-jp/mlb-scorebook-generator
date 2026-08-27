@@ -765,7 +765,8 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
 
 .pregame-starting-stats,
 .pregame-previous-start span,
-.pregame-previous-start strong {
+.pregame-previous-start strong,
+.pregame-previous-start a {
     font-size: 11px;
 }
 
@@ -780,9 +781,22 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
     border-top: 1px solid #46535c;
 }
 
-.pregame-previous-start strong {
+.pregame-previous-start strong,
+.pregame-previous-start a {
     color: #b9c5cb;
     letter-spacing: 0.04em;
+}
+
+.pregame-previous-start a {
+    text-decoration: underline;
+    text-decoration-color: #71838d;
+    text-underline-offset: 2px;
+}
+
+.pregame-previous-start a:hover,
+.pregame-previous-start a:focus-visible {
+    color: #fff;
+    text-decoration-color: currentColor;
 }
 
 .pregame-appearance-row {
@@ -2697,6 +2711,7 @@ a.pregame-metric-value:focus-visible {
     .pregame-starting-stats,
     .pregame-previous-start span,
     .pregame-previous-start strong,
+    .pregame-previous-start a,
     .pregame-pitcher-matchup {
         font-size: 16px;
         line-height: 1.55;
