@@ -246,6 +246,11 @@ body.app-mode-daily-records #header-daily-records-btn {
     gap: 3px;
 }
 
+.daily-records-date-nav {
+    display: flex;
+    gap: 6px;
+}
+
 .daily-records-date-actions label span {
     color: #aab6bc;
     font-size: 9px;
@@ -433,11 +438,13 @@ body.app-mode-daily-records #header-daily-records-btn {
 
     .daily-records-date-actions {
         display: grid;
-        grid-template-columns: minmax(0, 1fr) 34px 52px 34px;
+        grid-template-columns: minmax(0, 1fr);
+        justify-items: center;
+        gap: 7px;
     }
 
     .daily-records-date-actions label {
-        grid-column: 1 / -1;
+        width: 100%;
     }
 
     .daily-records-date-actions input {
@@ -446,9 +453,29 @@ body.app-mode-daily-records #header-daily-records-btn {
     }
 
     .daily-records-date-actions #daily-records-refresh {
-        grid-column: 1 / -1;
         width: 100%;
         margin-left: 0;
+    }
+
+    .daily-records-date-nav {
+        width: 100%;
+        justify-content: center;
+        gap: 7px;
+    }
+
+    .daily-records-date-nav button {
+        box-sizing: border-box;
+        width: 48px;
+        min-width: 48px;
+        height: 38px;
+        padding: 0;
+    }
+
+    .daily-records-date-nav #daily-records-today {
+        width: 72px;
+        min-width: 72px;
+        white-space: nowrap;
+        writing-mode: horizontal-tb;
     }
 
     .daily-records-list {
