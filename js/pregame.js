@@ -1970,6 +1970,37 @@
         return streak;
     };
 
+    const getPitchingScorelessStreak = (splits) => {
+        const appearances = [...splits]
+            .filter((split) => inningsToOuts(split?.stat?.inningsPitched) > 0)
+            .sort((left, right) => String(right?.date ?? "").localeCompare(String(left?.date ?? "")));
+        if (!appearances.length) return null;
+
+        const starts = appearances.filter((split) => statNumber(split?.stat?.gamesStarted) > 0).length;
+        const reliefAppearances = appearances.length - starts;
+        const starterRole = starts > reliefAppearances ||
+            (starts === reliefAppearances && statNumber(appearances[0]?.stat?.gamesStarted) > 0);
+        let games = 0;
+        let outs = 0;
+        let startDate = "";
+        for (const appearance of appearances) {
+            const stat = appearance?.stat ?? {};
+            if (stat.runs == null || statNumber(stat.runs) > 0) break;
+            games += 1;
+            outs += inningsToOuts(stat.inningsPitched);
+            startDate = String(appearance?.date ?? "").slice(0, 10);
+        }
+        const period = startDate ? `（${compactDate(startDate)}〜）` : "";
+        if (starterRole && outs >= 27) {
+            const innings = outs % 3 === 0 ? String(outs / 3) : formatInnings(outs);
+            return { text: `${innings}回連続無失点${period}`, value: outs };
+        }
+        if (!starterRole && games >= 3) {
+            return { text: `${games}試合連続無失点${period}`, value: games * 3 };
+        }
+        return null;
+    };
+
     const remainingMilestones = (career, group) => {
         if (!career) return [];
         const definitions = group === "pitching"
@@ -2749,6 +2780,18 @@
         )?.xrefId;
         if (!referenceId) return "";
         return `https://www.baseball-reference.com/players/${String(referenceId).charAt(0)}/${referenceId}.shtml`;
+    };
+
+    const getBaseballReferencePitchingGameLogUrl = (person, season) => {
+        const referenceId = person?.xrefIds?.find(
+            (xref) => String(xref?.xrefType ?? "").toLowerCase() === "lahman"
+        )?.xrefId;
+        if (!referenceId) return "";
+        const url = new URL("https://www.baseball-reference.com/players/gl.fcgi");
+        url.searchParams.set("id", referenceId);
+        url.searchParams.set("t", "p");
+        url.searchParams.set("year", String(season));
+        return url.toString();
     };
 
     const formatAverage = (value) => {
@@ -4075,17 +4118,20 @@
         const season = Number(date.slice(0, 4));
         if (!playerId) return { entry, notes: [], importance: 0 };
         const profile = await fetchJson(
-            `${API_ROOT}/v1/people/${playerId}`,
-            `pregame:featured-profile:${playerId}`
+            `${API_ROOT}/v1/people/${playerId}?hydrate=xrefId`,
+            `pregame:featured-profile-xref:${playerId}`
         ).then((payload) => payload?.people?.[0] ?? entry.person).catch(() => entry.person);
         const primaryType = String(profile?.primaryPosition?.type ?? "").toLowerCase();
         const primaryAbbreviation = String(profile?.primaryPosition?.abbreviation ?? "").toUpperCase();
         const isTwoWay = primaryType.includes("two-way") || primaryAbbreviation === "TWP";
         const isPitcher = primaryType === "pitcher" || primaryAbbreviation === "P";
         const groups = isTwoWay ? ["hitting", "pitching"] : [isPitcher ? "pitching" : "hitting"];
-        const [hittingLogs, ...careers] = await Promise.all([
+        const [hittingLogs, pitchingLogs, ...careers] = await Promise.all([
             groups.includes("hitting")
                 ? getPlayerGameLog(playerId, season, "hitting").catch(() => [])
+                : Promise.resolve([]),
+            groups.includes("pitching")
+                ? getPlayerGameLog(playerId, season, "pitching").catch(() => [])
                 : Promise.resolve([]),
             ...groups.map((group) => getPlayerCareer(profile, group, previousDate(date)).catch(() => null))
         ]);
@@ -4228,6 +4274,16 @@
         });
         const pitchingIndex = groups.indexOf("pitching");
         if (pitchingIndex >= 0) {
+            const priorPitchingLogs = pitchingLogs.filter((split) => String(split?.date ?? "") < date);
+            const scorelessStreak = getPitchingScorelessStreak(priorPitchingLogs);
+            if (scorelessStreak) {
+                notes.push({
+                    text: scorelessStreak.text,
+                    href: getBaseballReferencePitchingGameLogUrl(profile, season) ||
+                        officialPlayerStatsUrl("pitching", "gamelogs")
+                });
+                importance += scorelessStreak.value;
+            }
             const allTimeStrikeoutNote = await getAllTimeStrikeoutCountdown(
                 careers[pitchingIndex],
                 playerId
