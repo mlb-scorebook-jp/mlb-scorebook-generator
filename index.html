@@ -1122,6 +1122,47 @@
 
             const getInningColumns = (side) => state.inningColumns?.[side] ?? [];
 
+            const SCOREBOOK_FULL_JAPANESE_PLAYER_NAMES = Object.freeze({
+                noahcameron: "ノア・キャメロン",
+                dazcameron: "ダズ・キャメロン"
+            });
+
+            const getScorebookPeople = () => ["away", "home"].flatMap((side) => [
+                ...(state[side]?.players ?? []).flat().map((player) => player?.person),
+                ...(state[side]?.pitchers ?? []).map((player) => player?.person)
+            ]).filter(Boolean);
+
+            const getPersonIdentity = (person) => {
+                const playerId = Number(person?.id);
+                if (Number.isInteger(playerId) && playerId > 0) return `id:${playerId}`;
+                return `name:${normalizeLookupKey(person?.fullName ?? person?.nameFirstLast ?? "")}`;
+            };
+
+            const getFamilyNameKey = (person) => {
+                const officialLastName = String(person?.lastName ?? "").trim();
+                const lastFirstName = String(person?.lastFirstName ?? "").split(",")[0].trim();
+                const fullNameParts = String(person?.fullName ?? person?.nameFirstLast ?? "")
+                    .trim()
+                    .split(/\s+/)
+                    .filter(Boolean);
+                while (fullNameParts.length && /^(?:Jr\.?|Sr\.?|II|III|IV)$/i.test(fullNameParts.at(-1))) {
+                    fullNameParts.pop();
+                }
+                return normalizeLookupKey(officialLastName || lastFirstName || fullNameParts.at(-1) || "");
+            };
+
+            const hasDuplicateFamilyName = (person) => {
+                const familyNameKey = getFamilyNameKey(person);
+                if (!familyNameKey) return false;
+                const identities = new Set(
+                    getScorebookPeople()
+                        .filter((candidate) => getFamilyNameKey(candidate) === familyNameKey)
+                        .map(getPersonIdentity)
+                        .filter((identity) => identity !== "name:")
+                );
+                return identities.size >= 2;
+            };
+
             const getPersonName = (person) => {
                 const candidates = [
                     person?.fullName,
@@ -1129,13 +1170,30 @@
                     [person?.firstName, person?.lastName].filter(Boolean).join(" ")
                 ];
 
+                let convertedName = "";
+
                 for (const candidate of candidates) {
                     const converted = NHK_PLAYER_NAMES[normalizeLookupKey(candidate)];
 
                     if (converted) {
-                        return converted;
+                        convertedName = converted;
+                        break;
                     }
                 }
+
+                if (hasDuplicateFamilyName(person)) {
+                    const fullJapaneseName = candidates
+                        .map((candidate) => SCOREBOOK_FULL_JAPANESE_PLAYER_NAMES[normalizeLookupKey(candidate)])
+                        .find(Boolean);
+                    if (fullJapaneseName) return fullJapaneseName;
+                    const convertedIsFullName = convertedName &&
+                        !/^[A-ZＡ-Ｚ](?:\.[A-ZＡ-Ｚ])?\./u.test(convertedName) &&
+                        !/^[A-ZＡ-Ｚ]\./u.test(convertedName);
+                    if (convertedIsFullName) return convertedName;
+                    return convertedName || person?.fullName || person?.nameFirstLast || person?.lastFirstName || "";
+                }
+
+                if (convertedName) return convertedName;
 
                 return (
                     person?.fullName ||
