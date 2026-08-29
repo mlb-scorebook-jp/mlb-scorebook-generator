@@ -882,9 +882,34 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
 }
 
 .pregame-person-card {
+    position: relative;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    min-height: 94px;
+    padding-right: 94px;
+}
+
+.pregame-person-card > strong,
+.pregame-person-card > small,
+.pregame-person-card > .pregame-live-badge,
+.pregame-person-card > .pregame-status-badge {
+    position: relative;
+    z-index: 1;
+}
+
+.pregame-person-headshot {
+    position: absolute;
+    right: 2px;
+    bottom: 0;
+    z-index: 0;
+    width: 88px;
+    height: 92px;
+    object-fit: contain;
+    object-position: center bottom;
+    pointer-events: none;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.42));
 }
 
 .pregame-matchup-title {
@@ -2677,6 +2702,17 @@ a.pregame-metric-value:focus-visible {
         width: 100%;
         min-height: 72px;
         padding: 14px;
+    }
+
+    .pregame-person-card {
+        min-height: 116px;
+        padding-right: 116px;
+    }
+
+    .pregame-person-headshot {
+        right: 5px;
+        width: 106px;
+        height: 114px;
     }
 
     .pregame-person-card strong,

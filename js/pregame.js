@@ -403,6 +403,12 @@
         return fullName;
     };
 
+    const playerHeadshotUrl = (person) => {
+        const playerId = Number(person?.id);
+        if (!Number.isInteger(playerId) || playerId <= 0) return "";
+        return `https://img.mlbstatic.com/mlb-photos/image/upload/w_220,q_auto:best,f_auto/v1/people/${playerId}/headshot/silo/current`;
+    };
+
     const teamCode = (team) => String(
         team?.abbreviation ?? team?.teamCode ?? team?.fileCode ??
         window.MLB_SCOREBOOK_TEAM_CODES_BY_ID?.[Number(team?.id)] ?? team?.name ?? "-"
@@ -2559,6 +2565,16 @@
                     const playerStatus = rosterStatus
                         ? rosterStatus
                         : (game ? japanesePlayerGameStatusLabel(game) : "試合なし");
+                    const headshotUrl = playerHeadshotUrl(person);
+                    let headshot = null;
+                    if (headshotUrl) {
+                        headshot = el("img", "pregame-person-headshot");
+                        headshot.src = headshotUrl;
+                        headshot.alt = "";
+                        headshot.loading = "lazy";
+                        headshot.decoding = "async";
+                        headshot.addEventListener("error", () => headshot.remove(), { once: true });
+                    }
                     card.append(
                         el("strong", "", playerName(person)),
                         el("small", "", `${teamJapaneseName(officialTeam)} / ${positionLabel(person.primaryPosition?.abbreviation)}`),
@@ -2570,6 +2586,7 @@
                             playerStatus
                         )
                     );
+                    if (headshot) card.append(headshot);
                     japaneseGrid.append(card);
                 });
                 japaneseSection.append(japaneseGrid);
