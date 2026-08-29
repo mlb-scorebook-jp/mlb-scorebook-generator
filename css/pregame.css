@@ -977,8 +977,46 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
 .pregame-games-section .pregame-matchup-title {
     display: grid;
     grid-template-columns: minmax(0, 1fr) 28px minmax(0, 1fr);
+    overflow: visible;
     align-items: center;
     text-align: center;
+}
+
+.pregame-matchup-team {
+    display: flex;
+    min-width: 0;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+}
+
+.pregame-matchup-logo {
+    flex: 0 0 26px;
+    width: 26px;
+    height: 26px;
+    object-fit: contain;
+}
+
+.pregame-matchup-logo-contrast {
+    filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.72));
+}
+
+.pregame-matchup-logo-contrast-strong {
+    filter:
+        drop-shadow(0 0 1px rgba(255, 255, 255, 1))
+        drop-shadow(0 0 0.6px rgba(255, 255, 255, 0.92));
+}
+
+.pregame-matchup-logo-edge-solid {
+    filter: drop-shadow(0 0 0.55px rgba(255, 255, 255, 0.58));
+}
+
+.pregame-matchup-abbreviation {
+    overflow: hidden;
+    font-size: 14px;
+    letter-spacing: 0.04em;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .pregame-games-section .pregame-game-card small {
@@ -2669,6 +2707,20 @@ a.pregame-metric-value:focus-visible {
     .pregame-matchup-title {
         align-items: center;
         flex-wrap: wrap;
+    }
+
+    .pregame-matchup-team {
+        gap: 9px;
+    }
+
+    .pregame-matchup-logo {
+        flex-basis: 32px;
+        width: 32px;
+        height: 32px;
+    }
+
+    .pregame-matchup-abbreviation {
+        font-size: 18px;
     }
 
     .pregame-starting-grid,

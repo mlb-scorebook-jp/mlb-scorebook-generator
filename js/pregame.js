@@ -408,6 +408,46 @@
         window.MLB_SCOREBOOK_TEAM_CODES_BY_ID?.[Number(team?.id)] ?? team?.name ?? "-"
     ).toUpperCase();
 
+    const teamLogoUrl = (team) => {
+        const teamId = Number(team?.id);
+        if (teamId === 142) return "assets/team-logos/min-t-white.svg";
+        return Number.isInteger(teamId) && teamId > 0
+            ? `https://www.mlbstatic.com/team-logos/${teamId}.svg`
+            : "";
+    };
+
+    const gameCardTeamLabel = (team, side) => {
+        const label = el("span", `pregame-matchup-team pregame-matchup-team-${side}`);
+        const abbreviation = el("span", "pregame-matchup-abbreviation", teamCode(team));
+        const logoUrl = teamLogoUrl(team);
+        let logo = null;
+        if (logoUrl) {
+            logo = el("img", "pregame-matchup-logo");
+            logo.src = logoUrl;
+            logo.alt = "";
+            logo.loading = "lazy";
+            logo.decoding = "async";
+            const teamId = Number(team?.id);
+            if (TEAM_LOGO_STRONG_CONTRAST_IDS.has(teamId)) {
+                logo.classList.add("pregame-matchup-logo-contrast-strong");
+            } else if (TEAM_LOGO_SOLID_EDGE_IDS.has(teamId)) {
+                logo.classList.add("pregame-matchup-logo-edge-solid");
+            } else if (TEAM_LOGO_CONTRAST_IDS.has(teamId)) {
+                logo.classList.add("pregame-matchup-logo-contrast");
+            }
+            logo.addEventListener("error", () => logo.remove(), { once: true });
+        }
+        label.setAttribute("aria-label", teamJapaneseName(team));
+        if (side === "home") {
+            label.append(abbreviation);
+            if (logo) label.append(logo);
+        } else {
+            if (logo) label.append(logo);
+            label.append(abbreviation);
+        }
+        return label;
+    };
+
     const teamJapaneseName = (team) => {
         const idName = window.MLB_SCOREBOOK_TEAM_NAMES_BY_ID?.[Number(team?.id)];
         if (idName) return idName;
@@ -440,6 +480,11 @@
         143: "#e81828", 144: "#ce1141", 145: "#27251f", 146: "#00a3e0",
         147: "#0c2340", 158: "#12284b"
     };
+    const TEAM_LOGO_STRONG_CONTRAST_IDS = new Set([116, 118, 119, 133, 135, 147]);
+    const TEAM_LOGO_SOLID_EDGE_IDS = new Set([
+        113, 114, 120, 121, 137, 138, 140, 144
+    ]);
+    const TEAM_LOGO_CONTRAST_IDS = new Set([115]);
     const MLB_TEAM_IDS = new Set(Object.keys(TEAM_CARD_COLORS).map(Number));
 
     const TEAM_SOCIAL_ACCOUNTS = {
@@ -2546,9 +2591,9 @@
                     setGameCardTeamColors(card, away, home);
                     const matchupTitle = el("strong", "pregame-matchup-title");
                     matchupTitle.append(
-                        document.createTextNode(teamJapaneseShortName(away)),
+                        gameCardTeamLabel(away, "away"),
                         el("span", "pregame-versus", "VS."),
-                        document.createTextNode(teamJapaneseShortName(home))
+                        gameCardTeamLabel(home, "home")
                     );
                     const matchupMeta = el("small", "pregame-matchup-meta");
                     const pitcherLine = el("span", "pregame-pitcher-line");
