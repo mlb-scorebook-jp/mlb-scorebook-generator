@@ -38,6 +38,15 @@
     let recordPresence = new Set();
     let supersededArchiveKeys = new Set();
     const LOAD_BATCH_SIZE = 3;
+    const PLAYER_PRESENCE_TYPES = new Set([
+        "FOUR_HR_GAME", "SEVEN_HIT_GAME", "FIVE_SB_GAME",
+        "NO_WALK_SHUTOUT", "MADDUX", "PERFECT_GAME",
+        "PINCH_HIT_GRAND_SLAM", "PINCH_HIT_WALKOFF_HOME_RUN",
+        "PINCH_HIT_WALKOFF_GRAND_SLAM", "WALKOFF_GRAND_SLAM"
+    ]);
+    const TEAM_PRESENCE_TYPES = new Set(["NO_HIT_WIN"]);
+    const INNING_PRESENCE_TYPES = new Set(["TEN_RUN_INNING"]);
+    const GAME_PRESENCE_TYPES = new Set(["TEN_COMBINED_HR"]);
 
     const text = (value) => String(value ?? "").trim();
     const number = (value) => Number.isFinite(Number(value)) ? Number(value) : 0;
@@ -79,6 +88,7 @@
     const normalizeRecord = (record) => ({
         ...record,
         archiveKey: archiveKey(record),
+        archiveOrderValue: orderValue(record),
         description: text(record.description || record.fact),
         isJapanesePlayer: record.isJapanesePlayer === true || record.category === "japanese",
         apiConfirmed: record.apiConfirmed !== false && record.apiStatus !== "unconfirmed",
@@ -144,7 +154,8 @@
     };
     const loadYearlyArchives = async () => {
         const sources = archiveSources();
-        const yearly = new Map();
+        const yearly = [];
+        const seenKeys = new Set();
         for (let start = 0; start < sources.length; start += LOAD_BATCH_SIZE) {
             const batch = sources.slice(start, start + LOAD_BATCH_SIZE);
             const batchRecords = (await Promise.all(batch.map(({ path }) =>
@@ -152,10 +163,12 @@
             ))).flat();
             batchRecords.forEach((record) => {
                 const normalized = normalizeRecord(record);
-                yearly.set(normalized.archiveKey, normalized);
+                if (seenKeys.has(normalized.archiveKey)) return;
+                seenKeys.add(normalized.archiveKey);
+                yearly.push(normalized);
             });
         }
-        return [...yearly.values()];
+        return yearly;
     };
 
     const playerPresenceKey = (recordType, record) => number(record?.playerId)
@@ -176,11 +189,19 @@
     const rebuildRecordIndexes = () => {
         recordPresence = new Set();
         records.forEach((record) => {
-            const playerKey = playerPresenceKey(record.recordType, record);
-            if (playerKey) recordPresence.add(playerKey);
-            recordPresence.add(teamPresenceKey(record.recordType, record));
-            recordPresence.add(inningPresenceKey(record.recordType, record));
-            recordPresence.add(gamePresenceKey(record.recordType, record));
+            if (PLAYER_PRESENCE_TYPES.has(record.recordType)) {
+                const playerKey = playerPresenceKey(record.recordType, record);
+                if (playerKey) recordPresence.add(playerKey);
+            }
+            if (TEAM_PRESENCE_TYPES.has(record.recordType)) {
+                recordPresence.add(teamPresenceKey(record.recordType, record));
+            }
+            if (INNING_PRESENCE_TYPES.has(record.recordType)) {
+                recordPresence.add(inningPresenceKey(record.recordType, record));
+            }
+            if (GAME_PRESENCE_TYPES.has(record.recordType)) {
+                recordPresence.add(gamePresenceKey(record.recordType, record));
+            }
         });
         supersededArchiveKeys = new Set(records
             .filter((record) => superseded(record))
@@ -201,8 +222,20 @@
                 // file:// preview may not allow JSON fetch; the local overlay remains usable.
             }
             const cachedDailyRecords = readDailyRecordCaches();
-            sharedArchiveKeys = new Set(shared.map((record) => archiveKey(record)));
-            records = merge(shared, readLocal(), cachedDailyRecords);
+            sharedArchiveKeys = new Set(shared.map((record) => record.archiveKey));
+            records = shared;
+            const recordIndex = new Map(records.map((record, index) => [record.archiveKey, index]));
+            merge(readLocal(), cachedDailyRecords).forEach((record) => {
+                const existingIndex = recordIndex.get(record.archiveKey);
+                if (existingIndex === undefined) {
+                    recordIndex.set(record.archiveKey, records.length);
+                    records.push(record);
+                } else {
+                    records[existingIndex] = { ...records[existingIndex], ...record };
+                }
+            });
+            records.sort((left, right) =>
+                right.archiveOrderValue.localeCompare(left.archiveOrderValue));
             rebuildRecordIndexes();
             if (cachedDailyRecords.length) {
                 writeLocal(merge(readLocal(), cachedDailyRecords)
@@ -217,6 +250,8 @@
         await load();
         const normalized = (newRecords ?? []).map(normalizeRecord);
         records = merge(records, normalized);
+        records.sort((left, right) =>
+            right.archiveOrderValue.localeCompare(left.archiveOrderValue));
         rebuildRecordIndexes();
         // Persist only the overlay. Static yearly JSON remains the cross-device source of truth.
         const overlay = merge(readLocal(), normalized)
@@ -270,14 +305,13 @@
             if (japaneseOnly && !record.isJapanesePlayer) return false;
             if (category !== "all" && record.category !== category) return false;
             if (season !== "all" && number(record.season) !== number(season)) return false;
+            if (!terms.length) return true;
             const haystack = searchableText(record);
             return terms.every((term) => EXACT_ALIAS_TERMS.has(term)
                 ? (record.aliases ?? []).some((alias) => normalizeSearch(alias) === term)
                 : haystack.includes(term));
         });
-        return filtered.sort((left, right) => order === "oldest"
-            ? orderValue(left).localeCompare(orderValue(right))
-            : orderValue(right).localeCompare(orderValue(left)));
+        return order === "oldest" ? filtered.reverse() : filtered;
     };
     const previous = (target, scope = "type") => {
         if (scope === "player" && !number(target?.playerId)) return null;
@@ -292,8 +326,12 @@
         }).sort((a, b) => orderValue(b).localeCompare(orderValue(a)))[0] ?? null;
     };
     const rangeLabel = () => {
-        const dates = records.map((record) => text(record.date)).filter(Boolean).sort();
-        const start = dates[0] || text(metadata.startDate) || "2026-01-01";
+        let start = "";
+        records.forEach((record) => {
+            const date = text(record.date);
+            if (date && (!start || date < start)) start = date;
+        });
+        start = start || text(metadata.startDate) || "2026-01-01";
         return `${start.slice(0, 4)}年〜`;
     };
     const coverageFor = (recordType) => coverage?.records?.[recordType]?.coverage ?? null;
@@ -314,6 +352,8 @@
         buildArchiveForDateRange, gamedayUrlForGame, repairGamedayUrl,
         coverageFor,
         getMetadata: () => ({ ...metadata }),
+        getSeasons: () => [...new Set(records.map((record) => number(record.season)).filter(Boolean))]
+            .sort((left, right) => right - left),
         getAll: () => [...records]
     });
 })();

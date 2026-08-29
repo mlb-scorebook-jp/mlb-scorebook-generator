@@ -1655,8 +1655,7 @@
 
     const populateArchiveSeasons = () => {
         const current = dom.searchSeason.value || "all";
-        const seasons = unique(window.MLBRecordsArchive.getAll().map((record) => number(record.season)))
-            .filter(Boolean).sort((a, b) => b - a);
+        const seasons = window.MLBRecordsArchive.getSeasons();
         dom.searchSeason.replaceChildren(new Option("全シーズン", "all"));
         seasons.forEach((season) => dom.searchSeason.append(new Option(`${season}年`, String(season))));
         dom.searchSeason.value = seasons.includes(number(current)) ? current : "all";
