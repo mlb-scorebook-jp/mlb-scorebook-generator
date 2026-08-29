@@ -684,16 +684,19 @@
     const isFinal = (game) => /final|completed/i.test(getStatus(game));
     const isLive = (game) => /live|progress|delay/i.test(getStatus(game));
 
-    const getSchedule = async (date) => {
+    const getSchedule = async (date, { fresh = false } = {}) => {
         const params = new URLSearchParams({
             sportId: "1",
             date,
             hydrate: "team,probablePitcher,linescore"
         });
-        const payload = await fetchJson(
-            `${API_ROOT}/v1/schedule?${params}`,
-            `pregame:schedule:${date}`
-        );
+        const url = `${API_ROOT}/v1/schedule?${params}`;
+        const payload = fresh
+            ? await fetch(url, { cache: "no-store" }).then(async (response) => {
+                if (!response.ok) throw new Error(`MLB公式データを取得できませんでした（${response.status}）`);
+                return response.json();
+            })
+            : await fetchJson(url, `pregame:schedule:${date}`);
         const games = (payload?.dates ?? []).flatMap((entry) => entry?.games ?? []);
         games.forEach((game) => gameIndex.set(Number(game.gamePk), game));
         return games;
@@ -972,8 +975,11 @@
     );
 
     const getDailyJapaneseFeed = async (game) => {
-        if (!isDailyJapaneseGameLive(game)) return getFeed(game.gamePk);
-        const response = await fetch(`${API_ROOT}/v1.1/game/${game.gamePk}/feed/live`);
+        if (!isDailyJapaneseGameLive(game) && !isFinal(game)) return getFeed(game.gamePk);
+        const response = await fetch(
+            `${API_ROOT}/v1.1/game/${game.gamePk}/feed/live`,
+            { cache: "no-store" }
+        );
         if (!response.ok) throw new Error(`MLB公式データを取得できませんでした（${response.status}）`);
         return response.json();
     };
@@ -2434,7 +2440,7 @@
         try {
             const season = Number(date.slice(0, 4));
             const [games, japanesePlayers] = await Promise.all([
-                getSchedule(date),
+                getSchedule(date, { fresh: true }),
                 getSeasonJapanesePlayers(season)
             ]);
             const teamGame = new Map();
