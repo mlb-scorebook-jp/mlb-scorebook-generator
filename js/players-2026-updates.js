@@ -12,6 +12,7 @@ Object.assign(NHK_PLAYER_NAMES, {
     alejandroosuna: "A.オズーナ",
     anthonyeyanson: "A.アイアンソン",
     billyamick: "B.アミック",
+    braydonfisher: "B.フィッシャー",
     brettcallahan: "B.キャラハン",
     brandanbidois: "B.ビドワ",
     bryceconley: "B.コンリー",
