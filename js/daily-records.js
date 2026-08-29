@@ -1661,7 +1661,7 @@
         seasons.forEach((season) => dom.searchSeason.append(new Option(`${season}年`, String(season))));
         dom.searchSeason.value = seasons.includes(number(current)) ? current : "all";
     };
-    const renderArchiveSearch = async ({ recordType = "", progressive = false } = {}) => {
+    const renderArchiveSearch = async ({ recordType = "" } = {}) => {
         const results = window.MLBRecordsArchive.search({
             query: recordType ? "" : dom.searchInput.value,
             recordType,
@@ -1679,17 +1679,27 @@
             dom.searchResults.append(empty);
             return;
         }
-        const batchSize = progressive ? 100 : results.length;
-        for (let start = 0; start < results.length; start += batchSize) {
-            results.slice(start, start + batchSize).forEach((record) =>
+        const batchSize = 200;
+        let rendered = 0;
+        const renderNextBatch = () => {
+            const end = Math.min(rendered + batchSize, results.length);
+            results.slice(rendered, end).forEach((record) =>
                 dom.searchResults.append(renderRecord(record, { showPrevious: false }))
             );
-            if (progressive && start + batchSize < results.length) {
-                dom.archiveLoadingText.textContent =
-                    `全履歴を表示しています… ${Math.min(start + batchSize, results.length)}/${results.length}`;
-                await new Promise((resolve) => requestAnimationFrame(resolve));
+            rendered = end;
+            if (rendered < results.length) {
+                const more = document.createElement("button");
+                more.type = "button";
+                more.className = "daily-record-history-button";
+                more.textContent = `さらに表示（${rendered}/${results.length}件）`;
+                more.addEventListener("click", () => {
+                    more.remove();
+                    renderNextBatch();
+                }, { once: true });
+                dom.searchResults.append(more);
             }
-        }
+        };
+        renderNextBatch();
     };
     const setMode = async (mode, { recordType = "" } = {}) => {
         state.mode = mode === "search" ? "search" : "today";
@@ -1714,7 +1724,7 @@
                 await window.MLBRecordsArchive.load();
                 populateArchiveSeasons();
                 dom.archiveRange.textContent = `検索対象期間：${window.MLBRecordsArchive.rangeLabel()}`;
-                await renderArchiveSearch({ recordType, progressive: Boolean(recordType) });
+                await renderArchiveSearch({ recordType });
             } finally {
                 const remaining = 250 - (performance.now() - loadingStartedAt);
                 if (remaining > 0) await new Promise((resolve) => setTimeout(resolve, remaining));

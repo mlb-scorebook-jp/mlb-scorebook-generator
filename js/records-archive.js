@@ -35,6 +35,8 @@
     let coverage = { records: {} };
     let records = [];
     let sharedArchiveKeys = new Set();
+    let recordPresence = new Set();
+    let supersededArchiveKeys = new Set();
     const LOAD_BATCH_SIZE = 3;
 
     const text = (value) => String(value ?? "").trim();
@@ -142,14 +144,47 @@
     };
     const loadYearlyArchives = async () => {
         const sources = archiveSources();
-        const yearly = [];
+        const yearly = new Map();
         for (let start = 0; start < sources.length; start += LOAD_BATCH_SIZE) {
             const batch = sources.slice(start, start + LOAD_BATCH_SIZE);
-            yearly.push(...await Promise.all(batch.map(({ path }) =>
+            const batchRecords = (await Promise.all(batch.map(({ path }) =>
                 fetchJson(`data/records/${path}`).catch(() => [])
-            )));
+            ))).flat();
+            batchRecords.forEach((record) => {
+                const normalized = normalizeRecord(record);
+                yearly.set(normalized.archiveKey, normalized);
+            });
         }
-        return yearly.flat();
+        return [...yearly.values()];
+    };
+
+    const playerPresenceKey = (recordType, record) => number(record?.playerId)
+        ? `player:${recordType}:${number(record.gamePk)}:${number(record.playerId)}`
+        : "";
+    const teamPresenceKey = (recordType, record) =>
+        `team:${recordType}:${number(record.gamePk)}:${number(record.teamId)}`;
+    const inningPresenceKey = (recordType, record) =>
+        `inning:${recordType}:${number(record.gamePk)}:${number(record.teamId)}:${number(record.inning)}`;
+    const gamePresenceKey = (recordType, record) => `game:${recordType}:${number(record.gamePk)}`;
+    const hasPresence = (scope, recordType, record) => {
+        const key = scope === "player" ? playerPresenceKey(recordType, record)
+            : scope === "team" ? teamPresenceKey(recordType, record)
+                : scope === "inning" ? inningPresenceKey(recordType, record)
+                    : gamePresenceKey(recordType, record);
+        return Boolean(key) && recordPresence.has(key);
+    };
+    const rebuildRecordIndexes = () => {
+        recordPresence = new Set();
+        records.forEach((record) => {
+            const playerKey = playerPresenceKey(record.recordType, record);
+            if (playerKey) recordPresence.add(playerKey);
+            recordPresence.add(teamPresenceKey(record.recordType, record));
+            recordPresence.add(inningPresenceKey(record.recordType, record));
+            recordPresence.add(gamePresenceKey(record.recordType, record));
+        });
+        supersededArchiveKeys = new Set(records
+            .filter((record) => superseded(record))
+            .map((record) => record.archiveKey));
     };
     const load = async () => {
         if (loaded) return records;
@@ -168,6 +203,7 @@
             const cachedDailyRecords = readDailyRecordCaches();
             sharedArchiveKeys = new Set(shared.map((record) => archiveKey(record)));
             records = merge(shared, readLocal(), cachedDailyRecords);
+            rebuildRecordIndexes();
             if (cachedDailyRecords.length) {
                 writeLocal(merge(readLocal(), cachedDailyRecords)
                     .filter((record) => !sharedArchiveKeys.has(record.archiveKey)));
@@ -181,6 +217,7 @@
         await load();
         const normalized = (newRecords ?? []).map(normalizeRecord);
         records = merge(records, normalized);
+        rebuildRecordIndexes();
         // Persist only the overlay. Static yearly JSON remains the cross-device source of truth.
         const overlay = merge(readLocal(), normalized)
             .filter((record) => !sharedArchiveKeys.has(record.archiveKey));
@@ -202,21 +239,17 @@
         record.season,
         record.isJapanesePlayer ? "日本人" : ""
     ].join(" "));
-    const superseded = (record, values) => {
-        const samePlayer = (other) => number(record.playerId) &&
-            number(other.playerId) === number(record.playerId) && number(other.gamePk) === number(record.gamePk);
-        const sameTeam = (other) => number(other.teamId) === number(record.teamId) &&
-            number(other.gamePk) === number(record.gamePk);
-        const sameInning = (other) => sameTeam(other) && number(other.inning) === number(record.inning);
+    const superseded = (record) => {
         const upper = {
             THREE_HR_GAME: ["FOUR_HR_GAME"], FIVE_HIT_GAME: ["SEVEN_HIT_GAME"],
             SIX_HIT_GAME: ["SEVEN_HIT_GAME"], FOUR_SB_GAME: ["FIVE_SB_GAME"]
         }[record.recordType];
-        if (upper?.some((type) => values.some((other) => other.recordType === type && samePlayer(other)))) return true;
-        if (record.recordType === "LOW_HIT_WIN" && values.some((other) => other.recordType === "NO_HIT_WIN" && sameTeam(other))) return true;
-        if (record.recordType === "LARGE_RUN_INNING" && values.some((other) => other.recordType === "TEN_RUN_INNING" && sameInning(other))) return true;
-        if (record.recordType === "COMBINED_LARGE_HR" && values.some((other) => other.recordType === "TEN_COMBINED_HR" && number(other.gamePk) === number(record.gamePk))) return true;
-        if (record.recordType === "SHUTOUT" && values.some((other) => ["NO_WALK_SHUTOUT", "MADDUX"].includes(other.recordType) && samePlayer(other))) return true;
+        if (upper?.some((type) => hasPresence("player", type, record))) return true;
+        if (record.recordType === "LOW_HIT_WIN" && hasPresence("team", "NO_HIT_WIN", record)) return true;
+        if (record.recordType === "LARGE_RUN_INNING" && hasPresence("inning", "TEN_RUN_INNING", record)) return true;
+        if (record.recordType === "COMBINED_LARGE_HR" && hasPresence("game", "TEN_COMBINED_HR", record)) return true;
+        if (record.recordType === "SHUTOUT" && ["NO_WALK_SHUTOUT", "MADDUX"]
+            .some((type) => hasPresence("player", type, record))) return true;
         const moreSpecific = {
             PINCH_HIT_HOME_RUN: ["PINCH_HIT_GRAND_SLAM", "PINCH_HIT_WALKOFF_HOME_RUN", "PINCH_HIT_WALKOFF_GRAND_SLAM"],
             PINCH_HIT_GRAND_SLAM: ["PINCH_HIT_WALKOFF_GRAND_SLAM"],
@@ -225,14 +258,14 @@
             WALKOFF_GRAND_SLAM: ["PINCH_HIT_WALKOFF_GRAND_SLAM"],
             SOLO_NO_HITTER: ["PERFECT_GAME"]
         }[record.recordType];
-        if (moreSpecific?.some((type) => values.some((other) => other.recordType === type && samePlayer(other)))) return true;
+        if (moreSpecific?.some((type) => hasPresence("player", type, record))) return true;
         return false;
     };
     const search = ({ query = "", category = "all", season = "all", japaneseOnly = false,
         order = "newest", recordType = "" } = {}) => {
         const terms = queryTerms(query);
         const filtered = records.filter((record) => {
-            if (superseded(record, records)) return false;
+            if (supersededArchiveKeys.has(record.archiveKey)) return false;
             if (recordType && record.recordType !== recordType) return false;
             if (japaneseOnly && !record.isJapanesePlayer) return false;
             if (category !== "all" && record.category !== category) return false;
