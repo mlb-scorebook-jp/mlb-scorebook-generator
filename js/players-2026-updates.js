@@ -26,12 +26,14 @@ Object.assign(NHK_PLAYER_NAMES, {
     josuedepaula: "J.デパウラ",
     juliangarcia: "J.ガルシア",
     landynvidourek: "L.ビドゥレック",
+    kaelenculpepper: "K.カルペッパー",
     loutrivinoiii: "L.トリビーノ Ⅲ",
     naoyukiuwasawa: "上沢 直之",
     nicksogard: "N.ソガード",
     quinnmathews: "Q.マシューズ",
     rudymartinjr: "R.マーティン Jr.",
     shanedrohan: "S.ドローアン",
+    walkerjenkins: "W.ジェンキンズ",
     wyatthalvorson: "W.ハーバーソン",
     zacthornton: "Z.ソーントン"
 });
