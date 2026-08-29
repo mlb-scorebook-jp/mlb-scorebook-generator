@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MLB Scorebook Generator</title>
     <!-- Score notation update: stacked batted-ball symbol, red hits, blue strikeouts, black other results. -->
-    <link rel="stylesheet" href="css/style.css?v=20260821-print-mac-2">
+    <link rel="stylesheet" href="css/style.css?v=20260829-today-game-cap-logos-1">
     <link rel="stylesheet" href="css/pregame.css?v=20260829-japanese-headshots-2">
     <link rel="stylesheet" href="css/daily-records.css?v=20260828-mobile-date-nav-1">
 </head>
@@ -8862,6 +8862,19 @@
                     const home = game?.teams?.home;
                     const awayCode = away?.team?.abbreviation || "AWY";
                     const homeCode = home?.team?.abbreviation || "HME";
+                    const createTeamLogo = (team, side) => {
+                        const slot = createElement("span", `today-game-logo-slot today-game-logo-${side}`);
+                        const teamId = Number(team?.id);
+                        if (!Number.isInteger(teamId) || teamId <= 0) return slot;
+                        const logo = createElement("img", "today-game-logo");
+                        logo.src = `https://www.mlbstatic.com/team-logos/team-cap-on-light/${teamId}.svg`;
+                        logo.alt = "";
+                        logo.loading = "lazy";
+                        logo.decoding = "async";
+                        logo.addEventListener("error", () => logo.remove(), { once: true });
+                        slot.append(logo);
+                        return slot;
+                    };
                     const abstractState = String(game?.status?.abstractGameState ?? "").toLowerCase();
                     const showScore = abstractState === "live" || abstractState === "final";
                     const button = createElement("button", "today-game-card");
@@ -8872,11 +8885,13 @@
                         `${awayCode} 対 ${homeCode}、${getTodayGameState(game)}`
                     );
                     button.append(
+                        createTeamLogo(away?.team, "away"),
                         createElement("span", "today-game-team", awayCode),
                         createElement("span", "today-game-score", showScore ? String(away?.score ?? "-") : ""),
                         createElement("span", "today-game-state", getTodayGameState(game)),
                         createElement("span", "today-game-score", showScore ? String(home?.score ?? "-") : ""),
-                        createElement("span", "today-game-team", homeCode)
+                        createElement("span", "today-game-team", homeCode),
+                        createTeamLogo(home?.team, "home")
                     );
                     dom.todayGamesList.append(button);
                 });

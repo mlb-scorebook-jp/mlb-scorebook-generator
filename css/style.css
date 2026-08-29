@@ -779,7 +779,7 @@ body.app-mode-pregame .pregame-brand-home {
     width: min(430px, calc(100vw - 28px));
     border: 1px solid #596872;
     border-radius: 2px;
-    background: #171d21;
+    background: #f4f5f5;
     box-shadow: 0 12px 28px rgba(0, 0, 0, 0.48);
 }
 
@@ -789,9 +789,9 @@ body.app-mode-pregame .pregame-brand-home {
 
 .today-games-panel-heading {
     padding: 9px 11px;
-    color: #c5d0d5;
-    border-bottom: 1px solid #3f4a51;
-    background: linear-gradient(180deg, #283138 0%, #20272c 100%);
+    color: #263238;
+    border-bottom: 1px solid #d0d5d8;
+    background: #e9edef;
     font-size: 10px;
     font-weight: 700;
     letter-spacing: 0.08em;
@@ -806,15 +806,16 @@ body.app-mode-pregame .pregame-brand-home {
 .sidebar .today-game-card {
     min-height: 43px;
     display: grid;
-    grid-template-columns: 42px 24px minmax(78px, 1fr) 24px 42px;
+    grid-template-columns: 26px 42px 24px minmax(78px, 1fr) 24px 42px 26px;
     align-items: center;
     gap: 5px;
     margin: 0;
     padding: 7px 10px;
     border: 0;
-    border-bottom: 1px solid #313b42;
+    color: #15191c;
+    border-bottom: 1px solid #d7dbdd;
     border-radius: 0;
-    background: transparent;
+    background: #f4f5f5;
     font-size: 11px;
 }
 
@@ -824,32 +825,48 @@ body.app-mode-pregame .pregame-brand-home {
 
 .sidebar .today-game-card:hover,
 .sidebar .today-game-card:focus-visible {
-    background: #27323a;
-    outline: 1px solid #718d99;
+    background: #e5eaed;
+    outline: 1px solid #84969f;
     outline-offset: -1px;
 }
 
 .today-game-team {
-    color: #f0f4f5;
+    color: #171b1e;
     font-weight: 800;
     letter-spacing: 0.04em;
+    text-align: center;
 }
 
 .today-game-score {
-    color: #fff;
+    color: #111;
     text-align: center;
     font-variant-numeric: tabular-nums;
 }
 
 .today-game-state {
-    color: #b8c7cd;
+    color: #39464c;
     text-align: center;
     white-space: nowrap;
 }
 
+.today-game-logo-slot {
+    width: 26px;
+    height: 26px;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+}
+
+.today-game-logo {
+    display: block;
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+}
+
 .today-games-message {
     padding: 18px 12px;
-    color: #aeb9bf;
+    color: #4d5b62;
     font-size: 11px;
     line-height: 1.6;
     text-align: center;
@@ -868,9 +885,19 @@ body.app-mode-pregame .pregame-brand-home {
 
     .sidebar .today-game-card {
         min-height: 34px;
-        grid-template-columns: 38px 22px minmax(72px, 1fr) 22px 38px;
-        gap: 4px;
-        padding: 4px 8px;
+        grid-template-columns: 22px 32px 20px minmax(68px, 1fr) 20px 32px 22px;
+        gap: 3px;
+        padding: 4px 7px;
+    }
+
+    .today-game-logo-slot {
+        width: 22px;
+        height: 22px;
+    }
+
+    .today-game-logo {
+        width: 19px;
+        height: 19px;
     }
 }
 
@@ -918,7 +945,7 @@ body.app-mode-pregame .pregame-brand-home {
 
     .sidebar .today-game-card {
         min-height: 52px;
-        grid-template-columns: 42px 26px minmax(72px, 1fr) 26px 42px;
+        grid-template-columns: 26px 38px 24px minmax(72px, 1fr) 24px 38px 26px;
         font-size: 12px;
     }
 }
