@@ -2307,6 +2307,11 @@
             `${formatDate(snapshotDate)}終了時点 / 現在の順位による仮想配置`
         );
         postseasonSection.classList.add("pregame-postseason-section");
+        const standingsLink = el("a", "pregame-postseason-standings-link", "ポストシーズン・ピクチャー");
+        standingsLink.href = "https://www.mlb.com/standings";
+        standingsLink.target = "_blank";
+        standingsLink.rel = "noopener noreferrer";
+        postseasonSection.querySelector(".pregame-section-header h3")?.replaceChildren(standingsLink);
         const al = postseasonSeeds(standings, "AL");
         const nl = postseasonSeeds(standings, "NL");
         if (al.length < 6 || nl.length < 6) {

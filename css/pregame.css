@@ -554,6 +554,19 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
     overflow: hidden;
 }
 
+.pregame-postseason-standings-link {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-color: #718089;
+    text-underline-offset: 3px;
+}
+
+.pregame-postseason-standings-link:hover,
+.pregame-postseason-standings-link:focus-visible {
+    color: #fff;
+    text-decoration-color: #fff;
+}
+
 .pregame-postseason-note {
     margin: 0;
     padding: 9px 12px 0;
