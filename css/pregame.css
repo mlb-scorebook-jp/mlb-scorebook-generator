@@ -48,7 +48,7 @@ body.app-mode-pregame .scorebook-horizontal-scroll {
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
-    gap: 24px;
+    gap: 18px;
     margin-bottom: 16px;
     padding: 16px 18px;
     border: 1px solid #46535c;
@@ -548,6 +548,172 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
     border-radius: 999px;
     background: rgba(13, 18, 21, 0.28);
     font-weight: 700;
+}
+
+.pregame-postseason-section {
+    overflow: hidden;
+}
+
+.pregame-postseason-note {
+    margin: 0;
+    padding: 9px 12px 0;
+    color: #9eabb3;
+    font-size: 9px;
+    text-align: center;
+}
+
+.pregame-postseason-scroll {
+    overflow-x: auto;
+    padding: 12px;
+    scrollbar-color: #65747d #182025;
+    -webkit-overflow-scrolling: touch;
+}
+
+.pregame-postseason-board {
+    display: grid;
+    grid-template-columns: 1.15fr 1.15fr 1fr 1.05fr 1fr 1.15fr 1.15fr;
+    align-items: stretch;
+    gap: 10px;
+    min-width: 1220px;
+    padding: 14px;
+    border: 1px solid #43515a;
+    border-radius: 4px;
+    background:
+        radial-gradient(circle at 50% 52%, rgba(195, 148, 49, 0.12), transparent 24%),
+        linear-gradient(145deg, #202a30 0%, #151c20 48%, #202a30 100%);
+}
+
+.pregame-postseason-stage {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 24px;
+    min-width: 0;
+    padding: 35px 0 8px;
+}
+
+.pregame-postseason-stage h4 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    margin: 0;
+    color: #dbe5ea;
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    text-align: center;
+}
+
+.pregame-postseason-matchup {
+    position: relative;
+    min-width: 0;
+    padding-top: 18px;
+    border: 1px solid #4d5a62;
+    border-radius: 3px;
+    background: rgba(12, 17, 20, 0.72);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.22);
+}
+
+.pregame-postseason-board > .pregame-postseason-stage:nth-child(-n + 3) .pregame-postseason-matchup::after,
+.pregame-postseason-board > .pregame-postseason-stage:nth-child(n + 5) .pregame-postseason-matchup::before {
+    position: absolute;
+    top: 50%;
+    width: 11px;
+    height: 1px;
+    background: #65747d;
+    content: "";
+}
+
+.pregame-postseason-board > .pregame-postseason-stage:nth-child(-n + 3) .pregame-postseason-matchup::after {
+    right: -11px;
+}
+
+.pregame-postseason-board > .pregame-postseason-stage:nth-child(n + 5) .pregame-postseason-matchup::before {
+    left: -11px;
+}
+
+.pregame-postseason-matchup-label {
+    position: absolute;
+    top: 3px;
+    left: 7px;
+    overflow: hidden;
+    max-width: calc(100% - 14px);
+    color: #fff;
+    font-size: 7px;
+    line-height: 12px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.pregame-postseason-team {
+    display: grid;
+    grid-template-columns: 17px 27px minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 5px;
+    min-height: 39px;
+    padding: 3px 7px;
+    border-top: 1px solid #354149;
+}
+
+.pregame-postseason-team strong {
+    overflow: hidden;
+    font-size: 12px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.pregame-postseason-seed {
+    color: #e1b82f;
+    font-size: 10px;
+    font-weight: 800;
+    text-align: center;
+}
+
+.pregame-postseason-logo {
+    width: 25px;
+    height: 25px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.92));
+}
+
+.pregame-postseason-record {
+    color: #9daab2;
+    font-size: 8px;
+    font-variant-numeric: tabular-nums;
+}
+
+.pregame-postseason-team.is-placeholder {
+    grid-template-columns: 17px minmax(0, 1fr);
+    color: #8d9aa2;
+}
+
+.pregame-postseason-placeholder {
+    overflow: hidden;
+    color: #fff;
+    font-size: 8px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.pregame-postseason-stage-championship {
+    justify-content: center;
+}
+
+.pregame-postseason-stage-world-series {
+    justify-content: center;
+    padding-inline: 3px;
+}
+
+.pregame-postseason-stage-world-series h4 {
+    color: #e1b82f;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+}
+
+.pregame-postseason-stage-world-series .pregame-postseason-matchup {
+    border-color: #9f8033;
+    box-shadow: 0 0 20px rgba(195, 148, 49, 0.13);
 }
 
 .pregame-japanese-daily-layout {
@@ -2688,6 +2854,21 @@ a.pregame-metric-value:focus-visible {
     .pregame-section-header span {
         font-size: 14px;
         text-align: right;
+    }
+
+    .pregame-postseason-note {
+        padding: 11px 12px 0;
+        font-size: 12px;
+        line-height: 1.55;
+        text-align: left;
+    }
+
+    .pregame-postseason-scroll {
+        padding: 12px;
+    }
+
+    .pregame-postseason-board {
+        min-width: 1180px;
     }
 
     .pregame-card-grid {

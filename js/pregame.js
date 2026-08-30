@@ -2204,10 +2204,13 @@
             ) ?? divisionTeams[1] ?? null;
             divisionTeams.forEach((teamRecord) => {
                 standings.set(Number(teamRecord?.team?.id), {
+                    team: teamRecord?.team ?? null,
                     division: divisionJapaneseLabel(record?.division?.name ?? teamRecord?.team?.division?.name),
                     rank: Number.parseInt(teamRecord?.divisionRank, 10),
                     wins: Number.parseInt(teamRecord?.wins, 10),
                     losses: Number.parseInt(teamRecord?.losses, 10),
+                    winningPercentage: Number.parseFloat(teamRecord?.winningPercentage),
+                    leagueRank: Number.parseInt(teamRecord?.leagueRank, 10),
                     leagueCode: Number(record?.division?.league?.id ?? teamRecord?.team?.league?.id) === 104
                         ? "NL"
                         : "AL",
@@ -2220,6 +2223,132 @@
             });
         });
         return standings;
+    };
+
+    const postseasonSeeds = (standings, leagueCode) => {
+        const entries = [...standings.values()]
+            .filter((standing) => standing?.leagueCode === leagueCode && standing?.team?.id);
+        const compareRecords = (left, right) => {
+            if (Number.isFinite(left.leagueRank) && Number.isFinite(right.leagueRank) &&
+                left.leagueRank !== right.leagueRank) {
+                return left.leagueRank - right.leagueRank;
+            }
+            const leftPercentage = Number.isFinite(left.winningPercentage)
+                ? left.winningPercentage
+                : left.wins / Math.max(1, left.wins + left.losses);
+            const rightPercentage = Number.isFinite(right.winningPercentage)
+                ? right.winningPercentage
+                : right.wins / Math.max(1, right.wins + right.losses);
+            return rightPercentage - leftPercentage || right.wins - left.wins || left.losses - right.losses;
+        };
+        const divisionWinners = entries
+            .filter((standing) => standing.divisionLeader)
+            .sort(compareRecords)
+            .slice(0, 3);
+        const wildCards = entries
+            .filter((standing) => !standing.divisionLeader)
+            .sort((left, right) => {
+                const leftRank = Number.isFinite(left.wildCardRank) ? left.wildCardRank : 99;
+                const rightRank = Number.isFinite(right.wildCardRank) ? right.wildCardRank : 99;
+                return leftRank - rightRank || compareRecords(left, right);
+            })
+            .slice(0, 3);
+        return [...divisionWinners, ...wildCards].map((standing, index) => ({
+            ...standing,
+            seed: index + 1
+        }));
+    };
+
+    const postseasonTeamSlot = (standing, fallback) => {
+        const slot = el("div", standing ? "pregame-postseason-team" : "pregame-postseason-team is-placeholder");
+        if (!standing) {
+            slot.append(
+                el("span", "pregame-postseason-seed", "–"),
+                el("span", "pregame-postseason-placeholder", fallback)
+            );
+            return slot;
+        }
+        const logo = el("img", "pregame-postseason-logo");
+        logo.src = teamLogoUrl(standing.team);
+        logo.alt = "";
+        logo.loading = "lazy";
+        logo.decoding = "async";
+        logo.addEventListener("error", () => logo.remove(), { once: true });
+        slot.append(
+            el("span", "pregame-postseason-seed", String(standing.seed)),
+            logo,
+            el("strong", "", teamCode(standing.team)),
+            el("span", "pregame-postseason-record", `${standing.wins}-${standing.losses}`)
+        );
+        slot.title = `${teamJapaneseName(standing.team)}　${standing.divisionLeader ? "地区首位" : `ワイルドカード${standing.wildCardRank}位`}`;
+        return slot;
+    };
+
+    const postseasonMatchup = (title, upper, lower, upperFallback = "勝者", lowerFallback = "勝者") => {
+        const matchup = el("div", "pregame-postseason-matchup");
+        matchup.append(
+            el("span", "pregame-postseason-matchup-label", title),
+            postseasonTeamSlot(upper, upperFallback),
+            postseasonTeamSlot(lower, lowerFallback)
+        );
+        return matchup;
+    };
+
+    const postseasonStage = (title, matchups, extraClass = "") => {
+        const stage = el("div", `pregame-postseason-stage ${extraClass}`.trim());
+        stage.append(el("h4", "", title), ...matchups);
+        return stage;
+    };
+
+    const renderPostseasonPicture = (standings, date) => {
+        const snapshotDate = previousDate(date);
+        const postseasonSection = section(
+            "ポストシーズン・ピクチャー",
+            `${formatDate(snapshotDate)}終了時点 / 現在の順位による仮想配置`
+        );
+        postseasonSection.classList.add("pregame-postseason-section");
+        const al = postseasonSeeds(standings, "AL");
+        const nl = postseasonSeeds(standings, "NL");
+        if (al.length < 6 || nl.length < 6) {
+            postseasonSection.append(empty("ポストシーズン進出枠を表示できる順位データがありません。"));
+            return postseasonSection;
+        }
+
+        const scroll = el("div", "pregame-postseason-scroll");
+        const board = el("div", "pregame-postseason-board");
+        board.append(
+            postseasonStage("AL ワイルドカード", [
+                postseasonMatchup("第3シード対第6シード", al[2], al[5]),
+                postseasonMatchup("第4シード対第5シード", al[3], al[4])
+            ], "pregame-postseason-stage-wildcard"),
+            postseasonStage("AL地区シリーズ", [
+                postseasonMatchup("第2シードはBYE", al[1], null, "", "3位対6位の勝者"),
+                postseasonMatchup("第1シードはBYE", al[0], null, "", "4位対5位の勝者")
+            ]),
+            postseasonStage("AL優勝決定シリーズ", [
+                postseasonMatchup("リーグ優勝決定戦", null, null, "地区シリーズ勝者", "地区シリーズ勝者")
+            ], "pregame-postseason-stage-championship"),
+            postseasonStage("WORLD SERIES", [
+                postseasonMatchup("ワールドシリーズ", null, null, "AL優勝球団", "NL優勝球団")
+            ], "pregame-postseason-stage-world-series"),
+            postseasonStage("NL優勝決定シリーズ", [
+                postseasonMatchup("リーグ優勝決定戦", null, null, "地区シリーズ勝者", "地区シリーズ勝者")
+            ], "pregame-postseason-stage-championship"),
+            postseasonStage("NL地区シリーズ", [
+                postseasonMatchup("第1シードはBYE", nl[0], null, "", "4位対5位の勝者"),
+                postseasonMatchup("第2シードはBYE", nl[1], null, "", "3位対6位の勝者")
+            ]),
+            postseasonStage("NL ワイルドカード", [
+                postseasonMatchup("第4シード対第5シード", nl[3], nl[4]),
+                postseasonMatchup("第3シード対第6シード", nl[2], nl[5])
+            ], "pregame-postseason-stage-wildcard")
+        );
+        scroll.append(board);
+        postseasonSection.append(
+            el("p", "pregame-postseason-note", "シーズン終了時の組み合わせではありません。対象日の試合前に確定していた順位から算出しています。"),
+            scroll
+        );
+        return postseasonSection;
     };
 
     const formatStandingsGap = (value) => {
@@ -2490,9 +2619,10 @@
         setHeader("試合前情報", formatDate(date));
         try {
             const season = Number(date.slice(0, 4));
-            const [games, japanesePlayers] = await Promise.all([
+            const [games, japanesePlayers, standings] = await Promise.all([
                 getSchedule(date, { fresh: true }),
-                getSeasonJapanesePlayers(season)
+                getSeasonJapanesePlayers(season),
+                getStandingsSnapshot(date)
             ]);
             const teamGame = new Map();
             const teamGames = new Map();
@@ -2679,6 +2809,9 @@
                     });
             }
             dashboard.append(gamesSection);
+            if (date.slice(5) >= "08-01") {
+                dashboard.append(renderPostseasonPicture(standings, date));
+            }
             dom.content.replaceChildren(dashboard);
         } catch (error) {
             console.error(error);
