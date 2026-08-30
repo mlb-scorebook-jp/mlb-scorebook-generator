@@ -2,7 +2,221 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
-        "headline": "Harper caught stealing home as Phils find way around baserunning miscues",
+        "headline": "Latest Brewers injuries & transactions",
+        "summaryJa": "ブルワーズの負傷状況をMLB公式が詳報",
+        "slug": "brewers-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/brewers-injuries-and-roster-moves",
+        "contentDate": "2026-08-30T16:44:00Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Yanks, Lombard relieved that right knee injury isn't too serious",
+        "summaryJa": "G.ロンバード Jr.（NYY）の負傷状況をMLB公式が詳報",
+        "slug": "george-lombard-jr-exits-red-sox-yankees-game-with-knee-injury",
+        "url": "https://www.mlb.com/news/george-lombard-jr-exits-red-sox-yankees-game-with-knee-injury",
+        "contentDate": "2026-08-30T16:37:00Z",
+        "teamIds": [
+            147
+        ],
+        "playerIds": [
+            806146
+        ],
+        "gamePks": [
+            823501,
+            823502
+        ],
+        "taxonomy": [
+            "apple-news",
+            "injury"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Latest Tigers injuries and transactions",
+        "summaryJa": "タイガースの負傷状況をMLB公式が詳報",
+        "slug": "tigers-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/tigers-injuries-and-roster-moves",
+        "contentDate": "2026-08-30T16:25:00Z",
+        "teamIds": [
+            116
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Buxton (hip impingement) placed on injured list",
+        "summaryJa": "B.バクストン（MIN）の負傷状況をMLB公式が詳報",
+        "slug": "byron-buxton-placed-on-injured-list-with-hip-impingement",
+        "url": "https://www.mlb.com/news/byron-buxton-placed-on-injured-list-with-hip-impingement",
+        "contentDate": "2026-08-30T16:10:59.434Z",
+        "teamIds": [
+            142
+        ],
+        "playerIds": [
+            621439
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "apple-news",
+            "transactions"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "LIVE on Peacock: NL East rivals joust on MLB Sunday Leadoff season finale",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "mlb-sunday-leadoff-on-nbc-peacock-for-2026-season",
+        "url": "https://www.mlb.com/news/mlb-sunday-leadoff-on-nbc-peacock-for-2026-season",
+        "contentDate": "2026-08-30T16:00:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "ROY candidate Wetherholt placed on IL with right wrist tendinitis",
+        "summaryJa": "J.ウェザーホルト（STL）の負傷状況をMLB公式が詳報",
+        "slug": "jj-wetherholt-placed-on-injured-list",
+        "url": "https://www.mlb.com/news/jj-wetherholt-placed-on-injured-list",
+        "contentDate": "2026-08-30T15:38:00Z",
+        "teamIds": [
+            138
+        ],
+        "playerIds": [
+            802139
+        ],
+        "gamePks": [
+            823010
+        ],
+        "taxonomy": [
+            "injury",
+            "transactions"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Latest Yankees injuries and transactions",
+        "summaryJa": "ヤンキースの負傷状況をMLB公式が詳報",
+        "slug": "yankees-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/yankees-injuries-and-roster-moves",
+        "contentDate": "2026-08-30T15:24:00Z",
+        "teamIds": [
+            147
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Anthony, Story activated from IL ahead of series finale vs. Yankees",
+        "summaryJa": "R.アンソニー（BOS）の負傷状況をMLB公式が詳報",
+        "slug": "roman-anthony-trevor-story-activated-off-injured-list",
+        "url": "https://www.mlb.com/news/roman-anthony-trevor-story-activated-off-injured-list",
+        "contentDate": "2026-08-30T15:00:00Z",
+        "teamIds": [
+            111
+        ],
+        "playerIds": [
+            701350,
+            596115
+        ],
+        "gamePks": [
+            823502
+        ],
+        "taxonomy": [
+            "apple-news",
+            "injury",
+            "rehab"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Latest Red Sox injuries & transactions",
+        "summaryJa": "レッドソックスの負傷状況をMLB公式が詳報",
+        "slug": "red-sox-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/red-sox-injuries-and-roster-moves",
+        "contentDate": "2026-08-30T14:51:00Z",
+        "teamIds": [
+            111
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Nats, NWSL's Spirit celebrate Women's Night at Nationals Park",
+        "summaryJa": "ナショナルズの最新動向をMLB公式が詳報",
+        "slug": "washington-nationals-spirit-celebrate-women-s-night",
+        "url": "https://www.mlb.com/news/washington-nationals-spirit-celebrate-women-s-night",
+        "contentDate": "2026-08-30T14:30:20.363Z",
+        "teamIds": [
+            120
+        ],
+        "playerIds": [],
+        "gamePks": [
+            822688
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Harper caught stealing home, but Phils find way around baserunning miscues",
         "summaryJa": "B.ハーパー（PHI）の最新動向をMLB公式が詳報",
         "slug": "bryce-harper-caught-stealing-home-vs-angels",
         "url": "https://www.mlb.com/news/bryce-harper-caught-stealing-home-vs-angels",
@@ -22,6 +236,7 @@
             "replay"
         ],
         "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
@@ -185,7 +400,6 @@
             "injury"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -209,46 +423,6 @@
         ],
         "sourceScopes": [
             "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Latest Red Sox injuries & transactions",
-        "summaryJa": "レッドソックスの負傷状況をMLB公式が詳報",
-        "slug": "red-sox-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/red-sox-injuries-and-roster-moves",
-        "contentDate": "2026-08-30T04:48:00Z",
-        "teamIds": [
-            111
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Latest Yankees injuries and transactions",
-        "summaryJa": "ヤンキースの負傷状況をMLB公式が詳報",
-        "slug": "yankees-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/yankees-injuries-and-roster-moves",
-        "contentDate": "2026-08-30T04:44:00Z",
-        "teamIds": [
-            147
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
-        ],
-        "sourceScopes": [
             "球団公式"
         ]
     },
@@ -341,33 +515,7 @@
         ]
     },
     {
-        "headline": "Anthony, Story set to return in finale vs. Yankees",
-        "summaryJa": "R.アンソニー（BOS）、復帰へ向けた最新状況",
-        "slug": "roman-anthony-trevor-story-return-red-sox",
-        "url": "https://www.mlb.com/news/roman-anthony-trevor-story-return-red-sox",
-        "contentDate": "2026-08-30T04:11:08.361Z",
-        "teamIds": [
-            111
-        ],
-        "playerIds": [
-            701350,
-            596115
-        ],
-        "gamePks": [
-            823501
-        ],
-        "taxonomy": [
-            "apple-news",
-            "injury",
-            "rehab"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Watch No. 2 prospect Hammond play at Single-A for FREE tonight",
+        "headline": "Watch Royals prospects play at Single-A for FREE tonight",
         "summaryJa": "MLBの最新情報ら注目選手の最新動向",
         "slug": "watch-minor-league-baseball-games-for-free-2026",
         "url": "https://www.mlb.com/news/watch-minor-league-baseball-games-for-free-2026",
@@ -441,30 +589,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Lombard (right knee discomfort) expected to be day to day",
-        "summaryJa": "G.ロンバード Jr.（NYY）の負傷状況をMLB公式が詳報",
-        "slug": "george-lombard-jr-exits-red-sox-yankees-game-with-knee-injury",
-        "url": "https://www.mlb.com/news/george-lombard-jr-exits-red-sox-yankees-game-with-knee-injury",
-        "contentDate": "2026-08-30T03:20:00Z",
-        "teamIds": [
-            147
-        ],
-        "playerIds": [
-            806146
-        ],
-        "gamePks": [
-            823501
-        ],
-        "taxonomy": [
-            "apple-news",
-            "injury"
-        ],
-        "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -881,7 +1005,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1220,7 +1343,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1362,26 +1484,6 @@
         ]
     },
     {
-        "headline": "Latest Brewers injuries & transactions",
-        "summaryJa": "ブルワーズの負傷状況をMLB公式が詳報",
-        "slug": "brewers-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/brewers-injuries-and-roster-moves",
-        "contentDate": "2026-08-29T22:18:00Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "White Sox win on 3 hits -- all by Benintendi, who beats up on Twins again",
         "summaryJa": "A.ベニンテンディ（CWS）、勝利を呼び込む活躍",
         "slug": "andrew-benintendi-beats-up-on-twins-again-to-lead-white-sox",
@@ -1401,7 +1503,6 @@
             "game-recap"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1930,26 +2031,6 @@
             "injury",
             "rehab",
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Latest Tigers injuries and transactions",
-        "summaryJa": "タイガースの負傷状況をMLB公式が詳報",
-        "slug": "tigers-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/tigers-injuries-and-roster-moves",
-        "contentDate": "2026-08-29T16:05:00Z",
-        "teamIds": [
-            116
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
         ],
         "sourceScopes": [
             "球団公式"
