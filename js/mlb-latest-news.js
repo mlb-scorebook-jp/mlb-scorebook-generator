@@ -2,6 +2,56 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Harper caught stealing home as Phils find way around baserunning miscues",
+        "summaryJa": "B.ハーパー（PHI）の最新動向をMLB公式が詳報",
+        "slug": "bryce-harper-caught-stealing-home-vs-angels",
+        "url": "https://www.mlb.com/news/bryce-harper-caught-stealing-home-vs-angels",
+        "contentDate": "2026-08-30T07:19:36.39Z",
+        "teamIds": [
+            143
+        ],
+        "playerIds": [
+            547180
+        ],
+        "gamePks": [
+            823986
+        ],
+        "taxonomy": [
+            "apple-news",
+            "game-recap",
+            "replay"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Marte jumps straight from Double-A for MLB debut -- and dedicates it to his brother",
+        "summaryJa": "Y.マーテイ（SF）、メジャー昇格・初出場に関する最新情報",
+        "slug": "yunior-marte-makes-mlb-debut-for-giants",
+        "url": "https://www.mlb.com/news/yunior-marte-makes-mlb-debut-for-giants",
+        "contentDate": "2026-08-30T07:10:00.342Z",
+        "teamIds": [
+            137
+        ],
+        "playerIds": [
+            805074
+        ],
+        "gamePks": [
+            823176
+        ],
+        "taxonomy": [
+            "apple-news",
+            "mlb-top-prospects",
+            "milestone",
+            "mlb-debut",
+            "game-recap"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Johnson puts ribbon on stellar August with magical escape act",
         "summaryJa": "R.ジョンソン（LAA）の最新動向をMLB公式が詳報",
         "slug": "ryan-johnson-allows-1-run-in-angels-loss-to-phillies",
@@ -20,6 +70,28 @@
             "apple-news"
         ],
         "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "O's surge continues as 'pen comes up clutch again and again",
+        "summaryJa": "オリオールズ、勝利を呼び込む活躍",
+        "slug": "orioles-bullpen-strong-in-win-over-athletics",
+        "url": "https://www.mlb.com/news/orioles-bullpen-strong-in-win-over-athletics",
+        "contentDate": "2026-08-30T06:41:00Z",
+        "teamIds": [
+            110
+        ],
+        "playerIds": [],
+        "gamePks": [
+            824961
+        ],
+        "taxonomy": [
+            "apple-news",
+            "game-recap"
+        ],
+        "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
@@ -62,7 +134,6 @@
         ],
         "taxonomy": [
             "apple-news",
-            "game-recap",
             "payoff-pitch"
         ],
         "sourceScopes": [
@@ -119,28 +190,6 @@
         ]
     },
     {
-        "headline": "O's surge continues as 'pen comes up clutch again and again",
-        "summaryJa": "オリオールズ、勝利を呼び込む活躍",
-        "slug": "orioles-bullpen-strong-in-win-over-athletics",
-        "url": "https://www.mlb.com/news/orioles-bullpen-strong-in-win-over-athletics",
-        "contentDate": "2026-08-30T05:06:34.263Z",
-        "teamIds": [
-            110
-        ],
-        "playerIds": [],
-        "gamePks": [
-            824961
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Kent gets surprise from Bonds before number retirement ceremony",
         "summaryJa": "J.ケント（SF）の最新動向をMLB公式が詳報",
         "slug": "jeff-kent-has-number-retired-by-giants",
@@ -156,8 +205,7 @@
             823176
         ],
         "taxonomy": [
-            "apple-news",
-            "game-recap"
+            "apple-news"
         ],
         "sourceScopes": [
             "MLB",
@@ -8732,32 +8780,6 @@
         "taxonomy": [
             "apple-news",
             "game-recap"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Giants make flurry of moves after Adames, Bericoto, Brubaker land on IL",
-        "summaryJa": "W.アダーメス（SF）の負傷状況をMLB公式が詳報",
-        "slug": "willy-adames-victor-bericoto-jt-brubaker-placed-on-injured-list",
-        "url": "https://www.mlb.com/news/willy-adames-victor-bericoto-jt-brubaker-placed-on-injured-list",
-        "contentDate": "2026-08-25T03:00:02.88Z",
-        "teamIds": [
-            137
-        ],
-        "playerIds": [
-            642715,
-            682674,
-            664141
-        ],
-        "gamePks": [
-            823183
-        ],
-        "taxonomy": [
-            "apple-news",
-            "transactions",
-            "injury"
         ],
         "sourceScopes": [
             "球団公式"
