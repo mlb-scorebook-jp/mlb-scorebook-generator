@@ -1753,7 +1753,7 @@
     const mergeOfficialArticles = (...groups) => {
         const seen = new Set();
         return groups.flat().filter((article) => {
-            const key = String(article?.slug ?? article?.url ?? "");
+            const key = String(article?.url ?? article?.slug ?? "");
             if (!key || seen.has(key)) return false;
             seen.add(key);
             return true;

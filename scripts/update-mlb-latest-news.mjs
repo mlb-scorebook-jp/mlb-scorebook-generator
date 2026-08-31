@@ -4,7 +4,6 @@ import { fileURLToPath } from "node:url";
 
 const GRAPHQL_URL = "https://data-graph.mlb.com/graphql";
 const NEWS_PATH = "sel-mlb-news-list?$limit=30";
-const JAPANESE_NEWS_PATH = "sel-ja-news-list?$limit=30";
 const TEAM_NEWS_LIMIT = 20;
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const outputPath = resolve(root, "js/mlb-latest-news.js");
@@ -64,7 +63,6 @@ const teamNewsSelections = [...teamNames.keys()].map((teamId) =>
 ).join("\n");
 const query = `query Latest{
   mlb:getContentListFromPath(path:"${NEWS_PATH}",language:EN_US,source:MLB)${articleSelection}
-  japanese:getContentListFromPath(path:"${JAPANESE_NEWS_PATH}",language:JA_JP,source:MLB)${articleSelection}
   ${teamNewsSelections}
 }`;
 
@@ -277,15 +275,12 @@ const summarizeHeadlineJa = (article, subject) => {
     return `${subject}の最新動向をMLB公式が詳報`;
 };
 
-const officialUrl = (relativeSiteUrl, slug, japanese = false) => {
+const officialUrl = (relativeSiteUrl, slug) => {
     const candidate = relativeSiteUrl || `/news/${slug}`;
     const parsed = new URL(candidate, "https://www.mlb.com");
     if (parsed.protocol !== "https:" ||
         !(parsed.hostname === "mlb.com" || parsed.hostname.endsWith(".mlb.com"))) {
         throw new Error(`Unexpected MLB article URL: ${parsed.href}`);
-    }
-    if (japanese && !parsed.pathname.startsWith("/ja/")) {
-        parsed.pathname = `/ja${parsed.pathname.startsWith("/") ? "" : "/"}${parsed.pathname}`;
     }
     return parsed.href;
 };
@@ -305,7 +300,6 @@ if (payload.errors?.length) {
 }
 
 const normalizeArticle = (article, sourceScope) => {
-    const isJapanese = sourceScope === "MLB日本語版";
     const teams = article.tags
         ?.filter((tag) => tag.__typename === "TeamTag" && tag.team?.id)
         .map((tag) => ({ id: Number(tag.team.id), name: tag.team.name })) ?? [];
@@ -329,18 +323,15 @@ const normalizeArticle = (article, sourceScope) => {
         : primaryTeam?.[0] || "MLBの最新情報";
     return {
         headline: article.headline,
-        summaryJa: isJapanese
-            ? article.headline
-            : japaneseSummaries.get(article.slug) || summarizeHeadlineJa(article, subject),
+        summaryJa: japaneseSummaries.get(article.slug) || summarizeHeadlineJa(article, subject),
         slug: article.slug,
-        url: officialUrl(article.relativeSiteUrl, article.slug, isJapanese),
+        url: officialUrl(article.relativeSiteUrl, article.slug),
         contentDate: article.contentDate,
         teamIds: teams.map((team) => team.id),
         playerIds: players.map((player) => player.id),
         gamePks,
         taxonomy,
-        sourceScopes: [sourceScope],
-        ...(isJapanese ? { japanese: true } : {})
+        sourceScopes: [sourceScope]
     };
 };
 
@@ -348,25 +339,18 @@ const articlesByKey = new Map();
 Object.entries(payload.data ?? {}).forEach(([sourceScope, items]) => {
     (items ?? []).forEach((article) => {
         if (!article?.slug && !article?.relativeSiteUrl) return;
-        const normalized = normalizeArticle(
-            article,
-            sourceScope === "japanese"
-                ? "MLB日本語版"
-                : sourceScope === "mlb" ? "MLB" : "球団公式"
-        );
+        const normalized = normalizeArticle(article, sourceScope === "mlb" ? "MLB" : "球団公式");
         const key = normalized.slug || normalized.url;
         const existing = articlesByKey.get(key);
         if (!existing) {
             articlesByKey.set(key, normalized);
             return;
         }
-        const preferred = normalized.japanese ? normalized : existing;
-        preferred.teamIds = [...new Set([...existing.teamIds, ...normalized.teamIds])];
-        preferred.playerIds = [...new Set([...existing.playerIds, ...normalized.playerIds])];
-        preferred.gamePks = [...new Set([...existing.gamePks, ...normalized.gamePks])];
-        preferred.taxonomy = [...new Set([...existing.taxonomy, ...normalized.taxonomy])];
-        preferred.sourceScopes = [...new Set([...existing.sourceScopes, ...normalized.sourceScopes])];
-        articlesByKey.set(key, preferred);
+        existing.teamIds = [...new Set([...existing.teamIds, ...normalized.teamIds])];
+        existing.playerIds = [...new Set([...existing.playerIds, ...normalized.playerIds])];
+        existing.gamePks = [...new Set([...existing.gamePks, ...normalized.gamePks])];
+        existing.taxonomy = [...new Set([...existing.taxonomy, ...normalized.taxonomy])];
+        existing.sourceScopes = [...new Set([...existing.sourceScopes, ...normalized.sourceScopes])];
     });
 });
 const articles = [...articlesByKey.values()]

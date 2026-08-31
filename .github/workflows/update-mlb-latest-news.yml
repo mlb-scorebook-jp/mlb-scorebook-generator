@@ -3,11 +3,7 @@ name: Update MLB Latest News
 on:
   workflow_dispatch:
   schedule:
-    - cron: "2-57/5 * * * *"
-
-concurrency:
-  group: update-mlb-latest-news
-  cancel-in-progress: false
+    - cron: "*/5 * * * *"
 
 permissions:
   contents: write
