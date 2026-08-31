@@ -2,6 +2,75 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Marte set to return to D-backs on Monday",
+        "summaryJa": "K.マーテイ（AZ）、復帰へ向けた最新状況",
+        "slug": "ketel-marte-return-to-diamondbacks",
+        "url": "https://www.mlb.com/news/ketel-marte-return-to-diamondbacks",
+        "contentDate": "2026-08-31T00:45:41.669Z",
+        "teamIds": [
+            109
+        ],
+        "playerIds": [
+            606466
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Can't stop PCA! Cubs superstar crushes another leadoff homer",
+        "summaryJa": "P.クローアームストロング（CHC）、本塁打で存在感",
+        "slug": "pete-crow-armstrong-hits-leadoff-homer-vs-reds",
+        "url": "https://www.mlb.com/news/pete-crow-armstrong-hits-leadoff-homer-vs-reds",
+        "contentDate": "2026-08-31T00:35:00Z",
+        "teamIds": [
+            112
+        ],
+        "playerIds": [
+            691718
+        ],
+        "gamePks": [
+            824636
+        ],
+        "taxonomy": [
+            "apple-news",
+            "leadoff",
+            "first-inning"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Mets' bullpen has rare August hiccup after Thornton's solid start",
+        "summaryJa": "Zac Thornton（NYM）の最新動向をMLB公式が詳報",
+        "slug": "mets-bullpen-go-ahead-runs-loss-astros",
+        "url": "https://www.mlb.com/news/mets-bullpen-go-ahead-runs-loss-astros",
+        "contentDate": "2026-08-31T00:20:00Z",
+        "teamIds": [
+            121
+        ],
+        "playerIds": [
+            804267
+        ],
+        "gamePks": [
+            823580
+        ],
+        "taxonomy": [
+            "apple-news",
+            "game-recap-losing"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Bombers bombard Boston with 16 runs to claim season series vs. Sox",
         "summaryJa": "ヤンキースの移籍・契約に関する最新情報",
         "slug": "heliot-ramos-hits-first-homer-as-yankee",
@@ -39,6 +108,31 @@
         ],
         "taxonomy": [
             "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Klassen (lower back) lands on IL; Farris, Weiman recalled from Triple-A",
+        "summaryJa": "G.クラーセン（LAA）の負傷状況をMLB公式が詳報",
+        "slug": "george-klassen-lands-on-il-with-lower-back-injury",
+        "url": "https://www.mlb.com/news/george-klassen-lands-on-il-with-lower-back-injury",
+        "contentDate": "2026-08-31T00:06:00Z",
+        "teamIds": [
+            108
+        ],
+        "playerIds": [
+            691946
+        ],
+        "gamePks": [
+            823987
+        ],
+        "taxonomy": [
+            "apple-news",
+            "injury",
+            "transactions",
+            "mlb-top-prospects"
         ],
         "sourceScopes": [
             "球団公式"
@@ -587,29 +681,6 @@
         ]
     },
     {
-        "headline": "Mets' bullpen can't hang on after Thornton's solid start",
-        "summaryJa": "Zac Thornton（NYM）の最新動向をMLB公式が詳報",
-        "slug": "mets-bullpen-go-ahead-runs-loss-astros",
-        "url": "https://www.mlb.com/news/mets-bullpen-go-ahead-runs-loss-astros",
-        "contentDate": "2026-08-30T22:31:38.82Z",
-        "teamIds": [
-            121
-        ],
-        "playerIds": [
-            804267
-        ],
-        "gamePks": [
-            823580
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap-losing"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Matthews takes perfecto into 6th to cap exceptional August",
         "summaryJa": "Z.マシューズ（MIN）、記録達成の最新情報",
         "slug": "zebby-matthews-breakout-august-twins",
@@ -770,7 +841,6 @@
             "transactions"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -835,31 +905,6 @@
             "apple-news",
             "rehab",
             "injury"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Klassen (lower back) lands on IL; Farris, Weiman recalled from Triple-A",
-        "summaryJa": "G.クラーセン（LAA）の負傷状況をMLB公式が詳報",
-        "slug": "george-klassen-lands-on-il-with-lower-back-injury",
-        "url": "https://www.mlb.com/news/george-klassen-lands-on-il-with-lower-back-injury",
-        "contentDate": "2026-08-30T20:20:19.031Z",
-        "teamIds": [
-            108
-        ],
-        "playerIds": [
-            691946
-        ],
-        "gamePks": [
-            823987
-        ],
-        "taxonomy": [
-            "apple-news",
-            "injury",
-            "transactions",
-            "mlb-top-prospects"
         ],
         "sourceScopes": [
             "球団公式"
@@ -983,24 +1028,6 @@
         "sourceScopes": [
             "MLB",
             "球団公式"
-        ]
-    },
-    {
-        "headline": "Every member of the 3,000-strikeout club",
-        "summaryJa": "MLBの最新情報、マウンドで好投",
-        "slug": "3-000-strikeout-club-c303580736",
-        "url": "https://www.mlb.com/news/3-000-strikeout-club-c303580736",
-        "contentDate": "2026-08-30T19:30:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "rare-feat",
-            "evergreen",
-            "rankings"
-        ],
-        "sourceScopes": [
-            "MLB"
         ]
     },
     {
@@ -9192,7 +9219,27 @@
         ]
     },
     {
-        "headline": "PCA takes the lead in latest MVP poll",
+        "headline": "Astros' playoff push, Alvarez's Triple Crown campaign roll through Big Apple",
+        "summaryJa": "Y.アルバレス（HOU）の最新動向をMLB公式が詳報",
+        "slug": "astros-to-face-yankees-mets-on-new-york-road-trip",
+        "url": "https://www.mlb.com/news/astros-to-face-yankees-mets-on-new-york-road-trip",
+        "contentDate": "2026-08-25T15:00:00Z",
+        "teamIds": [
+            117
+        ],
+        "playerIds": [
+            670541
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Yordan maintains firm grip on top spot in MVP poll",
         "summaryJa": "P.クローアームストロングの最新動向をMLB公式が詳報",
         "slug": "yordan-alvarez-pete-crow-armstrong-lead-fifth-2026-mvp-poll",
         "url": "https://www.mlb.com/news/yordan-alvarez-pete-crow-armstrong-lead-fifth-2026-mvp-poll",
@@ -9214,26 +9261,6 @@
         "taxonomy": [
             "apple-news",
             "rankings"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Astros' playoff push, Alvarez's Triple Crown campaign roll through Big Apple",
-        "summaryJa": "Y.アルバレス（HOU）の最新動向をMLB公式が詳報",
-        "slug": "astros-to-face-yankees-mets-on-new-york-road-trip",
-        "url": "https://www.mlb.com/news/astros-to-face-yankees-mets-on-new-york-road-trip",
-        "contentDate": "2026-08-25T15:00:00Z",
-        "teamIds": [
-            117
-        ],
-        "playerIds": [
-            670541
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
@@ -9368,26 +9395,6 @@
             "apple-news",
             "game-recap",
             "long-home-runs"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Soroka's injury leaves Snakes' rotation short-handed during busy stretch",
-        "summaryJa": "ダイヤモンドバックスの負傷状況をMLB公式が詳報",
-        "slug": "d-backs-to-mix-and-match-starting-rotation-amid-injuries",
-        "url": "https://www.mlb.com/news/d-backs-to-mix-and-match-starting-rotation-amid-injuries",
-        "contentDate": "2026-08-25T06:57:53.132Z",
-        "teamIds": [
-            109
-        ],
-        "playerIds": [],
-        "gamePks": [
-            825041
-        ],
-        "taxonomy": [
-            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
