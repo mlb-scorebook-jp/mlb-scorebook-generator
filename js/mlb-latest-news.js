@@ -69,6 +69,30 @@
         ]
     },
     {
+        "headline": "Astros gain big momentum in Big Apple with two crucial series wins",
+        "summaryJa": "L.ウェイド Jr.（HOU）、勝利を呼び込む活躍",
+        "slug": "lamonte-wade-jr-astros-win-mets-series",
+        "url": "https://www.mlb.com/news/lamonte-wade-jr-astros-win-mets-series",
+        "contentDate": "2026-08-30T23:55:00Z",
+        "teamIds": [
+            117
+        ],
+        "playerIds": [
+            664774
+        ],
+        "gamePks": [
+            823580
+        ],
+        "taxonomy": [
+            "apple-news",
+            "game-recap"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "LIVE: Watch Single-A prospects play for FREE",
         "summaryJa": "MLBの最新情報ら注目選手の最新動向",
         "slug": "watch-minor-league-baseball-games-for-free-2026",
@@ -631,30 +655,6 @@
         ]
     },
     {
-        "headline": "Wade plays Houston hero off the bench with pinch-hit go-ahead blast",
-        "summaryJa": "L.ウェイド Jr.（HOU）、勝利を呼び込む活躍",
-        "slug": "lamonte-wade-jr-astros-win-mets-series",
-        "url": "https://www.mlb.com/news/lamonte-wade-jr-astros-win-mets-series",
-        "contentDate": "2026-08-30T22:20:58.637Z",
-        "teamIds": [
-            117
-        ],
-        "playerIds": [
-            664774
-        ],
-        "gamePks": [
-            823580
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Royals' scorching August comes to simmering end in Cleveland",
         "summaryJa": "ロイヤルズの最新動向をMLB公式が詳報",
         "slug": "seth-lugo-gives-up-career-high-nine-runs",
@@ -885,7 +885,6 @@
             "injury"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -10615,6 +10614,25 @@
         ],
         "sourceScopes": [
             "球団公式"
+        ]
+    },
+    {
+        "headline": "A tribute to Mr. Baseball, the pride of Milwaukee: Classic Ueck stories",
+        "summaryJa": "ブルワーズの最新動向をMLB公式が詳報",
+        "slug": "bob-uecker-favorite-stories-memories",
+        "url": "https://www.mlb.com/news/bob-uecker-favorite-stories-memories",
+        "contentDate": "2026-07-28T15:30:00Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "evergreen",
+            "50-stories-50-states"
+        ],
+        "sourceScopes": [
+            "MLB"
         ]
     },
     {
