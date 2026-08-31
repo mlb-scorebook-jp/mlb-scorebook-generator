@@ -1628,10 +1628,20 @@
         });
         card.append(header, fact, links);
         if (showPrevious && window.MLBRecordsArchive) {
-            const previous = window.MLBRecordsArchive.previous(record);
+            const previousState = window.MLBRecordsArchive.previousResult
+                ? window.MLBRecordsArchive.previousResult(record)
+                : { record: window.MLBRecordsArchive.previous(record), complete: true };
+            const previous = previousState.record;
             const previousLine = document.createElement("p");
             previousLine.className = "daily-record-previous";
-            if (previous) {
+            if (previousState.complete === false) {
+                const firstMissingYear = Number(String(
+                    previousState.coverageThrough || "2021-12-31"
+                ).slice(0, 4)) + 1;
+                previousLine.append(document.createTextNode(
+                    `前回：確認できません（${firstMissingYear}年以降の履歴が未収録）`
+                ));
+            } else if (previous) {
                 previousLine.append(document.createTextNode(
                     `前回：${dateLabel(previous.date)}　${previous.playerName || previous.teamCode}` +
                     `${previous.teamCode ? `（${previous.teamCode}）` : ""}`
