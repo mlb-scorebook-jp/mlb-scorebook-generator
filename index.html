@@ -3533,6 +3533,34 @@
                     gameNumber: Number(data?.gameData?.game?.gameNumber) || 1,
                     allPlays: data?.liveData?.plays?.allPlays ?? []
                 };
+                const sharedDailyRecords = window.DailyRecords?.archiveBuilder;
+                const sharedGame = {
+                        gamePk: Number(gamePk), officialDate,
+                        gameDate: data?.gameData?.datetime?.dateTime || officialDate,
+                        gameType: data?.gameData?.game?.type || "R",
+                        gameNumber: context.gameNumber,
+                        teams: {
+                            away: { team: data?.gameData?.teams?.away,
+                                score: data?.liveData?.linescore?.teams?.away?.runs },
+                            home: { team: data?.gameData?.teams?.home,
+                                score: data?.liveData?.linescore?.teams?.home?.runs }
+                        },
+                        linescore: data?.liveData?.linescore
+                    };
+                const sharedPlayByPlay = { allPlays: context.allPlays };
+                const sharedDailyRecordsPromise = gameFinal && sharedDailyRecords?.analyzeGame
+                    ? Promise.all([
+                        sharedDailyRecords.analyzeGame(
+                            sharedGame, sharedPlayByPlay, data?.liveData?.boxscore, null,
+                            { includeArticles: false }
+                        ),
+                        sharedDailyRecords.analyzeRareContext
+                            ? sharedDailyRecords.analyzeRareContext(
+                                sharedGame, sharedPlayByPlay, data?.liveData?.boxscore, null
+                            )
+                            : []
+                    ]).then((groups) => groups.flat()).catch(() => [])
+                    : Promise.resolve([]);
 
                 const request = Promise.all(["away", "home"].map(async (side) => {
                     const team = data?.gameData?.teams?.[side] ?? {};
@@ -3618,6 +3646,20 @@
                     const notes = gameFinal
                         ? await buildCareerMilestoneNotes(analyzed, code, context, team)
                         : [];
+                    if (gameFinal) {
+                        const sharedRecords = await sharedDailyRecordsPromise;
+                        const sideTeamId = Number(team?.id);
+                        notes.push(...sharedRecords
+                            .filter((record) => Number(record?.teamId) === sideTeamId)
+                            .map((record) => ({
+                                text: `${code}　${record.playerName ? `${record.playerName}　` : ""}${record.fact}`,
+                                priority: -3,
+                                ...(record.gamedayUrl ? {
+                                    link: record.gamedayUrl,
+                                    linkType: "mlb-official-record"
+                                } : {})
+                            })));
+                    }
                     if (gameFinal) {
                         notes.push(...await buildConsecutiveSeasonNotes(
                             analyzed,
@@ -3774,7 +3816,11 @@
                         });
                     }
                     notes.push(...lineupStatusNotes);
-                    return [side, notes
+                    const uniqueNotes = [...new Map(notes.map((note) => {
+                        const noteText = typeof note === "string" ? note : note?.text;
+                        return [normalizeLookupKey(noteText), note];
+                    })).values()];
+                    return [side, uniqueNotes
                         .sort((a, b) => a.priority - b.priority)
                         .slice(0, 12)
                         .map((note) => note.link

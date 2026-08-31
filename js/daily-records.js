@@ -38,7 +38,11 @@
         FIVE_HIT_GAME: ["1試合5安打", "5安打", "five hit game"],
         SIX_HIT_GAME: ["1試合6安打", "6安打", "six hit game"],
         CYCLE: ["サイクル安打", "サイクル", "cycle"],
+        LEADOFF_HOME_RUN: ["先頭打者本塁打", "leadoff home run", "leadoff homer"],
         LEADOFF_FIRST_PITCH_HR: ["初回先頭打者初球本塁打", "first pitch leadoff homer"],
+        SEASON_LEADOFF_HOME_RUNS: ["シーズン先頭打者本塁打", "season leadoff home runs"],
+        FRANCHISE_LEADOFF_HOME_RUN_RANK: ["先頭打者本塁打球団歴代順位", "franchise leadoff home run rank"],
+        STEAL_HOME: ["ホームスチール", "本盗", "steal of home"],
         FOUR_SB_GAME: ["1試合4盗塁", "4盗塁", "four stolen bases"],
         LARGE_RBI_GAME: ["1試合大量打点", "大量打点"],
         TWO_OUTS_SAME_INNING: ["同一イニングで2アウト", "two outs same inning"],
@@ -62,6 +66,13 @@
         COMBINED_NO_HITTER: ["継投ノーヒッター", "combined no-hitter"],
         NO_HIT_LOSS: ["被安打0で敗戦", "no-hit loss"],
         TRIPLE_PLAY: ["三重殺", "triple play"],
+        UNASSISTED_TRIPLE_PLAY: ["無補殺三重殺", "unassisted triple play"],
+        FRANCHISE_ROOKIE_RECORD: ["球団新人記録", "franchise rookie record"],
+        FRANCHISE_AGE_RECORD: ["球団最年少記録", "球団最年長記録", "youngest in franchise history", "oldest in franchise history"],
+        CONSECUTIVE_GAME_HOME_RUNS: ["連続試合本塁打", "consecutive games with a home run"],
+        CONSECUTIVE_SCORELESS_INNINGS: ["連続無失点", "consecutive scoreless innings"],
+        CONSECUTIVE_SAVES: ["連続セーブ", "consecutive saves"],
+        MLB_HISTORY_ORDINAL: ["MLB史上", "Major League history"],
         ALL_STARTERS_HIT: ["全先発野手安打"],
         ALL_STARTERS_SCORE: ["全先発野手得点"],
         FOUR_HR_GAME: ["1試合4本塁打", "4本塁打", "4HR", "four homer game"],
@@ -503,7 +514,10 @@
                 const url = `https://www.mlb.com/news/${value.slug}`;
                 if (!seen.has(url)) {
                     seen.add(url);
-                    articles.push({ headline: value.headline, officialUrl: url });
+                    articles.push({
+                        headline: value.headline, blurb: value.blurb || value.description || "",
+                        body: value.body || "", keywordsAll: value.keywordsAll || [], officialUrl: url
+                    });
                 }
             }
             Object.values(value).forEach(visit);
@@ -583,6 +597,8 @@
             if (record.recordType === "SHUTOUT" && uniqueRecords.some((other) =>
                 ["NO_WALK_SHUTOUT", "MADDUX"].includes(other.recordType) && samePlayer(record, other))) return false;
             const moreSpecific = {
+                LEADOFF_HOME_RUN: ["LEADOFF_FIRST_PITCH_HR"],
+                TRIPLE_PLAY: ["UNASSISTED_TRIPLE_PLAY"],
                 PINCH_HIT_HOME_RUN: ["PINCH_HIT_GRAND_SLAM", "PINCH_HIT_WALKOFF_HOME_RUN", "PINCH_HIT_WALKOFF_GRAND_SLAM"],
                 PINCH_HIT_GRAND_SLAM: ["PINCH_HIT_WALKOFF_GRAND_SLAM"],
                 PINCH_HIT_WALKOFF_HOME_RUN: ["PINCH_HIT_WALKOFF_GRAND_SLAM"],
@@ -949,9 +965,17 @@
         for (const side of ["away", "home"]) {
             const firstPlay = teamPlateAppearances[side][0];
             const firstPitches = (firstPlay?.playEvents ?? []).filter((event) => event?.isPitch);
-            if (number(firstPlay?.about?.inning) === 1 &&
-                text(firstPlay?.result?.eventType).toLowerCase() === "home_run" &&
-                firstPitches.length === 1 && hasVerifiedPitchSequence(firstPitches)) {
+            const leadoffHomeRun = number(firstPlay?.about?.inning) === 1 &&
+                text(firstPlay?.result?.eventType).toLowerCase() === "home_run";
+            if (leadoffHomeRun) {
+                records.push(makeRecord({
+                    game, boxscore, recordType: "LEADOFF_HOME_RUN", category: "individual",
+                    player: firstPlay?.matchup?.batter, side,
+                    fact: "先頭打者本塁打", details: { inning: 1 },
+                    evidence: "チームの初回第1打席がhome_run"
+                }));
+            }
+            if (leadoffHomeRun && firstPitches.length === 1 && hasVerifiedPitchSequence(firstPitches)) {
                 records.push(makeRecord({
                     game, boxscore, recordType: "LEADOFF_FIRST_PITCH_HR", category: "individual",
                     player: firstPlay?.matchup?.batter, side,
@@ -1104,14 +1128,31 @@
         );
         if (triplePlay) {
             const fieldingSide = oppositeSide(battingSideForPlay(triplePlay));
+            const description = text(triplePlay?.result?.description);
+            const unassisted = /unassisted triple play|無補殺三重殺/i.test(description);
             records.push(makeRecord({
-                game, boxscore, recordType: "TRIPLE_PLAY", category: "special",
+                game, boxscore, recordType: unassisted ? "UNASSISTED_TRIPLE_PLAY" : "TRIPLE_PLAY", category: "special",
                 side: fieldingSide, inning: triplePlay?.about?.inning,
-                fact: `${number(triplePlay?.about?.inning)}回 三重殺`,
-                details: { description: triplePlay?.result?.description },
-                evidence: "Play-by-Playのtriple_playイベント"
+                fact: `${number(triplePlay?.about?.inning)}回 ${unassisted ? "無補殺三重殺" : "三重殺"}`,
+                details: { description }, evidence: "Play-by-Playのtriple_playイベント"
             }));
         }
+
+        plays.forEach((play) => {
+            const side = battingSideForPlay(play);
+            (play?.runners ?? []).forEach((runner) => {
+                const eventType = text(runner?.details?.eventType).toLowerCase();
+                if (!eventType.startsWith("stolen_base") || text(runner?.movement?.end) !== "score" ||
+                    runner?.movement?.isOut === true) return;
+                const person = runner?.details?.runner ?? {};
+                records.push(makeRecord({
+                    game, boxscore, recordType: "STEAL_HOME", category: "individual",
+                    player: person, side, inning: play?.about?.inning,
+                    fact: `${number(play?.about?.inning)}回${side === "away" ? "表" : "裏"} ホームスチール`,
+                    details: { runnerId: number(person?.id) }, evidence: "PBP走者イベントのstolen_baseで本塁到達"
+                }));
+            });
+        });
 
         for (const side of ["away", "home"]) {
             const team = boxTeamForSide(boxscore, side);
@@ -1473,6 +1514,201 @@
         return result;
     };
 
+    const rareGameLogCache = new Map();
+    const rarePbpCache = new Map();
+    const fetchRareGameLog = async (playerId, season, group, signal) => {
+        const key = `${playerId}:${season}:${group}`;
+        if (rareGameLogCache.has(key)) return rareGameLogCache.get(key);
+        const request = fetchJson(`${API_ROOT}/v1/people/${playerId}/stats?stats=gameLog&group=${group}&season=${season}&gameType=R`, signal)
+            .then(({ data }) => data?.stats?.[0]?.splits ?? []).catch(() => []);
+        rareGameLogCache.set(key, request); return request;
+    };
+    const fetchRarePbp = async (gamePk, signal) => {
+        const key = number(gamePk); if (!key) return null;
+        if (rarePbpCache.has(key)) return rarePbpCache.get(key);
+        const request = fetchJson(`${API_ROOT}/v1/game/${key}/playByPlay`, signal)
+            .then(({ data }) => data).catch(() => null);
+        rarePbpCache.set(key, request); return request;
+    };
+    const inningsOuts = (value) => {
+        const [whole, partial = "0"] = String(value ?? "0").split(".");
+        return (Number(whole) || 0) * 3 + (Number(partial) || 0);
+    };
+    const gameLogThroughCurrent = (splits, game) => (splits ?? []).filter((split) => {
+        const date = text(split?.date).slice(0, 10); const current = text(game?.officialDate);
+        if (!date || date > current) return false;
+        return date < current || number(split?.game?.gamePk) === number(game?.gamePk) ||
+            number(split?.game?.gameNumber) <= number(game?.gameNumber || 1);
+    }).sort((a, b) => text(b?.date).localeCompare(text(a?.date)) ||
+        number(b?.game?.gameNumber || b?.game?.gamePk) - number(a?.game?.gameNumber || a?.game?.gamePk));
+
+    const buildSeasonRareRecords = async (game, playByPlay, boxscore, signal) => {
+        const season = number(text(game?.officialDate).slice(0, 4));
+        if (!season || text(game?.gameType || "R").toUpperCase() !== "R") return [];
+        const additions = [];
+        for (const side of ["away", "home"]) {
+            const players = Object.values(boxTeamForSide(boxscore, side)?.players ?? {});
+            for (const entry of players) {
+                const person = entry?.person; const playerId = number(person?.id);
+                const batting = entry?.stats?.batting ?? {};
+                if (playerId && number(batting.homeRuns) > 0) {
+                    const logs = gameLogThroughCurrent(
+                        await fetchRareGameLog(playerId, season, "hitting", signal), game);
+                    let consecutive = 0;
+                    for (const split of logs) {
+                        if (number(split?.stat?.plateAppearances) <= 0) continue;
+                        if (number(split?.stat?.homeRuns) <= 0) break;
+                        consecutive += 1;
+                    }
+                    if (consecutive >= 3) additions.push(makeRecord({
+                        game, boxscore, recordType: "CONSECUTIVE_GAME_HOME_RUNS", category: "individual",
+                        player: person, side, fact: `${consecutive}試合連続本塁打`,
+                        details: { games: consecutive }, evidence: "MLB公式シーズンGame Log"
+                    }));
+
+                    const homerGames = logs.filter((split) => number(split?.stat?.homeRuns) > 0)
+                        .map((split) => number(split?.game?.gamePk)).filter(Boolean);
+                    const feeds = await Promise.all(homerGames.map((gamePk) =>
+                        gamePk === number(game.gamePk) ? playByPlay : fetchRarePbp(gamePk, signal)));
+                    const leadoffCount = feeds.filter((feed) => {
+                        const plays = feed?.allPlays ?? [];
+                        const firstTop = plays.find((play) => number(play?.about?.inning) === 1 && battingSideForPlay(play) === "away");
+                        const firstBottom = plays.find((play) => number(play?.about?.inning) === 1 && battingSideForPlay(play) === "home");
+                        return [firstTop, firstBottom].some((play) => number(play?.matchup?.batter?.id) === playerId &&
+                            text(play?.result?.eventType).toLowerCase() === "home_run");
+                    }).length;
+                    const currentFirst = (playByPlay?.allPlays ?? []).find((play) =>
+                        number(play?.about?.inning) === 1 && battingSideForPlay(play) === side);
+                    if (leadoffCount > 0 && number(currentFirst?.matchup?.batter?.id) === playerId &&
+                        text(currentFirst?.result?.eventType).toLowerCase() === "home_run") {
+                        additions.push(makeRecord({
+                            game, boxscore, recordType: "SEASON_LEADOFF_HOME_RUNS", category: "individual",
+                            player: person, side, fact: `今季${leadoffCount}本目の先頭打者本塁打`,
+                            details: { seasonCount: leadoffCount }, evidence: "当該選手のMLB公式Game Logと各試合PBP"
+                        }));
+                    }
+                }
+
+                const pitching = entry?.stats?.pitching ?? {};
+                if (!playerId || inningsOuts(pitching.inningsPitched) <= 0 ||
+                    (number(pitching.runs) > 0 && number(pitching.saves) <= 0)) continue;
+                const logs = gameLogThroughCurrent(
+                    await fetchRareGameLog(playerId, season, "pitching", signal), game);
+                if (number(pitching.runs) === 0) {
+                    let outs = 0;
+                    for (const split of logs) {
+                        if (inningsOuts(split?.stat?.inningsPitched) <= 0) continue;
+                        if (number(split?.stat?.runs) > 0) break;
+                        outs += inningsOuts(split?.stat?.inningsPitched);
+                    }
+                    if (outs >= 30) additions.push(makeRecord({
+                        game, boxscore, recordType: "CONSECUTIVE_SCORELESS_INNINGS", category: "individual",
+                        player: person, side, fact: `${Math.floor(outs / 3)}.${outs % 3}回連続無失点`,
+                        details: { outs }, evidence: "MLB公式投手Game Log"
+                    }));
+                }
+                if (number(pitching.saves) > 0) {
+                    let saves = 0;
+                    for (const split of logs) {
+                        if (number(split?.stat?.saves) > 0) saves += 1;
+                        else if (number(split?.stat?.gamesPlayed) > 0) break;
+                    }
+                    if (saves >= 5) additions.push(makeRecord({
+                        game, boxscore, recordType: "CONSECUTIVE_SAVES", category: "individual",
+                        player: person, side, fact: `${saves}登板連続セーブ`,
+                        details: { saves }, evidence: "MLB公式投手Game Log"
+                    }));
+                }
+            }
+        }
+        return additions;
+    };
+
+    const analyzeRareContext = async (game, playByPlay, boxscore, signal) => dedupeRecords([
+        ...await buildSeasonRareRecords(game, playByPlay, boxscore, signal),
+        ...await buildOfficialHistoryRecords(game, boxscore, signal)
+    ]);
+
+    const buildOfficialHistoryRecords = async (game, boxscore, signal) => {
+        const articles = await fetchOfficialArticles(game.gamePk, signal).catch(() => []);
+        if (!articles.length) return [];
+        const players = ["away", "home"].flatMap((side) =>
+            Object.values(boxTeamForSide(boxscore, side)?.players ?? {}).map((entry) => ({
+                person: entry?.person, side
+            })));
+        const additions = [];
+        const ordinalWords = Object.freeze({
+            first: 1, second: 2, third: 3, fourth: 4, fifth: 5,
+            sixth: 6, seventh: 7, eighth: 8, ninth: 9, tenth: 10,
+            eleventh: 11, twelfth: 12, thirteenth: 13, fourteenth: 14,
+            fifteenth: 15, sixteenth: 16, seventeenth: 17, eighteenth: 18,
+            nineteenth: 19, twentieth: 20
+        });
+        const ordinalPattern = `(\\d{1,3})(?:st|nd|rd|th)|(${Object.keys(ordinalWords).join("|")})`;
+        const readOrdinal = (value) => {
+            const match = text(value).match(new RegExp(`\\b(?:${ordinalPattern})\\b`, "i"));
+            return match ? number(match[1]) || ordinalWords[text(match[2]).toLowerCase()] || 0 : 0;
+        };
+        const addFromArticle = (recordType, fact, article, matched) => {
+            const record = makeRecord({ game, boxscore, recordType, category: "individual",
+                player: matched?.person ?? null, side: matched?.side ?? "away", fact,
+                details: { sourceHeadline: text(article?.headline) }, evidence: "MLB公式記事の歴史的記録記述" });
+            record.articleUrls = [{ headline: text(article?.headline), url: text(article?.officialUrl || article?.url) }]
+                .filter((item) => item.url);
+            additions.push(record);
+        };
+        articles.forEach((article) => {
+            const searchable = [article?.headline, article?.seoTitle, article?.blurb, article?.body]
+                .filter(Boolean).join(" ");
+            if (!searchable) return;
+            const matchPlayer = (source) => players.find(({ person }) => {
+                const fullName = text(person?.fullName);
+                const lastName = text(person?.lastName);
+                return (fullName && text(source).toLowerCase().includes(fullName.toLowerCase())) ||
+                    (lastName.length >= 4 && new RegExp(`\\b${lastName.replace(/[.*+?^${}()|[\\]\\]/g, "\\$&")}\\b`, "i").test(text(source)));
+            });
+            const matched = matchPlayer([article?.headline, article?.seoTitle, article?.blurb]
+                .filter(Boolean).join(" ")) || matchPlayer(searchable);
+            if (!matched) return;
+            const ordinal = readOrdinal(searchable);
+            const leadoff = /leadoff (?:home run|homer)/i.test(searchable);
+            const rankContext = searchable.split(/(?<=[.!?])\s+/).find((sentence) =>
+                /leadoff (?:home run|homer|shot)/i.test(sentence) &&
+                new RegExp(`(?:${ordinalPattern})[- ]most`, "i").test(sentence)
+            );
+            const franchiseOrdinal = readOrdinal(rankContext) || ordinal;
+            if (leadoff && franchiseOrdinal && (rankContext ||
+                /(?:franchise|club|team) history|Cubs history/i.test(searchable))) {
+                addFromArticle("FRANCHISE_LEADOFF_HOME_RUN_RANK",
+                    `シーズン先頭打者本塁打 球団歴代${franchiseOrdinal}位`, article,
+                    matchPlayer(rankContext) || matched);
+            }
+            const rookieContext = searchable.split(/(?<=[.!?])\s+/).find((sentence) =>
+                /rookie (?:record|mark)|franchise record .*rookie|most .* by (?:a|an) rookie/i.test(sentence));
+            if (rookieContext) {
+                addFromArticle("FRANCHISE_ROOKIE_RECORD", "球団新人記録", article,
+                    matchPlayer(rookieContext) || matched);
+            }
+            const ageContext = searchable.split(/(?<=[.!?])\s+/).find((sentence) =>
+                /\b(?:youngest|oldest)\b/i.test(sentence) && /(?:franchise|club|team) history/i.test(sentence));
+            const ageKind = ageContext?.match(/\b(youngest|oldest)\b/i)?.[1]?.toLowerCase();
+            if (ageKind) {
+                addFromArticle("FRANCHISE_AGE_RECORD",
+                    `球団史上${ageKind === "youngest" ? "最年少" : "最年長"}記録`, article,
+                    matchPlayer(ageContext) || matched);
+            }
+            const mlbContext = searchable.split(/(?<=[.!?])\s+/).find((sentence) =>
+                /(?:MLB|Major League) history/i.test(sentence) &&
+                new RegExp(`(?:${ordinalPattern})\\s+(?:player|pitcher|hitter)`, "i").test(sentence));
+            const mlbOrdinal = readOrdinal(mlbContext);
+            if (mlbOrdinal) {
+                addFromArticle("MLB_HISTORY_ORDINAL", `MLB史上${mlbOrdinal}人目`, article,
+                    matchPlayer(mlbContext) || matched);
+            }
+        });
+        return additions;
+    };
+
     const analyzeOneGame = async (
         game,
         signal,
@@ -1499,6 +1735,9 @@
             signal,
             { includeArticles }
         );
+        records.push(...await analyzeRareContext(
+            game, playResult.data, boxResult.data, signal
+        ));
         records.push(...await buildCrossDateAtBatRecords(
             game,
             playResult.data,
@@ -1520,7 +1759,7 @@
         records.push(...careerRecords);
         const updatedAt = playResult.lastModified || boxResult.lastModified || nowIso();
         records.forEach((record) => { record.feedUpdatedAt = updatedAt; });
-        return records;
+        return dedupeRecords(records);
     };
 
     const mapWithConcurrency = async (items, limit, worker, onProgress) => {
@@ -1956,6 +2195,7 @@
         archiveBuilder: Object.freeze({
             analyzeGame,
             analyzeOneGame,
+            analyzeRareContext,
             fetchJapanesePlayers,
             japaneseCareerRecords
         })
