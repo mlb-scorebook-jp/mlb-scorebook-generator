@@ -2,6 +2,103 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Can't stop PCA! Cubs superstar hits 5th homer in 2-game span",
+        "summaryJa": "P.クローアームストロング（CHC）、記録達成の最新情報",
+        "slug": "pete-crow-armstrong-hits-leadoff-homer-vs-reds",
+        "url": "https://www.mlb.com/news/pete-crow-armstrong-hits-leadoff-homer-vs-reds",
+        "contentDate": "2026-08-31T04:43:00Z",
+        "teamIds": [
+            112
+        ],
+        "playerIds": [
+            691718
+        ],
+        "gamePks": [
+            824636
+        ],
+        "taxonomy": [
+            "apple-news",
+            "key-moments"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Elly (quadriceps tightness) exits early, to be evaluated Monday",
+        "summaryJa": "E.デラクルーズ（CIN）の負傷状況をMLB公式が詳報",
+        "slug": "elly-de-la-cruz-exits-reds-game-with-quad-injury",
+        "url": "https://www.mlb.com/news/elly-de-la-cruz-exits-reds-game-with-quad-injury",
+        "contentDate": "2026-08-31T04:26:00Z",
+        "teamIds": [
+            113
+        ],
+        "playerIds": [
+            682829
+        ],
+        "gamePks": [
+            824636
+        ],
+        "taxonomy": [
+            "apple-news",
+            "injury"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Three more HRs allowed has Imanaga feeling the frustration",
+        "summaryJa": "今永 昇太（CHC）、本塁打で存在感",
+        "slug": "pete-crow-armstrong-homers-twice-in-cubs-loss-to-reds",
+        "url": "https://www.mlb.com/news/pete-crow-armstrong-homers-twice-in-cubs-loss-to-reds",
+        "contentDate": "2026-08-31T04:21:00Z",
+        "teamIds": [
+            112
+        ],
+        "playerIds": [
+            684007,
+            691718,
+            573204
+        ],
+        "gamePks": [
+            824636
+        ],
+        "taxonomy": [
+            "apple-news",
+            "takeaways"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Burns overcomes PCA's homer and much more in electric night at Wrigley",
+        "summaryJa": "C.バーンズ（CIN）、本塁打で存在感",
+        "slug": "chase-burns-starts-vs-cubs",
+        "url": "https://www.mlb.com/news/chase-burns-starts-vs-cubs",
+        "contentDate": "2026-08-31T04:06:00Z",
+        "teamIds": [
+            113
+        ],
+        "playerIds": [
+            695505
+        ],
+        "gamePks": [
+            824636
+        ],
+        "taxonomy": [
+            "apple-news",
+            "game-recap"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Twins' No. 9 prospect thrives off 'intense' work ethic after promotion to Double-A",
         "summaryJa": "Khadim Diaw（MIN）、メジャー昇格・初出場に関する最新情報",
         "slug": "twins-khadim-diaw-excels-offensively-in-promotion-to-double-a",
@@ -47,32 +144,6 @@
         ]
     },
     {
-        "headline": "Key takeaways: Reds 7, Cubs 5",
-        "summaryJa": "今永 昇太（CHC）、本塁打で存在感",
-        "slug": "pete-crow-armstrong-homers-twice-in-cubs-loss-to-reds",
-        "url": "https://www.mlb.com/news/pete-crow-armstrong-homers-twice-in-cubs-loss-to-reds",
-        "contentDate": "2026-08-31T03:06:19.45Z",
-        "teamIds": [
-            112
-        ],
-        "playerIds": [
-            684007,
-            691718,
-            573204
-        ],
-        "gamePks": [
-            824636
-        ],
-        "taxonomy": [
-            "apple-news",
-            "takeaways",
-            "long-home-runs"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Scorching-hot PCA leads Cubs in showdown with Brewers, plus NL East clash among top series of week",
         "summaryJa": "MLBの最新情報を巡る注目点をMLB公式が分析",
         "slug": "mlb-series-to-watch-week-of-aug-31-2026",
@@ -86,31 +157,6 @@
         ],
         "sourceScopes": [
             "MLB"
-        ]
-    },
-    {
-        "headline": "Can't stop PCA! Cubs superstar hits 5th homer in 2-game span",
-        "summaryJa": "P.クローアームストロング（CHC）、記録達成の最新情報",
-        "slug": "pete-crow-armstrong-hits-leadoff-homer-vs-reds",
-        "url": "https://www.mlb.com/news/pete-crow-armstrong-hits-leadoff-homer-vs-reds",
-        "contentDate": "2026-08-31T02:43:00Z",
-        "teamIds": [
-            112
-        ],
-        "playerIds": [
-            691718
-        ],
-        "gamePks": [
-            824636
-        ],
-        "taxonomy": [
-            "apple-news",
-            "leadoff",
-            "first-inning"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
         ]
     },
     {
@@ -156,52 +202,6 @@
         ],
         "sourceScopes": [
             "MLB"
-        ]
-    },
-    {
-        "headline": "Elly leaves game in 7th inning with left quadriceps tightness",
-        "summaryJa": "E.デラクルーズ（CIN）の負傷状況をMLB公式が詳報",
-        "slug": "elly-de-la-cruz-exits-reds-game-with-quad-injury",
-        "url": "https://www.mlb.com/news/elly-de-la-cruz-exits-reds-game-with-quad-injury",
-        "contentDate": "2026-08-31T02:21:07.717Z",
-        "teamIds": [
-            113
-        ],
-        "playerIds": [
-            682829
-        ],
-        "gamePks": [
-            824636
-        ],
-        "taxonomy": [
-            "apple-news",
-            "injury"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Burns overcomes PCA's homer for solid outing in 1st start at Wrigley",
-        "summaryJa": "C.バーンズ（CIN）、記録達成の最新情報",
-        "slug": "chase-burns-starts-vs-cubs",
-        "url": "https://www.mlb.com/news/chase-burns-starts-vs-cubs",
-        "contentDate": "2026-08-31T02:08:00Z",
-        "teamIds": [
-            113
-        ],
-        "playerIds": [
-            695505
-        ],
-        "gamePks": [
-            824636
-        ],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
         ]
     },
     {
@@ -634,7 +634,6 @@
             "game-recap"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
