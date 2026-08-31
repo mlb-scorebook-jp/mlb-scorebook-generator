@@ -1948,6 +1948,8 @@
         dom.summary.hidden = searching;
         dom.progress.hidden = searching || !state.running;
         dom.content.hidden = searching;
+        if (searching) window.DailyCalendarFeatures?.hide?.();
+        else if (state.date) void window.DailyCalendarFeatures?.render?.(state.date);
         if (searching) {
             if (recordType) dom.searchInput.value = recordType;
             dom.archiveLoading.hidden = false;
@@ -2130,10 +2132,12 @@
         state.date = date;
         dom.date.value = date;
         window.MLBAppSession?.save?.({ view: "daily-records", date });
+        void window.DailyCalendarFeatures?.render?.(date);
         await investigate({ force });
     };
     const close = ({ preserveShell = false } = {}) => {
         state.generation += 1;
+        window.DailyCalendarFeatures?.hide?.();
         state.controller?.abort();
         state.controller = null;
         state.running = false;

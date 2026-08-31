@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-08-31T14:57:53.973Z",
+  "playerCount": 12275,
+  "activeDefinition": "MLB-team rosterEntries interval contains selected date",
+  "birthday": {
+    "files": 233,
+    "totalBytes": 6671019,
+    "maxBytes": 62127,
+    "averageBytes": 28631
+  },
+  "onThisDay": {
+    "files": 193,
+    "totalBytes": 1500646,
+    "maxBytes": 12489,
+    "averageBytes": 7775
+  },
+  "localFileFallback": {
+    "birthday": {
+      "files": 233,
+      "totalBytes": 6695950,
+      "maxBytes": 62234,
+      "averageBytes": 28738
+    },
+    "onThisDay": {
+      "files": 193,
+      "totalBytes": 1521104,
+      "maxBytes": 12595,
+      "averageBytes": 7881
+    }
+  },
+  "statsRange": {
+    "start": 1964,
+    "end": 2021,
+    "gameTypes": [
+      "R"
+    ]
+  },
+  "recordTypes": [
+    "PERFECT_GAME",
+    "SOLO_NO_HITTER",
+    "COMBINED_NO_HITTER",
+    "CYCLE",
+    "FOUR_HR_GAME",
+    "THREE_HR_GAME",
+    "WALKOFF_GRAND_SLAM",
+    "PINCH_HIT_WALKOFF_GRAND_SLAM",
+    "PINCH_HIT_WALKOFF_HOME_RUN",
+    "WALKOFF_WILD_PITCH",
+    "TRIPLE_PLAY",
+    "UNASSISTED_TRIPLE_PLAY",
+    "FIFTEEN_INNING_GAME",
+    "EIGHTEEN_INNING_GAME",
+    "TWENTY_RUN_GAME",
+    "TWENTY_FIVE_RUN_GAME",
+    "HOMER_AND_PITCH",
+    "HOMER_AND_WIN",
+    "POSITION_PLAYER_STRIKEOUT",
+    "POSITION_PLAYER_MULTI_STRIKEOUT",
+    "POSITION_PLAYER_WIN",
+    "POSITION_PLAYER_SAVE",
+    "POSITION_PLAYER_NO_HIT",
+    "THREE_CONSECUTIVE_HR",
+    "FOUR_CONSECUTIVE_HR"
+  ]
+}
