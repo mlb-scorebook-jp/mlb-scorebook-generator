@@ -47,19 +47,6 @@
     const TEAM_PRESENCE_TYPES = new Set(["NO_HIT_WIN"]);
     const INNING_PRESENCE_TYPES = new Set(["TEN_RUN_INNING"]);
     const GAME_PRESENCE_TYPES = new Set(["TEN_COMBINED_HR"]);
-    // These records require play-by-play evidence. The checked-in PBP archive
-    // currently ends with the 2021 season, so an older hit must not be labelled
-    // as the immediately previous occurrence when the intervening seasons have
-    // not been indexed yet.
-    const PBP_ARCHIVE_COMPLETE_THROUGH = "2021-12-31";
-    const PBP_RECORD_TYPES = new Set([
-        "PINCH_HIT_HOME_RUN", "PINCH_HIT_GRAND_SLAM",
-        "PINCH_HIT_WALKOFF_HOME_RUN", "PINCH_HIT_WALKOFF_GRAND_SLAM",
-        "WALKOFF_HOME_RUN", "WALKOFF_HIT", "WALKOFF_FORCED_RUN",
-        "WALKOFF_WILD_PITCH", "WALKOFF_PASSED_BALL", "WALKOFF_ERROR",
-        "WALKOFF_BALK", "WALKOFF_DROPPED_THIRD_STRIKE", "WALKOFF_SPECIAL_PLAY",
-        "WALKOFF_GRAND_SLAM", "PERFECT_GAME"
-    ]);
 
     const text = (value) => String(value ?? "").trim();
     const number = (value) => Number.isFinite(Number(value)) ? Number(value) : 0;
@@ -338,19 +325,6 @@
             return true;
         }).sort((a, b) => orderValue(b).localeCompare(orderValue(a)))[0] ?? null;
     };
-    const previousResult = (target, scope = "type") => {
-        const record = previous(target, scope);
-        const targetDate = text(target?.date || target?.gameDate);
-        const hasUnindexedGap = scope === "type" && PBP_RECORD_TYPES.has(text(target?.recordType)) &&
-            targetDate > PBP_ARCHIVE_COMPLETE_THROUGH &&
-            (!record || text(record.date || record.gameDate) <= PBP_ARCHIVE_COMPLETE_THROUGH);
-        return {
-            record: hasUnindexedGap ? null : record,
-            complete: !hasUnindexedGap,
-            coverageThrough: PBP_RECORD_TYPES.has(text(target?.recordType))
-                ? PBP_ARCHIVE_COMPLETE_THROUGH : text(metadata.endDate)
-        };
-    };
     const rangeLabel = () => {
         let start = "";
         records.forEach((record) => {
@@ -374,7 +348,7 @@
     };
 
     window.MLBRecordsArchive = Object.freeze({
-        load, absorb, search, previous, previousResult, rangeLabel, archiveKey, normalizeSearch,
+        load, absorb, search, previous, rangeLabel, archiveKey, normalizeSearch,
         buildArchiveForDateRange, gamedayUrlForGame, repairGamedayUrl,
         coverageFor,
         getMetadata: () => ({ ...metadata }),

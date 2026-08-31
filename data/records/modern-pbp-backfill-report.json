@@ -1,0 +1,97 @@
+{
+  "schemaVersion": 1,
+  "ruleVersion": "daily-records-modern-pbp-v1",
+  "years": [
+    2022,
+    2023,
+    2024,
+    2025,
+    2026
+  ],
+  "generatedAt": "2026-08-31T10:12:51.261Z",
+  "byYear": {
+    "2022": {
+      "games": 2471,
+      "candidates": 293,
+      "records": 275,
+      "byType": {
+        "WALKOFF_HOME_RUN": 58,
+        "WALKOFF_HIT": 107,
+        "WALKOFF_SPECIAL_PLAY": 23,
+        "WALKOFF_FORCED_RUN": 9,
+        "WALKOFF_ERROR": 5,
+        "PINCH_HIT_WALKOFF_HOME_RUN": 2,
+        "WALKOFF_WILD_PITCH": 6,
+        "PINCH_HIT_HOME_RUN": 61,
+        "WALKOFF_BALK": 1,
+        "PINCH_HIT_GRAND_SLAM": 3
+      }
+    },
+    "2023": {
+      "games": 2478,
+      "candidates": 300,
+      "records": 280,
+      "byType": {
+        "WALKOFF_HOME_RUN": 53,
+        "PINCH_HIT_HOME_RUN": 91,
+        "WALKOFF_HIT": 102,
+        "WALKOFF_SPECIAL_PLAY": 17,
+        "WALKOFF_WILD_PITCH": 6,
+        "WALKOFF_FORCED_RUN": 5,
+        "WALKOFF_ERROR": 2,
+        "WALKOFF_BALK": 2,
+        "PINCH_HIT_GRAND_SLAM": 2
+      }
+    },
+    "2024": {
+      "games": 2475,
+      "candidates": 309,
+      "records": 294,
+      "byType": {
+        "PINCH_HIT_HOME_RUN": 80,
+        "WALKOFF_HIT": 126,
+        "WALKOFF_HOME_RUN": 54,
+        "WALKOFF_FORCED_RUN": 8,
+        "WALKOFF_SPECIAL_PLAY": 14,
+        "PINCH_HIT_WALKOFF_HOME_RUN": 4,
+        "WALKOFF_WILD_PITCH": 1,
+        "WALKOFF_ERROR": 1,
+        "PINCH_HIT_GRAND_SLAM": 6
+      }
+    },
+    "2025": {
+      "games": 2481,
+      "candidates": 319,
+      "records": 304,
+      "byType": {
+        "WALKOFF_HIT": 126,
+        "WALKOFF_HOME_RUN": 51,
+        "WALKOFF_WILD_PITCH": 5,
+        "WALKOFF_SPECIAL_PLAY": 28,
+        "WALKOFF_FORCED_RUN": 7,
+        "WALKOFF_ERROR": 2,
+        "PINCH_HIT_GRAND_SLAM": 3,
+        "PINCH_HIT_HOME_RUN": 79,
+        "PINCH_HIT_WALKOFF_HOME_RUN": 3
+      }
+    },
+    "2026": {
+      "games": 2058,
+      "candidates": 284,
+      "records": 262,
+      "byType": {
+        "WALKOFF_HIT": 98,
+        "WALKOFF_HOME_RUN": 45,
+        "WALKOFF_SPECIAL_PLAY": 16,
+        "PINCH_HIT_HOME_RUN": 90,
+        "WALKOFF_FORCED_RUN": 6,
+        "WALKOFF_WILD_PITCH": 1,
+        "PINCH_HIT_WALKOFF_HOME_RUN": 2,
+        "WALKOFF_ERROR": 1,
+        "PINCH_HIT_GRAND_SLAM": 3
+      }
+    }
+  },
+  "totalCandidates": 1505,
+  "totalRecords": 1415
+}
