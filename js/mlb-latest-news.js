@@ -2,6 +2,53 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Rockies air it out after 'a dang knife to the heart' of a loss",
+        "summaryJa": "ロッキーズの最新動向をMLB公式が詳報",
+        "slug": "rockies-air-frustration-after-tough-loss-to-orioles",
+        "url": "https://www.mlb.com/news/rockies-air-frustration-after-tough-loss-to-orioles",
+        "contentDate": "2026-09-01T07:01:31.741Z",
+        "teamIds": [
+            115
+        ],
+        "playerIds": [],
+        "gamePks": [
+            824314
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Cowser Wowser! CF's game-ending HR robbery gets O's to .500 for 1st time since April",
+        "summaryJa": "C.カウザー（BAL）、記録達成の最新情報",
+        "slug": "colton-cowser-s-game-ending-home-run-robbery-secures-orioles-win-vs-rockies",
+        "url": "https://www.mlb.com/news/colton-cowser-s-game-ending-home-run-robbery-secures-orioles-win-vs-rockies",
+        "contentDate": "2026-09-01T06:51:00Z",
+        "teamIds": [
+            110
+        ],
+        "playerIds": [
+            681297
+        ],
+        "gamePks": [
+            824314
+        ],
+        "taxonomy": [
+            "apple-news",
+            "game-recap",
+            "home-run-robbery",
+            "defense",
+            "wow"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Watch Top 100 prospect Ayers play at Triple-A on Saturday for FREE",
         "summaryJa": "MLBの最新情報ら注目選手の最新動向",
         "slug": "watch-minor-league-baseball-games-for-free-2026",
@@ -262,31 +309,6 @@
             "game-recap",
             "apple-news",
             "walk-off"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Cowser Wowser! CF's game-ending HR robbery gets O's to .500 for 1st time since April",
-        "summaryJa": "C.カウザー（BAL）、記録達成の最新情報",
-        "slug": "colton-cowser-s-game-ending-home-run-robbery-secures-orioles-win-vs-rockies",
-        "url": "https://www.mlb.com/news/colton-cowser-s-game-ending-home-run-robbery-secures-orioles-win-vs-rockies",
-        "contentDate": "2026-09-01T05:12:13.621Z",
-        "teamIds": [
-            110
-        ],
-        "playerIds": [
-            681297
-        ],
-        "gamePks": [
-            824314
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap",
-            "home-run-robbery"
         ],
         "sourceScopes": [
             "MLB",
@@ -1249,7 +1271,7 @@
         ]
     },
     {
-        "headline": "O's add pop to lineup, claim Robert Jr. off waivers from Mets",
+        "headline": "O's add pop to lineup, claim Robert off waivers from Mets",
         "summaryJa": "L.ロバート Jr.（BAL）の移籍・契約に関する最新情報",
         "slug": "luis-robert-jr-claimed-by-orioles-off-waivers",
         "url": "https://www.mlb.com/news/luis-robert-jr-claimed-by-orioles-off-waivers",
