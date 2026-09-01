@@ -2,6 +2,160 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "How defensive whiz Clarke's return will impact A's",
+        "summaryJa": "D.クラーク（ATH）の負傷状況をMLB公式が詳報",
+        "slug": "denzel-clarke-a-s-return-after-injury",
+        "url": "https://www.mlb.com/news/denzel-clarke-a-s-return-after-injury",
+        "contentDate": "2026-09-01T19:25:00Z",
+        "teamIds": [
+            133
+        ],
+        "playerIds": [
+            672016
+        ],
+        "gamePks": [
+            822855
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Smith returns from IL; Rushing, Wrobleski also activated",
+        "summaryJa": "W.スミス（LAD）の負傷状況をMLB公式が詳報",
+        "slug": "will-smith-dodgers-return-injured-list",
+        "url": "https://www.mlb.com/news/will-smith-dodgers-return-injured-list",
+        "contentDate": "2026-09-01T19:17:00Z",
+        "teamIds": [
+            119
+        ],
+        "playerIds": [
+            669257
+        ],
+        "gamePks": [
+            824232
+        ],
+        "taxonomy": [
+            "apple-news",
+            "injury"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "LA Rams owner Kroenke reaches agreement to buy Angels",
+        "summaryJa": "エンゼルスの最新動向をMLB公式が詳報",
+        "slug": "stan-kroenke-purchases-angels-from-arte-moreno",
+        "url": "https://www.mlb.com/news/stan-kroenke-purchases-angels-from-arte-moreno",
+        "contentDate": "2026-09-01T19:14:00Z",
+        "teamIds": [
+            108
+        ],
+        "playerIds": [],
+        "gamePks": [
+            823984
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "O's to call up OF Kjerstad, LHP De León (No. 7 prospect) as rosters expand (sources)",
+        "summaryJa": "H.カーステッド（BAL）、メジャー昇格・初出場に関する最新情報",
+        "slug": "heston-kjerstad-orioles-callup-rosters-expanding",
+        "url": "https://www.mlb.com/news/heston-kjerstad-orioles-callup-rosters-expanding",
+        "contentDate": "2026-09-01T18:23:00Z",
+        "teamIds": [
+            110
+        ],
+        "playerIds": [
+            677008,
+            801725
+        ],
+        "gamePks": [
+            824313
+        ],
+        "taxonomy": [
+            "apple-news",
+            "transactions",
+            "mlb-top-prospects"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Latest Pirates injuries & transactions",
+        "summaryJa": "パイレーツの負傷状況をMLB公式が詳報",
+        "slug": "pirates-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/pirates-injuries-and-roster-moves",
+        "contentDate": "2026-09-01T18:18:00Z",
+        "teamIds": [
+            134
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Fueled by energy drinks and Italian sausage, this fan completed the NYC 'tripleheader'",
+        "summaryJa": "レッドソックスの最新動向をMLB公式が詳報",
+        "slug": "red-sox-fan-chris-chao-completes-tripleheader-of-mlb-games-in-new-york",
+        "url": "https://www.mlb.com/news/red-sox-fan-chris-chao-completes-tripleheader-of-mlb-games-in-new-york",
+        "contentDate": "2026-09-01T17:28:38.195Z",
+        "teamIds": [
+            111,
+            147,
+            121
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Latest Padres injuries and transactions",
+        "summaryJa": "パドレスの負傷状況をMLB公式が詳報",
+        "slug": "padres-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/padres-injuries-and-roster-moves",
+        "contentDate": "2026-09-01T17:01:00Z",
+        "teamIds": [
+            135
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Padres call up 20-year-old catcher Ethan Salas, their No. 1 prospect",
         "summaryJa": "E.サラス（SD）、メジャー昇格・初出場に関する最新情報",
         "slug": "ethan-salas-promotion-to-padres",
@@ -746,8 +900,8 @@
         ]
     },
     {
-        "headline": "Cowser Wowser! CF's game-ending HR robbery gets O's to .500 for 1st time since April",
-        "summaryJa": "C.カウザー（BAL）、記録達成の最新情報",
+        "headline": "'It’s the best play I’ve ever seen': O's game-ending HR robbery leaves all in awe",
+        "summaryJa": "C.カウザー（BAL）、本塁打で存在感",
         "slug": "colton-cowser-s-game-ending-home-run-robbery-secures-orioles-win-vs-rockies",
         "url": "https://www.mlb.com/news/colton-cowser-s-game-ending-home-run-robbery-secures-orioles-win-vs-rockies",
         "contentDate": "2026-09-01T06:51:00Z",
@@ -962,7 +1116,6 @@
             "game-recap"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1077,7 +1230,6 @@
             "performance"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1193,7 +1345,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1266,25 +1417,6 @@
         "sourceScopes": [
             "MLB",
             "球団公式"
-        ]
-    },
-    {
-        "headline": "Cubs join exclusive list of teams with 9+ homers in game",
-        "summaryJa": "カブス、本塁打で存在感",
-        "slug": "mlb-teams-to-hit-most-home-runs-in-single-game",
-        "url": "https://www.mlb.com/news/mlb-teams-to-hit-most-home-runs-in-single-game",
-        "contentDate": "2026-09-01T04:09:00Z",
-        "teamIds": [
-            112
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "evergreen"
-        ],
-        "sourceScopes": [
-            "MLB"
         ]
     },
     {
@@ -1367,28 +1499,6 @@
         "taxonomy": [
             "apple-news",
             "injury"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "How defensive whiz Clarke's imminent return could impact A's",
-        "summaryJa": "D.クラーク（ATH）の負傷状況をMLB公式が詳報",
-        "slug": "denzel-clarke-a-s-return-after-injury",
-        "url": "https://www.mlb.com/news/denzel-clarke-a-s-return-after-injury",
-        "contentDate": "2026-09-01T03:55:38.183Z",
-        "teamIds": [
-            133
-        ],
-        "playerIds": [
-            672016
-        ],
-        "gamePks": [
-            822855
-        ],
-        "taxonomy": [
-            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
@@ -2395,26 +2505,6 @@
         "taxonomy": [
             "transactions",
             "injury",
-            "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Latest Padres injuries and transactions",
-        "summaryJa": "パドレスの負傷状況をMLB公式が詳報",
-        "slug": "padres-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/padres-injuries-and-roster-moves",
-        "contentDate": "2026-08-31T21:17:00Z",
-        "teamIds": [
-            135
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
             "exclude-from-personalization"
         ],
         "sourceScopes": [
@@ -4072,29 +4162,6 @@
         ]
     },
     {
-        "headline": "Smith set to return Tuesday, bringing boost to scuffling Dodgers",
-        "summaryJa": "W.スミス（LAD）の負傷状況をMLB公式が詳報",
-        "slug": "will-smith-dodgers-return-injured-list",
-        "url": "https://www.mlb.com/news/will-smith-dodgers-return-injured-list",
-        "contentDate": "2026-08-30T17:19:15.188Z",
-        "teamIds": [
-            119
-        ],
-        "playerIds": [
-            669257
-        ],
-        "gamePks": [
-            824232
-        ],
-        "taxonomy": [
-            "apple-news",
-            "injury"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "ROY candidate Wetherholt placed on IL with right wrist tendinitis",
         "summaryJa": "J.ウェザーホルト（STL）の負傷状況をMLB公式が詳報",
         "slug": "jj-wetherholt-placed-on-injured-list",
@@ -5576,26 +5643,6 @@
         ]
     },
     {
-        "headline": "Latest Pirates injuries & transactions",
-        "summaryJa": "パイレーツの負傷状況をMLB公式が詳報",
-        "slug": "pirates-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/pirates-injuries-and-roster-moves",
-        "contentDate": "2026-08-29T17:38:00Z",
-        "teamIds": [
-            134
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Secret to Norby's hot start with Rox? A simple mantra: 'Don't think'",
         "summaryJa": "C.ノービー（COL）の最新動向をMLB公式が詳報",
         "slug": "connor-norby-s-hot-start-with-rockies-powered-by-simple-mindset",
@@ -6950,25 +6997,6 @@
             "apple-news",
             "mlb-top-prospects",
             "mlb-debut"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Rivalry renewed as Red Sox, Yankees meet with October stakes",
-        "summaryJa": "ヤンキースの最新動向をMLB公式が詳報",
-        "slug": "red-sox-yankees-preview-august-2026",
-        "url": "https://www.mlb.com/news/red-sox-yankees-preview-august-2026",
-        "contentDate": "2026-08-28T20:15:00Z",
-        "teamIds": [
-            147,
-            111
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
@@ -9998,29 +10026,6 @@
             "apple-news",
             "mlb-top-prospects",
             "rankings"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Neto nabs AL Player of the Week honors",
-        "summaryJa": "F.タティース Jr.（LAA）の最新動向をMLB公式が詳報",
-        "slug": "zach-neto-fernando-tatis-jr-named-players-of-the-week",
-        "url": "https://www.mlb.com/news/zach-neto-fernando-tatis-jr-named-players-of-the-week",
-        "contentDate": "2026-08-24T20:41:32.981Z",
-        "teamIds": [
-            108,
-            135
-        ],
-        "playerIds": [
-            665487,
-            687263
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "players-of-the-week",
-            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
