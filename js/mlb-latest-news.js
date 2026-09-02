@@ -2,6 +2,128 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "4 numbers that tell the story of Cards' wild, historic night in LA",
+        "summaryJa": "T.サジェイシー（STL）の最新動向をMLB公式が詳報",
+        "slug": "numbers-behind-cardinals-all-time-offensive-game-at-dodger-stadium",
+        "url": "https://www.mlb.com/news/numbers-behind-cardinals-all-time-offensive-game-at-dodger-stadium",
+        "contentDate": "2026-09-02T07:34:58.666Z",
+        "teamIds": [
+            138
+        ],
+        "playerIds": [
+            695336
+        ],
+        "gamePks": [
+            823908
+        ],
+        "taxonomy": [
+            "game-recap",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Latest Cardinals injuries & transactions",
+        "summaryJa": "カージナルスの負傷状況をMLB公式が詳報",
+        "slug": "cardinals-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/cardinals-injuries-and-roster-moves",
+        "contentDate": "2026-09-02T07:16:00Z",
+        "teamIds": [
+            138
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "'Like I was dreaming about': Bernal sparks Cards in MLB debut",
+        "summaryJa": "L.バナール（STL）、メジャー昇格・初出場に関する最新情報",
+        "slug": "cardinals-prospect-leo-bernal-promoted-to-majors",
+        "url": "https://www.mlb.com/news/cardinals-prospect-leo-bernal-promoted-to-majors",
+        "contentDate": "2026-09-02T06:52:00Z",
+        "teamIds": [
+            138
+        ],
+        "playerIds": [
+            699024,
+            687363,
+            684516,
+            699625
+        ],
+        "gamePks": [
+            823908
+        ],
+        "taxonomy": [
+            "apple-news",
+            "mlb-top-prospects",
+            "transactions",
+            "milestone"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Yanks add on, hold on after Cole battles into 6th",
+        "summaryJa": "G.コール（NYY）、記録達成の最新情報",
+        "slug": "gerrit-cole-starts-against-angels-in-anaheim",
+        "url": "https://www.mlb.com/news/gerrit-cole-starts-against-angels-in-anaheim",
+        "contentDate": "2026-09-02T06:40:00Z",
+        "teamIds": [
+            147
+        ],
+        "playerIds": [
+            543037
+        ],
+        "gamePks": [
+            823984
+        ],
+        "taxonomy": [
+            "apple-news",
+            "game-recap"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Luzardo's gem propels Phils to 6th straight win, sole possession of top NL Wild Card spot",
+        "summaryJa": "J.ルザルド（PHI）、記録達成の最新情報",
+        "slug": "jesus-luzardo-continues-hot-stretch-with-win-over-d-backs",
+        "url": "https://www.mlb.com/news/jesus-luzardo-continues-hot-stretch-with-win-over-d-backs",
+        "contentDate": "2026-09-02T06:18:00Z",
+        "teamIds": [
+            143
+        ],
+        "playerIds": [
+            666200
+        ],
+        "gamePks": [
+            825038
+        ],
+        "taxonomy": [
+            "apple-news",
+            "game-recap",
+            "payoff-pitch"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Carroll doesn't expect to be sidelined by low back discomfort",
         "summaryJa": "C.キャロル（AZ）の負傷状況をMLB公式が詳報",
         "slug": "corbin-carroll-playing-through-low-back-discomfort",
@@ -37,7 +159,7 @@
             669257
         ],
         "gamePks": [
-            824232
+            823908
         ],
         "taxonomy": [
             "apple-news",
@@ -290,36 +412,6 @@
         ]
     },
     {
-        "headline": "Bernal a spark in MLB debut as Cards outlast Dodgers",
-        "summaryJa": "L.バナール（STL）、メジャー昇格・初出場に関する最新情報",
-        "slug": "cardinals-prospect-leo-bernal-promoted-to-majors",
-        "url": "https://www.mlb.com/news/cardinals-prospect-leo-bernal-promoted-to-majors",
-        "contentDate": "2026-09-02T05:05:00Z",
-        "teamIds": [
-            138
-        ],
-        "playerIds": [
-            699024,
-            687363,
-            684516,
-            699625
-        ],
-        "gamePks": [
-            823908
-        ],
-        "taxonomy": [
-            "apple-news",
-            "mlb-top-prospects",
-            "transactions",
-            "milestone",
-            "game-recap"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Naylor, Romero added with roster expansion: What Naylor's addition could mean",
         "summaryJa": "B.ネイラー（MIL）の最新動向をMLB公式が詳報",
         "slug": "brewers-add-bo-naylor-jojo-romero-to-roster",
@@ -451,54 +543,6 @@
         ],
         "taxonomy": [
             "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Yanks hold on vs. Angels despite Cole's abrupt exit",
-        "summaryJa": "G.コール（NYY）の最新動向をMLB公式が詳報",
-        "slug": "gerrit-cole-starts-against-angels-in-anaheim",
-        "url": "https://www.mlb.com/news/gerrit-cole-starts-against-angels-in-anaheim",
-        "contentDate": "2026-09-02T04:36:00Z",
-        "teamIds": [
-            147
-        ],
-        "playerIds": [
-            543037
-        ],
-        "gamePks": [
-            823984
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Luzardo's gem, hot bats propel Phillies to sole possession of top NL Wild Card spot",
-        "summaryJa": "J.ルザルド（PHI）、勝利を呼び込む活躍",
-        "slug": "jesus-luzardo-continues-hot-stretch-with-win-over-d-backs",
-        "url": "https://www.mlb.com/news/jesus-luzardo-continues-hot-stretch-with-win-over-d-backs",
-        "contentDate": "2026-09-02T04:35:50.663Z",
-        "teamIds": [
-            143
-        ],
-        "playerIds": [
-            666200
-        ],
-        "gamePks": [
-            825038
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap"
         ],
         "sourceScopes": [
             "MLB",
@@ -887,7 +931,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1197,7 +1240,9 @@
             608331,
             701542
         ],
-        "gamePks": [],
+        "gamePks": [
+            823984
+        ],
         "taxonomy": [
             "apple-news"
         ],
@@ -1266,7 +1311,8 @@
             693645
         ],
         "gamePks": [
-            823983
+            823983,
+            823984
         ],
         "taxonomy": [
             "apple-news"
@@ -1490,26 +1536,6 @@
         "taxonomy": [
             "apple-news",
             "transactions"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Latest Cardinals injuries & transactions",
-        "summaryJa": "カージナルスの負傷状況をMLB公式が詳報",
-        "slug": "cardinals-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/cardinals-injuries-and-roster-moves",
-        "contentDate": "2026-09-02T01:04:00Z",
-        "teamIds": [
-            138
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
         ],
         "sourceScopes": [
             "球団公式"
@@ -9630,27 +9656,6 @@
         ],
         "taxonomy": [
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Phillies' No. 5 prospect Rincon breaks out using both power and speed at Double-A",
-        "summaryJa": "B.リンカン（PHI）ら注目選手の最新動向",
-        "slug": "phillies-prospect-bryan-rincon-breakout-season-double-a",
-        "url": "https://www.mlb.com/news/phillies-prospect-bryan-rincon-breakout-season-double-a",
-        "contentDate": "2026-08-27T01:44:15.699Z",
-        "teamIds": [
-            143
-        ],
-        "playerIds": [
-            804858
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "mlb-top-prospects"
         ],
         "sourceScopes": [
             "球団公式"
