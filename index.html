@@ -6048,7 +6048,7 @@
                                         : isPassedBall
                                             ? "PB"
                                             : runnerErrorFieldNumber
-                                                ? `（${order}）E${runnerErrorFieldNumber}`
+                                                ? `E${runnerErrorFieldNumber}`
                                                 : `（${order}）`;
                             const baseOrder = ["home", "1B", "2B", "3B", "score"];
                             let fromBase = normalizeBase(origin);
@@ -6075,6 +6075,8 @@
                                     target.toSecond = "";
                                     target.toThird = "";
                                     target.toHome = "";
+                                } else if (runnerErrorFieldNumber && fromIndex === 2 && toIndex === 3) {
+                                    target.runnerAdvancePath = "error-second-third";
                                 } else if (toIndex - fromIndex > 1) {
                                     if (fromIndex < 2 && toIndex > 2) target.toSecond = "";
                                     if (fromIndex < 3 && toIndex > 3) target.toThird = "";
