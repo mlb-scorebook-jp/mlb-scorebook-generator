@@ -5383,6 +5383,34 @@
                 return String(eventDescription || play?.result?.description || "");
             };
 
+            const getRunnerErrorFieldNumber = (play, runner, linkedEventDetails = {}) => {
+                const errorCredit = (runner?.credits ?? []).find((credit) =>
+                    String(credit?.credit ?? "").toLowerCase().includes("error")
+                );
+                const eventTypes = [
+                    runner?.details?.eventType,
+                    linkedEventDetails?.eventType
+                ].map((value) => String(value ?? "").toLowerCase());
+                const hasError = Boolean(errorCredit) || eventTypes.some((type) =>
+                    type === "error" || type.includes("throwing_error") ||
+                    type.includes("fielding_error")
+                );
+                if (!hasError) return "";
+
+                const credited = String(
+                    errorCredit?.position?.code ??
+                    errorCredit?.position?.abbreviation ?? ""
+                ).replace(/\D/g, "");
+                if (credited) return credited;
+
+                const description = [
+                    runner?.details?.event,
+                    linkedEventDetails?.description,
+                    getRunnerEventDescription(play, runner)
+                ].filter(Boolean).join(" ");
+                return getDescriptionFieldNumber({ result: { description } }) || "?";
+            };
+
             const isCaughtStealingRunner = (play, runner) => {
                 const playIndex = Number(runner?.details?.playIndex);
                 const linkedDetails = Number.isInteger(playIndex)
@@ -6001,6 +6029,11 @@
                                 linkedEventType.includes("passed_ball") ||
                                 runnerEventDescription.includes("passed ball") ||
                                 linkedEventDescription.includes("passed ball");
+                            const runnerErrorFieldNumber = getRunnerErrorFieldNumber(
+                                play,
+                                runner,
+                                linkedEventDetails
+                            );
                             const pickoffText = `${runnerEventDescription} ${linkedEventDescription}`;
                             const isPickoffError = [runnerEventType, linkedEventType]
                                 .some((type) => type.includes("pickoff") && type.includes("error")) ||
@@ -6014,7 +6047,9 @@
                                         ? "WP"
                                         : isPassedBall
                                             ? "PB"
-                                            : `（${order}）`;
+                                            : runnerErrorFieldNumber
+                                                ? `（${order}）E${runnerErrorFieldNumber}`
+                                                : `（${order}）`;
                             const baseOrder = ["home", "1B", "2B", "3B", "score"];
                             let fromBase = normalizeBase(origin);
                             let toBase = normalizeBase(end);
