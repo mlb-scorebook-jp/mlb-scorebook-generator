@@ -5941,7 +5941,7 @@
                             : activeRunner.get(Number(runnerId)) || fallbackTarget;
                         if (!target) return;
 
-                        const origin = movement?.originBase || movement?.start ||
+                        const origin = movement?.start || movement?.originBase ||
                             (isCurrentBatter ? "home" : "");
                         const end = movement?.end;
                         const runnerEventType = String(
