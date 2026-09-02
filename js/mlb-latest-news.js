@@ -2,6 +2,88 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Can Marlins make a September playoff push?",
+        "summaryJa": "マーリンズの最新動向をMLB公式が詳報",
+        "slug": "marlins-playoff-picture-september-2026",
+        "url": "https://www.mlb.com/news/marlins-playoff-picture-september-2026",
+        "contentDate": "2026-09-02T14:58:12.085Z",
+        "teamIds": [
+            146
+        ],
+        "playerIds": [],
+        "gamePks": [
+            824068
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Latest Nationals injuries & transactions",
+        "summaryJa": "ナショナルズの負傷状況をMLB公式が詳報",
+        "slug": "nationals-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/nationals-injuries-and-roster-moves",
+        "contentDate": "2026-09-02T14:29:00Z",
+        "teamIds": [
+            120
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Walcott for 3! Rangers' top prospect homers in 3rd consecutive game",
+        "summaryJa": "S.ウォルコット（TEX）、記録達成の最新情報",
+        "slug": "sebastian-walcott-home-run-streak",
+        "url": "https://www.mlb.com/news/sebastian-walcott-home-run-streak",
+        "contentDate": "2026-09-02T14:16:29.762Z",
+        "teamIds": [
+            140
+        ],
+        "playerIds": [
+            806964
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "mlb-top-prospects"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Is this 97 mph-pumping 18-year-old the next Red Sox top pitching prospect?",
+        "summaryJa": "Sadbiel Delzine（BOS）ら注目選手の最新動向",
+        "slug": "red-sox-prospect-sadbiel-delzine-2026-breakout",
+        "url": "https://www.mlb.com/news/red-sox-prospect-sadbiel-delzine-2026-breakout",
+        "contentDate": "2026-09-02T14:06:16.645Z",
+        "teamIds": [
+            111
+        ],
+        "playerIds": [
+            829094
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "mlb-top-prospects"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "4 numbers that tell the story of Cards' wild, historic night in LA",
         "summaryJa": "T.サジェイシー（STL）の最新動向をMLB公式が詳報",
         "slug": "numbers-behind-cardinals-all-time-offensive-game-at-dodger-stadium",
@@ -386,7 +468,7 @@
         ]
     },
     {
-        "headline": "Morejon's rare misstep, missed bunts spoil Tatis' oppo-taco 2-homer game",
+        "headline": "Morejon's rare misstep, missed opportunities spoil Tatis' 2-homer game",
         "summaryJa": "A.モレホーン（SD）、本塁打で存在感",
         "slug": "fernando-tatis-jr-homers-twice-in-padres-loss-to-reds",
         "url": "https://www.mlb.com/news/fernando-tatis-jr-homers-twice-in-padres-loss-to-reds",
@@ -1202,26 +1284,6 @@
         "taxonomy": [
             "apple-news",
             "game-recap-losing"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Latest Nationals injuries & transactions",
-        "summaryJa": "ナショナルズの負傷状況をMLB公式が詳報",
-        "slug": "nationals-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/nationals-injuries-and-roster-moves",
-        "contentDate": "2026-09-02T02:51:00Z",
-        "teamIds": [
-            120
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
         ],
         "sourceScopes": [
             "球団公式"
@@ -5909,27 +5971,6 @@
         ]
     },
     {
-        "headline": "Red Sox can't contain Yanks as Bello runs into first mishap in relief",
-        "summaryJa": "レッドソックスの最新動向をMLB公式が詳報",
-        "slug": "red-sox-drop-nightcap-of-doubleheader-to-yankees",
-        "url": "https://www.mlb.com/news/red-sox-drop-nightcap-of-doubleheader-to-yankees",
-        "contentDate": "2026-08-30T04:32:00Z",
-        "teamIds": [
-            111
-        ],
-        "playerIds": [],
-        "gamePks": [
-            823501
-        ],
-        "taxonomy": [
-            "apple-news",
-            "takeaways"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Yanks back Fried's solid return with 13 singles to split DH vs. Red Sox",
         "summaryJa": "M.フリード（NYY）、復帰へ向けた最新状況",
         "slug": "max-fried-returns-in-yankees-win-over-red-sox",
@@ -10143,28 +10184,6 @@
         ]
     },
     {
-        "headline": "'Tonight's on me': deGrom allows most runs since 2017",
-        "summaryJa": "J.デグローム（TEX）の最新動向をMLB公式が詳報",
-        "slug": "jacob-degrom-allows-eight-runs-against-white-sox",
-        "url": "https://www.mlb.com/news/jacob-degrom-allows-eight-runs-against-white-sox",
-        "contentDate": "2026-08-26T05:04:19.224Z",
-        "teamIds": [
-            140
-        ],
-        "playerIds": [
-            594798
-        ],
-        "gamePks": [
-            824556
-        ],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Goodman homers in return from IL as Rockies snap losing streak",
         "summaryJa": "H.グッドマン（COL）の負傷状況をMLB公式が詳報",
         "slug": "hunter-goodman-returns-from-injured-list",
@@ -10232,24 +10251,6 @@
         "taxonomy": [
             "apple-news",
             "game-recap"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "These 10 farm systems have the best pitching prospects",
-        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
-        "slug": "top-10-organizations-based-on-pitching-prospects-2026",
-        "url": "https://www.mlb.com/news/top-10-organizations-based-on-pitching-prospects-2026",
-        "contentDate": "2026-08-25T23:30:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "mlb-top-prospects",
-            "apple-news",
-            "rankings"
         ],
         "sourceScopes": [
             "球団公式"
