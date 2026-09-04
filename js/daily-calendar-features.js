@@ -113,7 +113,9 @@
         const card = document.createElement("article"); card.className = "daily-history-card";
         const year = document.createElement("strong"); year.textContent = `${text(event.date).replaceAll("-", "/")}（${number(date.slice(0, 4)) - number(text(event.date).slice(0, 4))}年前）`;
         const summary = document.createElement("p");
-        const subject = event.playerName || event.teamCode || "MLB";
+        const subject = event.playerName
+            ? `${event.playerName}${event.teamCode ? `（${event.teamCode}）` : ""}`
+            : event.teamCode || "MLB";
         summary.textContent = `${subject}　${event.summary}`;
         card.append(year, summary);
         if (event.gamedayUrl) {
