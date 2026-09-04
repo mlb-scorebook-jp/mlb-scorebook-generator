@@ -597,7 +597,11 @@
             if (record.recordType === "SHUTOUT" && uniqueRecords.some((other) =>
                 ["NO_WALK_SHUTOUT", "MADDUX"].includes(other.recordType) && samePlayer(record, other))) return false;
             const moreSpecific = {
-                LEADOFF_HOME_RUN: ["LEADOFF_FIRST_PITCH_HR"],
+                LEADOFF_HOME_RUN: [
+                    "LEADOFF_FIRST_PITCH_HR",
+                    "SEASON_LEADOFF_HOME_RUNS",
+                    "FRANCHISE_LEADOFF_HOME_RUN_RANK"
+                ],
                 TRIPLE_PLAY: ["UNASSISTED_TRIPLE_PLAY"],
                 PINCH_HIT_HOME_RUN: ["PINCH_HIT_GRAND_SLAM", "PINCH_HIT_WALKOFF_HOME_RUN", "PINCH_HIT_WALKOFF_GRAND_SLAM"],
                 PINCH_HIT_GRAND_SLAM: ["PINCH_HIT_WALKOFF_GRAND_SLAM"],

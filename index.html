@@ -6029,6 +6029,10 @@
                                 linkedEventType.includes("passed_ball") ||
                                 runnerEventDescription.includes("passed ball") ||
                                 linkedEventDescription.includes("passed ball");
+                            const isBalk = runnerEventType.includes("balk") ||
+                                linkedEventType.includes("balk") ||
+                                runnerEventDescription.includes("balk") ||
+                                linkedEventDescription.includes("balk");
                             const runnerErrorFieldNumber = getRunnerErrorFieldNumber(
                                 play,
                                 runner,
@@ -6047,9 +6051,11 @@
                                         ? "WP"
                                         : isPassedBall
                                             ? "PB"
-                                            : runnerErrorFieldNumber
-                                                ? `E${runnerErrorFieldNumber}`
-                                                : `（${order}）`;
+                                            : isBalk
+                                                ? "BK"
+                                                : runnerErrorFieldNumber
+                                                    ? `E${runnerErrorFieldNumber}`
+                                                    : `（${order}）`;
                             const baseOrder = ["home", "1B", "2B", "3B", "score"];
                             let fromBase = normalizeBase(origin);
                             let toBase = normalizeBase(end);
