@@ -1,6 +1,6 @@
 "use strict";
 
-// 260828 MLB 2026読み表（新）までに追加・修正された読み。
+// 260901ver2 MLB 2026読み表（新）までに追加・修正された読み。
 Object.assign(NHK_PLAYER_NAMES, {
     andrewsears: "A.シアーズ",
     masanorimurakami: "村上 雅則",
@@ -12,6 +12,7 @@ Object.assign(NHK_PLAYER_NAMES, {
     alejandroosuna: "A.オズーナ",
     anthonyeyanson: "A.アイアンソン",
     billyamick: "B.アミック",
+    bjmurrayjr: "B.マレー Jr.",
     braydonfisher: "B.フィッシャー",
     brettcallahan: "B.キャラハン",
     brandanbidois: "B.ビドワ",
@@ -20,6 +21,7 @@ Object.assign(NHK_PLAYER_NAMES, {
     craigcounsell: "C.カウンセル",
     drewcavanaugh: "D.キャバノー",
     enriquehernandez: "E.ヘルナンデス",
+    jackweisenburger: "J.ワイゼンバーガー",
     jadynfielder: "J.フィルダー",
     jonahcox: "J.コックス",
     joseaferrer: "J.フェレーア",
