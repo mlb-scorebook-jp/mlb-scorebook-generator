@@ -2,6 +2,160 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Santos' season highlighted by Triple-A promotion after bullpen move",
+        "summaryJa": "A.サントスⅡ（HOU）、メジャー昇格・初出場に関する最新情報",
+        "slug": "alex-santos-ii-thriving-in-bullpen-role-this-season",
+        "url": "https://www.mlb.com/news/alex-santos-ii-thriving-in-bullpen-role-this-season",
+        "contentDate": "2026-09-04T13:32:16.101Z",
+        "teamIds": [
+            117
+        ],
+        "playerIds": [
+            691012
+        ],
+        "gamePks": [
+            824146
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "DeLauter, Messick worthy contenders in AL Rookie of the Year race",
+        "summaryJa": "P.メシック（CLE）の最新動向をMLB公式が詳報",
+        "slug": "parker-messick-chase-delauter-al-roy-award-candidates",
+        "url": "https://www.mlb.com/news/parker-messick-chase-delauter-al-roy-award-candidates",
+        "contentDate": "2026-09-04T13:26:16.562Z",
+        "teamIds": [
+            114
+        ],
+        "playerIds": [
+            800048,
+            800050
+        ],
+        "gamePks": [
+            824387
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Reds' top prospect Duno having no trouble with promotion to Double-A",
+        "summaryJa": "Alfredo Duno（CIN）、メジャー昇格・初出場に関する最新情報",
+        "slug": "alfredo-duno-excelling-since-promotion-to-double-a-chattanooga",
+        "url": "https://www.mlb.com/news/alfredo-duno-excelling-since-promotion-to-double-a-chattanooga",
+        "contentDate": "2026-09-04T13:18:40.465Z",
+        "teamIds": [
+            113
+        ],
+        "playerIds": [
+            806957
+        ],
+        "gamePks": [
+            824471
+        ],
+        "taxonomy": [
+            "apple-news",
+            "mlb-top-prospects"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Huge postseason implications at stake in Braves-Phillies series",
+        "summaryJa": "ブレーブスの最新動向をMLB公式が詳報",
+        "slug": "chris-sale-cristopher-sanchez-open-crucial-braves-phillies-series",
+        "url": "https://www.mlb.com/news/chris-sale-cristopher-sanchez-open-crucial-braves-phillies-series",
+        "contentDate": "2026-09-04T13:16:44.008Z",
+        "teamIds": [
+            144,
+            143
+        ],
+        "playerIds": [],
+        "gamePks": [
+            823418
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Top Angels prospect Nimmala goes oppo for 2nd homer in 3 games",
+        "summaryJa": "A.ニマーラ（LAA）、記録達成の最新情報",
+        "slug": "arjun-nimmala-hits-2nd-home-run-in-3-games",
+        "url": "https://www.mlb.com/news/arjun-nimmala-hits-2nd-home-run-in-3-games",
+        "contentDate": "2026-09-04T13:01:14.681Z",
+        "teamIds": [
+            108
+        ],
+        "playerIds": [
+            805796
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "mlb-top-prospects"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Tony Beasley has an inspiring story to tell — and sing — this weekend",
+        "summaryJa": "パイレーツの最新動向をMLB公式が詳報",
+        "slug": "tony-beasley-has-an-inspiring-story-to-tell-and-sing-this-weekend",
+        "url": "https://www.mlb.com/news/tony-beasley-has-an-inspiring-story-to-tell-and-sing-this-weekend",
+        "contentDate": "2026-09-04T12:12:00.733Z",
+        "teamIds": [
+            134
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "pit-inside-the-pirates"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Cease's durability continues to define his dominant year",
+        "summaryJa": "D.シース（TOR）の最新動向をMLB公式が詳報",
+        "slug": "dylan-cease-continues-stay-in-cy-young-competition",
+        "url": "https://www.mlb.com/news/dylan-cease-continues-stay-in-cy-young-competition",
+        "contentDate": "2026-09-04T12:10:00Z",
+        "teamIds": [
+            141
+        ],
+        "playerIds": [
+            656302
+        ],
+        "gamePks": [
+            824067
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Skubal allows 10 hits -- all singles -- but limits damage to keep LA in the game",
         "summaryJa": "T.スクーバル（LAD）の最新動向をMLB公式が詳報",
         "slug": "tarik-skubal-starts-against-cardinals-in-finale",
@@ -666,7 +820,6 @@
             "mlb-top-prospects"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -796,7 +949,6 @@
             "mlb-top-prospects"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -860,7 +1012,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1406,7 +1557,6 @@
             "injury"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1600,26 +1750,6 @@
         "taxonomy": [
             "apple-news",
             "mlb-top-prospects"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Cease's durability continues to define his dominant year",
-        "summaryJa": "D.シース（TOR）の最新動向をMLB公式が詳報",
-        "slug": "dylan-cease-continues-stay-in-cy-young-competition",
-        "url": "https://www.mlb.com/news/dylan-cease-continues-stay-in-cy-young-competition",
-        "contentDate": "2026-09-03T14:51:54.706Z",
-        "teamIds": [
-            141
-        ],
-        "playerIds": [
-            656302
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
@@ -8115,29 +8245,6 @@
         ]
     },
     {
-        "headline": "Sánchez reaches 200 K's for second straight season",
-        "summaryJa": "C.サンチェス（PHI）の最新動向をMLB公式が詳報",
-        "slug": "cristopher-sanchez-starts-vs-angels",
-        "url": "https://www.mlb.com/news/cristopher-sanchez-starts-vs-angels",
-        "contentDate": "2026-08-30T06:05:00Z",
-        "teamIds": [
-            143
-        ],
-        "playerIds": [
-            650911
-        ],
-        "gamePks": [
-            823986
-        ],
-        "taxonomy": [
-            "apple-news",
-            "payoff-pitch"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Kelly, Nootbaar get on track, but D-backs fall short of goal in San Francisco",
         "summaryJa": "M.ケリー（AZ）の最新動向をMLB公式が詳報",
         "slug": "diamondbacks-split-doubleheader-against-giants",
@@ -8683,28 +8790,6 @@
         ]
     },
     {
-        "headline": "Stewart in rare Reds company with 30-homer, 100-RBI rookie campaign",
-        "summaryJa": "S.スチュワート（CIN）、記録達成の最新情報",
-        "slug": "sal-stewart-hits-30th-homer-in-reds-game-vs-cubs",
-        "url": "https://www.mlb.com/news/sal-stewart-hits-30th-homer-in-reds-game-vs-cubs",
-        "contentDate": "2026-08-29T22:20:00Z",
-        "teamIds": [
-            113
-        ],
-        "playerIds": [
-            701398
-        ],
-        "gamePks": [
-            824637
-        ],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "White Sox win on 3 hits -- all by Benintendi, who beats up on Twins again",
         "summaryJa": "A.ベニンテンディ（CWS）、勝利を呼び込む活躍",
         "slug": "andrew-benintendi-beats-up-on-twins-again-to-lead-white-sox",
@@ -8722,28 +8807,6 @@
         "taxonomy": [
             "apple-news",
             "game-recap"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Bazzana gives Australian Little Leaguers up-close look at path from Down Under to the bigs",
-        "summaryJa": "T.バザーナ（CLE）を巡る注目点をMLB公式が分析",
-        "slug": "travis-bazzana-hosts-australian-little-leaguers-progressive-field",
-        "url": "https://www.mlb.com/news/travis-bazzana-hosts-australian-little-leaguers-progressive-field",
-        "contentDate": "2026-08-29T21:13:35.238Z",
-        "teamIds": [
-            114
-        ],
-        "playerIds": [
-            683953
-        ],
-        "gamePks": [
-            824392
-        ],
-        "taxonomy": [
-            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
@@ -8786,28 +8849,6 @@
         ],
         "gamePks": [
             822690
-        ],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Schwellenbach frustrated by need for elbow surgery after setbacks in rehab",
-        "summaryJa": "S.シュウェレンバック（ATL）、復帰へ向けた最新状況",
-        "slug": "spencer-schwellenbach-on-setbacks-that-led-to-another-elbow-surgery",
-        "url": "https://www.mlb.com/news/spencer-schwellenbach-on-setbacks-that-led-to-another-elbow-surgery",
-        "contentDate": "2026-08-29T20:04:58.429Z",
-        "teamIds": [
-            144
-        ],
-        "playerIds": [
-            680885
-        ],
-        "gamePks": [
-            824874
         ],
         "taxonomy": [
             "apple-news"
@@ -9430,26 +9471,6 @@
         ],
         "gamePks": [
             823744
-        ],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Strom returns to Astros as pitching consultant for rest of '26",
-        "summaryJa": "アストロズ、復帰へ向けた最新状況",
-        "slug": "brent-strom-returning-to-astros-as-pitching-consultant",
-        "url": "https://www.mlb.com/news/brent-strom-returning-to-astros-as-pitching-consultant",
-        "contentDate": "2026-08-28T14:57:00Z",
-        "teamIds": [
-            117
-        ],
-        "playerIds": [],
-        "gamePks": [
-            823503
         ],
         "taxonomy": [
             "apple-news"
