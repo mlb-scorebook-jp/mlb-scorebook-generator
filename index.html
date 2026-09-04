@@ -584,6 +584,7 @@
                 attendanceNote: "",
                 streakNotes: { away: [], home: [] },
                 defensivePositionHistory: { away: {}, home: {} },
+                activeRosterPeople: { away: [], home: [] },
                 away: {
                     abbreviation: "AWAY",
                     name: "先攻チーム",
@@ -1135,6 +1136,7 @@
             });
 
             const getScorebookPeople = () => ["away", "home"].flatMap((side) => [
+                ...(state.activeRosterPeople?.[side] ?? []),
                 ...(state[side]?.players ?? []).flat().map((player) => player?.person),
                 ...(state[side]?.pitchers ?? []).map((player) => player?.person)
             ]).filter(Boolean);
@@ -2494,6 +2496,24 @@
                 }).catch(() => []);
                 activeRosterCache.set(cacheKey, request);
                 return request;
+            };
+
+            const fetchScorebookActiveRosterPeople = async (data) => {
+                const officialDate = String(data?.gameData?.datetime?.officialDate ?? "");
+                const entries = await Promise.all(["away", "home"].map(async (side) => {
+                    const teamId = Number(data?.gameData?.teams?.[side]?.id);
+                    if (!teamId || !officialDate) return [side, []];
+                    const roster = await fetchActiveRoster(teamId, officialDate);
+                    const people = roster.map((entry) => {
+                        const playerId = Number(entry?.person?.id);
+                        return {
+                            ...(entry?.person ?? {}),
+                            ...(data?.gameData?.players?.[`ID${playerId}`] ?? {})
+                        };
+                    }).filter((person) => Number(person?.id));
+                    return [side, people];
+                }));
+                return Object.fromEntries(entries);
             };
 
             const fetchTeamRegularSeasonSchedule = async (teamId, season, officialDate) => {
@@ -9612,11 +9632,13 @@
                     state.defensivePositionHistory = buildDefensivePositionHistory(data);
                     state.away = getTeamState(data, "away");
                     state.home = getTeamState(data, "home");
+                    state.activeRosterPeople = { away: [], home: [] };
                     const supplementalResults = await Promise.allSettled([
                         fetchStreakNotes(data, gamePk),
                         fetchHeadToHeadRecord(data, gamePk),
                         fetchSeasonAttendanceNote(data, gamePk),
-                        fetchGameScheduleMetadata(gamePk)
+                        fetchGameScheduleMetadata(gamePk),
+                        fetchScorebookActiveRosterPeople(data)
                     ]);
                     supplementalResults.forEach((result) => {
                         if (result.status === "rejected") console.error(result.reason);
@@ -9640,6 +9662,9 @@
                         state.away = getTeamState(data, "away");
                         state.home = getTeamState(data, "home");
                     }
+                    state.activeRosterPeople = supplementalResults[4].status === "fulfilled"
+                        ? supplementalResults[4].value
+                        : { away: [], home: [] };
 
                     updateSidebar();
                     render();
@@ -9724,6 +9749,7 @@
                 state.headToHead = snapshot.headToHead ?? null;
                 state.attendanceNote = snapshot.attendanceNote ?? "";
                 state.streakNotes = snapshot.streakNotes ?? { away: [], home: [] };
+                state.activeRosterPeople = snapshot.activeRosterPeople ?? { away: [], home: [] };
                 state.streakNotes = mergeHistoricalRecordNotes(
                     state.streakNotes,
                     snapshot.gameData,
@@ -9802,6 +9828,7 @@
                     headToHead: state.headToHead,
                     attendanceNote: state.attendanceNote,
                     streakNotes: state.streakNotes,
+                    activeRosterPeople: state.activeRosterPeople,
                     defensivePositionHistory: state.defensivePositionHistory,
                     gameStatus: getStatusText(state.gameData)
                 };
@@ -9945,6 +9972,7 @@
                     inningColumns: state.inningColumns,
                     away: state.away,
                     home: state.home,
+                    activeRosterPeople: state.activeRosterPeople,
                     gameData: state.gameData
                 };
 
