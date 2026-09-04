@@ -2,6 +2,202 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Nothing but gratitude -- and a pair of home runs -- in Rutschman's Camden return",
+        "summaryJa": "A.ラッチマン（BAL）、復帰へ向けた最新状況",
+        "slug": "adley-rutschman-baltimore-return-orioles-trade-red-sox",
+        "url": "https://www.mlb.com/news/adley-rutschman-baltimore-return-orioles-trade-red-sox",
+        "contentDate": "2026-09-04T00:51:00Z",
+        "teamIds": [
+            110
+        ],
+        "playerIds": [
+            668939
+        ],
+        "gamePks": [
+            824796
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "King of the hill: Blue Jays' 20-year-old overpowering hitters as youngest pitcher on Double-A circuit",
+        "summaryJa": "Johnny King（TOR）ら注目選手の最新動向",
+        "slug": "blue-jays-prospect-johnny-king-overpowering-double-a-hitters",
+        "url": "https://www.mlb.com/news/blue-jays-prospect-johnny-king-overpowering-double-a-hitters",
+        "contentDate": "2026-09-04T00:45:20.428Z",
+        "teamIds": [
+            141
+        ],
+        "playerIds": [
+            803516
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "mlb-top-prospects"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Latest Mariners injuries and transactions",
+        "summaryJa": "マリナーズの負傷状況をMLB公式が詳報",
+        "slug": "mariners-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/mariners-injuries-and-roster-moves",
+        "contentDate": "2026-09-04T00:33:00Z",
+        "teamIds": [
+            136
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Rafaela sidelined by quad injury, with timetable uncertain",
+        "summaryJa": "C.ラファエラ（BOS）の負傷状況をMLB公式が詳報",
+        "slug": "ceddanne-rafaela-right-quad-injury-red-sox",
+        "url": "https://www.mlb.com/news/ceddanne-rafaela-right-quad-injury-red-sox",
+        "contentDate": "2026-09-04T00:28:00Z",
+        "teamIds": [
+            111
+        ],
+        "playerIds": [
+            678882
+        ],
+        "gamePks": [
+            824796
+        ],
+        "taxonomy": [
+            "injury",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Cheers, then a homer: Rutschman makes memorable Camden return",
+        "summaryJa": "A.ラッチマン（BOS）、復帰へ向けた最新状況",
+        "slug": "adley-rutschman-returns-for-red-sox-vs-orioles",
+        "url": "https://www.mlb.com/news/adley-rutschman-returns-for-red-sox-vs-orioles",
+        "contentDate": "2026-09-04T00:16:00Z",
+        "teamIds": [
+            111
+        ],
+        "playerIds": [
+            668939
+        ],
+        "gamePks": [
+            824796
+        ],
+        "taxonomy": [
+            "apple-news",
+            "injury"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Brown bears down for 6 strong frames as Astros eye AL's No. 2 seed",
+        "summaryJa": "H.ブラウン（HOU）、勝利を呼び込む活躍",
+        "slug": "hunter-brown-six-strong-innings-astros-beat-white-sox",
+        "url": "https://www.mlb.com/news/hunter-brown-six-strong-innings-astros-beat-white-sox",
+        "contentDate": "2026-09-03T23:54:00Z",
+        "teamIds": [
+            117
+        ],
+        "playerIds": [
+            686613
+        ],
+        "gamePks": [
+            824144
+        ],
+        "taxonomy": [
+            "apple-news",
+            "payoff-pitch",
+            "game-recap"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Watch Top 100 prospects Florentino (PIT), Neyens (HOU) in High-A clash for FREE on Friday",
+        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
+        "slug": "watch-minor-league-baseball-games-for-free-2026",
+        "url": "https://www.mlb.com/news/watch-minor-league-baseball-games-for-free-2026",
+        "contentDate": "2026-09-03T23:34:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "mlb-top-prospects",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Latest Red Sox injuries & transactions",
+        "summaryJa": "レッドソックスの負傷状況をMLB公式が詳報",
+        "slug": "red-sox-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/red-sox-injuries-and-roster-moves",
+        "contentDate": "2026-09-03T23:33:00Z",
+        "teamIds": [
+            111
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "White Sox focus on playoff picture as Murakami, Castillo struggle",
+        "summaryJa": "村上 宗隆（CWS）の最新動向をMLB公式が詳報",
+        "slug": "munetaka-murakami-luis-castillo-white-sox-lose-to-astros",
+        "url": "https://www.mlb.com/news/munetaka-murakami-luis-castillo-white-sox-lose-to-astros",
+        "contentDate": "2026-09-03T23:25:11.964Z",
+        "teamIds": [
+            145
+        ],
+        "playerIds": [
+            808959,
+            622491
+        ],
+        "gamePks": [
+            824144
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Latest O's injuries & transactions",
         "summaryJa": "オリオールズの負傷状況をMLB公式が詳報",
         "slug": "orioles-injuries-and-roster-moves",
@@ -38,28 +234,6 @@
         ],
         "taxonomy": [
             "transactions",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "'Nothing but positive': Rutschman reflects on return to Baltimore",
-        "summaryJa": "A.ラッチマン（BAL）、復帰へ向けた最新状況",
-        "slug": "adley-rutschman-baltimore-return-orioles-trade-red-sox",
-        "url": "https://www.mlb.com/news/adley-rutschman-baltimore-return-orioles-trade-red-sox",
-        "contentDate": "2026-09-03T22:55:44.207Z",
-        "teamIds": [
-            110
-        ],
-        "playerIds": [
-            668939
-        ],
-        "gamePks": [
-            824796
-        ],
-        "taxonomy": [
             "apple-news"
         ],
         "sourceScopes": [
@@ -167,31 +341,6 @@
             "pit-inside-the-pirates"
         ],
         "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Brown bears down for 6 strong frames as Astros eye AL's No. 2 seed",
-        "summaryJa": "H.ブラウン（HOU）、勝利を呼び込む活躍",
-        "slug": "hunter-brown-six-strong-innings-astros-beat-white-sox",
-        "url": "https://www.mlb.com/news/hunter-brown-six-strong-innings-astros-beat-white-sox",
-        "contentDate": "2026-09-03T22:35:00Z",
-        "teamIds": [
-            117
-        ],
-        "playerIds": [
-            686613
-        ],
-        "gamePks": [
-            824144
-        ],
-        "taxonomy": [
-            "apple-news",
-            "payoff-pitch",
-            "game-recap"
-        ],
-        "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -363,30 +512,6 @@
         ]
     },
     {
-        "headline": "Rutschman (elbow) back in Red Sox lineup -- to face Orioles",
-        "summaryJa": "A.ラッチマン（BOS）、復帰へ向けた最新状況",
-        "slug": "adley-rutschman-returns-for-red-sox-vs-orioles",
-        "url": "https://www.mlb.com/news/adley-rutschman-returns-for-red-sox-vs-orioles",
-        "contentDate": "2026-09-03T20:17:40.366Z",
-        "teamIds": [
-            111
-        ],
-        "playerIds": [
-            668939
-        ],
-        "gamePks": [
-            824796
-        ],
-        "taxonomy": [
-            "apple-news",
-            "injury"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Peters' historic run at plate leads to AL Rookie of the Month Award",
         "summaryJa": "T.ピーターズ（CWS）の最新動向をMLB公式が詳報",
         "slug": "tristan-peters-al-rookie-of-the-month-august-2026",
@@ -462,24 +587,6 @@
             823907
         ],
         "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Watch Top 100 prospects Quintero (LAD), Caceres (CLE) in High-A action for FREE tonight",
-        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
-        "slug": "watch-minor-league-baseball-games-for-free-2026",
-        "url": "https://www.mlb.com/news/watch-minor-league-baseball-games-for-free-2026",
-        "contentDate": "2026-09-03T17:58:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "mlb-top-prospects",
             "apple-news"
         ],
         "sourceScopes": [
@@ -2619,26 +2726,6 @@
         ]
     },
     {
-        "headline": "Latest Mariners injuries and transactions",
-        "summaryJa": "マリナーズの負傷状況をMLB公式が詳報",
-        "slug": "mariners-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/mariners-injuries-and-roster-moves",
-        "contentDate": "2026-09-02T19:00:00Z",
-        "teamIds": [
-            136
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "1st hit, 1st homer and 1st ... rock-paper-scissors win? Montes does it ALL in debut",
         "summaryJa": "L.モンテス（SEA）、メジャー昇格・初出場に関する最新情報",
         "slug": "lazaro-montes-rock-paper-scissors-with-randy-arozarena",
@@ -4345,26 +4432,6 @@
         "taxonomy": [
             "apple-news",
             "transactions"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Latest Red Sox injuries & transactions",
-        "summaryJa": "レッドソックスの負傷状況をMLB公式が詳報",
-        "slug": "red-sox-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/red-sox-injuries-and-roster-moves",
-        "contentDate": "2026-09-01T22:56:00Z",
-        "teamIds": [
-            111
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
         ],
         "sourceScopes": [
             "球団公式"
@@ -6113,28 +6180,6 @@
             "apple-news",
             "injury",
             "transactions"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Red Sox give Gray extra rest to recharge for stretch run",
-        "summaryJa": "S.グレイ（BOS）の最新動向をMLB公式が詳報",
-        "slug": "sonny-gray-extra-rest-red-sox-rotation",
-        "url": "https://www.mlb.com/news/sonny-gray-extra-rest-red-sox-rotation",
-        "contentDate": "2026-08-31T22:05:44.904Z",
-        "teamIds": [
-            111
-        ],
-        "playerIds": [
-            543243
-        ],
-        "gamePks": [
-            824719
-        ],
-        "taxonomy": [
-            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
@@ -8070,27 +8115,6 @@
         ]
     },
     {
-        "headline": "With franchise legends in crowd, Blue Jays deliver gritty comeback win",
-        "summaryJa": "ブルージェイズ、勝利を呼び込む活躍",
-        "slug": "blue-jays-rally-from-3-run-deficit-to-beat-mariners",
-        "url": "https://www.mlb.com/news/blue-jays-rally-from-3-run-deficit-to-beat-mariners",
-        "contentDate": "2026-08-30T00:22:00Z",
-        "teamIds": [
-            141
-        ],
-        "playerIds": [],
-        "gamePks": [
-            822770
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Braves' No. 16 prospect proving he's more than just an elite speedster",
         "summaryJa": "Patrick Clohisy（ATL）ら注目選手の最新動向",
         "slug": "braves-prospect-patrick-clohisy-2026-breakout",
@@ -8990,6 +9014,30 @@
         ]
     },
     {
+        "headline": "Skubal has emotional return to Detroit -- but dominates Tigers anyway",
+        "summaryJa": "T.スクーバル（LAD）、復帰へ向けた最新状況",
+        "slug": "tarik-skubal-returns-to-detroit-to-face-tigers",
+        "url": "https://www.mlb.com/news/tarik-skubal-returns-to-detroit-to-face-tigers",
+        "contentDate": "2026-08-29T03:07:00Z",
+        "teamIds": [
+            119
+        ],
+        "playerIds": [
+            669373
+        ],
+        "gamePks": [
+            824231
+        ],
+        "taxonomy": [
+            "apple-news",
+            "game-recap",
+            "payoff-pitch"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Injured Adames dishes on 1st career losing season: 'Not winning is not fun'",
         "summaryJa": "W.アダーメス（SF）の負傷状況をMLB公式が詳報",
         "slug": "willy-adames-discusses-disappointing-2026-season",
@@ -9404,24 +9452,6 @@
         "gamePks": [],
         "taxonomy": [
             "mlb-top-prospects",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "How Venable helped bring winning culture back to South Side",
-        "summaryJa": "ホワイトソックスを巡る注目点をMLB公式が分析",
-        "slug": "will-venable-instills-winning-culture-in-white-sox",
-        "url": "https://www.mlb.com/news/will-venable-instills-winning-culture-in-white-sox",
-        "contentDate": "2026-08-27T16:46:21.747Z",
-        "teamIds": [
-            145
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
             "apple-news"
         ],
         "sourceScopes": [
