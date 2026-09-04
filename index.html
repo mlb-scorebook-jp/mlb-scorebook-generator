@@ -4947,12 +4947,14 @@
                     const result = PITCH_RESULT_BY_CODE[
                         String(event?.details?.code ?? "").trim().toUpperCase()
                     ] ?? "";
-                    return result ? { result, eventIndex, stolenBase: false } : null;
+                    return result
+                        ? { result, eventIndex, runnerEventMark: false, betweenPitchMark: false }
+                        : null;
                 })
                 .filter(Boolean);
             };
 
-            const createPitchResultSvg = (result, stolenBase = false) => {
+            const createPitchResultSvg = (result, runnerEventMark = false) => {
                 const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
                 svg.setAttribute("viewBox", "0 0 12 12");
                 svg.setAttribute("aria-hidden", "true");
@@ -5007,7 +5009,7 @@
                         });
                     }
                 }
-                if (stolenBase) {
+                if (runnerEventMark) {
                     const stealMark = addShape("text", {
                         x: 10.5,
                         y: 3.2,
@@ -5022,9 +5024,16 @@
                 const column = createElement("div", "pitch-column");
                 if (pitchResults.length) {
                     const sequence = createElement("div", "pitch-result-sequence");
-                    pitchResults.forEach(({ result, stolenBase }) =>
-                        sequence.append(createPitchResultSvg(result, stolenBase))
-                    );
+                    pitchResults.forEach(({ result, runnerEventMark, betweenPitchMark }) => {
+                        sequence.append(createPitchResultSvg(result, runnerEventMark));
+                        if (betweenPitchMark) {
+                            sequence.append(createElement(
+                                "span",
+                                "pitch-between-event-mark",
+                                "’"
+                            ));
+                        }
+                    });
                     column.append(sequence);
                 }
                 if (totalPitches > 0) {
@@ -6052,7 +6061,7 @@
                                         : isPassedBall
                                             ? "PB"
                                             : isBalk
-                                                ? "BK"
+                                                ? "BK’"
                                                 : runnerErrorFieldNumber
                                                     ? `E${runnerErrorFieldNumber}`
                                                     : `（${order}）`;
@@ -6100,24 +6109,31 @@
                                     if (toIndex >= 4) target.toHome = advanceLabel;
                                 }
                             }
-                            if (isStolenBase) {
+                            if (isStolenBase || isWildPitch || isPassedBall || isBalk) {
                                 const eventIndex = Number(runner?.details?.playIndex);
                                 if (Number.isInteger(eventIndex)) {
-                                    let pitchResult = record.pitchResults.find((item) =>
-                                        item.eventIndex === eventIndex
-                                    );
-                                    if (!pitchResult) {
-                                        const stealEvent = play?.playEvents?.[eventIndex];
-                                        const stealCount = stealEvent?.count ?? {};
+                                    let pitchResult = isBalk
+                                        ? [...record.pitchResults].reverse().find((item) =>
+                                            item.eventIndex < eventIndex
+                                        )
+                                        : record.pitchResults.find((item) =>
+                                            item.eventIndex === eventIndex
+                                        );
+                                    if (!pitchResult && !isBalk) {
+                                        const runnerEvent = play?.playEvents?.[eventIndex];
+                                        const runnerEventCount = runnerEvent?.count ?? {};
                                         pitchResult = [...record.pitchResults].reverse().find((item) => {
                                             if (item.eventIndex >= eventIndex) return false;
                                             const pitchCount = play?.playEvents?.[item.eventIndex]?.count ?? {};
-                                            return Number(pitchCount.balls) === Number(stealCount.balls) &&
-                                                Number(pitchCount.strikes) === Number(stealCount.strikes) &&
-                                                Number(pitchCount.outs) === Number(stealCount.outs);
+                                            return Number(pitchCount.balls) === Number(runnerEventCount.balls) &&
+                                                Number(pitchCount.strikes) === Number(runnerEventCount.strikes) &&
+                                                Number(pitchCount.outs) === Number(runnerEventCount.outs);
                                         });
                                     }
-                                    if (pitchResult) pitchResult.stolenBase = true;
+                                    if (pitchResult) {
+                                        if (isBalk) pitchResult.betweenPitchMark = true;
+                                        else pitchResult.runnerEventMark = true;
+                                    }
                                 }
                             }
                         }
@@ -6436,17 +6452,17 @@
                 }
                 if (record.toSecond) slots.topRight.append(createElement(
                     "div",
-                    `score-symbol runner-note to-second${record.toSecond === "S" ? " stolen-base-note" : ""}${record.samePlayError && /^E/.test(record.toSecond) ? " same-play-error-note" : ""}`,
+                    `score-symbol runner-note to-second${record.toSecond === "S" ? " stolen-base-note" : ""}${/^BK/.test(record.toSecond) ? " balk-note" : ""}${record.samePlayError && /^E/.test(record.toSecond) ? " same-play-error-note" : ""}`,
                     record.toSecond
                 ));
                 if (record.toThird) slots.topLeft.append(createElement(
                     "div",
-                    `score-symbol runner-note to-third${record.toThird === "S" ? " stolen-base-note" : ""}`,
+                    `score-symbol runner-note to-third${record.toThird === "S" ? " stolen-base-note" : ""}${/^BK/.test(record.toThird) ? " balk-note" : ""}`,
                     record.toThird
                 ));
                 if (record.toHome) slots.bottomLeft.append(createElement(
                     "div",
-                    `score-symbol runner-note to-home${record.toHome === "S" ? " stolen-base-note" : ""}`,
+                    `score-symbol runner-note to-home${record.toHome === "S" ? " stolen-base-note" : ""}${/^BK/.test(record.toHome) ? " balk-note" : ""}`,
                     record.toHome
                 ));
                 if (record.pickoffErrorLabel) {
