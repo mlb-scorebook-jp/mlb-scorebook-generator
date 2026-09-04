@@ -19,15 +19,15 @@
     --inning-end-mark-display: none;
 
     --order-width: 34px;
-    --name-width: 180px;
-    --position-width: 30px;
+    --name-width: 174px;
+    --position-width: 36px;
     --hand-width: 36px;
     --number-width: 30px;
     --inning-width: 76px;
     --stat-width: 24px;
 
     --header-height: 28px;
-    --lineup-height: 73px;
+    --lineup-height: 85px;
     --inning-count: 9;
     --score-column-count: 9;
     --team-score-width: calc(
