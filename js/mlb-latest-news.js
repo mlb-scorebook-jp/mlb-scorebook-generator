@@ -2,6 +2,55 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Pearson embracing every role with Royals",
+        "summaryJa": "N.ピアソン（KC）の最新動向をMLB公式が詳報",
+        "slug": "nate-pearson-thriving-in-royals-bullpen-role",
+        "url": "https://www.mlb.com/news/nate-pearson-thriving-in-royals-bullpen-role",
+        "contentDate": "2026-09-05T16:00:05.594Z",
+        "teamIds": [
+            118
+        ],
+        "playerIds": [
+            663878
+        ],
+        "gamePks": [
+            824066
+        ],
+        "taxonomy": [
+            "apple-news",
+            "relief-performance"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Cleveland org nets four walk-off wins -- three within minutes of each other -- in one day",
+        "summaryJa": "B.ロキオ（CLE）、サヨナラ勝利の主役に",
+        "slug": "guardians-day-of-walk-offs",
+        "url": "https://www.mlb.com/news/guardians-day-of-walk-offs",
+        "contentDate": "2026-09-05T14:32:03.556Z",
+        "teamIds": [
+            114
+        ],
+        "playerIds": [
+            677587,
+            683953,
+            691405,
+            702278
+        ],
+        "gamePks": [
+            824389
+        ],
+        "taxonomy": [
+            "apple-news",
+            "mlb-top-prospects"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Given what he’s overcome, Khristian Curtis isn’t your average pitching prospect",
         "summaryJa": "パイレーツら注目選手の最新動向",
         "slug": "given-what-he-s-overcome-khristian-curtis-isn-t-your-average-pitching-prospect",
@@ -7164,28 +7213,6 @@
         "playerIds": [],
         "gamePks": [
             824313
-        ],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Can Guards' young talent ride runway to postseason berth?",
-        "summaryJa": "C.デローター（CLE）の最新動向をMLB公式が詳報",
-        "slug": "guardians-young-talent-looks-to-help-secure-postseason-berth",
-        "url": "https://www.mlb.com/news/guardians-young-talent-looks-to-help-secure-postseason-berth",
-        "contentDate": "2026-09-01T14:57:55.24Z",
-        "teamIds": [
-            114
-        ],
-        "playerIds": [
-            800050
-        ],
-        "gamePks": [
-            824391
         ],
         "taxonomy": [
             "apple-news"
