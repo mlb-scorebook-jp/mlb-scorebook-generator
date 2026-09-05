@@ -494,8 +494,8 @@
         ]
     },
     {
-        "headline": "2026 is the Year of the Hard-Hitting Rookies",
-        "summaryJa": "MLBの最新情報、記録達成の最新情報",
+        "headline": "In 2026, debuting hitters have slugged ... like Ruth?",
+        "summaryJa": "MLBの最新情報、メジャー昇格・初出場に関する最新情報",
         "slug": "mlb-rookies-record-production-2026-season",
         "url": "https://www.mlb.com/news/mlb-rookies-record-production-2026-season",
         "contentDate": "2026-09-05T05:24:00Z",
