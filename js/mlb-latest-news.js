@@ -2,13 +2,153 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Stott returns to lineup Saturday after birth of 3rd child",
+        "summaryJa": "B.ストット（PHI）、復帰へ向けた最新状況",
+        "slug": "bryson-stott-scratched-due-to-personal-matter",
+        "url": "https://www.mlb.com/news/bryson-stott-scratched-due-to-personal-matter",
+        "contentDate": "2026-09-05T20:21:00Z",
+        "teamIds": [
+            143
+        ],
+        "playerIds": [
+            681082
+        ],
+        "gamePks": [
+            823418
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Soto receives 2nd career LatinoMVP honor for standout '25 season",
+        "summaryJa": "J.ソト（NYM）、記録達成の最新情報",
+        "slug": "juan-soto-receives-2025-national-league-latinomvp-award",
+        "url": "https://www.mlb.com/news/juan-soto-receives-2025-national-league-latinomvp-award",
+        "contentDate": "2026-09-05T20:08:33.447Z",
+        "teamIds": [
+            121
+        ],
+        "playerIds": [
+            665742
+        ],
+        "gamePks": [
+            823577
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Taillon (right elbow inflammation) back on injured list",
+        "summaryJa": "J.タイオン（TOR）の負傷状況をMLB公式が詳報",
+        "slug": "jameson-taillon-exits-game-with-elbow-discomfort",
+        "url": "https://www.mlb.com/news/jameson-taillon-exits-game-with-elbow-discomfort",
+        "contentDate": "2026-09-05T19:50:00Z",
+        "teamIds": [
+            141
+        ],
+        "playerIds": [
+            592791
+        ],
+        "gamePks": [
+            824067
+        ],
+        "taxonomy": [
+            "apple-news",
+            "injury"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Injuries: Ohtani, McClanahan, Crochet, Judge, Buxton, Musgrove",
+        "summaryJa": "大谷翔平（LAD）らMLB各球団の最新負傷情報",
+        "slug": "baseball-injury-updates",
+        "url": "https://www.mlb.com/news/baseball-injury-updates",
+        "contentDate": "2026-09-05T19:38:00Z",
+        "teamIds": [],
+        "playerIds": [
+            575929,
+            676979,
+            660271,
+            678882,
+            663556,
+            808963,
+            592450,
+            657746,
+            621439,
+            605397,
+            663757
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "headline-breakout"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
         "headline": "Latest Cubs injuries and transactions",
         "summaryJa": "カブスの負傷状況をMLB公式が詳報",
         "slug": "cubs-injuries-and-roster-moves",
         "url": "https://www.mlb.com/news/cubs-injuries-and-roster-moves",
-        "contentDate": "2026-09-05T17:18:00Z",
+        "contentDate": "2026-09-05T19:15:00Z",
         "teamIds": [
             112
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Right hamstring strain sends Grisham back to IL; Yanks recall Domínguez",
+        "summaryJa": "T.グリシャム（NYY）の負傷状況をMLB公式が詳報",
+        "slug": "trent-grisham-exits-yankees-game-with-right-hamstring-discomfort",
+        "url": "https://www.mlb.com/news/trent-grisham-exits-yankees-game-with-right-hamstring-discomfort",
+        "contentDate": "2026-09-05T19:05:00Z",
+        "teamIds": [
+            147
+        ],
+        "playerIds": [
+            663757
+        ],
+        "gamePks": [
+            823257
+        ],
+        "taxonomy": [
+            "apple-news",
+            "injury"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Latest Marlins injuries & transactions",
+        "summaryJa": "マーリンズの負傷状況をMLB公式が詳報",
+        "slug": "marlins-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/marlins-injuries-and-roster-moves",
+        "contentDate": "2026-09-05T18:20:00Z",
+        "teamIds": [
+            146
         ],
         "playerIds": [],
         "gamePks": [],
@@ -422,58 +562,6 @@
         ]
     },
     {
-        "headline": "Right hamstring tweak could send Grisham back to IL",
-        "summaryJa": "T.グリシャム（NYY）の負傷状況をMLB公式が詳報",
-        "slug": "trent-grisham-exits-yankees-game-with-right-hamstring-discomfort",
-        "url": "https://www.mlb.com/news/trent-grisham-exits-yankees-game-with-right-hamstring-discomfort",
-        "contentDate": "2026-09-05T06:04:00Z",
-        "teamIds": [
-            147
-        ],
-        "playerIds": [
-            663757
-        ],
-        "gamePks": [
-            823256
-        ],
-        "taxonomy": [
-            "apple-news",
-            "injury"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Injuries: Ohtani, McClanahan, Crochet, Judge, Buxton, Musgrove",
-        "summaryJa": "大谷翔平（LAD）らMLB各球団の最新負傷情報",
-        "slug": "baseball-injury-updates",
-        "url": "https://www.mlb.com/news/baseball-injury-updates",
-        "contentDate": "2026-09-05T06:03:00Z",
-        "teamIds": [],
-        "playerIds": [
-            575929,
-            676979,
-            660271,
-            678882,
-            663556,
-            808963,
-            592450,
-            657746,
-            621439,
-            605397,
-            663757
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "headline-breakout"
-        ],
-        "sourceScopes": [
-            "MLB"
-        ]
-    },
-    {
         "headline": "Lee day to day after exiting nightcap with left shin contusion",
         "summaryJa": "李（り） 灝宇（こうう）（DET）の負傷状況をMLB公式が詳報",
         "slug": "hao-yu-lee-exits-tigers-game-with-injury",
@@ -706,28 +794,6 @@
         "taxonomy": [
             "apple-news",
             "mlb-top-prospects"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Stott late scratch on Friday due to personal matter",
-        "summaryJa": "B.ストット（PHI）の最新動向をMLB公式が詳報",
-        "slug": "bryson-stott-scratched-due-to-personal-matter",
-        "url": "https://www.mlb.com/news/bryson-stott-scratched-due-to-personal-matter",
-        "contentDate": "2026-09-05T05:09:00Z",
-        "teamIds": [
-            143
-        ],
-        "playerIds": [
-            681082
-        ],
-        "gamePks": [
-            823418
-        ],
-        "taxonomy": [
-            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
@@ -1224,29 +1290,6 @@
         ],
         "sourceScopes": [
             "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Taillon (right elbow discomfort) exits first start off IL, to have MRI",
-        "summaryJa": "J.タイオン（TOR）の負傷状況をMLB公式が詳報",
-        "slug": "jameson-taillon-exits-game-with-elbow-discomfort",
-        "url": "https://www.mlb.com/news/jameson-taillon-exits-game-with-elbow-discomfort",
-        "contentDate": "2026-09-05T03:40:00Z",
-        "teamIds": [
-            141
-        ],
-        "playerIds": [
-            592791
-        ],
-        "gamePks": [
-            824067
-        ],
-        "taxonomy": [
-            "apple-news",
-            "injury"
-        ],
-        "sourceScopes": [
             "球団公式"
         ]
     },
@@ -2123,26 +2166,6 @@
         ]
     },
     {
-        "headline": "Latest Marlins injuries & transactions",
-        "summaryJa": "マーリンズの負傷状況をMLB公式が詳報",
-        "slug": "marlins-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/marlins-injuries-and-roster-moves",
-        "contentDate": "2026-09-04T22:07:00Z",
-        "teamIds": [
-            146
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Latest Braves injuries & transactions",
         "summaryJa": "ブレーブスの負傷状況をMLB公式が詳報",
         "slug": "braves-injuries-and-roster-moves",
@@ -2248,28 +2271,6 @@
         ],
         "sourceScopes": [
             "球団公式"
-        ]
-    },
-    {
-        "headline": "Inbox: Looking at two-way prospects on Top 30 lists",
-        "summaryJa": "Owen Ayersら注目選手の最新動向",
-        "slug": "pipeline-inbox-two-way-prospects-the-cubs-owen-ayers-the-angels-system-and-more",
-        "url": "https://www.mlb.com/news/pipeline-inbox-two-way-prospects-the-cubs-owen-ayers-the-angels-system-and-more",
-        "contentDate": "2026-09-04T18:55:00Z",
-        "teamIds": [],
-        "playerIds": [
-            689196,
-            831384,
-            834605,
-            820986
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "mlb-top-prospects"
-        ],
-        "sourceScopes": [
-            "MLB"
         ]
     },
     {
@@ -8566,29 +8567,6 @@
             824230
         ],
         "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Mets prospects Rojas, Voit and Vargas combine for 10 hits in Double-A romp",
-        "summaryJa": "Marco Vargas（NYM）、勝利を呼び込む活躍",
-        "slug": "jefferson-rojas-mitch-voit-marco-vargas-10-hits-in-win",
-        "url": "https://www.mlb.com/news/jefferson-rojas-mitch-voit-marco-vargas-10-hits-in-win",
-        "contentDate": "2026-08-31T14:11:48.294Z",
-        "teamIds": [
-            121
-        ],
-        "playerIds": [
-            804614,
-            702491,
-            800473
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "mlb-top-prospects",
             "apple-news"
         ],
         "sourceScopes": [
