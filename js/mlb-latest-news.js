@@ -2,6 +2,27 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Cijntje turns up the heat over 6 scoreless innings in Triple-A start",
+        "summaryJa": "J.セインジェ（STL）、マウンドで好投",
+        "slug": "cardinals-prospect-jurrangelo-cijntje-throws-6-scoreless-innings-at-triple-a",
+        "url": "https://www.mlb.com/news/cardinals-prospect-jurrangelo-cijntje-throws-6-scoreless-innings-at-triple-a",
+        "contentDate": "2026-09-06T12:54:15.069Z",
+        "teamIds": [
+            138
+        ],
+        "playerIds": [
+            701388
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "mlb-top-prospects",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Price drop! Stream Marlins games on Marlins.TV for $19.99",
         "summaryJa": "マーリンズの最新動向をMLB公式が詳報",
         "slug": "marlins-tv-2026-season",
@@ -9081,27 +9102,6 @@
         "taxonomy": [
             "apple-news",
             "players-of-the-week"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "How two Cardinals relievers turned their seasons around",
-        "summaryJa": "G.グラセフォ（STL）を巡る注目点をMLB公式が分析",
-        "slug": "gordon-graceffo-luis-gastelum-improving-in-cardinals-bullpen",
-        "url": "https://www.mlb.com/news/gordon-graceffo-luis-gastelum-improving-in-cardinals-bullpen",
-        "contentDate": "2026-08-31T15:33:03.649Z",
-        "teamIds": [
-            138
-        ],
-        "playerIds": [
-            700669,
-            703725
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
