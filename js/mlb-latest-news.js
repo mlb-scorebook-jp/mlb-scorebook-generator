@@ -2,6 +2,40 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Price drop! Stream Marlins games on Marlins.TV for $19.99",
+        "summaryJa": "マーリンズの最新動向をMLB公式が詳報",
+        "slug": "marlins-tv-2026-season",
+        "url": "https://www.mlb.com/news/marlins-tv-2026-season",
+        "contentDate": "2026-09-06T08:45:00Z",
+        "teamIds": [
+            146
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Phillies, Nemours Children’s Health honor young cancer warriors for Childhood Cancer Awareness Day",
+        "summaryJa": "フィリーズの最新動向をMLB公式が詳報",
+        "slug": "phillies-honor-young-cancer-warriors-for-childhood-cancer-awareness-day-on-september-6-2026",
+        "url": "https://www.mlb.com/news/phillies-honor-young-cancer-warriors-for-childhood-cancer-awareness-day-on-september-6-2026",
+        "contentDate": "2026-09-06T08:02:53.388Z",
+        "teamIds": [
+            143
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Cards rookie receives apology from umpire after cap flap",
         "summaryJa": "H.リンコーン（STL）の最新動向をMLB公式が詳報",
         "slug": "cardinals-unify-behind-rookie-hancel-rincon-after-hat-controvery",
@@ -7725,30 +7759,6 @@
         ]
     },
     {
-        "headline": "Phillies add Holman, Marchán as rosters expand",
-        "summaryJa": "G.ホールマン（PHI）の最新動向をMLB公式が詳報",
-        "slug": "phillies-add-grant-holman-rafael-marchan-to-roster",
-        "url": "https://www.mlb.com/news/phillies-add-grant-holman-rafael-marchan-to-roster",
-        "contentDate": "2026-09-02T01:19:43.156Z",
-        "teamIds": [
-            143
-        ],
-        "playerIds": [
-            680880,
-            665561
-        ],
-        "gamePks": [
-            825038
-        ],
-        "taxonomy": [
-            "apple-news",
-            "transactions"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Robert excited to join O's, eager to contribute to postseason push",
         "summaryJa": "L.ロバート Jr.（BAL）の最新動向をMLB公式が詳報",
         "slug": "luis-robert-jr-excited-to-join-orioles",
@@ -8490,24 +8500,6 @@
         "contentDate": "2026-09-01T13:00:00Z",
         "teamIds": [
             144
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Price drop! Stream Marlins games on Marlins.TV for $19.99",
-        "summaryJa": "マーリンズの最新動向をMLB公式が詳報",
-        "slug": "marlins-tv-2026-season",
-        "url": "https://www.mlb.com/news/marlins-tv-2026-season",
-        "contentDate": "2026-09-01T13:00:00Z",
-        "teamIds": [
-            146
         ],
         "playerIds": [],
         "gamePks": [],
