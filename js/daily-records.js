@@ -2,7 +2,7 @@
 
 (() => {
     const API_ROOT = "https://statsapi.mlb.com/api";
-    const CACHE_PREFIX = "mlb-daily-records-phase1-v15:";
+    const CACHE_PREFIX = "mlb-daily-records-phase1-v16:";
     const MAX_CONCURRENT_GAMES = 3;
     const RECORD_THRESHOLDS = Object.freeze({
         inningHits: 2,
@@ -26,7 +26,7 @@
         japanese: "日本人選手",
         individual: "個人記録",
         team: "チーム／試合記録",
-        special: "特殊事象"
+        special: "特殊事象／珍プレー候補"
     });
     const RECORD_CATALOG = Object.freeze({
         JAPANESE_CAREER_HIGH: ["日本人選手キャリア最多", "自己最多", "career high"],
@@ -67,6 +67,13 @@
         NO_HIT_LOSS: ["被安打0で敗戦", "no-hit loss"],
         TRIPLE_PLAY: ["三重殺", "triple play"],
         UNASSISTED_TRIPLE_PLAY: ["無補殺三重殺", "unassisted triple play"],
+        RARE_SCORING_MISCUE: ["珍プレー候補", "暴投・捕逸・ボークによる得点"],
+        RARE_DROPPED_THIRD_STRIKE: ["珍プレー候補", "振り逃げ", "dropped third strike"],
+        RARE_INTERFERENCE: ["珍プレー候補", "妨害", "interference", "obstruction"],
+        RARE_PICKOFF_ERROR: ["珍プレー候補", "牽制悪送球", "pickoff error"],
+        RARE_MULTI_ERROR: ["珍プレー候補", "複数失策", "multiple errors"],
+        RARE_MULTI_OUT: ["珍プレー候補", "複数走者アウト", "multiple runners out"],
+        RARE_REVIEW_OVERTURN: ["珍プレー候補", "リプレー検証", "call overturned"],
         FRANCHISE_ROOKIE_RECORD: ["球団新人記録", "franchise rookie record"],
         FRANCHISE_AGE_RECORD: ["球団最年少記録", "球団最年長記録", "youngest in franchise history", "oldest in franchise history"],
         CONSECUTIVE_GAME_HOME_RUNS: ["連続試合本塁打", "consecutive games with a home run"],
@@ -1142,6 +1149,134 @@
             }));
         }
 
+        const rareCandidateKeys = new Set();
+        const addRareCandidate = (play, recordType, label, evidence) => {
+            const inning = number(play?.about?.inning);
+            const side = battingSideForPlay(play);
+            const description = text(play?.result?.description);
+            const key = `${number(play?.atBatIndex)}:${recordType}`;
+            if (rareCandidateKeys.has(key)) return;
+            rareCandidateKeys.add(key);
+            records.push(makeRecord({
+                game,
+                boxscore,
+                recordType,
+                category: "special",
+                side,
+                inning,
+                fact: `${inning}回${inningHalf(side)}　${label}`,
+                details: {
+                    description,
+                    atBatIndex: number(play?.atBatIndex),
+                    candidate: true
+                },
+                evidence
+            }));
+        };
+
+        plays.forEach((play) => {
+            const resultType = text(play?.result?.eventType).toLowerCase();
+            const description = text(play?.result?.description);
+            const lowerDescription = description.toLowerCase();
+            const runners = play?.runners ?? [];
+            const runnerTypes = runners.map((runner) =>
+                text(runner?.details?.eventType).toLowerCase()
+            ).filter(Boolean);
+            const actionTypes = (play?.playEvents ?? []).map((event) =>
+                text(event?.details?.eventType).toLowerCase()
+            ).filter(Boolean);
+            const allTypes = new Set([resultType, ...runnerTypes, ...actionTypes]);
+            const scoringRunners = runners.filter((runner) =>
+                text(runner?.movement?.end).toLowerCase() === "score" &&
+                runner?.movement?.isOut !== true
+            );
+
+            const scoringMiscue = [
+                ["balk", "ボークで走者が生還"],
+                ["wild_pitch", "暴投で走者が生還"],
+                ["passed_ball", "捕逸で走者が生還"]
+            ].find(([eventType]) => allTypes.has(eventType));
+            if (scoringRunners.length && scoringMiscue) {
+                addRareCandidate(
+                    play,
+                    "RARE_SCORING_MISCUE",
+                    scoringMiscue[1],
+                    `PBPの${scoringMiscue[0]}イベントで${scoringRunners.length}走者が生還`
+                );
+            }
+
+            const batterId = number(play?.matchup?.batter?.id);
+            const batterReached = runners.some((runner) =>
+                number(runner?.details?.runner?.id) === batterId &&
+                runner?.movement?.isOut !== true &&
+                ["1B", "2B", "3B", "score"].includes(text(runner?.movement?.end))
+            );
+            if (resultType.includes("strikeout") && batterReached) {
+                addRareCandidate(
+                    play,
+                    "RARE_DROPPED_THIRD_STRIKE",
+                    "振り逃げで打者走者が出塁",
+                    "strikeoutイベントで打者走者がアウトにならず進塁"
+                );
+            }
+
+            const interference = [...allTypes].find((eventType) =>
+                eventType.includes("interference") || eventType.includes("obstruction") ||
+                eventType === "catcher_interf"
+            );
+            if (interference) {
+                const label = interference.includes("catcher")
+                    ? "捕手の打撃妨害"
+                    : interference.includes("obstruction") ? "走塁妨害" : "守備・走塁妨害";
+                addRareCandidate(play, "RARE_INTERFERENCE", label, `PBPの${interference}イベント`);
+            }
+
+            if (/pick(?:ed)? off|pickoff/.test(lowerDescription) &&
+                /error|throwing error/.test(lowerDescription)) {
+                addRareCandidate(
+                    play,
+                    "RARE_PICKOFF_ERROR",
+                    "牽制悪送球を含むプレー",
+                    "PBP説明文に牽制と失策の両方を確認"
+                );
+            }
+
+            const errorCount = (lowerDescription.match(/\berror\b/g) ?? []).length;
+            if (errorCount >= 2) {
+                addRareCandidate(
+                    play,
+                    "RARE_MULTI_ERROR",
+                    `1プレーで複数失策（${errorCount}件）`,
+                    `PBP説明文にerror ${errorCount}件`
+                );
+            }
+
+            const runnerOuts = runners.filter((runner) => runner?.movement?.isOut === true).length;
+            const isRoutineMultiOut = resultType.includes("double_play") ||
+                resultType === "triple_play" || /double play|triple play/i.test(description);
+            if (runnerOuts >= 2 && !isRoutineMultiOut) {
+                addRareCandidate(
+                    play,
+                    "RARE_MULTI_OUT",
+                    `通常の併殺ではない複数走者アウト（${runnerOuts}人）`,
+                    `同一プレーで走者アウト${runnerOuts}件`
+                );
+            }
+
+            const overturned = (play?.playEvents ?? []).some((event) => {
+                const eventDescription = text(event?.details?.description);
+                return /overturned|call changed|判定.*覆/i.test(eventDescription);
+            });
+            if (overturned) {
+                addRareCandidate(
+                    play,
+                    "RARE_REVIEW_OVERTURN",
+                    "リプレー検証で判定が変更",
+                    "PBPのレビュー結果がoverturned"
+                );
+            }
+        });
+
         plays.forEach((play) => {
             const side = battingSideForPlay(play);
             (play?.runners ?? []).forEach((runner) => {
@@ -1859,6 +1994,10 @@
         const fact = document.createElement("p");
         fact.className = "daily-record-fact";
         fact.textContent = displayFact(record);
+        const playDescription = text(record?.details?.description);
+        const description = document.createElement("p");
+        description.className = "daily-record-play-description";
+        description.textContent = playDescription;
         const links = document.createElement("div");
         links.className = "daily-record-links";
         links.append(link("Gameday", record.gamedayUrl));
@@ -1869,7 +2008,9 @@
                 article.headline
             ));
         });
-        card.append(header, fact, links);
+        card.append(header, fact);
+        if (playDescription) card.append(description);
+        card.append(links);
         if (showPrevious && window.MLBRecordsArchive) {
             const previous = window.MLBRecordsArchive.previous(record);
             const previousLine = document.createElement("p");

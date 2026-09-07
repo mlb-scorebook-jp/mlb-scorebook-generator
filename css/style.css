@@ -4236,16 +4236,6 @@ body.app-mode-pitch-chart .viewer {
         color: #000 !important;
     }
 
-    #scorebook-print-stage .scorebook-print-content {
-        -webkit-text-stroke: 0.14px currentColor;
-    }
-
-    #scorebook-print-stage svg text {
-        paint-order: stroke fill;
-        stroke: currentColor;
-        stroke-width: 0.14px;
-    }
-
     #scorebook-print-stage .scorebook-page,
     #scorebook-print-stage .paper {
         page-break-before: avoid !important;

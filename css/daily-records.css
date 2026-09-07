@@ -513,6 +513,13 @@ body.app-mode-daily-records #header-daily-records-btn {
     line-height: 1.55;
 }
 
+.daily-record-play-description {
+    margin: -2px 0 8px;
+    color: #b9c5ca;
+    font-size: 11px;
+    line-height: 1.5;
+}
+
 .daily-record-links {
     display: flex;
     flex-wrap: wrap;
