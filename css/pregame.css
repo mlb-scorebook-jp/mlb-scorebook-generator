@@ -1245,6 +1245,21 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
     background: #e6c247;
 }
 
+.pregame-games-section .pregame-game-state-line {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.pregame-games-section .pregame-first-pitch {
+    margin-top: 7px;
+    color: #c9d5da;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+}
+
 .pregame-person-card strong,
 .pregame-game-card strong {
     display: block;

@@ -2444,6 +2444,19 @@
         }).format(value);
     };
 
+    const gameCardFirstPitchLabel = (game) => {
+        if (gameCardStatusLabel(game) !== "試合前") return "";
+        const value = new Date(game?.gameDate);
+        if (Number.isNaN(value.getTime())) return "";
+        const time = new Intl.DateTimeFormat("ja-JP", {
+            timeZone: "Asia/Tokyo",
+            hour: "2-digit",
+            minute: "2-digit",
+            hour12: false
+        }).format(value);
+        return `JST ${time} FP`;
+    };
+
     const renderSeriesStars = (team, seriesStanding, extraClass = "") => {
         const stars = el("span", `pregame-series-stars${extraClass ? ` ${extraClass}` : ""}`);
         if (!seriesStanding) return stars;
@@ -2770,16 +2783,22 @@
                         el("span", "pregame-venue-line", venueLabel(game?.venue) || "球場未定"),
                         pitcherLine
                     );
+                    const stateLine = el("span", "pregame-game-state-line");
+                    stateLine.append(el(
+                        "span",
+                        isLive(game) ? "pregame-live-badge" : "pregame-status-badge",
+                        gameCardStatusLabel(game)
+                    ));
+                    const firstPitchLabel = gameCardFirstPitchLabel(game);
+                    if (firstPitchLabel) {
+                        stateLine.append(el("span", "pregame-first-pitch", firstPitchLabel));
+                    }
                     card.type = "button";
                     card.dataset.pregameGame = String(game.gamePk);
                     card.append(
                         matchupTitle,
                         matchupMeta,
-                        el(
-                            "span",
-                            isLive(game) ? "pregame-live-badge" : "pregame-status-badge",
-                            gameCardStatusLabel(game)
-                        )
+                        stateLine
                     );
                     return card;
                 };
