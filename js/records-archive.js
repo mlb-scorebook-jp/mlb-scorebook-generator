@@ -97,7 +97,9 @@
     });
     const merge = (...groups) => {
         const values = new Map();
-        groups.flat().filter(Boolean).forEach((record) => {
+        groups.flat().filter((record) =>
+            Boolean(record) && record.recordType !== "RARE_MULTI_OUT"
+        ).forEach((record) => {
             const normalized = normalizeRecord(record);
             values.set(normalized.archiveKey, { ...values.get(normalized.archiveKey), ...normalized });
         });

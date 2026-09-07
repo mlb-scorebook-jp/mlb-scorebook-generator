@@ -353,9 +353,9 @@
     <script src="js/mlb-business-date.js?v=20260808-1"></script>
     <script src="js/mlb-latest-news.js?v=20260814-summary-1"></script>
     <script src="js/stathead-links.js?v=20260810-1"></script>
-    <script src="js/records-archive.js?v=20260829-archive-memory-2"></script>
+    <script src="js/records-archive.js?v=20260907-remove-legacy-multi-out-1"></script>
     <script src="js/daily-calendar-features.js?v=20260901-modern-stats-1"></script>
-    <script src="js/daily-records.js?v=20260907-story-candidates-2"></script>
+    <script src="js/daily-records.js?v=20260907-story-candidates-4"></script>
     <script src="js/pregame.js?v=20260829-japanese-headshots-2"></script>
 
     <script>
@@ -6195,7 +6195,13 @@
                         }
 
                         if (movement?.isOut) {
-                            playOutTargets.push(target);
+                            const outEventIndex = Number(runner?.details?.playIndex);
+                            playOutTargets.push({
+                                target,
+                                eventIndex: Number.isInteger(outEventIndex) && outEventIndex >= 0
+                                    ? outEventIndex
+                                    : null
+                            });
                             const outNumber = outNumberByRunner.get(runner);
                             if (outNumber) target.centerMark = ROMAN_OUTS[outNumber];
                             const runnerDescription = getRunnerEventDescription(play, runner);
@@ -6250,9 +6256,19 @@
                         record.outAtHome = "";
                     }
 
-                    const uniqueOutTargets = [...new Set(playOutTargets)];
-                    if (uniqueOutTargets.length >= 2) {
-                        record.multiOutLinkedRecords = uniqueOutTargets;
+                    const outTargetsByEvent = new Map();
+                    playOutTargets.forEach(({ target, eventIndex }) => {
+                        if (eventIndex === null) return;
+                        if (!outTargetsByEvent.has(eventIndex)) {
+                            outTargetsByEvent.set(eventIndex, []);
+                        }
+                        outTargetsByEvent.get(eventIndex).push(target);
+                    });
+                    const simultaneousOutTargets = [...outTargetsByEvent.values()]
+                        .map((targets) => [...new Set(targets)])
+                        .find((targets) => targets.length >= 2);
+                    if (simultaneousOutTargets) {
+                        record.multiOutLinkedRecords = simultaneousOutTargets;
                     }
 
                     if (isComplete && !batterOutRecorded &&

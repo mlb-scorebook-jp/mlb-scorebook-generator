@@ -2,7 +2,7 @@
 
 (() => {
     const API_ROOT = "https://statsapi.mlb.com/api";
-    const CACHE_PREFIX = "mlb-daily-records-phase1-v19:";
+    const CACHE_PREFIX = "mlb-daily-records-phase1-v21:";
     const MAX_CONCURRENT_GAMES = 3;
     const RECORD_THRESHOLDS = Object.freeze({
         inningHits: 2,
@@ -73,7 +73,7 @@
         RARE_INTERFERENCE: ["珍プレー候補", "妨害", "interference", "obstruction"],
         RARE_PICKOFF_ERROR: ["珍プレー候補", "牽制悪送球", "pickoff error"],
         RARE_MULTI_ERROR: ["珍プレー候補", "複数失策", "multiple errors"],
-        RARE_MULTI_OUT: ["珍プレー候補", "複数走者アウト", "multiple runners out"],
+        RARE_SIMULTANEOUS_MULTI_OUT: ["珍プレー候補", "同時に複数走者アウト", "multiple runners out"],
         RARE_REVIEW_OVERTURN: ["珍プレー候補", "リプレー検証", "call overturned"],
         HEARTWARMING_NEWS: ["ほっこりニュース", "心温まるニュース", "heartwarming"],
         FRANCHISE_ROOKIE_RECORD: ["球団新人記録", "franchise rookie record"],
@@ -1365,15 +1365,21 @@
                 );
             }
 
-            const runnerOuts = runners.filter((runner) => runner?.movement?.isOut === true).length;
+            const outsByPlayIndex = new Map();
+            runners.filter((runner) => runner?.movement?.isOut === true).forEach((runner) => {
+                const playIndex = Number(runner?.details?.playIndex);
+                if (!Number.isInteger(playIndex) || playIndex < 0) return;
+                outsByPlayIndex.set(playIndex, (outsByPlayIndex.get(playIndex) || 0) + 1);
+            });
+            const simultaneousRunnerOuts = Math.max(0, ...outsByPlayIndex.values());
             const isRoutineMultiOut = resultType.includes("double_play") ||
                 resultType === "triple_play" || /double play|triple play/i.test(description);
-            if (runnerOuts >= 2 && !isRoutineMultiOut) {
+            if (simultaneousRunnerOuts >= 2 && !isRoutineMultiOut) {
                 addRareCandidate(
                     play,
-                    "RARE_MULTI_OUT",
-                    `通常の併殺ではない複数走者アウト（${runnerOuts}人）`,
-                    `同一プレーで走者アウト${runnerOuts}件`
+                    "RARE_SIMULTANEOUS_MULTI_OUT",
+                    `通常の併殺ではない複数走者アウト（${simultaneousRunnerOuts}人）`,
+                    `同一playIndexで走者アウト${simultaneousRunnerOuts}件`
                 );
             }
 
