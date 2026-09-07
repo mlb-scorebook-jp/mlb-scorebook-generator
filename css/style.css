@@ -1469,6 +1469,13 @@ body.app-mode-pregame .score-loading-overlay {
     gap: 5px;
 }
 
+.sheet-meta .duration-rank-source {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    text-underline-offset: 2px;
+}
+
 .attendance-number,
 .attendance-note {
     min-width: 0;
