@@ -4169,8 +4169,8 @@ body.app-mode-pitch-chart .viewer {
     }
 
     body.print-stage-active {
-        width: 100vw;
-        height: 100vh;
+        width: 285mm;
+        height: 198mm;
         max-width: none;
         max-height: none;
         overflow: hidden !important;
@@ -4204,10 +4204,12 @@ body.app-mode-pitch-chart .viewer {
     }
 
     #scorebook-print-stage {
+        --rule: #174f2a;
+        --guide: rgba(23, 79, 42, 0.88);
         display: block !important;
         position: relative;
-        width: 100vw;
-        height: 100vh;
+        width: 285mm;
+        height: 198mm;
         margin: 0;
         padding: 0;
         overflow: hidden;
@@ -4232,6 +4234,16 @@ body.app-mode-pitch-chart .viewer {
 
     #scorebook-print-stage *:not(.play-card):not(.play-card *) {
         color: #000 !important;
+    }
+
+    #scorebook-print-stage .scorebook-print-content {
+        -webkit-text-stroke: 0.14px currentColor;
+    }
+
+    #scorebook-print-stage svg text {
+        paint-order: stroke fill;
+        stroke: currentColor;
+        stroke-width: 0.14px;
     }
 
     #scorebook-print-stage .scorebook-page,
@@ -4273,6 +4285,12 @@ body.app-mode-pitch-chart .viewer {
  * viewport reflects the paper selected in the system dialog on Safari,
  * Chromium, and Windows print preview. */
 @media print and (min-width: 350mm) and (min-height: 250mm) {
+    body.print-stage-active,
+    #scorebook-print-stage {
+        width: 408mm;
+        height: 285mm;
+    }
+
     #scorebook-print-stage .scorebook-print-content {
         transform: translate(-50%, -50%) scale(var(--print-a3-scale, var(--print-scale, 1)));
     }
