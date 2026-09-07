@@ -5970,12 +5970,47 @@
                             : activeRunner.get(Number(runnerId)) || fallbackTarget;
                         if (!target) return;
 
-                        const origin = movement?.start || movement?.originBase ||
+                        let origin = movement?.start || movement?.originBase ||
                             (isCurrentBatter ? "home" : "");
-                        const end = movement?.end;
+                        let end = movement?.end;
                         const runnerEventType = String(
                             runner?.details?.eventType ?? ""
                         ).toLowerCase();
+
+                        // MLB may split one hit-driven advance into consecutive rows
+                        // for the same runner (for example 1B-2B plus 2B-3B). Treat
+                        // those rows as one continuous route so the scorebook keeps
+                        // the traditional bent arrow from first to third.
+                        if (!isCurrentBatter &&
+                            ["single", "double", "triple", "home_run"]
+                                .includes(runnerEventType)) {
+                            const eventIndex = Number(runner?.details?.playIndex);
+                            const baseIndex = (base) => ({
+                                home: 0, home_plate: 0,
+                                "1b": 1, first: 1, first_base: 1,
+                                "2b": 2, second: 2, second_base: 2,
+                                "3b": 3, third: 3, third_base: 3,
+                                score: 4
+                            })[String(base ?? "").toLowerCase()] ?? -1;
+                            const linkedMovements = runners.filter((candidate) =>
+                                Number(candidate?.details?.runner?.id) === Number(runnerId) &&
+                                Number(candidate?.details?.playIndex) === eventIndex &&
+                                String(candidate?.details?.eventType ?? "").toLowerCase() === runnerEventType &&
+                                candidate?.movement?.isOut !== true
+                            );
+                            const starts = linkedMovements
+                                .map((candidate) => candidate?.movement?.start || candidate?.movement?.originBase)
+                                .filter((base) => baseIndex(base) >= 0)
+                                .sort((left, right) => baseIndex(left) - baseIndex(right));
+                            const ends = linkedMovements
+                                .map((candidate) => candidate?.movement?.end)
+                                .filter((base) => baseIndex(base) >= 0)
+                                .sort((left, right) => baseIndex(right) - baseIndex(left));
+                            if (starts.length && ends.length && baseIndex(ends[0]) > baseIndex(starts[0])) {
+                                origin = starts[0];
+                                end = ends[0];
+                            }
+                        }
 
                         // Red path stops at the base credited by the hit. MLB can add a
                         // second movement for the same batter-runner when an error lets
