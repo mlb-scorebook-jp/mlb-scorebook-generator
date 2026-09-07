@@ -1470,6 +1470,7 @@
             const seasonPlayerListCache = new Map();
             const playerSearchGameFeedCache = new Map();
             const crossGameAtBatFeedCache = new Map();
+            const seasonGameDurationCache = new Map();
             let playerSearchResultsGeneration = 0;
             const officialGameArticlesCache = new Map();
             const franchiseLeadersCache = new Map();
@@ -4252,8 +4253,12 @@
 
                 const hours = Math.floor(minutes / 60);
                 const remainder = minutes % 60;
+                const seasonRank = String(
+                    data?.gameData?.gameInfo?.seasonDurationRankLabel ?? ""
+                );
 
-                return `${hours}:${String(remainder).padStart(2, "0")}`;
+                return `${hours}:${String(remainder).padStart(2, "0")}` +
+                    (seasonRank ? `（${seasonRank}）` : "");
             };
 
             const getWeatherText = (data) => {
@@ -8919,6 +8924,65 @@
                     })[0] ?? null;
             };
 
+            const fetchSeasonGameDurationRank = async (data) => {
+                const minutes = Number(data?.gameData?.gameInfo?.gameDurationMinutes);
+                const officialDate = String(data?.gameData?.datetime?.officialDate ?? "");
+                const season = Number(data?.gameData?.game?.season) ||
+                    Number(officialDate.slice(0, 4));
+                const gameType = String(
+                    data?.gameData?.game?.type ?? data?.gameData?.game?.gameType ?? ""
+                ).toUpperCase();
+                if (!Number.isFinite(minutes) || minutes <= 0 ||
+                    !Number.isInteger(season) ||
+                    !/^\d{4}-\d{2}-\d{2}$/.test(officialDate) ||
+                    gameType !== "R" ||
+                    !isGameFinal(data)) return "";
+
+                const cacheKey = `${season}:${officialDate}`;
+                if (!seasonGameDurationCache.has(cacheKey)) {
+                    const params = new URLSearchParams({
+                        sportId: "1",
+                        gameType: "R",
+                        startDate: `${season}-01-01`,
+                        endDate: officialDate,
+                        hydrate: "gameInfo"
+                    });
+                    seasonGameDurationCache.set(cacheKey, fetch(
+                        `https://statsapi.mlb.com/api/v1/schedule?${params}`
+                    ).then(async (response) => {
+                        if (!response.ok) return [];
+                        const payload = await response.json();
+                        const durationByGame = new Map();
+                        (payload?.dates ?? []).flatMap((date) => date?.games ?? [])
+                            .filter((game) =>
+                                /final|completed|game over/i.test(String(
+                                    game?.status?.detailedState ??
+                                    game?.status?.abstractGameState ?? ""
+                                ))
+                            )
+                            .forEach((game) => {
+                                const duration = Number(game?.gameInfo?.gameDurationMinutes);
+                                const gamePk = Number(game?.gamePk);
+                                if (Number.isFinite(duration) && duration > 0 &&
+                                    Number.isFinite(gamePk)) {
+                                    durationByGame.set(gamePk, duration);
+                                }
+                            });
+                        return [...durationByGame.values()];
+                    }).catch(() => []));
+                }
+
+                const durations = await seasonGameDurationCache.get(cacheKey);
+                if (!durations.length) return "";
+                const shortRank = 1 + durations.filter((duration) => duration < minutes).length;
+                const longRank = 1 + durations.filter((duration) => duration > minutes).length;
+                if (shortRank <= 10 && shortRank <= longRank) {
+                    return `今季${shortRank}番目の短さ`;
+                }
+                if (longRank <= 10) return `今季${longRank}番目の長さ`;
+                return "";
+            };
+
             const fetchSearchSeasons = async () => {
                 const cacheKey = "available-seasons";
                 if (seasonSearchCache.has(cacheKey)) return seasonSearchCache.get(cacheKey);
@@ -9739,7 +9803,8 @@
                         fetchHeadToHeadRecord(data, gamePk),
                         fetchSeasonAttendanceNote(data, gamePk),
                         fetchGameScheduleMetadata(gamePk),
-                        fetchScorebookActiveRosterPeople(data)
+                        fetchScorebookActiveRosterPeople(data),
+                        fetchSeasonGameDurationRank(data)
                     ]);
                     supplementalResults.forEach((result) => {
                         if (result.status === "rejected") console.error(result.reason);
@@ -9766,6 +9831,11 @@
                     state.activeRosterPeople = supplementalResults[4].status === "fulfilled"
                         ? supplementalResults[4].value
                         : { away: [], home: [] };
+                    data.gameData.gameInfo ??= {};
+                    data.gameData.gameInfo.seasonDurationRankLabel =
+                        supplementalResults[5].status === "fulfilled"
+                            ? supplementalResults[5].value
+                            : "";
 
                     updateSidebar();
                     render();
