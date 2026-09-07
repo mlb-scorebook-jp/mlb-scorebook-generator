@@ -3737,7 +3737,7 @@ body:not(.app-mode-home):not(.app-mode-pregame) .viewer {
         overflow-y: auto;
         overscroll-behavior-x: none;
         overscroll-behavior-y: contain;
-        touch-action: pan-y;
+        touch-action: pan-y pinch-zoom;
     }
 
     body:not(.app-mode-home):not(.app-mode-pregame) .sidebar {
@@ -3833,7 +3833,7 @@ body:not(.app-mode-home):not(.app-mode-pregame) .viewer {
         overflow-x: auto;
         overflow-y: visible;
         overscroll-behavior-x: contain;
-        touch-action: pan-x pan-y;
+        touch-action: pan-x pan-y pinch-zoom;
         -webkit-overflow-scrolling: touch;
     }
 
@@ -3876,7 +3876,7 @@ body:not(.app-mode-home):not(.app-mode-pregame) .viewer {
         margin-bottom: 52px;
         overflow: visible;
         overscroll-behavior-y: auto;
-        touch-action: pan-x pan-y;
+        touch-action: pan-x pan-y pinch-zoom;
     }
 
     body.app-mode-pregame .app-main {
@@ -3902,7 +3902,7 @@ body:not(.app-mode-home):not(.app-mode-pregame) .viewer {
         overflow-x: auto;
         overflow-y: visible;
         overscroll-behavior-x: contain;
-        touch-action: pan-x pan-y;
+        touch-action: pan-x pan-y pinch-zoom;
         -webkit-overflow-scrolling: touch;
     }
 
