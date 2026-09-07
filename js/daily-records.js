@@ -2,7 +2,7 @@
 
 (() => {
     const API_ROOT = "https://statsapi.mlb.com/api";
-    const CACHE_PREFIX = "mlb-daily-records-phase1-v16:";
+    const CACHE_PREFIX = "mlb-daily-records-phase1-v19:";
     const MAX_CONCURRENT_GAMES = 3;
     const RECORD_THRESHOLDS = Object.freeze({
         inningHits: 2,
@@ -21,12 +21,13 @@
         combinedWalks: 18,
         hitDeficitWin: 5
     });
-    const CATEGORY_ORDER = ["japanese", "individual", "team", "special"];
+    const CATEGORY_ORDER = ["japanese", "individual", "team", "special", "heartwarming"];
     const CATEGORY_LABELS = Object.freeze({
         japanese: "日本人選手",
         individual: "個人記録",
         team: "チーム／試合記録",
-        special: "特殊事象／珍プレー候補"
+        special: "特殊事象／珍プレー候補",
+        heartwarming: "ほっこりニュース候補"
     });
     const RECORD_CATALOG = Object.freeze({
         JAPANESE_CAREER_HIGH: ["日本人選手キャリア最多", "自己最多", "career high"],
@@ -74,6 +75,7 @@
         RARE_MULTI_ERROR: ["珍プレー候補", "複数失策", "multiple errors"],
         RARE_MULTI_OUT: ["珍プレー候補", "複数走者アウト", "multiple runners out"],
         RARE_REVIEW_OVERTURN: ["珍プレー候補", "リプレー検証", "call overturned"],
+        HEARTWARMING_NEWS: ["ほっこりニュース", "心温まるニュース", "heartwarming"],
         FRANCHISE_ROOKIE_RECORD: ["球団新人記録", "franchise rookie record"],
         FRANCHISE_AGE_RECORD: ["球団最年少記録", "球団最年長記録", "youngest in franchise history", "oldest in franchise history"],
         CONSECUTIVE_GAME_HOME_RUNS: ["連続試合本塁打", "consecutive games with a home run"],
@@ -259,6 +261,87 @@
         const date = text(game.officialDate || state.date).replaceAll("-", "/");
         return `https://www.mlb.com/gameday/${matchup}/${date}/` +
             `${game.gamePk}/final`;
+    };
+    const articleMlbDate = (article) => {
+        const value = text(article?.contentDate || article?.date);
+        if (/^\d{4}-\d{2}-\d{2}$/.test(value)) return value;
+        const timestamp = new Date(value);
+        if (!Number.isFinite(timestamp.getTime())) return "";
+        const parts = new Intl.DateTimeFormat("en-CA", {
+            timeZone: "America/New_York",
+            year: "numeric",
+            month: "2-digit",
+            day: "2-digit"
+        }).formatToParts(timestamp);
+        const values = Object.fromEntries(parts.map((part) => [part.type, part.value]));
+        return `${values.year}-${values.month}-${values.day}`;
+    };
+    const buildHeartwarmingNewsRecords = (date, games) => {
+        const teamsById = new Map();
+        games.forEach((game) => {
+            [game?.teams?.away?.team, game?.teams?.home?.team].forEach((team) => {
+                if (number(team?.id)) teamsById.set(number(team.id), team);
+            });
+        });
+        const seen = new Set();
+        return (window.MLB_LATEST_NEWS ?? []).flatMap((article) => {
+            if (articleMlbDate(article) !== date) return [];
+            const searchable = [article?.headline, article?.slug, ...(article?.taxonomy ?? [])]
+                .map(text).join(" ").toLowerCase();
+            const family = /\b(?:father|dad|mother|mom|parent|son|daughter|family|grandfather|grandmother|brother|sister|wife|husband|girlfriend|boyfriend)\b/.test(searchable);
+            const fan = /\b(?:fans?|crowd|young fan|kid|child|children|ballpark employee)\b/.test(searchable);
+            const firstMoment = /\b(?:first|debut|dream|milestone|first homer|first home run|first hit)\b/.test(searchable);
+            const humanMoment = /\b(?:heartwarming|kindness|hug|smiles?|laughter|shoutout|surprise|reunion|meets?|gives?|returns?|receives?|celebrates?|tribute|honors?|proposal|community|charity|recovery)\b/.test(searchable);
+            const whimsical = /\b(?:goat|pig|animal|costume|field of dreams|national anthem)\b/.test(searchable);
+            const visualSignal = /\b(?:watch|video|moment|caught|catches|sings?|hug|smiles?|laughter|shoutout|surprise|reunion|meets?|gives?|returns?|receives?|celebrates?|ceremony|proposal)\b/.test(searchable) ||
+                (article?.taxonomy ?? []).some((value) =>
+                    /video|cut-?4|fans?|community/i.test(text(value))
+                );
+            const heartwarming = visualSignal && (
+                (family && (firstMoment || fan || humanMoment)) ||
+                (fan && (firstMoment || humanMoment)) ||
+                humanMoment && /\b(?:kid|child|family|community|charity|dream)\b/.test(searchable) ||
+                whimsical
+            );
+            const url = text(article?.url);
+            const summary = text(article?.summaryJa);
+            const key = text(article?.slug) || url;
+            if (!heartwarming || !url || !summary || !key || seen.has(key)) return [];
+            seen.add(key);
+            const relatedTeams = unique((article?.teamIds ?? []).map((teamId) =>
+                teamCode(teamsById.get(number(teamId)))
+            ).filter((code) => code && code !== "MLB"));
+            return [{
+                recordType: "HEARTWARMING_NEWS",
+                aliases: RECORD_CATALOG.HEARTWARMING_NEWS,
+                category: "heartwarming",
+                date,
+                season: number(date.slice(0, 4)),
+                gameType: "R",
+                gamePk: number((article?.gamePks ?? [])[0]) || null,
+                playerId: number((article?.playerIds ?? [])[0]) || null,
+                playerName: "",
+                subject: relatedTeams.join("・") || "MLB／MiLB",
+                teamId: number((article?.teamIds ?? [])[0]) || null,
+                teamCode: relatedTeams[0] || "MLB",
+                teamName: "",
+                opponentId: null,
+                opponentCode: "",
+                opponentName: "",
+                inning: null,
+                gameDate: "",
+                battingSide: null,
+                pitchingSide: null,
+                fact: summary,
+                details: { candidate: true, videoCandidate: true, metric: key },
+                evidence: "MLB公式ニュースの見出し・分類から映像候補を抽出",
+                apiStatus: "candidate",
+                historicalContext: { status: "needs-review", text: "" },
+                gamedayUrl: "",
+                articleUrls: [{ headline: summary, url }],
+                feedUpdatedAt: text(article?.contentDate)
+            }];
+        });
     };
     const isFinal = (game) => {
         const status = game?.status ?? {};
@@ -1150,10 +1233,28 @@
         }
 
         const rareCandidateKeys = new Set();
+        const rarePlayDescription = (play, label) => {
+            const destinationLabels = {
+                "1B": "一塁", "2B": "二塁", "3B": "三塁", score: "本塁"
+            };
+            const movements = unique((play?.runners ?? []).map((runner) => {
+                const runnerName = playerDisplayName(runner?.details?.runner);
+                const end = text(runner?.movement?.end);
+                if (!end || runnerName === "選手不明") return "";
+                const destination = destinationLabels[end] || end;
+                return runner?.movement?.isOut === true
+                    ? `${runnerName}は${destination}でアウト`
+                    : `${runnerName}が${destination}へ進塁`;
+            }));
+            if (movements.length) return `${label}。${movements.join("、")}。`;
+            const batterName = playerDisplayName(play?.matchup?.batter);
+            return batterName === "選手不明"
+                ? `${label}。`
+                : `${batterName}の打席で${label}。`;
+        };
         const addRareCandidate = (play, recordType, label, evidence) => {
             const inning = number(play?.about?.inning);
             const side = battingSideForPlay(play);
-            const description = text(play?.result?.description);
             const key = `${number(play?.atBatIndex)}:${recordType}`;
             if (rareCandidateKeys.has(key)) return;
             rareCandidateKeys.add(key);
@@ -1166,7 +1267,7 @@
                 inning,
                 fact: `${inning}回${inningHalf(side)}　${label}`,
                 details: {
-                    description,
+                    description: rarePlayDescription(play, label),
                     atBatIndex: number(play?.atBatIndex),
                     candidate: true
                 },
@@ -1206,12 +1307,21 @@
             }
 
             const batterId = number(play?.matchup?.batter?.id);
-            const batterReached = runners.some((runner) =>
+            const batterMovement = runners.find((runner) =>
                 number(runner?.details?.runner?.id) === batterId &&
                 runner?.movement?.isOut !== true &&
                 ["1B", "2B", "3B", "score"].includes(text(runner?.movement?.end))
             );
-            if (resultType.includes("strikeout") && batterReached) {
+            const otherRunnerAdvanced = runners.some((runner) =>
+                number(runner?.details?.runner?.id) !== batterId &&
+                runner?.movement?.isOut !== true &&
+                Boolean(runner?.movement?.end) &&
+                text(runner?.movement?.end) !== text(runner?.movement?.start)
+            );
+            const unusualDroppedThirdStrike = Boolean(batterMovement) && (
+                text(batterMovement?.movement?.end) !== "1B" || otherRunnerAdvanced
+            );
+            if (resultType.includes("strikeout") && unusualDroppedThirdStrike) {
                 addRareCandidate(
                     play,
                     "RARE_DROPPED_THIRD_STRIKE",
@@ -1241,7 +1351,11 @@
                 );
             }
 
-            const errorCount = (lowerDescription.match(/\berror\b/g) ?? []).length;
+            const describedErrors = (lowerDescription.match(/\berrors?\b/g) ?? []).length;
+            const creditedErrors = (play?.credits ?? []).filter((credit) =>
+                text(credit?.credit).toLowerCase() === "fielding_error"
+            ).length;
+            const errorCount = Math.max(describedErrors, creditedErrors);
             if (errorCount >= 2) {
                 addRareCandidate(
                     play,
@@ -1267,12 +1381,15 @@
                 const eventDescription = text(event?.details?.description);
                 return /overturned|call changed|判定.*覆/i.test(eventDescription);
             });
-            if (overturned) {
+            const lateScoringReview = overturned &&
+                play?.about?.isScoringPlay === true &&
+                number(play?.about?.inning) >= 7;
+            if (lateScoringReview) {
                 addRareCandidate(
                     play,
                     "RARE_REVIEW_OVERTURN",
-                    "リプレー検証で判定が変更",
-                    "PBPのレビュー結果がoverturned"
+                    "終盤の得点プレーがリプレー検証で変更",
+                    "7回以降の得点プレーでレビュー結果がoverturned"
                 );
             }
         });
@@ -1648,7 +1765,9 @@
                 headline: text(article?.headline),
                 url: text(article?.officialUrl || article?.url)
             })).filter((article) => article.url);
-            result.forEach((record) => { record.articleUrls = links; });
+            result.forEach((record) => {
+                if (!record.recordType.startsWith("RARE_")) record.articleUrls = links;
+            });
         }
         return result;
     };
@@ -1981,7 +2100,7 @@
         team.textContent = record.teamCode;
         const subject = document.createElement("span");
         subject.className = "daily-record-subject";
-        subject.textContent = record.playerName ||
+        subject.textContent = record.subject || record.playerName ||
             `${record.teamCode} 対 ${record.opponentCode || "相手"}`;
         const achievedDate = document.createElement("time");
         achievedDate.className = "daily-record-date";
@@ -1994,16 +2113,20 @@
         const fact = document.createElement("p");
         fact.className = "daily-record-fact";
         fact.textContent = displayFact(record);
-        const playDescription = text(record?.details?.description);
+        const playDescription = record?.details?.candidate === true
+            ? text(record?.details?.description)
+            : "";
         const description = document.createElement("p");
         description.className = "daily-record-play-description";
         description.textContent = playDescription;
         const links = document.createElement("div");
         links.className = "daily-record-links";
-        links.append(link("Gameday", record.gamedayUrl));
+        if (record.gamedayUrl) links.append(link("Gameday", record.gamedayUrl));
         (record.articleUrls ?? []).forEach((article, index) => {
             links.append(link(
-                index ? `MLB公式記事 ${index + 1}` : "MLB公式記事",
+                record.category === "heartwarming"
+                    ? (index ? `MLB公式記事・映像確認 ${index + 1}` : "MLB公式記事・映像確認")
+                    : (index ? `MLB公式記事 ${index + 1}` : "MLB公式記事"),
                 article.url,
                 article.headline
             ));
@@ -2011,7 +2134,7 @@
         card.append(header, fact);
         if (playDescription) card.append(description);
         card.append(links);
-        if (showPrevious && window.MLBRecordsArchive) {
+        if (showPrevious && record.category !== "heartwarming" && window.MLBRecordsArchive) {
             const previous = window.MLBRecordsArchive.previous(record);
             const previousLine = document.createElement("p");
             previousLine.className = "daily-record-previous";
@@ -2238,6 +2361,7 @@
                 }
             );
             if (generation !== state.generation) return;
+            const heartwarmingRecords = buildHeartwarmingNewsRecords(date, games);
             const payload = {
                 version: 1,
                 date,
@@ -2250,7 +2374,7 @@
                     status: text(game?.status?.detailedState),
                     isFinal: isFinal(game)
                 })),
-                records: dedupeRecords(gameRecords.flat()).sort((left, right) =>
+                records: dedupeRecords([...gameRecords.flat(), ...heartwarmingRecords]).sort((left, right) =>
                     CATEGORY_ORDER.indexOf(left.category) - CATEGORY_ORDER.indexOf(right.category) ||
                     left.teamCode.localeCompare(right.teamCode, "en") ||
                     left.fact.localeCompare(right.fact, "ja")
