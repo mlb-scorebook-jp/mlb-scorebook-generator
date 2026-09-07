@@ -4204,8 +4204,6 @@ body.app-mode-pitch-chart .viewer {
     }
 
     #scorebook-print-stage {
-        --rule: #174f2a;
-        --guide: rgba(23, 79, 42, 0.88);
         display: block !important;
         position: relative;
         width: 285mm;
@@ -4232,8 +4230,10 @@ body.app-mode-pitch-chart .viewer {
         transform-origin: center center;
     }
 
-    #scorebook-print-stage *:not(.play-card):not(.play-card *) {
-        color: #000 !important;
+    #scorebook-print-stage,
+    #scorebook-print-stage * {
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
     }
 
     #scorebook-print-stage .scorebook-page,
