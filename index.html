@@ -2015,6 +2015,7 @@
                         ]
                             .map((definition) => definition.field)
                     );
+                    if (group === "pitching") milestoneFields.add("shutouts");
                     careerSplits.forEach((split) => {
                         milestoneFields.forEach((field) => {
                             const value = Number(split?.stat?.[field]);
@@ -3504,7 +3505,18 @@
                     if (outcomes[index] !== latest) break;
                     count += 1;
                 }
-                return count >= 3 ? { type: latest, count } : null;
+                if (count < 3) return null;
+                let occurrence = 0;
+                let wins = 0;
+                outcomes.forEach((outcome) => {
+                    if (outcome === "win") {
+                        wins += 1;
+                        if (wins === count) occurrence += 1;
+                    } else {
+                        wins = 0;
+                    }
+                });
+                return { type: latest, count, occurrence };
             };
 
             const getTeamShutoutResult = (schedule, teamId, gamePk) => {
@@ -3672,16 +3684,47 @@
                     if (gameFinal) {
                         const sharedRecords = await sharedDailyRecordsPromise;
                         const sideTeamId = Number(team?.id);
+                        const shutoutPlayerIds = new Set(sharedRecords
+                            .filter((record) =>
+                                Number(record?.teamId) === sideTeamId &&
+                                record?.recordType === "SHUTOUT"
+                            )
+                            .map((record) => Number(record?.playerId))
+                            .filter(Number.isFinite));
+                        const firstCareerShutoutPlayerIds = new Set((await Promise.all(
+                            analyzed
+                                .filter((player) => shutoutPlayerIds.has(Number(player.id)))
+                                .map(async (player) => {
+                                    const career = await fetchPlayerCareerStats(
+                                        player,
+                                        "pitching",
+                                        officialDate
+                                    );
+                                    const total = Number(career?.shutouts);
+                                    const current = Math.max(1, Number(
+                                        player?.currentGamePitching?.shutouts
+                                    ) || 0);
+                                    return Number.isFinite(total) && total - current === 0
+                                        ? Number(player.id)
+                                        : null;
+                                })
+                        )).filter(Number.isFinite));
                         notes.push(...sharedRecords
                             .filter((record) => Number(record?.teamId) === sideTeamId)
-                            .map((record) => ({
-                                text: `${code}　${record.playerName ? `${record.playerName}　` : ""}${record.fact}`,
-                                priority: -3,
-                                ...(record.gamedayUrl ? {
-                                    link: record.gamedayUrl,
-                                    linkType: "mlb-official-record"
-                                } : {})
-                            })));
+                            .map((record) => {
+                                const firstCareerShutout =
+                                    record?.recordType === "SHUTOUT" &&
+                                    firstCareerShutoutPlayerIds.has(Number(record?.playerId));
+                                return {
+                                    text: `${code}　${record.playerName ? `${record.playerName}　` : ""}` +
+                                        `${record.fact}${firstCareerShutout ? "（キャリア初）" : ""}`,
+                                    priority: -3,
+                                    ...(record.gamedayUrl ? {
+                                        link: record.gamedayUrl,
+                                        linkType: "mlb-official-record"
+                                    } : {})
+                                };
+                            }));
                     }
                     if (gameFinal) {
                         notes.push(...await buildConsecutiveSeasonNotes(
@@ -3784,8 +3827,14 @@
                         ? getTeamWinLossStreak(scheduleThroughCurrent, team?.id)
                         : null;
                     if (teamStreak) {
+                        const occurrenceSuffix = teamStreak.type === "win" &&
+                            teamStreak.occurrence > 0
+                            ? `（今季${teamStreak.occurrence}度目）`
+                            : "";
                         notes.push({
-                            text: `${code}　${teamStreak.count}${teamStreak.type === "win" ? "連勝" : "連敗"}`,
+                            text: `${code}　${teamStreak.count}` +
+                                `${teamStreak.type === "win" ? "連勝" : "連敗"}` +
+                                occurrenceSuffix,
                             priority: -1
                         });
                     }
