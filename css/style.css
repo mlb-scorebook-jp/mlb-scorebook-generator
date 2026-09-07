@@ -4169,10 +4169,10 @@ body.app-mode-pitch-chart .viewer {
     }
 
     body.print-stage-active {
-        width: 285mm;
-        height: 198mm;
-        max-width: 285mm;
-        max-height: 198mm;
+        width: 100vw;
+        height: 100vh;
+        max-width: none;
+        max-height: none;
         overflow: hidden !important;
     }
 
@@ -4206,8 +4206,8 @@ body.app-mode-pitch-chart .viewer {
     #scorebook-print-stage {
         display: block !important;
         position: relative;
-        width: var(--print-page-width);
-        height: var(--print-page-height);
+        width: 100vw;
+        height: 100vh;
         margin: 0;
         padding: 0;
         overflow: hidden;
@@ -4222,12 +4222,12 @@ body.app-mode-pitch-chart .viewer {
 
     #scorebook-print-stage .scorebook-print-content {
         position: absolute;
-        top: var(--print-offset-y, 0);
-        left: var(--print-offset-x, 0);
+        top: 50%;
+        left: 50%;
         margin: 0;
         padding: 0;
-        transform: scale(var(--print-scale, 1));
-        transform-origin: top left;
+        transform: translate(-50%, -50%) scale(var(--print-scale, 1));
+        transform-origin: center center;
     }
 
     #scorebook-print-stage *:not(.play-card):not(.play-card *) {
@@ -4266,6 +4266,15 @@ body.app-mode-pitch-chart .viewer {
         color: inherit !important;
         text-decoration: none !important;
         opacity: 1 !important;
+    }
+}
+
+/* A3 landscape has enough room to render the scorebook larger. The print
+ * viewport reflects the paper selected in the system dialog on Safari,
+ * Chromium, and Windows print preview. */
+@media print and (min-width: 350mm) and (min-height: 250mm) {
+    #scorebook-print-stage .scorebook-print-content {
+        transform: translate(-50%, -50%) scale(var(--print-a3-scale, var(--print-scale, 1)));
     }
 }
 

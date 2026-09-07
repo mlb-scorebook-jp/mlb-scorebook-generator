@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MLB Scorebook Generator</title>
     <!-- Score notation update: stacked batted-ball symbol, red hits, blue strikeouts, black other results. -->
-    <link rel="stylesheet" href="css/style.css?v=20260907-runner-arrowhead-1">
+    <link rel="stylesheet" href="css/style.css?v=20260907-print-paper-centering-1">
     <link rel="stylesheet" href="css/pregame.css?v=20260907-official-social-links-1">
     <link rel="stylesheet" href="css/daily-records.css?v=20260831-calendar-features-1">
 </head>
@@ -9884,6 +9884,8 @@
             const PRINT_STAGE_ID = "scorebook-print-stage";
             const A4_LANDSCAPE_WIDTH_MM = 297;
             const A4_LANDSCAPE_HEIGHT_MM = 210;
+            const A3_LANDSCAPE_WIDTH_MM = 420;
+            const A3_LANDSCAPE_HEIGHT_MM = 297;
             const PRINT_MARGIN_MM = 6;
             // Safari can round a transformed page outward when creating a PDF.
             // Keep the spread slightly inside the printable box so the home
@@ -9925,8 +9927,6 @@
                 const printableHeight = (
                     A4_LANDSCAPE_HEIGHT_MM - PRINT_MARGIN_MM * 2
                 ) * CSS_PIXELS_PER_MM;
-                const printableWidthMm = A4_LANDSCAPE_WIDTH_MM - PRINT_MARGIN_MM * 2;
-                const printableHeightMm = A4_LANDSCAPE_HEIGHT_MM - PRINT_MARGIN_MM * 2;
                 const safeWidth = printableWidth - PRINT_EDGE_SAFETY_MM * 2 * CSS_PIXELS_PER_MM;
                 const safeHeight = printableHeight - PRINT_EDGE_SAFETY_MM * 2 * CSS_PIXELS_PER_MM;
                 const contentWidth = Math.max(
@@ -9944,30 +9944,22 @@
                     safeWidth / contentWidth,
                     safeHeight / contentHeight
                 );
-                const outputWidth = contentWidth * scale;
-                const outputHeight = contentHeight * scale;
-                const offsetX = Math.max(0, (printableWidth - outputWidth) / 2);
-                const offsetY = Math.max(0, (printableHeight - outputHeight) / 2);
+                const a3SafeWidth = (
+                    A3_LANDSCAPE_WIDTH_MM - PRINT_MARGIN_MM * 2 - PRINT_EDGE_SAFETY_MM * 2
+                ) * CSS_PIXELS_PER_MM;
+                const a3SafeHeight = (
+                    A3_LANDSCAPE_HEIGHT_MM - PRINT_MARGIN_MM * 2 - PRINT_EDGE_SAFETY_MM * 2
+                ) * CSS_PIXELS_PER_MM;
+                const a3Scale = Math.min(
+                    1,
+                    a3SafeWidth / contentWidth,
+                    a3SafeHeight / contentHeight
+                );
                 const printStage = document.createElement("section");
                 printStage.id = PRINT_STAGE_ID;
                 printStage.setAttribute("aria-hidden", "true");
                 printStage.style.setProperty("--print-scale", String(scale));
-                printStage.style.setProperty(
-                    "--print-page-width",
-                    `${printableWidthMm}mm`
-                );
-                printStage.style.setProperty(
-                    "--print-page-height",
-                    `${printableHeightMm}mm`
-                );
-                printStage.style.setProperty(
-                    "--print-offset-x",
-                    `${offsetX / CSS_PIXELS_PER_MM}mm`
-                );
-                printStage.style.setProperty(
-                    "--print-offset-y",
-                    `${offsetY / CSS_PIXELS_PER_MM}mm`
-                );
+                printStage.style.setProperty("--print-a3-scale", String(a3Scale));
 
                 const printContent = document.createElement("div");
                 printContent.className = "scorebook-print-content";
@@ -9980,8 +9972,10 @@
 
                 const pageStyle = document.createElement("style");
                 pageStyle.id = PRINT_PAGE_STYLE_ID;
-                pageStyle.textContent = `@page { size: ${A4_LANDSCAPE_WIDTH_MM}mm ` +
-                    `${A4_LANDSCAPE_HEIGHT_MM}mm; margin: ${PRINT_MARGIN_MM}mm; }`;
+                // Keep landscape orientation, but let the print dialog choose A4,
+                // A3, Letter, or another physical paper size. The print stage is
+                // centered against that selected page by the print stylesheet.
+                pageStyle.textContent = `@page { size: landscape; margin: ${PRINT_MARGIN_MM}mm; }`;
                 document.head.append(pageStyle);
                 return true;
             };
