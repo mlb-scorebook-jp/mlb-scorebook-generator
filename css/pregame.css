@@ -169,6 +169,8 @@ body.app-mode-pregame .scorebook-horizontal-scroll {
 }
 
 .pregame-team-official-links {
+    position: relative;
+    z-index: 2;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -181,6 +183,8 @@ body.app-mode-pregame .scorebook-horizontal-scroll {
 }
 
 .pregame-team-social-link {
+    position: relative;
+    z-index: 1;
     box-sizing: border-box;
     width: 18px;
     height: 18px;
@@ -195,6 +199,8 @@ body.app-mode-pregame .scorebook-horizontal-scroll {
     font-weight: 700;
     line-height: 1;
     text-decoration: none;
+    cursor: pointer;
+    pointer-events: auto;
 }
 
 .pregame-team-social-link:hover,
