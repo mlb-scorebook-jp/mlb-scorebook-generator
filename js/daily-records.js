@@ -2,7 +2,7 @@
 
 (() => {
     const API_ROOT = "https://statsapi.mlb.com/api";
-    const CACHE_PREFIX = "mlb-daily-records-phase1-v21:";
+    const CACHE_PREFIX = "mlb-daily-records-phase1-v22:";
     const MAX_CONCURRENT_GAMES = 3;
     const RECORD_THRESHOLDS = Object.freeze({
         inningHits: 2,
@@ -262,6 +262,18 @@
         return `https://www.mlb.com/gameday/${matchup}/${date}/` +
             `${game.gamePk}/final`;
     };
+    const mediaCenterSearchUrl = (query) => {
+        const value = text(query);
+        if (!value) return "";
+        const params = new URLSearchParams({
+            query: value,
+            sort: "Date desc",
+            type: "grid",
+            page: "1",
+            spellCheck: "true"
+        });
+        return `https://media.mlb.com/search/results#/?${params}`;
+    };
     const articleMlbDate = (article) => {
         const value = text(article?.contentDate || article?.date);
         if (/^\d{4}-\d{2}-\d{2}$/.test(value)) return value;
@@ -333,7 +345,12 @@
                 battingSide: null,
                 pitchingSide: null,
                 fact: summary,
-                details: { candidate: true, videoCandidate: true, metric: key },
+                details: {
+                    candidate: true,
+                    videoCandidate: true,
+                    metric: key,
+                    mediaQuery: text(article?.headline)
+                },
                 evidence: "MLB公式ニュースの見出し・分類から映像候補を抽出",
                 apiStatus: "candidate",
                 historicalContext: { status: "needs-review", text: "" },
@@ -1255,6 +1272,30 @@
         const addRareCandidate = (play, recordType, label, evidence) => {
             const inning = number(play?.about?.inning);
             const side = battingSideForPlay(play);
+            const mediaNames = unique([
+                text(play?.matchup?.batter?.fullName),
+                ...(play?.runners ?? []).map((runner) =>
+                    text(runner?.details?.runner?.fullName)
+                )
+            ]);
+            const mediaEventTypes = unique([
+                text(play?.result?.eventType),
+                ...(play?.runners ?? []).map((runner) =>
+                    text(runner?.details?.eventType)
+                ),
+                ...(play?.playEvents ?? []).map((event) =>
+                    text(event?.details?.eventType)
+                )
+            ]);
+            const mediaQuery = [
+                text(game?.officialDate || state.date),
+                teamCode(scheduleTeamForSide(game, "away")),
+                teamCode(scheduleTeamForSide(game, "home")),
+                ...mediaNames,
+                text(play?.result?.event),
+                ...mediaEventTypes,
+                label
+            ].filter(Boolean).join(" ");
             const key = `${number(play?.atBatIndex)}:${recordType}`;
             if (rareCandidateKeys.has(key)) return;
             rareCandidateKeys.add(key);
@@ -1269,7 +1310,8 @@
                 details: {
                     description: rarePlayDescription(play, label),
                     atBatIndex: number(play?.atBatIndex),
-                    candidate: true
+                    candidate: true,
+                    mediaQuery
                 },
                 evidence
             }));
@@ -2137,6 +2179,12 @@
                 article.headline
             ));
         });
+        const mediaUrl = record?.details?.mediaVerified === true
+            ? mediaCenterSearchUrl(record?.details?.mediaQuery)
+            : "";
+        if (mediaUrl) {
+            links.append(link("Media Centerで映像検索", mediaUrl));
+        }
         card.append(header, fact);
         if (playDescription) card.append(description);
         card.append(links);
