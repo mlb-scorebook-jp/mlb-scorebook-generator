@@ -1254,15 +1254,30 @@
             const destinationLabels = {
                 "1B": "一塁", "2B": "二塁", "3B": "三塁", score: "本塁"
             };
-            const movements = unique((play?.runners ?? []).map((runner) => {
+            const runnersByPlayer = new Map();
+            (play?.runners ?? []).forEach((runner) => {
                 const runnerName = playerDisplayName(runner?.details?.runner);
-                const end = text(runner?.movement?.end);
-                if (!end || runnerName === "選手不明") return "";
-                const destination = destinationLabels[end] || end;
+                if (runnerName === "選手不明") return;
+                const runnerKey = number(runner?.details?.runner?.id) || runnerName;
+                const entries = runnersByPlayer.get(runnerKey) || [];
+                entries.push(runner);
+                runnersByPlayer.set(runnerKey, entries);
+            });
+            const movements = [...runnersByPlayer.values()].map((entries) => {
+                const runner = [...entries].reverse().find((entry) =>
+                    entry?.movement?.isOut === true
+                ) || [...entries].reverse().find((entry) => text(entry?.movement?.end));
+                if (!runner) return "";
+                const runnerName = playerDisplayName(runner?.details?.runner);
+                const base = runner?.movement?.isOut === true
+                    ? text(runner?.movement?.outBase || runner?.movement?.end)
+                    : text(runner?.movement?.end);
+                if (!base) return "";
+                const destination = destinationLabels[base] || base;
                 return runner?.movement?.isOut === true
                     ? `${runnerName}は${destination}でアウト`
                     : `${runnerName}が${destination}へ進塁`;
-            }));
+            }).filter(Boolean);
             if (movements.length) return `${label}。${movements.join("、")}。`;
             const batterName = playerDisplayName(play?.matchup?.batter);
             return batterName === "選手不明"
