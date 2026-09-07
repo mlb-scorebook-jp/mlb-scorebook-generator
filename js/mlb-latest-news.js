@@ -2,6 +2,134 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "With one swing, Abrams slugs himself (and Wood) into MLB history",
+        "summaryJa": "C.エイブラムズ（WSH）、記録達成の最新情報",
+        "slug": "cj-abrams-hits-30th-home-run-in-nationals-loss",
+        "url": "https://www.mlb.com/news/cj-abrams-hits-30th-home-run-in-nationals-loss",
+        "contentDate": "2026-09-07T07:48:15.656Z",
+        "teamIds": [
+            120
+        ],
+        "playerIds": [
+            682928
+        ],
+        "gamePks": [
+            823903
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Latest Nationals injuries & transactions",
+        "summaryJa": "ナショナルズの負傷状況をMLB公式が詳報",
+        "slug": "nationals-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/nationals-injuries-and-roster-moves",
+        "contentDate": "2026-09-07T07:31:00Z",
+        "teamIds": [
+            120
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Betts' homer, Tucker's robbery highlight key 8th inning to seal Dodgers' sweep",
+        "summaryJa": "M.ベッツ（LAD）、記録達成の最新情報",
+        "slug": "mookie-betts-go-ahead-home-run-lifts-dodgers-over-nationals",
+        "url": "https://www.mlb.com/news/mookie-betts-go-ahead-home-run-lifts-dodgers-over-nationals",
+        "contentDate": "2026-09-07T06:50:00Z",
+        "teamIds": [
+            119
+        ],
+        "playerIds": [
+            605141
+        ],
+        "gamePks": [
+            823903
+        ],
+        "taxonomy": [
+            "apple-news",
+            "game-recap",
+            "clutch-moment"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Ohtani out of starting lineup for 4th straight game, expected to return Monday",
+        "summaryJa": "大谷 翔平（LAD）、復帰へ向けた最新状況",
+        "slug": "shohei-ohtani-out-of-lineup-for-4th-straight-game",
+        "url": "https://www.mlb.com/news/shohei-ohtani-out-of-lineup-for-4th-straight-game",
+        "contentDate": "2026-09-07T05:57:00Z",
+        "teamIds": [
+            119
+        ],
+        "playerIds": [
+            660271
+        ],
+        "gamePks": [
+            823903
+        ],
+        "taxonomy": [
+            "apple-news",
+            "injury"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Latest Twins injuries & transactions",
+        "summaryJa": "ツインズの負傷状況をMLB公式が詳報",
+        "slug": "twins-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/twins-injuries-and-roster-moves",
+        "contentDate": "2026-09-07T05:36:00Z",
+        "teamIds": [
+            142
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Watch No. 4 prospect King play at Triple-A for FREE today",
+        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
+        "slug": "watch-minor-league-baseball-games-for-free-2026",
+        "url": "https://www.mlb.com/news/watch-minor-league-baseball-games-for-free-2026",
+        "contentDate": "2026-09-07T05:21:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "mlb-top-prospects",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "These 5 series have massive postseason implications",
         "summaryJa": "ガーディアンズの最新動向をMLB公式が詳報",
         "slug": "mlb-series-to-watch-week-of-sept-7-2026",
@@ -338,23 +466,6 @@
         ]
     },
     {
-        "headline": "Watch No. 4 prospect King play at Triple-A for FREE on Monday",
-        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
-        "slug": "watch-minor-league-baseball-games-for-free-2026",
-        "url": "https://www.mlb.com/news/watch-minor-league-baseball-games-for-free-2026",
-        "contentDate": "2026-09-07T00:51:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "mlb-top-prospects",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Postseason hero Beckett inducted into Marlins Legends Hall of Fame",
         "summaryJa": "J.ベケット（MIA）の最新動向をMLB公式が詳報",
         "slug": "josh-beckett-inducted-into-marlins-legends-hall-of-fame",
@@ -453,30 +564,6 @@
             "game-recap",
             "pitching",
             "wow"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Ohtani out of starting lineup for 4th straight game; Roberts 'hopeful' for Monday return",
-        "summaryJa": "大谷 翔平（LAD）、復帰へ向けた最新状況",
-        "slug": "shohei-ohtani-out-of-lineup-for-4th-straight-game",
-        "url": "https://www.mlb.com/news/shohei-ohtani-out-of-lineup-for-4th-straight-game",
-        "contentDate": "2026-09-07T00:33:00Z",
-        "teamIds": [
-            119
-        ],
-        "playerIds": [
-            660271
-        ],
-        "gamePks": [
-            823903
-        ],
-        "taxonomy": [
-            "apple-news",
-            "injury"
         ],
         "sourceScopes": [
             "MLB",
@@ -1160,7 +1247,7 @@
         ]
     },
     {
-        "headline": "'I’m not surprised:' Padres' No. 9 prospect ending 2026 on a high-note at Single-A",
+        "headline": "'I’m not surprised:' Padres' No. 9 prospect ending 2026 on a high note at Single-A",
         "summaryJa": "Lan-Hong Su（SD）ら注目選手の最新動向",
         "slug": "san-diego-padres-lan-hong-su-ending-2026-on-a-high-note-at-single-a",
         "url": "https://www.mlb.com/news/san-diego-padres-lan-hong-su-ending-2026-on-a-high-note-at-single-a",
@@ -1196,26 +1283,6 @@
         "taxonomy": [
             "apple-news",
             "takeaways"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Latest Twins injuries & transactions",
-        "summaryJa": "ツインズの負傷状況をMLB公式が詳報",
-        "slug": "twins-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/twins-injuries-and-roster-moves",
-        "contentDate": "2026-09-06T21:33:00Z",
-        "teamIds": [
-            142
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
         ],
         "sourceScopes": [
             "球団公式"
@@ -1543,7 +1610,6 @@
             "injury"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -2881,26 +2947,6 @@
             "apple-news",
             "mlb-top-prospects",
             "injury"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Latest Nationals injuries & transactions",
-        "summaryJa": "ナショナルズの負傷状況をMLB公式が詳報",
-        "slug": "nationals-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/nationals-injuries-and-roster-moves",
-        "contentDate": "2026-09-06T00:00:00Z",
-        "teamIds": [
-            120
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
         ],
         "sourceScopes": [
             "球団公式"
@@ -6752,29 +6798,6 @@
         ]
     },
     {
-        "headline": "'This guy is incredible': Dodgers' No. 4 prospect logs 5-hit night, extends MiLB RBI lead",
-        "summaryJa": "Emil Morales（LAD）ら注目選手の最新動向",
-        "slug": "dodgers-prospect-emil-morales-5-hit-game-minors-rbi-leader",
-        "url": "https://www.mlb.com/news/dodgers-prospect-emil-morales-5-hit-game-minors-rbi-leader",
-        "contentDate": "2026-09-03T04:40:00Z",
-        "teamIds": [
-            119
-        ],
-        "playerIds": [
-            815896
-        ],
-        "gamePks": [
-            823906
-        ],
-        "taxonomy": [
-            "apple-news",
-            "mlb-top-prospects"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Martin recaptures some early-season magic in return from IL",
         "summaryJa": "D.マーティン（CWS）の負傷状況をMLB公式が詳報",
         "slug": "davis-martin-looks-sharp-in-return-from-injured-list",
@@ -7126,31 +7149,6 @@
             "injury",
             "rehab",
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Lauer lands on IL, complicating Dodgers' regular-season pitching plans",
-        "summaryJa": "E.ラウアー（LAD）の負傷状況をMLB公式が詳報",
-        "slug": "eric-lauer-to-injured-list",
-        "url": "https://www.mlb.com/news/eric-lauer-to-injured-list",
-        "contentDate": "2026-09-03T01:35:17.948Z",
-        "teamIds": [
-            119
-        ],
-        "playerIds": [
-            641778,
-            595014
-        ],
-        "gamePks": [
-            823906
-        ],
-        "taxonomy": [
-            "apple-news",
-            "injury",
-            "transactions"
         ],
         "sourceScopes": [
             "球団公式"
@@ -9849,29 +9847,6 @@
             "apple-news",
             "game-recap",
             "rally"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Abrams dazzles on defense in long-awaited debut at second base",
-        "summaryJa": "C.エイブラムズ（WSH）、メジャー昇格・初出場に関する最新情報",
-        "slug": "cj-abrams-debuts-at-second-base-for-nationals-in-loss-to-marlins",
-        "url": "https://www.mlb.com/news/cj-abrams-debuts-at-second-base-for-nationals-in-loss-to-marlins",
-        "contentDate": "2026-08-30T21:37:00Z",
-        "teamIds": [
-            120
-        ],
-        "playerIds": [
-            682928
-        ],
-        "gamePks": [
-            822688
-        ],
-        "taxonomy": [
-            "apple-news",
-            "defense"
         ],
         "sourceScopes": [
             "球団公式"
