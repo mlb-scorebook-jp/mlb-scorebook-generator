@@ -2,6 +2,50 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Smith's K's milestone quantifies continued dominance for Guards",
+        "summaryJa": "C.スミス（CLE）、記録達成の最新情報",
+        "slug": "cade-smith-reaches-300-career-strikeouts",
+        "url": "https://www.mlb.com/news/cade-smith-reaches-300-career-strikeouts",
+        "contentDate": "2026-09-08T17:07:37.898Z",
+        "teamIds": [
+            114
+        ],
+        "playerIds": [
+            671922
+        ],
+        "gamePks": [
+            824792
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "How Judge's return may turn the tide in Yankees' favor",
+        "summaryJa": "A.ジャッジ（NYY）、復帰へ向けた最新状況",
+        "slug": "aaron-judge-s-return-a-factor-in-al-east-wild-card-races",
+        "url": "https://www.mlb.com/news/aaron-judge-s-return-a-factor-in-al-east-wild-card-races",
+        "contentDate": "2026-09-08T14:40:00Z",
+        "teamIds": [
+            147
+        ],
+        "playerIds": [
+            592450
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Sharing a special bond, Griffin, Trout face off for first time",
         "summaryJa": "K.グリフィン（PIT）の最新動向をMLB公式が詳報",
         "slug": "konnor-griffin-mike-trout-meet-for-first-time-on-field",
@@ -21,6 +65,7 @@
             "apple-news"
         ],
         "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
@@ -49,6 +94,7 @@
             "apple-news"
         ],
         "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
@@ -112,6 +158,7 @@
             "apple-news"
         ],
         "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
@@ -138,6 +185,7 @@
             "minor-league-baseball"
         ],
         "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
@@ -270,7 +318,6 @@
             "walk-off"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -364,7 +411,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -591,7 +637,7 @@
         ]
     },
     {
-        "headline": "32-year-old journeyman throws first individual perfect game in Minors since 2017",
+        "headline": "Perfect game! 32-year-old journeyman throws Minors' first perfecto in 9 years",
         "summaryJa": "T.パノンの最新動向をMLB公式が詳報",
         "slug": "thomas-pannone-throws-perfect-game-in-minor-leagues",
         "url": "https://www.mlb.com/news/thomas-pannone-throws-perfect-game-in-minor-leagues",
@@ -788,7 +834,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -990,7 +1035,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1390,7 +1434,6 @@
             "injury"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1670,6 +1713,7 @@
             "apple-news"
         ],
         "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
@@ -1803,7 +1847,6 @@
             "trade-deadline"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1898,7 +1941,7 @@
         ]
     },
     {
-        "headline": "New club joins Power Rankings Top 5 for stretch run",
+        "headline": "Cubs move into Top 5 in latest Power Rankings",
         "summaryJa": "MLBの最新情報ら注目選手の最新動向",
         "slug": "mlb-power-rankings-for-the-week-of-september-6-2026",
         "url": "https://www.mlb.com/news/mlb-power-rankings-for-the-week-of-september-6-2026",
@@ -1911,7 +1954,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -6220,29 +6262,6 @@
         ],
         "gamePks": [
             824146
-        ],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "DeLauter, Messick worthy contenders in AL Rookie of the Year race",
-        "summaryJa": "P.メシック（CLE）の最新動向をMLB公式が詳報",
-        "slug": "parker-messick-chase-delauter-al-roy-award-candidates",
-        "url": "https://www.mlb.com/news/parker-messick-chase-delauter-al-roy-award-candidates",
-        "contentDate": "2026-09-04T13:26:16.562Z",
-        "teamIds": [
-            114
-        ],
-        "playerIds": [
-            800048,
-            800050
-        ],
-        "gamePks": [
-            824387
         ],
         "taxonomy": [
             "apple-news"
