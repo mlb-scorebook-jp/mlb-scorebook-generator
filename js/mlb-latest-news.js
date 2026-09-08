@@ -2,6 +2,210 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Sharing a special bond, Griffin, Trout face off for first time",
+        "summaryJa": "K.グリフィン（PIT）の最新動向をMLB公式が詳報",
+        "slug": "konnor-griffin-mike-trout-meet-for-first-time-on-field",
+        "url": "https://www.mlb.com/news/konnor-griffin-mike-trout-meet-for-first-time-on-field",
+        "contentDate": "2026-09-08T13:47:57.984Z",
+        "teamIds": [
+            134
+        ],
+        "playerIds": [
+            804606,
+            545361
+        ],
+        "gamePks": [
+            824551
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Is this the best rotation in the Minor Leagues?",
+        "summaryJa": "Anthony Eyanson（BAL）の最新動向をMLB公式が詳報",
+        "slug": "orioles-double-a-rotation-among-best-in-minor-leagues",
+        "url": "https://www.mlb.com/news/orioles-double-a-rotation-among-best-in-minor-leagues",
+        "contentDate": "2026-09-08T13:41:48.65Z",
+        "teamIds": [
+            110
+        ],
+        "playerIds": [
+            809254,
+            804530,
+            827267,
+            802411,
+            694345,
+            807792
+        ],
+        "gamePks": [
+            824792
+        ],
+        "taxonomy": [
+            "mlb-top-prospects",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Biggest questions as Rays close in on playoff berth, top seed in AL",
+        "summaryJa": "レイズの最新動向をMLB公式が詳報",
+        "slug": "rays-biggest-questions-during-final-push-for-playoffs",
+        "url": "https://www.mlb.com/news/rays-biggest-questions-during-final-push-for-playoffs",
+        "contentDate": "2026-09-08T13:34:48.234Z",
+        "teamIds": [
+            139
+        ],
+        "playerIds": [],
+        "gamePks": [
+            824875
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "PCA reconnects with young fan, trades him a signed bat",
+        "summaryJa": "P.クローアームストロング（CHC）の移籍・契約に関する最新情報",
+        "slug": "pete-crow-armstrong-trades-a-signed-bat-for-a-young-fan-s-card",
+        "url": "https://www.mlb.com/news/pete-crow-armstrong-trades-a-signed-bat-for-a-young-fan-s-card",
+        "contentDate": "2026-09-08T13:11:39.458Z",
+        "teamIds": [
+            112
+        ],
+        "playerIds": [
+            691718
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "'Pen roles shifting for Phils as Kerkering struggles, McFarlane soars",
+        "summaryJa": "O.カーカリング（PHI）の最新動向をMLB公式が詳報",
+        "slug": "alex-mcfarlane-orion-kerkering-phillies-bullpen",
+        "url": "https://www.mlb.com/news/alex-mcfarlane-orion-kerkering-phillies-bullpen",
+        "contentDate": "2026-09-08T13:09:15.733Z",
+        "teamIds": [
+            143
+        ],
+        "playerIds": [
+            689147,
+            686934
+        ],
+        "gamePks": [
+            823417
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Mets' farm teams receive late-season boost from influx of prospects",
+        "summaryJa": "Émilien Pitre（NYM）の移籍・契約に関する最新情報",
+        "slug": "mets-minor-league-affiliates-benefiting-from-trade-deadline-deals",
+        "url": "https://www.mlb.com/news/mets-minor-league-affiliates-benefiting-from-trade-deadline-deals",
+        "contentDate": "2026-09-08T13:01:53.805Z",
+        "teamIds": [
+            121
+        ],
+        "playerIds": [
+            692150,
+            701771,
+            804541
+        ],
+        "gamePks": [
+            823821
+        ],
+        "taxonomy": [
+            "apple-news",
+            "mlb-top-prospects",
+            "minor-league-baseball"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Fuentes, bullpen key to Braves' postseason plans",
+        "summaryJa": "D.フエンテス（ATL）の最新動向をMLB公式が詳報",
+        "slug": "didier-fuentes-key-to-braves-success",
+        "url": "https://www.mlb.com/news/didier-fuentes-key-to-braves-success",
+        "contentDate": "2026-09-08T12:55:46.441Z",
+        "teamIds": [
+            144
+        ],
+        "playerIds": [
+            800311
+        ],
+        "gamePks": [
+            823415
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Schlittler has one thought in mind vs. Rox ... and it's not the AL Cy Young Award race",
+        "summaryJa": "C.シュリットラー（NYY）の最新動向をMLB公式が詳報",
+        "slug": "cam-schlittler-starts-vs-rockies-september-8",
+        "url": "https://www.mlb.com/news/cam-schlittler-starts-vs-rockies-september-8",
+        "contentDate": "2026-09-08T12:49:43.471Z",
+        "teamIds": [
+            147
+        ],
+        "playerIds": [
+            693645
+        ],
+        "gamePks": [
+            823500
+        ],
+        "taxonomy": [],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Yanks Mag: Shot in the Arm",
+        "summaryJa": "L.ガルシア Jr.（NYY）の移籍・契約に関する最新情報",
+        "slug": "yankees-magazine-trade-deadline-2026",
+        "url": "https://www.mlb.com/news/yankees-magazine-trade-deadline-2026",
+        "contentDate": "2026-09-08T11:55:33.445Z",
+        "teamIds": [
+            147
+        ],
+        "playerIds": [
+            671277,
+            671218
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "nyy-yankees-magazine",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Giménez, Blue Jays feel the whiplash of almost-comeback win",
         "summaryJa": "A.ヒメネス（TOR）、本塁打で存在感",
         "slug": "andres-gimenez-hits-game-tying-ninth-inning-homer-in-blue-jays-loss",
@@ -7837,30 +8041,6 @@
         ]
     },
     {
-        "headline": "Cabrera takes first step toward returning as reliever with rehab outing",
-        "summaryJa": "E.カブレーラ（CHC）、復帰へ向けた最新状況",
-        "slug": "edward-cabrera-makes-minor-league-rehab-relief-appearance",
-        "url": "https://www.mlb.com/news/edward-cabrera-makes-minor-league-rehab-relief-appearance",
-        "contentDate": "2026-09-03T02:26:00Z",
-        "teamIds": [
-            112
-        ],
-        "playerIds": [
-            665795
-        ],
-        "gamePks": [
-            824634
-        ],
-        "taxonomy": [
-            "apple-news",
-            "injury",
-            "rehab"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Trio of rehabbing White Sox make appearance for Triple-A Charlotte",
         "summaryJa": "K.ティール（CWS）、復帰へ向けた最新状況",
         "slug": "drew-thorpe-kyle-teel-huascar-brazoban-make-triple-a-rehab-appearance",
@@ -8390,29 +8570,6 @@
         ]
     },
     {
-        "headline": "Yanks add on, hold on after Cole battles into 6th",
-        "summaryJa": "G.コール（NYY）、記録達成の最新情報",
-        "slug": "gerrit-cole-starts-against-angels-in-anaheim",
-        "url": "https://www.mlb.com/news/gerrit-cole-starts-against-angels-in-anaheim",
-        "contentDate": "2026-09-02T06:40:00Z",
-        "teamIds": [
-            147
-        ],
-        "playerIds": [
-            543037
-        ],
-        "gamePks": [
-            823984
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Carroll doesn't expect to be sidelined by low back discomfort",
         "summaryJa": "C.キャロル（AZ）の負傷状況をMLB公式が詳報",
         "slug": "corbin-carroll-playing-through-low-back-discomfort",
@@ -8750,30 +8907,6 @@
         ]
     },
     {
-        "headline": "Mesa returns and contributes immediately; Jax set to start Wednesday",
-        "summaryJa": "V.メサ Jr.（TB）の負傷状況をMLB公式が詳報",
-        "slug": "rays-activate-victor-mesa-jr-from-injured-list",
-        "url": "https://www.mlb.com/news/rays-activate-victor-mesa-jr-from-injured-list",
-        "contentDate": "2026-09-02T02:57:00Z",
-        "teamIds": [
-            139
-        ],
-        "playerIds": [
-            683748,
-            643377
-        ],
-        "gamePks": [
-            822929
-        ],
-        "taxonomy": [
-            "apple-news",
-            "transactions"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Manaea continues troubling pattern: Strong start, rocky finish",
         "summaryJa": "S.マナエア（NYM）の最新動向をMLB公式が詳報",
         "slug": "sean-manaea-hits-wall-in-sixth-in-mets-loss-to-rays",
@@ -8886,28 +9019,6 @@
         ]
     },
     {
-        "headline": "Robert excited to join O's, eager to contribute to postseason push",
-        "summaryJa": "L.ロバート Jr.（BAL）の最新動向をMLB公式が詳報",
-        "slug": "luis-robert-jr-excited-to-join-orioles",
-        "url": "https://www.mlb.com/news/luis-robert-jr-excited-to-join-orioles",
-        "contentDate": "2026-09-02T00:40:37.283Z",
-        "teamIds": [
-            110
-        ],
-        "playerIds": [
-            673357
-        ],
-        "gamePks": [
-            824313
-        ],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Darren Baker reportedly signing Minors deal with Giants",
         "summaryJa": "D.ベイカー（SF）の移籍・契約に関する最新情報",
         "slug": "darren-baker-signed-by-giants",
@@ -8944,35 +9055,6 @@
         "gamePks": [],
         "taxonomy": [
             "transactions",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Pitre makes 2026 All-Breakout Prospect Team",
-        "summaryJa": "Franklin Primeraら注目選手の最新動向",
-        "slug": "breakout-prospects-in-mlb-2026",
-        "url": "https://www.mlb.com/news/breakout-prospects-in-mlb-2026",
-        "contentDate": "2026-09-01T23:15:00Z",
-        "teamIds": [],
-        "playerIds": [
-            829398,
-            828685,
-            692150,
-            809092,
-            828237,
-            807080,
-            815520,
-            828824,
-            821150,
-            827267,
-            804526
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "mlb-top-prospects",
             "apple-news"
         ],
         "sourceScopes": [
