@@ -2,6 +2,132 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Former Cy winner Burnes making '26 debut tonight following TJ surgery",
+        "summaryJa": "C.バーンズ（AZ）、メジャー昇格・初出場に関する最新情報",
+        "slug": "corbin-burnes-2026-debut-against-royals",
+        "url": "https://www.mlb.com/news/corbin-burnes-2026-debut-against-royals",
+        "contentDate": "2026-09-08T19:51:14.898Z",
+        "teamIds": [
+            109
+        ],
+        "playerIds": [
+            669203
+        ],
+        "gamePks": [
+            824063
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Watch top prospect Nimmala play at Double-A for FREE in Sunday matinee",
+        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
+        "slug": "watch-minor-league-baseball-games-for-free-2026",
+        "url": "https://www.mlb.com/news/watch-minor-league-baseball-games-for-free-2026",
+        "contentDate": "2026-09-08T19:50:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "mlb-top-prospects",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Judge is back! Yanks' captain playing RF tonight after 3 months on IL",
+        "summaryJa": "A.ジャッジ（NYY）の負傷状況をMLB公式が詳報",
+        "slug": "aaron-judge-returns-from-injured-list",
+        "url": "https://www.mlb.com/news/aaron-judge-returns-from-injured-list",
+        "contentDate": "2026-09-08T19:23:00Z",
+        "teamIds": [
+            147
+        ],
+        "playerIds": [
+            592450
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "transactions",
+            "apple-news",
+            "injury"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Is Judge the greatest hitter ... ever? This former MVP says yes",
+        "summaryJa": "A.ジャッジ（NYY）の最新動向をMLB公式が詳報",
+        "slug": "joey-votto-calls-aaron-judge-the-greatest-hitter-ever",
+        "url": "https://www.mlb.com/news/joey-votto-calls-aaron-judge-the-greatest-hitter-ever",
+        "contentDate": "2026-09-08T19:19:00Z",
+        "teamIds": [
+            147
+        ],
+        "playerIds": [
+            592450,
+            458015
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Baseball Fantasy Camp for Kids Brings Joy to Young Athletes at Easterseals Miracle League Field",
+        "summaryJa": "タイガースの最新動向をMLB公式が詳報",
+        "slug": "detroit-tigers-partner-to-host-baseball-fantasy-camp-for-kids",
+        "url": "https://www.mlb.com/news/detroit-tigers-partner-to-host-baseball-fantasy-camp-for-kids",
+        "contentDate": "2026-09-08T19:12:24.476Z",
+        "teamIds": [
+            116
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "community"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Q&A: Clarke determined to finish strong with A's after long IL stint",
+        "summaryJa": "D.クラーク（ATH）の負傷状況をMLB公式が詳報",
+        "slug": "denzel-clarke-discusses-2026-season-with-a-s-battling-injuries",
+        "url": "https://www.mlb.com/news/denzel-clarke-discusses-2026-season-with-a-s-battling-injuries",
+        "contentDate": "2026-09-08T18:00:51.967Z",
+        "teamIds": [
+            133
+        ],
+        "playerIds": [
+            672016
+        ],
+        "gamePks": [
+            824957
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Smith's K's milestone quantifies continued dominance for Guards",
         "summaryJa": "C.スミス（CLE）、記録達成の最新情報",
         "slug": "cade-smith-reaches-300-career-strikeouts",
@@ -119,7 +245,7 @@
         ]
     },
     {
-        "headline": "PCA reconnects with young fan, trades him a signed bat",
+        "headline": "PCA, Javy Báez and a trade ... where have we heard this before?",
         "summaryJa": "P.クローアームストロング（CHC）の移籍・契約に関する最新情報",
         "slug": "pete-crow-armstrong-trades-a-signed-bat-for-a-young-fan-s-card",
         "url": "https://www.mlb.com/news/pete-crow-armstrong-trades-a-signed-bat-for-a-young-fan-s-card",
@@ -135,6 +261,7 @@
             "apple-news"
         ],
         "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
@@ -376,23 +503,6 @@
         ]
     },
     {
-        "headline": "Watch top prospect Nimmala play at Double-A for FREE in Sunday matinee",
-        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
-        "slug": "watch-minor-league-baseball-games-for-free-2026",
-        "url": "https://www.mlb.com/news/watch-minor-league-baseball-games-for-free-2026",
-        "contentDate": "2026-09-08T05:43:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "mlb-top-prospects",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Burns hurls 3 no-hit innings vs. Dodgers in new shortened-start strategy",
         "summaryJa": "C.バーンズ（CIN）の最新動向をMLB公式が詳報",
         "slug": "chase-burns-faces-dodgers-in-los-angeles",
@@ -459,6 +569,23 @@
         "sourceScopes": [
             "MLB",
             "球団公式"
+        ]
+    },
+    {
+        "headline": "Bracket, tiebreakers and more: Here is the current playoff picture",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "mlb-playoff-picture-and-bracket-2026",
+        "url": "https://www.mlb.com/news/mlb-playoff-picture-and-bracket-2026",
+        "contentDate": "2026-09-08T04:57:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "pennant-chase",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB"
         ]
     },
     {
@@ -659,29 +786,6 @@
         ]
     },
     {
-        "headline": "Judge is back! Yanks activate captain after 3 months on IL",
-        "summaryJa": "A.ジャッジ（NYY）の負傷状況をMLB公式が詳報",
-        "slug": "aaron-judge-returns-from-injured-list",
-        "url": "https://www.mlb.com/news/aaron-judge-returns-from-injured-list",
-        "contentDate": "2026-09-08T00:52:00Z",
-        "teamIds": [
-            147
-        ],
-        "playerIds": [
-            592450
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "transactions",
-            "apple-news",
-            "injury"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Glove comes off as Melton helps Tigers respond after recent gut punches",
         "summaryJa": "R.グリーン（DET）、勝利を呼び込む活躍",
         "slug": "riley-greene-troy-melton-help-tigers-beat-twins",
@@ -702,7 +806,6 @@
             "game-recap"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1012,7 +1115,6 @@
             "game-recap"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1180,7 +1282,7 @@
         ]
     },
     {
-        "headline": "Fischer leads Prospect Team of the Week for fifth time in final 2026 edition",
+        "headline": "Two Red Sox prospects make Team of the Week",
         "summaryJa": "Andrew Fischerら注目選手の最新動向",
         "slug": "prospect-team-of-the-week-september-7-2026",
         "url": "https://www.mlb.com/news/prospect-team-of-the-week-september-7-2026",
@@ -1206,7 +1308,6 @@
             "mlb-top-prospects"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1458,7 +1559,6 @@
             "injury"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -7751,30 +7851,6 @@
         ]
     },
     {
-        "headline": "Torkelson's blast opens door for Tigers' 5-run 12th-inning outburst",
-        "summaryJa": "S.トーケルソン（DET）、記録達成の最新情報",
-        "slug": "spencer-torkelson-homer-tigers-twins-12-innings",
-        "url": "https://www.mlb.com/news/spencer-torkelson-homer-tigers-twins-12-innings",
-        "contentDate": "2026-09-03T04:50:00Z",
-        "teamIds": [
-            116
-        ],
-        "playerIds": [
-            679529
-        ],
-        "gamePks": [
-            823660
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap",
-            "clutch-moment"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Jensen celebrates 'MLB birthday' with multihomer game",
         "summaryJa": "C.ジェンセン（KC）、メジャー昇格・初出場に関する最新情報",
         "slug": "carter-jensen-hits-2-home-runs-on-anniversary-of-mlb-debut",
@@ -8119,27 +8195,6 @@
             824312
         ],
         "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Schmidt moves closer to Yankees return with 2nd rehab start",
-        "summaryJa": "C.シュミット（NYY）、復帰へ向けた最新状況",
-        "slug": "clarke-schmidt-second-rehab-start-yankees",
-        "url": "https://www.mlb.com/news/clarke-schmidt-second-rehab-start-yankees",
-        "contentDate": "2026-09-03T01:15:00Z",
-        "teamIds": [
-            147
-        ],
-        "playerIds": [
-            657376
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "rehab",
             "apple-news"
         ],
         "sourceScopes": [
@@ -9761,28 +9816,6 @@
         ]
     },
     {
-        "headline": "Marte opens up about absence, planned to address teammates",
-        "summaryJa": "K.マーテイ（AZ）を巡る注目点をMLB公式が分析",
-        "slug": "ketel-marte-explains-absence-to-media-planned-to-talk-to-teammates",
-        "url": "https://www.mlb.com/news/ketel-marte-explains-absence-to-media-planned-to-talk-to-teammates",
-        "contentDate": "2026-09-01T00:31:14.535Z",
-        "teamIds": [
-            109
-        ],
-        "playerIds": [
-            606466
-        ],
-        "gamePks": [
-            825040
-        ],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Lile named NL Player of the Week",
         "summaryJa": "D.ライル（SEA）の最新動向をMLB公式が詳報",
         "slug": "cal-raleigh-daylen-lile-named-players-of-the-week",
@@ -9840,28 +9873,6 @@
         ],
         "gamePks": [
             823987
-        ],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Bolte collects 2 more hits, bolsters AL Rookie of the Month case",
-        "summaryJa": "H.ボルティー（ATH）の最新動向をMLB公式が詳報",
-        "slug": "henry-bolte-makes-case-for-al-rookie-of-the-month",
-        "url": "https://www.mlb.com/news/henry-bolte-makes-case-for-al-rookie-of-the-month",
-        "contentDate": "2026-08-31T00:54:36.79Z",
-        "teamIds": [
-            133
-        ],
-        "playerIds": [
-            703607
-        ],
-        "gamePks": [
-            824959
         ],
         "taxonomy": [
             "apple-news"
