@@ -1476,6 +1476,84 @@ body.app-mode-pregame .score-loading-overlay {
     text-underline-offset: 2px;
 }
 
+.duration-ranking-dialog {
+    width: min(760px, calc(100vw - 32px));
+    max-height: calc(100vh - 32px);
+    padding: 0;
+    color: #243136;
+    border: 1px solid #315f3b;
+    background: #f8faf7;
+}
+
+.duration-ranking-dialog::backdrop {
+    background: rgba(5, 10, 12, 0.68);
+}
+
+.duration-ranking-header {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 12px 14px;
+    color: #fff;
+    background: #274e31;
+}
+
+.duration-ranking-close {
+    padding: 5px 10px;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    background: transparent;
+    cursor: pointer;
+}
+
+.duration-ranking-body {
+    padding: 14px;
+}
+
+.duration-ranking-description {
+    margin: 0 0 14px;
+    font-size: 12px;
+}
+
+.duration-ranking-body h3 {
+    margin: 16px 0 6px;
+    font-size: 14px;
+}
+
+.duration-ranking-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+}
+
+.duration-ranking-table th,
+.duration-ranking-table td {
+    padding: 6px 8px;
+    border: 1px solid #9eb2a2;
+    text-align: left;
+}
+
+.duration-ranking-table th {
+    color: #24472c;
+    background: #e5eee6;
+}
+
+.duration-ranking-table a,
+.duration-ranking-official-source {
+    color: #245f91;
+    text-decoration: underline;
+}
+
+.duration-ranking-official-source {
+    display: inline-block;
+    margin-top: 14px;
+    font-size: 11px;
+}
+
 .attendance-number,
 .attendance-note {
     min-width: 0;

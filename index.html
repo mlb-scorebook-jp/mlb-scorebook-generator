@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MLB Scorebook Generator</title>
     <!-- Score notation update: stacked batted-ball symbol, red hits, blue strikeouts, black other results. -->
-    <link rel="stylesheet" href="css/style.css?v=20260908-duration-rank-source-1">
+    <link rel="stylesheet" href="css/style.css?v=20260908-duration-ranking-dialog-1">
     <link rel="stylesheet" href="css/pregame.css?v=20260907-first-pitch-jst-1">
     <link rel="stylesheet" href="css/daily-records.css?v=20260907-story-candidates-2">
 </head>
@@ -4940,6 +4940,73 @@
                 return area;
             };
 
+            const showDurationRankingDetails = (data) => {
+                document.querySelector(".duration-ranking-dialog")?.remove();
+                const details = data?.gameData?.gameInfo?.seasonDurationRankingDetails;
+                if (!details) return;
+                const dialog = createElement("dialog", "duration-ranking-dialog");
+                const header = createElement("header", "duration-ranking-header");
+                header.append(
+                    createElement("strong", "", `${details.season}年 MLB試合時間ランキング`),
+                    createElement("button", "duration-ranking-close", "閉じる")
+                );
+                const body = createElement("div", "duration-ranking-body");
+                body.append(createElement(
+                    "p",
+                    "duration-ranking-description",
+                    `${details.throughDate}までに終了したレギュラーシーズン全試合を比較。同じ時間は同順位です。`
+                ));
+                const appendRanking = (title, games, rankField) => {
+                    body.append(createElement("h3", "", title));
+                    const table = createElement("table", "duration-ranking-table");
+                    const head = createElement("tr");
+                    ["順位", "日付", "対戦", "時間", "確認"].forEach((label) =>
+                        head.append(createElement("th", "", label))
+                    );
+                    const thead = createElement("thead");
+                    thead.append(head);
+                    const tbody = createElement("tbody");
+                    games.forEach((game) => {
+                        const row = createElement("tr");
+                        row.append(
+                            createElement("td", "", `${game[rankField]}位`),
+                            createElement("td", "", game.dateLabel),
+                            createElement("td", "", `${game.awayCode} @ ${game.homeCode}`),
+                            createElement("td", "", game.durationLabel)
+                        );
+                        const sourceCell = createElement("td");
+                        const source = createElement("a", "", "Gameday");
+                        source.href = `https://www.mlb.com/gameday/${game.gamePk}`;
+                        source.target = "_blank";
+                        source.rel = "noopener noreferrer";
+                        sourceCell.append(source);
+                        row.append(sourceCell);
+                        tbody.append(row);
+                    });
+                    table.append(thead, tbody);
+                    body.append(table);
+                };
+                appendRanking("短い試合 上位10位", details.shortest, "shortRank");
+                appendRanking("長い試合 上位10位", details.longest, "longRank");
+                const officialSource = createElement(
+                    "a",
+                    "duration-ranking-official-source",
+                    "集計元：MLB公式データ（JSON）"
+                );
+                officialSource.href = details.sourceUrl;
+                officialSource.target = "_blank";
+                officialSource.rel = "noopener noreferrer";
+                body.append(officialSource);
+                dialog.append(header, body);
+                document.body.append(dialog);
+                header.querySelector("button").addEventListener("click", () => dialog.close());
+                dialog.addEventListener("click", (event) => {
+                    if (event.target === dialog) dialog.close();
+                });
+                dialog.addEventListener("close", () => dialog.remove(), { once: true });
+                dialog.showModal();
+            };
+
             const buildSheetMeta = (data) => {
                 const fragment = document.createDocumentFragment();
                 const meta = createElement("section", "sheet-meta");
@@ -4976,9 +5043,11 @@
                                 `（${rankLabel}）`
                             );
                             sourceLink.href = sourceUrl;
-                            sourceLink.target = "_blank";
-                            sourceLink.rel = "noopener noreferrer";
-                            sourceLink.title = "集計元：MLB公式スケジュールデータ";
+                            sourceLink.title = "今季の試合時間ランキングを表示";
+                            sourceLink.addEventListener("click", (event) => {
+                                event.preventDefault();
+                                showDurationRankingDetails(data);
+                            });
                             valueCell.append(sourceLink);
                         }
                     }
@@ -8982,22 +9051,75 @@
                                 const gamePk = Number(game?.gamePk);
                                 if (Number.isFinite(duration) && duration > 0 &&
                                     Number.isFinite(gamePk)) {
-                                    durationByGame.set(gamePk, duration);
+                                    const date = String(
+                                        game?.officialDate ?? game?.gameDate ?? ""
+                                    ).slice(0, 10);
+                                    const [, month, day] = date.split("-");
+                                    durationByGame.set(gamePk, {
+                                        gamePk,
+                                        duration,
+                                        date,
+                                        dateLabel: month && day
+                                            ? `${Number(month)}/${Number(day)}`
+                                            : date,
+                                        awayCode: getMlbTeamDisplayCode(
+                                            game?.teams?.away?.team
+                                        ),
+                                        homeCode: getMlbTeamDisplayCode(
+                                            game?.teams?.home?.team
+                                        )
+                                    });
                                 }
                             });
                         return [...durationByGame.values()];
                     }).catch(() => []));
                 }
 
-                const durations = await seasonGameDurationCache.get(cacheKey);
-                if (!durations.length) return null;
-                const shortRank = 1 + durations.filter((duration) => duration < minutes).length;
-                const longRank = 1 + durations.filter((duration) => duration > minutes).length;
+                const games = await seasonGameDurationCache.get(cacheKey);
+                if (!games.length) return null;
+                const decorateGame = (game) => ({
+                    ...game,
+                    shortRank: 1 + games.filter((entry) =>
+                        entry.duration < game.duration
+                    ).length,
+                    longRank: 1 + games.filter((entry) =>
+                        entry.duration > game.duration
+                    ).length,
+                    durationLabel: `${Math.floor(game.duration / 60)}:` +
+                        String(game.duration % 60).padStart(2, "0")
+                });
+                const rankedGames = games.map(decorateGame);
+                const shortRank = 1 + games.filter((game) => game.duration < minutes).length;
+                const longRank = 1 + games.filter((game) => game.duration > minutes).length;
+                const rankingDetails = {
+                    season,
+                    throughDate: officialDate.replace(
+                        /^(\d{4})-(\d{2})-(\d{2})$/,
+                        (_, year, month, day) => `${year}年${Number(month)}月${Number(day)}日`
+                    ),
+                    sourceUrl,
+                    shortest: rankedGames
+                        .filter((game) => game.shortRank <= 10)
+                        .sort((left, right) => left.duration - right.duration ||
+                            left.date.localeCompare(right.date) || left.gamePk - right.gamePk),
+                    longest: rankedGames
+                        .filter((game) => game.longRank <= 10)
+                        .sort((left, right) => right.duration - left.duration ||
+                            left.date.localeCompare(right.date) || left.gamePk - right.gamePk)
+                };
                 if (shortRank <= 10 && shortRank <= longRank) {
-                    return { label: `今季${shortRank}番目の短さ`, sourceUrl };
+                    return {
+                        label: `今季${shortRank}番目の短さ`,
+                        sourceUrl,
+                        rankingDetails
+                    };
                 }
                 if (longRank <= 10) {
-                    return { label: `今季${longRank}番目の長さ`, sourceUrl };
+                    return {
+                        label: `今季${longRank}番目の長さ`,
+                        sourceUrl,
+                        rankingDetails
+                    };
                 }
                 return null;
             };
@@ -9858,6 +9980,8 @@
                         durationRank?.label ?? "";
                     data.gameData.gameInfo.seasonDurationSourceUrl =
                         durationRank?.sourceUrl ?? "";
+                    data.gameData.gameInfo.seasonDurationRankingDetails =
+                        durationRank?.rankingDetails ?? null;
 
                     updateSidebar();
                     render();
