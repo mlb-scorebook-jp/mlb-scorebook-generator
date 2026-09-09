@@ -2,6 +2,71 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Northeast Ohio native, Browns star Denzel Ward joins Guardians' ownership group",
+        "summaryJa": "ガーディアンズの最新動向をMLB公式が詳報",
+        "slug": "denzel-ward-joins-guardians-ownership-group",
+        "url": "https://www.mlb.com/news/denzel-ward-joins-guardians-ownership-group",
+        "contentDate": "2026-09-09T13:49:09.903Z",
+        "teamIds": [
+            114
+        ],
+        "playerIds": [],
+        "gamePks": [
+            824791
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "After forgoing rehab stint, Judge disappointed by early removal in return",
+        "summaryJa": "A.ジャッジ（NYY）の負傷状況をMLB公式が詳報",
+        "slug": "aaron-judge-first-game-off-injured-list-vs-rockies",
+        "url": "https://www.mlb.com/news/aaron-judge-first-game-off-injured-list-vs-rockies",
+        "contentDate": "2026-09-09T13:31:00Z",
+        "teamIds": [
+            147
+        ],
+        "playerIds": [
+            592450
+        ],
+        "gamePks": [
+            823500
+        ],
+        "taxonomy": [
+            "apple-news",
+            "game-recap"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Eagen reaches double-digit K's for 3rd time in past 4 starts",
+        "summaryJa": "D.イーゲン（STL）、記録達成の最新情報",
+        "slug": "daniel-eagen-strikes-out-11-in-latest-double-a-start",
+        "url": "https://www.mlb.com/news/daniel-eagen-strikes-out-11-in-latest-double-a-start",
+        "contentDate": "2026-09-09T13:11:08.284Z",
+        "teamIds": [
+            138
+        ],
+        "playerIds": [
+            811666
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "mlb-top-prospects",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "De La Cruz crushes homer, has Clemente-like relay home in 3-2 loss",
         "summaryJa": "E.デラクルーズ（CIN）、本塁打で存在感",
         "slug": "elly-de-la-cruz-hits-a-homer-throws-out-a-runner-at-home",
@@ -703,30 +768,6 @@
             "exclude-from-personalization"
         ],
         "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "'I felt great': Judge brings crowd to its feet in return to victorious Yanks",
-        "summaryJa": "A.ジャッジ（NYY）の負傷状況をMLB公式が詳報",
-        "slug": "aaron-judge-first-game-off-injured-list-vs-rockies",
-        "url": "https://www.mlb.com/news/aaron-judge-first-game-off-injured-list-vs-rockies",
-        "contentDate": "2026-09-09T03:51:00Z",
-        "teamIds": [
-            147
-        ],
-        "playerIds": [
-            592450
-        ],
-        "gamePks": [
-            823500
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap"
-        ],
-        "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -7088,33 +7129,6 @@
         ]
     },
     {
-        "headline": "Guardians' bullpen takes a hit as postseason push enters stretch run",
-        "summaryJa": "C.ホルダーマン（CLE）の負傷状況をMLB公式が詳報",
-        "slug": "colin-holderman-right-wrist-injury-guardians",
-        "url": "https://www.mlb.com/news/colin-holderman-right-wrist-injury-guardians",
-        "contentDate": "2026-09-04T18:13:09.387Z",
-        "teamIds": [
-            114
-        ],
-        "playerIds": [
-            670059,
-            677944,
-            804926,
-            672578
-        ],
-        "gamePks": [
-            824424
-        ],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "All 30 teams set to open Spring Training 2027 on same day",
         "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
         "slug": "mlb-spring-training-2026-schedule-released",
@@ -8605,28 +8619,6 @@
         "taxonomy": [
             "apple-news",
             "mlb-debut"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Relentless Cards outlast Yamamoto, claim extra-innings win to get back to .500",
-        "summaryJa": "カージナルスの移籍・契約に関する最新情報",
-        "slug": "thomas-saggese-leads-cardinals-in-extra-innings-win-over-dodgers",
-        "url": "https://www.mlb.com/news/thomas-saggese-leads-cardinals-in-extra-innings-win-over-dodgers",
-        "contentDate": "2026-09-03T06:51:00Z",
-        "teamIds": [
-            138
-        ],
-        "playerIds": [],
-        "gamePks": [
-            823906
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap",
-            "extra-innings"
         ],
         "sourceScopes": [
             "球団公式"
