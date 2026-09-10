@@ -2,11 +2,157 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "'When America Took the Field' documentary to premiere tonight on MLB Network (10 ET)",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "when-america-took-the-field-mlb-network-documentary",
+        "url": "https://www.mlb.com/news/when-america-took-the-field-mlb-network-documentary",
+        "contentDate": "2026-09-10T21:43:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "Bracket, tiebreakers and more: Here is the current playoff picture",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "mlb-playoff-picture-and-bracket-2026",
+        "url": "https://www.mlb.com/news/mlb-playoff-picture-and-bracket-2026",
+        "contentDate": "2026-09-10T21:41:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "pennant-chase",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "Watch top prospect Nimmala play at Double-A for FREE in Sunday matinee",
+        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
+        "slug": "watch-minor-league-baseball-games-for-free-2026",
+        "url": "https://www.mlb.com/news/watch-minor-league-baseball-games-for-free-2026",
+        "contentDate": "2026-09-10T21:13:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "mlb-top-prospects",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Pérez pins down Rays as Braves rally late to extend NL East lead",
+        "summaryJa": "M.ペレス（ATL）、マウンドで好投",
+        "slug": "martin-perez-throws-seven-scoreless-innings-vs-rays",
+        "url": "https://www.mlb.com/news/martin-perez-throws-seven-scoreless-innings-vs-rays",
+        "contentDate": "2026-09-10T21:05:00Z",
+        "teamIds": [
+            144
+        ],
+        "playerIds": [
+            527048
+        ],
+        "gamePks": [
+            824872
+        ],
+        "taxonomy": [
+            "apple-news",
+            "game-recap",
+            "pitching",
+            "omg"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "With Hancock nearing return, could he settle back into the 'pen?",
+        "summaryJa": "E.ハンコック（SEA）、復帰へ向けた最新状況",
+        "slug": "emerson-hancock-may-return-soon-to-mariners-bullpen",
+        "url": "https://www.mlb.com/news/emerson-hancock-may-return-soon-to-mariners-bullpen",
+        "contentDate": "2026-09-10T20:48:17.401Z",
+        "teamIds": [
+            136
+        ],
+        "playerIds": [
+            676106
+        ],
+        "gamePks": [
+            823088
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Rays' clinch will have to wait after Martinez's gem goes for naught",
+        "summaryJa": "N.マルティネス（TB）、マウンドで好投",
+        "slug": "nick-martinez-6-1-3-scoreless-innings-rays-lose-to-braves",
+        "url": "https://www.mlb.com/news/nick-martinez-6-1-3-scoreless-innings-rays-lose-to-braves",
+        "contentDate": "2026-09-10T20:23:00Z",
+        "teamIds": [
+            139
+        ],
+        "playerIds": [
+            607259
+        ],
+        "gamePks": [
+            824872
+        ],
+        "taxonomy": [
+            "apple-news",
+            "quality-start"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Smith's late HR lifts Astros after Javier gives Phils déjà vu with early no-hit stuff",
+        "summaryJa": "C.ハビエア（HOU）、本塁打で存在感",
+        "slug": "astros-beat-phillies-behind-cristian-javier-s-stellar-outing",
+        "url": "https://www.mlb.com/news/astros-beat-phillies-behind-cristian-javier-s-stellar-outing",
+        "contentDate": "2026-09-10T20:11:57.72Z",
+        "teamIds": [
+            117
+        ],
+        "playerIds": [
+            664299
+        ],
+        "gamePks": [
+            823413
+        ],
+        "taxonomy": [
+            "apple-news",
+            "game-recap"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "What to expect from Dodgers top prospect De Paula in The Show",
         "summaryJa": "J.デポーラ（LAD）ら注目選手の最新動向",
         "slug": "what-to-expect-from-dodgers-prospect-josue-de-paula-in-mlb",
         "url": "https://www.mlb.com/news/what-to-expect-from-dodgers-prospect-josue-de-paula-in-mlb",
-        "contentDate": "2026-09-10T19:41:00Z",
+        "contentDate": "2026-09-10T20:11:00Z",
         "teamIds": [
             119
         ],
@@ -19,6 +165,7 @@
             "apple-news"
         ],
         "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
@@ -27,7 +174,7 @@
         "summaryJa": "フィリーズの負傷状況をMLB公式が詳報",
         "slug": "phillies-injuries-and-roster-moves",
         "url": "https://www.mlb.com/news/phillies-injuries-and-roster-moves",
-        "contentDate": "2026-09-10T19:35:00Z",
+        "contentDate": "2026-09-10T20:06:00Z",
         "teamIds": [
             143
         ],
@@ -39,6 +186,31 @@
             "exclude-from-personalization"
         ],
         "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Phillies' penultimate homestand snowballs with crushing 9th-inning blast",
+        "summaryJa": "Z.ウィーラー（PHI）、記録達成の最新情報",
+        "slug": "phillies-lose-ground-in-nl-east-race-after-late-homer",
+        "url": "https://www.mlb.com/news/phillies-lose-ground-in-nl-east-race-after-late-homer",
+        "contentDate": "2026-09-10T19:54:48.844Z",
+        "teamIds": [
+            143
+        ],
+        "playerIds": [
+            554430,
+            661395
+        ],
+        "gamePks": [
+            823413
+        ],
+        "taxonomy": [
+            "apple-news",
+            "game-recap-losing"
+        ],
+        "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
@@ -148,53 +320,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB"
-        ]
-    },
-    {
-        "headline": "Braves hold off Rays, support spot atop NL East",
-        "summaryJa": "M.ペレス（ATL）、マウンドで好投",
-        "slug": "martin-perez-throws-seven-scoreless-innings-vs-rays",
-        "url": "https://www.mlb.com/news/martin-perez-throws-seven-scoreless-innings-vs-rays",
-        "contentDate": "2026-09-10T18:46:25.085Z",
-        "teamIds": [
-            144
-        ],
-        "playerIds": [
-            527048
-        ],
-        "gamePks": [
-            824872
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Rays' clinch will have to wait after Martinez's gem goes for naught",
-        "summaryJa": "N.マルティネス（TB）、マウンドで好投",
-        "slug": "nick-martinez-6-1-3-scoreless-innings-rays-lose-to-braves",
-        "url": "https://www.mlb.com/news/nick-martinez-6-1-3-scoreless-innings-rays-lose-to-braves",
-        "contentDate": "2026-09-10T18:38:00Z",
-        "teamIds": [
-            139
-        ],
-        "playerIds": [
-            607259
-        ],
-        "gamePks": [
-            824872
-        ],
-        "taxonomy": [
-            "apple-news",
-            "quality-start"
-        ],
-        "sourceScopes": [
             "MLB",
             "球団公式"
         ]
@@ -258,23 +383,6 @@
         "sourceScopes": [
             "MLB",
             "球団公式"
-        ]
-    },
-    {
-        "headline": "Bracket, tiebreakers and more: Here is the current playoff picture",
-        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
-        "slug": "mlb-playoff-picture-and-bracket-2026",
-        "url": "https://www.mlb.com/news/mlb-playoff-picture-and-bracket-2026",
-        "contentDate": "2026-09-10T16:45:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "pennant-chase",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB"
         ]
     },
     {
@@ -858,23 +966,6 @@
         ]
     },
     {
-        "headline": "Watch top prospect Nimmala play at Double-A for FREE in Sunday matinee",
-        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
-        "slug": "watch-minor-league-baseball-games-for-free-2026",
-        "url": "https://www.mlb.com/news/watch-minor-league-baseball-games-for-free-2026",
-        "contentDate": "2026-09-10T06:10:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "mlb-top-prospects",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Stammen, Buehler's mound negotiation leads to awkward early exit in third",
         "summaryJa": "W.ビューラー（SD）の最新動向をMLB公式が詳報",
         "slug": "walker-buehler-removed-early-from-start-by-manager-craig-stammen",
@@ -1366,7 +1457,6 @@
             "pennant-chase"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1438,7 +1528,6 @@
             "rehab"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1462,7 +1551,6 @@
             "mlb-milestone"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -3672,22 +3760,6 @@
         ],
         "sourceScopes": [
             "球団公式"
-        ]
-    },
-    {
-        "headline": "'When America Took the Field' documentary to premiere tonight on MLB Network (10 ET)",
-        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
-        "slug": "when-america-took-the-field-mlb-network-documentary",
-        "url": "https://www.mlb.com/news/when-america-took-the-field-mlb-network-documentary",
-        "contentDate": "2026-09-08T22:46:07.986Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB"
         ]
     },
     {
@@ -8082,27 +8154,6 @@
         ]
     },
     {
-        "headline": "Phils lose ground in NL East race, fall behind Cubs in Wild Card standings",
-        "summaryJa": "フィリーズの最新動向をMLB公式が詳報",
-        "slug": "cristopher-sanchez-strikes-out-five-in-loss-to-braves",
-        "url": "https://www.mlb.com/news/cristopher-sanchez-strikes-out-five-in-loss-to-braves",
-        "contentDate": "2026-09-05T03:25:00Z",
-        "teamIds": [
-            143
-        ],
-        "playerIds": [],
-        "gamePks": [
-            823418
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap-losing"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Gasper plays homer hero again to back Suarez's strong start",
         "summaryJa": "M.ギャスパー（BOS）、本塁打で存在感",
         "slug": "mickey-gasper-ranger-suarez-lead-red-sox-s-win-vs-orioles",
@@ -9671,30 +9722,6 @@
         ],
         "taxonomy": [
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Correa ramps up rehab, eyes return to Astros this season",
-        "summaryJa": "C.コレア（HOU）、復帰へ向けた最新状況",
-        "slug": "carlos-correa-takes-major-rehab-step-as-astros-eye-2026-return",
-        "url": "https://www.mlb.com/news/carlos-correa-takes-major-rehab-step-as-astros-eye-2026-return",
-        "contentDate": "2026-09-02T04:44:00Z",
-        "teamIds": [
-            117
-        ],
-        "playerIds": [
-            621043
-        ],
-        "gamePks": [
-            824148
-        ],
-        "taxonomy": [
-            "apple-news",
-            "injury",
-            "rehab"
         ],
         "sourceScopes": [
             "球団公式"
