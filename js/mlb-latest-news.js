@@ -2,11 +2,329 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
-        "headline": "Stammen ruffles Buehler's feathers with tough call on pitching change in third",
+        "headline": "Winn still dealing with sore left thumb after returning from IL, not 'severe'",
+        "summaryJa": "M.ウィン（STL）、復帰へ向けた最新状況",
+        "slug": "masyn-winn-scratched-for-series-finale-vs-giants",
+        "url": "https://www.mlb.com/news/masyn-winn-scratched-for-series-finale-vs-giants",
+        "contentDate": "2026-09-10T00:13:00Z",
+        "teamIds": [
+            138
+        ],
+        "playerIds": [
+            691026
+        ],
+        "gamePks": [
+            823172
+        ],
+        "taxonomy": [
+            "apple-news",
+            "injury"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Butera ejected in third inning after arguing over check swing",
+        "summaryJa": "ナショナルズの最新動向をMLB公式が詳報",
+        "slug": "blake-butera-ejected-vs-padres-for-arguing-check-swing-in-third-inning",
+        "url": "https://www.mlb.com/news/blake-butera-ejected-vs-padres-for-arguing-check-swing-in-third-inning",
+        "contentDate": "2026-09-10T00:07:00Z",
+        "teamIds": [
+            120
+        ],
+        "playerIds": [],
+        "gamePks": [
+            823251
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Latest Royals injuries & transactions",
+        "summaryJa": "ロイヤルズの負傷状況をMLB公式が詳報",
+        "slug": "royals-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/royals-injuries-and-roster-moves",
+        "contentDate": "2026-09-10T00:05:00Z",
+        "teamIds": [
+            118
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Altuve notches 2,500th career hit, adding to illustrious resumé",
+        "summaryJa": "J.アルトゥーベ（HOU）、記録達成の最新情報",
+        "slug": "jose-altuve-collects-2500th-career-hit",
+        "url": "https://www.mlb.com/news/jose-altuve-collects-2500th-career-hit",
+        "contentDate": "2026-09-10T00:03:28.493Z",
+        "teamIds": [
+            117
+        ],
+        "playerIds": [
+            514888
+        ],
+        "gamePks": [
+            823416
+        ],
+        "taxonomy": [
+            "apple-news",
+            "mlb-milestone"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Latest Cardinals injuries & transactions",
+        "summaryJa": "カージナルスの負傷状況をMLB公式が詳報",
+        "slug": "cardinals-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/cardinals-injuries-and-roster-moves",
+        "contentDate": "2026-09-09T23:56:00Z",
+        "teamIds": [
+            138
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Flying colors for Basso in rotation audition as he twirls four scoreless vs. Blue Jays",
+        "summaryJa": "B.バッソー（ATH）、マウンドで好投",
+        "slug": "brady-basso-pitches-four-scoreless-innings-vs-blue-jays",
+        "url": "https://www.mlb.com/news/brady-basso-pitches-four-scoreless-innings-vs-blue-jays",
+        "contentDate": "2026-09-09T23:55:43.61Z",
+        "teamIds": [
+            133
+        ],
+        "playerIds": [
+            669620
+        ],
+        "gamePks": [
+            824956
+        ],
+        "taxonomy": [
+            "apple-news",
+            "game-recap"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Carroll (low back discomfort) out of lineup for 2nd straight night",
+        "summaryJa": "C.キャロル（AZ）の負傷状況をMLB公式が詳報",
+        "slug": "corbin-carroll-scratched-from-diamondbacks-lineup-with-back-discomfort",
+        "url": "https://www.mlb.com/news/corbin-carroll-scratched-from-diamondbacks-lineup-with-back-discomfort",
+        "contentDate": "2026-09-09T23:55:00Z",
+        "teamIds": [
+            109
+        ],
+        "playerIds": [
+            682998
+        ],
+        "gamePks": [
+            824063,
+            824064
+        ],
+        "taxonomy": [
+            "apple-news",
+            "injury"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Baty stays hot with RBI hit, exits with knee pain",
+        "summaryJa": "B.ベイティ（NYM）の負傷状況をMLB公式が詳報",
+        "slug": "brett-baty-exits-mets-game-with-knee-injury",
+        "url": "https://www.mlb.com/news/brett-baty-exits-mets-game-with-knee-injury",
+        "contentDate": "2026-09-09T23:53:08.447Z",
+        "teamIds": [
+            121
+        ],
+        "playerIds": [
+            683146
+        ],
+        "gamePks": [
+            823818
+        ],
+        "taxonomy": [
+            "apple-news",
+            "injury"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Bradford's rough luck continues in short start in Seattle",
+        "summaryJa": "C.ブラッドフォード（TEX）の最新動向をMLB公式が詳報",
+        "slug": "cody-bradford-has-short-outing-as-rangers-lose-to-mariners",
+        "url": "https://www.mlb.com/news/cody-bradford-has-short-outing-as-rangers-lose-to-mariners",
+        "contentDate": "2026-09-09T23:48:00Z",
+        "teamIds": [
+            140
+        ],
+        "playerIds": [
+            674003
+        ],
+        "gamePks": [
+            823090
+        ],
+        "taxonomy": [
+            "apple-news",
+            "game-recap"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Frustrating trends continue for Matthews, Twins in loss to Tigers",
+        "summaryJa": "Z.マシューズ（MIN）の最新動向をMLB公式が詳報",
+        "slug": "zebby-matthews-twins-lose-to-tigers",
+        "url": "https://www.mlb.com/news/zebby-matthews-twins-lose-to-tigers",
+        "contentDate": "2026-09-09T23:47:00Z",
+        "teamIds": [
+            142
+        ],
+        "playerIds": [
+            805673
+        ],
+        "gamePks": [
+            824226
+        ],
+        "taxonomy": [
+            "apple-news",
+            "game-recap-losing"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Merrill's massive showing has Padres flying with Wild Card race tightening",
+        "summaryJa": "J.メリル（SD）、勝利を呼び込む活躍",
+        "slug": "jackson-merrill-hits-2-home-runs-sets-season-high-in-rbis-as-padres-sweep",
+        "url": "https://www.mlb.com/news/jackson-merrill-hits-2-home-runs-sets-season-high-in-rbis-as-padres-sweep",
+        "contentDate": "2026-09-09T23:46:39.642Z",
+        "teamIds": [
+            135
+        ],
+        "playerIds": [
+            701538
+        ],
+        "gamePks": [
+            823251
+        ],
+        "taxonomy": [
+            "apple-news",
+            "game-recap",
+            "takeaways"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Latest D-backs injuries & transactions",
+        "summaryJa": "ダイヤモンドバックスの負傷状況をMLB公式が詳報",
+        "slug": "d-backs-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/d-backs-injuries-and-roster-moves",
+        "contentDate": "2026-09-09T23:45:00Z",
+        "teamIds": [
+            109
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "This 19-year-old Rangers prospect stole 55 bags AND is a highlight factory on defense",
+        "summaryJa": "Yolfran Castillo（TEX）ら注目選手の最新動向",
+        "slug": "rangers-prospect-yolfran-castillo-2026-breakout",
+        "url": "https://www.mlb.com/news/rangers-prospect-yolfran-castillo-2026-breakout",
+        "contentDate": "2026-09-09T23:30:00Z",
+        "teamIds": [
+            140
+        ],
+        "playerIds": [
+            815931
+        ],
+        "gamePks": [
+            823090
+        ],
+        "taxonomy": [
+            "mlb-top-prospects",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "'We're right there': Urgency at its apex for Blue Jays after being blanked by A's",
+        "summaryJa": "ブルージェイズの最新動向をMLB公式が詳報",
+        "slug": "blue-jays-shut-out-by-depleted-athletics",
+        "url": "https://www.mlb.com/news/blue-jays-shut-out-by-depleted-athletics",
+        "contentDate": "2026-09-09T23:23:00Z",
+        "teamIds": [
+            141
+        ],
+        "playerIds": [],
+        "gamePks": [
+            824956
+        ],
+        "taxonomy": [
+            "apple-news",
+            "game-recap-losing"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Stammen, Buehler's mound negotiation leads to awkward early exit in third",
         "summaryJa": "W.ビューラー（SD）の最新動向をMLB公式が詳報",
         "slug": "walker-buehler-removed-early-from-start-by-manager-craig-stammen",
         "url": "https://www.mlb.com/news/walker-buehler-removed-early-from-start-by-manager-craig-stammen",
-        "contentDate": "2026-09-09T22:26:22.987Z",
+        "contentDate": "2026-09-09T23:09:00Z",
         "teamIds": [
             135
         ],
@@ -18,6 +336,174 @@
         ],
         "taxonomy": [
             "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "With Jazz headed to IL, Yanks will call on Volpe, who 'became Barry Bonds all of a sudden'",
+        "summaryJa": "J.チゾム Jr.（NYY）の負傷状況をMLB公式が詳報",
+        "slug": "jazz-chisholm-jr-placed-on-injured-list",
+        "url": "https://www.mlb.com/news/jazz-chisholm-jr-placed-on-injured-list",
+        "contentDate": "2026-09-09T23:04:00Z",
+        "teamIds": [
+            147
+        ],
+        "playerIds": [
+            665862,
+            683011
+        ],
+        "gamePks": [
+            823497
+        ],
+        "taxonomy": [
+            "injury",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Predicting each organization's top prospect in 2028",
+        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
+        "slug": "predicting-each-team-s-top-prospect-in-2028",
+        "url": "https://www.mlb.com/news/predicting-each-team-s-top-prospect-in-2028",
+        "contentDate": "2026-09-09T23:00:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "mlb-top-prospects",
+            "apple-news",
+            "rankings"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Latest Red Sox injuries & transactions",
+        "summaryJa": "レッドソックスの負傷状況をMLB公式が詳報",
+        "slug": "red-sox-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/red-sox-injuries-and-roster-moves",
+        "contentDate": "2026-09-09T22:59:00Z",
+        "teamIds": [
+            111
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Giants erupt for 6 runs in 8th for comeback win, series sweep vs. Cardinals",
+        "summaryJa": "ジャイアンツ、記録達成の最新情報",
+        "slug": "giants-earn-comeback-win-to-sweep-cardinals",
+        "url": "https://www.mlb.com/news/giants-earn-comeback-win-to-sweep-cardinals",
+        "contentDate": "2026-09-09T22:44:59.577Z",
+        "teamIds": [
+            137
+        ],
+        "playerIds": [],
+        "gamePks": [
+            823172
+        ],
+        "taxonomy": [
+            "apple-news",
+            "game-recap",
+            "clutch-moment"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Watch LIVE as Zyhir Hope (DET) stands in against Gage Wood (PHI) at Double-A",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "watch-minor-league-baseball-games-for-free-2026",
+        "url": "https://www.mlb.com/news/watch-minor-league-baseball-games-for-free-2026",
+        "contentDate": "2026-09-09T22:36:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "mlb-top-prospects",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Rutschman gets another planned day off after cortisone shot",
+        "summaryJa": "レッドソックスの最新動向をMLB公式が詳報",
+        "slug": "adley-rutschman-out-of-lineup-vs-angels",
+        "url": "https://www.mlb.com/news/adley-rutschman-out-of-lineup-vs-angels",
+        "contentDate": "2026-09-09T22:28:36.529Z",
+        "teamIds": [
+            111
+        ],
+        "playerIds": [],
+        "gamePks": [
+            823152
+        ],
+        "taxonomy": [
+            "apple-news",
+            "injury"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Latest Cubs injuries and transactions",
+        "summaryJa": "カブスの負傷状況をMLB公式が詳報",
+        "slug": "cubs-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/cubs-injuries-and-roster-moves",
+        "contentDate": "2026-09-09T22:27:00Z",
+        "teamIds": [
+            112
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Latest Yankees injuries and transactions",
+        "summaryJa": "ヤンキースの負傷状況をMLB公式が詳報",
+        "slug": "yankees-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/yankees-injuries-and-roster-moves",
+        "contentDate": "2026-09-09T22:25:00Z",
+        "teamIds": [
+            147
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
         ],
         "sourceScopes": [
             "球団公式"
@@ -88,80 +574,6 @@
         ]
     },
     {
-        "headline": "Injuries: Ohtani, Henderson, Crochet, Carroll, Chisholm Jr., DeLauter",
-        "summaryJa": "大谷翔平（LAD）らMLB各球団の最新負傷情報",
-        "slug": "baseball-injury-updates",
-        "url": "https://www.mlb.com/news/baseball-injury-updates",
-        "contentDate": "2026-09-09T21:53:00Z",
-        "teamIds": [],
-        "playerIds": [
-            676979,
-            660271,
-            678882,
-            695506,
-            682998,
-            575929,
-            621020,
-            800050,
-            683002,
-            665862
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "headline-breakout"
-        ],
-        "sourceScopes": [
-            "MLB"
-        ]
-    },
-    {
-        "headline": "Frustrating trends continue for Matthews in loss to Tigers",
-        "summaryJa": "Z.マシューズ（MIN）の最新動向をMLB公式が詳報",
-        "slug": "zebby-matthews-twins-lose-to-tigers",
-        "url": "https://www.mlb.com/news/zebby-matthews-twins-lose-to-tigers",
-        "contentDate": "2026-09-09T21:50:50.753Z",
-        "teamIds": [
-            142
-        ],
-        "playerIds": [
-            805673
-        ],
-        "gamePks": [
-            824226
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap-losing"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Blue Jays blanked by A's in crucial opportunity to gain AL Wild Card ground",
-        "summaryJa": "ブルージェイズの最新動向をMLB公式が詳報",
-        "slug": "blue-jays-shut-out-by-depleted-athletics",
-        "url": "https://www.mlb.com/news/blue-jays-shut-out-by-depleted-athletics",
-        "contentDate": "2026-09-09T21:38:52.862Z",
-        "teamIds": [
-            141
-        ],
-        "playerIds": [],
-        "gamePks": [
-            824956
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap-losing"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Latest Astros injuries & transactions",
         "summaryJa": "アストロズの負傷状況をMLB公式が詳報",
         "slug": "astros-injuries-and-roster-moves",
@@ -198,31 +610,6 @@
             "exclude-from-personalization"
         ],
         "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "One option in Jazz's absence is Volpe, who 'became Barry Bonds all of a sudden'",
-        "summaryJa": "J.チゾム Jr.（NYY）の負傷状況をMLB公式が詳報",
-        "slug": "jazz-chisholm-jr-placed-on-injured-list",
-        "url": "https://www.mlb.com/news/jazz-chisholm-jr-placed-on-injured-list",
-        "contentDate": "2026-09-09T21:25:00Z",
-        "teamIds": [
-            147
-        ],
-        "playerIds": [
-            665862,
-            683011
-        ],
-        "gamePks": [
-            823497
-        ],
-        "taxonomy": [
-            "injury",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -389,30 +776,6 @@
         ]
     },
     {
-        "headline": "Winn late scratch with left thumb pain day after returning from IL",
-        "summaryJa": "M.ウィン（STL）、復帰へ向けた最新状況",
-        "slug": "masyn-winn-scratched-for-series-finale-vs-giants",
-        "url": "https://www.mlb.com/news/masyn-winn-scratched-for-series-finale-vs-giants",
-        "contentDate": "2026-09-09T20:12:00Z",
-        "teamIds": [
-            138
-        ],
-        "playerIds": [
-            691026
-        ],
-        "gamePks": [
-            823172
-        ],
-        "taxonomy": [
-            "apple-news",
-            "injury"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Elly breaks his own record for fastest INF throw 4 times over",
         "summaryJa": "E.デラクルーズ（CIN）、記録達成の最新情報",
         "slug": "elly-de-la-cruz-sets-record-with-102-mph-throw",
@@ -437,26 +800,6 @@
         ]
     },
     {
-        "headline": "Latest Cardinals injuries & transactions",
-        "summaryJa": "カージナルスの負傷状況をMLB公式が詳報",
-        "slug": "cardinals-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/cardinals-injuries-and-roster-moves",
-        "contentDate": "2026-09-09T19:45:00Z",
-        "teamIds": [
-            138
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Ryan impresses in organizational debut, could pitch for Tigers this month",
         "summaryJa": "R.ライアン（DET）、メジャー昇格・初出場に関する最新情報",
         "slug": "river-ryan-makes-tigers-triple-a-debut",
@@ -476,7 +819,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -569,7 +911,7 @@
         ]
     },
     {
-        "headline": "Could this Brewers prospect make Minor League home run history this weekend?",
+        "headline": "Can Brewers' Fischer make Minor League HR history this weekend?",
         "summaryJa": "Andrew Fischer（MIL）、記録達成の最新情報",
         "slug": "brewers-andrew-fischer-recording-historic-home-run-season",
         "url": "https://www.mlb.com/news/brewers-andrew-fischer-recording-historic-home-run-season",
@@ -588,25 +930,7 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
-        ]
-    },
-    {
-        "headline": "Bracket, tiebreakers and more: Here is the current playoff picture",
-        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
-        "slug": "mlb-playoff-picture-and-bracket-2026",
-        "url": "https://www.mlb.com/news/mlb-playoff-picture-and-bracket-2026",
-        "contentDate": "2026-09-09T16:30:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "pennant-chase",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB"
         ]
     },
     {
@@ -784,7 +1108,6 @@
             "mlb-top-prospects"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -809,10 +1132,10 @@
         ]
     },
     {
-        "headline": "Davidson collects 3rd career 4-hit game in powerful performance",
+        "headline": "Davidson collects 3rd 4-hit game of season in powerful performance",
         "summaryJa": "B.デビッドソン（SF）、記録達成の最新情報",
-        "slug": "giants-prospect-bo-davidson-has-3rd-career-4-hit-game",
-        "url": "https://www.mlb.com/news/giants-prospect-bo-davidson-has-3rd-career-4-hit-game",
+        "slug": "giants-prospect-bo-davidson-4-hit-game",
+        "url": "https://www.mlb.com/news/giants-prospect-bo-davidson-4-hit-game",
         "contentDate": "2026-09-09T14:23:56.027Z",
         "teamIds": [
             137
@@ -846,7 +1169,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -935,7 +1257,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1104,66 +1425,6 @@
         ]
     },
     {
-        "headline": "Latest D-backs injuries & transactions",
-        "summaryJa": "ダイヤモンドバックスの負傷状況をMLB公式が詳報",
-        "slug": "d-backs-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/d-backs-injuries-and-roster-moves",
-        "contentDate": "2026-09-09T05:26:00Z",
-        "teamIds": [
-            109
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Watch top prospect Nimmala play at Double-A for FREE in Sunday matinee",
-        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
-        "slug": "watch-minor-league-baseball-games-for-free-2026",
-        "url": "https://www.mlb.com/news/watch-minor-league-baseball-games-for-free-2026",
-        "contentDate": "2026-09-09T05:24:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "mlb-top-prospects",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Carroll (low back discomfort) a late scratch from D-backs' Tues. lineup",
-        "summaryJa": "C.キャロル（AZ）の負傷状況をMLB公式が詳報",
-        "slug": "corbin-carroll-scratched-from-diamondbacks-lineup-with-back-discomfort",
-        "url": "https://www.mlb.com/news/corbin-carroll-scratched-from-diamondbacks-lineup-with-back-discomfort",
-        "contentDate": "2026-09-09T05:19:00Z",
-        "teamIds": [
-            109
-        ],
-        "playerIds": [
-            682998
-        ],
-        "gamePks": [
-            824063
-        ],
-        "taxonomy": [
-            "apple-news",
-            "injury"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Burnes pitches three scoreless innings in return from Tommy John surgery",
         "summaryJa": "C.バーンズ（AZ）、復帰へ向けた最新状況",
         "slug": "corbin-burnes-2026-debut-against-royals",
@@ -1183,7 +1444,6 @@
             "game-recap"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1227,7 +1487,6 @@
             "game-recap"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1380,7 +1639,6 @@
             "filthy-pitch"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1448,26 +1706,6 @@
         "taxonomy": [
             "apple-news",
             "pennant-chase"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Latest Yankees injuries and transactions",
-        "summaryJa": "ヤンキースの負傷状況をMLB公式が詳報",
-        "slug": "yankees-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/yankees-injuries-and-roster-moves",
-        "contentDate": "2026-09-09T03:55:00Z",
-        "teamIds": [
-            147
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
         ],
         "sourceScopes": [
             "球団公式"
@@ -1553,26 +1791,6 @@
             "apple-news",
             "game-recap",
             "long-home-runs"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Latest Cubs injuries and transactions",
-        "summaryJa": "カブスの負傷状況をMLB公式が詳報",
-        "slug": "cubs-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/cubs-injuries-and-roster-moves",
-        "contentDate": "2026-09-09T03:40:00Z",
-        "teamIds": [
-            112
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
         ],
         "sourceScopes": [
             "球団公式"
@@ -2030,26 +2248,6 @@
         ]
     },
     {
-        "headline": "Latest Red Sox injuries & transactions",
-        "summaryJa": "レッドソックスの負傷状況をMLB公式が詳報",
-        "slug": "red-sox-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/red-sox-injuries-and-roster-moves",
-        "contentDate": "2026-09-09T00:22:00Z",
-        "teamIds": [
-            111
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Latest Giants injuries & transactions",
         "summaryJa": "ジャイアンツの負傷状況をMLB公式が詳報",
         "slug": "giants-injuries-and-roster-moves",
@@ -2242,26 +2440,6 @@
         "contentDate": "2026-09-08T22:19:00Z",
         "teamIds": [
             121
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Latest Royals injuries & transactions",
-        "summaryJa": "ロイヤルズの負傷状況をMLB公式が詳報",
-        "slug": "royals-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/royals-injuries-and-roster-moves",
-        "contentDate": "2026-09-08T21:53:00Z",
-        "teamIds": [
-            118
         ],
         "playerIds": [],
         "gamePks": [],
@@ -7513,28 +7691,6 @@
         ]
     },
     {
-        "headline": "'I'm not giving up': Verlander races clock for one last start",
-        "summaryJa": "J.バーランダー（DET）の最新動向をMLB公式が詳報",
-        "slug": "justin-verlander-hopes-to-pitch-again-before-retirement",
-        "url": "https://www.mlb.com/news/justin-verlander-hopes-to-pitch-again-before-retirement",
-        "contentDate": "2026-09-04T18:53:23.993Z",
-        "teamIds": [
-            116
-        ],
-        "playerIds": [
-            434378
-        ],
-        "gamePks": [
-            824424
-        ],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Nationals rookies make statement with 'revolutionary' outfits at start of West Coast trip",
         "summaryJa": "ナショナルズの最新動向をMLB公式が詳報",
         "slug": "nationals-rookies-dress-like-founding-fathers-for-road-trip",
@@ -7665,30 +7821,6 @@
         ]
     },
     {
-        "headline": "What's keeping Brewers' No. 5 prospect Fischer off the Top 100?",
-        "summaryJa": "Andrew Fischer（MIL）ら注目選手の最新動向",
-        "slug": "brewers-top-prospect-andrew-fischer-still-chasing-top-100-list",
-        "url": "https://www.mlb.com/news/brewers-top-prospect-andrew-fischer-still-chasing-top-100-list",
-        "contentDate": "2026-09-04T16:06:24.59Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [
-            702652
-        ],
-        "gamePks": [
-            824471
-        ],
-        "taxonomy": [
-            "apple-news",
-            "mlb-top-prospects",
-            "minor-league-baseball"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Astros fan shows off his own 'Pope Hat' as Houston faces Pope Leo XIV's favorite White Sox",
         "summaryJa": "アストロズを巡る注目点をMLB公式が分析",
         "slug": "astros-fan-shows-off-his-own-pope-hat",
@@ -7701,29 +7833,6 @@
         "gamePks": [],
         "taxonomy": [
             "offbeat",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Rodriguez, Matsui deepen Padres' elite bullpen",
-        "summaryJa": "B.ロドリゲス（SD）の最新動向をMLB公式が詳報",
-        "slug": "bradgley-rodriguez-yuki-matsui-vital-pieces-of-padres-bullpen",
-        "url": "https://www.mlb.com/news/bradgley-rodriguez-yuki-matsui-vital-pieces-of-padres-bullpen",
-        "contentDate": "2026-09-04T15:00:24.978Z",
-        "teamIds": [
-            135
-        ],
-        "playerIds": [
-            699134,
-            673513
-        ],
-        "gamePks": [
-            823256
-        ],
-        "taxonomy": [
             "apple-news"
         ],
         "sourceScopes": [
@@ -7886,24 +7995,6 @@
         "taxonomy": [
             "apple-news",
             "mlb-top-prospects"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Tony Beasley has an inspiring story to tell — and sing — this weekend",
-        "summaryJa": "パイレーツの最新動向をMLB公式が詳報",
-        "slug": "tony-beasley-has-an-inspiring-story-to-tell-and-sing-this-weekend",
-        "url": "https://www.mlb.com/news/tony-beasley-has-an-inspiring-story-to-tell-and-sing-this-weekend",
-        "contentDate": "2026-09-04T12:12:00.733Z",
-        "teamIds": [
-            134
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "pit-inside-the-pirates"
         ],
         "sourceScopes": [
             "球団公式"
@@ -8267,29 +8358,6 @@
             824796
         ],
         "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Rafaela sidelined by quad injury, with timetable uncertain",
-        "summaryJa": "C.ラファエラ（BOS）の負傷状況をMLB公式が詳報",
-        "slug": "ceddanne-rafaela-right-quad-injury-red-sox",
-        "url": "https://www.mlb.com/news/ceddanne-rafaela-right-quad-injury-red-sox",
-        "contentDate": "2026-09-04T03:55:00Z",
-        "teamIds": [
-            111
-        ],
-        "playerIds": [
-            678882
-        ],
-        "gamePks": [
-            824796
-        ],
-        "taxonomy": [
-            "injury",
             "apple-news"
         ],
         "sourceScopes": [
@@ -8750,8 +8818,8 @@
         ]
     },
     {
-        "headline": "PCA picks up 2nd NL Player of the Month honor this year",
-        "summaryJa": "J.キャグリオーン、記録達成の最新情報",
+        "headline": "Stewart earns second NL Rookie of the Month Award this season",
+        "summaryJa": "J.キャグリオーンの最新動向をMLB公式が詳報",
         "slug": "mlb-monthly-awards-for-august-2026",
         "url": "https://www.mlb.com/news/mlb-monthly-awards-for-august-2026",
         "contentDate": "2026-09-03T15:16:34.113Z",
@@ -8814,54 +8882,6 @@
         ]
     },
     {
-        "headline": "Montes and Arozarena's budding bromance has been brewing for a year",
-        "summaryJa": "R.アロサレーナ（SEA）、メジャー昇格・初出場に関する最新情報",
-        "slug": "randy-arozarena-takes-lazaro-montes-under-his-wing-in-debut-series",
-        "url": "https://www.mlb.com/news/randy-arozarena-takes-lazaro-montes-under-his-wing-in-debut-series",
-        "contentDate": "2026-09-03T15:01:35.655Z",
-        "teamIds": [
-            136
-        ],
-        "playerIds": [
-            668227,
-            703155
-        ],
-        "gamePks": [
-            823095
-        ],
-        "taxonomy": [
-            "apple-news",
-            "mlb-top-prospects"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Why the time was right for Salas' callup",
-        "summaryJa": "X.ボガーツ（SD）、メジャー昇格・初出場に関する最新情報",
-        "slug": "xander-bogaerts-can-relate-to-ethan-salas-callup",
-        "url": "https://www.mlb.com/news/xander-bogaerts-can-relate-to-ethan-salas-callup",
-        "contentDate": "2026-09-03T14:59:19.835Z",
-        "teamIds": [
-            135
-        ],
-        "playerIds": [
-            593428,
-            806956
-        ],
-        "gamePks": [
-            823256
-        ],
-        "taxonomy": [
-            "apple-news",
-            "mlb-top-prospects"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "By the numbers: Twins detail their digit backstories",
         "summaryJa": "ツインズを巡る注目点をMLB公式が分析",
         "slug": "twins-players-explain-why-they-chose-their-number",
@@ -8894,27 +8914,6 @@
         "gamePks": [],
         "taxonomy": [
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Orioles' No. 8 prospect Aloy mashes 2 more homers amid extended hot streak",
-        "summaryJa": "Wehiwa Aloy（BAL）、記録達成の最新情報",
-        "slug": "wehiwa-aloy-hits-4th-multi-homer-game-of-2026",
-        "url": "https://www.mlb.com/news/wehiwa-aloy-hits-4th-multi-homer-game-of-2026",
-        "contentDate": "2026-09-03T13:31:29.29Z",
-        "teamIds": [
-            110
-        ],
-        "playerIds": [
-            814450
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "mlb-top-prospects"
         ],
         "sourceScopes": [
             "球団公式"
@@ -8973,27 +8972,6 @@
         "taxonomy": [
             "apple-news",
             "mlb-debut"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Yankees finally conjure some extra-inning magic with 5-run 10th",
-        "summaryJa": "ヤンキース、記録達成の最新情報",
-        "slug": "yankees-rally-in-10th-inning-to-beat-angels",
-        "url": "https://www.mlb.com/news/yankees-rally-in-10th-inning-to-beat-angels",
-        "contentDate": "2026-09-03T06:35:00Z",
-        "teamIds": [
-            147
-        ],
-        "playerIds": [],
-        "gamePks": [
-            823983
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap"
         ],
         "sourceScopes": [
             "球団公式"
@@ -9092,28 +9070,6 @@
         ]
     },
     {
-        "headline": "Jensen celebrates 'MLB birthday' with multihomer game",
-        "summaryJa": "C.ジェンセン（KC）、メジャー昇格・初出場に関する最新情報",
-        "slug": "carter-jensen-hits-2-home-runs-on-anniversary-of-mlb-debut",
-        "url": "https://www.mlb.com/news/carter-jensen-hits-2-home-runs-on-anniversary-of-mlb-debut",
-        "contentDate": "2026-09-03T04:42:08.156Z",
-        "teamIds": [
-            118
-        ],
-        "playerIds": [
-            695600
-        ],
-        "gamePks": [
-            824068
-        ],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Devers continues to deliver as Giants bounce back",
         "summaryJa": "R.デバース（SF）、本塁打で存在感",
         "slug": "rafael-devers-early-homer-sparks-giants-win-over-pirates",
@@ -9160,31 +9116,6 @@
         ]
     },
     {
-        "headline": "Morabito's long-awaited breakout: 3-run double for 1st hit, diving catch in win",
-        "summaryJa": "N.モラビート（NYM）、記録達成の最新情報",
-        "slug": "nick-morabito-s-first-big-league-hit-helps-mets-beat-rays",
-        "url": "https://www.mlb.com/news/nick-morabito-s-first-big-league-hit-helps-mets-beat-rays",
-        "contentDate": "2026-09-03T04:04:00Z",
-        "teamIds": [
-            121
-        ],
-        "playerIds": [
-            703492
-        ],
-        "gamePks": [
-            822931
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap",
-            "milestone",
-            "mlb-top-prospects"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Alonso moves up in latest Hitter Power Rankings",
         "summaryJa": "P.クローアームストロングら注目選手の最新動向",
         "slug": "mlb-hitter-power-rankings-for-september-3-2026",
@@ -9208,34 +9139,6 @@
             "hitter-power-rankings",
             "rankings",
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Ranking the 10 most impactful Trade Deadline moves, one month later",
-        "summaryJa": "C.ホームズの移籍・契約に関する最新情報",
-        "slug": "best-mlb-trade-deadline-moves-2026",
-        "url": "https://www.mlb.com/news/best-mlb-trade-deadline-moves-2026",
-        "contentDate": "2026-09-03T03:36:04.668Z",
-        "teamIds": [],
-        "playerIds": [
-            605280,
-            641816,
-            689414,
-            669373,
-            671277,
-            681393,
-            669062,
-            703520,
-            666176,
-            592662
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "trade-deadline"
         ],
         "sourceScopes": [
             "球団公式"
@@ -9351,27 +9254,6 @@
         ]
     },
     {
-        "headline": "Mariners collect 12 hits to back Wilson's bold new approach to bullpen",
-        "summaryJa": "マリナーズ、勝利を呼び込む活躍",
-        "slug": "mariners-collect-12-hits-in-series-win-over-red-sox",
-        "url": "https://www.mlb.com/news/mariners-collect-12-hits-in-series-win-over-red-sox",
-        "contentDate": "2026-09-03T00:49:00Z",
-        "teamIds": [
-            136
-        ],
-        "playerIds": [],
-        "gamePks": [
-            824717
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Rangers content with series win vs. A's as they prep for AL-best Rays",
         "summaryJa": "C.ブラッドフォード（TEX）、勝利を呼び込む活躍",
         "slug": "rangers-lose-finale-to-athletics-get-ready-for-rays",
@@ -9388,30 +9270,6 @@
         ],
         "taxonomy": [
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Acuña Jr. fastest in MLB history to reach 200 HRs and 200 SBs",
-        "summaryJa": "R.アクーニャ Jr.（ATL）、本塁打で存在感",
-        "slug": "ronald-acuna-jr-fastest-to-200-homers-and-200-stolen-bases",
-        "url": "https://www.mlb.com/news/ronald-acuna-jr-fastest-to-200-homers-and-200-stolen-bases",
-        "contentDate": "2026-09-02T23:58:00Z",
-        "teamIds": [
-            144
-        ],
-        "playerIds": [
-            660670
-        ],
-        "gamePks": [
-            822686
-        ],
-        "taxonomy": [
-            "apple-news",
-            "milestone",
-            "game-recap"
         ],
         "sourceScopes": [
             "球団公式"
@@ -9546,29 +9404,6 @@
         ]
     },
     {
-        "headline": "Another Bonds is kicking off his career with the Giants",
-        "summaryJa": "Peyton Bonds（SF）の最新動向をMLB公式が詳報",
-        "slug": "peyton-bonds-beginning-career-with-giants-organization",
-        "url": "https://www.mlb.com/news/peyton-bonds-beginning-career-with-giants-organization",
-        "contentDate": "2026-09-02T18:04:49.335Z",
-        "teamIds": [
-            137
-        ],
-        "playerIds": [
-            835227
-        ],
-        "gamePks": [
-            823339
-        ],
-        "taxonomy": [
-            "apple-news",
-            "mlb-top-prospects"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Garcia nearing return to Rangers after successful live BP",
         "summaryJa": "R.ガルシア（TEX）、復帰へ向けた最新状況",
         "slug": "robert-garcia-throws-live-batting-practice-to-rangers-hitters",
@@ -9636,29 +9471,6 @@
         ]
     },
     {
-        "headline": "Home cooking keeps fueling Rangers' postseason push",
-        "summaryJa": "レンジャーズ、勝利を呼び込む活躍",
-        "slug": "rangers-beat-a-s-to-continue-home-success-in-postseason-chase",
-        "url": "https://www.mlb.com/news/rangers-beat-a-s-to-continue-home-success-in-postseason-chase",
-        "contentDate": "2026-09-02T05:55:00Z",
-        "teamIds": [
-            140
-        ],
-        "playerIds": [],
-        "gamePks": [
-            822854
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap",
-            "homestand",
-            "performance"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "LA Rams owner Kroenke reaches agreement to buy Angels",
         "summaryJa": "エンゼルスの最新動向をMLB公式が詳報",
         "slug": "stan-kroenke-purchases-angels-from-arte-moreno",
@@ -9673,27 +9485,6 @@
         ],
         "taxonomy": [
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Twins' No. 5 prospect Rodriguez looks like the picture of health while hitting for Triple-A cycle",
-        "summaryJa": "E.ロドリゲス（MIN）ら注目選手の最新動向",
-        "slug": "twins-prospect-emmanuel-rodriguez-hits-for-cycle-at-triple-a",
-        "url": "https://www.mlb.com/news/twins-prospect-emmanuel-rodriguez-hits-for-cycle-at-triple-a",
-        "contentDate": "2026-09-02T04:46:58.209Z",
-        "teamIds": [
-            142
-        ],
-        "playerIds": [
-            691181
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "mlb-top-prospects"
         ],
         "sourceScopes": [
             "球団公式"
@@ -9718,29 +9509,6 @@
             "apple-news",
             "injury",
             "rehab"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "White exits with back tightness as A's injury woes continue",
-        "summaryJa": "T.ホワイト（ATH）の負傷状況をMLB公式が詳報",
-        "slug": "tommy-white-exits-game-against-rangers-with-lower-back-injury",
-        "url": "https://www.mlb.com/news/tommy-white-exits-game-against-rangers-with-lower-back-injury",
-        "contentDate": "2026-09-02T04:29:00Z",
-        "teamIds": [
-            133
-        ],
-        "playerIds": [
-            695720
-        ],
-        "gamePks": [
-            822854
-        ],
-        "taxonomy": [
-            "apple-news",
-            "injury"
         ],
         "sourceScopes": [
             "球団公式"
@@ -9850,50 +9618,6 @@
             "injury",
             "rehab",
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Rangers add vet Trevor Williams -- and Gore was all for it",
-        "summaryJa": "T.ウィリアムズ（TEX）の移籍・契約に関する最新情報",
-        "slug": "trevor-williams-signed-by-rangers",
-        "url": "https://www.mlb.com/news/trevor-williams-signed-by-rangers",
-        "contentDate": "2026-09-02T00:30:00Z",
-        "teamIds": [
-            140
-        ],
-        "playerIds": [
-            592866
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "transactions",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Abrams (back tightness) starting at SS in return to Nats' lineup",
-        "summaryJa": "C.エイブラムズ（WSH）、復帰へ向けた最新状況",
-        "slug": "cj-abrams-returns-to-nationals-lineup-vs-braves",
-        "url": "https://www.mlb.com/news/cj-abrams-returns-to-nationals-lineup-vs-braves",
-        "contentDate": "2026-09-01T22:42:44.303Z",
-        "teamIds": [
-            120
-        ],
-        "playerIds": [
-            682928
-        ],
-        "gamePks": [
-            822687
-        ],
-        "taxonomy": [
-            "apple-news",
-            "injury"
         ],
         "sourceScopes": [
             "球団公式"
@@ -10300,72 +10024,6 @@
             "game-recap",
             "payoff-pitch"
         ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Velázquez, Smith provide much-needed outfield spark for Astros",
-        "summaryJa": "C.スミス（HOU）、勝利を呼び込む活躍",
-        "slug": "nelson-velazquez-cam-smith-fuels-astros-win-over-white-sox",
-        "url": "https://www.mlb.com/news/nelson-velazquez-cam-smith-fuels-astros-win-over-white-sox",
-        "contentDate": "2026-09-01T05:26:00Z",
-        "teamIds": [
-            117
-        ],
-        "playerIds": [
-            701358,
-            676369
-        ],
-        "gamePks": [
-            824149
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Lile defends Player of the Week Award with 2 HRs",
-        "summaryJa": "D.ライル（WSH）、本塁打で存在感",
-        "slug": "daylen-lile-hits-two-homers-as-nationals-beat-marlins",
-        "url": "https://www.mlb.com/news/daylen-lile-hits-two-homers-as-nationals-beat-marlins",
-        "contentDate": "2026-09-01T04:00:00Z",
-        "teamIds": [
-            120
-        ],
-        "playerIds": [
-            695734
-        ],
-        "gamePks": [
-            822689
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap",
-            "performance"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Mozeliak announces promotions of Swanson, Lord, scouting department restructure",
-        "summaryJa": "エンゼルス、メジャー昇格・初出場に関する最新情報",
-        "slug": "john-mozeliak-announces-series-of-angels-front-office-changes",
-        "url": "https://www.mlb.com/news/john-mozeliak-announces-series-of-angels-front-office-changes",
-        "contentDate": "2026-09-01T02:27:30.935Z",
-        "teamIds": [
-            108
-        ],
-        "playerIds": [],
-        "gamePks": [
-            823982
-        ],
-        "taxonomy": [],
         "sourceScopes": [
             "球団公式"
         ]
