@@ -2,6 +2,206 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Latest Dodgers injuries & transactions",
+        "summaryJa": "ドジャースの負傷状況をMLB公式が詳報",
+        "slug": "dodgers-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/dodgers-injuries-and-roster-moves",
+        "contentDate": "2026-09-10T07:07:00Z",
+        "teamIds": [
+            119
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Yamamoto (10 K's) dominates, Dodgers score 14 to run season-high win streak to 7",
+        "summaryJa": "山本 由伸（LAD）、勝利を呼び込む活躍",
+        "slug": "yoshinobu-yamamoto-starts-finale-against-reds",
+        "url": "https://www.mlb.com/news/yoshinobu-yamamoto-starts-finale-against-reds",
+        "contentDate": "2026-09-10T07:05:00Z",
+        "teamIds": [
+            119
+        ],
+        "playerIds": [
+            808967
+        ],
+        "gamePks": [
+            823900
+        ],
+        "taxonomy": [
+            "apple-news",
+            "game-recap",
+            "payoff-pitch"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Dodgers calling up top prospect Josue De Paula with Ohtani out",
+        "summaryJa": "J.デポーラ（LAD）ら注目選手の最新動向",
+        "slug": "josue-de-paula-top-prospect-called-up-dodgers",
+        "url": "https://www.mlb.com/news/josue-de-paula-top-prospect-called-up-dodgers",
+        "contentDate": "2026-09-10T06:52:00Z",
+        "teamIds": [
+            119
+        ],
+        "playerIds": [
+            800543
+        ],
+        "gamePks": [
+            823900
+        ],
+        "taxonomy": [
+            "apple-news",
+            "mlb-top-prospects",
+            "minor-league-baseball"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Ohtani placed on injured list to rest left knee, right biceps injuries",
+        "summaryJa": "大谷 翔平（LAD）の負傷状況をMLB公式が詳報",
+        "slug": "shohei-ohtani-out-of-lineup-again-vs-reds",
+        "url": "https://www.mlb.com/news/shohei-ohtani-out-of-lineup-again-vs-reds",
+        "contentDate": "2026-09-10T06:28:00Z",
+        "teamIds": [
+            119
+        ],
+        "playerIds": [
+            660271
+        ],
+        "gamePks": [
+            823900
+        ],
+        "taxonomy": [
+            "apple-news",
+            "injury"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Stammen, Buehler's mound negotiation leads to awkward early exit in third",
+        "summaryJa": "W.ビューラー（SD）の最新動向をMLB公式が詳報",
+        "slug": "walker-buehler-removed-early-from-start-by-manager-craig-stammen",
+        "url": "https://www.mlb.com/news/walker-buehler-removed-early-from-start-by-manager-craig-stammen",
+        "contentDate": "2026-09-10T06:10:00Z",
+        "teamIds": [
+            135
+        ],
+        "playerIds": [
+            621111
+        ],
+        "gamePks": [
+            823251
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Watch top prospect Nimmala play at Double-A for FREE in Sunday matinee",
+        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
+        "slug": "watch-minor-league-baseball-games-for-free-2026",
+        "url": "https://www.mlb.com/news/watch-minor-league-baseball-games-for-free-2026",
+        "contentDate": "2026-09-10T06:10:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "mlb-top-prospects",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Rays' top pitching prospect pumps 102.1 mph(!!) heat in latest relief outing",
+        "summaryJa": "B.ホプキンス（TB）、マウンドで好投",
+        "slug": "rays-prospect-brody-hopkins-102-1-mph-scoreless-relief-triple-a",
+        "url": "https://www.mlb.com/news/rays-prospect-brody-hopkins-102-1-mph-scoreless-relief-triple-a",
+        "contentDate": "2026-09-10T06:05:00Z",
+        "teamIds": [
+            139
+        ],
+        "playerIds": [
+            811315
+        ],
+        "gamePks": [
+            824871
+        ],
+        "taxonomy": [
+            "mlb-top-prospects",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Elly takes Yamamoto deep for FIFTH straight game with a home run",
+        "summaryJa": "E.デラクルーズ（CIN）、記録達成の最新情報",
+        "slug": "elly-de-la-cruz-homers-in-5th-straight-game",
+        "url": "https://www.mlb.com/news/elly-de-la-cruz-homers-in-5th-straight-game",
+        "contentDate": "2026-09-10T05:45:00Z",
+        "teamIds": [
+            113
+        ],
+        "playerIds": [
+            682829
+        ],
+        "gamePks": [
+            823900
+        ],
+        "taxonomy": [
+            "apple-news",
+            "hot-streak"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "With fifth straight series win, Pirates aren't yet out of playoff race",
+        "summaryJa": "MLBの最新情報、勝利を呼び込む活躍",
+        "slug": "pirates-win-fifth-straight-series-beat-white-sox",
+        "url": "https://www.mlb.com/news/pirates-win-fifth-straight-series-beat-white-sox",
+        "contentDate": "2026-09-10T05:26:31.539Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [
+            824549
+        ],
+        "taxonomy": [
+            "game-recap",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "As Central lead swells to 10, Crew continues to take nothing for granted",
         "summaryJa": "ブルワーズ、勝利を呼び込む活躍",
         "slug": "brewers-beat-cubs-move-closer-to-nl-central-title",
@@ -62,32 +262,7 @@
             824064
         ],
         "taxonomy": [
-            "apple-news",
-            "game-recap"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Yamamoto (10 K's) dominates, Dodgers score 14 to run season-high win streak to 7",
-        "summaryJa": "山本 由伸（LAD）、勝利を呼び込む活躍",
-        "slug": "yoshinobu-yamamoto-starts-finale-against-reds",
-        "url": "https://www.mlb.com/news/yoshinobu-yamamoto-starts-finale-against-reds",
-        "contentDate": "2026-09-10T04:49:00Z",
-        "teamIds": [
-            119
-        ],
-        "playerIds": [
-            808967
-        ],
-        "gamePks": [
-            823900
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap",
-            "payoff-pitch"
+            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
@@ -164,7 +339,7 @@
         ]
     },
     {
-        "headline": "White Sox magic number continues shrinking despite latest blunder",
+        "headline": "White Sox magic number continues shrinking despite latest misstep",
         "summaryJa": "ホワイトソックスの最新動向をMLB公式が詳報",
         "slug": "white-sox-fall-to-pirates-despite-favorable-night-across-al",
         "url": "https://www.mlb.com/news/white-sox-fall-to-pirates-despite-favorable-night-across-al",
@@ -178,8 +353,7 @@
         ],
         "taxonomy": [
             "apple-news",
-            "game-recap-losing",
-            "game-recap"
+            "game-recap-losing"
         ],
         "sourceScopes": [
             "MLB",
@@ -234,7 +408,7 @@
         ]
     },
     {
-        "headline": "Benches clear in Pirates-White Sox after inning-ending double play; both sides warned",
+        "headline": "Benches clear in Pirates-White Sox after inning-ending double play",
         "summaryJa": "パイレーツの最新動向をMLB公式が詳報",
         "slug": "benches-clear-in-pirates-white-sox-after-inning-ending-double-play",
         "url": "https://www.mlb.com/news/benches-clear-in-pirates-white-sox-after-inning-ending-double-play",
@@ -274,6 +448,23 @@
         ],
         "sourceScopes": [
             "球団公式"
+        ]
+    },
+    {
+        "headline": "Bracket, tiebreakers and more: Here is the current playoff picture",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "mlb-playoff-picture-and-bracket-2026",
+        "url": "https://www.mlb.com/news/mlb-playoff-picture-and-bracket-2026",
+        "contentDate": "2026-09-10T04:05:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "pennant-chase",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB"
         ]
     },
     {
@@ -322,30 +513,6 @@
             "clutch-moment"
         ],
         "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Elly takes Yamamoto deep for FIFTH straight game with a home run",
-        "summaryJa": "E.デラクルーズ（CIN）、記録達成の最新情報",
-        "slug": "elly-de-la-cruz-homers-in-5th-straight-game",
-        "url": "https://www.mlb.com/news/elly-de-la-cruz-homers-in-5th-straight-game",
-        "contentDate": "2026-09-10T03:50:33.807Z",
-        "teamIds": [
-            113
-        ],
-        "playerIds": [
-            682829
-        ],
-        "gamePks": [
-            823900
-        ],
-        "taxonomy": [
-            "apple-news",
-            "hot-streak"
-        ],
-        "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -675,29 +842,6 @@
         ]
     },
     {
-        "headline": "Stammen, Buehler's mound negotiation leads to awkward early exit in third",
-        "summaryJa": "W.ビューラー（SD）の最新動向をMLB公式が詳報",
-        "slug": "walker-buehler-removed-early-from-start-by-manager-craig-stammen",
-        "url": "https://www.mlb.com/news/walker-buehler-removed-early-from-start-by-manager-craig-stammen",
-        "contentDate": "2026-09-10T01:58:00Z",
-        "teamIds": [
-            135
-        ],
-        "playerIds": [
-            621111
-        ],
-        "gamePks": [
-            823251
-        ],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Santander embarks on rehab journey, hopes to debut before end of season",
         "summaryJa": "A.サンタンデール（TOR）、復帰へ向けた最新状況",
         "slug": "anthony-santander-plays-first-rehab-game-for-triple-a-buffalo",
@@ -715,24 +859,6 @@
         "taxonomy": [
             "injury",
             "rehab"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Watch top prospect Nimmala play at Double-A for FREE in Sunday matinee",
-        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
-        "slug": "watch-minor-league-baseball-games-for-free-2026",
-        "url": "https://www.mlb.com/news/watch-minor-league-baseball-games-for-free-2026",
-        "contentDate": "2026-09-10T01:52:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "mlb-top-prospects",
-            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
@@ -787,26 +913,6 @@
         ]
     },
     {
-        "headline": "Latest Dodgers injuries & transactions",
-        "summaryJa": "ドジャースの負傷状況をMLB公式が詳報",
-        "slug": "dodgers-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/dodgers-injuries-and-roster-moves",
-        "contentDate": "2026-09-10T01:23:00Z",
-        "teamIds": [
-            119
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Freeman sits with right knee soreness; IL 'absolutely not' a possibility",
         "summaryJa": "F.フリーマン（LAD）の負傷状況をMLB公式が詳報",
         "slug": "freddie-freeman-out-of-lineup-with-right-knee-soreness",
@@ -826,7 +932,6 @@
             "injury"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -914,30 +1019,6 @@
             "mlb-top-prospects"
         ],
         "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Ohtani out of lineup for 6th time in last 7 games; IL still on table",
-        "summaryJa": "大谷 翔平（LAD）、記録達成の最新情報",
-        "slug": "shohei-ohtani-out-of-lineup-again-vs-reds",
-        "url": "https://www.mlb.com/news/shohei-ohtani-out-of-lineup-again-vs-reds",
-        "contentDate": "2026-09-10T00:44:00Z",
-        "teamIds": [
-            119
-        ],
-        "playerIds": [
-            660271
-        ],
-        "gamePks": [
-            823900
-        ],
-        "taxonomy": [
-            "apple-news",
-            "injury"
-        ],
-        "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1143,6 +1224,7 @@
             "game-recap-losing"
         ],
         "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
@@ -1524,22 +1606,6 @@
         ]
     },
     {
-        "headline": "The race is on for first-round byes -- who's got the edge?",
-        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
-        "slug": "mlb-playoff-races-top-seeds-first-round-byes",
-        "url": "https://www.mlb.com/news/mlb-playoff-races-top-seeds-first-round-byes",
-        "contentDate": "2026-09-09T20:15:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB"
-        ]
-    },
-    {
         "headline": "Elly breaks his own record for fastest INF throw 4 times over",
         "summaryJa": "E.デラクルーズ（CIN）、記録達成の最新情報",
         "slug": "elly-de-la-cruz-sets-record-with-102-mph-throw",
@@ -1739,11 +1805,13 @@
     },
     {
         "headline": "Smith, Taylor are major cogs in Sox postseason pitching plans",
-        "summaryJa": "G.テイラーの最新動向をMLB公式が詳報",
+        "summaryJa": "G.テイラー（CWS）の最新動向をMLB公式が詳報",
         "slug": "grant-taylor-hagen-smith-key-for-white-sox-down-the-stretch",
         "url": "https://www.mlb.com/news/grant-taylor-hagen-smith-key-for-white-sox-down-the-stretch",
         "contentDate": "2026-09-09T16:03:53.933Z",
-        "teamIds": [],
+        "teamIds": [
+            145
+        ],
         "playerIds": [
             691799,
             696146
@@ -1888,7 +1956,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -5945,30 +6012,6 @@
         ]
     },
     {
-        "headline": "Muncy (illness), Rushing (elbow discomfort) scratched from Dodgers' lineup Saturday",
-        "summaryJa": "D.ラッシング（LAD）の負傷状況をMLB公式が詳報",
-        "slug": "max-muncy-dalton-rushing-scratched-from-dodgers-lineup-sept-5",
-        "url": "https://www.mlb.com/news/max-muncy-dalton-rushing-scratched-from-dodgers-lineup-sept-5",
-        "contentDate": "2026-09-06T05:26:00Z",
-        "teamIds": [
-            119
-        ],
-        "playerIds": [
-            687221,
-            571970
-        ],
-        "gamePks": [
-            823904
-        ],
-        "taxonomy": [
-            "apple-news",
-            "injury"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "No Ohtani, no problem, as Edman's 3-run blast lifts Dodgers over Nats",
         "summaryJa": "T.エドマン（LAD）、勝利を呼び込む活躍",
         "slug": "tommy-edman-hits-go-ahead-home-run-in-dodgers-win",
@@ -9639,32 +9682,6 @@
         "taxonomy": [
             "injury",
             "rehab",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Five players the Astros need a big September from",
-        "summaryJa": "Y.アルバレス（HOU）の最新動向をMLB公式が詳報",
-        "slug": "players-astros-are-counting-on-in-september",
-        "url": "https://www.mlb.com/news/players-astros-are-counting-on-in-september",
-        "contentDate": "2026-09-01T16:02:23.484Z",
-        "teamIds": [
-            117
-        ],
-        "playerIds": [
-            670541,
-            686613,
-            514888,
-            621043,
-            805123
-        ],
-        "gamePks": [
-            824148
-        ],
-        "taxonomy": [
             "apple-news"
         ],
         "sourceScopes": [
