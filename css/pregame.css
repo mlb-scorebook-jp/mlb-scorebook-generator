@@ -656,8 +656,12 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
     position: absolute;
     top: 3px;
     left: 7px;
+    right: 7px;
+    display: flex;
+    justify-content: space-between;
+    gap: 4px;
     overflow: hidden;
-    max-width: calc(100% - 14px);
+    max-width: none;
     color: #fff;
     font-size: 7px;
     line-height: 12px;
@@ -665,14 +669,38 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
     white-space: nowrap;
 }
 
+.pregame-postseason-matchup-label > span:first-child {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.pregame-postseason-matchup-schedule {
+    flex: none;
+    color: #c6d0d5;
+    font-size: 6px;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.02em;
+    white-space: nowrap;
+}
+
 .pregame-postseason-team {
     display: grid;
-    grid-template-columns: 17px 27px minmax(0, 1fr) auto;
+    grid-template-columns: 17px 27px minmax(0, 1fr) auto auto;
     align-items: center;
     gap: 5px;
     min-height: 39px;
     padding: 3px 7px;
     border-top: 1px solid #354149;
+}
+
+.pregame-postseason-series-wins {
+    display: inline-flex;
+    align-items: center;
+    gap: 1px;
+    color: #e1b82f;
+    font-size: 9px;
+    line-height: 1;
+    white-space: nowrap;
 }
 
 .pregame-postseason-team strong {

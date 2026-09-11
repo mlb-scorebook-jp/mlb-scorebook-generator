@@ -2302,7 +2302,7 @@
         }));
     };
 
-    const postseasonTeamSlot = (standing, fallback) => {
+    const postseasonTeamSlot = (standing, fallback, winsToAdvance = 0) => {
         const slot = el("div", standing ? "pregame-postseason-team" : "pregame-postseason-team is-placeholder");
         if (!standing) {
             slot.append(
@@ -2317,22 +2317,40 @@
         logo.loading = "lazy";
         logo.decoding = "async";
         logo.addEventListener("error", () => logo.remove(), { once: true });
+        const seriesWins = el("span", "pregame-postseason-series-wins");
+        seriesWins.setAttribute("aria-label", `${winsToAdvance}勝で勝ち抜け`);
+        seriesWins.title = `${winsToAdvance}勝で勝ち抜け`;
+        for (let index = 0; index < winsToAdvance; index += 1) {
+            seriesWins.append(el("span", "", "☆"));
+        }
         slot.append(
             el("span", "pregame-postseason-seed", String(standing.seed)),
             logo,
             el("strong", "", teamCode(standing.team)),
+            seriesWins,
             el("span", "pregame-postseason-record", `${standing.wins}-${standing.losses}`)
         );
         slot.title = `${teamJapaneseName(standing.team)}　${standing.divisionLeader ? "地区首位" : `ワイルドカード${standing.wildCardRank}位`}`;
         return slot;
     };
 
-    const postseasonMatchup = (title, upper, lower, upperFallback = "勝者", lowerFallback = "勝者") => {
+    const postseasonMatchup = (
+        title,
+        upper,
+        lower,
+        upperFallback = "勝者",
+        lowerFallback = "勝者",
+        schedule = "",
+        winsToAdvance = 0
+    ) => {
         const matchup = el("div", "pregame-postseason-matchup");
+        const label = el("span", "pregame-postseason-matchup-label");
+        label.append(el("span", "", title));
+        if (schedule) label.append(el("span", "pregame-postseason-matchup-schedule", schedule));
         matchup.append(
-            el("span", "pregame-postseason-matchup-label", title),
-            postseasonTeamSlot(upper, upperFallback),
-            postseasonTeamSlot(lower, lowerFallback)
+            label,
+            postseasonTeamSlot(upper, upperFallback, winsToAdvance),
+            postseasonTeamSlot(lower, lowerFallback, winsToAdvance)
         );
         return matchup;
     };
@@ -2468,29 +2486,29 @@
         const board = el("div", "pregame-postseason-board");
         board.append(
             postseasonStage("AL ワイルドカード", [
-                postseasonMatchup("第3シード対第6シード", al[2], al[5]),
-                postseasonMatchup("第4シード対第5シード", al[3], al[4])
+                postseasonMatchup("第3シード対第6シード", al[2], al[5], "勝者", "勝者", "現地 9/29・30・10/1*", 2),
+                postseasonMatchup("第4シード対第5シード", al[3], al[4], "勝者", "勝者", "現地 9/29・30・10/1*", 2)
             ], "pregame-postseason-stage-wildcard"),
             postseasonStage("AL地区シリーズ", [
-                postseasonMatchup("第2シードはBYE", al[1], null, "", "3位対6位の勝者"),
-                postseasonMatchup("第1シードはBYE", al[0], null, "", "4位対5位の勝者")
+                postseasonMatchup("第2シードはBYE", al[1], null, "", "3位対6位の勝者", "現地 10/3・5・7・8*・10*", 3),
+                postseasonMatchup("第1シードはBYE", al[0], null, "", "4位対5位の勝者", "現地 10/3・5・7・8*・10*", 3)
             ]),
             postseasonStage("AL優勝決定シリーズ", [
-                postseasonMatchup("リーグ優勝決定戦", null, null, "地区シリーズ勝者", "地区シリーズ勝者")
+                postseasonMatchup("リーグ優勝決定戦", null, null, "地区シリーズ勝者", "地区シリーズ勝者", "現地 10/12・13・15・16・17*・19*・20*", 4)
             ], "pregame-postseason-stage-championship"),
             postseasonStage("WORLD SERIES", [
-                postseasonMatchup("ワールドシリーズ", null, null, "AL優勝球団", "NL優勝球団")
+                postseasonMatchup("ワールドシリーズ", null, null, "AL優勝球団", "NL優勝球団", "現地 10/23・24・26・27・28*・30*・31*", 4)
             ], "pregame-postseason-stage-world-series"),
             postseasonStage("NL優勝決定シリーズ", [
-                postseasonMatchup("リーグ優勝決定戦", null, null, "地区シリーズ勝者", "地区シリーズ勝者")
+                postseasonMatchup("リーグ優勝決定戦", null, null, "地区シリーズ勝者", "地区シリーズ勝者", "現地 10/11・12・14・15・16*・18*・19*", 4)
             ], "pregame-postseason-stage-championship"),
             postseasonStage("NL地区シリーズ", [
-                postseasonMatchup("第1シードはBYE", nl[0], null, "", "4位対5位の勝者"),
-                postseasonMatchup("第2シードはBYE", nl[1], null, "", "3位対6位の勝者")
+                postseasonMatchup("第1シードはBYE", nl[0], null, "", "4位対5位の勝者", "現地 10/3・4・6・7*・9*", 3),
+                postseasonMatchup("第2シードはBYE", nl[1], null, "", "3位対6位の勝者", "現地 10/3・4・6・7*・9*", 3)
             ]),
             postseasonStage("NL ワイルドカード", [
-                postseasonMatchup("第4シード対第5シード", nl[3], nl[4]),
-                postseasonMatchup("第3シード対第6シード", nl[2], nl[5])
+                postseasonMatchup("第4シード対第5シード", nl[3], nl[4], "勝者", "勝者", "現地 9/29・30・10/1*", 2),
+                postseasonMatchup("第3シード対第6シード", nl[2], nl[5], "勝者", "勝者", "現地 9/29・30・10/1*", 2)
             ], "pregame-postseason-stage-wildcard")
         );
         scroll.append(board);
@@ -2500,7 +2518,7 @@
             postseasonMagicPanel(standings, "NL")
         );
         postseasonSection.append(
-            el("p", "pregame-postseason-note", "シーズン終了時の組み合わせではありません。対象日の試合前に確定していた順位から算出しています。"),
+            el("p", "pregame-postseason-note", "シーズン終了時の組み合わせではありません。対象日の試合前に確定していた順位から算出しています。日程は現地日付、*は必要時。"),
             scroll,
             magic,
             el("p", "pregame-postseason-magic-note", "Mは圏外球団の残り試合を基準にした暫定値です。同率時のタイブレーカーは含みません。")
