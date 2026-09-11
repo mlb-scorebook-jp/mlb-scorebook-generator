@@ -735,6 +735,101 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
     box-shadow: 0 0 20px rgba(195, 148, 49, 0.13);
 }
 
+.pregame-postseason-magic {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin: 0 12px 12px;
+}
+
+.pregame-postseason-magic-league {
+    min-width: 0;
+    border: 1px solid #43515a;
+    border-radius: 4px;
+    background: #182025;
+}
+
+.pregame-postseason-magic-league h4 {
+    margin: 0;
+    padding: 8px 10px;
+    border-bottom: 1px solid #43515a;
+    color: #dbe5ea;
+    font-size: 14px;
+    letter-spacing: 0.06em;
+}
+
+.pregame-postseason-magic-rows {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+}
+
+.pregame-postseason-magic-row {
+    display: grid;
+    grid-template-columns: 20px 31px 48px 58px 70px minmax(0, 1fr);
+    align-items: center;
+    gap: 5px;
+    min-width: 0;
+    min-height: 54px;
+    padding: 6px 10px;
+    border-bottom: 1px solid #354149;
+}
+
+.pregame-postseason-magic-row:last-child {
+    border-bottom: 0;
+}
+
+.pregame-postseason-magic-seed {
+    color: #e1b82f;
+    font-size: 13px;
+    font-weight: 800;
+    text-align: center;
+}
+
+.pregame-postseason-magic-row strong {
+    overflow: hidden;
+    font-size: 15px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.pregame-postseason-magic-record {
+    color: #9daab2;
+    font-size: 12px;
+    font-variant-numeric: tabular-nums;
+}
+
+.pregame-postseason-magic-value {
+    min-width: 26px;
+    color: #f1cb45;
+    font-size: 15px;
+    font-weight: 800;
+    text-align: left;
+}
+
+.pregame-postseason-magic-value.is-clinched {
+    color: #84d2a2;
+    font-size: 12px;
+}
+
+.pregame-postseason-magic-value.is-eliminated {
+    color: #a8b1b6;
+    font-size: 12px;
+}
+
+.pregame-postseason-magic-condition {
+    min-width: 0;
+    color: #c5cfd4;
+    font-size: 13px;
+    line-height: 1.45;
+}
+
+.pregame-postseason-magic-note {
+    margin: -3px 12px 11px;
+    color: #8f9ca4;
+    font-size: 11px;
+    text-align: right;
+}
+
 .pregame-japanese-daily-layout {
     display: grid;
     grid-template-columns: 650px minmax(260px, 1fr);
@@ -2903,6 +2998,19 @@ a.pregame-metric-value:focus-visible {
 
     .pregame-postseason-board {
         min-width: 1180px;
+    }
+
+    .pregame-postseason-magic {
+        grid-template-columns: 1fr;
+    }
+
+    .pregame-postseason-magic-row {
+        grid-template-columns: 20px 31px 48px auto 70px minmax(0, 1fr);
+        padding-block: 9px;
+    }
+
+    .pregame-postseason-magic-condition {
+        font-size: 14px;
     }
 
     .pregame-card-grid {

@@ -2255,6 +2255,9 @@
                         ? "NL"
                         : "AL",
                     wildCardRank: Number.parseInt(teamRecord?.wildCardRank, 10),
+                    clinchIndicator: String(teamRecord?.clinchIndicator ?? "").trim(),
+                    eliminationNumber: String(teamRecord?.eliminationNumber ?? "").trim(),
+                    wildCardEliminationNumber: String(teamRecord?.wildCardEliminationNumber ?? "").trim(),
                     divisionLeader: teamRecord?.divisionLeader === true ||
                         Number.parseInt(teamRecord?.divisionRank, 10) === 1,
                     secondPlaceTeam: secondPlace?.team ?? null,
@@ -2340,6 +2343,108 @@
         return stage;
     };
 
+    const postseasonMagicLeague = (standings, leagueCode) => {
+        const entries = [...standings.values()]
+            .filter((standing) => standing?.leagueCode === leagueCode && standing?.team?.id)
+            .sort((left, right) => {
+                const leftRank = Number.isFinite(left.leagueRank) ? left.leagueRank : 99;
+                const rightRank = Number.isFinite(right.leagueRank) ? right.leagueRank : 99;
+                return leftRank - rightRank || right.wins - left.wins || left.losses - right.losses;
+            });
+        return entries.map((standing, index) => {
+            const otherTeams = entries.filter((entry) => Number(entry.team.id) !== Number(standing.team.id));
+            const cutoffOpponent = [...otherTeams]
+                .filter((entry) => Number.isFinite(entry.losses))
+                .sort((left, right) => left.losses - right.losses || right.wins - left.wins)[5] ?? null;
+            const cutoffLosses = cutoffOpponent?.losses;
+            const challengers = Number.isFinite(cutoffLosses)
+                ? otherTeams
+                    .filter((entry) => entry.losses === cutoffLosses)
+                    .sort((left, right) => right.wins - left.wins)
+                : [];
+            const sixthHighestWins = [...otherTeams]
+                .filter((entry) => Number.isFinite(entry.wins))
+                .sort((left, right) => right.wins - left.wins)[5]?.wins;
+            const maximumWins = Number.isFinite(standing.losses) ? 162 - standing.losses : null;
+            const officiallyEliminated = /e/i.test(standing.clinchIndicator) ||
+                (standing.eliminationNumber === "E" && standing.wildCardEliminationNumber === "E");
+            return {
+                ...standing,
+                displayRank: Number.isFinite(standing.leagueRank) ? standing.leagueRank : index + 1,
+                magicNumber: Number.isFinite(standing.wins) && Number.isFinite(cutoffLosses)
+                    ? Math.max(0, 163 - standing.wins - cutoffLosses)
+                    : null,
+                eliminated: officiallyEliminated || (
+                    Number.isFinite(maximumWins) &&
+                    Number.isFinite(sixthHighestWins) &&
+                    maximumWins < sixthHighestWins
+                ),
+                challengers
+            };
+        });
+    };
+
+    const postseasonMagicCondition = (standing, clinched) => {
+        if (clinched) return "プレイオフ進出決定";
+        if (standing.eliminated) return "今季のプレイオフ進出の可能性なし";
+        if (!Number.isFinite(standing.magicNumber)) return "条件を算出できません";
+        const opponents = standing.challengers
+            .map((challenger) => teamCode(challenger.team))
+            .join("・");
+        const opponentLoss = opponents ? `${opponents}がそろって敗戦` : "圏外対象球団が敗戦";
+        if (standing.magicNumber === 1) {
+            return `次戦勝利 または ${opponentLoss}で進出決定`;
+        }
+        if (standing.magicNumber === 2) {
+            return `次戦勝利＋${opponentLoss}で進出決定`;
+        }
+        return `次戦勝利でM${standing.magicNumber - 1}／さらに${opponentLoss}ならM${standing.magicNumber - 2}`;
+    };
+
+    const postseasonMagicPanel = (standings, leagueCode) => {
+        const panel = el("section", "pregame-postseason-magic-league");
+        panel.append(el("h4", "", `${leagueCode} プレイオフ進出マジック`));
+        const rows = el("div", "pregame-postseason-magic-rows");
+        postseasonMagicLeague(standings, leagueCode).forEach((standing) => {
+            const row = el("div", "pregame-postseason-magic-row");
+            const logo = el("img", "pregame-postseason-logo");
+            logo.src = teamLogoUrl(standing.team);
+            logo.alt = "";
+            logo.loading = "lazy";
+            logo.decoding = "async";
+            logo.addEventListener("error", () => logo.remove(), { once: true });
+            const clinched = !standing.eliminated &&
+                (/[xyzw]/i.test(standing.clinchIndicator) || standing.magicNumber === 0);
+            const condition = postseasonMagicCondition(standing, clinched);
+            row.append(
+                el("span", "pregame-postseason-magic-seed", String(standing.displayRank)),
+                logo,
+                el("strong", "", teamCode(standing.team)),
+                el("span", "pregame-postseason-magic-record", `${standing.wins}-${standing.losses}`),
+                el(
+                    "span",
+                    `pregame-postseason-magic-value${clinched ? " is-clinched" : ""}${standing.eliminated ? " is-eliminated" : ""}`,
+                    standing.eliminated
+                        ? "敗退決定"
+                        : clinched
+                        ? "進出決定"
+                        : Number.isFinite(standing.magicNumber)
+                            ? `M${standing.magicNumber}`
+                            : "–"
+                ),
+                el("span", "pregame-postseason-magic-condition", condition)
+            );
+            if (standing.challengers.length) {
+                row.title = `圏外の対象球団: ${standing.challengers.map((challenger) =>
+                    `${teamCode(challenger.team)} (${challenger.wins}-${challenger.losses})`
+                ).join("、")}`;
+            }
+            rows.append(row);
+        });
+        panel.append(rows);
+        return panel;
+    };
+
     const renderPostseasonPicture = (standings, date) => {
         const snapshotDate = previousDate(date);
         const postseasonSection = section(
@@ -2389,9 +2494,16 @@
             ], "pregame-postseason-stage-wildcard")
         );
         scroll.append(board);
+        const magic = el("div", "pregame-postseason-magic");
+        magic.append(
+            postseasonMagicPanel(standings, "AL"),
+            postseasonMagicPanel(standings, "NL")
+        );
         postseasonSection.append(
             el("p", "pregame-postseason-note", "シーズン終了時の組み合わせではありません。対象日の試合前に確定していた順位から算出しています。"),
-            scroll
+            scroll,
+            magic,
+            el("p", "pregame-postseason-magic-note", "Mは圏外球団の残り試合を基準にした暫定値です。同率時のタイブレーカーは含みません。")
         );
         return postseasonSection;
     };
