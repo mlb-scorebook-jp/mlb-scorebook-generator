@@ -2,6 +2,70 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "How Francona's winning ways trickle down through Reds' system",
+        "summaryJa": "レッズを巡る注目点をMLB公式が分析",
+        "slug": "terry-francona-s-winning-mentality-guides-reds-system",
+        "url": "https://www.mlb.com/news/terry-francona-s-winning-mentality-guides-reds-system",
+        "contentDate": "2026-09-11T13:01:00.136Z",
+        "teamIds": [
+            113
+        ],
+        "playerIds": [],
+        "gamePks": [
+            823736
+        ],
+        "taxonomy": [
+            "apple-news",
+            "minor-league-baseball"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "How Schneemann could add more versatility to defensive toolkit",
+        "summaryJa": "D.シュニーマン（CLE）を巡る注目点をMLB公式が分析",
+        "slug": "daniel-schneemann-taking-workout-reps-at-first-base",
+        "url": "https://www.mlb.com/news/daniel-schneemann-taking-workout-reps-at-first-base",
+        "contentDate": "2026-09-11T12:56:26.255Z",
+        "teamIds": [
+            114
+        ],
+        "playerIds": [
+            682177
+        ],
+        "gamePks": [
+            823659
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Astros-Rays preview: AL MVP hopefuls face off with playoff implications on the line",
+        "summaryJa": "アストロズの最新動向をMLB公式が詳報",
+        "slug": "astros-rays-face-off-with-american-league-postseason-implications-on-the-line",
+        "url": "https://www.mlb.com/news/astros-rays-face-off-with-american-league-postseason-implications-on-the-line",
+        "contentDate": "2026-09-11T12:52:02.633Z",
+        "teamIds": [
+            117,
+            139
+        ],
+        "playerIds": [],
+        "gamePks": [
+            822930
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Padres' 2026 first-rounder flashes dominant stuff in pro debut ... during Single-A playoffs!",
         "summaryJa": "Coleman Borthwick（SD）、メジャー昇格・初出場に関する最新情報",
         "slug": "padres-2026-first-round-pick-coleman-borthwick-debuts-single-a-playoffs",
@@ -464,7 +528,7 @@
         ]
     },
     {
-        "headline": "Brewers prospect Fischer sets 21st-century MiLB HR record with 47th roundtripper",
+        "headline": "Brewers prospect hits the most homers in a season this century",
         "summaryJa": "Andrew Fischer（MIL）、記録達成の最新情報",
         "slug": "brewers-andrew-fischer-sets-minor-league-21st-century-home-run-record",
         "url": "https://www.mlb.com/news/brewers-andrew-fischer-sets-minor-league-21st-century-home-run-record",
@@ -8010,32 +8074,6 @@
         ]
     },
     {
-        "headline": "Cleveland org nets four walk-off wins -- three within minutes of each other -- in one day",
-        "summaryJa": "B.ロキオ（CLE）、サヨナラ勝利の主役に",
-        "slug": "guardians-day-of-walk-offs",
-        "url": "https://www.mlb.com/news/guardians-day-of-walk-offs",
-        "contentDate": "2026-09-05T14:32:03.556Z",
-        "teamIds": [
-            114
-        ],
-        "playerIds": [
-            677587,
-            683953,
-            691405,
-            702278
-        ],
-        "gamePks": [
-            824389
-        ],
-        "taxonomy": [
-            "apple-news",
-            "mlb-top-prospects"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Given what he’s overcome, Khristian Curtis isn’t your average pitching prospect",
         "summaryJa": "パイレーツら注目選手の最新動向",
         "slug": "given-what-he-s-overcome-khristian-curtis-isn-t-your-average-pitching-prospect",
@@ -9070,28 +9108,6 @@
         ]
     },
     {
-        "headline": "Piper's role with Rays? The 'catching closer'",
-        "summaryJa": "K.パイパー（TB）の最新動向をMLB公式が詳報",
-        "slug": "kenny-piper-valued-by-rays-for-strong-defense-as-catcher",
-        "url": "https://www.mlb.com/news/kenny-piper-valued-by-rays-for-strong-defense-as-catcher",
-        "contentDate": "2026-09-04T14:48:07.672Z",
-        "teamIds": [
-            139
-        ],
-        "playerIds": [
-            700652
-        ],
-        "gamePks": [
-            822852
-        ],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Santos' season highlighted by Triple-A promotion after bullpen move",
         "summaryJa": "A.サントスⅡ（HOU）、メジャー昇格・初出場に関する最新情報",
         "slug": "alex-santos-ii-thriving-in-bullpen-role-this-season",
@@ -9495,32 +9511,6 @@
         "taxonomy": [
             "apple-news",
             "mlb-top-prospects"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Stewart earns second NL Rookie of the Month Award this season",
-        "summaryJa": "J.キャグリオーンの最新動向をMLB公式が詳報",
-        "slug": "mlb-monthly-awards-for-august-2026",
-        "url": "https://www.mlb.com/news/mlb-monthly-awards-for-august-2026",
-        "contentDate": "2026-09-03T15:16:34.113Z",
-        "teamIds": [],
-        "playerIds": [
-            695506,
-            691718,
-            702070,
-            666200,
-            671976,
-            701398,
-            623352,
-            656730
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "player-of-the-month"
         ],
         "sourceScopes": [
             "球団公式"
