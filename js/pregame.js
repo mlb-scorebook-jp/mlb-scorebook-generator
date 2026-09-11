@@ -910,6 +910,41 @@
         return code === "SC" && /injured list|activated/i.test(String(transaction?.description ?? ""));
     };
 
+    const officialNewsRosterEvents = (person, date) => {
+        const playerId = Number(person?.id);
+        if (!Number.isFinite(playerId)) return [];
+        return (window.MLB_LATEST_NEWS ?? []).flatMap((article) => {
+            if (!(article?.playerIds ?? []).some((id) => Number(id) === playerId)) {
+                return [];
+            }
+            const eventDate = articleMlbDate(article);
+            if (!eventDate || eventDate > date) return [];
+            const headline = String(article?.headline ?? "");
+            const normalized = headline.toLowerCase();
+            const placedOnIl = /placed .*injured list|lands? on .*injured list|headed to .*injured list|on injured list/.test(normalized);
+            const activatedFromIl = /activated|reinstated|returns? from (?:the )?(?:injured list|il)/.test(normalized);
+            if (!placedOnIl && !activatedFromIl) return [];
+            const articleTeamId = (article?.teamIds ?? [])
+                .map(Number)
+                .find((teamId) => MLB_TEAM_IDS.has(teamId));
+            const position = String(person?.primaryPosition?.abbreviation ?? "").toUpperCase();
+            const explicitDays = headline.match(/(\d+)[ -]day injured list/i)?.[1];
+            const defaultDays = ["P", "TWP"].includes(position) ? "15" : "10";
+            return [{
+                date: eventDate,
+                order: 1.5,
+                teamId: articleTeamId || Number(person?.currentTeam?.id) || null,
+                team: articleTeamId
+                    ? { id: articleTeamId }
+                    : person?.currentTeam ?? null,
+                qualifies: true,
+                rosterStatus: activatedFromIl
+                    ? ""
+                    : `${explicitDays || defaultDays}日間IL`
+            }];
+        });
+    };
+
     const japanesePlayerTeamAtDate = ({
         person,
         date,
@@ -926,6 +961,7 @@
             qualifies: true,
             rosterStatus: ""
         }));
+        events.push(...officialNewsRosterEvents(person, date));
         transactions
             .filter((transaction) => Number(transaction?.person?.id) === Number(person?.id))
             .filter((transaction) => transactionDate(transaction) <= date)
@@ -977,7 +1013,10 @@
                     ? person.currentTeam
                     : { id: activeTeamId },
                 qualifies: true,
-                rosterStatus: ""
+                // Active-roster data confirms the team but can lag immediately
+                // after an IL placement. Only an activation transaction/news
+                // item should clear an already established IL state.
+                rosterStatus: undefined
             });
         }
         events.sort((left, right) =>
@@ -996,7 +1035,8 @@
             teamId: teamId || null,
             team,
             rosterStatus,
-            active: Boolean(teamId) && Number(activeTeamId) === Number(teamId)
+            active: Boolean(teamId) && Number(activeTeamId) === Number(teamId) &&
+                !/(?:^|\s)(?:\d+日間)?IL(?:\s|$)/.test(rosterStatus)
         };
     };
 
