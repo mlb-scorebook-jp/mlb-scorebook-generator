@@ -2,11 +2,94 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Watch top prospect Nimmala play at Double-A for FREE in Sunday matinee",
+        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
+        "slug": "watch-minor-league-baseball-games-for-free-2026",
+        "url": "https://www.mlb.com/news/watch-minor-league-baseball-games-for-free-2026",
+        "contentDate": "2026-09-11T22:00:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "mlb-top-prospects",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Latest Mets injuries & transactions",
+        "summaryJa": "メッツの負傷状況をMLB公式が詳報",
+        "slug": "mets-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/mets-injuries-and-roster-moves",
+        "contentDate": "2026-09-11T21:50:00Z",
+        "teamIds": [
+            121
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Buxton to undergo season-ending hip surgery next week",
+        "summaryJa": "B.バクストン（MIN）の最新動向をMLB公式が詳報",
+        "slug": "byron-buxton-season-ending-hip-surgery",
+        "url": "https://www.mlb.com/news/byron-buxton-season-ending-hip-surgery",
+        "contentDate": "2026-09-11T21:40:58.164Z",
+        "teamIds": [
+            142
+        ],
+        "playerIds": [
+            621439
+        ],
+        "gamePks": [
+            823659
+        ],
+        "taxonomy": [
+            "apple-news",
+            "injury"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Pirates' rookie pitchers falter as margin for error shrinks in NL Wild Card race",
+        "summaryJa": "パイレーツの最新動向をMLB公式が詳報",
+        "slug": "wilber-dotel-khristian-curtis-antwone-kelly-allow-12-runs-to-cubs",
+        "url": "https://www.mlb.com/news/wilber-dotel-khristian-curtis-antwone-kelly-allow-12-runs-to-cubs",
+        "contentDate": "2026-09-11T21:37:36.08Z",
+        "teamIds": [
+            134
+        ],
+        "playerIds": [],
+        "gamePks": [
+            824631
+        ],
+        "taxonomy": [
+            "apple-news",
+            "game-recap-losing",
+            "mlb-top-prospects"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "After 12-year journey, OF Martin called up as Blue Jays designate Sánchez",
         "summaryJa": "Rudy Martin Jr.（TOR）の移籍・契約に関する最新情報",
         "slug": "rudy-martin-jr-blue-jays-callup",
         "url": "https://www.mlb.com/news/rudy-martin-jr-blue-jays-callup",
-        "contentDate": "2026-09-11T19:26:00Z",
+        "contentDate": "2026-09-11T21:31:00Z",
         "teamIds": [
             141
         ],
@@ -24,6 +107,107 @@
         "sourceScopes": [
             "MLB",
             "球団公式"
+        ]
+    },
+    {
+        "headline": "Latest Nationals injuries & transactions",
+        "summaryJa": "ナショナルズの負傷状況をMLB公式が詳報",
+        "slug": "nationals-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/nationals-injuries-and-roster-moves",
+        "contentDate": "2026-09-11T21:30:00Z",
+        "teamIds": [
+            120
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Bregman continues to show he's one of NL's best players with 3-hit game, 25th HR",
+        "summaryJa": "A.ブレグマン（CHC）、記録達成の最新情報",
+        "slug": "alex-bregman-hits-25th-home-run-3-hit-game",
+        "url": "https://www.mlb.com/news/alex-bregman-hits-25th-home-run-3-hit-game",
+        "contentDate": "2026-09-11T21:17:21.59Z",
+        "teamIds": [
+            112
+        ],
+        "playerIds": [
+            608324
+        ],
+        "gamePks": [
+            824631
+        ],
+        "taxonomy": [
+            "apple-news",
+            "pennant-chase",
+            "game-recap"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Latest Padres injuries and transactions",
+        "summaryJa": "パドレスの負傷状況をMLB公式が詳報",
+        "slug": "padres-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/padres-injuries-and-roster-moves",
+        "contentDate": "2026-09-11T21:12:00Z",
+        "teamIds": [
+            135
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Latest Pirates injuries & transactions",
+        "summaryJa": "パイレーツの負傷状況をMLB公式が詳報",
+        "slug": "pirates-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/pirates-injuries-and-roster-moves",
+        "contentDate": "2026-09-11T20:38:00Z",
+        "teamIds": [
+            134
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "MLB to mark 25th anniversary of 9/11 with tributes, service",
+        "summaryJa": "MLBの最新情報、記録達成の最新情報",
+        "slug": "mlb-25th-anniversary-september-11-tributes",
+        "url": "https://www.mlb.com/news/mlb-25th-anniversary-september-11-tributes",
+        "contentDate": "2026-09-11T19:45:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB"
         ]
     },
     {
@@ -231,27 +415,6 @@
             "mlb-top-prospects"
         ],
         "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Latest Pirates injuries & transactions",
-        "summaryJa": "パイレーツの負傷状況をMLB公式が詳報",
-        "slug": "pirates-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/pirates-injuries-and-roster-moves",
-        "contentDate": "2026-09-11T15:51:00Z",
-        "teamIds": [
-            134
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
-        ],
-        "sourceScopes": [
             "球団公式"
         ]
     },
@@ -275,25 +438,6 @@
         "sourceScopes": [
             "MLB",
             "球団公式"
-        ]
-    },
-    {
-        "headline": "Walk-off balks? Dads catching sons' homers? MiLB's wildest plays from the past month",
-        "summaryJa": "MLBの最新情報、サヨナラ勝利の主役に",
-        "slug": "crooked-numbers-august-2026",
-        "url": "https://www.mlb.com/news/crooked-numbers-august-2026",
-        "contentDate": "2026-09-11T15:21:59.214Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "minor-league-baseball",
-            "apple-news",
-            "offbeat",
-            "baseball-traveler"
-        ],
-        "sourceScopes": [
-            "MLB"
         ]
     },
     {
@@ -475,38 +619,6 @@
         ]
     },
     {
-        "headline": "MLB to mark 25th anniversary of 9/11 with tributes, service",
-        "summaryJa": "MLBの最新情報、記録達成の最新情報",
-        "slug": "mlb-25th-anniversary-september-11-tributes",
-        "url": "https://www.mlb.com/news/mlb-25th-anniversary-september-11-tributes",
-        "contentDate": "2026-09-11T14:35:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB"
-        ]
-    },
-    {
-        "headline": "MLB-best Brewers, Wild Card-chasing Padres highlight 'Friday Night Baseball' slate on Apple TV",
-        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
-        "slug": "friday-night-baseball-on-apple-tv-for-2026-mlb-season",
-        "url": "https://www.mlb.com/news/friday-night-baseball-on-apple-tv-for-2026-mlb-season",
-        "contentDate": "2026-09-11T14:32:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB"
-        ]
-    },
-    {
         "headline": "Mayo developing into a key bat in the Orioles' lineup",
         "summaryJa": "C.メイヨ（BAL）の最新動向をMLB公式が詳報",
         "slug": "coby-mayo-growing-key-piece-orioles-offense",
@@ -547,6 +659,7 @@
             "apple-news"
         ],
         "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
@@ -568,6 +681,7 @@
             "pennant-chase"
         ],
         "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
@@ -675,6 +789,7 @@
             "apple-news"
         ],
         "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
@@ -717,23 +832,6 @@
         "taxonomy": [
             "mlb-top-prospects",
             "minor-league-baseball",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Watch top prospect Nimmala play at Double-A for FREE in Sunday matinee",
-        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
-        "slug": "watch-minor-league-baseball-games-for-free-2026",
-        "url": "https://www.mlb.com/news/watch-minor-league-baseball-games-for-free-2026",
-        "contentDate": "2026-09-11T05:28:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "mlb-top-prospects",
             "apple-news"
         ],
         "sourceScopes": [
@@ -869,6 +967,7 @@
             "transactions"
         ],
         "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
@@ -1044,7 +1143,6 @@
             "quality-start"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1431,6 +1529,7 @@
             "apple-news"
         ],
         "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
@@ -1538,7 +1637,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1863,23 +1961,6 @@
         ],
         "sourceScopes": [
             "球団公式"
-        ]
-    },
-    {
-        "headline": "An early look at 11 intriguing offseason trade candidates",
-        "summaryJa": "MLBの最新情報の移籍・契約に関する最新情報",
-        "slug": "mlb-trade-candidates-for-2026-27-offseason",
-        "url": "https://www.mlb.com/news/mlb-trade-candidates-for-2026-27-offseason",
-        "contentDate": "2026-09-10T14:30:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "rumors"
-        ],
-        "sourceScopes": [
-            "MLB"
         ]
     },
     {
@@ -3575,26 +3656,6 @@
         ]
     },
     {
-        "headline": "Latest Padres injuries and transactions",
-        "summaryJa": "パドレスの負傷状況をMLB公式が詳報",
-        "slug": "padres-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/padres-injuries-and-roster-moves",
-        "contentDate": "2026-09-09T18:22:00Z",
-        "teamIds": [
-            135
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Reds bring joy to young fans from children's hospital with reverse card signing",
         "summaryJa": "T.フリードル（CIN）の移籍・契約に関する最新情報",
         "slug": "reds-reverse-card-signing-wtih-cincinnati-children-s-hospital",
@@ -3724,7 +3785,6 @@
             "minor-league-baseball"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -4782,26 +4842,6 @@
         ]
     },
     {
-        "headline": "Latest Nationals injuries & transactions",
-        "summaryJa": "ナショナルズの負傷状況をMLB公式が詳報",
-        "slug": "nationals-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/nationals-injuries-and-roster-moves",
-        "contentDate": "2026-09-09T00:29:00Z",
-        "teamIds": [
-            120
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Perfect game! 32-year-old journeyman throws Minors' first perfecto in 9 years",
         "summaryJa": "T.パノンの最新動向をMLB公式が詳報",
         "slug": "thomas-pannone-throws-perfect-game-in-minor-leagues",
@@ -4855,26 +4895,6 @@
         "contentDate": "2026-09-08T22:45:00Z",
         "teamIds": [
             139
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Latest Mets injuries & transactions",
-        "summaryJa": "メッツの負傷状況をMLB公式が詳報",
-        "slug": "mets-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/mets-injuries-and-roster-moves",
-        "contentDate": "2026-09-08T22:19:00Z",
-        "teamIds": [
-            121
         ],
         "playerIds": [],
         "gamePks": [],
@@ -7872,28 +7892,6 @@
         ]
     },
     {
-        "headline": "Bucs being cognizant of Ashcraft's innings as breakout year winds down",
-        "summaryJa": "B.アッシュクラフト（PIT）の最新動向をMLB公式が詳報",
-        "slug": "braxton-ashcraft-strikes-out-nine-in-loss-to-angels",
-        "url": "https://www.mlb.com/news/braxton-ashcraft-strikes-out-nine-in-loss-to-angels",
-        "contentDate": "2026-09-06T03:44:14.291Z",
-        "teamIds": [
-            134
-        ],
-        "playerIds": [
-            677952
-        ],
-        "gamePks": [
-            823335
-        ],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Machado clubs 25th HR, but Padres leapfrogged in WC race following loss to Yankees",
         "summaryJa": "M.マチャード（SD）、記録達成の最新情報",
         "slug": "manny-machado-hits-25th-home-run-in-padres-loss-to-yankees",
@@ -9764,26 +9762,6 @@
         ],
         "gamePks": [
             823983
-        ],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Twins admire effort, but know time for moral victories is running low",
-        "summaryJa": "ツインズの最新動向をMLB公式が詳報",
-        "slug": "twins-12-inning-loss-to-tigers",
-        "url": "https://www.mlb.com/news/twins-12-inning-loss-to-tigers",
-        "contentDate": "2026-09-03T05:54:17.204Z",
-        "teamIds": [
-            142
-        ],
-        "playerIds": [],
-        "gamePks": [
-            823660
         ],
         "taxonomy": [
             "apple-news"
