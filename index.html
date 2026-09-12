@@ -123,19 +123,6 @@
                 </div>
             </details>
 
-            <section class="evidence-mode-control" id="evidence-mode-control">
-                <button type="button" id="evidence-mode-toggle">資料作成モード</button>
-                <div class="evidence-mode-panel" id="evidence-mode-panel" hidden>
-                    <div class="evidence-mode-title">資料作成モード ON</div>
-                    <div class="evidence-mode-count" id="evidence-mode-count">選択：0打席</div>
-                    <div class="evidence-mode-progress" id="evidence-mode-progress" hidden aria-live="polite"></div>
-                    <button type="button" id="evidence-create-pdf" disabled>エビデンスPDFを作成</button>
-                    <button type="button" id="evidence-clear" disabled>選択をすべて解除</button>
-                    <button type="button" id="evidence-mode-exit">終了</button>
-                    <div class="evidence-mode-result" id="evidence-mode-result" hidden aria-live="polite"></div>
-                </div>
-            </section>
-
             <button id="save-btn">保存</button>
 
             <div class="status-message" id="status-message">
@@ -6076,11 +6063,6 @@
                         inningOccurrence,
                         order,
                         batterId,
-                        pitcherId: Number(play?.matchup?.pitcher?.id) || null,
-                        halfInning: String(play?.about?.halfInning ?? "").toLowerCase(),
-                        eventIndex: Number.isInteger(Number(play?.playEvents?.at(-1)?.index))
-                            ? Number(play.playEvents.at(-1).index)
-                            : Math.max(-1, (play?.playEvents?.length ?? 0) - 1),
                         templateId: display.templateId,
                         notation: display.notation,
                         category: display.category,
@@ -6742,20 +6724,6 @@
                     const card = renderPlateAppearance(record);
                     record.renderedCard = card;
                     resultBox.append(card);
-                    if (Number.isInteger(record.atBatIndex)) {
-                        cell.classList.add("evidence-selectable-atbat");
-                        cell.dataset.gamePk = String(state.gamePk ?? "");
-                        cell.dataset.atBatIndex = String(record.atBatIndex);
-                        cell.dataset.playId = String(record.playId ?? "");
-                        cell.dataset.halfInning = String(record.halfInning ?? "");
-                        cell.dataset.batterId = String(record.batterId ?? "");
-                        cell.dataset.pitcherId = String(record.pitcherId ?? "");
-                        cell.dataset.eventIndex = String(record.eventIndex ?? "");
-                        cell.dataset.batterName = getPersonName(
-                            state.gameData?.gameData?.players?.[`ID${record.batterId}`] ??
-                            { id: record.batterId }
-                        );
-                    }
                     separateHomeRunFromPitchTotal(cell, card);
                 });
                 populateMultiOutConnections(records);
@@ -10568,6 +10536,5 @@
             }
         })();
     </script>
-    <script src="js/evidence-mode.js?v=20260912-phase1-1"></script>
 </body>
 </html>

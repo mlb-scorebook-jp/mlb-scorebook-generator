@@ -1,5 +1,2 @@
 data/records/.build-*-progress.json
 data/records/trials/.build-*-progress.json
-node_modules/
-tmp/evidence/
-output/pdf/*.pdf
