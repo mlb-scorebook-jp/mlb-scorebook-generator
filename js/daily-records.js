@@ -2,7 +2,7 @@
 
 (() => {
     const API_ROOT = "https://statsapi.mlb.com/api";
-    const CACHE_PREFIX = "mlb-daily-records-phase1-v22:";
+    const CACHE_PREFIX = "mlb-daily-records-phase1-v23:";
     const MAX_CONCURRENT_GAMES = 3;
     const RECORD_THRESHOLDS = Object.freeze({
         inningHits: 2,
@@ -141,6 +141,10 @@
         MLB_ALL_TIME_STRIKEOUT_RANK: [
             "MLB歴代奪三振", "MLB最多奪三振", "歴代奪三振", "通算奪三振順位",
             "all-time strikeouts", "career strikeout rank"
+        ],
+        NOTABLE_VENUE_RETURN: [
+            "注目球場への再登板", "球場での前回登板", "思い出の球場",
+            "return to notable venue", "previous appearance at venue"
         ]
     });
     const HIT_EVENTS = new Set(["single", "double", "triple", "home_run"]);
@@ -181,6 +185,7 @@
     const dom = {};
     const careerHistoryRequests = new Map();
     const crossDatePlayByPlayRequests = new Map();
+    const notableVenueHistoryRequests = new Map();
     let allTimeStrikeoutLeadersRequest = null;
 
     const number = (value) => Number.isFinite(Number(value)) ? Number(value) : 0;
@@ -676,6 +681,197 @@
             articleUrls: [],
             feedUpdatedAt: ""
         };
+    };
+
+    const POSTSEASON_GAME_LABELS = Object.freeze({
+        W: "ワールドシリーズ",
+        L: "リーグ優勝決定シリーズ",
+        D: "地区シリーズ",
+        F: "ワイルドカードシリーズ",
+        P: "ポストシーズン"
+    });
+
+    const fetchPitcherAppearanceHistory = async (player, currentDate, signal) => {
+        const playerId = number(player?.id);
+        if (!playerId || !/^\d{4}-\d{2}-\d{2}$/.test(currentDate)) return [];
+        const currentSeason = number(currentDate.slice(0, 4));
+        const debutSeason = number(text(player?.mlbDebutDate).slice(0, 4));
+        const firstSeason = debutSeason > 0
+            ? debutSeason
+            : Math.max(1990, currentSeason - 25);
+        const cacheKey = `${playerId}:${firstSeason}:${currentDate}`;
+        if (notableVenueHistoryRequests.has(cacheKey)) {
+            return notableVenueHistoryRequests.get(cacheKey);
+        }
+        const params = new URLSearchParams({
+            stats: "gameLog",
+            group: "pitching",
+            startDate: `${firstSeason}-01-01`,
+            endDate: currentDate,
+            gameType: "R,P"
+        });
+        const request = fetchJson(
+            `${API_ROOT}/v1/people/${playerId}/stats?${params}`,
+            signal
+        ).then(({ data }) => (data?.stats ?? [])
+            .flatMap((entry) => entry?.splits ?? [])
+            .filter((split) => number(split?.game?.gamePk) &&
+                number(split?.stat?.gamesStarted) > 0)
+        ).catch((error) => {
+            notableVenueHistoryRequests.delete(cacheKey);
+            if (error?.name === "AbortError") throw error;
+            return [];
+        });
+        notableVenueHistoryRequests.set(cacheKey, request);
+        return request;
+    };
+
+    const fetchGamesWithVenues = async (gamePks, signal) => {
+        const chunks = [];
+        const ids = unique(gamePks.map(number).filter(Boolean));
+        for (let index = 0; index < ids.length; index += 75) {
+            chunks.push(ids.slice(index, index + 75));
+        }
+        const payloads = await Promise.all(chunks.map(async (chunk) => {
+            const params = new URLSearchParams({
+                sportId: "1",
+                gamePks: chunk.join(","),
+                hydrate: "team,venue"
+            });
+            const { data } = await fetchJson(`${API_ROOT}/v1/schedule?${params}`, signal);
+            return (data?.dates ?? []).flatMap((entry) => entry?.games ?? []);
+        }));
+        return payloads.flat();
+    };
+
+    const describeNotablePriorStart = async (
+        priorSplit,
+        priorGame,
+        playerId,
+        signal
+    ) => {
+        const year = number(text(priorGame?.officialDate || priorSplit?.date).slice(0, 4));
+        const gameType = text(priorGame?.gameType).toUpperCase();
+        const postseasonLabel = POSTSEASON_GAME_LABELS[gameType] ?? "";
+        const stat = priorSplit?.stat ?? {};
+        const hitsAllowed = number(stat?.hits);
+        const strikeouts = number(stat?.strikeOuts);
+        const completeGames = number(stat?.completeGames);
+        const runs = number(stat?.runs);
+        let noHitterLabel = "";
+
+        if (hitsAllowed === 0) {
+            const { data: priorBoxscore } = await fetchJson(
+                `${API_ROOT}/v1/game/${number(priorGame?.gamePk)}/boxscore`,
+                signal
+            ).catch(() => ({ data: null }));
+            const pitcherSide = ["away", "home"].find((side) =>
+                Boolean(priorBoxscore?.teams?.[side]?.players?.[`ID${playerId}`])
+            );
+            if (pitcherSide) {
+                const opponent = priorBoxscore?.teams?.[oppositeSide(pitcherSide)] ?? {};
+                const opponentHits = Number(opponent?.teamStats?.batting?.hits);
+                if (opponentHits === 0) {
+                    const pitcherCount = priorBoxscore?.teams?.[pitcherSide]?.pitchers?.length ?? 0;
+                    noHitterLabel = pitcherCount > 1
+                        ? "継投ノーヒッターを記録した時"
+                        : "ノーヒッターを記録した時";
+                }
+            }
+        }
+
+        if (noHitterLabel) {
+            return `${year}年${postseasonLabel ? `${postseasonLabel}で` : ""}${noHitterLabel}`;
+        }
+        if (postseasonLabel) return `${year}年${postseasonLabel}`;
+        if (strikeouts >= 15) return `${year}年に${strikeouts}奪三振を記録した時`;
+        if (completeGames > 0 && runs === 0) return `${year}年に完封した時`;
+        return "";
+    };
+
+    const buildNotableVenueReturnRecords = async (game, boxscore, signal) => {
+        const venueId = number(game?.venue?.id);
+        const currentDate = text(game?.officialDate || state.date);
+        if (!venueId || !currentDate) return [];
+
+        const candidates = ["away", "home"].flatMap((side) => {
+            const team = boxTeamForSide(boxscore, side);
+            const starterId = number(team?.pitchers?.[0]);
+            const starter = team?.players?.[`ID${starterId}`];
+            return starterId && number(starter?.stats?.pitching?.gamesStarted) > 0
+                ? [{ side, player: starter?.person, playerId: starterId }]
+                : [];
+        });
+
+        return (await Promise.all(candidates.map(async (candidate) => {
+            const appearances = await fetchPitcherAppearanceHistory(
+                candidate.player,
+                currentDate,
+                signal
+            );
+            const currentGamePk = number(game?.gamePk);
+            const priorAppearances = appearances.filter((split) =>
+                number(split?.game?.gamePk) !== currentGamePk &&
+                text(split?.date) <= currentDate
+            );
+            if (!priorAppearances.length) return null;
+
+            const games = await fetchGamesWithVenues(
+                priorAppearances.map((split) => split?.game?.gamePk),
+                signal
+            ).catch((error) => {
+                if (error?.name === "AbortError") throw error;
+                return [];
+            });
+            const gamesByPk = new Map(games.map((entry) => [number(entry?.gamePk), entry]));
+            const previous = priorAppearances
+                .map((split) => ({
+                    split,
+                    game: gamesByPk.get(number(split?.game?.gamePk))
+                }))
+                .filter((entry) => number(entry?.game?.venue?.id) === venueId)
+                .sort((left, right) =>
+                    text(right?.split?.date).localeCompare(text(left?.split?.date)) ||
+                    number(right?.game?.gamePk) - number(left?.game?.gamePk)
+                )[0];
+            if (!previous) return null;
+
+            const notable = await describeNotablePriorStart(
+                previous.split,
+                previous.game,
+                candidate.playerId,
+                signal
+            );
+            if (!notable) return null;
+
+            const opponent = sideTeam(game, boxscore, oppositeSide(candidate.side));
+            const currentVenueIsOpponentHome = candidate.side === "away" &&
+                number(game?.teams?.home?.team?.id) === number(opponent?.id);
+            const venueLabel = currentVenueIsOpponentHome
+                ? `${teamCode(opponent)}本拠地`
+                : text(game?.venue?.name) || "同球場";
+            const record = makeRecord({
+                game,
+                boxscore,
+                recordType: "NOTABLE_VENUE_RETURN",
+                category: "special",
+                player: candidate.player,
+                side: candidate.side,
+                fact: `${venueLabel}での登板は${notable}以来`,
+                details: {
+                    venueId,
+                    venueName: text(game?.venue?.name),
+                    previousGamePk: number(previous.game?.gamePk),
+                    previousDate: text(previous.game?.officialDate || previous.split?.date),
+                    previousGameType: text(previous.game?.gameType).toUpperCase(),
+                    previousGamedayUrl: gamedayUrl(previous.game)
+                },
+                evidence: "MLB公式投手Game Log＋Schedule＋過去試合Boxscore"
+            });
+            record.battingSide = null;
+            record.pitchingSide = candidate.side;
+            return record;
+        }))).filter(Boolean);
     };
 
     const dedupeRecords = (records) => {
@@ -2059,6 +2255,9 @@
         records.push(...await analyzeRareContext(
             game, playResult.data, boxResult.data, signal
         ));
+        records.push(...await buildNotableVenueReturnRecords(
+            game, boxResult.data, signal
+        ));
         records.push(...await buildCrossDateAtBatRecords(
             game,
             playResult.data,
@@ -2538,6 +2737,7 @@
             analyzeGame,
             analyzeOneGame,
             analyzeRareContext,
+            buildNotableVenueReturnRecords,
             fetchJapanesePlayers,
             japaneseCareerRecords
         })
