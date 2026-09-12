@@ -1147,6 +1147,57 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
     text-underline-offset: 2px;
 }
 
+.pregame-pitcher-venue-history {
+    display: grid;
+    grid-column: 1 / -1;
+    gap: 4px;
+    margin-top: 7px;
+    padding: 7px 9px;
+    border: 1px solid #46535c;
+    background: #20292f;
+    font-size: 10px;
+    line-height: 1.45;
+}
+
+.pregame-pitcher-venue-heading {
+    color: #dce5e9;
+}
+
+.pregame-pitcher-venue-note {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3px 9px;
+    align-items: baseline;
+}
+
+.pregame-pitcher-venue-positive .pregame-pitcher-venue-note-text {
+    color: #b9dfc0;
+}
+
+.pregame-pitcher-venue-negative .pregame-pitcher-venue-note-text {
+    color: #f0b8b8;
+}
+
+.pregame-pitcher-venue-sources {
+    color: #92a3ac;
+    font-size: 9px;
+}
+
+.pregame-pitcher-venue-sources::before {
+    content: "根拠：";
+}
+
+.pregame-pitcher-venue-sources a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.pregame-pitcher-venue-sources a:hover,
+.pregame-pitcher-venue-sources a:focus-visible {
+    color: #fff;
+}
+
 @media (max-width: 760px) {
     .pregame-starting-grid {
         grid-template-columns: 1fr;
@@ -3154,6 +3205,16 @@ a.pregame-metric-value:focus-visible {
     .pregame-pitcher-matchup {
         font-size: 16px;
         line-height: 1.55;
+    }
+
+    .pregame-pitcher-venue-history {
+        margin-top: 10px;
+        padding: 10px 12px;
+        font-size: 15px;
+    }
+
+    .pregame-pitcher-venue-sources {
+        font-size: 13px;
     }
 
     .pregame-pitcher-matchup {
