@@ -2,6 +2,49 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Hill's calm demeanor has roots in pee-wee football",
+        "summaryJa": "J.ヒル（COL）の最新動向をMLB公式が詳報",
+        "slug": "jaden-hill-staying-even-keeled-amid-bumpy-season-for-rockies",
+        "url": "https://www.mlb.com/news/jaden-hill-staying-even-keeled-amid-bumpy-season-for-rockies",
+        "contentDate": "2026-09-12T13:51:42.29Z",
+        "teamIds": [
+            115
+        ],
+        "playerIds": [
+            677955
+        ],
+        "gamePks": [
+            824224
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Yanks prospect Cunningham closes his year at Double-A with season-best start",
+        "summaryJa": "Bryce Cunningham（NYY）、マウンドで好投",
+        "slug": "yankees-prospect-bryce-cunningham-pitches-7-shutout-innings-at-double-a",
+        "url": "https://www.mlb.com/news/yankees-prospect-bryce-cunningham-pitches-7-shutout-innings-at-double-a",
+        "contentDate": "2026-09-12T13:37:30.174Z",
+        "teamIds": [
+            147
+        ],
+        "playerIds": [
+            701480
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "mlb-top-prospects"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Devers lives up to 'Swing of the Day' with grand slam",
         "summaryJa": "R.デバース（SF）、記録達成の最新情報",
         "slug": "rafael-devers-hits-9th-career-grand-slam-in-giants-loss-to-padres",
@@ -6090,27 +6133,6 @@
         ]
     },
     {
-        "headline": "Is Judge the greatest hitter ever? This former MVP says yes",
-        "summaryJa": "A.ジャッジ（NYY）の最新動向をMLB公式が詳報",
-        "slug": "joey-votto-calls-aaron-judge-the-greatest-hitter-ever",
-        "url": "https://www.mlb.com/news/joey-votto-calls-aaron-judge-the-greatest-hitter-ever",
-        "contentDate": "2026-09-08T19:19:00Z",
-        "teamIds": [
-            147
-        ],
-        "playerIds": [
-            592450,
-            458015
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Baseball Fantasy Camp for Kids Brings Joy to Young Athletes at Easterseals Miracle League Field",
         "summaryJa": "タイガースの最新動向をMLB公式が詳報",
         "slug": "detroit-tigers-partner-to-host-baseball-fantasy-camp-for-kids",
@@ -10111,26 +10133,6 @@
             142
         ],
         "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Goodman already has history under his belt, but more is in reach",
-        "summaryJa": "H.グッドマン（COL）の最新動向をMLB公式が詳報",
-        "slug": "hunter-goodman-going-for-home-run-history",
-        "url": "https://www.mlb.com/news/hunter-goodman-going-for-home-run-history",
-        "contentDate": "2026-09-03T13:51:13.274Z",
-        "teamIds": [
-            115
-        ],
-        "playerIds": [
-            696100
-        ],
         "gamePks": [],
         "taxonomy": [
             "apple-news"
