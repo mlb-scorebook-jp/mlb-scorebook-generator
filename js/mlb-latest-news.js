@@ -2,6 +2,71 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "You've never seen a hit-by-pitch like this before",
+        "summaryJa": "J.キャンティロ（CLE）の最新動向をMLB公式が詳報",
+        "slug": "joey-cantillo-unusual-hit-by-pitch-to-brooks-lee",
+        "url": "https://www.mlb.com/news/joey-cantillo-unusual-hit-by-pitch-to-brooks-lee",
+        "contentDate": "2026-09-13T14:35:06.75Z",
+        "teamIds": [
+            114,
+            142
+        ],
+        "playerIds": [
+            676282,
+            686797
+        ],
+        "gamePks": [
+            823658
+        ],
+        "taxonomy": [],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "Yanks Mag: Present Perfect",
+        "summaryJa": "C.シュリットラー（NYY）の最新動向をMLB公式が詳報",
+        "slug": "yankees-magazine-cam-schlittler-mindset",
+        "url": "https://www.mlb.com/news/yankees-magazine-cam-schlittler-mindset",
+        "contentDate": "2026-09-13T13:56:04.096Z",
+        "teamIds": [
+            147
+        ],
+        "playerIds": [
+            693645
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "nyy-yankees-magazine",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "McKinstry's arm a useful asset in right field -- and on the mound",
+        "summaryJa": "Z.マキンストリー（DET）の最新動向をMLB公式が詳報",
+        "slug": "strong-arm-makes-zach-mckinstry-tigers-starting-right-fielder",
+        "url": "https://www.mlb.com/news/strong-arm-makes-zach-mckinstry-tigers-starting-right-fielder",
+        "contentDate": "2026-09-13T13:35:57.755Z",
+        "teamIds": [
+            116
+        ],
+        "playerIds": [
+            656716
+        ],
+        "gamePks": [
+            824225
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Watch top prospect Nimmala play at Double-A for FREE in today's matinee",
         "summaryJa": "MLBの最新情報ら注目選手の最新動向",
         "slug": "watch-minor-league-baseball-games-for-free-2026",
@@ -397,6 +462,7 @@
             "game-recap-losing"
         ],
         "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
@@ -444,7 +510,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -512,7 +577,6 @@
             "mlb-top-prospects"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -9457,26 +9521,6 @@
         "taxonomy": [
             "apple-news",
             "game-recap"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "What's next for Tigers? Young core, payroll flexibility offer options",
-        "summaryJa": "タイガースの最新動向をMLB公式が詳報",
-        "slug": "tigers-offseason-needs-free-agent-targets-2026-27",
-        "url": "https://www.mlb.com/news/tigers-offseason-needs-free-agent-targets-2026-27",
-        "contentDate": "2026-09-06T02:59:24.002Z",
-        "teamIds": [
-            116
-        ],
-        "playerIds": [],
-        "gamePks": [
-            824385
-        ],
-        "taxonomy": [
-            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
