@@ -2401,6 +2401,21 @@
         return standings;
     };
 
+    const divisionMagicByTeam = (standings) => {
+        const magic = new Map();
+        standings.forEach((standing, teamId) => {
+            if (!standing?.divisionLeader || !Number.isFinite(standing.wins)) return;
+            const secondPlaceLosses = [...standings.values()]
+                .find((candidate) =>
+                    candidate?.division === standing.division && candidate?.rank === 2
+                )?.losses;
+            if (!Number.isFinite(secondPlaceLosses)) return;
+            const number = Math.max(0, 163 - standing.wins - secondPlaceLosses);
+            if (number > 0) magic.set(Number(teamId), number);
+        });
+        return magic;
+    };
+
     const postseasonSeeds = (standings, leagueCode) => {
         const entries = [...standings.values()]
             .filter((standing) => standing?.leagueCode === leagueCode && standing?.team?.id);
@@ -2945,6 +2960,7 @@
                 getSeasonJapanesePlayers(season),
                 getStandingsSnapshot(date)
             ]);
+            const divisionMagic = divisionMagicByTeam(standings);
             const teamGame = new Map();
             const teamGames = new Map();
             games.forEach((game) => {
@@ -3082,9 +3098,19 @@
                                 : "未定"
                         )
                     );
+                    const magicLine = el("span", "pregame-division-magic-line");
+                    [away, null, home].forEach((team) => {
+                        const number = team?.id ? divisionMagic.get(Number(team.id)) : null;
+                        magicLine.append(el(
+                            "span",
+                            team ? "pregame-division-magic" : "pregame-division-magic-spacer",
+                            Number.isFinite(number) ? `地区優勝マジック${number}` : ""
+                        ));
+                    });
                     matchupMeta.append(
                         el("span", "pregame-venue-line", venueLabel(game?.venue) || "球場未定"),
-                        pitcherLine
+                        pitcherLine,
+                        magicLine
                     );
                     const stateLine = el("span", "pregame-game-state-line");
                     stateLine.append(el(

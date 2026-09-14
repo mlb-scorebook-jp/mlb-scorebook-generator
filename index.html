@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MLB Scorebook Generator</title>
     <!-- Score notation update: stacked batted-ball symbol, red hits, blue strikeouts, black other results. -->
-    <link rel="stylesheet" href="css/style.css?v=20260908-duration-ranking-dialog-1">
-    <link rel="stylesheet" href="css/pregame.css?v=20260912-venue-history-1">
+    <link rel="stylesheet" href="css/style.css?v=20260914-division-magic-1">
+    <link rel="stylesheet" href="css/pregame.css?v=20260914-division-magic-1">
     <link rel="stylesheet" href="css/daily-records.css?v=20260907-story-candidates-2">
 </head>
 
@@ -356,7 +356,7 @@
     <script src="js/records-archive.js?v=20260907-remove-legacy-multi-out-1"></script>
     <script src="js/daily-calendar-features.js?v=20260901-modern-stats-1"></script>
     <script src="js/daily-records.js?v=20260914-official-record-detail-1"></script>
-    <script src="js/pregame.js?v=20260912-venue-history-1"></script>
+    <script src="js/pregame.js?v=20260914-division-magic-1"></script>
 
     <script>
         (() => {
@@ -584,6 +584,7 @@
                 headToHead: null,
                 attendanceNote: "",
                 streakNotes: { away: [], home: [] },
+                divisionMagic: new Map(),
                 defensivePositionHistory: { away: {}, home: {} },
                 activeRosterPeople: { away: [], home: [] },
                 away: {
@@ -4217,6 +4218,37 @@
                 };
             };
 
+            const fetchDivisionMagic = async (data) => {
+                const date = String(data?.gameData?.datetime?.officialDate ?? "");
+                const season = Number(data?.gameData?.game?.season) || Number(date.slice(0, 4));
+                if (!/^\d{4}-\d{2}-\d{2}$/.test(date) || !Number.isInteger(season)) return new Map();
+                const params = new URLSearchParams({
+                    leagueId: "103,104",
+                    season: String(season),
+                    standingsTypes: "regularSeason",
+                    date,
+                    hydrate: "division,team,league"
+                });
+                const response = await fetch(`https://statsapi.mlb.com/api/v1/standings?${params}`);
+                if (!response.ok) throw new Error(`地区順位を取得できませんでした（${response.status}）`);
+                const payload = await response.json();
+                const magic = new Map();
+                (payload?.records ?? []).forEach((record) => {
+                    const teams = record?.teamRecords ?? [];
+                    const leader = teams.find((team) =>
+                        team?.divisionLeader === true || Number.parseInt(team?.divisionRank, 10) === 1
+                    );
+                    const second = teams.find((team) => Number.parseInt(team?.divisionRank, 10) === 2);
+                    const wins = Number.parseInt(leader?.wins, 10);
+                    const losses = Number.parseInt(second?.losses, 10);
+                    const teamId = Number(leader?.team?.id);
+                    if (!teamId || !Number.isFinite(wins) || !Number.isFinite(losses)) return;
+                    const number = Math.max(0, 163 - wins - losses);
+                    if (number > 0) magic.set(teamId, number);
+                });
+                return magic;
+            };
+
             const getGameDateText = (data) => {
                 const dateText = data?.gameData?.datetime?.officialDate;
 
@@ -7362,6 +7394,15 @@
                     );
                 }
 
+                const divisionMagic = state.divisionMagic.get(Number(team.id));
+                if (Number.isFinite(divisionMagic)) {
+                    title.append(createElement(
+                        "span",
+                        "team-panel-title-magic",
+                        `地区優勝マジック${divisionMagic}`
+                    ));
+                }
+
                 if (postseasonLabel) {
                     title.classList.add("has-postseason-label");
                     title.append(createElement("div", "team-panel-title-postseason", postseasonLabel));
@@ -9959,7 +10000,8 @@
                         fetchSeasonAttendanceNote(data, gamePk),
                         fetchGameScheduleMetadata(gamePk),
                         fetchScorebookActiveRosterPeople(data),
-                        fetchSeasonGameDurationRank(data)
+                        fetchSeasonGameDurationRank(data),
+                        fetchDivisionMagic(data)
                     ]);
                     supplementalResults.forEach((result) => {
                         if (result.status === "rejected") console.error(result.reason);
@@ -9996,6 +10038,9 @@
                         durationRank?.sourceUrl ?? "";
                     data.gameData.gameInfo.seasonDurationRankingDetails =
                         durationRank?.rankingDetails ?? null;
+                    state.divisionMagic = supplementalResults[6].status === "fulfilled"
+                        ? supplementalResults[6].value
+                        : new Map();
 
                     updateSidebar();
                     render();

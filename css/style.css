@@ -1612,6 +1612,7 @@ body.app-mode-pregame .score-loading-overlay {
 }
 
 .team-panel-title {
+    position: relative;
     min-height: 44px;
     display: flex;
     flex-direction: column;
@@ -1624,6 +1625,18 @@ body.app-mode-pregame .score-loading-overlay {
     background: rgba(47, 107, 61, 0.05);
     font-size: 15px;
     font-weight: 700;
+}
+
+.team-panel-title-magic {
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    color: #8a6500;
+    font-size: 9px;
+    font-weight: 700;
+    line-height: 1;
+    transform: translateY(-50%);
+    white-space: nowrap;
 }
 
 .team-panel-title.has-postseason-label {

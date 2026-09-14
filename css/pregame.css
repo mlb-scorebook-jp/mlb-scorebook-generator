@@ -1309,6 +1309,21 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
     text-align: center;
 }
 
+.pregame-games-section .pregame-division-magic-line {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 28px minmax(0, 1fr);
+    gap: 5px;
+    min-height: 12px;
+    text-align: center;
+}
+
+.pregame-games-section .pregame-division-magic {
+    color: #e7c96c;
+    font-size: 8px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
 .pregame-games-section .pregame-pitcher-name {
     min-width: 0;
     overflow: hidden;
