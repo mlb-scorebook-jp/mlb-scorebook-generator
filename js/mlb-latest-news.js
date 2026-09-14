@@ -2,6 +2,162 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Breaking down the remaining playoff races",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "breaking-down-mlb-playoff-races-september-2026",
+        "url": "https://www.mlb.com/news/breaking-down-mlb-playoff-races-september-2026",
+        "contentDate": "2026-09-14T19:30:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "Kim Ng reflects on groundbreaking MLB career, AUSL's growth",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "kim-ng-talks-ausl-future-mlb-career-on-podcast",
+        "url": "https://www.mlb.com/news/kim-ng-talks-ausl-future-mlb-career-on-podcast",
+        "contentDate": "2026-09-14T19:02:15.693Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "leagueid-6044",
+            "athletes-unlimited-softball-league",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "Woo welcomes young fan to Mariners' bullpen for wholesome game of catch",
+        "summaryJa": "B.ウー（SEA）の最新動向をMLB公式が詳報",
+        "slug": "bryan-woo-plays-catch-with-young-mariners-fan",
+        "url": "https://www.mlb.com/news/bryan-woo-plays-catch-with-young-mariners-fan",
+        "contentDate": "2026-09-14T18:54:06.124Z",
+        "teamIds": [
+            136
+        ],
+        "playerIds": [
+            693433
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "offbeat"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Padres' surge fueled by more than just stars",
+        "summaryJa": "パドレスの最新動向をMLB公式が詳報",
+        "slug": "padres-getting-production-throughout-lineup-amid-playoff-push",
+        "url": "https://www.mlb.com/news/padres-getting-production-throughout-lineup-amid-playoff-push",
+        "contentDate": "2026-09-14T18:13:41.091Z",
+        "teamIds": [
+            135
+        ],
+        "playerIds": [],
+        "gamePks": [
+            824308
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Bracket, tiebreakers and more: Here is the current playoff picture",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "mlb-playoff-picture-and-bracket-2026",
+        "url": "https://www.mlb.com/news/mlb-playoff-picture-and-bracket-2026",
+        "contentDate": "2026-09-14T17:55:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "pennant-chase",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "Tracking the 2026 postseason field",
+        "summaryJa": "ブルワーズの最新動向をMLB公式が詳報",
+        "slug": "2026-postseason-teams",
+        "url": "https://www.mlb.com/news/2026-postseason-teams",
+        "contentDate": "2026-09-14T17:38:42.72Z",
+        "teamIds": [
+            158,
+            139
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "postseason"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "A pillar of community, Hader nominated for Clemente Award again",
+        "summaryJa": "J.ヘイダー（HOU）の最新動向をMLB公式が詳報",
+        "slug": "josh-hader-nominated-for-roberto-clemente-award-2026",
+        "url": "https://www.mlb.com/news/josh-hader-nominated-for-roberto-clemente-award-2026",
+        "contentDate": "2026-09-14T16:42:50.34Z",
+        "teamIds": [
+            117
+        ],
+        "playerIds": [
+            623352
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "roberto-clemente-award"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Schwarber named Phillies nominee for Roberto Clemente Award",
+        "summaryJa": "K.シュワーバー（PHI）の最新動向をMLB公式が詳報",
+        "slug": "kyle-schwarber-named-phillies-nominee-for-2026-roberto-clemente-award",
+        "url": "https://www.mlb.com/news/kyle-schwarber-named-phillies-nominee-for-2026-roberto-clemente-award",
+        "contentDate": "2026-09-14T16:40:00.566Z",
+        "teamIds": [
+            143
+        ],
+        "playerIds": [
+            656941
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "roberto-clemente-award"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Báez ties for most Cardinals Minor League HR since 1949 with blast in regular-season finale",
         "summaryJa": "Jesús  Báez（STL）、記録達成の最新情報",
         "slug": "jesus-baez-hits-39th-home-run-of-season",
@@ -20,23 +176,6 @@
         ],
         "sourceScopes": [
             "球団公式"
-        ]
-    },
-    {
-        "headline": "Bracket, tiebreakers and more: Here is the current playoff picture",
-        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
-        "slug": "mlb-playoff-picture-and-bracket-2026",
-        "url": "https://www.mlb.com/news/mlb-playoff-picture-and-bracket-2026",
-        "contentDate": "2026-09-14T16:03:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "pennant-chase",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB"
         ]
     },
     {
@@ -595,7 +734,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -704,7 +842,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -873,22 +1010,6 @@
         ]
     },
     {
-        "headline": "Breaking down the remaining playoff races",
-        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
-        "slug": "breaking-down-mlb-playoff-races-september-2026",
-        "url": "https://www.mlb.com/news/breaking-down-mlb-playoff-races-september-2026",
-        "contentDate": "2026-09-14T02:26:32.156Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB"
-        ]
-    },
-    {
         "headline": "AL Central, Wild Cards in both leagues on the line in top series this week",
         "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
         "slug": "series-to-watch-week-of-september-14-2026",
@@ -1013,34 +1134,6 @@
         ],
         "sourceScopes": [
             "球団公式"
-        ]
-    },
-    {
-        "headline": "Injuries: Luzardo, Devers, Correa, Yankees, Cubs, Dodgers",
-        "summaryJa": "大谷翔平（LAD）らMLB各球団の最新負傷情報",
-        "slug": "baseball-injury-updates",
-        "url": "https://www.mlb.com/news/baseball-injury-updates",
-        "contentDate": "2026-09-14T01:51:00Z",
-        "teamIds": [],
-        "playerIds": [
-            660271,
-            666200,
-            621043,
-            657376,
-            663757,
-            519317,
-            657006,
-            808963,
-            646240,
-            518692
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "headline-breakout"
-        ],
-        "sourceScopes": [
-            "MLB"
         ]
     },
     {
@@ -1665,7 +1758,7 @@
         ]
     },
     {
-        "headline": "Offense, Bibee build momentum for Guardians' crucial homestand",
+        "headline": "Offense, Bibee build momentum for crucial homestand",
         "summaryJa": "T.バイビー（CLE）の最新動向をMLB公式が詳報",
         "slug": "tanner-bibee-strikes-out-7-in-bounce-back-start-against-twins",
         "url": "https://www.mlb.com/news/tanner-bibee-strikes-out-7-in-bounce-back-start-against-twins",
@@ -1685,7 +1778,6 @@
             "payoff-pitch"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -8977,30 +9069,6 @@
         ]
     },
     {
-        "headline": "Sick 1st-inning catch at wall just the start of 'great Jackson Merrill game'",
-        "summaryJa": "J.メリル（SD）、記録達成の最新情報",
-        "slug": "jackson-merrill-outstanding-catch-at-wall",
-        "url": "https://www.mlb.com/news/jackson-merrill-outstanding-catch-at-wall",
-        "contentDate": "2026-09-08T01:52:00Z",
-        "teamIds": [
-            135
-        ],
-        "playerIds": [
-            701538
-        ],
-        "gamePks": [
-            823254
-        ],
-        "taxonomy": [
-            "apple-news",
-            "defense",
-            "play-of-the-day"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Pivetta tosses 5 scoreless in return to mound, giving Padres another weapon",
         "summaryJa": "N.ピベッタ（SD）、復帰へ向けた最新状況",
         "slug": "nick-pivetta-goes-5-scoreless-in-return-from-il",
@@ -9523,30 +9591,6 @@
         "taxonomy": [
             "apple-news",
             "mlb-top-prospects"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Woo rewards Wilson's trust with 8-inning, skid-snapping gem",
-        "summaryJa": "B.ウー（SEA）、マウンドで好投",
-        "slug": "bryan-woo-throws-8-scoreless-innings-as-mariners-win",
-        "url": "https://www.mlb.com/news/bryan-woo-throws-8-scoreless-innings-as-mariners-win",
-        "contentDate": "2026-09-07T00:31:00Z",
-        "teamIds": [
-            136
-        ],
-        "playerIds": [
-            693433
-        ],
-        "gamePks": [
-            823091
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap",
-            "payoff-pitch"
         ],
         "sourceScopes": [
             "球団公式"
