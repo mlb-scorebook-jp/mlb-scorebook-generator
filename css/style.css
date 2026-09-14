@@ -2229,7 +2229,8 @@ body.app-mode-pregame .score-loading-overlay {
     vector-effect: non-scaling-stroke;
 }
 
-.play-card .ghost-runner-svg marker path {
+.play-card .ghost-runner-svg .runner-arrowhead,
+.play-card .runner-history-svg .runner-arrowhead {
     fill: #111;
     stroke: none;
 }
@@ -2262,11 +2263,6 @@ body.app-mode-pregame .score-loading-overlay {
     stroke-linecap: round;
     stroke-linejoin: miter;
     vector-effect: non-scaling-stroke;
-}
-
-.play-card .runner-history-svg marker path {
-    fill: #111;
-    stroke: none;
 }
 
 /* After reaching 1B in this score cell, draw the pass from 2B through 3B

@@ -6608,33 +6608,19 @@
                 return svg;
             };
 
-            let ghostRunnerArrowId = 0;
             const createGhostRunnerSvg = () => {
                 const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
                 svg.setAttribute("viewBox", "-1 -1 45 45");
                 svg.classList.add("ghost-runner-svg");
-                const markerId = `ghost-runner-arrow-${ghostRunnerArrowId += 1}`;
-                const defs = document.createElementNS("http://www.w3.org/2000/svg", "defs");
-                const marker = document.createElementNS("http://www.w3.org/2000/svg", "marker");
-                marker.setAttribute("id", markerId);
-                marker.setAttribute("viewBox", "0 0 6 6");
-                marker.setAttribute("refX", "5");
-                marker.setAttribute("refY", "3");
-                marker.setAttribute("markerWidth", "5");
-                marker.setAttribute("markerHeight", "5");
-                marker.setAttribute("orient", "auto");
-                const arrow = document.createElementNS("http://www.w3.org/2000/svg", "path");
-                arrow.setAttribute("d", "M0 0 L6 3 L0 6 Z");
-                marker.append(arrow);
-                defs.append(marker);
                 const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
                 path.setAttribute("d", "M21.5 42 L21.5 5");
-                path.setAttribute("marker-end", `url(#${markerId})`);
-                svg.append(defs, path);
+                const arrow = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
+                arrow.classList.add("runner-arrowhead");
+                arrow.setAttribute("points", "21.5,5 13.5,18 29.5,18");
+                svg.append(path, arrow);
                 return svg;
             };
 
-            let runnerHistoryArrowId = 0;
             const createRunnerHistorySvg = (type) => {
                 const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
                 svg.setAttribute("viewBox", "0 0 61 61");
@@ -6652,24 +6638,19 @@
                     "poe-third-home": "M9 9 L9 52"
                 };
                 path.setAttribute("d", paths[type] ?? paths["third-home"]);
-                const markerId = `runner-history-arrow-${runnerHistoryArrowId += 1}`;
-                const defs = document.createElementNS("http://www.w3.org/2000/svg", "defs");
-                const marker = document.createElementNS("http://www.w3.org/2000/svg", "marker");
-                marker.setAttribute("id", markerId);
-                marker.setAttribute("viewBox", "0 0 6 6");
-                marker.setAttribute("refX", "5");
-                marker.setAttribute("refY", "3");
-                marker.setAttribute("markerUnits", "userSpaceOnUse");
-                marker.setAttribute("markerWidth", "10");
-                marker.setAttribute("markerHeight", "10");
-                marker.setAttribute("orient", "auto");
-                const arrow = document.createElementNS("http://www.w3.org/2000/svg", "path");
-                arrow.setAttribute("d", "M0 0 L6 3 L0 6 Z");
-                marker.append(arrow);
-                defs.append(marker);
-                svg.append(defs);
-                path.setAttribute("marker-end", `url(#${markerId})`);
-                svg.append(path);
+                const arrow = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
+                arrow.classList.add("runner-arrowhead");
+                const leftward = new Set([
+                    "second-third", "error-second-third", "poe-second-third"
+                ]).has(type);
+                const upward = type === "first-second";
+                const homeX = type === "second-third-home" ? 5 : 9;
+                arrow.setAttribute("points", upward
+                    ? "52,9 44,22 60,22"
+                    : leftward
+                        ? "9,9 22,1 22,17"
+                        : `${homeX},52 ${homeX - 8},39 ${homeX + 8},39`);
+                svg.append(path, arrow);
                 return svg;
             };
 
