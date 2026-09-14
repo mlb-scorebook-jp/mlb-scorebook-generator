@@ -1295,22 +1295,31 @@
 
             let homeRunRun = [];
             const flushHomeRunRun = () => {
+                const hitterNames = homeRunRun
+                    .map((play) => play?.matchup?.batter)
+                    .filter(Boolean)
+                    .map(playerDisplayName)
+                    .join(" → ");
                 if (homeRunRun.length >= 4) {
-                    records.push(makeRecord({
+                    const record = makeRecord({
                         game, boxscore, recordType: "FOUR_CONSECUTIVE_HR", category: "individual",
                         player: homeRunRun[0]?.matchup?.batter, side,
                         fact: `${homeRunRun.length}者連続本塁打`,
                         details: { playerIds: homeRunRun.map((play) => play?.matchup?.batter?.id) },
                         evidence: `連続する完了打席でhome_run ${homeRunRun.length}件`
-                    }));
+                    });
+                    record.subject = hitterNames;
+                    records.push(record);
                 } else if (homeRunRun.length === 3) {
-                    records.push(makeRecord({
+                    const record = makeRecord({
                         game, boxscore, recordType: "THREE_CONSECUTIVE_HR", category: "individual",
                         player: homeRunRun[0]?.matchup?.batter, side,
                         fact: "3者連続本塁打",
                         details: { playerIds: homeRunRun.map((play) => play?.matchup?.batter?.id) },
                         evidence: "連続する完了打席でhome_run 3件"
-                    }));
+                    });
+                    record.subject = hitterNames;
+                    records.push(record);
                 }
                 homeRunRun = [];
             };

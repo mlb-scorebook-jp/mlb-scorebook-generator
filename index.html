@@ -355,7 +355,7 @@
     <script src="js/stathead-links.js?v=20260810-1"></script>
     <script src="js/records-archive.js?v=20260907-remove-legacy-multi-out-1"></script>
     <script src="js/daily-calendar-features.js?v=20260901-modern-stats-1"></script>
-    <script src="js/daily-records.js?v=20260914-first-home-homer-1"></script>
+    <script src="js/daily-records.js?v=20260914-consecutive-homer-names-1"></script>
     <script src="js/pregame.js?v=20260914-postseason-tiebreakers-1"></script>
 
     <script>
@@ -3731,8 +3731,9 @@
                                 const firstCareerShutout =
                                     record?.recordType === "SHUTOUT" &&
                                     firstCareerShutoutPlayerIds.has(Number(record?.playerId));
+                                const subject = record.subject || record.playerName;
                                 return {
-                                    text: `${code}　${record.playerName ? `${record.playerName}　` : ""}` +
+                                    text: `${code}　${subject ? `${subject}　` : ""}` +
                                         `${record.fact}${firstCareerShutout ? "（キャリア初）" : ""}`,
                                     priority: -3,
                                     ...(record.gamedayUrl ? {
