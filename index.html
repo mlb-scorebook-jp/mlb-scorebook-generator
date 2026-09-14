@@ -6643,7 +6643,7 @@
                 const paths = {
                     "first-second": "M52 52 L52 9",
                     "second-third": "M52 52 L52 9 L9 9",
-                    "second-third-home": "M46 15 L15 15 L15 46",
+                    "second-third-home": "M52 9 L5 9 L5 52",
                     "third-home": "M52 9 L9 9 L9 52",
                     "error-second-third": "M52 9 L9 9",
                     "error-third-home": "M9 9 L9 52",
@@ -6659,8 +6659,9 @@
                 marker.setAttribute("viewBox", "0 0 6 6");
                 marker.setAttribute("refX", "5");
                 marker.setAttribute("refY", "3");
-                marker.setAttribute("markerWidth", "8");
-                marker.setAttribute("markerHeight", "8");
+                marker.setAttribute("markerUnits", "userSpaceOnUse");
+                marker.setAttribute("markerWidth", "6");
+                marker.setAttribute("markerHeight", "6");
                 marker.setAttribute("orient", "auto");
                 const arrow = document.createElementNS("http://www.w3.org/2000/svg", "path");
                 arrow.setAttribute("d", "M0 0 L6 3 L0 6 Z");

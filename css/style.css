@@ -2269,8 +2269,8 @@ body.app-mode-pregame .score-loading-overlay {
     stroke: none;
 }
 
-/* After reaching 1B in this score cell, connect the centers of the 2B, 3B,
- * and home quadrants at right angles. */
+/* After reaching 1B in this score cell, draw the pass from 2B through 3B
+ * to home at right angles. */
 .play-card .runner-history-svg.runner-history-second-third-home {
     width: 36px;
     height: 36px;
