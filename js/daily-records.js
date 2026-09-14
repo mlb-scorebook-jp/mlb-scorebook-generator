@@ -1550,12 +1550,19 @@
                 ["wild_pitch", "暴投で走者が生還"],
                 ["passed_ball", "捕逸で走者が生還"]
             ].find(([eventType]) => allTypes.has(eventType));
-            if (scoringRunners.length && scoringMiscue) {
+            const miscueScoringRunners = scoringMiscue
+                ? scoringRunners.filter((runner) =>
+                    text(runner?.details?.eventType).toLowerCase() === scoringMiscue[0])
+                : [];
+            // A routine run scoring on a wild pitch, passed ball, or balk is not
+            // notable by itself. Keep only the genuinely unusual multi-run case;
+            // walk-off miscues are detected separately above.
+            if (miscueScoringRunners.length >= 2 && scoringMiscue) {
                 addRareCandidate(
                     play,
                     "RARE_SCORING_MISCUE",
                     scoringMiscue[1],
-                    `PBPの${scoringMiscue[0]}イベントで${scoringRunners.length}走者が生還`
+                    `PBPの${scoringMiscue[0]}イベントで${miscueScoringRunners.length}走者が生還`
                 );
             }
 
