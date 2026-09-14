@@ -356,7 +356,7 @@
     <script src="js/records-archive.js?v=20260907-remove-legacy-multi-out-1"></script>
     <script src="js/daily-calendar-features.js?v=20260901-modern-stats-1"></script>
     <script src="js/daily-records.js?v=20260914-official-record-detail-1"></script>
-    <script src="js/pregame.js?v=20260914-division-magic-1"></script>
+    <script src="js/pregame.js?v=20260914-division-magic-2"></script>
 
     <script>
         (() => {
@@ -4233,19 +4233,67 @@
                 if (!response.ok) throw new Error(`地区順位を取得できませんでした（${response.status}）`);
                 const payload = await response.json();
                 const magic = new Map();
-                (payload?.records ?? []).forEach((record) => {
+                await Promise.all((payload?.records ?? []).map(async (record) => {
                     const teams = record?.teamRecords ?? [];
                     const leader = teams.find((team) =>
                         team?.divisionLeader === true || Number.parseInt(team?.divisionRank, 10) === 1
                     );
-                    const second = teams.find((team) => Number.parseInt(team?.divisionRank, 10) === 2);
                     const wins = Number.parseInt(leader?.wins, 10);
-                    const losses = Number.parseInt(second?.losses, 10);
                     const teamId = Number(leader?.team?.id);
-                    if (!teamId || !Number.isFinite(wins) || !Number.isFinite(losses)) return;
-                    const number = Math.max(0, 163 - wins - losses);
+                    const challengers = teams
+                        .filter((team) =>
+                            Number(team?.team?.id) !== teamId &&
+                            Number.isFinite(Number.parseInt(team?.losses, 10))
+                        )
+                        .sort((left, right) =>
+                            Number.parseInt(left.losses, 10) - Number.parseInt(right.losses, 10)
+                        );
+                    const targetLosses = Number.parseInt(challengers[0]?.losses, 10);
+                    if (!teamId || !Number.isFinite(wins) || !Number.isFinite(targetLosses)) return;
+                    const magicTargets = challengers.filter((team) =>
+                        Number.parseInt(team?.losses, 10) === targetLosses
+                    );
+                    const tiebreakers = await Promise.all(magicTargets.map(async (target) => {
+                        const scheduleParams = new URLSearchParams({
+                            sportId: "1",
+                            season: String(season),
+                            gameType: "R",
+                            teamId: String(teamId),
+                            opponentId: String(target.team.id),
+                            startDate: `${season}-01-01`,
+                            endDate: `${season}-12-31`
+                        });
+                        const scheduleResponse = await fetch(
+                            `https://statsapi.mlb.com/api/v1/schedule?${scheduleParams}`
+                        );
+                        if (!scheduleResponse.ok) return false;
+                        const schedule = await scheduleResponse.json();
+                        const games = (schedule?.dates ?? []).flatMap((entry) => entry?.games ?? []);
+                        let leaderWins = 0;
+                        let targetWins = 0;
+                        let remaining = 0;
+                        games.forEach((game) => {
+                            const gameDate = String(game?.officialDate ?? "");
+                            const final = /final|completed/i.test(String(
+                                game?.status?.abstractGameState ?? game?.status?.detailedState ?? ""
+                            )) && gameDate <= date;
+                            if (!final) {
+                                remaining += 1;
+                                return;
+                            }
+                            const awayWon = game?.teams?.away?.isWinner === true;
+                            const winnerId = awayWon
+                                ? Number(game?.teams?.away?.team?.id)
+                                : Number(game?.teams?.home?.team?.id);
+                            if (winnerId === teamId) leaderWins += 1;
+                            if (winnerId === Number(target.team.id)) targetWins += 1;
+                        });
+                        return games.length > 0 && leaderWins > targetWins + remaining;
+                    }));
+                    const adjustment = tiebreakers.length > 0 && tiebreakers.every(Boolean) ? 1 : 0;
+                    const number = Math.max(0, 163 - wins - targetLosses - adjustment);
                     if (number > 0) magic.set(teamId, number);
-                });
+                }));
                 return magic;
             };
 

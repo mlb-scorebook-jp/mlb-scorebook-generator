@@ -2401,18 +2401,66 @@
         return standings;
     };
 
-    const divisionMagicByTeam = (standings) => {
-        const magic = new Map();
-        standings.forEach((standing, teamId) => {
-            if (!standing?.divisionLeader || !Number.isFinite(standing.wins)) return;
-            const secondPlaceLosses = [...standings.values()]
-                .find((candidate) =>
-                    candidate?.division === standing.division && candidate?.rank === 2
-                )?.losses;
-            if (!Number.isFinite(secondPlaceLosses)) return;
-            const number = Math.max(0, 163 - standing.wins - secondPlaceLosses);
-            if (number > 0) magic.set(Number(teamId), number);
+    const hasSecuredHeadToHeadTiebreaker = async (leaderId, challengerId, season, date) => {
+        const params = new URLSearchParams({
+            sportId: "1",
+            season: String(season),
+            gameType: "R",
+            teamId: String(leaderId),
+            opponentId: String(challengerId),
+            startDate: `${season}-01-01`,
+            endDate: `${season}-12-31`
         });
+        const payload = await fetchJson(
+            `${API_ROOT}/v1/schedule?${params}`,
+            `pregame:tiebreaker:${season}:${leaderId}:${challengerId}`
+        ).catch(() => null);
+        if (!payload) return false;
+        const games = (payload?.dates ?? []).flatMap((entry) => entry?.games ?? []);
+        let leaderWins = 0;
+        let challengerWins = 0;
+        let remaining = 0;
+        games.forEach((game) => {
+            const gameDate = String(game?.officialDate ?? "");
+            const final = isFinal(game) && gameDate <= date;
+            if (!final) {
+                remaining += 1;
+                return;
+            }
+            const awayId = Number(game?.teams?.away?.team?.id);
+            const awayWon = game?.teams?.away?.isWinner === true;
+            const winnerId = awayWon ? awayId : Number(game?.teams?.home?.team?.id);
+            if (winnerId === Number(leaderId)) leaderWins += 1;
+            if (winnerId === Number(challengerId)) challengerWins += 1;
+        });
+        return games.length > 0 && leaderWins > challengerWins + remaining;
+    };
+
+    const divisionMagicByTeam = async (standings, date) => {
+        const magic = new Map();
+        const season = Number(date.slice(0, 4));
+        const leaders = [...standings.entries()].filter(([, standing]) =>
+            standing?.divisionLeader && Number.isFinite(standing.wins)
+        );
+        await Promise.all(leaders.map(async ([teamId, standing]) => {
+            if (!standing?.divisionLeader || !Number.isFinite(standing.wins)) return;
+            const challengers = [...standings.values()]
+                .filter((candidate) =>
+                    candidate?.division === standing.division &&
+                    Number(candidate?.team?.id) !== Number(teamId) &&
+                    Number.isFinite(candidate?.losses)
+                )
+                .sort((left, right) => left.losses - right.losses);
+            const targetLosses = challengers[0]?.losses;
+            if (!Number.isFinite(targetLosses)) return;
+            const magicTargets = challengers.filter((candidate) => candidate.losses === targetLosses);
+            const tiebreakers = await Promise.all(magicTargets.map((candidate) =>
+                hasSecuredHeadToHeadTiebreaker(teamId, candidate.team.id, season, date)
+            ));
+            const adjustment = tiebreakers.length > 0 && tiebreakers.every(Boolean) ? 1 : 0;
+            const number = Math.max(0, 163 - standing.wins - targetLosses - adjustment);
+            if (number > 0) magic.set(Number(teamId), number);
+        }));
         return magic;
     };
 
@@ -2960,7 +3008,7 @@
                 getSeasonJapanesePlayers(season),
                 getStandingsSnapshot(date)
             ]);
-            const divisionMagic = divisionMagicByTeam(standings);
+            const divisionMagic = await divisionMagicByTeam(standings, previousDate(date));
             const teamGame = new Map();
             const teamGames = new Map();
             games.forEach((game) => {
