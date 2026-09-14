@@ -2599,8 +2599,8 @@
     };
 
     const postseasonMagicCondition = (standing, clinched) => {
-        if (clinched) return "プレイオフ進出決定";
-        if (standing.eliminated) return "今季のプレイオフ進出の可能性なし";
+        if (clinched) return "ポストシーズン進出決定";
+        if (standing.eliminated) return "今季のポストシーズン進出の可能性なし";
         if (!Number.isFinite(standing.magicNumber)) return "条件を算出できません";
         const opponents = standing.challengers
             .map((challenger) => teamCode(challenger.team))
@@ -2617,7 +2617,7 @@
 
     const postseasonMagicPanel = (standings, leagueCode) => {
         const panel = el("section", "pregame-postseason-magic-league");
-        panel.append(el("h4", "", `${leagueCode} プレイオフ進出マジック`));
+        panel.append(el("h4", "", `${leagueCode} ポストシーズン進出マジック`));
         const rows = el("div", "pregame-postseason-magic-rows");
         postseasonMagicLeague(standings, leagueCode).forEach((standing) => {
             const row = el("div", "pregame-postseason-magic-row");
