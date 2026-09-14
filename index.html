@@ -355,7 +355,7 @@
     <script src="js/stathead-links.js?v=20260810-1"></script>
     <script src="js/records-archive.js?v=20260907-remove-legacy-multi-out-1"></script>
     <script src="js/daily-calendar-features.js?v=20260901-modern-stats-1"></script>
-    <script src="js/daily-records.js?v=20260907-story-candidates-7"></script>
+    <script src="js/daily-records.js?v=20260914-official-record-detail-1"></script>
     <script src="js/pregame.js?v=20260912-venue-history-1"></script>
 
     <script>
@@ -2316,6 +2316,7 @@
                             }
                         }
 
+                        const achievedCareerFirsts = [];
                         CAREER_FIRST_DEFINITIONS[group].forEach((definition, index) => {
                             const laterSameDayValue = laterSameDaySplits.reduce(
                                 (sum, split) => sum + (Number(split?.stat?.[definition.field]) || 0),
@@ -2332,13 +2333,26 @@
                                 isPositionPlayerPitching
                                     ? "（野手登板）"
                                     : "";
-                            playerNotes.push({
-                                text: `${code}　${getPersonName(player.person)}　` +
-                                    `${definition.label}${positionPlayerSuffix}`,
-                                priority: -3,
+                            achievedCareerFirsts.push({
+                                field: definition.field,
+                                label: `${definition.label}${positionPlayerSuffix}`,
                                 importance: 100 - index
                             });
                         });
+                        if (achievedCareerFirsts.length) {
+                            const combinedLabel = achievedCareerFirsts
+                                .map(({ label }, index) => index === 0
+                                    ? label
+                                    : label.replace(/^キャリア初/, "初"))
+                                .join(" ");
+                            playerNotes.push({
+                                text: `${code}　${getPersonName(player.person)}　${combinedLabel}`,
+                                priority: -3,
+                                importance: Math.max(...achievedCareerFirsts.map(
+                                    ({ importance }) => importance
+                                ))
+                            });
+                        }
 
                         if (group === "pitching" && isPositionPlayerPitching) {
                             const careerAppearances = Number(career?.gamesPlayed);

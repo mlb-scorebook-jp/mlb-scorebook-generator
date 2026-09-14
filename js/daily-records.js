@@ -2176,7 +2176,10 @@
         };
         articles.forEach((article) => {
             const searchable = [article?.headline, article?.seoTitle, article?.blurb, article?.body]
-                .filter(Boolean).join(" ");
+                .filter(Boolean).join(" ")
+                .replace(/<[^>]*>/g, " ")
+                .replace(/\s+/g, " ")
+                .trim();
             if (!searchable) return;
             const matchPlayer = (source) => players.find(({ person }) => {
                 const fullName = text(person?.fullName);
@@ -2184,6 +2187,28 @@
                 return (fullName && text(source).toLowerCase().includes(fullName.toLowerCase())) ||
                     (lastName.length >= 4 && new RegExp(`\\b${lastName.replace(/[.*+?^${}()|[\\]\\]/g, "\\$&")}\\b`, "i").test(text(source)));
             });
+            const matchPlayerNearestTo = (source, pattern) => {
+                const value = text(source);
+                const cueIndex = value.search(pattern);
+                if (cueIndex < 0) return null;
+                return players.map((candidate) => {
+                    const names = [candidate?.person?.fullName, candidate?.person?.lastName]
+                        .map(text).filter((name) => name.length >= 4);
+                    const positions = names.flatMap((name) => {
+                        const haystack = value.toLowerCase();
+                        const needle = name.toLowerCase();
+                        const matches = [];
+                        let fromIndex = 0;
+                        while ((fromIndex = haystack.indexOf(needle, fromIndex)) >= 0) {
+                            matches.push(fromIndex);
+                            fromIndex += needle.length;
+                        }
+                        return matches;
+                    });
+                    return { candidate, distance: Math.min(...positions.map((index) => Math.abs(index - cueIndex))) };
+                }).filter((entry) => Number.isFinite(entry.distance))
+                    .sort((left, right) => left.distance - right.distance)[0]?.candidate ?? null;
+            };
             const matched = matchPlayer([article?.headline, article?.seoTitle, article?.blurb]
                 .filter(Boolean).join(" ")) || matchPlayer(searchable);
             if (!matched) return;
@@ -2203,7 +2228,17 @@
             const rookieContext = searchable.split(/(?<=[.!?])\s+/).find((sentence) =>
                 /rookie (?:record|mark)|franchise record .*rookie|most .* by (?:a|an) rookie/i.test(sentence));
             if (rookieContext) {
-                addFromArticle("FRANCHISE_ROOKIE_RECORD", "球団新人記録", article,
+                const rookieRbi = rookieContext.match(/rookie RBI record(?:\s+with)?\s+(\d{1,3})/i);
+                const rookieHomeRuns = rookieContext.match(
+                    /(?:record for )?most home runs by (?:a|an) rookie(?:[^\d]{0,30}(\d{1,3}))?/i
+                );
+                const rookieFact = rookieRbi
+                    ? `${rookieRbi[1]}打点（球団新人記録）`
+                    : rookieHomeRuns
+                        ? `球団新人最多本塁打記録${rookieHomeRuns[1] ? `（${rookieHomeRuns[1]}本）` : ""}`
+                        : "球団新人記録";
+                addFromArticle("FRANCHISE_ROOKIE_RECORD", rookieFact, article,
+                    matchPlayerNearestTo(searchable, /\brookie\b/i) ||
                     matchPlayer(rookieContext) || matched);
             }
             const ageContext = searchable.split(/(?<=[.!?])\s+/).find((sentence) =>
