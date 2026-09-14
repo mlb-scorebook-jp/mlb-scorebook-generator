@@ -2557,7 +2557,7 @@
         return stage;
     };
 
-    const postseasonMagicLeague = (standings, leagueCode) => {
+    const postseasonMagicLeague = async (standings, leagueCode, date) => {
         const entries = [...standings.values()]
             .filter((standing) => standing?.leagueCode === leagueCode && standing?.team?.id)
             .sort((left, right) => {
@@ -2565,7 +2565,8 @@
                 const rightRank = Number.isFinite(right.leagueRank) ? right.leagueRank : 99;
                 return leftRank - rightRank || right.wins - left.wins || left.losses - right.losses;
             });
-        return entries.map((standing, index) => {
+        const season = Number(date.slice(0, 4));
+        return Promise.all(entries.map(async (standing, index) => {
             const otherTeams = entries.filter((entry) => Number(entry.team.id) !== Number(standing.team.id));
             const cutoffOpponent = [...otherTeams]
                 .filter((entry) => Number.isFinite(entry.losses))
@@ -2582,11 +2583,15 @@
             const maximumWins = Number.isFinite(standing.losses) ? 162 - standing.losses : null;
             const officiallyEliminated = /e/i.test(standing.clinchIndicator) ||
                 (standing.eliminationNumber === "E" && standing.wildCardEliminationNumber === "E");
+            const tiebreakers = await Promise.all(challengers.map((challenger) =>
+                hasSecuredHeadToHeadTiebreaker(standing.team.id, challenger.team.id, season, date)
+            ));
+            const adjustment = tiebreakers.length > 0 && tiebreakers.every(Boolean) ? 1 : 0;
             return {
                 ...standing,
                 displayRank: Number.isFinite(standing.leagueRank) ? standing.leagueRank : index + 1,
                 magicNumber: Number.isFinite(standing.wins) && Number.isFinite(cutoffLosses)
-                    ? Math.max(0, 163 - standing.wins - cutoffLosses)
+                    ? Math.max(0, 163 - standing.wins - cutoffLosses - adjustment)
                     : null,
                 eliminated: officiallyEliminated || (
                     Number.isFinite(maximumWins) &&
@@ -2595,7 +2600,7 @@
                 ),
                 challengers
             };
-        });
+        }));
     };
 
     const postseasonMagicCondition = (standing, clinched) => {
@@ -2615,11 +2620,12 @@
         return `次戦勝利でM${standing.magicNumber - 1}／さらに${opponentLoss}ならM${standing.magicNumber - 2}`;
     };
 
-    const postseasonMagicPanel = (standings, leagueCode) => {
+    const postseasonMagicPanel = async (standings, leagueCode, date) => {
         const panel = el("section", "pregame-postseason-magic-league");
         panel.append(el("h4", "", `${leagueCode} ポストシーズン進出マジック`));
         const rows = el("div", "pregame-postseason-magic-rows");
-        postseasonMagicLeague(standings, leagueCode).forEach((standing) => {
+        const leagueStandings = await postseasonMagicLeague(standings, leagueCode, date);
+        leagueStandings.forEach((standing) => {
             const row = el("div", "pregame-postseason-magic-row");
             const logo = el("img", "pregame-postseason-logo");
             logo.src = teamLogoUrl(standing.team);
@@ -2659,7 +2665,7 @@
         return panel;
     };
 
-    const renderPostseasonPicture = (standings, date) => {
+    const renderPostseasonPicture = async (standings, date) => {
         const snapshotDate = previousDate(date);
         const postseasonSection = section(
             "ポストシーズン・ピクチャー",
@@ -2709,15 +2715,19 @@
         );
         scroll.append(board);
         const magic = el("div", "pregame-postseason-magic");
+        const [alMagic, nlMagic] = await Promise.all([
+            postseasonMagicPanel(standings, "AL", snapshotDate),
+            postseasonMagicPanel(standings, "NL", snapshotDate)
+        ]);
         magic.append(
-            postseasonMagicPanel(standings, "AL"),
-            postseasonMagicPanel(standings, "NL")
+            alMagic,
+            nlMagic
         );
         postseasonSection.append(
             el("p", "pregame-postseason-note", "シーズン終了時の組み合わせではありません。対象日の試合前に確定していた順位から算出しています。日程は現地日付、*は必要時。"),
             scroll,
             magic,
-            el("p", "pregame-postseason-magic-note", "Mは圏外球団の残り試合を基準にした暫定値です。同率時のタイブレーカーは含みません。")
+            el("p", "pregame-postseason-magic-note", "Mは圏外球団の残り試合と、確定済みの直接対決タイブレーカーを基準に算出しています。")
         );
         return postseasonSection;
     };
@@ -3211,7 +3221,7 @@
             }
             dashboard.append(gamesSection);
             if (date.slice(5) >= "08-01") {
-                dashboard.append(renderPostseasonPicture(standings, date));
+                dashboard.append(await renderPostseasonPicture(standings, date));
             }
             dom.content.replaceChildren(dashboard);
         } catch (error) {
