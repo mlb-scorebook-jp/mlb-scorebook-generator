@@ -42,6 +42,7 @@
         LEADOFF_HOME_RUN: ["先頭打者本塁打", "leadoff home run", "leadoff homer"],
         LEADOFF_FIRST_PITCH_HR: ["初回先頭打者初球本塁打", "first pitch leadoff homer"],
         SEASON_LEADOFF_HOME_RUNS: ["シーズン先頭打者本塁打", "season leadoff home runs"],
+        FIRST_HOME_HOME_RUN: ["今季初の本拠地本塁打", "first home home run of season"],
         FRANCHISE_LEADOFF_HOME_RUN_RANK: ["先頭打者本塁打球団歴代順位", "franchise leadoff home run rank"],
         STEAL_HOME: ["ホームスチール", "本盗", "steal of home"],
         FOUR_SB_GAME: ["1試合4盗塁", "4盗塁", "four stolen bases"],
@@ -2039,6 +2040,7 @@
     };
 
     const rareGameLogCache = new Map();
+    const rareSeasonCache = new Map();
     const rarePbpCache = new Map();
     const fetchRareGameLog = async (playerId, season, group, signal) => {
         const key = `${playerId}:${season}:${group}`;
@@ -2046,6 +2048,18 @@
         const request = fetchJson(`${API_ROOT}/v1/people/${playerId}/stats?stats=gameLog&group=${group}&season=${season}&gameType=R`, signal)
             .then(({ data }) => data?.stats?.[0]?.splits ?? []).catch(() => []);
         rareGameLogCache.set(key, request); return request;
+    };
+    const fetchRareSeasons = async (playerId, group, signal) => {
+        const key = `${playerId}:${group}`;
+        if (rareSeasonCache.has(key)) return rareSeasonCache.get(key);
+        const request = fetchJson(
+            `${API_ROOT}/v1/people/${playerId}/stats?stats=yearByYear&group=${group}&gameType=R`,
+            signal
+        ).then(({ data }) => unique((data?.stats ?? []).flatMap((block) =>
+            (block?.splits ?? []).map((split) => number(split?.season))
+        )).filter(Boolean)).catch(() => []);
+        rareSeasonCache.set(key, request);
+        return request;
     };
     const fetchRarePbp = async (gamePk, signal) => {
         const key = number(gamePk); if (!key) return null;
@@ -2078,6 +2092,58 @@
                 if (playerId && number(batting.homeRuns) > 0) {
                     const logs = gameLogThroughCurrent(
                         await fetchRareGameLog(playerId, season, "hitting", signal), game);
+                    if (side === "home") {
+                        const currentGamePk = number(game?.gamePk);
+                        const priorHomeRunThisSeason = logs.some((split) =>
+                            number(split?.game?.gamePk) !== currentGamePk &&
+                            split?.isHome === true &&
+                            number(split?.stat?.homeRuns) > 0
+                        );
+                        if (!priorHomeRunThisSeason) {
+                            let previousHomeRun = null;
+                            const priorSeasons = (await fetchRareSeasons(
+                                playerId, "hitting", signal
+                            )).filter((value) => value < season).sort((a, b) => b - a);
+                            for (const priorSeason of priorSeasons) {
+                                const priorLogs = await fetchRareGameLog(
+                                    playerId, priorSeason, "hitting", signal
+                                );
+                                previousHomeRun = [...priorLogs]
+                                    .filter((split) =>
+                                        split?.isHome === true &&
+                                        number(split?.stat?.homeRuns) > 0
+                                    )
+                                    .sort((left, right) =>
+                                        text(right?.date).localeCompare(text(left?.date)) ||
+                                        number(right?.game?.gamePk) - number(left?.game?.gamePk)
+                                    )[0] ?? null;
+                                if (previousHomeRun) break;
+                            }
+                            const previousDate = text(previousHomeRun?.date).slice(0, 10);
+                            const [previousYear, previousMonth, previousDay] = previousDate.split("-");
+                            const previousOpponent = teamCode(previousHomeRun?.opponent);
+                            const previousReference = previousYear && previousMonth && previousDay &&
+                                previousOpponent
+                                ? `（${number(previousYear)}年${number(previousMonth)}月` +
+                                    `${number(previousDay)}日VS ${previousOpponent}以来）`
+                                : "";
+                            additions.push(makeRecord({
+                                game,
+                                boxscore,
+                                recordType: "FIRST_HOME_HOME_RUN",
+                                category: "special",
+                                player: person,
+                                side,
+                                fact: `今季初 本拠地での本塁打${previousReference}`,
+                                details: {
+                                    previousDate,
+                                    previousOpponent,
+                                    previousGamePk: number(previousHomeRun?.game?.gamePk)
+                                },
+                                evidence: "MLB公式シーズンGame Log"
+                            }));
+                        }
+                    }
                     let consecutive = 0;
                     for (const split of logs) {
                         if (number(split?.stat?.plateAppearances) <= 0) continue;
