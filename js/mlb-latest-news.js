@@ -2,6 +2,99 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "4 big questions surround Crochet's possible return, impact down the stretch",
+        "summaryJa": "G.クロシェ（BOS）、復帰へ向けた最新状況",
+        "slug": "garrett-crochet-potential-return-impact-red-sox",
+        "url": "https://www.mlb.com/news/garrett-crochet-potential-return-impact-red-sox",
+        "contentDate": "2026-09-15T11:31:24.19Z",
+        "teamIds": [
+            111
+        ],
+        "playerIds": [
+            676979
+        ],
+        "gamePks": [
+            822849
+        ],
+        "taxonomy": [
+            "apple-news",
+            "injury",
+            "rehab",
+            "pennant-chase"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Lowe's second Clemente nomination takes on special meaning with Pittsburgh",
+        "summaryJa": "B.ラウ（PIT）の最新動向をMLB公式が詳報",
+        "slug": "brandon-lowe-pirates-nominee-2026-roberto-clemente-award",
+        "url": "https://www.mlb.com/news/brandon-lowe-pirates-nominee-2026-roberto-clemente-award",
+        "contentDate": "2026-09-15T11:27:20.241Z",
+        "teamIds": [
+            134
+        ],
+        "playerIds": [
+            664040
+        ],
+        "gamePks": [
+            823333
+        ],
+        "taxonomy": [
+            "apple-news",
+            "roberto-clemente-award"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Latest Marlins injuries & transactions",
+        "summaryJa": "マーリンズの負傷状況をMLB公式が詳報",
+        "slug": "marlins-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/marlins-injuries-and-roster-moves",
+        "contentDate": "2026-09-15T07:31:00Z",
+        "teamIds": [
+            146
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Carroll's walk-off homer swings D-backs' postseason momentum",
+        "summaryJa": "C.キャロル（AZ）、サヨナラ勝利の主役に",
+        "slug": "corbin-carroll-hits-walk-off-home-run-as-diamondbacks-beat-marlins",
+        "url": "https://www.mlb.com/news/corbin-carroll-hits-walk-off-home-run-as-diamondbacks-beat-marlins",
+        "contentDate": "2026-09-15T06:56:00Z",
+        "teamIds": [
+            109
+        ],
+        "playerIds": [
+            682998
+        ],
+        "gamePks": [
+            825034
+        ],
+        "taxonomy": [
+            "apple-news",
+            "game-recap",
+            "walk-off"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Anderson shows mettle as he experiences ups and downs of big leagues",
         "summaryJa": "K.アンダーソン（SEA）、勝利を呼び込む活躍",
         "slug": "kade-anderson-struggles-in-first-start-since-earning-first-mlb-win",
@@ -41,6 +134,26 @@
         "taxonomy": [
             "apple-news",
             "injury"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Latest Rockies injuries & transactions",
+        "summaryJa": "ロッキーズの負傷状況をMLB公式が詳報",
+        "slug": "rockies-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/rockies-injuries-and-roster-moves",
+        "contentDate": "2026-09-15T06:22:00Z",
+        "teamIds": [
+            115
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
         ],
         "sourceScopes": [
             "球団公式"
@@ -244,31 +357,6 @@
             "clincher"
         ],
         "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Carroll's walk-off homer helps D-backs keep pace in Wild Card race",
-        "summaryJa": "C.キャロル（AZ）、サヨナラ勝利の主役に",
-        "slug": "corbin-carroll-hits-walk-off-home-run-as-diamondbacks-beat-marlins",
-        "url": "https://www.mlb.com/news/corbin-carroll-hits-walk-off-home-run-as-diamondbacks-beat-marlins",
-        "contentDate": "2026-09-15T04:58:57.937Z",
-        "teamIds": [
-            109
-        ],
-        "playerIds": [
-            682998
-        ],
-        "gamePks": [
-            825034
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap",
-            "walk-off"
-        ],
-        "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -793,26 +881,6 @@
         ]
     },
     {
-        "headline": "Latest Marlins injuries & transactions",
-        "summaryJa": "マーリンズの負傷状況をMLB公式が詳報",
-        "slug": "marlins-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/marlins-injuries-and-roster-moves",
-        "contentDate": "2026-09-15T01:16:00Z",
-        "teamIds": [
-            146
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Francona weighs in on Reds' leadership: 'We commiserate together'",
         "summaryJa": "レッズの最新動向をMLB公式が詳報",
         "slug": "terry-francona-reacts-to-nick-kralls-comments-not-changing-leadership",
@@ -883,26 +951,6 @@
         "contentDate": "2026-09-15T00:27:00Z",
         "teamIds": [
             108
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Latest Rockies injuries & transactions",
-        "summaryJa": "ロッキーズの負傷状況をMLB公式が詳報",
-        "slug": "rockies-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/rockies-injuries-and-roster-moves",
-        "contentDate": "2026-09-15T00:16:00Z",
-        "teamIds": [
-            115
         ],
         "playerIds": [],
         "gamePks": [],
@@ -8411,25 +8459,6 @@
         "taxonomy": [
             "apple-news",
             "mlb-top-prospects"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Revisiting the trade that helped build two of baseball's best teams",
-        "summaryJa": "ブルワーズの移籍・契約に関する最新情報",
-        "slug": "revisiting-the-red-sox-brewers-trade-that-sparked-2026-success",
-        "url": "https://www.mlb.com/news/revisiting-the-red-sox-brewers-trade-that-sparked-2026-success",
-        "contentDate": "2026-09-09T14:30:00Z",
-        "teamIds": [
-            158,
-            111
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
