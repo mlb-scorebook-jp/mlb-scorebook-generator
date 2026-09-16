@@ -2,6 +2,138 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "With first full losing season since 2019, Mariners wonder what could have been",
+        "summaryJa": "マリナーズの最新動向をMLB公式が詳報",
+        "slug": "mariners-have-first-full-losing-season-since-2019",
+        "url": "https://www.mlb.com/news/mariners-have-first-full-losing-season-since-2019",
+        "contentDate": "2026-09-16T07:05:16.201Z",
+        "teamIds": [
+            136
+        ],
+        "playerIds": [],
+        "gamePks": [
+            823980
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Streak snaps at 8 as Padres miss golden opportunity to climb Wild Card ladder",
+        "summaryJa": "パドレスの最新動向をMLB公式が詳報",
+        "slug": "padres-winning-streak-snapped-in-loss-to-rockies",
+        "url": "https://www.mlb.com/news/padres-winning-streak-snapped-in-loss-to-rockies",
+        "contentDate": "2026-09-16T06:43:00Z",
+        "teamIds": [
+            135
+        ],
+        "playerIds": [],
+        "gamePks": [
+            824307
+        ],
+        "taxonomy": [
+            "apple-news",
+            "takeaways",
+            "long-home-runs",
+            "game-recap"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "'It hurts': D-backs' brutal extras loss could haunt them in Wild Card race",
+        "summaryJa": "ダイヤモンドバックスの最新動向をMLB公式が詳報",
+        "slug": "d-backs-lose-to-marlins-in-extras-can-t-move-up-in-wild-card-race",
+        "url": "https://www.mlb.com/news/d-backs-lose-to-marlins-in-extras-can-t-move-up-in-wild-card-race",
+        "contentDate": "2026-09-16T06:39:00Z",
+        "teamIds": [
+            109
+        ],
+        "playerIds": [],
+        "gamePks": [
+            825030
+        ],
+        "taxonomy": [
+            "apple-news",
+            "game-recap",
+            "replay"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "With Fairbanks, Bender done for season, 'pen auditions begin for Marlins",
+        "summaryJa": "A.ベンダー（MIA）の最新動向をMLB公式が詳報",
+        "slug": "pete-fairbanks-anthony-bender-to-miss-remainder-of-2026-season",
+        "url": "https://www.mlb.com/news/pete-fairbanks-anthony-bender-to-miss-remainder-of-2026-season",
+        "contentDate": "2026-09-16T06:02:00Z",
+        "teamIds": [
+            146
+        ],
+        "playerIds": [
+            669622,
+            664126
+        ],
+        "gamePks": [
+            825030
+        ],
+        "taxonomy": [
+            "injury",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Watch No. 6 prospect Rada play at Triple-A in FREE Thursday matinee",
+        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
+        "slug": "watch-minor-league-baseball-games-for-free-2026",
+        "url": "https://www.mlb.com/news/watch-minor-league-baseball-games-for-free-2026",
+        "contentDate": "2026-09-16T06:00:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "mlb-top-prospects",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "The Miz leads the way as Brewers clinch 4th straight NL Central crown",
+        "summaryJa": "J.ミザロウスキー（MIL）、記録達成の最新情報",
+        "slug": "jacob-misiorowski-five-scoreless-innings-brewers-pirates-nl-central",
+        "url": "https://www.mlb.com/news/jacob-misiorowski-five-scoreless-innings-brewers-pirates-nl-central",
+        "contentDate": "2026-09-16T05:55:00Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [
+            694819
+        ],
+        "gamePks": [
+            823333
+        ],
+        "taxonomy": [
+            "apple-news",
+            "game-recap"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Yelich, Woodruff relish standing as last ones left from 2018 division champs",
         "summaryJa": "C.イェリッチ（MIL）の最新動向をMLB公式が詳報",
         "slug": "christian-yelich-brandon-woodruff-celebrate-as-remaining-2018-brewers-teammates",
@@ -44,30 +176,6 @@
             "mlb-top-prospects"
         ],
         "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Streak snaps at 8 as Padres miss golden opportunity to climb Wild Card ladder",
-        "summaryJa": "パドレスの最新動向をMLB公式が詳報",
-        "slug": "padres-winning-streak-snapped-in-loss-to-rockies",
-        "url": "https://www.mlb.com/news/padres-winning-streak-snapped-in-loss-to-rockies",
-        "contentDate": "2026-09-16T05:34:00Z",
-        "teamIds": [
-            135
-        ],
-        "playerIds": [],
-        "gamePks": [
-            824307
-        ],
-        "taxonomy": [
-            "apple-news",
-            "takeaways",
-            "long-home-runs",
-            "game-recap"
-        ],
-        "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -160,7 +268,8 @@
         ],
         "taxonomy": [
             "apple-news",
-            "game-recap"
+            "game-recap",
+            "style"
         ],
         "sourceScopes": [
             "球団公式"
@@ -183,29 +292,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "D-backs squander chance to move up in WC race in brutal extras loss to Marlins",
-        "summaryJa": "ダイヤモンドバックスの最新動向をMLB公式が詳報",
-        "slug": "d-backs-lose-to-marlins-in-extras-can-t-move-up-in-wild-card-race",
-        "url": "https://www.mlb.com/news/d-backs-lose-to-marlins-in-extras-can-t-move-up-in-wild-card-race",
-        "contentDate": "2026-09-16T05:27:49.652Z",
-        "teamIds": [
-            109
-        ],
-        "playerIds": [],
-        "gamePks": [
-            825030
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap",
-            "replay"
-        ],
-        "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -255,30 +341,6 @@
         ]
     },
     {
-        "headline": "The Miz leads the way as Brewers clinch 4th straight NL Central crown",
-        "summaryJa": "J.ミザロウスキー（MIL）、記録達成の最新情報",
-        "slug": "jacob-misiorowski-five-scoreless-innings-brewers-pirates-nl-central",
-        "url": "https://www.mlb.com/news/jacob-misiorowski-five-scoreless-innings-brewers-pirates-nl-central",
-        "contentDate": "2026-09-16T05:17:00Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [
-            694819
-        ],
-        "gamePks": [
-            823333
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Royals' most stacked affiliate wins High-A Midwest League championship",
         "summaryJa": "B.ミッチェル（KC）、勝利を呼び込む活躍",
         "slug": "royals-most-stacked-affiliate-wins-high-a-midwest-league-title",
@@ -299,23 +361,6 @@
         "taxonomy": [
             "apple-news",
             "mlb-top-prospects"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Watch No. 6 prospect Rada play at Triple-A in FREE Thursday matinee",
-        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
-        "slug": "watch-minor-league-baseball-games-for-free-2026",
-        "url": "https://www.mlb.com/news/watch-minor-league-baseball-games-for-free-2026",
-        "contentDate": "2026-09-16T05:09:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "mlb-top-prospects",
-            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
@@ -1191,30 +1236,6 @@
             824466
         ],
         "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Marlins 'pen down Bender, Fairbanks for remainder of season",
-        "summaryJa": "A.ベンダー（MIA）の最新動向をMLB公式が詳報",
-        "slug": "pete-fairbanks-anthony-bender-to-miss-remainder-of-2026-season",
-        "url": "https://www.mlb.com/news/pete-fairbanks-anthony-bender-to-miss-remainder-of-2026-season",
-        "contentDate": "2026-09-16T02:31:14.636Z",
-        "teamIds": [
-            146
-        ],
-        "playerIds": [
-            669622,
-            664126
-        ],
-        "gamePks": [
-            825030
-        ],
-        "taxonomy": [
-            "injury",
             "apple-news"
         ],
         "sourceScopes": [
@@ -7541,26 +7562,6 @@
         ]
     },
     {
-        "headline": "Pure cinema: The best scenes from Brewers' season ... so far",
-        "summaryJa": "ブルワーズの最新動向をMLB公式が詳報",
-        "slug": "luis-lara-pat-murphy-provide-brewers-latest-cinematic-moment",
-        "url": "https://www.mlb.com/news/luis-lara-pat-murphy-provide-brewers-latest-cinematic-moment",
-        "contentDate": "2026-09-11T13:39:38.659Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [],
-        "gamePks": [
-            823736
-        ],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "How Francona's winning ways trickle down through Reds' system",
         "summaryJa": "レッズを巡る注目点をMLB公式が分析",
         "slug": "terry-francona-s-winning-mentality-guides-reds-system",
@@ -8398,27 +8399,6 @@
         ]
     },
     {
-        "headline": "Orioles' No. 3 prospect Dzierwa was in the zone during his debut season",
-        "summaryJa": "Joseph Dzierwa（BAL）、メジャー昇格・初出場に関する最新情報",
-        "slug": "orioles-joseph-dzierwa-dominates-on-mound-in-first-pro-season",
-        "url": "https://www.mlb.com/news/orioles-joseph-dzierwa-dominates-on-mound-in-first-pro-season",
-        "contentDate": "2026-09-10T04:48:00Z",
-        "teamIds": [
-            110
-        ],
-        "playerIds": [
-            804530
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "mlb-top-prospects",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Marlins show fight in marathon slugfest vs. Mets",
         "summaryJa": "J.マーシー（MIA）を巡る注目点をMLB公式が分析",
         "slug": "marlins-rally-falls-short-slugfest-mets",
@@ -8808,30 +8788,6 @@
         ],
         "taxonomy": [
             "apple-news",
-            "game-recap"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Anderson passes 6th-inning test, claims 1st career win",
-        "summaryJa": "K.アンダーソン（SEA）の移籍・契約に関する最新情報",
-        "slug": "kade-anderson-earns-first-career-win",
-        "url": "https://www.mlb.com/news/kade-anderson-earns-first-career-win",
-        "contentDate": "2026-09-10T00:22:13.948Z",
-        "teamIds": [
-            136
-        ],
-        "playerIds": [
-            807739
-        ],
-        "gamePks": [
-            823090
-        ],
-        "taxonomy": [
-            "apple-news",
-            "milestone",
             "game-recap"
         ],
         "sourceScopes": [
