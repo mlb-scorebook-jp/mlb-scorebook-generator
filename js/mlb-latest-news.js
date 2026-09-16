@@ -2,6 +2,152 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Latest Cardinals injuries & transactions",
+        "summaryJa": "カージナルスの負傷状況をMLB公式が詳報",
+        "slug": "cardinals-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/cardinals-injuries-and-roster-moves",
+        "contentDate": "2026-09-16T15:02:00Z",
+        "teamIds": [
+            138
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Cards activate Wetherholt from IL; Strzelecki, Urías DFA'd",
+        "summaryJa": "J.ウェザーホルト（STL）の負傷状況をMLB公式が詳報",
+        "slug": "jj-wetherholt-activated-from-injured-list",
+        "url": "https://www.mlb.com/news/jj-wetherholt-activated-from-injured-list",
+        "contentDate": "2026-09-16T14:55:10.045Z",
+        "teamIds": [
+            138
+        ],
+        "playerIds": [
+            802139
+        ],
+        "gamePks": [
+            823004
+        ],
+        "taxonomy": [
+            "injury"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Picking the best player at each position who wasn't a 2026 All-Star",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "mlb-non-all-star-team-2026",
+        "url": "https://www.mlb.com/news/mlb-non-all-star-team-2026",
+        "contentDate": "2026-09-16T14:45:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "'Absolute legend' Alonso makes awesome exchange with Mets fans for 300th HR ball",
+        "summaryJa": "P.アロンゾ（BAL）、記録達成の最新情報",
+        "slug": "pete-alonso-exchanges-gifts-for-300th-home-run-ball",
+        "url": "https://www.mlb.com/news/pete-alonso-exchanges-gifts-for-300th-home-run-ball",
+        "contentDate": "2026-09-16T14:42:49.219Z",
+        "teamIds": [
+            110
+        ],
+        "playerIds": [
+            624413
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Nuñez relishes 'impactful' Clemente nomination",
+        "summaryJa": "N.ヌニェス（WSH）の最新動向をMLB公式が詳報",
+        "slug": "nasim-nunez-reflects-on-roberto-clemente-award-nomination",
+        "url": "https://www.mlb.com/news/nasim-nunez-reflects-on-roberto-clemente-award-nomination",
+        "contentDate": "2026-09-16T14:10:43.872Z",
+        "teamIds": [
+            120
+        ],
+        "playerIds": [
+            683083
+        ],
+        "gamePks": [
+            822680
+        ],
+        "taxonomy": [
+            "apple-news",
+            "roberto-clemente-award"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Top 100 prospects Sirota, Davalan go yard in Double-A playoff opener",
+        "summaryJa": "Mike Sirota（LAD）、本塁打で存在感",
+        "slug": "mike-sirota-charles-davalan-homer-in-double-a-playoff-opener",
+        "url": "https://www.mlb.com/news/mike-sirota-charles-davalan-homer-in-double-a-playoff-opener",
+        "contentDate": "2026-09-16T13:55:04.442Z",
+        "teamIds": [
+            119
+        ],
+        "playerIds": [
+            701527,
+            804560
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "mlb-top-prospects",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Playoff implications abound in ESPN doubleheader Wednesday",
+        "summaryJa": "ホワイトソックスの最新動向をMLB公式が詳報",
+        "slug": "mlb-preview-white-sox-guardians-orioles-mets-espn-sept-16",
+        "url": "https://www.mlb.com/news/mlb-preview-white-sox-guardians-orioles-mets-espn-sept-16",
+        "contentDate": "2026-09-16T12:34:00Z",
+        "teamIds": [
+            145,
+            114,
+            110,
+            121
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "With first full losing season since 2019, Mariners wonder what could have been",
         "summaryJa": "マリナーズの最新動向をMLB公式が詳報",
         "slug": "mariners-have-first-full-losing-season-since-2019",
@@ -228,7 +374,7 @@
         ]
     },
     {
-        "headline": "Tigers farmhand slugs TWO grand slams in same game during Double-A playoffs",
+        "headline": "Tigers prospect slugs TWO grand slams in Game 1 of Double-A playoffs",
         "summaryJa": "Luke Shliger（DET）、本塁打で存在感",
         "slug": "tigers-luke-shliger-two-grand-slams-same-game-playoffs",
         "url": "https://www.mlb.com/news/tigers-luke-shliger-two-grand-slams-same-game-playoffs",
@@ -638,28 +784,6 @@
         ]
     },
     {
-        "headline": "Playoff implications abound in ESPN doubleheader Wednesday",
-        "summaryJa": "ホワイトソックスの最新動向をMLB公式が詳報",
-        "slug": "mlb-preview-white-sox-guardians-orioles-mets-espn-sept-16",
-        "url": "https://www.mlb.com/news/mlb-preview-white-sox-guardians-orioles-mets-espn-sept-16",
-        "contentDate": "2026-09-16T04:16:28.202Z",
-        "teamIds": [
-            145,
-            114,
-            110,
-            121
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Yesavage struggles in Triple-A rehab start, but could still return next week",
         "summaryJa": "T.イーサベッジ（TOR）、復帰へ向けた最新状況",
         "slug": "trey-yesavage-struggles-in-triple-a-rehab-start",
@@ -742,22 +866,6 @@
             121,
             120
         ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB"
-        ]
-    },
-    {
-        "headline": "Picking the best player at each position who wasn't a 2026 All-Star",
-        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
-        "slug": "mlb-non-all-star-team-2026",
-        "url": "https://www.mlb.com/news/mlb-non-all-star-team-2026",
-        "contentDate": "2026-09-16T04:00:14.448Z",
-        "teamIds": [],
         "playerIds": [],
         "gamePks": [],
         "taxonomy": [
@@ -1305,7 +1413,6 @@
             "rehab"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1430,26 +1537,6 @@
             "apple-news",
             "minor-league-baseball",
             "mlb-top-prospects"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Latest Cardinals injuries & transactions",
-        "summaryJa": "カージナルスの負傷状況をMLB公式が詳報",
-        "slug": "cardinals-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/cardinals-injuries-and-roster-moves",
-        "contentDate": "2026-09-16T00:29:00Z",
-        "teamIds": [
-            138
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
         ],
         "sourceScopes": [
             "球団公式"
@@ -4357,32 +4444,6 @@
             "apple-news",
             "walk-off",
             "walk-off-hr"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "De Paula scorches no-doubter for 1st career hit before Marlins walk it off",
-        "summaryJa": "J.デポーラ（LAD）、記録達成の最新情報",
-        "slug": "josue-de-paula-crushes-three-run-homer-for-first-career-hit",
-        "url": "https://www.mlb.com/news/josue-de-paula-crushes-three-run-homer-for-first-career-hit",
-        "contentDate": "2026-09-13T23:05:00Z",
-        "teamIds": [
-            119
-        ],
-        "playerIds": [
-            800543
-        ],
-        "gamePks": [
-            823815
-        ],
-        "taxonomy": [
-            "apple-news",
-            "mlb-top-prospects",
-            "milestone",
-            "game-recap-losing",
-            "game-recap"
         ],
         "sourceScopes": [
             "球団公式"
@@ -8725,30 +8786,6 @@
         ]
     },
     {
-        "headline": "Bernal continues to turn heads with another multi-RBI effort",
-        "summaryJa": "L.バナール（STL）、記録達成の最新情報",
-        "slug": "leo-bernal-records-his-fourth-multi-rbi-game-with-cardinals",
-        "url": "https://www.mlb.com/news/leo-bernal-records-his-fourth-multi-rbi-game-with-cardinals",
-        "contentDate": "2026-09-10T00:58:01.992Z",
-        "teamIds": [
-            138
-        ],
-        "playerIds": [
-            699024
-        ],
-        "gamePks": [
-            823172
-        ],
-        "taxonomy": [
-            "apple-news",
-            "mlb-top-prospects",
-            "pennant-chase"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Kent's lessons keep stacking up with struggles in San Diego scorcher",
         "summaryJa": "Jackson Kent（WSH）ら注目選手の最新動向",
         "slug": "jackson-kent-nats-no-9-prospect-struggles-in-shortest-big-league-outing",
@@ -8944,31 +8981,6 @@
             "mlb-top-prospects",
             "apple-news",
             "rankings"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Gunnar (knee) out of O's lineup; Blaze (back discomfort) to 10-day IL",
-        "summaryJa": "G.ヘンダーソン（BAL）の負傷状況をMLB公式が詳報",
-        "slug": "gunnar-henderson-blaze-alexander-injury-updates-orioles",
-        "url": "https://www.mlb.com/news/gunnar-henderson-blaze-alexander-injury-updates-orioles",
-        "contentDate": "2026-09-09T21:02:02.105Z",
-        "teamIds": [
-            110
-        ],
-        "playerIds": [
-            683002,
-            677942
-        ],
-        "gamePks": [
-            824791
-        ],
-        "taxonomy": [
-            "apple-news",
-            "injury",
-            "transactions"
         ],
         "sourceScopes": [
             "球団公式"
@@ -9575,26 +9587,6 @@
         ],
         "gamePks": [
             823336
-        ],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Nationals lay groundwork for winter programs, 2027",
-        "summaryJa": "ナショナルズの最新動向をMLB公式が詳報",
-        "slug": "nationals-turn-attention-to-2027",
-        "url": "https://www.mlb.com/news/nationals-turn-attention-to-2027",
-        "contentDate": "2026-09-06T16:18:43.999Z",
-        "teamIds": [
-            120
-        ],
-        "playerIds": [],
-        "gamePks": [
-            823903
         ],
         "taxonomy": [
             "apple-news"
