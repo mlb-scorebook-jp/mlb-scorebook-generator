@@ -2,6 +2,117 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Adell relishing, playing key role in first September postseason push",
+        "summaryJa": "J.アデル（CLE）の最新動向をMLB公式が詳報",
+        "slug": "jo-adell-enjoying-september-postseason-push-with-guardians",
+        "url": "https://www.mlb.com/news/jo-adell-enjoying-september-postseason-push-with-guardians",
+        "contentDate": "2026-09-17T12:19:29.743Z",
+        "teamIds": [
+            114
+        ],
+        "playerIds": [
+            666176
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Springer's Clemente Award nom has an extra personal touch",
+        "summaryJa": "G.スプリンガ―（TOR）の最新動向をMLB公式が詳報",
+        "slug": "george-springer-2026-roberto-clemente-award-nominee",
+        "url": "https://www.mlb.com/news/george-springer-2026-roberto-clemente-award-nominee",
+        "contentDate": "2026-09-17T11:51:24.07Z",
+        "teamIds": [
+            141
+        ],
+        "playerIds": [
+            543807
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "roberto-clemente-award",
+            "community",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "3 takeaways from Bernal’s immediate impact for Cardinals",
+        "summaryJa": "L.バナール（STL）を巡る注目点をMLB公式が分析",
+        "slug": "how-leo-bernal-s-emergence-shapes-cardinals-plans",
+        "url": "https://www.mlb.com/news/how-leo-bernal-s-emergence-shapes-cardinals-plans",
+        "contentDate": "2026-09-17T11:40:50.4Z",
+        "teamIds": [
+            138
+        ],
+        "playerIds": [
+            699024
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "long-home-runs"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Even during season on the shelf, Pablo a Clemente Award nominee",
+        "summaryJa": "P.ロペス（MIN）の最新動向をMLB公式が詳報",
+        "slug": "pablo-lopez-earns-roberto-clemente-award-nomination-for-twins",
+        "url": "https://www.mlb.com/news/pablo-lopez-earns-roberto-clemente-award-nomination-for-twins",
+        "contentDate": "2026-09-17T11:36:11.89Z",
+        "teamIds": [
+            142
+        ],
+        "playerIds": [
+            641154
+        ],
+        "gamePks": [
+            823654
+        ],
+        "taxonomy": [
+            "apple-news",
+            "roberto-clemente-award"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "No. 3 prospect Ryan ready to prove big league potential with Tigers",
+        "summaryJa": "R.ライアン（DET）ら注目選手の最新動向",
+        "slug": "river-ryan-starts-for-triple-a-toledo-awaiting-chance-with-tigers",
+        "url": "https://www.mlb.com/news/river-ryan-starts-for-triple-a-toledo-awaiting-chance-with-tigers",
+        "contentDate": "2026-09-17T11:32:34.979Z",
+        "teamIds": [
+            116
+        ],
+        "playerIds": [
+            689981
+        ],
+        "gamePks": [
+            822763
+        ],
+        "taxonomy": [
+            "apple-news",
+            "mlb-top-prospects"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "'The dude is an inspiration': Sandy's 1st career save has Marlins fired up",
         "summaryJa": "S.アルカンタラ（MIA）、記録達成の最新情報",
         "slug": "sandy-alcantara-records-first-career-save-in-marlins-win",
@@ -1288,7 +1399,6 @@
             "injury"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1468,7 +1578,6 @@
             "pennant-chase"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -7343,33 +7452,6 @@
         ]
     },
     {
-        "headline": "High-A Blue Jays claim 2026 title -- these are the prospects who led them",
-        "summaryJa": "JoJo Parker（TOR）の移籍・契約に関する最新情報",
-        "slug": "blue-jays-prospects-win-2026-high-a-northwest-league-title",
-        "url": "https://www.mlb.com/news/blue-jays-prospects-win-2026-high-a-northwest-league-title",
-        "contentDate": "2026-09-12T07:07:00Z",
-        "teamIds": [
-            141
-        ],
-        "playerIds": [
-            828098,
-            804526,
-            803516,
-            683341,
-            815598
-        ],
-        "gamePks": [
-            822767
-        ],
-        "taxonomy": [
-            "apple-news",
-            "mlb-top-prospects"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "A's whole cast shows up in extra-innings thriller",
         "summaryJa": "D.ウォルトン（ATH）、サヨナラ勝利の主役に",
         "slug": "donovan-walton-hits-walk-off-home-run-in-a-s-win-over-mariners",
@@ -7550,29 +7632,6 @@
             "apple-news",
             "game-recap-losing",
             "mlb-top-prospects"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Bazzana, Guards move just half-game behind White Sox in AL Central",
-        "summaryJa": "T.バザーナ（CLE）の最新動向をMLB公式が詳報",
-        "slug": "travis-bazzana-scores-go-ahead-run-on-wild-pitch",
-        "url": "https://www.mlb.com/news/travis-bazzana-scores-go-ahead-run-on-wild-pitch",
-        "contentDate": "2026-09-12T05:27:00Z",
-        "teamIds": [
-            114
-        ],
-        "playerIds": [
-            683953
-        ],
-        "gamePks": [
-            823659
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap"
         ],
         "sourceScopes": [
             "球団公式"
@@ -8177,27 +8236,6 @@
         ]
     },
     {
-        "headline": "3 things to watch as Cardinals seek strong finish to 2026 season",
-        "summaryJa": "カージナルスの最新動向をMLB公式が詳報",
-        "slug": "cardinals-looking-to-finish-2026-season-strong",
-        "url": "https://www.mlb.com/news/cardinals-looking-to-finish-2026-season-strong",
-        "contentDate": "2026-09-11T15:34:58.727Z",
-        "teamIds": [
-            138
-        ],
-        "playerIds": [],
-        "gamePks": [
-            823012
-        ],
-        "taxonomy": [
-            "apple-news",
-            "mlb-top-prospects"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Dubbed an 'aircraft carrier,' Langford is crucial for Rangers' playoff push",
         "summaryJa": "W.ラングフォード（TEX）の最新動向をMLB公式が詳報",
         "slug": "wyatt-langford-an-important-piece-of-2026-rangers",
@@ -8548,26 +8586,6 @@
         ],
         "playerIds": [
             691594
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Larnach navigating turbulent season with even-keeled attitude",
-        "summaryJa": "T.ラーナック（MIN）の移籍・契約に関する最新情報",
-        "slug": "trevor-larnach-having-strong-year-after-nearly-being-traded",
-        "url": "https://www.mlb.com/news/trevor-larnach-having-strong-year-after-nearly-being-traded",
-        "contentDate": "2026-09-10T12:10:55.893Z",
-        "teamIds": [
-            142
-        ],
-        "playerIds": [
-            663616
         ],
         "gamePks": [],
         "taxonomy": [
@@ -8960,29 +8978,6 @@
             "apple-news",
             "mlb-top-prospects",
             "minor-league-baseball"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Clark just scratching surface of his game-breaking speed",
-        "summaryJa": "M.クラーク（DET）の最新動向をMLB公式が詳報",
-        "slug": "max-clark-changing-tigers-games-with-his-speed",
-        "url": "https://www.mlb.com/news/max-clark-changing-tigers-games-with-his-speed",
-        "contentDate": "2026-09-09T14:49:59.969Z",
-        "teamIds": [
-            116
-        ],
-        "playerIds": [
-            703601
-        ],
-        "gamePks": [
-            824226
-        ],
-        "taxonomy": [
-            "apple-news",
-            "mlb-top-prospects"
         ],
         "sourceScopes": [
             "球団公式"
