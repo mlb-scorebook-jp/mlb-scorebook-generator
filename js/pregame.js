@@ -2330,6 +2330,44 @@
         dom.subtitle.textContent = subtitle;
     };
 
+    const clearGlobalEvents = () => {
+        if (!dom.globalEvents) return;
+        dom.globalEvents.hidden = true;
+        dom.globalEvents.replaceChildren();
+    };
+
+    const renderGlobalEvents = (date) => {
+        if (!dom.globalEvents) return;
+        const events = window.MLBGlobalEvents?.forDate?.(date) ?? [];
+        dom.globalEvents.replaceChildren();
+        dom.globalEvents.hidden = events.length === 0;
+        events.forEach((event) => {
+            const wrapper = el("details", "pregame-global-event");
+            const summary = el("summary", "pregame-global-event-summary");
+            summary.append(
+                el("strong", "pregame-global-event-name", event.nameJa),
+                el("small", "pregame-global-event-short", event.summaryJa)
+            );
+            const panel = el("div", "pregame-global-event-panel");
+            panel.append(el("strong", "pregame-global-event-panel-title", event.nameJa));
+            const details = el("ul", "pregame-global-event-details");
+            event.detailsJa.forEach((detail) => details.append(el("li", "", detail)));
+            const source = el("a", "pregame-global-event-source", "MLB公式情報");
+            source.href = event.officialUrl;
+            source.target = "_blank";
+            source.rel = "noopener noreferrer";
+            panel.append(details, source);
+            wrapper.append(summary, panel);
+            wrapper.addEventListener("toggle", () => {
+                if (!wrapper.open) return;
+                dom.globalEvents.querySelectorAll("details[open]").forEach((detailsNode) => {
+                    if (detailsNode !== wrapper) detailsNode.open = false;
+                });
+            });
+            dom.globalEvents.append(wrapper);
+        });
+    };
+
     const setPlayerHeader = (person, team, date) => {
         dom.title.parentElement?.classList.remove("pregame-matchup-title-block");
         dom.title.className = "";
@@ -3011,6 +3049,7 @@
         const date = currentDate || currentMlbDate();
         syncDateControl(date);
         setHeader("試合前情報", formatDate(date));
+        renderGlobalEvents(date);
         try {
             const season = Number(date.slice(0, 4));
             const [games, japanesePlayers, standings] = await Promise.all([
@@ -4212,6 +4251,7 @@
     };
 
     const renderPlayerDetail = async (playerId, gamePk, teamId = null) => {
+        clearGlobalEvents();
         scrollPregameToTop();
         const validGamePk = Number.isFinite(Number(gamePk)) && Number(gamePk) > 0;
         placeHeaderActions(false);
@@ -5151,6 +5191,7 @@
     };
 
     const renderGameDetail = async (gamePk) => {
+        clearGlobalEvents();
         scrollPregameToTop();
         currentPlayerView = null;
         placeHeaderActions(true);
@@ -5411,6 +5452,7 @@
         dom.loading = document.getElementById("pregame-loading");
         dom.title = document.getElementById("pregame-title");
         dom.subtitle = document.getElementById("pregame-subtitle");
+        dom.globalEvents = document.getElementById("pregame-global-events");
         dom.dateInput = document.getElementById("pregame-date");
         dom.mobileDateDisplay = document.getElementById("pregame-mobile-date-display");
         dom.previousDateButton = document.getElementById("pregame-prev-date-btn");

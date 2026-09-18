@@ -62,6 +62,117 @@ body.app-mode-pregame .scorebook-horizontal-scroll {
     letter-spacing: 0.06em;
 }
 
+.pregame-view-header > div:first-child {
+    flex: 0 0 auto;
+}
+
+.pregame-global-events {
+    position: relative;
+    z-index: 8;
+    display: grid;
+    flex: 1 1 320px;
+    align-self: center;
+    justify-content: center;
+    gap: 4px;
+    min-width: 0;
+    max-width: 520px;
+    margin-inline: auto;
+}
+
+.pregame-global-events[hidden] {
+    display: none !important;
+}
+
+.pregame-global-event {
+    position: relative;
+    min-width: 0;
+}
+
+.pregame-global-event-summary {
+    display: grid;
+    gap: 2px;
+    min-width: 250px;
+    padding: 4px 12px;
+    color: #e9eff2;
+    border-left: 2px solid #d3ad3e;
+    border-right: 2px solid transparent;
+    text-align: center;
+    cursor: pointer;
+    list-style: none;
+}
+
+.pregame-global-event-summary::-webkit-details-marker {
+    display: none;
+}
+
+.pregame-global-event-summary:hover,
+.pregame-global-event-summary:focus-visible,
+.pregame-global-event[open] .pregame-global-event-summary {
+    color: #fff;
+    border-right-color: #d3ad3e;
+    background: rgba(255, 255, 255, 0.035);
+    outline: none;
+}
+
+.pregame-global-event-name {
+    font-size: 12px;
+    line-height: 1.25;
+    letter-spacing: 0.05em;
+}
+
+.pregame-global-event-short {
+    color: #aeb9bf;
+    font-size: 9px;
+    font-weight: 500;
+    line-height: 1.35;
+}
+
+.pregame-global-event-panel {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 50%;
+    z-index: 20;
+    box-sizing: border-box;
+    width: min(520px, 70vw);
+    padding: 13px 15px;
+    color: #e6ecef;
+    border: 1px solid #65747d;
+    background: #20292f;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.46);
+    transform: translateX(-50%);
+    text-align: left;
+}
+
+.pregame-global-event-panel-title {
+    display: block;
+    margin-bottom: 7px;
+    color: #f1d86e;
+    font-size: 12px;
+}
+
+.pregame-global-event-details {
+    display: grid;
+    gap: 5px;
+    margin: 0 0 10px;
+    padding-left: 1.3em;
+    color: #d4dde1;
+    font-size: 10px;
+    line-height: 1.55;
+}
+
+.pregame-global-event-source {
+    color: #c9d9e0;
+    font-size: 10px;
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.pregame-global-event-source:hover,
+.pregame-global-event-source:focus-visible {
+    color: #fff;
+}
+
 .pregame-view-header #pregame-subtitle:empty {
     display: none;
 }
@@ -2535,6 +2646,14 @@ a.pregame-metric-value:focus-visible {
         color: inherit;
         text-decoration: none;
     }
+
+    .pregame-global-event-summary {
+        border: 0;
+    }
+
+    .pregame-global-event-panel {
+        display: none !important;
+    }
 }
 
 .pregame-team-columns {
@@ -2628,6 +2747,10 @@ a.pregame-metric-value:focus-visible {
 @media print {
     .pregame-view {
         display: none !important;
+    }
+
+    body.app-mode-pregame .pregame-view:not([hidden]) {
+        display: block !important;
     }
 }
 
@@ -2826,6 +2949,45 @@ a.pregame-metric-value:focus-visible {
         width: 100%;
         max-width: 100%;
         min-width: 0;
+    }
+
+    .pregame-global-events {
+        order: 1;
+        flex: none;
+        width: 100%;
+        max-width: none;
+        margin: 0;
+    }
+
+    .pregame-global-event-summary {
+        min-width: 0;
+        min-height: 44px;
+        align-content: center;
+        padding: 7px 10px;
+    }
+
+    .pregame-global-event-name {
+        font-size: 15px;
+    }
+
+    .pregame-global-event-short {
+        display: none;
+    }
+
+    .pregame-global-event-panel {
+        position: static;
+        width: 100%;
+        margin-top: 6px;
+        transform: none;
+    }
+
+    .pregame-global-event-panel-title {
+        font-size: 15px;
+    }
+
+    .pregame-global-event-details,
+    .pregame-global-event-source {
+        font-size: 13px;
     }
 
     .pregame-view-header h2,
