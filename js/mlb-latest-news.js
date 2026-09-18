@@ -2,6 +2,179 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Top 100 prospects Rincon, Miller power Double-A Reading to Eastern League Championship Series",
+        "summaryJa": "B.リンカン（PHI）ら注目選手の最新動向",
+        "slug": "bryan-rincon-aidan-miller-power-reading-to-eastern-league-championship-series",
+        "url": "https://www.mlb.com/news/bryan-rincon-aidan-miller-power-reading-to-eastern-league-championship-series",
+        "contentDate": "2026-09-18T14:18:53.62Z",
+        "teamIds": [
+            143
+        ],
+        "playerIds": [
+            804858,
+            805795
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "mlb-top-prospects",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "With plenty of options as playoffs near, Cubs have decisions to make in rotation",
+        "summaryJa": "カブスの最新動向をMLB公式が詳報",
+        "slug": "who-will-start-in-playoffs-for-cubs",
+        "url": "https://www.mlb.com/news/who-will-start-in-playoffs-for-cubs",
+        "contentDate": "2026-09-18T14:06:29.438Z",
+        "teamIds": [
+            112
+        ],
+        "playerIds": [],
+        "gamePks": [
+            824463
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Yelich's Clemente Award nomination takes special meaning in Pittsburgh",
+        "summaryJa": "C.イェリッチ（MIL）の最新動向をMLB公式が詳報",
+        "slug": "christian-yelich-nominated-2026-roberto-clemente-award",
+        "url": "https://www.mlb.com/news/christian-yelich-nominated-2026-roberto-clemente-award",
+        "contentDate": "2026-09-18T13:44:54.496Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [
+            592885
+        ],
+        "gamePks": [
+            824790
+        ],
+        "taxonomy": [
+            "apple-news",
+            "roberto-clemente-award"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "In a year of surprises, Mesa a new headliner as 'tooled out' piece for Rays",
+        "summaryJa": "V.メサ Jr.（TB）の最新動向をMLB公式が詳報",
+        "slug": "victor-mesa-jr-has-made-huge-impact-for-rays",
+        "url": "https://www.mlb.com/news/victor-mesa-jr-has-made-huge-impact-for-rays",
+        "contentDate": "2026-09-18T13:41:15.939Z",
+        "teamIds": [
+            139
+        ],
+        "playerIds": [
+            683748
+        ],
+        "gamePks": [
+            822923
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "With passion for giving back, Cantillo earns Clemente Award nomination",
+        "summaryJa": "J.キャンティロ（CLE）の最新動向をMLB公式が詳報",
+        "slug": "joey-cantillo-named-guardians-nominee-for-2026-roberto-clemente-award",
+        "url": "https://www.mlb.com/news/joey-cantillo-named-guardians-nominee-for-2026-roberto-clemente-award",
+        "contentDate": "2026-09-18T13:33:28.805Z",
+        "teamIds": [
+            114
+        ],
+        "playerIds": [
+            676282
+        ],
+        "gamePks": [
+            824383
+        ],
+        "taxonomy": [
+            "roberto-clemente-award",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Top Dodgers pitching prospect Zazueta shines in Double-A playoffs",
+        "summaryJa": "Christian Zazueta（LAD）ら注目選手の最新動向",
+        "slug": "christian-zazueta-strikes-out-7-in-double-a-playoffs",
+        "url": "https://www.mlb.com/news/christian-zazueta-strikes-out-7-in-double-a-playoffs",
+        "contentDate": "2026-09-18T13:26:05.742Z",
+        "teamIds": [
+            119
+        ],
+        "playerIds": [
+            800537
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "mlb-top-prospects",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Basallo saw extra O's gear lying around, and D.R. kids were top of mind",
+        "summaryJa": "S.バサイヨ（BAL）の最新動向をMLB公式が詳報",
+        "slug": "samuel-basallo-gives-extra-o-s-gear-to-dominican-republic-kids",
+        "url": "https://www.mlb.com/news/samuel-basallo-gives-extra-o-s-gear-to-dominican-republic-kids",
+        "contentDate": "2026-09-18T13:14:37.17Z",
+        "teamIds": [
+            110
+        ],
+        "playerIds": [
+            694212
+        ],
+        "gamePks": [
+            824790
+        ],
+        "taxonomy": [
+            "apple-news",
+            "community"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Pirates Insider: Growth shown by Khristian Curtis important for 2027",
+        "summaryJa": "パイレーツを巡る注目点をMLB公式が分析",
+        "slug": "pirates-insider-growth-shown-by-khristian-curtis-important-for-2027",
+        "url": "https://www.mlb.com/news/pirates-insider-growth-shown-by-khristian-curtis-important-for-2027",
+        "contentDate": "2026-09-18T12:56:12.009Z",
+        "teamIds": [
+            134
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "pit-inside-the-pirates"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Jenkins busts out with 1st 3-hit game -- and a HR on 100+ mph heat",
         "summaryJa": "Walker Jenkins（MIN）、記録達成の最新情報",
         "slug": "walker-jenkins-homers-in-big-night-against-angels",
@@ -454,7 +627,6 @@
             "injury"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -5295,28 +5467,6 @@
         ]
     },
     {
-        "headline": "14 straight! Dodgers tie MLB record for most consecutive playoff clinches",
-        "summaryJa": "ドジャース、記録達成の最新情報",
-        "slug": "dodgers-beat-reds-clinch-2026-playoff-berth",
-        "url": "https://www.mlb.com/news/dodgers-beat-reds-clinch-2026-playoff-berth",
-        "contentDate": "2026-09-15T05:42:00Z",
-        "teamIds": [
-            119
-        ],
-        "playerIds": [],
-        "gamePks": [
-            824465
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap",
-            "clincher"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Padres win 8th straight, maintain lead over Arizona in Wild Card chase",
         "summaryJa": "パドレス、記録達成の最新情報",
         "slug": "padres-outlast-rockies-to-win-8th-straight-game",
@@ -6795,29 +6945,6 @@
         ]
     },
     {
-        "headline": "Painter firmly in pitching plans as Phils pursue top NL Wild Card",
-        "summaryJa": "A.ペインター（PHI）、勝利を呼び込む活躍",
-        "slug": "andrew-painter-s-strong-start-helps-phillies-beat-braves",
-        "url": "https://www.mlb.com/news/andrew-painter-s-strong-start-helps-phillies-beat-braves",
-        "contentDate": "2026-09-13T23:59:00Z",
-        "teamIds": [
-            143
-        ],
-        "playerIds": [
-            691725
-        ],
-        "gamePks": [
-            824869
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Surging Devers has season cut short due to core muscle injury",
         "summaryJa": "R.デバース（SF）の負傷状況をMLB公式が詳報",
         "slug": "rafael-devers-placed-on-60-day-injured-list-ending-2026-season",
@@ -7803,26 +7930,6 @@
         ]
     },
     {
-        "headline": "'That's the Joey we know': Cantillo excels after move to 'pen",
-        "summaryJa": "ガーディアンズの最新動向をMLB公式が詳報",
-        "slug": "joey-cantillo-s-strong-relief-outing-not-enough-in-guardians-loss",
-        "url": "https://www.mlb.com/news/joey-cantillo-s-strong-relief-outing-not-enough-in-guardians-loss",
-        "contentDate": "2026-09-13T03:09:00Z",
-        "teamIds": [
-            114
-        ],
-        "playerIds": [],
-        "gamePks": [
-            823657
-        ],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Green Jacket gang: A's welcome quartet into Hall of Fame",
         "summaryJa": "アスレチックスの最新動向をMLB公式が詳報",
         "slug": "mark-ellis-blue-moon-odom-dave-henderson-sandy-alderson-make-a-s-hall-of-fame",
@@ -8088,30 +8195,6 @@
         ],
         "taxonomy": [
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Playoff-hopeful O's need to 'turn the page fast' ahead of crucial finale",
-        "summaryJa": "P.アロンゾ（BAL）、記録達成の最新情報",
-        "slug": "pete-alonso-hits-299th-homer-orioles-lose-to-blue-jays",
-        "url": "https://www.mlb.com/news/pete-alonso-hits-299th-homer-orioles-lose-to-blue-jays",
-        "contentDate": "2026-09-12T23:46:00Z",
-        "teamIds": [
-            110
-        ],
-        "playerIds": [
-            624413,
-            680694
-        ],
-        "gamePks": [
-            822768
-        ],
-        "taxonomy": [
-            "apple-news",
-            "pennant-chase"
         ],
         "sourceScopes": [
             "球団公式"
@@ -8521,52 +8604,6 @@
         ],
         "taxonomy": [
             "apple-news",
-            "game-recap"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Pirates' rookie pitchers falter as margin for error shrinks in NL Wild Card race",
-        "summaryJa": "パイレーツの最新動向をMLB公式が詳報",
-        "slug": "wilber-dotel-khristian-curtis-antwone-kelly-allow-12-runs-to-cubs",
-        "url": "https://www.mlb.com/news/wilber-dotel-khristian-curtis-antwone-kelly-allow-12-runs-to-cubs",
-        "contentDate": "2026-09-12T05:29:00Z",
-        "teamIds": [
-            134
-        ],
-        "playerIds": [],
-        "gamePks": [
-            824631
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap-losing",
-            "mlb-top-prospects"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "After slow start to '26, Bregman continues to be one of NL's best with bat and glove",
-        "summaryJa": "A.ブレグマン（CHC）、記録達成の最新情報",
-        "slug": "alex-bregman-hits-25th-home-run-3-hit-game",
-        "url": "https://www.mlb.com/news/alex-bregman-hits-25th-home-run-3-hit-game",
-        "contentDate": "2026-09-12T05:26:00Z",
-        "teamIds": [
-            112
-        ],
-        "playerIds": [
-            608324
-        ],
-        "gamePks": [
-            824631
-        ],
-        "taxonomy": [
-            "apple-news",
-            "pennant-chase",
             "game-recap"
         ],
         "sourceScopes": [
