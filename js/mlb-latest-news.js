@@ -2,6 +2,55 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Jenkins busts out with 1st 3-hit game -- and a HR on 100+ mph heat",
+        "summaryJa": "Walker Jenkins（MIN）、記録達成の最新情報",
+        "slug": "walker-jenkins-homers-in-big-night-against-angels",
+        "url": "https://www.mlb.com/news/walker-jenkins-homers-in-big-night-against-angels",
+        "contentDate": "2026-09-18T06:42:08.606Z",
+        "teamIds": [
+            142
+        ],
+        "playerIds": [
+            805805
+        ],
+        "gamePks": [
+            823978
+        ],
+        "taxonomy": [
+            "mlb-top-prospects",
+            "apple-news",
+            "clutch-moment"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Plot twist! Story's late-game homer fuels comeback",
+        "summaryJa": "T.ストーリー（BOS）、本塁打で存在感",
+        "slug": "trevor-story-s-late-homer-fuels-red-sox-s-comeback-win-over-rangers",
+        "url": "https://www.mlb.com/news/trevor-story-s-late-homer-fuels-red-sox-s-comeback-win-over-rangers",
+        "contentDate": "2026-09-18T06:14:00Z",
+        "teamIds": [
+            111
+        ],
+        "playerIds": [
+            596115
+        ],
+        "gamePks": [
+            822845
+        ],
+        "taxonomy": [
+            "apple-news",
+            "game-recap",
+            "pennant-chase"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Injuries: Judge, Snell, Red Sox, DeLauter, C. Montgomery, Young",
         "summaryJa": "大谷翔平（LAD）らMLB各球団の最新負傷情報",
         "slug": "baseball-injury-updates",
@@ -144,7 +193,7 @@
         ]
     },
     {
-        "headline": "Tigers' close-game woes strike again as postseason hopes dwindle",
+        "headline": "Tigers' close-game woes strike again as postseason hopes take a hit",
         "summaryJa": "タイガースの最新動向をMLB公式が詳報",
         "slug": "tigers-drop-pivotal-division-game-in-loss-to-white-sox",
         "url": "https://www.mlb.com/news/tigers-drop-pivotal-division-game-in-loss-to-white-sox",
@@ -588,31 +637,6 @@
         ]
     },
     {
-        "headline": "Plot twist! Story's late-game homer fuels comeback",
-        "summaryJa": "T.ストーリー（BOS）、本塁打で存在感",
-        "slug": "trevor-story-s-late-homer-fuels-red-sox-s-comeback-win-over-rangers",
-        "url": "https://www.mlb.com/news/trevor-story-s-late-homer-fuels-red-sox-s-comeback-win-over-rangers",
-        "contentDate": "2026-09-18T03:21:05.661Z",
-        "teamIds": [
-            111
-        ],
-        "playerIds": [
-            596115
-        ],
-        "gamePks": [
-            822845
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap",
-            "pennant-chase"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Latest Mets injuries & transactions",
         "summaryJa": "メッツの負傷状況をMLB公式が詳報",
         "slug": "mets-injuries-and-roster-moves",
@@ -672,6 +696,29 @@
         ],
         "taxonomy": [
             "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Mets' top prospect on Triple-A HR heater (3 straight games) since arrival",
+        "summaryJa": "J.ロハス（NYM）、本塁打で存在感",
+        "slug": "mets-prospect-jefferson-rojas-home-run-streak-triple-a",
+        "url": "https://www.mlb.com/news/mets-prospect-jefferson-rojas-home-run-streak-triple-a",
+        "contentDate": "2026-09-18T02:46:00Z",
+        "teamIds": [
+            121
+        ],
+        "playerIds": [
+            800473
+        ],
+        "gamePks": [
+            823573
+        ],
+        "taxonomy": [
+            "apple-news",
+            "mlb-top-prospects"
         ],
         "sourceScopes": [
             "球団公式"
@@ -4959,27 +5006,6 @@
         ]
     },
     {
-        "headline": "De Paula's Soto-like approach goes a step (or shuffle) further",
-        "summaryJa": "J.デポーラ（LAD）の最新動向をMLB公式が詳報",
-        "slug": "josue-de-paula-draws-comparison-soto-shuffle",
-        "url": "https://www.mlb.com/news/josue-de-paula-draws-comparison-soto-shuffle",
-        "contentDate": "2026-09-15T16:59:09.919Z",
-        "teamIds": [
-            119
-        ],
-        "playerIds": [
-            800543,
-            665742
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "The prospects behind Double-A Hartford's playoff run",
         "summaryJa": "ロッキーズら注目選手の最新動向",
         "slug": "rockies-prospects-in-playoffs-with-double-a-hartford",
@@ -8657,29 +8683,6 @@
         ]
     },
     {
-        "headline": "McLean surrenders 1st HR off curve in Subway Series loss",
-        "summaryJa": "N.マクリーン（NYM）、記録達成の最新情報",
-        "slug": "nolan-mclean-takes-loss-in-first-subway-series-start",
-        "url": "https://www.mlb.com/news/nolan-mclean-takes-loss-in-first-subway-series-start",
-        "contentDate": "2026-09-12T04:11:00Z",
-        "teamIds": [
-            121
-        ],
-        "playerIds": [
-            690997
-        ],
-        "gamePks": [
-            823498
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap-losing"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Marlins using final stretch to give younger players chance to shine",
         "summaryJa": "R.ガスト（MIA）の最新動向をMLB公式が詳報",
         "slug": "ryan-gusto-agustin-ramirez-receiving-chances-down-the-stretch-for-marlins",
@@ -8789,29 +8792,6 @@
         "taxonomy": [
             "mlb-top-prospects",
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Buxton to undergo season-ending hip surgery next week",
-        "summaryJa": "B.バクストン（MIN）の最新動向をMLB公式が詳報",
-        "slug": "byron-buxton-season-ending-hip-surgery",
-        "url": "https://www.mlb.com/news/byron-buxton-season-ending-hip-surgery",
-        "contentDate": "2026-09-11T23:51:00Z",
-        "teamIds": [
-            142
-        ],
-        "playerIds": [
-            621439
-        ],
-        "gamePks": [
-            823659
-        ],
-        "taxonomy": [
-            "apple-news",
-            "injury"
         ],
         "sourceScopes": [
             "球団公式"
