@@ -2439,6 +2439,51 @@
         return standings;
     };
 
+    const getPostseasonDisplayWindow = async (season) => {
+        const params = new URLSearchParams({
+            sportId: "1",
+            season: String(season),
+            gameTypes: "F,D,L,W",
+            hydrate: "seriesStatus"
+        });
+        const payload = await fetchJson(
+            `${API_ROOT}/v1/schedule?${params}`,
+            `pregame:postseason-window:${season}`
+        ).catch(() => null);
+        const games = (payload?.dates ?? [])
+            .flatMap((entry) => entry?.games ?? [])
+            .filter((game) => String(game?.officialDate ?? ""));
+        if (!games.length) return null;
+
+        const postseasonStartDate = games
+            .map((game) => String(game.officialDate))
+            .sort()[0];
+        const worldSeriesGames = games.filter((game) => String(game?.gameType ?? "") === "W");
+        if (!worldSeriesGames.length) return null;
+        const completedWorldSeries = worldSeriesGames
+            .filter((game) => isFinal(game) && game?.seriesStatus?.isOver === true)
+            .sort((left, right) => String(left.officialDate).localeCompare(String(right.officialDate)))
+            .at(-1);
+        const scheduledWorldSeriesEnd = worldSeriesGames
+            .map((game) => String(game.officialDate))
+            .sort()
+            .at(-1);
+
+        return {
+            displayStartDate: `${season}-08-01`,
+            postseasonStartDate,
+            displayEndDate: completedWorldSeries?.officialDate ?? scheduledWorldSeriesEnd,
+            worldSeriesCompleted: Boolean(completedWorldSeries)
+        };
+    };
+
+    const shouldShowPostseasonPicture = (date, window) => Boolean(
+        window?.displayStartDate &&
+        window?.displayEndDate &&
+        window.displayStartDate <= date &&
+        date <= window.displayEndDate
+    );
+
     const hasSecuredHeadToHeadTiebreaker = async (leaderId, challengerId, season, date) => {
         const params = new URLSearchParams({
             sportId: "1",
@@ -2703,11 +2748,14 @@
         return panel;
     };
 
-    const renderPostseasonPicture = async (standings, date) => {
+    const renderPostseasonPicture = async (standings, date, postseasonWindow) => {
         const snapshotDate = previousDate(date);
+        const postseasonStarted = postseasonWindow?.postseasonStartDate <= date;
         const postseasonSection = section(
             "ポストシーズン・ピクチャー",
-            `${formatDate(snapshotDate)}終了時点 / 現在の順位による仮想配置`
+            postseasonStarted
+                ? "ポストシーズン開幕時点の組み合わせ"
+                : `${formatDate(snapshotDate)}終了時点 / 現在の順位による仮想配置`
         );
         postseasonSection.classList.add("pregame-postseason-section");
         const standingsLink = el("a", "pregame-postseason-standings-link", "ポストシーズン・ピクチャー");
@@ -2762,7 +2810,13 @@
             nlMagic
         );
         postseasonSection.append(
-            el("p", "pregame-postseason-note", "シーズン終了時の組み合わせではありません。対象日の試合前に確定していた順位から算出しています。日程は現地日付、*は必要時。"),
+            el(
+                "p",
+                "pregame-postseason-note",
+                postseasonStarted
+                    ? "ポストシーズン開幕時点の組み合わせを表示しています。シリーズの進行・結果は星取表をご確認ください。日程は現地日付、*は必要時。"
+                    : "シーズン終了時の組み合わせではありません。対象日の試合前に確定していた順位から算出しています。日程は現地日付、*は必要時。"
+            ),
             scroll,
             magic,
             el("p", "pregame-postseason-magic-note", "Mは圏外球団の残り試合と、確定済みの直接対決タイブレーカーを基準に算出しています。")
@@ -3052,10 +3106,11 @@
         renderGlobalEvents(date);
         try {
             const season = Number(date.slice(0, 4));
-            const [games, japanesePlayers, standings] = await Promise.all([
+            const [games, japanesePlayers, standings, postseasonWindow] = await Promise.all([
                 getSchedule(date, { fresh: true }),
                 getSeasonJapanesePlayers(season),
-                getStandingsSnapshot(date)
+                getStandingsSnapshot(date),
+                getPostseasonDisplayWindow(season)
             ]);
             const divisionMagic = await divisionMagicByTeam(standings, previousDate(date));
             const teamGame = new Map();
@@ -3259,8 +3314,8 @@
                     });
             }
             dashboard.append(gamesSection);
-            if (date.slice(5) >= "08-01") {
-                dashboard.append(await renderPostseasonPicture(standings, date));
+            if (shouldShowPostseasonPicture(date, postseasonWindow)) {
+                dashboard.append(await renderPostseasonPicture(standings, date, postseasonWindow));
             }
             dom.content.replaceChildren(dashboard);
         } catch (error) {
