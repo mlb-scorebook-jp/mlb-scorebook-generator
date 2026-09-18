@@ -1472,6 +1472,8 @@
             const playerSearchGameFeedCache = new Map();
             const crossGameAtBatFeedCache = new Map();
             const seasonGameDurationCache = new Map();
+            const divisionStandingsCache = new Map();
+            const divisionTitleHistoryCache = new Map();
             let playerSearchResultsGeneration = 0;
             const officialGameArticlesCache = new Map();
             const franchiseLeadersCache = new Map();
@@ -3565,6 +3567,117 @@
                 };
             };
 
+            const shiftOfficialDate = (dateText, days) => {
+                const date = new Date(`${dateText}T12:00:00Z`);
+                if (Number.isNaN(date.getTime())) return "";
+                date.setUTCDate(date.getUTCDate() + days);
+                return date.toISOString().slice(0, 10);
+            };
+
+            const fetchDivisionStandings = (season, date = "") => {
+                const cacheKey = `${season}:${date || "final"}`;
+                if (divisionStandingsCache.has(cacheKey)) {
+                    return divisionStandingsCache.get(cacheKey);
+                }
+                const params = new URLSearchParams({
+                    leagueId: "103,104",
+                    season: String(season),
+                    standingsTypes: "regularSeason",
+                    hydrate: "division,team,league"
+                });
+                if (date) params.set("date", date);
+                const request = fetch(`https://statsapi.mlb.com/api/v1/standings?${params}`)
+                    .then((response) => response.ok ? response.json() : null)
+                    .then((payload) => (payload?.records ?? []).flatMap(
+                        (record) => record?.teamRecords ?? []
+                    ))
+                    .catch(() => []);
+                divisionStandingsCache.set(cacheKey, request);
+                return request;
+            };
+
+            const hasClinchedDivision = (teamRecord) =>
+                ["Y", "Z"].includes(String(teamRecord?.clinchIndicator ?? "").toUpperCase());
+
+            const fetchDivisionTitleYears = (teamId, season) => {
+                const cacheKey = `${teamId}:${season}`;
+                if (divisionTitleHistoryCache.has(cacheKey)) {
+                    return divisionTitleHistoryCache.get(cacheKey);
+                }
+                const request = (async () => {
+                    const years = [];
+                    const candidates = Array.from(
+                        { length: Math.max(0, season - 1969) },
+                        (_, index) => 1969 + index
+                    );
+                    for (let offset = 0; offset < candidates.length; offset += 8) {
+                        const batch = candidates.slice(offset, offset + 8);
+                        const standings = await Promise.all(batch.map((year) =>
+                            fetchDivisionStandings(year)
+                        ));
+                        standings.forEach((records, index) => {
+                            const record = records.find((entry) =>
+                                Number(entry?.team?.id) === Number(teamId)
+                            );
+                            if (hasClinchedDivision(record)) years.push(batch[index]);
+                        });
+                    }
+                    // The split 1981 season does not consistently expose y/z in
+                    // the historical standings feed for its division winners.
+                    if ([119, 120, 133, 147].includes(Number(teamId)) &&
+                        season > 1981 && !years.includes(1981)) {
+                        years.push(1981);
+                        years.sort((left, right) => left - right);
+                    }
+                    return years;
+                })();
+                divisionTitleHistoryCache.set(cacheKey, request);
+                return request;
+            };
+
+            const buildDivisionTitleNote = async ({
+                data, team, code, season, officialDate, gameFinal
+            }) => {
+                const gameType = String(
+                    data?.gameData?.game?.type ?? data?.gameData?.game?.gameType ?? ""
+                ).toUpperCase();
+                const teamId = Number(team?.id);
+                if (!gameFinal || gameType !== "R" || !teamId ||
+                    !/^\d{4}-\d{2}-\d{2}$/.test(officialDate)) return null;
+
+                const previousDate = shiftOfficialDate(officialDate, -1);
+                const [currentStandings, previousStandings] = await Promise.all([
+                    fetchDivisionStandings(season, officialDate),
+                    fetchDivisionStandings(season, previousDate)
+                ]);
+                const current = currentStandings.find((entry) =>
+                    Number(entry?.team?.id) === teamId
+                );
+                const previous = previousStandings.find((entry) =>
+                    Number(entry?.team?.id) === teamId
+                );
+                if (!hasClinchedDivision(current) || hasClinchedDivision(previous)) return null;
+
+                const previousTitleYears = await fetchDivisionTitleYears(teamId, season);
+                const titleCount = previousTitleYears.length + 1;
+                let consecutiveYears = 1;
+                for (let year = season - 1; previousTitleYears.includes(year); year -= 1) {
+                    consecutiveYears += 1;
+                }
+                const lastTitleYear = previousTitleYears.at(-1);
+                const achievement = consecutiveYears >= 2
+                    ? `${consecutiveYears}年連続${titleCount}回目`
+                    : Number.isInteger(lastTitleYear)
+                        ? `${season - lastTitleYear}年ぶり${titleCount}回目`
+                        : `初優勝・${titleCount}回目`;
+                return {
+                    text: `${code}　地区優勝（${achievement}）`,
+                    priority: -10,
+                    link: "https://www.mlb.com/standings/",
+                    linkType: "mlb-official-record"
+                };
+            };
+
             const fetchStreakNotes = async (data, gamePk) => {
                 const gameFinal = isGameFinal(data);
                 const liveRevision = (data?.liveData?.plays?.allPlays ?? []).reduce(
@@ -3678,6 +3791,14 @@
                         };
                     }));
                     const code = getTeamCodeForSeason(team, season);
+                    const divisionTitleNote = await buildDivisionTitleNote({
+                        data,
+                        team,
+                        code,
+                        season,
+                        officialDate,
+                        gameFinal
+                    });
                     const hitLeader = gameFinal
                         ? chooseLongestStreak(analyzed, "hitStreak")
                         : null;
@@ -3697,6 +3818,7 @@
                     const notes = gameFinal
                         ? await buildCareerMilestoneNotes(analyzed, code, context, team)
                         : [];
+                    if (divisionTitleNote) notes.push(divisionTitleNote);
                     if (gameFinal) {
                         const sharedRecords = await sharedDailyRecordsPromise;
                         const sideTeamId = Number(team?.id);
