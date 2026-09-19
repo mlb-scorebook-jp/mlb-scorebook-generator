@@ -2,6 +2,87 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Bracket, tiebreakers and more: Here is the current playoff picture",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "mlb-playoff-picture-and-bracket-2026",
+        "url": "https://www.mlb.com/news/mlb-playoff-picture-and-bracket-2026",
+        "contentDate": "2026-09-19T15:43:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "pennant-chase",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "Martin the picture of humility after Roberto Clemente Award nomination",
+        "summaryJa": "D.マーティン（CWS）の最新動向をMLB公式が詳報",
+        "slug": "davis-martin-nominated-for-roberto-clemente-award",
+        "url": "https://www.mlb.com/news/davis-martin-nominated-for-roberto-clemente-award",
+        "contentDate": "2026-09-19T14:04:58.62Z",
+        "teamIds": [
+            145
+        ],
+        "playerIds": [
+            663436
+        ],
+        "gamePks": [
+            824545
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Giants No. 8 prospect Davidson keeps raking after award-winning August",
+        "summaryJa": "B.デビッドソン（SF）ら注目選手の最新動向",
+        "slug": "giants-prospect-bo-davidson-continues-hot-streak-at-triple-a",
+        "url": "https://www.mlb.com/news/giants-prospect-bo-davidson-continues-hot-streak-at-triple-a",
+        "contentDate": "2026-09-19T13:53:06.285Z",
+        "teamIds": [
+            137
+        ],
+        "playerIds": [
+            815589
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "mlb-top-prospects",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Susana makes 102.6 mph opening statement in Triple-A debut",
+        "summaryJa": "J.スサーナ（WSH）、メジャー昇格・初出場に関する最新情報",
+        "slug": "nationals-prospect-jarlin-susana-makes-triple-a-debut-in-2026",
+        "url": "https://www.mlb.com/news/nationals-prospect-jarlin-susana-makes-triple-a-debut-in-2026",
+        "contentDate": "2026-09-19T12:45:33.775Z",
+        "teamIds": [
+            120
+        ],
+        "playerIds": [
+            703186
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "mlb-top-prospects"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Dodgers celebrate 20th anniversary of '4+1' game with 4-HR inning in rout",
         "summaryJa": "ドジャース、記録達成の最新情報",
         "slug": "dodgers-hit-five-home-runs-to-beat-giants",
@@ -251,7 +332,7 @@
         ]
     },
     {
-        "headline": "'I just blacked out': Lee's 3 RBIs, including go-ahead home run, lead Tigers' comeback",
+        "headline": "'I just blacked out': Lee's 3 RBIs, including game-tying homer, lead Tigers' comeback",
         "summaryJa": "李（り） 灝宇（こうう）（DET）、本塁打で存在感",
         "slug": "hao-yu-lee-drives-in-3-runs-with-4-hits-in-tigers-comeback-win",
         "url": "https://www.mlb.com/news/hao-yu-lee-drives-in-3-runs-with-4-hits-in-tigers-comeback-win",
@@ -495,23 +576,6 @@
         ]
     },
     {
-        "headline": "Bracket, tiebreakers and more: Here is the current playoff picture",
-        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
-        "slug": "mlb-playoff-picture-and-bracket-2026",
-        "url": "https://www.mlb.com/news/mlb-playoff-picture-and-bracket-2026",
-        "contentDate": "2026-09-19T05:11:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "pennant-chase",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB"
-        ]
-    },
-    {
         "headline": "Young out for season, but avoids serious injury after 'terrifying' collision with McLean",
         "summaryJa": "J.ヤング（NYM）の負傷状況をMLB公式が詳報",
         "slug": "jared-young-injured-in-collision-with-nolan-mclean",
@@ -530,6 +594,29 @@
             "injury",
             "apple-news",
             "game-recap-losing"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Montes' prep for clutch HR at Coors? PlayStation, of course",
+        "summaryJa": "マリナーズ、本塁打で存在感",
+        "slug": "lazaro-montes-go-ahead-homer-sends-mariners-past-rockies",
+        "url": "https://www.mlb.com/news/lazaro-montes-go-ahead-homer-sends-mariners-past-rockies",
+        "contentDate": "2026-09-19T05:10:00Z",
+        "teamIds": [
+            136
+        ],
+        "playerIds": [],
+        "gamePks": [
+            824303
+        ],
+        "taxonomy": [
+            "apple-news",
+            "long-home-runs",
+            "mlb-top-prospects",
+            "game-recap"
         ],
         "sourceScopes": [
             "球団公式"
@@ -619,29 +706,6 @@
         "taxonomy": [
             "apple-news",
             "milestone",
-            "game-recap"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Montes' prep for clutch HR at Coors? PlayStation, of course",
-        "summaryJa": "マリナーズ、本塁打で存在感",
-        "slug": "lazaro-montes-go-ahead-homer-sends-mariners-past-rockies",
-        "url": "https://www.mlb.com/news/lazaro-montes-go-ahead-homer-sends-mariners-past-rockies",
-        "contentDate": "2026-09-19T05:01:00Z",
-        "teamIds": [
-            136
-        ],
-        "playerIds": [],
-        "gamePks": [
-            824303
-        ],
-        "taxonomy": [
-            "apple-news",
-            "long-home-runs",
-            "mlb-top-prospects",
             "game-recap"
         ],
         "sourceScopes": [
@@ -927,7 +991,7 @@
         ]
     },
     {
-        "headline": "Flip out! Minor Leaguer sends club to Finals, nails perfect backflip",
+        "headline": "This save celebration might never be topped",
         "summaryJa": "ダイヤモンドバックスの最新動向をMLB公式が詳報",
         "slug": "minor-leaguer-alfred-morillo-hits-backflip-game-ending-save",
         "url": "https://www.mlb.com/news/minor-leaguer-alfred-morillo-hits-backflip-game-ending-save",
@@ -5971,29 +6035,6 @@
         ]
     },
     {
-        "headline": "Top White Sox prospects bolster strong arms en route to High-A affiliate's first South Atlantic League title",
-        "summaryJa": "Kyle Lodise（CWS）、勝利を呼び込む活躍",
-        "slug": "white-sox-high-a-affiliate-wins-2026-south-atlantic-league-title",
-        "url": "https://www.mlb.com/news/white-sox-high-a-affiliate-wins-2026-south-atlantic-league-title",
-        "contentDate": "2026-09-16T04:11:00Z",
-        "teamIds": [
-            145
-        ],
-        "playerIds": [
-            827517,
-            808684,
-            805804
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "mlb-top-prospects"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Blue Jays' stumble continues as Wild Card spot starts to slip away",
         "summaryJa": "ブルージェイズの最新動向をMLB公式が詳報",
         "slug": "blue-jays-continue-to-sink-in-wild-card-race-with-another-loss",
@@ -9217,28 +9258,6 @@
         ]
     },
     {
-        "headline": "Devers lives up to 'Swing of the Day' with grand slam",
-        "summaryJa": "R.デバース（SF）、記録達成の最新情報",
-        "slug": "rafael-devers-hits-9th-career-grand-slam-in-giants-loss-to-padres",
-        "url": "https://www.mlb.com/news/rafael-devers-hits-9th-career-grand-slam-in-giants-loss-to-padres",
-        "contentDate": "2026-09-12T07:36:26.74Z",
-        "teamIds": [
-            137
-        ],
-        "playerIds": [
-            646240
-        ],
-        "gamePks": [
-            823173
-        ],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "'Brutal couple of days' continue as D-backs jump on Rangers' pitching",
         "summaryJa": "レンジャーズの最新動向をMLB公式が詳報",
         "slug": "mackenzie-gore-rangers-can-t-stop-diamondbacks-rally-in-loss",
@@ -9302,28 +9321,6 @@
             "game-recap",
             "takeaways",
             "pennant-chase"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "One at-bat at a time, Nats rally to end 7-game slide",
-        "summaryJa": "ナショナルズの最新動向をMLB公式が詳報",
-        "slug": "nationals-eighth-inning-rally-snaps-losing-streak",
-        "url": "https://www.mlb.com/news/nationals-eighth-inning-rally-snaps-losing-streak",
-        "contentDate": "2026-09-12T04:27:00Z",
-        "teamIds": [
-            120
-        ],
-        "playerIds": [],
-        "gamePks": [
-            822684
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap",
-            "clutch-moment"
         ],
         "sourceScopes": [
             "球団公式"
