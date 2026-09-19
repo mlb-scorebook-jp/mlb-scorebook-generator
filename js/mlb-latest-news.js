@@ -1696,7 +1696,7 @@
         ]
     },
     {
-        "headline": "Bowlan to avoid IL in order to boast Phils' bullpen in October",
+        "headline": "Bowlan to avoid IL in order to boost Phils' bullpen in October",
         "summaryJa": "J.ボウラン（PHI）の最新動向をMLB公式が詳報",
         "slug": "jonathan-bowlan-has-mild-right-groin-strain",
         "url": "https://www.mlb.com/news/jonathan-bowlan-has-mild-right-groin-strain",
