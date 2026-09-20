@@ -2166,6 +2166,65 @@
         return streaks;
     };
 
+    const gamePlateAppearances = (stat) => statNumber(stat?.plateAppearances) ||
+        statNumber(stat?.atBats) +
+        statNumber(stat?.baseOnBalls) +
+        statNumber(stat?.hitByPitch) +
+        statNumber(stat?.sacFlies) +
+        statNumber(stat?.sacBunts) +
+        statNumber(stat?.catcherInterferences);
+
+    const getTrailingHitlessPlateAppearances = async (splits, playerId) => {
+        const ordered = [...splits]
+            .filter((split) => gamePlateAppearances(split?.stat) > 0)
+            .sort((left, right) =>
+                String(right?.date ?? "").localeCompare(String(left?.date ?? "")) ||
+                statNumber(right?.game?.gamePk) - statNumber(left?.game?.gamePk)
+            );
+        let count = 0;
+        let startDate = "";
+        let endDate = String(ordered[0]?.date ?? "");
+
+        for (const split of ordered) {
+            const stat = split?.stat ?? {};
+            const plateAppearances = gamePlateAppearances(stat);
+            const date = String(split?.date ?? "");
+            if (statNumber(stat.hits) === 0) {
+                count += plateAppearances;
+                startDate = date;
+                continue;
+            }
+
+            // Even if the hit came in the first plate appearance, this game cannot
+            // lift the current run to 10. Avoid an unnecessary play-by-play request.
+            if (count + Math.max(0, plateAppearances - 1) < 10) break;
+            const gamePk = Number(split?.game?.gamePk);
+            if (!gamePk) break;
+            const payload = await fetchJson(
+                `${API_ROOT}/v1/game/${gamePk}/playByPlay`,
+                `pregame:play-by-play:${gamePk}`
+            ).catch(() => null);
+            const appearances = (payload?.allPlays ?? []).filter((play) =>
+                Number(play?.matchup?.batter?.id) === Number(playerId)
+            );
+            let trailing = 0;
+            for (let index = appearances.length - 1; index >= 0; index -= 1) {
+                const result = appearances[index]?.result ?? {};
+                const hit = result.isHit === true ||
+                    ["single", "double", "triple", "home_run"].includes(String(result.eventType ?? ""));
+                if (hit) break;
+                trailing += 1;
+            }
+            if (trailing) {
+                count += trailing;
+                startDate = date;
+            }
+            break;
+        }
+
+        return count >= 10 ? { count, startDate, endDate } : null;
+    };
+
     const formatHittingStreak = (streak, label) => {
         const period = streak.startDate
             ? ` ${compactDate(streak.startDate)}〜`
@@ -4885,6 +4944,20 @@
             }
         }
         const featuredAwardNotes = awardNotesByPlayer.get(playerId) ?? [];
+        const hitlessPlateAppearances = groups.includes("hitting")
+            ? await getTrailingHitlessPlateAppearances(priorHittingLogs, playerId)
+            : null;
+        if (hitlessPlateAppearances) {
+            notes.push({
+                text: `${hitlessPlateAppearances.count}打席連続無安打` +
+                    (hitlessPlateAppearances.startDate
+                        ? `（${compactDate(hitlessPlateAppearances.startDate)}〜）`
+                        : ""),
+                href: officialPlayerStatsUrl("hitting", "gamelogs"),
+                hitlessPlateAppearances: true
+            });
+            importance += hitlessPlateAppearances.count;
+        }
         notes.push(...featuredAwardNotes);
         importance += featuredAwardNotes.reduce(
             (total, note) => total + (note.awardPeriod === "month" ? 12 : 8),
