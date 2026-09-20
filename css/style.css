@@ -1464,6 +1464,25 @@ body.app-mode-pregame .score-loading-overlay {
     white-space: normal;
 }
 
+.sheet-meta .start-time-value {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 1px;
+    line-height: 1;
+    text-overflow: clip;
+}
+
+.sheet-meta .start-delay-note {
+    max-width: 100%;
+    overflow: hidden;
+    color: #52665a;
+    font-size: 7px;
+    line-height: 1;
+    text-overflow: clip;
+    white-space: nowrap;
+}
+
 .sheet-meta .attendance-value {
     justify-content: space-between;
     gap: 5px;

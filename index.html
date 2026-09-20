@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MLB Scorebook Generator</title>
     <!-- Score notation update: stacked batted-ball symbol, red hits, blue strikeouts, black other results. -->
-    <link rel="stylesheet" href="css/style.css?v=20260921-rookie-star-2">
+    <link rel="stylesheet" href="css/style.css?v=20260921-actual-start-time-1">
     <link rel="stylesheet" href="css/pregame.css?v=20260920-boj-rate-text-1">
     <link rel="stylesheet" href="css/daily-records.css?v=20260907-story-candidates-2">
 </head>
@@ -4482,18 +4482,10 @@
                 return `${year}年${Number(month)}月${Number(day)}日`;
             };
 
-            const getStartTimeText = (data) => {
-                const iso = data?.gameData?.datetime?.dateTime;
+            const formatGameTime = (value) => {
+                const date = new Date(value);
 
-                if (!iso) {
-                    return "-";
-                }
-
-                const date = new Date(iso);
-
-                if (Number.isNaN(date.getTime())) {
-                    return "-";
-                }
+                if (Number.isNaN(date.getTime())) return "-";
 
                 return new Intl.DateTimeFormat("ja-JP", {
                     hour: "2-digit",
@@ -4501,6 +4493,43 @@
                     hour12: false
                 }).format(date);
             };
+
+            const getStartTimeDetails = (data) => {
+                const scheduledIso = data?.gameData?.datetime?.dateTime;
+
+                if (!scheduledIso) return { time: "-", delayNote: "" };
+
+                const scheduled = new Date(scheduledIso);
+                if (Number.isNaN(scheduled.getTime())) return { time: "-", delayNote: "" };
+
+                const firstPlay = (data?.liveData?.plays?.allPlays ?? [])
+                    .find((play) => Boolean(play?.about?.startTime));
+                const actual = firstPlay?.about?.startTime
+                    ? new Date(firstPlay.about.startTime)
+                    : null;
+                if (!actual || Number.isNaN(actual.getTime())) {
+                    return { time: formatGameTime(scheduled), delayNote: "" };
+                }
+
+                const scheduledMinute = Math.floor(scheduled.getTime() / 60000);
+                const actualMinute = Math.floor(actual.getTime() / 60000);
+                const delayMinutes = Math.max(0, actualMinute - scheduledMinute);
+                const weather = String(data?.gameData?.weather?.condition ?? "").toLowerCase();
+                const rainDelay = delayMinutes >= 10 && /rain|shower|thunderstorm/.test(weather);
+                const delayHours = Math.floor(delayMinutes / 60);
+                const delayRemainder = delayMinutes % 60;
+                const delayText = [
+                    delayHours > 0 ? `${delayHours}時間` : "",
+                    delayRemainder > 0 ? `${delayRemainder}分` : ""
+                ].filter(Boolean).join("");
+
+                return {
+                    time: formatGameTime(actual),
+                    delayNote: rainDelay && delayText ? `雨により${delayText}遅れ` : ""
+                };
+            };
+
+            const getStartTimeText = (data) => getStartTimeDetails(data).time;
 
             const getEndTimeText = (data) => {
                 const endTime = data?.gameData?.datetime?.endTime;
@@ -5278,11 +5307,12 @@
             const buildSheetMeta = (data) => {
                 const fragment = document.createDocumentFragment();
                 const meta = createElement("section", "sheet-meta");
+                const startTime = getStartTimeDetails(data);
 
                 const items = [
                     ["日付", getGameDateText(data)],
                     ["球場", getJapaneseVenueName(data)],
-                    ["開始", getStartTimeText(data)],
+                    ["開始", startTime.time],
                     ["終了", getEndTimeText(data)],
                     ["天候", getWeatherText(data)],
                     ["時間", getDurationText(data)],
@@ -5294,6 +5324,14 @@
                     const valueCell = createElement("div", "", String(value ?? ""));
                     if (label === "状態") {
                         valueCell.classList.add("status-value");
+                    }
+                    if (label === "開始" && startTime.delayNote) {
+                        valueCell.classList.add("start-time-value");
+                        valueCell.textContent = "";
+                        valueCell.append(
+                            createElement("span", "start-time-clock", String(value ?? "-")),
+                            createElement("span", "start-delay-note", startTime.delayNote)
+                        );
                     }
                     if (label === "時間") {
                         const rankLabel = String(
