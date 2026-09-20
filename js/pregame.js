@@ -2578,6 +2578,17 @@
         return match ? `${Number(match[1])}月${Number(match[2])}日` : "";
     };
 
+    const formatContractDollars = (tenThousands) => {
+        const amount = Math.round(Number(tenThousands));
+        if (!Number.isFinite(amount)) return "";
+        if (amount < 10000) return `${amount}万ドル`;
+        const hundredMillions = Math.floor(amount / 10000);
+        const remainder = amount % 10000;
+        return remainder
+            ? `${hundredMillions}億${remainder}万ドル`
+            : `${hundredMillions}億ドル`;
+    };
+
     const normalizeFreeAgentName = (name) => String(name ?? "")
         .normalize("NFD")
         .replace(/[\u0300-\u036f]/g, "")
@@ -2851,7 +2862,7 @@
                             entry.signing.agreedDate || entry.signing.officialDate
                         );
                         const statusText = terms
-                            ? `と${terms.years}年${terms.tenThousands}万ドルで契約` +
+                            ? `と${terms.years}年${formatContractDollars(terms.tenThousands)}で契約` +
                                 (dateText ? `（${dateText}${entry.signing.agreedDate ? "合意" : "公式登録"}）` : "")
                             : `と${entry.signing.minorLeague ? "マイナー契約" : "契約"}` +
                                 (dateText ? `（${dateText}${entry.signing.agreedDate ? "合意" : "公式登録"}）` : "");
@@ -2925,7 +2936,7 @@
                     const status = el(
                         "a",
                         "pregame-free-agent-signing",
-                        `と${signing.years}年${signing.tenThousands}万ドルで契約` +
+                        `と${signing.years}年${formatContractDollars(signing.tenThousands)}で契約` +
                             `（${formatAgreementDate(signing.agreedDate)}合意）`
                     );
                     status.prepend(createFreeAgentTeamLogo(
