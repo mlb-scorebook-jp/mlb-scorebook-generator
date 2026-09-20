@@ -4880,6 +4880,9 @@
     };
 
     const getFeaturedPlayerData = async (entry, date, awardNotesByPlayer = new Map()) => {
+        const MLB_SINGLE_SEASON_BATTER_STRIKEOUT_RECORD = 223;
+        const MLB_SINGLE_SEASON_BATTER_STRIKEOUT_RECORD_URL =
+            "https://www.mlb.com/news/swing-and-miss-ks-part-and-parcel-of-game/c-123689560";
         const playerId = Number(entry?.person?.id);
         const season = Number(date.slice(0, 4));
         if (!playerId) return { entry, notes: [], importance: 0 };
@@ -4957,6 +4960,23 @@
                 hitlessPlateAppearances: true
             });
             importance += hitlessPlateAppearances.count;
+        }
+        if (groups.includes("hitting")) {
+            const seasonStrikeouts = priorHittingLogs.reduce(
+                (total, split) => total + statNumber(split?.stat?.strikeOuts),
+                0
+            );
+            const strikeoutsRemaining = MLB_SINGLE_SEASON_BATTER_STRIKEOUT_RECORD -
+                seasonStrikeouts;
+            if (strikeoutsRemaining >= 1 && strikeoutsRemaining <= 15) {
+                notes.push({
+                    text: `シーズン三振ワースト${MLB_SINGLE_SEASON_BATTER_STRIKEOUT_RECORD}` +
+                        `まであと${strikeoutsRemaining}`,
+                    href: MLB_SINGLE_SEASON_BATTER_STRIKEOUT_RECORD_URL,
+                    seasonStrikeoutRecord: true
+                });
+                importance += 20;
+            }
         }
         notes.push(...featuredAwardNotes);
         importance += featuredAwardNotes.reduce(

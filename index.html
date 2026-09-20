@@ -358,7 +358,7 @@
     <script src="js/daily-calendar-features.js?v=20260901-modern-stats-1"></script>
     <script src="js/daily-records.js?v=20260914-consecutive-homer-names-1"></script>
     <script src="js/mlb-global-events.js?v=20260918-1"></script>
-    <script src="js/pregame.js?v=20260920-hitless-pa-1"></script>
+    <script src="js/pregame.js?v=20260920-season-strikeout-1"></script>
 
     <script>
         (() => {
@@ -1455,6 +1455,9 @@
             };
 
             const streakNotesCache = new Map();
+            const MLB_SINGLE_SEASON_BATTER_STRIKEOUT_RECORD = 223;
+            const MLB_SINGLE_SEASON_BATTER_STRIKEOUT_RECORD_URL =
+                "https://www.mlb.com/news/swing-and-miss-ks-part-and-parcel-of-game/c-123689560";
             const playerGameLogCache = new Map();
             const playerCareerStreakCache = new Map();
             const teamScheduleCache = new Map();
@@ -3820,6 +3823,30 @@
                     const notes = gameFinal
                         ? await buildCareerMilestoneNotes(analyzed, code, context, team)
                         : [];
+                    analyzed.forEach((player) => {
+                        if (isPitcherCandidate(player)) return;
+                        const seasonStrikeouts = player.gameLogSplits
+                            .filter((split) =>
+                                String(split?.date ?? "").slice(0, 10) <= officialDate
+                            )
+                            .reduce(
+                                (total, split) => total +
+                                    (Number(split?.stat?.strikeOuts) || 0),
+                                0
+                            );
+                        const strikeoutsRemaining =
+                            MLB_SINGLE_SEASON_BATTER_STRIKEOUT_RECORD - seasonStrikeouts;
+                        if (strikeoutsRemaining < 1 || strikeoutsRemaining > 15) return;
+                        notes.push({
+                            text: `${code}　${getPersonName(player.person)}　` +
+                                `シーズン三振ワースト` +
+                                `${MLB_SINGLE_SEASON_BATTER_STRIKEOUT_RECORD}` +
+                                `まであと${strikeoutsRemaining}`,
+                            priority: -4,
+                            link: MLB_SINGLE_SEASON_BATTER_STRIKEOUT_RECORD_URL,
+                            linkType: "mlb-official-record"
+                        });
+                    });
                     if (divisionTitleNote) notes.push(divisionTitleNote);
                     if (gameFinal) {
                         const sharedRecords = await sharedDailyRecordsPromise;
