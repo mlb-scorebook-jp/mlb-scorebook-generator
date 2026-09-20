@@ -1872,7 +1872,7 @@ body.app-mode-pregame .score-loading-overlay {
 .scorebook-rookie-star {
     flex: 0 0 auto;
     margin-left: 1px;
-    font-size: 0.78em;
+    font-size: 0.65em;
     line-height: 1;
     vertical-align: baseline;
 }
