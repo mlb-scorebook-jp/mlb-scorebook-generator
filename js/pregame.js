@@ -2950,6 +2950,16 @@
                         status.append(el("span", "pregame-free-agent-new", "NEW"));
                     }
                     details.append(status);
+                } else if (player.outcome?.date <= date) {
+                    const outcome = el(
+                        "a",
+                        "pregame-free-agent-posting-outcome",
+                        player.outcome.status
+                    );
+                    outcome.href = player.outcome.url || player.sourceUrl;
+                    outcome.target = "_blank";
+                    outcome.rel = "noopener noreferrer";
+                    details.append(outcome);
                 }
                 row.append(details);
                 postedList.append(row);

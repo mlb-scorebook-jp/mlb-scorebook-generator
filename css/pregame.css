@@ -1520,6 +1520,16 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
     text-decoration: underline;
 }
 
+.pregame-free-agent-posting-outcome {
+    color: #ff9088;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.pregame-free-agent-posting-outcome:hover {
+    text-decoration: underline;
+}
+
 .pregame-free-agent-details {
     display: flex;
     align-items: center;

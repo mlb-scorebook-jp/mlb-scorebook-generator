@@ -55,7 +55,12 @@
                 position: "RHP",
                 pitcherRole: "SP",
                 postedDate: "2025-11-20",
-                sourceUrl: "https://www.mlb.com/ja/news/kazuma-okamoto-kona-takahashi-posted-for-mlb-free-agency"
+                sourceUrl: "https://www.mlb.com/ja/news/kazuma-okamoto-kona-takahashi-posted-for-mlb-free-agency",
+                outcome: {
+                    date: "2026-01-03",
+                    status: "契約不成立",
+                    url: "https://www.mlb.com/cubs/news/kona-takahashi-returning-to-npb-for-2026"
+                }
             }
         ])
     });
