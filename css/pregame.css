@@ -1563,6 +1563,18 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
     gap: 5px;
 }
 
+.pregame-free-agent-new {
+    display: inline-block;
+    padding: 1px 4px;
+    border-radius: 3px;
+    background: #e53e3e;
+    color: #fff;
+    font-size: 9px;
+    font-weight: 800;
+    line-height: 1.3;
+    letter-spacing: 0.04em;
+}
+
 @media (max-width: 850px) {
     .pregame-free-agent-columns {
         grid-template-columns: 1fr;

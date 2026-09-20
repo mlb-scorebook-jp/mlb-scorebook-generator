@@ -2846,6 +2846,9 @@
                             status.target = "_blank";
                             status.rel = "noopener noreferrer";
                         }
+                        if ((entry.signing.agreedDate || entry.signing.officialDate) === date) {
+                            status.append(el("span", "pregame-free-agent-new", "NEW"));
+                        }
                         if (details) details.append(status);
                         else row.append(status);
                     }
@@ -2909,6 +2912,9 @@
                     status.href = signing.url;
                     status.target = "_blank";
                     status.rel = "noopener noreferrer";
+                    if (signing.agreedDate === date) {
+                        status.append(el("span", "pregame-free-agent-new", "NEW"));
+                    }
                     details.append(status);
                 }
                 row.append(details);
