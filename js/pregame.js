@@ -2697,8 +2697,22 @@
                     playerLink.href = `https://www.mlb.com/player/${entry.playerId}`;
                     playerLink.target = "_blank";
                     playerLink.rel = "noopener noreferrer";
+                    const teamLogo = el("img", "pregame-free-agent-team-logo");
+                    teamLogo.src = teamLogoUrl(entry.formerTeam);
+                    teamLogo.alt = teamJapaneseName(entry.formerTeam);
+                    teamLogo.loading = "lazy";
+                    teamLogo.decoding = "async";
+                    const formerTeamId = Number(entry.formerTeam.id);
+                    if (TEAM_LOGO_STRONG_CONTRAST_IDS.has(formerTeamId)) {
+                        teamLogo.classList.add("pregame-matchup-logo-contrast-strong");
+                    } else if (TEAM_LOGO_SOLID_EDGE_IDS.has(formerTeamId)) {
+                        teamLogo.classList.add("pregame-matchup-logo-edge-solid");
+                    } else if (TEAM_LOGO_CONTRAST_IDS.has(formerTeamId)) {
+                        teamLogo.classList.add("pregame-matchup-logo-contrast");
+                    }
+                    teamLogo.addEventListener("error", () => teamLogo.remove(), { once: true });
                     identity.append(
-                        el("span", "pregame-free-agent-team", teamCode(entry.formerTeam)),
+                        teamLogo,
                         playerLink,
                         el("span", "pregame-free-agent-position", entry.position)
                     );

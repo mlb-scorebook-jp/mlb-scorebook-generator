@@ -1482,10 +1482,16 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
     min-width: 0;
 }
 
-.pregame-free-agent-team,
 .pregame-free-agent-position {
     color: #9fadb5;
     font-size: 10px;
+}
+
+.pregame-free-agent-team-logo {
+    flex: 0 0 18px;
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
 }
 
 .pregame-free-agent-player,
