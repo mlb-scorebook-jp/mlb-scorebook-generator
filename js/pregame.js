@@ -2678,7 +2678,7 @@
     const renderFreeAgentList = async (season, postseasonWindow, date) => {
         const freeAgentSection = section(
             `${season}-${String(season + 1).slice(-2)} フリーエージェント`,
-            "ワールドシリーズ終了後"
+            ""
         );
         freeAgentSection.classList.add("pregame-free-agents-section");
         const groups = await buildFreeAgentGroups(postseasonWindow, date);
