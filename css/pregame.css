@@ -1575,6 +1575,34 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
     letter-spacing: 0.04em;
 }
 
+.pregame-free-agents-collapsed > :not(.pregame-section-header) {
+    display: none;
+}
+
+.pregame-free-agent-collapse-controls {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.pregame-section-header .pregame-free-agent-new {
+    color: #fff;
+}
+
+.pregame-free-agent-toggle {
+    padding: 3px 9px;
+    border: 1px solid #65747d;
+    border-radius: 4px;
+    background: #182025;
+    color: #dbe5ea;
+    font: inherit;
+    cursor: pointer;
+}
+
+.pregame-free-agent-toggle:hover {
+    background: #303c43;
+}
+
 @media (max-width: 850px) {
     .pregame-free-agent-columns {
         grid-template-columns: 1fr;

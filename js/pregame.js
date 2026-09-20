@@ -2550,8 +2550,27 @@
         return parsed.toISOString().slice(0, 10);
     };
 
-    const offseasonSeasonForDate = (date) =>
-        Number(date.slice(5, 7)) <= 7 ? Number(date.slice(0, 4)) - 1 : Number(date.slice(0, 4));
+    const addMonths = (date, months) => {
+        const parsed = new Date(`${date}T12:00:00Z`);
+        parsed.setUTCMonth(parsed.getUTCMonth() + months);
+        return parsed.toISOString().slice(0, 10);
+    };
+
+    const getRegularSeasonStartDate = async (season) => {
+        const params = new URLSearchParams({
+            sportId: "1",
+            season: String(season),
+            gameTypes: "R"
+        });
+        const payload = await fetchJson(
+            `${API_ROOT}/v1/schedule?${params}`,
+            `pregame:regular-season-start:${season}`
+        ).catch(() => null);
+        return (payload?.dates ?? [])
+            .map((entry) => String(entry?.date ?? ""))
+            .filter(Boolean)
+            .sort()[0] ?? "";
+    };
 
     const AL_TEAM_IDS = new Set([108, 110, 111, 114, 116, 117, 118, 133, 136, 139, 140, 141, 142, 145, 147]);
 
@@ -2750,7 +2769,12 @@
         return groups;
     };
 
-    const renderFreeAgentList = async (season, postseasonWindow, date) => {
+    const renderFreeAgentList = async (
+        season,
+        postseasonWindow,
+        date,
+        regularSeasonStartDate = ""
+    ) => {
         const freeAgentSection = section(
             `${season}シーズン終了後 フリーエージェント選手一覧`,
             ""
@@ -2922,6 +2946,35 @@
             });
             postedPanel.append(postedList);
             freeAgentSection.append(postedPanel);
+        }
+        const collapseDate = regularSeasonStartDate
+            ? addMonths(regularSeasonStartDate, 1)
+            : "";
+        if (collapseDate && date >= collapseDate) {
+            const header = freeAgentSection.querySelector(".pregame-section-header");
+            const hasNewContract = [
+                ...Object.values(groups).flat().map((entry) => entry.signing),
+                ...postedPlayers.map((player) => player.signing)
+            ].some((signing) =>
+                (signing?.agreedDate || signing?.officialDate) === date
+            );
+            const controls = el("span", "pregame-free-agent-collapse-controls");
+            if (hasNewContract) {
+                controls.append(el("span", "pregame-free-agent-new", "NEW"));
+            }
+            const toggle = el("button", "pregame-free-agent-toggle", "表示");
+            toggle.type = "button";
+            toggle.setAttribute("aria-expanded", "false");
+            controls.append(toggle);
+            header.append(controls);
+            freeAgentSection.classList.add("pregame-free-agents-collapsed");
+            toggle.addEventListener("click", () => {
+                const collapsed = freeAgentSection.classList.toggle(
+                    "pregame-free-agents-collapsed"
+                );
+                toggle.textContent = collapsed ? "表示" : "閉じる";
+                toggle.setAttribute("aria-expanded", String(!collapsed));
+            });
         }
         return freeAgentSection;
     };
@@ -3548,15 +3601,19 @@
         renderGlobalEvents(date);
         try {
             const season = Number(date.slice(0, 4));
-            const offseasonSeason = offseasonSeasonForDate(date);
-            const [games, japanesePlayers, standings, postseasonWindow, offseasonWindow] = await Promise.all([
+            const priorSeason = season - 1;
+            const [
+                games,
+                japanesePlayers,
+                standings,
+                postseasonWindow,
+                priorPostseasonWindow
+            ] = await Promise.all([
                 getSchedule(date, { fresh: true }),
                 getSeasonJapanesePlayers(season),
                 getStandingsSnapshot(date),
                 getPostseasonDisplayWindow(season),
-                offseasonSeason === season
-                    ? getPostseasonDisplayWindow(season)
-                    : getPostseasonDisplayWindow(offseasonSeason)
+                getPostseasonDisplayWindow(priorSeason)
             ]);
             const divisionMagic = await divisionMagicByTeam(standings, previousDate(date));
             const teamGame = new Map();
@@ -3772,15 +3829,27 @@
             dashboard.append(gamesSection);
             if (shouldShowPostseasonPicture(date, postseasonWindow)) {
                 dashboard.append(await renderPostseasonPicture(standings, date, postseasonWindow));
-            } else if (
-                offseasonWindow?.worldSeriesCompleted &&
-                date > offseasonWindow.displayEndDate &&
-                date < `${offseasonSeason + 1}-08-01`
+            }
+            const currentOffseasonActive = Boolean(
+                postseasonWindow?.worldSeriesCompleted &&
+                date > postseasonWindow.displayEndDate
+            );
+            const freeAgentSeason = currentOffseasonActive ? season : priorSeason;
+            const freeAgentWindow = currentOffseasonActive
+                ? postseasonWindow
+                : priorPostseasonWindow;
+            if (
+                freeAgentWindow?.worldSeriesCompleted &&
+                date > freeAgentWindow.displayEndDate
             ) {
+                const regularSeasonStartDate = await getRegularSeasonStartDate(
+                    freeAgentSeason + 1
+                );
                 dashboard.append(await renderFreeAgentList(
-                    offseasonSeason,
-                    offseasonWindow,
-                    date
+                    freeAgentSeason,
+                    freeAgentWindow,
+                    date,
+                    regularSeasonStartDate
                 ));
             }
             dom.content.replaceChildren(dashboard);
