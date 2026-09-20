@@ -1528,6 +1528,7 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
 }
 
 .pregame-free-agent-posted {
+    width: calc((100% - 12px) / 2);
     margin-top: 8px;
     border: 1px solid #46535b;
     border-radius: 6px;
@@ -1561,6 +1562,10 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
     .pregame-free-agent-row {
         grid-template-columns: 1fr;
         gap: 3px;
+    }
+
+    .pregame-free-agent-posted {
+        width: 100%;
     }
 
 }
