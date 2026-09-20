@@ -6,7 +6,9 @@ const GRAPHQL_URL = "https://data-graph.mlb.com/graphql";
 const NEWS_PATH = "sel-mlb-news-list?$limit=30";
 const TEAM_NEWS_LIMIT = 20;
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
-const outputPath = resolve(root, "js/mlb-latest-news.js");
+const outputPath = process.env.MLB_LATEST_NEWS_OUTPUT
+    ? resolve(process.env.MLB_LATEST_NEWS_OUTPUT)
+    : resolve(root, "js/mlb-latest-news.js");
 const playerNamesPath = resolve(root, "js/players.js");
 
 const normalizeName = (value) => String(value ?? "")

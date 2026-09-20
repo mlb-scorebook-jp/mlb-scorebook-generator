@@ -1439,6 +1439,81 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
     color: #56c985;
 }
 
+.pregame-free-agent-columns {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.pregame-free-agent-league {
+    overflow: hidden;
+    border: 1px solid #43515a;
+    border-radius: 6px;
+    background: #182025;
+}
+
+.pregame-free-agent-league h4 {
+    margin: 0;
+    padding: 8px 10px;
+    border-bottom: 1px solid #43515a;
+    color: #dbe5ea;
+    font-size: 13px;
+}
+
+.pregame-free-agent-row {
+    display: grid;
+    grid-template-columns: minmax(190px, 0.8fr) minmax(0, 1.2fr);
+    align-items: center;
+    gap: 10px;
+    min-height: 30px;
+    padding: 5px 10px;
+    border-bottom: 1px solid #354149;
+    font-size: 11px;
+}
+
+.pregame-free-agent-row:last-child {
+    border-bottom: 0;
+}
+
+.pregame-free-agent-identity {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    min-width: 0;
+}
+
+.pregame-free-agent-team,
+.pregame-free-agent-position {
+    color: #9fadb5;
+    font-size: 10px;
+}
+
+.pregame-free-agent-player,
+.pregame-free-agent-signing {
+    color: inherit;
+    text-decoration: none;
+}
+
+.pregame-free-agent-player:hover,
+.pregame-free-agent-signing:hover {
+    text-decoration: underline;
+}
+
+.pregame-free-agent-signing {
+    color: #56c985;
+}
+
+@media (max-width: 850px) {
+    .pregame-free-agent-columns {
+        grid-template-columns: 1fr;
+    }
+
+    .pregame-free-agent-row {
+        grid-template-columns: 1fr;
+        gap: 3px;
+    }
+}
+
 .pregame-games-section .pregame-pitcher-name {
     min-width: 0;
     overflow: hidden;
