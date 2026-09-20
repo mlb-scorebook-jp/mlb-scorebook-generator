@@ -2559,6 +2559,43 @@
         return match ? `${Number(match[1])}月${Number(match[2])}日` : "";
     };
 
+    const normalizeFreeAgentName = (name) => String(name ?? "")
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/[.’']/g, "")
+        .replace(/[^a-z0-9]+/gi, " ")
+        .trim()
+        .toLowerCase();
+
+    const findFreeAgentContractTerms = (season, person) => {
+        const fullName = normalizeFreeAgentName(person?.fullName);
+        const contract = (window.MLB_FREE_AGENT_CONTRACTS?.[season] ?? [])
+            .find((entry) => normalizeFreeAgentName(entry.name) === fullName);
+        return contract ? {
+            years: Number(contract.years),
+            tenThousands: Number(contract.tenThousands),
+            url: `https://www.fangraphs.com/roster-resource/free-agent-tracker?season=${season + 1}`
+        } : null;
+    };
+
+    const createFreeAgentTeamLogo = (team, label = "") => {
+        const teamLogo = el("img", "pregame-free-agent-team-logo");
+        teamLogo.src = teamLogoUrl(team);
+        teamLogo.alt = label || teamJapaneseName(team);
+        teamLogo.loading = "lazy";
+        teamLogo.decoding = "async";
+        const teamId = Number(team.id);
+        if (TEAM_LOGO_STRONG_CONTRAST_IDS.has(teamId)) {
+            teamLogo.classList.add("pregame-matchup-logo-contrast-strong");
+        } else if (TEAM_LOGO_SOLID_EDGE_IDS.has(teamId)) {
+            teamLogo.classList.add("pregame-matchup-logo-edge-solid");
+        } else if (TEAM_LOGO_CONTRAST_IDS.has(teamId)) {
+            teamLogo.classList.add("pregame-matchup-logo-contrast");
+        }
+        teamLogo.addEventListener("error", () => teamLogo.remove(), { once: true });
+        return teamLogo;
+    };
+
     const parseContractTerms = (article) => {
         const source = [article?.headline, article?.summaryJa]
             .filter(Boolean).join(" ");
@@ -2694,6 +2731,13 @@
             const signing = articleAgreement || officialSigning
                 ? { ...officialSigning, ...articleAgreement }
                 : null;
+            const trackedContract = signing
+                ? findFreeAgentContractTerms(season, entry.person)
+                : null;
+            if (signing && !signing.terms && trackedContract) {
+                signing.terms = trackedContract;
+                signing.url = trackedContract.url;
+            }
             groups[AL_TEAM_IDS.has(entry.formerTeam.id) ? "AL" : "NL"].push({
                 ...entry,
                 signing
@@ -2755,22 +2799,8 @@
                     playerLink.href = `https://www.mlb.com/player/${entry.playerId}`;
                     playerLink.target = "_blank";
                     playerLink.rel = "noopener noreferrer";
-                    const teamLogo = el("img", "pregame-free-agent-team-logo");
-                    teamLogo.src = teamLogoUrl(entry.formerTeam);
-                    teamLogo.alt = teamJapaneseName(entry.formerTeam);
-                    teamLogo.loading = "lazy";
-                    teamLogo.decoding = "async";
-                    const formerTeamId = Number(entry.formerTeam.id);
-                    if (TEAM_LOGO_STRONG_CONTRAST_IDS.has(formerTeamId)) {
-                        teamLogo.classList.add("pregame-matchup-logo-contrast-strong");
-                    } else if (TEAM_LOGO_SOLID_EDGE_IDS.has(formerTeamId)) {
-                        teamLogo.classList.add("pregame-matchup-logo-edge-solid");
-                    } else if (TEAM_LOGO_CONTRAST_IDS.has(formerTeamId)) {
-                        teamLogo.classList.add("pregame-matchup-logo-contrast");
-                    }
-                    teamLogo.addEventListener("error", () => teamLogo.remove(), { once: true });
                     identity.append(
-                        teamLogo,
+                        createFreeAgentTeamLogo(entry.formerTeam),
                         playerLink,
                         entry.pitcherRole
                             ? el("span", "pregame-free-agent-position", entry.position)
@@ -2778,21 +2808,24 @@
                     );
                     row.append(identity);
                     if (entry.signing) {
-                        const destination = teamCode({ id: entry.signing.teamId });
                         const terms = entry.signing.terms;
                         const dateText = formatAgreementDate(
                             entry.signing.agreedDate || entry.signing.officialDate
                         );
                         const statusText = terms
-                            ? `${destination}と${terms.years}年${terms.tenThousands}万ドルで契約` +
-                                (dateText ? `（${dateText}合意）` : "")
-                            : `${destination}と${entry.signing.minorLeague ? "マイナー契約" : "契約"}` +
+                            ? `と${terms.years}年${terms.tenThousands}万ドルで契約` +
+                                (dateText ? `（${dateText}${entry.signing.agreedDate ? "合意" : "公式登録"}）` : "")
+                            : `と${entry.signing.minorLeague ? "マイナー契約" : "契約"}` +
                                 (dateText ? `（${dateText}${entry.signing.agreedDate ? "合意" : "公式登録"}）` : "");
                         const status = el(
                             entry.signing.url ? "a" : "span",
                             "pregame-free-agent-signing",
                             statusText
                         );
+                        status.prepend(createFreeAgentTeamLogo(
+                            { id: entry.signing.teamId },
+                            `${teamCode({ id: entry.signing.teamId })}のロゴ`
+                        ));
                         if (entry.signing.url) {
                             status.href = entry.signing.url;
                             status.target = "_blank";

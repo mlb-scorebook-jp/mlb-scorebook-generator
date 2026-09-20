@@ -1518,6 +1518,9 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
 
 .pregame-free-agent-signing {
     color: #56c985;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
 }
 
 @media (max-width: 850px) {
