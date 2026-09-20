@@ -1576,7 +1576,6 @@
             }
             if (!description && statNumber(stat.strikeOuts) >= 15) description = `${statNumber(stat.strikeOuts)}奪三振`;
             if (!description && statNumber(stat.completeGames) > 0 && statNumber(stat.runs) === 0) description = "完封";
-            if (!description && postseason) description = postseason;
             if (!description) continue;
             notes.unshift({
                 tone: "positive",
