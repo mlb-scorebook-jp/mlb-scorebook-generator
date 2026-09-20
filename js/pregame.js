@@ -2486,6 +2486,9 @@
                         : "AL",
                     wildCardRank: Number.parseInt(teamRecord?.wildCardRank, 10),
                     clinchIndicator: String(teamRecord?.clinchIndicator ?? "").trim(),
+                    officialDivisionMagic: /^\d+$/.test(String(teamRecord?.magicNumber ?? "").trim())
+                        ? Number.parseInt(teamRecord.magicNumber, 10)
+                        : null,
                     eliminationNumber: String(teamRecord?.eliminationNumber ?? "").trim(),
                     wildCardEliminationNumber: String(teamRecord?.wildCardEliminationNumber ?? "").trim(),
                     divisionLeader: teamRecord?.divisionLeader === true ||
@@ -3069,6 +3072,7 @@
         );
         await Promise.all(leaders.map(async ([teamId, standing]) => {
             if (!standing?.divisionLeader || !Number.isFinite(standing.wins)) return;
+            if (!Number.isFinite(standing.officialDivisionMagic) || standing.officialDivisionMagic <= 0) return;
             const challengers = [...standings.values()]
                 .filter((candidate) =>
                     candidate?.division === standing.division &&
