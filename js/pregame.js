@@ -2841,6 +2841,59 @@
             columns.append(panel);
         });
         freeAgentSection.append(columns);
+        const postedPlayers = (window.MLB_NPB_POSTED_PLAYERS?.[season] ?? [])
+            .filter((player) => player.postedDate <= date)
+            .sort((left, right) => left.postedDate.localeCompare(right.postedDate));
+        if (postedPlayers.length) {
+            const postedPanel = el("section", "pregame-free-agent-posted");
+            postedPanel.append(el("h4", "", "NPBポスティング"));
+            const postedList = el("div", "pregame-free-agent-list");
+            postedPlayers.forEach((player) => {
+                const row = el("div", "pregame-free-agent-row");
+                const identity = el("span", "pregame-free-agent-identity");
+                const postingLink = el("a", "pregame-free-agent-player", player.name);
+                postingLink.href = player.sourceUrl;
+                postingLink.target = "_blank";
+                postingLink.rel = "noopener noreferrer";
+                identity.append(
+                    el("span", "pregame-free-agent-npb-team", player.formerTeam),
+                    postingLink,
+                    el("span", "pregame-free-agent-position", player.position)
+                );
+                row.append(identity);
+                const signing = player.signing?.agreedDate <= date ? player.signing : null;
+                if (signing) {
+                    const status = el(
+                        "a",
+                        "pregame-free-agent-signing",
+                        `と${signing.years}年${signing.tenThousands}万ドルで契約` +
+                            `（${formatAgreementDate(signing.agreedDate)}合意）`
+                    );
+                    status.prepend(createFreeAgentTeamLogo(
+                        { id: signing.teamId },
+                        `${teamCode({ id: signing.teamId })}のロゴ`
+                    ));
+                    status.href = signing.url;
+                    status.target = "_blank";
+                    status.rel = "noopener noreferrer";
+                    row.append(status);
+                } else {
+                    const postedDate = formatAgreementDate(player.postedDate);
+                    const status = el(
+                        "a",
+                        "pregame-free-agent-posting-status",
+                        `ポスティング申請（${postedDate}）`
+                    );
+                    status.href = player.sourceUrl;
+                    status.target = "_blank";
+                    status.rel = "noopener noreferrer";
+                    row.append(status);
+                }
+                postedList.append(row);
+            });
+            postedPanel.append(postedList);
+            freeAgentSection.append(postedPanel);
+        }
         return freeAgentSection;
     };
 

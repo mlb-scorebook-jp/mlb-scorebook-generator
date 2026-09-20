@@ -1511,6 +1511,35 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
     text-decoration: none;
 }
 
+.pregame-free-agent-posted {
+    margin-top: 8px;
+    border: 1px solid #46535b;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.pregame-free-agent-posted > h4 {
+    margin: 0;
+    padding: 7px 10px;
+    border-bottom: 1px solid #46535b;
+    font-size: 12px;
+}
+
+.pregame-free-agent-npb-team {
+    color: #9fadb5;
+    min-width: 118px;
+    font-size: 10px;
+}
+
+.pregame-free-agent-posting-status {
+    color: #e5c452;
+    text-decoration: none;
+}
+
+.pregame-free-agent-posting-status:hover {
+    text-decoration: underline;
+}
+
 .pregame-free-agent-player:hover,
 .pregame-free-agent-signing:hover {
     text-decoration: underline;
@@ -1531,6 +1560,10 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
     .pregame-free-agent-row {
         grid-template-columns: 1fr;
         gap: 3px;
+    }
+
+    .pregame-free-agent-npb-team {
+        min-width: 0;
     }
 }
 
