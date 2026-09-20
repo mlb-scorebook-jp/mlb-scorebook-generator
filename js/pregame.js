@@ -1138,9 +1138,13 @@
         return mlbGamedayUrl(selected?.game);
     };
 
-    const hasDailyBattingAppearance = (entry) =>
-        statNumber(entry?.stats?.batting?.gamesPlayed) > 0 ||
-        Boolean(String(entry?.battingOrder ?? "").trim());
+    const hasDailyBattingAppearance = (entry) => {
+        const batting = entry?.stats?.batting ?? {};
+        const plateAppearances = [
+            "atBats", "baseOnBalls", "hitByPitch", "sacBunts", "sacFlies", "catchersInterference"
+        ].reduce((total, field) => total + statNumber(batting[field]), 0);
+        return plateAppearances > 0 || Boolean(String(entry?.battingOrder ?? "").trim());
+    };
 
     const hasDailyPitchingAppearance = (entry) => {
         const pitching = entry?.stats?.pitching ?? {};
@@ -1236,11 +1240,10 @@
                 !isFinal(game) &&
                 Number(game?.teams?.[side]?.probablePitcher?.id) === Number(person.id)
             );
-            if (battingAppearances.length) {
+            if (battingAppearances.length && !roles.pitcher) {
                 roles = {
                     ...roles,
-                    hitter: true,
-                    twoWay: roles.twoWay || roles.pitcher
+                    hitter: true
                 };
             }
             if (pitchingAppearances.length || probableAppearances.length) {
