@@ -1435,6 +1435,10 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
     white-space: nowrap;
 }
 
+.pregame-games-section .pregame-division-magic.is-clinched {
+    color: #56c985;
+}
+
 .pregame-games-section .pregame-pitcher-name {
     min-width: 0;
     overflow: hidden;

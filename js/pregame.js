@@ -3312,10 +3312,20 @@
                     const magicLine = el("span", "pregame-division-magic-line");
                     [away, null, home].forEach((team) => {
                         const number = team?.id ? divisionMagic.get(Number(team.id)) : null;
+                        const standing = team?.id ? standings.get(Number(team.id)) : null;
+                        const divisionChampion = ["Y", "Z"].includes(
+                            String(standing?.clinchIndicator ?? "").toUpperCase()
+                        );
                         magicLine.append(el(
                             "span",
-                            team ? "pregame-division-magic" : "pregame-division-magic-spacer",
-                            Number.isFinite(number) ? `地区優勝マジック${number}` : ""
+                            team
+                                ? `pregame-division-magic${divisionChampion ? " is-clinched" : ""}`
+                                : "pregame-division-magic-spacer",
+                            divisionChampion
+                                ? "地区優勝"
+                                : Number.isFinite(number)
+                                    ? `地区優勝マジック${number}`
+                                    : ""
                         ));
                     });
                     matchupMeta.append(
