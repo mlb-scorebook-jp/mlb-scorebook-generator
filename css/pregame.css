@@ -1500,6 +1500,11 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
     object-fit: contain;
 }
 
+.pregame-free-agent-position {
+    color: #9fadb5;
+    font-size: 10px;
+}
+
 .pregame-free-agent-player,
 .pregame-free-agent-signing {
     color: inherit;

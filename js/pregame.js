@@ -2626,7 +2626,7 @@
         return payload?.transactions ?? [];
     };
 
-    const buildFreeAgentGroups = async (postseasonWindow, date) => {
+    const buildFreeAgentGroups = async (season, postseasonWindow, date) => {
         const startDate = addDays(postseasonWindow.displayEndDate, 1);
         const transactions = await fetchFreeAgentTransactions(startDate, date);
         const freeAgents = new Map();
@@ -2643,6 +2643,36 @@
                 formerTeam: { ...formerTeam, id: formerTeamId }
             });
         });
+        const pitcherIds = [...freeAgents.values()]
+            .filter((entry) => ["RHP", "LHP"].includes(entry.position))
+            .map((entry) => entry.playerId);
+        if (pitcherIds.length) {
+            const params = new URLSearchParams({
+                personIds: pitcherIds.join(","),
+                hydrate: `stats(group=[pitching],type=[season],season=${season})`
+            });
+            const payload = await fetchJson(
+                `${API_ROOT}/v1/people?${params}`,
+                `pregame:free-agent-pitcher-roles:${season}:${pitcherIds.join("-")}`
+            ).catch(() => null);
+            (payload?.people ?? []).forEach((person) => {
+                const entry = freeAgents.get(Number(person?.id));
+                if (!entry) return;
+                const seasonStat = (person?.stats ?? [])
+                    .flatMap((stats) => stats?.splits ?? [])
+                    .find((split) => Number(split?.season) === Number(season))?.stat ?? {};
+                const gamesPitched = Number(seasonStat.gamesPitched) || 0;
+                const gamesStarted = Number(seasonStat.gamesStarted) || 0;
+                entry.pitcherRole = gamesStarted > 0 && gamesStarted >= gamesPitched - gamesStarted
+                    ? "SP"
+                    : "RP";
+            });
+            freeAgents.forEach((entry) => {
+                if (["RHP", "LHP"].includes(entry.position) && !entry.pitcherRole) {
+                    entry.pitcherRole = "RP";
+                }
+            });
+        }
         const signings = new Map();
         transactions.forEach((transaction) => {
             if (String(transaction?.typeCode ?? "") !== "SFA") return;
@@ -2681,7 +2711,7 @@
             ""
         );
         freeAgentSection.classList.add("pregame-free-agents-section");
-        const groups = await buildFreeAgentGroups(postseasonWindow, date);
+        const groups = await buildFreeAgentGroups(season, postseasonWindow, date);
         const columns = el("div", "pregame-free-agent-columns");
         ["AL", "NL"].forEach((league) => {
             const panel = el("section", "pregame-free-agent-league");
@@ -2691,16 +2721,17 @@
                 list.append(empty("該当するFA選手はまだ発表されていません。"));
             } else {
                 const positionLabels = {
+                    SP: "先発投手", RP: "リリーフ投手",
                     C: "捕手（C）", "1B": "一塁手（1B）", "2B": "二塁手（2B）",
                     "3B": "三塁手（3B）", SS: "遊撃手（SS）", LF: "左翼手（LF）",
                     CF: "中堅手（CF）", RF: "右翼手（RF）", OF: "外野手（OF）",
                     DH: "指名打者（DH）", RHP: "右投手（RHP）", LHP: "左投手（LHP）"
                 };
                 const positionOrder = [
-                    "C", "1B", "2B", "3B", "SS", "LF", "CF", "RF", "OF", "DH", "RHP", "LHP"
+                    "SP", "RP", "C", "1B", "2B", "3B", "SS", "LF", "CF", "RF", "OF", "DH"
                 ];
                 const entriesByPosition = groups[league].reduce((map, entry) => {
-                    const position = entry.position || "その他";
+                    const position = entry.pitcherRole || entry.position || "その他";
                     if (!map.has(position)) map.set(position, []);
                     map.get(position).push(entry);
                     return map;
@@ -2740,7 +2771,10 @@
                     teamLogo.addEventListener("error", () => teamLogo.remove(), { once: true });
                     identity.append(
                         teamLogo,
-                        playerLink
+                        playerLink,
+                        entry.pitcherRole
+                            ? el("span", "pregame-free-agent-position", entry.position)
+                            : document.createDocumentFragment()
                     );
                     row.append(identity);
                     if (entry.signing) {
