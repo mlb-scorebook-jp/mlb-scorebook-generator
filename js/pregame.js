@@ -2578,8 +2578,7 @@
         if (!entry) return null;
         return {
             rate: Number(entry.rate),
-            date: entry.date,
-            url: "https://www.stat-search.boj.or.jp/ssi/mtshtml/fxerd04.html"
+            date: entry.date
         };
     };
 
@@ -2813,16 +2812,11 @@
                 minimumFractionDigits: 2,
                 maximumFractionDigits: 2
             });
-            const rateLink = el(
-                "a",
+            headerMeta.append(el(
+                "span",
                 "pregame-free-agent-exchange-rate",
                 `1ドル${rateText}円（${formatAgreementDate(exchangeRate.date)}時点）`
-            );
-            rateLink.href = exchangeRate.url;
-            rateLink.target = "_blank";
-            rateLink.rel = "noopener noreferrer";
-            rateLink.title = "日本銀行 17時時点ドル／円スポット・レート（bid/offer中間値）";
-            headerMeta.append(rateLink);
+            ));
         }
         header.append(headerMeta);
         const columns = el("div", "pregame-free-agent-columns");
