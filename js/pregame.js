@@ -2690,7 +2690,34 @@
             if (!groups[league].length) {
                 list.append(empty("該当するFA選手はまだ発表されていません。"));
             } else {
-                groups[league].forEach((entry) => {
+                const positionLabels = {
+                    C: "捕手（C）", "1B": "一塁手（1B）", "2B": "二塁手（2B）",
+                    "3B": "三塁手（3B）", SS: "遊撃手（SS）", LF: "左翼手（LF）",
+                    CF: "中堅手（CF）", RF: "右翼手（RF）", OF: "外野手（OF）",
+                    DH: "指名打者（DH）", RHP: "右投手（RHP）", LHP: "左投手（LHP）"
+                };
+                const positionOrder = [
+                    "C", "1B", "2B", "3B", "SS", "LF", "CF", "RF", "OF", "DH", "RHP", "LHP"
+                ];
+                const entriesByPosition = groups[league].reduce((map, entry) => {
+                    const position = entry.position || "その他";
+                    if (!map.has(position)) map.set(position, []);
+                    map.get(position).push(entry);
+                    return map;
+                }, new Map());
+                const orderedPositions = [
+                    ...positionOrder.filter((position) => entriesByPosition.has(position)),
+                    ...[...entriesByPosition.keys()]
+                        .filter((position) => !positionOrder.includes(position))
+                        .sort((left, right) => left.localeCompare(right, "en"))
+                ];
+                orderedPositions.forEach((position) => {
+                    list.append(el(
+                        "div",
+                        "pregame-free-agent-position-heading",
+                        positionLabels[position] || position
+                    ));
+                    entriesByPosition.get(position).forEach((entry) => {
                     const row = el("div", "pregame-free-agent-row");
                     const identity = el("span", "pregame-free-agent-identity");
                     const playerLink = el("a", "pregame-free-agent-player", playerName(entry.person));
@@ -2713,8 +2740,7 @@
                     teamLogo.addEventListener("error", () => teamLogo.remove(), { once: true });
                     identity.append(
                         teamLogo,
-                        playerLink,
-                        el("span", "pregame-free-agent-position", entry.position)
+                        playerLink
                     );
                     row.append(identity);
                     if (entry.signing) {
@@ -2741,6 +2767,7 @@
                         row.append(status);
                     }
                     list.append(row);
+                    });
                 });
             }
             panel.append(list);

@@ -1461,6 +1461,16 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
     font-size: 13px;
 }
 
+.pregame-free-agent-position-heading {
+    padding: 5px 10px;
+    border-bottom: 1px solid #43515a;
+    background: #222c32;
+    color: #e1b82f;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+}
+
 .pregame-free-agent-row {
     display: grid;
     grid-template-columns: minmax(190px, 0.8fr) minmax(0, 1.2fr);
@@ -1481,11 +1491,6 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
     align-items: center;
     gap: 7px;
     min-width: 0;
-}
-
-.pregame-free-agent-position {
-    color: #9fadb5;
-    font-size: 10px;
 }
 
 .pregame-free-agent-team-logo {
