@@ -2308,17 +2308,23 @@
                     matchPlayer(rankContext) || matched);
             }
             const rookieContext = searchable.split(/(?<=[.!?])\s+/).find((sentence) =>
-                /rookie (?:record|mark)|franchise record .*rookie|most .* by (?:a|an) rookie/i.test(sentence));
+                /rookie (?:\w+\s+){0,3}(?:record|mark)|franchise record .*rookie|most .* by (?:a|an) rookie/i.test(sentence));
             if (rookieContext) {
+                const rookieHits = searchable.match(
+                    /(\d{1,3})(?:st|nd|rd|th)?(?:\s+and\s+(\d{1,3})(?:st|nd|rd|th)?)?\s+hits?\b(?=[^.!?]{0,240}\brookie\b)/i
+                );
                 const rookieRbi = rookieContext.match(/rookie RBI record(?:\s+with)?\s+(\d{1,3})/i);
                 const rookieHomeRuns = rookieContext.match(
                     /(?:record for )?most home runs by (?:a|an) rookie(?:[^\d]{0,30}(\d{1,3}))?/i
                 );
-                const rookieFact = rookieRbi
-                    ? `${rookieRbi[1]}打点（球団新人記録）`
-                    : rookieHomeRuns
-                        ? `球団新人最多本塁打記録${rookieHomeRuns[1] ? `（${rookieHomeRuns[1]}本）` : ""}`
-                        : "球団新人記録";
+                const rookieHitTotal = rookieHits?.[2] || rookieHits?.[1];
+                const rookieFact = rookieHitTotal
+                    ? `${rookieHitTotal}安打（球団新人記録）`
+                    : rookieRbi
+                        ? `${rookieRbi[1]}打点（球団新人記録）`
+                        : rookieHomeRuns
+                            ? `球団新人最多本塁打記録${rookieHomeRuns[1] ? `（${rookieHomeRuns[1]}本）` : ""}`
+                            : "球団新人記録";
                 addFromArticle("FRANCHISE_ROOKIE_RECORD", rookieFact, article,
                     matchPlayerNearestTo(searchable, /\brookie\b/i) ||
                     matchPlayer(rookieContext) || matched);
