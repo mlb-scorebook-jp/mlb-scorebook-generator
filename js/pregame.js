@@ -2815,7 +2815,7 @@
                         const postingStatus = el(
                             "a",
                             "pregame-free-agent-posting-status",
-                            `ポスティング申請（${formatAgreementDate(entry.postedDate)}）`
+                            `${formatAgreementDate(entry.postedDate)}申請`
                         );
                         postingStatus.href = entry.sourceUrl;
                         postingStatus.target = "_blank";
@@ -2888,7 +2888,7 @@
                 const postingStatus = el(
                     "a",
                     "pregame-free-agent-posting-status",
-                    `ポスティング申請（${formatAgreementDate(player.postedDate)}）`
+                    `${formatAgreementDate(player.postedDate)}申請`
                 );
                 postingStatus.href = player.sourceUrl;
                 postingStatus.target = "_blank";
