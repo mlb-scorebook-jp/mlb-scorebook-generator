@@ -5,7 +5,7 @@
             {
                 name: "村上 宗隆",
                 formerTeam: "東京ヤクルトスワローズ",
-                formerTeamLogoUrl: "https://npb.jp/img/common/logo/2026/logo_s_m.gif",
+                formerTeamLogoUrl: "assets/npb-team-logos/s.png",
                 position: "1B",
                 postedDate: "2025-11-07",
                 sourceUrl: "https://www.mlb.com/news/munetaka-murakami-posted-for-mlb-teams-in-free-agency",
@@ -20,7 +20,7 @@
             {
                 name: "今井 達也",
                 formerTeam: "埼玉西武ライオンズ",
-                formerTeamLogoUrl: "https://npb.jp/img/common/logo/2026/logo_l_m.gif",
+                formerTeamLogoUrl: "assets/npb-team-logos/l.png",
                 position: "RHP",
                 pitcherRole: "SP",
                 postedDate: "2025-11-19",
@@ -36,7 +36,7 @@
             {
                 name: "岡本 和真",
                 formerTeam: "読売ジャイアンツ",
-                formerTeamLogoUrl: "https://npb.jp/img/common/logo/2026/logo_g_m.gif",
+                formerTeamLogoUrl: "assets/npb-team-logos/g.png",
                 position: "3B",
                 postedDate: "2025-11-20",
                 sourceUrl: "https://www.mlb.com/ja/news/kazuma-okamoto-kona-takahashi-posted-for-mlb-free-agency",
@@ -51,7 +51,7 @@
             {
                 name: "髙橋 光成",
                 formerTeam: "埼玉西武ライオンズ",
-                formerTeamLogoUrl: "https://npb.jp/img/common/logo/2026/logo_l_m.gif",
+                formerTeamLogoUrl: "assets/npb-team-logos/l.png",
                 position: "RHP",
                 pitcherRole: "SP",
                 postedDate: "2025-11-20",

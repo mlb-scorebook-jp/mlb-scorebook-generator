@@ -1522,9 +1522,9 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
 
 .pregame-free-agent-details {
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 3px;
+    align-items: center;
+    gap: 10px;
+    white-space: nowrap;
 }
 
 .pregame-free-agent-posted {
