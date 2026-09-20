@@ -2744,33 +2744,6 @@
                 signing
             });
         });
-        (window.MLB_NPB_POSTED_PLAYERS?.[season] ?? [])
-            .filter((player) => player.postedDate <= date && groups[player.league])
-            .forEach((player) => {
-                const signing = player.signing?.agreedDate <= date
-                    ? {
-                        teamId: player.signing.teamId,
-                        agreedDate: player.signing.agreedDate,
-                        terms: {
-                            years: player.signing.years,
-                            tenThousands: player.signing.tenThousands
-                        },
-                        url: player.signing.url
-                    }
-                    : null;
-                groups[player.league].push({
-                    person: { fullName: player.name },
-                    position: player.position,
-                    pitcherRole: player.pitcherRole,
-                    formerTeam: {
-                        name: player.formerTeam,
-                        logoUrl: player.formerTeamLogoUrl
-                    },
-                    sourceUrl: player.sourceUrl,
-                    postedDate: player.postedDate,
-                    signing
-                });
-            });
         Object.values(groups).forEach((entries) => entries.sort((left, right) =>
             playerName(left.person).localeCompare(playerName(right.person), "ja")
         ));
@@ -2885,6 +2858,65 @@
             columns.append(panel);
         });
         freeAgentSection.append(columns);
+        const postedPlayers = (window.MLB_NPB_POSTED_PLAYERS?.[season] ?? [])
+            .filter((player) => player.postedDate <= date)
+            .sort((left, right) => left.postedDate.localeCompare(right.postedDate));
+        if (postedPlayers.length) {
+            const postedPanel = el("section", "pregame-free-agent-posted");
+            postedPanel.append(el("h4", "", "NPBポスティング"));
+            const postedList = el("div", "pregame-free-agent-list");
+            postedPlayers.forEach((player) => {
+                const row = el("div", "pregame-free-agent-row");
+                const identity = el("span", "pregame-free-agent-identity");
+                const postingLink = el("a", "pregame-free-agent-player", player.name);
+                postingLink.href = player.sourceUrl;
+                postingLink.target = "_blank";
+                postingLink.rel = "noopener noreferrer";
+                const positionText = player.pitcherRole === "SP"
+                    ? "投手（先発）"
+                    : ({ "1B": "一塁手（1B）", "3B": "三塁手（3B）" }[player.position] || player.position);
+                identity.append(
+                    createFreeAgentTeamLogo({
+                        name: player.formerTeam,
+                        logoUrl: player.formerTeamLogoUrl
+                    }),
+                    postingLink,
+                    el("span", "pregame-free-agent-position", positionText)
+                );
+                row.append(identity);
+                const details = el("span", "pregame-free-agent-details");
+                const postingStatus = el(
+                    "a",
+                    "pregame-free-agent-posting-status",
+                    `ポスティング申請（${formatAgreementDate(player.postedDate)}）`
+                );
+                postingStatus.href = player.sourceUrl;
+                postingStatus.target = "_blank";
+                postingStatus.rel = "noopener noreferrer";
+                details.append(postingStatus);
+                const signing = player.signing?.agreedDate <= date ? player.signing : null;
+                if (signing) {
+                    const status = el(
+                        "a",
+                        "pregame-free-agent-signing",
+                        `と${signing.years}年${signing.tenThousands}万ドルで契約` +
+                            `（${formatAgreementDate(signing.agreedDate)}合意）`
+                    );
+                    status.prepend(createFreeAgentTeamLogo(
+                        { id: signing.teamId },
+                        `${teamCode({ id: signing.teamId })}のロゴ`
+                    ));
+                    status.href = signing.url;
+                    status.target = "_blank";
+                    status.rel = "noopener noreferrer";
+                    details.append(status);
+                }
+                row.append(details);
+                postedList.append(row);
+            });
+            postedPanel.append(postedList);
+            freeAgentSection.append(postedPanel);
+        }
         return freeAgentSection;
     };
 

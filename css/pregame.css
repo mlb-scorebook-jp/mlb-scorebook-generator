@@ -1527,6 +1527,20 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
     gap: 3px;
 }
 
+.pregame-free-agent-posted {
+    margin-top: 8px;
+    border: 1px solid #46535b;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.pregame-free-agent-posted > h4 {
+    margin: 0;
+    padding: 7px 10px;
+    border-bottom: 1px solid #46535b;
+    font-size: 12px;
+}
+
 .pregame-free-agent-player:hover,
 .pregame-free-agent-signing:hover {
     text-decoration: underline;
