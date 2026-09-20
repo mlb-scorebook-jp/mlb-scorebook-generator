@@ -2573,7 +2573,7 @@
 
     const getUsdJpyRate = async (date) => {
         const payload = await fetchJson(
-            `https://api.frankfurter.app/${date}?from=USD&to=JPY`,
+            `https://api.frankfurter.dev/v1/${date}?from=USD&to=JPY`,
             `pregame:usd-jpy:${date}`
         ).catch(() => null);
         const rate = Number(payload?.rates?.JPY);
