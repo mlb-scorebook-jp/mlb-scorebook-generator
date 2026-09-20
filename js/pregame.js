@@ -2571,6 +2571,17 @@
             .sort()[0] ?? "";
     };
 
+    const getUsdJpyRate = async (date) => {
+        const payload = await fetchJson(
+            `https://api.frankfurter.app/${date}?from=USD&to=JPY`,
+            `pregame:usd-jpy:${date}`
+        ).catch(() => null);
+        const rate = Number(payload?.rates?.JPY);
+        return Number.isFinite(rate) && payload?.date
+            ? { rate, date: String(payload.date) }
+            : null;
+    };
+
     const AL_TEAM_IDS = new Set([108, 110, 111, 114, 116, 117, 118, 133, 136, 139, 140, 141, 142, 145, 147]);
 
     const formatAgreementDate = (date) => {
@@ -2790,7 +2801,24 @@
             ""
         );
         freeAgentSection.classList.add("pregame-free-agents-section");
-        const groups = await buildFreeAgentGroups(season, postseasonWindow, date);
+        const [groups, exchangeRate] = await Promise.all([
+            buildFreeAgentGroups(season, postseasonWindow, date),
+            getUsdJpyRate(date)
+        ]);
+        const header = freeAgentSection.querySelector(".pregame-section-header");
+        const headerMeta = el("span", "pregame-free-agent-header-meta");
+        if (exchangeRate) {
+            const rateText = exchangeRate.rate.toLocaleString("ja-JP", {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            });
+            headerMeta.append(el(
+                "span",
+                "pregame-free-agent-exchange-rate",
+                `1ドル${rateText}円（${formatAgreementDate(exchangeRate.date)}時点）`
+            ));
+        }
+        header.append(headerMeta);
         const columns = el("div", "pregame-free-agent-columns");
         ["AL", "NL"].forEach((league) => {
             const panel = el("section", "pregame-free-agent-league");
@@ -2971,7 +2999,6 @@
             ? addMonths(regularSeasonStartDate, 1)
             : "";
         if (collapseDate && date >= collapseDate) {
-            const header = freeAgentSection.querySelector(".pregame-section-header");
             const hasNewContract = [
                 ...Object.values(groups).flat().map((entry) => entry.signing),
                 ...postedPlayers.map((player) => player.signing)
@@ -2986,7 +3013,7 @@
             toggle.type = "button";
             toggle.setAttribute("aria-expanded", "false");
             controls.append(toggle);
-            header.append(controls);
+            headerMeta.append(controls);
             freeAgentSection.classList.add("pregame-free-agents-collapsed");
             toggle.addEventListener("click", () => {
                 const collapsed = freeAgentSection.classList.toggle(

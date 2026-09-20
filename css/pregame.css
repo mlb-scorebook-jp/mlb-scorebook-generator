@@ -1595,6 +1595,18 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
     gap: 7px;
 }
 
+.pregame-free-agent-header-meta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.pregame-section-header .pregame-free-agent-exchange-rate {
+    color: #c7d3da;
+    font-size: 10px;
+    white-space: nowrap;
+}
+
 .pregame-section-header .pregame-free-agent-new {
     color: #fff;
 }
