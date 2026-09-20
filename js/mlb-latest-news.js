@@ -2,6 +2,86 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "From childhood at Shea to career in the booth, Rose retires a true Mets lifer",
+        "summaryJa": "メッツを巡る注目点をMLB公式が分析",
+        "slug": "howie-rose-retires-as-mets-play-by-play-radio-announcer",
+        "url": "https://www.mlb.com/news/howie-rose-retires-as-mets-play-by-play-radio-announcer",
+        "contentDate": "2026-09-20T14:42:32.048Z",
+        "teamIds": [
+            121
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Mets reschedule Howie Rose ceremony to Opening Weekend 2027",
+        "summaryJa": "メッツを巡る注目点をMLB公式が分析",
+        "slug": "mets-howie-rose-retirement-celebration-postponed-to-2027",
+        "url": "https://www.mlb.com/news/mets-howie-rose-retirement-celebration-postponed-to-2027",
+        "contentDate": "2026-09-20T14:39:52.255Z",
+        "teamIds": [
+            121
+        ],
+        "playerIds": [],
+        "gamePks": [
+            823570
+        ],
+        "taxonomy": [],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Kerkering optioned by Phillies after recent woes in bullpen",
+        "summaryJa": "O.カーカリング（PHI）の最新動向をMLB公式が詳報",
+        "slug": "andrew-painter-phillies-bullpen-falter-late-in-loss-to-mets",
+        "url": "https://www.mlb.com/news/andrew-painter-phillies-bullpen-falter-late-in-loss-to-mets",
+        "contentDate": "2026-09-20T14:21:00Z",
+        "teamIds": [
+            143
+        ],
+        "playerIds": [
+            689147
+        ],
+        "gamePks": [
+            823571
+        ],
+        "taxonomy": [
+            "apple-news",
+            "game-recap-losing"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Latest Phillies injuries & transactions",
+        "summaryJa": "フィリーズの負傷状況をMLB公式が詳報",
+        "slug": "phillies-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/phillies-injuries-and-roster-moves",
+        "contentDate": "2026-09-20T14:20:00Z",
+        "teamIds": [
+            143
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Ryan begins to regain form as Twins' postseason hopes officially end",
         "summaryJa": "J.ライアン（MIN）の最新動向をMLB公式が詳報",
         "slug": "joe-ryan-strikes-out-five-in-twins-loss-to-angels",
@@ -454,29 +534,6 @@
         "taxonomy": [
             "apple-news",
             "mlb-top-prospects"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Kerkering to be optioned by Phillies after recent woes in bullpen",
-        "summaryJa": "O.カーカリング（PHI）の最新動向をMLB公式が詳報",
-        "slug": "andrew-painter-phillies-bullpen-falter-late-in-loss-to-mets",
-        "url": "https://www.mlb.com/news/andrew-painter-phillies-bullpen-falter-late-in-loss-to-mets",
-        "contentDate": "2026-09-20T05:00:00Z",
-        "teamIds": [
-            143
-        ],
-        "playerIds": [
-            689147
-        ],
-        "gamePks": [
-            823571
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap-losing"
         ],
         "sourceScopes": [
             "球団公式"
@@ -1140,7 +1197,6 @@
             "pennant-chase"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -4803,26 +4859,6 @@
             "apple-news",
             "clincher",
             "game-recap"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Latest Phillies injuries & transactions",
-        "summaryJa": "フィリーズの負傷状況をMLB公式が詳報",
-        "slug": "phillies-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/phillies-injuries-and-roster-moves",
-        "contentDate": "2026-09-17T22:21:00Z",
-        "teamIds": [
-            143
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
         ],
         "sourceScopes": [
             "球団公式"
@@ -8533,29 +8569,6 @@
         "taxonomy": [
             "apple-news",
             "game-recap-losing"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Showered with cheers all night, Alonso's return to Citi Field with O's 'much appreciated'",
-        "summaryJa": "P.アロンゾ（NYM）、復帰へ向けた最新状況",
-        "slug": "pete-alonso-returns-to-citi-field-in-search-of-300th-home-run",
-        "url": "https://www.mlb.com/news/pete-alonso-returns-to-citi-field-in-search-of-300th-home-run",
-        "contentDate": "2026-09-15T03:36:00Z",
-        "teamIds": [
-            121,
-            110
-        ],
-        "playerIds": [
-            624413
-        ],
-        "gamePks": [
-            823575
-        ],
-        "taxonomy": [
-            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
