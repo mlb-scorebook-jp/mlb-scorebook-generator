@@ -1542,6 +1542,15 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
     font-size: 12px;
 }
 
+.pregame-free-agent-posted .pregame-free-agent-row {
+    grid-template-columns: 170px minmax(0, 1fr);
+    gap: 6px;
+}
+
+.pregame-free-agent-posted .pregame-free-agent-details {
+    gap: 8px;
+}
+
 .pregame-free-agent-player:hover,
 .pregame-free-agent-signing:hover {
     text-decoration: underline;
@@ -1566,6 +1575,10 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
 
     .pregame-free-agent-posted {
         width: 100%;
+    }
+
+    .pregame-free-agent-posted .pregame-free-agent-row {
+        grid-template-columns: 1fr;
     }
 
 }
