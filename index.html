@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MLB Scorebook Generator</title>
     <!-- Score notation update: stacked batted-ball symbol, red hits, blue strikeouts, black other results. -->
-    <link rel="stylesheet" href="css/style.css?v=20260914-division-magic-1">
+    <link rel="stylesheet" href="css/style.css?v=20260921-rookie-star-1">
     <link rel="stylesheet" href="css/pregame.css?v=20260920-boj-rate-text-1">
     <link rel="stylesheet" href="css/daily-records.css?v=20260907-story-candidates-2">
 </head>
@@ -1235,6 +1235,24 @@
                 link.target = "_blank";
                 link.rel = "noopener noreferrer";
                 return link;
+            };
+
+            const isCurrentSeasonRookie = (person) => {
+                const debutYear = Number(String(person?.mlbDebutDate ?? "").slice(0, 4));
+                const officialDate = String(
+                    state.gameData?.gameData?.datetime?.officialDate ?? ""
+                );
+                const season = Number(state.gameData?.gameData?.game?.season) ||
+                    Number(officialDate.slice(0, 4));
+                return Number.isInteger(debutYear) && Number.isInteger(season) &&
+                    debutYear === season;
+            };
+
+            const appendPlayerNameWithRookieMark = (container, person, text = getPersonName(person)) => {
+                container.append(createPlayerProfileLink(person, text));
+                if (isCurrentSeasonRookie(person)) {
+                    container.append(createElement("span", "scorebook-rookie-star", "☆"));
+                }
             };
 
             const getMlbGamedayAtBatUrl = (gamePk, atBatIndex) => {
@@ -5552,7 +5570,11 @@
                         if (className.includes("name-cell")) {
                             entry.textContent = "";
                             const nameContent = createElement("span", "lineup-name-content");
-                            nameContent.append(createPlayerProfileLink(player?.person ?? {}, value));
+                            appendPlayerNameWithRookieMark(
+                                nameContent,
+                                player?.person ?? {},
+                                value
+                            );
                             const playerId = Number(player?.person?.id);
                             const supplement = substitutionEntries.get(`${side}-${playerId}`);
                             if (supplement) {
@@ -7189,7 +7211,7 @@
                         `substitution-name substitution-${item.role} substitution-${item.teamSide}`
                     );
                     if (rolePrefix) name.append(document.createTextNode(rolePrefix));
-                    name.append(createPlayerProfileLink(item.person, item.name));
+                    appendPlayerNameWithRookieMark(name, item.person, item.name);
                     names.append(name);
                 });
                 indicator.append(wave, names);
@@ -7336,6 +7358,9 @@
                     const pitcherNameLink = createPlayerProfileLink(person);
                     pitcherNameLink.classList.add("bench-pitcher-name");
                     entry.append(pitcherNameLink);
+                    if (isCurrentSeasonRookie(person)) {
+                        entry.append(createElement("span", "scorebook-rookie-star", "☆"));
+                    }
                     if (arm) entry.append(document.createTextNode(`（${arm}）`));
                     flow.append(entry);
                 });
@@ -7440,7 +7465,10 @@
                         if (valueIndex === 0) {
                             td.className = "pitcher-column";
                             td.textContent = "";
-                            td.append(createPlayerProfileLink(pitcher?.person ?? {}, String(value ?? "")));
+                            const person = pitcher?.person ?? {};
+                            appendPlayerNameWithRookieMark(td, person, pitcherName);
+                            const decision = pitcher ? getPitcherDecisionSuffix(person) : "";
+                            if (decision) td.append(document.createTextNode(decision));
                         }
                         else if (valueIndex === 1) td.className = "pitch-count-column";
                         else td.className = "stat-column";

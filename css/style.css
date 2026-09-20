@@ -1869,6 +1869,14 @@ body.app-mode-pregame .score-loading-overlay {
     white-space: nowrap;
 }
 
+.scorebook-rookie-star {
+    flex: 0 0 auto;
+    margin-left: 1px;
+    font-size: 0.78em;
+    line-height: 1;
+    vertical-align: baseline;
+}
+
 .lineup-substitution-supplement {
     flex: 0 0 auto;
     font-size: 8px;
