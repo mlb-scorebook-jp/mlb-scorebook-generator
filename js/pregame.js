@@ -2572,14 +2572,15 @@
     };
 
     const getUsdJpyRate = async (date) => {
-        const payload = await fetchJson(
-            `https://api.frankfurter.dev/v1/${date}?from=USD&to=JPY`,
-            `pregame:usd-jpy:${date}`
-        ).catch(() => null);
-        const rate = Number(payload?.rates?.JPY);
-        return Number.isFinite(rate) && payload?.date
-            ? { rate, date: String(payload.date) }
-            : null;
+        const entry = [...(window.MLB_BOJ_USD_JPY ?? [])]
+            .filter((item) => item.date <= date && Number.isFinite(Number(item.rate)))
+            .sort((left, right) => right.date.localeCompare(left.date))[0];
+        if (!entry) return null;
+        return {
+            rate: Number(entry.rate),
+            date: entry.date,
+            url: "https://www.stat-search.boj.or.jp/ssi/mtshtml/fxerd04.html"
+        };
     };
 
     const AL_TEAM_IDS = new Set([108, 110, 111, 114, 116, 117, 118, 133, 136, 139, 140, 141, 142, 145, 147]);
@@ -2812,11 +2813,16 @@
                 minimumFractionDigits: 2,
                 maximumFractionDigits: 2
             });
-            headerMeta.append(el(
-                "span",
+            const rateLink = el(
+                "a",
                 "pregame-free-agent-exchange-rate",
                 `1ドル${rateText}円（${formatAgreementDate(exchangeRate.date)}時点）`
-            ));
+            );
+            rateLink.href = exchangeRate.url;
+            rateLink.target = "_blank";
+            rateLink.rel = "noopener noreferrer";
+            rateLink.title = "日本銀行 17時時点ドル／円スポット・レート（bid/offer中間値）";
+            headerMeta.append(rateLink);
         }
         header.append(headerMeta);
         const columns = el("div", "pregame-free-agent-columns");

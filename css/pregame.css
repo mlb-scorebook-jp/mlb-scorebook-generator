@@ -1604,7 +1604,12 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
 .pregame-section-header .pregame-free-agent-exchange-rate {
     color: #c7d3da;
     font-size: 10px;
+    text-decoration: none;
     white-space: nowrap;
+}
+
+.pregame-section-header .pregame-free-agent-exchange-rate:hover {
+    text-decoration: underline;
 }
 
 .pregame-section-header .pregame-free-agent-new {
