@@ -2,6 +2,75 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Latest Giants injuries & transactions",
+        "summaryJa": "ジャイアンツの負傷状況をMLB公式が詳報",
+        "slug": "giants-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/giants-injuries-and-roster-moves",
+        "contentDate": "2026-09-22T06:37:00Z",
+        "teamIds": [
+            137
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "transactions",
+            "injury",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Tidwell leaves start with right elbow discomfort, will get MRI on Tuesday",
+        "summaryJa": "B.ティドウェル（SF）の負傷状況をMLB公式が詳報",
+        "slug": "blade-tidwell-leaves-start-against-twins-with-right-elbow-injury",
+        "url": "https://www.mlb.com/news/blade-tidwell-leaves-start-against-twins-with-right-elbow-injury",
+        "contentDate": "2026-09-22T06:32:25.491Z",
+        "teamIds": [
+            137
+        ],
+        "playerIds": [
+            694918
+        ],
+        "gamePks": [
+            823169
+        ],
+        "taxonomy": [
+            "apple-news",
+            "injury"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "What Davidson did in Giants debut hasn't been seen in nearly a century",
+        "summaryJa": "B.デビッドソン（SF）、メジャー昇格・初出場に関する最新情報",
+        "slug": "bo-davidson-records-first-hit-and-steal-in-mlb-debut-in-giants-win",
+        "url": "https://www.mlb.com/news/bo-davidson-records-first-hit-and-steal-in-mlb-debut-in-giants-win",
+        "contentDate": "2026-09-22T06:24:00Z",
+        "teamIds": [
+            137
+        ],
+        "playerIds": [
+            815589
+        ],
+        "gamePks": [
+            823169
+        ],
+        "taxonomy": [
+            "apple-news",
+            "game-recap",
+            "milestone",
+            "mlb-top-prospects"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Watch top prospect Nimmala play for a Double-A championship FREE tonight",
         "summaryJa": "MLBの最新情報ら注目選手の最新動向",
         "slug": "watch-minor-league-baseball-games-for-free-2026",
@@ -66,32 +135,6 @@
             "mlb-top-prospects",
             "apple-news",
             "minor-league-baseball"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "What Davidson did in Giants debut hasn't been seen in nearly a century",
-        "summaryJa": "B.デビッドソン（SF）、メジャー昇格・初出場に関する最新情報",
-        "slug": "bo-davidson-records-first-hit-and-steal-in-mlb-debut-in-giants-win",
-        "url": "https://www.mlb.com/news/bo-davidson-records-first-hit-and-steal-in-mlb-debut-in-giants-win",
-        "contentDate": "2026-09-22T04:36:53.459Z",
-        "teamIds": [
-            137
-        ],
-        "playerIds": [
-            815589
-        ],
-        "gamePks": [
-            823169
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap",
-            "milestone",
-            "mlb-top-prospects"
         ],
         "sourceScopes": [
             "MLB",
@@ -409,26 +452,6 @@
         ],
         "sourceScopes": [
             "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Latest Giants injuries & transactions",
-        "summaryJa": "ジャイアンツの負傷状況をMLB公式が詳報",
-        "slug": "giants-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/giants-injuries-and-roster-moves",
-        "contentDate": "2026-09-22T00:35:00Z",
-        "teamIds": [
-            137
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "transactions",
-            "injury",
-            "exclude-from-personalization"
-        ],
-        "sourceScopes": [
             "球団公式"
         ]
     },
@@ -8761,27 +8784,6 @@
         ],
         "taxonomy": [
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Mets' top prospect Rojas makes power-packed statement in Triple-A debut",
-        "summaryJa": "J.ロハス（NYM）、メジャー昇格・初出場に関する最新情報",
-        "slug": "mets-prospect-jefferson-rojas-homers-in-triple-a-debut",
-        "url": "https://www.mlb.com/news/mets-prospect-jefferson-rojas-homers-in-triple-a-debut",
-        "contentDate": "2026-09-16T02:16:50.588Z",
-        "teamIds": [
-            121
-        ],
-        "playerIds": [
-            800473
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "mlb-top-prospects"
         ],
         "sourceScopes": [
             "球団公式"
