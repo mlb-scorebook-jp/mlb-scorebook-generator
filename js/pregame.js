@@ -5409,7 +5409,88 @@
         return notesByPlayer;
     };
 
-    const getFeaturedPlayerData = async (entry, date, awardNotesByPlayer = new Map()) => {
+    const LEAGUE_TOP_FIVE_DEFINITIONS = Object.freeze({
+        hitting: Object.freeze({
+            hits: { label: "安打", format: (value) => `${value}本` },
+            homeRuns: { label: "本塁打", format: (value) => `${value}本` },
+            runsBattedIn: { label: "打点", format: (value) => String(value) },
+            battingAverage: { label: "打率", format: (value) => String(value) },
+            stolenBases: { label: "盗塁", format: (value) => String(value) },
+            onBasePlusSlugging: { label: "OPS", format: (value) => String(value) }
+        }),
+        pitching: Object.freeze({
+            wins: { label: "勝利", format: (value) => `${value}勝` },
+            earnedRunAverage: { label: "防御率", format: (value) => String(value) },
+            strikeouts: { label: "奪三振", format: (value) => String(value) },
+            saves: { label: "セーブ", format: (value) => String(value) },
+            gamesPlayed: { label: "登板", format: (value) => `${value}試合` }
+        })
+    });
+
+    const getLeagueTopFiveNotes = async (date) => {
+        const season = Number(String(date).slice(0, 4));
+        const endDate = previousDate(date);
+        const notesByPlayer = new Map();
+        if (!Number.isFinite(season) || endDate < `${season}-01-01`) return notesByPlayer;
+
+        const requests = [
+            { league: "AL", leagueId: 103 },
+            { league: "NL", leagueId: 104 }
+        ].flatMap(({ league, leagueId }) =>
+            Object.entries(LEAGUE_TOP_FIVE_DEFINITIONS).map(async ([group, definitions]) => {
+                const params = new URLSearchParams({
+                    leaderCategories: Object.keys(definitions).join(","),
+                    statGroup: group,
+                    statType: "byDateRange",
+                    sportId: "1",
+                    leagueId: String(leagueId),
+                    gameType: "R",
+                    startDate: `${season}-01-01`,
+                    endDate,
+                    limit: "10"
+                });
+                const payload = await fetchJson(
+                    `${API_ROOT}/v1/stats/leaders?${params}`,
+                    `pregame:league-top-five:${leagueId}:${group}:${endDate}`
+                ).catch(() => null);
+                return (payload?.leagueLeaders ?? []).flatMap((category) => {
+                    const categoryName = String(category?.leaderCategory ?? "");
+                    const definition = definitions[categoryName];
+                    if (!definition) return [];
+                    const leaders = category?.leaders ?? [];
+                    const valueCounts = new Map();
+                    leaders.forEach((leader) => {
+                        const value = String(leader?.value ?? "");
+                        valueCounts.set(value, (valueCounts.get(value) ?? 0) + 1);
+                    });
+                    return leaders
+                        .filter((leader) => Number(leader?.rank) >= 1 && Number(leader.rank) <= 5)
+                        .map((leader) => ({
+                            playerId: Number(leader?.person?.id),
+                            group,
+                            category: categoryName,
+                            text: `${definition.label}${definition.format(leader.value)}` +
+                                `（${league}${Number(leader.rank)}位` +
+                                `${(valueCounts.get(String(leader.value)) ?? 0) > 1 ? "タイ" : ""}）`
+                        }));
+                });
+            })
+        );
+        (await Promise.all(requests)).flat().forEach((note) => {
+            if (!Number.isFinite(note.playerId)) return;
+            const notes = notesByPlayer.get(note.playerId) ?? [];
+            notes.push({ ...note, leagueRanking: true });
+            notesByPlayer.set(note.playerId, notes);
+        });
+        return notesByPlayer;
+    };
+
+    const getFeaturedPlayerData = async (
+        entry,
+        date,
+        awardNotesByPlayer = new Map(),
+        leagueRankingNotesByPlayer = new Map()
+    ) => {
         const MLB_SINGLE_SEASON_BATTER_STRIKEOUT_RECORD = 223;
         const MLB_SINGLE_SEASON_BATTER_STRIKEOUT_RECORD_URL =
             "https://www.mlb.com/news/swing-and-miss-ks-part-and-parcel-of-game/c-123689560";
@@ -5452,6 +5533,14 @@
             if (view === "gamelogs") url.searchParams.set("year", String(season));
             return url.toString();
         };
+        const leagueRankingNotes = (leagueRankingNotesByPlayer.get(playerId) ?? [])
+            .filter((note) => groups.includes(note.group))
+            .map((note) => ({
+                ...note,
+                href: officialPlayerStatsUrl(note.group, "season")
+            }));
+        notes.push(...leagueRankingNotes);
+        importance += leagueRankingNotes.length * 25;
         if (previousGame) {
             const stat = previousGame.stat ?? {};
             const hits = statNumber(stat.hits);
@@ -5640,9 +5729,11 @@
         row.append(link);
         const monthlyAverageNote = featured.notes.find((note) => note.monthlyAverage);
         const featuredAwardNotes = featured.notes.filter((note) => note.featuredAward);
+        const leagueRankingNotes = featured.notes.filter((note) => note.leagueRanking);
         const displayedNotes = featured.notes
-            .filter((note) => !note.monthlyAverage && !note.featuredAward)
+            .filter((note) => !note.monthlyAverage && !note.featuredAward && !note.leagueRanking)
             .slice(0, 3);
+        displayedNotes.unshift(...leagueRankingNotes);
         displayedNotes.push(...featuredAwardNotes);
         if (monthlyAverageNote) displayedNotes.push(monthlyAverageNote);
         displayedNotes.forEach((note) => {
@@ -5936,7 +6027,10 @@
                 getFeaturedPlayers(feed, "away", date),
                 getFeaturedPlayers(feed, "home", date)
             ]);
-            const featuredAwards = await getRecentFeaturedAwards(date);
+            const [featuredAwards, leagueTopFiveNotes] = await Promise.all([
+                getRecentFeaturedAwards(date),
+                getLeagueTopFiveNotes(date)
+            ]);
             const latestArticles = relevantLatestNews(
                 [awayTeam, homeTeam],
                 [...rosterBySide.away, ...rosterBySide.home],
@@ -5960,7 +6054,12 @@
                 const list = el("ul", "pregame-data-list");
                 const starters = rosterBySide[side];
                 const featured = (await Promise.all(
-                    starters.map((entry) => getFeaturedPlayerData(entry, date, featuredAwards))
+                    starters.map((entry) => getFeaturedPlayerData(
+                        entry,
+                        date,
+                        featuredAwards,
+                        leagueTopFiveNotes
+                    ))
                 )).filter((player) => player.notes.length > 0).sort((a, b) =>
                     b.importance - a.importance ||
                     statNumber(b.entry?.seasonStats?.batting?.ops) -
