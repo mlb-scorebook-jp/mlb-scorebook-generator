@@ -2,6 +2,174 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "After making history at Triple-A, slugger Sabato joins Twins",
+        "summaryJa": "A.サバ―ト（MIN）、メジャー昇格・初出場に関する最新情報",
+        "slug": "aaron-sabato-twins-callup",
+        "url": "https://www.mlb.com/news/aaron-sabato-twins-callup",
+        "contentDate": "2026-09-22T01:13:00Z",
+        "teamIds": [
+            142
+        ],
+        "playerIds": [
+            693306
+        ],
+        "gamePks": [
+            823169
+        ],
+        "taxonomy": [
+            "apple-news",
+            "mlb-debut"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Fifth Third's first star? Naturally, it's No. 53",
+        "summaryJa": "B.マルジェーリ（DET）、本塁打で存在感",
+        "slug": "ben-malgeri-homer-catches-tigers-fifth-third-park",
+        "url": "https://www.mlb.com/news/ben-malgeri-homer-catches-tigers-fifth-third-park",
+        "contentDate": "2026-09-22T01:07:48.045Z",
+        "teamIds": [
+            116
+        ],
+        "playerIds": [
+            701162
+        ],
+        "gamePks": [
+            824221
+        ],
+        "taxonomy": [
+            "apple-news",
+            "game-recap",
+            "final-week"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Latest Giants injuries & transactions",
+        "summaryJa": "ジャイアンツの負傷状況をMLB公式が詳報",
+        "slug": "giants-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/giants-injuries-and-roster-moves",
+        "contentDate": "2026-09-22T00:35:00Z",
+        "teamIds": [
+            137
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "transactions",
+            "injury",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Bateman exits with apparent injury after outstanding sliding catch",
+        "summaryJa": "B.ベイトマン（TOR）の負傷状況をMLB公式が詳報",
+        "slug": "brett-bateman-exits-with-injury-after-sliding-catch",
+        "url": "https://www.mlb.com/news/brett-bateman-exits-with-injury-after-sliding-catch",
+        "contentDate": "2026-09-22T00:33:16.894Z",
+        "teamIds": [
+            141
+        ],
+        "playerIds": [
+            703520
+        ],
+        "gamePks": [
+            824787
+        ],
+        "taxonomy": [
+            "apple-news",
+            "injury"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Watch top prospect Nimmala play for a Double-A championship FREE on Tuesday",
+        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
+        "slug": "watch-minor-league-baseball-games-for-free-2026",
+        "url": "https://www.mlb.com/news/watch-minor-league-baseball-games-for-free-2026",
+        "contentDate": "2026-09-21T23:53:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "mlb-top-prospects",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "From Harlem to Surgeon General: Dr. Richard Carmona Honored with the Los D-backs Pete Garcia Hispanic Leadership Award",
+        "summaryJa": "ダイヤモンドバックスの最新動向をMLB公式が詳報",
+        "slug": "los-d-backs-pete-garcia-hispanic-leadership-award-goes-to-dr-richard-carmona",
+        "url": "https://www.mlb.com/news/los-d-backs-pete-garcia-hispanic-leadership-award-goes-to-dr-richard-carmona",
+        "contentDate": "2026-09-21T23:29:23.688Z",
+        "teamIds": [
+            109
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "community"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Ryan makes Tigers debut, first MLB appearance since 2024",
+        "summaryJa": "R.ライアン（DET）、メジャー昇格・初出場に関する最新情報",
+        "slug": "river-ryan-set-to-make-tigers-debut-on-monday",
+        "url": "https://www.mlb.com/news/river-ryan-set-to-make-tigers-debut-on-monday",
+        "contentDate": "2026-09-21T22:56:00Z",
+        "teamIds": [
+            116
+        ],
+        "playerIds": [
+            689981
+        ],
+        "gamePks": [
+            824546
+        ],
+        "taxonomy": [
+            "apple-news",
+            "transactions",
+            "mlb-top-prospects"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Here are the Minor League champions of the 2026 season",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "2026-minor-league-champions",
+        "url": "https://www.mlb.com/news/2026-minor-league-champions",
+        "contentDate": "2026-09-21T22:45:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "mlb-top-prospects"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
         "headline": "Melton (arm fatigue) placed on IL, done for season",
         "summaryJa": "T.メルトン（DET）の負傷状況をMLB公式が詳報",
         "slug": "troy-melton-exits-start-with-forearm-tightness",
@@ -19,7 +187,8 @@
         ],
         "taxonomy": [
             "apple-news",
-            "injury"
+            "injury",
+            "transactions"
         ],
         "sourceScopes": [
             "球団公式"
@@ -288,29 +457,6 @@
         ],
         "sourceScopes": [
             "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "After making history at Triple-A, slugger Sabato joins Twins",
-        "summaryJa": "A.サバ―ト（MIN）、メジャー昇格・初出場に関する最新情報",
-        "slug": "aaron-sabato-twins-callup",
-        "url": "https://www.mlb.com/news/aaron-sabato-twins-callup",
-        "contentDate": "2026-09-21T18:24:25.466Z",
-        "teamIds": [
-            142
-        ],
-        "playerIds": [
-            693306
-        ],
-        "gamePks": [
-            823169
-        ],
-        "taxonomy": [
-            "apple-news",
-            "mlb-debut"
-        ],
-        "sourceScopes": [
             "球団公式"
         ]
     },
@@ -1058,23 +1204,6 @@
         ]
     },
     {
-        "headline": "Watch top prospect Nimmala play for a Double-A championship FREE on Tuesday",
-        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
-        "slug": "watch-minor-league-baseball-games-for-free-2026",
-        "url": "https://www.mlb.com/news/watch-minor-league-baseball-games-for-free-2026",
-        "contentDate": "2026-09-21T02:11:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "mlb-top-prospects",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "1 player to watch on each team during final week of season",
         "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
         "slug": "players-to-watch-during-final-week-of-2026-mlb-season",
@@ -1244,7 +1373,6 @@
             "pennant-chase"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1854,29 +1982,6 @@
         ]
     },
     {
-        "headline": "Guerrero Jr. (lower back tightness) exits game vs. Rangers",
-        "summaryJa": "V.ゲレーロ Jr.（TOR）の負傷状況をMLB公式が詳報",
-        "slug": "vladimir-guerrero-jr-exits-with-lower-back-injury",
-        "url": "https://www.mlb.com/news/vladimir-guerrero-jr-exits-with-lower-back-injury",
-        "contentDate": "2026-09-20T20:56:59.865Z",
-        "teamIds": [
-            141
-        ],
-        "playerIds": [
-            665489
-        ],
-        "gamePks": [
-            822844
-        ],
-        "taxonomy": [
-            "apple-news",
-            "injury"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Kuiper shares throat cancer diagnosis; will return to booth for Krukow's sendoff",
         "summaryJa": "ジャイアンツ、復帰へ向けた最新状況",
         "slug": "duane-kuiper-diagnosed-with-throat-cancer",
@@ -1893,7 +1998,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1937,26 +2041,6 @@
         "taxonomy": [
             "apple-news",
             "injury"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Latest Giants injuries & transactions",
-        "summaryJa": "ジャイアンツの負傷状況をMLB公式が詳報",
-        "slug": "giants-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/giants-injuries-and-roster-moves",
-        "contentDate": "2026-09-20T19:44:00Z",
-        "teamIds": [
-            137
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "transactions",
-            "injury",
-            "exclude-from-personalization"
         ],
         "sourceScopes": [
             "球団公式"
@@ -2119,29 +2203,6 @@
             "injury",
             "transactions",
             "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Ryan set to make Tigers debut, first MLB appearance since 2024 on Monday",
-        "summaryJa": "R.ライアン（DET）、メジャー昇格・初出場に関する最新情報",
-        "slug": "river-ryan-set-to-make-tigers-debut-on-monday",
-        "url": "https://www.mlb.com/news/river-ryan-set-to-make-tigers-debut-on-monday",
-        "contentDate": "2026-09-20T18:41:36.495Z",
-        "teamIds": [
-            116
-        ],
-        "playerIds": [
-            689981
-        ],
-        "gamePks": [
-            824546
-        ],
-        "taxonomy": [
-            "apple-news",
-            "transactions"
         ],
         "sourceScopes": [
             "球団公式"
@@ -8638,31 +8699,6 @@
         ]
     },
     {
-        "headline": "Ryan takes another step toward Tigers debut with 2nd Triple-A start",
-        "summaryJa": "R.ライアン（DET）、メジャー昇格・初出場に関する最新情報",
-        "slug": "river-ryan-makes-second-triple-a-start-for-tigers",
-        "url": "https://www.mlb.com/news/river-ryan-makes-second-triple-a-start-for-tigers",
-        "contentDate": "2026-09-16T00:45:08.209Z",
-        "teamIds": [
-            116,
-            512
-        ],
-        "playerIds": [
-            689981
-        ],
-        "gamePks": [
-            822762
-        ],
-        "taxonomy": [
-            "apple-news",
-            "minor-league-baseball",
-            "mlb-top-prospects"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Jenkins showing his maturity as he waits for hits to start dropping",
         "summaryJa": "Walker Jenkins（MIN）を巡る注目点をMLB公式が分析",
         "slug": "walker-jenkins-confident-he-ll-conquer-early-slump",
@@ -8822,29 +8858,6 @@
             824384
         ],
         "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Carroll up for Clemente Award for second straight year",
-        "summaryJa": "C.キャロル（AZ）の最新動向をMLB公式が詳報",
-        "slug": "corbin-carroll-named-d-backs-2026-roberto-clemente-award-nominee",
-        "url": "https://www.mlb.com/news/corbin-carroll-named-d-backs-2026-roberto-clemente-award-nominee",
-        "contentDate": "2026-09-15T14:53:30.863Z",
-        "teamIds": [
-            109
-        ],
-        "playerIds": [
-            682998
-        ],
-        "gamePks": [
-            825030
-        ],
-        "taxonomy": [
-            "roberto-clemente-award",
             "apple-news"
         ],
         "sourceScopes": [
