@@ -2784,15 +2784,39 @@
         const header = tradeSection.querySelector(".pregame-section-header");
         const count = header.querySelector("span");
         count.classList.add("pregame-trade-count");
+        const teamSelect = el("select", "pregame-trade-team-filter");
+        teamSelect.setAttribute("aria-label", `${season}年のトレードを球団で絞り込み`);
+        const allTeamsOption = el("option", "", "全球団");
+        allTeamsOption.value = "";
+        teamSelect.append(allTeamsOption);
+        const filterTeams = new Map();
+        trades.forEach((trade) => trade.movements.forEach((movement) => {
+            [movement.fromTeam, movement.toTeam].forEach((team) => {
+                if (team?.id) filterTeams.set(Number(team.id), team);
+            });
+        }));
+        [...filterTeams.values()]
+            .sort((left, right) =>
+                teamJapaneseName(left).localeCompare(teamJapaneseName(right), "ja")
+            )
+            .forEach((team) => {
+                const option = el(
+                    "option",
+                    "",
+                    `${teamCode(team)} ${teamJapaneseName(team)}`
+                );
+                option.value = String(team.id);
+                teamSelect.append(option);
+            });
         const search = el("input", "pregame-trade-search");
         search.type = "search";
-        search.placeholder = "選手名・球団名で検索…";
-        search.setAttribute("aria-label", `${season}年のトレードを検索`);
+        search.placeholder = "選手名で検索…";
+        search.setAttribute("aria-label", `${season}年のトレードを選手名で検索`);
         const toggle = el("button", "pregame-free-agent-toggle", "表示");
         toggle.type = "button";
         toggle.setAttribute("aria-expanded", "false");
         const headerTools = el("div", "pregame-trade-header-tools");
-        headerTools.append(search, count, toggle);
+        headerTools.append(teamSelect, search, count, toggle);
         header.append(headerTools);
         tradeSection.classList.add("pregame-trades-collapsed");
         toggle.addEventListener("click", () => {
@@ -2892,33 +2916,36 @@
                     details.append(teamBlock);
                 });
             }
-            const searchTerms = [trade.description];
-            teams.forEach((team) => searchTerms.push(
-                teamCode(team),
-                team?.name,
-                teamJapaneseName(team)
-            ));
-            trade.movements.forEach((movement) => searchTerms.push(
-                movement.person?.fullName,
-                movement.person ? playerName(movement.person) : movement.assetLabel
-            ));
+            const searchTerms = [];
+            trade.movements.forEach((movement) => {
+                if (!movement.person) return;
+                searchTerms.push(movement.person.fullName, playerName(movement.person));
+            });
             row.dataset.tradeSearch = normalizeTradeSearch(searchTerms.filter(Boolean).join(" "));
+            row.dataset.tradeTeams = ` ${[...teams.keys()].join(" ")} `;
             row.title = trade.description;
             row.append(dateLink, details);
             list.append(row);
         });
         const filterTrades = () => {
             const query = normalizeTradeSearch(search.value);
+            const selectedTeamId = teamSelect.value;
             let visibleCount = 0;
             list.querySelectorAll(".pregame-trade-row").forEach((row) => {
-                const visible = !query || row.dataset.tradeSearch.includes(query);
+                const matchesPlayer = !query || row.dataset.tradeSearch.includes(query);
+                const matchesTeam = !selectedTeamId ||
+                    row.dataset.tradeTeams.includes(` ${selectedTeamId} `);
+                const visible = matchesPlayer && matchesTeam;
                 row.hidden = !visible;
                 if (visible) visibleCount += 1;
             });
-            count.textContent = query ? `${visibleCount} / ${trades.length}件` : `${trades.length}件`;
+            count.textContent = query || selectedTeamId
+                ? `${visibleCount} / ${trades.length}件`
+                : `${trades.length}件`;
             noResults.hidden = visibleCount !== 0;
         };
         search.addEventListener("input", filterTrades);
+        teamSelect.addEventListener("change", filterTrades);
         tradeSection.append(list, noResults);
         return tradeSection;
     };

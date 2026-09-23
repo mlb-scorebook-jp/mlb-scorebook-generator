@@ -1465,7 +1465,8 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
     margin-left: auto;
 }
 
-.pregame-trade-search {
+.pregame-trade-search,
+.pregame-trade-team-filter {
     width: min(260px, 32vw);
     min-height: 26px;
     padding: 4px 9px;
@@ -1478,7 +1479,12 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
     font-size: 10px;
 }
 
-.pregame-trade-search:focus {
+.pregame-trade-team-filter {
+    width: min(220px, 27vw);
+}
+
+.pregame-trade-search:focus,
+.pregame-trade-team-filter:focus {
     border-color: #8ca0aa;
     box-shadow: 0 0 0 1px rgba(140, 160, 170, 0.25);
 }
@@ -1513,6 +1519,10 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
 
 .pregame-trade-row:last-child {
     border-bottom: 0;
+}
+
+.pregame-trade-row[hidden] {
+    display: none;
 }
 
 .pregame-trade-date {
@@ -1845,9 +1855,11 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
     .pregame-trade-header-tools {
         width: 100%;
         margin-left: 0;
+        flex-wrap: wrap;
     }
 
-    .pregame-trade-search {
+    .pregame-trade-search,
+    .pregame-trade-team-filter {
         flex: 1 1 auto;
         width: auto;
     }
