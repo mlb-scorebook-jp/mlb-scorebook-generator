@@ -430,6 +430,7 @@
             COL: "8年ぶり6回目", SD: "2年連続7回目", SF: "5年ぶり28回目"
         }
     };
+    window.MLB_POSTSEASON_APPEARANCE_NOTES = POSTSEASON_APPEARANCE_NOTES;
 
     const teamLogoUrl = (team) => {
         if (team?.logoUrl) return String(team.logoUrl);

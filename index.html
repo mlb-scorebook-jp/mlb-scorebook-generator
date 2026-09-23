@@ -362,7 +362,7 @@
     <script src="js/daily-calendar-features.js?v=20260901-modern-stats-1"></script>
     <script src="js/daily-records.js?v=20260920-rookie-hit-record-1"></script>
     <script src="js/mlb-global-events.js?v=20260918-1"></script>
-    <script src="js/pregame.js?v=20260923-postseason-appearance-1"></script>
+    <script src="js/pregame.js?v=20260923-postseason-appearance-2"></script>
 
     <script>
         (() => {
@@ -3711,6 +3711,43 @@
                 };
             };
 
+            const hasClinchedPostseason = (teamRecord) =>
+                /[XYZW]/i.test(String(teamRecord?.clinchIndicator ?? ""));
+
+            const buildPostseasonAppearanceNote = async ({
+                data, team, code, season, officialDate, gameFinal
+            }) => {
+                const gameType = String(
+                    data?.gameData?.game?.type ?? data?.gameData?.game?.gameType ?? ""
+                ).toUpperCase();
+                const teamId = Number(team?.id);
+                const appearance = window.MLB_POSTSEASON_APPEARANCE_NOTES?.[season]?.[code];
+                if (!gameFinal || gameType !== "R" || !teamId || !appearance ||
+                    !/^\d{4}-\d{2}-\d{2}$/.test(officialDate)) return null;
+
+                const previousDate = shiftOfficialDate(officialDate, -1);
+                const [currentStandings, previousStandings] = await Promise.all([
+                    fetchDivisionStandings(season, officialDate),
+                    fetchDivisionStandings(season, previousDate)
+                ]);
+                const current = currentStandings.find((entry) =>
+                    Number(entry?.team?.id) === teamId
+                );
+                const previous = previousStandings.find((entry) =>
+                    Number(entry?.team?.id) === teamId
+                );
+                if (!hasClinchedPostseason(current) || hasClinchedPostseason(previous)) {
+                    return null;
+                }
+
+                return {
+                    text: `${code}　ポストシーズン進出決定（${appearance}の進出）`,
+                    priority: -11,
+                    link: "https://www.mlb.com/standings/",
+                    linkType: "mlb-official-record"
+                };
+            };
+
             const fetchStreakNotes = async (data, gamePk) => {
                 const gameFinal = isGameFinal(data);
                 const liveRevision = (data?.liveData?.plays?.allPlays ?? []).reduce(
@@ -3824,14 +3861,14 @@
                         };
                     }));
                     const code = getTeamCodeForSeason(team, season);
-                    const divisionTitleNote = await buildDivisionTitleNote({
-                        data,
-                        team,
-                        code,
-                        season,
-                        officialDate,
-                        gameFinal
-                    });
+                    const [divisionTitleNote, postseasonAppearanceNote] = await Promise.all([
+                        buildDivisionTitleNote({
+                            data, team, code, season, officialDate, gameFinal
+                        }),
+                        buildPostseasonAppearanceNote({
+                            data, team, code, season, officialDate, gameFinal
+                        })
+                    ]);
                     const hitLeader = gameFinal
                         ? chooseLongestStreak(analyzed, "hitStreak")
                         : null;
@@ -3875,6 +3912,7 @@
                             linkType: "mlb-official-record"
                         });
                     });
+                    if (postseasonAppearanceNote) notes.push(postseasonAppearanceNote);
                     if (divisionTitleNote) notes.push(divisionTitleNote);
                     if (gameFinal) {
                         const sharedRecords = await sharedDailyRecordsPromise;
