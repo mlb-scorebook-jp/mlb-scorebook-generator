@@ -2,7 +2,7 @@
 
 (() => {
     const API_ROOT = "https://statsapi.mlb.com/api";
-    const CACHE_PREFIX = "mlb-daily-records-phase1-v23:";
+    const CACHE_PREFIX = "mlb-daily-records-phase1-v24:";
     const MAX_CONCURRENT_GAMES = 3;
     const RECORD_THRESHOLDS = Object.freeze({
         inningHits: 2,
@@ -193,6 +193,29 @@
     const text = (value) => String(value ?? "").trim();
     const unique = (values) => [...new Set(values.filter(Boolean))];
     const dateLabel = (date) => text(date).replaceAll("-", "/");
+    const mlbHistoryAchievementFact = (context, ordinal) => {
+        const source = text(context);
+        const milestone = source.match(
+            /\b(?:reach|record|register|notch|collect|earn|recorded|registered|notched|collected|earned)\s+(?:his\s+|her\s+|their\s+|the\s+)?(?:career\s+)?([\d,]+)(?:st|nd|rd|th)?\s+(?:career\s+)?(strikeouts?|hits?|home runs?|homers?|stolen bases?|saves?|wins?|victories|appearances?|games pitched|games played|doubles?|triples?|runs batted in|RBIs?)\b/i
+        );
+        if (!milestone) return `MLB史上${ordinal}人目`;
+        const labels = Object.freeze({
+            strikeout: "奪三振", strikeouts: "奪三振",
+            hit: "安打", hits: "安打",
+            "home run": "本塁打", "home runs": "本塁打", homer: "本塁打", homers: "本塁打",
+            "stolen base": "盗塁", "stolen bases": "盗塁",
+            save: "セーブ", saves: "セーブ",
+            win: "勝利", wins: "勝利", victories: "勝利",
+            appearance: "登板", appearances: "登板", "games pitched": "登板",
+            "games played": "試合出場",
+            double: "二塁打", doubles: "二塁打", triple: "三塁打", triples: "三塁打",
+            "run batted in": "打点", "runs batted in": "打点", rbi: "打点", rbis: "打点"
+        });
+        const label = labels[milestone[2].toLowerCase()];
+        return label
+            ? `通算${milestone[1]}${label}達成（MLB史上${ordinal}人目）`
+            : `MLB史上${ordinal}人目`;
+    };
     const inningHalf = (side) => side === "away" ? "表" : side === "home" ? "裏" : "";
     const pitchingInningHalf = (side) => inningHalf(side === "away" ? "home" : side === "home" ? "away" : "");
     const displayFact = (record) => {
@@ -2342,7 +2365,7 @@
                 new RegExp(`(?:${ordinalPattern})\\s+(?:player|pitcher|hitter)`, "i").test(sentence));
             const mlbOrdinal = readOrdinal(mlbContext);
             if (mlbOrdinal) {
-                addFromArticle("MLB_HISTORY_ORDINAL", `MLB史上${mlbOrdinal}人目`, article,
+                addFromArticle("MLB_HISTORY_ORDINAL", mlbHistoryAchievementFact(mlbContext, mlbOrdinal), article,
                     matchPlayer(mlbContext) || matched);
             }
         });
