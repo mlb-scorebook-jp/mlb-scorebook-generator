@@ -6724,7 +6724,7 @@
                                         runner?.credits ?? []
                                     );
                                     target.outResult = pickoffNumbers.length
-                                        ? `PO${pickoffNumbers.join("-")}`
+                                        ? `${pickoffNumbers.join("-")}PO`
                                         : "PO";
                                     target.outResultAtBatIndex = Number.isInteger(
                                         Number(play?.about?.atBatIndex)
