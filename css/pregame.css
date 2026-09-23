@@ -1456,6 +1456,7 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
 
 .pregame-trade-list {
     max-height: 420px;
+    overflow-x: hidden;
     overflow-y: auto;
     scrollbar-color: #65747d #182025;
 }
@@ -1463,9 +1464,10 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
 .pregame-trade-row {
     display: grid;
     grid-template-columns: 46px minmax(0, 1fr);
-    gap: 10px;
-    padding: 7px 10px;
+    gap: 12px;
+    padding: 9px 10px;
     border-bottom: 1px solid #354149;
+    background: rgba(255, 255, 255, 0.008);
 }
 
 .pregame-trade-row:last-child {
@@ -1481,41 +1483,126 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
 }
 
 .pregame-trade-details {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 5px 18px;
     min-width: 0;
 }
 
-.pregame-trade-movement {
-    display: inline-flex;
+.pregame-trade-team-header,
+.pregame-trade-flow-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 34px minmax(0, 1fr);
     align-items: center;
-    gap: 6px;
+    column-gap: 8px;
+    min-width: 0;
+}
+
+.pregame-trade-team-header {
+    margin-bottom: 4px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid rgba(86, 101, 110, 0.45);
+}
+
+.pregame-trade-team {
+    display: flex;
+    align-items: center;
+    gap: 7px;
     min-width: 0;
     font-size: 11px;
 }
 
-.pregame-trade-movement .pregame-free-agent-team-logo {
+.pregame-trade-team-right {
+    justify-content: flex-end;
+}
+
+.pregame-trade-team .pregame-free-agent-team-logo,
+.pregame-trade-team-block-heading .pregame-free-agent-team-logo,
+.pregame-trade-multiteam-movement .pregame-free-agent-team-logo {
     flex-basis: 20px;
     width: 20px;
     height: 20px;
 }
 
-.pregame-trade-player {
-    color: #dbe5ea;
-    text-decoration: none;
-    white-space: nowrap;
-}
-
-.pregame-trade-asset {
-    color: #e1b82f;
-    white-space: nowrap;
-}
-
+.pregame-trade-swap,
 .pregame-trade-arrow {
     color: #819099;
     font-weight: 700;
+    text-align: center;
+}
+
+.pregame-trade-swap {
+    font-size: 13px;
+}
+
+.pregame-trade-flows {
+    display: grid;
+    gap: 2px;
+}
+
+.pregame-trade-flow-row {
+    min-height: 19px;
+    font-size: 11px;
+}
+
+.pregame-trade-flow-row > :first-child {
+    justify-self: start;
+}
+
+.pregame-trade-flow-row > :last-child {
+    justify-self: end;
+    text-align: right;
+}
+
+.pregame-trade-player {
+    min-width: 0;
+    color: #dbe5ea;
+    overflow-wrap: anywhere;
+    text-decoration: none;
+}
+
+.pregame-trade-asset {
+    min-width: 0;
+    color: #e1b82f;
+    overflow-wrap: anywhere;
+}
+
+.pregame-trade-details-multiteam {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 8px;
+}
+
+.pregame-trade-team-block {
+    min-width: 0;
+    padding: 6px 8px;
+    border: 1px solid #354149;
+    background: rgba(10, 15, 18, 0.22);
+}
+
+.pregame-trade-team-block-heading,
+.pregame-trade-multiteam-movement {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.pregame-trade-team-block-heading {
+    margin-bottom: 5px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid #354149;
+    font-size: 11px;
+}
+
+.pregame-trade-multiteam-movement {
+    min-height: 21px;
+    font-size: 10px;
+}
+
+.pregame-trade-multiteam-movement .pregame-free-agent-team-logo {
+    margin-left: auto;
+}
+
+.pregame-trade-multiteam-movement > strong {
+    min-width: 28px;
+    font-size: 9px;
 }
 
 .pregame-free-agent-columns {
@@ -1706,13 +1793,22 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
 
 @media (max-width: 850px) {
     .pregame-trade-row {
-        grid-template-columns: 40px minmax(0, 1fr);
-        gap: 7px;
+        grid-template-columns: 1fr;
+        gap: 5px;
     }
 
-    .pregame-trade-details {
-        display: grid;
-        gap: 5px;
+    .pregame-trade-date {
+        justify-self: start;
+    }
+
+    .pregame-trade-team-header,
+    .pregame-trade-flow-row {
+        grid-template-columns: minmax(0, 1fr) 28px minmax(0, 1fr);
+        column-gap: 5px;
+    }
+
+    .pregame-trade-details-multiteam {
+        grid-template-columns: 1fr;
     }
 
     .pregame-free-agent-columns {

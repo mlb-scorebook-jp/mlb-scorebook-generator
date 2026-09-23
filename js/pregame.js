@@ -2779,9 +2779,7 @@
             dateLink.target = "_blank";
             dateLink.rel = "noopener noreferrer";
             const details = el("div", "pregame-trade-details");
-            trade.movements.forEach((movement) => {
-                const line = el("div", "pregame-trade-movement");
-                line.append(createFreeAgentTeamLogo(movement.fromTeam, teamCode(movement.fromTeam)));
+            const createTradeAsset = (movement) => {
                 const asset = movement.person
                     ? el("a", "pregame-trade-player", playerName(movement.person))
                     : el("span", "pregame-trade-asset", movement.assetLabel);
@@ -2790,13 +2788,84 @@
                     asset.target = "_blank";
                     asset.rel = "noopener noreferrer";
                 }
-                line.append(
-                    asset,
-                    el("span", "pregame-trade-arrow", "→"),
-                    createFreeAgentTeamLogo(movement.toTeam, teamCode(movement.toTeam))
-                );
-                details.append(line);
+                return asset;
+            };
+            const teams = new Map();
+            trade.movements.forEach((movement) => {
+                [movement.fromTeam, movement.toTeam].forEach((team) => {
+                    teams.set(Number(team.id), team);
+                });
             });
+            if (teams.size === 2) {
+                const [leftTeamId, rightTeamId] = [...teams.keys()];
+                const leftTeam = teams.get(leftTeamId);
+                const rightTeam = teams.get(rightTeamId);
+                const teamHeader = el("div", "pregame-trade-team-header");
+                const createTeamHeading = (team, side) => {
+                    const heading = el("div", `pregame-trade-team pregame-trade-team-${side}`);
+                    heading.append(createFreeAgentTeamLogo(team, teamCode(team)));
+                    heading.append(el("strong", "", teamCode(team)));
+                    return heading;
+                };
+                teamHeader.append(
+                    createTeamHeading(leftTeam, "left"),
+                    el("span", "pregame-trade-swap", "⇄"),
+                    createTeamHeading(rightTeam, "right")
+                );
+                const flows = el("div", "pregame-trade-flows");
+                const leftMovements = trade.movements.filter(
+                    (movement) => Number(movement.fromTeam.id) === leftTeamId
+                );
+                const rightMovements = trade.movements.filter(
+                    (movement) => Number(movement.fromTeam.id) === rightTeamId
+                );
+                leftMovements.forEach((movement) => {
+                    const flow = el("div", "pregame-trade-flow-row");
+                    flow.append(
+                        createTradeAsset(movement),
+                        el("span", "pregame-trade-arrow", "→"),
+                        el("span", "pregame-trade-flow-empty")
+                    );
+                    flows.append(flow);
+                });
+                rightMovements.forEach((movement) => {
+                    const flow = el("div", "pregame-trade-flow-row");
+                    flow.append(
+                        el("span", "pregame-trade-flow-empty"),
+                        el("span", "pregame-trade-arrow", "←"),
+                        createTradeAsset(movement)
+                    );
+                    flows.append(flow);
+                });
+                details.append(teamHeader, flows);
+            } else {
+                details.classList.add("pregame-trade-details-multiteam");
+                teams.forEach((team, teamId) => {
+                    const teamBlock = el("section", "pregame-trade-team-block");
+                    const heading = el("div", "pregame-trade-team-block-heading");
+                    heading.append(
+                        createFreeAgentTeamLogo(team, teamCode(team)),
+                        el("strong", "", teamCode(team))
+                    );
+                    teamBlock.append(heading);
+                    trade.movements
+                        .filter((movement) => Number(movement.fromTeam.id) === teamId)
+                        .forEach((movement) => {
+                            const movementRow = el("div", "pregame-trade-multiteam-movement");
+                            movementRow.append(
+                                createTradeAsset(movement),
+                                el("span", "pregame-trade-arrow", "→"),
+                                createFreeAgentTeamLogo(
+                                    movement.toTeam,
+                                    teamCode(movement.toTeam)
+                                ),
+                                el("strong", "", teamCode(movement.toTeam))
+                            );
+                            teamBlock.append(movementRow);
+                        });
+                    details.append(teamBlock);
+                });
+            }
             row.title = trade.description;
             row.append(dateLink, details);
             list.append(row);
