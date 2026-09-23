@@ -2710,6 +2710,101 @@
         return payload?.transactions ?? [];
     };
 
+    const tradeAssetLabel = (description) => {
+        const text = String(description ?? "");
+        if (/international bonus/i.test(text)) return "国際ボーナス枠";
+        if (/player to be named|PTBNL/i.test(text)) return "後日発表選手";
+        if (/cash/i.test(text)) return "金銭";
+        return "交換要員";
+    };
+
+    const buildSeasonTrades = async (season, date) => {
+        const startDate = `${season}-01-01`;
+        const transactions = await fetchFreeAgentTransactions(startDate, date);
+        const grouped = new Map();
+        transactions
+            .filter((transaction) => String(transaction?.typeCode ?? "") === "TR")
+            .forEach((transaction) => {
+                const tradeDate = String(
+                    transaction?.effectiveDate || transaction?.date || ""
+                ).slice(0, 10);
+                const description = String(transaction?.description ?? "").trim();
+                const key = `${tradeDate}\n${description}`;
+                if (!grouped.has(key)) {
+                    grouped.set(key, { date: tradeDate, description, movements: new Map() });
+                }
+                const trade = grouped.get(key);
+                const fromTeam = transaction?.fromTeam;
+                const toTeam = transaction?.toTeam;
+                const fromTeamId = Number(fromTeam?.id);
+                const toTeamId = Number(toTeam?.id);
+                if (!MLB_TEAM_IDS.has(fromTeamId) || !MLB_TEAM_IDS.has(toTeamId)) return;
+                const personId = Number(transaction?.person?.id);
+                const assetKey = personId
+                    ? `player:${personId}`
+                    : `asset:${tradeAssetLabel(description)}`;
+                const movementKey = `${fromTeamId}:${toTeamId}:${assetKey}`;
+                trade.movements.set(movementKey, {
+                    fromTeam: { ...fromTeam, id: fromTeamId },
+                    toTeam: { ...toTeam, id: toTeamId },
+                    person: personId ? transaction.person : null,
+                    assetLabel: personId ? "" : tradeAssetLabel(description)
+                });
+            });
+        return [...grouped.values()]
+            .map((trade) => ({ ...trade, movements: [...trade.movements.values()] }))
+            .filter((trade) => trade.movements.length)
+            .sort((left, right) => right.date.localeCompare(left.date));
+    };
+
+    const renderSeasonTradeList = async (season, date) => {
+        const trades = await buildSeasonTrades(season, date);
+        const tradeSection = section(`${season}年 トレード一覧`, `${trades.length}件`);
+        tradeSection.classList.add("pregame-trades-section");
+        const title = tradeSection.querySelector(".pregame-section-header h3");
+        const titleLink = el("a", "pregame-trades-title-link", title.textContent);
+        titleLink.href = "https://www.mlb.com/transactions";
+        titleLink.target = "_blank";
+        titleLink.rel = "noopener noreferrer";
+        title.replaceWith(titleLink);
+        if (!trades.length) {
+            tradeSection.append(empty("この年のトレードはまだ発表されていません。"));
+            return tradeSection;
+        }
+        const list = el("div", "pregame-trade-list");
+        trades.forEach((trade) => {
+            const row = el("article", "pregame-trade-row");
+            const dateLink = el("a", "pregame-trade-date", compactDate(trade.date));
+            dateLink.href = `https://www.mlb.com/transactions?date=${trade.date}`;
+            dateLink.target = "_blank";
+            dateLink.rel = "noopener noreferrer";
+            const details = el("div", "pregame-trade-details");
+            trade.movements.forEach((movement) => {
+                const line = el("div", "pregame-trade-movement");
+                line.append(createFreeAgentTeamLogo(movement.fromTeam, teamCode(movement.fromTeam)));
+                const asset = movement.person
+                    ? el("a", "pregame-trade-player", playerName(movement.person))
+                    : el("span", "pregame-trade-asset", movement.assetLabel);
+                if (movement.person) {
+                    asset.href = `https://www.mlb.com/player/${movement.person.id}`;
+                    asset.target = "_blank";
+                    asset.rel = "noopener noreferrer";
+                }
+                line.append(
+                    asset,
+                    el("span", "pregame-trade-arrow", "→"),
+                    createFreeAgentTeamLogo(movement.toTeam, teamCode(movement.toTeam))
+                );
+                details.append(line);
+            });
+            row.title = trade.description;
+            row.append(dateLink, details);
+            list.append(row);
+        });
+        tradeSection.append(list);
+        return tradeSection;
+    };
+
     const buildFreeAgentGroups = async (season, postseasonWindow, date) => {
         const startDate = addDays(postseasonWindow.displayEndDate, 1);
         const transactions = await fetchFreeAgentTransactions(startDate, date);
@@ -3884,6 +3979,7 @@
             if (shouldShowPostseasonPicture(date, postseasonWindow)) {
                 dashboard.append(await renderPostseasonPicture(standings, date, postseasonWindow));
             }
+            dashboard.append(await renderSeasonTradeList(season, date));
             const currentOffseasonActive = Boolean(
                 postseasonWindow?.worldSeriesCompleted &&
                 date > postseasonWindow.displayEndDate
