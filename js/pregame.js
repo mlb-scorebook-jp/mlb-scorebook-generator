@@ -1171,10 +1171,24 @@
             inningsToOuts(pitching.inningsPitched) > 0;
     };
 
+    const dailyGameNumberSuffix = (game) => {
+        const gameNumber = Number(game?.gameNumber);
+        return gameNumber > 1 ? `（GAME${gameNumber}）` : "";
+    };
+
     const dailyAppearanceStatus = (appearances) => {
         const live = appearances.find(({ game }) => isDailyJapaneseGameLive(game));
-        if (live) return { label: gameCardStatusLabel(live.game), live: true };
-        return { label: "試合終了", live: false };
+        if (live) {
+            return {
+                label: `${gameCardStatusLabel(live.game)}${dailyGameNumberSuffix(live.game)}`,
+                live: true
+            };
+        }
+        const game = appearances.at(-1)?.game;
+        return {
+            label: `試合終了${dailyGameNumberSuffix(game)}`,
+            live: false
+        };
     };
 
     const dailyOpponentLabel = (appearances) => {
@@ -1269,18 +1283,21 @@
             }
 
             if (battingAppearances.length && roles.hitter) {
-                const stats = battingAppearances.reduce((total, { entry }) => {
-                    const batting = entry?.stats?.batting ?? {};
+                battingAppearances.forEach((appearance) => {
+                    const batting = appearance.entry?.stats?.batting ?? {};
+                    const stats = {
+                        atBats: 0, hits: 0, homeRuns: 0, rbi: 0,
+                        stolenBases: 0, strikeOuts: 0, baseOnBalls: 0
+                    };
                     ["atBats", "hits", "homeRuns", "rbi", "stolenBases", "strikeOuts", "baseOnBalls"]
-                        .forEach((field) => { total[field] += statNumber(batting[field]); });
-                    return total;
-                }, { atBats: 0, hits: 0, homeRuns: 0, rbi: 0, stolenBases: 0, strikeOuts: 0, baseOnBalls: 0 });
-                hitters.push({
-                    person,
-                    ...dailyAppearanceStatus(battingAppearances),
-                    opponent: dailyOpponentLabel(battingAppearances),
-                    gameUrl: dailyGamedayUrl(battingAppearances),
-                    stats
+                        .forEach((field) => { stats[field] = statNumber(batting[field]); });
+                    hitters.push({
+                        person,
+                        ...dailyAppearanceStatus([appearance]),
+                        opponent: dailyOpponentLabel([appearance]),
+                        gameUrl: mlbGamedayUrl(appearance.game),
+                        stats
+                    });
                 });
             } else if (roles.hitter && !probableAppearances.length) {
                 absent.push({
@@ -1290,22 +1307,26 @@
             }
 
             if (pitchingAppearances.length) {
-                const stats = pitchingAppearances.reduce((total, { entry, decision }) => {
+                pitchingAppearances.forEach((appearance) => {
+                    const { entry, decision } = appearance;
                     const pitching = entry?.stats?.pitching ?? {};
-                    total.outs += inningsToOuts(pitching.inningsPitched);
-                    total.pitches += statNumber(pitching.numberOfPitches ?? pitching.pitchesThrown);
+                    const stats = {
+                        outs: 0, pitches: 0, hits: 0, runs: 0, earnedRuns: 0,
+                        strikeOuts: 0, baseOnBalls: 0, wins: 0, losses: 0, saves: 0
+                    };
+                    stats.outs = inningsToOuts(pitching.inningsPitched);
+                    stats.pitches = statNumber(pitching.numberOfPitches ?? pitching.pitchesThrown);
                     ["hits", "runs", "earnedRuns", "strikeOuts", "baseOnBalls"]
-                        .forEach((field) => { total[field] += statNumber(pitching[field]); });
+                        .forEach((field) => { stats[field] = statNumber(pitching[field]); });
                     ["wins", "losses", "saves"]
-                        .forEach((field) => { total[field] += statNumber(decision?.[field]); });
-                    return total;
-                }, { outs: 0, pitches: 0, hits: 0, runs: 0, earnedRuns: 0, strikeOuts: 0, baseOnBalls: 0, wins: 0, losses: 0, saves: 0 });
-                pitchers.push({
-                    person,
-                    ...dailyAppearanceStatus(pitchingAppearances),
-                    opponent: dailyOpponentLabel(pitchingAppearances),
-                    gameUrl: dailyGamedayUrl(pitchingAppearances),
-                    stats: { ...stats, inningsPitched: formatInnings(stats.outs) }
+                        .forEach((field) => { stats[field] = statNumber(decision?.[field]); });
+                    pitchers.push({
+                        person,
+                        ...dailyAppearanceStatus([appearance]),
+                        opponent: dailyOpponentLabel([appearance]),
+                        gameUrl: mlbGamedayUrl(appearance.game),
+                        stats: { ...stats, inningsPitched: formatInnings(stats.outs) }
+                    });
                 });
             } else if (probableAppearances.length) {
                 const statusGame = probableAppearances.find(({ game }) =>
@@ -1313,7 +1334,7 @@
                 ) ?? probableAppearances[0];
                 pitchers.push({
                     person,
-                    label: gameCardStatusLabel(statusGame.game),
+                    label: `${gameCardStatusLabel(statusGame.game)}${dailyGameNumberSuffix(statusGame.game)}`,
                     live: isDailyJapaneseGameLive(statusGame.game),
                     opponent: dailyOpponentLabel(probableAppearances),
                     gameUrl: mlbGamedayUrl(statusGame.game),
