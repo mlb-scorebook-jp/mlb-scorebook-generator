@@ -2714,9 +2714,19 @@
         const text = String(description ?? "");
         if (/international bonus/i.test(text)) return "国際ボーナス枠";
         if (/player to be named|PTBNL/i.test(text)) return "後日発表選手";
-        if (/cash/i.test(text)) return "金銭";
+        if (/cash/i.test(text)) {
+            const amount = text.match(/\$[\d,.]+(?:\s*(?:million|thousand|[MK]))?/i)?.[0];
+            return amount ? `金銭（${amount}）` : "金銭";
+        }
         return "交換要員";
     };
+
+    const normalizeTradeSearch = (value) => String(value ?? "")
+        .normalize("NFKD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase()
+        .replace(/\s+/g, " ")
+        .trim();
 
     const buildSeasonTrades = async (season, date) => {
         const startDate = `${season}-01-01`;
@@ -2771,7 +2781,19 @@
             tradeSection.append(empty("この年のトレードはまだ発表されていません。"));
             return tradeSection;
         }
+        const header = tradeSection.querySelector(".pregame-section-header");
+        const count = header.querySelector("span");
+        count.classList.add("pregame-trade-count");
+        const search = el("input", "pregame-trade-search");
+        search.type = "search";
+        search.placeholder = "選手名・球団名で検索…";
+        search.setAttribute("aria-label", `${season}年のトレードを検索`);
+        const headerTools = el("div", "pregame-trade-header-tools");
+        headerTools.append(search, count);
+        header.append(headerTools);
         const list = el("div", "pregame-trade-list");
+        const noResults = el("div", "pregame-empty pregame-trade-no-results", "一致するトレードはありません。");
+        noResults.hidden = true;
         trades.forEach((trade) => {
             const row = el("article", "pregame-trade-row");
             const dateLink = el("a", "pregame-trade-date", compactDate(trade.date));
@@ -2809,10 +2831,12 @@
                 };
                 teamHeader.append(
                     createTeamHeading(leftTeam, "left"),
-                    el("span", "pregame-trade-swap", "⇄"),
+                    el("span", "pregame-trade-team-header-spacer"),
                     createTeamHeading(rightTeam, "right")
                 );
-                const flows = el("div", "pregame-trade-flows");
+                const exchange = el("div", "pregame-trade-exchange");
+                const leftAssets = el("div", "pregame-trade-assets pregame-trade-assets-left");
+                const rightAssets = el("div", "pregame-trade-assets pregame-trade-assets-right");
                 const leftMovements = trade.movements.filter(
                     (movement) => Number(movement.fromTeam.id) === leftTeamId
                 );
@@ -2820,24 +2844,17 @@
                     (movement) => Number(movement.fromTeam.id) === rightTeamId
                 );
                 leftMovements.forEach((movement) => {
-                    const flow = el("div", "pregame-trade-flow-row");
-                    flow.append(
-                        createTradeAsset(movement),
-                        el("span", "pregame-trade-arrow", "→"),
-                        el("span", "pregame-trade-flow-empty")
-                    );
-                    flows.append(flow);
+                    leftAssets.append(createTradeAsset(movement));
                 });
                 rightMovements.forEach((movement) => {
-                    const flow = el("div", "pregame-trade-flow-row");
-                    flow.append(
-                        el("span", "pregame-trade-flow-empty"),
-                        el("span", "pregame-trade-arrow", "←"),
-                        createTradeAsset(movement)
-                    );
-                    flows.append(flow);
+                    rightAssets.append(createTradeAsset(movement));
                 });
-                details.append(teamHeader, flows);
+                exchange.append(
+                    leftAssets,
+                    el("span", "pregame-trade-swap", "↔"),
+                    rightAssets
+                );
+                details.append(teamHeader, exchange);
             } else {
                 details.classList.add("pregame-trade-details-multiteam");
                 teams.forEach((team, teamId) => {
@@ -2866,11 +2883,34 @@
                     details.append(teamBlock);
                 });
             }
+            const searchTerms = [trade.description];
+            teams.forEach((team) => searchTerms.push(
+                teamCode(team),
+                team?.name,
+                teamJapaneseName(team)
+            ));
+            trade.movements.forEach((movement) => searchTerms.push(
+                movement.person?.fullName,
+                movement.person ? playerName(movement.person) : movement.assetLabel
+            ));
+            row.dataset.tradeSearch = normalizeTradeSearch(searchTerms.filter(Boolean).join(" "));
             row.title = trade.description;
             row.append(dateLink, details);
             list.append(row);
         });
-        tradeSection.append(list);
+        const filterTrades = () => {
+            const query = normalizeTradeSearch(search.value);
+            let visibleCount = 0;
+            list.querySelectorAll(".pregame-trade-row").forEach((row) => {
+                const visible = !query || row.dataset.tradeSearch.includes(query);
+                row.hidden = !visible;
+                if (visible) visibleCount += 1;
+            });
+            count.textContent = query ? `${visibleCount} / ${trades.length}件` : `${trades.length}件`;
+            noResults.hidden = visibleCount !== 0;
+        };
+        search.addEventListener("input", filterTrades);
+        tradeSection.append(list, noResults);
         return tradeSection;
     };
 
