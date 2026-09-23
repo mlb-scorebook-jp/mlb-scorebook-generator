@@ -2145,17 +2145,13 @@ body.app-mode-pregame .score-loading-overlay {
 }
 
 .score-anchor.top-left {
-    top: -1px;
-    left: -2px;
-    align-items: flex-start;
-    transform: translateX(-2px);
+    top: 0;
+    left: 0;
 }
 
 .score-anchor.top-right {
-    top: -1px;
-    right: -2px;
-    align-items: flex-start;
-    transform: translateX(3px);
+    top: 0;
+    right: 0;
 }
 
 .score-anchor.center {
@@ -2165,17 +2161,13 @@ body.app-mode-pregame .score-loading-overlay {
 }
 
 .score-anchor.bottom-left {
-    bottom: -11px;
-    left: -2px;
-    align-items: flex-end;
-    transform: translateX(-2px);
+    bottom: 0;
+    left: 0;
 }
 
 .score-anchor.bottom-right {
-    right: -2px;
-    bottom: -11px;
-    align-items: flex-end;
-    transform: translateX(4px);
+    right: 0;
+    bottom: 0;
 }
 
 /* Symbols have no coordinates of their own; their parent anchor places them. */
@@ -2194,10 +2186,6 @@ body.app-mode-pregame .score-loading-overlay {
     min-width: 0;
     align-items: center;
     justify-content: center;
-}
-
-.score-anchor.bottom-right .play-notation-stack {
-    translate: 0 1px;
 }
 
 .play-card .diamond-stage {
