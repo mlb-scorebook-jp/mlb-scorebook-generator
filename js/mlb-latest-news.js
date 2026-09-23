@@ -2,6 +2,113 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Alonso named unanimous winner of '26 Most Valuable Oriole Award",
+        "summaryJa": "P.アロンゾ（BAL）の最新動向をMLB公式が詳報",
+        "slug": "pete-alonso-unanimous-2026-most-valuable-oriole-award",
+        "url": "https://www.mlb.com/news/pete-alonso-unanimous-2026-most-valuable-oriole-award",
+        "contentDate": "2026-09-23T14:50:05.673Z",
+        "teamIds": [
+            110
+        ],
+        "playerIds": [
+            624413
+        ],
+        "gamePks": [
+            824784
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "The teams no one wants to play in October",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "scariest-mlb-teams-to-play-in-october-2026",
+        "url": "https://www.mlb.com/news/scariest-mlb-teams-to-play-in-october-2026",
+        "contentDate": "2026-09-23T14:45:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "rankings"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Lewis, Williams head group of Marlins prospects playing in Arizona Fall League",
+        "summaryJa": "Max Williams（MIA）ら注目選手の最新動向",
+        "slug": "eight-marlins-playing-in-arizona-fall-league",
+        "url": "https://www.mlb.com/news/eight-marlins-playing-in-arizona-fall-league",
+        "contentDate": "2026-09-23T14:31:41.965Z",
+        "teamIds": [
+            146
+        ],
+        "playerIds": [
+            703637,
+            827665
+        ],
+        "gamePks": [
+            824625
+        ],
+        "taxonomy": [
+            "apple-news",
+            "arizona-fall-league",
+            "mlb-top-prospects"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Top Tigers prospect Hope blasts off again in final game of big 2026 season",
+        "summaryJa": "Z.ホープ（DET）、本塁打で存在感",
+        "slug": "zyhir-hope-homers-in-final-game-of-2026-minor-league-season",
+        "url": "https://www.mlb.com/news/zyhir-hope-homers-in-final-game-of-2026-minor-league-season",
+        "contentDate": "2026-09-23T14:28:28.462Z",
+        "teamIds": [
+            116
+        ],
+        "playerIds": [
+            814307
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "mlb-top-prospects"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "King's '26 breakout reaches the playoffs with clutch HR in Triple-A finals",
+        "summaryJa": "S.キング（WSH）、本塁打で存在感",
+        "slug": "nationals-prospect-seaver-king-homers-in-international-league-finals",
+        "url": "https://www.mlb.com/news/nationals-prospect-seaver-king-homers-in-international-league-finals",
+        "contentDate": "2026-09-23T13:24:50.233Z",
+        "teamIds": [
+            120
+        ],
+        "playerIds": [
+            814409
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "mlb-top-prospects"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Cortes makes A's history with his bat, but his glove may have saved the game",
         "summaryJa": "C.コルテス（ATH）、本塁打で存在感",
         "slug": "carlos-cortes-hits-go-ahead-homer-in-a-s-victory-over-angels",
@@ -559,24 +666,6 @@
             "apple-news",
             "game-recap",
             "clincher"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "The teams no one wants to play in October",
-        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
-        "slug": "scariest-mlb-teams-to-play-in-october-2026",
-        "url": "https://www.mlb.com/news/scariest-mlb-teams-to-play-in-october-2026",
-        "contentDate": "2026-09-23T04:52:45.897Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "rankings"
         ],
         "sourceScopes": [
             "MLB",
@@ -7976,27 +8065,6 @@
         ]
     },
     {
-        "headline": "Unfazed De León stacking strong outings for O's in 1st MLB stint",
-        "summaryJa": "Luis De León（BAL）、記録達成の最新情報",
-        "slug": "luis-de-leon-impressive-run-first-mlb-stint-orioles",
-        "url": "https://www.mlb.com/news/luis-de-leon-impressive-run-first-mlb-stint-orioles",
-        "contentDate": "2026-09-17T14:43:38.222Z",
-        "teamIds": [
-            110
-        ],
-        "playerIds": [
-            801725
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "mlb-top-prospects",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "How Mathews has turned his self-doubt into strong self-confidence in Majors",
         "summaryJa": "Q.アシューズ（STL）を巡る注目点をMLB公式が分析",
         "slug": "quinn-mathews-working-on-self-confidence-cardinals-starting-rotation",
@@ -8119,29 +8187,6 @@
         "taxonomy": [
             "apple-news",
             "roberto-clemente-award"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "No. 3 prospect Ryan ready to prove big league potential with Tigers",
-        "summaryJa": "R.ライアン（DET）ら注目選手の最新動向",
-        "slug": "river-ryan-starts-for-triple-a-toledo-awaiting-chance-with-tigers",
-        "url": "https://www.mlb.com/news/river-ryan-starts-for-triple-a-toledo-awaiting-chance-with-tigers",
-        "contentDate": "2026-09-17T11:32:34.979Z",
-        "teamIds": [
-            116
-        ],
-        "playerIds": [
-            689981
-        ],
-        "gamePks": [
-            822763
-        ],
-        "taxonomy": [
-            "apple-news",
-            "mlb-top-prospects"
         ],
         "sourceScopes": [
             "球団公式"
@@ -9176,29 +9221,6 @@
         "taxonomy": [
             "apple-news",
             "game-recap"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Meyer (neck strain) shut down for 2026 season",
-        "summaryJa": "M.マイヤー（MIA）の負傷状況をMLB公式が詳報",
-        "slug": "max-meyer-shut-down-for-2026-season-with-neck-injury",
-        "url": "https://www.mlb.com/news/max-meyer-shut-down-for-2026-season-with-neck-injury",
-        "contentDate": "2026-09-15T01:32:28.79Z",
-        "teamIds": [
-            146
-        ],
-        "playerIds": [
-            676974
-        ],
-        "gamePks": [
-            825034
-        ],
-        "taxonomy": [
-            "apple-news",
-            "injury"
         ],
         "sourceScopes": [
             "球団公式"
