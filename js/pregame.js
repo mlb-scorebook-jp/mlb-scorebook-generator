@@ -3497,7 +3497,7 @@
         if (clinched) {
             const appearance = POSTSEASON_APPEARANCE_NOTES[season]?.[teamCode(standing.team)];
             return appearance
-                ? `ポストシーズン進出決定（${appearance}の進出）`
+                ? `ポストシーズン進出決定（${appearance}）`
                 : "ポストシーズン進出決定";
         }
         if (standing.eliminated) return "今季のポストシーズン進出の可能性なし";
