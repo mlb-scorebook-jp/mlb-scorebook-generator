@@ -2197,6 +2197,13 @@ body.app-mode-pregame .score-loading-overlay {
     justify-content: center;
 }
 
+/* Font baselines make a mathematically centered one-line result look slightly
+ * high. Correct the visible glyph center; shaped results keep their stacked
+ * composition because the mark above the text already balances the block. */
+.score-anchor.bottom-right .play-notation-stack:not(:has(.play-template-svg)) {
+    translate: 0 2px;
+}
+
 .play-card .diamond-stage {
     position: absolute;
     inset: 0;
