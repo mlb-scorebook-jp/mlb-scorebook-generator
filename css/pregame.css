@@ -1833,6 +1833,10 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
     background: #303c43;
 }
 
+.pregame-free-agent-header-meta .pregame-free-agent-toggle {
+    font-size: 16px;
+}
+
 @media (max-width: 850px) {
     .pregame-trades-section .pregame-section-header {
         flex-wrap: wrap;
