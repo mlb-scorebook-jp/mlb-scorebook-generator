@@ -1523,7 +1523,7 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
 }
 
 .pregame-trade-details {
-    width: min(720px, 100%);
+    width: min(360px, 100%);
     min-width: 0;
 }
 
@@ -1537,9 +1537,7 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
 }
 
 .pregame-trade-team-header {
-    margin-bottom: 3px;
-    padding-bottom: 3px;
-    border-bottom: 1px solid rgba(86, 101, 110, 0.45);
+    margin-bottom: 2px;
 }
 
 .pregame-trade-team {
