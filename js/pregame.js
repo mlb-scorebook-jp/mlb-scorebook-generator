@@ -1173,7 +1173,8 @@
 
     const dailyGameNumberSuffix = (game) => {
         const gameNumber = Number(game?.gameNumber);
-        return gameNumber > 1 ? `（GAME${gameNumber}）` : "";
+        const doubleHeader = String(game?.doubleHeader ?? "N").toUpperCase() !== "N";
+        return doubleHeader && gameNumber > 0 ? `（GAME${gameNumber}）` : "";
     };
 
     const dailyAppearanceStatus = (appearances) => {

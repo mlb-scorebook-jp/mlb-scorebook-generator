@@ -1005,7 +1005,7 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
     min-width: 650px;
     border-collapse: collapse;
     table-layout: fixed;
-    font-size: 10px;
+    font-size: 8px;
     font-variant-numeric: tabular-nums;
 }
 
