@@ -6203,7 +6203,8 @@
                 } else if (["groundout", "sac_bunt"].includes(templateId)) {
                     notation = fieldingResult || field;
                 } else if (["flyout", "popout", "lineout"].includes(templateId)) {
-                    notation = field;
+                    const isFoulFly = /\bfoul territory\b|\bfoul ground\b/.test(description);
+                    notation = field ? `${field}${isFoulFly ? "f" : ""}` : "";
                 } else if (templateId === "sac_fly") {
                     notation = field;
                 }
