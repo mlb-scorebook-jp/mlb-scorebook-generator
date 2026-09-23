@@ -9598,7 +9598,7 @@
 
                 if (/postponed/.test(normalized)) {
                     return /rain/i.test(String(game?.status?.reason ?? ""))
-                        ? "雨天延期"
+                        ? "雨天順延"
                         : "延期";
                 }
                 if (/cancelled|canceled/.test(normalized)) return "中止";
