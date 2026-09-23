@@ -2165,7 +2165,7 @@ body.app-mode-pregame .score-loading-overlay {
 }
 
 .score-anchor.bottom-left {
-    bottom: -11px;
+    bottom: -6px;
     left: -2px;
     align-items: flex-end;
     transform: translateX(-2px);
@@ -2173,7 +2173,7 @@ body.app-mode-pregame .score-loading-overlay {
 
 .score-anchor.bottom-right {
     right: -2px;
-    bottom: -11px;
+    bottom: -6px;
     align-items: flex-end;
     transform: translateX(4px);
 }
