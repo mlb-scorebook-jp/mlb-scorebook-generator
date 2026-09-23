@@ -1430,7 +1430,7 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
 
 .pregame-games-section .pregame-division-magic {
     color: #e7c96c;
-    font-size: 8px;
+    font-size: 9px;
     font-weight: 700;
     white-space: nowrap;
 }
@@ -2021,7 +2021,7 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
 .pregame-games-section .pregame-first-pitch {
     margin-top: 7px;
     color: #c9d5da;
-    font-size: 9px;
+    font-size: 10px;
     font-weight: 700;
     letter-spacing: 0.03em;
     white-space: nowrap;
@@ -2044,6 +2044,10 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
     font-size: 9px;
 }
 
+.pregame-games-section .pregame-game-card small {
+    font-size: 10px;
+}
+
 .pregame-person-card small {
     width: 100%;
     margin-bottom: 7px;
@@ -2063,6 +2067,11 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
     border: 1px solid #52616a;
     border-radius: 999px;
     font-size: 8px;
+}
+
+.pregame-games-section .pregame-live-badge,
+.pregame-games-section .pregame-status-badge {
+    font-size: 9px;
 }
 
 .pregame-live-badge {
