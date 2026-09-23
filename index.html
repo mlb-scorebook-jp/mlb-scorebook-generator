@@ -549,6 +549,12 @@
                 const status = data?.gameData?.status;
                 const abstractState = String(status?.abstractGameState ?? "").toLowerCase();
                 const codedState = String(status?.codedGameState ?? "").toUpperCase();
+                const detailedState = String(status?.detailedState ?? "").toLowerCase();
+
+                if (["D", "T", "U"].includes(codedState) ||
+                    /postponed|cancelled|canceled|suspended/.test(detailedState)) {
+                    return false;
+                }
 
                 return abstractState === "final" || ["F", "O"].includes(codedState);
             };
@@ -9590,14 +9596,18 @@
                 const innings = Number(game?.linescore?.currentInning) ||
                     (game?.linescore?.innings ?? []).length || 9;
 
-                if (abstractState === "final" || /final|game over|completed early/.test(normalized)) {
-                    return innings > 9 ? `FINAL/${innings}` : "FINAL";
+                if (/postponed/.test(normalized)) {
+                    return /rain/i.test(String(game?.status?.reason ?? ""))
+                        ? "雨天延期"
+                        : "延期";
                 }
-                if (/postponed/.test(normalized)) return "延期";
                 if (/cancelled|canceled/.test(normalized)) return "中止";
                 if (/suspended/.test(normalized)) return "中断";
                 if (/rain delay|delayed start.*rain/.test(normalized)) return "雨天遅延";
                 if (/delayed/.test(normalized)) return "遅延";
+                if (abstractState === "final" || /final|game over|completed early/.test(normalized)) {
+                    return innings > 9 ? `FINAL/${innings}` : "FINAL";
+                }
                 if (abstractState === "live" || /in progress|manager challenge/.test(normalized)) {
                     const inning = Number(game?.linescore?.currentInning);
                     return inning ? `${inning}回` : "試合中";
@@ -9637,7 +9647,10 @@
                         return slot;
                     };
                     const abstractState = String(game?.status?.abstractGameState ?? "").toLowerCase();
-                    const showScore = abstractState === "live" || abstractState === "final";
+                    const detailedState = String(game?.status?.detailedState ?? "").toLowerCase();
+                    const unavailable = /postponed|cancelled|canceled|suspended/.test(detailedState);
+                    const showScore = !unavailable &&
+                        (abstractState === "live" || abstractState === "final");
                     const button = createElement("button", "today-game-card");
                     button.type = "button";
                     button.dataset.gamePk = String(game.gamePk);
