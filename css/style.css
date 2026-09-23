@@ -27,7 +27,7 @@
     --stat-width: 24px;
 
     --header-height: 28px;
-    --lineup-height: 97px;
+    --lineup-height: 109px;
     --inning-count: 9;
     --score-column-count: 9;
     --team-score-width: calc(
@@ -2118,9 +2118,9 @@ body.app-mode-pregame .score-loading-overlay {
 
 .play-card {
     position: relative;
-    height: 31px;
-    min-height: 31px;
-    flex: 0 0 31px;
+    height: 35px;
+    min-height: 35px;
+    flex: 0 0 35px;
     overflow: visible;
     --score-symbol-font-size: 12px;
 }
