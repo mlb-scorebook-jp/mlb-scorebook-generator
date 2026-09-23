@@ -414,6 +414,23 @@
         window.MLB_SCOREBOOK_TEAM_CODES_BY_ID?.[Number(team?.id)] ?? team?.name ?? "-"
     ).toUpperCase();
 
+    // Source: MLBポストシーズン資料(2026完成版).xlsx
+    // 「ポストシーズン進出したら」列（ア・リーグ／ナ・リーグ）。
+    const POSTSEASON_APPEARANCE_NOTES = {
+        2026: {
+            BOS: "2年連続27回目", NYY: "3年連続61回目", TOR: "2年連続12回目",
+            BAL: "2年ぶり16回目", TB: "3年ぶり10回目", CLE: "3年連続19回目",
+            KC: "2年ぶり11回目", DET: "3年連続19回目", CWS: "5年ぶり12回目",
+            MIN: "3年ぶり19回目", HOU: "2年ぶり19回目", LAA: "12年ぶり11回目",
+            TEX: "3年ぶり10回目", SEA: "2年連続7回目", ATH: "6年ぶり30回目",
+            ATL: "2年ぶり31回目", PHI: "5年連続19回目", NYM: "2年ぶり12回目",
+            WSH: "7年ぶり7回目", MIA: "3年ぶり5回目", CHC: "2年連続23回目",
+            MIL: "4年連続12回目", CIN: "3年連続19回目", PIT: "11年ぶり18回目",
+            STL: "4年ぶり33回目", AZ: "3年ぶり8回目", LAD: "14年連続40回目",
+            COL: "8年ぶり6回目", SD: "2年連続7回目", SF: "5年ぶり28回目"
+        }
+    };
+
     const teamLogoUrl = (team) => {
         if (team?.logoUrl) return String(team.logoUrl);
         const teamId = Number(team?.id);
@@ -3475,8 +3492,13 @@
         }));
     };
 
-    const postseasonMagicCondition = (standing, clinched) => {
-        if (clinched) return "ポストシーズン進出決定";
+    const postseasonMagicCondition = (standing, clinched, season) => {
+        if (clinched) {
+            const appearance = POSTSEASON_APPEARANCE_NOTES[season]?.[teamCode(standing.team)];
+            return appearance
+                ? `ポストシーズン進出決定（${appearance}の進出）`
+                : "ポストシーズン進出決定";
+        }
         if (standing.eliminated) return "今季のポストシーズン進出の可能性なし";
         if (!Number.isFinite(standing.magicNumber)) return "条件を算出できません";
         const opponents = standing.challengers
@@ -3507,7 +3529,7 @@
             logo.addEventListener("error", () => logo.remove(), { once: true });
             const clinched = !standing.eliminated &&
                 (/[xyzw]/i.test(standing.clinchIndicator) || standing.magicNumber === 0);
-            const condition = postseasonMagicCondition(standing, clinched);
+            const condition = postseasonMagicCondition(standing, clinched, Number(date.slice(0, 4)));
             row.append(
                 el("span", "pregame-postseason-magic-seed", String(standing.displayRank)),
                 logo,
