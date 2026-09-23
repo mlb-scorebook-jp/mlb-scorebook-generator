@@ -1495,10 +1495,11 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
 }
 
 .pregame-trade-list {
-    max-height: 420px;
-    overflow-x: hidden;
-    overflow-y: auto;
-    scrollbar-color: #65747d #182025;
+    overflow: visible;
+}
+
+.pregame-trades-collapsed > :not(.pregame-section-header) {
+    display: none;
 }
 
 .pregame-trade-row {

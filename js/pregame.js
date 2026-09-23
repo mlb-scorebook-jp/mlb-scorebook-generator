@@ -2788,9 +2788,18 @@
         search.type = "search";
         search.placeholder = "選手名・球団名で検索…";
         search.setAttribute("aria-label", `${season}年のトレードを検索`);
+        const toggle = el("button", "pregame-free-agent-toggle", "表示");
+        toggle.type = "button";
+        toggle.setAttribute("aria-expanded", "false");
         const headerTools = el("div", "pregame-trade-header-tools");
-        headerTools.append(search, count);
+        headerTools.append(search, count, toggle);
         header.append(headerTools);
+        tradeSection.classList.add("pregame-trades-collapsed");
+        toggle.addEventListener("click", () => {
+            const collapsed = tradeSection.classList.toggle("pregame-trades-collapsed");
+            toggle.textContent = collapsed ? "表示" : "閉じる";
+            toggle.setAttribute("aria-expanded", String(!collapsed));
+        });
         const list = el("div", "pregame-trade-list");
         const noResults = el("div", "pregame-empty pregame-trade-no-results", "一致するトレードはありません。");
         noResults.hidden = true;
