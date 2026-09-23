@@ -2505,6 +2505,7 @@ body.app-mode-pregame .score-loading-overlay {
 
 .runner-note.stolen-base-note {
     color: var(--red);
+    font-size: var(--score-symbol-font-size);
 }
 
 .runner-note.balk-note {
