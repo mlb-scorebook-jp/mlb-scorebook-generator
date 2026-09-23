@@ -6664,7 +6664,28 @@
                             );
                             const outBase = normalizeBase(movement?.outBase || movement?.end);
                             if (!isCurrentBatter) {
-                                if (isCaughtStealingRunner(play, runner)) {
+                                const playEventType = String(
+                                    play?.result?.eventType ?? ""
+                                ).toLowerCase();
+                                const isPickoffOut = runnerEventType.includes("pickoff") ||
+                                    playEventType.includes("pickoff") ||
+                                    /pick(?:ed)? off|pickoff/.test(
+                                        `${runnerDescription} ${mainDescription}`.toLowerCase()
+                                    );
+                                if (isPickoffOut) {
+                                    const pickoffNumbers = getFieldingNumbers(
+                                        play,
+                                        mainDescription,
+                                        runner?.credits ?? []
+                                    );
+                                    target.outResult = pickoffNumbers.length
+                                        ? `PO${pickoffNumbers.join("-")}`
+                                        : "PO";
+                                    target.outResultAtBatIndex = Number.isInteger(
+                                        Number(play?.about?.atBatIndex)
+                                    ) ? Number(play.about.atBatIndex) : null;
+                                    target.outResultPlayId = getCompletedPlateAppearancePlayId(play);
+                                } else if (isCaughtStealingRunner(play, runner)) {
                                     if (outBase === "2B") target.outAtSecond = "CS";
                                     if (outBase === "3B") target.outAtThird = "CS";
                                     if (["home", "score"].includes(outBase)) target.outAtHome = "CS";
