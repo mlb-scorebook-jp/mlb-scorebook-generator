@@ -2951,6 +2951,7 @@ body.app-mode-pregame .score-loading-overlay {
 }
 
 .special-note-row {
+    min-width: 0;
     min-height: 27px;
     display: flex;
     align-items: center;
@@ -2962,6 +2963,11 @@ body.app-mode-pregame .score-loading-overlay {
     line-height: 1.25;
     user-select: text;
     -webkit-user-select: text;
+}
+
+.special-note-text {
+    min-width: 0;
+    overflow-wrap: anywhere;
 }
 
 .special-note-source-link {

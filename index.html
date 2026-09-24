@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MLB Scorebook Generator</title>
     <!-- Score notation update: stacked batted-ball symbol, red hits, blue strikeouts, black other results. -->
-    <link rel="stylesheet" href="css/style.css?v=20260924-hoerner-rundown-1">
+    <link rel="stylesheet" href="css/style.css?v=20260924-special-note-wrap-1">
     <link rel="stylesheet" href="css/pregame.css?v=20260924-daily-game-number-size-2">
     <link rel="stylesheet" href="css/daily-records.css?v=20260907-story-candidates-2">
 </head>
@@ -3956,9 +3956,9 @@
                         }
 
                         notes.push({
-                            text: "NYY　ベン・ライス　ヤンキースでキャリア3年以内に" +
+                            text: "NYY　B.ライス　ヤンキースでキャリア3年以内に" +
                                 "シーズン40本塁打へ到達した3人目" +
-                                "（ジョー・ディマジオ、アーロン・ジャッジに次ぐ）",
+                                "（J.ディマジオ、A.ジャッジに次ぐ）",
                             priority: -9,
                             link: "https://www.mlb.com/player/ben-rice-700250",
                             linkType: "mlb-official-record"
@@ -7717,7 +7717,7 @@
                             );
                             note.append(noteLink);
                         } else {
-                            note.append(document.createTextNode(noteText));
+                            note.append(createElement("span", "special-note-text", noteText));
                         }
                         if (noteData && typeof noteData === "object" && noteData.link) {
                             if (isStatheadStreakLink) {
