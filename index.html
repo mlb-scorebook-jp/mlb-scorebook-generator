@@ -3888,6 +3888,51 @@
                     const notes = gameFinal
                         ? await buildCareerMilestoneNotes(analyzed, code, context, team)
                         : [];
+                    const seasonStrikeoutMilestoneNotes = await mapWithConcurrency(
+                        analyzed.filter((player) =>
+                            hasCurrentGamePitchingAppearance(player) &&
+                            (Number(player?.currentGamePitching?.strikeOuts) || 0) > 0
+                        ),
+                        4,
+                        async (player) => {
+                            const pitchingLogs = await fetchPlayerRegularSeasonGameLog(
+                                player.id,
+                                season,
+                                "pitching"
+                            );
+                            const priorStrikeouts = Number(
+                                aggregateGameLogStatsThroughGame(
+                                    pitchingLogs,
+                                    context,
+                                    false
+                                )?.strikeOuts
+                            ) || 0;
+                            const currentGameStrikeouts = Number(
+                                player?.currentGamePitching?.strikeOuts
+                            ) || 0;
+                            const seasonStrikeouts = priorStrikeouts + currentGameStrikeouts;
+                            if (priorStrikeouts >= 200 || seasonStrikeouts < 200) return null;
+
+                            const yearlyStats = await fetchPlayerYearByYearStats(
+                                player.id,
+                                "pitching"
+                            );
+                            const previousTwoHundredStrikeoutSeasons = [...yearlyStats.entries()]
+                                .filter(([year, stats]) =>
+                                    Number(year) < season &&
+                                    (Number(stats?.strikeOuts) || 0) >= 200
+                                ).length;
+                            return {
+                                text: `${code}　${getPersonName(player.person)}　` +
+                                    `シーズン200奪三振達成` +
+                                    `（${previousTwoHundredStrikeoutSeasons + 1}回目）`,
+                                priority: -8,
+                                link: `https://www.mlb.com/player/${player.id}`,
+                                linkType: "mlb-official-record"
+                            };
+                        }
+                    );
+                    notes.push(...seasonStrikeoutMilestoneNotes.filter(Boolean));
                     analyzed.forEach((player) => {
                         const isBenRiceFortieth = season === 2026 &&
                             code === "NYY" &&
