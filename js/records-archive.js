@@ -4,6 +4,7 @@
     const INDEX_URL = "data/records/index.json";
     const COVERAGE_URL = "data/records/coverage.json";
     const LOCAL_KEY = "mlb-records-archive-overlay-v1";
+    const DAILY_CACHE_PREFIX = "mlb-daily-records-phase1-v25:";
     const TEAM_SLUG_BY_ID = Object.freeze({
         108: "angels", 109: "d-backs", 110: "orioles", 111: "red-sox", 112: "cubs",
         113: "reds", 114: "guardians", 115: "rockies", 116: "tigers", 117: "astros",
@@ -56,10 +57,13 @@
     const queryTerms = (value) => text(value).normalize("NFKC").split(/\s+/)
         .map(normalizeSearch).filter(Boolean);
     const EXACT_ALIAS_TERMS = new Set(["ph"]);
+    const archiveSubjectKey = (record) => record?.recordType === "MLB_HISTORY_ORDINAL"
+        ? `article-${text(record?.details?.sourceHeadline || record?.fact)}`
+        : number(record?.playerId) || `team-${number(record?.teamId)}`;
     const archiveKey = (record) => [
         text(record.recordType),
         number(record.gamePk),
-        number(record.playerId) || `team-${number(record.teamId)}`,
+        archiveSubjectKey(record),
         number(record.inning) || 0,
         text(record.details?.metric || "")
     ].join(":");
@@ -118,7 +122,7 @@
         try {
             for (let index = 0; index < localStorage.length; index += 1) {
                 const key = localStorage.key(index) || "";
-                if (!key.startsWith("mlb-daily-records-phase1-v")) continue;
+                if (!key.startsWith(DAILY_CACHE_PREFIX)) continue;
                 const payload = JSON.parse(localStorage.getItem(key) || "null");
                 if (Array.isArray(payload?.records)) cached.push(...payload.records);
             }

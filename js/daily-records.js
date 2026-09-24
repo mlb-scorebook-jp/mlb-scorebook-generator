@@ -2,7 +2,7 @@
 
 (() => {
     const API_ROOT = "https://statsapi.mlb.com/api";
-    const CACHE_PREFIX = "mlb-daily-records-phase1-v24:";
+    const CACHE_PREFIX = "mlb-daily-records-phase1-v25:";
     const MAX_CONCURRENT_GAMES = 3;
     const RECORD_THRESHOLDS = Object.freeze({
         inningHits: 2,
@@ -2584,7 +2584,8 @@
         card.append(header, fact);
         if (playDescription) card.append(description);
         card.append(links);
-        if (showPrevious && record.category !== "heartwarming" && window.MLBRecordsArchive) {
+        if (showPrevious && record.category !== "heartwarming" &&
+            record.recordType !== "MLB_HISTORY_ORDINAL" && window.MLBRecordsArchive) {
             const previous = window.MLBRecordsArchive.previous(record);
             const previousLine = document.createElement("p");
             previousLine.className = "daily-record-previous";
