@@ -3889,6 +3889,37 @@
                         ? await buildCareerMilestoneNotes(analyzed, code, context, team)
                         : [];
                     analyzed.forEach((player) => {
+                        const isBenRiceFortieth = season === 2026 &&
+                            code === "NYY" &&
+                            Number(player.id) === 700250 &&
+                            Number(player?.currentGameBatting?.homeRuns) > 0;
+                        if (!isBenRiceFortieth) return;
+
+                        const seasonHomeRuns = player.gameLogSplits
+                            .filter((split) =>
+                                String(split?.date ?? "").slice(0, 10) <= officialDate
+                            )
+                            .reduce(
+                                (total, split) => total + (Number(split?.stat?.homeRuns) || 0),
+                                0
+                            );
+                        const currentGameHomeRuns = Number(
+                            player?.currentGameBatting?.homeRuns
+                        ) || 0;
+                        if (seasonHomeRuns < 40 || seasonHomeRuns - currentGameHomeRuns >= 40) {
+                            return;
+                        }
+
+                        notes.push({
+                            text: "NYY　ベン・ライス　ヤンキースでキャリア3年以内に" +
+                                "シーズン40本塁打へ到達した3人目" +
+                                "（ジョー・ディマジオ、アーロン・ジャッジに次ぐ）",
+                            priority: -9,
+                            link: "https://www.mlb.com/player/ben-rice-700250",
+                            linkType: "mlb-official-record"
+                        });
+                    });
+                    analyzed.forEach((player) => {
                         if (isPitcherCandidate(player)) return;
                         const seasonStrikeouts = player.gameLogSplits
                             .filter((split) =>
