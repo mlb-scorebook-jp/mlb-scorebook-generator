@@ -1174,20 +1174,22 @@
     const dailyGameNumberSuffix = (game) => {
         const gameNumber = Number(game?.gameNumber);
         const doubleHeader = String(game?.doubleHeader ?? "N").toUpperCase() !== "N";
-        return doubleHeader && gameNumber > 0 ? `（GAME${gameNumber}）` : "";
+        return doubleHeader && gameNumber > 0 ? `GAME${gameNumber}` : "";
     };
 
     const dailyAppearanceStatus = (appearances) => {
         const live = appearances.find(({ game }) => isDailyJapaneseGameLive(game));
         if (live) {
             return {
-                label: `${gameCardStatusLabel(live.game)}${dailyGameNumberSuffix(live.game)}`,
+                label: gameCardStatusLabel(live.game),
+                gameNumberLabel: dailyGameNumberSuffix(live.game),
                 live: true
             };
         }
         const game = appearances.at(-1)?.game;
         return {
-            label: `試合終了${dailyGameNumberSuffix(game)}`,
+            label: "試合終了",
+            gameNumberLabel: dailyGameNumberSuffix(game),
             live: false
         };
     };
@@ -1335,7 +1337,8 @@
                 ) ?? probableAppearances[0];
                 pitchers.push({
                     person,
-                    label: `${gameCardStatusLabel(statusGame.game)}${dailyGameNumberSuffix(statusGame.game)}`,
+                    label: gameCardStatusLabel(statusGame.game),
+                    gameNumberLabel: dailyGameNumberSuffix(statusGame.game),
                     live: isDailyJapaneseGameLive(statusGame.game),
                     opponent: dailyOpponentLabel(probableAppearances),
                     gameUrl: mlbGamedayUrl(statusGame.game),
@@ -1384,7 +1387,12 @@
             columns.forEach(({ field, value }) => {
                 const cell = el("td", field === "status" && row.live ? "pregame-japanese-daily-live" : "");
                 const text = String(value ? value(row) : row.stats[field] ?? "-");
-                if (field === "player" && row.gameUrl) {
+                if (field === "status" && row.gameNumberLabel) {
+                    cell.append(
+                        document.createTextNode(text),
+                        el("small", "pregame-japanese-daily-game-number", `（${row.gameNumberLabel}）`)
+                    );
+                } else if (field === "player" && row.gameUrl) {
                     const link = el("a", "pregame-player-link", text);
                     link.href = row.gameUrl;
                     link.target = "_blank";

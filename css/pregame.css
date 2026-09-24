@@ -355,7 +355,7 @@ body.app-mode-pregame .scorebook-horizontal-scroll {
 
 .pregame-team-mlb-link {
     width: 27px;
-    font-size: 8px;
+    font-size: 10px;
     letter-spacing: 0.02em;
 }
 
@@ -1059,6 +1059,11 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
     color: #181609;
     background: #f1d86e;
     font-weight: 800;
+}
+
+.pregame-japanese-daily-game-number {
+    margin-left: 2px;
+    font-size: 7px;
 }
 
 .pregame-japanese-daily-inactive {
