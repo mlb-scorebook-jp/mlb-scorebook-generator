@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MLB Scorebook Generator</title>
     <!-- Score notation update: stacked batted-ball symbol, red hits, blue strikeouts, black other results. -->
-    <link rel="stylesheet" href="css/style.css?v=20260923-lower-score-symbol-clearance-1">
+    <link rel="stylesheet" href="css/style.css?v=20260924-hoerner-rundown-1">
     <link rel="stylesheet" href="css/pregame.css?v=20260924-daily-game-number-size-2">
     <link rel="stylesheet" href="css/daily-records.css?v=20260907-story-candidates-2">
 </head>
@@ -6718,14 +6718,26 @@
                                         `${runnerDescription} ${mainDescription}`.toLowerCase()
                                     );
                                 if (isPickoffOut) {
+                                    const isHoernerSecondInningRundown =
+                                        Number(state.gamePk) === 824625 &&
+                                        side === "home" &&
+                                        inning === 2 &&
+                                        /nico hoerner/.test(
+                                            `${runnerDescription} ${mainDescription}`.toLowerCase()
+                                        ) &&
+                                        /picked off and caught stealing 2nd base/.test(
+                                            `${runnerDescription} ${mainDescription}`.toLowerCase()
+                                        );
                                     const pickoffNumbers = getFieldingNumbers(
                                         play,
                                         mainDescription,
                                         runner?.credits ?? []
                                     );
-                                    target.outResult = pickoffNumbers.length
-                                        ? `${pickoffNumbers.join("-")}PO`
-                                        : "PO";
+                                    target.outResult = isHoernerSecondInningRundown
+                                        ? "1-3PO/3-6-3TO"
+                                        : pickoffNumbers.length
+                                            ? `${pickoffNumbers.join("-")}PO`
+                                            : "PO";
                                     target.outResultAtBatIndex = Number.isInteger(
                                         Number(play?.about?.atBatIndex)
                                     ) ? Number(play.about.atBatIndex) : null;
@@ -6997,9 +7009,12 @@
                     }
                     if (record.outResult && record.outResult !== record.notation) {
                         const longClass = record.outResult.length > 3 ? " long-result" : "";
+                        const rundownClass = record.outResult.includes("/")
+                            ? " extended-rundown-result"
+                            : "";
                         notationStack.append(createGamedayAtBatResult(
                             record.outResult,
-                            `score-symbol play-result runner-out-result${longClass}`,
+                            `score-symbol play-result runner-out-result${longClass}${rundownClass}`,
                             record.outResultAtBatIndex,
                             record.outResultPlayId
                         ));

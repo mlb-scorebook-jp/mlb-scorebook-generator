@@ -2364,6 +2364,14 @@ body.app-mode-pregame .score-loading-overlay {
     font-size: 7px;
 }
 
+/* A completed rundown can extend into the now-unused home-advance quarter. */
+.play-card .runner-out-result.extended-rundown-result {
+    position: relative;
+    left: -20px;
+    max-width: none;
+    font-size: 7px;
+}
+
 .play-result.hit-result { color: var(--red); }
 .play-result.strikeout-result { color: var(--blue); }
 
