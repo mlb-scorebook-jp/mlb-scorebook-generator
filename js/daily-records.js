@@ -195,6 +195,22 @@
     const dateLabel = (date) => text(date).replaceAll("-", "/");
     const mlbHistoryAchievementFact = (context, ordinal) => {
         const source = text(context);
+        const multiCategoryMilestone = source.match(
+            /record\s+([\d,]+)-plus\s+(triples?|doubles?|hits?|home runs?|homers?)\s+and\s+([\d,]+)-plus\s+(triples?|doubles?|hits?|home runs?|homers?)\s+within\s+(?:his|her|their)\s+first\s+([\d,]+)\s+career games/i
+        );
+        if (multiCategoryMilestone) {
+            const labels = Object.freeze({
+                triple: "三塁打", triples: "三塁打",
+                double: "二塁打", doubles: "二塁打",
+                hit: "安打", hits: "安打",
+                "home run": "本塁打", "home runs": "本塁打", homer: "本塁打", homers: "本塁打"
+            });
+            const firstLabel = labels[multiCategoryMilestone[2].toLowerCase()];
+            const secondLabel = labels[multiCategoryMilestone[4].toLowerCase()];
+            if (firstLabel && secondLabel) {
+                return `通算${multiCategoryMilestone[5]}試合以内に${multiCategoryMilestone[1]}${firstLabel}・${multiCategoryMilestone[3]}${secondLabel}達成（MLB史上${ordinal}人目）`;
+            }
+        }
         const milestone = source.match(
             /\b(?:reach|record|register|notch|collect|earn|recorded|registered|notched|collected|earned)\s+(?:his\s+|her\s+|their\s+|the\s+)?(?:career\s+)?([\d,]+)(?:st|nd|rd|th)?\s+(?:career\s+)?(strikeouts?|hits?|home runs?|homers?|stolen bases?|saves?|wins?|victories|appearances?|games pitched|games played|doubles?|triples?|runs batted in|RBIs?)\b/i
         );
@@ -2288,7 +2304,7 @@
             if (!searchable) return;
             const matchPlayer = (source) => players.find(({ person }) => {
                 const fullName = text(person?.fullName);
-                const lastName = text(person?.lastName);
+                const lastName = text(person?.lastName) || fullName.split(/\s+/).at(-1) || "";
                 return (fullName && text(source).toLowerCase().includes(fullName.toLowerCase())) ||
                     (lastName.length >= 4 && new RegExp(`\\b${lastName.replace(/[.*+?^${}()|[\\]\\]/g, "\\$&")}\\b`, "i").test(text(source)));
             });
@@ -2297,7 +2313,9 @@
                 const cueIndex = value.search(pattern);
                 if (cueIndex < 0) return null;
                 return players.map((candidate) => {
-                    const names = [candidate?.person?.fullName, candidate?.person?.lastName]
+                    const fullName = text(candidate?.person?.fullName);
+                    const inferredLastName = fullName.split(/\s+/).at(-1) || "";
+                    const names = [fullName, candidate?.person?.lastName, inferredLastName]
                         .map(text).filter((name) => name.length >= 4);
                     const positions = names.flatMap((name) => {
                         const haystack = value.toLowerCase();
@@ -2313,6 +2331,21 @@
                     return { candidate, distance: Math.min(...positions.map((index) => Math.abs(index - cueIndex))) };
                 }).filter((entry) => Number.isFinite(entry.distance))
                     .sort((left, right) => left.distance - right.distance)[0]?.candidate ?? null;
+            };
+            const matchPlayerBefore = (source, pattern) => {
+                const value = text(source);
+                const cueIndex = value.search(pattern);
+                if (cueIndex < 0) return null;
+                const prefix = value.slice(0, cueIndex).toLowerCase();
+                return players.map((candidate) => {
+                    const fullName = text(candidate?.person?.fullName);
+                    const inferredLastName = fullName.split(/\s+/).at(-1) || "";
+                    const position = [fullName, candidate?.person?.lastName, inferredLastName]
+                        .map(text).filter((name) => name.length >= 4)
+                        .reduce((latest, name) => Math.max(latest, prefix.lastIndexOf(name.toLowerCase())), -1);
+                    return { candidate, position };
+                }).filter((entry) => entry.position >= 0)
+                    .sort((left, right) => right.position - left.position)[0]?.candidate ?? null;
             };
             const matched = matchPlayer([article?.headline, article?.seoTitle, article?.blurb]
                 .filter(Boolean).join(" ")) || matchPlayer(searchable);
@@ -2365,7 +2398,10 @@
                 new RegExp(`(?:${ordinalPattern})\\s+(?:player|pitcher|hitter)`, "i").test(sentence));
             const mlbOrdinal = readOrdinal(mlbContext);
             if (mlbOrdinal) {
+                const mlbOrdinalCue = new RegExp(`(?:${ordinalPattern})\\s+(?:player|pitcher|hitter)`, "i");
                 addFromArticle("MLB_HISTORY_ORDINAL", mlbHistoryAchievementFact(mlbContext, mlbOrdinal), article,
+                    matchPlayerBefore(mlbContext, mlbOrdinalCue) ||
+                    matchPlayerNearestTo(mlbContext, mlbOrdinalCue) ||
                     matchPlayer(mlbContext) || matched);
             }
         });
