@@ -881,6 +881,59 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
     margin: 0 12px 12px;
 }
 
+.pregame-postseason-magic-details {
+    margin: 0 12px 12px;
+    border: 1px solid #43515a;
+    border-radius: 4px;
+    background: #182025;
+}
+
+.pregame-postseason-magic-summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 40px;
+    padding: 7px 11px;
+    color: #dbe5ea;
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    list-style: none;
+}
+
+.pregame-postseason-magic-summary::-webkit-details-marker {
+    display: none;
+}
+
+.pregame-postseason-magic-summary::after {
+    content: "表示";
+    padding: 4px 9px;
+    border: 1px solid #647681;
+    border-radius: 3px;
+    color: #dbe5ea;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0;
+}
+
+.pregame-postseason-magic-details[open] > .pregame-postseason-magic-summary {
+    border-bottom: 1px solid #43515a;
+}
+
+.pregame-postseason-magic-details[open] > .pregame-postseason-magic-summary::after {
+    content: "閉じる";
+}
+
+.pregame-postseason-magic-details > .pregame-postseason-magic {
+    margin: 12px;
+}
+
+.pregame-postseason-magic-details > .pregame-postseason-magic-note {
+    margin-right: 12px;
+    margin-bottom: 10px;
+}
+
 .pregame-postseason-magic-league {
     min-width: 0;
     border: 1px solid #43515a;

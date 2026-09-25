@@ -3651,6 +3651,30 @@
             alMagic,
             nlMagic
         );
+        const magicNote = el(
+            "p",
+            "pregame-postseason-magic-note",
+            "Mは圏外球団の残り試合と、確定済みの直接対決タイブレーカーを基準に算出しています。"
+        );
+        const clinchedTeamCount = new Set([...standings.values()]
+            .filter((standing) => /[xyzw]/i.test(String(standing?.clinchIndicator ?? "")))
+            .map((standing) => Number(standing?.team?.id))
+            .filter(Number.isFinite)).size;
+        const magicContent = clinchedTeamCount >= 12
+            ? (() => {
+                const details = el("details", "pregame-postseason-magic-details");
+                details.append(
+                    el(
+                        "summary",
+                        "pregame-postseason-magic-summary",
+                        "進出マジック（全12球団決定）"
+                    ),
+                    magic,
+                    magicNote
+                );
+                return details;
+            })()
+            : null;
         postseasonSection.append(
             el(
                 "p",
@@ -3660,9 +3684,9 @@
                     : "シーズン終了時の組み合わせではありません。対象日の試合前に確定していた順位から算出しています。日程は現地日付、*は必要時。"
             ),
             scroll,
-            magic,
-            el("p", "pregame-postseason-magic-note", "Mは圏外球団の残り試合と、確定済みの直接対決タイブレーカーを基準に算出しています。")
+            magicContent || magic
         );
+        if (!magicContent) postseasonSection.append(magicNote);
         return postseasonSection;
     };
 
