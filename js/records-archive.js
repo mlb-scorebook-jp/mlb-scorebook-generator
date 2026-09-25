@@ -4,7 +4,7 @@
     const INDEX_URL = "data/records/index.json";
     const COVERAGE_URL = "data/records/coverage.json";
     const LOCAL_KEY = "mlb-records-archive-overlay-v1";
-    const DAILY_CACHE_PREFIX = "mlb-daily-records-phase1-v27:";
+    const DAILY_CACHE_PREFIX = "mlb-daily-records-phase1-v28:";
     const TEAM_SLUG_BY_ID = Object.freeze({
         108: "angels", 109: "d-backs", 110: "orioles", 111: "red-sox", 112: "cubs",
         113: "reds", 114: "guardians", 115: "rockies", 116: "tigers", 117: "astros",

@@ -2,7 +2,7 @@
 
 (() => {
     const API_ROOT = "https://statsapi.mlb.com/api";
-    const CACHE_PREFIX = "mlb-daily-records-phase1-v27:";
+    const CACHE_PREFIX = "mlb-daily-records-phase1-v28:";
     const MAX_CONCURRENT_GAMES = 3;
     const RECORD_THRESHOLDS = Object.freeze({
         inningHits: 2,
@@ -78,6 +78,7 @@
         RARE_REVIEW_OVERTURN: ["珍プレー候補", "リプレー検証", "call overturned"],
         HEARTWARMING_NEWS: ["ほっこりニュース", "心温まるニュース", "heartwarming"],
         TWIN_UMPIRES_SAME_GAME: ["双子審判", "一卵性双生児", "twin umpires"],
+        BOTH_LEAGUES_RBI_TITLE: ["両リーグ打点王", "史上初", "RBI title in both leagues"],
         FRANCHISE_ROOKIE_RECORD: ["球団新人記録", "franchise rookie record"],
         FRANCHISE_AGE_RECORD: ["球団最年少記録", "球団最年長記録", "youngest in franchise history", "oldest in franchise history"],
         CONSECUTIVE_GAME_HOME_RUNS: ["連続試合本塁打", "consecutive games with a home run"],
@@ -417,7 +418,12 @@
                 .map(text).join(" ").toLowerCase();
             const isTwinUmpireHistory = /twin umpires?/.test(searchable) &&
                 /(?:mlb history|make mlb history|first time)/.test(searchable);
-            if (!isTwinUmpireHistory) return [];
+            const isDefinitiveBothLeaguesRbiTitle =
+                !/(?:could|may|might|poised|chance|if)/.test(searchable) &&
+                /(?:first|history|historic)/.test(searchable) &&
+                /(?:rbi title|lead\w* .*rbis?)/.test(searchable) &&
+                /both leagues|american league.*national league|national league.*american league/.test(searchable);
+            if (!isTwinUmpireHistory && !isDefinitiveBothLeaguesRbiTitle) return [];
             const game = (article?.gamePks ?? []).map(number)
                 .map((gamePk) => gamesByPk.get(gamePk))
                 .find(Boolean);
@@ -426,6 +432,46 @@
             const awayTeam = game?.teams?.away?.team ?? {};
             const url = text(article?.url);
             if (!url) return [];
+            if (isDefinitiveBothLeaguesRbiTitle) {
+                const alonsoTeamId = 110;
+                const alonsoIsHome = number(homeTeam?.id) === alonsoTeamId;
+                const team = alonsoIsHome ? homeTeam : awayTeam;
+                const opponent = alonsoIsHome ? awayTeam : homeTeam;
+                if (number(team?.id) !== alonsoTeamId) return [];
+                return [{
+                    recordType: "BOTH_LEAGUES_RBI_TITLE",
+                    aliases: RECORD_CATALOG.BOTH_LEAGUES_RBI_TITLE,
+                    category: "special",
+                    date,
+                    season: number(date.slice(0, 4)),
+                    gameType: text(game?.gameType || "R").toUpperCase(),
+                    gamePk: number(game?.gamePk),
+                    playerId: 624413,
+                    playerName: "P.アロンゾ",
+                    subject: "P.アロンゾ",
+                    teamId: number(team?.id),
+                    teamCode: teamCode(team),
+                    teamName: text(team?.name),
+                    opponentId: number(opponent?.id) || null,
+                    opponentCode: teamCode(opponent),
+                    opponentName: text(opponent?.name),
+                    inning: null,
+                    gameDate: text(game?.gameDate),
+                    battingSide: alonsoIsHome ? "home" : "away",
+                    pitchingSide: null,
+                    fact: "史上初の両リーグ打点王",
+                    details: {
+                        metric: text(article?.slug) || url,
+                        sourceHeadline: text(article?.headline)
+                    },
+                    evidence: "MLB公式記事",
+                    apiStatus: "confirmed",
+                    historicalContext: { status: "confirmed", text: "MLB史上初" },
+                    gamedayUrl: gamedayUrl(game),
+                    articleUrls: [{ headline: text(article?.headline), url }],
+                    feedUpdatedAt: text(article?.contentDate)
+                }];
+            }
             return [{
                 recordType: "TWIN_UMPIRES_SAME_GAME",
                 aliases: RECORD_CATALOG.TWIN_UMPIRES_SAME_GAME,

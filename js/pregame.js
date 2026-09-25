@@ -5720,6 +5720,9 @@
             gamesPlayed: { label: "登板", format: (value) => `${value}試合` }
         })
     });
+    const PETE_ALONSO_ID = 624413;
+    const PETE_ALONSO_BOTH_LEAGUES_RBI_ARTICLE =
+        "https://www.mlb.com/news/pete-alonso-lead-both-leagues-in-rbis";
 
     const getLeagueTopFiveNotes = async (date) => {
         const season = Number(String(date).slice(0, 4));
@@ -5759,14 +5762,40 @@
                     });
                     return leaders
                         .filter((leader) => Number(leader?.rank) >= 1 && Number(leader.rank) <= 5)
-                        .map((leader) => ({
-                            playerId: Number(leader?.person?.id),
-                            group,
-                            category: categoryName,
-                            text: `${definition.label}${definition.format(leader.value)}` +
-                                `（${league}${Number(leader.rank)}位` +
-                                `${(valueCounts.get(String(leader.value)) ?? 0) > 1 ? "タイ" : ""}）`
-                        }));
+                        .map((leader) => {
+                            const playerId = Number(leader?.person?.id);
+                            if (season === 2026 && league === "AL" &&
+                                categoryName === "runsBattedIn" &&
+                                playerId === PETE_ALONSO_ID && Number(leader?.rank) === 1) {
+                                const runnerUp = leaders.find((entry) =>
+                                    Number(entry?.rank) === 2
+                                );
+                                const lead = Number(leader?.value) - Number(runnerUp?.value);
+                                const runnerUpLabel = runnerUp
+                                    ? `${teamCode(runnerUp?.team)} ${playerName(runnerUp?.person)}`
+                                    : "2位選手";
+                                return {
+                                    playerId,
+                                    group,
+                                    category: categoryName,
+                                    text: `現在${leader.value}打点　` +
+                                        `史上初の両リーグ打点王の可能性あり` +
+                                        (Number.isFinite(lead)
+                                            ? `（2位${runnerUpLabel}と${lead}差）`
+                                            : ""),
+                                    href: PETE_ALONSO_BOTH_LEAGUES_RBI_ARTICLE,
+                                    bothLeaguesRbiChase: true
+                                };
+                            }
+                            return {
+                                playerId,
+                                group,
+                                category: categoryName,
+                                text: `${definition.label}${definition.format(leader.value)}` +
+                                    `（${league}${Number(leader.rank)}位` +
+                                    `${(valueCounts.get(String(leader.value)) ?? 0) > 1 ? "タイ" : ""}）`
+                            };
+                        });
                 });
             })
         );
@@ -5831,7 +5860,7 @@
             .filter((note) => groups.includes(note.group))
             .map((note) => ({
                 ...note,
-                href: officialPlayerStatsUrl(note.group, "season")
+                href: note.href || officialPlayerStatsUrl(note.group, "season")
             }));
         notes.push(...leagueRankingNotes);
         importance += leagueRankingNotes.length * 25;
