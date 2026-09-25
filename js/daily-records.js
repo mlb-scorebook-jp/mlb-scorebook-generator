@@ -2,7 +2,7 @@
 
 (() => {
     const API_ROOT = "https://statsapi.mlb.com/api";
-    const CACHE_PREFIX = "mlb-daily-records-phase1-v25:";
+    const CACHE_PREFIX = "mlb-daily-records-phase1-v26:";
     const MAX_CONCURRENT_GAMES = 3;
     const RECORD_THRESHOLDS = Object.freeze({
         inningHits: 2,
@@ -195,6 +195,10 @@
     const dateLabel = (date) => text(date).replaceAll("-", "/");
     const mlbHistoryAchievementFact = (context, ordinal) => {
         const source = text(context);
+        const clubMilestone = source.match(/join\s+(?:the\s+)?([\d,]+)-([\d,]+)\s+Club/i);
+        if (clubMilestone) {
+            return `シーズン${clubMilestone[1]}本塁打・${clubMilestone[2]}盗塁達成（MLB史上${ordinal}人目）`;
+        }
         const multiCategoryMilestone = source.match(
             /record\s+([\d,]+)-plus\s+(triples?|doubles?|hits?|home runs?|homers?)\s+and\s+([\d,]+)-plus\s+(triples?|doubles?|hits?|home runs?|homers?)\s+within\s+(?:his|her|their)\s+first\s+([\d,]+)\s+career games/i
         );
@@ -214,7 +218,7 @@
         const milestone = source.match(
             /\b(?:reach|record|register|notch|collect|earn|recorded|registered|notched|collected|earned)\s+(?:his\s+|her\s+|their\s+|the\s+)?(?:career\s+)?([\d,]+)(?:st|nd|rd|th)?\s+(?:career\s+)?(strikeouts?|hits?|home runs?|homers?|stolen bases?|saves?|wins?|victories|appearances?|games pitched|games played|doubles?|triples?|runs batted in|RBIs?)\b/i
         );
-        if (!milestone) return `MLB史上${ordinal}人目`;
+        if (!milestone) return "";
         const labels = Object.freeze({
             strikeout: "奪三振", strikeouts: "奪三振",
             hit: "安打", hits: "安打",
@@ -230,7 +234,7 @@
         const label = labels[milestone[2].toLowerCase()];
         return label
             ? `通算${milestone[1]}${label}達成（MLB史上${ordinal}人目）`
-            : `MLB史上${ordinal}人目`;
+            : "";
     };
     const inningHalf = (side) => side === "away" ? "表" : side === "home" ? "裏" : "";
     const pitchingInningHalf = (side) => inningHalf(side === "away" ? "home" : side === "home" ? "away" : "");
@@ -2396,13 +2400,16 @@
             const mlbContext = searchable.split(/(?<=[.!?])\s+/).find((sentence) =>
                 /(?:MLB|Major League) history/i.test(sentence) &&
                 new RegExp(`(?:${ordinalPattern})\\s+(?:player|pitcher|hitter)`, "i").test(sentence));
-            const mlbOrdinal = readOrdinal(mlbContext);
+            const mlbOrdinalCue = new RegExp(`(?:${ordinalPattern})\\s+(?:player|pitcher|hitter)`, "i");
+            const mlbOrdinal = readOrdinal(text(mlbContext).match(mlbOrdinalCue)?.[0]);
             if (mlbOrdinal) {
-                const mlbOrdinalCue = new RegExp(`(?:${ordinalPattern})\\s+(?:player|pitcher|hitter)`, "i");
-                addFromArticle("MLB_HISTORY_ORDINAL", mlbHistoryAchievementFact(mlbContext, mlbOrdinal), article,
-                    matchPlayerBefore(mlbContext, mlbOrdinalCue) ||
-                    matchPlayerNearestTo(mlbContext, mlbOrdinalCue) ||
-                    matchPlayer(mlbContext) || matched);
+                const mlbFact = mlbHistoryAchievementFact(mlbContext, mlbOrdinal);
+                if (mlbFact) {
+                    addFromArticle("MLB_HISTORY_ORDINAL", mlbFact, article,
+                        matchPlayerBefore(mlbContext, mlbOrdinalCue) ||
+                        matchPlayerNearestTo(mlbContext, mlbOrdinalCue) ||
+                        matchPlayer(mlbContext) || matched);
+                }
             }
         });
         return additions;
