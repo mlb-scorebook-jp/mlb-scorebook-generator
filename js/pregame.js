@@ -5815,7 +5815,7 @@
                                 }[categoryName];
                                 const leadValue = {
                                     homeRuns: `${lead}本`,
-                                    battingAverage: formatAverage(lead),
+                                    battingAverage: `${Math.round(lead * 1000)}厘`,
                                     wins: `${lead}勝`,
                                     earnedRunAverage: lead.toFixed(2),
                                     strikeouts: `${lead}奪三振`
