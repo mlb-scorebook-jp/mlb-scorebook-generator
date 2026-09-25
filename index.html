@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MLB Scorebook Generator</title>
     <!-- Score notation update: stacked batted-ball symbol, red hits, blue strikeouts, black other results. -->
-    <link rel="stylesheet" href="css/style.css?v=20260924-special-note-wrap-1">
+    <link rel="stylesheet" href="css/style.css?v=20260925-special-note-inline-link-1">
     <link rel="stylesheet" href="css/pregame.css?v=20260924-daily-game-number-size-2">
     <link rel="stylesheet" href="css/daily-records.css?v=20260907-story-candidates-2">
 </head>
@@ -7699,11 +7699,16 @@
                             (noteData.linkType === "stathead-streak" ||
                                 /^https:\/\/www\.sports-reference\.com\/stathead\/baseball\/player-batting-streak-finder\.cgi(?:\?|$)/.test(noteData.link))
                         );
+                        const isMlbOfficialLink = Boolean(
+                            noteData && typeof noteData === "object" && noteData.link &&
+                            noteData.linkType === "mlb-official-record"
+                        );
+                        const isInlineNoteLink = isStatheadStreakLink || isMlbOfficialLink;
                         if (noteData && typeof noteData === "object" &&
-                            noteData.link && isStatheadStreakLink) {
+                            noteData.link && isInlineNoteLink) {
                             const noteLink = createElement(
                                 "a",
-                                "special-note-stathead-link",
+                                "special-note-inline-link",
                                 noteText
                             );
                             noteLink.href = noteData.link;
@@ -7712,14 +7717,16 @@
                             noteLink.contentEditable = "false";
                             noteLink.setAttribute(
                                 "aria-label",
-                                `${noteText}のStathead選手別ストリーク検索を新しいタブで開く`
+                                isMlbOfficialLink
+                                    ? `${noteText}のMLB公式記事を新しいタブで開く`
+                                    : `${noteText}のStathead選手別ストリーク検索を新しいタブで開く`
                             );
                             note.append(noteLink);
                         } else {
                             note.append(createElement("span", "special-note-text", noteText));
                         }
                         if (noteData && typeof noteData === "object" && noteData.link) {
-                            if (isStatheadStreakLink) {
+                            if (isInlineNoteLink) {
                                 note.contentEditable = "false";
                                 note.dataset.noteRow = String(noteIndex + 1);
                                 notesTable.append(note);
@@ -7729,9 +7736,7 @@
                             const sourceLink = createElement(
                                 "a",
                                 "special-note-source-link",
-                                noteData.linkType === "mlb-official-record"
-                                    ? "MLB公式"
-                                    : "コメントあり"
+                                "コメントあり"
                             );
                             sourceLink.href = noteData.link;
                             sourceLink.target = "_blank";

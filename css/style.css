@@ -3657,7 +3657,9 @@ body.app-mode-pregame .score-loading-overlay {
     background: #f3f6f3;
 }
 
-.special-note-stathead-link {
+.special-note-inline-link {
+    min-width: 0;
+    overflow-wrap: anywhere;
     color: inherit;
     font: inherit;
     text-decoration: underline;
@@ -3665,8 +3667,8 @@ body.app-mode-pregame .score-loading-overlay {
     text-underline-offset: 1px;
 }
 
-.special-note-stathead-link:hover,
-.special-note-stathead-link:focus-visible {
+.special-note-inline-link:hover,
+.special-note-inline-link:focus-visible {
     color: #174f32;
     cursor: pointer;
 }
