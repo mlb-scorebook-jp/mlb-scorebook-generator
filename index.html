@@ -3786,10 +3786,16 @@
                     return null;
                 }
 
+                const isWhiteSoxHistoricTurnaround = season === 2026 && code === "CWS";
                 return {
-                    text: `${code}　ポストシーズン進出決定（${appearance}）`,
+                    text: `${code}　ポストシーズン進出決定（${appearance}` +
+                        `${isWhiteSoxHistoricTurnaround
+                            ? "／3年連続100敗以上からの進出はMLB史上初"
+                            : ""}）`,
                     priority: -11,
-                    link: "https://www.mlb.com/standings/",
+                    link: isWhiteSoxHistoricTurnaround
+                        ? "https://www.mlb.com/news/2026-postseason-teams"
+                        : "https://www.mlb.com/standings/",
                     linkType: "mlb-official-record"
                 };
             };
