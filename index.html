@@ -3721,6 +3721,45 @@
             const hasClinchedPostseason = (teamRecord) =>
                 /[XYZW]/i.test(String(teamRecord?.clinchIndicator ?? ""));
 
+            const buildLosingRecordPostseasonNote = async ({
+                data, team, code, season, officialDate, gameFinal
+            }) => {
+                const gameType = String(
+                    data?.gameData?.game?.type ?? data?.gameData?.game?.gameType ?? ""
+                ).toUpperCase();
+                const teamId = Number(team?.id);
+                if (!gameFinal || gameType !== "R" || season !== 2026 ||
+                    !["HOU", "TEX"].includes(code) || !teamId ||
+                    !/^\d{4}-\d{2}-\d{2}$/.test(officialDate)) return null;
+
+                const previousDate = shiftOfficialDate(officialDate, -1);
+                const [currentStandings, previousStandings] = await Promise.all([
+                    fetchDivisionStandings(season, officialDate),
+                    fetchDivisionStandings(season, previousDate)
+                ]);
+                const current = currentStandings.find((entry) =>
+                    Number(entry?.team?.id) === teamId
+                );
+                const previous = previousStandings.find((entry) =>
+                    Number(entry?.team?.id) === teamId
+                );
+                const wins = Number(current?.wins);
+                const losses = Number(current?.losses);
+                if (!hasClinchedPostseason(current) || hasClinchedPostseason(previous) ||
+                    !Number.isFinite(wins) || !Number.isFinite(losses) || wins >= losses) {
+                    return null;
+                }
+
+                return {
+                    text: `${code}　負け越しでポストシーズン進出決定` +
+                        "（162試合制史上初）",
+                    priority: -12,
+                    link: "https://www.seattlepi.com/sports/" +
+                        "inspired-by-this-year-s-lowly-al-west-here-are-a22445761",
+                    linkType: "external-record-source"
+                };
+            };
+
             const buildPostseasonAppearanceNote = async ({
                 data, team, code, season, officialDate, gameFinal
             }) => {
@@ -3873,11 +3912,18 @@
                         };
                     }));
                     const code = getTeamCodeForSeason(team, season);
-                    const [divisionTitleNote, postseasonAppearanceNote] = await Promise.all([
+                    const [
+                        divisionTitleNote,
+                        postseasonAppearanceNote,
+                        losingRecordPostseasonNote
+                    ] = await Promise.all([
                         buildDivisionTitleNote({
                             data, team, code, season, officialDate, gameFinal
                         }),
                         buildPostseasonAppearanceNote({
+                            data, team, code, season, officialDate, gameFinal
+                        }),
+                        buildLosingRecordPostseasonNote({
                             data, team, code, season, officialDate, gameFinal
                         })
                     ]);
@@ -4015,6 +4061,7 @@
                         });
                     });
                     if (postseasonAppearanceNote) notes.push(postseasonAppearanceNote);
+                    if (losingRecordPostseasonNote) notes.push(losingRecordPostseasonNote);
                     if (divisionTitleNote) notes.push(divisionTitleNote);
                     if (gameFinal) {
                         const sharedRecords = await sharedDailyRecordsPromise;
