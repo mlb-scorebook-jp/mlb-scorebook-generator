@@ -5764,12 +5764,12 @@
                         .filter((leader) => Number(leader?.rank) >= 1 && Number(leader.rank) <= 5)
                         .map((leader) => {
                             const playerId = Number(leader?.person?.id);
+                            const runnerUp = leaders.find((entry) =>
+                                Number(entry?.rank) === 2
+                            );
                             if (season === 2026 && league === "AL" &&
                                 categoryName === "runsBattedIn" &&
                                 playerId === PETE_ALONSO_ID && Number(leader?.rank) === 1) {
-                                const runnerUp = leaders.find((entry) =>
-                                    Number(entry?.rank) === 2
-                                );
                                 const lead = Number(leader?.value) - Number(runnerUp?.value);
                                 const runnerUpLabel = runnerUp
                                     ? `${teamCode(runnerUp?.team)} ${playerName(runnerUp?.person)}`
@@ -5785,6 +5785,25 @@
                                             : ""),
                                     href: PETE_ALONSO_BOTH_LEAGUES_RBI_ARTICLE,
                                     bothLeaguesRbiChase: true
+                                };
+                            }
+                            if (Number(leader?.rank) === 1 && runnerUp &&
+                                ["homeRuns", "battingAverage"].includes(categoryName)) {
+                                const lead = Number(leader?.value) - Number(runnerUp?.value);
+                                const runnerUpLabel =
+                                    `${teamCode(runnerUp?.team)} ${playerName(runnerUp?.person)}`;
+                                const leaderValue = categoryName === "homeRuns"
+                                    ? `${leader.value}HR`
+                                    : `打率${leader.value}`;
+                                const leadValue = categoryName === "homeRuns"
+                                    ? `${lead}本`
+                                    : formatAverage(lead);
+                                return {
+                                    playerId,
+                                    group,
+                                    category: categoryName,
+                                    text: `${leaderValue}　2位${runnerUpLabel}と${leadValue}差`,
+                                    leaderGap: true
                                 };
                             }
                             return {
