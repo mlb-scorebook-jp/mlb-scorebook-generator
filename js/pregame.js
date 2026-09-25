@@ -5720,6 +5720,13 @@
             gamesPlayed: { label: "登板", format: (value) => `${value}試合` }
         })
     });
+    const PREGAME_LEADER_GAP_CATEGORIES = Object.freeze([
+        "homeRuns",
+        "battingAverage",
+        "wins",
+        "earnedRunAverage",
+        "strikeouts"
+    ]);
     const PETE_ALONSO_ID = 624413;
     const PETE_ALONSO_BOTH_LEAGUES_RBI_ARTICLE =
         "https://www.mlb.com/news/pete-alonso-lead-both-leagues-in-rbis";
@@ -5788,16 +5795,28 @@
                                 };
                             }
                             if (Number(leader?.rank) === 1 && runnerUp &&
-                                ["homeRuns", "battingAverage"].includes(categoryName)) {
-                                const lead = Number(leader?.value) - Number(runnerUp?.value);
+                                PREGAME_LEADER_GAP_CATEGORIES.includes(categoryName)) {
+                                const leaderNumber = Number(leader?.value);
+                                const runnerUpNumber = Number(runnerUp?.value);
+                                const lead = categoryName === "earnedRunAverage"
+                                    ? runnerUpNumber - leaderNumber
+                                    : leaderNumber - runnerUpNumber;
                                 const runnerUpLabel =
                                     `${teamCode(runnerUp?.team)} ${playerName(runnerUp?.person)}`;
-                                const leaderValue = categoryName === "homeRuns"
-                                    ? `${leader.value}HR`
-                                    : `打率${leader.value}`;
-                                const leadValue = categoryName === "homeRuns"
-                                    ? `${lead}本`
-                                    : formatAverage(lead);
+                                const leaderValue = {
+                                    homeRuns: `${leader.value}HR`,
+                                    battingAverage: `打率${leader.value}`,
+                                    wins: `${leader.value}勝`,
+                                    earnedRunAverage: `防御率${leader.value}`,
+                                    strikeouts: `${leader.value}奪三振`
+                                }[categoryName];
+                                const leadValue = {
+                                    homeRuns: `${lead}本`,
+                                    battingAverage: formatAverage(lead),
+                                    wins: `${lead}勝`,
+                                    earnedRunAverage: lead.toFixed(2),
+                                    strikeouts: `${lead}奪三振`
+                                }[categoryName];
                                 return {
                                     playerId,
                                     group,
