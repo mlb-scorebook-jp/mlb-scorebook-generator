@@ -5730,6 +5730,9 @@
     const PETE_ALONSO_ID = 624413;
     const PETE_ALONSO_BOTH_LEAGUES_RBI_ARTICLE =
         "https://www.mlb.com/news/pete-alonso-lead-both-leagues-in-rbis";
+    const LUIS_ARRAEZ_ID = 650333;
+    const LUIS_ARRAEZ_FOUR_TEAM_BATTING_TITLE_ARTICLE =
+        "https://www.si.com/mlb/phillies/onsi/luis-arraez-can-make-mlb-history-winning-batting-title-with-phillies";
 
     const getLeagueTopFiveNotes = async (date) => {
         const season = Number(String(date).slice(0, 4));
@@ -5817,21 +5820,38 @@
                                     earnedRunAverage: lead.toFixed(2),
                                     strikeouts: `${lead}奪三振`
                                 }[categoryName];
+                                const isArraezBattingLeader = categoryName === "battingAverage" &&
+                                    playerId === LUIS_ARRAEZ_ID;
                                 return {
                                     playerId,
                                     group,
                                     category: categoryName,
-                                    text: `${leaderValue}　2位${runnerUpLabel}と${leadValue}差`,
+                                    text: isArraezBattingLeader
+                                        ? `${leaderValue}（${league}1位　` +
+                                            `獲得すれば4球団での首位打者はMLB史上初）　` +
+                                            `2位${runnerUpLabel}と${leadValue}差`
+                                        : `${leaderValue}　2位${runnerUpLabel}と${leadValue}差`,
+                                    href: isArraezBattingLeader
+                                        ? LUIS_ARRAEZ_FOUR_TEAM_BATTING_TITLE_ARTICLE
+                                        : undefined,
                                     leaderGap: true
                                 };
                             }
+                            const isArraezBattingLeader = categoryName === "battingAverage" &&
+                                playerId === LUIS_ARRAEZ_ID && Number(leader?.rank) === 1;
                             return {
                                 playerId,
                                 group,
                                 category: categoryName,
                                 text: `${definition.label}${definition.format(leader.value)}` +
                                     `（${league}${Number(leader.rank)}位` +
-                                    `${(valueCounts.get(String(leader.value)) ?? 0) > 1 ? "タイ" : ""}）`
+                                    `${(valueCounts.get(String(leader.value)) ?? 0) > 1 ? "タイ" : ""}` +
+                                    `${isArraezBattingLeader
+                                        ? "　獲得すれば4球団での首位打者はMLB史上初"
+                                        : ""}）`,
+                                href: isArraezBattingLeader
+                                    ? LUIS_ARRAEZ_FOUR_TEAM_BATTING_TITLE_ARTICLE
+                                    : undefined
                             };
                         });
                 });
