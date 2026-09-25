@@ -2,7 +2,7 @@
 
 (() => {
     const API_ROOT = "https://statsapi.mlb.com/api";
-    const CACHE_PREFIX = "mlb-daily-records-phase1-v26:";
+    const CACHE_PREFIX = "mlb-daily-records-phase1-v27:";
     const MAX_CONCURRENT_GAMES = 3;
     const RECORD_THRESHOLDS = Object.freeze({
         inningHits: 2,
@@ -77,6 +77,7 @@
         RARE_SIMULTANEOUS_MULTI_OUT: ["珍プレー候補", "同時に複数走者アウト", "multiple runners out"],
         RARE_REVIEW_OVERTURN: ["珍プレー候補", "リプレー検証", "call overturned"],
         HEARTWARMING_NEWS: ["ほっこりニュース", "心温まるニュース", "heartwarming"],
+        TWIN_UMPIRES_SAME_GAME: ["双子審判", "一卵性双生児", "twin umpires"],
         FRANCHISE_ROOKIE_RECORD: ["球団新人記録", "franchise rookie record"],
         FRANCHISE_AGE_RECORD: ["球団最年少記録", "球団最年長記録", "youngest in franchise history", "oldest in franchise history"],
         CONSECUTIVE_GAME_HOME_RUNS: ["連続試合本塁打", "consecutive games with a home run"],
@@ -405,6 +406,57 @@
                 historicalContext: { status: "needs-review", text: "" },
                 gamedayUrl: "",
                 articleUrls: [{ headline: summary, url }],
+                feedUpdatedAt: text(article?.contentDate)
+            }];
+        });
+    };
+    const buildOfficialNewsSpecialRecords = (date, games) => {
+        const gamesByPk = new Map(games.map((game) => [number(game?.gamePk), game]));
+        return (window.MLB_LATEST_NEWS ?? []).flatMap((article) => {
+            const searchable = [article?.headline, article?.slug, ...(article?.taxonomy ?? [])]
+                .map(text).join(" ").toLowerCase();
+            const isTwinUmpireHistory = /twin umpires?/.test(searchable) &&
+                /(?:mlb history|make mlb history|first time)/.test(searchable);
+            if (!isTwinUmpireHistory) return [];
+            const game = (article?.gamePks ?? []).map(number)
+                .map((gamePk) => gamesByPk.get(gamePk))
+                .find(Boolean);
+            if (!game || text(game?.officialDate) !== date) return [];
+            const homeTeam = game?.teams?.home?.team ?? {};
+            const awayTeam = game?.teams?.away?.team ?? {};
+            const url = text(article?.url);
+            if (!url) return [];
+            return [{
+                recordType: "TWIN_UMPIRES_SAME_GAME",
+                aliases: RECORD_CATALOG.TWIN_UMPIRES_SAME_GAME,
+                category: "special",
+                date,
+                season: number(date.slice(0, 4)),
+                gameType: text(game?.gameType || "R").toUpperCase(),
+                gamePk: number(game?.gamePk),
+                playerId: null,
+                playerName: "",
+                subject: "A.ジョーンズ／T.ジョーンズ",
+                teamId: number(homeTeam?.id) || null,
+                teamCode: teamCode(homeTeam),
+                teamName: text(homeTeam?.name),
+                opponentId: number(awayTeam?.id) || null,
+                opponentCode: teamCode(awayTeam),
+                opponentName: text(awayTeam?.name),
+                inning: null,
+                gameDate: text(game?.gameDate),
+                battingSide: null,
+                pitchingSide: null,
+                fact: "一卵性双生児の審判が同一試合を担当（MLB史上初）",
+                details: {
+                    metric: text(article?.slug) || url,
+                    sourceHeadline: text(article?.headline)
+                },
+                evidence: "MLB公式記事",
+                apiStatus: "confirmed",
+                historicalContext: { status: "confirmed", text: "MLB史上初" },
+                gamedayUrl: gamedayUrl(game),
+                articleUrls: [{ headline: text(article?.headline), url }],
                 feedUpdatedAt: text(article?.contentDate)
             }];
         });
@@ -2819,6 +2871,7 @@
                 }
             );
             if (generation !== state.generation) return;
+            const officialNewsSpecialRecords = buildOfficialNewsSpecialRecords(date, games);
             const heartwarmingRecords = buildHeartwarmingNewsRecords(date, games);
             const payload = {
                 version: 1,
@@ -2832,7 +2885,11 @@
                     status: text(game?.status?.detailedState),
                     isFinal: isFinal(game)
                 })),
-                records: dedupeRecords([...gameRecords.flat(), ...heartwarmingRecords]).sort((left, right) =>
+                records: dedupeRecords([
+                    ...gameRecords.flat(),
+                    ...officialNewsSpecialRecords,
+                    ...heartwarmingRecords
+                ]).sort((left, right) =>
                     CATEGORY_ORDER.indexOf(left.category) - CATEGORY_ORDER.indexOf(right.category) ||
                     left.teamCode.localeCompare(right.teamCode, "en") ||
                     left.fact.localeCompare(right.fact, "ja")
@@ -2927,6 +2984,7 @@
             analyzeGame,
             analyzeOneGame,
             analyzeRareContext,
+            buildOfficialNewsSpecialRecords,
             buildNotableVenueReturnRecords,
             fetchJapanesePlayers,
             japaneseCareerRecords

@@ -358,9 +358,9 @@
     <script src="js/free-agent-contracts.js?v=20260920-1"></script>
     <script src="js/npb-posted-players.js?v=20260920-outcome-1"></script>
     <script src="js/stathead-links.js?v=20260810-1"></script>
-    <script src="js/records-archive.js?v=20260925-history-context-1"></script>
+    <script src="js/records-archive.js?v=20260925-twin-umpires-1"></script>
     <script src="js/daily-calendar-features.js?v=20260901-modern-stats-1"></script>
-    <script src="js/daily-records.js?v=20260925-history-context-1"></script>
+    <script src="js/daily-records.js?v=20260925-twin-umpires-2"></script>
     <script src="js/mlb-global-events.js?v=20260918-1"></script>
     <script src="js/pregame.js?v=20260924-doubleheader-daily-stats-3"></script>
 
@@ -3799,6 +3799,11 @@
                             ? sharedDailyRecords.analyzeRareContext(
                                 sharedGame, sharedPlayByPlay, data?.liveData?.boxscore, null
                             )
+                            : [],
+                        sharedDailyRecords.buildOfficialNewsSpecialRecords
+                            ? sharedDailyRecords.buildOfficialNewsSpecialRecords(
+                                officialDate, [sharedGame]
+                            )
                             : []
                     ]).then((groups) => groups.flat()).catch(() => [])
                     : Promise.resolve([]);
@@ -4046,12 +4051,14 @@
                                     record?.recordType === "SHUTOUT" &&
                                     firstCareerShutoutPlayerIds.has(Number(record?.playerId));
                                 const subject = record.subject || record.playerName;
+                                const officialRecordUrl = record?.articleUrls?.[0]?.url ||
+                                    record?.gamedayUrl;
                                 return {
                                     text: `${code}　${subject ? `${subject}　` : ""}` +
                                         `${record.fact}${firstCareerShutout ? "（キャリア初）" : ""}`,
                                     priority: -3,
-                                    ...(record.gamedayUrl ? {
-                                        link: record.gamedayUrl,
+                                    ...(officialRecordUrl ? {
+                                        link: officialRecordUrl,
                                         linkType: "mlb-official-record"
                                     } : {})
                                 };
