@@ -2518,13 +2518,20 @@
                                 (Number(statsBeforeGame?.[achievement.field]) || 0) <
                                 achievement.level
                             ).forEach((achievement, index) => {
+                                const isSeasonTwoHundredStrikeouts = group === "pitching" &&
+                                    achievement.field === "strikeOuts" &&
+                                    achievement.level === 200;
                                 playerNotes.push({
                                     text: `${code}　${getPersonName(player.person)}　` +
                                         `${achievement.count}年連続${achievement.level}` +
                                         `${achievement.unit}以上` +
                                         `（${achievement.firstSeason}〜${season}）`,
                                     priority: 4,
-                                    importance: 80 - index
+                                    importance: 80 - index,
+                                    playerId: Number(player.id),
+                                    milestoneType: isSeasonTwoHundredStrikeouts
+                                        ? "season-200-strikeouts"
+                                        : ""
                                 });
                             });
                         }
@@ -3917,18 +3924,33 @@
                                 player.id,
                                 "pitching"
                             );
-                            const previousTwoHundredStrikeoutSeasons = [...yearlyStats.entries()]
+                            const previousTwoHundredStrikeoutYears = [...yearlyStats.entries()]
                                 .filter(([year, stats]) =>
                                     Number(year) < season &&
                                     (Number(stats?.strikeOuts) || 0) >= 200
-                                ).length;
+                                )
+                                .map(([year]) => Number(year))
+                                .filter(Number.isFinite);
+                            const previousYearSet = new Set(previousTwoHundredStrikeoutYears);
+                            let consecutiveSeasons = 1;
+                            for (let year = season - 1; previousYearSet.has(year); year -= 1) {
+                                consecutiveSeasons += 1;
+                            }
+                            const occurrence = previousTwoHundredStrikeoutYears.length + 1;
+                            const firstConsecutiveSeason = season - consecutiveSeasons + 1;
+                            const achievementSummary = consecutiveSeasons >= 2
+                                ? `${consecutiveSeasons}年連続${occurrence}回目 ` +
+                                    `${firstConsecutiveSeason}〜${season}`
+                                : `${occurrence}回目`;
                             return {
                                 text: `${code}　${getPersonName(player.person)}　` +
                                     `シーズン200奪三振達成` +
-                                    `（${previousTwoHundredStrikeoutSeasons + 1}回目）`,
+                                    `（${achievementSummary}）`,
                                 priority: -8,
                                 link: `https://www.mlb.com/player/${player.id}`,
-                                linkType: "mlb-official-record"
+                                linkType: "mlb-official-record",
+                                playerId: Number(player.id),
+                                milestoneType: "season-200-strikeouts"
                             };
                         }
                     );
@@ -4036,10 +4058,20 @@
                             }));
                     }
                     if (gameFinal) {
-                        notes.push(...await buildConsecutiveSeasonNotes(
+                        const seasonTwoHundredStrikeoutPlayerIds = new Set(
+                            seasonStrikeoutMilestoneNotes
+                                .filter((note) => note?.milestoneType === "season-200-strikeouts")
+                                .map((note) => Number(note?.playerId))
+                                .filter(Number.isFinite)
+                        );
+                        const consecutiveSeasonNotes = await buildConsecutiveSeasonNotes(
                             analyzed,
                             code,
                             context
+                        );
+                        notes.push(...consecutiveSeasonNotes.filter((note) =>
+                            !(note?.milestoneType === "season-200-strikeouts" &&
+                                seasonTwoHundredStrikeoutPlayerIds.has(Number(note?.playerId)))
                         ));
                         notes.push(...await buildFranchiseRecordNotes(
                             analyzed,
