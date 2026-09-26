@@ -4014,9 +4014,12 @@
     };
 
     const renderPregameStatsRows = (definition, rows) => {
+        const block = el("div", "pregame-stats-table-block");
         const table = el("table", "pregame-stats-table");
         const body = document.createElement("tbody");
-        rows.forEach((entry) => {
+        const truncated = rows.length >= 7;
+        const displayedRows = truncated ? rows.slice(0, 6) : rows;
+        displayedRows.forEach((entry) => {
             const row = document.createElement("tr");
             const rankCell = el("td", "pregame-stats-rank", entry.rank ? String(entry.rank) : "—");
             const playerCell = document.createElement("td");
@@ -4041,7 +4044,7 @@
             );
             body.append(row);
         });
-        if (!rows.length) {
+        if (!displayedRows.length) {
             const row = document.createElement("tr");
             const cell = el("td", "pregame-stats-empty", "該当データなし");
             cell.colSpan = 4;
@@ -4049,7 +4052,9 @@
             body.append(row);
         }
         table.append(body);
-        return table;
+        block.append(table);
+        if (truncated) block.append(el("div", "pregame-stats-many", "他多数"));
+        return block;
     };
 
     const rankPregameJapaneseEntries = (definition, entries) => {

@@ -1107,6 +1107,13 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
     font-size: 13px;
 }
 
+.pregame-stats-many {
+    padding: 5px 7px 6px;
+    color: #9fadb5;
+    font-size: 11px;
+    text-align: right;
+}
+
 .pregame-stats-table td {
     overflow: hidden;
     padding: 6px 7px;
