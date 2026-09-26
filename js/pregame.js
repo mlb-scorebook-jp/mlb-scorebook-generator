@@ -4053,7 +4053,11 @@
         }
         table.append(body);
         block.append(table);
-        if (truncated) block.append(el("div", "pregame-stats-many", "他多数"));
+        if (truncated) {
+            const hiddenCount = rows.length - displayedRows.length;
+            const hiddenLabel = hiddenCount <= 2 ? `他${hiddenCount}名` : "他多数";
+            block.append(el("div", "pregame-stats-many", hiddenLabel));
+        }
         return block;
     };
 
