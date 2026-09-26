@@ -5757,6 +5757,10 @@
     const LUIS_ARRAEZ_ID = 650333;
     const LUIS_ARRAEZ_FOUR_TEAM_BATTING_TITLE_ARTICLE =
         "https://www.si.com/mlb/phillies/onsi/luis-arraez-can-make-mlb-history-winning-batting-title-with-phillies";
+    const MATT_OLSON_ID = 621566;
+    const MATT_OLSON_CONSECUTIVE_GAMES_START = "2021-05-02";
+    const MLB_CONSECUTIVE_GAMES_LEADERS_ARTICLE =
+        "https://www.mlb.com/news/most-consecutive-games-played-in-mlb-history-c282212708";
 
     const getLeagueTopFiveNotes = async (date) => {
         const season = Number(String(date).slice(0, 4));
@@ -5946,6 +5950,29 @@
             }));
         notes.push(...leagueRankingNotes);
         importance += leagueRankingNotes.length * 25;
+        if (season === 2026 && playerId === MATT_OLSON_ID && groups.includes("hitting")) {
+            const consecutiveGameLogs = await getPlayerCareerGameLog(
+                profile,
+                date,
+                "hitting"
+            ).catch(() => []);
+            const consecutiveGames = new Set(consecutiveGameLogs
+                .filter((split) =>
+                    String(split?.date ?? "") >= MATT_OLSON_CONSECUTIVE_GAMES_START &&
+                    String(split?.date ?? "") < date &&
+                    statNumber(split?.stat?.gamesPlayed) > 0
+                )
+                .map((split) => Number(split?.game?.gamePk))
+                .filter(Number.isFinite)).size;
+            if (consecutiveGames > 0) {
+                notes.push({
+                    text: `${consecutiveGames}試合連続出場（現役MLB1位）`,
+                    href: MLB_CONSECUTIVE_GAMES_LEADERS_ARTICLE,
+                    consecutiveGamesLeader: true
+                });
+                importance += 30;
+            }
+        }
         if (previousGame) {
             const stat = previousGame.stat ?? {};
             const hits = statNumber(stat.hits);
