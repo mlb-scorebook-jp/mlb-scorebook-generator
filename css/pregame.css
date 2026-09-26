@@ -2343,9 +2343,37 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
 }
 
 .pregame-game-highlight-text {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 5px;
     color: #edf3f5;
     font-size: 14px;
     line-height: 1.5;
+}
+
+.pregame-game-highlight-contender {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+}
+
+.pregame-game-highlight-logo {
+    width: 22px;
+    height: 22px;
+}
+
+.pregame-game-highlight-value {
+    color: #f1cb45;
+    font-size: 15px;
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+}
+
+.pregame-game-highlight-connector,
+.pregame-game-highlight-label {
+    white-space: nowrap;
 }
 
 .pregame-batting-summary {

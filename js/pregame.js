@@ -4235,6 +4235,7 @@
             return [{
                 category: definition.category,
                 label: PREGAME_TITLE_RACE_LABELS[definition.category] ?? `${definition.label}争い`,
+                definition,
                 away: awayContender,
                 home: homeContender
             }];
@@ -4248,13 +4249,32 @@
         const list = el("ul", "pregame-game-highlight-list");
         highlights.forEach((highlight) => {
             const item = el("li", "pregame-game-highlight-item");
-            const awayName = playerName(highlight.away?.person);
-            const homeName = playerName(highlight.home?.person);
-            item.append(el(
-                "strong",
-                "pregame-game-highlight-text",
-                `${awayName}と${homeName}の${highlight.label}に注目！`
-            ));
+            const contender = (leader) => {
+                const wrapper = el("span", "pregame-game-highlight-contender");
+                const logo = createFreeAgentTeamLogo(
+                    leader?.team,
+                    teamCode(leader?.team)
+                );
+                logo.classList.add("pregame-game-highlight-logo");
+                wrapper.append(
+                    logo,
+                    el("strong", "pregame-game-highlight-name", playerName(leader?.person)),
+                    el(
+                        "span",
+                        "pregame-game-highlight-value",
+                        formatPregameLeaderboardValue(highlight.definition, leader?.value)
+                    )
+                );
+                return wrapper;
+            };
+            const text = el("div", "pregame-game-highlight-text");
+            text.append(
+                contender(highlight.away),
+                el("span", "pregame-game-highlight-connector", "と"),
+                contender(highlight.home),
+                el("strong", "pregame-game-highlight-label", `の${highlight.label}に注目！`)
+            );
+            item.append(text);
             list.append(item);
         });
         highlightSection.append(list);
