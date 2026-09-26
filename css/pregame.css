@@ -1089,7 +1089,7 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
 
 .pregame-stats-card-tables {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: minmax(0, 53fr) minmax(0, 47fr);
 }
 
 .pregame-stats-table-panel {
