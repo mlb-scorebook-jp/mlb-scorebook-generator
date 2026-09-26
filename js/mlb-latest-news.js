@@ -2,6 +2,71 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "A pair of 3-way ties are in play in the NL Wild Card race. Here's how they would shake out",
+        "summaryJa": "カブス、勝利を呼び込む活躍",
+        "slug": "who-would-win-a-3-way-tie-in-the-nl-wild-card",
+        "url": "https://www.mlb.com/news/who-would-win-a-3-way-tie-in-the-nl-wild-card",
+        "contentDate": "2026-09-26T14:00:00Z",
+        "teamIds": [
+            112,
+            135,
+            143
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "postseason",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Witt's five-tool community impact earns Roberto Clemente Award nomination",
+        "summaryJa": "B.ウィット Jr.（KC）の最新動向をMLB公式が詳報",
+        "slug": "bobby-witt-jr-earns-royals-roberto-clemente-award-nomination-2026",
+        "url": "https://www.mlb.com/news/bobby-witt-jr-earns-royals-roberto-clemente-award-nomination-2026",
+        "contentDate": "2026-09-26T13:00:00Z",
+        "teamIds": [
+            118
+        ],
+        "playerIds": [
+            677951
+        ],
+        "gamePks": [
+            824057
+        ],
+        "taxonomy": [
+            "apple-news",
+            "roberto-clemente-award"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Two years after historic lows, White Sox find their magic -- and the postseason",
+        "summaryJa": "ホワイトソックスの最新動向をMLB公式が詳報",
+        "slug": "white-sox-make-postseason-2-years-after-historic-2024-season",
+        "url": "https://www.mlb.com/news/white-sox-make-postseason-2-years-after-historic-2024-season",
+        "contentDate": "2026-09-26T13:00:00Z",
+        "teamIds": [
+            145
+        ],
+        "playerIds": [],
+        "gamePks": [
+            824543
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Lopez closes '26 on a high note, looking forward to '27",
         "summaryJa": "J.ロペス（ATH）、勝利を呼び込む活躍",
         "slug": "jacob-lopez-finishes-2026-season-with-quality-start-in-win-over-astros",
@@ -453,28 +518,6 @@
         "taxonomy": [
             "apple-news",
             "injury"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "A 3-way tie for NL Wild Card is in play. Here's how it would shake out",
-        "summaryJa": "カブス、勝利を呼び込む活躍",
-        "slug": "who-would-win-a-3-way-tie-in-the-nl-wild-card",
-        "url": "https://www.mlb.com/news/who-would-win-a-3-way-tie-in-the-nl-wild-card",
-        "contentDate": "2026-09-26T05:01:00Z",
-        "teamIds": [
-            112,
-            135,
-            143
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "postseason",
-            "apple-news"
         ],
         "sourceScopes": [
             "MLB",
@@ -9101,28 +9144,6 @@
         ],
         "taxonomy": [
             "mlb-top-prospects",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Royals still have plenty to play for in season's final games",
-        "summaryJa": "C.ジェンセン（KC）の最新動向をMLB公式が詳報",
-        "slug": "carter-jensen-extends-on-base-streak-to-20-games",
-        "url": "https://www.mlb.com/news/carter-jensen-extends-on-base-streak-to-20-games",
-        "contentDate": "2026-09-18T04:36:28.172Z",
-        "teamIds": [
-            118
-        ],
-        "playerIds": [
-            695600
-        ],
-        "gamePks": [
-            824141
-        ],
-        "taxonomy": [
             "apple-news"
         ],
         "sourceScopes": [
