@@ -6228,6 +6228,15 @@
         return month && day ? `${Number(month)}/${Number(day)}` : "日付不明";
     };
 
+    const compactDateWithYearWhenDifferent = (date, referenceDate) => {
+        const [year, month, day] = String(date ?? "").slice(0, 10).split("-");
+        if (!year || !month || !day) return "日付不明";
+        const referenceYear = String(referenceDate ?? "").slice(0, 4);
+        return year === referenceYear
+            ? `${Number(month)}/${Number(day)}`
+            : `${year}/${Number(month)}/${Number(day)}`;
+    };
+
     const pitcherDecision = (stat) => {
         if (statNumber(stat?.wins) > 0) return "(W)";
         if (statNumber(stat?.losses) > 0) return "(L)";
@@ -6369,7 +6378,11 @@
                 }
                 row.append(
                     label,
-                    el("span", "pregame-appearance-date", compactDate(appearance?.date)),
+                    el(
+                        "span",
+                        "pregame-appearance-date",
+                        compactDateWithYearWhenDifferent(appearance?.date, data.date)
+                    ),
                     el("span", "pregame-appearance-opponent", appearanceOpponent(appearance)),
                     el("span", "pregame-appearance-decision", decision),
                     el("span", "pregame-appearance-stat", `${stat.inningsPitched ?? "-"}回`),
