@@ -1137,7 +1137,7 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
 }
 
 .pregame-stats-table td:nth-child(4) {
-    width: 51px;
+    width: 64px;
     text-align: right;
 }
 
