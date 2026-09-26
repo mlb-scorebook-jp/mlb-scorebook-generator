@@ -4061,22 +4061,23 @@
         return block;
     };
 
-    const rankPregameJapaneseEntries = (definition, entries) => {
-        const sorted = entries
+    const rankPregameJapaneseEntries = (definition, entries, leaders) => {
+        return entries
             .filter((entry) => Number.isFinite(Number(entry.value)))
-            .sort((left, right) => definition.lower
-                ? Number(left.value) - Number(right.value)
-                : Number(right.value) - Number(left.value)
-            );
-        let previousValue = null;
-        let previousRank = 0;
-        return sorted.map((entry, index) => {
-            const value = Number(entry.value);
-            const rank = previousValue === value ? previousRank : index + 1;
-            previousValue = value;
-            previousRank = rank;
-            return { ...entry, rank };
-        });
+            .map((entry) => {
+                const ranked = leaders.find((leader) =>
+                    Number(leader?.person?.id) === Number(entry?.person?.id)
+                );
+                return { ...entry, rank: Number(ranked?.rank) || null };
+            })
+            .sort((left, right) => {
+                if (left.rank && right.rank) return left.rank - right.rank;
+                if (left.rank) return -1;
+                if (right.rank) return 1;
+                return definition.lower
+                    ? Number(left.value) - Number(right.value)
+                    : Number(right.value) - Number(left.value);
+            });
     };
 
     const renderPregameStatsTable = (definition, leaders, japaneseEntries) => {
@@ -4100,7 +4101,7 @@
         const japanesePanel = el("section", "pregame-stats-table-panel");
         japanesePanel.append(renderPregameStatsRows(
             definition,
-            rankPregameJapaneseEntries(definition, japaneseEntries)
+            rankPregameJapaneseEntries(definition, japaneseEntries, leaders)
         ));
         tables.append(leaguePanel, japanesePanel);
         card.append(tables);
