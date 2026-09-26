@@ -4211,6 +4211,13 @@
         strikeouts: "最多奪三振争い"
     });
 
+    const PREGAME_TITLE_RACE_MAX_GAPS = Object.freeze({
+        battingAverage: 0.010,
+        homeRuns: 3,
+        runsBattedIn: 3,
+        stolenBases: 3
+    });
+
     const getGameTitleRaceHighlights = async (date, awayTeam, homeTeam, standings) => {
         const awayLeague = standings.get(Number(awayTeam?.id))?.leagueCode;
         const homeLeague = standings.get(Number(homeTeam?.id))?.leagueCode;
@@ -4223,19 +4230,29 @@
             }))
         );
         return requests.flatMap(({ definitions, leaders }) => definitions.flatMap((definition) => {
+            const maxGap = PREGAME_TITLE_RACE_MAX_GAPS[definition.category];
+            if (!Number.isFinite(maxGap)) return [];
             const categoryLeaders = leaders.get(definition.category) ?? [];
-            const contenderFor = (team) => categoryLeaders.find((leader) =>
-                Number(leader?.team?.id) === Number(team?.id) &&
-                Number(leader?.rank) >= 1 &&
-                Number(leader?.rank) <= 5
+            const bestFor = (team) => categoryLeaders.find((leader) =>
+                Number(leader?.team?.id) === Number(team?.id)
             );
-            const awayContender = contenderFor(awayTeam);
-            const homeContender = contenderFor(homeTeam);
+            const leagueLeader = categoryLeaders.find((leader) => Number(leader?.rank) === 1);
+            const awayContender = bestFor(awayTeam);
+            const homeContender = bestFor(homeTeam);
             if (!awayContender || !homeContender) return [];
+            const leadingValue = Number(leagueLeader?.value);
+            const awayValue = Number(awayContender?.value);
+            const homeValue = Number(homeContender?.value);
+            if (![leadingValue, awayValue, homeValue].every(Number.isFinite)) return [];
+            if (Math.abs(leadingValue - awayValue) > maxGap ||
+                Math.abs(leadingValue - homeValue) > maxGap) return [];
             return [{
                 category: definition.category,
                 label: PREGAME_TITLE_RACE_LABELS[definition.category] ?? `${definition.label}争い`,
                 definition,
+                leaderInMatch: [awayContender, homeContender].some((leader) =>
+                    Number(leader?.rank) === 1
+                ),
                 away: awayContender,
                 home: homeContender
             }];
@@ -4272,7 +4289,13 @@
                 contender(highlight.away),
                 el("span", "pregame-game-highlight-connector", "と"),
                 contender(highlight.home),
-                el("strong", "pregame-game-highlight-label", `の${highlight.label}に注目！`)
+                el(
+                    "strong",
+                    "pregame-game-highlight-label",
+                    highlight.leaderInMatch
+                        ? `の${highlight.label}に注目！`
+                        : `、この試合で${highlight.label.replace(/争い$/, "")}の座を奪うか！？`
+                )
             );
             item.append(text);
             list.append(item);
