@@ -4173,7 +4173,10 @@
                             person: entry.person,
                             team: entry.team,
                             value: entry.stats?.[group]?.[definition.field]
-                        }));
+                        }))
+                        .filter((entry) =>
+                            definition.category !== "saves" || statNumber(entry.value) > 0
+                        );
                     cards.append(renderPregameStatsTable(
                         definition,
                         leaders.get(definition.category) ?? [],
