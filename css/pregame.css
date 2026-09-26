@@ -1081,7 +1081,9 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
 
 .pregame-stats-card-title {
     padding: 8px 10px;
-    border-bottom: 1px solid #354149;
+    border-bottom: 1px solid #0b4a8f;
+    color: #fff;
+    background: #002d72;
     font-size: 14px;
 }
 
