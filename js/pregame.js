@@ -5762,8 +5762,8 @@
     const CONSECUTIVE_GAMES_AHEAD_OF_OLSON = Object.freeze([
         2632, 2130, 1307, 1207, 1152, 1117, 1103
     ]);
-    const MLB_CONSECUTIVE_GAMES_LEADERS_ARTICLE =
-        "https://www.mlb.com/news/most-consecutive-games-played-in-mlb-history-c282212708";
+    const BASEBALL_REFERENCE_CONSECUTIVE_GAMES_LEADERS =
+        "https://www.baseball-reference.com/bullpen/Consecutive_Games_Played";
 
     const getLeagueTopFiveNotes = async (date) => {
         const season = Number(String(date).slice(0, 4));
@@ -5973,7 +5973,8 @@
                 notes.push({
                     text: `${consecutiveGames}試合連続出場` +
                         `（現役MLB1位　歴代${allTimeRank}位）`,
-                    href: MLB_CONSECUTIVE_GAMES_LEADERS_ARTICLE,
+                    href: BASEBALL_REFERENCE_CONSECUTIVE_GAMES_LEADERS,
+                    sourceName: "Baseball-Reference",
                     consecutiveGamesLeader: true
                 });
                 importance += 30;
@@ -6186,7 +6187,8 @@
                 "aria-label",
                 statheadUrl
                     ? `${playerName(entry?.person)}のStathead選手別ストリーク検索を開く`
-                    : `${playerName(entry?.person)}：${note.text}のMLB公式情報を開く`
+                    : `${playerName(entry?.person)}：${note.text}の` +
+                        `${note.sourceName || "MLB公式"}情報を開く`
             );
             row.append(noteLink);
         });
