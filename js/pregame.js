@@ -5759,6 +5759,9 @@
         "https://www.si.com/mlb/phillies/onsi/luis-arraez-can-make-mlb-history-winning-batting-title-with-phillies";
     const MATT_OLSON_ID = 621566;
     const MATT_OLSON_CONSECUTIVE_GAMES_START = "2021-05-02";
+    const CONSECUTIVE_GAMES_AHEAD_OF_OLSON = Object.freeze([
+        2632, 2130, 1307, 1207, 1152, 1117, 1103
+    ]);
     const MLB_CONSECUTIVE_GAMES_LEADERS_ARTICLE =
         "https://www.mlb.com/news/most-consecutive-games-played-in-mlb-history-c282212708";
 
@@ -5965,8 +5968,11 @@
                 .map((split) => Number(split?.game?.gamePk))
                 .filter(Number.isFinite)).size;
             if (consecutiveGames > 0) {
+                const allTimeRank = CONSECUTIVE_GAMES_AHEAD_OF_OLSON
+                    .filter((games) => games > consecutiveGames).length + 1;
                 notes.push({
-                    text: `${consecutiveGames}試合連続出場（現役MLB1位）`,
+                    text: `${consecutiveGames}試合連続出場` +
+                        `（現役MLB1位　歴代${allTimeRank}位）`,
                     href: MLB_CONSECUTIVE_GAMES_LEADERS_ARTICLE,
                     consecutiveGamesLeader: true
                 });
