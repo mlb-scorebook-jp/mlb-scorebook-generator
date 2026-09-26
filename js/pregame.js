@@ -4013,14 +4013,7 @@
         ]));
     };
 
-    const renderPregameStatsTable = (
-        definition,
-        leaders,
-        japaneseEntries,
-        japanesePlayerIds
-    ) => {
-        const card = el("section", "pregame-stats-card");
-        card.append(el("h5", "pregame-stats-card-title", definition.label));
+    const renderPregameStatsRows = (definition, rows) => {
         const table = el("table", "pregame-stats-table");
         const head = document.createElement("thead");
         const headRow = document.createElement("tr");
@@ -4029,43 +4022,6 @@
         );
         head.append(headRow);
         const body = document.createElement("tbody");
-        const topFive = leaders.filter((leader) => {
-            const rank = Number(leader?.rank);
-            return rank >= 1 && rank <= 5;
-        });
-        const topFiveIds = new Set(topFive.map((leader) => Number(leader?.person?.id)));
-        const rows = [
-            ...topFive.map((leader) => ({
-                rank: Number(leader?.rank),
-                person: leader?.person,
-                team: leader?.team,
-                value: leader?.value,
-                japanese: japanesePlayerIds.has(Number(leader?.person?.id))
-            })),
-            ...japaneseEntries
-                .filter((entry) => !topFiveIds.has(Number(entry?.person?.id)))
-                .map((entry) => {
-                    const ranked = leaders.find((leader) =>
-                        Number(leader?.person?.id) === Number(entry?.person?.id)
-                    );
-                    return {
-                        ...entry,
-                        rank: Number(ranked?.rank) || null,
-                        value: entry.value,
-                        japanese: true
-                    };
-                })
-                .sort((left, right) => {
-                    if (left.rank && right.rank) return left.rank - right.rank;
-                    if (left.rank) return -1;
-                    if (right.rank) return 1;
-                    const leftValue = Number(left.value);
-                    const rightValue = Number(right.value);
-                    return definition.lower
-                        ? leftValue - rightValue
-                        : rightValue - leftValue;
-                })
-        ];
         rows.forEach((entry) => {
             const row = document.createElement("tr");
             const rankCell = el("td", "pregame-stats-rank", entry.rank ? String(entry.rank) : "—");
@@ -4099,7 +4055,54 @@
             body.append(row);
         }
         table.append(head, body);
-        card.append(table);
+        return table;
+    };
+
+    const rankPregameJapaneseEntries = (definition, entries) => {
+        const sorted = entries
+            .filter((entry) => Number.isFinite(Number(entry.value)))
+            .sort((left, right) => definition.lower
+                ? Number(left.value) - Number(right.value)
+                : Number(right.value) - Number(left.value)
+            );
+        let previousValue = null;
+        let previousRank = 0;
+        return sorted.map((entry, index) => {
+            const value = Number(entry.value);
+            const rank = previousValue === value ? previousRank : index + 1;
+            previousValue = value;
+            previousRank = rank;
+            return { ...entry, rank };
+        });
+    };
+
+    const renderPregameStatsTable = (definition, leaders, japaneseEntries) => {
+        const card = el("section", "pregame-stats-card");
+        card.append(el("h5", "pregame-stats-card-title", definition.label));
+        const tables = el("div", "pregame-stats-card-tables");
+        const leaguePanel = el("section", "pregame-stats-table-panel");
+        leaguePanel.append(el("h6", "pregame-stats-table-title", "リーグ上位"));
+        const topFive = leaders
+            .filter((leader) => {
+                const rank = Number(leader?.rank);
+                return rank >= 1 && rank <= 5;
+            })
+            .map((leader) => ({
+                rank: Number(leader?.rank),
+                person: leader?.person,
+                team: leader?.team,
+                value: leader?.value
+            }));
+        leaguePanel.append(renderPregameStatsRows(definition, topFive));
+
+        const japanesePanel = el("section", "pregame-stats-table-panel");
+        japanesePanel.append(el("h6", "pregame-stats-table-title", "日本人選手"));
+        japanesePanel.append(renderPregameStatsRows(
+            definition,
+            rankPregameJapaneseEntries(definition, japaneseEntries)
+        ));
+        tables.append(leaguePanel, japanesePanel);
+        card.append(tables);
         return card;
     };
 
@@ -4117,7 +4120,6 @@
             toggle.setAttribute("aria-expanded", String(!collapsed));
         });
 
-        const japanesePlayerIds = new Set(japanesePlayers.map((person) => Number(person?.id)));
         const japaneseStats = await Promise.all(japanesePlayers.map(async (person) => {
             const teamId = Number(person?.pregameTeamId ?? person?.currentTeam?.id);
             const standing = standings.get(teamId);
@@ -4180,8 +4182,7 @@
                     cards.append(renderPregameStatsTable(
                         definition,
                         leaders.get(definition.category) ?? [],
-                        japaneseEntries,
-                        japanesePlayerIds
+                        japaneseEntries
                     ));
                 });
                 groupElement.append(cards);

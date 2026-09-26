@@ -1069,7 +1069,7 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
 
 .pregame-stats-grid {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: minmax(0, 1fr);
     gap: 8px;
 }
 
@@ -1083,6 +1083,28 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
     padding: 6px 8px;
     border-bottom: 1px solid #354149;
     font-size: 12px;
+}
+
+.pregame-stats-card-tables {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.pregame-stats-table-panel {
+    min-width: 0;
+}
+
+.pregame-stats-table-panel + .pregame-stats-table-panel {
+    border-left: 1px solid #354149;
+}
+
+.pregame-stats-table-title {
+    margin: 0;
+    padding: 5px 7px;
+    border-bottom: 1px solid #354149;
+    color: #9fadb5;
+    font-size: 9px;
+    letter-spacing: 0.04em;
 }
 
 .pregame-stats-table {
@@ -1168,9 +1190,19 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
 }
 
 @media (max-width: 1100px) {
-    .pregame-stats-content,
-    .pregame-stats-grid {
+    .pregame-stats-content {
         grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 620px) {
+    .pregame-stats-card-tables {
+        grid-template-columns: 1fr;
+    }
+
+    .pregame-stats-table-panel + .pregame-stats-table-panel {
+        border-top: 1px solid #354149;
+        border-left: 0;
     }
 }
 
