@@ -4024,7 +4024,7 @@
         const table = el("table", "pregame-stats-table");
         const head = document.createElement("thead");
         const headRow = document.createElement("tr");
-        ["順位", "選手", "球団", "記録"].forEach((label) =>
+        ["順位", "選手", "", "記録"].forEach((label) =>
             headRow.append(el("th", "", label))
         );
         head.append(headRow);
@@ -4068,7 +4068,6 @@
         ];
         rows.forEach((entry) => {
             const row = document.createElement("tr");
-            if (entry.japanese) row.classList.add("is-japanese");
             const rankCell = el("td", "pregame-stats-rank", entry.rank ? String(entry.rank) : "—");
             const playerCell = document.createElement("td");
             const playerLink = el("a", "pregame-stats-player", playerName(entry.person));
@@ -4076,11 +4075,14 @@
             playerLink.target = "_blank";
             playerLink.rel = "noopener noreferrer";
             playerCell.append(playerLink);
-            if (entry.japanese) playerCell.append(el("span", "pregame-stats-japanese", "日本"));
+            const teamCell = el("td", "pregame-stats-team");
+            const teamLogo = createFreeAgentTeamLogo(entry.team, teamCode(entry.team));
+            teamLogo.classList.add("pregame-stats-team-logo");
+            teamCell.append(teamLogo);
             row.append(
                 rankCell,
                 playerCell,
-                el("td", "pregame-stats-team", teamCode(entry.team)),
+                teamCell,
                 el(
                     "td",
                     "pregame-stats-value",
@@ -4103,7 +4105,7 @@
 
     const renderPregameStatsSection = async (date, japanesePlayers, standings) => {
         const season = Number(date.slice(0, 4));
-        const sectionElement = section("スタッツ", `${formatDate(previousDate(date))}終了時点`);
+        const sectionElement = section("タイトル一覧", `${formatDate(previousDate(date))}終了時点`);
         sectionElement.classList.add("pregame-stats-section", "is-collapsed");
         const toggle = el("button", "pregame-free-agent-toggle", "表示");
         toggle.type = "button";
@@ -4150,7 +4152,7 @@
 
         leagueDefinitions.forEach(({ code }) => {
             const league = el("section", "pregame-stats-league");
-            league.append(el("h4", "pregame-stats-league-title", `${code} リーグリーダー`));
+            league.append(el("h4", "pregame-stats-league-title", code));
             Object.entries(PREGAME_STATS_DEFINITIONS).forEach(([group, definitions]) => {
                 const groupElement = el("section", "pregame-stats-group");
                 groupElement.append(el(

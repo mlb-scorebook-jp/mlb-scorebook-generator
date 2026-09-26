@@ -1128,10 +1128,6 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
     text-align: right;
 }
 
-.pregame-stats-table tr.is-japanese {
-    background: rgba(225, 184, 47, 0.08);
-}
-
 .pregame-stats-rank {
     color: #e1b82f;
     font-weight: 800;
@@ -1148,18 +1144,16 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
     text-decoration: underline;
 }
 
-.pregame-stats-japanese {
-    margin-left: 4px;
-    padding: 1px 3px;
-    border-radius: 2px;
-    color: #172026;
-    background: #e1b82f;
-    font-size: 8px;
-    font-weight: 800;
+.pregame-stats-team {
+    text-align: center !important;
 }
 
-.pregame-stats-team {
-    color: #9daab2;
+.pregame-stats-team-logo {
+    display: block;
+    width: 18px;
+    height: 18px;
+    margin: 0 auto;
+    object-fit: contain;
 }
 
 .pregame-stats-value {
