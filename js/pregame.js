@@ -4015,12 +4015,6 @@
 
     const renderPregameStatsRows = (definition, rows) => {
         const table = el("table", "pregame-stats-table");
-        const head = document.createElement("thead");
-        const headRow = document.createElement("tr");
-        ["順位", "選手", "", "記録"].forEach((label) =>
-            headRow.append(el("th", "", label))
-        );
-        head.append(headRow);
         const body = document.createElement("tbody");
         rows.forEach((entry) => {
             const row = document.createElement("tr");
@@ -4054,7 +4048,7 @@
             row.append(cell);
             body.append(row);
         }
-        table.append(head, body);
+        table.append(body);
         return table;
     };
 
@@ -4081,7 +4075,6 @@
         card.append(el("h5", "pregame-stats-card-title", definition.label));
         const tables = el("div", "pregame-stats-card-tables");
         const leaguePanel = el("section", "pregame-stats-table-panel");
-        leaguePanel.append(el("h6", "pregame-stats-table-title", "リーグ上位"));
         const topFive = leaders
             .filter((leader) => {
                 const rank = Number(leader?.rank);
@@ -4096,7 +4089,6 @@
         leaguePanel.append(renderPregameStatsRows(definition, topFive));
 
         const japanesePanel = el("section", "pregame-stats-table-panel");
-        japanesePanel.append(el("h6", "pregame-stats-table-title", "日本人選手"));
         japanesePanel.append(renderPregameStatsRows(
             definition,
             rankPregameJapaneseEntries(definition, japaneseEntries)

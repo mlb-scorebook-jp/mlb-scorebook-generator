@@ -1098,15 +1098,6 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
     border-left: 1px solid #354149;
 }
 
-.pregame-stats-table-title {
-    margin: 0;
-    padding: 7px 9px;
-    border-bottom: 1px solid #354149;
-    color: #9fadb5;
-    font-size: 12px;
-    letter-spacing: 0.04em;
-}
-
 .pregame-stats-table {
     width: 100%;
     border-collapse: collapse;
@@ -1114,7 +1105,6 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
     font-size: 13px;
 }
 
-.pregame-stats-table th,
 .pregame-stats-table td {
     overflow: hidden;
     padding: 6px 7px;
@@ -1124,27 +1114,19 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
     white-space: nowrap;
 }
 
-.pregame-stats-table th {
-    color: #9fadb5;
-    font-size: 11px;
-}
-
 .pregame-stats-table tr:last-child td {
     border-bottom: 0;
 }
 
-.pregame-stats-table th:nth-child(1),
 .pregame-stats-table td:nth-child(1) {
     width: 34px;
     text-align: center;
 }
 
-.pregame-stats-table th:nth-child(3),
 .pregame-stats-table td:nth-child(3) {
     width: 39px;
 }
 
-.pregame-stats-table th:nth-child(4),
 .pregame-stats-table td:nth-child(4) {
     width: 51px;
     text-align: right;
