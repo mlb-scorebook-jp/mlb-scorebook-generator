@@ -4266,7 +4266,7 @@
         const list = el("ul", "pregame-game-highlight-list");
         highlights.forEach((highlight) => {
             const item = el("li", "pregame-game-highlight-item");
-            const contender = (leader) => {
+            const contender = (leader, showValue = true) => {
                 const wrapper = el("span", "pregame-game-highlight-contender");
                 const logo = createFreeAgentTeamLogo(
                     leader?.team,
@@ -4275,16 +4275,38 @@
                 logo.classList.add("pregame-game-highlight-logo");
                 wrapper.append(
                     logo,
-                    el("strong", "pregame-game-highlight-name", playerName(leader?.person)),
-                    el(
+                    el("strong", "pregame-game-highlight-name", playerName(leader?.person))
+                );
+                if (showValue) wrapper.append(el(
                         "span",
                         "pregame-game-highlight-value",
                         formatPregameLeaderboardValue(highlight.definition, leader?.value)
-                    )
-                );
+                ));
                 return wrapper;
             };
             const text = el("div", "pregame-game-highlight-text");
+            if (highlight.kind === "special") {
+                const specialLabel = el(
+                    highlight.href ? "a" : "strong",
+                    "pregame-game-highlight-label",
+                    highlight.label
+                );
+                if (highlight.href) {
+                    specialLabel.href = highlight.href;
+                    specialLabel.target = "_blank";
+                    specialLabel.rel = "noopener noreferrer";
+                }
+                text.append(
+                    contender({
+                        person: highlight.person,
+                        team: highlight.team
+                    }, false),
+                    specialLabel
+                );
+                item.append(text);
+                list.append(item);
+                return;
+            }
             text.append(
                 contender(highlight.away),
                 el("span", "pregame-game-highlight-connector", "と"),
@@ -4303,6 +4325,18 @@
         highlightSection.append(list);
         return highlightSection;
     };
+
+    const getStartingPitcherGameHighlights = (starters) => starters.flatMap(({ data, team }) =>
+        (data?.venueHistory?.notes ?? [])
+            .filter((note) => note?.gameHighlight)
+            .map((note) => ({
+                kind: "special",
+                person: data.pitcher,
+                team,
+                label: note.text,
+                href: note.href
+            }))
+    );
 
     const renderTop = async () => {
         scrollPregameToTop();
@@ -6571,6 +6605,7 @@
             venueHistory.notes.unshift({
                 tone: "positive",
                 text: "現役最後の登板",
+                gameHighlight: true,
                 href: "https://www.mlb.com/tigers/news/" +
                     "justin-verlander-honored-by-tigers-teammates-before-final-start-of-career"
             });
@@ -6838,7 +6873,14 @@
                 getStartingPitcherData(homeProbable, date, awayTeam, venue),
                 getGameTitleRaceHighlights(date, awayTeam, homeTeam, standings)
             ]);
-            const titleRaceSection = renderGameTitleRaceHighlights(titleRaceHighlights);
+            const gameHighlights = [
+                ...getStartingPitcherGameHighlights([
+                    { data: awayStarter, team: awayTeam },
+                    { data: homeStarter, team: homeTeam }
+                ]),
+                ...titleRaceHighlights
+            ];
+            const titleRaceSection = renderGameTitleRaceHighlights(gameHighlights);
             if (titleRaceSection) grid.append(titleRaceSection);
             const startingSection = section("先発投手", "先発投手比較");
             startingSection.classList.add("pregame-span-12");

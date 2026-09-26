@@ -2376,6 +2376,19 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
     white-space: nowrap;
 }
 
+a.pregame-game-highlight-label {
+    color: #edf3f5;
+    text-decoration: underline;
+    text-decoration-color: #718089;
+    text-underline-offset: 3px;
+}
+
+a.pregame-game-highlight-label:hover,
+a.pregame-game-highlight-label:focus-visible {
+    color: #fff;
+    text-decoration-color: #fff;
+}
+
 .pregame-batting-summary {
     display: grid;
     gap: 10px;
