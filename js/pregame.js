@@ -6182,6 +6182,14 @@
             getPlayerCareerGameLog(profile, date, "pitching").catch(() => []),
             getPitcherVenueHistory(profile, date, venue).catch(() => null)
         ]);
+        if (Number(profile?.id) === 434378 && date === "2026-09-26" && venueHistory) {
+            venueHistory.notes.unshift({
+                tone: "positive",
+                text: "現役最後の登板",
+                href: "https://www.mlb.com/tigers/news/" +
+                    "justin-verlander-honored-by-tigers-teammates-before-final-start-of-career"
+            });
+        }
         const recentAppearances = careerLogs
             .filter((split) => String(split?.date ?? "") < date && statNumber(split?.stat?.gamesPlayed) > 0)
             .sort((a, b) =>
@@ -6248,9 +6256,23 @@
         ));
         history.notes.forEach((note) => {
             const row = el("div", `pregame-pitcher-venue-note pregame-pitcher-venue-${note.tone}`);
-            row.append(el("span", "pregame-pitcher-venue-note-text", note.text));
+            const noteText = el(
+                note.href ? "a" : "span",
+                "pregame-pitcher-venue-note-text",
+                note.text
+            );
+            if (note.href) {
+                noteText.href = note.href;
+                noteText.target = "_blank";
+                noteText.rel = "noopener noreferrer";
+                noteText.setAttribute(
+                    "aria-label",
+                    `${playerName(pitcher)}：${note.text}のMLB公式記事を新しいタブで開く`
+                );
+            }
+            row.append(noteText);
             const sources = el("span", "pregame-pitcher-venue-sources");
-            note.appearances.forEach((entry, index) => {
+            (note.appearances ?? []).forEach((entry, index) => {
                 const href = appearanceGamedayUrl(entry?.split);
                 if (!href) return;
                 const link = el("a", "", compactDate(entry?.split?.date));
