@@ -3959,6 +3959,235 @@
         return list;
     };
 
+    const PREGAME_STATS_DEFINITIONS = Object.freeze({
+        hitting: Object.freeze([
+            { category: "battingAverage", field: "avg", label: "打率", rate: true },
+            { category: "homeRuns", field: "homeRuns", label: "本塁打" },
+            { category: "runsBattedIn", field: "rbi", label: "打点" },
+            { category: "hits", field: "hits", label: "安打数" },
+            { category: "stolenBases", field: "stolenBases", label: "盗塁" },
+            { category: "walks", field: "baseOnBalls", label: "四球" },
+            { category: "onBasePlusSlugging", field: "ops", label: "OPS", rate: true }
+        ]),
+        pitching: Object.freeze([
+            { category: "earnedRunAverage", field: "era", label: "防御率", rate: true, lower: true },
+            { category: "wins", field: "wins", label: "勝利数" },
+            { category: "saves", field: "saves", label: "セーブ数" },
+            { category: "gamesPlayed", field: "gamesPlayed", label: "登板数" },
+            { category: "strikeouts", field: "strikeOuts", label: "奪三振" }
+        ])
+    });
+
+    const formatPregameLeaderboardValue = (definition, value) => {
+        const numeric = Number.parseFloat(value);
+        if (!Number.isFinite(numeric)) return "—";
+        if (definition.category === "battingAverage" ||
+            definition.category === "onBasePlusSlugging") {
+            return numeric.toFixed(3).replace(/^0/, "");
+        }
+        if (definition.category === "earnedRunAverage") return numeric.toFixed(2);
+        return String(Math.round(numeric));
+    };
+
+    const getPregameLeagueLeaders = async (date, leagueId, group, definitions) => {
+        const season = Number(date.slice(0, 4));
+        const endDate = previousDate(date);
+        const params = new URLSearchParams({
+            leaderCategories: definitions.map(({ category }) => category).join(","),
+            statGroup: group,
+            statType: "byDateRange",
+            sportId: "1",
+            leagueId: String(leagueId),
+            gameType: "R",
+            startDate: `${season}-01-01`,
+            endDate,
+            limit: "100"
+        });
+        const payload = await fetchJson(
+            `${API_ROOT}/v1/stats/leaders?${params}`,
+            `pregame:stats-leaders:${leagueId}:${group}:${endDate}`
+        ).catch(() => null);
+        return new Map((payload?.leagueLeaders ?? []).map((category) => [
+            String(category?.leaderCategory ?? ""),
+            category?.leaders ?? []
+        ]));
+    };
+
+    const renderPregameStatsTable = (
+        definition,
+        leaders,
+        japaneseEntries,
+        japanesePlayerIds
+    ) => {
+        const card = el("section", "pregame-stats-card");
+        card.append(el("h5", "pregame-stats-card-title", definition.label));
+        const table = el("table", "pregame-stats-table");
+        const head = document.createElement("thead");
+        const headRow = document.createElement("tr");
+        ["順位", "選手", "球団", "記録"].forEach((label) =>
+            headRow.append(el("th", "", label))
+        );
+        head.append(headRow);
+        const body = document.createElement("tbody");
+        const topFive = leaders.filter((leader) => {
+            const rank = Number(leader?.rank);
+            return rank >= 1 && rank <= 5;
+        });
+        const topFiveIds = new Set(topFive.map((leader) => Number(leader?.person?.id)));
+        const rows = [
+            ...topFive.map((leader) => ({
+                rank: Number(leader?.rank),
+                person: leader?.person,
+                team: leader?.team,
+                value: leader?.value,
+                japanese: japanesePlayerIds.has(Number(leader?.person?.id))
+            })),
+            ...japaneseEntries
+                .filter((entry) => !topFiveIds.has(Number(entry?.person?.id)))
+                .map((entry) => {
+                    const ranked = leaders.find((leader) =>
+                        Number(leader?.person?.id) === Number(entry?.person?.id)
+                    );
+                    return {
+                        ...entry,
+                        rank: Number(ranked?.rank) || null,
+                        value: entry.value,
+                        japanese: true
+                    };
+                })
+                .sort((left, right) => {
+                    if (left.rank && right.rank) return left.rank - right.rank;
+                    if (left.rank) return -1;
+                    if (right.rank) return 1;
+                    const leftValue = Number(left.value);
+                    const rightValue = Number(right.value);
+                    return definition.lower
+                        ? leftValue - rightValue
+                        : rightValue - leftValue;
+                })
+        ];
+        rows.forEach((entry) => {
+            const row = document.createElement("tr");
+            if (entry.japanese) row.classList.add("is-japanese");
+            const rankCell = el("td", "pregame-stats-rank", entry.rank ? String(entry.rank) : "—");
+            const playerCell = document.createElement("td");
+            const playerLink = el("a", "pregame-stats-player", playerName(entry.person));
+            playerLink.href = `https://www.mlb.com/player/${Number(entry?.person?.id)}`;
+            playerLink.target = "_blank";
+            playerLink.rel = "noopener noreferrer";
+            playerCell.append(playerLink);
+            if (entry.japanese) playerCell.append(el("span", "pregame-stats-japanese", "日本"));
+            row.append(
+                rankCell,
+                playerCell,
+                el("td", "pregame-stats-team", teamCode(entry.team)),
+                el(
+                    "td",
+                    "pregame-stats-value",
+                    formatPregameLeaderboardValue(definition, entry.value)
+                )
+            );
+            body.append(row);
+        });
+        if (!rows.length) {
+            const row = document.createElement("tr");
+            const cell = el("td", "pregame-stats-empty", "該当データなし");
+            cell.colSpan = 4;
+            row.append(cell);
+            body.append(row);
+        }
+        table.append(head, body);
+        card.append(table);
+        return card;
+    };
+
+    const renderPregameStatsSection = async (date, japanesePlayers, standings) => {
+        const season = Number(date.slice(0, 4));
+        const sectionElement = section("スタッツ", `${formatDate(previousDate(date))}終了時点`);
+        sectionElement.classList.add("pregame-stats-section", "is-collapsed");
+        const toggle = el("button", "pregame-free-agent-toggle", "表示");
+        toggle.type = "button";
+        toggle.setAttribute("aria-expanded", "false");
+        sectionElement.querySelector(".pregame-section-header")?.append(toggle);
+        toggle.addEventListener("click", () => {
+            const collapsed = sectionElement.classList.toggle("is-collapsed");
+            toggle.textContent = collapsed ? "表示" : "閉じる";
+            toggle.setAttribute("aria-expanded", String(!collapsed));
+        });
+
+        const japanesePlayerIds = new Set(japanesePlayers.map((person) => Number(person?.id)));
+        const japaneseStats = await Promise.all(japanesePlayers.map(async (person) => {
+            const teamId = Number(person?.pregameTeamId ?? person?.currentTeam?.id);
+            const standing = standings.get(teamId);
+            const leagueCode = standing?.leagueCode;
+            const team = standing?.team ?? person?.pregameRosterState?.team ?? person?.currentTeam ?? { id: teamId };
+            const position = String(person?.primaryPosition?.abbreviation ?? "").toUpperCase();
+            const twoWay = position === "TWP";
+            const groups = twoWay ? ["hitting", "pitching"] : [position === "P" ? "pitching" : "hitting"];
+            const stats = Object.fromEntries(await Promise.all(groups.map(async (group) => [
+                group,
+                await getPlayerSeasonStatsBeforeDate(person.id, season, group, date).catch(() => null)
+            ])));
+            return { person, team, leagueCode, groups, stats };
+        }));
+
+        const content = el("div", "pregame-stats-content");
+        const leagueDefinitions = [
+            { code: "AL", id: 103 },
+            { code: "NL", id: 104 }
+        ];
+        const leaderRequests = await Promise.all(leagueDefinitions.flatMap(({ code, id }) =>
+            Object.entries(PREGAME_STATS_DEFINITIONS).map(async ([group, definitions]) => ({
+                code,
+                group,
+                leaders: await getPregameLeagueLeaders(date, id, group, definitions)
+            }))
+        ));
+        const leadersByLeagueGroup = new Map(leaderRequests.map((entry) => [
+            `${entry.code}:${entry.group}`,
+            entry.leaders
+        ]));
+
+        leagueDefinitions.forEach(({ code }) => {
+            const league = el("section", "pregame-stats-league");
+            league.append(el("h4", "pregame-stats-league-title", `${code} リーグリーダー`));
+            Object.entries(PREGAME_STATS_DEFINITIONS).forEach(([group, definitions]) => {
+                const groupElement = el("section", "pregame-stats-group");
+                groupElement.append(el(
+                    "h5",
+                    "pregame-stats-group-title",
+                    group === "hitting" ? "打者" : "投手"
+                ));
+                const cards = el("div", "pregame-stats-grid");
+                const leaders = leadersByLeagueGroup.get(`${code}:${group}`) ?? new Map();
+                definitions.forEach((definition) => {
+                    const japaneseEntries = japaneseStats
+                        .filter((entry) =>
+                            entry.leagueCode === code &&
+                            entry.groups.includes(group) &&
+                            statNumber(entry.stats?.[group]?.gamesPlayed) > 0
+                        )
+                        .map((entry) => ({
+                            person: entry.person,
+                            team: entry.team,
+                            value: entry.stats?.[group]?.[definition.field]
+                        }));
+                    cards.append(renderPregameStatsTable(
+                        definition,
+                        leaders.get(definition.category) ?? [],
+                        japaneseEntries,
+                        japanesePlayerIds
+                    ));
+                });
+                groupElement.append(cards);
+                league.append(groupElement);
+            });
+            content.append(league);
+        });
+        sectionElement.append(content);
+        return sectionElement;
+    };
+
     const renderTop = async () => {
         scrollPregameToTop();
         currentPlayerView = null;
@@ -4198,6 +4427,11 @@
                     });
             }
             dashboard.append(gamesSection);
+            dashboard.append(await renderPregameStatsSection(
+                date,
+                todaysJapanese,
+                standings
+            ));
             if (shouldShowPostseasonPicture(date, postseasonWindow)) {
                 dashboard.append(await renderPostseasonPicture(standings, date, postseasonWindow));
             }
