@@ -4307,6 +4307,32 @@
                 list.append(item);
                 return;
             }
+            if (highlight.kind === "prospectDebut") {
+                const logo = createFreeAgentTeamLogo(highlight.team, teamCode(highlight.team));
+                logo.classList.add("pregame-game-highlight-logo");
+                const label = el(
+                    highlight.href ? "a" : "strong",
+                    "pregame-game-highlight-label",
+                    `${playerName(highlight.person)}がメジャーデビューへ！`
+                );
+                if (highlight.href) {
+                    label.href = highlight.href;
+                    label.target = "_blank";
+                    label.rel = "noopener noreferrer";
+                }
+                text.append(
+                    logo,
+                    el(
+                        "strong",
+                        "pregame-game-highlight-prospect-rank",
+                        `MLBプロスペクトランキング${highlight.rank}位の`
+                    ),
+                    label
+                );
+                item.append(text);
+                list.append(item);
+                return;
+            }
             text.append(
                 contender(highlight.away),
                 el("span", "pregame-game-highlight-connector", "と"),
@@ -4337,6 +4363,57 @@
                 href: note.href
             }))
     );
+
+    const getProspectDebutGameHighlights = (
+        rosterBySide,
+        teamsBySide,
+        date,
+        gamePk,
+        gameArticles
+    ) => {
+        const articlePool = [...gameArticles, ...(window.MLB_LATEST_NEWS ?? [])]
+            .filter((article, index, articles) =>
+                article?.url && articles.findIndex((entry) => entry?.url === article.url) === index
+            );
+        const previousWeek = shiftDate(date, -7);
+        return ["away", "home"].flatMap((side) =>
+            (rosterBySide[side] ?? []).flatMap((entry) => {
+                const person = entry?.person ?? {};
+                const playerId = Number(person?.id);
+                if (!playerId) return [];
+                const debutDate = String(person?.mlbDebutDate ?? "").slice(0, 10);
+                if (/^\d{4}-\d{2}-\d{2}$/.test(debutDate) && debutDate < date) return [];
+                const playerArticles = articlePool.filter((article) =>
+                    (article?.playerIds ?? []).map(Number).includes(playerId)
+                );
+                const debutArticle = playerArticles.find((article) => {
+                    const publicationDate = String(article?.contentDate ?? "").slice(0, 10);
+                    if (!publicationDate || publicationDate < previousWeek || publicationDate > date) return false;
+                    const searchable = [
+                        article?.headline,
+                        article?.summaryJa,
+                        ...(article?.taxonomy ?? [])
+                    ].join(" ");
+                    if (!/(?:\bdebut\b|\bcallup\b|\bjoins?\b|メジャー昇格|初出場)/i.test(searchable)) {
+                        return false;
+                    }
+                    return debutDate === date ||
+                        (article?.gamePks ?? []).map(Number).includes(Number(gamePk)) ||
+                        publicationDate >= previousDate(date);
+                });
+                if (!debutArticle) return [];
+                const rank = Number(window.MLB_PROSPECT_RANKINGS?.[playerId]);
+                if (!Number.isInteger(rank) || rank < 1) return [];
+                return [{
+                    kind: "prospectDebut",
+                    person,
+                    team: teamsBySide[side],
+                    rank,
+                    href: debutArticle.url
+                }];
+            })
+        );
+    };
 
     const renderTop = async () => {
         scrollPregameToTop();
@@ -6868,16 +6945,32 @@
             const awayProbable = getProbablePitcher(game, feed, "away");
             const homeProbable = getProbablePitcher(game, feed, "home");
             const venue = feed?.gameData?.venue ?? game?.venue ?? {};
-            const [awayStarter, homeStarter, titleRaceHighlights] = await Promise.all([
+            const [
+                awayStarter,
+                homeStarter,
+                titleRaceHighlights,
+                awayRoster,
+                homeRoster
+            ] = await Promise.all([
                 getStartingPitcherData(awayProbable, date, homeTeam, venue),
                 getStartingPitcherData(homeProbable, date, awayTeam, venue),
-                getGameTitleRaceHighlights(date, awayTeam, homeTeam, standings)
+                getGameTitleRaceHighlights(date, awayTeam, homeTeam, standings),
+                getFeaturedPlayers(feed, "away", date),
+                getFeaturedPlayers(feed, "home", date)
             ]);
+            const rosterBySide = { away: awayRoster, home: homeRoster };
             const gameHighlights = [
                 ...getStartingPitcherGameHighlights([
                     { data: awayStarter, team: awayTeam },
                     { data: homeStarter, team: homeTeam }
                 ]),
+                ...getProspectDebutGameHighlights(
+                    rosterBySide,
+                    { away: awayTeam, home: homeTeam },
+                    date,
+                    gamePk,
+                    articles
+                ),
                 ...titleRaceHighlights
             ];
             const titleRaceSection = renderGameTitleRaceHighlights(gameHighlights);
@@ -6892,11 +6985,6 @@
             startingSection.append(startingGrid);
             grid.append(startingSection);
 
-            const rosterBySide = {};
-            [rosterBySide.away, rosterBySide.home] = await Promise.all([
-                getFeaturedPlayers(feed, "away", date),
-                getFeaturedPlayers(feed, "home", date)
-            ]);
             const [featuredAwards, leagueTopFiveNotes] = await Promise.all([
                 getRecentFeaturedAwards(date),
                 getLeagueTopFiveNotes(date)

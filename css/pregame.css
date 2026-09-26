@@ -2371,6 +2371,11 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
     font-variant-numeric: tabular-nums;
 }
 
+.pregame-game-highlight-prospect-rank {
+    color: #f1cb45;
+    white-space: nowrap;
+}
+
 .pregame-game-highlight-connector,
 .pregame-game-highlight-label {
     white-space: nowrap;
