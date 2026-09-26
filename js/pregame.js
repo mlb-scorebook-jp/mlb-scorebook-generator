@@ -4017,8 +4017,8 @@
         const block = el("div", "pregame-stats-table-block");
         const table = el("table", "pregame-stats-table");
         const body = document.createElement("tbody");
-        const truncated = rows.length >= 7;
-        const displayedRows = truncated ? rows.slice(0, 6) : rows;
+        const truncated = rows.length >= 8;
+        const displayedRows = truncated ? rows.slice(0, 7) : rows;
         displayedRows.forEach((entry) => {
             const row = document.createElement("tr");
             const rankCell = el("td", "pregame-stats-rank", entry.rank ? String(entry.rank) : "—");
