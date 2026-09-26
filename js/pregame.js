@@ -4196,6 +4196,71 @@
         return sectionElement;
     };
 
+    const PREGAME_TITLE_RACE_LABELS = Object.freeze({
+        battingAverage: "首位打者争い",
+        homeRuns: "本塁打王争い",
+        runsBattedIn: "打点王争い",
+        hits: "最多安打争い",
+        stolenBases: "盗塁王争い",
+        walks: "四球数争い",
+        onBasePlusSlugging: "OPS首位争い",
+        earnedRunAverage: "最優秀防御率争い",
+        wins: "最多勝争い",
+        saves: "最多セーブ争い",
+        gamesPlayed: "最多登板争い",
+        strikeouts: "最多奪三振争い"
+    });
+
+    const getGameTitleRaceHighlights = async (date, awayTeam, homeTeam, standings) => {
+        const awayLeague = standings.get(Number(awayTeam?.id))?.leagueCode;
+        const homeLeague = standings.get(Number(homeTeam?.id))?.leagueCode;
+        if (!awayLeague || awayLeague !== homeLeague) return [];
+        const leagueId = awayLeague === "NL" ? 104 : 103;
+        const requests = await Promise.all(
+            Object.entries(PREGAME_STATS_DEFINITIONS).map(async ([group, definitions]) => ({
+                definitions,
+                leaders: await getPregameLeagueLeaders(date, leagueId, group, definitions)
+            }))
+        );
+        return requests.flatMap(({ definitions, leaders }) => definitions.flatMap((definition) => {
+            const categoryLeaders = leaders.get(definition.category) ?? [];
+            const contenderFor = (team) => categoryLeaders.find((leader) =>
+                Number(leader?.team?.id) === Number(team?.id) &&
+                Number(leader?.rank) >= 1 &&
+                Number(leader?.rank) <= 5
+            );
+            const awayContender = contenderFor(awayTeam);
+            const homeContender = contenderFor(homeTeam);
+            if (!awayContender || !homeContender) return [];
+            return [{
+                category: definition.category,
+                label: PREGAME_TITLE_RACE_LABELS[definition.category] ?? `${definition.label}争い`,
+                away: awayContender,
+                home: homeContender
+            }];
+        }));
+    };
+
+    const renderGameTitleRaceHighlights = (highlights) => {
+        if (!highlights.length) return null;
+        const highlightSection = section("試合の見どころ");
+        highlightSection.classList.add("pregame-span-12", "pregame-game-highlights");
+        const list = el("ul", "pregame-game-highlight-list");
+        highlights.forEach((highlight) => {
+            const item = el("li", "pregame-game-highlight-item");
+            const awayName = playerName(highlight.away?.person);
+            const homeName = playerName(highlight.home?.person);
+            item.append(el(
+                "strong",
+                "pregame-game-highlight-text",
+                `${awayName}と${homeName}の${highlight.label}に注目！`
+            ));
+            list.append(item);
+        });
+        highlightSection.append(list);
+        return highlightSection;
+    };
+
     const renderTop = async () => {
         scrollPregameToTop();
         currentPlayerView = null;
@@ -6725,10 +6790,13 @@
             const awayProbable = getProbablePitcher(game, feed, "away");
             const homeProbable = getProbablePitcher(game, feed, "home");
             const venue = feed?.gameData?.venue ?? game?.venue ?? {};
-            const [awayStarter, homeStarter] = await Promise.all([
+            const [awayStarter, homeStarter, titleRaceHighlights] = await Promise.all([
                 getStartingPitcherData(awayProbable, date, homeTeam, venue),
-                getStartingPitcherData(homeProbable, date, awayTeam, venue)
+                getStartingPitcherData(homeProbable, date, awayTeam, venue),
+                getGameTitleRaceHighlights(date, awayTeam, homeTeam, standings)
             ]);
+            const titleRaceSection = renderGameTitleRaceHighlights(titleRaceHighlights);
+            if (titleRaceSection) grid.append(titleRaceSection);
             const startingSection = section("先発投手", "先発投手比較");
             startingSection.classList.add("pregame-span-12");
             const startingGrid = el("div", "pregame-starting-grid");

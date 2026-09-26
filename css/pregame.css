@@ -2328,6 +2328,26 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
     gap: 12px;
 }
 
+.pregame-game-highlight-list {
+    display: grid;
+    gap: 7px;
+    margin: 0;
+    padding: 10px 12px;
+    list-style: none;
+}
+
+.pregame-game-highlight-item {
+    padding: 9px 12px;
+    border-left: 4px solid #002d72;
+    background: #202a30;
+}
+
+.pregame-game-highlight-text {
+    color: #edf3f5;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
 .pregame-batting-summary {
     display: grid;
     gap: 10px;
