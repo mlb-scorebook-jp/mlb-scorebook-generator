@@ -2,6 +2,31 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "'We expect to win championships': 4 players who keyed another Triple-A crown for the Dodgers",
+        "summaryJa": "A.トーマス（LAD）、勝利を呼び込む活躍",
+        "slug": "dodgers-triple-a-affiliate-oklahoma-city-wins-2026-national-championship",
+        "url": "https://www.mlb.com/news/dodgers-triple-a-affiliate-oklahoma-city-wins-2026-national-championship",
+        "contentDate": "2026-09-27T07:48:00Z",
+        "teamIds": [
+            119
+        ],
+        "playerIds": [
+            677950,
+            701527,
+            696486,
+            701394
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "mlb-top-prospects"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Perkins finishes intriguing season with another flash of potential",
         "summaryJa": "J.パーキンス（ATH）の最新動向をMLB公式が詳報",
         "slug": "jack-perkins-strikes-out-nine-in-a-s-loss-to-astros",
@@ -781,7 +806,7 @@
         ]
     },
     {
-        "headline": "Here are the Triple-A All-Stars and award winners for the 2026 season",
+        "headline": "Cooper Ingle earns International League MVP honors",
         "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
         "slug": "minor-league-baseball-announces-2026-triple-a-all-stars-and-award-winners",
         "url": "https://www.mlb.com/news/minor-league-baseball-announces-2026-triple-a-all-stars-and-award-winners",
@@ -795,7 +820,6 @@
             "minor-league-baseball"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
