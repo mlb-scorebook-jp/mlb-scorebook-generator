@@ -1610,13 +1610,17 @@
             `${API_ROOT}/v1/people?${params}`,
             `pregame:postseason-roster-stats:${playerIds.join("-")}:${endDate}`
         ).catch(() => null);
-        const previousSeason = String(Number(String(date).slice(0, 4)) - 1);
+        const currentSeason = String(date).slice(0, 4);
+        const previousSeason = String(Number(currentSeason) - 1);
         return new Map((payload?.people ?? []).map((person) => {
             const byGroup = new Map();
             (person?.stats ?? []).forEach((entry) => {
                 const group = String(entry?.group?.displayName ?? "").toLowerCase();
                 const splits = entry?.splits ?? [];
                 byGroup.set(group, summarizePostseasonStats(splits, group));
+                byGroup.set(`${group}:currentLogs`, splits.filter((split) =>
+                    String(split?.season ?? split?.date ?? "").slice(0, 4) === currentSeason
+                ));
                 byGroup.set(`${group}:previous`, summarizePostseasonStats(
                     splits.filter((split) =>
                         String(split?.season ?? split?.date ?? "").slice(0, 4) === previousSeason
@@ -6679,6 +6683,9 @@
             ...groups.map((group) => getPlayerCareer(profile, group, previousDate(date)).catch(() => null))
         ]);
         const priorHittingLogs = hittingLogs.filter((split) => String(split?.date ?? "") < date);
+        const postseasonPlayerStats = postseasonStatsByPlayer.get(playerId);
+        const currentPostseasonHittingLogs = postseasonPlayerStats?.get("hitting:currentLogs") ?? [];
+        const currentPostseasonPitchingLogs = postseasonPlayerStats?.get("pitching:currentLogs") ?? [];
         const previousGame = [...priorHittingLogs]
             .filter((split) => {
                 const stat = split?.stat ?? {};
@@ -6719,6 +6726,21 @@
             (total, note) => total + (note.titleHolder ? 100 : 25),
             0
         );
+        if (isPostseason && groups.includes("hitting")) {
+            const seasonTotals = priorHittingLogs.reduce((total, split) => {
+                total.homeRuns += statNumber(split?.stat?.homeRuns);
+                total.stolenBases += statNumber(split?.stat?.stolenBases);
+                return total;
+            }, { homeRuns: 0, stolenBases: 0 });
+            if (seasonTotals.homeRuns >= 40 && seasonTotals.stolenBases >= 40) {
+                notes.push({
+                    text: "40本塁打40盗塁",
+                    href: officialPlayerStatsUrl("hitting", "season"),
+                    seasonHistoricAchievement: true
+                });
+                importance += 110;
+            }
+        }
         if (season === 2026 && playerId === MATT_OLSON_ID && groups.includes("hitting")) {
             const consecutiveGameLogs = await getPlayerCareerGameLog(
                 profile,
@@ -6854,19 +6876,29 @@
         }
         notes.push(...franchiseNotes);
         importance += franchiseNotes.length * 15;
-        const streaks = getHittingStreaks(priorHittingLogs);
+        const streaks = getHittingStreaks(
+            isPostseason
+                ? [...priorHittingLogs, ...currentPostseasonHittingLogs]
+                : priorHittingLogs
+        );
         const hittingGameLogUrl = officialPlayerStatsUrl("hitting", "gamelogs");
         if (streaks.hits.count >= 3) {
-            notes.push({ text: formatHittingStreak(streaks.hits, "安打"), href: hittingGameLogUrl });
+            notes.push({
+                text: formatHittingStreak(streaks.hits, "安打"),
+                href: hittingGameLogUrl,
+                postseasonCarryoverStreak: isPostseason
+            });
         }
-        if (streaks.onBase.count >= 5) {
+        if (!isPostseason && streaks.onBase.count >= 5) {
             notes.push({ text: formatHittingStreak(streaks.onBase, "出塁"), href: hittingGameLogUrl });
         }
-        if (streaks.rbi.count >= 3) {
+        if (!isPostseason && streaks.rbi.count >= 3) {
             notes.push({ text: formatHittingStreak(streaks.rbi, "打点"), href: hittingGameLogUrl });
         }
+        if (!isPostseason) {
+            importance += streaks.onBase.count >= 5 ? streaks.onBase.count : 0;
+        }
         importance += streaks.hits.count >= 3 ? streaks.hits.count : 0;
-        importance += streaks.onBase.count >= 5 ? streaks.onBase.count : 0;
         const targetMonth = date.slice(0, 7);
         const monthlyHitting = priorHittingLogs
             .filter((split) => String(split?.date ?? "").slice(0, 7) === targetMonth)
@@ -6899,12 +6931,17 @@
         const pitchingIndex = groups.indexOf("pitching");
         if (pitchingIndex >= 0) {
             const priorPitchingLogs = pitchingLogs.filter((split) => String(split?.date ?? "") < date);
-            const scorelessStreak = getPitchingScorelessStreak(priorPitchingLogs);
+            const scorelessStreak = getPitchingScorelessStreak(
+                isPostseason
+                    ? [...priorPitchingLogs, ...currentPostseasonPitchingLogs]
+                    : priorPitchingLogs
+            );
             if (scorelessStreak) {
                 notes.push({
                     text: scorelessStreak.text,
                     href: getBaseballReferencePitchingGameLogUrl(profile, season) ||
-                        officialPlayerStatsUrl("pitching", "gamelogs")
+                        officialPlayerStatsUrl("pitching", "gamelogs"),
+                    postseasonCarryoverStreak: isPostseason
                 });
                 importance += scorelessStreak.value;
             }
@@ -7372,7 +7409,9 @@
                         postseasonStatsByPlayer
                     ))
                 )).filter((player) => isPostseason
-                    ? player.notes.some((note) => note.titleHolder || note.postseasonPerformance)
+                    ? player.notes.some((note) => note.titleHolder ||
+                        note.postseasonPerformance || note.seasonHistoricAchievement ||
+                        note.postseasonCarryoverStreak)
                     : player.notes.length > 0
                 ).sort((a, b) =>
                     b.importance - a.importance ||
