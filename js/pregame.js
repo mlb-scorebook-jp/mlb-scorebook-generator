@@ -1610,11 +1610,20 @@
             `${API_ROOT}/v1/people?${params}`,
             `pregame:postseason-roster-stats:${playerIds.join("-")}:${endDate}`
         ).catch(() => null);
+        const previousSeason = String(Number(String(date).slice(0, 4)) - 1);
         return new Map((payload?.people ?? []).map((person) => {
-            const byGroup = new Map((person?.stats ?? []).map((entry) => {
+            const byGroup = new Map();
+            (person?.stats ?? []).forEach((entry) => {
                 const group = String(entry?.group?.displayName ?? "").toLowerCase();
-                return [group, summarizePostseasonStats(entry?.splits ?? [], group)];
-            }));
+                const splits = entry?.splits ?? [];
+                byGroup.set(group, summarizePostseasonStats(splits, group));
+                byGroup.set(`${group}:previous`, summarizePostseasonStats(
+                    splits.filter((split) =>
+                        String(split?.season ?? split?.date ?? "").slice(0, 4) === previousSeason
+                    ),
+                    group
+                ));
+            });
             return [Number(person?.id), byGroup];
         }));
     };
@@ -4025,7 +4034,10 @@
                     "pregame-header-record",
                     (() => {
                         const record = pregameRecords.get(Number(team?.id));
-                        return record ? `${record.wins}勝${record.losses}敗` : "—";
+                        return record
+                            ? `${record.postseasonCareer ? "PS通算 " : ""}` +
+                                `${record.wins}勝${record.losses}敗`
+                            : "—";
                     })()
                 )] : []),
                 el(
@@ -6569,6 +6581,22 @@
                     });
                 }
             }
+            const previous = postseasonStats?.get("hitting:previous");
+            if (previous) {
+                const ops = Number(previous.ops);
+                const explosive = previous.plateAppearances >= 12 && (
+                    ops >= 1.000 || Number(previous.avg) >= 0.350 ||
+                    previous.homeRuns >= 3 || previous.rbi >= 8
+                );
+                if (explosive) {
+                    candidates.push({
+                        text: `昨季ポストシーズン　打率${previous.avg}　` +
+                            `${previous.homeRuns}本塁打　${previous.rbi}打点　OPS${previous.ops}`,
+                        score: 90 + Math.max(0, Math.round((ops - 0.900) * 100)) +
+                            previous.homeRuns * 2 + previous.rbi
+                    });
+                }
+            }
         }
         if (groups.includes("pitching")) {
             const stats = postseasonStats?.get("pitching");
@@ -6589,6 +6617,26 @@
                         score: 60 + stats.wins * 3 + stats.saves * 2 +
                             Math.floor(stats.strikeOuts / 10) +
                             (Number.isFinite(era) ? Math.max(0, Math.round(4 - era)) : 0)
+                    });
+                }
+            }
+            const previous = postseasonStats?.get("pitching:previous");
+            if (previous) {
+                const era = Number(previous.era);
+                const dominant = Number.isFinite(era) && (
+                    (previous.outs >= 18 && era <= 1.50) ||
+                    (previous.wins >= 2 && era <= 3.00) ||
+                    (previous.saves >= 3 && era <= 2.00) ||
+                    (previous.strikeOuts >= 15 && era <= 3.00)
+                );
+                if (dominant) {
+                    const saveText = previous.saves ? `　${previous.saves}セーブ` : "";
+                    candidates.push({
+                        text: `昨季ポストシーズン　${previous.wins}勝${previous.losses}敗` +
+                            `${saveText}　防御率${previous.era}　${previous.strikeOuts}奪三振`,
+                        score: 90 + previous.wins * 4 + previous.saves * 3 +
+                            Math.floor(previous.strikeOuts / 3) +
+                            Math.max(0, Math.round((3 - era) * 3))
                     });
                 }
             }
