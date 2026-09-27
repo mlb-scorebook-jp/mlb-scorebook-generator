@@ -4050,6 +4050,7 @@
     const PREGAME_STATS_DEFINITIONS = Object.freeze({
         hitting: Object.freeze([
             { category: "battingAverage", field: "avg", label: "打率", rate: true },
+            { category: "onBasePercentage", field: "obp", label: "出塁率", rate: true },
             { category: "homeRuns", field: "homeRuns", label: "本塁打" },
             { category: "runsBattedIn", field: "rbi", label: "打点" },
             { category: "hits", field: "hits", label: "安打数" },
@@ -4070,6 +4071,7 @@
         const numeric = Number.parseFloat(value);
         if (!Number.isFinite(numeric)) return "—";
         if (definition.category === "battingAverage" ||
+            definition.category === "onBasePercentage" ||
             definition.category === "onBasePlusSlugging") {
             return numeric.toFixed(3).replace(/^0/, "");
         }
