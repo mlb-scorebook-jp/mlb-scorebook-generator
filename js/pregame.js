@@ -3651,14 +3651,18 @@
         }));
     };
 
-    const postseasonMagicCondition = (standing, clinched, season) => {
+    const postseasonMagicCondition = (standing, clinched, date) => {
+        const season = Number(String(date).slice(0, 4));
         if (clinched) {
             const appearance = POSTSEASON_APPEARANCE_NOTES[season]?.[teamCode(standing.team)];
             return appearance
                 ? `ポストシーズン進出決定（${appearance}）`
                 : "ポストシーズン進出決定";
         }
-        if (standing.eliminated) return "今季のポストシーズン進出の可能性なし";
+        if (standing.eliminated) {
+            const gamesPlayed = statNumber(standing.wins) + statNumber(standing.losses);
+            return `${compactDate(date)}日 ${gamesPlayed}試合消化時点`;
+        }
         if (!Number.isFinite(standing.magicNumber)) return "条件を算出できません";
         const opponents = standing.challengers
             .map((challenger) => teamCode(challenger.team))
@@ -3688,7 +3692,7 @@
             logo.addEventListener("error", () => logo.remove(), { once: true });
             const clinched = !standing.eliminated &&
                 (/[xyzw]/i.test(standing.clinchIndicator) || standing.magicNumber === 0);
-            const condition = postseasonMagicCondition(standing, clinched, Number(date.slice(0, 4)));
+            const condition = postseasonMagicCondition(standing, clinched, date);
             row.append(
                 el("span", "pregame-postseason-magic-seed", String(standing.displayRank)),
                 logo,
