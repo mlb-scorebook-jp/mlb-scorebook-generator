@@ -252,6 +252,14 @@ body.app-mode-pregame .scorebook-horizontal-scroll {
     text-underline-offset: 2px;
 }
 
+.pregame-header-world-series-titles {
+    color: #d6dfe3;
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 1.2;
+    white-space: nowrap;
+}
+
 .pregame-header-team small {
     color: #aab5bc;
     font-size: 10px;
@@ -465,12 +473,18 @@ body.app-mode-pregame .scorebook-horizontal-scroll {
     html:not(.pregame-touch-capable) body.app-mode-pregame.pregame-game-detail-active
     .pregame-postseason-matchup-heading {
         box-sizing: border-box;
+        height: 128px;
         padding-bottom: 20px;
     }
 
     html:not(.pregame-touch-capable) body.app-mode-pregame.pregame-game-detail-active
     .pregame-view-header:has(.pregame-matchup-title-block) {
         padding-bottom: 16px;
+    }
+
+    html:not(.pregame-touch-capable) body.app-mode-pregame.pregame-game-detail-active
+    .pregame-view-header:has(.pregame-postseason-matchup-heading) {
+        padding-bottom: 3px;
     }
 
     html:not(.pregame-touch-capable) body.app-mode-pregame.pregame-game-detail-active .pregame-header-record {
@@ -482,6 +496,11 @@ body.app-mode-pregame .scorebook-horizontal-scroll {
     }
 
     html:not(.pregame-touch-capable) body.app-mode-pregame.pregame-game-detail-active .pregame-header-team small {
+        font-size: 13px;
+    }
+
+    html:not(.pregame-touch-capable) body.app-mode-pregame.pregame-game-detail-active
+    .pregame-header-world-series-titles {
         font-size: 13px;
     }
 
@@ -517,6 +536,12 @@ body.app-mode-pregame .scorebook-horizontal-scroll {
     html:not(.pregame-touch-capable) body.app-mode-pregame.pregame-game-detail-active .pregame-matchup-meta-line {
         margin-top: 2px !important;
         font-size: 13px !important;
+    }
+
+    html:not(.pregame-touch-capable) body.app-mode-pregame.pregame-game-detail-active
+    .pregame-postseason-matchup-heading + .pregame-matchup-meta-line {
+        margin-bottom: -13px;
+        transform: translateY(-13px);
     }
 
     html:not(.pregame-touch-capable) body.app-mode-pregame.pregame-game-detail-active .pregame-matchup-venue {

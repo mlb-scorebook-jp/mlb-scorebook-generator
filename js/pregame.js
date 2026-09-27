@@ -4,6 +4,14 @@
     document.documentElement.classList.toggle("pregame-touch-capable", navigator.maxTouchPoints > 0);
 
     const API_ROOT = "https://statsapi.mlb.com/api";
+    const WORLD_SERIES_TITLES_BY_TEAM_ID = new Map([
+        [108, 1], [109, 1], [110, 3], [111, 9], [112, 3],
+        [113, 5], [114, 2], [115, 0], [116, 4], [117, 2],
+        [118, 2], [119, 9], [120, 1], [121, 2], [133, 9],
+        [134, 5], [135, 0], [136, 0], [137, 8], [138, 11],
+        [139, 0], [140, 1], [141, 2], [142, 3], [143, 2],
+        [144, 4], [145, 3], [146, 2], [147, 27], [158, 0]
+    ]);
     const cache = new Map();
     const savantCache = new Map();
     const gameIndex = new Map();
@@ -4033,6 +4041,11 @@
             }
             block.append(
                 teamName,
+                ...(isPostseason ? [el(
+                    "span",
+                    "pregame-header-world-series-titles",
+                    `ワールドシリーズ優勝${WORLD_SERIES_TITLES_BY_TEAM_ID.get(Number(team?.id)) ?? 0}回`
+                )] : []),
                 ...(pregameRecords ? [el(
                     "span",
                     "pregame-header-record",
