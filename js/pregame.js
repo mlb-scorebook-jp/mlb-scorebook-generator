@@ -6980,6 +6980,9 @@
         if (monthlyAverageNote) displayedNotes.push(monthlyAverageNote);
         displayedNotes.forEach((note) => {
             const noteLink = el("a", "pregame-featured-note", note.text);
+            if (note.postseasonPerformance) {
+                noteLink.classList.add("pregame-featured-note-postseason");
+            }
             const statheadUrl = /自己最長(?:更新|タイ|.+まであと\d+)/.test(String(note.text ?? ""))
                 ? window.MLBStatheadLinks?.playerStreakFinderUrl(entry?.person?.id)
                 : "";

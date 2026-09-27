@@ -1450,7 +1450,7 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
 .pregame-starting-postseason-stats {
     display: block;
     margin-top: 3px;
-    color: #c9d5db;
+    color: #f1cb45;
     font-size: 11px;
     font-weight: 700;
 }
@@ -3342,6 +3342,15 @@ a.pregame-batting-stat:focus-visible {
     color: #fff;
     text-decoration: underline;
     text-underline-offset: 2px;
+}
+
+.pregame-featured-note.pregame-featured-note-postseason {
+    color: #f1cb45;
+}
+
+.pregame-featured-note.pregame-featured-note-postseason:hover,
+.pregame-featured-note.pregame-featured-note-postseason:focus-visible {
+    color: #ffe47a;
 }
 
 .pregame-metric-grid {
