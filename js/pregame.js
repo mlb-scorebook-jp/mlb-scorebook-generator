@@ -6902,15 +6902,22 @@
                 postseasonCarryoverStreak: isPostseason
             });
         }
-        if (!isPostseason && streaks.onBase.count >= 5) {
-            notes.push({ text: formatHittingStreak(streaks.onBase, "出塁"), href: hittingGameLogUrl });
+        if (streaks.onBase.count >= 5) {
+            notes.push({
+                text: formatHittingStreak(streaks.onBase, "出塁"),
+                href: hittingGameLogUrl,
+                postseasonCarryoverStreak: isPostseason
+            });
         }
-        if (!isPostseason && streaks.rbi.count >= 3) {
-            notes.push({ text: formatHittingStreak(streaks.rbi, "打点"), href: hittingGameLogUrl });
+        if (streaks.rbi.count >= 3) {
+            notes.push({
+                text: formatHittingStreak(streaks.rbi, "打点"),
+                href: hittingGameLogUrl,
+                postseasonCarryoverStreak: isPostseason
+            });
         }
-        if (!isPostseason) {
-            importance += streaks.onBase.count >= 5 ? streaks.onBase.count : 0;
-        }
+        importance += streaks.onBase.count >= 5 ? streaks.onBase.count : 0;
+        importance += streaks.rbi.count >= 3 ? streaks.rbi.count : 0;
         importance += streaks.hits.count >= 3 ? streaks.hits.count : 0;
         const targetMonth = date.slice(0, 7);
         const monthlyHitting = priorHittingLogs
