@@ -3873,6 +3873,30 @@
         return records;
     };
 
+    const getTeamPostseasonRecordsBeforeGame = async (teamIds, date) => {
+        const endDate = previousDate(date);
+        const entries = await Promise.all(teamIds.map(async (teamId) => {
+            const params = new URLSearchParams({
+                stats: "byDateRange",
+                group: "pitching",
+                gameType: "P",
+                startDate: "1901-01-01",
+                endDate
+            });
+            const payload = await fetchJson(
+                `${API_ROOT}/v1/teams/${teamId}/stats?${params}`,
+                `pregame:team-postseason-record:${teamId}:${endDate}`
+            ).catch(() => null);
+            const stat = payload?.stats?.[0]?.splits?.[0]?.stat;
+            return [Number(teamId), stat ? {
+                wins: statNumber(stat.wins),
+                losses: statNumber(stat.losses),
+                postseasonCareer: true
+            } : null];
+        }));
+        return new Map(entries);
+    };
+
     const formatGameTime = (dateTime, timeZone) => {
         if (!dateTime) return "時刻未定";
         const value = new Date(dateTime);
@@ -7164,24 +7188,38 @@
             const date = String(feed?.gameData?.datetime?.officialDate ?? game?.officialDate ?? currentDate);
             const awayTeam = feed?.gameData?.teams?.away ?? game?.teams?.away?.team ?? {};
             const homeTeam = feed?.gameData?.teams?.home ?? game?.teams?.home?.team ?? {};
+            const gameType = String(feed?.gameData?.game?.type ?? game?.gameType ?? "R");
+            const isPostseason = ["F", "D", "L", "W"].includes(gameType);
             const desktopDetail = isDesktopGameDetailLayout();
-            const [awayTrend, homeTrend, standings, transactions, injuries, seriesStanding, sameDayGames] = await Promise.all([
+            const [
+                awayTrend,
+                homeTrend,
+                standings,
+                transactions,
+                injuries,
+                seriesStanding,
+                sameDayGames,
+                postseasonRecords
+            ] = await Promise.all([
                 getTeamTrend(awayTeam.id, date),
                 getTeamTrend(homeTeam.id, date),
                 getStandingsSnapshot(date),
                 getRecentTeamTransactions([awayTeam, homeTeam], date),
                 getTeamInjuryReports([awayTeam, homeTeam], date),
                 getCurrentSeriesStanding(gamePk, awayTeam.id, homeTeam.id, date),
-                desktopDetail ? getSchedule(date).catch(() => []) : Promise.resolve([])
+                desktopDetail ? getSchedule(date).catch(() => []) : Promise.resolve([]),
+                desktopDetail && isPostseason
+                    ? getTeamPostseasonRecordsBeforeGame([awayTeam.id, homeTeam.id], date)
+                    : Promise.resolve(null)
             ]);
             const pregameRecords = desktopDetail
-                ? getTeamRecordsBeforeGame(
-                    standings,
-                    sameDayGames,
-                    gamePk,
-                    feed?.gameData?.datetime?.dateTime ?? game?.gameDate,
-                    [awayTeam.id, homeTeam.id]
-                )
+                ? postseasonRecords ?? getTeamRecordsBeforeGame(
+                        standings,
+                        sameDayGames,
+                        gamePk,
+                        feed?.gameData?.datetime?.dateTime ?? game?.gameDate,
+                        [awayTeam.id, homeTeam.id]
+                    )
                 : null;
             setMatchupHeader(
                 awayTeam,
@@ -7199,8 +7237,6 @@
             const awayProbable = getProbablePitcher(game, feed, "away");
             const homeProbable = getProbablePitcher(game, feed, "home");
             const venue = feed?.gameData?.venue ?? game?.venue ?? {};
-            const gameType = String(feed?.gameData?.game?.type ?? game?.gameType ?? "R");
-            const isPostseason = ["F", "D", "L", "W"].includes(gameType);
             const [
                 awayStarter,
                 homeStarter,
