@@ -1518,7 +1518,60 @@
         return payload?.stats?.[0]?.splits ?? [];
     };
 
+    const summarizePostseasonStats = (splits, group) => {
+        if (!splits.length) return null;
+        const total = splits.reduce((stats, split) => {
+            const stat = split?.stat ?? {};
+            Object.keys(stats).forEach((field) => {
+                if (field !== "era" && field !== "avg" && field !== "ops") {
+                    stats[field] += statNumber(stat[field]);
+                }
+            });
+            return stats;
+        }, group === "pitching" ? {
+            gamesPlayed: 0,
+            gamesStarted: 0,
+            wins: 0,
+            losses: 0,
+            saves: 0,
+            strikeOuts: 0,
+            earnedRuns: 0,
+            outs: 0
+        } : {
+            gamesPlayed: 0,
+            plateAppearances: 0,
+            atBats: 0,
+            hits: 0,
+            homeRuns: 0,
+            rbi: 0,
+            baseOnBalls: 0,
+            hitByPitch: 0,
+            sacFlies: 0,
+            totalBases: 0
+        });
+        if (group === "pitching") {
+            total.era = total.outs > 0
+                ? ((total.earnedRuns * 27) / total.outs).toFixed(2)
+                : "-.--";
+        } else {
+            const onBaseDenominator = total.atBats + total.baseOnBalls +
+                total.hitByPitch + total.sacFlies;
+            const average = total.atBats ? total.hits / total.atBats : 0;
+            const onBase = onBaseDenominator
+                ? (total.hits + total.baseOnBalls + total.hitByPitch) / onBaseDenominator
+                : 0;
+            const slugging = total.atBats ? total.totalBases / total.atBats : 0;
+            total.avg = formatAverage(average);
+            total.ops = (onBase + slugging).toFixed(3).replace(/^0/, "");
+        }
+        return total;
+    };
+
     const getPitcherPostseasonCareerStats = async (person, date) => {
+        return getPlayerPostseasonCareerStats(person, date, "pitching");
+    };
+
+    const getPlayerPostseasonCareerStats = async (person, date, group) => {
         const playerId = Number(person?.id);
         if (!playerId) return null;
         const debutDate = String(person?.mlbDebutDate ?? "");
@@ -1528,38 +1581,42 @@
         const endDate = previousDate(date);
         const params = new URLSearchParams({
             stats: "gameLog",
-            group: "pitching",
+            group,
             gameType: "P",
             startDate,
             endDate
         });
         const payload = await fetchJson(
             `${API_ROOT}/v1/people/${playerId}/stats?${params}`,
-            `pregame:postseason-career-pitching:${playerId}:${endDate}`
+            `pregame:postseason-career:${group}:${playerId}:${endDate}`
         ).catch(() => null);
         const splits = (payload?.stats ?? []).flatMap((entry) => entry?.splits ?? []);
-        if (!splits.length) return null;
-        const total = splits.reduce((stats, split) => {
-            const pitching = split?.stat ?? {};
-            stats.gamesPlayed += statNumber(pitching.gamesPlayed);
-            stats.gamesStarted += statNumber(pitching.gamesStarted);
-            stats.wins += statNumber(pitching.wins);
-            stats.losses += statNumber(pitching.losses);
-            stats.earnedRuns += statNumber(pitching.earnedRuns);
-            stats.outs += statNumber(pitching.outs);
-            return stats;
-        }, {
-            gamesPlayed: 0,
-            gamesStarted: 0,
-            wins: 0,
-            losses: 0,
-            earnedRuns: 0,
-            outs: 0
+        return summarizePostseasonStats(splits, group);
+    };
+
+    const getRosterPostseasonCareerStats = async (roster, date) => {
+        const playerIds = [...new Set(roster
+            .map((entry) => Number(entry?.person?.id))
+            .filter(Number.isFinite))];
+        if (!playerIds.length) return new Map();
+        const endDate = previousDate(date);
+        const hydrate = "stats(group=[hitting,pitching],type=[gameLog],gameType=[P]," +
+            `startDate=1901-01-01,endDate=${endDate})`;
+        const params = new URLSearchParams({
+            personIds: playerIds.join(","),
+            hydrate
         });
-        total.era = total.outs > 0
-            ? ((total.earnedRuns * 27) / total.outs).toFixed(2)
-            : "-.--";
-        return total;
+        const payload = await fetchJson(
+            `${API_ROOT}/v1/people?${params}`,
+            `pregame:postseason-roster-stats:${playerIds.join("-")}:${endDate}`
+        ).catch(() => null);
+        return new Map((payload?.people ?? []).map((person) => {
+            const byGroup = new Map((person?.stats ?? []).map((entry) => {
+                const group = String(entry?.group?.displayName ?? "").toLowerCase();
+                return [group, summarizePostseasonStats(entry?.splits ?? [], group)];
+            }));
+            return [Number(person?.id), byGroup];
+        }));
     };
 
     const getPitcherVenueHistory = async (person, date, venue) => {
@@ -6295,6 +6352,17 @@
             gamesPlayed: { label: "登板", format: (value) => `${value}試合` }
         })
     });
+    const SEASON_TITLE_LABELS = Object.freeze({
+        hits: "最多安打",
+        homeRuns: "本塁打王",
+        runsBattedIn: "打点王",
+        battingAverage: "首位打者",
+        stolenBases: "盗塁王",
+        wins: "最多勝",
+        earnedRunAverage: "最優秀防御率",
+        strikeouts: "最多奪三振",
+        saves: "最多セーブ"
+    });
     const PREGAME_LEADER_GAP_CATEGORIES = Object.freeze([
         "homeRuns",
         "battingAverage",
@@ -6316,7 +6384,7 @@
     const BASEBALL_REFERENCE_CONSECUTIVE_GAMES_LEADERS =
         "https://www.baseball-reference.com/bullpen/Consecutive_Games_Played";
 
-    const getLeagueTopFiveNotes = async (date) => {
+    const getLeagueTopFiveNotes = async (date, titleHoldersOnly = false) => {
         const season = Number(String(date).slice(0, 4));
         const endDate = previousDate(date);
         const notesByPlayer = new Map();
@@ -6356,6 +6424,18 @@
                         .filter((leader) => Number(leader?.rank) >= 1 && Number(leader.rank) <= 5)
                         .map((leader) => {
                             const playerId = Number(leader?.person?.id);
+                            const titleLabel = SEASON_TITLE_LABELS[categoryName];
+                            if (titleHoldersOnly) {
+                                if (Number(leader?.rank) !== 1 || !titleLabel) return null;
+                                return {
+                                    playerId,
+                                    group,
+                                    category: categoryName,
+                                    text: `${season}年 ${league}${titleLabel}` +
+                                        `（${definition.format(leader.value)}）`,
+                                    titleHolder: true
+                                };
+                            }
                             const runnerUp = leaders.find((entry) =>
                                 Number(entry?.rank) === 2
                             );
@@ -6435,7 +6515,7 @@
                                     ? LUIS_ARRAEZ_FOUR_TEAM_BATTING_TITLE_ARTICLE
                                     : undefined
                             };
-                        });
+                        }).filter(Boolean);
                 });
             })
         );
@@ -6448,11 +6528,59 @@
         return notesByPlayer;
     };
 
+    const getPostseasonPerformanceNote = (profile, groups, href, postseasonStats) => {
+        const candidates = [];
+        if (groups.includes("hitting")) {
+            const stats = postseasonStats?.get("hitting");
+            if (stats) {
+                const ops = Number(stats.ops);
+                const qualifies = (stats.plateAppearances >= 40 && ops >= 0.850) ||
+                    stats.homeRuns >= 8 || stats.rbi >= 20;
+                if (qualifies) {
+                    candidates.push({
+                        text: `ポストシーズン通算　打率${stats.avg}　` +
+                            `${stats.homeRuns}本塁打　${stats.rbi}打点　OPS${stats.ops}`,
+                        score: 60 + Math.max(0, Math.round((ops - 0.800) * 100)) +
+                            stats.homeRuns + Math.floor(stats.rbi / 4)
+                    });
+                }
+            }
+        }
+        if (groups.includes("pitching")) {
+            const stats = postseasonStats?.get("pitching");
+            if (stats) {
+                const era = Number(stats.era);
+                const starterQualified = stats.outs >= 75 && Number.isFinite(era) && era <= 3.50;
+                const relieverQualified = stats.outs >= 45 && Number.isFinite(era) && era <= 2.50;
+                const volumeQualified = Number.isFinite(era) && era <= 4.00 &&
+                    (stats.wins >= 4 || stats.strikeOuts >= 40);
+                const closerQualified = Number.isFinite(era) && era <= 3.50 && stats.saves >= 5;
+                const qualifies = starterQualified || relieverQualified ||
+                    volumeQualified || closerQualified;
+                if (qualifies) {
+                    const saveText = stats.saves ? `　${stats.saves}セーブ` : "";
+                    candidates.push({
+                        text: `ポストシーズン通算　${stats.wins}勝${stats.losses}敗` +
+                            `${saveText}　防御率${stats.era}　${stats.strikeOuts}奪三振`,
+                        score: 60 + stats.wins * 3 + stats.saves * 2 +
+                            Math.floor(stats.strikeOuts / 10) +
+                            (Number.isFinite(era) ? Math.max(0, Math.round(4 - era)) : 0)
+                    });
+                }
+            }
+        }
+        if (!candidates.length) return null;
+        const best = candidates.sort((left, right) => right.score - left.score)[0];
+        return { ...best, href, postseasonPerformance: true };
+    };
+
     const getFeaturedPlayerData = async (
         entry,
         date,
         awardNotesByPlayer = new Map(),
-        leagueRankingNotesByPlayer = new Map()
+        leagueRankingNotesByPlayer = new Map(),
+        isPostseason = false,
+        postseasonStatsByPlayer = new Map()
     ) => {
         const MLB_SINGLE_SEASON_BATTER_STRIKEOUT_RECORD = 223;
         const MLB_SINGLE_SEASON_BATTER_STRIKEOUT_RECORD_URL =
@@ -6496,6 +6624,18 @@
             if (view === "gamelogs") url.searchParams.set("year", String(season));
             return url.toString();
         };
+        if (isPostseason) {
+            const postseasonNote = getPostseasonPerformanceNote(
+                profile,
+                groups,
+                `https://www.mlb.com/player/${playerId}`,
+                postseasonStatsByPlayer.get(playerId)
+            );
+            if (postseasonNote) {
+                notes.push(postseasonNote);
+                importance += postseasonNote.score;
+            }
+        }
         const leagueRankingNotes = (leagueRankingNotesByPlayer.get(playerId) ?? [])
             .filter((note) => groups.includes(note.group))
             .map((note) => ({
@@ -6503,7 +6643,10 @@
                 href: note.href || officialPlayerStatsUrl(note.group, "season")
             }));
         notes.push(...leagueRankingNotes);
-        importance += leagueRankingNotes.length * 25;
+        importance += leagueRankingNotes.reduce(
+            (total, note) => total + (note.titleHolder ? 100 : 25),
+            0
+        );
         if (season === 2026 && playerId === MATT_OLSON_ID && groups.includes("hitting")) {
             const consecutiveGameLogs = await getPlayerCareerGameLog(
                 profile,
@@ -7098,9 +7241,15 @@
             startingSection.append(startingGrid);
             grid.append(startingSection);
 
-            const [featuredAwards, leagueTopFiveNotes] = await Promise.all([
+            const [featuredAwards, leagueTopFiveNotes, postseasonStatsByPlayer] = await Promise.all([
                 getRecentFeaturedAwards(date),
-                getLeagueTopFiveNotes(date)
+                getLeagueTopFiveNotes(date, isPostseason),
+                isPostseason
+                    ? getRosterPostseasonCareerStats(
+                        [...rosterBySide.away, ...rosterBySide.home],
+                        date
+                    )
+                    : Promise.resolve(new Map())
             ]);
             const latestArticles = relevantLatestNews(
                 [awayTeam, homeTeam],
@@ -7113,7 +7262,12 @@
                 articles
             );
 
-            const playersSection = section("注目選手", "記録・直近成績を優先");
+            const playersSection = section(
+                "注目選手",
+                isPostseason
+                    ? "シーズンタイトル・ポストシーズン通算実績を優先"
+                    : "記録・直近成績を優先"
+            );
             playersSection.classList.add("pregame-featured-section");
             const playerColumns = el("div", "pregame-team-columns");
             for (const [side, team] of [
@@ -7129,9 +7283,14 @@
                         entry,
                         date,
                         featuredAwards,
-                        leagueTopFiveNotes
+                        leagueTopFiveNotes,
+                        isPostseason,
+                        postseasonStatsByPlayer
                     ))
-                )).filter((player) => player.notes.length > 0).sort((a, b) =>
+                )).filter((player) => isPostseason
+                    ? player.notes.some((note) => note.titleHolder || note.postseasonPerformance)
+                    : player.notes.length > 0
+                ).sort((a, b) =>
                     b.importance - a.importance ||
                     statNumber(b.entry?.seasonStats?.batting?.ops) -
                         statNumber(a.entry?.seasonStats?.batting?.ops)
