@@ -190,6 +190,16 @@ body.app-mode-pregame .scorebook-horizontal-scroll {
     align-items: flex-start;
 }
 
+.pregame-postseason-series-title {
+    grid-column: 1 / -1;
+    color: #edf3f5;
+    font-size: 0.65em;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-align: center;
+    white-space: nowrap;
+}
+
 .pregame-series-stars {
     display: inline-flex;
     align-items: center;
@@ -434,8 +444,28 @@ body.app-mode-pregame .scorebook-horizontal-scroll {
 @media screen and (min-width: 1101px) and (hover: hover) and (pointer: fine) {
     html:not(.pregame-touch-capable) body.app-mode-pregame.pregame-game-detail-active
     .pregame-view-header h2.pregame-matchup-heading {
+        position: relative;
         column-gap: 20px;
         font-size: 26px;
+    }
+
+    html:not(.pregame-touch-capable) body.app-mode-pregame.pregame-game-detail-active
+    .pregame-postseason-matchup-heading .pregame-postseason-series-title {
+        position: absolute;
+        top: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    html:not(.pregame-touch-capable) body.app-mode-pregame.pregame-game-detail-active
+    .pregame-postseason-matchup-heading > :not(.pregame-postseason-series-title) {
+        transform: translateY(24px);
+    }
+
+    html:not(.pregame-touch-capable) body.app-mode-pregame.pregame-game-detail-active
+    .pregame-postseason-matchup-heading {
+        box-sizing: border-box;
+        padding-bottom: 20px;
     }
 
     html:not(.pregame-touch-capable) body.app-mode-pregame.pregame-game-detail-active
@@ -3812,6 +3842,36 @@ a.pregame-metric-value:focus-visible {
 
     .pregame-matchup-heading.pregame-series-standing-active .pregame-series-stars:nth-child(4) {
         grid-column: 3;
+    }
+
+    .pregame-postseason-matchup-heading .pregame-postseason-series-title {
+        grid-column: 1 / -1;
+        grid-row: 1;
+    }
+
+    .pregame-matchup-heading.pregame-postseason-matchup-heading .pregame-header-team:nth-child(2) {
+        grid-column: 1;
+        grid-row: 2;
+    }
+
+    .pregame-matchup-heading.pregame-postseason-matchup-heading .pregame-series-stars:nth-child(3) {
+        grid-column: 1;
+        grid-row: 3;
+    }
+
+    .pregame-matchup-heading.pregame-postseason-matchup-heading .pregame-header-versus:nth-child(4) {
+        grid-column: 2;
+        grid-row: 2 / span 2;
+    }
+
+    .pregame-matchup-heading.pregame-postseason-matchup-heading .pregame-series-stars:nth-child(5) {
+        grid-column: 3;
+        grid-row: 3;
+    }
+
+    .pregame-matchup-heading.pregame-postseason-matchup-heading .pregame-header-team:nth-child(6) {
+        grid-column: 3;
+        grid-row: 2;
     }
 
     .pregame-header-team-name,

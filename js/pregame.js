@@ -819,7 +819,14 @@
                     : 0;
             if (wins.has(winnerId)) wins.set(winnerId, wins.get(winnerId) + 1);
         });
-        return { totalGames, wins };
+        const gameType = String(target?.gameType ?? "R");
+        const postseason = gameType !== "R";
+        return {
+            totalGames,
+            starCount: postseason ? Math.floor(totalGames / 2) + 1 : totalGames,
+            gameType,
+            wins
+        };
     };
 
     const getSeriesSchedule = async (date, teamId = "") => {
@@ -827,8 +834,7 @@
             sportId: "1",
             startDate: shiftDate(date, -10),
             endDate: shiftDate(date, 10),
-            gameType: "R",
-            hydrate: "team,linescore"
+            hydrate: "team,linescore,seriesStatus"
         });
         if (teamId) params.set("teamId", String(teamId));
         const payload = await fetchJson(
@@ -3795,14 +3801,37 @@
         const stars = el("span", `pregame-series-stars${extraClass ? ` ${extraClass}` : ""}`);
         if (!seriesStanding) return stars;
         const wins = seriesStanding.wins.get(Number(team?.id)) ?? 0;
-        for (let index = 0; index < seriesStanding.totalGames; index += 1) {
+        const starCount = Number(seriesStanding.starCount ?? seriesStanding.totalGames);
+        for (let index = 0; index < starCount; index += 1) {
             stars.append(el("span", index < wins ? "pregame-series-star won" : "pregame-series-star", index < wins ? "★" : "☆"));
         }
         stars.setAttribute(
             "aria-label",
-            `${teamJapaneseName(team)} このカード${seriesStanding.totalGames}試合中${wins}勝`
+            `${teamJapaneseName(team)} ${seriesStanding.gameType === "R" ? `このカード${seriesStanding.totalGames}試合中` : `シリーズ`} ${wins}勝`
         );
         return stars;
+    };
+
+    const postseasonSeriesLabel = (gameType, awayTeam) => {
+        const league = Number(awayTeam?.league?.id) === 104 ? "NL" : "AL";
+        return ({
+            F: `${league}ワイルドカードシリーズ`,
+            D: `${league}地区シリーズ`,
+            L: `${league}リーグ優勝決定シリーズ`,
+            W: "ワールドシリーズ"
+        })[String(gameType ?? "")] ?? "";
+    };
+
+    const postseasonSeedLabel = (standing) => {
+        if (!standing) return "シード未確定";
+        const seed = standing.divisionLeader
+            ? standing.leagueRank
+            : Number.isFinite(standing.wildCardRank)
+                ? 3 + standing.wildCardRank
+                : null;
+        return Number.isFinite(seed)
+            ? `${standing.leagueCode} 第${seed}シード`
+            : `${standing.leagueCode} シード未確定`;
     };
 
     const setMatchupHeader = (
@@ -3819,6 +3848,9 @@
         const dateTime = feed?.gameData?.datetime?.dateTime ?? game?.gameDate;
         const officialDate = feed?.gameData?.datetime?.officialDate ??
             game?.officialDate ?? String(dateTime ?? "").slice(0, 10);
+        const gameType = String(feed?.gameData?.game?.type ?? game?.gameType ?? "R");
+        const postseasonLabel = postseasonSeriesLabel(gameType, awayTeam);
+        const isPostseason = Boolean(postseasonLabel);
         const showWildCard = shouldShowWildCard(officialDate);
         const teamBlock = (team) => {
             const block = el("span", "pregame-header-team");
@@ -3871,14 +3903,21 @@
                         return record ? `${record.wins}勝${record.losses}敗` : "—";
                     })()
                 )] : []),
-                el("small", "", `${standing?.division ?? "所属地区未確定"}　${rank}`),
-                ...(showWildCard ? [wildCardLink(standing)] : []),
+                el(
+                    "small",
+                    "",
+                    isPostseason
+                        ? postseasonSeedLabel(standing)
+                        : `${standing?.division ?? "所属地区未確定"}　${rank}`
+                ),
+                ...(showWildCard && !isPostseason ? [wildCardLink(standing)] : []),
                 links
             );
             return block;
         };
         dom.title.className = "pregame-matchup-heading";
         if (seriesStanding) dom.title.classList.add("pregame-series-standing-active");
+        if (isPostseason) dom.title.classList.add("pregame-postseason-matchup-heading");
         if (showWildCard) dom.title.classList.add("pregame-wild-card-active");
         dom.title.parentElement?.classList.add("pregame-matchup-title-block");
         const matchupHeading = seriesStanding
@@ -3890,7 +3929,12 @@
                 teamBlock(homeTeam)
             ]
             : [teamBlock(awayTeam), el("span", "pregame-header-versus", "VS."), teamBlock(homeTeam)];
-        dom.title.replaceChildren(...matchupHeading);
+        dom.title.replaceChildren(
+            ...(isPostseason
+                ? [el("span", "pregame-postseason-series-title", postseasonLabel)]
+                : []),
+            ...matchupHeading
+        );
         const venue = venueLabel(feed?.gameData?.venue ?? game?.venue) || "球場未定";
         dom.subtitle.className = "pregame-matchup-meta-line";
         dom.subtitle.replaceChildren(
