@@ -3605,6 +3605,75 @@
         return stage;
     };
 
+    const isPostseasonEliminatedInSnapshot = (standing, standings) => {
+        if (!standing) return false;
+        if (/e/i.test(standing.clinchIndicator) ||
+            (standing.eliminationNumber === "E" && standing.wildCardEliminationNumber === "E")) {
+            return true;
+        }
+        const leagueEntries = [...standings.values()].filter((entry) =>
+            entry?.leagueCode === standing.leagueCode &&
+            Number(entry?.team?.id) !== Number(standing?.team?.id)
+        );
+        const sixthHighestWins = leagueEntries
+            .filter((entry) => Number.isFinite(entry.wins))
+            .sort((left, right) => right.wins - left.wins)[5]?.wins;
+        const maximumWins = Number.isFinite(standing.losses) ? 162 - standing.losses : null;
+        return Number.isFinite(maximumWins) &&
+            Number.isFinite(sixthHighestWins) &&
+            maximumWins < sixthHighestWins;
+    };
+
+    const getPostseasonEliminationDetails = async (entries, snapshotDate) => {
+        const eliminated = entries.filter((standing) => standing.eliminated);
+        if (!eliminated.length) return new Map();
+        const season = String(snapshotDate).slice(0, 4);
+        const firstSearchDate = `${season}-07-01`;
+        const toDay = (date) => Math.floor(parseMlbDate(date).getTime() / 86400000);
+        const fromDay = (day) => new Date(day * 86400000).toISOString().slice(0, 10);
+        const states = eliminated.map((standing) => ({
+            teamId: Number(standing.team.id),
+            leagueCode: standing.leagueCode,
+            low: toDay(firstSearchDate),
+            high: toDay(snapshotDate)
+        }));
+
+        while (states.some((state) => state.high - state.low > 1)) {
+            const activeStates = states.filter((state) => state.high - state.low > 1);
+            const middleDates = [...new Set(activeStates.map((state) =>
+                fromDay(Math.floor((state.low + state.high) / 2))
+            ))];
+            const snapshots = new Map(await Promise.all(middleDates.map(async (middleDate) => [
+                middleDate,
+                await getStandingsSnapshot(shiftDate(middleDate, 1))
+            ])));
+            activeStates.forEach((state) => {
+                const middle = Math.floor((state.low + state.high) / 2);
+                const snapshot = snapshots.get(fromDay(middle));
+                const standing = snapshot?.get(state.teamId);
+                if (isPostseasonEliminatedInSnapshot(standing, snapshot ?? new Map())) {
+                    state.high = middle;
+                } else {
+                    state.low = middle;
+                }
+            });
+        }
+
+        const eliminationDates = [...new Set(states.map((state) => fromDay(state.high)))];
+        const eliminationSnapshots = new Map(await Promise.all(eliminationDates.map(async (eliminationDate) => [
+            eliminationDate,
+            await getStandingsSnapshot(shiftDate(eliminationDate, 1))
+        ])));
+        return new Map(states.map((state) => {
+            const eliminationDate = fromDay(state.high);
+            const standing = eliminationSnapshots.get(eliminationDate)?.get(state.teamId);
+            return [state.teamId, standing ? {
+                date: eliminationDate,
+                gamesPlayed: statNumber(standing.wins) + statNumber(standing.losses)
+            } : null];
+        }));
+    };
+
     const postseasonMagicLeague = async (standings, leagueCode, date) => {
         const entries = [...standings.values()]
             .filter((standing) => standing?.leagueCode === leagueCode && standing?.team?.id)
@@ -3614,7 +3683,7 @@
                 return leftRank - rightRank || right.wins - left.wins || left.losses - right.losses;
             });
         const season = Number(date.slice(0, 4));
-        return Promise.all(entries.map(async (standing, index) => {
+        const evaluated = await Promise.all(entries.map(async (standing, index) => {
             const otherTeams = entries.filter((entry) => Number(entry.team.id) !== Number(standing.team.id));
             const cutoffOpponent = [...otherTeams]
                 .filter((entry) => Number.isFinite(entry.losses))
@@ -3649,6 +3718,11 @@
                 challengers
             };
         }));
+        const eliminationDetails = await getPostseasonEliminationDetails(evaluated, date);
+        return evaluated.map((standing) => ({
+            ...standing,
+            eliminationDetail: eliminationDetails.get(Number(standing.team.id)) ?? null
+        }));
     };
 
     const postseasonMagicCondition = (standing, clinched, date) => {
@@ -3660,8 +3734,11 @@
                 : "ポストシーズン進出決定";
         }
         if (standing.eliminated) {
-            const gamesPlayed = statNumber(standing.wins) + statNumber(standing.losses);
-            return `${compactDate(date)}日 ${gamesPlayed}試合消化時点`;
+            const detail = standing.eliminationDetail;
+            return detail
+                ? `${compactDate(detail.date)}日 ${detail.gamesPlayed}試合消化時点`
+                : `${compactDate(date)}日 ` +
+                    `${statNumber(standing.wins) + statNumber(standing.losses)}試合消化時点`;
         }
         if (!Number.isFinite(standing.magicNumber)) return "条件を算出できません";
         const opponents = standing.challengers
