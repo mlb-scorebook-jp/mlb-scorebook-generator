@@ -1518,6 +1518,50 @@
         return payload?.stats?.[0]?.splits ?? [];
     };
 
+    const getPitcherPostseasonCareerStats = async (person, date) => {
+        const playerId = Number(person?.id);
+        if (!playerId) return null;
+        const debutDate = String(person?.mlbDebutDate ?? "");
+        const startDate = /^\d{4}-\d{2}-\d{2}$/.test(debutDate)
+            ? debutDate
+            : "1901-01-01";
+        const endDate = previousDate(date);
+        const params = new URLSearchParams({
+            stats: "gameLog",
+            group: "pitching",
+            gameType: "P",
+            startDate,
+            endDate
+        });
+        const payload = await fetchJson(
+            `${API_ROOT}/v1/people/${playerId}/stats?${params}`,
+            `pregame:postseason-career-pitching:${playerId}:${endDate}`
+        ).catch(() => null);
+        const splits = (payload?.stats ?? []).flatMap((entry) => entry?.splits ?? []);
+        if (!splits.length) return null;
+        const total = splits.reduce((stats, split) => {
+            const pitching = split?.stat ?? {};
+            stats.gamesPlayed += statNumber(pitching.gamesPlayed);
+            stats.gamesStarted += statNumber(pitching.gamesStarted);
+            stats.wins += statNumber(pitching.wins);
+            stats.losses += statNumber(pitching.losses);
+            stats.earnedRuns += statNumber(pitching.earnedRuns);
+            stats.outs += statNumber(pitching.outs);
+            return stats;
+        }, {
+            gamesPlayed: 0,
+            gamesStarted: 0,
+            wins: 0,
+            losses: 0,
+            earnedRuns: 0,
+            outs: 0
+        });
+        total.era = total.outs > 0
+            ? ((total.earnedRuns * 27) / total.outs).toFixed(2)
+            : "-.--";
+        return total;
+    };
+
     const getPitcherVenueHistory = async (person, date, venue) => {
         const playerId = Number(person?.id);
         const venueId = Number(venue?.id);
@@ -6708,7 +6752,7 @@
         return firstPitcherId ? getPlayerFromFeed(feed, firstPitcherId) : null;
     };
 
-    const getStartingPitcherData = async (pitcher, date, opponent, venue) => {
+    const getStartingPitcherData = async (pitcher, date, opponent, venue, isPostseason = false) => {
         if (!pitcher?.id) return null;
         const season = Number(date.slice(0, 4));
         const [seasonStats, profile] = await Promise.all([
@@ -6718,9 +6762,12 @@
                 `pregame:starter-profile-xref:${pitcher.id}`
             ).then((payload) => payload?.people?.[0] ?? pitcher)
         ]);
-        const [careerLogs, venueHistory] = await Promise.all([
+        const [careerLogs, venueHistory, postseasonCareerStats] = await Promise.all([
             getPlayerCareerGameLog(profile, date, "pitching").catch(() => []),
-            getPitcherVenueHistory(profile, date, venue).catch(() => null)
+            getPitcherVenueHistory(profile, date, venue).catch(() => null),
+            isPostseason
+                ? getPitcherPostseasonCareerStats(profile, date)
+                : Promise.resolve(null)
         ]);
         if (Number(profile?.id) === 434378 && date === "2026-09-26" && venueHistory) {
             venueHistory.notes.unshift({
@@ -6755,6 +6802,8 @@
         return {
             pitcher: profile,
             seasonStats,
+            postseasonCareerStats,
+            isPostseason,
             recentAppearances,
             hasCareerAppearance: careerLogs.length > 0,
             date,
@@ -6864,6 +6913,22 @@
             `${statNumber(data.seasonStats?.wins)}勝${statNumber(data.seasonStats?.losses)}敗　` +
             `防御率${data.seasonStats?.era ?? "-"}`;
         summary.append(name, seasonGrid);
+        if (data.postseasonCareerStats) {
+            const postseason = data.postseasonCareerStats;
+            summary.append(el(
+                "div",
+                "pregame-starting-postseason-stats",
+                `ポストシーズン通算　${postseason.gamesPlayed}試合` +
+                    `（${postseason.gamesStarted}先発）　` +
+                    `${postseason.wins}勝${postseason.losses}敗　防御率${postseason.era}`
+            ));
+        } else if (data.isPostseason) {
+            summary.append(el(
+                "div",
+                "pregame-starting-postseason-stats",
+                "ポストシーズン通算　登板なし"
+            ));
+        }
         column.append(summary);
         const baseballReferenceId = data.pitcher?.xrefIds?.find(
             (xref) => String(xref?.xrefType ?? "").toLowerCase() === "lahman"
@@ -6989,6 +7054,8 @@
             const awayProbable = getProbablePitcher(game, feed, "away");
             const homeProbable = getProbablePitcher(game, feed, "home");
             const venue = feed?.gameData?.venue ?? game?.venue ?? {};
+            const gameType = String(feed?.gameData?.game?.type ?? game?.gameType ?? "R");
+            const isPostseason = ["F", "D", "L", "W"].includes(gameType);
             const [
                 awayStarter,
                 homeStarter,
@@ -6996,8 +7063,8 @@
                 awayRoster,
                 homeRoster
             ] = await Promise.all([
-                getStartingPitcherData(awayProbable, date, homeTeam, venue),
-                getStartingPitcherData(homeProbable, date, awayTeam, venue),
+                getStartingPitcherData(awayProbable, date, homeTeam, venue, isPostseason),
+                getStartingPitcherData(homeProbable, date, awayTeam, venue, isPostseason),
                 getGameTitleRaceHighlights(date, awayTeam, homeTeam, standings),
                 getFeaturedPlayers(feed, "away", date),
                 getFeaturedPlayers(feed, "home", date)
