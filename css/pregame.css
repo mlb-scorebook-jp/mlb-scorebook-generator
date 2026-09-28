@@ -2089,6 +2089,22 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
     gap: 5px;
 }
 
+.pregame-free-agent-retirement {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    color: #f1cb45;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.pregame-free-agent-retirement:hover,
+.pregame-free-agent-retirement:focus-visible {
+    color: #ffe47a;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
 .pregame-free-agent-new {
     display: inline-block;
     padding: 1px 4px;

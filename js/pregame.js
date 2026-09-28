@@ -2877,6 +2877,26 @@
             .sort((left, right) => right.agreedDate.localeCompare(left.agreedDate))[0] ?? null;
     };
 
+    const findFreeAgentRetirement = (playerId, date) => {
+        const confirmed = window.MLB_FREE_AGENT_RETIREMENTS?.[Number(playerId)];
+        if (confirmed?.retiredDate <= date) return confirmed;
+        return (window.MLB_LATEST_NEWS ?? [])
+            .filter((article) =>
+                (article?.playerIds ?? []).some((id) => Number(id) === Number(playerId)) &&
+                articleMlbDate(article) <= date &&
+                (article?.taxonomy ?? []).includes("retirement") &&
+                /(?:\bwill retire\b|\bretires?\b|\bannounces?(?: his)? retirement\b|final (?:mlb )?(?:start|appearance).*(?:before retiring|of (?:his|their) career))/i.test(
+                    String(article?.headline ?? "")
+                )
+            )
+            .map((article) => ({
+                retiredDate: articleMlbDate(article),
+                url: article.url || ""
+            }))
+            .filter((entry) => entry.retiredDate)
+            .sort((left, right) => right.retiredDate.localeCompare(left.retiredDate))[0] ?? null;
+    };
+
     const fetchFreeAgentTransactions = async (startDate, date) => {
         const params = new URLSearchParams({ startDate, endDate: date, sportId: "1" });
         const payload = await fetchJson(
@@ -3187,6 +3207,7 @@
         });
         const groups = { AL: [], NL: [] };
         freeAgents.forEach((entry) => {
+            const retirement = findFreeAgentRetirement(entry.playerId, date);
             const articleAgreement = findFreeAgentAgreement(
                 entry.playerId, entry.formerTeam.id, startDate, date
             );
@@ -3203,7 +3224,8 @@
             }
             groups[AL_TEAM_IDS.has(entry.formerTeam.id) ? "AL" : "NL"].push({
                 ...entry,
-                signing
+                signing,
+                retirement
             });
         });
         Object.values(groups).forEach((entries) => entries.sort((left, right) =>
@@ -3306,7 +3328,23 @@
                         postingStatus.rel = "noopener noreferrer";
                         details.append(postingStatus);
                     }
-                    if (entry.signing) {
+                    if (entry.retirement) {
+                        const retirement = el(
+                            entry.retirement.url ? "a" : "span",
+                            "pregame-free-agent-retirement",
+                            "現役引退"
+                        );
+                        if (entry.retirement.url) {
+                            retirement.href = entry.retirement.url;
+                            retirement.target = "_blank";
+                            retirement.rel = "noopener noreferrer";
+                        }
+                        if (entry.retirement.retiredDate === date) {
+                            retirement.append(el("span", "pregame-free-agent-new", "NEW"));
+                        }
+                        if (details) details.append(retirement);
+                        else row.append(retirement);
+                    } else if (entry.signing) {
                         const terms = entry.signing.terms;
                         const dateText = formatAgreementDate(
                             entry.signing.agreedDate || entry.signing.officialDate
