@@ -3688,7 +3688,12 @@
         dom.view.classList.add("pregame-transfer-active");
         setLoading(true);
         const currentSeason = Number(currentEasternDate().slice(0, 4));
-        const season = currentTransferSeason || currentSeason;
+        const earliestTransferSeason = 1995;
+        const requestedSeason = currentTransferSeason || currentSeason;
+        const season = Math.min(
+            currentSeason,
+            Math.max(earliestTransferSeason, requestedSeason)
+        );
         currentTransferSeason = season;
         savePregameSession("transfers", {
             season,
@@ -3709,7 +3714,7 @@
             seasonLabel.append(el("span", "", "年度選択"));
             const seasonSelect = el("select");
             seasonSelect.setAttribute("aria-label", "移籍情報の年度選択");
-            for (let year = currentSeason; year >= 2024; year -= 1) {
+            for (let year = currentSeason; year >= earliestTransferSeason; year -= 1) {
                 const option = el("option", "", `${year}年`);
                 option.value = String(year);
                 option.selected = year === season;
