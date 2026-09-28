@@ -4726,7 +4726,6 @@ body.app-mode-pitch-chart .viewer {
     .sidebar button:not(.today-game-card),
     .score-loading-actions button,
     .app-footer button,
-    .pitch-chart-open-btn,
     #pitch-chart-back-btn,
     .duration-ranking-close
 ) {
@@ -4744,7 +4743,6 @@ body.app-mode-pitch-chart .viewer {
     .sidebar button:not(.today-game-card),
     .score-loading-actions button,
     .app-footer button,
-    .pitch-chart-open-btn,
     #pitch-chart-back-btn,
     .duration-ranking-close
 ):is(:hover, :focus-visible) {
