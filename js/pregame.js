@@ -4915,6 +4915,13 @@
                 })
                 .filter(Boolean)
                 .sort((a, b) => playerName(a).localeCompare(playerName(b), "ja"));
+            const postseasonTeams = postseasonWindow?.postseasonStartDate &&
+                date >= previousDate(postseasonWindow.postseasonStartDate)
+                ? new Set([
+                    ...postseasonSeeds(standings, "AL"),
+                    ...postseasonSeeds(standings, "NL")
+                ].map((standing) => Number(standing.team.id)))
+                : null;
             const dashboard = el("div", "pregame-dashboard");
             const japaneseSection = section(
                 "日本人選手",
@@ -4940,7 +4947,11 @@
                     const rosterStatus = person.pregameRosterState?.rosterStatus;
                     const playerStatus = rosterStatus
                         ? rosterStatus
-                        : (game ? japanesePlayerGameStatusLabel(game) : "試合なし");
+                        : (game
+                            ? japanesePlayerGameStatusLabel(game)
+                            : (postseasonTeams && !postseasonTeams.has(Number(person.pregameTeamId))
+                                ? "今季終了"
+                                : "試合なし"));
                     const headshotUrl = playerHeadshotUrl(person);
                     let headshot = null;
                     if (headshotUrl) {
