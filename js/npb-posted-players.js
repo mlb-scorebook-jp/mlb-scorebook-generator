@@ -5,6 +5,7 @@
             {
                 name: "山本 由伸",
                 formerTeam: "オリックス・バファローズ",
+                formerTeamLogoUrl: "assets/npb-team-logos/b.gif",
                 position: "RHP",
                 pitcherRole: "SP",
                 postedDate: "2023-11-20",
@@ -20,6 +21,7 @@
             {
                 name: "今永 昇太",
                 formerTeam: "横浜DeNAベイスターズ",
+                formerTeamLogoUrl: "assets/npb-team-logos/db.gif",
                 position: "LHP",
                 pitcherRole: "SP",
                 postedDate: "2023-11-27",
@@ -35,6 +37,7 @@
             {
                 name: "上沢 直之",
                 formerTeam: "北海道日本ハムファイターズ",
+                formerTeamLogoUrl: "assets/npb-team-logos/f.gif",
                 position: "RHP",
                 pitcherRole: "SP",
                 postedDate: "2023-11-27",
@@ -51,6 +54,7 @@
             {
                 name: "佐々木 朗希",
                 formerTeam: "千葉ロッテマリーンズ",
+                formerTeamLogoUrl: "assets/npb-team-logos/m.gif",
                 position: "RHP",
                 pitcherRole: "SP",
                 postedDate: "2024-12-10",
