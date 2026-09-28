@@ -719,7 +719,8 @@
             return rescheduleDate ? `${prefix}（${rescheduleDate}）` : prefix;
         }
         if (/cancel/.test(combined) || coded === "C") {
-            return translatedReason ? `${translatedReason}による中止` : "中止";
+            const prefix = translatedReason ? `${translatedReason}による中止` : "中止";
+            return rescheduleDate ? `${prefix}（${rescheduleDate}）` : `${prefix} 代替試合はなし`;
         }
         if (/suspend|delay|paused/.test(combined)) {
             if (translatedReason === "雨天") return "雨天中断";
