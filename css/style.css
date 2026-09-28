@@ -283,6 +283,20 @@ select {
     background: linear-gradient(180deg, #566872 0%, #394750 100%);
 }
 
+.header-transfer-new {
+    position: absolute;
+    top: 2px;
+    right: 24px;
+    padding: 1px 4px;
+    border-radius: 8px;
+    background: #e7c43f;
+    color: #152026;
+    font-size: 7px;
+    font-weight: 900;
+    line-height: 1.2;
+    letter-spacing: 0.04em;
+}
+
 body:not(.app-mode-home):not(.app-mode-pregame) #header-scorebook-btn,
 body.app-mode-pregame:not(.app-mode-transfers) #generate-btn,
 body.app-mode-transfers #header-transfers-btn {

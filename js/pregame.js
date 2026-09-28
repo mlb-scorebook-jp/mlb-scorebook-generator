@@ -2917,6 +2917,41 @@
         return payload?.transactions ?? [];
     };
 
+    const refreshTransfersHeaderNew = async (date = currentEasternDate()) => {
+        const button = document.getElementById("header-transfers-btn");
+        if (!button) return false;
+        const transactions = await fetchFreeAgentTransactions(date, date);
+        const hasTransactionUpdate = transactions.some((transaction) =>
+            ["TR", "SFA"].includes(String(transaction?.typeCode ?? "")) ||
+            /elected free agency/i.test(String(transaction?.description ?? ""))
+        );
+        const hasAgreementUpdate = Object.values(window.MLB_FREE_AGENT_AGREEMENTS ?? {})
+            .some((entry) => entry?.agreedDate === date);
+        const hasRetirementUpdate = Object.values(window.MLB_FREE_AGENT_RETIREMENTS ?? {})
+            .some((entry) => entry?.retiredDate === date);
+        const hasPostingUpdate = Object.values(window.MLB_NPB_POSTED_PLAYERS ?? {})
+            .flat()
+            .some((player) =>
+                player?.postedDate === date ||
+                player?.signing?.agreedDate === date ||
+                player?.outcome?.date === date
+            );
+        const hasNew = hasTransactionUpdate || hasAgreementUpdate ||
+            hasRetirementUpdate || hasPostingUpdate;
+        let badge = button.querySelector(".header-transfer-new");
+        if (hasNew && !badge) {
+            badge = el("span", "header-transfer-new", "NEW");
+            button.append(badge);
+        } else if (!hasNew) {
+            badge?.remove();
+        }
+        button.setAttribute(
+            "aria-label",
+            hasNew ? "移籍情報（本日の新着あり）" : "移籍情報"
+        );
+        return hasNew;
+    };
+
     const tradeAssetLabel = (description) => {
         const text = String(description ?? "");
         if (/international bonus/i.test(text)) return "国際ボーナス枠";
@@ -7979,6 +8014,7 @@
         dom.headerActions = document.querySelector(".pregame-header-actions");
         dom.appHeader = document.querySelector(".app-header");
         if (!dom.view) return;
+        refreshTransfersHeaderNew().catch((error) => console.error(error));
         if (dom.headerActions) {
             headerActionsAnchor = document.createComment("pregame header actions home");
             dom.headerActions.before(headerActionsAnchor);
@@ -8044,7 +8080,8 @@
         close,
         renderTop,
         renderGameDetail,
-        renderPlayerDetail
+        renderPlayerDetail,
+        refreshTransfersHeaderNew
     };
     if (document.readyState === "loading") {
         document.addEventListener("DOMContentLoaded", initialize, { once: true });
