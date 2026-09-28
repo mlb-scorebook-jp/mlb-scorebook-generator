@@ -3384,10 +3384,17 @@
             .sort((left, right) => left.postedDate.localeCompare(right.postedDate));
         const playerCount = Object.values(groups)
             .reduce((total, entries) => total + entries.length, 0) + postedPlayers.length;
+        const historicalApiCoverageLimited = !upcoming && season < 2024;
         const heading = freeAgentSection.querySelector(".pregame-section-header h3");
-        heading.textContent = upcoming
-            ? `${season}シーズン終了後 FA予定選手一覧（${playerCount}人）`
-            : `${season}シーズン終了後 フリーエージェント選手一覧（${playerCount}人）`;
+        if (upcoming) {
+            heading.textContent = `${season}シーズン終了後 FA予定選手一覧（${playerCount}人）`;
+        } else if (historicalApiCoverageLimited) {
+            heading.textContent = playerCount
+                ? `${season}シーズン終了後 フリーエージェント選手一覧（公式API確認分 ${playerCount}人）`
+                : `${season}シーズン終了後 フリーエージェント選手一覧（人数不明）`;
+        } else {
+            heading.textContent = `${season}シーズン終了後 フリーエージェント選手一覧（${playerCount}人）`;
+        }
         const header = freeAgentSection.querySelector(".pregame-section-header");
         const headerMeta = el("span", "pregame-free-agent-header-meta");
         if (exchangeRate) {
@@ -3408,7 +3415,9 @@
             panel.append(el("h4", "", league));
             const list = el("div", "pregame-free-agent-list");
             if (!groups[league].length) {
-                list.append(empty("該当するFA選手はまだ発表されていません。"));
+                list.append(empty(historicalApiCoverageLimited
+                    ? "この年度のFA公示はMLB公式APIに収録されていません。"
+                    : "該当するFA選手はまだ発表されていません。"));
             } else {
                 const positionLabels = {
                     SP: "投手（先発）", RP: "投手（リリーフ）",
