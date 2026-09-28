@@ -1806,6 +1806,12 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
     display: none;
 }
 
+.pregame-trades-collapsed .pregame-trade-team-filter,
+.pregame-trades-collapsed .pregame-trade-search,
+.pregame-trades-collapsed .pregame-trade-count {
+    display: none;
+}
+
 .pregame-trade-row {
     display: grid;
     grid-template-columns: 46px minmax(0, 1fr);
@@ -2140,6 +2146,10 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
 }
 
 .pregame-free-agents-collapsed > :not(.pregame-section-header) {
+    display: none;
+}
+
+.pregame-free-agents-collapsed .pregame-free-agent-exchange-rate {
     display: none;
 }
 

@@ -2754,13 +2754,18 @@
     };
 
     const getUsdJpyRate = async (date) => {
-        const entry = [...(window.MLB_BOJ_USD_JPY ?? [])]
-            .filter((item) => item.date <= date && Number.isFinite(Number(item.rate)))
-            .sort((left, right) => right.date.localeCompare(left.date))[0];
+        const rates = [...(window.MLB_BOJ_USD_JPY ?? [])]
+            .filter((item) => Number.isFinite(Number(item.rate)));
+        const entry = rates
+            .filter((item) => item.date <= date)
+            .sort((left, right) => right.date.localeCompare(left.date))[0] ||
+            rates
+                .filter((item) => item.date > date)
+                .sort((left, right) => left.date.localeCompare(right.date))[0];
         if (!entry) return null;
         return {
             rate: Number(entry.rate),
-            date: entry.date
+            date
         };
     };
 
@@ -3325,7 +3330,7 @@
             upcoming
                 ? buildUpcomingFreeAgentGroups(season, date, regularSeasonStartDate)
                 : buildFreeAgentGroups(season, postseasonWindow, date),
-            getUsdJpyRate(date)
+            getUsdJpyRate(`${season}-01-01`)
         ]);
         const header = freeAgentSection.querySelector(".pregame-section-header");
         const headerMeta = el("span", "pregame-free-agent-header-meta");
