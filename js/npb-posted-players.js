@@ -1,6 +1,68 @@
 // MLB・NPB公式発表でポスティングが確認できた選手。
 (function (global) {
     global.MLB_NPB_POSTED_PLAYERS = Object.freeze({
+        2023: Object.freeze([
+            {
+                name: "山本 由伸",
+                formerTeam: "オリックス・バファローズ",
+                position: "RHP",
+                pitcherRole: "SP",
+                postedDate: "2023-11-20",
+                sourceUrl: "https://www.mlb.com/news/yoshinobu-yamamoto-posted-for-mlb-teams",
+                signing: {
+                    teamId: 119,
+                    agreedDate: "2023-12-27",
+                    years: 12,
+                    tenThousands: 32500,
+                    url: "https://www.mlb.com/news/dodgers-introduce-yoshinobu-yamamoto"
+                }
+            },
+            {
+                name: "今永 昇太",
+                formerTeam: "横浜DeNAベイスターズ",
+                position: "LHP",
+                pitcherRole: "SP",
+                postedDate: "2023-11-27",
+                sourceUrl: "https://www.mlb.com/news/shota-imanaga-posted-mlb-teams",
+                signing: {
+                    teamId: 112,
+                    agreedDate: "2024-01-11",
+                    years: 4,
+                    tenThousands: 5300,
+                    url: "https://www.mlb.com/news/shota-imanaga-guide"
+                }
+            },
+            {
+                name: "上沢 直之",
+                formerTeam: "北海道日本ハムファイターズ",
+                position: "RHP",
+                pitcherRole: "SP",
+                postedDate: "2023-11-27",
+                sourceUrl: "https://www.mlb.com/news/naoyuki-uwasawa-posted-for-mlb-teams",
+                signing: {
+                    teamId: 139,
+                    agreedDate: "2024-01-12",
+                    statusText: "とマイナー契約",
+                    url: "https://www.mlb.com/news/naoyuki-uwasawa-talks-about-signing-with-rays"
+                }
+            }
+        ]),
+        2024: Object.freeze([
+            {
+                name: "佐々木 朗希",
+                formerTeam: "千葉ロッテマリーンズ",
+                position: "RHP",
+                pitcherRole: "SP",
+                postedDate: "2024-12-10",
+                sourceUrl: "https://www.mlb.com/milb/news/roki-sasaki-posting-mlb",
+                signing: {
+                    teamId: 119,
+                    agreedDate: "2025-01-17",
+                    statusText: "とマイナー契約（契約金650万ドル）",
+                    url: "https://www.mlb.com/news/roki-sasaki-signing-with-dodgers-analysis"
+                }
+            }
+        ]),
         2025: Object.freeze([
             {
                 name: "村上 宗隆",

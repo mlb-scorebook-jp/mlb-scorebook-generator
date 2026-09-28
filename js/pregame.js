@@ -3494,11 +3494,14 @@
                 const positionText = player.pitcherRole === "SP"
                     ? "投手（先発）"
                     : ({ "1B": "一塁手（1B）", "3B": "三塁手（3B）" }[player.position] || player.position);
-                identity.append(
-                    createFreeAgentTeamLogo({
+                const formerTeamLogo = player.formerTeamLogoUrl
+                    ? createFreeAgentTeamLogo({
                         name: player.formerTeam,
                         logoUrl: player.formerTeamLogoUrl
-                    }),
+                    })
+                    : document.createDocumentFragment();
+                identity.append(
+                    formerTeamLogo,
                     postingLink,
                     el("span", "pregame-free-agent-position", positionText)
                 );
@@ -3515,10 +3518,12 @@
                 details.append(postingStatus);
                 const signing = player.signing?.agreedDate <= date ? player.signing : null;
                 if (signing) {
+                    const signingText = signing.statusText ||
+                        `と${signing.years}年${formatContractDollars(signing.tenThousands)}で契約`;
                     const status = el(
                         "a",
                         "pregame-free-agent-signing",
-                        `と${signing.years}年${formatContractDollars(signing.tenThousands)}で契約` +
+                        signingText +
                             `（${formatAgreementDate(signing.agreedDate)}合意）`
                     );
                     status.prepend(createFreeAgentTeamLogo(
