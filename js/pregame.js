@@ -2847,6 +2847,10 @@
         if (confirmed && startDate <= confirmed.agreedDate && confirmed.agreedDate <= date) {
             return {
                 teamId: Number(confirmed.teamId),
+                league: confirmed.league || "MLB",
+                teamName: confirmed.teamName || "",
+                teamLogoUrl: confirmed.teamLogoUrl || "",
+                statusText: confirmed.statusText || "",
                 agreedDate: confirmed.agreedDate,
                 terms: Number.isFinite(Number(confirmed.years)) &&
                     Number.isFinite(Number(confirmed.tenThousands))
@@ -2972,7 +2976,7 @@
 
     const renderSeasonTradeList = async (season, date) => {
         const trades = await buildSeasonTrades(season, date);
-        const tradeSection = section(`${season}年 トレード一覧`, `${trades.length}件`);
+        const tradeSection = section(`${season}年 トレード一覧（${trades.length}組）`, "");
         tradeSection.classList.add("pregame-trades-section");
         const title = tradeSection.querySelector(".pregame-section-header h3");
         const titleLink = el("a", "pregame-trades-title-link", title.textContent);
@@ -2985,8 +2989,8 @@
             return tradeSection;
         }
         const header = tradeSection.querySelector(".pregame-section-header");
-        const count = header.querySelector("span");
-        count.classList.add("pregame-trade-count");
+        const count = el("span", "pregame-trade-count");
+        header.append(count);
         const teamSelect = el("select", "pregame-trade-team-filter");
         teamSelect.setAttribute("aria-label", `${season}年のトレードを球団で絞り込み`);
         const allTeamsOption = el("option", "", "全球団");
@@ -3143,8 +3147,8 @@
                 if (visible) visibleCount += 1;
             });
             count.textContent = query || selectedTeamId
-                ? `${visibleCount} / ${trades.length}件`
-                : `${trades.length}件`;
+                ? `${visibleCount} / ${trades.length}組`
+                : "";
             noResults.hidden = visibleCount !== 0;
         };
         search.addEventListener("input", filterTrades);
@@ -3334,6 +3338,15 @@
                 : buildFreeAgentGroups(season, postseasonWindow, date),
             getUsdJpyRate(`${season}-01-01`)
         ]);
+        const postedPlayers = upcoming ? [] : (window.MLB_NPB_POSTED_PLAYERS?.[season] ?? [])
+            .filter((player) => player.postedDate <= date)
+            .sort((left, right) => left.postedDate.localeCompare(right.postedDate));
+        const playerCount = Object.values(groups)
+            .reduce((total, entries) => total + entries.length, 0) + postedPlayers.length;
+        const heading = freeAgentSection.querySelector(".pregame-section-header h3");
+        heading.textContent = upcoming
+            ? `${season}シーズン終了後 FA予定選手一覧（${playerCount}人）`
+            : `${season}シーズン終了後 フリーエージェント選手一覧（${playerCount}人）`;
         const header = freeAgentSection.querySelector(".pregame-section-header");
         const headerMeta = el("span", "pregame-free-agent-header-meta");
         if (exchangeRate) {
@@ -3434,20 +3447,33 @@
                         const dateText = formatAgreementDate(
                             entry.signing.agreedDate || entry.signing.officialDate
                         );
-                        const statusText = terms
-                            ? `と${terms.years}年${formatContractDollars(terms.tenThousands)}で契約` +
-                                (dateText ? `（${dateText}${entry.signing.agreedDate ? "合意" : "公式登録"}）` : "")
-                            : `と${entry.signing.minorLeague ? "マイナー契約" : "契約"}` +
-                                (dateText ? `（${dateText}${entry.signing.agreedDate ? "合意" : "公式登録"}）` : "");
+                        const isNpbSigning = entry.signing.league === "NPB";
+                        const statusText = isNpbSigning
+                            ? entry.signing.statusText ||
+                                `${entry.signing.teamName}と契約` +
+                                (dateText ? `（${dateText}正式発表）` : "")
+                            : terms
+                                ? `と${terms.years}年${formatContractDollars(terms.tenThousands)}で契約` +
+                                    (dateText ? `（${dateText}${entry.signing.agreedDate ? "合意" : "公式登録"}）` : "")
+                                : `と${entry.signing.minorLeague ? "マイナー契約" : "契約"}` +
+                                    (dateText ? `（${dateText}${entry.signing.agreedDate ? "合意" : "公式登録"}）` : "");
                         const status = el(
                             entry.signing.url ? "a" : "span",
                             "pregame-free-agent-signing",
                             statusText
                         );
-                        status.prepend(createFreeAgentTeamLogo(
-                            { id: entry.signing.teamId },
-                            `${teamCode({ id: entry.signing.teamId })}のロゴ`
-                        ));
+                        if (entry.signing.teamId || entry.signing.teamLogoUrl) {
+                            status.prepend(createFreeAgentTeamLogo(
+                                {
+                                    id: entry.signing.teamId,
+                                    name: entry.signing.teamName,
+                                    logoUrl: entry.signing.teamLogoUrl
+                                },
+                                isNpbSigning
+                                    ? `${entry.signing.teamName}のロゴ`
+                                    : `${teamCode({ id: entry.signing.teamId })}のロゴ`
+                            ));
+                        }
                         if (entry.signing.url) {
                             status.href = entry.signing.url;
                             status.target = "_blank";
@@ -3488,9 +3514,6 @@
             columns.append(panel);
         });
         freeAgentSection.append(columns);
-        const postedPlayers = upcoming ? [] : (window.MLB_NPB_POSTED_PLAYERS?.[season] ?? [])
-            .filter((player) => player.postedDate <= date)
-            .sort((left, right) => left.postedDate.localeCompare(right.postedDate));
         if (postedPlayers.length) {
             const postedPanel = el("section", "pregame-free-agent-posted");
             postedPanel.append(el("h4", "", "NPBポスティング"));
