@@ -3202,6 +3202,27 @@
         const startDate = addDays(postseasonWindow.displayEndDate, 1);
         const transactions = await fetchFreeAgentTransactions(startDate, date);
         const freeAgents = new Map();
+        (window.MLB_HISTORICAL_FREE_AGENTS?.[season] ?? []).forEach((entry) => {
+            freeAgents.set(Number(entry.playerId), {
+                playerId: Number(entry.playerId),
+                person: { id: Number(entry.playerId), fullName: entry.name },
+                position: entry.position || "",
+                pitcherRole: entry.pitcherRole || "",
+                formerTeam: {
+                    id: Number(entry.formerTeamId),
+                    abbreviation: entry.formerTeamCode
+                },
+                league: entry.league,
+                sourceUrl: entry.sourceUrl,
+                historicalSigning: entry.signing ? {
+                    ...entry.signing,
+                    team: {
+                        id: Number(entry.signing.teamId),
+                        abbreviation: entry.signing.teamCode
+                    }
+                } : null
+            });
+        });
         transactions.forEach((transaction) => {
             if (!/elected free agency/i.test(String(transaction?.description ?? ""))) return;
             const playerId = Number(transaction?.person?.id);
@@ -3263,7 +3284,7 @@
             const articleAgreement = findFreeAgentAgreement(
                 entry.playerId, entry.formerTeam.id, startDate, date
             );
-            const officialSigning = signings.get(entry.playerId);
+            const officialSigning = signings.get(entry.playerId) || entry.historicalSigning;
             const signing = articleAgreement || officialSigning
                 ? { ...officialSigning, ...articleAgreement }
                 : null;
@@ -3274,7 +3295,7 @@
                 signing.terms = trackedContract;
                 signing.url = trackedContract.url;
             }
-            groups[AL_TEAM_IDS.has(entry.formerTeam.id) ? "AL" : "NL"].push({
+            groups[entry.league || (AL_TEAM_IDS.has(entry.formerTeam.id) ? "AL" : "NL")].push({
                 ...entry,
                 signing,
                 retirement: signing ? null : retirement
@@ -3384,7 +3405,11 @@
             .sort((left, right) => left.postedDate.localeCompare(right.postedDate));
         const playerCount = Object.values(groups)
             .reduce((total, entries) => total + entries.length, 0) + postedPlayers.length;
-        const historicalApiCoverageLimited = !upcoming && season < 2024;
+        const historicalDataAvailable = Object.hasOwn(
+            window.MLB_HISTORICAL_FREE_AGENTS ?? {}, season
+        );
+        const historicalApiCoverageLimited = !upcoming && season < 2024 &&
+            !historicalDataAvailable;
         const heading = freeAgentSection.querySelector(".pregame-section-header h3");
         if (upcoming) {
             heading.textContent = `${season}シーズン終了後 FA予定選手一覧（${playerCount}人）`;
