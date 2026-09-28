@@ -3451,6 +3451,8 @@
                         }
                         if (details) details.append(status);
                         else row.append(status);
+                    } else if (upcoming) {
+                        row.append(el("span", "pregame-free-agent-upcoming-status", "FA予定"));
                     } else if (entry.trade) {
                         const status = el(
                             "a",
@@ -3465,8 +3467,6 @@
                             `${teamCode({ id: entry.trade.teamId })}のロゴ`
                         ));
                         row.append(status);
-                    } else if (upcoming) {
-                        row.append(el("span", "pregame-free-agent-upcoming-status", "FA予定"));
                     }
                     if (details) row.append(details);
                     list.append(row);
