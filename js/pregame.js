@@ -2634,19 +2634,24 @@
     })[String(division ?? "")] ?? String(division ?? "所属地区未確定");
 
     const getStandingsSnapshot = async (date) => {
-        const standingsDate = previousDate(date);
+        let standingsDate = previousDate(date);
         const season = date.slice(0, 4);
-        const params = new URLSearchParams({
-            leagueId: "103,104",
-            season,
-            standingsTypes: "regularSeason",
-            date: standingsDate,
-            hydrate: "division,team,league"
-        });
-        const payload = await fetchJson(
-            `${API_ROOT}/v1/standings?${params}`,
-            `pregame:standings:${standingsDate}`
-        ).catch(() => null);
+        let payload = null;
+        for (let attempt = 0; attempt < 7; attempt += 1) {
+            const params = new URLSearchParams({
+                leagueId: "103,104",
+                season,
+                standingsTypes: "regularSeason",
+                date: standingsDate,
+                hydrate: "division,team,league"
+            });
+            payload = await fetchJson(
+                `${API_ROOT}/v1/standings?${params}`,
+                `pregame:standings:${standingsDate}`
+            ).catch(() => null);
+            if ((payload?.records ?? []).some((record) => (record?.teamRecords ?? []).length > 0)) break;
+            standingsDate = previousDate(standingsDate);
+        }
         const standings = new Map();
         (payload?.records ?? []).forEach((record) => {
             const divisionTeams = record?.teamRecords ?? [];
@@ -4367,7 +4372,9 @@
 
     const postseasonSeedLabel = (standing) => {
         if (!standing) return "シード未確定";
-        const seed = standing.divisionLeader
+        const seed = Number.isFinite(standing.seed)
+            ? standing.seed
+            : standing.divisionLeader
             ? standing.leagueRank
             : Number.isFinite(standing.wildCardRank)
                 ? 3 + standing.wildCardRank
@@ -4395,9 +4402,24 @@
         const postseasonLabel = postseasonSeriesLabel(gameType, awayTeam);
         const isPostseason = Boolean(postseasonLabel);
         const showWildCard = shouldShowWildCard(officialDate);
+        const postseasonSeedByTeam = isPostseason
+            ? new Map(
+                ["AL", "NL"].flatMap((leagueCode) =>
+                    postseasonSeeds(standings, leagueCode).map((entry) => [
+                        Number(entry?.team?.id),
+                        entry.seed
+                    ])
+                )
+            )
+            : new Map();
         const teamBlock = (team) => {
             const block = el("span", "pregame-header-team");
-            const standing = standings.get(Number(team?.id));
+            const teamId = Number(team?.id);
+            const baseStanding = standings.get(teamId);
+            const fallbackSeed = postseasonSeedByTeam.get(teamId);
+            const standing = baseStanding && Number.isFinite(fallbackSeed)
+                ? { ...baseStanding, seed: fallbackSeed }
+                : baseStanding;
             const rank = Number.isFinite(standing?.rank) ? `${standing.rank}位` : "順位未確定";
             const slug = window.MLB_SCOREBOOK_TEAM_SLUGS_BY_ID?.[Number(team?.id)];
             const teamName = el(slug ? "a" : "strong", "pregame-header-team-name", teamJapaneseName(team));
