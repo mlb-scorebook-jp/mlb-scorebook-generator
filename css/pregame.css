@@ -2107,8 +2107,8 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
     text-underline-offset: 2px;
 }
 
-.pregame-free-agent-upcoming-status {
-    color: #e5c452;
+.pregame-free-agent-contract-ending {
+    color: #eef3f6;
     font-weight: 700;
 }
 

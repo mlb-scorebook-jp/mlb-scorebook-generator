@@ -3452,7 +3452,11 @@
                         if (details) details.append(status);
                         else row.append(status);
                     } else if (upcoming) {
-                        row.append(el("span", "pregame-free-agent-upcoming-status", "FA予定"));
+                        row.append(el(
+                            "span",
+                            "pregame-free-agent-contract-ending",
+                            `${teamCode(entry.formerTeam)}との${entry.contractYears}年契約が終了`
+                        ));
                     } else if (entry.trade) {
                         const status = el(
                             "a",

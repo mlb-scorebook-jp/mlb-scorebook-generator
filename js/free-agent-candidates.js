@@ -2,6 +2,20 @@
 // Source: https://www.mlb.com/news/baseball-s-biggest-free-agents-by-team-for-2026-2027
 (function (global) {
     const sourceUrl = "https://www.mlb.com/news/baseball-s-biggest-free-agents-by-team-for-2026-2027";
+    const contractYearsByPlayerId = Object.freeze({
+        543807: 6,
+        642547: 5,
+        543243: 3,
+        608032: 2,
+        628452: 4,
+        645261: 5,
+        673357: 6,
+        592866: 2,
+        605540: 2,
+        673548: 5,
+        664040: 6,
+        592662: 5
+    });
     global.MLB_FREE_AGENT_CANDIDATES = Object.freeze({
         2026: Object.freeze([
             { playerId: 543807, name: "George Springer", teamId: 141, position: "DH" },
@@ -34,6 +48,10 @@
             { playerId: 664141, name: "JT Brubaker", teamId: 137, position: "RHP", pitcherRole: "RP" },
             { playerId: 592662, name: "Robbie Ray", teamId: 137, position: "LHP", pitcherRole: "SP" },
             { playerId: 608372, name: "Tomoyuki Sugano", teamId: 115, position: "RHP", pitcherRole: "SP" }
-        ].map((entry) => Object.freeze({ ...entry, sourceUrl })))
+        ].map((entry) => Object.freeze({
+            ...entry,
+            contractYears: contractYearsByPlayerId[entry.playerId] || 1,
+            sourceUrl
+        })))
     });
 })(window);
