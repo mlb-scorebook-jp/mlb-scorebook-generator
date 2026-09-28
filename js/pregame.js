@@ -3316,7 +3316,7 @@
     ) => {
         const freeAgentSection = section(
             upcoming
-                ? `${season}シーズン終了後 主なFA予定選手一覧`
+                ? `${season}シーズン終了後 FA予定選手一覧`
                 : `${season}シーズン終了後 フリーエージェント選手一覧`,
             ""
         );
