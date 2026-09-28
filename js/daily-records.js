@@ -2452,18 +2452,23 @@
             const matched = matchPlayer([article?.headline, article?.seoTitle, article?.blurb]
                 .filter(Boolean).join(" ")) || matchPlayer(searchable);
             if (!matched) return;
-            const ordinal = readOrdinal(searchable);
             const leadoff = /leadoff (?:home run|homer)/i.test(searchable);
-            const rankContext = searchable.split(/(?<=[.!?])\s+/).find((sentence) =>
-                /leadoff (?:home run|homer|shot)/i.test(sentence) &&
-                new RegExp(`(?:${ordinalPattern})[- ]most`, "i").test(sentence)
+            const leadoffRankPattern = new RegExp(
+                `(?:${ordinalPattern})[- ]most\\s+(?:career\\s+|season\\s+)?` +
+                `leadoff (?:home runs?|homers?|shots?)|` +
+                `leadoff (?:home runs?|homers?|shots?)[^.!?]{0,80}` +
+                `(?:${ordinalPattern})[- ]most`,
+                "i"
             );
-            const franchiseOrdinal = readOrdinal(rankContext) || ordinal;
-            if (leadoff && franchiseOrdinal && (rankContext ||
-                /(?:franchise|club|team) history|Cubs history/i.test(searchable))) {
+            const rankContext = searchable.split(/(?<=[.!?])\s+/).find((sentence) =>
+                leadoffRankPattern.test(sentence)
+            );
+            const franchiseOrdinal = readOrdinal(text(rankContext).match(leadoffRankPattern)?.[0]);
+            const leadoffRankPlayer = rankContext ? matchPlayer(rankContext) : null;
+            if (leadoff && franchiseOrdinal && leadoffRankPlayer) {
                 addFromArticle("FRANCHISE_LEADOFF_HOME_RUN_RANK",
                     `シーズン先頭打者本塁打 球団歴代${franchiseOrdinal}位`, article,
-                    matchPlayer(rankContext) || matched);
+                    leadoffRankPlayer);
             }
             const rookieContext = searchable.split(/(?<=[.!?])\s+/).find((sentence) =>
                 /rookie (?:\w+\s+){0,3}(?:record|mark)|franchise record .*rookie|most .* by (?:a|an) rookie/i.test(sentence));
