@@ -12,6 +12,7 @@
         673357: 6,
         592866: 2,
         605540: 2,
+        684007: 4,
         673548: 5,
         664040: 6,
         592662: 5
@@ -40,6 +41,7 @@
             { playerId: 650333, name: "Luis Arraez", teamId: 137, position: "2B" },
             { playerId: 605540, name: "Brandon Woodruff", teamId: 158, position: "RHP", pitcherRole: "SP" },
             { playerId: 602104, name: "Ramón Urías", teamId: 138, position: "3B" },
+            { playerId: 684007, name: "Shota Imanaga", teamId: 112, position: "LHP", pitcherRole: "SP" },
             { playerId: 673548, name: "Seiya Suzuki", teamId: 112, position: "RF" },
             { playerId: 664040, name: "Brandon Lowe", teamId: 134, position: "2B" },
             { playerId: 553993, name: "Eugenio Suárez", teamId: 113, position: "DH" },
