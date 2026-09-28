@@ -3455,7 +3455,7 @@
                         row.append(el(
                             "span",
                             "pregame-free-agent-contract-ending",
-                            `${teamCode(entry.formerTeam)}との${entry.contractYears}年契約が終了`
+                            `${entry.contractYears}年契約が終了`
                         ));
                     } else if (entry.trade) {
                         const status = el(
