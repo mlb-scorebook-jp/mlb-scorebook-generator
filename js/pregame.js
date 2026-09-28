@@ -3591,7 +3591,7 @@
         freeAgentSection.append(columns);
         if (postedPlayers.length) {
             const postedPanel = el("section", "pregame-free-agent-posted");
-            postedPanel.append(el("h4", "", "NPBポスティング"));
+            postedPanel.append(el("h4", "", "NPBポスティング/FA"));
             const postedList = el("div", "pregame-free-agent-list");
             postedPlayers.forEach((player) => {
                 const row = el("div", "pregame-free-agent-row");
