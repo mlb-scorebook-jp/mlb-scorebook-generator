@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MLB Scorebook Generator</title>
     <!-- Score notation update: stacked batted-ball symbol, red hits, blue strikeouts, black other results. -->
-    <link rel="stylesheet" href="css/style.css?v=20260928-transfer-new-1">
+    <link rel="stylesheet" href="css/style.css?v=20260928-mobile-menu-3">
     <link rel="stylesheet" href="css/pregame.css?v=20260928-transfer-hub-1">
     <link rel="stylesheet" href="css/daily-records.css?v=20260907-story-candidates-2">
 </head>
@@ -28,14 +28,18 @@
             <p aria-hidden="true">&nbsp;</p>
         </div>
 
-        <nav class="app-primary-nav" aria-label="メインナビゲーション">
+        <button type="button" class="app-menu-toggle" id="app-menu-toggle"
+            aria-expanded="false" aria-controls="app-header-menu-content">MENU</button>
+
+        <div class="app-header-menu-content" id="app-header-menu-content">
+            <nav class="app-primary-nav" aria-label="メインナビゲーション">
             <button type="button" id="header-scorebook-btn">スコアブック生成</button>
             <button type="button" id="generate-btn">試合前情報</button>
             <button type="button" id="header-daily-records-btn">本日の記録</button>
             <button type="button" id="header-transfers-btn">移籍情報</button>
-        </nav>
+            </nav>
 
-        <section class="header-game-search" aria-label="試合検索">
+            <section class="header-game-search" aria-label="試合検索">
             <div class="header-search-tabs" role="tablist" aria-label="検索方法">
                 <button type="button" class="header-search-tab" id="matchup-search-tab" role="tab" aria-selected="false" aria-expanded="false" aria-controls="matchup-search-panel">過去の試合を検索</button>
                 <button type="button" class="header-search-tab" id="player-search-tab" role="tab" aria-selected="false" aria-expanded="false" aria-controls="player-search-panel">選手名で検索</button>
@@ -88,9 +92,10 @@
                 <button type="button" id="player-search-btn">検索</button>
                 <section class="player-search-results" id="player-search-results" aria-live="polite" hidden></section>
             </div>
-        </section>
+            </section>
 
-        <div class="version">Ver. 2.3.8</div>
+            <div class="version">Ver. 2.3.8</div>
+        </div>
     </header>
 
     <main class="app-main">
@@ -679,6 +684,8 @@
                 scoreLoadingRetry: document.getElementById("score-loading-retry"),
                 scoreLoadingClose: document.getElementById("score-loading-close"),
                 generateButton: document.getElementById("generate-btn"),
+                menuToggle: document.getElementById("app-menu-toggle"),
+                menuContent: document.getElementById("app-header-menu-content"),
                 saveButton: document.getElementById("save-btn"),
                 atBatLinkTargetInputs: [...document.querySelectorAll("[name='atbat-link-target']")],
                 awayPageButton: document.getElementById("away-page-btn"),
@@ -717,6 +724,9 @@
             const portraitScorebookQuery = window.matchMedia(
                 "screen and (orientation: portrait) and (max-width: 1100px)"
             );
+            const mobileHeaderQuery = window.matchMedia(
+                "screen and (max-width: 767px), screen and (orientation: landscape) and (max-height: 520px)"
+            );
             const touchScorebookQuery = window.matchMedia(
                 "screen and (hover: none) and (pointer: coarse)"
             );
@@ -728,7 +738,7 @@
                 : document.scrollingElement;
 
             const updatePortraitOperationLayout = () => {
-                if (portraitScorebookQuery.matches) {
+                if (portraitScorebookQuery.matches && !mobileHeaderQuery.matches) {
                     dom.saveButton.after(dom.headerGameSearch);
                 } else if (headerSearchPlaceholder.parentNode) {
                     headerSearchPlaceholder.after(dom.headerGameSearch);
@@ -843,7 +853,21 @@
                 save: saveAppSession
             };
 
+            const closeAppMenu = () => {
+                document.querySelector(".app-header")?.classList.remove("is-menu-open");
+                dom.menuToggle?.setAttribute("aria-expanded", "false");
+            };
+
+            const toggleAppMenu = () => {
+                const header = document.querySelector(".app-header");
+                if (!header) return;
+                const open = header.classList.toggle("is-menu-open");
+                dom.menuToggle?.setAttribute("aria-expanded", String(open));
+                if (!open) setHeaderSearchMode(null);
+            };
+
             const showPortalHome = () => {
+                closeAppMenu();
                 stopLiveScoreUpdates({ preserveEligibility: true });
                 window.PregameInfo?.close({ preserveShell: true });
                 window.DailyRecords?.close({ preserveShell: true });
@@ -859,6 +883,7 @@
             };
 
             const showScorebook = (options = {}) => {
+                closeAppMenu();
                 window.PregameInfo?.close({ preserveShell: true });
                 window.DailyRecords?.close({ preserveShell: true });
                 document.body.classList.remove(
@@ -900,6 +925,7 @@
 
             const showPitchChart = (side = "away", options = {}) => {
                 if (!state.gamePk || !state.gameData) return;
+                closeAppMenu();
                 stopLiveScoreUpdates({ preserveEligibility: true });
                 pitchChartStartSide = side === "home" ? "home" : "away";
                 window.PregameInfo?.close({ preserveShell: true });
@@ -924,6 +950,7 @@
             };
 
             const showPregame = async () => {
+                closeAppMenu();
                 stopLiveScoreUpdates({ preserveEligibility: true });
                 window.DailyRecords?.close({ preserveShell: true });
                 document.body.classList.remove(
@@ -942,6 +969,7 @@
             };
 
             const showDailyRecords = async (options = {}) => {
+                closeAppMenu();
                 stopLiveScoreUpdates({ preserveEligibility: true });
                 window.PregameInfo?.close({ preserveShell: true });
                 document.body.classList.remove(
@@ -959,6 +987,7 @@
             };
 
             const showTransfers = async (options = {}) => {
+                closeAppMenu();
                 stopLiveScoreUpdates({ preserveEligibility: true });
                 window.DailyRecords?.close({ preserveShell: true });
                 document.body.classList.remove(
@@ -10942,6 +10971,12 @@
                 if (getOpenHeaderSearchMode() && !dom.headerGameSearch.contains(event.target)) {
                     setHeaderSearchMode(null);
                 }
+                if (
+                    document.querySelector(".app-header")?.classList.contains("is-menu-open") &&
+                    !document.querySelector(".app-header")?.contains(event.target)
+                ) {
+                    closeAppMenu();
+                }
             });
             document.addEventListener("keydown", (event) => {
                 if (event.key === "Escape" && !dom.todayGamesPanel.hidden) {
@@ -10951,7 +10986,9 @@
                 if (event.key === "Escape" && getOpenHeaderSearchMode()) {
                     setHeaderSearchMode(null);
                 }
+                if (event.key === "Escape") closeAppMenu();
             });
+            dom.menuToggle.addEventListener("click", toggleAppMenu);
             dom.searchGameYear.addEventListener("change", resetSearchSelection);
             dom.searchHomeTeam.addEventListener("change", async () => {
                 updateSearchTeamOptions();
@@ -11071,6 +11108,10 @@
             window.addEventListener("resize", refreshPortraitLayout, { passive: true });
             window.visualViewport?.addEventListener("resize", refreshPortraitLayout, { passive: true });
             portraitScorebookQuery.addEventListener("change", refreshPortraitLayout);
+            mobileHeaderQuery.addEventListener("change", () => {
+                closeAppMenu();
+                updatePortraitOperationLayout();
+            });
             new ResizeObserver(refreshHorizontalScrollbar).observe(dom.workspace);
             updatePortraitOperationLayout();
 
