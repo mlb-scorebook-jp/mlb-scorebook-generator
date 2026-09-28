@@ -3234,19 +3234,97 @@
         return groups;
     };
 
+    const findUpcomingFreeAgentExtension = (playerId, teamId, startDate, date) =>
+        (window.MLB_LATEST_NEWS ?? [])
+            .filter((article) => {
+                const articleDate = articleMlbDate(article);
+                if (!articleDate || articleDate < startDate || articleDate > date) return false;
+                if (!(article?.playerIds ?? []).some((id) => Number(id) === Number(playerId))) {
+                    return false;
+                }
+                const text = [article?.headline, article?.summaryJa]
+                    .filter(Boolean).join(" ");
+                return /(?:contract extension|extends?\b|extension\b)/i.test(text);
+            })
+            .map((article) => ({
+                teamId: (article?.teamIds ?? []).map(Number)
+                    .find((id) => MLB_TEAM_IDS.has(id)) || Number(teamId),
+                agreedDate: articleMlbDate(article),
+                terms: parseContractTerms(article),
+                url: article.url || ""
+            }))
+            .sort((left, right) => right.agreedDate.localeCompare(left.agreedDate))[0] ?? null;
+
+    const buildUpcomingFreeAgentGroups = async (season, date, regularSeasonStartDate) => {
+        const candidates = window.MLB_FREE_AGENT_CANDIDATES?.[season] ?? [];
+        const transactions = await fetchFreeAgentTransactions(regularSeasonStartDate, date);
+        const latestTradeByPlayer = new Map();
+        transactions
+            .filter((transaction) => String(transaction?.typeCode ?? "") === "TR")
+            .forEach((transaction) => {
+                const playerId = Number(transaction?.person?.id);
+                const teamId = Number(transaction?.toTeam?.id);
+                if (!playerId || !MLB_TEAM_IDS.has(teamId)) return;
+                const trade = {
+                    teamId,
+                    date: String(transaction?.effectiveDate || transaction?.date || "").slice(0, 10),
+                    url: `https://www.mlb.com/transactions?date=${String(
+                        transaction?.date || transaction?.effectiveDate || date
+                    ).slice(0, 10)}`
+                };
+                if ((latestTradeByPlayer.get(playerId)?.date ?? "") <= trade.date) {
+                    latestTradeByPlayer.set(playerId, trade);
+                }
+            });
+        const groups = { AL: [], NL: [] };
+        candidates.forEach((candidate) => {
+            const trade = latestTradeByPlayer.get(Number(candidate.playerId)) ?? null;
+            const currentTeamId = trade?.teamId || Number(candidate.teamId);
+            const extension = findUpcomingFreeAgentExtension(
+                candidate.playerId,
+                currentTeamId,
+                regularSeasonStartDate,
+                date
+            );
+            const retirement = extension
+                ? null
+                : findFreeAgentRetirement(candidate.playerId, date);
+            const entry = {
+                ...candidate,
+                person: { id: candidate.playerId, fullName: candidate.name },
+                formerTeam: { id: currentTeamId },
+                originalTeamId: Number(candidate.teamId),
+                trade,
+                signing: extension,
+                retirement,
+                upcoming: true
+            };
+            groups[AL_TEAM_IDS.has(currentTeamId) ? "AL" : "NL"].push(entry);
+        });
+        Object.values(groups).forEach((entries) => entries.sort((left, right) =>
+            playerName(left.person).localeCompare(playerName(right.person), "ja")
+        ));
+        return groups;
+    };
+
     const renderFreeAgentList = async (
         season,
         postseasonWindow,
         date,
-        regularSeasonStartDate = ""
+        regularSeasonStartDate = "",
+        { upcoming = false } = {}
     ) => {
         const freeAgentSection = section(
-            `${season}シーズン終了後 フリーエージェント選手一覧`,
+            upcoming
+                ? `${season}シーズン終了後 主なFA予定選手一覧`
+                : `${season}シーズン終了後 フリーエージェント選手一覧`,
             ""
         );
         freeAgentSection.classList.add("pregame-free-agents-section");
         const [groups, exchangeRate] = await Promise.all([
-            buildFreeAgentGroups(season, postseasonWindow, date),
+            upcoming
+                ? buildUpcomingFreeAgentGroups(season, date, regularSeasonStartDate)
+                : buildFreeAgentGroups(season, postseasonWindow, date),
             getUsdJpyRate(date)
         ]);
         const header = freeAgentSection.querySelector(".pregame-section-header");
@@ -3373,6 +3451,22 @@
                         }
                         if (details) details.append(status);
                         else row.append(status);
+                    } else if (entry.trade) {
+                        const status = el(
+                            "a",
+                            "pregame-free-agent-trade-status",
+                            `${teamCode({ id: entry.trade.teamId })}へトレード（${formatAgreementDate(entry.trade.date)}）`
+                        );
+                        status.href = entry.trade.url;
+                        status.target = "_blank";
+                        status.rel = "noopener noreferrer";
+                        status.prepend(createFreeAgentTeamLogo(
+                            { id: entry.trade.teamId },
+                            `${teamCode({ id: entry.trade.teamId })}のロゴ`
+                        ));
+                        row.append(status);
+                    } else if (upcoming) {
+                        row.append(el("span", "pregame-free-agent-upcoming-status", "FA予定"));
                     }
                     if (details) row.append(details);
                     list.append(row);
@@ -3383,7 +3477,7 @@
             columns.append(panel);
         });
         freeAgentSection.append(columns);
-        const postedPlayers = (window.MLB_NPB_POSTED_PLAYERS?.[season] ?? [])
+        const postedPlayers = upcoming ? [] : (window.MLB_NPB_POSTED_PLAYERS?.[season] ?? [])
             .filter((player) => player.postedDate <= date)
             .sort((left, right) => left.postedDate.localeCompare(right.postedDate));
         if (postedPlayers.length) {
@@ -4982,27 +5076,41 @@
                 dashboard.append(await renderPostseasonPicture(standings, date, postseasonWindow));
             }
             dashboard.append(await renderSeasonTradeList(season, date));
+            const currentRegularSeasonStartDate = await getRegularSeasonStartDate(season);
             const currentOffseasonActive = Boolean(
                 postseasonWindow?.worldSeriesCompleted &&
                 date > postseasonWindow.displayEndDate
             );
-            const freeAgentSeason = currentOffseasonActive ? season : priorSeason;
-            const freeAgentWindow = currentOffseasonActive
-                ? postseasonWindow
-                : priorPostseasonWindow;
-            if (
-                freeAgentWindow?.worldSeriesCompleted &&
-                date > freeAgentWindow.displayEndDate
-            ) {
-                const regularSeasonStartDate = await getRegularSeasonStartDate(
-                    freeAgentSeason + 1
-                );
+            const currentSeasonUpcoming = !currentOffseasonActive &&
+                currentRegularSeasonStartDate && date >= currentRegularSeasonStartDate &&
+                Boolean(window.MLB_FREE_AGENT_CANDIDATES?.[season]?.length);
+            if (currentSeasonUpcoming) {
                 dashboard.append(await renderFreeAgentList(
-                    freeAgentSeason,
-                    freeAgentWindow,
+                    season,
+                    postseasonWindow,
                     date,
-                    regularSeasonStartDate
+                    currentRegularSeasonStartDate,
+                    { upcoming: true }
                 ));
+            } else {
+                const freeAgentSeason = currentOffseasonActive ? season : priorSeason;
+                const freeAgentWindow = currentOffseasonActive
+                    ? postseasonWindow
+                    : priorPostseasonWindow;
+                if (
+                    freeAgentWindow?.worldSeriesCompleted &&
+                    date > freeAgentWindow.displayEndDate
+                ) {
+                    const regularSeasonStartDate = await getRegularSeasonStartDate(
+                        freeAgentSeason + 1
+                    );
+                    dashboard.append(await renderFreeAgentList(
+                        freeAgentSeason,
+                        freeAgentWindow,
+                        date,
+                        regularSeasonStartDate
+                    ));
+                }
             }
             dom.content.replaceChildren(dashboard);
         } catch (error) {
