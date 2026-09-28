@@ -4719,3 +4719,44 @@ body.app-mode-pitch-chart .viewer {
     min-width: 0;
     align-items: center;
 }
+
+/* Shared HOU-blue treatment for control buttons outside the header. */
+:is(
+    .portal-home-actions button,
+    .sidebar button:not(.today-game-card),
+    .score-loading-actions button,
+    .app-footer button,
+    .pitch-chart-open-btn,
+    #pitch-chart-back-btn,
+    .duration-ranking-close
+) {
+    color: #f4f8fb;
+    border: 1px solid #2487c9;
+    border-radius: 3px;
+    background: linear-gradient(180deg, #0878bd 0%, #04558e 48%, #002d62 100%);
+    box-shadow: inset 0 2px 0 rgb(255 255 255 / 30%), inset 0 -4px 0 rgb(0 16 40 / 48%), 0 4px 0 #001a38, 0 8px 14px rgb(0 0 0 / 38%);
+    text-shadow: 0 1px 1px rgb(0 0 0 / 58%);
+    transform: translateY(-1px);
+}
+
+:is(
+    .portal-home-actions button,
+    .sidebar button:not(.today-game-card),
+    .score-loading-actions button,
+    .app-footer button,
+    .pitch-chart-open-btn,
+    #pitch-chart-back-btn,
+    .duration-ranking-close
+):is(:hover, :focus-visible) {
+    color: #fff;
+    border-color: #55afe8;
+    background: linear-gradient(180deg, #1494dc 0%, #0869aa 48%, #003d78 100%);
+    box-shadow: inset 0 2px 0 rgb(255 255 255 / 36%), inset 0 -4px 0 rgb(0 16 40 / 42%), 0 5px 0 #001a38, 0 10px 17px rgb(0 0 0 / 43%);
+    transform: translateY(-2px);
+}
+
+:is(.sidebar button.active, .app-footer button:active, .score-loading-actions button:active) {
+    background: linear-gradient(180deg, #045b98 0%, #002d62 100%);
+    box-shadow: inset 0 3px 6px rgb(0 12 35 / 58%), 0 1px 0 #001a38, 0 3px 7px rgb(0 0 0 / 34%);
+    transform: translateY(2px);
+}
