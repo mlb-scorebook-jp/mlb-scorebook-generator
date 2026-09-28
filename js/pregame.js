@@ -3225,7 +3225,7 @@
             groups[AL_TEAM_IDS.has(entry.formerTeam.id) ? "AL" : "NL"].push({
                 ...entry,
                 signing,
-                retirement
+                retirement: signing ? null : retirement
             });
         });
         Object.values(groups).forEach((entries) => entries.sort((left, right) =>
