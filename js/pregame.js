@@ -17,6 +17,8 @@
     const gameIndex = new Map();
     let currentContext = null;
     let currentDate = "";
+    let currentTransferSeason = 0;
+    let currentTransferTab = "trades";
     let currentPlayerView = null;
 
     const dom = {};
@@ -3594,6 +3596,116 @@
         return freeAgentSection;
     };
 
+    const transferSeasonEndDate = (season) => {
+        const today = currentEasternDate();
+        return Number(today.slice(0, 4)) === Number(season)
+            ? today
+            : `${Number(season) + 1}-06-30`;
+    };
+
+    const expandTransferSection = (sectionElement) => {
+        sectionElement.classList.remove(
+            "pregame-trades-collapsed",
+            "pregame-free-agents-collapsed"
+        );
+        sectionElement.querySelectorAll(".pregame-free-agent-toggle").forEach((button) => {
+            const controls = button.closest(".pregame-free-agent-collapse-controls");
+            button.remove();
+            if (controls && !controls.children.length) controls.remove();
+        });
+        return sectionElement;
+    };
+
+    const renderTransferHub = async () => {
+        placeHeaderActions(false);
+        currentPlayerView = null;
+        setHeader("移籍情報", "トレード／FAを年度別に確認");
+        clearGlobalEvents();
+        dom.view.classList.add("pregame-transfer-active");
+        setLoading(true);
+        const currentSeason = Number(currentEasternDate().slice(0, 4));
+        const season = currentTransferSeason || currentSeason;
+        currentTransferSeason = season;
+        savePregameSession("transfers", {
+            season,
+            transferTab: currentTransferTab,
+            date: undefined
+        });
+        try {
+            const dashboard = el("div", "pregame-transfer-dashboard");
+            const controls = el("div", "pregame-transfer-controls");
+            const modes = el("nav", "pregame-transfer-modes");
+            const tradesButton = el("button", "", "トレード一覧");
+            const freeAgentsButton = el("button", "", "FA一覧");
+            tradesButton.type = freeAgentsButton.type = "button";
+            tradesButton.classList.toggle("active", currentTransferTab === "trades");
+            freeAgentsButton.classList.toggle("active", currentTransferTab === "free-agents");
+            modes.append(tradesButton, freeAgentsButton);
+            const seasonLabel = el("label", "pregame-transfer-season");
+            seasonLabel.append(el("span", "", "年度選択"));
+            const seasonSelect = el("select");
+            seasonSelect.setAttribute("aria-label", "移籍情報の年度選択");
+            for (let year = currentSeason; year >= 2024; year -= 1) {
+                const option = el("option", "", `${year}年`);
+                option.value = String(year);
+                option.selected = year === season;
+                seasonSelect.append(option);
+            }
+            seasonLabel.append(seasonSelect);
+            controls.append(modes, seasonLabel);
+            dashboard.append(controls);
+
+            if (currentTransferTab === "trades") {
+                const today = currentEasternDate();
+                const tradeEndDate = Number(today.slice(0, 4)) === season
+                    ? today
+                    : `${season}-12-31`;
+                dashboard.append(expandTransferSection(
+                    await renderSeasonTradeList(season, tradeEndDate)
+                ));
+            } else {
+                const displayDate = transferSeasonEndDate(season);
+                const postseasonWindow = await getPostseasonDisplayWindow(season);
+                const regularSeasonStartDate = await getRegularSeasonStartDate(season);
+                const offseasonActive = Boolean(
+                    postseasonWindow?.worldSeriesCompleted &&
+                    displayDate > postseasonWindow.displayEndDate
+                );
+                const upcoming = !offseasonActive &&
+                    Boolean(window.MLB_FREE_AGENT_CANDIDATES?.[season]?.length);
+                const freeAgentSection = await renderFreeAgentList(
+                    season,
+                    postseasonWindow,
+                    displayDate,
+                    regularSeasonStartDate,
+                    { upcoming }
+                );
+                dashboard.append(expandTransferSection(freeAgentSection));
+            }
+
+            tradesButton.addEventListener("click", async () => {
+                if (currentTransferTab === "trades") return;
+                currentTransferTab = "trades";
+                await renderTransferHub();
+            });
+            freeAgentsButton.addEventListener("click", async () => {
+                if (currentTransferTab === "free-agents") return;
+                currentTransferTab = "free-agents";
+                await renderTransferHub();
+            });
+            seasonSelect.addEventListener("change", async () => {
+                currentTransferSeason = Number(seasonSelect.value);
+                await renderTransferHub();
+            });
+            dom.content.replaceChildren(dashboard);
+        } catch (error) {
+            console.error(error);
+            dom.content.replaceChildren(el("div", "pregame-error", error.message));
+        } finally {
+            setLoading(false);
+        }
+    };
+
     const hasSecuredHeadToHeadTiebreaker = async (leaderId, challengerId, season, date) => {
         const params = new URLSearchParams({
             sportId: "1",
@@ -4855,19 +4967,16 @@
         renderGlobalEvents(date);
         try {
             const season = Number(date.slice(0, 4));
-            const priorSeason = season - 1;
             const [
                 games,
                 japanesePlayers,
                 standings,
-                postseasonWindow,
-                priorPostseasonWindow
+                postseasonWindow
             ] = await Promise.all([
                 getSchedule(date, { fresh: true }),
                 getSeasonJapanesePlayers(season),
                 getStandingsSnapshot(date),
-                getPostseasonDisplayWindow(season),
-                getPostseasonDisplayWindow(priorSeason)
+                getPostseasonDisplayWindow(season)
             ]);
             const divisionMagic = await divisionMagicByTeam(standings, previousDate(date));
             const teamGame = new Map();
@@ -5099,43 +5208,6 @@
             ));
             if (shouldShowPostseasonPicture(date, postseasonWindow)) {
                 dashboard.append(await renderPostseasonPicture(standings, date, postseasonWindow));
-            }
-            dashboard.append(await renderSeasonTradeList(season, date));
-            const currentRegularSeasonStartDate = await getRegularSeasonStartDate(season);
-            const currentOffseasonActive = Boolean(
-                postseasonWindow?.worldSeriesCompleted &&
-                date > postseasonWindow.displayEndDate
-            );
-            const currentSeasonUpcoming = !currentOffseasonActive &&
-                currentRegularSeasonStartDate && date >= currentRegularSeasonStartDate &&
-                Boolean(window.MLB_FREE_AGENT_CANDIDATES?.[season]?.length);
-            if (currentSeasonUpcoming) {
-                dashboard.append(await renderFreeAgentList(
-                    season,
-                    postseasonWindow,
-                    date,
-                    currentRegularSeasonStartDate,
-                    { upcoming: true }
-                ));
-            } else {
-                const freeAgentSeason = currentOffseasonActive ? season : priorSeason;
-                const freeAgentWindow = currentOffseasonActive
-                    ? postseasonWindow
-                    : priorPostseasonWindow;
-                if (
-                    freeAgentWindow?.worldSeriesCompleted &&
-                    date > freeAgentWindow.displayEndDate
-                ) {
-                    const regularSeasonStartDate = await getRegularSeasonStartDate(
-                        freeAgentSeason + 1
-                    );
-                    dashboard.append(await renderFreeAgentList(
-                        freeAgentSeason,
-                        freeAgentWindow,
-                        date,
-                        regularSeasonStartDate
-                    ));
-                }
             }
             dom.content.replaceChildren(dashboard);
         } catch (error) {
@@ -7798,6 +7870,8 @@
 
     const open = async (context = {}) => {
         window.MLBAppNavigation?.enterPregameShell?.();
+        document.body.classList.remove("app-mode-transfers");
+        dom.view.classList.remove("pregame-transfer-active");
         currentContext = context;
         currentDate = String(
             context?.date ??
@@ -7823,11 +7897,22 @@
         await renderTop();
     };
 
+    const openTransfers = async (context = {}) => {
+        window.MLBAppNavigation?.enterPregameShell?.();
+        document.body.classList.add("app-mode-transfers");
+        currentTransferSeason = Number(context?.season) || Number(currentEasternDate().slice(0, 4));
+        currentTransferTab = context?.tab === "free-agents" ? "free-agents" : "trades";
+        dom.viewer.classList.add("pregame-active");
+        dom.view.hidden = false;
+        await renderTransferHub();
+    };
+
     const close = ({ preserveShell = false } = {}) => {
         placeHeaderActions(false);
         dom.viewer.classList.remove("pregame-active");
         dom.view.hidden = true;
-        if (!preserveShell) document.body.classList.remove("app-mode-pregame");
+        dom.view.classList.remove("pregame-transfer-active");
+        if (!preserveShell) document.body.classList.remove("app-mode-pregame", "app-mode-transfers");
     };
 
     const renderSelectedDate = async () => {
@@ -7930,7 +8015,14 @@
         });
     };
 
-    window.PregameInfo = { open, close, renderTop, renderGameDetail, renderPlayerDetail };
+    window.PregameInfo = {
+        open,
+        openTransfers,
+        close,
+        renderTop,
+        renderGameDetail,
+        renderPlayerDetail
+    };
     if (document.readyState === "loading") {
         document.addEventListener("DOMContentLoaded", initialize, { once: true });
     } else {

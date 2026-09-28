@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MLB Scorebook Generator</title>
     <!-- Score notation update: stacked batted-ball symbol, red hits, blue strikeouts, black other results. -->
-    <link rel="stylesheet" href="css/style.css?v=20260925-special-note-inline-link-1">
-    <link rel="stylesheet" href="css/pregame.css?v=20260928-collapsed-title-1">
+    <link rel="stylesheet" href="css/style.css?v=20260928-transfers-nav-1">
+    <link rel="stylesheet" href="css/pregame.css?v=20260928-transfer-hub-1">
     <link rel="stylesheet" href="css/daily-records.css?v=20260907-story-candidates-2">
 </head>
 
@@ -32,6 +32,7 @@
             <button type="button" id="header-scorebook-btn">スコアブック生成</button>
             <button type="button" id="generate-btn">試合前情報</button>
             <button type="button" id="header-daily-records-btn">本日の記録</button>
+            <button type="button" id="header-transfers-btn">移籍情報</button>
         </nav>
 
         <section class="header-game-search" aria-label="試合検索">
@@ -365,7 +366,7 @@
     <script src="js/daily-records.js?v=20260925-both-leagues-rbi-1"></script>
     <script src="js/mlb-global-events.js?v=20260918-1"></script>
     <script src="js/mlb-prospect-rankings.js?v=20260927"></script>
-    <script src="js/pregame.js?v=20260928-season-ended-1"></script>
+    <script src="js/pregame.js?v=20260928-transfer-hub-1"></script>
 
     <script>
         (() => {
@@ -796,7 +797,9 @@
                     date: params.get("date") || undefined,
                     gamePk: params.get("gamePk") || undefined,
                     playerId: params.get("playerId") || undefined,
-                    team: params.get("team") || undefined
+                    team: params.get("team") || undefined,
+                    season: params.get("season") || undefined,
+                    transferTab: params.get("transferTab") || undefined
                 };
             };
 
@@ -824,7 +827,7 @@
                 const params = new URLSearchParams();
                 if (value?.view && value.view !== "home") {
                     params.set("view", value.view);
-                    ["date", "gamePk", "playerId", "team"].forEach((key) => {
+                    ["date", "gamePk", "playerId", "team", "season", "transferTab"].forEach((key) => {
                         if (value[key] !== undefined && value[key] !== null && value[key] !== "") {
                             params.set(key, String(value[key]));
                         }
@@ -845,7 +848,8 @@
                 window.PregameInfo?.close({ preserveShell: true });
                 window.DailyRecords?.close({ preserveShell: true });
                 document.body.classList.remove(
-                    "app-mode-pregame", "app-mode-pitch-chart", "app-mode-daily-records"
+                    "app-mode-pregame", "app-mode-pitch-chart", "app-mode-daily-records",
+                    "app-mode-transfers"
                 );
                 document.body.classList.add("app-mode-home");
                 dom.pitchChartPage.hidden = true;
@@ -859,7 +863,7 @@
                 window.DailyRecords?.close({ preserveShell: true });
                 document.body.classList.remove(
                     "app-mode-home", "app-mode-pregame", "app-mode-pitch-chart",
-                    "app-mode-daily-records"
+                    "app-mode-daily-records", "app-mode-transfers"
                 );
                 dom.pitchChartPage.hidden = true;
                 dom.headerScorebookButton.textContent = "スコアブック生成";
@@ -901,7 +905,8 @@
                 window.PregameInfo?.close({ preserveShell: true });
                 window.DailyRecords?.close({ preserveShell: true });
                 document.body.classList.remove(
-                    "app-mode-home", "app-mode-pregame", "app-mode-daily-records"
+                    "app-mode-home", "app-mode-pregame", "app-mode-daily-records",
+                    "app-mode-transfers"
                 );
                 document.body.classList.add("app-mode-pitch-chart");
                 dom.pitchChartPage.hidden = false;
@@ -922,7 +927,8 @@
                 stopLiveScoreUpdates({ preserveEligibility: true });
                 window.DailyRecords?.close({ preserveShell: true });
                 document.body.classList.remove(
-                    "app-mode-home", "app-mode-pitch-chart", "app-mode-daily-records"
+                    "app-mode-home", "app-mode-pitch-chart", "app-mode-daily-records",
+                    "app-mode-transfers"
                 );
                 document.body.classList.add("app-mode-pregame");
                 dom.pitchChartPage.hidden = true;
@@ -939,7 +945,8 @@
                 stopLiveScoreUpdates({ preserveEligibility: true });
                 window.PregameInfo?.close({ preserveShell: true });
                 document.body.classList.remove(
-                    "app-mode-home", "app-mode-pregame", "app-mode-pitch-chart"
+                    "app-mode-home", "app-mode-pregame", "app-mode-pitch-chart",
+                    "app-mode-transfers"
                 );
                 document.body.classList.add("app-mode-daily-records");
                 dom.pitchChartPage.hidden = true;
@@ -951,12 +958,26 @@
                 window.scrollTo(0, 0);
             };
 
+            const showTransfers = async (options = {}) => {
+                stopLiveScoreUpdates({ preserveEligibility: true });
+                window.DailyRecords?.close({ preserveShell: true });
+                document.body.classList.remove(
+                    "app-mode-home", "app-mode-pitch-chart", "app-mode-daily-records"
+                );
+                document.body.classList.add("app-mode-pregame", "app-mode-transfers");
+                dom.pitchChartPage.hidden = true;
+                dom.headerScorebookButton.textContent = "スコアブック生成";
+                await window.PregameInfo?.openTransfers(options);
+                window.scrollTo(0, 0);
+            };
+
             window.MLBAppNavigation = {
                 showPortalHome,
                 showScorebook,
                 showPitchChart,
                 showPregame,
                 showDailyRecords,
+                showTransfers,
                 loadScorebookGame: async (gamePk) => {
                     const selectedGamePk = Number(gamePk);
                     if (!selectedGamePk) return;
@@ -966,7 +987,8 @@
                 },
                 enterPregameShell: () => {
                     document.body.classList.remove(
-                        "app-mode-home", "app-mode-pitch-chart", "app-mode-daily-records"
+                        "app-mode-home", "app-mode-pitch-chart", "app-mode-daily-records",
+                        "app-mode-transfers"
                     );
                     document.body.classList.add("app-mode-pregame");
                     dom.pitchChartPage.hidden = true;
@@ -10986,6 +11008,10 @@
                 "click",
                 () => showDailyRecords()
             );
+            document.getElementById("header-transfers-btn").addEventListener(
+                "click",
+                () => showTransfers()
+            );
 
             document.getElementById("header-scorebook-btn").addEventListener("click", showScorebook);
             document.getElementById("portal-scorebook-btn").addEventListener("click", showScorebook);
@@ -11089,6 +11115,15 @@
 
                 if (saved.view === "daily-records") {
                     await showDailyRecords({ persist: false, date: saved.date });
+                    return;
+                }
+
+                if (saved.view === "transfers") {
+                    await showTransfers({
+                        season: saved.season,
+                        tab: saved.transferTab,
+                        persist: false
+                    });
                     return;
                 }
 

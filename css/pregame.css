@@ -2193,6 +2193,77 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
     font-size: 16px;
 }
 
+.pregame-transfer-active .pregame-header-actions,
+.pregame-transfer-dashboard .pregame-free-agent-toggle {
+    display: none;
+}
+
+.pregame-transfer-dashboard {
+    display: grid;
+    gap: 14px;
+}
+
+.pregame-transfer-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 10px 12px;
+    border: 1px solid #48565e;
+    background: #1c252a;
+}
+
+.pregame-transfer-modes {
+    display: flex;
+    gap: 8px;
+}
+
+.pregame-transfer-modes button,
+.pregame-transfer-season select {
+    min-height: 32px;
+    padding: 5px 12px;
+    border: 1px solid #65747d;
+    border-radius: 3px;
+    background: #182025;
+    color: #dbe5ea;
+    font: inherit;
+    font-weight: 700;
+}
+
+.pregame-transfer-modes button {
+    cursor: pointer;
+}
+
+.pregame-transfer-modes button.active {
+    border-color: #a8bec8;
+    background: #3a4b54;
+    color: #fff;
+}
+
+.pregame-transfer-season {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #b9c6cd;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+@media (max-width: 650px) {
+    .pregame-transfer-controls {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .pregame-transfer-modes button {
+        flex: 1;
+    }
+
+    .pregame-transfer-season {
+        justify-content: space-between;
+    }
+}
+
 @media (max-width: 850px) {
     .pregame-trades-section .pregame-section-header {
         flex-wrap: wrap;

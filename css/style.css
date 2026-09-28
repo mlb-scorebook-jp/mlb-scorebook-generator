@@ -284,7 +284,8 @@ select {
 }
 
 body:not(.app-mode-home):not(.app-mode-pregame) #header-scorebook-btn,
-body.app-mode-pregame #generate-btn {
+body.app-mode-pregame:not(.app-mode-transfers) #generate-btn,
+body.app-mode-transfers #header-transfers-btn {
     border-color: #b1c5ce;
     background: linear-gradient(180deg, #53656f 0%, #394750 100%);
 }
