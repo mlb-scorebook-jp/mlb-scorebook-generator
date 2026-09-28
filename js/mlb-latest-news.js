@@ -2,6 +2,184 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Brewers announce NLDS watch parties",
+        "summaryJa": "ブルワーズの最新動向をMLB公式が詳報",
+        "slug": "brewers-announce-2026-nlds-watch-parties",
+        "url": "https://www.mlb.com/news/brewers-announce-2026-nlds-watch-parties",
+        "contentDate": "2026-09-28T15:28:48.014Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "nlds",
+            "series-a"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Will Judge play in Wild Card Series? Here's the latest",
+        "summaryJa": "A.ジャッジ（NYY）の負傷状況をMLB公式が詳報",
+        "slug": "aaron-judge-calf-injury-latest-news",
+        "url": "https://www.mlb.com/news/aaron-judge-calf-injury-latest-news",
+        "contentDate": "2026-09-28T14:57:37.877Z",
+        "teamIds": [
+            147
+        ],
+        "playerIds": [
+            592450
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "postseason",
+            "alwc",
+            "series-b",
+            "injury"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "How did Rays conquer the AL? By not beating themselves",
+        "summaryJa": "レイズを巡る注目点をMLB公式が分析",
+        "slug": "rays-excel-in-all-phases-of-game",
+        "url": "https://www.mlb.com/news/rays-excel-in-all-phases-of-game",
+        "contentDate": "2026-09-28T14:53:00Z",
+        "teamIds": [
+            139
+        ],
+        "playerIds": [],
+        "gamePks": [
+            823409
+        ],
+        "taxonomy": [
+            "apple-news",
+            "alds",
+            "series-a"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "The moves that keyed '26 White Sox's incredible turnaround",
+        "summaryJa": "村上 宗隆（CWS）を巡る注目点をMLB公式が分析",
+        "slug": "how-white-sox-went-from-121-losses-to-playoffs",
+        "url": "https://www.mlb.com/news/how-white-sox-went-from-121-losses-to-playoffs",
+        "contentDate": "2026-09-28T14:28:05.387Z",
+        "teamIds": [
+            145
+        ],
+        "playerIds": [
+            808959,
+            678246
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "postseason",
+            "alwc",
+            "series-a"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "Yankees' youth movement has roots in culture built in '09",
+        "summaryJa": "S.ジョーンズ（NYY）の最新動向をMLB公式が詳報",
+        "slug": "george-lombard-jr-spencer-jones-helped-yankees-reach-postseason",
+        "url": "https://www.mlb.com/news/george-lombard-jr-spencer-jones-helped-yankees-reach-postseason",
+        "contentDate": "2026-09-28T14:10:51.773Z",
+        "teamIds": [
+            147
+        ],
+        "playerIds": [
+            682987,
+            806146
+        ],
+        "gamePks": [
+            849851
+        ],
+        "taxonomy": [
+            "apple-news",
+            "postseason",
+            "alwc",
+            "series-b"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Postseason FAQ: What's next for Brewers?",
+        "summaryJa": "ブルワーズの最新動向をMLB公式が詳報",
+        "slug": "brewers-2026-postseason-faq",
+        "url": "https://www.mlb.com/news/brewers-2026-postseason-faq",
+        "contentDate": "2026-09-28T13:46:00Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "postseason",
+            "clincher"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "The most left-handed pitching staff in nearly 40 years is set for the playoffs",
+        "summaryJa": "A.チャップマン（BOS）の最新動向をMLB公式が詳報",
+        "slug": "red-sox-lefty-heavy-staff-in-playoffs",
+        "url": "https://www.mlb.com/news/red-sox-lefty-heavy-staff-in-playoffs",
+        "contentDate": "2026-09-28T13:32:00Z",
+        "teamIds": [
+            111
+        ],
+        "playerIds": [
+            547973,
+            801139,
+            624133,
+            669062,
+            687562
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "savant",
+            "player-tracking"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Rally for Red October Bus Tour returns Tuesday",
+        "summaryJa": "フィリーズ、復帰へ向けた最新状況",
+        "slug": "phillies-rally-for-red-october-bus-tour-returns-for-2026-postseason",
+        "url": "https://www.mlb.com/news/phillies-rally-for-red-october-bus-tour-returns-for-2026-postseason",
+        "contentDate": "2026-09-28T12:39:32.661Z",
+        "teamIds": [
+            143
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Power Rankings: Who starts playoffs on top?",
         "summaryJa": "MLBの最新情報ら注目選手の最新動向",
         "slug": "mlb-postseason-power-rankings-for-2026-wild-card-series",
@@ -104,7 +282,6 @@
             "series-a"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -245,6 +422,28 @@
         ],
         "taxonomy": [
             "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "White Sox-Astros position-by-position breakdown",
+        "summaryJa": "ホワイトソックスの最新動向をMLB公式が詳報",
+        "slug": "white-sox-astros-2026-al-wild-card-series-position-by-position-breakdown",
+        "url": "https://www.mlb.com/news/white-sox-astros-2026-al-wild-card-series-position-by-position-breakdown",
+        "contentDate": "2026-09-28T01:20:01.278Z",
+        "teamIds": [
+            145,
+            117
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "postseason",
+            "alwc",
+            "series-a"
         ],
         "sourceScopes": [
             "球団公式"
@@ -794,7 +993,6 @@
             "series-a"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1646,7 +1844,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1814,26 +2011,6 @@
         "taxonomy": [
             "apple-news",
             "injury"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Postseason FAQ: What's next for Brewers?",
-        "summaryJa": "ブルワーズの最新動向をMLB公式が詳報",
-        "slug": "brewers-2026-postseason-faq",
-        "url": "https://www.mlb.com/news/brewers-2026-postseason-faq",
-        "contentDate": "2026-09-27T19:07:00Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "postseason",
-            "clincher"
         ],
         "sourceScopes": [
             "球団公式"
@@ -2020,7 +2197,6 @@
             "series-b"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -2908,31 +3084,6 @@
         ],
         "taxonomy": [
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "The most left-handed pitching staff in nearly 40 years is set for the playoffs",
-        "summaryJa": "A.チャップマン（BOS）の最新動向をMLB公式が詳報",
-        "slug": "red-sox-lefty-heavy-staff-in-playoffs",
-        "url": "https://www.mlb.com/news/red-sox-lefty-heavy-staff-in-playoffs",
-        "contentDate": "2026-09-26T23:57:00Z",
-        "teamIds": [
-            111
-        ],
-        "playerIds": [
-            547973,
-            801139,
-            624133,
-            669062,
-            687562
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "savant",
-            "player-tracking"
         ],
         "sourceScopes": [
             "球団公式"
@@ -4540,25 +4691,6 @@
         ]
     },
     {
-        "headline": "Bill Giles, architect of Phillies championship teams (and Phillie Phanatic), dies at 92",
-        "summaryJa": "フィリーズの最新動向をMLB公式が詳報",
-        "slug": "bill-giles-phillies-president-chairman-part-owner-dies",
-        "url": "https://www.mlb.com/news/bill-giles-phillies-president-chairman-part-owner-dies",
-        "contentDate": "2026-09-25T23:07:28.596Z",
-        "teamIds": [
-            143
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "obituary",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Doc Emrick talks Pirates fandom, Paul Skenes and what makes Pittsburgh great",
         "summaryJa": "パイレーツの最新動向をMLB公式が詳報",
         "slug": "doc-emrick-talks-pirates-fandom-paul-skenes-and-what-makes-pittsburgh-great",
@@ -4853,26 +4985,6 @@
         ],
         "gamePks": [
             824947
-        ],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Well-rounded Rays have many ways to win",
-        "summaryJa": "レイズ、勝利を呼び込む活躍",
-        "slug": "rays-excel-in-all-phases-of-game",
-        "url": "https://www.mlb.com/news/rays-excel-in-all-phases-of-game",
-        "contentDate": "2026-09-25T15:23:43.082Z",
-        "teamIds": [
-            139
-        ],
-        "playerIds": [],
-        "gamePks": [
-            823409
         ],
         "taxonomy": [
             "apple-news"
@@ -5223,28 +5335,6 @@
         ]
     },
     {
-        "headline": "Lombard's mind-bending contortionist moves flummox Rays catcher after WP",
-        "summaryJa": "G.ロンバード Jr.（NYY）の最新動向をMLB公式が詳報",
-        "slug": "george-lombard-jr-s-amazing-slide-to-score-on-a-wild-pitch",
-        "url": "https://www.mlb.com/news/george-lombard-jr-s-amazing-slide-to-score-on-a-wild-pitch",
-        "contentDate": "2026-09-25T05:25:00Z",
-        "teamIds": [
-            147
-        ],
-        "playerIds": [
-            806146
-        ],
-        "gamePks": [
-            823493
-        ],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Padres clinch 3rd straight postseason berth as they seek 1st World Series title",
         "summaryJa": "パドレス、記録達成の最新情報",
         "slug": "padres-clinch-2026-postseason-berth",
@@ -5399,28 +5489,6 @@
         "taxonomy": [
             "apple-news",
             "postseason"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Murakami keeps it '100!' while celebrating 1st MLB playoff clinch",
-        "summaryJa": "村上 宗隆（CWS）、記録達成の最新情報",
-        "slug": "munetaka-murakami-celebrates-white-sox-2026-playoff-clinch",
-        "url": "https://www.mlb.com/news/munetaka-murakami-celebrates-white-sox-2026-playoff-clinch",
-        "contentDate": "2026-09-25T04:43:07.732Z",
-        "teamIds": [
-            145
-        ],
-        "playerIds": [
-            808959
-        ],
-        "gamePks": [
-            824059
-        ],
-        "taxonomy": [
-            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
@@ -5947,29 +6015,6 @@
         "taxonomy": [
             "apple-news",
             "roberto-clemente-award"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "50 home runs!? A look at Andrew Fischer's incredible Minor League season",
-        "summaryJa": "Andrew Fischer（MIL）、記録達成の最新情報",
-        "slug": "brewers-andrew-fischer-recording-historic-home-run-season",
-        "url": "https://www.mlb.com/news/brewers-andrew-fischer-recording-historic-home-run-season",
-        "contentDate": "2026-09-24T16:18:00Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [
-            702652
-        ],
-        "gamePks": [
-            823739
-        ],
-        "taxonomy": [
-            "mlb-top-prospects",
-            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
@@ -7301,30 +7346,6 @@
             "apple-news",
             "game-recap",
             "final-week"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "'Let’s go 5-0': Astros control their destiny after moving into tie for AL West lead",
-        "summaryJa": "Y.アルバレス（HOU）の最新動向をMLB公式が詳報",
-        "slug": "astros-move-into-tie-for-first-place-in-al-west",
-        "url": "https://www.mlb.com/news/astros-move-into-tie-for-first-place-in-al-west",
-        "contentDate": "2026-09-23T06:15:00Z",
-        "teamIds": [
-            117
-        ],
-        "playerIds": [
-            670541
-        ],
-        "gamePks": [
-            823089
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap",
-            "pennant-chase"
         ],
         "sourceScopes": [
             "球団公式"
