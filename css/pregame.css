@@ -2054,7 +2054,7 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
 }
 
 .pregame-free-agent-posted {
-    width: calc((100% - 12px) / 2);
+    width: 100%;
     margin-top: 8px;
     border: 1px solid #46535b;
     border-radius: 6px;
@@ -2075,6 +2075,8 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
 
 .pregame-free-agent-posted .pregame-free-agent-details {
     gap: 8px;
+    min-width: 0;
+    white-space: normal;
 }
 
 .pregame-free-agent-player:hover,
