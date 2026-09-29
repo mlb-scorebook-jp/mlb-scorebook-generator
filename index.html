@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MLB Scorebook Generator</title>
     <!-- Score notation update: stacked batted-ball symbol, red hits, blue strikeouts, black other results. -->
-    <link rel="stylesheet" href="css/style.css?v=20260928-hou-buttons-3">
+    <link rel="stylesheet" href="css/style.css?v=20260930-postseason-scorebook-1">
     <link rel="stylesheet" href="css/pregame.css?v=20260929-title-team-modes-5">
     <link rel="stylesheet" href="css/daily-records.css?v=20260928-hou-buttons-1">
 </head>
@@ -1919,6 +1919,30 @@
                 return request;
             };
 
+            const fetchPlayerPostseasonGameLog = async (playerId, season, group = "hitting") => {
+                const cacheKey = `${playerId}:${season}:${group}:postseason`;
+                if (playerGameLogCache.has(cacheKey)) {
+                    return playerGameLogCache.get(cacheKey);
+                }
+
+                const request = Promise.all(["F", "D", "L", "W"].map((gameType) =>
+                    fetch(
+                        `https://statsapi.mlb.com/api/v1/people/${playerId}/stats` +
+                        `?stats=gameLog&group=${group}&season=${season}&gameType=${gameType}`
+                    ).then(async (response) => {
+                        if (!response.ok) return [];
+                        const payload = await response.json();
+                        return payload?.stats?.[0]?.splits ?? [];
+                    }).catch(() => [])
+                )).then((groups) => groups.flat().sort((left, right) =>
+                    String(left?.date ?? "").localeCompare(String(right?.date ?? "")) ||
+                    (Number(left?.game?.gamePk) || 0) - (Number(right?.game?.gamePk) || 0)
+                ));
+
+                playerGameLogCache.set(cacheKey, request);
+                return request;
+            };
+
             const fetchPlayerYearByYearStats = async (playerId, group) => {
                 const cacheKey = `${playerId}:${group}`;
                 if (playerYearByYearStatsCache.has(cacheKey)) {
@@ -2723,35 +2747,42 @@
                 awaySeason: null,
                 homeSeason: null,
                 awayCareer: null,
-                homeCareer: null
+                homeCareer: null,
+                seasonLabel: "今シーズン"
             });
 
             const fetchHeadToHeadSchedule = async (
                 teamId,
                 opponentId,
                 startDate,
-                endDate
+                endDate,
+                gameTypes = ["R"]
             ) => {
-                const params = new URLSearchParams({
-                    sportId: "1",
-                    teamId: String(teamId),
-                    opponentId: String(opponentId),
-                    startDate,
-                    endDate,
-                    gameType: "R"
-                });
                 const controller = new AbortController();
                 const timeoutId = window.setTimeout(() => controller.abort(), 12000);
                 try {
-                    const response = await fetch(
-                        `https://statsapi.mlb.com/api/v1/schedule?${params}`,
-                        { signal: controller.signal }
-                    );
-                    if (!response.ok) return null;
-                    const payload = await response.json();
-                    return (payload?.dates ?? [])
-                        .flatMap((date) => date?.games ?? [])
-                        .filter((game) => String(game?.gameType ?? "").toUpperCase() === "R")
+                    const groups = await Promise.all(gameTypes.map(async (gameType) => {
+                        const params = new URLSearchParams({
+                            sportId: "1",
+                            teamId: String(teamId),
+                            opponentId: String(opponentId),
+                            startDate,
+                            endDate,
+                            gameType
+                        });
+                        const response = await fetch(
+                            `https://statsapi.mlb.com/api/v1/schedule?${params}`,
+                            { signal: controller.signal }
+                        );
+                        if (!response.ok) throw new Error("対戦成績を取得できませんでした。");
+                        const payload = await response.json();
+                        return (payload?.dates ?? []).flatMap((date) => date?.games ?? []);
+                    }));
+                    const allowedTypes = new Set(gameTypes);
+                    return groups.flat()
+                        .filter((game) => allowedTypes.has(
+                            String(game?.gameType ?? "").toUpperCase()
+                        ))
                         .filter((game) => String(game?.status?.abstractGameState ?? "")
                             .toLowerCase() === "final");
                 } catch {
@@ -2842,6 +2873,10 @@
                 const homeTeamId = Number(homeTeam?.id);
                 const officialDate = String(data?.gameData?.datetime?.officialDate ?? "");
                 const season = Number(data?.gameData?.game?.season) || Number(officialDate.slice(0, 4));
+                const gameType = String(
+                    data?.gameData?.game?.type ?? data?.gameData?.game?.gameType ?? "R"
+                ).toUpperCase();
+                const isPostseason = gameType !== "R";
                 if (!awayTeamId || !homeTeamId || !officialDate || !season) {
                     return getEmptyHeadToHeadRecord();
                 }
@@ -2853,7 +2888,8 @@
                         awayTeamId,
                         homeTeamId,
                         `${season}-01-01`,
-                        officialDate
+                        officialDate,
+                        isPostseason ? ["F", "D", "L", "W"] : ["R"]
                     ),
                     fetchCareerHeadToHeadSchedule(
                         awayTeamId,
@@ -2875,7 +2911,8 @@
                         awaySeason: seasonWins?.[awayTeamId] ?? null,
                         homeSeason: seasonWins?.[homeTeamId] ?? null,
                         awayCareer: careerWins?.[awayTeamId] ?? null,
-                        homeCareer: careerWins?.[homeTeamId] ?? null
+                        homeCareer: careerWins?.[homeTeamId] ?? null,
+                        seasonLabel: isPostseason ? "ポストシーズン" : "今シーズン"
                     };
                 }).catch(() => getEmptyHeadToHeadRecord());
                 headToHeadCache.set(cacheKey, request);
@@ -3868,6 +3905,10 @@
 
                 const officialDate = String(data?.gameData?.datetime?.officialDate ?? "");
                 const season = Number(data?.gameData?.game?.season) || Number(officialDate.slice(0, 4));
+                const scorebookGameType = String(
+                    data?.gameData?.game?.type ?? data?.gameData?.game?.gameType ?? "R"
+                ).toUpperCase();
+                const isPostseasonGame = scorebookGameType !== "R";
                 const context = {
                     officialDate,
                     gamePk: Number(gamePk),
@@ -3914,7 +3955,9 @@
                     const candidates = getRosterCandidatesForSide(data, side, roster);
                     const participation = getCurrentGameParticipation(data, side);
                     const analyzed = await Promise.all(candidates.map(async (player) => {
-                        const gameLogSplits = await fetchPlayerRegularSeasonGameLog(player.id, season);
+                        const gameLogSplits = isPostseasonGame
+                            ? await fetchPlayerPostseasonGameLog(player.id, season)
+                            : await fetchPlayerRegularSeasonGameLog(player.id, season);
                         const hittingSplitsThroughGame = gameLogSplits.filter((split) =>
                             String(split?.date ?? "").slice(0, 10) <= officialDate
                         );
@@ -3999,15 +4042,17 @@
                             .filter(Boolean)
                             .map((player) => [player.id, player])
                     ).values()];
-                    const personalBestEntries = await Promise.all(streakLeaders.map(async (player) => [
-                        player.id,
-                        await fetchPlayerCareerBestStreaks(player, season, context)
-                    ]));
+                    const personalBestEntries = isPostseasonGame
+                        ? []
+                        : await Promise.all(streakLeaders.map(async (player) => [
+                            player.id,
+                            await fetchPlayerCareerBestStreaks(player, season, context)
+                        ]));
                     const personalBestByPlayer = new Map(personalBestEntries);
-                    const notes = gameFinal
+                    const notes = gameFinal && !isPostseasonGame
                         ? await buildCareerMilestoneNotes(analyzed, code, context, team)
                         : [];
-                    const seasonStrikeoutMilestoneNotes = await mapWithConcurrency(
+                    const seasonStrikeoutMilestoneNotes = isPostseasonGame ? [] : await mapWithConcurrency(
                         analyzed.filter((player) =>
                             hasCurrentGamePitchingAppearance(player) &&
                             (Number(player?.currentGamePitching?.strikeOuts) || 0) > 0
@@ -4068,6 +4113,7 @@
                     );
                     notes.push(...seasonStrikeoutMilestoneNotes.filter(Boolean));
                     analyzed.forEach((player) => {
+                        if (isPostseasonGame) return;
                         const isBenRiceFortieth = season === 2026 &&
                             code === "NYY" &&
                             Number(player.id) === 700250 &&
@@ -4098,6 +4144,7 @@
                         });
                     });
                     analyzed.forEach((player) => {
+                        if (isPostseasonGame) return;
                         if (isPitcherCandidate(player)) return;
                         const seasonStrikeouts = player.gameLogSplits
                             .filter((split) =>
@@ -4124,7 +4171,7 @@
                     if (postseasonAppearanceNote) notes.push(postseasonAppearanceNote);
                     if (losingRecordPostseasonNote) notes.push(losingRecordPostseasonNote);
                     if (divisionTitleNote) notes.push(divisionTitleNote);
-                    if (gameFinal) {
+                    if (gameFinal && !isPostseasonGame) {
                         const sharedRecords = await sharedDailyRecordsPromise;
                         const sideTeamId = Number(team?.id);
                         const shutoutPlayerIds = new Set(sharedRecords
@@ -4172,7 +4219,7 @@
                                 };
                             }));
                     }
-                    if (gameFinal) {
+                    if (gameFinal && !isPostseasonGame) {
                         const seasonTwoHundredStrikeoutPlayerIds = new Set(
                             seasonStrikeoutMilestoneNotes
                                 .filter((note) => note?.milestoneType === "season-200-strikeouts")
@@ -4194,12 +4241,14 @@
                             code
                         ));
                     }
-                    notes.push(...await buildJapaneseHitterHomeRunNotes(
-                        analyzed,
-                        season,
-                        context,
-                        code
-                    ));
+                    if (!isPostseasonGame) {
+                        notes.push(...await buildJapaneseHitterHomeRunNotes(
+                            analyzed,
+                            season,
+                            context,
+                            code
+                        ));
+                    }
                     analyzed.forEach((player) => {
                         const hitAtBats = Number(player?.crossGameAtBatStreaks?.hits) || 0;
                         const homeRunAtBats = Number(
@@ -4212,6 +4261,7 @@
                         if (hitAtBats >= crossGameHitMinimum && hitAtBats !== homeRunAtBats) {
                             notes.push({
                                 text: `${code}　${getPersonName(player.person)}　` +
+                                    `${isPostseasonGame ? "ポストシーズン " : ""}` +
                                     `${hitAtBats}打数連続安打（前日から）`,
                                 priority: 1
                             });
@@ -4219,6 +4269,7 @@
                         if (homeRunAtBats >= 2) {
                             notes.push({
                                 text: `${code}　${getPersonName(player.person)}　` +
+                                    `${isPostseasonGame ? "ポストシーズン " : ""}` +
                                     `${homeRunAtBats}打数連続本塁打（前日から）`,
                                 priority: 0
                             });
@@ -4236,7 +4287,10 @@
                                 : personalSuffix.includes("あと") ? 5
                                     : hitLeader.hitStreakStopped ? 3 : 6;
                         notes.push({
-                            text: `${code}　${getPersonName(hitLeader.person)}　連続試合安打：${hitLeader.hitStreak}試合${stoppedSuffix}${personalSuffix}`,
+                            text: `${code}　${getPersonName(hitLeader.person)}　` +
+                                `${isPostseasonGame ? "ポストシーズン " : ""}` +
+                                `連続試合安打：${hitLeader.hitStreak}試合` +
+                                `${stoppedSuffix}${personalSuffix}`,
                             priority,
                             ...(personalSuffix
                                 ? {
@@ -4258,7 +4312,10 @@
                                 : personalSuffix.includes("あと") ? 5
                                     : onBaseLeader.onBaseStreakStopped ? 3 : 7;
                         notes.push({
-                            text: `${code}　${getPersonName(onBaseLeader.person)}　連続試合出塁：${onBaseLeader.onBaseStreak}試合${stoppedSuffix}${personalSuffix}`,
+                            text: `${code}　${getPersonName(onBaseLeader.person)}　` +
+                                `${isPostseasonGame ? "ポストシーズン " : ""}` +
+                                `連続試合出塁：${onBaseLeader.onBaseStreak}試合` +
+                                `${stoppedSuffix}${personalSuffix}`,
                             priority,
                             ...(personalSuffix
                                 ? {
@@ -4268,11 +4325,13 @@
                                 : {})
                         });
                     }
-                    const schedule = await fetchTeamRegularSeasonSchedule(
-                        team?.id,
-                        season,
-                        officialDate
-                    );
+                    const schedule = isPostseasonGame
+                        ? []
+                        : await fetchTeamRegularSeasonSchedule(
+                            team?.id,
+                            season,
+                            officialDate
+                        );
                     const scheduleThroughCurrent = schedule.filter((game) =>
                         isScheduleGameThroughCurrent(game, context)
                     );
@@ -4308,27 +4367,31 @@
                             linkType: "mlb-official-record"
                         });
                     }
-                    const rosterReturn = await buildRosterReturnNotes(
-                        analyzed,
-                        scheduleThroughCurrent,
-                        participation.appeared,
-                        gamePk,
-                        team?.id,
-                        code,
-                        officialDate
-                    );
+                    const rosterReturn = isPostseasonGame
+                        ? { notes: [], handledPlayerIds: new Set() }
+                        : await buildRosterReturnNotes(
+                            analyzed,
+                            scheduleThroughCurrent,
+                            participation.appeared,
+                            gamePk,
+                            team?.id,
+                            code,
+                            officialDate
+                        );
                     notes.push(...rosterReturn.notes);
-                    const lineupStatusNotes = await getLineupStatusNotes(
-                        analyzed.filter(isAbsenceEligibleFielder),
-                        scheduleThroughCurrent,
-                        participation.appeared,
-                        participation.starters,
-                        gamePk,
-                        team?.id,
-                        code,
-                        gameFinal,
-                        rosterReturn.handledPlayerIds
-                    );
+                    const lineupStatusNotes = isPostseasonGame
+                        ? []
+                        : await getLineupStatusNotes(
+                            analyzed.filter(isAbsenceEligibleFielder),
+                            scheduleThroughCurrent,
+                            participation.appeared,
+                            participation.starters,
+                            gamePk,
+                            team?.id,
+                            code,
+                            gameFinal,
+                            rosterReturn.handledPlayerIds
+                        );
                     const absenceNotes = lineupStatusNotes.filter((note) =>
                         note.kind === "absence"
                     );
@@ -4942,10 +5005,50 @@
                 return value === undefined || value === null ? "" : String(value);
             };
 
+            const getPostseasonScoreLabel = () => {
+                const game = state.gameData?.gameData?.game ?? {};
+                const gameType = String(game?.type ?? game?.gameType ?? "").toUpperCase();
+                const awayLeagueId = Number(state.gameData?.gameData?.teams?.away?.league?.id);
+                const homeLeagueId = Number(state.gameData?.gameData?.teams?.home?.league?.id);
+                const sharedLeagueId = awayLeagueId && awayLeagueId === homeLeagueId
+                    ? awayLeagueId
+                    : null;
+                const description = String(game?.seriesDescription ?? game?.description ?? "");
+                const leagueCode = sharedLeagueId === 103
+                    ? "AL"
+                    : sharedLeagueId === 104
+                        ? "NL"
+                        : /american league|\bAL\b/i.test(description)
+                            ? "AL"
+                            : /national league|\bNL\b/i.test(description)
+                                ? "NL"
+                                : "";
+                const seriesCode = ({
+                    F: `${leagueCode}WC`,
+                    D: `${leagueCode}DS`,
+                    L: `${leagueCode}CS`,
+                    W: "WS",
+                    P: "PS",
+                    C: "PS"
+                })[gameType];
+                if (!seriesCode) return "";
+                const seriesGameNumber = Number(
+                    game?.seriesGameNumber ?? game?.gameNumber
+                );
+                const circledNumbers = ["", "①", "②", "③", "④", "⑤", "⑥", "⑦"];
+                const gameSuffix = circledNumbers[seriesGameNumber] ??
+                    (seriesGameNumber > 0 ? `(${seriesGameNumber})` : "");
+                return `${seriesCode}${gameSuffix}`;
+            };
+
             const buildTopScore = () => {
                 const container = createElement("section", "top-score");
 
-                container.append(createElement("div", "", ""));
+                container.append(createElement(
+                    "div",
+                    "top-score-postseason-label",
+                    getPostseasonScoreLabel()
+                ));
 
                 for (let inning = 1; inning <= state.innings; inning += 1) {
                     container.append(createElement("div", "", String(inning)));
@@ -4990,7 +5093,7 @@
                 const rows = [
                     ["対戦成績", state.away.abbreviation, state.home.abbreviation, "head"],
                     [
-                        "今シーズン",
+                        record.seasonLabel ?? "今シーズン",
                         formatHeadToHeadWins(record.awaySeason),
                         formatHeadToHeadWins(record.homeSeason),
                         ""
@@ -7907,36 +8010,6 @@
             const buildTeamPanelTitle = (side) => {
                 const team = state[side];
                 const title = createElement("div", "team-panel-title");
-                const gameType = String(
-                    state.gameData?.gameData?.game?.type ??
-                    state.gameData?.gameData?.game?.gameType ??
-                    ""
-                ).toUpperCase();
-                const seriesDescription = String(
-                    state.gameData?.gameData?.game?.seriesDescription ??
-                    state.gameData?.gameData?.game?.description ??
-                    ""
-                );
-                const awayLeagueId = Number(state.gameData?.gameData?.teams?.away?.league?.id);
-                const homeLeagueId = Number(state.gameData?.gameData?.teams?.home?.league?.id);
-                const sharedLeagueId = awayLeagueId && awayLeagueId === homeLeagueId ? awayLeagueId : null;
-                const leagueCode = sharedLeagueId === 103
-                    ? "AL"
-                    : sharedLeagueId === 104
-                        ? "NL"
-                        : /american league|\bAL\b/i.test(seriesDescription)
-                            ? "AL"
-                            : /national league|\bNL\b/i.test(seriesDescription)
-                                ? "NL"
-                                : "";
-                const postseasonLabel = ({
-                    F: `${leagueCode ? `${leagueCode}` : ""}ワイルドカード`,
-                    D: `${leagueCode ? `${leagueCode}` : ""}ディビジョンシリーズ`,
-                    L: `${leagueCode ? `${leagueCode}` : ""}リーグ優勝決定戦`,
-                    W: "ワールドシリーズ",
-                    P: "ポストシーズン",
-                    C: "ポストシーズン"
-                })[gameType] ?? "";
                 const mainLine = createElement(
                     "div",
                     "team-panel-title-main"
@@ -7961,11 +8034,6 @@
                         "team-panel-title-magic",
                         `地区優勝マジック${divisionMagic}`
                     ));
-                }
-
-                if (postseasonLabel) {
-                    title.classList.add("has-postseason-label");
-                    title.append(createElement("div", "team-panel-title-postseason", postseasonLabel));
                 }
 
                 title.append(mainLine);

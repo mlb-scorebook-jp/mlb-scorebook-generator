@@ -1319,6 +1319,15 @@ body.app-mode-pregame .score-loading-overlay {
     white-space: nowrap;
 }
 
+.top-score .top-score-postseason-label {
+    justify-content: flex-start;
+    padding-left: 10px;
+    color: var(--rule);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+}
+
 .top-score .no-bottom {
     font-size: 15px;
     font-weight: 800;
