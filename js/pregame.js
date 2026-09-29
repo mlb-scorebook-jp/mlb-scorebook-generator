@@ -505,6 +505,17 @@
         146: "マーリンズ", 147: "ヤンキース", 158: "ブルワーズ"
     })[Number(team?.id)] ?? teamJapaneseName(team);
 
+    const TEAM_CITY_SORT_NAMES_BY_ID = Object.freeze({
+        108: "Los Angeles Angels", 109: "Arizona", 110: "Baltimore", 111: "Boston",
+        112: "Chicago Cubs", 113: "Cincinnati", 114: "Cleveland", 115: "Colorado",
+        116: "Detroit", 117: "Houston", 118: "Kansas City", 119: "Los Angeles Dodgers",
+        120: "Washington", 121: "New York Mets", 133: "Athletics", 134: "Pittsburgh",
+        135: "San Diego", 136: "Seattle", 137: "San Francisco", 138: "St. Louis",
+        139: "Tampa Bay", 140: "Texas", 141: "Toronto", 142: "Minnesota",
+        143: "Philadelphia", 144: "Atlanta", 145: "Chicago White Sox", 146: "Miami",
+        147: "New York Yankees", 158: "Milwaukee"
+    });
+
     const TEAM_CARD_COLORS = {
         108: "#ba0021", 109: "#a71930", 110: "#df4601", 111: "#bd3039",
         112: "#0e3386", 113: "#c6011f", 114: "#00385d", 115: "#33006f",
@@ -4636,6 +4647,85 @@
         ])
     });
 
+    const pregameTeamStatsDefinitions = (group) =>
+        PREGAME_STATS_DEFINITIONS[group].flatMap((definition) =>
+            definition.category === "earnedRunAverage"
+                ? [
+                    { ...definition, label: "先発防御率", pitcherRole: "starter" },
+                    { ...definition, label: "救援防御率", pitcherRole: "reliever" }
+                ]
+                : [definition]
+        );
+
+    const pregameTeamStatsDefinitionKey = (group, definition) =>
+        `${group}:${definition.category}:${definition.pitcherRole ?? "all"}`;
+
+    const matchesPregamePitcherRole = (definition, entry) => {
+        if (!definition.pitcherRole) return true;
+        const games = statNumber(entry?.stat?.gamesPlayed);
+        const starts = statNumber(entry?.stat?.gamesStarted);
+        const reliefGames = Math.max(1, games - starts);
+        return definition.pitcherRole === "starter"
+            ? starts >= reliefGames
+            : starts < reliefGames;
+    };
+
+    const pregameTeamAggregate = (definition, entries) => {
+        const roleEntries = entries.filter((entry) => matchesPregamePitcherRole(definition, entry));
+        const total = (field) => roleEntries.reduce(
+            (sum, entry) => sum + statNumber(entry?.stat?.[field]),
+            0
+        );
+        const labels = {
+            battingAverage: "チーム打率",
+            onBasePercentage: "チーム出塁率",
+            homeRuns: "チーム総本塁打",
+            runsBattedIn: "チーム総打点",
+            hits: "チーム総安打",
+            stolenBases: "チーム総盗塁",
+            walks: "チーム総四球",
+            onBasePlusSlugging: "チームOPS",
+            wins: "チーム総勝利",
+            saves: "チーム総セーブ",
+            gamesPlayed: "投手総登板",
+            strikeouts: "チーム総奪三振"
+        };
+        let value;
+        if (definition.category === "earnedRunAverage") {
+            const outs = roleEntries.reduce(
+                (sum, entry) => sum + inningsToOuts(entry?.stat?.inningsPitched),
+                0
+            );
+            value = outs ? total("earnedRuns") * 27 / outs : null;
+        } else if (definition.category === "battingAverage") {
+            value = total("atBats") ? total("hits") / total("atBats") : null;
+        } else if (definition.category === "onBasePercentage") {
+            const denominator = total("atBats") + total("baseOnBalls") +
+                total("hitByPitch") + total("sacFlies");
+            value = denominator
+                ? (total("hits") + total("baseOnBalls") + total("hitByPitch")) / denominator
+                : null;
+        } else if (definition.category === "onBasePlusSlugging") {
+            const atBats = total("atBats");
+            const onBaseDenominator = atBats + total("baseOnBalls") +
+                total("hitByPitch") + total("sacFlies");
+            const obp = onBaseDenominator
+                ? (total("hits") + total("baseOnBalls") + total("hitByPitch")) /
+                    onBaseDenominator
+                : 0;
+            value = atBats ? obp + total("totalBases") / atBats : null;
+        } else {
+            value = total(definition.field);
+        }
+        const label = definition.category === "earnedRunAverage"
+            ? (definition.pitcherRole === "reliever" ? "救援防御率" : "先発防御率")
+            : labels[definition.category] ?? `チーム${definition.label}`;
+        const formatted = value == null
+            ? "—"
+            : formatPregameLeaderboardValue(definition, value);
+        return { value, label, formatted };
+    };
+
     const formatPregameLeaderboardValue = (definition, value) => {
         const numeric = Number.parseFloat(value);
         if (!Number.isFinite(numeric)) return "—";
@@ -4689,6 +4779,13 @@
             playerLink.target = "_blank";
             playerLink.rel = "noopener noreferrer";
             playerCell.append(playerLink);
+            if (entry.leagueRank) {
+                playerCell.append(el(
+                    "small",
+                    "pregame-stats-league-rank",
+                    `（リーグ${entry.leagueRank}位）`
+                ));
+            }
             const teamCell = el("td", "pregame-stats-team");
             const teamLogo = createFreeAgentTeamLogo(entry.team, teamCode(entry.team));
             teamLogo.classList.add("pregame-stats-team-logo");
@@ -4769,51 +4866,189 @@
         return card;
     };
 
+    const getPregameTeamStats = async (date, team, group) => {
+        const season = Number(date.slice(0, 4));
+        const endDate = previousDate(date);
+        const params = new URLSearchParams({
+            stats: "byDateRange",
+            group,
+            teamId: String(team.id),
+            sportIds: "1",
+            gameType: "R",
+            startDate: `${season}-01-01`,
+            endDate,
+            playerPool: "ALL",
+            limit: "1000"
+        });
+        const payload = await fetchJson(
+            `${API_ROOT}/v1/stats?${params}`,
+            `pregame:team-stats:${team.id}:${group}:${endDate}`
+        ).catch(() => null);
+        return (payload?.stats?.[0]?.splits ?? []).map((split) => ({
+            person: split?.player,
+            team: split?.team ?? team,
+            stat: split?.stat ?? {}
+        }));
+    };
+
+    const rankPregameTeamEntries = (
+        definition,
+        entries,
+        leagueLeaders,
+        minimumEraOuts = 0,
+        minimumPlateAppearances = 0
+    ) => entries
+        .map((entry) => ({
+            ...entry,
+            value: entry.stat?.[definition.field]
+        }))
+        .filter((entry) =>
+            Number.isFinite(Number(entry.value)) &&
+            statNumber(entry.stat?.gamesPlayed) > 0 &&
+            matchesPregamePitcherRole(definition, entry) &&
+            (definition.category !== "earnedRunAverage" ||
+                inningsToOuts(entry.stat?.inningsPitched) >= minimumEraOuts) &&
+            (definition.category !== "saves" || statNumber(entry.value) > 0)
+        )
+        .sort((left, right) => {
+            if (["battingAverage", "onBasePercentage"].includes(definition.category)) {
+                const leftQualified = statNumber(left.stat?.plateAppearances) >=
+                    minimumPlateAppearances;
+                const rightQualified = statNumber(right.stat?.plateAppearances) >=
+                    minimumPlateAppearances;
+                if (leftQualified !== rightQualified) return leftQualified ? -1 : 1;
+                if (!leftQualified) {
+                    return statNumber(right.stat?.atBats) - statNumber(left.stat?.atBats) ||
+                        Number(right.value) - Number(left.value);
+                }
+            }
+            return definition.lower
+                ? Number(left.value) - Number(right.value)
+                : Number(right.value) - Number(left.value);
+        })
+        .map((entry, index) => ({
+            ...entry,
+            rank: index + 1,
+            leagueRank: Number(leagueLeaders.find((leader) =>
+                Number(leader?.person?.id) === Number(entry?.person?.id)
+            )?.rank) || null
+        }));
+
+    const renderPregameTeamStatsCard = (
+        definition,
+        entries,
+        leagueLeaders,
+        minimumEraOuts,
+        minimumPlateAppearances,
+        comparisonTone = "",
+        teamAggregate = null
+    ) => {
+        const card = el("section", "pregame-stats-card");
+        if (comparisonTone) card.classList.add(`is-comparison-${comparisonTone}`);
+        const title = definition.category === "earnedRunAverage" && minimumEraOuts
+            ? `${definition.label}（${formatInnings(minimumEraOuts)}回以上）`
+            : definition.label;
+        const heading = el("h5", "pregame-stats-card-title");
+        heading.append(el("span", "", title));
+        if (teamAggregate) {
+            const aggregate = el("span", "pregame-stats-team-aggregate");
+            aggregate.append(
+                el("span", "pregame-stats-team-aggregate-label", teamAggregate.label),
+                el("strong", "pregame-stats-team-aggregate-value", teamAggregate.formatted)
+            );
+            heading.append(aggregate);
+        }
+        card.append(heading);
+        const panel = el("section", "pregame-stats-table-panel");
+        panel.append(renderPregameStatsRows(
+            definition,
+            rankPregameTeamEntries(
+                definition,
+                entries,
+                leagueLeaders,
+                minimumEraOuts,
+                minimumPlateAppearances
+            ).slice(0, 5)
+        ));
+        card.append(panel);
+        return card;
+    };
+
+    const createPregameStatsTeamHeading = (team, label = "") => {
+        const heading = el("h4", "pregame-stats-league-title pregame-stats-team-title");
+        const logo = createFreeAgentTeamLogo(team, teamJapaneseName(team));
+        logo.classList.add("pregame-stats-team-title-logo");
+        heading.append(logo, el(
+            "span",
+            "pregame-stats-team-title-name",
+            teamJapaneseName(team).replace(/^[A-Z]{2,4}\s+/, "")
+        ));
+        if (label) heading.append(el("small", "pregame-stats-team-title-group", label));
+        return heading;
+    };
+
     const renderPregameStatsSection = async (date, japanesePlayers, standings) => {
         const season = Number(date.slice(0, 4));
         const sectionElement = section("タイトル一覧", `${formatDate(previousDate(date))}終了時点`);
         sectionElement.classList.add("pregame-stats-section", "is-collapsed");
-        const headerControls = el("div", "pregame-stats-header-controls");
-        const teamSelect = el("select", "pregame-stats-team-filter");
-        teamSelect.setAttribute("aria-label", "タイトル一覧で強調する球団を選択");
-        const allTeamsOption = el("option", "", "全球団");
-        allTeamsOption.value = "";
-        teamSelect.append(allTeamsOption);
         const teams = new Map();
         standings.forEach((standing) => {
             if (standing?.team?.id) teams.set(Number(standing.team.id), standing.team);
         });
-        [...teams.values()]
-            .sort((left, right) =>
-                teamJapaneseName(left).localeCompare(teamJapaneseName(right), "ja")
-            )
-            .forEach((team) => {
+        const sortedTeams = [...teams.values()]
+            .sort((left, right) => {
+                const leftCity = TEAM_CITY_SORT_NAMES_BY_ID[Number(left?.id)] ??
+                    String(left?.locationName ?? left?.name ?? "");
+                const rightCity = TEAM_CITY_SORT_NAMES_BY_ID[Number(right?.id)] ??
+                    String(right?.locationName ?? right?.name ?? "");
+                return leftCity.localeCompare(rightCity, "en") ||
+                    String(left?.name ?? "").localeCompare(String(right?.name ?? ""), "en");
+            });
+        const createTeamSelect = (placeholder, ariaLabel) => {
+            const select = el("select", "pregame-stats-team-filter");
+            select.setAttribute("aria-label", ariaLabel);
+            const placeholderOption = el("option", "", placeholder);
+            placeholderOption.value = "";
+            select.append(placeholderOption);
+            sortedTeams.forEach((team) => {
                 const option = el(
                     "option",
                     "",
                     teamJapaneseName(team).replace(/^[A-Z]{2,4}\s+/, "")
                 );
                 option.value = String(team.id);
-                teamSelect.append(option);
+                select.append(option);
             });
+            return select;
+        };
+        const headerControls = el("div", "pregame-stats-header-controls");
+        const modes = el("div", "pregame-stats-modes");
+        const modeButtons = [
+            ["overall", "全体"],
+            ["team", "チーム別"],
+            ["compare", "2チーム比較"]
+        ].map(([mode, label]) => {
+            const button = el("button", "pregame-stats-mode", label);
+            button.type = "button";
+            button.dataset.mode = mode;
+            button.setAttribute("aria-pressed", String(mode === "overall"));
+            button.classList.toggle("active", mode === "overall");
+            modes.append(button);
+            return button;
+        });
+        const teamSelectA = createTeamSelect("チーム選択", "ランキングを表示する球団");
+        const teamSelectB = createTeamSelect("比較する球団", "比較する2球団目");
+        teamSelectA.hidden = true;
+        teamSelectB.hidden = true;
         const toggle = el("button", "pregame-free-agent-toggle", "表示");
         toggle.type = "button";
         toggle.setAttribute("aria-expanded", "false");
-        headerControls.append(teamSelect, toggle);
+        headerControls.append(modes, teamSelectA, teamSelectB, toggle);
         sectionElement.querySelector(".pregame-section-header")?.append(headerControls);
         toggle.addEventListener("click", () => {
             const collapsed = sectionElement.classList.toggle("is-collapsed");
             toggle.textContent = collapsed ? "表示" : "閉じる";
             toggle.setAttribute("aria-expanded", String(!collapsed));
-        });
-        teamSelect.addEventListener("change", () => {
-            const selectedTeamId = teamSelect.value;
-            sectionElement.querySelectorAll("tr[data-team-id]").forEach((row) => {
-                row.classList.toggle(
-                    "is-team-highlighted",
-                    Boolean(selectedTeamId) && row.dataset.teamId === selectedTeamId
-                );
-            });
         });
 
         const japaneseStats = await Promise.all(japanesePlayers.map(async (person) => {
@@ -4848,44 +5083,187 @@
             entry.leaders
         ]));
 
-        leagueDefinitions.forEach(({ code }) => {
-            const league = el("section", "pregame-stats-league");
-            league.append(el("h4", "pregame-stats-league-title", code));
-            Object.entries(PREGAME_STATS_DEFINITIONS).forEach(([group, definitions]) => {
+        const renderOverall = () => {
+            const fragment = document.createDocumentFragment();
+            leagueDefinitions.forEach(({ code }) => {
+                const league = el("section", "pregame-stats-league");
+                league.append(el("h4", "pregame-stats-league-title", code));
+                Object.entries(PREGAME_STATS_DEFINITIONS).forEach(([group, definitions]) => {
+                    const groupElement = el("section", "pregame-stats-group");
+                    groupElement.append(el(
+                        "h5",
+                        "pregame-stats-group-title",
+                        group === "hitting" ? "打者" : "投手"
+                    ));
+                    const cards = el("div", "pregame-stats-grid");
+                    const leaders = leadersByLeagueGroup.get(`${code}:${group}`) ?? new Map();
+                    definitions.forEach((definition) => {
+                        const japaneseEntries = japaneseStats
+                            .filter((entry) =>
+                                entry.leagueCode === code &&
+                                entry.groups.includes(group) &&
+                                statNumber(entry.stats?.[group]?.gamesPlayed) > 0
+                            )
+                            .map((entry) => ({
+                                person: entry.person,
+                                team: entry.team,
+                                value: entry.stats?.[group]?.[definition.field]
+                            }))
+                            .filter((entry) =>
+                                definition.category !== "saves" || statNumber(entry.value) > 0
+                            );
+                        cards.append(renderPregameStatsTable(
+                            definition,
+                            leaders.get(definition.category) ?? [],
+                            japaneseEntries
+                        ));
+                    });
+                    groupElement.append(cards);
+                    league.append(groupElement);
+                });
+                fragment.append(league);
+            });
+            return fragment;
+        };
+
+        const getLeagueLeadersForTeam = (team, group, definition) => {
+            const leagueCode = standings.get(Number(team.id))?.leagueCode;
+            return leadersByLeagueGroup.get(`${leagueCode}:${group}`)?.get(definition.category) ?? [];
+        };
+
+        const renderTeamColumn = (
+            team,
+            groups,
+            stats,
+            comparisonTones = {},
+            showTeamAggregates = false
+        ) => {
+            const column = el("section", "pregame-stats-league");
+            column.style.setProperty(
+                "--pregame-stats-team-color",
+                TEAM_CARD_COLORS[Number(team.id)] ?? "#002d72"
+            );
+            const standing = standings.get(Number(team.id));
+            const teamGames = statNumber(standing?.wins) + statNumber(standing?.losses);
+            const minimumStarterEraOuts = Math.ceil(teamGames * 0.2 * 3);
+            const minimumRelieverEraOuts = Math.ceil(teamGames * 0.1 * 3);
+            const minimumPlateAppearances = Math.ceil(teamGames * 3.1);
+            column.append(createPregameStatsTeamHeading(
+                team,
+                groups.length === 1 ? (groups[0] === "hitting" ? "打者" : "投手") : ""
+            ));
+            groups.forEach((group) => {
                 const groupElement = el("section", "pregame-stats-group");
-                groupElement.append(el(
-                    "h5",
-                    "pregame-stats-group-title",
-                    group === "hitting" ? "打者" : "投手"
-                ));
+                if (groups.length > 1) {
+                    groupElement.append(el(
+                        "h5",
+                        "pregame-stats-group-title",
+                        group === "hitting" ? "打者" : "投手"
+                    ));
+                }
                 const cards = el("div", "pregame-stats-grid");
-                const leaders = leadersByLeagueGroup.get(`${code}:${group}`) ?? new Map();
-                definitions.forEach((definition) => {
-                    const japaneseEntries = japaneseStats
-                        .filter((entry) =>
-                            entry.leagueCode === code &&
-                            entry.groups.includes(group) &&
-                            statNumber(entry.stats?.[group]?.gamesPlayed) > 0
-                        )
-                        .map((entry) => ({
-                            person: entry.person,
-                            team: entry.team,
-                            value: entry.stats?.[group]?.[definition.field]
-                        }))
-                        .filter((entry) =>
-                            definition.category !== "saves" || statNumber(entry.value) > 0
-                        );
-                    cards.append(renderPregameStatsTable(
+                pregameTeamStatsDefinitions(group).forEach((definition) => {
+                    const minimumEraOuts = definition.pitcherRole === "reliever"
+                        ? minimumRelieverEraOuts
+                        : minimumStarterEraOuts;
+                    cards.append(renderPregameTeamStatsCard(
                         definition,
-                        leaders.get(definition.category) ?? [],
-                        japaneseEntries
+                        stats[group],
+                        getLeagueLeadersForTeam(team, group, definition),
+                        minimumEraOuts,
+                        minimumPlateAppearances,
+                        comparisonTones[pregameTeamStatsDefinitionKey(group, definition)] ?? "",
+                        showTeamAggregates
+                            ? pregameTeamAggregate(definition, stats[group])
+                            : null
                     ));
                 });
                 groupElement.append(cards);
-                league.append(groupElement);
+                column.append(groupElement);
             });
-            content.append(league);
-        });
+            return column;
+        };
+
+        const loadTeamStats = async (team) => {
+            const [hitting, pitching] = await Promise.all([
+                getPregameTeamStats(date, team, "hitting"),
+                getPregameTeamStats(date, team, "pitching")
+            ]);
+            return { hitting, pitching };
+        };
+
+        let currentMode = "overall";
+        let renderRevision = 0;
+        const renderMode = async () => {
+            const revision = ++renderRevision;
+            content.replaceChildren(el("div", "pregame-loading", "読み込み中…"));
+            if (currentMode === "overall") {
+                content.replaceChildren(renderOverall());
+                return;
+            }
+            const teamA = teams.get(Number(teamSelectA.value));
+            if (!teamA) {
+                content.replaceChildren(empty("球団を選択してください。"));
+                return;
+            }
+            if (currentMode === "team") {
+                const stats = await loadTeamStats(teamA);
+                if (revision !== renderRevision) return;
+                content.replaceChildren(
+                    renderTeamColumn(teamA, ["hitting"], stats),
+                    renderTeamColumn(teamA, ["pitching"], stats)
+                );
+                return;
+            }
+            const teamB = teams.get(Number(teamSelectB.value));
+            if (!teamB) {
+                content.replaceChildren(empty("比較する2球団を選択してください。"));
+                return;
+            }
+            const [statsA, statsB] = await Promise.all([
+                loadTeamStats(teamA),
+                loadTeamStats(teamB)
+            ]);
+            if (revision !== renderRevision) return;
+            const tonesA = {};
+            const tonesB = {};
+            Object.keys(PREGAME_STATS_DEFINITIONS).forEach((group) => {
+                pregameTeamStatsDefinitions(group).forEach((definition) => {
+                    const valueA = pregameTeamAggregate(definition, statsA[group]).value;
+                    const valueB = pregameTeamAggregate(definition, statsB[group]).value;
+                    if (!Number.isFinite(valueA) || !Number.isFinite(valueB)) return;
+                    const key = pregameTeamStatsDefinitionKey(group, definition);
+                    if (valueA === valueB) {
+                        tonesA[key] = tonesB[key] = "tie";
+                    } else if ((definition.lower && valueA < valueB) ||
+                        (!definition.lower && valueA > valueB)) {
+                        tonesA[key] = "winner";
+                    } else {
+                        tonesB[key] = "winner";
+                    }
+                });
+            });
+            content.replaceChildren(
+                renderTeamColumn(teamA, ["hitting", "pitching"], statsA, tonesA, true),
+                renderTeamColumn(teamB, ["hitting", "pitching"], statsB, tonesB, true)
+            );
+        };
+
+        modeButtons.forEach((button) => button.addEventListener("click", () => {
+            currentMode = button.dataset.mode;
+            modeButtons.forEach((entry) => {
+                const active = entry === button;
+                entry.classList.toggle("active", active);
+                entry.setAttribute("aria-pressed", String(active));
+            });
+            teamSelectA.hidden = currentMode === "overall";
+            teamSelectB.hidden = currentMode !== "compare";
+            renderMode();
+        }));
+        teamSelectA.addEventListener("change", renderMode);
+        teamSelectB.addEventListener("change", renderMode);
+
+        content.replaceChildren(renderOverall());
         sectionElement.append(content);
         return sectionElement;
     };

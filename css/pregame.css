@@ -1084,8 +1084,41 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
 .pregame-stats-header-controls {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
+    justify-content: flex-end;
     gap: 8px;
     margin-left: auto;
+}
+
+.pregame-stats-modes {
+    display: inline-grid;
+    grid-template-columns: repeat(3, auto);
+    overflow: hidden;
+    border: 1px solid #59707e;
+    border-radius: 4px;
+}
+
+.pregame-stats-mode {
+    min-height: 30px;
+    padding: 4px 11px;
+    border: 0;
+    border-right: 1px solid #59707e;
+    background: #172128;
+    color: #bac6cc;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.pregame-stats-mode:last-child {
+    border-right: 0;
+}
+
+.pregame-stats-mode:hover,
+.pregame-stats-mode:focus-visible,
+.pregame-stats-mode.active {
+    background: linear-gradient(#0876b7, #004d86);
+    color: #fff;
 }
 
 .pregame-stats-team-filter {
@@ -1104,6 +1137,14 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 12px;
     padding: 12px;
+}
+
+.pregame-stats-content > .pregame-loading,
+.pregame-stats-content > .pregame-empty {
+    grid-column: 1 / -1;
+    padding: 32px 12px;
+    color: #9fadb5;
+    text-align: center;
 }
 
 .pregame-stats-league {
@@ -1125,6 +1166,32 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
     background: #263039;
     font-size: 14px;
     letter-spacing: 0.05em;
+}
+
+.pregame-stats-team-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 44px;
+}
+
+.pregame-stats-team-title-logo {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+}
+
+.pregame-stats-team-title-name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.pregame-stats-team-title-group {
+    margin-left: auto;
+    color: #f1cb45;
+    font-size: 12px;
+    white-space: nowrap;
 }
 
 .pregame-stats-group {
@@ -1153,11 +1220,33 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
 }
 
 .pregame-stats-card-title {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 8px;
     padding: 8px 10px;
     border-bottom: 1px solid #0b4a8f;
     color: #fff;
-    background: #002d72;
+    background: var(--pregame-stats-team-color, #002d72);
     font-size: 14px;
+}
+
+.pregame-stats-team-aggregate {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 4px;
+    color: #d7e5ec;
+    font-size: 12px;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+}
+
+.pregame-stats-card.is-comparison-winner .pregame-stats-team-aggregate-value {
+    padding: 1px 5px;
+    border-radius: 3px;
+    background: #ffe36e;
+    color: #172128;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
 }
 
 .pregame-stats-card-tables {
@@ -1237,6 +1326,13 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
     font-weight: 800;
 }
 
+.pregame-stats-league-rank {
+    margin-left: 4px;
+    color: #8fa0a9;
+    font-size: 10px;
+    font-weight: 400;
+}
+
 .pregame-stats-player {
     color: #dce5e9;
     text-decoration: none;
@@ -1273,6 +1369,15 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
 }
 
 @media (max-width: 1100px) {
+    .pregame-stats-section .pregame-section-header {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .pregame-stats-header-controls {
+        width: 100%;
+    }
+
     .pregame-stats-content {
         grid-template-columns: 1fr;
     }
@@ -1285,12 +1390,27 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
     }
 
     .pregame-stats-header-controls {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+    }
+
+    .pregame-stats-modes {
+        grid-column: 1 / -1;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
         width: 100%;
     }
 
+    .pregame-stats-mode {
+        padding-inline: 5px;
+    }
+
     .pregame-stats-team-filter {
-        flex: 1;
+        width: 100%;
         min-width: 0;
+    }
+
+    .pregame-stats-team-filter:not([hidden]) + .pregame-stats-team-filter:not([hidden]) {
+        grid-column: 1;
     }
 
     .pregame-stats-card-tables {
