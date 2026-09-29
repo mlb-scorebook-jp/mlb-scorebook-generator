@@ -4062,6 +4062,8 @@
                             crossGameAtBatStreaks,
                             gameLogSplits,
                             appearedInCurrentGame: participation.appeared.has(player.id),
+                            postseasonDebut: isPostseasonGame && currentPa > 0 &&
+                                priorHittingGames.length === 0,
                             seasonHittingRole: priorHittingGames.length >= 3 ||
                                 priorPlateAppearances >= 10
                         };
@@ -4103,6 +4105,29 @@
                     const notes = gameFinal && !isPostseasonGame
                         ? await buildCareerMilestoneNotes(analyzed, code, context, team)
                         : [];
+                    if (isPostseasonGame) {
+                        const postseasonFirstDefinitions = [
+                            ["hits", "安打"],
+                            ["homeRuns", "本塁打"],
+                            ["rbi", "打点"],
+                            ["stolenBases", "盗塁"]
+                        ];
+                        analyzed
+                            .filter((player) => player.postseasonDebut)
+                            .forEach((player) => {
+                                const firsts = postseasonFirstDefinitions
+                                    .filter(([field]) =>
+                                        (Number(player?.currentGameBatting?.[field]) || 0) > 0
+                                    )
+                                    .map(([, label]) => `PS初${label}`);
+                                if (!firsts.length) return;
+                                notes.push({
+                                    text: `${code}　${getPersonName(player.person)}　` +
+                                        firsts.join("・"),
+                                    priority: -7
+                                });
+                            });
+                    }
                     const seasonStrikeoutMilestoneNotes = isPostseasonGame ? [] : await mapWithConcurrency(
                         analyzed.filter((player) =>
                             hasCurrentGamePitchingAppearance(player) &&
