@@ -2748,7 +2748,8 @@
                 homeSeason: null,
                 awayCareer: null,
                 homeCareer: null,
-                seasonLabel: "今シーズン"
+                seasonLabel: "今シーズン",
+                careerLabel: "通算"
             });
 
             const fetchHeadToHeadSchedule = async (
@@ -2833,7 +2834,8 @@
             const fetchCareerHeadToHeadSchedule = async (
                 awayTeamId,
                 homeTeamId,
-                officialDate
+                officialDate,
+                gameTypes = ["R"]
             ) => {
                 const [awayFirstYear, homeFirstYear] = await Promise.all([
                     fetchTeamFirstYear(awayTeamId),
@@ -2844,6 +2846,52 @@
                 }
                 const firstYear = Math.max(awayFirstYear, homeFirstYear);
                 const finalYear = Number(officialDate.slice(0, 4));
+                if (gameTypes.some((gameType) => gameType !== "R")) {
+                    const awayLeagueId = Number(
+                        state.gameData?.gameData?.teams?.away?.league?.id
+                    );
+                    const homeLeagueId = Number(
+                        state.gameData?.gameData?.teams?.home?.league?.id
+                    );
+                    const postseasonFirstYear = awayLeagueId && awayLeagueId === homeLeagueId
+                        ? Math.max(firstYear, 1969)
+                        : Math.max(firstYear, 1903);
+                    const years = Array.from(
+                        { length: finalYear - postseasonFirstYear + 1 },
+                        (_, index) => postseasonFirstYear + index
+                    );
+                    const results = await mapWithConcurrency(years, 8, async (year) => {
+                        const params = new URLSearchParams({
+                            sportId: "1",
+                            season: String(year)
+                        });
+                        try {
+                            const response = await fetch(
+                                `https://statsapi.mlb.com/api/v1/schedule/postseason?${params}`
+                            );
+                            if (!response.ok) return [];
+                            const payload = await response.json();
+                            return (payload?.dates ?? [])
+                                .flatMap((date) => date?.games ?? [])
+                                .filter((game) => {
+                                    const ids = [
+                                        Number(game?.teams?.away?.team?.id),
+                                        Number(game?.teams?.home?.team?.id)
+                                    ];
+                                    return ids.includes(awayTeamId) && ids.includes(homeTeamId);
+                                })
+                                .filter((game) => String(
+                                    game?.officialDate ?? game?.gameDate ?? ""
+                                ).slice(0, 10) <= officialDate)
+                                .filter((game) => String(
+                                    game?.status?.abstractGameState ?? ""
+                                ).toLowerCase() === "final");
+                        } catch {
+                            return [];
+                        }
+                    });
+                    return results.flat();
+                }
                 const ranges = [];
                 for (let year = firstYear; year <= finalYear; year += 1) {
                     ranges.push({
@@ -2858,7 +2906,8 @@
                         awayTeamId,
                         homeTeamId,
                         range.startDate,
-                        range.endDate
+                        range.endDate,
+                        gameTypes
                     )
                 );
                 return results.some((games) => !Array.isArray(games))
@@ -2894,7 +2943,8 @@
                     fetchCareerHeadToHeadSchedule(
                         awayTeamId,
                         homeTeamId,
-                        officialDate
+                        officialDate,
+                        isPostseason ? ["F", "D", "L", "W"] : ["R"]
                     )
                 ]).then(([seasonGames, careerGames]) => {
                     const seasonWins = countHeadToHeadWins(
@@ -2912,7 +2962,8 @@
                         homeSeason: seasonWins?.[homeTeamId] ?? null,
                         awayCareer: careerWins?.[awayTeamId] ?? null,
                         homeCareer: careerWins?.[homeTeamId] ?? null,
-                        seasonLabel: isPostseason ? "ポストシーズン" : "今シーズン"
+                        seasonLabel: isPostseason ? "ポストシーズン" : "今シーズン",
+                        careerLabel: isPostseason ? "PS通算" : "通算"
                     };
                 }).catch(() => getEmptyHeadToHeadRecord());
                 headToHeadCache.set(cacheKey, request);
@@ -5099,7 +5150,7 @@
                         ""
                     ],
                     [
-                        "通算",
+                        record.careerLabel ?? "通算",
                         formatHeadToHeadWins(record.awayCareer),
                         formatHeadToHeadWins(record.homeCareer),
                         ""
