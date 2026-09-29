@@ -5196,16 +5196,17 @@
         let renderRevision = 0;
         const renderMode = async () => {
             const revision = ++renderRevision;
-            content.replaceChildren(el("div", "pregame-loading", "読み込み中…"));
             if (currentMode === "overall") {
                 content.replaceChildren(renderOverall());
                 return;
             }
             const teamA = teams.get(Number(teamSelectA.value));
-            if (!teamA) {
-                content.replaceChildren(empty("球団を選択してください。"));
-                return;
-            }
+            if (!teamA) return;
+            const teamB = currentMode === "compare"
+                ? teams.get(Number(teamSelectB.value))
+                : null;
+            if (currentMode === "compare" && !teamB) return;
+            content.replaceChildren(el("div", "pregame-loading", "読み込み中…"));
             if (currentMode === "team") {
                 const stats = await loadTeamStats(teamA);
                 if (revision !== renderRevision) return;
@@ -5213,11 +5214,6 @@
                     renderTeamColumn(teamA, ["hitting"], stats),
                     renderTeamColumn(teamA, ["pitching"], stats)
                 );
-                return;
-            }
-            const teamB = teams.get(Number(teamSelectB.value));
-            if (!teamB) {
-                content.replaceChildren(empty("比較する2球団を選択してください。"));
                 return;
             }
             const [statsA, statsB] = await Promise.all([
