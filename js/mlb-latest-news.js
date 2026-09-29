@@ -2,6 +2,27 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Yanks Mag: Deeply Rooted",
+        "summaryJa": "G.ロンバード Jr.（NYY）の最新動向をMLB公式が詳報",
+        "slug": "yankees-magazine-george-lombard-jr-s-rookie-season",
+        "url": "https://www.mlb.com/news/yankees-magazine-george-lombard-jr-s-rookie-season",
+        "contentDate": "2026-09-29T12:23:40.538Z",
+        "teamIds": [
+            147
+        ],
+        "playerIds": [
+            806146
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "nyy-yankees-magazine",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "The biggest ABS storylines of the Wild Card Series",
         "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
         "slug": "abs-challenge-storylines-for-2026-wild-card-series",
@@ -1719,6 +1740,27 @@
         "taxonomy": [
             "apple-news",
             "pennant-chase"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Postseason FAQ: Red Sox gear up for latest chapter of The Rivalry",
+        "summaryJa": "レッドソックスの最新動向をMLB公式が詳報",
+        "slug": "red-sox-2026-postseason-faq",
+        "url": "https://www.mlb.com/news/red-sox-2026-postseason-faq",
+        "contentDate": "2026-09-28T01:05:00Z",
+        "teamIds": [
+            111
+        ],
+        "playerIds": [],
+        "gamePks": [
+            824707
+        ],
+        "taxonomy": [
+            "apple-news",
+            "clincher"
         ],
         "sourceScopes": [
             "球団公式"
@@ -4872,30 +4914,6 @@
         ],
         "taxonomy": [
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Warren dominant in potential playoff role as Yanks prep to face Red Sox",
-        "summaryJa": "W.ウォーレン（NYY）、勝利を呼び込む活躍",
-        "slug": "will-warren-helps-yankees-beat-orioles-in-doubleheader-nightcap",
-        "url": "https://www.mlb.com/news/will-warren-helps-yankees-beat-orioles-in-doubleheader-nightcap",
-        "contentDate": "2026-09-26T03:46:00Z",
-        "teamIds": [
-            147
-        ],
-        "playerIds": [
-            701542
-        ],
-        "gamePks": [
-            823489
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap",
-            "final-week"
         ],
         "sourceScopes": [
             "球団公式"
