@@ -1684,6 +1684,11 @@
                     ? String(note.text ?? "")
                     : String(note ?? "");
 
+            const normalizeSpecialNoteKey = (value) => String(value ?? "")
+                .normalize("NFKC")
+                .toLowerCase()
+                .replace(/[\s\p{P}\p{S}]/gu, "");
+
             const getOfficialMlbArticleUrl = (article) => {
                 const suppliedUrl = String(article?.url ?? "").trim();
                 if (suppliedUrl) {
@@ -1800,11 +1805,13 @@
                         ? notesBySide[side]
                         : [];
                     const filteredNotes = normalNotes.filter((note) => {
-                        const normalizedNote = normalizeLookupKey(getSpecialNoteText(note));
+                        const normalizedNote = normalizeSpecialNoteKey(
+                            getSpecialNoteText(note)
+                        );
                         return !sideRecords.some((record) =>
                             (record?.dedupeTokens ?? []).length > 0 &&
                             record.dedupeTokens.every((token) =>
-                                normalizedNote.includes(normalizeLookupKey(token))
+                                normalizedNote.includes(normalizeSpecialNoteKey(token))
                             )
                         );
                     });
@@ -3629,10 +3636,14 @@
 
             const getRosterCandidatesForSide = (data, side, roster) => {
                 const playerMap = data?.liveData?.boxscore?.teams?.[side]?.players ?? {};
-                const source = roster.length ? roster : Object.values(playerMap).map((player) => ({
+                const boxscorePlayers = Object.values(playerMap).map((player) => ({
                     person: player?.person,
                     position: player?.position
                 }));
+                // Postseason rosters can differ from the regular active-roster
+                // endpoint. Always merge actual boxscore players so every player
+                // who appeared in the game is eligible for PS-first notes.
+                const source = [...roster, ...boxscorePlayers];
                 return source
                     .map((entry) => {
                         const id = Number(entry?.person?.id);
@@ -4112,21 +4123,75 @@
                             ["rbi", "打点"],
                             ["stolenBases", "盗塁"]
                         ];
-                        analyzed
-                            .filter((player) => player.postseasonDebut)
-                            .forEach((player) => {
-                                const firsts = postseasonFirstDefinitions
-                                    .filter(([field]) =>
-                                        (Number(player?.currentGameBatting?.[field]) || 0) > 0
-                                    )
-                                    .map(([, label]) => `PS初${label}`);
-                                if (!firsts.length) return;
-                                notes.push({
-                                    text: `${code}　${getPersonName(player.person)}　` +
-                                        firsts.join("・"),
-                                    priority: -7
-                                });
+                        // Build PS-first notes from the actual boxscore participants.
+                        // The active-roster endpoint can omit or misclassify postseason
+                        // call-ups, so using the analyzed roster alone can drop players
+                        // who demonstrably appeared in this game.
+                        const boxscorePlayers = Object.values(
+                            data?.liveData?.boxscore?.teams?.[side]?.players ?? {}
+                        );
+                        const postseasonDebutPlayers = (await Promise.all(
+                            boxscorePlayers.map(async (gamePlayer) => {
+                                const playerId = Number(gamePlayer?.person?.id);
+                                const currentGameBatting = gamePlayer?.stats?.batting ?? {};
+                                if (!playerId || getPlateAppearances(currentGameBatting) <= 0) {
+                                    return null;
+                                }
+                                const gameLogSplits = await fetchPlayerPostseasonGameLog(
+                                    playerId,
+                                    season
+                                );
+                                const postseasonGamesPlayed = Number(
+                                    gamePlayer?.seasonStats?.batting?.gamesPlayed
+                                );
+                                const hasPriorPostseasonGame = gameLogSplits.some((split) =>
+                                    String(split?.date ?? "").slice(0, 10) <= officialDate &&
+                                    Number(split?.game?.gamePk) !== Number(gamePk) &&
+                                    getPlateAppearances(split?.stat) > 0
+                                );
+                                // MLB's postseason game-log response can occasionally be
+                                // incomplete while a game is being finalized. The boxscore's
+                                // postseason season total is an independent, authoritative
+                                // fallback: one game played means this is the debut game.
+                                const isFirstPostseasonGame = postseasonGamesPlayed === 1 ||
+                                    !hasPriorPostseasonGame;
+                                if (!isFirstPostseasonGame) return null;
+                                return {
+                                    id: playerId,
+                                    person: {
+                                        ...(data?.gameData?.players?.[`ID${playerId}`] ?? {}),
+                                        ...(gamePlayer?.person ?? {})
+                                    },
+                                    currentGameBatting
+                                };
+                            })
+                        )).filter(Boolean);
+                        postseasonDebutPlayers.forEach((player) => {
+                            const firsts = [];
+                            postseasonFirstDefinitions.forEach(([field, label]) => {
+                                if ((Number(player?.currentGameBatting?.[field]) || 0) > 0) {
+                                    firsts.push(label);
+                                }
                             });
+                            const [first, ...additional] = firsts;
+                            if (!first) return;
+                            const firstsText = `PS初${first}` + additional
+                                .map((label) => `・初${label}`)
+                                .join("");
+                            const batting = player?.currentGameBatting ?? {};
+                            const priority = (Number(batting.homeRuns) || 0) > 0
+                                ? -9
+                                : (Number(batting.stolenBases) || 0) > 0
+                                    ? -8.9
+                                    : (Number(batting.rbi) || 0) > 0
+                                        ? -8.8
+                                        : -8.7;
+                            notes.push({
+                                text: `${code}　${getPersonName(player.person)}　` +
+                                    firstsText,
+                                priority
+                            });
+                        });
                     }
                     const seasonStrikeoutMilestoneNotes = isPostseasonGame ? [] : await mapWithConcurrency(
                         analyzed.filter((player) =>
@@ -4485,7 +4550,7 @@
                     notes.push(...lineupStatusNotes);
                     const uniqueNotes = [...new Map(notes.map((note) => {
                         const noteText = typeof note === "string" ? note : note?.text;
-                        return [normalizeLookupKey(noteText), note];
+                        return [normalizeSpecialNoteKey(noteText), note];
                     })).values()];
                     return [side, uniqueNotes
                         .sort((a, b) => a.priority - b.priority)
