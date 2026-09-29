@@ -7444,6 +7444,9 @@
         if (monthlyAverageNote) displayedNotes.push(monthlyAverageNote);
         displayedNotes.forEach((note) => {
             const noteLink = el("a", "pregame-featured-note", note.text);
+            if (note.titleHolder) {
+                noteLink.classList.add("pregame-featured-note-season-title");
+            }
             if (note.postseasonPerformance) {
                 noteLink.classList.add("pregame-featured-note-postseason");
             }
@@ -7614,7 +7617,7 @@
         return box;
     };
 
-    const renderStartingPitcher = (data, team) => {
+    const renderStartingPitcher = (data, team, seasonTitleNotes = new Map()) => {
         const column = el("article", "pregame-starting-pitcher");
         const summary = el("div", "pregame-starting-summary");
         summary.append(el("div", "pregame-starting-team", teamCode(team)));
@@ -7634,6 +7637,17 @@
             `${statNumber(data.seasonStats?.wins)}勝${statNumber(data.seasonStats?.losses)}敗　` +
             `防御率${data.seasonStats?.era ?? "-"}`;
         summary.append(name, seasonGrid);
+        const pitcherTitles = data.isPostseason
+            ? (seasonTitleNotes.get(Number(data.pitcher.id)) ?? [])
+                .filter((note) => note.titleHolder && note.group === "pitching")
+            : [];
+        if (pitcherTitles.length) {
+            summary.append(el(
+                "div",
+                "pregame-starting-season-titles",
+                pitcherTitles.map((note) => note.text).join("／")
+            ));
+        }
         if (data.postseasonCareerStats) {
             const postseason = data.postseasonCareerStats;
             summary.append(el(
@@ -7672,7 +7686,7 @@
             );
         }
         matchupBox.append(
-            el("strong", "", `VS.${teamCode(data.opponent)}`),
+            el("strong", "", `VS.${teamCode(data.opponent)}（通算）`),
             el("span", "",
                 `${data.matchup.games}試合 ${data.matchup.wins}勝${data.matchup.losses}敗　` +
                 `防御率${data.matchup.era}`
@@ -7793,12 +7807,16 @@
                 awayStarter,
                 homeStarter,
                 titleRaceHighlights,
+                seasonTitleNotes,
                 awayRoster,
                 homeRoster
             ] = await Promise.all([
                 getStartingPitcherData(awayProbable, date, homeTeam, venue, isPostseason),
                 getStartingPitcherData(homeProbable, date, awayTeam, venue, isPostseason),
                 getGameTitleRaceHighlights(date, awayTeam, homeTeam, standings),
+                isPostseason
+                    ? getLeagueTopFiveNotes(date, true)
+                    : Promise.resolve(new Map()),
                 getFeaturedPlayers(feed, "away", date),
                 getFeaturedPlayers(feed, "home", date)
             ]);
@@ -7823,15 +7841,17 @@
             startingSection.classList.add("pregame-span-12");
             const startingGrid = el("div", "pregame-starting-grid");
             startingGrid.append(
-                renderStartingPitcher(awayStarter, awayTeam),
-                renderStartingPitcher(homeStarter, homeTeam)
+                renderStartingPitcher(awayStarter, awayTeam, seasonTitleNotes),
+                renderStartingPitcher(homeStarter, homeTeam, seasonTitleNotes)
             );
             startingSection.append(startingGrid);
             grid.append(startingSection);
 
             const [featuredAwards, leagueTopFiveNotes, postseasonStatsByPlayer] = await Promise.all([
                 getRecentFeaturedAwards(date),
-                getLeagueTopFiveNotes(date, isPostseason),
+                isPostseason
+                    ? Promise.resolve(seasonTitleNotes)
+                    : getLeagueTopFiveNotes(date, false),
                 isPostseason
                     ? getRosterPostseasonCareerStats(
                         [...rosterBySide.away, ...rosterBySide.home],

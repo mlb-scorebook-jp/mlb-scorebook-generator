@@ -1480,6 +1480,14 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
     font-weight: 700;
 }
 
+.pregame-starting-season-titles {
+    display: block;
+    margin-top: 3px;
+    color: #8dcdf0;
+    font-size: 11px;
+    font-weight: 700;
+}
+
 .pregame-starting-stats,
 .pregame-previous-start span,
 .pregame-previous-start strong,
@@ -3488,6 +3496,16 @@ a.pregame-batting-stat:focus-visible {
     text-underline-offset: 2px;
 }
 
+.pregame-featured-note.pregame-featured-note-season-title {
+    color: #8dcdf0;
+    font-weight: 700;
+}
+
+.pregame-featured-note.pregame-featured-note-season-title:hover,
+.pregame-featured-note.pregame-featured-note-season-title:focus-visible {
+    color: #c2e8fb;
+}
+
 .pregame-featured-note.pregame-featured-note-postseason {
     color: #f1cb45;
 }
@@ -4374,6 +4392,7 @@ a.pregame-metric-value:focus-visible {
     }
 
     .pregame-starting-stats,
+    .pregame-starting-season-titles,
     .pregame-previous-start span,
     .pregame-previous-start strong,
     .pregame-previous-start a,
