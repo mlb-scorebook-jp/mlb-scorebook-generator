@@ -4680,6 +4680,8 @@
         const displayedRows = truncated ? rows.slice(0, 7) : rows;
         displayedRows.forEach((entry) => {
             const row = document.createElement("tr");
+            const teamId = Number(entry?.team?.id);
+            if (Number.isFinite(teamId)) row.dataset.teamId = String(teamId);
             const rankCell = el("td", "pregame-stats-rank", entry.rank ? String(entry.rank) : "—");
             const playerCell = document.createElement("td");
             const playerLink = el("a", "pregame-stats-player", playerName(entry.person));
@@ -4771,14 +4773,47 @@
         const season = Number(date.slice(0, 4));
         const sectionElement = section("タイトル一覧", `${formatDate(previousDate(date))}終了時点`);
         sectionElement.classList.add("pregame-stats-section", "is-collapsed");
+        const headerControls = el("div", "pregame-stats-header-controls");
+        const teamSelect = el("select", "pregame-stats-team-filter");
+        teamSelect.setAttribute("aria-label", "タイトル一覧で強調する球団を選択");
+        const allTeamsOption = el("option", "", "全球団");
+        allTeamsOption.value = "";
+        teamSelect.append(allTeamsOption);
+        const teams = new Map();
+        standings.forEach((standing) => {
+            if (standing?.team?.id) teams.set(Number(standing.team.id), standing.team);
+        });
+        [...teams.values()]
+            .sort((left, right) =>
+                teamJapaneseName(left).localeCompare(teamJapaneseName(right), "ja")
+            )
+            .forEach((team) => {
+                const option = el(
+                    "option",
+                    "",
+                    teamJapaneseName(team).replace(/^[A-Z]{2,4}\s+/, "")
+                );
+                option.value = String(team.id);
+                teamSelect.append(option);
+            });
         const toggle = el("button", "pregame-free-agent-toggle", "表示");
         toggle.type = "button";
         toggle.setAttribute("aria-expanded", "false");
-        sectionElement.querySelector(".pregame-section-header")?.append(toggle);
+        headerControls.append(teamSelect, toggle);
+        sectionElement.querySelector(".pregame-section-header")?.append(headerControls);
         toggle.addEventListener("click", () => {
             const collapsed = sectionElement.classList.toggle("is-collapsed");
             toggle.textContent = collapsed ? "表示" : "閉じる";
             toggle.setAttribute("aria-expanded", String(!collapsed));
+        });
+        teamSelect.addEventListener("change", () => {
+            const selectedTeamId = teamSelect.value;
+            sectionElement.querySelectorAll("tr[data-team-id]").forEach((row) => {
+                row.classList.toggle(
+                    "is-team-highlighted",
+                    Boolean(selectedTeamId) && row.dataset.teamId === selectedTeamId
+                );
+            });
         });
 
         const japaneseStats = await Promise.all(japanesePlayers.map(async (person) => {
