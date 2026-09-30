@@ -2,6 +2,133 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Tatis' electric Game 1 was much more than just his historic leadoff HR",
+        "summaryJa": "F.タティース Jr.（SD）、本塁打で存在感",
+        "slug": "fernando-tatis-jr-scores-on-throwing-error-in-wild-card-win",
+        "url": "https://www.mlb.com/news/fernando-tatis-jr-scores-on-throwing-error-in-wild-card-win",
+        "contentDate": "2026-09-30T14:51:38.291Z",
+        "teamIds": [
+            135
+        ],
+        "playerIds": [
+            665487
+        ],
+        "gamePks": [
+            849842
+        ],
+        "taxonomy": [
+            "postseason",
+            "apple-news",
+            "nlwc",
+            "series-b"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Phillies-Braves NL Wild Card Series Game 2 FAQ, lineups (2 ET, NBC/Peacock)",
+        "summaryJa": "フィリーズの最新動向をMLB公式が詳報",
+        "slug": "phillies-vs-braves-nl-wild-card-series-game-2-starting-lineups-and-pitching-matchup",
+        "url": "https://www.mlb.com/news/phillies-vs-braves-nl-wild-card-series-game-2-starting-lineups-and-pitching-matchup",
+        "contentDate": "2026-09-30T14:37:00Z",
+        "teamIds": [
+            143,
+            144
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "nlwc",
+            "postseason",
+            "series-a"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Top storyline for each Wild Card Series Game 2",
+        "summaryJa": "カブスの最新動向をMLB公式が詳報",
+        "slug": "top-storyline-for-each-mlb-wild-card-series-game-2-2026",
+        "url": "https://www.mlb.com/news/top-storyline-for-each-mlb-wild-card-series-game-2-2026",
+        "contentDate": "2026-09-30T14:30:00Z",
+        "teamIds": [
+            112,
+            135,
+            111,
+            147,
+            117,
+            145,
+            144,
+            143
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "alwc",
+            "nlwc",
+            "series-a",
+            "series-b",
+            "apple-news",
+            "postseason"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "Ex-Yankee Gray takes ball in Game 2 with Red Sox on the brink",
+        "summaryJa": "S.グレイ（BOS）の最新動向をMLB公式が詳報",
+        "slug": "sonny-gray-wild-card-series-game-2-start-vs-yankees",
+        "url": "https://www.mlb.com/news/sonny-gray-wild-card-series-game-2-start-vs-yankees",
+        "contentDate": "2026-09-30T13:46:11.6Z",
+        "teamIds": [
+            111
+        ],
+        "playerIds": [
+            543243
+        ],
+        "gamePks": [
+            849848
+        ],
+        "taxonomy": [
+            "alwc",
+            "postseason",
+            "series-b"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Cubs-Padres NL Wild Card Series Game 2 FAQ (10 ET, Peacock/NBCSN)",
+        "summaryJa": "カブスの最新動向をMLB公式が詳報",
+        "slug": "cubs-vs-padres-nl-wild-card-series-game-2-starting-lineups-and-pitching-matchup",
+        "url": "https://www.mlb.com/news/cubs-vs-padres-nl-wild-card-series-game-2-starting-lineups-and-pitching-matchup",
+        "contentDate": "2026-09-30T08:31:27.049Z",
+        "teamIds": [
+            112,
+            135
+        ],
+        "playerIds": [],
+        "gamePks": [
+            849842
+        ],
+        "taxonomy": [
+            "apple-news",
+            "nlwc",
+            "series-b"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "King, dingers power Padres in G1 rout at frenzied Petco",
         "summaryJa": "パドレス、勝利を呼び込む活躍",
         "slug": "padres-win-nl-wild-card-game-1-2026",
@@ -371,36 +498,6 @@
         "sourceScopes": [
             "MLB",
             "球団公式"
-        ]
-    },
-    {
-        "headline": "Top storyline for each Wild Card Series Game 2",
-        "summaryJa": "カブスの最新動向をMLB公式が詳報",
-        "slug": "top-storyline-for-each-mlb-wild-card-series-game-2-2026",
-        "url": "https://www.mlb.com/news/top-storyline-for-each-mlb-wild-card-series-game-2-2026",
-        "contentDate": "2026-09-30T05:15:56.107Z",
-        "teamIds": [
-            112,
-            135,
-            111,
-            147,
-            117,
-            145,
-            144,
-            143
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "alwc",
-            "nlwc",
-            "series-a",
-            "series-b",
-            "apple-news",
-            "postseason"
-        ],
-        "sourceScopes": [
-            "MLB"
         ]
     },
     {
@@ -805,29 +902,6 @@
         ]
     },
     {
-        "headline": "Phillies-Braves NL Wild Card Series Game 2 FAQ (2 ET, NBC/Peacock)",
-        "summaryJa": "フィリーズの最新動向をMLB公式が詳報",
-        "slug": "phillies-vs-braves-nl-wild-card-series-game-2-starting-lineups-and-pitching-matchup",
-        "url": "https://www.mlb.com/news/phillies-vs-braves-nl-wild-card-series-game-2-starting-lineups-and-pitching-matchup",
-        "contentDate": "2026-09-30T00:38:25.048Z",
-        "teamIds": [
-            143,
-            144
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "nlwc",
-            "postseason",
-            "series-a"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Luzardo blows past opener label in first start since injury",
         "summaryJa": "J.ルザルド（PHI）の負傷状況をMLB公式が詳報",
         "slug": "jesus-luzardo-starts-for-phillies-in-wild-card-series-game-1",
@@ -849,7 +923,6 @@
             "postseason"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1773,7 +1846,7 @@
         ]
     },
     {
-        "headline": "ELDC named NL Player of the Month for September",
+        "headline": "EDLC named NL Player of the Month for September",
         "summaryJa": "C.ジェンセンの最新動向をMLB公式が詳報",
         "slug": "mlb-monthly-award-winners-for-september-2026",
         "url": "https://www.mlb.com/news/mlb-monthly-award-winners-for-september-2026",
@@ -1824,7 +1897,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -3202,29 +3274,6 @@
         ]
     },
     {
-        "headline": "Counsell playing Cubs' postseason rotation close to the vest",
-        "summaryJa": "今永 昇太（CHC）の最新動向をMLB公式が詳報",
-        "slug": "craig-counsell-not-ready-to-set-cubs-2026-postseason-rotation",
-        "url": "https://www.mlb.com/news/craig-counsell-not-ready-to-set-cubs-2026-postseason-rotation",
-        "contentDate": "2026-09-28T00:15:29.841Z",
-        "teamIds": [
-            112
-        ],
-        "playerIds": [
-            684007
-        ],
-        "gamePks": [
-            824705
-        ],
-        "taxonomy": [
-            "apple-news",
-            "final-week"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Latest Tigers injuries and transactions",
         "summaryJa": "タイガースの負傷状況をMLB公式が詳報",
         "slug": "tigers-injuries-and-roster-moves",
@@ -3630,28 +3679,6 @@
             "apple-news",
             "final-week",
             "game-recap"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Postseason FAQ: What's next for Padres?",
-        "summaryJa": "パドレスの最新動向をMLB公式が詳報",
-        "slug": "padres-2026-postseason-faq",
-        "url": "https://www.mlb.com/news/padres-2026-postseason-faq",
-        "contentDate": "2026-09-27T23:10:00Z",
-        "teamIds": [
-            135
-        ],
-        "playerIds": [],
-        "gamePks": [
-            823895
-        ],
-        "taxonomy": [
-            "clincher",
-            "postseason",
-            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
