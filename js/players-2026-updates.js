@@ -42,6 +42,7 @@ Object.assign(NHK_PLAYER_NAMES, {
     josuedepaula: "J.デパウラ",
     juliangarcia: "J.ガルシア",
     landynvidourek: "L.ビドゥレック",
+    loganvanwey: "L.バンウェイ",
     kaelenculpepper: "K.カルペッパー",
     kikehernandez: "K.ヘルナンデス",
     krisbubic: "K.ブービッチ",
