@@ -1542,6 +1542,7 @@
             const MLB_SINGLE_SEASON_BATTER_STRIKEOUT_RECORD_URL =
                 "https://www.mlb.com/news/swing-and-miss-ks-part-and-parcel-of-game/c-123689560";
             const playerGameLogCache = new Map();
+            const playerPostseasonCareerPitchingCache = new Map();
             const playerCareerStreakCache = new Map();
             const teamScheduleCache = new Map();
             const gameBoxscoreCache = new Map();
@@ -1947,6 +1948,45 @@
                 ));
 
                 playerGameLogCache.set(cacheKey, request);
+                return request;
+            };
+
+            const fetchPlayerPostseasonCareerPitching = async (playerId) => {
+                if (playerPostseasonCareerPitchingCache.has(playerId)) {
+                    return playerPostseasonCareerPitchingCache.get(playerId);
+                }
+                const request = Promise.all(["F", "D", "L", "W"].map((gameType) =>
+                    fetch(
+                        `https://statsapi.mlb.com/api/v1/people/${playerId}/stats` +
+                        `?stats=career&group=pitching&gameType=${gameType}`
+                    ).then(async (response) => {
+                        if (!response.ok) return null;
+                        const payload = await response.json();
+                        return payload?.stats?.[0]?.splits?.[0]?.stat ?? null;
+                    }).catch(() => null)
+                )).then((stats) => {
+                    const available = stats.some(Boolean);
+                    return {
+                        available,
+                        gamesPlayed: stats.reduce(
+                            (total, stat) => total + (Number(stat?.gamesPlayed) || 0),
+                            0
+                        ),
+                        gamesStarted: stats.reduce(
+                            (total, stat) => total + (Number(stat?.gamesStarted) || 0),
+                            0
+                        ),
+                        wins: stats.reduce(
+                            (total, stat) => total + (Number(stat?.wins) || 0),
+                            0
+                        ),
+                        saves: stats.reduce(
+                            (total, stat) => total + (Number(stat?.saves) || 0),
+                            0
+                        )
+                    };
+                });
+                playerPostseasonCareerPitchingCache.set(playerId, request);
                 return request;
             };
 
@@ -4192,6 +4232,103 @@
                                 priority
                             });
                         });
+
+                        const teamBoxscore = data?.liveData?.boxscore?.teams?.[side] ?? {};
+                        const status = data?.gameData?.status ?? {};
+                        const abstractState = String(
+                            status?.abstractGameState ?? ""
+                        ).toLowerCase();
+                        const codedState = String(status?.codedGameState ?? "").toUpperCase();
+                        const gameStarted = abstractState === "live" ||
+                            abstractState === "final" ||
+                            ["I", "F", "O"].includes(codedState);
+                        const probablePitcherId = Number(
+                            data?.gameData?.probablePitchers?.[side]?.id
+                        );
+                        const startingPitcherId = Number(teamBoxscore?.pitchers?.[0]) ||
+                            probablePitcherId;
+                        const pitchingCandidates = new Map(
+                            Object.values(teamBoxscore?.players ?? {})
+                                .map((player) => [Number(player?.person?.id), player])
+                                .filter(([playerId]) => playerId)
+                        );
+                        if (startingPitcherId && !pitchingCandidates.has(startingPitcherId)) {
+                            pitchingCandidates.set(startingPitcherId, {
+                                person: data?.gameData?.players?.[`ID${startingPitcherId}`] ??
+                                    data?.gameData?.probablePitchers?.[side] ?? {},
+                                stats: { pitching: {} }
+                            });
+                        }
+                        const decisions = data?.liveData?.decisions ?? {};
+                        const postseasonPitchingNotes = await Promise.all(
+                            [...pitchingCandidates.values()].map(async (gamePlayer) => {
+                                const playerId = Number(gamePlayer?.person?.id);
+                                const pitching = gamePlayer?.stats?.pitching ?? {};
+                                const appeared = hasCurrentGamePitchingAppearance({
+                                    currentGamePitching: pitching
+                                });
+                                const startedNow = gameStarted &&
+                                    playerId === startingPitcherId;
+                                if (!playerId || (!appeared && !startedNow)) return null;
+
+                                const career = await fetchPlayerPostseasonCareerPitching(
+                                    playerId
+                                );
+                                const seasonLogs = career.available
+                                    ? []
+                                    : await fetchPlayerPostseasonGameLog(
+                                        playerId,
+                                        season,
+                                        "pitching"
+                                    );
+                                const hasPriorAppearance = seasonLogs.some((split) =>
+                                    String(split?.date ?? "").slice(0, 10) <= officialDate &&
+                                    Number(split?.game?.gamePk) !== Number(gamePk) &&
+                                    ((Number(split?.stat?.gamesPlayed) || 0) > 0 ||
+                                        (Number(split?.stat?.battersFaced) || 0) > 0)
+                                );
+                                const hasPriorStart = seasonLogs.some((split) =>
+                                    String(split?.date ?? "").slice(0, 10) <= officialDate &&
+                                    Number(split?.game?.gamePk) !== Number(gamePk) &&
+                                    (Number(split?.stat?.gamesStarted) || 0) > 0
+                                );
+                                const firsts = [];
+                                if (career.available
+                                    ? career.gamesPlayed <= 1
+                                    : !hasPriorAppearance) {
+                                    firsts.push("登板");
+                                }
+                                if (startedNow && (career.available
+                                    ? career.gamesStarted <= 1
+                                    : !hasPriorStart)) {
+                                    firsts.push("先発");
+                                }
+                                if (gameFinal &&
+                                    Number(decisions?.winner?.id) === playerId &&
+                                    career.available && career.wins === 1) {
+                                    firsts.push("勝利");
+                                }
+                                if (gameFinal &&
+                                    Number(decisions?.save?.id) === playerId &&
+                                    career.available && career.saves === 1) {
+                                    firsts.push("セーブ");
+                                }
+                                if (!firsts.length) return null;
+                                const [first, ...additional] = firsts;
+                                return {
+                                    text: `${code}　${getPersonName({
+                                        ...(data?.gameData?.players?.[`ID${playerId}`] ?? {}),
+                                        ...(gamePlayer?.person ?? {})
+                                    })}　PS初${first}` + additional
+                                        .map((label) => `・初${label}`)
+                                        .join(""),
+                                    priority: firsts.includes("勝利") || firsts.includes("セーブ")
+                                        ? -9.5
+                                        : -8.6
+                                };
+                            })
+                        );
+                        notes.push(...postseasonPitchingNotes.filter(Boolean));
                     }
                     const seasonStrikeoutMilestoneNotes = isPostseasonGame ? [] : await mapWithConcurrency(
                         analyzed.filter((player) =>
