@@ -8094,9 +8094,51 @@
 
             const buildSummaryRows = (side) => {
                 const grid = createElement("section", "summary-grid");
+                const battingHalf = side === "away" ? "top" : "bottom";
+                const fieldingSide = side === "away" ? "home" : "away";
+                const allPlays = state.gameData?.liveData?.plays?.allPlays ?? [];
+                const inningLines = state.gameData?.liveData?.linescore?.innings ?? [];
+                const summaries = new Map();
 
-                ["安打｜四球｜三振", "得点｜残塁", "投球数｜失策"].forEach(
-                    (label) => {
+                getInningColumns(side).forEach(({ inning, occurrence }) => {
+                    if (occurrence !== 1 || summaries.has(inning)) return;
+                    const plays = allPlays.filter((play) =>
+                        Number(play?.about?.inning) === Number(inning) &&
+                        String(play?.about?.halfInning ?? "").toLowerCase() === battingHalf
+                    );
+                    if (!plays.length) {
+                        summaries.set(inning, null);
+                        return;
+                    }
+                    const inningLine = inningLines.find((entry) =>
+                        Number(entry?.num) === Number(inning)
+                    );
+                    const battingLine = inningLine?.[side] ?? {};
+                    const fieldingLine = inningLine?.[fieldingSide] ?? {};
+                    const walks = plays.filter((play) => [
+                        "walk",
+                        "intent_walk",
+                        "intentional_walk"
+                    ].includes(String(play?.result?.eventType ?? "").toLowerCase())).length;
+                    const strikeouts = plays.filter((play) =>
+                        String(play?.result?.eventType ?? "")
+                            .toLowerCase()
+                            .startsWith("strikeout")
+                    ).length;
+                    const pitches = plays.reduce((total, play) =>
+                        total + (play?.playEvents ?? []).filter((event) =>
+                            event?.isPitch === true
+                        ).length,
+                    0);
+                    summaries.set(inning, [
+                        `${Number(battingLine?.hits) || 0}／${walks}／${strikeouts}`,
+                        `${Number(battingLine?.runs) || 0}／${Number(battingLine?.leftOnBase) || 0}`,
+                        `${pitches}／${Number(fieldingLine?.errors) || 0}`
+                    ]);
+                });
+
+                ["安打／四球／三振", "得点／残塁", "投球数／失策"].forEach(
+                    (label, summaryIndex) => {
                         grid.append(
                             createElement(
                                 "div",
@@ -8105,9 +8147,12 @@
                             )
                         );
 
-                        for (let column = 0; column < getInningColumns(side).length; column += 1) {
-                            grid.append(createElement("div", "summary-cell"));
-                        }
+                        getInningColumns(side).forEach(({ inning, occurrence }) => {
+                            const value = occurrence === 1
+                                ? summaries.get(inning)?.[summaryIndex] ?? ""
+                                : "";
+                            grid.append(createElement("div", "summary-cell", value));
+                        });
 
                         for (
                             let index = 0;
