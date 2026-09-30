@@ -5176,9 +5176,9 @@
                 const seriesGameNumber = Number(
                     game?.seriesGameNumber ?? game?.gameNumber
                 );
-                const circledNumbers = ["", "①", "②", "③", "④", "⑤", "⑥", "⑦"];
-                const gameSuffix = circledNumbers[seriesGameNumber] ??
-                    (seriesGameNumber > 0 ? `(${seriesGameNumber})` : "");
+                const gameSuffix = seriesGameNumber > 0
+                    ? ` GAME${seriesGameNumber}`
+                    : "";
                 return `${seriesCode}${gameSuffix}`;
             };
 
