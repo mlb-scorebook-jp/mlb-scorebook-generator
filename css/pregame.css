@@ -4719,6 +4719,54 @@ a.pregame-metric-value:focus-visible {
         border-left: 0;
     }
 
+    .pregame-lineup-section,
+    .pregame-lineup-columns,
+    .pregame-lineup-team,
+    .pregame-lineup-list {
+        min-width: 0;
+        max-width: 100%;
+    }
+
+    .pregame-lineup-team-heading,
+    .pregame-lineup-row {
+        box-sizing: border-box;
+        width: 100%;
+        grid-template-columns:
+            18px 28px minmax(0, 1.3fr) minmax(0, 1fr) minmax(0, 0.9fr);
+        gap: 4px;
+        padding-inline: 6px;
+    }
+
+    .pregame-lineup-team-code {
+        grid-column: 1 / 4;
+    }
+
+    .pregame-lineup-column-heading,
+    .pregame-lineup-matchup,
+    .pregame-lineup-matchup-team {
+        min-width: 0;
+        max-width: 100%;
+    }
+
+    .pregame-lineup-matchup,
+    .pregame-lineup-matchup-team {
+        grid-template-columns: minmax(0, 1fr) max-content;
+        gap: 3px;
+        font-size: 11px;
+    }
+
+    .pregame-lineup-column-heading {
+        font-size: 9px;
+    }
+
+    .pregame-lineup-vs-label {
+        font-size: 11px;
+    }
+
+    .pregame-lineup-season {
+        font-size: 9px;
+    }
+
     .pregame-starting-pitcher {
         grid-template-columns: 1fr;
         box-sizing: border-box;
