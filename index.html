@@ -10449,6 +10449,24 @@
                 ));
             };
 
+            const fetchGamesForSearchTeam = (teamId, season) => {
+                const numericTeamId = Number(teamId);
+                const params = new URLSearchParams({
+                    sportId: "1",
+                    teamId: String(numericTeamId),
+                    startDate: `${season}-01-01`,
+                    endDate: `${season}-12-31`,
+                    gameTypes: "R,F,D,L,W"
+                });
+                return getSearchGames(
+                    params,
+                    `team:all-official:${numericTeamId}:${season}`
+                ).then((games) => games.filter((game) => [
+                    Number(game?.teams?.home?.team?.id),
+                    Number(game?.teams?.away?.team?.id)
+                ].includes(numericTeamId)));
+            };
+
             const formatSearchDate = (date) => {
                 const [year, month, day] = String(date).split("-");
                 return year && month && day
@@ -10585,7 +10603,7 @@
                 const team2Id = getSelectedSearchTeamId(dom.searchAwayTeam);
                 const currentValue = dom.searchGameDate.value;
                 const currentDate = getSearchOptionDate(currentValue);
-                if (!team1Id || !team2Id) {
+                if (!team1Id && !team2Id) {
                     const dates = await getSearchSeasonDates(getSearchSeason());
                     setSearchDateOptions(dates, currentDate);
                     return;
@@ -10593,7 +10611,9 @@
 
                 const season = getSearchSeason();
                 setHeaderSearchBusy(true);
-                const games = await fetchGamesForSearchMatchup(team1Id, team2Id, season);
+                const games = team1Id && team2Id
+                    ? await fetchGamesForSearchMatchup(team1Id, team2Id, season)
+                    : await fetchGamesForSearchTeam(team1Id || team2Id, season);
                 setHeaderSearchBusy(false);
                 setSearchGameOptions(games, currentValue);
                 if (!games.length) setStatus("該当する試合がありません", true);
@@ -10637,27 +10657,38 @@
                 const team2Id = getSelectedSearchTeamId(dom.searchAwayTeam);
                 const selectedDateValue = dom.searchGameDate.value;
                 const date = getSearchOptionDate(selectedDateValue);
-                if (!team1Id || !team2Id || !date) {
-                    setStatus("TEAM 1・TEAM 2・DATEを選択してください。", true);
+                if ((!team1Id && !team2Id) || !date) {
+                    setStatus("TEAM 1またはTEAM 2とDATEを選択してください。", true);
                     return;
                 }
 
                 setHeaderSearchBusy(true);
                 const games = await fetchGamesForSearchDate(date);
                 const selectedGamePk = getSearchOptionGamePk(selectedDateValue);
-                const selectedIds = [team1Id, team2Id].sort((a, b) => a - b).join(":");
                 const game = games.find((candidate) => {
                     if (selectedGamePk && Number(candidate?.gamePk) !== selectedGamePk) return false;
-                    return [
+                    const candidateIds = [
                         Number(candidate?.teams?.home?.team?.id),
                         Number(candidate?.teams?.away?.team?.id)
-                    ].sort((a, b) => a - b).join(":") === selectedIds;
+                    ];
+                    if (team1Id && team2Id) {
+                        return candidateIds.sort((a, b) => a - b).join(":") ===
+                            [team1Id, team2Id].sort((a, b) => a - b).join(":");
+                    }
+                    return candidateIds.includes(Number(team1Id || team2Id));
                 });
                 setHeaderSearchBusy(false);
                 if (!game?.gamePk) {
                     setStatus("該当する試合がありません", true);
                     return;
                 }
+                const homeId = Number(game?.teams?.home?.team?.id);
+                const awayId = Number(game?.teams?.away?.team?.id);
+                const selectedTeamId = Number(team1Id || team2Id);
+                const opponentId = homeId === selectedTeamId ? awayId : homeId;
+                if (!team2Id && team1Id) dom.searchAwayTeam.value = String(opponentId || "");
+                if (!team1Id && team2Id) dom.searchHomeTeam.value = String(opponentId || "");
+                updateSearchTeamOptions();
                 dom.gameInput.value = String(game.gamePk);
                 await loadGame();
                 setHeaderSearchMode(null);
