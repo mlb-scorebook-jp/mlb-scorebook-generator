@@ -7411,11 +7411,18 @@
     };
 
     const startingLineupEntries = (roster) => (roster ?? [])
-        .map((entry) => ({
-            ...entry,
-            order: Math.floor(Number.parseInt(entry?.battingOrder, 10) / 100)
-        }))
-        .filter((entry) => Number.isFinite(entry.order) && entry.order >= 1 && entry.order <= 9)
+        .map((entry) => {
+            const rawOrder = Number.parseInt(entry?.battingOrder, 10);
+            return {
+                ...entry,
+                rawOrder,
+                order: Math.floor(rawOrder / 100)
+            };
+        })
+        // MLBは同じ打順の途中出場者を801、802…のように返す。
+        // 末尾00の選手だけが先発なので、交代選手をスタメン欄へ混ぜない。
+        .filter((entry) => Number.isFinite(entry.rawOrder) && entry.rawOrder % 100 === 0 &&
+            entry.order >= 1 && entry.order <= 9)
         .sort((left, right) => left.order - right.order);
 
     const createLineupMatchupStat = (stat, kind) => {
