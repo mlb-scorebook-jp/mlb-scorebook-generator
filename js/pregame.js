@@ -3140,6 +3140,9 @@
         trades.forEach((trade) => {
             const row = el("article", "pregame-trade-row");
             const dateLink = el("a", "pregame-trade-date", compactDate(trade.date));
+            if (trade.date === currentEasternDate()) {
+                dateLink.append(el("span", "pregame-free-agent-new", "NEW"));
+            }
             dateLink.href = `https://www.mlb.com/transactions?date=${trade.date}`;
             dateLink.target = "_blank";
             dateLink.rel = "noopener noreferrer";
@@ -7735,12 +7738,36 @@
         const postseasonPlayerStats = postseasonStatsByPlayer.get(playerId);
         const currentPostseasonHittingLogs = postseasonPlayerStats?.get("hitting:currentLogs") ?? [];
         const currentPostseasonPitchingLogs = postseasonPlayerStats?.get("pitching:currentLogs") ?? [];
-        const previousGame = [...priorHittingLogs]
+        const previousRegularSeasonGame = [...priorHittingLogs]
             .filter((split) => {
                 const stat = split?.stat ?? {};
                 return statNumber(stat.plateAppearances) > 0 || statNumber(stat.atBats) > 0;
             })
             .sort((a, b) => String(b?.date ?? "").localeCompare(String(a?.date ?? "")))[0];
+        const previousPostseasonGame = [...currentPostseasonHittingLogs]
+            .filter((split) => {
+                const stat = split?.stat ?? {};
+                return String(split?.date ?? "") < date &&
+                    (statNumber(stat.plateAppearances) > 0 || statNumber(stat.atBats) > 0);
+            })
+            .sort((a, b) => String(b?.date ?? "").localeCompare(String(a?.date ?? "")))[0];
+        const previousGame = isPostseason
+            ? previousPostseasonGame
+            : previousRegularSeasonGame;
+        const currentPostseasonSeriesLogs = [];
+        if (isPostseason && previousPostseasonGame) {
+            const latestOpponentId = Number(previousPostseasonGame?.opponent?.id);
+            const sortedPostseasonLogs = [...currentPostseasonHittingLogs]
+                .filter((split) => String(split?.date ?? "") < date)
+                .sort((a, b) => String(b?.date ?? "").localeCompare(String(a?.date ?? "")));
+            for (const split of sortedPostseasonLogs) {
+                if (Number(split?.opponent?.id) !== latestOpponentId) {
+                    if (currentPostseasonSeriesLogs.length) break;
+                    continue;
+                }
+                currentPostseasonSeriesLogs.push(split);
+            }
+        }
         const notes = [];
         let importance = 0;
         const officialPlayerStatsUrl = (group, view) => {
@@ -7817,6 +7844,40 @@
                 importance += 30;
             }
         }
+        if (currentPostseasonSeriesLogs.length) {
+            const seriesStats = currentPostseasonSeriesLogs.reduce((total, split) => {
+                const stat = split?.stat ?? {};
+                total.atBats += statNumber(stat.atBats);
+                total.hits += statNumber(stat.hits);
+                total.homeRuns += statNumber(stat.homeRuns);
+                total.rbi += statNumber(stat.rbi);
+                total.stolenBases += statNumber(stat.stolenBases);
+                if (split?.game?.gamePk) total.games.add(Number(split.game.gamePk));
+                return total;
+            }, { atBats: 0, hits: 0, homeRuns: 0, rbi: 0, stolenBases: 0, games: new Set() });
+            if (seriesStats.hits >= 2 || seriesStats.rbi >= 2 ||
+                seriesStats.homeRuns >= 1 || seriesStats.stolenBases >= 1) {
+                const latestSeriesGame = currentPostseasonSeriesLogs[0];
+                const gameCount = seriesStats.games.size || currentPostseasonSeriesLogs.length;
+                const average = seriesStats.atBats
+                    ? formatAverage(seriesStats.hits / seriesStats.atBats)
+                    : ".000";
+                const extras = [
+                    seriesStats.stolenBases ? `${seriesStats.stolenBases}盗塁` : ""
+                ].filter(Boolean).join("　");
+                notes.push({
+                    text: `今シリーズ ${gameCount}試合 打率${average}　` +
+                        `${seriesStats.homeRuns}本塁打　${seriesStats.rbi}打点` +
+                        (extras ? `　${extras}` : ""),
+                    href: latestSeriesGame?.game?.gamePk
+                        ? `https://www.mlb.com/gameday/${latestSeriesGame.game.gamePk}/final`
+                        : `https://www.mlb.com/player/${playerId}`,
+                    postseasonSeriesPerformance: true
+                });
+                importance += seriesStats.hits + seriesStats.rbi +
+                    seriesStats.homeRuns * 3 + seriesStats.stolenBases;
+            }
+        }
         if (previousGame) {
             const stat = previousGame.stat ?? {};
             const hits = statNumber(stat.hits);
@@ -7830,13 +7891,15 @@
                     stolenBases ? `${stolenBases}盗塁` : ""
                 ].filter(Boolean).join("　");
                 notes.push({
-                    text: `${isYesterday ? "昨日" : "前戦"}（${compactDate(previousGame.date)} vs. ` +
+                    text: `${isYesterday ? "昨日" : "前戦"}${isPostseason ? "PS" : ""}` +
+                        `（${compactDate(previousGame.date)} vs. ` +
                         `${teamCode(previousGame.opponent)}）` +
                         `${statNumber(stat.atBats)}打数${hits}安打${rbi}打点` +
                         (extras ? `　${extras}` : ""),
                     href: previousGame?.game?.gamePk
                         ? `https://www.mlb.com/gameday/${previousGame.game.gamePk}/final`
-                        : officialPlayerStatsUrl("hitting", "gamelogs")
+                        : officialPlayerStatsUrl("hitting", "gamelogs"),
+                    postseasonRecentPerformance: isPostseason
                 });
                 importance += hits + rbi + homeRuns * 2 + stolenBases;
             }
@@ -8039,7 +8102,8 @@
             if (note.titleHolder) {
                 noteLink.classList.add("pregame-featured-note-season-title");
             }
-            if (note.postseasonPerformance) {
+            if (note.postseasonPerformance || note.postseasonRecentPerformance ||
+                note.postseasonSeriesPerformance) {
                 noteLink.classList.add("pregame-featured-note-postseason");
             }
             const statheadUrl = /自己最長(?:更新|タイ|.+まであと\d+)/.test(String(note.text ?? ""))
@@ -8490,7 +8554,8 @@
                 )).filter((player) => isPostseason
                     ? player.notes.some((note) => note.titleHolder ||
                         note.postseasonPerformance || note.seasonHistoricAchievement ||
-                        note.postseasonCarryoverStreak)
+                        note.postseasonCarryoverStreak || note.postseasonRecentPerformance ||
+                        note.postseasonSeriesPerformance)
                     : player.notes.length > 0
                 ).sort((a, b) =>
                     b.importance - a.importance ||

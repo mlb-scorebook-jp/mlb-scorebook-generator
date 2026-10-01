@@ -2007,6 +2007,10 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
 }
 
 .pregame-trade-date {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 3px;
     align-self: center;
     color: #aebbc2;
     font-size: 12px;
