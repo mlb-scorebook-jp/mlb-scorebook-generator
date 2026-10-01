@@ -7307,12 +7307,38 @@
         return container;
     };
 
+    const createLineupSeasonStat = (stat, titleNotes = []) => {
+        const container = el("span", "pregame-lineup-season");
+        if (!stat) {
+            container.textContent = "-";
+            return container;
+        }
+        const leaderCategories = new Set(titleNotes
+            .filter((note) => note?.titleHolder && note?.group === "hitting")
+            .map((note) => note.category));
+        const appendMetric = (value, suffix, category) => {
+            if (container.childNodes.length) container.append(" ");
+            container.append(el(
+                "span",
+                leaderCategories.has(category) ? "pregame-lineup-league-leader" : "",
+                String(value)
+            ));
+            if (suffix) container.append(suffix);
+        };
+        appendMetric(stat.avg ?? "-", "", "battingAverage");
+        appendMetric(statNumber(stat.homeRuns), "HR", "homeRuns");
+        appendMetric(statNumber(stat.rbi), "打点", "runsBattedIn");
+        appendMetric(statNumber(stat.stolenBases), "盗塁", "stolenBases");
+        return container;
+    };
+
     const renderStartingLineups = (
         teams,
         rosterBySide,
         seasonStatsByPlayer,
         matchupBySide,
-        opposingPitcherBySide
+        opposingPitcherBySide,
+        seasonTitleNotes
     ) => {
         const lineupSection = section("スタメン", "レギュラーシーズン成績");
         lineupSection.classList.add("pregame-span-12", "pregame-lineup-section");
@@ -7349,17 +7375,13 @@
                         entry?.allPositions?.[0]?.abbreviation ?? entry?.rosterPosition ?? "-";
                     const stat = seasonStatsByPlayer.get(Number(entry?.person?.id)) ?? null;
                     const matchups = matchupBySide[side]?.get(Number(entry?.person?.id)) ?? {};
-                    const average = stat?.avg ?? "-";
-                    const homeRuns = statNumber(stat?.homeRuns);
-                    const rbi = statNumber(stat?.rbi);
-                    const stolenBases = statNumber(stat?.stolenBases);
-                    const statText = stat
-                        ? `${average} ${homeRuns}HR ${rbi}打点 ${stolenBases}盗塁`
-                        : "-";
                     const playerBlock = el("span", "pregame-lineup-player-block");
                     playerBlock.append(
                         playerLink,
-                        el("span", "pregame-lineup-season", statText)
+                        createLineupSeasonStat(
+                            stat,
+                            seasonTitleNotes.get(Number(entry?.person?.id)) ?? []
+                        )
                     );
                     row.append(
                         el("span", "pregame-lineup-order", String(entry.order)),
@@ -8680,7 +8702,8 @@
                 rosterBySide,
                 lineupSeasonStats,
                 { away: awayLineupMatchups, home: homeLineupMatchups },
-                { away: homeProbable, home: awayProbable }
+                { away: homeProbable, home: awayProbable },
+                seasonTitleNotes
             ));
 
             const [featuredAwards, leagueTopFiveNotes, postseasonStatsByPlayer] = await Promise.all([

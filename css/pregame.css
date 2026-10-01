@@ -3571,6 +3571,11 @@ a.pregame-batting-stat:focus-visible {
     white-space: nowrap;
 }
 
+.pregame-lineup-league-leader {
+    color: #ffd432;
+    font-weight: 800;
+}
+
 .pregame-lineup-player:hover,
 .pregame-lineup-player:focus-visible {
     text-decoration: underline;
