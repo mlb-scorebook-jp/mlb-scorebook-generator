@@ -4117,7 +4117,7 @@
             ));
             const adjustment = tiebreakers.length > 0 && tiebreakers.every(Boolean) ? 1 : 0;
             const number = Math.max(0, 163 - standing.wins - targetLosses - adjustment);
-            if (number > 0) magic.set(Number(teamId), number);
+            if (number > 0 && number <= 30) magic.set(Number(teamId), number);
         }));
         return magic;
     };
