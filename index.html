@@ -6897,7 +6897,11 @@
                     notation = fieldingResult || field;
                 } else if (["flyout", "popout", "lineout"].includes(templateId)) {
                     const isFoulFly = /\bfoul territory\b|\bfoul ground\b/.test(description);
-                    notation = field ? `${field}${isFoulFly ? "f" : ""}` : "";
+                    // MLBの説明が「lines out / flies out」でも、落球後に送球して
+                    // 打者走者を刺した場合は守備経路（例: 4-3）を表示する。
+                    notation = fieldingResult.includes("-")
+                        ? fieldingResult
+                        : (field ? `${field}${isFoulFly ? "f" : ""}` : "");
                 } else if (templateId === "sac_fly") {
                     notation = field;
                 }
