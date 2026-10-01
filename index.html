@@ -10201,7 +10201,11 @@
                             .map((season) => ({
                                 id: Number(season?.seasonId),
                                 startDate: String(season?.regularSeasonStartDate ?? ""),
-                                endDate: String(season?.regularSeasonEndDate ?? "")
+                                endDate: String(
+                                    season?.postSeasonEndDate ??
+                                    season?.postseasonEndDate ??
+                                    season?.regularSeasonEndDate ?? ""
+                                )
                             }))
                             .filter((season) => Number.isInteger(season.id))
                             .sort((a, b) => b.id - a.id);
@@ -10257,9 +10261,12 @@
                     .then(async (response) => {
                         if (!response.ok) return [];
                         const payload = await response.json();
+                        const searchableGameTypes = new Set(["R", "F", "D", "L", "W"]);
                         return (payload?.dates ?? [])
                             .flatMap((date) => date?.games ?? [])
-                            .filter((game) => String(game?.gameType ?? "").toUpperCase() === "R")
+                            .filter((game) => searchableGameTypes.has(
+                                String(game?.gameType ?? "").toUpperCase()
+                            ))
                             .sort((a, b) =>
                                 String(a?.officialDate ?? "").localeCompare(String(b?.officialDate ?? "")) ||
                                 (Number(a?.gameNumber) || 0) - (Number(b?.gameNumber) || 0)
@@ -10274,9 +10281,9 @@
                 const params = new URLSearchParams({
                     sportId: "1",
                     date,
-                    gameType: "R"
+                    gameTypes: "R,F,D,L,W"
                 });
-                return getSearchGames(params, `date:${date}`);
+                return getSearchGames(params, `date:all-official:${date}`);
             };
 
             const todayGamesCache = new Map();
@@ -10429,11 +10436,11 @@
                     opponentId: String(orderedIds[1]),
                     startDate: `${season}-01-01`,
                     endDate: `${season}-12-31`,
-                    gameType: "R"
+                    gameTypes: "R,F,D,L,W"
                 });
                 return getSearchGames(
                     params,
-                    `matchup:${orderedIds[0]}:${orderedIds[1]}:${season}`
+                    `matchup:all-official:${orderedIds[0]}:${orderedIds[1]}:${season}`
                 ).then((games) => games.filter((game) =>
                     [
                         Number(game?.teams?.home?.team?.id),
