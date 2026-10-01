@@ -773,7 +773,13 @@
         return window.MLB_SCOREBOOK_JAPANESE_VENUE_NAMES?.[key] ?? name;
     };
 
-    const isFinal = (game) => /final|completed/i.test(getStatus(game));
+    const isFinal = (game) => {
+        const detailed = String(game?.status?.detailedState ?? "");
+        const abstract = String(game?.status?.abstractGameState ?? "");
+        const coded = String(game?.status?.codedGameState ?? "").toUpperCase();
+        return /final|completed|game over/i.test(`${detailed} ${abstract}`) ||
+            ["F", "O"].includes(coded);
+    };
     const isLive = (game) => /live|progress|delay/i.test(getStatus(game));
 
     const getSchedule = async (date, { fresh = false } = {}) => {
