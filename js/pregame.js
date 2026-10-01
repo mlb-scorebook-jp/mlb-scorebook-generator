@@ -7222,40 +7222,6 @@
             .filter(isFinal);
     };
 
-    const getPreviousGameBattingByPlayer = async (teamId, date, isPostseason) => {
-        const season = date.slice(0, 4);
-        const endDate = previousDate(date);
-        const params = new URLSearchParams({
-            sportId: "1",
-            teamId: String(teamId),
-            startDate: `${season}-01-01`,
-            endDate,
-            gameTypes: isPostseason ? "F,D,L,W" : "R"
-        });
-        const payload = await fetchJson(
-            `${API_ROOT}/v1/schedule?${params}`,
-            `pregame:lineup-previous-schedule:${teamId}:${endDate}:${isPostseason ? "P" : "R"}`
-        ).catch(() => null);
-        const previousGame = (payload?.dates ?? [])
-            .flatMap((entry) => entry?.games ?? [])
-            .filter(isFinal)
-            .sort((left, right) =>
-                String(right?.officialDate ?? "").localeCompare(String(left?.officialDate ?? ""))
-            )[0];
-        if (!previousGame?.gamePk) return { date: "", stats: new Map() };
-        const boxscore = await fetchJson(
-            `${API_ROOT}/v1/game/${previousGame.gamePk}/boxscore`,
-            `pregame:lineup-previous-boxscore:${previousGame.gamePk}`
-        ).catch(() => null);
-        const side = Number(previousGame?.teams?.away?.team?.id) === Number(teamId)
-            ? "away"
-            : "home";
-        const stats = new Map(Object.values(boxscore?.teams?.[side]?.players ?? {})
-            .map((entry) => [Number(entry?.person?.id), entry?.stats?.batting ?? null])
-            .filter(([playerId]) => Number.isFinite(playerId)));
-        return { date: String(previousGame.officialDate ?? ""), stats };
-    };
-
     const getLineupMatchupStats = async (playerIds, opposingPitcherId, opponentTeamId) => {
         const ids = [...new Set(playerIds.map(Number).filter(Number.isFinite))];
         if (!ids.length) return new Map();
@@ -7289,6 +7255,23 @@
         collect(vsPitcherPeople, "vsPitcher", "vsPlayerTotal");
         collect(vsTeamPeople, "vsTeam", "vsTeamTotal");
         return result;
+    };
+
+    const getLineupSeasonStats = async (playerIds, season) => {
+        const ids = [...new Set(playerIds.map(Number).filter(Number.isFinite))];
+        if (!ids.length) return new Map();
+        const hydrate = `stats(group=[hitting],type=[season],season=${season},gameType=[R])`;
+        const params = new URLSearchParams({ personIds: ids.join(","), hydrate });
+        const payload = await fetchJson(
+            `${API_ROOT}/v1/people?${params}`,
+            `pregame:lineup-season:${season}:${ids.join("-")}`
+        ).catch(() => null);
+        return new Map((payload?.people ?? []).map((person) => [
+            Number(person?.id),
+            (person?.stats ?? []).find((entry) =>
+                String(entry?.type?.displayName ?? "") === "season"
+            )?.splits?.[0]?.stat ?? null
+        ]));
     };
 
     const startingLineupEntries = (roster) => (roster ?? [])
@@ -7325,27 +7308,20 @@
     };
 
     const renderStartingLineups = (
-        feed,
         teams,
         rosterBySide,
-        previousBattingBySide,
+        seasonStatsByPlayer,
         matchupBySide,
-        opposingPitcherBySide,
-        date
+        opposingPitcherBySide
     ) => {
-        const lineupSection = section("スタメン", "前戦の打撃成績");
+        const lineupSection = section("スタメン", "レギュラーシーズン成績");
         lineupSection.classList.add("pregame-span-12", "pregame-lineup-section");
         const columns = el("div", "pregame-team-columns pregame-lineup-columns");
         [["away", teams.away], ["home", teams.home]].forEach(([side, team]) => {
             const column = el("div", "pregame-lineup-team");
-            const previous = previousBattingBySide[side] ?? { date: "", stats: new Map() };
-            const previousLabel = previous.date === previousDate(date)
-                ? "昨日"
-                : previous.date ? `前戦 ${compactDate(previous.date)}` : "前戦";
             const teamHeading = el("h4", "pregame-team-heading pregame-lineup-team-heading");
             teamHeading.append(
                 el("span", "pregame-lineup-team-code", teamCode(team)),
-                el("span", "pregame-lineup-column-heading", previousLabel),
                 el(
                     "span",
                     "pregame-lineup-column-heading",
@@ -7371,24 +7347,24 @@
                     playerLink.rel = "noopener noreferrer";
                     const position = entry?.position?.abbreviation ??
                         entry?.allPositions?.[0]?.abbreviation ?? entry?.rosterPosition ?? "-";
-                    const stat = previous.stats.get(Number(entry?.person?.id));
+                    const stat = seasonStatsByPlayer.get(Number(entry?.person?.id)) ?? null;
                     const matchups = matchupBySide[side]?.get(Number(entry?.person?.id)) ?? {};
-                    const atBats = statNumber(stat?.atBats);
-                    const hits = statNumber(stat?.hits);
+                    const average = stat?.avg ?? "-";
                     const homeRuns = statNumber(stat?.homeRuns);
                     const rbi = statNumber(stat?.rbi);
                     const stolenBases = statNumber(stat?.stolenBases);
-                    const statText = stat && (atBats > 0 || statNumber(stat?.plateAppearances) > 0)
-                        ? `${atBats}打数${hits}安打` +
-                            (homeRuns ? ` ${homeRuns}本塁打` : "") +
-                            (stolenBases ? ` ${stolenBases}盗塁` : "") +
-                            (rbi ? ` ${rbi}打点` : "")
-                        : "出場なし";
+                    const statText = stat
+                        ? `${average} ${homeRuns}HR ${rbi}打点 ${stolenBases}盗塁`
+                        : "-";
+                    const playerBlock = el("span", "pregame-lineup-player-block");
+                    playerBlock.append(
+                        playerLink,
+                        el("span", "pregame-lineup-season", statText)
+                    );
                     row.append(
                         el("span", "pregame-lineup-order", String(entry.order)),
                         el("span", "pregame-lineup-position", position),
-                        playerLink,
-                        el("span", "pregame-lineup-previous", statText),
+                        playerBlock,
                         createLineupMatchupStat(matchups.vsPitcher, "pitcher"),
                         createLineupMatchupStat(matchups.vsTeam, "team")
                     );
@@ -8645,9 +8621,7 @@
                 titleRaceHighlights,
                 seasonTitleNotes,
                 awayRoster,
-                homeRoster,
-                awayPreviousBatting,
-                homePreviousBatting
+                homeRoster
             ] = await Promise.all([
                 getStartingPitcherData(awayProbable, date, homeTeam, venue, isPostseason),
                 getStartingPitcherData(homeProbable, date, awayTeam, venue, isPostseason),
@@ -8656,12 +8630,14 @@
                     ? getLeagueTopFiveNotes(date, true)
                     : Promise.resolve(new Map()),
                 getFeaturedPlayers(feed, "away", date),
-                getFeaturedPlayers(feed, "home", date),
-                getPreviousGameBattingByPlayer(awayTeam.id, date, isPostseason),
-                getPreviousGameBattingByPlayer(homeTeam.id, date, isPostseason)
+                getFeaturedPlayers(feed, "home", date)
             ]);
             const rosterBySide = { away: awayRoster, home: homeRoster };
-            const [awayLineupMatchups, homeLineupMatchups] = await Promise.all([
+            const lineupPlayerIds = [
+                ...startingLineupEntries(awayRoster),
+                ...startingLineupEntries(homeRoster)
+            ].map((entry) => entry?.person?.id);
+            const [awayLineupMatchups, homeLineupMatchups, lineupSeasonStats] = await Promise.all([
                 getLineupMatchupStats(
                     startingLineupEntries(awayRoster).map((entry) => entry?.person?.id),
                     homeProbable?.id,
@@ -8671,7 +8647,8 @@
                     startingLineupEntries(homeRoster).map((entry) => entry?.person?.id),
                     awayProbable?.id,
                     awayTeam.id
-                )
+                ),
+                getLineupSeasonStats(lineupPlayerIds, Number(date.slice(0, 4)))
             ]);
             const gameHighlights = [
                 ...getStartingPitcherGameHighlights([
@@ -8699,13 +8676,11 @@
             startingSection.append(startingGrid);
             grid.append(startingSection);
             grid.append(renderStartingLineups(
-                feed,
                 { away: awayTeam, home: homeTeam },
                 rosterBySide,
-                { away: awayPreviousBatting, home: homePreviousBatting },
+                lineupSeasonStats,
                 { away: awayLineupMatchups, home: homeLineupMatchups },
-                { away: homeProbable, home: awayProbable },
-                date
+                { away: homeProbable, home: awayProbable }
             ));
 
             const [featuredAwards, leagueTopFiveNotes, postseasonStatsByPlayer] = await Promise.all([
