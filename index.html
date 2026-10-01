@@ -5285,6 +5285,7 @@
 
             const getPostseasonScoreLabel = () => {
                 const game = state.gameData?.gameData?.game ?? {};
+                const schedule = state.gameData?.gameData?.schedule ?? {};
                 const gameType = String(game?.type ?? game?.gameType ?? "").toUpperCase();
                 const awayLeagueId = Number(state.gameData?.gameData?.teams?.away?.league?.id);
                 const homeLeagueId = Number(state.gameData?.gameData?.teams?.home?.league?.id);
@@ -5311,7 +5312,9 @@
                 })[gameType];
                 if (!seriesCode) return "";
                 const seriesGameNumber = Number(
-                    game?.seriesGameNumber ?? game?.gameNumber
+                    schedule?.seriesGameNumber ??
+                    schedule?.seriesStatus?.gameNumber ??
+                    game?.seriesGameNumber
                 );
                 const gameSuffix = seriesGameNumber > 0
                     ? ` GAME${seriesGameNumber}`
