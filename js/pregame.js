@@ -4433,6 +4433,20 @@
         return [...grouped.values()];
     };
 
+    const postseasonEliminatedTeamIds = (seriesResults) => {
+        const eliminated = new Set();
+        (seriesResults ?? []).forEach((series) => {
+            const winnerId = series.teamIds.find((teamId) =>
+                (series.wins.get(teamId) ?? 0) >= series.winsToAdvance
+            );
+            if (!Number.isFinite(winnerId)) return;
+            series.teamIds.forEach((teamId) => {
+                if (Number(teamId) !== Number(winnerId)) eliminated.add(Number(teamId));
+            });
+        });
+        return eliminated;
+    };
+
     const findPostseasonSeries = (seriesResults, gameType, league, upper, lower) => {
         const teamIds = [Number(upper?.team?.id), Number(lower?.team?.id)]
             .filter(Number.isFinite)
@@ -4498,7 +4512,12 @@
         return panel;
     };
 
-    const renderPostseasonPicture = async (standings, date, postseasonWindow) => {
+    const renderPostseasonPicture = async (
+        standings,
+        date,
+        postseasonWindow,
+        knownSeriesResults = null
+    ) => {
         const snapshotDate = previousDate(date);
         const postseasonStarted = postseasonWindow?.postseasonStartDate <= date;
         const postseasonSection = section(
@@ -4525,7 +4544,7 @@
             Number(standing?.team?.id),
             standing
         ]));
-        const seriesResults = await getPostseasonSeriesResults(
+        const seriesResults = knownSeriesResults ?? await getPostseasonSeriesResults(
             postseasonWindow?.postseasonStartDate ?? `${date.slice(0, 4)}-09-01`,
             date
         );
@@ -5936,6 +5955,15 @@
                     ...postseasonSeeds(standings, "NL")
                 ].map((standing) => Number(standing.team.id)))
                 : null;
+            const postseasonSeriesResults = postseasonTeams
+                ? await getPostseasonSeriesResults(
+                    postseasonWindow.postseasonStartDate,
+                    date
+                )
+                : [];
+            const eliminatedPostseasonTeams = postseasonEliminatedTeamIds(
+                postseasonSeriesResults
+            );
             const dashboard = el("div", "pregame-dashboard");
             const japaneseSection = section(
                 "日本人選手",
@@ -5959,9 +5987,14 @@
                     if (person.pregameTeamId) card.dataset.pregameTeam = String(person.pregameTeamId);
                     if (game) card.dataset.pregameGame = String(game.gamePk);
                     const rosterStatus = person.pregameRosterState?.rosterStatus;
+                    const postseasonEliminated = eliminatedPostseasonTeams.has(
+                        Number(person.pregameTeamId)
+                    );
                     const playerStatus = rosterStatus
                         ? rosterStatus
-                        : (game
+                        : (postseasonEliminated
+                            ? "今季終了"
+                            : game
                             ? japanesePlayerGameStatusLabel(game)
                             : (postseasonTeams && !postseasonTeams.has(Number(person.pregameTeamId))
                                 ? "今季終了"
@@ -6112,7 +6145,12 @@
                 standings
             ));
             if (shouldShowPostseasonPicture(date, postseasonWindow)) {
-                dashboard.append(await renderPostseasonPicture(standings, date, postseasonWindow));
+                dashboard.append(await renderPostseasonPicture(
+                    standings,
+                    date,
+                    postseasonWindow,
+                    postseasonSeriesResults
+                ));
             }
             dom.content.replaceChildren(dashboard);
         } catch (error) {
