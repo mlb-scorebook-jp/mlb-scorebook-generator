@@ -443,7 +443,8 @@
     window.MLB_POSTSEASON_APPEARANCE_NOTES = POSTSEASON_APPEARANCE_NOTES;
 
     // Source: MLBポストシーズン資料(2026完成版).xlsx
-    // F=DS進出、D=LCS進出、L=WS進出、W=WS優勝時の「年ぶり／連続・回目」。
+    // F=ポストシーズン進出、D=勝ち上がり、L=WS進出、W=WS優勝時の
+    // 「年ぶり／連続・回目」。ワイルドカード突破時はDを使用する。
     const POSTSEASON_ADVANCEMENT_NOTES = {
         2026: {
             BOS: { F: "2年連続27回目", D: "5年ぶり13回目", L: "8年ぶり14回目", W: "8年ぶり10回目" },

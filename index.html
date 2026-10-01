@@ -372,7 +372,7 @@
     <script src="js/daily-records.js?v=20260928-article-player-attribution-2"></script>
     <script src="js/mlb-global-events.js?v=20260918-1"></script>
     <script src="js/mlb-prospect-rankings.js?v=20260927"></script>
-    <script src="js/pregame.js?v=20261001-division-magic-30"></script>
+    <script src="js/pregame.js?v=20261001-advancement-count-fix"></script>
 
     <script>
         (() => {
@@ -4055,8 +4055,12 @@
                     L: "ワールドシリーズ進出決定",
                     W: "ワールドシリーズ優勝"
                 }[gameType];
+                // The reference workbook counts a Wild Card winner's Division Series
+                // advancement in the same progression column used for the next-round
+                // appearance totals, rather than the broad postseason appearance total.
+                const achievementKey = gameType === "F" ? "D" : gameType;
                 const achievement =
-                    window.MLB_POSTSEASON_ADVANCEMENT_NOTES?.[season]?.[code]?.[gameType];
+                    window.MLB_POSTSEASON_ADVANCEMENT_NOTES?.[season]?.[code]?.[achievementKey];
                 const teamId = Number(team?.id);
                 const awayTeamId = Number(data?.gameData?.teams?.away?.id);
                 const homeTeamId = Number(data?.gameData?.teams?.home?.id);
