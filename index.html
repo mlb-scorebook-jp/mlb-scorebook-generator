@@ -372,7 +372,7 @@
     <script src="js/daily-records.js?v=20260928-article-player-attribution-2"></script>
     <script src="js/mlb-global-events.js?v=20260918-1"></script>
     <script src="js/mlb-prospect-rankings.js?v=20260927"></script>
-    <script src="js/pregame.js?v=20260929-title-team-modes-11"></script>
+    <script src="js/pregame.js?v=20261001-postseason-advancement-1"></script>
 
     <script>
         (() => {
@@ -4043,6 +4043,111 @@
                 };
             };
 
+            const buildPostseasonAdvancementNote = async ({
+                data, team, code, season, officialDate, gameFinal
+            }) => {
+                const gameType = String(
+                    data?.gameData?.game?.type ?? data?.gameData?.game?.gameType ?? ""
+                ).toUpperCase();
+                const nextStage = {
+                    F: "ディビジョンシリーズ進出決定",
+                    D: "リーグ優勝決定シリーズ進出決定",
+                    L: "ワールドシリーズ進出決定",
+                    W: "ワールドシリーズ優勝"
+                }[gameType];
+                const achievement =
+                    window.MLB_POSTSEASON_ADVANCEMENT_NOTES?.[season]?.[code]?.[gameType];
+                const teamId = Number(team?.id);
+                const awayTeamId = Number(data?.gameData?.teams?.away?.id);
+                const homeTeamId = Number(data?.gameData?.teams?.home?.id);
+                const opponentId = teamId === awayTeamId ? homeTeamId : awayTeamId;
+                if (!gameFinal || !nextStage || !teamId || !opponentId ||
+                    !/^\d{4}-\d{2}-\d{2}$/.test(officialDate)) return null;
+
+                const params = new URLSearchParams({
+                    sportId: "1",
+                    teamId: String(teamId),
+                    opponentId: String(opponentId),
+                    startDate: `${season}-09-01`,
+                    endDate: officialDate,
+                    gameType
+                });
+                const response = await fetch(
+                    `https://statsapi.mlb.com/api/v1/schedule?${params}`,
+                    { cache: "no-store" }
+                ).catch(() => null);
+                if (!response?.ok) return null;
+                const payload = await response.json();
+                const seriesGames = (payload?.dates ?? [])
+                    .flatMap((entry) => entry?.games ?? [])
+                    .filter((game) => {
+                        const ids = [
+                            Number(game?.teams?.away?.team?.id),
+                            Number(game?.teams?.home?.team?.id)
+                        ];
+                        return ids.includes(teamId) && ids.includes(opponentId) &&
+                            String(game?.gameType ?? "").toUpperCase() === gameType;
+                    });
+                const currentGamePk = Number(data?.gamePk ?? state.gamePk);
+                const currentGame = seriesGames.find((game) =>
+                    Number(game?.gamePk) === currentGamePk
+                );
+                const gamesInSeries = Number(currentGame?.gamesInSeries) ||
+                    Number(data?.gameData?.game?.gamesInSeries);
+                const winsToAdvance = Number.isFinite(gamesInSeries) && gamesInSeries > 0
+                    ? Math.floor(gamesInSeries / 2) + 1
+                    : ({ F: 2, D: 3, L: 4, W: 4 })[gameType];
+                const isFinalScheduleGame = (game) => {
+                    const status = game?.status ?? {};
+                    return /final|completed|game over/i.test(
+                        `${status?.detailedState ?? ""} ${status?.abstractGameState ?? ""}`
+                    ) || ["F", "O"].includes(
+                        String(status?.codedGameState ?? "").toUpperCase()
+                    );
+                };
+                const wins = seriesGames.filter((game) => {
+                    if (!isFinalScheduleGame(game)) return false;
+                    const away = game?.teams?.away ?? {};
+                    const home = game?.teams?.home ?? {};
+                    const awayScore = Number(away?.score);
+                    const homeScore = Number(home?.score);
+                    const winnerId = away?.isWinner === true ||
+                        (Number.isFinite(awayScore) && awayScore > homeScore)
+                        ? Number(away?.team?.id)
+                        : home?.isWinner === true ||
+                            (Number.isFinite(homeScore) && homeScore > awayScore)
+                            ? Number(home?.team?.id)
+                            : 0;
+                    return winnerId === teamId;
+                }).length;
+                const currentWon = currentGame && isFinalScheduleGame(currentGame) && (() => {
+                    const away = currentGame?.teams?.away ?? {};
+                    const home = currentGame?.teams?.home ?? {};
+                    return away?.isWinner === true
+                        ? Number(away?.team?.id) === teamId
+                        : home?.isWinner === true
+                            ? Number(home?.team?.id) === teamId
+                            : Number(teamId === Number(away?.team?.id)
+                                ? away?.score : home?.score) > Number(teamId === Number(away?.team?.id)
+                                ? home?.score : away?.score);
+                })();
+                if (!currentWon || wins !== winsToAdvance) return null;
+
+                const advancementText = achievement === "初"
+                    ? gameType === "W"
+                        ? "ワールドシリーズ初優勝"
+                        : `初の${nextStage}`
+                    : achievement
+                        ? `${achievement}の${nextStage}`
+                        : nextStage;
+                return {
+                    text: `${code}　${advancementText}`,
+                    priority: -12,
+                    link: `https://www.mlb.com/gameday/${currentGamePk}`,
+                    linkType: "mlb-official-record"
+                };
+            };
+
             const fetchStreakNotes = async (data, gamePk) => {
                 const gameFinal = isGameFinal(data);
                 const liveRevision = (data?.liveData?.plays?.allPlays ?? []).reduce(
@@ -4172,7 +4277,8 @@
                     const [
                         divisionTitleNote,
                         postseasonAppearanceNote,
-                        losingRecordPostseasonNote
+                        losingRecordPostseasonNote,
+                        postseasonAdvancementNote
                     ] = await Promise.all([
                         buildDivisionTitleNote({
                             data, team, code, season, officialDate, gameFinal
@@ -4181,6 +4287,9 @@
                             data, team, code, season, officialDate, gameFinal
                         }),
                         buildLosingRecordPostseasonNote({
+                            data, team, code, season, officialDate, gameFinal
+                        }),
+                        buildPostseasonAdvancementNote({
                             data, team, code, season, officialDate, gameFinal
                         })
                     ]);
@@ -4498,6 +4607,7 @@
                     if (postseasonAppearanceNote) notes.push(postseasonAppearanceNote);
                     if (losingRecordPostseasonNote) notes.push(losingRecordPostseasonNote);
                     if (divisionTitleNote) notes.push(divisionTitleNote);
+                    if (postseasonAdvancementNote) notes.push(postseasonAdvancementNote);
                     if (gameFinal && !isPostseasonGame) {
                         const sharedRecords = await sharedDailyRecordsPromise;
                         const sideTeamId = Number(team?.id);
