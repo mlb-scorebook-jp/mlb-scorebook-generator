@@ -845,6 +845,7 @@
         const postseason = gameType !== "R";
         return {
             totalGames,
+            seriesGameNumber: targetNumber,
             starCount: postseason ? Math.floor(totalGames / 2) + 1 : totalGames,
             gameType,
             wins
@@ -4863,6 +4864,7 @@
         };
         dom.title.className = "pregame-matchup-heading";
         if (seriesStanding) dom.title.classList.add("pregame-series-standing-active");
+        if (seriesStanding) dom.title.classList.add("pregame-series-game-heading");
         if (isPostseason) dom.title.classList.add("pregame-postseason-matchup-heading");
         if (showWildCard) dom.title.classList.add("pregame-wild-card-active");
         dom.title.parentElement?.classList.add("pregame-matchup-title-block");
@@ -4875,9 +4877,16 @@
                 teamBlock(homeTeam)
             ]
             : [teamBlock(awayTeam), el("span", "pregame-header-versus", "VS."), teamBlock(homeTeam)];
+        const seriesGameNumber = Number(seriesStanding?.seriesGameNumber);
+        const totalSeriesGames = Number(seriesStanding?.totalGames);
+        const seriesGameLabel = Number.isInteger(seriesGameNumber)
+            ? isPostseason
+                ? `${postseasonLabel} GAME ${seriesGameNumber}`
+                : `GAME ${seriesGameNumber}/${totalSeriesGames}`
+            : postseasonLabel;
         dom.title.replaceChildren(
-            ...(isPostseason
-                ? [el("span", "pregame-postseason-series-title", postseasonLabel)]
+            ...(seriesGameLabel
+                ? [el("span", "pregame-postseason-series-title", seriesGameLabel)]
                 : []),
             ...matchupHeading
         );
@@ -7358,7 +7367,12 @@
             .filter(isFinal);
     };
 
-    const getLineupMatchupStats = async (playerIds, opposingPitcherId, opponentTeamId) => {
+    const getLineupMatchupStats = async (
+        playerIds,
+        opposingPitcherId,
+        opponentTeamId,
+        date
+    ) => {
         const ids = [...new Set(playerIds.map(Number).filter(Number.isFinite))];
         if (!ids.length) return new Map();
         const fetchMatchups = async (type, extraParameter, extraValue) => {
@@ -7375,9 +7389,23 @@
             ).catch(() => null);
             return payload?.people ?? [];
         };
-        const [vsPitcherPeople, vsTeamPeople] = await Promise.all([
+        const season = Number(String(date).slice(0, 4));
+        const endDate = previousDate(date);
+        const gameLogHydrate = `stats(group=[hitting],type=[gameLog],` +
+            `season=${season},gameType=[R])`;
+        const gameLogParams = new URLSearchParams({
+            personIds: ids.join(","),
+            hydrate: gameLogHydrate
+        });
+        const [vsPitcherPeople, gameLogPayload, pitcherRows] = await Promise.all([
             fetchMatchups("vsPlayer", "opposingPlayerId", opposingPitcherId),
-            fetchMatchups("vsTeamTotal", "opposingTeamId", opponentTeamId)
+            fetchJson(
+                `${API_ROOT}/v1/people?${gameLogParams}`,
+                `pregame:lineup-vs-team:${opponentTeamId}:${endDate}:${ids.join("-")}`
+            ).catch(() => null),
+            opposingPitcherId
+                ? getSavantPitchRows(opposingPitcherId, season, date).catch(() => null)
+                : Promise.resolve(null)
         ]);
         const result = new Map(ids.map((id) => [id, { vsPitcher: null, vsTeam: null }]));
         const collect = (people, field, displayName) => {
@@ -7388,24 +7416,90 @@
                 if (result.has(Number(person?.id))) result.get(Number(person.id))[field] = stats;
             });
         };
-        collect(vsPitcherPeople, "vsPitcher", "vsPlayerTotal");
-        collect(vsTeamPeople, "vsTeam", "vsTeamTotal");
+        const hitEvents = new Set(["single", "double", "triple", "home_run"]);
+        const nonAtBatEvents = new Set([
+            "walk", "intent_walk", "hit_by_pitch", "sac_fly", "sac_bunt",
+            "catcher_interf", "runner_interf"
+        ]);
+        const currentSeasonVsPitcher = new Map(ids.map((id) => [
+            id,
+            { atBats: 0, hits: 0, homeRuns: 0 }
+        ]));
+        (pitcherRows ?? []).forEach((row) => {
+            const batterId = Number(row?.batter);
+            const event = String(row?.events ?? "").toLowerCase();
+            if (!currentSeasonVsPitcher.has(batterId) || !event ||
+                String(row?.game_type ?? "R") !== "R") return;
+            const totals = currentSeasonVsPitcher.get(batterId);
+            if (!nonAtBatEvents.has(event)) totals.atBats += 1;
+            if (hitEvents.has(event)) totals.hits += 1;
+            if (event === "home_run") totals.homeRuns += 1;
+        });
+        if (pitcherRows === null) {
+            collect(vsPitcherPeople, "vsPitcher", "vsPlayerTotal");
+        }
+        if (pitcherRows !== null) vsPitcherPeople.forEach((person) => {
+            const totals = { atBats: 0, hits: 0, homeRuns: 0 };
+            const seasonSplits = (person?.stats ?? []).find((entry) =>
+                String(entry?.type?.displayName ?? "") === "vsPlayer"
+            )?.splits ?? [];
+            seasonSplits.filter((split) => Number(split?.season) < season)
+                .forEach((split) => {
+                    totals.atBats += statNumber(split?.stat?.atBats);
+                    totals.hits += statNumber(split?.stat?.hits);
+                    totals.homeRuns += statNumber(split?.stat?.homeRuns);
+                });
+            const current = currentSeasonVsPitcher.get(Number(person?.id));
+            if (current) {
+                totals.atBats += current.atBats;
+                totals.hits += current.hits;
+                totals.homeRuns += current.homeRuns;
+            }
+            totals.avg = totals.atBats
+                ? (totals.hits / totals.atBats).toFixed(3).replace(/^0/, "")
+                : ".000";
+            if (result.has(Number(person?.id))) {
+                result.get(Number(person.id)).vsPitcher = totals;
+            }
+        });
+        (gameLogPayload?.people ?? []).forEach((person) => {
+            const totals = (person?.stats ?? [])
+                .find((entry) => String(entry?.type?.displayName ?? "") === "gameLog")
+                ?.splits?.filter((split) =>
+                    String(split?.date ?? "") <= endDate &&
+                    Number(split?.opponent?.id) === Number(opponentTeamId)
+                ).reduce((sum, split) => {
+                    sum.atBats += statNumber(split?.stat?.atBats);
+                    sum.hits += statNumber(split?.stat?.hits);
+                    sum.homeRuns += statNumber(split?.stat?.homeRuns);
+                    return sum;
+                }, { atBats: 0, hits: 0, homeRuns: 0 }) ?? null;
+            if (!totals || !result.has(Number(person?.id))) return;
+            totals.avg = totals.atBats
+                ? (totals.hits / totals.atBats).toFixed(3).replace(/^0/, "")
+                : ".000";
+            result.get(Number(person.id)).vsTeam = totals;
+        });
         return result;
     };
 
-    const getLineupSeasonStats = async (playerIds, season) => {
+    const getLineupSeasonStats = async (playerIds, date) => {
         const ids = [...new Set(playerIds.map(Number).filter(Number.isFinite))];
         if (!ids.length) return new Map();
-        const hydrate = `stats(group=[hitting],type=[season],season=${season},gameType=[R])`;
+        const season = Number(String(date).slice(0, 4));
+        const endDate = previousDate(date);
+        if (!Number.isFinite(season) || endDate < `${season}-01-01`) return new Map();
+        const hydrate = `stats(group=[hitting],type=[byDateRange],` +
+            `startDate=${season}-01-01,endDate=${endDate},gameType=[R])`;
         const params = new URLSearchParams({ personIds: ids.join(","), hydrate });
         const payload = await fetchJson(
             `${API_ROOT}/v1/people?${params}`,
-            `pregame:lineup-season:${season}:${ids.join("-")}`
+            `pregame:lineup-season:${endDate}:${ids.join("-")}`
         ).catch(() => null);
         return new Map((payload?.people ?? []).map((person) => [
             Number(person?.id),
             (person?.stats ?? []).find((entry) =>
-                String(entry?.type?.displayName ?? "") === "season"
+                String(entry?.type?.displayName ?? "") === "byDateRange"
             )?.splits?.[0]?.stat ?? null
         ]));
     };
@@ -8806,14 +8900,16 @@
                 getLineupMatchupStats(
                     startingLineupEntries(awayRoster).map((entry) => entry?.person?.id),
                     homeProbable?.id,
-                    homeTeam.id
+                    homeTeam.id,
+                    date
                 ),
                 getLineupMatchupStats(
                     startingLineupEntries(homeRoster).map((entry) => entry?.person?.id),
                     awayProbable?.id,
-                    awayTeam.id
+                    awayTeam.id,
+                    date
                 ),
-                getLineupSeasonStats(lineupPlayerIds, Number(date.slice(0, 4)))
+                getLineupSeasonStats(lineupPlayerIds, date)
             ]);
             const gameHighlights = [
                 ...getStartingPitcherGameHighlights([
