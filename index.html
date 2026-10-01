@@ -7377,26 +7377,30 @@
                                         `${runnerDescription} ${mainDescription}`.toLowerCase()
                                     );
                                 if (isPickoffOut) {
-                                    const isHoernerSecondInningRundown =
-                                        Number(state.gamePk) === 824625 &&
-                                        side === "home" &&
-                                        inning === 2 &&
-                                        /nico hoerner/.test(
-                                            `${runnerDescription} ${mainDescription}`.toLowerCase()
-                                        ) &&
-                                        /picked off and caught stealing 2nd base/.test(
-                                            `${runnerDescription} ${mainDescription}`.toLowerCase()
-                                        );
-                                    const pickoffNumbers = getFieldingNumbers(
-                                        play,
-                                        mainDescription,
+                                    const creditedPickoffNumbers = getCreditFieldingNumbers(
                                         runner?.credits ?? []
                                     );
-                                    target.outResult = isHoernerSecondInningRundown
-                                        ? "1-3PO/3-6-3TO"
-                                        : pickoffNumbers.length
+                                    const pickoffNumbers = creditedPickoffNumbers.length
+                                            ? creditedPickoffNumbers
+                                            : getFieldingNumbers(
+                                                play,
+                                                runnerDescription,
+                                                runner?.credits ?? []
+                                            );
+                                    const isPickoffCaughtStealing =
+                                        runnerEventType.includes("pickoff_caught_stealing") ||
+                                        /picked off and caught stealing/.test(
+                                            runnerDescription.toLowerCase()
+                                        );
+                                    if (isPickoffCaughtStealing && pickoffNumbers.length >= 3) {
+                                        const pickoffRoute = pickoffNumbers.slice(0, 2).join("-");
+                                        const rundownRoute = pickoffNumbers.slice(1).join("-");
+                                        target.outResult = `${pickoffRoute}PO/${rundownRoute}TO`;
+                                    } else {
+                                        target.outResult = pickoffNumbers.length
                                             ? `${pickoffNumbers.join("-")}PO`
                                             : "PO";
+                                    }
                                     target.outResultAtBatIndex = Number.isInteger(
                                         Number(play?.about?.atBatIndex)
                                     ) ? Number(play.about.atBatIndex) : null;
