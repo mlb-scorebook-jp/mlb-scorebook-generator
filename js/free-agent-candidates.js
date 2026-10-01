@@ -88,7 +88,6 @@
             { playerId: 669456, name: "Shane Bieber", teamId: 141, position: "RHP", pitcherRole: "SP" },
             { playerId: 669203, name: "Corbin Burnes", teamId: 109, position: "RHP", pitcherRole: "SP" },
             { playerId: 605540, name: "Brandon Woodruff", teamId: 158, position: "RHP", pitcherRole: "SP" },
-            { playerId: 837227, name: "Tatsuya Imai", teamId: 117, position: "RHP", pitcherRole: "SP" },
             { playerId: 656427, name: "Jack Flaherty", teamId: 116, position: "RHP", pitcherRole: "SP" },
             { playerId: 543243, name: "Sonny Gray", teamId: 111, position: "RHP", pitcherRole: "SP" },
             { playerId: 605280, name: "Clay Holmes", teamId: 112, position: "RHP", pitcherRole: "SP" },

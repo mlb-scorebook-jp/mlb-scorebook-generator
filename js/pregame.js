@@ -2806,6 +2806,9 @@
     };
 
     const AL_TEAM_IDS = new Set([108, 110, 111, 114, 116, 117, 118, 133, 136, 139, 140, 141, 142, 145, 147]);
+    const FREE_AGENT_OPT_OUT_CONTRACT_YEARS = new Map([
+        [837227, 3]
+    ]);
 
     const formatAgreementDate = (date) => {
         const match = String(date ?? "").match(/^\d{4}-(\d{2})-(\d{2})$/);
@@ -3484,6 +3487,7 @@
                     formerTeam: { ...formerTeam, id: formerTeamId },
                     declaredFreeAgent: true,
                     declaredDate,
+                    optOutContractYears: FREE_AGENT_OPT_OUT_CONTRACT_YEARS.get(playerId) || 0,
                     sourceUrl: `https://www.mlb.com/transactions?date=${declaredDate}`,
                     upcoming: true
                 });
@@ -3732,10 +3736,13 @@
                         if (details) details.append(status);
                         else row.append(status);
                     } else if (entry.declaredFreeAgent) {
+                        const declaredLabel = entry.optOutContractYears
+                            ? `${entry.optOutContractYears}年契約途中でオプトアウト権を行使`
+                            : "FA選択";
                         const declaredStatus = el(
                             "a",
                             "pregame-free-agent-declared-status",
-                            `FA選択（${formatAgreementDate(entry.declaredDate)}）`
+                            `${declaredLabel}（${formatAgreementDate(entry.declaredDate)}）`
                         );
                         declaredStatus.href = entry.sourceUrl;
                         declaredStatus.target = "_blank";
