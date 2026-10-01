@@ -2322,6 +2322,53 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
     letter-spacing: 0.04em;
 }
 
+.pregame-free-agent-contract-ending .pregame-free-agent-new {
+    margin-left: 6px;
+    vertical-align: 1px;
+}
+
+.pregame-free-agent-daily-updates {
+    margin: 10px;
+    border: 1px solid #50606a;
+    background: #182329;
+}
+
+.pregame-free-agent-daily-updates h4 {
+    margin: 0;
+    padding: 7px 10px;
+    border-bottom: 1px solid #50606a;
+    background: #273640;
+    color: #ffd432;
+    font-size: 13px;
+}
+
+.pregame-free-agent-daily-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #eef5f8;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.pregame-free-agent-daily-status:hover,
+.pregame-free-agent-daily-status:focus-visible {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.pregame-free-agent-declared-status {
+    color: #ffd432;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.pregame-free-agent-declared-status:hover,
+.pregame-free-agent-declared-status:focus-visible {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
 .pregame-free-agents-collapsed > :not(.pregame-section-header) {
     display: none;
 }
@@ -2408,6 +2455,9 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
 }
 
 .pregame-transfer-modes button {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
     cursor: pointer;
 }
 

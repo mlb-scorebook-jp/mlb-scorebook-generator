@@ -2772,6 +2772,23 @@
             .sort()[0] ?? "";
     };
 
+    const getRegularSeasonEndDate = async (season) => {
+        const params = new URLSearchParams({
+            sportId: "1",
+            season: String(season),
+            gameTypes: "R"
+        });
+        const payload = await fetchJson(
+            `${API_ROOT}/v1/schedule?${params}`,
+            `pregame:regular-season-start:${season}`
+        ).catch(() => null);
+        return (payload?.dates ?? [])
+            .map((entry) => String(entry?.date ?? ""))
+            .filter(Boolean)
+            .sort()
+            .at(-1) ?? "";
+    };
+
     const getUsdJpyRate = async (date) => {
         const rates = [...(window.MLB_BOJ_USD_JPY ?? [])]
             .filter((item) => Number.isFinite(Number(item.rate)));
@@ -2934,12 +2951,36 @@
         return payload?.transactions ?? [];
     };
 
-    const refreshTransfersHeaderNew = async (date = currentEasternDate()) => {
-        const button = document.getElementById("header-transfers-btn");
-        if (!button) return false;
+    const isFreeAgentUpdateTransaction = (transaction) =>
+        String(transaction?.typeCode ?? "") === "SFA" ||
+        /elected free agency/i.test(String(transaction?.description ?? ""));
+
+    const getFreeAgentNewTransactions = async (date = currentEasternDate()) =>
+        (await fetchFreeAgentTransactions(date, date)).filter(isFreeAgentUpdateTransaction);
+
+    const getFreeAgentNewPlayerIds = async (date = currentEasternDate()) => {
+        const transactions = await getFreeAgentNewTransactions(date);
+        const playerIds = new Set(
+            transactions
+                .map((transaction) => Number(transaction?.person?.id))
+                .filter(Boolean)
+        );
+        Object.entries(window.MLB_FREE_AGENT_AGREEMENTS ?? {}).forEach(([playerId, entry]) => {
+            if (entry?.agreedDate === date) playerIds.add(Number(playerId));
+        });
+        Object.entries(window.MLB_FREE_AGENT_RETIREMENTS ?? {}).forEach(([playerId, entry]) => {
+            if (entry?.retiredDate === date) playerIds.add(Number(playerId));
+        });
+        return playerIds;
+    };
+
+    const getTransferNewStatus = async (date = currentEasternDate()) => {
         const transactions = await fetchFreeAgentTransactions(date, date);
-        const hasTransactionUpdate = transactions.some((transaction) =>
-            ["TR", "SFA"].includes(String(transaction?.typeCode ?? "")) ||
+        const hasTradeUpdate = transactions.some((transaction) =>
+            String(transaction?.typeCode ?? "") === "TR"
+        );
+        const hasFreeAgentTransactionUpdate = transactions.some((transaction) =>
+            String(transaction?.typeCode ?? "") === "SFA" ||
             /elected free agency/i.test(String(transaction?.description ?? ""))
         );
         const hasAgreementUpdate = Object.values(window.MLB_FREE_AGENT_AGREEMENTS ?? {})
@@ -2953,8 +2994,18 @@
                 player?.signing?.agreedDate === date ||
                 player?.outcome?.date === date
             );
-        const hasNew = hasTransactionUpdate || hasAgreementUpdate ||
-            hasRetirementUpdate || hasPostingUpdate;
+        return {
+            trades: hasTradeUpdate,
+            freeAgents: hasFreeAgentTransactionUpdate || hasAgreementUpdate ||
+                hasRetirementUpdate || hasPostingUpdate
+        };
+    };
+
+    const refreshTransfersHeaderNew = async (date = currentEasternDate()) => {
+        const button = document.getElementById("header-transfers-btn");
+        if (!button) return false;
+        const newStatus = await getTransferNewStatus(date);
+        const hasNew = newStatus.trades || newStatus.freeAgents;
         let badge = button.querySelector(".header-transfer-new");
         if (hasNew && !badge) {
             badge = el("span", "header-transfer-new", "NEW");
@@ -3339,7 +3390,12 @@
             }))
             .sort((left, right) => right.agreedDate.localeCompare(left.agreedDate))[0] ?? null;
 
-    const buildUpcomingFreeAgentGroups = async (season, date, regularSeasonStartDate) => {
+    const buildUpcomingFreeAgentGroups = async (
+        season,
+        date,
+        regularSeasonStartDate,
+        regularSeasonEndDate
+    ) => {
         const candidates = window.MLB_FREE_AGENT_CANDIDATES?.[season] ?? [];
         const transactions = await fetchFreeAgentTransactions(regularSeasonStartDate, date);
         const latestTradeByPlayer = new Map();
@@ -3385,6 +3441,50 @@
             };
             groups[AL_TEAM_IDS.has(currentTeamId) ? "AL" : "NL"].push(entry);
         });
+        const candidateIds = new Set(candidates.map((candidate) => Number(candidate.playerId)));
+        const signingDates = new Map();
+        transactions
+            .filter((transaction) => String(transaction?.typeCode ?? "") === "SFA")
+            .forEach((transaction) => {
+                const playerId = Number(transaction?.person?.id);
+                const signingDate = String(
+                    transaction?.effectiveDate || transaction?.date || ""
+                ).slice(0, 10);
+                if (playerId && (signingDates.get(playerId) ?? "") < signingDate) {
+                    signingDates.set(playerId, signingDate);
+                }
+            });
+        transactions
+            .filter((transaction) =>
+                /elected free agency/i.test(String(transaction?.description ?? ""))
+            )
+            .forEach((transaction) => {
+                const playerId = Number(transaction?.person?.id);
+                const declaredDate = String(
+                    transaction?.effectiveDate || transaction?.date || ""
+                ).slice(0, 10);
+                const formerTeam = transaction?.toTeam ?? transaction?.fromTeam;
+                const formerTeamId = Number(formerTeam?.id);
+                if (!playerId || candidateIds.has(playerId) ||
+                    !MLB_TEAM_IDS.has(formerTeamId) ||
+                    !regularSeasonEndDate || declaredDate <= regularSeasonEndDate ||
+                    declaredDate >= date ||
+                    (signingDates.get(playerId) ?? "") >= declaredDate) {
+                    return;
+                }
+                const position = String(transaction.description ?? "")
+                    .match(/^([A-Z0-9/]+)\s/)?.[1] ?? "";
+                groups[AL_TEAM_IDS.has(formerTeamId) ? "AL" : "NL"].push({
+                    playerId,
+                    person: transaction.person,
+                    position,
+                    formerTeam: { ...formerTeam, id: formerTeamId },
+                    declaredFreeAgent: true,
+                    declaredDate,
+                    sourceUrl: `https://www.mlb.com/transactions?date=${declaredDate}`,
+                    upcoming: true
+                });
+            });
         Object.values(groups).forEach((entries) => entries.sort((left, right) =>
             playerName(left.person).localeCompare(playerName(right.person), "ja")
         ));
@@ -3396,6 +3496,7 @@
         postseasonWindow,
         date,
         regularSeasonStartDate = "",
+        regularSeasonEndDate = "",
         { upcoming = false } = {}
     ) => {
         const freeAgentSection = section(
@@ -3405,11 +3506,18 @@
             ""
         );
         freeAgentSection.classList.add("pregame-free-agents-section");
-        const [groups, exchangeRate] = await Promise.all([
+        const [groups, exchangeRate, newPlayerIds, newTransactions] = await Promise.all([
             upcoming
-                ? buildUpcomingFreeAgentGroups(season, date, regularSeasonStartDate)
+                ? buildUpcomingFreeAgentGroups(
+                    season,
+                    date,
+                    regularSeasonStartDate,
+                    regularSeasonEndDate
+                )
                 : buildFreeAgentGroups(season, postseasonWindow, date),
-            getUsdJpyRate(`${season}-01-01`)
+            getUsdJpyRate(`${season}-01-01`),
+            getFreeAgentNewPlayerIds(date),
+            getFreeAgentNewTransactions(date)
         ]);
         const postedPlayers = upcoming ? [] : (window.MLB_NPB_POSTED_PLAYERS?.[season] ?? [])
             .filter((player) => player.postedDate <= date)
@@ -3445,6 +3553,55 @@
             ));
         }
         header.append(headerMeta);
+        const listedPlayerIds = new Set(
+            Object.values(groups).flat().map((entry) => Number(entry.playerId))
+        );
+        const unlistedNewTransactions = newTransactions.filter((transaction) =>
+            !listedPlayerIds.has(Number(transaction?.person?.id))
+        );
+        if (unlistedNewTransactions.length) {
+            const dailyUpdates = el("section", "pregame-free-agent-daily-updates");
+            dailyUpdates.append(el("h4", "", "本日のFA動向"));
+            unlistedNewTransactions.forEach((transaction) => {
+                const row = el("div", "pregame-free-agent-row");
+                const identity = el("span", "pregame-free-agent-identity");
+                const team = transaction?.toTeam ?? transaction?.fromTeam;
+                const playerLink = el(
+                    "a",
+                    "pregame-free-agent-player",
+                    playerName(transaction.person)
+                );
+                playerLink.href = `https://www.mlb.com/player/${transaction.person.id}`;
+                playerLink.target = "_blank";
+                playerLink.rel = "noopener noreferrer";
+                identity.append(
+                    createFreeAgentTeamLogo(team),
+                    playerLink,
+                    el(
+                        "span",
+                        "pregame-free-agent-position",
+                        String(transaction.description ?? "").match(/^([A-Z0-9/]+)\s/)?.[1] ?? ""
+                    )
+                );
+                const isSigning = String(transaction?.typeCode ?? "") === "SFA";
+                const status = el(
+                    "a",
+                    "pregame-free-agent-daily-status",
+                    isSigning
+                        ? /minor league contract/i.test(String(transaction.description ?? ""))
+                            ? "マイナー契約"
+                            : "FA契約"
+                        : "FA選択"
+                );
+                status.href = `https://www.mlb.com/transactions?date=${date}`;
+                status.target = "_blank";
+                status.rel = "noopener noreferrer";
+                status.append(el("span", "pregame-free-agent-new", "NEW"));
+                row.append(identity, status);
+                dailyUpdates.append(row);
+            });
+            freeAgentSection.append(dailyUpdates);
+        }
         const columns = el("div", "pregame-free-agent-columns");
         ["AL", "NL"].forEach((league) => {
             const panel = el("section", "pregame-free-agent-league");
@@ -3485,6 +3642,7 @@
                     ));
                     entriesByPosition.get(position).forEach((entry) => {
                     const row = el("div", "pregame-free-agent-row");
+                    const isNewPlayer = newPlayerIds.has(Number(entry.playerId));
                     const identity = el("span", "pregame-free-agent-identity");
                     const playerLink = el("a", "pregame-free-agent-player", playerName(entry.person));
                     playerLink.href = entry.sourceUrl || `https://www.mlb.com/player/${entry.playerId}`;
@@ -3570,12 +3728,26 @@
                         }
                         if (details) details.append(status);
                         else row.append(status);
+                    } else if (entry.declaredFreeAgent) {
+                        const declaredStatus = el(
+                            "a",
+                            "pregame-free-agent-declared-status",
+                            `FA選択（${formatAgreementDate(entry.declaredDate)}）`
+                        );
+                        declaredStatus.href = entry.sourceUrl;
+                        declaredStatus.target = "_blank";
+                        declaredStatus.rel = "noopener noreferrer";
+                        row.append(declaredStatus);
                     } else if (upcoming) {
-                        row.append(el(
+                        const contractEnding = el(
                             "span",
                             "pregame-free-agent-contract-ending",
                             `${entry.contractYears}年契約が終了`
-                        ));
+                        );
+                        if (isNewPlayer) {
+                            contractEnding.append(el("span", "pregame-free-agent-new", "NEW"));
+                        }
+                        row.append(contractEnding);
                     } else if (entry.trade) {
                         const status = el(
                             "a",
@@ -3751,6 +3923,13 @@
             const modes = el("nav", "pregame-transfer-modes");
             const tradesButton = el("button", "", "トレード一覧");
             const freeAgentsButton = el("button", "", "FA一覧");
+            const newStatus = await getTransferNewStatus();
+            if (newStatus.trades) {
+                tradesButton.append(el("span", "pregame-free-agent-new", "NEW"));
+            }
+            if (newStatus.freeAgents) {
+                freeAgentsButton.append(el("span", "pregame-free-agent-new", "NEW"));
+            }
             tradesButton.type = freeAgentsButton.type = "button";
             tradesButton.classList.toggle("active", currentTransferTab === "trades");
             freeAgentsButton.classList.toggle("active", currentTransferTab === "free-agents");
@@ -3780,7 +3959,10 @@
             } else {
                 const displayDate = transferSeasonEndDate(season);
                 const postseasonWindow = await getPostseasonDisplayWindow(season);
-                const regularSeasonStartDate = await getRegularSeasonStartDate(season);
+                const [regularSeasonStartDate, regularSeasonEndDate] = await Promise.all([
+                    getRegularSeasonStartDate(season),
+                    getRegularSeasonEndDate(season)
+                ]);
                 const offseasonActive = Boolean(
                     postseasonWindow?.worldSeriesCompleted &&
                     displayDate > postseasonWindow.displayEndDate
@@ -3792,6 +3974,7 @@
                     postseasonWindow,
                     displayDate,
                     regularSeasonStartDate,
+                    regularSeasonEndDate,
                     { upcoming }
                 );
                 dashboard.append(expandTransferSection(freeAgentSection));
