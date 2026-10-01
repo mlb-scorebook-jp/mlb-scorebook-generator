@@ -3511,11 +3511,15 @@ a.pregame-batting-stat:focus-visible {
 
 .pregame-lineup-column-heading {
     color: #aebbc2;
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 400;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+
+.pregame-lineup-vs-label {
+    font-size: 12px;
 }
 
 .pregame-lineup-list {

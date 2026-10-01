@@ -7483,6 +7483,14 @@
         opposingPitcherBySide,
         seasonTitleNotes
     ) => {
+        const lineupColumnHeading = (value) => {
+            const heading = el("span", "pregame-lineup-column-heading");
+            heading.append(
+                el("span", "pregame-lineup-vs-prefix", "VS."),
+                el("span", "pregame-lineup-vs-label", value)
+            );
+            return heading;
+        };
         const lineupSection = section("スタメン", "レギュラーシーズン成績");
         lineupSection.classList.add("pregame-span-12", "pregame-lineup-section");
         const columns = el("div", "pregame-team-columns pregame-lineup-columns");
@@ -7491,16 +7499,8 @@
             const teamHeading = el("h4", "pregame-team-heading pregame-lineup-team-heading");
             teamHeading.append(
                 el("span", "pregame-lineup-team-code", teamCode(team)),
-                el(
-                    "span",
-                    "pregame-lineup-column-heading",
-                    `VS.${playerName(opposingPitcherBySide[side]) || "先発未定"}`
-                ),
-                el(
-                    "span",
-                    "pregame-lineup-column-heading",
-                    `VS.${teamCode(side === "away" ? teams.home : teams.away)}`
-                )
+                lineupColumnHeading(playerName(opposingPitcherBySide[side]) || "先発未定"),
+                lineupColumnHeading(teamCode(side === "away" ? teams.home : teams.away))
             );
             column.append(teamHeading);
             const lineup = startingLineupEntries(rosterBySide[side]);
