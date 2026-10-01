@@ -3490,6 +3490,110 @@ a.pregame-batting-stat:focus-visible {
     overflow: visible;
 }
 
+.pregame-team-columns.pregame-lineup-columns {
+    gap: 0;
+}
+
+.pregame-lineup-team + .pregame-lineup-team {
+    border-left: 1px solid #46535c;
+}
+
+.pregame-lineup-team-heading {
+    display: grid;
+    grid-template-columns: 18px 34px minmax(80px, 1fr) minmax(105px, 1.15fr) minmax(95px, 1fr) minmax(115px, 1fr);
+    align-items: center;
+    gap: 6px;
+}
+
+.pregame-lineup-team-code {
+    grid-column: 1 / 4;
+}
+
+.pregame-lineup-column-heading {
+    color: #aebbc2;
+    font-weight: 400;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.pregame-lineup-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.pregame-lineup-row {
+    display: grid;
+    grid-template-columns: 18px 34px minmax(80px, 1fr) minmax(105px, 1.15fr) minmax(95px, 1fr) minmax(115px, 1fr);
+    align-items: center;
+    gap: 6px;
+    min-height: 29px;
+    padding: 5px 9px;
+    border-bottom: 1px solid #344047;
+    font-size: 11px;
+    line-height: 1.3;
+    white-space: nowrap;
+}
+
+.pregame-lineup-row:last-child {
+    border-bottom: 0;
+}
+
+.pregame-lineup-order {
+    color: #ffd432;
+    font-weight: 800;
+    text-align: center;
+}
+
+.pregame-lineup-player {
+    overflow: hidden;
+    color: #edf3f5;
+    font-weight: 700;
+    text-overflow: ellipsis;
+    text-decoration: none;
+}
+
+.pregame-lineup-player:hover,
+.pregame-lineup-player:focus-visible {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.pregame-lineup-position {
+    color: #aebbc2;
+}
+
+.pregame-lineup-previous {
+    color: #dfe6e9;
+}
+
+.pregame-lineup-matchup {
+    display: grid;
+    grid-template-columns: 72px 25px;
+    gap: 3px;
+    justify-content: start;
+    min-width: 0;
+    color: #c7d2d8;
+    font-size: 10px;
+}
+
+.pregame-lineup-matchup-team {
+    grid-template-columns: 82px 25px;
+    gap: 6px;
+}
+
+.pregame-lineup-matchup-main {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.pregame-lineup-matchup-hr {
+    text-align: left;
+    white-space: nowrap;
+}
+
 .pregame-team-trends-section {
     align-self: start;
 }
@@ -4584,6 +4688,11 @@ a.pregame-metric-value:focus-visible {
     }
 
     .pregame-team-trends-section .pregame-team-columns > div + div {
+        border-top: 1px solid #46535c;
+        border-left: 0;
+    }
+
+    .pregame-lineup-team + .pregame-lineup-team {
         border-top: 1px solid #46535c;
         border-left: 0;
     }
