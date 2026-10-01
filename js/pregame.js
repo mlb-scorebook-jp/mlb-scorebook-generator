@@ -5191,7 +5191,9 @@
             const playerCell = document.createElement("td");
             const titleCount = Number(entry?.titleCount);
             const playerLabel = playerName(entry.person) +
-                (Number.isInteger(titleCount) && titleCount > 0 ? `（${titleCount}）` : "");
+                (Number.isInteger(titleCount) && titleCount > 0
+                    ? `（${titleCount === 1 ? "初" : titleCount}）`
+                    : "");
             const playerLink = el("a", "pregame-stats-player", playerLabel);
             playerLink.href = `https://www.mlb.com/player/${Number(entry?.person?.id)}`;
             playerLink.target = "_blank";
