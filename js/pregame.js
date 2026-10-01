@@ -5025,13 +5025,13 @@
     const PREGAME_STATS_DEFINITIONS = Object.freeze({
         hitting: Object.freeze([
             { category: "battingAverage", field: "avg", label: "打率", rate: true },
-            { category: "onBasePercentage", field: "obp", label: "出塁率", rate: true },
             { category: "homeRuns", field: "homeRuns", label: "本塁打" },
             { category: "runsBattedIn", field: "rbi", label: "打点" },
             { category: "hits", field: "hits", label: "安打数" },
             { category: "stolenBases", field: "stolenBases", label: "盗塁" },
             { category: "walks", field: "baseOnBalls", label: "四球" },
-            { category: "onBasePlusSlugging", field: "ops", label: "OPS", rate: true }
+            { category: "onBasePlusSlugging", field: "ops", label: "OPS", rate: true },
+            { category: "onBasePercentage", field: "obp", label: "出塁率", rate: true }
         ]),
         pitching: Object.freeze([
             { category: "earnedRunAverage", field: "era", label: "防御率", rate: true, lower: true },
@@ -5040,6 +5040,26 @@
             { category: "gamesPlayed", field: "gamesPlayed", label: "登板数" },
             { category: "strikeouts", field: "strikeOuts", label: "奪三振" }
         ])
+    });
+
+    // MLB公式リーグリーダー（2000～2026年）を部門・選手ごとに照合。
+    // 回数はリーグ移籍をまたいで通算し、同率1位も各1回として数える。
+    const SEASON_TITLE_COUNTS = Object.freeze({
+        2026: Object.freeze({
+            battingAverage: Object.freeze({ 670541: 1, 672515: 1 }),
+            homeRuns: Object.freeze({ 624413: 2, 691718: 1, 656941: 3 }),
+            runsBattedIn: Object.freeze({ 624413: 2, 676475: 1 }),
+            hits: Object.freeze({ 650490: 1, 672640: 1 }),
+            stolenBases: Object.freeze({ 802415: 1, 683083: 1 }),
+            walks: Object.freeze({ 670541: 1, 547180: 3 }),
+            onBasePlusSlugging: Object.freeze({ 670541: 1, 691718: 1 }),
+            onBasePercentage: Object.freeze({ 670541: 1, 681198: 1 }),
+            earnedRunAverage: Object.freeze({ 693645: 1, 694819: 1 }),
+            wins: Object.freeze({ 543243: 1, 650911: 1 }),
+            saves: Object.freeze({ 641329: 1, 671922: 1, 695243: 1, 676617: 1 }),
+            gamesPlayed: Object.freeze({ 689254: 1, 656271: 1 }),
+            strikeouts: Object.freeze({ 668909: 1, 694819: 1 })
+        })
     });
 
     const pregameTeamStatsDefinitions = (group) =>
@@ -5169,7 +5189,10 @@
             if (Number.isFinite(teamId)) row.dataset.teamId = String(teamId);
             const rankCell = el("td", "pregame-stats-rank", entry.rank ? String(entry.rank) : "—");
             const playerCell = document.createElement("td");
-            const playerLink = el("a", "pregame-stats-player", playerName(entry.person));
+            const titleCount = Number(entry?.titleCount);
+            const playerLabel = playerName(entry.person) +
+                (Number.isInteger(titleCount) && titleCount > 0 ? `（${titleCount}）` : "");
+            const playerLink = el("a", "pregame-stats-player", playerLabel);
             playerLink.href = `https://www.mlb.com/player/${Number(entry?.person?.id)}`;
             playerLink.target = "_blank";
             playerLink.rel = "noopener noreferrer";
@@ -5233,7 +5256,12 @@
             });
     };
 
-    const renderPregameStatsTable = (definition, leaders, japaneseEntries) => {
+    const renderPregameStatsTable = (
+        definition,
+        leaders,
+        japaneseEntries,
+        titleCounts = null
+    ) => {
         const card = el("section", "pregame-stats-card");
         card.append(el("h5", "pregame-stats-card-title", definition.label));
         const tables = el("div", "pregame-stats-card-tables");
@@ -5247,15 +5275,25 @@
                 rank: Number(leader?.rank),
                 person: leader?.person,
                 team: leader?.team,
-                value: leader?.value
+                value: leader?.value,
+                titleCount: Number(leader?.rank) === 1
+                    ? titleCounts?.[definition.category]?.[Number(leader?.person?.id)]
+                    : null
             }));
         leaguePanel.append(renderPregameStatsRows(definition, topFive));
 
         const japanesePanel = el("section", "pregame-stats-table-panel");
-        japanesePanel.append(renderPregameStatsRows(
+        const rankedJapaneseEntries = rankPregameJapaneseEntries(
             definition,
-            rankPregameJapaneseEntries(definition, japaneseEntries, leaders)
-        ));
+            japaneseEntries,
+            leaders
+        ).map((entry) => ({
+            ...entry,
+            titleCount: Number(entry.rank) === 1
+                ? titleCounts?.[definition.category]?.[Number(entry?.person?.id)]
+                : null
+        }));
+        japanesePanel.append(renderPregameStatsRows(definition, rankedJapaneseEntries));
         tables.append(leaguePanel, japanesePanel);
         card.append(tables);
         return card;
@@ -5336,7 +5374,8 @@
         minimumEraOuts,
         minimumPlateAppearances,
         comparisonTone = "",
-        teamAggregate = null
+        teamAggregate = null,
+        titleCounts = null
     ) => {
         const card = el("section", "pregame-stats-card");
         if (comparisonTone) card.classList.add(`is-comparison-${comparisonTone}`);
@@ -5355,16 +5394,20 @@
         }
         card.append(heading);
         const panel = el("section", "pregame-stats-table-panel");
-        panel.append(renderPregameStatsRows(
-            definition,
-            rankPregameTeamEntries(
+        const rankedEntries = rankPregameTeamEntries(
                 definition,
                 entries,
                 leagueLeaders,
                 minimumEraOuts,
                 minimumPlateAppearances
             ).slice(0, 5)
-        ));
+            .map((entry) => ({
+                ...entry,
+                titleCount: Number(entry.leagueRank) === 1
+                    ? titleCounts?.[definition.category]?.[Number(entry?.person?.id)]
+                    : null
+            }));
+        panel.append(renderPregameStatsRows(definition, rankedEntries));
         card.append(panel);
         return card;
     };
@@ -5382,8 +5425,16 @@
         return heading;
     };
 
-    const renderPregameStatsSection = async (date, japanesePlayers, standings) => {
+    const renderPregameStatsSection = async (
+        date,
+        japanesePlayers,
+        standings,
+        regularSeasonComplete = false
+    ) => {
         const season = Number(date.slice(0, 4));
+        const titleCounts = regularSeasonComplete
+            ? SEASON_TITLE_COUNTS[season] ?? null
+            : null;
         const sectionElement = section("タイトル一覧", `${formatDate(previousDate(date))}終了時点`);
         sectionElement.classList.add("pregame-stats-section", "is-collapsed");
         const teams = new Map();
@@ -5510,7 +5561,8 @@
                         cards.append(renderPregameStatsTable(
                             definition,
                             leaders.get(definition.category) ?? [],
-                            japaneseEntries
+                            japaneseEntries,
+                            titleCounts
                         ));
                     });
                     groupElement.append(cards);
@@ -5570,7 +5622,8 @@
                         comparisonTones[pregameTeamStatsDefinitionKey(group, definition)] ?? "",
                         showTeamAggregates
                             ? pregameTeamAggregate(definition, stats[group])
-                            : null
+                            : null,
+                        titleCounts
                     ));
                 });
                 groupElement.append(cards);
@@ -6142,7 +6195,9 @@
             dashboard.append(await renderPregameStatsSection(
                 date,
                 todaysJapanese,
-                standings
+                standings,
+                Boolean(postseasonWindow?.postseasonStartDate &&
+                    date >= postseasonWindow.postseasonStartDate)
             ));
             if (shouldShowPostseasonPicture(date, postseasonWindow)) {
                 dashboard.append(await renderPostseasonPicture(
