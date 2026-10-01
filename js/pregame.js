@@ -4104,7 +4104,7 @@
         }));
     };
 
-    const postseasonTeamSlot = (standing, fallback, winsToAdvance = 0) => {
+    const postseasonTeamSlot = (standing, fallback, winsToAdvance = 0, winCount = 0) => {
         const slot = el("div", standing ? "pregame-postseason-team" : "pregame-postseason-team is-placeholder");
         if (!standing) {
             slot.append(
@@ -4120,10 +4120,10 @@
         logo.decoding = "async";
         logo.addEventListener("error", () => logo.remove(), { once: true });
         const seriesWins = el("span", "pregame-postseason-series-wins");
-        seriesWins.setAttribute("aria-label", `${winsToAdvance}勝で勝ち抜け`);
-        seriesWins.title = `${winsToAdvance}勝で勝ち抜け`;
+        seriesWins.setAttribute("aria-label", `${winCount}勝・${winsToAdvance}勝で勝ち抜け`);
+        seriesWins.title = `${winCount}勝（${winsToAdvance}勝で勝ち抜け）`;
         for (let index = 0; index < winsToAdvance; index += 1) {
-            seriesWins.append(el("span", "", "☆"));
+            seriesWins.append(el("span", "", index < winCount ? "★" : "☆"));
         }
         slot.append(
             el("span", "pregame-postseason-seed", String(standing.seed)),
@@ -4143,7 +4143,8 @@
         upperFallback = "勝者",
         lowerFallback = "勝者",
         schedule = "",
-        winsToAdvance = 0
+        winsToAdvance = 0,
+        winsByTeam = new Map()
     ) => {
         const matchup = el("div", "pregame-postseason-matchup");
         const label = el("span", "pregame-postseason-matchup-label");
@@ -4151,8 +4152,18 @@
         if (schedule) label.append(el("span", "pregame-postseason-matchup-schedule", schedule));
         matchup.append(
             label,
-            postseasonTeamSlot(upper, upperFallback, winsToAdvance),
-            postseasonTeamSlot(lower, lowerFallback, winsToAdvance)
+            postseasonTeamSlot(
+                upper,
+                upperFallback,
+                winsToAdvance,
+                winsByTeam.get(Number(upper?.team?.id)) ?? 0
+            ),
+            postseasonTeamSlot(
+                lower,
+                lowerFallback,
+                winsToAdvance,
+                winsByTeam.get(Number(lower?.team?.id)) ?? 0
+            )
         );
         return matchup;
     };
@@ -4312,6 +4323,83 @@
         return `次戦勝利でM${standing.magicNumber - 1}／さらに${opponentLoss}ならM${standing.magicNumber - 2}`;
     };
 
+    const getPostseasonSeriesResults = async (startDate, endDate) => {
+        const params = new URLSearchParams({
+            sportId: "1",
+            startDate,
+            endDate,
+            gameTypes: "F,D,L,W",
+            hydrate: "team,linescore,seriesStatus"
+        });
+        const payload = await fetch(`${API_ROOT}/v1/schedule?${params}`, {
+            cache: "no-store"
+        }).then(async (response) => {
+            if (!response.ok) {
+                throw new Error(`MLB公式データを取得できませんでした（${response.status}）`);
+            }
+            return response.json();
+        }).catch(() => null);
+        const grouped = new Map();
+        (payload?.dates ?? []).flatMap((entry) => entry?.games ?? []).forEach((game) => {
+            const gameType = String(game?.gameType ?? "").toUpperCase();
+            if (!["F", "D", "L", "W"].includes(gameType)) return;
+            const awayId = Number(game?.teams?.away?.team?.id);
+            const homeId = Number(game?.teams?.home?.team?.id);
+            if (!Number.isFinite(awayId) || !Number.isFinite(homeId)) return;
+            const league = gameType === "W" ? "MLB" : postseasonLeagueCode(game);
+            const teamIds = [awayId, homeId].sort((left, right) => left - right);
+            const key = `${gameType}:${league}:${teamIds.join("-")}`;
+            if (!grouped.has(key)) {
+                const gamesInSeries = Number(game?.gamesInSeries);
+                const fallbackWins = { F: 2, D: 3, L: 4, W: 4 }[gameType];
+                grouped.set(key, {
+                    gameType,
+                    league,
+                    teamIds,
+                    winsToAdvance: Number.isFinite(gamesInSeries) && gamesInSeries > 0
+                        ? Math.floor(gamesInSeries / 2) + 1
+                        : fallbackWins,
+                    wins: new Map(teamIds.map((teamId) => [teamId, 0]))
+                });
+            }
+            if (!isFinal(game)) return;
+            const awayScore = Number(game?.teams?.away?.score);
+            const homeScore = Number(game?.teams?.home?.score);
+            const winnerId = game?.teams?.away?.isWinner === true ||
+                (Number.isFinite(awayScore) && Number.isFinite(homeScore) && awayScore > homeScore)
+                ? awayId
+                : game?.teams?.home?.isWinner === true ||
+                    (Number.isFinite(awayScore) && Number.isFinite(homeScore) && homeScore > awayScore)
+                    ? homeId
+                    : 0;
+            const series = grouped.get(key);
+            if (series.wins.has(winnerId)) {
+                series.wins.set(winnerId, series.wins.get(winnerId) + 1);
+            }
+        });
+        return [...grouped.values()];
+    };
+
+    const findPostseasonSeries = (seriesResults, gameType, league, upper, lower) => {
+        const teamIds = [Number(upper?.team?.id), Number(lower?.team?.id)]
+            .filter(Number.isFinite)
+            .sort((left, right) => left - right);
+        if (teamIds.length !== 2) return null;
+        return seriesResults.find((series) =>
+            series.gameType === gameType &&
+            (gameType === "W" || series.league === league) &&
+            series.teamIds[0] === teamIds[0] && series.teamIds[1] === teamIds[1]
+        ) ?? null;
+    };
+
+    const postseasonSeriesWinner = (series, standingsByTeam) => {
+        if (!series) return null;
+        const winnerId = series.teamIds.find((teamId) =>
+            (series.wins.get(teamId) ?? 0) >= series.winsToAdvance
+        );
+        return standingsByTeam.get(Number(winnerId)) ?? null;
+    };
+
     const postseasonMagicPanel = async (standings, leagueCode, date) => {
         const panel = el("section", "pregame-postseason-magic-league");
         panel.append(el("h4", "", `${leagueCode} ポストシーズン進出マジック`));
@@ -4379,33 +4467,74 @@
             return postseasonSection;
         }
 
+        const allSeeds = [...al, ...nl];
+        const standingsByTeam = new Map(allSeeds.map((standing) => [
+            Number(standing?.team?.id),
+            standing
+        ]));
+        const seriesResults = await getPostseasonSeriesResults(
+            postseasonWindow?.postseasonStartDate ?? `${date.slice(0, 4)}-09-01`,
+            date
+        );
+        const series = (gameType, league, upper, lower) =>
+            findPostseasonSeries(seriesResults, gameType, league, upper, lower);
+        const winner = (value) => postseasonSeriesWinner(value, standingsByTeam);
+
+        const alWild36 = series("F", "AL", al[2], al[5]);
+        const alWild45 = series("F", "AL", al[3], al[4]);
+        const nlWild45 = series("F", "NL", nl[3], nl[4]);
+        const nlWild36 = series("F", "NL", nl[2], nl[5]);
+        const alWild36Winner = winner(alWild36);
+        const alWild45Winner = winner(alWild45);
+        const nlWild45Winner = winner(nlWild45);
+        const nlWild36Winner = winner(nlWild36);
+
+        const alDivisionTwo = series("D", "AL", al[1], alWild36Winner);
+        const alDivisionOne = series("D", "AL", al[0], alWild45Winner);
+        const nlDivisionOne = series("D", "NL", nl[0], nlWild45Winner);
+        const nlDivisionTwo = series("D", "NL", nl[1], nlWild36Winner);
+        const alDivisionTwoWinner = winner(alDivisionTwo);
+        const alDivisionOneWinner = winner(alDivisionOne);
+        const nlDivisionOneWinner = winner(nlDivisionOne);
+        const nlDivisionTwoWinner = winner(nlDivisionTwo);
+
+        const alChampionship = series(
+            "L", "AL", alDivisionTwoWinner, alDivisionOneWinner
+        );
+        const nlChampionship = series(
+            "L", "NL", nlDivisionOneWinner, nlDivisionTwoWinner
+        );
+        const alChampion = winner(alChampionship);
+        const nlChampion = winner(nlChampionship);
+        const worldSeries = series("W", "MLB", alChampion, nlChampion);
+
         const scroll = el("div", "pregame-postseason-scroll");
         const board = el("div", "pregame-postseason-board");
         board.append(
             postseasonStage("AL ワイルドカード", [
-                postseasonMatchup("第3シード対第6シード", al[2], al[5], "勝者", "勝者", "現地 9/29・30・10/1*", 2),
-                postseasonMatchup("第4シード対第5シード", al[3], al[4], "勝者", "勝者", "現地 9/29・30・10/1*", 2)
+                postseasonMatchup("第3シード対第6シード", al[2], al[5], "勝者", "勝者", "現地 9/29・30・10/1*", 2, alWild36?.wins),
+                postseasonMatchup("第4シード対第5シード", al[3], al[4], "勝者", "勝者", "現地 9/29・30・10/1*", 2, alWild45?.wins)
             ], "pregame-postseason-stage-wildcard"),
             postseasonStage("AL地区シリーズ", [
-                postseasonMatchup("第2シードはBYE", al[1], null, "", "3位対6位の勝者", "現地 10/3・5・7・8*・10*", 3),
-                postseasonMatchup("第1シードはBYE", al[0], null, "", "4位対5位の勝者", "現地 10/3・5・7・8*・10*", 3)
+                postseasonMatchup("第2シードはBYE", al[1], alWild36Winner, "", "3位対6位の勝者", "現地 10/3・5・7・8*・10*", 3, alDivisionTwo?.wins),
+                postseasonMatchup("第1シードはBYE", al[0], alWild45Winner, "", "4位対5位の勝者", "現地 10/3・5・7・8*・10*", 3, alDivisionOne?.wins)
             ]),
             postseasonStage("AL優勝決定シリーズ", [
-                postseasonMatchup("リーグ優勝決定戦", null, null, "地区シリーズ勝者", "地区シリーズ勝者", "現地 10/12・13・15・16・17*・19*・20*", 4)
+                postseasonMatchup("リーグ優勝決定戦", alDivisionTwoWinner, alDivisionOneWinner, "地区シリーズ勝者", "地区シリーズ勝者", "現地 10/12・13・15・16・17*・19*・20*", 4, alChampionship?.wins)
             ], "pregame-postseason-stage-championship"),
             postseasonStage("WORLD SERIES", [
-                postseasonMatchup("ワールドシリーズ", null, null, "AL優勝球団", "NL優勝球団", "現地 10/23・24・26・27・28*・30*・31*", 4)
+                postseasonMatchup("ワールドシリーズ", alChampion, nlChampion, "AL優勝球団", "NL優勝球団", "現地 10/23・24・26・27・28*・30*・31*", 4, worldSeries?.wins)
             ], "pregame-postseason-stage-world-series"),
             postseasonStage("NL優勝決定シリーズ", [
-                postseasonMatchup("リーグ優勝決定戦", null, null, "地区シリーズ勝者", "地区シリーズ勝者", "現地 10/11・12・14・15・16*・18*・19*", 4)
+                postseasonMatchup("リーグ優勝決定戦", nlDivisionOneWinner, nlDivisionTwoWinner, "地区シリーズ勝者", "地区シリーズ勝者", "現地 10/11・12・14・15・16*・18*・19*", 4, nlChampionship?.wins)
             ], "pregame-postseason-stage-championship"),
             postseasonStage("NL地区シリーズ", [
-                postseasonMatchup("第1シードはBYE", nl[0], null, "", "4位対5位の勝者", "現地 10/3・4・6・7*・9*", 3),
-                postseasonMatchup("第2シードはBYE", nl[1], null, "", "3位対6位の勝者", "現地 10/3・4・6・7*・9*", 3)
+                postseasonMatchup("第1シードはBYE", nl[0], nlWild45Winner, "", "4位対5位の勝者", "現地 10/3・4・6・7*・9*", 3, nlDivisionOne?.wins),
+                postseasonMatchup("第2シードはBYE", nl[1], nlWild36Winner, "", "3位対6位の勝者", "現地 10/3・4・6・7*・9*", 3, nlDivisionTwo?.wins)
             ]),
             postseasonStage("NL ワイルドカード", [
-                postseasonMatchup("第4シード対第5シード", nl[3], nl[4], "勝者", "勝者", "現地 9/29・30・10/1*", 2),
-                postseasonMatchup("第3シード対第6シード", nl[2], nl[5], "勝者", "勝者", "現地 9/29・30・10/1*", 2)
+                postseasonMatchup("第4シード対第5シード", nl[3], nl[4], "勝者", "勝者", "現地 9/29・30・10/1*", 2, nlWild45?.wins),
+                postseasonMatchup("第3シード対第6シード", nl[2], nl[5], "勝者", "勝者", "現地 9/29・30・10/1*", 2, nlWild36?.wins)
             ], "pregame-postseason-stage-wildcard")
         );
         scroll.append(board);
@@ -4447,7 +4576,7 @@
                 "p",
                 "pregame-postseason-note",
                 postseasonStarted
-                    ? "ポストシーズン開幕時点の組み合わせを表示しています。シリーズの進行・結果は星取表をご確認ください。日程は現地日付、*は必要時。"
+                    ? "終了済み試合を★、未勝利分を☆で表示し、勝ち抜け確定後は次ラウンドへ自動反映します。日程は現地日付、*は必要時。"
                     : "シーズン終了時の組み合わせではありません。対象日の試合前に確定していた順位から算出しています。日程は現地日付、*は必要時。"
             ),
             scroll,
