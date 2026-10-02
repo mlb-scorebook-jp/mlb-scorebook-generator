@@ -387,6 +387,26 @@
             const NHK_TEAM_NAMES = {"arizonadiamondbacks":"アリゾナ・ダイヤモンドバックス","athletics":"アスレチックス","atlantabraves":"アトランタ・ブレーブス","baltimoreorioles":"ボルチモア・オリオールズ","bostonredsox":"ボストン・レッドソックス","chicagocubs":"シカゴ・カブス","chicagowhitesox":"シカゴ・ホワイトソックス","cincinnatireds":"シンシナティ・レッズ","clevelandguardians":"クリーブランド・ガーディアンズ","coloradorockies":"コロラド・ロッキーズ","detroittigers":"デトロイト・タイガース","houstonastros":"ヒューストン・アストロズ","kansascityroyals":"カンザスシティ・ロイヤルズ","losangelesangels":"ロサンゼルス・エンゼルス","losangelesdodgers":"ロサンゼルス・ドジャース","miamimarlins":"マイアミ・マーリンズ","milwaukeebrewers":"ミルウォーキー・ブルワーズ","minnesotatwins":"ミネソタ・ツインズ","newyorkmets":"ニューヨーク・メッツ","newyorkyankees":"ニューヨーク・ヤンキース","philadelphiaphillies":"フィラデルフィア・フィリーズ","pittsburghpirates":"ピッツバーグ・パイレーツ","sandiegopadres":"サンディエゴ・パドレス","sanfranciscogiants":"サンフランシスコ・ジャイアンツ","seattlemariners":"シアトル・マリナーズ","stlouiscardinals":"セントルイス・カージナルス","tampabayrays":"タンパベイ・レイズ","texasrangers":"テキサス・レンジャーズ","torontobluejays":"トロント・ブルージェイズ","washingtonnationals":"ワシントン・ナショナルズ"};
 
             NHK_TEAM_NAMES.stlouiscardinals = "セントルイス・カーディナルス";
+            Object.assign(NHK_TEAM_NAMES, {
+                anaheimangels: "アナハイム・エンゼルス",
+                bostonbraves: "ボストン・ブレーブス",
+                brooklyndodgers: "ブルックリン・ドジャース",
+                californiaangels: "カリフォルニア・エンゼルス",
+                clevelandindians: "クリーブランド・インディアンス",
+                floridamarlins: "フロリダ・マーリンズ",
+                houstoncolt45s: "ヒューストン・コルト45s",
+                kansascityathletics: "カンザスシティ・アスレチックス",
+                losangelesangelsofanaheim: "ロサンゼルス・エンゼルス・オブ・アナハイム",
+                milwaukeebraves: "ミルウォーキー・ブレーブス",
+                montrealexpos: "モントリオール・エクスポズ",
+                newyorkgiants: "ニューヨーク・ジャイアンツ",
+                oaklandathletics: "オークランド・アスレチックス",
+                philadelphiaathletics: "フィラデルフィア・アスレチックス",
+                seattlepilots: "シアトル・パイロッツ",
+                stlouisbrowns: "セントルイス・ブラウンズ",
+                tampabaydevilrays: "タンパベイ・デビルレイズ",
+                washingtonsenators: "ワシントン・セネタース"
+            });
             window.MLB_SCOREBOOK_NHK_TEAM_NAMES = NHK_TEAM_NAMES;
 
             const JAPANESE_DIVISION_NAMES = {
@@ -10644,8 +10664,6 @@
             const getSelectedSearchTeamId = (select) => Number(select.value) || null;
 
             const setSearchTeamOptions = (teams) => {
-                const currentYear = new Date().getFullYear();
-                const season = getSearchSeason();
                 const currentNames = new Map(
                     MLB_TEAM_SEARCH_OPTIONS.map((team) => [Number(team.id), team.name])
                 );
@@ -10653,9 +10671,10 @@
                     select.replaceChildren(createElement("option", "", "選択"));
                     select.firstElementChild.value = "";
                     teams.forEach((team) => {
-                        const displayName = season === currentYear
-                            ? currentNames.get(Number(team.id)) || team.name
-                            : team.name;
+                        const displayName =
+                            NHK_TEAM_NAMES[normalizeLookupKey(team.name)] ||
+                            currentNames.get(Number(team.id)) ||
+                            team.name;
                         const option = createElement("option", "", displayName);
                         option.value = String(team.id);
                         option.dataset.abbreviation = team.abbreviation;
