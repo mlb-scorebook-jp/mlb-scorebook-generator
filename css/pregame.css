@@ -1081,6 +1081,10 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
     display: none;
 }
 
+.pregame-stats-section .pregame-section-header > h3 + span {
+    margin-left: 10px;
+}
+
 .pregame-stats-header-controls {
     display: flex;
     align-items: center;
