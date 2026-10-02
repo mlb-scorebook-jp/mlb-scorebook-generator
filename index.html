@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MLB Scorebook Generator</title>
     <!-- Score notation update: stacked batted-ball symbol, red hits, blue strikeouts, black other results. -->
-    <link rel="stylesheet" href="css/style.css?v=20260930-postseason-scorebook-1">
+    <link rel="stylesheet" href="css/style.css?v=20261002-ipad-whole-page-scroll">
     <link rel="stylesheet" href="css/pregame.css?v=20261002-title-header-gap">
     <link rel="stylesheet" href="css/daily-records.css?v=20260928-hou-buttons-1">
 </head>
@@ -906,12 +906,16 @@
             const touchScorebookQuery = window.matchMedia(
                 "screen and (hover: none) and (pointer: coarse)"
             );
+            const touchLandscapeScorebookQuery = window.matchMedia(
+                "screen and (orientation: landscape) and (hover: none) and (pointer: coarse)"
+            );
             const headerSearchPlaceholder = document.createComment("header game search");
             dom.headerGameSearch.before(headerSearchPlaceholder);
 
-            const getHorizontalScrollTarget = () => touchScorebookQuery.matches
-                ? dom.scorebookHorizontalScroll
-                : document.scrollingElement;
+            const getHorizontalScrollTarget = () =>
+                !touchScorebookQuery.matches || touchLandscapeScorebookQuery.matches
+                    ? document.scrollingElement
+                    : dom.scorebookHorizontalScroll;
 
             const updatePortraitOperationLayout = () => {
                 if (portraitScorebookQuery.matches && !mobileHeaderQuery.matches) {
@@ -11890,12 +11894,12 @@
                 resumeLiveScoreUpdates();
             });
             window.addEventListener("scroll", () => {
-                if (!touchScorebookQuery.matches) {
+                if (getHorizontalScrollTarget() === document.scrollingElement) {
                     syncHorizontalScroll(document.scrollingElement, dom.footerScrollbar);
                 }
             }, { passive: true });
             dom.scorebookHorizontalScroll.addEventListener("scroll", () => {
-                if (touchScorebookQuery.matches) {
+                if (getHorizontalScrollTarget() === dom.scorebookHorizontalScroll) {
                     syncHorizontalScroll(dom.scorebookHorizontalScroll, dom.footerScrollbar);
                 }
             }, { passive: true });
@@ -11912,6 +11916,7 @@
             window.addEventListener("resize", refreshPortraitLayout, { passive: true });
             window.visualViewport?.addEventListener("resize", refreshPortraitLayout, { passive: true });
             portraitScorebookQuery.addEventListener("change", refreshPortraitLayout);
+            touchLandscapeScorebookQuery.addEventListener("change", refreshPortraitLayout);
             mobileHeaderQuery.addEventListener("change", () => {
                 closeAppMenu();
                 updatePortraitOperationLayout();
