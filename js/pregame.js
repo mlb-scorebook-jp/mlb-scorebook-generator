@@ -3143,30 +3143,85 @@
         const header = tradeSection.querySelector(".pregame-section-header");
         const count = el("span", "pregame-trade-count");
         header.append(count);
-        const teamSelect = el("select", "pregame-trade-team-filter");
-        teamSelect.setAttribute("aria-label", `${season}年のトレードを球団で絞り込み`);
-        const allTeamsOption = el("option", "", "全球団");
-        allTeamsOption.value = "";
-        teamSelect.append(allTeamsOption);
         const filterTeams = new Map();
         trades.forEach((trade) => trade.movements.forEach((movement) => {
             [movement.fromTeam, movement.toTeam].forEach((team) => {
                 if (team?.id) filterTeams.set(Number(team.id), team);
             });
         }));
-        [...filterTeams.values()]
+        const sortedFilterTeams = [...filterTeams.values()]
             .sort((left, right) =>
                 teamJapaneseName(left).localeCompare(teamJapaneseName(right), "ja")
-            )
-            .forEach((team) => {
-                const option = el(
-                    "option",
-                    "",
-                    `${teamCode(team)} ${teamJapaneseName(team)}`
+            );
+        let selectedTeamId = "";
+        const teamFilter = el("div", "pregame-trade-team-filter");
+        const teamFilterButton = el("button", "pregame-trade-team-filter-button");
+        teamFilterButton.type = "button";
+        teamFilterButton.setAttribute("aria-label", `${season}年のトレードを球団で絞り込み`);
+        teamFilterButton.setAttribute("aria-haspopup", "listbox");
+        teamFilterButton.setAttribute("aria-expanded", "false");
+        const teamFilterMenu = el("div", "pregame-trade-team-filter-menu");
+        teamFilterMenu.setAttribute("role", "listbox");
+        teamFilterMenu.hidden = true;
+        const setTeamFilterButton = (team = null) => {
+            teamFilterButton.replaceChildren();
+            if (team) {
+                teamFilterButton.append(
+                    createFreeAgentTeamLogo(team, ""),
+                    el("span", "", teamJapaneseName(team))
                 );
-                option.value = String(team.id);
-                teamSelect.append(option);
+            } else {
+                teamFilterButton.append(el("span", "", "全球団"));
+            }
+            teamFilterButton.append(el("span", "pregame-trade-team-filter-chevron", "▾"));
+        };
+        const closeTeamFilter = () => {
+            teamFilterMenu.hidden = true;
+            teamFilterButton.setAttribute("aria-expanded", "false");
+        };
+        const addTeamFilterOption = (team = null) => {
+            const option = el("button", "pregame-trade-team-filter-option");
+            option.type = "button";
+            option.setAttribute("role", "option");
+            option.dataset.teamId = team ? String(team.id) : "";
+            if (team) {
+                option.append(
+                    createFreeAgentTeamLogo(team, ""),
+                    el("span", "", teamJapaneseName(team))
+                );
+            } else {
+                option.append(el("span", "pregame-trade-team-filter-logo-placeholder"), el("span", "", "全球団"));
+            }
+            option.addEventListener("click", () => {
+                selectedTeamId = option.dataset.teamId;
+                teamFilterMenu.querySelectorAll('[role="option"]').forEach((entry) =>
+                    entry.setAttribute("aria-selected", String(entry === option))
+                );
+                setTeamFilterButton(team);
+                closeTeamFilter();
+                filterTrades();
             });
+            teamFilterMenu.append(option);
+        };
+        addTeamFilterOption();
+        sortedFilterTeams.forEach((team) => addTeamFilterOption(team));
+        teamFilterMenu.firstElementChild?.setAttribute("aria-selected", "true");
+        setTeamFilterButton();
+        teamFilterButton.addEventListener("click", () => {
+            const opening = teamFilterMenu.hidden;
+            teamFilterMenu.hidden = !opening;
+            teamFilterButton.setAttribute("aria-expanded", String(opening));
+        });
+        teamFilter.addEventListener("focusout", (event) => {
+            if (!teamFilter.contains(event.relatedTarget)) closeTeamFilter();
+        });
+        teamFilter.addEventListener("keydown", (event) => {
+            if (event.key === "Escape") {
+                closeTeamFilter();
+                teamFilterButton.focus();
+            }
+        });
+        teamFilter.append(teamFilterButton, teamFilterMenu);
         const search = el("input", "pregame-trade-search");
         search.type = "search";
         search.placeholder = "選手名で検索…";
@@ -3175,7 +3230,7 @@
         toggle.type = "button";
         toggle.setAttribute("aria-expanded", "false");
         const headerTools = el("div", "pregame-trade-header-tools");
-        headerTools.append(teamSelect, search, count, toggle);
+        headerTools.append(teamFilter, search, count, toggle);
         header.append(headerTools);
         tradeSection.classList.add("pregame-trades-collapsed");
         toggle.addEventListener("click", () => {
@@ -3291,7 +3346,6 @@
         });
         const filterTrades = () => {
             const query = normalizeTradeSearch(search.value);
-            const selectedTeamId = teamSelect.value;
             let visibleCount = 0;
             list.querySelectorAll(".pregame-trade-row").forEach((row) => {
                 const matchesPlayer = !query || row.dataset.tradeSearch.includes(query);
@@ -3307,7 +3361,6 @@
             noResults.hidden = visibleCount !== 0;
         };
         search.addEventListener("input", filterTrades);
-        teamSelect.addEventListener("change", filterTrades);
         tradeSection.append(list, noResults);
         return tradeSection;
     };
