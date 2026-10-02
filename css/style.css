@@ -4581,12 +4581,14 @@ body.app-mode-pitch-chart .viewer {
         background: white;
     }
 
-    body.print-stage-active {
+    body.print-stage-active:not(.app-mode-home):not(.app-mode-pregame) {
         width: 285mm;
+        min-width: 0;
         height: 198mm;
         max-width: none;
         max-height: none;
         overflow: hidden !important;
+        touch-action: auto;
     }
 
     .app-header,
@@ -4659,6 +4661,10 @@ body.app-mode-pitch-chart .viewer {
         break-inside: avoid-page !important;
     }
 
+    #scorebook-print-stage .scorebook-lineup-zone {
+        zoom: 1 !important;
+    }
+
     .paper {
         padding: 0;
         box-shadow: none;
@@ -4688,7 +4694,7 @@ body.app-mode-pitch-chart .viewer {
  * viewport reflects the paper selected in the system dialog on Safari,
  * Chromium, and Windows print preview. */
 @media print and (min-width: 350mm) and (min-height: 250mm) {
-    body.print-stage-active,
+    body.print-stage-active:not(.app-mode-home):not(.app-mode-pregame),
     #scorebook-print-stage {
         width: 408mm;
         height: 285mm;
