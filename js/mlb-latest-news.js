@@ -517,7 +517,7 @@
         ]
     },
     {
-        "headline": "Padres-Brewers NLDS Game 1 FAQ (8:30 p.m. ET, FS1)",
+        "headline": "Padres-Brewers NLDS Game 1 FAQ (8:30 p.m. ET, FS1, FOX One)",
         "summaryJa": "パドレスの最新動向をMLB公式が詳報",
         "slug": "padres-brewers-nl-division-series-game-1-starting-lineups-and-pitching-matchup",
         "url": "https://www.mlb.com/news/padres-brewers-nl-division-series-game-1-starting-lineups-and-pitching-matchup",
