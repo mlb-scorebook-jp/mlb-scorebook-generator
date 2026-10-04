@@ -10033,7 +10033,7 @@
                 "liveData", "plays", "currentPlay", "result", "event", "eventType",
                 "description", "rbi", "type", "about", "atBatIndex", "halfInning",
                 "isTopInning", "isComplete", "inning", "startTime", "endTime",
-                "matchup", "batter", "pitcher", "id", "playEvents", "index",
+                "matchup", "batter", "pitcher", "id", "fullName", "playEvents", "index",
                 "playId", "isPitch", "player", "position", "details", "code",
                 "pitchData", "startSpeed",
                 "count", "balls", "strikes", "outs"
@@ -10059,10 +10059,6 @@
 
             const getMisiorowskiPitchSummary = () => {
                 const plays = state.gameData?.liveData?.plays?.allPlays ?? [];
-                const currentPlay = state.gameData?.liveData?.plays?.currentPlay;
-                if (Number(currentPlay?.matchup?.pitcher?.id) !== MISIOROWSKI_PLAYER_ID) {
-                    return null;
-                }
                 const side = ["away", "home"].find((entry) =>
                     state[entry]?.pitchers?.some((pitcher) =>
                         Number(pitcher?.person?.id) === MISIOROWSKI_PLAYER_ID
@@ -10073,19 +10069,41 @@
                     if (Number(play?.matchup?.pitcher?.id) !== MISIOROWSKI_PLAYER_ID) {
                         return totals;
                     }
+                    let pitchNumber = 0;
                     (play?.playEvents ?? []).forEach((event) => {
                         if (event?.isPitch !== true) return;
+                        pitchNumber += 1;
                         totals.total += 1;
-                        if (Number(event?.pitchData?.startSpeed) >= 100) totals.tripleDigit += 1;
+                        const speed = Number(event?.pitchData?.startSpeed);
+                        if (speed >= 100) totals.tripleDigit += 1;
+                        if (Number.isFinite(speed) && speed > (totals.fastest?.speed ?? -Infinity)) {
+                            totals.fastest = {
+                                speed,
+                                inning: Number(play?.about?.inning),
+                                halfInning: String(play?.about?.halfInning ?? ""),
+                                batter: play?.matchup?.batter ?? {},
+                                pitchNumber
+                            };
+                        }
                     });
                     return totals;
-                }, { tripleDigit: 0, total: 0 });
+                }, { tripleDigit: 0, total: 0, fastest: null });
+                if (!counts.total) return null;
                 return { side, ...counts };
             };
 
-            const formatMisiorowskiPitchSummary = (summary) =>
-                `${state[summary.side]?.abbreviation || "MIL"}　J.ミザロウスキー　` +
-                `100mph超え ${summary.tripleDigit}/${summary.total}球`;
+            const formatMisiorowskiPitchSummary = (summary) => {
+                const base = `${state[summary.side]?.abbreviation || "MIL"}　` +
+                    `J.ミザロウスキー　100mph超え ${summary.tripleDigit}/${summary.total}球`;
+                if (!summary.fastest) return base;
+                const half = summary.fastest.halfInning === "top" ? "表" : "裏";
+                const inning = Number.isInteger(summary.fastest.inning)
+                    ? `${summary.fastest.inning}回${half}`
+                    : "";
+                const batter = getPersonName(summary.fastest.batter) || "打者不明";
+                return `${base}　最速 ${inning} ${batter}の${summary.fastest.pitchNumber}球目 ` +
+                    `${summary.fastest.speed.toFixed(1)}mph`;
+            };
 
             const refreshMisiorowskiPitchSummary = () => {
                 const summary = getMisiorowskiPitchSummary();
