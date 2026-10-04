@@ -2905,6 +2905,12 @@ body.app-mode-pregame .score-loading-overlay {
     background: #e1ebe2;
 }
 
+.pitcher-matchup-toggle-btn.active {
+    color: #fff;
+    border-color: #315f3d;
+    background: #315f3d;
+}
+
 .pitch-chart-open-btn:disabled {
     cursor: default;
     opacity: 0.45;
@@ -2959,6 +2965,71 @@ body.app-mode-pregame .score-loading-overlay {
 .pitching-table th:last-child,
 .pitching-table td:last-child {
     width: 9%;
+}
+
+.pitching-table .pitcher-matchup-column {
+    display: none;
+}
+
+.pitching-table-wrap.show-pitcher-matchup,
+.pitching-table.show-pitcher-matchup {
+    max-width: 1000px;
+}
+
+.pitching-table.show-pitcher-matchup .pitcher-matchup-column {
+    display: table-cell;
+    width: 20%;
+}
+
+.pitcher-matchup-stats {
+    display: grid;
+    grid-template-columns: 4.75em 5em 4.25em;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    color: inherit;
+    text-decoration: none;
+}
+
+.pitcher-matchup-reference-only {
+    display: block;
+    text-align: center;
+}
+
+a.pitcher-matchup-stats:hover,
+a.pitcher-matchup-stats:focus-visible {
+    color: #006bb6;
+    text-decoration: underline;
+}
+
+.pitcher-matchup-games {
+    text-align: right;
+}
+
+.pitcher-matchup-record {
+    text-align: center;
+}
+
+.pitcher-matchup-era {
+    text-align: left;
+}
+
+.pitching-table.show-pitcher-matchup .pitcher-column {
+    width: 27%;
+}
+
+.pitching-table.show-pitcher-matchup .pitch-count-column {
+    width: 7%;
+}
+
+.pitching-table.show-pitcher-matchup .stat-column {
+    width: 5.43%;
+}
+
+.pitching-table.show-pitcher-matchup th:last-child,
+.pitching-table.show-pitcher-matchup td:last-child {
+    width: 8%;
 }
 
 .side-stats {

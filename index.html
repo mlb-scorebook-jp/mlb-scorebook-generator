@@ -1780,6 +1780,9 @@
             const playerGameLogCache = new Map();
             const playerPostseasonCareerHittingBeforeDateCache = new Map();
             const playerPostseasonCareerPitchingCache = new Map();
+            const pitcherOpponentCareerCache = new Map();
+            const pitcherBaseballReferenceCache = new Map();
+            const expandedPitcherOpponentTables = new Set();
             const playerCareerStreakCache = new Map();
             const teamScheduleCache = new Map();
             const gameBoxscoreCache = new Map();
@@ -2164,6 +2167,159 @@
                 return request;
             };
 
+            const fetchPitcherOpponentCareerBeforeGame = async ({
+                playerId,
+                debutDate,
+                opponentId,
+                officialDate,
+                gamePk
+            }) => {
+                const currentSeason = Number(String(officialDate ?? "").slice(0, 4));
+                const debutSeason = Number(String(debutDate ?? "").slice(0, 4));
+                if (!playerId || !opponentId || !Number.isInteger(currentSeason)) return null;
+                const firstSeason = Number.isInteger(debutSeason)
+                    ? debutSeason
+                    : currentSeason;
+                const cacheKey = [
+                    playerId,
+                    opponentId,
+                    officialDate,
+                    gamePk,
+                    "career-opponent-before"
+                ].join(":");
+                if (pitcherOpponentCareerCache.has(cacheKey)) {
+                    return pitcherOpponentCareerCache.get(cacheKey);
+                }
+                const seasons = Array.from(
+                    { length: Math.max(0, currentSeason - firstSeason + 1) },
+                    (_, index) => firstSeason + index
+                );
+                const request = Promise.all(seasons.map((season) =>
+                    fetch(
+                        `https://statsapi.mlb.com/api/v1/people/${playerId}/stats` +
+                        `?stats=gameLog&group=pitching&season=${season}&gameType=R,P`
+                    ).then(async (response) => {
+                        if (!response.ok) return [];
+                        const payload = await response.json();
+                        return (payload?.stats ?? []).flatMap((entry) => entry?.splits ?? []);
+                    }).catch(() => [])
+                )).then((groups) => {
+                    const matchingGames = groups.flat().filter((split) =>
+                        Number(split?.opponent?.id) === Number(opponentId) &&
+                        String(split?.date ?? "").slice(0, 10) < officialDate &&
+                        Number(split?.game?.gamePk) !== Number(gamePk)
+                    );
+                    const totals = matchingGames.reduce((result, split) => {
+                        const stat = split?.stat ?? {};
+                        result.appearances += 1;
+                        result.wins += Number(stat.wins) || 0;
+                        result.losses += Number(stat.losses) || 0;
+                        result.earnedRuns += Number(stat.earnedRuns) || 0;
+                        const officialOuts = Number(stat.outs);
+                        if (Number.isFinite(officialOuts)) {
+                            result.outs += officialOuts;
+                        } else {
+                            const match = String(stat.inningsPitched ?? "")
+                                .match(/^(\d+)(?:\.([012]))?$/);
+                            if (match) {
+                                result.outs += Number(match[1]) * 3 + Number(match[2] ?? 0);
+                            }
+                        }
+                        return result;
+                    }, { appearances: 0, wins: 0, losses: 0, earnedRuns: 0, outs: 0 });
+                    return {
+                        ...totals,
+                        era: totals.outs > 0
+                            ? (totals.earnedRuns * 27 / totals.outs).toFixed(2)
+                            : "—"
+                    };
+                });
+                pitcherOpponentCareerCache.set(cacheKey, request);
+                return request;
+            };
+
+            const getPitcherBaseballReferenceUrl = async (person) => {
+                const playerId = Number(person?.id);
+                if (!playerId) return "";
+                if (pitcherBaseballReferenceCache.has(playerId)) {
+                    return pitcherBaseballReferenceCache.get(playerId);
+                }
+                const request = fetch(
+                    `https://statsapi.mlb.com/api/v1/people/${playerId}?hydrate=xrefId`
+                ).then(async (response) => {
+                    if (!response.ok) return "";
+                    const payload = await response.json();
+                    const profile = payload?.people?.[0] ?? person;
+                    const referenceId = profile?.xrefIds?.find(
+                        (xref) => String(xref?.xrefType ?? "").toLowerCase() === "lahman"
+                    )?.xrefId;
+                    if (!referenceId) return "";
+                    const url = new URL("https://www.baseball-reference.com/players/split.fcgi");
+                    url.searchParams.set("id", referenceId);
+                    url.searchParams.set("year", "Career");
+                    url.searchParams.set("t", "p");
+                    url.hash = "all_oppon_extra";
+                    return url.toString();
+                }).catch(() => "");
+                pitcherBaseballReferenceCache.set(playerId, request);
+                return request;
+            };
+
+            const renderPitcherOpponentCareer = (cell, record, person, referenceUrl) => {
+                if (!record || !record.appearances) {
+                    const label = record ? "初対戦" : "取得不可";
+                    if (!referenceUrl) {
+                        cell.textContent = label;
+                        return;
+                    }
+                    const link = createElement(
+                        "a",
+                        "pitcher-matchup-stats pitcher-matchup-reference-only",
+                        label
+                    );
+                    link.href = referenceUrl;
+                    link.target = "_blank";
+                    link.rel = "noopener noreferrer";
+                    link.setAttribute(
+                        "aria-label",
+                        `${getPersonName(person)}のBaseball Reference対戦別通算投手成績を開く`
+                    );
+                    cell.replaceChildren(link);
+                    return;
+                }
+                const stats = createElement(
+                    referenceUrl ? "a" : "span",
+                    "pitcher-matchup-stats"
+                );
+                if (referenceUrl) {
+                    stats.href = referenceUrl;
+                    stats.target = "_blank";
+                    stats.rel = "noopener noreferrer";
+                    stats.setAttribute(
+                        "aria-label",
+                        `${getPersonName(person)}のBaseball Reference対戦別通算投手成績を開く`
+                    );
+                }
+                stats.append(
+                    createElement(
+                        "span",
+                        "pitcher-matchup-games",
+                        `${record.appearances}試合`
+                    ),
+                    createElement(
+                        "span",
+                        "pitcher-matchup-record",
+                        `${record.wins}勝${record.losses}敗`
+                    ),
+                    createElement(
+                        "span",
+                        "pitcher-matchup-era",
+                        `防${record.era}`
+                    )
+                );
+                cell.replaceChildren(stats);
+            };
+
             const fetchPlayerPostseasonGameLog = async (playerId, season, group = "hitting") => {
                 const cacheKey = `${playerId}:${season}:${group}:postseason`;
                 if (playerGameLogCache.has(cacheKey)) {
@@ -2247,42 +2403,62 @@
                 return request;
             };
 
-            const fetchPlayerPostseasonCareerPitching = async (playerId) => {
-                if (playerPostseasonCareerPitchingCache.has(playerId)) {
-                    return playerPostseasonCareerPitchingCache.get(playerId);
+            const fetchPlayerPostseasonCareerPitchingBeforeDate = async (
+                playerId,
+                debutDate,
+                officialDate
+            ) => {
+                const endDate = shiftOfficialDate(officialDate, -1);
+                const startDate = /^\d{4}-\d{2}-\d{2}$/.test(String(debutDate ?? ""))
+                    ? debutDate
+                    : "1901-01-01";
+                const cacheKey = `${playerId}:${startDate}:${endDate}:postseason-pitching-before`;
+                if (playerPostseasonCareerPitchingCache.has(cacheKey)) {
+                    return playerPostseasonCareerPitchingCache.get(cacheKey);
                 }
-                const request = Promise.all(["F", "D", "L", "W"].map((gameType) =>
-                    fetch(
-                        `https://statsapi.mlb.com/api/v1/people/${playerId}/stats` +
-                        `?stats=career&group=pitching&gameType=${gameType}`
+                const fields = ["gamesPlayed", "gamesStarted", "wins", "saves"];
+                const request = Promise.all(["F", "D", "L", "W"].map((gameType) => {
+                    const params = new URLSearchParams({
+                        stats: "byDateRange",
+                        group: "pitching",
+                        gameType,
+                        sportIds: "1",
+                        startDate,
+                        endDate
+                    });
+                    return fetch(
+                        `https://statsapi.mlb.com/api/v1/people/${playerId}/stats?${params}`
                     ).then(async (response) => {
                         if (!response.ok) return null;
                         const payload = await response.json();
-                        return payload?.stats?.[0]?.splits?.[0]?.stat ?? null;
-                    }).catch(() => null)
-                )).then((stats) => {
-                    const available = stats.some(Boolean);
-                    return {
-                        available,
-                        gamesPlayed: stats.reduce(
-                            (total, stat) => total + (Number(stat?.gamesPlayed) || 0),
-                            0
-                        ),
-                        gamesStarted: stats.reduce(
-                            (total, stat) => total + (Number(stat?.gamesStarted) || 0),
-                            0
-                        ),
-                        wins: stats.reduce(
-                            (total, stat) => total + (Number(stat?.wins) || 0),
-                            0
-                        ),
-                        saves: stats.reduce(
-                            (total, stat) => total + (Number(stat?.saves) || 0),
-                            0
-                        )
-                    };
-                });
-                playerPostseasonCareerPitchingCache.set(playerId, request);
+                        const splits = (payload?.stats ?? []).flatMap((group) =>
+                            group?.splits ?? []
+                        );
+                        const aggregate = splits.find((split) =>
+                            !split?.team && Number(split?.sport?.id) === 0
+                        );
+                        const usableSplits = aggregate
+                            ? [aggregate]
+                            : splits.filter((split) =>
+                                Number(split?.sport?.id) === 1 && Boolean(split?.team?.id)
+                            );
+                        return usableSplits.reduce((totals, split) => {
+                            fields.forEach((field) => {
+                                totals[field] += Number(split?.stat?.[field]) || 0;
+                            });
+                            return totals;
+                        }, Object.fromEntries(fields.map((field) => [field, 0])));
+                    }).catch(() => null);
+                })).then((groups) => ({
+                    available: groups.some(Boolean),
+                    ...groups.filter(Boolean).reduce((totals, group) => {
+                        fields.forEach((field) => {
+                            totals[field] += Number(group?.[field]) || 0;
+                        });
+                        return totals;
+                    }, Object.fromEntries(fields.map((field) => [field, 0])))
+                }));
+                playerPostseasonCareerPitchingCache.set(cacheKey, request);
                 return request;
             };
 
@@ -4670,58 +4846,88 @@
                                     playerId === startingPitcherId;
                                 if (!playerId || (!appeared && !startedNow)) return null;
 
-                                const career = await fetchPlayerPostseasonCareerPitching(
-                                    playerId
-                                );
-                                const seasonLogs = career.available
-                                    ? []
-                                    : await fetchPlayerPostseasonGameLog(
+                                const person = {
+                                    ...(data?.gameData?.players?.[`ID${playerId}`] ?? {}),
+                                    ...(gamePlayer?.person ?? {})
+                                };
+                                const [career, seasonLogs] = await Promise.all([
+                                    fetchPlayerPostseasonCareerPitchingBeforeDate(
+                                        playerId,
+                                        person?.mlbDebutDate,
+                                        officialDate
+                                    ),
+                                    fetchPlayerPostseasonGameLog(
                                         playerId,
                                         season,
                                         "pitching"
-                                    );
+                                    )
+                                ]);
                                 const hasPriorAppearance = seasonLogs.some((split) =>
-                                    String(split?.date ?? "").slice(0, 10) <= officialDate &&
+                                    String(split?.date ?? "").slice(0, 10) < officialDate &&
                                     Number(split?.game?.gamePk) !== Number(gamePk) &&
                                     ((Number(split?.stat?.gamesPlayed) || 0) > 0 ||
                                         (Number(split?.stat?.battersFaced) || 0) > 0)
                                 );
                                 const hasPriorStart = seasonLogs.some((split) =>
-                                    String(split?.date ?? "").slice(0, 10) <= officialDate &&
+                                    String(split?.date ?? "").slice(0, 10) < officialDate &&
                                     Number(split?.game?.gamePk) !== Number(gamePk) &&
                                     (Number(split?.stat?.gamesStarted) || 0) > 0
                                 );
-                                const firsts = [];
-                                if (career.available
-                                    ? career.gamesPlayed <= 1
-                                    : !hasPriorAppearance) {
-                                    firsts.push("登板");
+                                const careerFirsts = [];
+                                const currentPostseasonFirsts = [];
+                                if (career.available && career.gamesPlayed === 0) {
+                                    careerFirsts.push("登板");
+                                } else if (!hasPriorAppearance) {
+                                    currentPostseasonFirsts.push("登板");
                                 }
-                                if (startedNow && (career.available
-                                    ? career.gamesStarted <= 1
-                                    : !hasPriorStart)) {
-                                    firsts.push("先発");
+                                if (startedNow && career.available && career.gamesStarted === 0) {
+                                    careerFirsts.push("先発");
+                                } else if (startedNow && !hasPriorStart) {
+                                    currentPostseasonFirsts.push("先発");
                                 }
                                 if (gameFinal &&
                                     Number(decisions?.winner?.id) === playerId &&
-                                    career.available && career.wins === 1) {
-                                    firsts.push("勝利");
+                                    career.available && career.wins === 0) {
+                                    careerFirsts.push("勝利");
+                                } else if (gameFinal &&
+                                    Number(decisions?.winner?.id) === playerId &&
+                                    !seasonLogs.some((split) =>
+                                        String(split?.date ?? "").slice(0, 10) < officialDate &&
+                                        (Number(split?.stat?.wins) || 0) > 0
+                                    )) {
+                                    currentPostseasonFirsts.push("勝利");
                                 }
                                 if (gameFinal &&
                                     Number(decisions?.save?.id) === playerId &&
-                                    career.available && career.saves === 1) {
-                                    firsts.push("セーブ");
+                                    career.available && career.saves === 0) {
+                                    careerFirsts.push("セーブ");
+                                } else if (gameFinal &&
+                                    Number(decisions?.save?.id) === playerId &&
+                                    !seasonLogs.some((split) =>
+                                        String(split?.date ?? "").slice(0, 10) < officialDate &&
+                                        (Number(split?.stat?.saves) || 0) > 0
+                                    )) {
+                                    currentPostseasonFirsts.push("セーブ");
                                 }
-                                if (!firsts.length) return null;
-                                const [first, ...additional] = firsts;
+                                const formatFirsts = (prefix, firsts) => {
+                                    const [first, ...additional] = firsts;
+                                    return first
+                                        ? `${prefix}初${first}` + additional
+                                            .map((label) => `・初${label}`)
+                                            .join("")
+                                        : "";
+                                };
+                                const firstsText = [
+                                    formatFirsts("PS", careerFirsts),
+                                    formatFirsts("今PS", currentPostseasonFirsts)
+                                ].filter(Boolean).join("・");
+                                if (!firstsText) return null;
                                 return {
-                                    text: `${code}　${getPersonName({
-                                        ...(data?.gameData?.players?.[`ID${playerId}`] ?? {}),
-                                        ...(gamePlayer?.person ?? {})
-                                    })}　PS初${first}` + additional
-                                        .map((label) => `・初${label}`)
-                                        .join(""),
-                                    priority: firsts.includes("勝利") || firsts.includes("セーブ")
+                                    text: `${code}　${getPersonName(person)}　${firstsText}`,
+                                    priority: careerFirsts.includes("勝利") ||
+                                        careerFirsts.includes("セーブ") ||
+                                        currentPostseasonFirsts.includes("勝利") ||
+                                        currentPostseasonFirsts.includes("セーブ")
                                         ? -9.5
                                         : -8.6
                                 };
@@ -8582,6 +8788,17 @@
                 const box = createElement("section", "table-box");
                 const title = createElement("div", "table-title pitching-table-title");
                 title.append(createElement("span", "", `投手成績　${state[side].name}`));
+                const opponentSide = side === "away" ? "home" : "away";
+                const opponent = state[opponentSide];
+                const opponentCode = opponent?.abbreviation || "相手";
+                const expansionKey = `${state.gamePk}:${side}`;
+                const matchupButton = createElement(
+                    "button",
+                    "pitch-chart-open-btn pitcher-matchup-toggle-btn",
+                    `VS.${opponentCode}成績`
+                );
+                matchupButton.type = "button";
+                matchupButton.setAttribute("aria-pressed", "false");
                 const chartButton = createElement("button", "pitch-chart-open-btn", "投球チャート");
                 chartButton.type = "button";
                 chartButton.disabled = !isGameFinal(state.gameData);
@@ -8589,18 +8806,25 @@
                     chartButton.title = "試合終了後に投球チャートを表示できます。";
                 }
                 chartButton.addEventListener("click", () => showPitchChart(side));
-                title.append(chartButton);
+                title.append(matchupButton, chartButton);
                 box.append(title);
 
                 const wrap = createElement("div", "pitching-table-wrap");
                 const table = createElement("table", "pitching-table");
+                table.dataset.side = side;
                 const thead = document.createElement("thead");
                 const headRow = document.createElement("tr");
+                const tableHeaders = [
+                    pitchingHeaders[0],
+                    "通算対戦成績（シーズン）",
+                    ...pitchingHeaders.slice(1)
+                ];
 
-                pitchingHeaders.forEach((label, index) => {
+                tableHeaders.forEach((label, index) => {
                     const th = createElement("th", "", label);
                     if (index === 0) th.className = "pitcher-column";
-                    else if (index === 1) th.className = "pitch-count-column";
+                    else if (index === 1) th.className = "pitcher-matchup-column";
+                    else if (index === 2) th.className = "pitch-count-column";
                     else th.className = "stat-column";
                     headRow.append(th);
                 });
@@ -8631,6 +8855,7 @@
                         : "";
                     const values = pitcher ? [
                         `${pitcherName}${getPitcherDecisionSuffix(pitcher?.person)}`,
+                        "取得前",
                         stats.numberOfPitches ?? "",
                         stats.inningsPitched ?? "",
                         stats.hits ?? "",
@@ -8642,7 +8867,7 @@
                         velocitySummary?.tripleDigit > 0
                             ? velocitySummary.tripleDigit
                             : "ー"
-                    ] : Array.from({ length: pitchingHeaders.length }, () => "");
+                    ] : Array.from({ length: tableHeaders.length }, () => "");
 
                     values.forEach((value, valueIndex) => {
                         const td = createElement("td", "", String(value ?? ""));
@@ -8654,9 +8879,13 @@
                             const decision = pitcher ? getPitcherDecisionSuffix(person) : "";
                             if (decision) td.append(document.createTextNode(decision));
                         }
-                        else if (valueIndex === 1) td.className = "pitch-count-column";
+                        else if (valueIndex === 1) {
+                            td.className = "pitcher-matchup-column";
+                            if (pitcherId) td.dataset.pitcherOpponentCareer = String(pitcherId);
+                        }
+                        else if (valueIndex === 2) td.className = "pitch-count-column";
                         else td.className = "stat-column";
-                        if (pitcherId && valueIndex === pitchingHeaders.length - 1) {
+                        if (pitcherId && valueIndex === tableHeaders.length - 1) {
                             td.dataset.pitcherVelocityCount = String(pitcherId);
                         }
                         row.append(td);
@@ -8668,6 +8897,53 @@
                 table.append(tbody);
                 wrap.append(table);
                 box.append(wrap);
+
+                const loadOpponentCareers = async () => {
+                    const cells = [...table.querySelectorAll("[data-pitcher-opponent-career]")];
+                    cells.forEach((cell) => { cell.textContent = "取得中…"; });
+                    await mapWithConcurrency(cells, 2, async (cell) => {
+                        const playerId = Number(cell.dataset.pitcherOpponentCareer);
+                        const pitcher = state[side].pitchers.find((entry) =>
+                            Number(entry?.person?.id) === playerId
+                        );
+                        const person = {
+                            ...(state.gameData?.gameData?.players?.[`ID${playerId}`] ?? {}),
+                            ...(pitcher?.person ?? {})
+                        };
+                        const [record, referenceUrl] = await Promise.all([
+                            fetchPitcherOpponentCareerBeforeGame({
+                                playerId,
+                                debutDate: person?.mlbDebutDate,
+                                opponentId: opponent?.id,
+                                officialDate: String(
+                                    state.gameData?.gameData?.datetime?.officialDate ?? ""
+                                ),
+                                gamePk: state.gamePk
+                            }),
+                            getPitcherBaseballReferenceUrl(person)
+                        ]);
+                        renderPitcherOpponentCareer(cell, record, person, referenceUrl);
+                    });
+                };
+
+                const setMatchupExpanded = (expanded) => {
+                    table.classList.toggle("show-pitcher-matchup", expanded);
+                    wrap.classList.toggle("show-pitcher-matchup", expanded);
+                    matchupButton.classList.toggle("active", expanded);
+                    matchupButton.setAttribute("aria-pressed", String(expanded));
+                    if (expanded) {
+                        expandedPitcherOpponentTables.add(expansionKey);
+                        loadOpponentCareers();
+                    } else {
+                        expandedPitcherOpponentTables.delete(expansionKey);
+                    }
+                };
+                matchupButton.addEventListener("click", () => {
+                    setMatchupExpanded(!table.classList.contains("show-pitcher-matchup"));
+                });
+                if (expandedPitcherOpponentTables.has(expansionKey)) {
+                    queueMicrotask(() => setMatchupExpanded(true));
+                }
 
                 return box;
             };
