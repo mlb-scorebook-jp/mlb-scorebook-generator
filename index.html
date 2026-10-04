@@ -8684,7 +8684,9 @@
                 getTripleDigitPitchSummaries(side).reverse().forEach((velocitySummary) => {
                     sourceNotes.unshift({
                         text: formatPitcherVelocitySummary(velocitySummary),
-                        pitcherVelocityId: velocitySummary.playerId
+                        pitcherVelocityId: velocitySummary.playerId,
+                        link: getPitcherResearchToolUrl(velocitySummary.playerId),
+                        linkType: "mlb-research-pitching"
                     });
                 });
                 const notesColumns = createElement("div", "special-notes-columns");
@@ -8707,7 +8709,12 @@
                             noteData && typeof noteData === "object" && noteData.link &&
                             noteData.linkType === "mlb-official-record"
                         );
-                        const isInlineNoteLink = isStatheadStreakLink || isMlbOfficialLink;
+                        const isMlbResearchLink = Boolean(
+                            noteData && typeof noteData === "object" && noteData.link &&
+                            noteData.linkType === "mlb-research-pitching"
+                        );
+                        const isInlineNoteLink = isStatheadStreakLink || isMlbOfficialLink ||
+                            isMlbResearchLink;
                         if (noteData && typeof noteData === "object" &&
                             noteData.link && isInlineNoteLink) {
                             const noteLink = createElement(
@@ -8721,7 +8728,9 @@
                             noteLink.contentEditable = "false";
                             noteLink.setAttribute(
                                 "aria-label",
-                                isMlbOfficialLink
+                                isMlbResearchLink
+                                    ? `${noteText}のResearch Tool投球一覧を新しいタブで開く`
+                                    : isMlbOfficialLink
                                     ? `${noteText}のMLB公式記事を新しいタブで開く`
                                     : `${noteText}のStathead選手別ストリーク検索を新しいタブで開く`
                             );
@@ -10109,6 +10118,26 @@
                     .map((pitcher) => getPitcherVelocitySummary(Number(pitcher?.person?.id)))
                     .filter((summary) => summary?.tripleDigit > 0);
 
+            const getPitcherResearchToolUrl = (playerId) => {
+                const columns = [
+                    "inning",
+                    "atBatNumber",
+                    "pitchNumber",
+                    "pitcher.fullName",
+                    "batter.fullName",
+                    "pitchName",
+                    "pitcher.releaseSpeed.displayValue",
+                    "pitcher.releaseSpinRate.displayValue",
+                    "pitcher.verticalBreak.displayValue",
+                    "pitcher.horizontalBreak.displayValue",
+                    "pitcher.releaseExtension.displayValue",
+                    "eventName",
+                    "pitcher.pitchHeight.displayValue"
+                ].join(",");
+                return `https://research.mlb.com/games/${state.gamePk}/pitching` +
+                    `#columns=${columns}&pitcherId=${playerId}`;
+            };
+
             const formatPitcherVelocitySummary = (summary) => {
                 const pitcherName = getPersonName(summary.person) || "投手不明";
                 const base = `${state[summary.side]?.abbreviation || ""}　${pitcherName}`;
@@ -10145,9 +10174,23 @@
                                     !entry.dataset.pitcherVelocity &&
                                     !String(entry.textContent ?? "").trim()
                                 );
-                            if (row) row.dataset.pitcherVelocity = String(summary.playerId);
+                            if (row) {
+                                row.dataset.pitcherVelocity = String(summary.playerId);
+                                const link = createElement("a", "special-note-inline-link", "");
+                                link.href = getPitcherResearchToolUrl(summary.playerId);
+                                link.target = "_blank";
+                                link.rel = "noopener noreferrer";
+                                link.contentEditable = "false";
+                                link.setAttribute(
+                                    "aria-label",
+                                    `${getPersonName(summary.person)}のResearch Tool投球一覧を新しいタブで開く`
+                                );
+                                row.replaceChildren(link);
+                            }
                         }
-                        const text = row?.querySelector(".special-note-text");
+                        const text = row?.querySelector(
+                            ".special-note-text, .special-note-inline-link"
+                        );
                         if (text) text.textContent = formatPitcherVelocitySummary(summary);
                     });
                 });
