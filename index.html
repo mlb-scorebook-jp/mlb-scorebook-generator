@@ -1777,6 +1777,7 @@
             const MLB_SINGLE_SEASON_BATTER_STRIKEOUT_RECORD_URL =
                 "https://www.mlb.com/news/swing-and-miss-ks-part-and-parcel-of-game/c-123689560";
             const playerGameLogCache = new Map();
+            const playerPostseasonCareerHittingBeforeDateCache = new Map();
             const playerPostseasonCareerPitchingCache = new Map();
             const playerCareerStreakCache = new Map();
             const teamScheduleCache = new Map();
@@ -2183,6 +2184,65 @@
                 ));
 
                 playerGameLogCache.set(cacheKey, request);
+                return request;
+            };
+
+            const fetchPlayerPostseasonCareerHittingBeforeDate = async (
+                playerId,
+                debutDate,
+                officialDate
+            ) => {
+                const endDate = shiftOfficialDate(officialDate, -1);
+                const startDate = /^\d{4}-\d{2}-\d{2}$/.test(String(debutDate ?? ""))
+                    ? debutDate
+                    : "1901-01-01";
+                const cacheKey = `${playerId}:${startDate}:${endDate}:postseason-before`;
+                if (playerPostseasonCareerHittingBeforeDateCache.has(cacheKey)) {
+                    return playerPostseasonCareerHittingBeforeDateCache.get(cacheKey);
+                }
+                const fields = ["hits", "homeRuns", "rbi", "stolenBases"];
+                const request = Promise.all(["F", "D", "L", "W"].map((gameType) => {
+                    const params = new URLSearchParams({
+                        stats: "byDateRange",
+                        group: "hitting",
+                        gameType,
+                        sportIds: "1",
+                        startDate,
+                        endDate
+                    });
+                    return fetch(
+                        `https://statsapi.mlb.com/api/v1/people/${playerId}/stats?${params}`
+                    ).then(async (response) => {
+                        if (!response.ok) return null;
+                        const payload = await response.json();
+                        const splits = (payload?.stats ?? []).flatMap((group) =>
+                            group?.splits ?? []
+                        );
+                        const aggregate = splits.find((split) =>
+                            !split?.team && Number(split?.sport?.id) === 0
+                        );
+                        const usableSplits = aggregate
+                            ? [aggregate]
+                            : splits.filter((split) =>
+                                Number(split?.sport?.id) === 1 && Boolean(split?.team?.id)
+                            );
+                        return usableSplits.reduce((totals, split) => {
+                            fields.forEach((field) => {
+                                totals[field] += Number(split?.stat?.[field]) || 0;
+                            });
+                            return totals;
+                        }, Object.fromEntries(fields.map((field) => [field, 0])));
+                    }).catch(() => null);
+                })).then((groups) => ({
+                    available: groups.some(Boolean),
+                    ...groups.filter(Boolean).reduce((totals, group) => {
+                        fields.forEach((field) => {
+                            totals[field] += Number(group?.[field]) || 0;
+                        });
+                        return totals;
+                    }, Object.fromEntries(fields.map((field) => [field, 0])))
+                }));
+                playerPostseasonCareerHittingBeforeDateCache.set(cacheKey, request);
                 return request;
             };
 
@@ -4518,46 +4578,36 @@
                         const boxscorePlayers = Object.values(
                             data?.liveData?.boxscore?.teams?.[side]?.players ?? {}
                         );
-                        const postseasonDebutPlayers = (await Promise.all(
+                        const postseasonFirstPlayers = (await Promise.all(
                             boxscorePlayers.map(async (gamePlayer) => {
                                 const playerId = Number(gamePlayer?.person?.id);
                                 const currentGameBatting = gamePlayer?.stats?.batting ?? {};
                                 if (!playerId || getPlateAppearances(currentGameBatting) <= 0) {
                                     return null;
                                 }
-                                const gameLogSplits = await fetchPlayerPostseasonGameLog(
+                                const person = {
+                                    ...(data?.gameData?.players?.[`ID${playerId}`] ?? {}),
+                                    ...(gamePlayer?.person ?? {})
+                                };
+                                const priorCareer = await fetchPlayerPostseasonCareerHittingBeforeDate(
                                     playerId,
-                                    season
+                                    person?.mlbDebutDate,
+                                    officialDate
                                 );
-                                const postseasonGamesPlayed = Number(
-                                    gamePlayer?.seasonStats?.batting?.gamesPlayed
-                                );
-                                const hasPriorPostseasonGame = gameLogSplits.some((split) =>
-                                    String(split?.date ?? "").slice(0, 10) <= officialDate &&
-                                    Number(split?.game?.gamePk) !== Number(gamePk) &&
-                                    getPlateAppearances(split?.stat) > 0
-                                );
-                                // MLB's postseason game-log response can occasionally be
-                                // incomplete while a game is being finalized. The boxscore's
-                                // postseason season total is an independent, authoritative
-                                // fallback: one game played means this is the debut game.
-                                const isFirstPostseasonGame = postseasonGamesPlayed === 1 ||
-                                    !hasPriorPostseasonGame;
-                                if (!isFirstPostseasonGame) return null;
+                                if (!priorCareer.available) return null;
                                 return {
                                     id: playerId,
-                                    person: {
-                                        ...(data?.gameData?.players?.[`ID${playerId}`] ?? {}),
-                                        ...(gamePlayer?.person ?? {})
-                                    },
+                                    person,
+                                    priorCareer,
                                     currentGameBatting
                                 };
                             })
                         )).filter(Boolean);
-                        postseasonDebutPlayers.forEach((player) => {
+                        postseasonFirstPlayers.forEach((player) => {
                             const firsts = [];
                             postseasonFirstDefinitions.forEach(([field, label]) => {
-                                if ((Number(player?.currentGameBatting?.[field]) || 0) > 0) {
+                                if ((Number(player?.currentGameBatting?.[field]) || 0) > 0 &&
+                                    (Number(player?.priorCareer?.[field]) || 0) === 0) {
                                     firsts.push(label);
                                 }
                             });
