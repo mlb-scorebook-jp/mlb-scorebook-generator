@@ -8621,8 +8621,8 @@
                     const row = document.createElement("tr");
                     const stats = pitcher?.stats?.pitching ?? {};
                     const cumulativeEra = pitcher?.seasonStats?.pitching?.era ?? stats.era ?? "";
-                    const isMisiorowski = Number(pitcher?.person?.id) === MISIOROWSKI_PLAYER_ID;
-                    const velocitySummary = isMisiorowski ? getMisiorowskiPitchSummary() : null;
+                    const pitcherId = Number(pitcher?.person?.id);
+                    const velocitySummary = getPitcherVelocitySummary(pitcherId);
                     const pitcherName = pitcher ? getPersonName(pitcher?.person) : "";
                     const walks = Number(stats.baseOnBalls);
                     const hitByPitch = Number(stats.hitByPitch);
@@ -8656,8 +8656,8 @@
                         }
                         else if (valueIndex === 1) td.className = "pitch-count-column";
                         else td.className = "stat-column";
-                        if (isMisiorowski && valueIndex === pitchingHeaders.length - 1) {
-                            td.dataset.misiorowskiTripleDigit = "true";
+                        if (pitcherId && valueIndex === pitchingHeaders.length - 1) {
+                            td.dataset.pitcherVelocityCount = String(pitcherId);
                         }
                         row.append(td);
                     });
@@ -8680,14 +8680,13 @@
                     createElement("div", "table-title", "特記事項")
                 );
 
-                const velocitySummary = getMisiorowskiPitchSummary();
                 const sourceNotes = [...(state.streakNotes?.[side] ?? [])];
-                if (velocitySummary?.side === side) {
+                getTripleDigitPitchSummaries(side).reverse().forEach((velocitySummary) => {
                     sourceNotes.unshift({
-                        text: formatMisiorowskiPitchSummary(velocitySummary),
-                        misiorowskiVelocity: true
+                        text: formatPitcherVelocitySummary(velocitySummary),
+                        pitcherVelocityId: velocitySummary.playerId
                     });
-                }
+                });
                 const notesColumns = createElement("div", "special-notes-columns");
                 for (let column = 0; column < 2; column += 1) {
                     const notesTable = createElement("div", "special-notes");
@@ -8695,8 +8694,8 @@
                         const noteIndex = column * 6 + row;
                         const noteData = sourceNotes[noteIndex] ?? "";
                         const note = createElement("div", "special-note-row");
-                        if (noteData?.misiorowskiVelocity) {
-                            note.dataset.misiorowskiVelocity = "true";
+                        if (noteData?.pitcherVelocityId) {
+                            note.dataset.pitcherVelocity = String(noteData.pitcherVelocityId);
                         }
                         const noteText = getSpecialNoteText(noteData);
                         const isStatheadStreakLink = Boolean(
@@ -10048,7 +10047,6 @@
                 "pitchData", "startSpeed",
                 "count", "balls", "strikes", "outs"
             ].join(",");
-            const MISIOROWSKI_PLAYER_ID = 694819;
             const liveScoreUpdate = {
                 timer: 0,
                 controller: null,
@@ -10067,16 +10065,20 @@
                 !document.body.classList.contains("app-mode-pregame") &&
                 !document.body.classList.contains("app-mode-pitch-chart");
 
-            const getMisiorowskiPitchSummary = () => {
+            const getPitcherVelocitySummary = (playerId) => {
+                if (!playerId) return null;
                 const plays = state.gameData?.liveData?.plays?.allPlays ?? [];
                 const side = ["away", "home"].find((entry) =>
                     state[entry]?.pitchers?.some((pitcher) =>
-                        Number(pitcher?.person?.id) === MISIOROWSKI_PLAYER_ID
+                        Number(pitcher?.person?.id) === Number(playerId)
                     )
                 );
                 if (!side) return null;
+                const pitcher = state[side].pitchers.find((entry) =>
+                    Number(entry?.person?.id) === Number(playerId)
+                );
                 const counts = plays.reduce((totals, play) => {
-                    if (Number(play?.matchup?.pitcher?.id) !== MISIOROWSKI_PLAYER_ID) {
+                    if (Number(play?.matchup?.pitcher?.id) !== Number(playerId)) {
                         return totals;
                     }
                     let pitchNumber = 0;
@@ -10099,11 +10101,17 @@
                     return totals;
                 }, { tripleDigit: 0, total: 0, fastest: null });
                 if (!counts.total) return null;
-                return { side, ...counts };
+                return { side, playerId: Number(playerId), person: pitcher?.person ?? {}, ...counts };
             };
 
-            const formatMisiorowskiPitchSummary = (summary) => {
-                const base = `${state[summary.side]?.abbreviation || "MIL"}　J.ミザロウスキー`;
+            const getTripleDigitPitchSummaries = (side) =>
+                (state[side]?.pitchers ?? [])
+                    .map((pitcher) => getPitcherVelocitySummary(Number(pitcher?.person?.id)))
+                    .filter((summary) => summary?.tripleDigit > 0);
+
+            const formatPitcherVelocitySummary = (summary) => {
+                const pitcherName = getPersonName(summary.person) || "投手不明";
+                const base = `${state[summary.side]?.abbreviation || ""}　${pitcherName}`;
                 if (!summary.fastest) return base;
                 const half = summary.fastest.halfInning === "top" ? "表" : "裏";
                 const inning = Number.isInteger(summary.fastest.inning)
@@ -10114,19 +10122,34 @@
                     `${summary.fastest.speed.toFixed(1)}mph`;
             };
 
-            const refreshMisiorowskiPitchSummary = () => {
-                const summary = getMisiorowskiPitchSummary();
-                document.querySelectorAll("[data-misiorowski-triple-digit]").forEach((cell) => {
+            const refreshPitcherVelocitySummaries = () => {
+                document.querySelectorAll("[data-pitcher-velocity-count]").forEach((cell) => {
+                    const summary = getPitcherVelocitySummary(
+                        Number(cell.dataset.pitcherVelocityCount)
+                    );
                     cell.textContent = summary?.tripleDigit > 0
                         ? String(summary.tripleDigit)
                         : "ー";
                 });
-                const rows = document.querySelectorAll("[data-misiorowski-velocity]");
-                rows.forEach((row) => {
-                    const text = row.querySelector(".special-note-text");
-                    if (text) text.textContent = summary
-                        ? formatMisiorowskiPitchSummary(summary)
-                        : "";
+                ["away", "home"].forEach((side) => {
+                    getTripleDigitPitchSummaries(side).forEach((summary) => {
+                        let row = document.querySelector(
+                            `[data-pitcher-velocity="${summary.playerId}"]`
+                        );
+                        if (!row) {
+                            const box = document.querySelector(
+                                `.special-notes-box[data-side="${side}"]`
+                            );
+                            row = [...(box?.querySelectorAll(".special-note-row") ?? [])]
+                                .find((entry) =>
+                                    !entry.dataset.pitcherVelocity &&
+                                    !String(entry.textContent ?? "").trim()
+                                );
+                            if (row) row.dataset.pitcherVelocity = String(summary.playerId);
+                        }
+                        const text = row?.querySelector(".special-note-text");
+                        if (text) text.textContent = formatPitcherVelocitySummary(summary);
+                    });
                 });
             };
 
@@ -10134,7 +10157,7 @@
                 dom.liveUpdateStatus.textContent = text;
                 dom.liveUpdateStatus.dataset.state = status;
                 dom.liveUpdateStatus.hidden = hidden || !text;
-                refreshMisiorowskiPitchSummary();
+                refreshPitcherVelocitySummaries();
             };
 
             const getLiveScoreMode = (data) => {
