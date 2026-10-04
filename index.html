@@ -372,7 +372,7 @@
     <script src="js/daily-records.js?v=20260928-article-player-attribution-2"></script>
     <script src="js/mlb-global-events.js?v=20260918-1"></script>
     <script src="js/mlb-prospect-rankings.js?v=20260927"></script>
-    <script src="js/pregame.js?v=20261004-postseason-highlights"></script>
+    <script src="js/pregame.js?v=20261004-title-race-leader"></script>
 
     <script>
         (() => {
@@ -8665,17 +8665,29 @@
                 const wrapper = createElement("div", "side-stats");
 
                 const notesBox = createElement("section", "table-box special-notes-box");
+                notesBox.dataset.side = side;
                 notesBox.append(
                     createElement("div", "table-title", "特記事項")
                 );
 
+                const velocitySummary = getMisiorowskiPitchSummary();
+                const sourceNotes = [...(state.streakNotes?.[side] ?? [])];
+                if (velocitySummary?.side === side) {
+                    sourceNotes.unshift({
+                        text: formatMisiorowskiPitchSummary(velocitySummary),
+                        misiorowskiVelocity: true
+                    });
+                }
                 const notesColumns = createElement("div", "special-notes-columns");
                 for (let column = 0; column < 2; column += 1) {
                     const notesTable = createElement("div", "special-notes");
                     for (let row = 0; row < 6; row += 1) {
                         const noteIndex = column * 6 + row;
-                        const noteData = state.streakNotes?.[side]?.[noteIndex] ?? "";
+                        const noteData = sourceNotes[noteIndex] ?? "";
                         const note = createElement("div", "special-note-row");
+                        if (noteData?.misiorowskiVelocity) {
+                            note.dataset.misiorowskiVelocity = "true";
+                        }
                         const noteText = getSpecialNoteText(noteData);
                         const isStatheadStreakLink = Boolean(
                             noteData && typeof noteData === "object" && noteData.link &&
@@ -10023,8 +10035,10 @@
                 "isTopInning", "isComplete", "inning", "startTime", "endTime",
                 "matchup", "batter", "pitcher", "id", "playEvents", "index",
                 "playId", "isPitch", "player", "position", "details", "code",
+                "pitchData", "startSpeed",
                 "count", "balls", "strikes", "outs"
             ].join(",");
+            const MISIOROWSKI_PLAYER_ID = 694819;
             const liveScoreUpdate = {
                 timer: 0,
                 controller: null,
@@ -10043,10 +10057,52 @@
                 !document.body.classList.contains("app-mode-pregame") &&
                 !document.body.classList.contains("app-mode-pitch-chart");
 
+            const getMisiorowskiPitchSummary = () => {
+                const plays = state.gameData?.liveData?.plays?.allPlays ?? [];
+                const currentPlay = state.gameData?.liveData?.plays?.currentPlay;
+                if (Number(currentPlay?.matchup?.pitcher?.id) !== MISIOROWSKI_PLAYER_ID) {
+                    return null;
+                }
+                const side = ["away", "home"].find((entry) =>
+                    state[entry]?.pitchers?.some((pitcher) =>
+                        Number(pitcher?.person?.id) === MISIOROWSKI_PLAYER_ID
+                    )
+                );
+                if (!side) return null;
+                const counts = plays.reduce((totals, play) => {
+                    if (Number(play?.matchup?.pitcher?.id) !== MISIOROWSKI_PLAYER_ID) {
+                        return totals;
+                    }
+                    (play?.playEvents ?? []).forEach((event) => {
+                        if (event?.isPitch !== true) return;
+                        totals.total += 1;
+                        if (Number(event?.pitchData?.startSpeed) >= 100) totals.tripleDigit += 1;
+                    });
+                    return totals;
+                }, { tripleDigit: 0, total: 0 });
+                return { side, ...counts };
+            };
+
+            const formatMisiorowskiPitchSummary = (summary) =>
+                `${state[summary.side]?.abbreviation || "MIL"}　J.ミザロウスキー　` +
+                `100mph超え ${summary.tripleDigit}/${summary.total}球`;
+
+            const refreshMisiorowskiPitchSummary = () => {
+                const summary = getMisiorowskiPitchSummary();
+                const rows = document.querySelectorAll("[data-misiorowski-velocity]");
+                rows.forEach((row) => {
+                    const text = row.querySelector(".special-note-text");
+                    if (text) text.textContent = summary
+                        ? formatMisiorowskiPitchSummary(summary)
+                        : "";
+                });
+            };
+
             const setLiveUpdateStatus = (text = "", status = "", hidden = false) => {
                 dom.liveUpdateStatus.textContent = text;
                 dom.liveUpdateStatus.dataset.state = status;
                 dom.liveUpdateStatus.hidden = hidden || !text;
+                refreshMisiorowskiPitchSummary();
             };
 
             const getLiveScoreMode = (data) => {

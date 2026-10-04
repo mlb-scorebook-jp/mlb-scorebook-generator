@@ -5789,6 +5789,24 @@
         stolenBases: 3
     });
 
+    const PREGAME_TITLE_RACE_UNITS = Object.freeze({
+        homeRuns: "HR",
+        runsBattedIn: "打点",
+        hits: "安打",
+        stolenBases: "盗塁",
+        walks: "四球",
+        wins: "勝",
+        saves: "セーブ",
+        gamesPlayed: "登板",
+        strikeouts: "奪三振"
+    });
+
+    const formatGameTitleRaceValue = (definition, value) => {
+        const formatted = formatPregameLeaderboardValue(definition, value);
+        const unit = PREGAME_TITLE_RACE_UNITS[definition?.category] ?? "";
+        return `${formatted}${unit}`;
+    };
+
     const getGameTitleRaceHighlights = async (date, awayTeam, homeTeam, standings) => {
         const awayLeague = standings.get(Number(awayTeam?.id))?.leagueCode;
         const homeLeague = standings.get(Number(homeTeam?.id))?.leagueCode;
@@ -5824,6 +5842,7 @@
                 leaderInMatch: [awayContender, homeContender].some((leader) =>
                     Number(leader?.rank) === 1
                 ),
+                leagueLeader,
                 away: awayContender,
                 home: homeContender
             }];
@@ -5837,7 +5856,7 @@
         const list = el("ul", "pregame-game-highlight-list");
         highlights.forEach((highlight) => {
             const item = el("li", "pregame-game-highlight-item");
-            const contender = (leader, showValue = true) => {
+            const contender = (leader, showValue = true, parenthesizeValue = false) => {
                 const wrapper = el("span", "pregame-game-highlight-contender");
                 const logo = createFreeAgentTeamLogo(
                     leader?.team,
@@ -5851,7 +5870,9 @@
                 if (showValue) wrapper.append(el(
                         "span",
                         "pregame-game-highlight-value",
-                        formatPregameLeaderboardValue(highlight.definition, leader?.value)
+                        parenthesizeValue
+                            ? `（${formatGameTitleRaceValue(highlight.definition, leader?.value)}）`
+                            : formatGameTitleRaceValue(highlight.definition, leader?.value)
                 ));
                 return wrapper;
             };
@@ -5904,18 +5925,38 @@
                 list.append(item);
                 return;
             }
-            text.append(
-                contender(highlight.away),
-                el("span", "pregame-game-highlight-connector", "と"),
-                contender(highlight.home),
-                el(
-                    "strong",
-                    "pregame-game-highlight-label",
-                    highlight.leaderInMatch
-                        ? `の${highlight.label}に注目！`
-                        : `、この試合で${highlight.label.replace(/争い$/, "")}の座を奪うか！？`
-                )
-            );
+            if (!highlight.leaderInMatch && highlight.leagueLeader) {
+                text.append(
+                    contender(highlight.away, true, true),
+                    el("span", "pregame-game-highlight-connector", "と"),
+                    contender(highlight.home, true, true),
+                    el("span", "pregame-game-highlight-connector", "、1位"),
+                    el(
+                        "strong",
+                        "pregame-game-highlight-name",
+                        playerName(highlight.leagueLeader.person)
+                    ),
+                    el(
+                        "strong",
+                        "pregame-game-highlight-label",
+                        `の${formatGameTitleRaceValue(
+                            highlight.definition,
+                            highlight.leagueLeader.value
+                        )}に追いつけるか！？`
+                    )
+                );
+            } else {
+                text.append(
+                    contender(highlight.away),
+                    el("span", "pregame-game-highlight-connector", "と"),
+                    contender(highlight.home),
+                    el(
+                        "strong",
+                        "pregame-game-highlight-label",
+                        `の${highlight.label}に注目！`
+                    )
+                );
+            }
             item.append(text);
             list.append(item);
         });
