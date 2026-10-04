@@ -8680,7 +8680,8 @@
                     createElement("div", "table-title", "特記事項")
                 );
 
-                const sourceNotes = [...(state.streakNotes?.[side] ?? [])];
+                const sourceNotes = [...(state.streakNotes?.[side] ?? [])]
+                    .filter((note) => getSpecialNoteText(note).trim());
                 getTripleDigitPitchSummaries(side).reverse().forEach((velocitySummary) => {
                     sourceNotes.unshift({
                         text: formatPitcherVelocitySummary(velocitySummary),
@@ -8689,11 +8690,15 @@
                         linkType: "mlb-research-pitching"
                     });
                 });
+                const extraNoteRows = Math.ceil(Math.max(0, sourceNotes.length - 12) / 2);
+                const notesRowsPerColumn = 6 + extraNoteRows;
                 const notesColumns = createElement("div", "special-notes-columns");
                 for (let column = 0; column < 2; column += 1) {
                     const notesTable = createElement("div", "special-notes");
-                    for (let row = 0; row < 6; row += 1) {
-                        const noteIndex = column * 6 + row;
+                    for (let row = 0; row < notesRowsPerColumn; row += 1) {
+                        const noteIndex = row < 6
+                            ? column * 6 + row
+                            : 12 + (row - 6) * 2 + column;
                         const noteData = sourceNotes[noteIndex] ?? "";
                         const note = createElement("div", "special-note-row");
                         if (noteData?.pitcherVelocityId) {
@@ -10174,6 +10179,16 @@
                                     !entry.dataset.pitcherVelocity &&
                                     !String(entry.textContent ?? "").trim()
                                 );
+                            if (!row && box) {
+                                const tables = [...box.querySelectorAll(".special-notes")];
+                                tables.forEach((table) => {
+                                    const extraRow = createElement("div", "special-note-row");
+                                    extraRow.contentEditable = "false";
+                                    extraRow.append(createElement("span", "special-note-text", ""));
+                                    table.append(extraRow);
+                                });
+                                row = tables[0]?.lastElementChild ?? null;
+                            }
                             if (row) {
                                 row.dataset.pitcherVelocity = String(summary.playerId);
                                 const link = createElement("a", "special-note-inline-link", "");
