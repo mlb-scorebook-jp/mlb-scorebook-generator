@@ -10428,8 +10428,9 @@
                     ? `${summary.fastest.inning}回${half}`
                     : "";
                 const batter = getPersonName(summary.fastest.batter) || "打者不明";
+                const speedKph = summary.fastest.speed * 1.609344;
                 return `${base}　最速 ${inning} ${batter}の${summary.fastest.pitchNumber}球目 ` +
-                    `${summary.fastest.speed.toFixed(1)}mph`;
+                    `${summary.fastest.speed.toFixed(1)}mph（${speedKph.toFixed(1)}km/h）`;
             };
 
             const refreshPitcherVelocitySummaries = () => {
