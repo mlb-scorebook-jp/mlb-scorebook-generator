@@ -8982,6 +8982,7 @@
             referenceUrl.searchParams.set("id", baseballReferenceId);
             referenceUrl.searchParams.set("year", "Career");
             referenceUrl.searchParams.set("t", "p");
+            referenceUrl.hash = "all_oppon_extra";
             matchupBox.href = referenceUrl.toString();
             matchupBox.target = "_blank";
             matchupBox.rel = "noopener noreferrer";
