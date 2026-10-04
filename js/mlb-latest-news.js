@@ -2,11 +2,61 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
-        "headline": "France's towering fly ball hits cable, ground rules lead to wild flyout in 9th inning",
+        "headline": "Padres-Brewers NLDS Game 2 FAQ (4 p.m. ET, FS1/FOX One)",
+        "summaryJa": "ブルワーズの最新動向をMLB公式が詳報",
+        "slug": "padres-brewers-nl-division-series-game-2-starting-lineups-and-pitching-matchup",
+        "url": "https://www.mlb.com/news/padres-brewers-nl-division-series-game-2-starting-lineups-and-pitching-matchup",
+        "contentDate": "2026-10-04T07:53:21.479Z",
+        "teamIds": [
+            158,
+            135
+        ],
+        "playerIds": [],
+        "gamePks": [
+            849825
+        ],
+        "taxonomy": [
+            "apple-news",
+            "postseason",
+            "nlds",
+            "series-a"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Megill finishes off bullpen’s brilliant performance: 'There’s no relaxing'",
+        "summaryJa": "J.ミザロウスキー（MIL）、勝利を呼び込む活躍",
+        "slug": "trevor-megill-closes-out-brewers-nlds-game-1-win",
+        "url": "https://www.mlb.com/news/trevor-megill-closes-out-brewers-nlds-game-1-win",
+        "contentDate": "2026-10-04T07:17:33.669Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [
+            694819
+        ],
+        "gamePks": [
+            849830
+        ],
+        "taxonomy": [
+            "apple-news",
+            "nlds",
+            "series-a"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Quirk of Crew's home park robs Padres of potential go-ahead rally",
         "summaryJa": "パドレス、記録達成の最新情報",
         "slug": "ty-france-s-fly-ball-hits-roof-cable-in-milwaukee-in-9th-inning",
         "url": "https://www.mlb.com/news/ty-france-s-fly-ball-hits-roof-cable-in-milwaukee-in-9th-inning",
-        "contentDate": "2026-10-04T05:50:00Z",
+        "contentDate": "2026-10-04T06:54:00Z",
         "teamIds": [
             135,
             158
@@ -29,7 +79,7 @@
         "summaryJa": "ブルワーズ、勝利を呼び込む活躍",
         "slug": "padres-brewers-nlds-game-1-takeaways",
         "url": "https://www.mlb.com/news/padres-brewers-nlds-game-1-takeaways",
-        "contentDate": "2026-10-04T05:49:00Z",
+        "contentDate": "2026-10-04T06:50:00Z",
         "teamIds": [
             158,
             135
@@ -44,6 +94,131 @@
             "nlds",
             "series-a",
             "takeaways"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Contreras comes up clutch as Crew captures Game 1 win in NLDS",
+        "summaryJa": "W.コントレラス（MIL）、勝利を呼び込む活躍",
+        "slug": "brewers-win-nlds-game-1-2026",
+        "url": "https://www.mlb.com/news/brewers-win-nlds-game-1-2026",
+        "contentDate": "2026-10-04T06:43:00Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [
+            661388
+        ],
+        "gamePks": [
+            849830
+        ],
+        "taxonomy": [
+            "apple-news",
+            "nlds",
+            "series-a",
+            "game-recap"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Miz comes out firing with 104.8 mph first pitch to set new record",
+        "summaryJa": "J.ミザロウスキー（MIL）、記録達成の最新情報",
+        "slug": "jacob-misiorowski-fastest-first-pitch-in-postseason-nlds-2026",
+        "url": "https://www.mlb.com/news/jacob-misiorowski-fastest-first-pitch-in-postseason-nlds-2026",
+        "contentDate": "2026-10-04T06:39:00Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [
+            694819
+        ],
+        "gamePks": [
+            849830
+        ],
+        "taxonomy": [
+            "apple-news",
+            "nlds",
+            "series-a"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "King looks to silence Brewers -- and raucous Milwaukee crowd -- in Game 2",
+        "summaryJa": "M.キング（SD）の最新動向をMLB公式が詳報",
+        "slug": "michael-king-starting-nlds-game-2-for-padres",
+        "url": "https://www.mlb.com/news/michael-king-starting-nlds-game-2-for-padres",
+        "contentDate": "2026-10-04T06:34:26.377Z",
+        "teamIds": [
+            135
+        ],
+        "playerIds": [
+            650633
+        ],
+        "gamePks": [
+            849830
+        ],
+        "taxonomy": [
+            "nlds",
+            "apple-news",
+            "series-a"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "At just 22, Chourio takes place as Brewers' postseason HR leader",
+        "summaryJa": "J.チョリオ（MIL）、記録達成の最新情報",
+        "slug": "jackson-chourio-sets-brewers-postseason-home-run-record",
+        "url": "https://www.mlb.com/news/jackson-chourio-sets-brewers-postseason-home-run-record",
+        "contentDate": "2026-10-04T06:33:00Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [
+            694192
+        ],
+        "gamePks": [
+            849830
+        ],
+        "taxonomy": [
+            "apple-news",
+            "postseason",
+            "long-home-runs"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Padres can't get big hit in Game 1, look to even NLDS",
+        "summaryJa": "パドレスの最新動向をMLB公式が詳報",
+        "slug": "padres-lose-nlds-game-1-2026",
+        "url": "https://www.mlb.com/news/padres-lose-nlds-game-1-2026",
+        "contentDate": "2026-10-04T06:22:00Z",
+        "teamIds": [
+            135
+        ],
+        "playerIds": [],
+        "gamePks": [
+            849830
+        ],
+        "taxonomy": [
+            "series-a",
+            "apple-news",
+            "game-recap-losing",
+            "nlds",
+            "postseason"
         ],
         "sourceScopes": [
             "MLB",
@@ -146,32 +321,6 @@
         ]
     },
     {
-        "headline": "Contreras comes up clutch as Crew captures Game 1 win in NLDS",
-        "summaryJa": "W.コントレラス（MIL）、勝利を呼び込む活躍",
-        "slug": "brewers-win-nlds-game-1-2026",
-        "url": "https://www.mlb.com/news/brewers-win-nlds-game-1-2026",
-        "contentDate": "2026-10-04T04:50:00Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [
-            661388
-        ],
-        "gamePks": [
-            849830
-        ],
-        "taxonomy": [
-            "apple-news",
-            "nlds",
-            "series-a",
-            "game-recap"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Moonshot in Milwaukee off cable joins list of weirdest postseason plays",
         "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
         "slug": "weirdest-plays-in-mlb-playoffs-history",
@@ -211,29 +360,6 @@
         ],
         "sourceScopes": [
             "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Inability to get big hit burns Padres in Game 1 loss to Brewers",
-        "summaryJa": "パドレスの最新動向をMLB公式が詳報",
-        "slug": "padres-lose-nlds-game-1-2026",
-        "url": "https://www.mlb.com/news/padres-lose-nlds-game-1-2026",
-        "contentDate": "2026-10-04T04:31:09.293Z",
-        "teamIds": [
-            135
-        ],
-        "playerIds": [],
-        "gamePks": [
-            849830
-        ],
-        "taxonomy": [
-            "series-a",
-            "apple-news",
-            "game-recap-losing",
-            "nlds"
-        ],
-        "sourceScopes": [
             "球団公式"
         ]
     },
@@ -322,92 +448,6 @@
             "series-a"
         ],
         "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Game times set through Division Series",
-        "summaryJa": "レイズの最新動向をMLB公式が詳報",
-        "slug": "2026-mlb-playoff-and-world-series-schedule",
-        "url": "https://www.mlb.com/news/2026-mlb-playoff-and-world-series-schedule",
-        "contentDate": "2026-10-04T04:10:00Z",
-        "teamIds": [
-            139,
-            145,
-            117,
-            147,
-            111,
-            140,
-            116,
-            142,
-            114,
-            158,
-            144,
-            119,
-            112,
-            109,
-            143,
-            135
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "postseason",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB"
-        ]
-    },
-    {
-        "headline": "Miz sets postseason record with first pitch, works 4 IP in Game 1",
-        "summaryJa": "J.ミザロウスキー（MIL）、記録達成の最新情報",
-        "slug": "jacob-misiorowski-fastest-first-pitch-in-postseason-nlds-2026",
-        "url": "https://www.mlb.com/news/jacob-misiorowski-fastest-first-pitch-in-postseason-nlds-2026",
-        "contentDate": "2026-10-04T04:08:00Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [
-            694819
-        ],
-        "gamePks": [
-            849830
-        ],
-        "taxonomy": [
-            "apple-news",
-            "nlds",
-            "series-a"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "At just 22, Chourio takes place as Brewers' postseason HR leader",
-        "summaryJa": "J.チョリオ（MIL）、記録達成の最新情報",
-        "slug": "jackson-chourio-sets-brewers-postseason-home-run-record",
-        "url": "https://www.mlb.com/news/jackson-chourio-sets-brewers-postseason-home-run-record",
-        "contentDate": "2026-10-04T04:08:00Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [
-            694192
-        ],
-        "gamePks": [
-            849830
-        ],
-        "taxonomy": [
-            "apple-news",
-            "postseason",
-            "nlds",
-            "series-a",
-            "long-home-runs"
-        ],
-        "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -538,7 +578,7 @@
         ]
     },
     {
-        "headline": "Braves-Dodgers NLDS Game 2 FAQ (Sun., 8 p.m. ET, FS1/FOX One)",
+        "headline": "Braves-Dodgers NLDS Game 2 FAQ (8 p.m. ET, FS1/FOX One)",
         "summaryJa": "ブレーブスの最新動向をMLB公式が詳報",
         "slug": "braves-vs-dodgers-nlds-game-2-starting-lineups-pitching-matchup",
         "url": "https://www.mlb.com/news/braves-vs-dodgers-nlds-game-2-starting-lineups-pitching-matchup",
@@ -911,7 +951,6 @@
             "series-a"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1105,7 +1144,6 @@
             "injury"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -2947,34 +2985,6 @@
         ]
     },
     {
-        "headline": "Lights-out bullpen deployed to perfection in Padres' Wild Card Series clinch",
-        "summaryJa": "M.ミラー（SD）の最新動向をMLB公式が詳報",
-        "slug": "mason-miller-padres-bullpen-shut-down-cubs-in-wild-card-series-clinch",
-        "url": "https://www.mlb.com/news/mason-miller-padres-bullpen-shut-down-cubs-in-wild-card-series-clinch",
-        "contentDate": "2026-10-01T08:39:16.159Z",
-        "teamIds": [
-            135
-        ],
-        "playerIds": [
-            695243,
-            699134,
-            670970,
-            592094
-        ],
-        "gamePks": [
-            849842
-        ],
-        "taxonomy": [
-            "apple-news",
-            "nlwc",
-            "series-b",
-            "relief-performance"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Cubs mull what could have been after abrupt Wild Card exit",
         "summaryJa": "カブスの最新動向をMLB公式が詳報",
         "slug": "cubs-lose-2026-nl-wild-card-series",
@@ -3015,32 +3025,6 @@
             "apple-news",
             "nlwc",
             "series-b"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Padres get revenge with commanding sweep of Cubs in Wild Card Series",
-        "summaryJa": "G.シーツ（SD）、勝利を呼び込む活躍",
-        "slug": "padres-win-nl-wild-card-series-2026",
-        "url": "https://www.mlb.com/news/padres-win-nl-wild-card-series-2026",
-        "contentDate": "2026-10-01T07:16:00Z",
-        "teamIds": [
-            135
-        ],
-        "playerIds": [
-            657757
-        ],
-        "gamePks": [
-            849842
-        ],
-        "taxonomy": [
-            "apple-news",
-            "nlwc",
-            "series-b",
-            "game-recap",
-            "clincher"
         ],
         "sourceScopes": [
             "球団公式"
@@ -3109,28 +3093,6 @@
             "apple-news",
             "alwc",
             "series-b"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Postseason FAQ: What's next for Brewers?",
-        "summaryJa": "ブルワーズの最新動向をMLB公式が詳報",
-        "slug": "brewers-2026-postseason-faq",
-        "url": "https://www.mlb.com/news/brewers-2026-postseason-faq",
-        "contentDate": "2026-10-01T05:29:00Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "postseason",
-            "clincher",
-            "nlds",
-            "series-a"
         ],
         "sourceScopes": [
             "球団公式"
