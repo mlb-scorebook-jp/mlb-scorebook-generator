@@ -8639,7 +8639,9 @@
                         walksAndHitByPitch,
                         stats.strikeOuts ?? "",
                         cumulativeEra,
-                        velocitySummary?.tripleDigit ?? ""
+                        velocitySummary?.tripleDigit > 0
+                            ? velocitySummary.tripleDigit
+                            : "ー"
                     ] : Array.from({ length: pitchingHeaders.length }, () => "");
 
                     values.forEach((value, valueIndex) => {
@@ -10115,7 +10117,9 @@
             const refreshMisiorowskiPitchSummary = () => {
                 const summary = getMisiorowskiPitchSummary();
                 document.querySelectorAll("[data-misiorowski-triple-digit]").forEach((cell) => {
-                    cell.textContent = summary ? String(summary.tripleDigit) : "";
+                    cell.textContent = summary?.tripleDigit > 0
+                        ? String(summary.tripleDigit)
+                        : "ー";
                 });
                 const rows = document.querySelectorAll("[data-misiorowski-velocity]");
                 rows.forEach((row) => {
