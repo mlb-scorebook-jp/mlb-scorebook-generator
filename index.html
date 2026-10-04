@@ -8619,6 +8619,7 @@
                 pitchers.forEach((pitcher) => {
                     const row = document.createElement("tr");
                     const stats = pitcher?.stats?.pitching ?? {};
+                    const cumulativeEra = pitcher?.seasonStats?.pitching?.era ?? stats.era ?? "";
                     const pitcherName = pitcher ? getPersonName(pitcher?.person) : "";
                     const walks = Number(stats.baseOnBalls);
                     const hitByPitch = Number(stats.hitByPitch);
@@ -8634,7 +8635,7 @@
                         stats.earnedRuns ?? "",
                         walksAndHitByPitch,
                         stats.strikeOuts ?? "",
-                        stats.era ?? ""
+                        cumulativeEra
                     ] : Array.from({ length: pitchingHeaders.length }, () => "");
 
                     values.forEach((value, valueIndex) => {
