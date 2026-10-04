@@ -2,11 +2,11 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
-        "headline": "Padres-Brewers NLDS Game 2 FAQ (4 p.m. ET, FS1/FOX One)",
+        "headline": "Padres-Brewers NLDS Game 2 FAQ, lineups (4 p.m. ET, FS1/FOX One)",
         "summaryJa": "ブルワーズの最新動向をMLB公式が詳報",
         "slug": "padres-brewers-nl-division-series-game-2-starting-lineups-and-pitching-matchup",
         "url": "https://www.mlb.com/news/padres-brewers-nl-division-series-game-2-starting-lineups-and-pitching-matchup",
-        "contentDate": "2026-10-04T07:53:21.479Z",
+        "contentDate": "2026-10-04T16:51:00Z",
         "teamIds": [
             158,
             135
