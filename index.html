@@ -825,7 +825,8 @@
                 "自責点",
                 "四死球",
                 "奪三振",
-                "防御率"
+                "防御率",
+                "100mph超"
             ];
 
             const dom = {
@@ -8620,6 +8621,8 @@
                     const row = document.createElement("tr");
                     const stats = pitcher?.stats?.pitching ?? {};
                     const cumulativeEra = pitcher?.seasonStats?.pitching?.era ?? stats.era ?? "";
+                    const isMisiorowski = Number(pitcher?.person?.id) === MISIOROWSKI_PLAYER_ID;
+                    const velocitySummary = isMisiorowski ? getMisiorowskiPitchSummary() : null;
                     const pitcherName = pitcher ? getPersonName(pitcher?.person) : "";
                     const walks = Number(stats.baseOnBalls);
                     const hitByPitch = Number(stats.hitByPitch);
@@ -8635,7 +8638,8 @@
                         stats.earnedRuns ?? "",
                         walksAndHitByPitch,
                         stats.strikeOuts ?? "",
-                        cumulativeEra
+                        cumulativeEra,
+                        velocitySummary?.tripleDigit ?? ""
                     ] : Array.from({ length: pitchingHeaders.length }, () => "");
 
                     values.forEach((value, valueIndex) => {
@@ -8650,6 +8654,9 @@
                         }
                         else if (valueIndex === 1) td.className = "pitch-count-column";
                         else td.className = "stat-column";
+                        if (isMisiorowski && valueIndex === pitchingHeaders.length - 1) {
+                            td.dataset.misiorowskiTripleDigit = "true";
+                        }
                         row.append(td);
                     });
 
@@ -10094,8 +10101,7 @@
             };
 
             const formatMisiorowskiPitchSummary = (summary) => {
-                const base = `${state[summary.side]?.abbreviation || "MIL"}　` +
-                    `J.ミザロウスキー　100mph超え ${summary.tripleDigit}/${summary.total}球`;
+                const base = `${state[summary.side]?.abbreviation || "MIL"}　J.ミザロウスキー`;
                 if (!summary.fastest) return base;
                 const half = summary.fastest.halfInning === "top" ? "表" : "裏";
                 const inning = Number.isInteger(summary.fastest.inning)
@@ -10108,6 +10114,9 @@
 
             const refreshMisiorowskiPitchSummary = () => {
                 const summary = getMisiorowskiPitchSummary();
+                document.querySelectorAll("[data-misiorowski-triple-digit]").forEach((cell) => {
+                    cell.textContent = summary ? String(summary.tripleDigit) : "";
+                });
                 const rows = document.querySelectorAll("[data-misiorowski-velocity]");
                 rows.forEach((row) => {
                     const text = row.querySelector(".special-note-text");
