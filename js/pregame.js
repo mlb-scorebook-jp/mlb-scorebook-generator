@@ -9077,7 +9077,9 @@
             ] = await Promise.all([
                 getStartingPitcherData(awayProbable, date, homeTeam, venue, isPostseason),
                 getStartingPitcherData(homeProbable, date, awayTeam, venue, isPostseason),
-                getGameTitleRaceHighlights(date, awayTeam, homeTeam, standings),
+                isPostseason
+                    ? Promise.resolve([])
+                    : getGameTitleRaceHighlights(date, awayTeam, homeTeam, standings),
                 isPostseason
                     ? getLeagueTopFiveNotes(date, true)
                     : Promise.resolve(new Map()),
