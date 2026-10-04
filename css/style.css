@@ -2912,13 +2912,13 @@ body.app-mode-pregame .score-loading-overlay {
 
 .pitching-table-wrap {
     width: 100%;
-    max-width: 720px;
+    max-width: 780px;
     overflow: hidden;
 }
 
 .pitching-table {
     width: 100%;
-    max-width: 720px;
+    max-width: 780px;
     border-collapse: collapse;
     table-layout: fixed;
     background: #fff;
@@ -2954,6 +2954,11 @@ body.app-mode-pregame .score-loading-overlay {
 
 .pitching-table .stat-column {
     width: 7.125%;
+}
+
+.pitching-table th:last-child,
+.pitching-table td:last-child {
+    width: 9%;
 }
 
 .side-stats {
