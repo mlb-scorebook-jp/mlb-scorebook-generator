@@ -2,6 +2,425 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Does Díaz's high-velocity perfect inning trumpet a return to form?",
+        "summaryJa": "E.ディアス（LAD）、復帰へ向けた最新状況",
+        "slug": "edwin-diaz-throws-clean-inning-in-nlds-game-2-vs-braves",
+        "url": "https://www.mlb.com/news/edwin-diaz-throws-clean-inning-in-nlds-game-2-vs-braves",
+        "contentDate": "2026-10-05T06:28:30.831Z",
+        "teamIds": [
+            119
+        ],
+        "playerIds": [
+            621242
+        ],
+        "gamePks": [
+            849823
+        ],
+        "taxonomy": [
+            "nlds",
+            "series-b",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Braves follow manager's pitch-perfect plan to even series with Dodgers",
+        "summaryJa": "ブレーブス、勝利を呼び込む活躍",
+        "slug": "braves-win-nlds-game-2-2026",
+        "url": "https://www.mlb.com/news/braves-win-nlds-game-2-2026",
+        "contentDate": "2026-10-05T06:10:00Z",
+        "teamIds": [
+            144
+        ],
+        "playerIds": [],
+        "gamePks": [
+            849823
+        ],
+        "taxonomy": [
+            "apple-news",
+            "nlds",
+            "series-b",
+            "postseason",
+            "game-recap",
+            "pitching",
+            "wow"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Dodgers-Braves NLDS Game 3 FAQ (Tues., 6 p.m. ET, FS1/FOX One)",
+        "summaryJa": "ドジャースの最新動向をMLB公式が詳報",
+        "slug": "dodgers-vs-braves-nlds-game-3-starting-lineups-and-pitching-matchup",
+        "url": "https://www.mlb.com/news/dodgers-vs-braves-nlds-game-3-starting-lineups-and-pitching-matchup",
+        "contentDate": "2026-10-05T05:56:38.079Z",
+        "teamIds": [
+            119,
+            144
+        ],
+        "playerIds": [],
+        "gamePks": [
+            849819
+        ],
+        "taxonomy": [
+            "nlds",
+            "series-b",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Harris flirts with cycle in October breakout for hometown Braves",
+        "summaryJa": "M.ハリスⅡ（ATL）、勝利を呼び込む活躍",
+        "slug": "michael-harris-ii-has-three-hits-in-braves-nlds-game-2-win",
+        "url": "https://www.mlb.com/news/michael-harris-ii-has-three-hits-in-braves-nlds-game-2-win",
+        "contentDate": "2026-10-05T05:41:28.766Z",
+        "teamIds": [
+            144
+        ],
+        "playerIds": [
+            671739
+        ],
+        "gamePks": [
+            849823
+        ],
+        "taxonomy": [
+            "apple-news",
+            "nlds",
+            "series-b",
+            "postseason",
+            "key-moments"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Snell's rust shows, Dodgers' bats can't pick up 'pen as NLDS evens up",
+        "summaryJa": "B.スネル（LAD）を巡る注目点をMLB公式が分析",
+        "slug": "blake-snell-rusty-in-dodgers-nlds-game-2-loss",
+        "url": "https://www.mlb.com/news/blake-snell-rusty-in-dodgers-nlds-game-2-loss",
+        "contentDate": "2026-10-05T05:16:00Z",
+        "teamIds": [
+            119
+        ],
+        "playerIds": [
+            605483
+        ],
+        "gamePks": [
+            849823
+        ],
+        "taxonomy": [
+            "nlds",
+            "series-b",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Watch Angels prospects in the Arizona Fall League",
+        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
+        "slug": "watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
+        "url": "https://www.mlb.com/news/watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
+        "contentDate": "2026-10-05T04:43:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "arizona-fall-league"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Braves' pitching plan pays off, postseason Freddie and more NLDS Game 2 takeaways",
+        "summaryJa": "ブレーブスの最新動向をMLB公式が詳報",
+        "slug": "braves-dodgers-nlds-game-2-takeaways",
+        "url": "https://www.mlb.com/news/braves-dodgers-nlds-game-2-takeaways",
+        "contentDate": "2026-10-05T04:40:00Z",
+        "teamIds": [
+            144,
+            119
+        ],
+        "playerIds": [],
+        "gamePks": [
+            849823
+        ],
+        "taxonomy": [
+            "nlds",
+            "series-b",
+            "apple-news",
+            "postseason"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Royals' 17-year-old prospect puts potential on full display in stateside debut",
+        "summaryJa": "Angeibel Gomez、メジャー昇格・初出場に関する最新情報",
+        "slug": "royals-angeibel-gomez-debuts-stateside-arizona-fall-league",
+        "url": "https://www.mlb.com/news/royals-angeibel-gomez-debuts-stateside-arizona-fall-league",
+        "contentDate": "2026-10-05T04:15:00Z",
+        "teamIds": [],
+        "playerIds": [
+            825412
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "mlb-top-prospects",
+            "apple-news",
+            "arizona-fall-league"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Burning questions for each ALDS team ahead of Game 2",
+        "summaryJa": "ホワイトソックスの最新動向をMLB公式が詳報",
+        "slug": "2026-alds-game-2-storylines-what-to-watch-for",
+        "url": "https://www.mlb.com/news/2026-alds-game-2-storylines-what-to-watch-for",
+        "contentDate": "2026-10-05T04:00:03.836Z",
+        "teamIds": [
+            145,
+            114,
+            147,
+            139
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "alds",
+            "series-a",
+            "series-b",
+            "postseason",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "Kerr twirls scoreless outing as opener; Sale set for Game 3 start",
+        "summaryJa": "C.セール（ATL）、マウンドで好投",
+        "slug": "chris-sale-pitching-plan-nlds-vs-dodgers",
+        "url": "https://www.mlb.com/news/chris-sale-pitching-plan-nlds-vs-dodgers",
+        "contentDate": "2026-10-05T03:37:00Z",
+        "teamIds": [
+            144
+        ],
+        "playerIds": [
+            519242,
+            678061
+        ],
+        "gamePks": [
+            849828,
+            849823
+        ],
+        "taxonomy": [
+            "apple-news",
+            "nlds",
+            "series-b",
+            "postseason"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Brewers-Padres NL Division Series Game 3 FAQ (Tues., 9:30 p.m. ET, FS1 /FOX One)",
+        "summaryJa": "パドレスの最新動向をMLB公式が詳報",
+        "slug": "brewers-padres-nl-division-series-game-3-starting-lineups-and-pitching-matchup",
+        "url": "https://www.mlb.com/news/brewers-padres-nl-division-series-game-3-starting-lineups-and-pitching-matchup",
+        "contentDate": "2026-10-05T03:30:45.57Z",
+        "teamIds": [
+            135,
+            158
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "postseason",
+            "nlds",
+            "series-a"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Chourio's heroics, Miller's troubles highlight takeaways from riveting NLDS Game 2",
+        "summaryJa": "パドレスの最新動向をMLB公式が詳報",
+        "slug": "padres-brewers-nlds-game-2-takeaways",
+        "url": "https://www.mlb.com/news/padres-brewers-nlds-game-2-takeaways",
+        "contentDate": "2026-10-05T03:13:58.136Z",
+        "teamIds": [
+            135,
+            158
+        ],
+        "playerIds": [],
+        "gamePks": [
+            849825
+        ],
+        "taxonomy": [
+            "nlds",
+            "series-a",
+            "postseason",
+            "apple-news",
+            "takeaways",
+            "walk-off"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Game 2 heartbreaker has Padres on the ropes in NLDS",
+        "summaryJa": "パドレスの最新動向をMLB公式が詳報",
+        "slug": "padres-lose-nlds-game-2-2026",
+        "url": "https://www.mlb.com/news/padres-lose-nlds-game-2-2026",
+        "contentDate": "2026-10-05T03:02:00Z",
+        "teamIds": [
+            135
+        ],
+        "playerIds": [],
+        "gamePks": [
+            849825
+        ],
+        "taxonomy": [
+            "nlds",
+            "series-a",
+            "apple-news",
+            "game-recap-losing"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "That Padres-Brewers Game 2 was a whirlwind. Let's break it all down",
+        "summaryJa": "J.チョリオ（SD）の最新動向をMLB公式が詳報",
+        "slug": "padres-brewers-nlds-game-2-fun-facts-and-stats",
+        "url": "https://www.mlb.com/news/padres-brewers-nlds-game-2-fun-facts-and-stats",
+        "contentDate": "2026-10-05T02:50:34.432Z",
+        "teamIds": [
+            135,
+            158
+        ],
+        "playerIds": [
+            694192,
+            695243
+        ],
+        "gamePks": [
+            849825
+        ],
+        "taxonomy": [
+            "apple-news",
+            "nlds",
+            "series-a",
+            "postseason"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Padres' inability to add on late bites them in NLDS Game 2 defeat",
+        "summaryJa": "パドレスの最新動向をMLB公式が詳報",
+        "slug": "padres-offense-squanders-late-game-opportunities-in-nlds-game-2-loss",
+        "url": "https://www.mlb.com/news/padres-offense-squanders-late-game-opportunities-in-nlds-game-2-loss",
+        "contentDate": "2026-10-05T02:25:00Z",
+        "teamIds": [
+            135
+        ],
+        "playerIds": [],
+        "gamePks": [
+            849825
+        ],
+        "taxonomy": [
+            "apple-news",
+            "series-a",
+            "postseason",
+            "nlds"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Despite tough stretch drive, May gets Game 3 nod in closeout scenario for Crew",
+        "summaryJa": "D.メイ（MIL）の最新動向をMLB公式が詳報",
+        "slug": "dustin-may-to-start-nlds-game-3-brewers-padres",
+        "url": "https://www.mlb.com/news/dustin-may-to-start-nlds-game-3-brewers-padres",
+        "contentDate": "2026-10-05T02:21:00Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [
+            669160
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "nlds",
+            "series-a"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Chourio, Milwaukee's Mr. October, bests Miller with walk-off to give Crew 2-0 NLDS lead",
+        "summaryJa": "J.チョリオ（MIL）、サヨナラ勝利の主役に",
+        "slug": "brewers-win-nlds-game-2-2026",
+        "url": "https://www.mlb.com/news/brewers-win-nlds-game-2-2026",
+        "contentDate": "2026-10-05T02:05:00Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [
+            694192
+        ],
+        "gamePks": [
+            849825
+        ],
+        "taxonomy": [
+            "apple-news",
+            "postseason",
+            "nlds",
+            "series-a",
+            "game-recap"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "They don't ask how: Milwaukee overcomes uncharacteristic mistakes to steal Game 2",
         "summaryJa": "ブルワーズ、勝利を呼び込む活躍",
         "slug": "brewers-win-nlds-game-2-despite-uncharacteristic-mistakes",
@@ -49,43 +468,20 @@
         ]
     },
     {
-        "headline": "Kerr twirls scoreless outing as Game 2 opener; Sale set for Game 3 start",
-        "summaryJa": "C.セール（ATL）、マウンドで好投",
-        "slug": "chris-sale-pitching-plan-nlds-vs-dodgers",
-        "url": "https://www.mlb.com/news/chris-sale-pitching-plan-nlds-vs-dodgers",
-        "contentDate": "2026-10-05T01:11:00Z",
+        "headline": "Man on the move: Tigers' shortstop prospect Peck now refining craft in Fall League",
+        "summaryJa": "J.ベック（DET）ら注目選手の最新動向",
+        "slug": "tigers-john-peck-refining-craft-in-arizona-fall-league",
+        "url": "https://www.mlb.com/news/tigers-john-peck-refining-craft-in-arizona-fall-league",
+        "contentDate": "2026-10-05T01:00:00Z",
         "teamIds": [
-            144
+            116
         ],
         "playerIds": [
-            519242,
-            678061
+            807726
         ],
-        "gamePks": [
-            849828,
-            849823
-        ],
-        "taxonomy": [
-            "apple-news",
-            "nlds",
-            "series-b",
-            "postseason"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "LIVE: Watch top prospect Nimmala in the Arizona Fall League",
-        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
-        "slug": "watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
-        "url": "https://www.mlb.com/news/watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
-        "contentDate": "2026-10-05T00:59:00Z",
-        "teamIds": [],
-        "playerIds": [],
         "gamePks": [],
         "taxonomy": [
+            "mlb-top-prospects",
             "apple-news",
             "arizona-fall-league"
         ],
@@ -111,58 +507,7 @@
         ]
     },
     {
-        "headline": "Chourio bests Miller with walk-off 1B, gives Brewers 2-0 NLDS lead",
-        "summaryJa": "J.チョリオ（MIL）、サヨナラ勝利の主役に",
-        "slug": "brewers-win-nlds-game-2-2026",
-        "url": "https://www.mlb.com/news/brewers-win-nlds-game-2-2026",
-        "contentDate": "2026-10-04T23:52:00Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [
-            694192
-        ],
-        "gamePks": [
-            849825
-        ],
-        "taxonomy": [
-            "apple-news",
-            "postseason",
-            "nlds",
-            "series-a",
-            "game-recap"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Padres down 0-2 in NLDS after Miller called upon for 6 outs",
-        "summaryJa": "パドレスの最新動向をMLB公式が詳報",
-        "slug": "padres-lose-nlds-game-2-2026",
-        "url": "https://www.mlb.com/news/padres-lose-nlds-game-2-2026",
-        "contentDate": "2026-10-04T23:39:27.665Z",
-        "teamIds": [
-            135
-        ],
-        "playerIds": [],
-        "gamePks": [
-            849825
-        ],
-        "taxonomy": [
-            "nlds",
-            "series-a",
-            "apple-news",
-            "game-recap-losing"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Yankees-Rays ALDS Game 2 FAQ (Mon., 8 p.m. ET, TBS/HBO Max)",
+        "headline": "Yankees-Rays ALDS Game 2 FAQ (8 p.m. ET, TBS/HBO Max)",
         "summaryJa": "レイズの最新動向をMLB公式が詳報",
         "slug": "yankees-vs-rays-alds-game-2-starting-lineups-and-pitching-matchup",
         "url": "https://www.mlb.com/news/yankees-vs-rays-alds-game-2-starting-lineups-and-pitching-matchup",
@@ -237,7 +582,7 @@
         ]
     },
     {
-        "headline": "White Sox-Guardians ALDS Game 2 FAQ (Mon., 5 ET, TBS/HBO Max)",
+        "headline": "White Sox-Guardians ALDS Game 2 FAQ (5 ET, TBS/HBO Max)",
         "summaryJa": "ガーディアンズの最新動向をMLB公式が詳報",
         "slug": "white-sox-vs-guardians-alds-game-2-starting-lineups-and-pitching-matchup",
         "url": "https://www.mlb.com/news/white-sox-vs-guardians-alds-game-2-starting-lineups-and-pitching-matchup",
@@ -302,7 +647,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -323,7 +667,6 @@
             "series-b"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -472,29 +815,6 @@
         ]
     },
     {
-        "headline": "Despite tough stretch drive, May gets Game 3 nod for Crew",
-        "summaryJa": "D.メイ（MIL）の最新動向をMLB公式が詳報",
-        "slug": "dustin-may-to-start-nlds-game-3-brewers-padres",
-        "url": "https://www.mlb.com/news/dustin-may-to-start-nlds-game-3-brewers-padres",
-        "contentDate": "2026-10-04T17:53:59.472Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [
-            669160
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "nlds",
-            "series-a"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
         "headline": "The new pitch making Cam Schlittler even nastier",
         "summaryJa": "C.シュリットラー（NYY）の最新動向をMLB公式が詳報",
         "slug": "yankees-cam-schlittler-dominating-with-new-curveball",
@@ -631,7 +951,6 @@
             "game-recap"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -656,7 +975,6 @@
             "series-a"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -777,25 +1095,6 @@
         ],
         "sourceScopes": [
             "球団公式"
-        ]
-    },
-    {
-        "headline": "Moonshot in Milwaukee off cable joins list of weirdest postseason plays",
-        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
-        "slug": "weirdest-plays-in-mlb-playoffs-history",
-        "url": "https://www.mlb.com/news/weirdest-plays-in-mlb-playoffs-history",
-        "contentDate": "2026-10-04T04:48:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "evergreen",
-            "postseason",
-            "apple-news",
-            "rankings"
-        ],
-        "sourceScopes": [
-            "MLB"
         ]
     },
     {
@@ -937,7 +1236,6 @@
             "series-a"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1010,7 +1308,6 @@
             "game-recap"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1085,7 +1382,6 @@
             "game-recap"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1273,29 +1569,6 @@
             "long-home-runs"
         ],
         "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "'Give me the ball': Miz up for potential relief role between playoff starts",
-        "summaryJa": "J.ミザロウスキー（MIL）の最新動向をMLB公式が詳報",
-        "slug": "jacob-misiorowski-on-potential-bullpen-appearance-in-playoffs",
-        "url": "https://www.mlb.com/news/jacob-misiorowski-on-potential-bullpen-appearance-in-playoffs",
-        "contentDate": "2026-10-03T22:43:00Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [
-            694819
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "nlds",
-            "series-a"
-        ],
-        "sourceScopes": [
             "球団公式"
         ]
     },
@@ -1368,7 +1641,6 @@
             "game-recap"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -2047,29 +2319,6 @@
         ]
     },
     {
-        "headline": "Here are 4 keys to Padres-Brewers NLDS matchup",
-        "summaryJa": "パドレスの最新動向をMLB公式が詳報",
-        "slug": "keys-to-padres-brewers-nlds-matchup",
-        "url": "https://www.mlb.com/news/keys-to-padres-brewers-nlds-matchup",
-        "contentDate": "2026-10-03T00:48:34.035Z",
-        "teamIds": [
-            135,
-            158
-        ],
-        "playerIds": [],
-        "gamePks": [
-            849830
-        ],
-        "taxonomy": [
-            "apple-news",
-            "nlds",
-            "series-a"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Guards' biggest weapon this October just might be their young lockdown closer",
         "summaryJa": "C.スミス（CLE）の最新動向をMLB公式が詳報",
         "slug": "cade-smith-2026-alds-guardians-star-closer",
@@ -2612,54 +2861,6 @@
         ]
     },
     {
-        "headline": "Unlikely hero pens storybook clinch for Braves",
-        "summaryJa": "R.カー（ATL）、勝利を呼び込む活躍",
-        "slug": "braves-win-nl-wild-card-series-2026",
-        "url": "https://www.mlb.com/news/braves-win-nl-wild-card-series-2026",
-        "contentDate": "2026-10-02T07:21:00Z",
-        "teamIds": [
-            144
-        ],
-        "playerIds": [
-            678061
-        ],
-        "gamePks": [
-            849844
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap",
-            "clincher"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Harris starts fireworks in hometown early with 3-run blast",
-        "summaryJa": "M.ハリスⅡ（ATL）、本塁打で存在感",
-        "slug": "michael-harris-ii-homers-game-3-nl-wild-card-series-2026",
-        "url": "https://www.mlb.com/news/michael-harris-ii-homers-game-3-nl-wild-card-series-2026",
-        "contentDate": "2026-10-02T07:01:00Z",
-        "teamIds": [
-            144
-        ],
-        "playerIds": [
-            671739
-        ],
-        "gamePks": [
-            849844
-        ],
-        "taxonomy": [
-            "apple-news",
-            "nlwc",
-            "series-a"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Nola's command issues lead to short start in Game 3",
         "summaryJa": "A.ノラ（PHI）の最新動向をMLB公式が詳報",
         "slug": "phillies-discuss-pitching-plans-for-game-3-of-nl-wild-card-series",
@@ -2749,31 +2950,6 @@
         ]
     },
     {
-        "headline": "Sale's pitch to Weiss pays off: Lefty bookends Braves' Wild Card Series win",
-        "summaryJa": "C.セール（ATL）、勝利を呼び込む活躍",
-        "slug": "chris-sale-closes-out-braves-nl-wild-card-series-clincher",
-        "url": "https://www.mlb.com/news/chris-sale-closes-out-braves-nl-wild-card-series-clincher",
-        "contentDate": "2026-10-02T05:54:13.923Z",
-        "teamIds": [
-            144
-        ],
-        "playerIds": [
-            519242
-        ],
-        "gamePks": [
-            849844
-        ],
-        "taxonomy": [
-            "apple-news",
-            "series-a",
-            "nlwc",
-            "clincher"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Mattingly not ready to talk managing in '27, but Phillies' stars back skipper",
         "summaryJa": "フィリーズの最新動向をMLB公式が詳報",
         "slug": "don-mattingly-potential-future-phillies-2027-manager",
@@ -2820,37 +2996,6 @@
         ]
     },
     {
-        "headline": "Brewers-Padres position-by-position breakdown",
-        "summaryJa": "J.ミザロウスキー（MIL）の最新動向をMLB公式が詳報",
-        "slug": "brewers-padres-nlds-position-by-position-breakdown",
-        "url": "https://www.mlb.com/news/brewers-padres-nlds-position-by-position-breakdown",
-        "contentDate": "2026-10-02T03:56:38.823Z",
-        "teamIds": [
-            158,
-            135
-        ],
-        "playerIds": [
-            694819,
-            661388,
-            668930,
-            664034,
-            593428,
-            592518,
-            694192,
-            701538,
-            665487,
-            592885,
-            695243
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Lovullo remains D-backs manager with new 2-year deal",
         "summaryJa": "ダイヤモンドバックスの移籍・契約に関する最新情報",
         "slug": "torey-lovullo-2-year-contract-to-manage-d-backs",
@@ -2863,48 +3008,6 @@
         "gamePks": [],
         "taxonomy": [
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "With history in sight, Dodgers taking October 'one day at a time'",
-        "summaryJa": "ドジャースの最新動向をMLB公式が詳報",
-        "slug": "dodgers-begin-quest-for-rare-three-peat-world-series-title",
-        "url": "https://www.mlb.com/news/dodgers-begin-quest-for-rare-three-peat-world-series-title",
-        "contentDate": "2026-10-01T22:01:14.482Z",
-        "teamIds": [
-            119
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "postseason",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "12 pitchers? Three catchers? Padres have big decisions for NLDS roster",
-        "summaryJa": "J.マズグローブ（SD）の最新動向をMLB公式が詳報",
-        "slug": "padres-roster-questions-for-nlds-against-brewers",
-        "url": "https://www.mlb.com/news/padres-roster-questions-for-nlds-against-brewers",
-        "contentDate": "2026-10-01T21:43:26.09Z",
-        "teamIds": [
-            135
-        ],
-        "playerIds": [
-            605397
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "nlds",
-            "series-a",
-            "postseason"
         ],
         "sourceScopes": [
             "球団公式"
@@ -3047,30 +3150,6 @@
         "gamePks": [],
         "taxonomy": [
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Could this top prospect be a postseason weapon for Dodgers?",
-        "summaryJa": "J.デポーラ（LAD）ら注目選手の最新動向",
-        "slug": "josue-de-paula-potential-impact-on-dodgers-2026-postseason",
-        "url": "https://www.mlb.com/news/josue-de-paula-potential-impact-on-dodgers-2026-postseason",
-        "contentDate": "2026-10-01T17:01:11.826Z",
-        "teamIds": [
-            119
-        ],
-        "playerIds": [
-            800543
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "player-tracking",
-            "postseason",
-            "nlds",
-            "series-b"
         ],
         "sourceScopes": [
             "球団公式"
@@ -7195,31 +7274,6 @@
         ]
     },
     {
-        "headline": "Looking back on Justin Verlander's three no-hitters",
-        "summaryJa": "J.バーランダー（DET）の最新動向をMLB公式が詳報",
-        "slug": "justin-verlander-career-no-hitters",
-        "url": "https://www.mlb.com/news/justin-verlander-career-no-hitters",
-        "contentDate": "2026-09-25T12:33:51.37Z",
-        "teamIds": [
-            116
-        ],
-        "playerIds": [
-            434378
-        ],
-        "gamePks": [
-            824220
-        ],
-        "taxonomy": [
-            "apple-news",
-            "no-hitter",
-            "evergreen",
-            "history"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Verlander to end fabled career against the man he started it with",
         "summaryJa": "J.バーランダー（DET）の最新動向をMLB公式が詳報",
         "slug": "justin-verlander-full-circle-moment-with-pirates-in-last-start",
@@ -8556,26 +8610,6 @@
         ],
         "gamePks": [
             824381
-        ],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Pasquantino lifts a pinch HR as Royals wrap up road slate",
-        "summaryJa": "ロイヤルズ、本塁打で存在感",
-        "slug": "vinnie-pasquantino-hits-pinch-hr-in-royals-road-finale",
-        "url": "https://www.mlb.com/news/vinnie-pasquantino-hits-pinch-hr-in-royals-road-finale",
-        "contentDate": "2026-09-20T22:53:44.97Z",
-        "teamIds": [
-            118
-        ],
-        "playerIds": [],
-        "gamePks": [
-            823329
         ],
         "taxonomy": [
             "apple-news"
