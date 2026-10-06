@@ -6024,6 +6024,25 @@
             }))
     );
 
+    const getPostseasonSeriesHistoryHighlights = (seriesStanding, teams) => {
+        if (String(seriesStanding?.gameType ?? "") !== "D" ||
+            Number(seriesStanding?.totalGames) !== 5) return [];
+        const teamList = [teams?.away, teams?.home].filter(Boolean);
+        const leadingTeam = teamList.find((team) =>
+            Number(seriesStanding?.wins?.get(Number(team?.id)) ?? 0) === 2
+        );
+        const trailingTeam = teamList.find((team) =>
+            Number(seriesStanding?.wins?.get(Number(team?.id)) ?? 0) === 0
+        );
+        if (!leadingTeam || !trailingTeam) return [];
+        return [{
+            kind: "special",
+            person: { fullName: teamJapaneseName(leadingTeam) },
+            team: leadingTeam,
+            label: "地区シリーズで2連勝スタート。5戦制PSシリーズで2勝0敗のチームのシリーズ突破率は89％（83/93）"
+        }];
+    };
+
     const getProspectDebutGameHighlights = (
         rosterBySide,
         teamsBySide,
@@ -9292,6 +9311,10 @@
                 getLineupSeasonStats(lineupPlayerIds, date)
             ]);
             const gameHighlights = [
+                ...getPostseasonSeriesHistoryHighlights(
+                    seriesStanding,
+                    { away: awayTeam, home: homeTeam }
+                ),
                 ...getStartingPitcherGameHighlights([
                     { data: awayStarter, team: awayTeam },
                     { data: homeStarter, team: homeTeam }
