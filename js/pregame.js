@@ -7847,19 +7847,22 @@
         const leaderCategories = new Set(titleNotes
             .filter((note) => note?.titleHolder && note?.group === "hitting")
             .map((note) => note.category));
-        const appendMetric = (value, suffix, category) => {
-            if (container.childNodes.length) container.append(" ");
-            container.append(el(
-                "span",
-                leaderCategories.has(category) ? "pregame-lineup-league-leader" : "",
-                String(value)
-            ));
-            if (suffix) container.append(suffix);
+        const appendMetric = (label, value, category) => {
+            const metric = el("span", "pregame-lineup-season-metric");
+            metric.append(
+                el("span", "pregame-lineup-season-label", label),
+                el(
+                    "span",
+                    `pregame-lineup-season-value${leaderCategories.has(category) ? " pregame-lineup-league-leader" : ""}`,
+                    String(value)
+                )
+            );
+            container.append(metric);
         };
-        appendMetric(stat.avg ?? "-", "", "battingAverage");
-        appendMetric(statNumber(stat.homeRuns), "HR", "homeRuns");
-        appendMetric(statNumber(stat.rbi), "打点", "runsBattedIn");
-        appendMetric(statNumber(stat.stolenBases), "盗塁", "stolenBases");
+        appendMetric("率", stat.avg ?? "-", "battingAverage");
+        appendMetric("本", statNumber(stat.homeRuns), "homeRuns");
+        appendMetric("点", statNumber(stat.rbi), "runsBattedIn");
+        appendMetric("盗", statNumber(stat.stolenBases), "stolenBases");
         return container;
     };
 
@@ -7887,8 +7890,8 @@
             const teamHeading = el("h4", "pregame-team-heading pregame-lineup-team-heading");
             teamHeading.append(
                 el("span", "pregame-lineup-team-code", teamCode(team)),
-                lineupColumnHeading(playerName(opposingPitcherBySide[side]) || "先発未定"),
-                lineupColumnHeading(teamCode(side === "away" ? teams.home : teams.away))
+                lineupColumnHeading(teamCode(side === "away" ? teams.home : teams.away)),
+                lineupColumnHeading(playerName(opposingPitcherBySide[side]) || "先発未定")
             );
             column.append(teamHeading);
             const lineup = startingLineupEntries(rosterBySide[side]);
@@ -7918,8 +7921,8 @@
                         el("span", "pregame-lineup-order", String(entry.order)),
                         el("span", "pregame-lineup-position", position),
                         playerBlock,
-                        createLineupMatchupStat(matchups.vsPitcher, "pitcher"),
-                        createLineupMatchupStat(matchups.vsTeam, "team")
+                        createLineupMatchupStat(matchups.vsTeam, "team"),
+                        createLineupMatchupStat(matchups.vsPitcher, "pitcher")
                     );
                     list.append(row);
                 });
