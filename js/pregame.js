@@ -6039,7 +6039,8 @@
             kind: "special",
             person: { fullName: teamJapaneseName(leadingTeam) },
             team: leadingTeam,
-            label: "地区シリーズで2連勝スタート。5戦制PSシリーズで2勝0敗のチームのシリーズ突破率は89％（83/93）"
+            label: "地区シリーズで2連勝スタート。5戦制PSシリーズで2勝0敗のチームのシリーズ突破率は89％（過去93チーム中83チーム）",
+            href: "https://www.mlb.com/padres/news/padres-brewers-nl-division-series-game-2-starting-lineups-and-pitching-matchup"
         }];
     };
 
