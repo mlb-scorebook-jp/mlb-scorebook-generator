@@ -253,6 +253,7 @@ body.app-mode-pregame .scorebook-horizontal-scroll {
 }
 
 .pregame-header-world-series-titles {
+    margin-top: 3px;
     color: #d6dfe3;
     font-size: 10px;
     font-weight: 600;
@@ -3712,8 +3713,31 @@ a.pregame-batting-stat:focus-visible {
 
 .pregame-lineup-matchup-team,
 .pregame-lineup-matchup-pitcher {
-    grid-template-columns: minmax(0, 82px) 25px;
-    gap: 5px;
+    grid-template-columns: max-content max-content;
+    gap: 4px;
+}
+
+.pregame-lineup-column-heading-pitcher,
+.pregame-lineup-matchup-pitcher {
+    padding-left: 14px;
+}
+
+.pregame-lineup-matchup-team.is-postseason {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: #f1cb45;
+    font-weight: 700;
+}
+
+.pregame-lineup-matchup-ps-metric {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 1px;
+}
+
+.pregame-lineup-matchup-ps-label {
+    font-weight: 800;
 }
 
 .pregame-lineup-matchup-main {

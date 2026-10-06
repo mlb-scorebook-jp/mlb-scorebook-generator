@@ -7665,7 +7665,8 @@
         playerIds,
         opposingPitcherId,
         opponentTeamId,
-        date
+        date,
+        usePostseasonTeamStats = false
     ) => {
         const ids = [...new Set(playerIds.map(Number).filter(Number.isFinite))];
         if (!ids.length) return new Map();
@@ -7686,7 +7687,7 @@
         const season = Number(String(date).slice(0, 4));
         const endDate = previousDate(date);
         const gameLogHydrate = `stats(group=[hitting],type=[gameLog],` +
-            `season=${season},gameType=[R])`;
+            `season=${season},gameType=[${usePostseasonTeamStats ? "P" : "R"}])`;
         const gameLogParams = new URLSearchParams({
             personIds: ids.join(","),
             hydrate: gameLogHydrate
@@ -7695,7 +7696,8 @@
             fetchMatchups("vsPlayer", "opposingPlayerId", opposingPitcherId),
             fetchJson(
                 `${API_ROOT}/v1/people?${gameLogParams}`,
-                `pregame:lineup-vs-team:${opponentTeamId}:${endDate}:${ids.join("-")}`
+                `pregame:lineup-vs-team:${usePostseasonTeamStats ? "postseason" : "regular"}:` +
+                    `${opponentTeamId}:${endDate}:${ids.join("-")}`
             ).catch(() => null),
             opposingPitcherId
                 ? getSavantPitchRows(opposingPitcherId, season, date).catch(() => null)
@@ -7761,17 +7763,21 @@
                 .find((entry) => String(entry?.type?.displayName ?? "") === "gameLog")
                 ?.splits?.filter((split) =>
                     String(split?.date ?? "") <= endDate &&
-                    Number(split?.opponent?.id) === Number(opponentTeamId)
+                    (usePostseasonTeamStats ||
+                        Number(split?.opponent?.id) === Number(opponentTeamId))
                 ).reduce((sum, split) => {
                     sum.atBats += statNumber(split?.stat?.atBats);
                     sum.hits += statNumber(split?.stat?.hits);
                     sum.homeRuns += statNumber(split?.stat?.homeRuns);
+                    sum.rbi += statNumber(split?.stat?.rbi);
+                    sum.stolenBases += statNumber(split?.stat?.stolenBases);
                     return sum;
-                }, { atBats: 0, hits: 0, homeRuns: 0 }) ?? null;
+                }, { atBats: 0, hits: 0, homeRuns: 0, rbi: 0, stolenBases: 0 }) ?? null;
             if (!totals || !result.has(Number(person?.id))) return;
             totals.avg = totals.atBats
                 ? (totals.hits / totals.atBats).toFixed(3).replace(/^0/, "")
                 : ".000";
+            totals.isPostseason = usePostseasonTeamStats;
             result.get(Number(person.id)).vsTeam = totals;
         });
         return result;
@@ -7818,11 +7824,27 @@
             "span",
             `pregame-lineup-matchup pregame-lineup-matchup-${kind}`
         );
-        if (!stat || !statNumber(stat.atBats)) {
+        if (!stat || (!stat.isPostseason && !statNumber(stat.atBats))) {
             container.append(
                 el("span", "pregame-lineup-matchup-main", "-"),
                 el("span", "pregame-lineup-matchup-hr")
             );
+            return container;
+        }
+        if (kind === "team" && stat.isPostseason) {
+            const appendMetric = (label, value) => {
+                const metric = el("span", "pregame-lineup-matchup-ps-metric");
+                metric.append(
+                    el("span", "pregame-lineup-matchup-ps-label", label),
+                    String(value)
+                );
+                container.append(metric);
+            };
+            container.classList.add("is-postseason");
+            appendMetric("率", stat.avg ?? ".000");
+            appendMetric("本", statNumber(stat.homeRuns));
+            appendMetric("点", statNumber(stat.rbi));
+            appendMetric("盗", statNumber(stat.stolenBases));
             return container;
         }
         const homeRuns = statNumber(stat.homeRuns);
@@ -7872,12 +7894,16 @@
         seasonStatsByPlayer,
         matchupBySide,
         opposingPitcherBySide,
-        seasonTitleNotes
+        seasonTitleNotes,
+        postseasonTeamStatsBySide = {}
     ) => {
-        const lineupColumnHeading = (value) => {
-            const heading = el("span", "pregame-lineup-column-heading");
+        const lineupColumnHeading = (value, kind, prefix = "VS.") => {
+            const heading = el(
+                "span",
+                `pregame-lineup-column-heading pregame-lineup-column-heading-${kind}`
+            );
             heading.append(
-                el("span", "pregame-lineup-vs-prefix", "VS."),
+                el("span", "pregame-lineup-vs-prefix", prefix),
                 el("span", "pregame-lineup-vs-label", value)
             );
             return heading;
@@ -7890,8 +7916,17 @@
             const teamHeading = el("h4", "pregame-team-heading pregame-lineup-team-heading");
             teamHeading.append(
                 el("span", "pregame-lineup-team-code", teamCode(team)),
-                lineupColumnHeading(teamCode(side === "away" ? teams.home : teams.away)),
-                lineupColumnHeading(playerName(opposingPitcherBySide[side]) || "先発未定")
+                lineupColumnHeading(
+                    postseasonTeamStatsBySide[side]
+                        ? "PS成績"
+                        : teamCode(side === "away" ? teams.home : teams.away),
+                    "team",
+                    postseasonTeamStatsBySide[side] ? "" : "VS."
+                ),
+                lineupColumnHeading(
+                    playerName(opposingPitcherBySide[side]) || "先発未定",
+                    "pitcher"
+                )
             );
             column.append(teamHeading);
             const lineup = startingLineupEntries(rosterBySide[side]);
@@ -9227,13 +9262,15 @@
                     startingLineupEntries(awayRoster).map((entry) => entry?.person?.id),
                     homeProbable?.id,
                     homeTeam.id,
-                    date
+                    date,
+                    isPostseason && awayTrend.results.length > 0
                 ),
                 getLineupMatchupStats(
                     startingLineupEntries(homeRoster).map((entry) => entry?.person?.id),
                     awayProbable?.id,
                     awayTeam.id,
-                    date
+                    date,
+                    isPostseason && homeTrend.results.length > 0
                 ),
                 getLineupSeasonStats(lineupPlayerIds, date)
             ]);
@@ -9268,7 +9305,11 @@
                 lineupSeasonStats,
                 { away: awayLineupMatchups, home: homeLineupMatchups },
                 { away: homeProbable, home: awayProbable },
-                seasonTitleNotes
+                seasonTitleNotes,
+                {
+                    away: isPostseason && awayTrend.results.length > 0,
+                    home: isPostseason && homeTrend.results.length > 0
+                }
             ));
 
             const [featuredAwards, leagueTopFiveNotes, postseasonStatsByPlayer] = await Promise.all([
