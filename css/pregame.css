@@ -1713,6 +1713,17 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
     white-space: nowrap;
 }
 
+.pregame-appearance-row.is-postseason span,
+.pregame-appearance-row.is-postseason strong,
+.pregame-appearance-row.is-postseason a {
+    color: #f1cb45;
+}
+
+.pregame-appearance-row.is-postseason a:hover,
+.pregame-appearance-row.is-postseason a:focus-visible {
+    color: #ffe47a;
+}
+
 .pregame-pitcher-matchup {
     display: grid;
     align-content: end;
@@ -3734,6 +3745,11 @@ a.pregame-batting-stat:focus-visible {
     margin-top: 2px;
     padding: 0 1px 0 2px;
     overflow: hidden;
+}
+
+.pregame-postseason-trends-section .pregame-trend-history {
+    overflow-x: auto;
+    overflow-y: hidden;
 }
 
 .pregame-trend-history-metric {

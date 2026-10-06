@@ -1589,6 +1589,22 @@
         return payload?.stats?.[0]?.splits ?? [];
     };
 
+    const getPlayerPostseasonGameLog = async (playerId, season, group, date) => {
+        const endDate = previousDate(date);
+        const params = new URLSearchParams({
+            stats: "gameLog",
+            group,
+            gameType: "P",
+            startDate: `${season}-01-01`,
+            endDate
+        });
+        const payload = await fetchJson(
+            `${API_ROOT}/v1/people/${playerId}/stats?${params}`,
+            `pregame:postseason-log:${playerId}:${season}:${group}:${endDate}`
+        );
+        return (payload?.stats ?? []).flatMap((entry) => entry?.splits ?? []);
+    };
+
     const getPlayerCareerGameLog = async (person, date, group) => {
         const debutDate = String(person?.mlbDebutDate ?? "");
         const startDate = /^\d{4}-\d{2}-\d{2}$/.test(debutDate)
@@ -2726,6 +2742,21 @@
             ).catch(() => null);
             if ((payload?.records ?? []).some((record) => (record?.teamRecords ?? []).length > 0)) break;
             standingsDate = previousDate(standingsDate);
+        }
+        if (
+            date >= `${season}-10-01` &&
+            !(payload?.records ?? []).some((record) => (record?.teamRecords ?? []).length > 0)
+        ) {
+            const finalParams = new URLSearchParams({
+                leagueId: "103,104",
+                season,
+                standingsTypes: "regularSeason",
+                hydrate: "division,team,league"
+            });
+            payload = await fetchJson(
+                `${API_ROOT}/v1/standings?${finalParams}`,
+                `pregame:standings:${season}:final`
+            ).catch(() => null);
         }
         const standings = new Map();
         (payload?.records ?? []).forEach((record) => {
@@ -6378,12 +6409,13 @@
         return box;
     };
 
-    const getOfficialTeamStatsUrl = (team, season, group) => {
+    const getOfficialTeamStatsUrl = (team, season, group, postseason = false) => {
         const slug = window.MLB_SCOREBOOK_TEAM_SLUGS_BY_ID?.[Number(team?.id)];
         if (!slug) return "";
         const path = group === "pitching" ? "stats/team/pitching" : "stats/team";
         const url = new URL(`https://www.mlb.com/${slug}/${path}`);
         url.searchParams.set("season", String(season));
+        if (postseason) url.searchParams.set("gameType", "P");
         return url.toString();
     };
 
@@ -7610,19 +7642,20 @@
         }
     };
 
-    const getTeamSchedule = async (teamId, date) => {
+    const getTeamSchedule = async (teamId, date, postseason = false) => {
         const season = date.slice(0, 4);
         const endDate = previousDate(date);
         const params = new URLSearchParams({
             sportId: "1",
             teamId: String(teamId),
-            startDate: `${season}-02-01`,
-            endDate,
-            gameType: "R"
+            startDate: postseason ? `${season}-09-01` : `${season}-02-01`,
+            endDate
         });
+        if (postseason) params.set("gameTypes", "F,D,L,W");
+        else params.set("gameType", "R");
         const payload = await fetchJson(
             `${API_ROOT}/v1/schedule?${params}`,
-            `pregame:team-schedule:${teamId}:${endDate}`
+            `pregame:team-schedule:${postseason ? "postseason" : "regular"}:${teamId}:${endDate}`
         );
         return (payload?.dates ?? []).flatMap((entry) => entry.games ?? [])
             .filter(isFinal);
@@ -7898,10 +7931,10 @@
         return lineupSection;
     };
 
-    const getTeamTrend = async (teamId, date) => {
+    const getTeamTrend = async (teamId, date, postseason = false) => {
         const endDate = previousDate(date);
-        const schedule = await getTeamSchedule(teamId, date);
-        const recent = schedule.slice(-10);
+        const schedule = await getTeamSchedule(teamId, date, postseason);
+        const recent = postseason ? schedule : schedule.slice(-10);
         const results = recent.map((game) => {
             const away = game?.teams?.away ?? {};
             const home = game?.teams?.home ?? {};
@@ -7922,15 +7955,18 @@
         for (let index = outcomes.length - 1; index >= 0 && outcomes[index] === latest; index -= 1) {
             streak += 1;
         }
-        const startDate = recent[0]?.officialDate ?? date;
+        const startDate = recent[0]?.officialDate ?? (postseason
+            ? `${date.slice(0, 4)}-09-01`
+            : date);
+        const gameType = postseason ? "P" : "R";
         const [hittingPayload, pitchingPayload] = await Promise.all([
             fetchJson(
-                `${API_ROOT}/v1/teams/${teamId}/stats?stats=byDateRange&group=hitting&gameType=R&startDate=${startDate}&endDate=${endDate}`,
-                `pregame:team-hit:${teamId}:${startDate}:${endDate}`
+                `${API_ROOT}/v1/teams/${teamId}/stats?stats=byDateRange&group=hitting&gameType=${gameType}&startDate=${startDate}&endDate=${endDate}`,
+                `pregame:team-hit:${gameType}:${teamId}:${startDate}:${endDate}`
             ).catch(() => null),
             fetchJson(
-                `${API_ROOT}/v1/teams/${teamId}/stats?stats=byDateRange&group=pitching&gameType=R&startDate=${startDate}&endDate=${endDate}`,
-                `pregame:team-pitch:${teamId}:${startDate}:${endDate}`
+                `${API_ROOT}/v1/teams/${teamId}/stats?stats=byDateRange&group=pitching&gameType=${gameType}&startDate=${startDate}&endDate=${endDate}`,
+                `pregame:team-pitch:${gameType}:${teamId}:${startDate}:${endDate}`
             ).catch(() => null)
         ]);
         const hitting = hittingPayload?.stats?.[0]?.splits?.[0]?.stat ?? {};
@@ -8818,12 +8854,15 @@
                 `pregame:starter-profile-xref:${pitcher.id}`
             ).then((payload) => payload?.people?.[0] ?? pitcher)
         ]);
-        const [careerLogs, venueHistory, postseasonCareerStats] = await Promise.all([
+        const [careerLogs, venueHistory, postseasonCareerStats, currentPostseasonLogs] = await Promise.all([
             getPlayerCareerGameLog(profile, date, "pitching").catch(() => []),
             getPitcherVenueHistory(profile, date, venue).catch(() => null),
             isPostseason
                 ? getPitcherPostseasonCareerStats(profile, date)
-                : Promise.resolve(null)
+                : Promise.resolve(null),
+            isPostseason
+                ? getPlayerPostseasonGameLog(profile.id, season, "pitching", date).catch(() => [])
+                : Promise.resolve([])
         ]);
         if (Number(profile?.id) === 434378 && date === "2026-09-26" && venueHistory) {
             venueHistory.notes.unshift({
@@ -8834,12 +8873,26 @@
                     "justin-verlander-honored-by-tigers-teammates-before-final-start-of-career"
             });
         }
-        const recentAppearances = careerLogs
+        const priorPostseasonAppearances = currentPostseasonLogs
             .filter((split) => String(split?.date ?? "") < date && statNumber(split?.stat?.gamesPlayed) > 0)
             .sort((a, b) =>
                 String(b?.date ?? "").localeCompare(String(a?.date ?? "")) ||
                 statNumber(b?.game?.gamePk) - statNumber(a?.game?.gamePk)
-            )
+            );
+        const recentAppearancesArePostseason = Boolean(
+            isPostseason && priorPostseasonAppearances.length
+        );
+        const recentAppearanceSource = recentAppearancesArePostseason
+            ? priorPostseasonAppearances
+            : careerLogs
+                .filter((split) =>
+                    String(split?.date ?? "") < date && statNumber(split?.stat?.gamesPlayed) > 0
+                )
+                .sort((a, b) =>
+                    String(b?.date ?? "").localeCompare(String(a?.date ?? "")) ||
+                    statNumber(b?.game?.gamePk) - statNumber(a?.game?.gamePk)
+                );
+        const recentAppearances = recentAppearanceSource
             .slice(0, 3);
         const opponentLogs = careerLogs.filter((split) =>
             Number(split?.opponent?.id) === Number(opponent?.id)
@@ -8861,6 +8914,7 @@
             postseasonCareerStats,
             isPostseason,
             recentAppearances,
+            recentAppearancesArePostseason,
             hasCareerAppearance: careerLogs.length > 0,
             date,
             opponent,
@@ -9034,7 +9088,12 @@
                 const stat = appearance?.stat ?? {};
                 const walksAndHitByPitch = statNumber(stat.baseOnBalls) + statNumber(stat.hitBatsmen);
                 const decision = pitcherDecision(stat);
-                const row = el("div", "pregame-appearance-row");
+                const row = el(
+                    "div",
+                    `pregame-appearance-row${data.recentAppearancesArePostseason
+                        ? " is-postseason"
+                        : ""}`
+                );
                 const gamedayUrl = appearanceGamedayUrl(appearance);
                 const label = el(
                     gamedayUrl ? "a" : "strong",
@@ -9100,8 +9159,8 @@
                 sameDayGames,
                 postseasonRecords
             ] = await Promise.all([
-                getTeamTrend(awayTeam.id, date),
-                getTeamTrend(homeTeam.id, date),
+                getTeamTrend(awayTeam.id, date, isPostseason),
+                getTeamTrend(homeTeam.id, date, isPostseason),
                 getStandingsSnapshot(date),
                 getRecentTeamTransactions([awayTeam, homeTeam], date),
                 getTeamInjuryReports([awayTeam, homeTeam], date),
@@ -9275,8 +9334,13 @@
             }
             playersSection.append(playerColumns);
 
-            const trendsSection = section("直近10試合 チーム動向");
+            const trendsSection = section(
+                isPostseason ? "ポストシーズン チーム動向" : "直近10試合 チーム動向"
+            );
             trendsSection.classList.add("pregame-team-trends-section");
+            if (isPostseason) {
+                trendsSection.classList.add("pregame-postseason-trends-section");
+            }
             const trendColumns = el("div", "pregame-team-columns");
             [[awayTeam, awayTrend], [homeTeam, homeTrend]].forEach(([team, trend]) => {
                 const column = el("div");
@@ -9284,8 +9348,8 @@
                 const metrics = el("div", "pregame-metric-grid");
                 const season = Number(date.slice(0, 4));
                 const scheduleUrl = getOfficialTeamScheduleUrl(team, date);
-                const battingUrl = getOfficialTeamStatsUrl(team, season, "hitting");
-                const pitchingUrl = getOfficialTeamStatsUrl(team, season, "pitching");
+                const battingUrl = getOfficialTeamStatsUrl(team, season, "hitting", isPostseason);
+                const pitchingUrl = getOfficialTeamStatsUrl(team, season, "pitching", isPostseason);
                 const recentGamesMetric = el("div", "pregame-metric pregame-trend-record-metric");
                 const recentRecord = el(
                     scheduleUrl ? "a" : "strong",
@@ -9320,11 +9384,11 @@
                     runTotalsMetric,
                     metric("チーム打率", String(trend.avg), battingUrl ? {
                         href: battingUrl,
-                        ariaLabel: `${teamCode(team)}の${season}年MLB公式チーム打撃成績を新しいタブで開く`
+                        ariaLabel: `${teamCode(team)}の${season}年${isPostseason ? "ポストシーズン" : "レギュラーシーズン"}MLB公式チーム打撃成績を新しいタブで開く`
                     } : null),
                     metric("チーム防御率", String(trend.era), pitchingUrl ? {
                         href: pitchingUrl,
-                        ariaLabel: `${teamCode(team)}の${season}年MLB公式チーム投手成績を新しいタブで開く`
+                        ariaLabel: `${teamCode(team)}の${season}年${isPostseason ? "ポストシーズン" : "レギュラーシーズン"}MLB公式チーム投手成績を新しいタブで開く`
                     } : null)
                 );
                 column.append(metrics);
