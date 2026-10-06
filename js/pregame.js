@@ -7819,11 +7819,17 @@
             entry.order >= 1 && entry.order <= 9)
         .sort((left, right) => left.order - right.order);
 
-    const createLineupMatchupStat = (stat, kind) => {
+    const createLineupMatchupStat = (stat, kind, href = "") => {
         const container = el(
-            "span",
+            href && kind === "team" && stat?.isPostseason ? "a" : "span",
             `pregame-lineup-matchup pregame-lineup-matchup-${kind}`
         );
+        if (container.tagName === "A") {
+            container.href = href;
+            container.target = "_blank";
+            container.rel = "noopener noreferrer";
+            container.setAttribute("aria-label", "MLB公式の今季ポストシーズン球団打撃成績を開く");
+        }
         if (!stat || (!stat.isPostseason && !statNumber(stat.atBats))) {
             container.append(
                 el("span", "pregame-lineup-matchup-main", "-"),
@@ -7913,6 +7919,13 @@
         const columns = el("div", "pregame-team-columns pregame-lineup-columns");
         [["away", teams.away], ["home", teams.home]].forEach(([side, team]) => {
             const column = el("div", "pregame-lineup-team");
+            const officialTeamNameSlug = String(team?.name ?? "")
+                .toLowerCase()
+                .replace(/[^a-z0-9]+/g, "-")
+                .replace(/^-|-$/g, "");
+            const postseasonStatsUrl = officialTeamNameSlug
+                ? `https://www.mlb.com/stats/${officialTeamNameSlug}?gameType=P`
+                : "";
             const teamHeading = el("h4", "pregame-team-heading pregame-lineup-team-heading");
             teamHeading.append(
                 el("span", "pregame-lineup-team-code", teamCode(team)),
@@ -7956,7 +7969,11 @@
                         el("span", "pregame-lineup-order", String(entry.order)),
                         el("span", "pregame-lineup-position", position),
                         playerBlock,
-                        createLineupMatchupStat(matchups.vsTeam, "team"),
+                        createLineupMatchupStat(
+                            matchups.vsTeam,
+                            "team",
+                            postseasonTeamStatsBySide[side] ? postseasonStatsUrl : ""
+                        ),
                         createLineupMatchupStat(matchups.vsPitcher, "pitcher")
                     );
                     list.append(row);

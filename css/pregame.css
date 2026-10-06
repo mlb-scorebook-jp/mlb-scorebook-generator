@@ -3728,6 +3728,14 @@ a.pregame-batting-stat:focus-visible {
     gap: 4px;
     color: #f1cb45;
     font-weight: 700;
+    text-decoration: none;
+}
+
+.pregame-lineup-matchup-team.is-postseason:hover,
+.pregame-lineup-matchup-team.is-postseason:focus-visible {
+    color: #ffe47a;
+    text-decoration: underline;
+    text-underline-offset: 2px;
 }
 
 .pregame-lineup-matchup-ps-metric {
