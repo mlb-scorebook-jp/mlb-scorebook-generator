@@ -2,11 +2,142 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
-        "headline": "Dodgers-Braves NLDS Game 4 FAQ, lineups, more (6 ET, FS1/FOX One)",
+        "headline": "J-Ram shows off all his tools as Guardians refuse to go quietly",
+        "summaryJa": "J.ラミレス（CLE）、記録達成の最新情報",
+        "slug": "jose-ramirez-records-double-stolen-base-makes-diving-play-in-alds-game-3-2026",
+        "url": "https://www.mlb.com/news/jose-ramirez-records-double-stolen-base-makes-diving-play-in-alds-game-3-2026",
+        "contentDate": "2026-10-07T23:38:00Z",
+        "teamIds": [
+            114
+        ],
+        "playerIds": [
+            608070
+        ],
+        "gamePks": [
+            849833
+        ],
+        "taxonomy": [
+            "postseason",
+            "alds",
+            "series-b",
+            "apple-news",
+            "game-recap"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Wake-up call! Adell's bases-clearing triple jolts Guardians' bats",
+        "summaryJa": "J.アデル（CLE）の最新動向をMLB公式が詳報",
+        "slug": "jo-adell-bases-clearing-triple-guardians-alds-game-3-2026",
+        "url": "https://www.mlb.com/news/jo-adell-bases-clearing-triple-guardians-alds-game-3-2026",
+        "contentDate": "2026-10-07T23:29:00Z",
+        "teamIds": [
+            114
+        ],
+        "playerIds": [
+            666176
+        ],
+        "gamePks": [
+            849833
+        ],
+        "taxonomy": [
+            "postseason",
+            "alds",
+            "series-b",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Brewers-Padres NLDS Game 4 lineups, FAQ, more (10 ET, FS1/FOX One)",
+        "summaryJa": "ブルワーズの最新動向をMLB公式が詳報",
+        "slug": "brewers-padres-nl-division-series-game-4-starting-lineups-and-pitching-matchup",
+        "url": "https://www.mlb.com/news/brewers-padres-nl-division-series-game-4-starting-lineups-and-pitching-matchup",
+        "contentDate": "2026-10-07T22:46:00Z",
+        "teamIds": [
+            158,
+            135
+        ],
+        "playerIds": [],
+        "gamePks": [
+            849827
+        ],
+        "taxonomy": [
+            "postseason",
+            "nlds",
+            "series-a",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Miller returns from paternity list for Game 4; latest on Morejon",
+        "summaryJa": "M.ミラー（SD）、復帰へ向けた最新状況",
+        "slug": "mason-miller-adrian-morejon-update-for-brewers-padres-nlds-game-4",
+        "url": "https://www.mlb.com/news/mason-miller-adrian-morejon-update-for-brewers-padres-nlds-game-4",
+        "contentDate": "2026-10-07T22:38:00Z",
+        "teamIds": [
+            135
+        ],
+        "playerIds": [
+            695243,
+            670970
+        ],
+        "gamePks": [
+            849827
+        ],
+        "taxonomy": [
+            "nlds",
+            "postseason",
+            "apple-news",
+            "series-a",
+            "injury"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Volpe, Caballero get call from Boone; Jazz sits in Game 3 lineup shakeup",
+        "summaryJa": "A.ボルピー（NYY）の最新動向をMLB公式が詳報",
+        "slug": "anthony-volpe-jose-caballero-start-for-yankees-in-game-3-of-alds",
+        "url": "https://www.mlb.com/news/anthony-volpe-jose-caballero-start-for-yankees-in-game-3-of-alds",
+        "contentDate": "2026-10-07T22:10:20.547Z",
+        "teamIds": [
+            147
+        ],
+        "playerIds": [
+            683011,
+            676609,
+            665862
+        ],
+        "gamePks": [
+            849838
+        ],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "LIVE on FS1/FOX One: Dodgers-Braves NLDS Game 4",
         "summaryJa": "ブレーブスの最新動向をMLB公式が詳報",
         "slug": "dodgers-vs-braves-nlds-game-4-starting-lineups-and-pitching-matchup",
         "url": "https://www.mlb.com/news/dodgers-vs-braves-nlds-game-4-starting-lineups-and-pitching-matchup",
-        "contentDate": "2026-10-07T19:24:00Z",
+        "contentDate": "2026-10-07T21:40:00Z",
         "teamIds": [
             144,
             119
@@ -21,16 +152,87 @@
             "apple-news"
         ],
         "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "Rojas unavailable in G4 as Dodgers continue to evaluate back injury",
+        "summaryJa": "M.ロハス（LAD）の負傷状況をMLB公式が詳報",
+        "slug": "miguel-rojas-unavailable-nlds-game-4-2026-back-injury",
+        "url": "https://www.mlb.com/news/miguel-rojas-unavailable-nlds-game-4-2026-back-injury",
+        "contentDate": "2026-10-07T21:35:00.635Z",
+        "teamIds": [
+            119
+        ],
+        "playerIds": [
+            500743
+        ],
+        "gamePks": [
+            849822
+        ],
+        "taxonomy": [
+            "nlds",
+            "series-b",
+            "injury",
+            "apple-news"
+        ],
+        "sourceScopes": [
             "MLB",
             "球団公式"
         ]
     },
     {
-        "headline": "Acuña returns to right field for Game 4",
+        "headline": "Injuries: Judge, Acuña, Padres, Rojas, Rays",
+        "summaryJa": "大谷翔平（LAD）らMLB各球団の最新負傷情報",
+        "slug": "baseball-injury-updates",
+        "url": "https://www.mlb.com/news/baseball-injury-updates",
+        "contentDate": "2026-10-07T21:34:00Z",
+        "teamIds": [],
+        "playerIds": [
+            592450,
+            663556,
+            663554,
+            693821,
+            500743,
+            657757,
+            695243,
+            670970
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "headline-breakout"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "Latest Dodgers injuries & transactions",
+        "summaryJa": "ドジャースの負傷状況をMLB公式が詳報",
+        "slug": "dodgers-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/dodgers-injuries-and-roster-moves",
+        "contentDate": "2026-10-07T21:26:00Z",
+        "teamIds": [
+            119
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Acuña inserts himself back into right field for critical Game 4",
         "summaryJa": "R.アクーニャ Jr.（ATL）の負傷状況をMLB公式が詳報",
         "slug": "latest-news-ronald-acuna-jr-knee-injury-nlds-game-4",
         "url": "https://www.mlb.com/news/latest-news-ronald-acuna-jr-knee-injury-nlds-game-4",
-        "contentDate": "2026-10-07T19:14:00Z",
+        "contentDate": "2026-10-07T21:12:00Z",
         "teamIds": [
             144
         ],
@@ -53,11 +255,11 @@
         ]
     },
     {
-        "headline": "Chicago caught up in White Sox playoff fever ... and a mystery first-pitch guest",
+        "headline": "Blackout, tailgates, Pope Hats -- Chicago caught up in White Sox playoff fever",
         "summaryJa": "ホワイトソックスの最新動向をMLB公式が詳報",
         "slug": "white-sox-playoff-fever-sweeping-chicago-alds-2026",
         "url": "https://www.mlb.com/news/white-sox-playoff-fever-sweeping-chicago-alds-2026",
-        "contentDate": "2026-10-07T19:05:44.827Z",
+        "contentDate": "2026-10-07T20:40:00Z",
         "teamIds": [
             145
         ],
@@ -76,36 +278,11 @@
         ]
     },
     {
-        "headline": "Brewers-Padres NLDS Game 4 FAQ (10 ET, FS1/FOX One)",
-        "summaryJa": "ブルワーズの最新動向をMLB公式が詳報",
-        "slug": "brewers-padres-nl-division-series-game-4-starting-lineups-and-pitching-matchup",
-        "url": "https://www.mlb.com/news/brewers-padres-nl-division-series-game-4-starting-lineups-and-pitching-matchup",
-        "contentDate": "2026-10-07T18:12:00Z",
-        "teamIds": [
-            158,
-            135
-        ],
-        "playerIds": [],
-        "gamePks": [
-            849827
-        ],
-        "taxonomy": [
-            "postseason",
-            "nlds",
-            "series-a",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Rays-Yankees ALDS Game 3 FAQ (8 ET, TBS/HBO Max)",
+        "headline": "Rays-Yankees ALDS Game 3 FAQ, lineups (8 ET, TBS/HBO Max)",
         "summaryJa": "ヤンキースの最新動向をMLB公式が詳報",
         "slug": "rays-vs-yankees-alds-game-3-starting-lineups-and-pitching-matchup",
         "url": "https://www.mlb.com/news/rays-vs-yankees-alds-game-3-starting-lineups-and-pitching-matchup",
-        "contentDate": "2026-10-07T18:10:00Z",
+        "contentDate": "2026-10-07T20:25:00Z",
         "teamIds": [
             147,
             139
@@ -161,52 +338,6 @@
         "sourceScopes": [
             "MLB",
             "球団公式"
-        ]
-    },
-    {
-        "headline": "Guardians-White Sox ALDS Game 3 FAQ, lineups (4 ET, TBS/HBO Max)",
-        "summaryJa": "ホワイトソックスの最新動向をMLB公式が詳報",
-        "slug": "guardians-vs-white-sox-alds-game-3-starting-lineups-and-pitching-matchup",
-        "url": "https://www.mlb.com/news/guardians-vs-white-sox-alds-game-3-starting-lineups-and-pitching-matchup",
-        "contentDate": "2026-10-07T16:53:00Z",
-        "teamIds": [
-            145,
-            114
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "postseason",
-            "apple-news",
-            "alds",
-            "series-b"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "The latest on Mason Miller, Adrian Morejon ahead of Brewers-Padres NLDS Game 4",
-        "summaryJa": "M.ミラー（SD）の最新動向をMLB公式が詳報",
-        "slug": "mason-miller-adrian-morejon-update-for-brewers-padres-nlds-game-4",
-        "url": "https://www.mlb.com/news/mason-miller-adrian-morejon-update-for-brewers-padres-nlds-game-4",
-        "contentDate": "2026-10-07T16:26:28.808Z",
-        "teamIds": [
-            135
-        ],
-        "playerIds": [
-            695243,
-            670970
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "nlds",
-            "postseason",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB"
         ]
     },
     {
@@ -369,41 +500,6 @@
         ]
     },
     {
-        "headline": "4 games. 4 potential clinches. Here's everything to know today",
-        "summaryJa": "ブルワーズの最新動向をMLB公式が詳報",
-        "slug": "2026-nlds-game-4-alds-game-3-storylines",
-        "url": "https://www.mlb.com/news/2026-nlds-game-4-alds-game-3-storylines",
-        "contentDate": "2026-10-07T14:20:00Z",
-        "teamIds": [
-            158,
-            135,
-            119,
-            144,
-            145,
-            114,
-            147,
-            139
-        ],
-        "playerIds": [],
-        "gamePks": [
-            849833,
-            849822,
-            849838,
-            849827
-        ],
-        "taxonomy": [
-            "apple-news",
-            "postseason",
-            "alds",
-            "nlds",
-            "series-a",
-            "series-b"
-        ],
-        "sourceScopes": [
-            "MLB"
-        ]
-    },
-    {
         "headline": "5 biggest questions facing Marlins for upcoming offseason",
         "summaryJa": "S.アルカンタラ（MIA）の最新動向をMLB公式が詳報",
         "slug": "biggest-questions-facing-marlins-for-2026-27-offseason",
@@ -511,8 +607,7 @@
             "postseason"
         ],
         "sourceScopes": [
-            "MLB",
-            "球団公式"
+            "MLB"
         ]
     },
     {
@@ -838,51 +933,6 @@
         ]
     },
     {
-        "headline": "Latest Dodgers injuries & transactions",
-        "summaryJa": "ドジャースの負傷状況をMLB公式が詳報",
-        "slug": "dodgers-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/dodgers-injuries-and-roster-moves",
-        "contentDate": "2026-10-07T03:18:00Z",
-        "teamIds": [
-            119
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Rojas exits NLDS Game 3 mid-AB with lower back pain, unlikely to play in Game 4",
-        "summaryJa": "M.ロハス（LAD）の負傷状況をMLB公式が詳報",
-        "slug": "miguel-rojas-exits-nlds-game-3-with-back-injury",
-        "url": "https://www.mlb.com/news/miguel-rojas-exits-nlds-game-3-with-back-injury",
-        "contentDate": "2026-10-07T03:13:00Z",
-        "teamIds": [
-            119
-        ],
-        "playerIds": [
-            500743
-        ],
-        "gamePks": [
-            849819
-        ],
-        "taxonomy": [
-            "nlds",
-            "series-b",
-            "apple-news",
-            "injury"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Yamamoto-Sale duel doesn't disappoint, and other takeaways from NLDS Game 3",
         "summaryJa": "ブレーブスの最新動向をMLB公式が詳報",
         "slug": "braves-dodgers-nlds-game-3-takeaways",
@@ -926,7 +976,6 @@
             "series-b"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1030,7 +1079,6 @@
             "series-b"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1419,7 +1467,6 @@
             "series-b"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -3511,30 +3558,6 @@
         ]
     },
     {
-        "headline": "Trying to provide a spark, Wells instead runs Yanks out of lone scoring chance",
-        "summaryJa": "A.ウェルズ（NYY）の最新動向をMLB公式が詳報",
-        "slug": "austin-wells-discusses-baserunning-in-yankees-alds-game-1-2026-loss",
-        "url": "https://www.mlb.com/news/austin-wells-discusses-baserunning-in-yankees-alds-game-1-2026-loss",
-        "contentDate": "2026-10-04T04:19:21.231Z",
-        "teamIds": [
-            147
-        ],
-        "playerIds": [
-            669224
-        ],
-        "gamePks": [
-            849835
-        ],
-        "taxonomy": [
-            "apple-news",
-            "alds",
-            "series-a"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Latest pivot takes promising Mets prospect Mathis to Arizona Fall League",
         "summaryJa": "Cole Mathis（NYM）ら注目選手の最新動向",
         "slug": "latest-pivot-takes-mets-prospect-cole-mathis-to-arizona-fall-league",
@@ -3981,27 +4004,6 @@
             "mlb-top-prospects",
             "apple-news",
             "rankings"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "5 reasons the White Sox-Guardians ALDS matchup will be a must-watch clash",
-        "summaryJa": "ガーディアンズを巡る注目点をMLB公式が分析",
-        "slug": "why-the-white-sox-guardians-alds-matchup-is-must-watch",
-        "url": "https://www.mlb.com/news/why-the-white-sox-guardians-alds-matchup-is-must-watch",
-        "contentDate": "2026-10-02T11:13:47.526Z",
-        "teamIds": [
-            114,
-            145
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "alds",
-            "series-b"
         ],
         "sourceScopes": [
             "球団公式"
