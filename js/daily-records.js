@@ -72,6 +72,7 @@
         RARE_SCORING_MISCUE: ["珍プレー候補", "暴投・捕逸・ボークによる得点"],
         RARE_DROPPED_THIRD_STRIKE: ["珍プレー候補", "振り逃げ", "dropped third strike"],
         RARE_INTERFERENCE: ["珍プレー候補", "妨害", "interference", "obstruction"],
+        FAN_INTERFERENCE_HR_OVERTURN: ["珍プレー候補", "観客妨害", "本塁打取り消し", "fan interference", "home run overturned"],
         RARE_PICKOFF_ERROR: ["珍プレー候補", "牽制悪送球", "pickoff error"],
         RARE_MULTI_ERROR: ["珍プレー候補", "複数失策", "multiple errors"],
         RARE_SIMULTANEOUS_MULTI_OUT: ["珍プレー候補", "同時に複数走者アウト", "multiple runners out"],
@@ -1753,6 +1754,20 @@
                     ? "捕手の打撃妨害"
                     : interference.includes("obstruction") ? "走塁妨害" : "守備・走塁妨害";
                 addRareCandidate(play, "RARE_INTERFERENCE", label, `PBPの${interference}イベント`);
+            }
+
+            const fanInterferenceHrOverturn =
+                /fan interference|spectator interference/.test(lowerDescription) &&
+                /reviewed \(home run\)|home run/.test(lowerDescription) &&
+                /overturned|call on the field was changed/.test(lowerDescription);
+            if (fanInterferenceHrOverturn) {
+                const changedTo = resultType === "double" ? "二塁打" : text(play?.result?.event) || "別の判定";
+                addRareCandidate(
+                    play,
+                    "FAN_INTERFERENCE_HR_OVERTURN",
+                    `観客妨害で本塁打が取り消され${changedTo}に変更`,
+                    "公式PBPにhome runレビューのoverturnedとfan interferenceを確認"
+                );
             }
 
             if (/pick(?:ed)? off|pickoff/.test(lowerDescription) &&
