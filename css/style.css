@@ -2634,6 +2634,13 @@ body.app-mode-pregame .score-loading-overlay {
     left: -3px;
 }
 
+.play-result .fielding-deflection-dot {
+    display: inline-block;
+    margin-inline: -1.5px;
+    transform: scaleX(0.65);
+    transform-origin: center;
+}
+
 .runner-note.to-second {
     text-align: right;
 }

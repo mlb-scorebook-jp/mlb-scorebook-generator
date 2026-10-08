@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MLB Scorebook Generator</title>
     <!-- Score notation update: stacked batted-ball symbol, red hits, blue strikeouts, black other results. -->
-    <link rel="stylesheet" href="css/style.css?v=20261008-sac-fly-box">
+    <link rel="stylesheet" href="css/style.css?v=20261008-deflection-spacing">
     <link rel="stylesheet" href="css/pregame.css?v=20261006-lineup-layout">
     <link rel="stylesheet" href="css/daily-records.css?v=20260928-hou-buttons-1">
 </head>
@@ -1615,8 +1615,19 @@
             const createGamedayAtBatResult = (text, className, atBatIndex, playId = "") => {
                 const target = getAtBatResultUrl(state.gamePk, atBatIndex, playId);
                 const url = target?.url ?? "";
-                if (!url) return createElement("div", className, text);
-                const link = createElement("a", `${className} gameday-atbat-link`, text);
+                const element = url
+                    ? createElement("a", `${className} gameday-atbat-link`, text)
+                    : createElement("div", className, text);
+                if (String(text).includes("・")) {
+                    const parts = String(text).split("・");
+                    element.replaceChildren();
+                    parts.forEach((part, index) => {
+                        if (index > 0) element.append(createElement("span", "fielding-deflection-dot", "・"));
+                        element.append(document.createTextNode(part));
+                    });
+                }
+                if (!url) return element;
+                const link = element;
                 link.target = "_blank";
                 link.rel = "noopener noreferrer";
                 link.dataset.gamePk = String(state.gamePk ?? "");
@@ -1628,7 +1639,7 @@
             };
 
             const isDefensiveRoute = (text) =>
-                /^\d(?:-\d)+(?:[A-D]|TO)?$/.test(String(text ?? ""));
+                /^\d(?:[-・]\d)+(?:[A-D]|TO)?$/.test(String(text ?? ""));
 
             const splitLongDefensiveRoute = (text) => {
                 const value = String(text ?? "");
