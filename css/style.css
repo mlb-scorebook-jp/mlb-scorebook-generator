@@ -2493,13 +2493,13 @@ body.app-mode-pregame .score-loading-overlay {
 
 /* Sacrifice fly: enclose the fly mark and fielder number as one result. */
 .play-card.template-sac_fly .play-notation-stack {
-    width: 20px;
-    min-width: 20px;
-    padding: 1px 1px 0;
+    width: 18px;
+    min-width: 18px;
+    padding: 0;
     border: 1px solid #111;
     box-sizing: border-box;
     overflow: hidden;
-    translate: -5px 1px;
+    translate: -4px 1px;
 }
 
 .play-card.template-sac_fly .play-template-svg {
