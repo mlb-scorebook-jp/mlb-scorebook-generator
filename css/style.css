@@ -2019,10 +2019,31 @@ body.app-mode-pregame .score-loading-overlay {
     overflow: visible;
 }
 
+/* Long plate appearances keep every pre-result pitch inside the score cell. */
+.pitch-result-sequence.dense {
+    --pitch-symbol-size: 6px;
+}
+
+.pitch-result-sequence.very-dense {
+    --pitch-symbol-size: 5px;
+}
+
 .pitch-result-symbol.pitch-result-foul {
     height: 5px;
     min-height: 5px;
     flex-basis: 5px;
+}
+
+.pitch-result-sequence.dense .pitch-result-symbol.pitch-result-foul {
+    height: 4px;
+    min-height: 4px;
+    flex-basis: 4px;
+}
+
+.pitch-result-sequence.very-dense .pitch-result-symbol.pitch-result-foul {
+    height: 3px;
+    min-height: 3px;
+    flex-basis: 3px;
 }
 
 .pitch-result-sequence.compact-fouls .pitch-result-symbol.pitch-result-foul {
@@ -2103,6 +2124,20 @@ body.app-mode-pregame .score-loading-overlay {
     text-align: right;
     padding-right: 1px;
     box-sizing: border-box;
+}
+
+.pitch-result-sequence.dense .pitch-between-event-mark {
+    height: 3px;
+    flex-basis: 3px;
+    font-size: 8px;
+    line-height: 3px;
+}
+
+.pitch-result-sequence.very-dense .pitch-between-event-mark {
+    height: 2px;
+    flex-basis: 2px;
+    font-size: 7px;
+    line-height: 2px;
 }
 
 .result-box {

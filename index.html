@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MLB Scorebook Generator</title>
     <!-- Score notation update: stacked batted-ball symbol, red hits, blue strikeouts, black other results. -->
-    <link rel="stylesheet" href="css/style.css?v=20261002-ipad-landscape-print-fit">
+    <link rel="stylesheet" href="css/style.css?v=20261008-long-atbat-fit">
     <link rel="stylesheet" href="css/pregame.css?v=20261006-lineup-layout">
     <link rel="stylesheet" href="css/daily-records.css?v=20260928-hou-buttons-1">
 </head>
@@ -6747,7 +6747,15 @@
             const createPitchColumn = (pitchResults = [], totalPitches = 0) => {
                 const column = createElement("div", "pitch-column");
                 if (pitchResults.length) {
-                    const sequence = createElement("div", "pitch-result-sequence");
+                    const densityClass = pitchResults.length >= 9
+                        ? " very-dense"
+                        : pitchResults.length >= 7
+                            ? " dense"
+                            : "";
+                    const sequence = createElement(
+                        "div",
+                        `pitch-result-sequence${densityClass}`
+                    );
                     pitchResults.forEach(({ result, runnerEventMark, betweenPitchMark }) => {
                         sequence.append(createPitchResultSvg(result, runnerEventMark));
                         if (betweenPitchMark) {
