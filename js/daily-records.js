@@ -890,9 +890,11 @@
         priorSplit,
         priorGame,
         playerId,
-        signal
+        signal,
+        currentDate = ""
     ) => {
         const year = number(text(priorGame?.officialDate || priorSplit?.date).slice(0, 4));
+        const currentYear = number(text(currentDate).slice(0, 4));
         const gameType = text(priorGame?.gameType).toUpperCase();
         const postseasonLabel = POSTSEASON_GAME_LABELS[gameType] ?? "";
         const stat = priorSplit?.stat ?? {};
@@ -925,7 +927,7 @@
         if (noHitterLabel) {
             return `${year}年${postseasonLabel ? `${postseasonLabel}で` : ""}${noHitterLabel}`;
         }
-        if (postseasonLabel) return `${year}年${postseasonLabel}`;
+        if (postseasonLabel && year !== currentYear) return `${year}年${postseasonLabel}`;
         if (strikeouts >= 15) return `${year}年に${strikeouts}奪三振を記録した時`;
         if (completeGames > 0 && runs === 0) return `${year}年に完封した時`;
         return "";
@@ -982,7 +984,8 @@
                 previous.split,
                 previous.game,
                 candidate.playerId,
-                signal
+                signal,
+                currentDate
             );
             if (!notable) return null;
 
