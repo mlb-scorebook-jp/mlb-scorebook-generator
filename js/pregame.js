@@ -6068,6 +6068,21 @@
         }];
     };
 
+    const getMasonMillerPaternityReturnHighlight = (gamePk, teams) => {
+        const PADRES_ID = 135;
+        const targetGamePk = 849827;
+        const teamList = [teams?.away, teams?.home].filter(Boolean);
+        const padres = teamList.find((team) => Number(team?.id) === PADRES_ID);
+        if (!padres || Number(gamePk) !== targetGamePk) return [];
+        return [{
+            kind: "special",
+            person: { fullName: "SD" },
+            team: padres,
+            label: "守護神ミラーが父親リストから復帰！",
+            href: "https://www.mlb.com/ja/news/mason-miller-adrian-morejon-update-for-brewers-padres-nlds-game-4"
+        }];
+    };
+
     const getProspectDebutGameHighlights = (
         rosterBySide,
         teamsBySide,
@@ -9343,6 +9358,10 @@
                 ...getWhiteSoxBullpenDayHighlight(
                     gamePk,
                     gameType,
+                    { away: awayTeam, home: homeTeam }
+                ),
+                ...getMasonMillerPaternityReturnHighlight(
+                    gamePk,
                     { away: awayTeam, home: homeTeam }
                 ),
                 ...getStartingPitcherGameHighlights([
