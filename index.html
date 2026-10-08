@@ -7216,20 +7216,23 @@
                 numbers[0] === numbers[numbers.length - 1] &&
                 new Set(numbers).size > 1;
 
-            // MLBのPBPは、打球を弾いた場合も通常の送球と同じ "to" で記述する。
-            // 中黒は映像でデフレクションを確認できたプレーだけに限定する。
-            const VERIFIED_DEFLECTION_PLAYS = new Set([
-                "849826:67" // 2026/10/6 MIL@SD 8回裏 M.マチャド（1・4-3）
-            ]);
-
             const formatFieldingRoute = (play, route, suffixes = []) => {
-                const playKey = `${Number(state.gamePk)}:${Number(play?.atBatIndex ?? play?.about?.atBatIndex)}`;
-                const isVerifiedDeflection = VERIFIED_DEFLECTION_PLAYS.has(playKey);
+                const outRunners = (play?.runners ?? []).filter((runner) =>
+                    runner?.movement?.isOut
+                );
+                const batterOnlyGroundout = outRunners.length === 1 &&
+                    !outRunners[0]?.movement?.originBase &&
+                    normalizeBase(outRunners[0]?.movement?.outBase) === "1B" &&
+                    String(play?.result?.eventType ?? "").toLowerCase() === "field_out" &&
+                    /^groundout$/i.test(String(play?.result?.event ?? ""));
+                // 走者なしの通常のゴロアウトで3人以上が記録される場合、
+                // 最初の野手は送球ではなく打球を弾いたものとして中黒でつなぐ。
+                const isDeflection = batterOnlyGroundout && route.length >= 3;
 
                 return route.map((number, index) => {
                     const value = `${number}${suffixes[index] ?? ""}`;
                     if (index === 0) return value;
-                    return `${isVerifiedDeflection && index === 1 ? "・" : "-"}${value}`;
+                    return `${isDeflection && index === 1 ? "・" : "-"}${value}`;
                 }).join("");
             };
 
