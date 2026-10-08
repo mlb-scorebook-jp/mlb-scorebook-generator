@@ -7192,6 +7192,11 @@
                 return OUT_BASE_LETTERS[base] ?? "";
             };
 
+            const isRundownFieldingRoute = (numbers, isBatter) =>
+                !isBatter && numbers.length >= 3 &&
+                numbers[0] === numbers[numbers.length - 1] &&
+                new Set(numbers).size > 1;
+
             const getRunnerFieldingResult = (play, runner, batterId) => {
                 if (!runner?.movement?.isOut) return "";
 
@@ -7209,18 +7214,21 @@
                 const playEventType = String(play?.result?.eventType ?? "").toLowerCase();
                 const lowerDescription = description.toLowerCase();
                 const isBatter = Number(runner?.details?.runner?.id) === Number(batterId);
-                const isForceOut = runnerEventType.includes("force_out") ||
+                const isRundownTagOut = isRundownFieldingRoute(numbers, isBatter);
+                const isForceOut = !isRundownTagOut && (
+                    runnerEventType.includes("force_out") ||
                     runnerEventType.includes("grounded_into_double_play") ||
                     runnerEventType.includes("triple_play") ||
                     playEventType === "force_out" ||
                     playEventType === "triple_play" ||
-                    lowerDescription.includes("force out");
-                const isTagOut = !isForceOut && (
+                    lowerDescription.includes("force out")
+                );
+                const isTagOut = isRundownTagOut || (!isForceOut && (
                     /caught_stealing|pickoff|tag_out/.test(runnerEventType) ||
                     /caught stealing|picked off|tagged out|tag play/.test(lowerDescription) ||
                     /out at (?:2nd|3rd|home)\b/.test(lowerDescription) ||
                     (!isBatter && Boolean(runner?.movement?.originBase))
-                );
+                ));
 
                 const relatedOuts = usesRunnerEvent
                     ? [runner]
@@ -7306,13 +7314,17 @@
                     const playEventType = String(play?.result?.eventType ?? "").toLowerCase();
                     const lowerDescription = description.toLowerCase();
                     const isBatter = Number(runner?.details?.runner?.id) === Number(batterId);
-                    const isForceOut = runnerEventType.includes("force_out") ||
+                    const isRundownTagOut = isRundownFieldingRoute(numbers, isBatter);
+                    const isForceOut = !isRundownTagOut && (
+                        runnerEventType.includes("force_out") ||
                         runnerEventType.includes("grounded_into_double_play") ||
                         runnerEventType.includes("triple_play") ||
                         playEventType === "force_out" ||
                         playEventType === "triple_play" ||
-                        lowerDescription.includes("force out");
-                    const isTagOut = !isForceOut && !isBatter && Boolean(runner?.movement?.originBase);
+                        lowerDescription.includes("force out")
+                    );
+                    const isTagOut = isRundownTagOut ||
+                        (!isForceOut && !isBatter && Boolean(runner?.movement?.originBase));
 
                     if (isTagOut) {
                         suffixes[terminalIndex] = "TO";
