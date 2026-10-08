@@ -6064,7 +6064,7 @@
             team: whiteSox,
             label: `今PS${VERIFIED_PRIOR_BULLPEN_GAME_PKS.length + 1}度目のブルペンデーか！？` +
                 "（ワイルドカードシリーズ第2戦 ＠HOUでS.バークが先発登板したのみ）",
-            href: "https://www.mlb.com/whitesox/news/white-sox-bullpen-status-after-game-3-2026-alds"
+            href: "https://www.baseball-reference.com/teams/CHW/2026-schedule-scores.shtml#team_schedule"
         }];
     };
 
