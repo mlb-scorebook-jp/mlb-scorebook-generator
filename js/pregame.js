@@ -6044,6 +6044,29 @@
         }];
     };
 
+    const getWhiteSoxBullpenDayHighlight = (gamePk, gameType, teams) => {
+        const WHITE_SOX_ID = 145;
+        const VERIFIED_PRIOR_BULLPEN_GAME_PKS = Object.freeze([
+            849849, // ALWC第1戦：H.スミス先発のブルペンゲーム
+            849829, // ALDS第1戦：H.スミス先発のブルペンゲーム
+            849834, // ALDS第2戦：A.ケイがオープナー
+            849833  // ALDS第3戦：S.ニューカムがオープナー
+        ]);
+        const targetGamePk = 849832;
+        const teamList = [teams?.away, teams?.home].filter(Boolean);
+        const whiteSox = teamList.find((team) => Number(team?.id) === WHITE_SOX_ID);
+        if (!whiteSox || Number(gamePk) !== targetGamePk ||
+            !["F", "D", "L", "W"].includes(String(gameType ?? ""))) return [];
+
+        return [{
+            kind: "special",
+            person: { fullName: "CWS" },
+            team: whiteSox,
+            label: `今PS${VERIFIED_PRIOR_BULLPEN_GAME_PKS.length + 1}度目のブルペンデーか！？`,
+            href: "https://www.mlb.com/whitesox/news/white-sox-bullpen-status-after-game-3-2026-alds"
+        }];
+    };
+
     const getProspectDebutGameHighlights = (
         rosterBySide,
         teamsBySide,
@@ -9314,6 +9337,11 @@
             const gameHighlights = [
                 ...getPostseasonSeriesHistoryHighlights(
                     seriesStanding,
+                    { away: awayTeam, home: homeTeam }
+                ),
+                ...getWhiteSoxBullpenDayHighlight(
+                    gamePk,
+                    gameType,
                     { away: awayTeam, home: homeTeam }
                 ),
                 ...getStartingPitcherGameHighlights([
