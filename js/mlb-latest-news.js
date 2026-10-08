@@ -2,6 +2,167 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Who's beating this? How Dodgers might stack rotation in NLCS vs. Brewers",
+        "summaryJa": "T.スクーバル（LAD）を巡る注目点をMLB公式が分析",
+        "slug": "how-dodgers-nlcs-rotation-might-line-up-vs-brewers",
+        "url": "https://www.mlb.com/news/how-dodgers-nlcs-rotation-might-line-up-vs-brewers",
+        "contentDate": "2026-10-08T21:55:26.726Z",
+        "teamIds": [
+            119
+        ],
+        "playerIds": [
+            669373,
+            607192,
+            808967,
+            605483
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "nlcs",
+            "postseason"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Guardians-White Sox ALDS Game 4 FAQ, lineups (8 ET, TBS/HBO Max)",
+        "summaryJa": "ホワイトソックスの最新動向をMLB公式が詳報",
+        "slug": "guardians-vs-white-sox-alds-game-4-starting-lineups-and-pitching-matchup",
+        "url": "https://www.mlb.com/news/guardians-vs-white-sox-alds-game-4-starting-lineups-and-pitching-matchup",
+        "contentDate": "2026-10-08T20:33:00Z",
+        "teamIds": [
+            145,
+            114
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "postseason",
+            "alds",
+            "series-b"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Watch LIVE: Top prospect Nimmala in Arizona Fall League action",
+        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
+        "slug": "watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
+        "url": "https://www.mlb.com/news/watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
+        "contentDate": "2026-10-08T20:13:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "arizona-fall-league"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "All of the 2026-2027 free agents, position by position",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "mlb-free-agents-2026-2027",
+        "url": "https://www.mlb.com/news/mlb-free-agents-2026-2027",
+        "contentDate": "2026-10-08T20:05:16.402Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "Late-night host Jimmy Fallon releasing 2 baseball children's books",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "jimmy-fallon-writes-baseball-children-s-books",
+        "url": "https://www.mlb.com/news/jimmy-fallon-writes-baseball-children-s-books",
+        "contentDate": "2026-10-08T19:26:32.44Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "Olympic path begins in Barcelona: What you need to know for Premier12 Qualifiers",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "premier12-barcelona-qualifier-preview-what-you-need-to-know-teams-dates",
+        "url": "https://www.mlb.com/news/premier12-barcelona-qualifier-preview-what-you-need-to-know-teams-dates",
+        "contentDate": "2026-10-08T18:09:25.178Z",
+        "teamIds": [
+            841,
+            920,
+            819,
+            792
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "MLB proposes 154-game schedule, new playoff features",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "mlb-mlbpa-proposal-154-game-schedule-new-playoff-structure",
+        "url": "https://www.mlb.com/news/mlb-mlbpa-proposal-154-game-schedule-new-playoff-structure",
+        "contentDate": "2026-10-08T17:47:50.756Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "2 elite arms lined up for duel in NLCS Game 1",
+        "summaryJa": "T.スクーバル（LAD）を巡る注目点をMLB公式が分析",
+        "slug": "nlcs-game-1-lines-up-for-jacob-misiorowski-tarik-skubal-showdown",
+        "url": "https://www.mlb.com/news/nlcs-game-1-lines-up-for-jacob-misiorowski-tarik-skubal-showdown",
+        "contentDate": "2026-10-08T17:29:04.894Z",
+        "teamIds": [
+            119,
+            158
+        ],
+        "playerIds": [
+            669373,
+            694819
+        ],
+        "gamePks": [
+            849809
+        ],
+        "taxonomy": [
+            "apple-news",
+            "postseason",
+            "nlcs"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
         "headline": "Rangers' Walcott -- highest-ranked prospect in the AFL -- appreciating health in 2nd stint in desert",
         "summaryJa": "S.ウォルコット（TEX）、記録達成の最新情報",
         "slug": "rangers-arizona-fall-league-overview-2026",
@@ -61,6 +222,7 @@
             "apple-news"
         ],
         "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
@@ -295,6 +457,7 @@
             "nlcs"
         ],
         "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
@@ -350,7 +513,6 @@
             "clincher"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -450,7 +612,6 @@
             "series-a"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -552,7 +713,6 @@
             "postseason"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -581,7 +741,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -822,7 +981,6 @@
             "postseason"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -893,7 +1051,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -946,7 +1103,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -970,47 +1126,6 @@
             "alds",
             "series-b",
             "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Guardians-White Sox ALDS Game 4 FAQ (8 ET, TBS/HBO Max)",
-        "summaryJa": "ホワイトソックスの最新動向をMLB公式が詳報",
-        "slug": "guardians-vs-white-sox-alds-game-4-starting-lineups-and-pitching-matchup",
-        "url": "https://www.mlb.com/news/guardians-vs-white-sox-alds-game-4-starting-lineups-and-pitching-matchup",
-        "contentDate": "2026-10-08T04:04:48.664Z",
-        "teamIds": [
-            145,
-            114
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "postseason",
-            "alds",
-            "series-b"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Watch Angels prospects in Arizona Fall League action",
-        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
-        "slug": "watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
-        "url": "https://www.mlb.com/news/watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
-        "contentDate": "2026-10-08T03:59:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "arizona-fall-league"
         ],
         "sourceScopes": [
             "球団公式"
@@ -2875,28 +2990,6 @@
         ]
     },
     {
-        "headline": "Knee feeling better, suddenly hot Freeman off to scorching start in NLDS",
-        "summaryJa": "F.フリーマン（LAD）の最新動向をMLB公式が詳報",
-        "slug": "freddie-freeman-warming-up-for-dodgers-in-nlds",
-        "url": "https://www.mlb.com/news/freddie-freeman-warming-up-for-dodgers-in-nlds",
-        "contentDate": "2026-10-06T01:19:16.828Z",
-        "teamIds": [
-            119
-        ],
-        "playerIds": [
-            518692
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "nlds",
-            "series-b",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Magic ice cream? White Sox using sweet treat as latest good luck charm",
         "summaryJa": "S.アントナッチ（CWS）の最新動向をMLB公式が詳報",
         "slug": "sam-antonacci-kyle-teel-discuss-lucky-ice-cream-ahead-of-alds-game-2",
@@ -3945,29 +4038,6 @@
             "mlb-top-prospects",
             "apple-news",
             "arizona-fall-league"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Outpitched in G1, Yanks remain confident they can turn tables",
-        "summaryJa": "ヤンキースの最新動向をMLB公式が詳報",
-        "slug": "yankees-lose-alds-game-1-2026",
-        "url": "https://www.mlb.com/news/yankees-lose-alds-game-1-2026",
-        "contentDate": "2026-10-04T04:25:00Z",
-        "teamIds": [
-            147
-        ],
-        "playerIds": [],
-        "gamePks": [
-            849835
-        ],
-        "taxonomy": [
-            "apple-news",
-            "alds",
-            "series-a",
-            "game-recap-losing"
         ],
         "sourceScopes": [
             "球団公式"
