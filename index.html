@@ -7795,9 +7795,15 @@
                                     /fielder'?s? interference|fielding interference/.test(
                                         `${runnerEventDescription} ${linkedEventDescription}`
                                     ));
+                            const runnerEventLabel = String(
+                                runner?.details?.event ?? ""
+                            ).toLowerCase();
                             const isStolenBase = runnerEventType.includes("stolen_base") ||
-                                runnerEventDescription.includes("stolen base") ||
-                                /\bsteals\b/.test(runnerEventDescription);
+                                runnerEventLabel.includes("stolen base") ||
+                                (!runnerEventType && (
+                                    runnerEventDescription.includes("stolen base") ||
+                                    /\bsteals\b/.test(runnerEventDescription)
+                                ));
                             const isWildPitch = runnerEventType.includes("wild_pitch") ||
                                 linkedEventType.includes("wild_pitch") ||
                                 runnerEventDescription.includes("wild pitch") ||
@@ -7831,7 +7837,7 @@
                                             : isBalk
                                                 ? "BK’"
                                                 : runnerErrorFieldNumber
-                                                    ? `E${runnerErrorFieldNumber}`
+                                                    ? `${runnerErrorFieldNumber}E`
                                                     : `（${order}）`;
                             const baseOrder = ["home", "1B", "2B", "3B", "score"];
                             let fromBase = normalizeBase(origin);
