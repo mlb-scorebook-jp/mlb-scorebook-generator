@@ -7205,6 +7205,23 @@
                 numbers[0] === numbers[numbers.length - 1] &&
                 new Set(numbers).size > 1;
 
+            // MLBのPBPは、打球を弾いた場合も通常の送球と同じ "to" で記述する。
+            // 中黒は映像でデフレクションを確認できたプレーだけに限定する。
+            const VERIFIED_DEFLECTION_PLAYS = new Set([
+                "849826:67" // 2026/10/6 MIL@SD 8回裏 M.マチャド（1・4-3）
+            ]);
+
+            const formatFieldingRoute = (play, route, suffixes = []) => {
+                const playKey = `${Number(state.gamePk)}:${Number(play?.atBatIndex ?? play?.about?.atBatIndex)}`;
+                const isVerifiedDeflection = VERIFIED_DEFLECTION_PLAYS.has(playKey);
+
+                return route.map((number, index) => {
+                    const value = `${number}${suffixes[index] ?? ""}`;
+                    if (index === 0) return value;
+                    return `${isVerifiedDeflection && index === 1 ? "・" : "-"}${value}`;
+                }).join("");
+            };
+
             const getRunnerFieldingResult = (play, runner, batterId) => {
                 if (!runner?.movement?.isOut) return "";
 
@@ -7270,9 +7287,7 @@
                     suffixes[0] = getOutBaseLetter(runner) || "A";
                 }
 
-                return route
-                    .map((number, index) => `${number}${suffixes[index]}`)
-                    .join("-");
+                return formatFieldingRoute(play, route, suffixes);
             };
 
             const getPrimaryFieldingResult = (play, batterId) => {
@@ -7310,7 +7325,7 @@
                         (Number(left?.movement?.outNumber) || 0) -
                         (Number(right?.movement?.outNumber) || 0)
                     );
-                if (!outRunners.length) return numbers.join("-");
+                if (!outRunners.length) return formatFieldingRoute(play, numbers);
 
                 const suffixes = numbers.map(() => "");
                 outRunners.forEach((runner, runnerIndex) => {
@@ -7351,9 +7366,7 @@
                     }
                 });
 
-                return numbers
-                    .map((number, index) => `${number}${suffixes[index]}`)
-                    .join("-");
+                return formatFieldingRoute(play, numbers, suffixes);
             };
 
             const getBattedBallShape = (play) => {
