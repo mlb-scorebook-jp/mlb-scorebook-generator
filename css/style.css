@@ -2021,11 +2021,11 @@ body.app-mode-pregame .score-loading-overlay {
 
 /* Long plate appearances keep every pre-result pitch inside the score cell. */
 .pitch-result-sequence.dense {
-    --pitch-symbol-size: 6px;
+    --pitch-symbol-size: 7px;
 }
 
 .pitch-result-sequence.very-dense {
-    --pitch-symbol-size: 5px;
+    --pitch-symbol-size: 6px;
 }
 
 .pitch-result-symbol.pitch-result-foul {
@@ -2035,15 +2035,15 @@ body.app-mode-pregame .score-loading-overlay {
 }
 
 .pitch-result-sequence.dense .pitch-result-symbol.pitch-result-foul {
-    height: 4px;
-    min-height: 4px;
-    flex-basis: 4px;
+    height: 5px;
+    min-height: 5px;
+    flex-basis: 5px;
 }
 
 .pitch-result-sequence.very-dense .pitch-result-symbol.pitch-result-foul {
-    height: 3px;
-    min-height: 3px;
-    flex-basis: 3px;
+    height: 5px;
+    min-height: 5px;
+    flex-basis: 5px;
 }
 
 .pitch-result-sequence.compact-fouls .pitch-result-symbol.pitch-result-foul {
@@ -2071,6 +2071,10 @@ body.app-mode-pregame .score-loading-overlay {
 
 .pitch-total-count.two-digit {
     right: -2px;
+}
+
+.pitch-total-count.two-digit.outside {
+    right: -11px;
 }
 
 .pitch-total-count.crowded {
