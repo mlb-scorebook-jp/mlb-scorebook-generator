@@ -212,6 +212,7 @@
             occupiedBases.has("2B") ? "②塁" : "",
             occupiedBases.has("1B") ? "①塁" : ""
         ].filter(Boolean);
+        if (occupied.length === 3) return "満塁";
         return occupied.length ? occupied.join("・") : "ランナーなし";
     };
 
@@ -270,6 +271,9 @@
             battingSide(candidate) === currentSide);
         const isLeadoffPlay = firstPlayOfHalf === play;
         const battingTeam = shortTeam(currentSide, data);
+        const bases = baseSituation(play, data);
+        const continuedBasesLoadedThreat = consecutive && bases === "満塁" &&
+            scoringContext(previousSelected, data).runs > 0;
         if (isLeadoffPlay && movesToBottom) {
             lines.push(`Ｑ　その裏、${battingTeam}は${order ? `${circled(order)}番` : ""}${batter}`);
         } else if (isLeadoffPlay && movesToNextTop) {
@@ -285,7 +289,10 @@
                 lines.push(`　　${battingTeam}は${order ? `${circled(order)}番` : ""}${batter}`);
             }
         }
-        else if (consecutive) lines.push("Ｑ　続く打者");
+        else if (continuedBasesLoadedThreat) {
+            lines.push("Ｑ　まだ満塁のピンチは続きます");
+        }
+        else if (consecutive) lines.push("Ｑ　次は");
         else lines.push("Ｑ　この後");
 
         const pitcherChanged = previousSelected &&
@@ -302,7 +309,10 @@
         }
 
         if (isLeadoffPlay) return lines;
-        const bases = baseSituation(play, data);
+        if (continuedBasesLoadedThreat) {
+            lines.push(`　　${order ? `${circled(order)}番` : ""}${batter}`);
+            return lines;
+        }
         const situation = `${outSituation(play, data)}、${bases}`;
         lines.push(
             `　　${situation}${order ? `で${circled(order)}番` : "で"}${batter}`
