@@ -2,7 +2,7 @@
 
 (() => {
     const API_ROOT = "https://statsapi.mlb.com/api";
-    const CACHE_PREFIX = "mlb-daily-records-phase1-v28:";
+    const CACHE_PREFIX = "mlb-daily-records-phase1-v29:";
     const MAX_CONCURRENT_GAMES = 3;
     const RECORD_THRESHOLDS = Object.freeze({
         inningHits: 2,
@@ -43,6 +43,7 @@
         LEADOFF_FIRST_PITCH_HR: ["初回先頭打者初球本塁打", "first pitch leadoff homer"],
         SEASON_LEADOFF_HOME_RUNS: ["シーズン先頭打者本塁打", "season leadoff home runs"],
         FIRST_HOME_HOME_RUN: ["今季初の本拠地本塁打", "first home home run of season"],
+        TEAM_FIRST_HOME_RUN: ["今季チーム初本塁打", "今PSチーム初本塁打", "team first home run"],
         FRANCHISE_LEADOFF_HOME_RUN_RANK: ["先頭打者本塁打球団歴代順位", "franchise leadoff home run rank"],
         STEAL_HOME: ["ホームスチール", "本盗", "steal of home"],
         FOUR_SB_GAME: ["1試合4盗塁", "4盗塁", "four stolen bases"],
@@ -526,6 +527,50 @@
         };
     };
 
+    const teamGameLogRequests = new Map();
+    const fetchTeamGameLog = async (teamId, season, gameType, signal) => {
+        const key = `${teamId}:${season}:${gameType}`;
+        let request = teamGameLogRequests.get(key);
+        if (!request) {
+            request = fetchJson(
+                `${API_ROOT}/v1/teams/${teamId}/stats?stats=gameLog&group=hitting` +
+                `&season=${season}&gameType=${gameType}`,
+                signal
+            ).then(({ data }) => (data?.stats ?? []).flatMap((block) => block?.splits ?? []));
+            teamGameLogRequests.set(key, request);
+        }
+        try {
+            return await request;
+        } catch (error) {
+            teamGameLogRequests.delete(key);
+            throw error;
+        }
+    };
+
+    const priorTeamHomeRuns = async (game, boxscore, side, signal) => {
+        const gameType = text(game?.gameType || "R").toUpperCase();
+        const statsGameType = gameType === "R" ? "R"
+            : ["F", "D", "L", "W"].includes(gameType) ? "P" : "";
+        if (!statsGameType) return null;
+        const teamId = number(sideTeam(game, boxscore, side)?.id);
+        const season = number(text(game?.officialDate || state.date).slice(0, 4));
+        if (!teamId || !season) return null;
+        const currentDate = text(game?.officialDate || state.date).slice(0, 10);
+        const currentGamePk = number(game?.gamePk);
+        const currentGameNumber = number(game?.gameNumber);
+        const logs = await fetchTeamGameLog(teamId, season, statsGameType, signal);
+        return logs.reduce((total, split) => {
+            const splitDate = text(split?.date).slice(0, 10);
+            const splitGamePk = number(split?.game?.gamePk);
+            const splitGameNumber = number(split?.game?.gameNumber);
+            if (!splitDate || splitGamePk === currentGamePk || splitDate > currentDate) return total;
+            if (splitDate === currentDate && currentGameNumber && splitGameNumber >= currentGameNumber) {
+                return total;
+            }
+            return total + number(split?.stat?.homeRuns);
+        }, 0);
+    };
+
     const fetchJapanesePlayers = async (season, signal) => {
         const { data } = await fetchJson(
             `${API_ROOT}/v1/sports/1/players?season=${season}&hydrate=currentTeam`,
@@ -740,6 +785,16 @@
     const oppositeSide = (side) => side === "away" ? "home" : "away";
     const battingSideForPlay = (play) => play?.about?.isTopInning === true ||
         text(play?.about?.halfInning).toLowerCase() === "top" ? "away" : "home";
+    const isPinchHitPlay = (play) => {
+        const batterId = number(play?.matchup?.batter?.id);
+        return (play?.playEvents ?? []).some((event) => {
+            const eventType = text(event?.details?.eventType).toLowerCase();
+            const description = `${text(event?.details?.event)} ${text(event?.details?.description)}`;
+            return number(event?.player?.id) === batterId &&
+                ["offensive_substitution", "pinch_hitter"].includes(eventType) &&
+                /pinch[- ]?hitter|代打/i.test(description);
+        });
+    };
     const inningKey = (side, inning) => `${side}:${number(inning)}`;
     const playerInBox = (boxscore, playerId) => {
         for (const side of ["away", "home"]) {
@@ -1322,6 +1377,37 @@
             if (isHomeRun) teamInnings.get(key).homeRuns += 1;
         });
 
+        await Promise.all(["away", "home"].map(async (side) => {
+            const firstHomeRun = teamPlateAppearances[side].find((play) =>
+                text(play?.result?.eventType).toLowerCase() === "home_run");
+            if (!firstHomeRun) return;
+            let priorHomeRuns;
+            try {
+                priorHomeRuns = await priorTeamHomeRuns(game, boxscore, side, signal);
+            } catch (error) {
+                console.warn("チーム初本塁打の確認に失敗しました。", error);
+                return;
+            }
+            if (priorHomeRuns !== 0) return;
+            const postseason = ["F", "D", "L", "W"].includes(
+                text(game?.gameType).toUpperCase()
+            );
+            const scope = postseason ? "今PS" : "今季";
+            const pinchHit = isPinchHitPlay(firstHomeRun);
+            records.push(makeRecord({
+                game,
+                boxscore,
+                recordType: "TEAM_FIRST_HOME_RUN",
+                category: "special",
+                player: firstHomeRun?.matchup?.batter,
+                side,
+                inning: firstHomeRun?.about?.inning,
+                fact: `${pinchHit ? "代打" : ""}ホームラン（${scope}チーム初）`,
+                details: { scope, pinchHit },
+                evidence: "MLB公式チームGame Logと当該試合PBP"
+            }));
+        }));
+
         playerInnings.forEach((line) => {
             if (line.homeRuns >= RECORD_THRESHOLDS.inningHomeRuns) {
                 records.push(makeRecord({
@@ -1487,14 +1573,7 @@
         const isWalkoff = Boolean(lastPlay && battingSideForPlay(lastPlay) === "home" &&
             lastScoringRunners.length > 0 &&
             number(lastPlay?.result?.homeScore) > number(lastPlay?.result?.awayScore));
-        const lastBatterId = number(lastPlay?.matchup?.batter?.id);
-        const isPinchHit = (lastPlay?.playEvents ?? []).some((event) => {
-            const eventType = text(event?.details?.eventType).toLowerCase();
-            const description = `${text(event?.details?.event)} ${text(event?.details?.description)}`;
-            return number(event?.player?.id) === lastBatterId &&
-                ["offensive_substitution", "pinch_hitter"].includes(eventType) &&
-                /pinch[- ]?hitter|代打/i.test(description);
-        });
+        const isPinchHit = isPinchHitPlay(lastPlay);
         const lastHalf = `${number(lastPlay?.about?.inning)}回裏`;
         const addLastPlayRecord = (recordType, fact, details = {}) => records.push(makeRecord({
             game, boxscore, recordType, category: "individual",
@@ -1505,14 +1584,7 @@
 
         plays.filter((play) => text(play?.result?.eventType).toLowerCase() === "home_run")
             .forEach((play) => {
-                const batterId = number(play?.matchup?.batter?.id);
-                const pinchHit = (play?.playEvents ?? []).some((event) => {
-                    const eventType = text(event?.details?.eventType).toLowerCase();
-                    const description = `${text(event?.details?.event)} ${text(event?.details?.description)}`;
-                    return number(event?.player?.id) === batterId &&
-                        ["offensive_substitution", "pinch_hitter"].includes(eventType) &&
-                        /pinch[- ]?hitter|代打/i.test(description);
-                });
+                const pinchHit = isPinchHitPlay(play);
                 if (!pinchHit) return;
                 const scoringRunners = (play?.runners ?? []).filter((runner) =>
                     runner?.movement?.end === "score" && runner?.movement?.isOut !== true);
@@ -1524,6 +1596,10 @@
                 const fact = walkoff && grandSlam ? "代打サヨナラ満塁本塁打"
                     : walkoff ? "代打サヨナラ本塁打"
                     : grandSlam ? "代打満塁本塁打" : "代打本塁打";
+                const coveredByTeamFirst = recordType === "PINCH_HIT_HOME_RUN" && records.some((record) =>
+                    record.recordType === "TEAM_FIRST_HOME_RUN" &&
+                    record.playerId === number(play?.matchup?.batter?.id));
+                if (coveredByTeamFirst) return;
                 records.push(makeRecord({ game, boxscore, recordType, category: "individual",
                     player: play?.matchup?.batter, side: battingSideForPlay(play), inning: play?.about?.inning,
                     fact, details: { inning: play?.about?.inning },
