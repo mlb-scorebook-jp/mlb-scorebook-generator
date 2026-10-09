@@ -40,8 +40,10 @@
     let toolbar = null;
     let dialog = null;
     const starterNoteCache = new Map();
+    const gameFeedCache = new Map();
     const starterNotes = new Map();
     const relieverNotes = new Map();
+    const relieverRematches = new Set();
 
     const context = () => window.ScorebookHighlightContext;
     const snapshot = () => context()?.getSnapshot?.() ?? null;
@@ -362,13 +364,11 @@
             battingSide(previousSelected) === battingSide(play) &&
             number(previousSelected?.matchup?.pitcher?.id) !== number(play?.matchup?.pitcher?.id);
         if (pitcherChanged) {
-            const fieldingSide = opponentSide(battingSide(play));
-            const appearance = pitcherAppearanceNumber(play, data);
-            lines.push(
-                `　　${shortTeam(fieldingSide, data)}、ここで` +
-                `${appearance > 1 ? `${circled(appearance)}人目にスイッチ` : "投手交代"}`,
-                `　　${playerName(play?.matchup?.pitcher, data)}がマウンドに上がります`
-            );
+            const outgoing = playerName(previousSelected?.matchup?.pitcher, data);
+            const incoming = playerName(play?.matchup?.pitcher, data);
+            lines.push(outgoing && incoming
+                ? `　　ここで${outgoing}に代えて${incoming}をマウンドへ`
+                : `　　${incoming || "新しいピッチャー"}がマウンドに上がります`);
             const note = relieverNotes.get(number(play?.matchup?.pitcher?.id));
             if (note) lines.push(`　　${note}`);
         }
@@ -674,6 +674,9 @@
         const lines = playLeadLines(play, previousSelected, data);
         const scoring = scoringContext(play, data);
         const focus = japaneseFocus(play, data);
+        const rematchKey = `${number(play?.matchup?.pitcher?.id)}:${number(play?.matchup?.batter?.id)}`;
+        const wonYesterdayRematch = relieverRematches.has(rematchKey) &&
+            ["home_run", "single", "double", "triple"].includes(eventType);
         const hitLead = (destination, neutral = destination) => {
             if (!focus?.name) return neutral;
             return focus.role === "pitcher"
@@ -764,6 +767,10 @@
             lines.push(`Ｑ　${fieldOutText(play, focus)}`);
         } else {
             lines.push(`Ｑ　${text(play?.result?.event) || description || "打席結果"}`);
+        }
+        if (wonYesterdayRematch) {
+            const batter = playerName(play?.matchup?.batter, data);
+            if (batter) lines.push(`　　今日は${batter}が仕留めました`);
         }
         if (scoring.runs) {
             const team = shortTeam(battingSide(play), data);
@@ -911,7 +918,17 @@
         return notes.join("。");
     };
 
-    const relieverTrendNote = (logs, gameDate) => {
+    const gameFeed = async (gamePk) => {
+        if (!gamePk) return null;
+        if (!gameFeedCache.has(gamePk)) {
+            gameFeedCache.set(gamePk, fetch(`https://statsapi.mlb.com/api/v1.1/game/${gamePk}/feed/live`)
+                .then((response) => response.ok ? response.json() : null)
+                .catch(() => null));
+        }
+        return gameFeedCache.get(gamePk);
+    };
+
+    const relieverTrendNote = async (logs, gameDate, currentPlay, data) => {
         const appearances = logs.filter((split) => number(split?.stat?.gamesPlayed) > 0);
         if (!appearances.length) return "";
         const dateBefore = (days) => {
@@ -919,11 +936,48 @@
             date.setUTCDate(date.getUTCDate() - days);
             return date.toISOString().slice(0, 10);
         };
-        if (text(appearances[0]?.date) === dateBefore(1) &&
-            text(appearances[1]?.date) === dateBefore(2)) {
-            return "今日で3連投になります";
+        if (text(appearances[0]?.date) === dateBefore(1)) {
+            const pitcherId = number(currentPlay?.matchup?.pitcher?.id);
+            const batterId = number(currentPlay?.matchup?.batter?.id);
+            const previousGamePk = number(
+                appearances[0]?.game?.gamePk || appearances[0]?.game?.id || appearances[0]?.gamePk
+            );
+            const previousFeed = await gameFeed(previousGamePk);
+            const previousMatchup = previousFeed?.liveData?.plays?.allPlays?.find((candidate) =>
+                number(candidate?.matchup?.pitcher?.id) === pitcherId);
+            const sameEntryBatter = number(previousMatchup?.matchup?.batter?.id) === batterId;
+            if (previousMatchup && sameEntryBatter) {
+                const batter = playerName(currentPlay?.matchup?.batter, data);
+                const previousType = text(previousMatchup?.result?.eventType).toLowerCase();
+                const previousResult = previousType.includes("strikeout")
+                    ? "三振を奪っています"
+                    : previousType.includes("out") || previousType.includes("double_play")
+                        ? "打ち取っています"
+                        : ["home_run", "single", "double", "triple"].includes(previousType)
+                            ? "ヒットを許しています"
+                            : "対戦しています";
+                if (previousType.includes("strikeout")) {
+                    relieverRematches.add(`${pitcherId}:${batterId}`);
+                }
+                const thirdStraight = text(appearances[1]?.date) === dateBefore(2);
+                return `昨日も${batter}のところで登板。${previousResult}。` +
+                    `今日で${thirdStraight ? "3" : "2"}連投です`;
+            }
+            const yesterday = appearances[0]?.stat ?? {};
+            const strikeouts = number(yesterday?.strikeOuts);
+            const runs = number(yesterday?.runs);
+            const yesterdayOuts = inningsToOuts(yesterday?.inningsPitched);
+            const yesterdayInnings = yesterdayOuts > 0 && yesterdayOuts % 3 === 0
+                ? `${yesterdayOuts / 3}イニング`
+                : inningsLabel(yesterday?.inningsPitched);
+            const performance = strikeouts > 0
+                ? `昨日は${yesterdayInnings}投げて、` +
+                    `${strikeouts}つの三振を奪っています${runs ? `。${runs}失点でした` : ""}`
+                : `昨日は${yesterdayInnings}を投げ、` +
+                    `${runs ? `${runs}失点` : "無失点"}でした`;
+            const thirdStraight = text(appearances[1]?.date) === dateBefore(2);
+            return `${performance}。今日で${thirdStraight ? "3" : "2"}連投です`;
         }
-        if (text(appearances[0]?.date) === dateBefore(1)) return "今日で2連投です";
         const previous = appearances[0]?.stat ?? {};
         const runs = number(previous?.runs);
         return `前回登板は${inningsLabel(previous?.inningsPitched)}${runs
@@ -934,6 +988,7 @@
     const prepareStarterNotes = async (data) => {
         starterNotes.clear();
         relieverNotes.clear();
+        relieverRematches.clear();
         if (mode !== "full") return;
         await Promise.all(["away", "home"].map(async (side) => {
             const starter = starterForSide(side, data);
@@ -958,7 +1013,9 @@
         const gameDate = text(data?.gameData?.gameData?.datetime?.officialDate);
         await Promise.all([...selectedRelieverIds].map(async (pitcherId) => {
             const logs = await starterGameLogs({ id: pitcherId }, data);
-            const note = relieverTrendNote(logs, gameDate);
+            const currentPlay = allPlays(data).find((play) =>
+                number(play?.matchup?.pitcher?.id) === pitcherId);
+            const note = await relieverTrendNote(logs, gameDate, currentPlay, data);
             if (note) relieverNotes.set(pitcherId, note);
         }));
     };
