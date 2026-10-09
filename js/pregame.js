@@ -15,6 +15,7 @@
     const cache = new Map();
     const savantCache = new Map();
     const gameIndex = new Map();
+    const gameHighlightTextByGame = new Map();
     let currentContext = null;
     let currentDate = "";
     let currentTransferSeason = 0;
@@ -9378,7 +9379,17 @@
                 ...titleRaceHighlights
             ];
             const titleRaceSection = renderGameTitleRaceHighlights(gameHighlights);
-            if (titleRaceSection) grid.append(titleRaceSection);
+            if (titleRaceSection) {
+                gameHighlightTextByGame.set(
+                    Number(gamePk),
+                    [...titleRaceSection.querySelectorAll(".pregame-game-highlight-item")]
+                        .map((item) => String(item.textContent ?? "").replace(/\s+/g, " ").trim())
+                        .filter(Boolean)
+                );
+                grid.append(titleRaceSection);
+            } else {
+                gameHighlightTextByGame.delete(Number(gamePk));
+            }
             const startingSection = section("先発投手", "先発投手比較");
             startingSection.classList.add("pregame-span-12");
             const startingGrid = el("div", "pregame-starting-grid");
@@ -9723,6 +9734,9 @@
         renderTop,
         renderGameDetail,
         renderPlayerDetail,
+        getGameHighlightText: (gamePk) => [
+            ...(gameHighlightTextByGame.get(Number(gamePk)) ?? [])
+        ],
         refreshTransfersHeaderNew
     };
     if (document.readyState === "loading") {

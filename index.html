@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MLB Scorebook Generator</title>
     <!-- Score notation update: stacked batted-ball symbol, red hits, blue strikeouts, black other results. -->
-    <link rel="stylesheet" href="css/style.css?v=20261008-deflection-spacing">
-    <link rel="stylesheet" href="css/pregame.css?v=20261006-lineup-layout">
+    <link rel="stylesheet" href="css/style.css?v=20261009-highlight-script-drag-2">
+    <link rel="stylesheet" href="css/pregame.css?v=20261009-mobile-highlights">
     <link rel="stylesheet" href="css/daily-records.css?v=20260928-hou-buttons-1">
 </head>
 
@@ -347,6 +347,7 @@
         </div>
         <div class="footer-actions">
             <button type="button" id="pdf-btn">PDF</button>
+            <button type="button" id="highlight-btn">ハイライト</button>
             <button type="button" id="png-btn">PNG</button>
             <button type="button" id="print-btn">PRINT</button>
             <button type="button" id="json-btn">JSON</button>
@@ -372,7 +373,7 @@
     <script src="js/daily-records.js?v=20261009-team-first-home-run"></script>
     <script src="js/mlb-global-events.js?v=20260918-1"></script>
     <script src="js/mlb-prospect-rankings.js?v=20260927"></script>
-    <script src="js/pregame.js?v=20261008-miller-paternity-return"></script>
+    <script src="js/pregame.js?v=20261009-highlight-script"></script>
 
     <script>
         (() => {
@@ -887,6 +888,7 @@
                 printButton: document.getElementById("print-btn"),
                 jsonButton: document.getElementById("json-btn"),
                 pdfButton: document.getElementById("pdf-btn"),
+                highlightButton: document.getElementById("highlight-btn"),
                 pngButton: document.getElementById("png-btn")
             };
 
@@ -2427,7 +2429,9 @@
                 if (playerPostseasonCareerPitchingCache.has(cacheKey)) {
                     return playerPostseasonCareerPitchingCache.get(cacheKey);
                 }
-                const fields = ["gamesPlayed", "gamesStarted", "wins", "saves"];
+                const fields = [
+                    "gamesPlayed", "gamesStarted", "wins", "strikeOuts", "saves", "holds"
+                ];
                 const request = Promise.all(["F", "D", "L", "W"].map((gameType) => {
                     const params = new URLSearchParams({
                         stats: "byDateRange",
@@ -2997,6 +3001,38 @@
                                     ({ importance }) => importance
                                 ))
                             });
+                        }
+
+                        if (group === "pitching") {
+                            const currentAppearances = Number(current?.gamesPlayed) || 0;
+                            const currentStarts = Number(current?.gamesStarted) || 0;
+                            const currentReliefAppearances = Math.max(
+                                0,
+                                currentAppearances - currentStarts
+                            );
+                            const laterSameDayReliefAppearances = laterSameDaySplits.reduce(
+                                (sum, split) => sum + Math.max(
+                                    0,
+                                    (Number(split?.stat?.gamesPlayed) || 0) -
+                                    (Number(split?.stat?.gamesStarted) || 0)
+                                ),
+                                0
+                            );
+                            const careerAppearances = Number(career?.gamesPlayed);
+                            const careerStarts = Number(career?.gamesStarted);
+                            const priorRegularSeasonReliefAppearances =
+                                careerAppearances - careerStarts -
+                                laterSameDayReliefAppearances - currentReliefAppearances;
+                            if (currentReliefAppearances > 0 &&
+                                Number.isFinite(priorRegularSeasonReliefAppearances) &&
+                                priorRegularSeasonReliefAppearances === 0) {
+                                playerNotes.push({
+                                    text: `${code}　${getPersonName(player.person)}　` +
+                                        "レギュラーシーズン初のリリーフ登板",
+                                    priority: -2.9,
+                                    importance: 99
+                                });
+                            }
                         }
 
                         if (group === "pitching" && isPositionPlayerPitching) {
@@ -4861,7 +4897,7 @@
                                     ...(data?.gameData?.players?.[`ID${playerId}`] ?? {}),
                                     ...(gamePlayer?.person ?? {})
                                 };
-                                const [career, seasonLogs] = await Promise.all([
+                                const [career, seasonLogs, regularSeasonCareer] = await Promise.all([
                                     fetchPlayerPostseasonCareerPitchingBeforeDate(
                                         playerId,
                                         person?.mlbDebutDate,
@@ -4871,6 +4907,11 @@
                                         playerId,
                                         season,
                                         "pitching"
+                                    ),
+                                    fetchPlayerCareerStats(
+                                        { id: playerId, person },
+                                        "pitching",
+                                        officialDate
                                     )
                                 ]);
                                 const hasPriorAppearance = seasonLogs.some((split) =>
@@ -4886,6 +4927,7 @@
                                 );
                                 const careerFirsts = [];
                                 const currentPostseasonFirsts = [];
+                                const careerWideFirsts = [];
                                 if (career.available && career.gamesPlayed === 0) {
                                     careerFirsts.push("登板");
                                 } else if (!hasPriorAppearance) {
@@ -4920,6 +4962,42 @@
                                     )) {
                                     currentPostseasonFirsts.push("セーブ");
                                 }
+                                [
+                                    [appeared, "gamesPlayed", "登板"],
+                                    [startedNow, "gamesStarted", "先発"],
+                                    [gameFinal && Number(decisions?.winner?.id) === playerId,
+                                        "wins", "勝利"],
+                                    [(Number(pitching?.strikeOuts) || 0) > 0,
+                                        "strikeOuts", "奪三振"],
+                                    [gameFinal && Number(decisions?.save?.id) === playerId,
+                                        "saves", "セーブ"],
+                                    [(Number(pitching?.holds) || 0) > 0,
+                                        "holds", "ホールド"]
+                                ].forEach(([achieved, field, label]) => {
+                                    if (!achieved || !career.available || !regularSeasonCareer) return;
+                                    const priorCareerTotal =
+                                        (Number(regularSeasonCareer?.[field]) || 0) +
+                                        (Number(career?.[field]) || 0);
+                                    if (priorCareerTotal === 0) careerWideFirsts.push(label);
+                                });
+                                const currentIsRelief = appeared && !startedNow;
+                                const priorRegularReliefAppearances = Math.max(
+                                    0,
+                                    (Number(regularSeasonCareer?.gamesPlayed) || 0) -
+                                    (Number(regularSeasonCareer?.gamesStarted) || 0)
+                                );
+                                const priorPostseasonReliefAppearances = career.available
+                                    ? Math.max(
+                                        0,
+                                        (Number(career.gamesPlayed) || 0) -
+                                        (Number(career.gamesStarted) || 0)
+                                    )
+                                    : NaN;
+                                const careerFirstRelief = currentIsRelief &&
+                                    Number.isFinite(priorPostseasonReliefAppearances) &&
+                                    priorRegularReliefAppearances +
+                                        priorPostseasonReliefAppearances === 0;
+                                if (careerFirstRelief) careerWideFirsts.push("リリーフ登板");
                                 const formatFirsts = (prefix, firsts) => {
                                     const [first, ...additional] = firsts;
                                     return first
@@ -4929,12 +5007,22 @@
                                         : "";
                                 };
                                 const firstsText = [
-                                    formatFirsts("PS", careerFirsts),
+                                    formatFirsts("PS", careerFirsts.filter((label) =>
+                                        !careerWideFirsts.includes(label))),
                                     formatFirsts("今PS", currentPostseasonFirsts)
                                 ].filter(Boolean).join("・");
-                                if (!firstsText) return null;
+                                const careerWideText = careerWideFirsts.length
+                                    ? "キャリアを通じて初の" + careerWideFirsts
+                                        .map((label, index) => index ? `初${label}` : label)
+                                        .join("・")
+                                    : "";
+                                const noteText = [
+                                    firstsText,
+                                    careerWideText
+                                ].filter(Boolean).join("・");
+                                if (!noteText) return null;
                                 return {
-                                    text: `${code}　${getPersonName(person)}　${firstsText}`,
+                                    text: `${code}　${getPersonName(person)}　${noteText}`,
                                     priority: careerFirsts.includes("勝利") ||
                                         careerFirsts.includes("セーブ") ||
                                         currentPostseasonFirsts.includes("勝利") ||
@@ -5690,7 +5778,7 @@
                     }));
                     const adjustment = tiebreakers.length > 0 && tiebreakers.every(Boolean) ? 1 : 0;
                     const number = Math.max(0, 163 - wins - targetLosses - adjustment);
-                    if (number > 0) magic.set(teamId, number);
+                    if (number > 0 && number <= 30) magic.set(teamId, number);
                 }));
                 return magic;
             };
@@ -8371,6 +8459,9 @@
                     const cell = dom.awaySheet.querySelector(cellSelector);
                     const resultBox = cell?.querySelector(".result-box");
                     if (!cell || !resultBox) return;
+                    if (Number.isInteger(Number(record.atBatIndex))) {
+                        cell.dataset.atBatIndex = String(record.atBatIndex);
+                    }
                     cell.classList.toggle("in-progress", Boolean(record.inProgress));
                     const currentPitchColumn = cell.querySelector(".pitch-column");
                     if (currentPitchColumn && (record.pitchResults?.length || record.pitchCount)) {
@@ -12442,6 +12533,23 @@
                 );
             });
 
+            dom.highlightButton.addEventListener("click", () => {
+                window.ScorebookHighlightScript?.start();
+            });
+
+            window.ScorebookHighlightContext = {
+                getSnapshot: () => ({
+                    gamePk: state.gamePk,
+                    gameData: state.gameData,
+                    away: state.away,
+                    home: state.home,
+                    attendanceNote: state.attendanceNote,
+                    streakNotes: state.streakNotes
+                }),
+                getPersonName,
+                setStatus
+            };
+
             window.addEventListener("afterprint", clearPrintFit);
             document.addEventListener("visibilitychange", () => {
                 if (document.hidden) {
@@ -12559,5 +12667,6 @@
             }
         })();
     </script>
+    <script src="js/highlight-script.js?v=20261009-19"></script>
 </body>
 </html>

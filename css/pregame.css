@@ -4163,6 +4163,39 @@ a.pregame-metric-value:focus-visible {
 }
 
 @media (max-width: 1000px) {
+    .pregame-game-highlights {
+        display: block !important;
+        grid-column: 1 / -1;
+        width: 100%;
+        min-width: 0;
+        visibility: visible;
+    }
+
+    .pregame-game-highlight-list,
+    .pregame-game-highlight-item,
+    .pregame-game-highlight-text {
+        box-sizing: border-box;
+        width: 100%;
+        min-width: 0;
+        overflow: visible;
+    }
+
+    .pregame-game-highlight-text {
+        align-items: flex-start;
+    }
+
+    .pregame-game-highlight-label,
+    .pregame-game-highlight-connector,
+    .pregame-game-highlight-prospect-rank {
+        min-width: 0;
+        white-space: normal;
+        overflow-wrap: anywhere;
+    }
+
+    .pregame-game-highlight-contender {
+        max-width: 100%;
+    }
+
     .pregame-previous-start {
         display: block;
     }

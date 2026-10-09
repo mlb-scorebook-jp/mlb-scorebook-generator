@@ -3933,6 +3933,237 @@ a.pitcher-matchup-stats:focus-visible {
     letter-spacing: 0.06em;
 }
 
+#highlight-btn {
+    min-width: 92px;
+    border-color: #9b7b28;
+    color: #ffe082;
+}
+
+body.highlight-selection-active .atbat-cell[data-at-bat-index] {
+    cursor: pointer;
+}
+
+body.highlight-selection-active .atbat-cell[data-at-bat-index]:hover {
+    outline: 3px solid rgba(255, 193, 7, 0.9);
+    outline-offset: -3px;
+    z-index: 20;
+}
+
+.atbat-cell.highlight-script-selected {
+    outline: 3px solid #ffb300;
+    outline-offset: -3px;
+    z-index: 21;
+}
+
+.atbat-cell.highlight-script-detailed {
+    outline-color: #e53935;
+    background: #fff4f2;
+}
+
+.highlight-script-order {
+    position: absolute;
+    z-index: 100;
+    top: 2px;
+    right: 2px;
+    min-width: 18px;
+    height: 18px;
+    display: grid;
+    place-items: center;
+    padding: 0 4px;
+    border: 1px solid #15191d;
+    border-radius: 10px;
+    color: #15191d;
+    background: #ffd54f;
+    font-size: 10px;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.atbat-cell.highlight-script-detailed .highlight-script-order {
+    color: #fff;
+    background: #d32f2f;
+}
+
+.highlight-script-toolbar {
+    position: fixed;
+    z-index: 1600;
+    right: 18px;
+    top: 18px;
+    width: min(460px, calc(100vw - 36px));
+    padding: 12px;
+    border: 1px solid #64727c;
+    border-radius: 4px;
+    background: rgba(27, 34, 39, 0.98);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.42);
+}
+
+.highlight-script-drag-handle {
+    margin: -12px -12px 10px;
+    padding: 5px 12px;
+    color: #98a6af;
+    border-bottom: 1px solid #44515a;
+    background: #192026;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    cursor: grab;
+    user-select: none;
+    touch-action: none;
+}
+
+.highlight-script-drag-handle button {
+    min-height: 22px;
+    padding: 0 8px;
+    font-size: 10px;
+}
+
+.highlight-script-toolbar.is-collapsed {
+    width: auto;
+    min-width: 190px;
+    padding-bottom: 0;
+}
+
+.highlight-script-toolbar.is-collapsed > :not(.highlight-script-drag-handle) {
+    display: none;
+}
+
+.highlight-script-drag-handle:active {
+    cursor: grabbing;
+}
+
+.highlight-script-toolbar-row,
+.highlight-script-toolbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.highlight-script-toolbar-row label {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+}
+
+.highlight-script-toolbar select {
+    flex: 1;
+    min-width: 0;
+    height: 32px;
+    color: #eef2f4;
+    border: 1px solid #596873;
+    background: #20282e;
+}
+
+.highlight-script-toolbar p {
+    margin: 8px 0;
+    color: #b8c2c8;
+    font-size: 11px;
+    line-height: 1.55;
+}
+
+.highlight-script-toolbar-actions {
+    justify-content: flex-end;
+}
+
+.highlight-script-toolbar button,
+.highlight-script-dialog button {
+    min-height: 32px;
+    padding: 0 14px;
+    color: #edf1f3;
+    border: 1px solid #5e6b74;
+    border-radius: 2px;
+    background: #303b43;
+    cursor: pointer;
+}
+
+.highlight-script-toolbar .primary,
+.highlight-script-dialog .primary {
+    border-color: #b88a19;
+    color: #17130a;
+    background: #f4c84b;
+    font-weight: 800;
+}
+
+.highlight-script-dialog-backdrop {
+    position: fixed;
+    z-index: 1700;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    padding: 24px;
+    background: rgba(5, 8, 10, 0.76);
+}
+
+.highlight-script-dialog {
+    width: min(760px, 100%);
+    max-height: min(760px, calc(100vh - 48px));
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid #64727c;
+    border-radius: 5px;
+    background: #20272d;
+    box-shadow: 0 18px 48px rgba(0, 0, 0, 0.5);
+}
+
+.highlight-script-dialog header,
+.highlight-script-dialog footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 14px 16px;
+    border-bottom: 1px solid #44515a;
+}
+
+.highlight-script-dialog footer {
+    justify-content: flex-end;
+    border-top: 1px solid #44515a;
+    border-bottom: 0;
+}
+
+.highlight-script-dialog h2 {
+    margin: 0;
+    font-size: 17px;
+}
+
+.highlight-script-dialog textarea {
+    width: 100%;
+    min-height: 460px;
+    resize: vertical;
+    padding: 18px;
+    border: 0;
+    outline: 0;
+    color: #172026;
+    background: #fff;
+    font-family: "ＭＳ ゴシック", "Yu Gothic", monospace;
+    font-size: 15px;
+    line-height: 1.7;
+    white-space: pre-wrap;
+}
+
+.highlight-script-dialog-note {
+    margin: 0;
+    padding: 8px 16px;
+    color: #c5cdd2;
+    background: #192026;
+    font-size: 11px;
+}
+
+@media (max-width: 640px) {
+    .highlight-script-toolbar-row {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .highlight-script-toolbar-actions button {
+        flex: 1;
+    }
+}
+
 @media (max-width: 900px) {
     .app-main {
         grid-template-columns: 1fr;
