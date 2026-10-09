@@ -134,6 +134,13 @@
         return `${circled(play?.about?.inning)}回${half}`;
     };
 
+    const halfInningIndex = (play) => {
+        const inning = number(play?.about?.inning);
+        const isBottom = !(play?.about?.isTopInning === true ||
+            text(play?.about?.halfInning).toLowerCase() === "top");
+        return Math.max(0, (inning - 1) * 2 + (isBottom ? 1 : 0));
+    };
+
     const battingSide = (play) => play?.about?.isTopInning === true ||
         text(play?.about?.halfInning).toLowerCase() === "top" ? "away" : "home";
 
@@ -250,6 +257,35 @@
         return index >= 0 ? index + 1 : 0;
     };
 
+    const skippedScoringLead = (previousSelected, play, data = snapshot()) => {
+        if (!previousSelected) return "";
+        const start = playPosition(previousSelected, data);
+        const end = playPosition(play, data);
+        if (start < 0 || end <= start + 1) return "";
+        const scoringPlays = allPlays(data).slice(start + 1, end)
+            .filter((candidate) => scoringContext(candidate, data).runs > 0);
+        if (!scoringPlays.length) return "";
+        if (scoringPlays.length === 1) {
+            const scoringPlay = scoringPlays[0];
+            const runs = scoringContext(scoringPlay, data).runs;
+            const eventType = text(scoringPlay?.result?.eventType).toLowerCase();
+            const batter = playerName(scoringPlay?.matchup?.batter, data);
+            const event = eventType === "home_run" ? "ホームラン"
+                : ["single", "double", "triple"].includes(eventType) ? "タイムリー"
+                    : eventType === "sac_fly" ? "犠牲フライ"
+                        : eventType === "walk" ? "押し出しのフォアボール"
+                            : eventType === "hit_by_pitch" ? "押し出しのデッドボール"
+                                : "一打";
+            return `このあと${batter ? `${batter}の` : ""}${event}で` +
+                `${runs === 1 ? "もう①点" : `さらに${circled(runs)}点`}を追加`;
+        }
+        const scoringSides = [...new Set(scoringPlays.map((candidate) => battingSide(candidate)))];
+        if (scoringSides.length > 1) return "このあと両チームに得点が入り";
+        const addedRuns = scoringPlays.reduce((total, candidate) =>
+            total + scoringContext(candidate, data).runs, 0);
+        return `このあと${shortTeam(scoringSides[0], data)}がさらに${circled(addedRuns)}点を追加`;
+    };
+
     const playLeadLines = (play, previousSelected, data = snapshot()) => {
         const lines = [];
         const sameInning = previousSelected &&
@@ -259,6 +295,10 @@
         const currentInning = number(play?.about?.inning);
         const previousSide = previousSelected ? battingSide(previousSelected) : "";
         const currentSide = battingSide(play);
+        const halfInningGap = previousSelected
+            ? halfInningIndex(play) - halfInningIndex(previousSelected)
+            : 0;
+        const skipsAtLeastFourHalfInnings = halfInningGap >= 4;
         const movesToBottom = previousSelected && previousSide === "away" &&
             currentSide === "home" && previousInning === currentInning;
         const movesToNextTop = previousSelected && previousSide === "home" &&
@@ -275,7 +315,22 @@
         const bases = baseSituation(play, data);
         const continuedBasesLoadedThreat = consecutive && bases === "満塁" &&
             scoringContext(previousSelected, data).runs > 0;
-        if (isLeadoffPlay && movesToBottom) {
+        const skippedScore = skippedScoringLead(previousSelected, play, data);
+        if (skippedScore) {
+            if (sameInning) {
+                lines.push(`Ｑ　${skippedScore}`);
+            } else {
+                const score = scoreBefore(play, data);
+                const connector = skippedScore.endsWith("入り") ? "、" : "し、";
+                lines.push(
+                    `Ｑ　${skippedScore}${connector}${circled(score.away)}対${circled(score.home)}` +
+                    `で迎えた${inningLabel(play)}`
+                );
+                if (isLeadoffPlay) {
+                    lines.push(`　　${battingTeam}は${order ? `${circled(order)}番` : ""}${batter}`);
+                }
+            }
+        } else if (isLeadoffPlay && movesToBottom) {
             lines.push(`Ｑ　その裏、${battingTeam}は${order ? `${circled(order)}番` : ""}${batter}`);
         } else if (isLeadoffPlay && movesToNextTop) {
             lines.push(
@@ -285,7 +340,14 @@
         } else if (movesToBottom) lines.push("Ｑ　その裏");
         else if (movesToNextTop) lines.push(`Ｑ　直後の${circled(currentInning)}回表`);
         else if (!sameInning) {
-            lines.push(`Ｑ　${inningLabel(play)}`);
+            if (skipsAtLeastFourHalfInnings) {
+                const score = scoreBefore(play, data);
+                lines.push(score.away === 0 && score.home === 0
+                    ? `Ｑ　両チーム無得点のまま迎えた${inningLabel(play)}`
+                    : `Ｑ　${circled(score.away)}対${circled(score.home)}で迎えた${inningLabel(play)}`);
+            } else {
+                lines.push(`Ｑ　${inningLabel(play)}`);
+            }
             if (isLeadoffPlay) {
                 lines.push(`　　${battingTeam}は${order ? `${circled(order)}番` : ""}${batter}`);
             }
@@ -750,6 +812,16 @@
         return `${Math.floor(outs / 3)}${outs % 3 ? `回${outs % 3}/3` : "回"}`;
     };
 
+    const gameLogOpponentName = (split) => {
+        const opponent = split?.opponent ?? {};
+        const opponentId = number(opponent?.id);
+        const abbreviation = text(
+            opponent?.abbreviation || window.MLB_SCOREBOOK_TEAM_CODES_BY_ID?.[opponentId]
+        ).toUpperCase();
+        return TEAM_SHORT_NAMES[abbreviation] ||
+            text(window.MLB_SCOREBOOK_TEAM_NAMES_BY_ID?.[opponentId]);
+    };
+
     const starterGameLogs = async (person, data) => {
         const playerId = number(person?.id);
         const gameDate = text(data?.gameData?.gameData?.datetime?.officialDate);
@@ -786,15 +858,17 @@
         const runs = number(stat?.runs);
         const earnedRuns = number(stat?.earnedRuns);
         const notes = [];
+        const previousOpponent = gameLogOpponentName(previous);
+        const previousLead = previousOpponent ? `前回の${previousOpponent}戦では` : "前回は";
 
         if (outs >= 18 && runs <= 2) {
-            notes.push(`前回は${inningsLabel(stat?.inningsPitched)}${runs}失点の好投`);
+            notes.push(`${previousLead}${inningsLabel(stat?.inningsPitched)}${runs}失点の好投`);
         } else if (runs >= 5) {
-            notes.push(`前回は${inningsLabel(stat?.inningsPitched)}${runs}失点と打ち込まれました`);
+            notes.push(`${previousLead}${inningsLabel(stat?.inningsPitched)}${runs}失点と打ち込まれました`);
         } else if (outs <= 6) {
-            notes.push(`前回は${inningsLabel(stat?.inningsPitched)}${runs}失点で降板`);
+            notes.push(`${previousLead}${inningsLabel(stat?.inningsPitched)}${runs}失点で降板`);
         } else {
-            notes.push(`前回は${inningsLabel(stat?.inningsPitched)}${runs}失点`);
+            notes.push(`${previousLead}${inningsLabel(stat?.inningsPitched)}${runs}失点`);
         }
 
         const decisions = logs.filter((split) =>
