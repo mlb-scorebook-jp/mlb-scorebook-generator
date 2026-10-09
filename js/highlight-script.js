@@ -41,6 +41,7 @@
     let dialog = null;
     const starterNoteCache = new Map();
     const starterNotes = new Map();
+    const relieverNotes = new Map();
 
     const context = () => window.ScorebookHighlightContext;
     const snapshot = () => context()?.getSnapshot?.() ?? null;
@@ -302,10 +303,12 @@
             const fieldingSide = opponentSide(battingSide(play));
             const appearance = pitcherAppearanceNumber(play, data);
             lines.push(
-                `　　${shortTeam(fieldingSide, data)}のマウンドは` +
-                `${appearance > 1 ? `${circled(appearance)}人目、` : ""}` +
-                `${playerName(play?.matchup?.pitcher, data)}`
+                `　　${shortTeam(fieldingSide, data)}、ここで` +
+                `${appearance > 1 ? `${circled(appearance)}人目にスイッチ` : "投手交代"}`,
+                `　　${playerName(play?.matchup?.pitcher, data)}がマウンドに上がります`
             );
+            const note = relieverNotes.get(number(play?.matchup?.pitcher?.id));
+            if (note) lines.push(`　　${note}`);
         }
 
         if (isLeadoffPlay) return lines;
@@ -589,6 +592,18 @@
         return description ? [`Ｑ　${prefix}${description}`] : [];
     };
 
+    const isSuccessfulFiremanEntry = (play, data = snapshot()) => {
+        const pitcherId = number(play?.matchup?.pitcher?.id);
+        if (!pitcherId || pitcherAppearanceNumber(play, data) <= 1) return false;
+        const firstPlay = allPlays(data).find((candidate) =>
+            number(candidate?.matchup?.pitcher?.id) === pitcherId);
+        if (firstPlay !== play || baseSituation(play, data) === "ランナーなし") return false;
+        const eventType = text(play?.result?.eventType).toLowerCase();
+        const retired = eventType.includes("out") || eventType.includes("strikeout") ||
+            eventType.includes("double_play");
+        return retired && scoringContext(play, data).runs === 0 && number(play?.count?.outs) >= 3;
+    };
+
     const batterResultLines = (play, detailKeys, previousSelected, data = snapshot()) => {
         const eventType = text(play?.result?.eventType).toLowerCase();
         const rbi = number(play?.result?.rbi);
@@ -696,7 +711,17 @@
             }
             lines.push(`　　これで${circled(after.away)}対${circled(after.home)}とします`);
         }
-        const closingLines = inningClosingLines(play, data);
+        const firemanSuccess = isSuccessfulFiremanEntry(play, data);
+        if (firemanSuccess) {
+            const lastResult = lines.findLastIndex((line) => line.startsWith("Ｑ　"));
+            if (lastResult >= 0) {
+                lines[lastResult] = lines[lastResult]
+                    .replace(/に倒れます$/, "！")
+                    .replace(/に打ち取ります$/, "！");
+            }
+            lines.push("　　ピンチで火消しに成功します");
+        }
+        const closingLines = firemanSuccess ? [] : inningClosingLines(play, data);
         if (closingLines.length && lines.length) {
             const lastIndex = lines.length - 1;
             lines[lastIndex] = lines[lastIndex]
@@ -812,8 +837,29 @@
         return notes.join("。");
     };
 
+    const relieverTrendNote = (logs, gameDate) => {
+        const appearances = logs.filter((split) => number(split?.stat?.gamesPlayed) > 0);
+        if (!appearances.length) return "";
+        const dateBefore = (days) => {
+            const date = new Date(`${gameDate}T12:00:00Z`);
+            date.setUTCDate(date.getUTCDate() - days);
+            return date.toISOString().slice(0, 10);
+        };
+        if (text(appearances[0]?.date) === dateBefore(1) &&
+            text(appearances[1]?.date) === dateBefore(2)) {
+            return "今日で3連投になります";
+        }
+        if (text(appearances[0]?.date) === dateBefore(1)) return "今日で2連投です";
+        const previous = appearances[0]?.stat ?? {};
+        const runs = number(previous?.runs);
+        return `前回登板は${inningsLabel(previous?.inningsPitched)}${runs
+            ? `${runs}失点`
+            : "無失点"}`;
+    };
+
     const prepareStarterNotes = async (data) => {
         starterNotes.clear();
+        relieverNotes.clear();
         if (mode !== "full") return;
         await Promise.all(["away", "home"].map(async (side) => {
             const starter = starterForSide(side, data);
@@ -822,6 +868,24 @@
             const logs = await starterGameLogs(starter, data);
             const note = starterTrendNote(logs, opponentId);
             if (note) starterNotes.set(number(starter.id), note);
+        }));
+        const selectedRelieverIds = new Set();
+        selection.forEach((item) => {
+            if (item.type === "pitching-change" && item.incomingPitcherId) {
+                selectedRelieverIds.add(number(item.incomingPitcherId));
+                return;
+            }
+            const play = findPlay(item.atBatIndex, data);
+            const pitcherId = number(play?.matchup?.pitcher?.id);
+            if (pitcherId && pitcherAppearanceNumber(play, data) > 1) {
+                selectedRelieverIds.add(pitcherId);
+            }
+        });
+        const gameDate = text(data?.gameData?.gameData?.datetime?.officialDate);
+        await Promise.all([...selectedRelieverIds].map(async (pitcherId) => {
+            const logs = await starterGameLogs({ id: pitcherId }, data);
+            const note = relieverTrendNote(logs, gameDate);
+            if (note) relieverNotes.set(pitcherId, note);
         }));
     };
 
@@ -885,6 +949,41 @@
         ];
     };
 
+    const unshownReliefOutcomeLine = (play, data = snapshot()) => {
+        const pitcherId = number(play?.matchup?.pitcher?.id);
+        if (!pitcherId) return "";
+        const inning = number(play?.about?.inning);
+        const side = battingSide(play);
+        const position = playPosition(play, data);
+        const halfInning = allPlays(data).filter((candidate) =>
+            number(candidate?.about?.inning) === inning && battingSide(candidate) === side);
+        const remainder = allPlays(data).slice(position).filter((candidate) =>
+            number(candidate?.about?.inning) === inning && battingSide(candidate) === side);
+        const stint = remainder.filter((candidate) =>
+            number(candidate?.matchup?.pitcher?.id) === pitcherId);
+        if (!stint.length) return "";
+        const before = scoreForSide(scoreBefore(play, data), side);
+        const after = scoreForSide(scoreAfter(stint.at(-1)), side);
+        const runsAllowedDuringStint = Math.max(0, after - before);
+        const appearance = pitcherAppearanceNumber(play, data);
+        const pitcher = playerName(play?.matchup?.pitcher, data);
+        const subject = `${appearance > 1 ? `${circled(appearance)}人目` : ""}${pitcher}`;
+        const finishedInning = number(stint.at(-1)?.count?.outs) >= 3;
+        if (finishedInning) {
+            if (!runsAllowedDuringStint) {
+                return `　　このあと${subject}が無失点に切り抜けます`;
+            }
+            const inningBefore = scoreForSide(scoreBefore(halfInning[0], data), side);
+            const inningAfter = scoreForSide(scoreAfter(stint.at(-1)), side);
+            const inningRuns = Math.max(0, inningAfter - inningBefore);
+            return `　　このあと${subject}も打ち込まれ、この回${circled(inningRuns)}点を失います`;
+        }
+        if (!runsAllowedDuringStint) {
+            return `　　このあと${subject}は無失点でマウンドを降ります`;
+        }
+        return `　　このあと${subject}は${circled(runsAllowedDuringStint)}点を失い、マウンドを降ります`;
+    };
+
     const generateNarration = () => {
         const data = snapshot();
         arrangeSelection();
@@ -898,15 +997,30 @@
             })
             .filter((item) => item.play);
         const plays = selected.map((item) => item.play);
+        const selectedAtBats = new Set(selected
+            .filter((item) => item.type !== "pitching-change")
+            .map((item) => getAtBatIndex(item.play)));
         const lines = automaticHead(plays, data);
         const introducedStarters = new Set();
         selected.forEach((item, index) => {
             if (lines.length) lines.push("");
             if (item.type === "pitching-change") {
-                const outgoing = playerName({ id: item.outgoingPitcherId }, data) || "ピッチャー";
                 const incoming = playerName({ id: item.incomingPitcherId }, data);
-                lines.push(`Ｑ　ここで${outgoing}がマウンドを降ります`);
-                if (incoming) lines.push(`　　代わって${incoming}がマウンドへ`);
+                const fieldingSide = opponentSide(battingSide(item.play));
+                const appearance = pitcherAppearanceNumber(item.play, data);
+                lines.push(
+                    `Ｑ　${shortTeam(fieldingSide, data)}、ここで` +
+                    `${appearance > 1 ? `${circled(appearance)}人目にスイッチ` : "投手交代"}`
+                );
+                const firstBatterIsSelected = selectedAtBats.has(getAtBatIndex(item.play));
+                const outcome = firstBatterIsSelected ? "" : unshownReliefOutcomeLine(item.play, data);
+                const note = relieverNotes.get(number(item.incomingPitcherId));
+                if (note) lines.push(`　　${note}`);
+                if (outcome) {
+                    lines.push(outcome);
+                } else if (incoming) {
+                    lines.push(`　　${incoming}がマウンドに上がります`);
+                }
                 return;
             }
             lines.push(...starterIntroductionForPlay(item.play, introducedStarters, data));

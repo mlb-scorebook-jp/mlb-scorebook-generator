@@ -9,8 +9,10 @@ const { PDFDocument } = require("pdf-lib");
 
 const PORT = 8765;
 const ROOT = path.resolve(import.meta.dirname, "..");
-const OUTPUT = path.join(ROOT, "output", "pdf");
+// 撮影結果はGit管理中の見本PDFを上書きしない専用フォルダへ保存する。
+const OUTPUT = path.join(ROOT, "output", "pbp-captures");
 const CHROME = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
+const fileTokens = new Map();
 
 const json = (response, status, body) => {
     response.writeHead(status, {
@@ -117,9 +119,13 @@ const server = http.createServer(async (request, response) => {
     }
     if (request.method === "GET" && request.url === "/health") return json(response, 200, { ok: true });
     if (request.method === "GET" && request.url?.startsWith("/files/")) {
-        const filename = path.basename(decodeURIComponent(request.url.slice(7)));
+        const token = path.basename(request.url.slice(7)).replace(/\.pdf$/i, "");
+        if (!/^[0-9a-z-]+$/i.test(token)) {
+            return json(response, 404, { error: "PDFが見つかりません。" });
+        }
+        const filename = fileTokens.get(token) || `${token}.pdf`;
         try {
-            const bytes = await fs.readFile(path.join(OUTPUT, filename));
+            const bytes = await fs.readFile(path.join(OUTPUT, `${token}.pdf`));
             response.writeHead(200, {
                 "content-type": "application/pdf",
                 "content-disposition": `attachment; filename="${filename}"`,
@@ -141,7 +147,14 @@ const server = http.createServer(async (request, response) => {
             return json(response, 400, { error: "撮影対象がありません。" });
         }
         const filename = await makePdf(job);
-        return json(response, 200, { ok: true, filename, url: `http://127.0.0.1:${PORT}/files/${encodeURIComponent(filename)}` });
+        const token = `${Date.now()}-${Math.random().toString(36).slice(2, 10)}`;
+        fileTokens.set(token, filename);
+        await fs.copyFile(path.join(OUTPUT, filename), path.join(OUTPUT, `${token}.pdf`));
+        return json(response, 200, {
+            ok: true,
+            filename,
+            url: `http://127.0.0.1:${PORT}/files/${token}.pdf`
+        });
     } catch (error) {
         return json(response, 500, { error: error?.message || String(error) });
     }
