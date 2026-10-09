@@ -8846,6 +8846,15 @@
                 pitchers.forEach((pitcher, pitcherIndex) => {
                     const person = pitcher?.person ?? {};
                     const entry = createElement("span", "bench-pitcher-entry");
+                    if (pitcherIndex > 0 && person?.id) {
+                        entry.classList.add("highlight-pitcher-change");
+                        entry.dataset.pitcherChange = "true";
+                        entry.dataset.teamSide = side;
+                        entry.dataset.incomingPitcherId = String(person.id);
+                        entry.dataset.outgoingPitcherId = String(
+                            pitchers[pitcherIndex - 1]?.person?.id ?? ""
+                        );
+                    }
                     const orderLabel = getPitcherOrderLabel(pitcherIndex);
                     const situation = getPitcherEntrySituation(side, pitcher, pitcherIndex);
                     const timing = `${orderLabel}${situation}`;
@@ -12667,6 +12676,6 @@
             }
         })();
     </script>
-    <script src="js/highlight-script.js?v=20261009-19"></script>
+    <script src="js/highlight-script.js?v=20261009-26"></script>
 </body>
 </html>

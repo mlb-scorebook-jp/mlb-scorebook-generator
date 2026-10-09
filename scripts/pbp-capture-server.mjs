@@ -1,0 +1,152 @@
+import http from "node:http";
+import fs from "node:fs/promises";
+import path from "node:path";
+import { createRequire } from "node:module";
+
+const require = createRequire(import.meta.url);
+const { chromium } = require("playwright");
+const { PDFDocument } = require("pdf-lib");
+
+const PORT = 8765;
+const ROOT = path.resolve(import.meta.dirname, "..");
+const OUTPUT = path.join(ROOT, "output", "pdf");
+const CHROME = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
+
+const json = (response, status, body) => {
+    response.writeHead(status, {
+        "content-type": "application/json; charset=utf-8",
+        "access-control-allow-origin": "*",
+        "access-control-allow-headers": "content-type"
+    });
+    response.end(JSON.stringify(body));
+};
+
+const fit = (width, height, maxWidth, maxHeight) => {
+    const scale = Math.min(maxWidth / width, maxHeight / height);
+    return { width: width * scale, height: height * scale };
+};
+
+const closeOverlays = async (page) => {
+    for (const label of ["Accept & Continue", "Accept All", "I Accept", "Continue", "Close"]) {
+        const button = page.getByRole("button", { name: label, exact: false }).first();
+        if (await button.isVisible().catch(() => false)) await button.click().catch(() => {});
+        const textLink = page.getByText(label, { exact: false }).first();
+        if (await textLink.isVisible().catch(() => false)) await textLink.click().catch(() => {});
+    }
+};
+
+const captureEvent = async (page, job, event) => {
+    const base = `https://www.mlb.com/gameday/${job.gamePk}`;
+    const url = event.type === "atbat"
+        ? `${base}/play/${event.atBatIndex}`
+        : `${base}/final`;
+    await page.goto(url, { waitUntil: "domcontentloaded", timeout: 90000 });
+    await page.waitForTimeout(3500);
+    await closeOverlays(page);
+    if (event.type === "atbat") {
+        const pitchTab = page.getByText("Pitch by Pitch", { exact: true }).first();
+        await pitchTab.waitFor({ timeout: 20000 }).catch(() => {});
+        if (await pitchTab.isVisible().catch(() => false)) {
+            await pitchTab.click().catch(() => {});
+            await page.waitForTimeout(700);
+        }
+    } else {
+        const allFilter = page.getByText("All", { exact: true }).first();
+        if (await allFilter.isVisible().catch(() => false)) {
+            await allFilter.click().catch(() => {});
+            await page.waitForTimeout(1800);
+        }
+        const names = [event.incomingPitcher, event.outgoingPitcher].filter(Boolean);
+        const searchNames = [...new Set(names.flatMap((name) => [name, name.split(/\s+/).at(-1)]))]
+            .filter(Boolean);
+        const pattern = searchNames.length
+            ? new RegExp(searchNames.map((name) => name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("|"), "i")
+            : /Pitching (Change|Substitution)/i;
+        let target = page.getByText(pattern).last();
+        for (let attempt = 0; attempt < 45 && !(await target.isVisible().catch(() => false)); attempt += 1) {
+            await page.mouse.move(1260, 760);
+            await page.mouse.wheel(0, 260);
+            await page.waitForTimeout(220);
+            target = page.getByText(pattern).last();
+        }
+        if (await target.count().catch(() => 0)) {
+            await target.scrollIntoViewIfNeeded().catch(() => {});
+            await page.waitForTimeout(700);
+        }
+    }
+    await closeOverlays(page);
+    return page.screenshot({ type: "png", fullPage: false });
+};
+
+const makePdf = async (job) => {
+    await fs.mkdir(OUTPUT, { recursive: true });
+    const browser = await chromium.launch({ headless: true, executablePath: CHROME });
+    const page = await browser.newPage({ viewport: { width: 1440, height: 900 }, deviceScaleFactor: 1.4 });
+    const pdf = await PDFDocument.create();
+    try {
+        for (const event of job.events) {
+            const bytes = await captureEvent(page, job, event);
+            const image = await pdf.embedPng(bytes);
+            const sheet = pdf.addPage([841.89, 595.28]);
+            const size = fit(image.width, image.height, 813.89, 567.28);
+            sheet.drawImage(image, {
+                x: (841.89 - size.width) / 2,
+                y: (595.28 - size.height) / 2,
+                width: size.width,
+                height: size.height
+            });
+        }
+    } finally {
+        await browser.close();
+    }
+    const safe = String(`${job.date || "game"}_${job.away || "AWAY"}@${job.home || "HOME"}_PBP資料`)
+        .replace(/[^\p{L}\p{N}@._-]/gu, "_");
+    const filename = `${safe}.pdf`;
+    await fs.writeFile(path.join(OUTPUT, filename), await pdf.save());
+    return filename;
+};
+
+const server = http.createServer(async (request, response) => {
+    if (request.method === "OPTIONS") {
+        response.writeHead(204, {
+            "access-control-allow-origin": "*",
+            "access-control-allow-headers": "content-type",
+            "access-control-allow-methods": "GET,POST,OPTIONS"
+        });
+        return response.end();
+    }
+    if (request.method === "GET" && request.url === "/health") return json(response, 200, { ok: true });
+    if (request.method === "GET" && request.url?.startsWith("/files/")) {
+        const filename = path.basename(decodeURIComponent(request.url.slice(7)));
+        try {
+            const bytes = await fs.readFile(path.join(OUTPUT, filename));
+            response.writeHead(200, {
+                "content-type": "application/pdf",
+                "content-disposition": `attachment; filename="${filename}"`,
+                "access-control-allow-origin": "*"
+            });
+            return response.end(bytes);
+        } catch {
+            return json(response, 404, { error: "PDFが見つかりません。" });
+        }
+    }
+    if (request.method !== "POST" || request.url !== "/capture") {
+        return json(response, 404, { error: "Not found" });
+    }
+    try {
+        const chunks = [];
+        for await (const chunk of request) chunks.push(chunk);
+        const job = JSON.parse(Buffer.concat(chunks).toString("utf8"));
+        if (!Number(job.gamePk) || !Array.isArray(job.events) || !job.events.length) {
+            return json(response, 400, { error: "撮影対象がありません。" });
+        }
+        const filename = await makePdf(job);
+        return json(response, 200, { ok: true, filename, url: `http://127.0.0.1:${PORT}/files/${encodeURIComponent(filename)}` });
+    } catch (error) {
+        return json(response, 500, { error: error?.message || String(error) });
+    }
+});
+
+server.listen(PORT, "127.0.0.1", () => {
+    console.log(`PBP capture server: http://127.0.0.1:${PORT}`);
+});

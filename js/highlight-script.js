@@ -32,7 +32,8 @@
     const arrangeSelection = () => {
         selection.sort(mode === "other"
             ? (a, b) => Number(a.selectionOrder) - Number(b.selectionOrder)
-            : (a, b) => Number(a.atBatIndex) - Number(b.atBatIndex));
+            : (a, b) => Number(a.timelineIndex ?? a.atBatIndex) -
+                Number(b.timelineIndex ?? b.atBatIndex));
     };
     let active = false;
     let mode = "full";
@@ -61,6 +62,17 @@
     const allPlays = (data = snapshot()) => data?.gameData?.liveData?.plays?.allPlays ?? [];
     const findPlay = (atBatIndex, data = snapshot()) => allPlays(data).find((play) =>
         getAtBatIndex(play) === Number(atBatIndex));
+    const findPitcherChange = (incomingPitcherId, data = snapshot()) => {
+        for (const play of allPlays(data)) {
+            const event = (play?.playEvents ?? []).find((candidate) =>
+                text(candidate?.details?.eventType).toLowerCase() === "pitching_substitution" &&
+                number(candidate?.player?.id) === number(incomingPitcherId));
+            if (event) return { play, event };
+        }
+        const play = allPlays(data).find((candidate) =>
+            number(candidate?.matchup?.pitcher?.id) === number(incomingPitcherId));
+        return play ? { play, event: null } : null;
+    };
     const familyNameKey = (person) => {
         const suffixes = /^(?:Jr\.?|Sr\.?|II|III|IV)$/i;
         const parts = text(person?.fullName || person?.nameFirstLast).split(/\s+/).filter(Boolean);
@@ -481,7 +493,93 @@
         return [];
     };
 
-    const batterResultLines = (play, detailed, previousSelected, data = snapshot()) => {
+    const DETAIL_EVENT_TYPES = new Set([
+        "stolen_base_2b", "stolen_base_3b", "stolen_base_home",
+        "wild_pitch", "passed_ball", "balk", "caught_stealing_2b",
+        "caught_stealing_3b", "caught_stealing_home", "pickoff_1b",
+        "pickoff_2b", "pickoff_3b"
+    ]);
+
+    const detailEventLabel = (event) => {
+        const eventType = text(event?.details?.eventType).toLowerCase();
+        if (eventType.startsWith("stolen_base")) return "盗塁";
+        if (eventType.startsWith("caught_stealing")) return "盗塁死";
+        if (eventType.startsWith("pickoff")) return "けん制アウト";
+        if (eventType === "wild_pitch") return "ワイルドピッチ";
+        if (eventType === "passed_ball") return "パスボール";
+        if (eventType === "balk") return "ボーク";
+        return text(event?.details?.description || event?.details?.event);
+    };
+
+    const detailOptions = (play, data = snapshot()) => {
+        const pitches = pitchEvents(play).map((pitch, index) => ({
+            key: `pitch:${number(pitch?.pitchNumber) || index + 1}`,
+            label: `${number(pitch?.pitchNumber) || index + 1}球目`,
+            kind: "pitch",
+            event: pitch
+        }));
+        const actions = (play?.playEvents ?? []).filter((event) =>
+            DETAIL_EVENT_TYPES.has(text(event?.details?.eventType).toLowerCase()))
+            .map((event, index) => {
+                const pitchNumber = number(event?.pitchNumber) ||
+                    number((play?.playEvents ?? [])
+                        .filter((candidate) => candidate?.isPitch &&
+                            number(candidate?.index) < number(event?.index))
+                        .at(-1)?.pitchNumber);
+                return {
+                    key: `event:${number(event?.index) || index}`,
+                    label: `${detailEventLabel(event)}${pitchNumber ? `（${pitchNumber}球目）` : ""}`,
+                    kind: "event",
+                    event
+                };
+            });
+        return [...pitches, ...actions];
+    };
+
+    const baseLabel = (base) => ({ "1B": "一塁", "2B": "二塁", "3B": "三塁",
+        score: "ホーム", "4B": "ホーム" })[text(base)] || text(base);
+
+    const runnerMovementsForEvent = (play, event) => (play?.runners ?? []).filter((runner) =>
+        number(runner?.details?.playIndex) === number(event?.index));
+
+    const detailEventLines = (play, option, data = snapshot()) => {
+        const event = option?.event;
+        const sourcePlay = option?.sourcePlay ?? play;
+        const eventType = text(event?.details?.eventType).toLowerCase();
+        const pitchNumber = number(event?.pitchNumber) ||
+            number((sourcePlay?.playEvents ?? [])
+                .filter((candidate) => candidate?.isPitch &&
+                    number(candidate?.index) < number(event?.index))
+                .at(-1)?.pitchNumber);
+        const prefix = pitchNumber ? `${circled(pitchNumber)}球目、` : "";
+        const eventMovements = runnerMovementsForEvent(sourcePlay, event);
+        const movements = eventType.startsWith("stolen_base") && option?.runnerId
+            ? eventMovements.filter((movement) =>
+                number(movement?.details?.runner?.id) === number(option.runnerId))
+            : eventMovements;
+        if (eventType.startsWith("stolen_base")) {
+            const movement = movements[0];
+            const runner = playerName(movement?.details?.runner, data) || "ランナー";
+            const start = baseLabel(movement?.movement?.start);
+            return [`Ｑ　${prefix}${start ? `${start}ランナー` : "ランナー"}${runner}がスタート`];
+        }
+        if (eventType === "wild_pitch" || eventType === "passed_ball" || eventType === "balk") {
+            const label = eventType === "wild_pitch" ? "ワイルドピッチ"
+                : eventType === "passed_ball" ? "パスボール" : "ボーク";
+            const destinations = [...new Set(movements
+                .filter((runner) => !runner?.movement?.isOut)
+                .map((runner) => baseLabel(runner?.movement?.end))
+                .filter(Boolean))];
+            return [
+                `Ｑ　${prefix}${label}でランナーが進塁`,
+                ...(destinations.length ? [`　　${destinations.join("、")}になります`] : [])
+            ];
+        }
+        const description = text(event?.details?.description || event?.details?.event);
+        return description ? [`Ｑ　${prefix}${description}`] : [];
+    };
+
+    const batterResultLines = (play, detailKeys, previousSelected, data = snapshot()) => {
         const eventType = text(play?.result?.eventType).toLowerCase();
         const rbi = number(play?.result?.rbi);
         const description = text(play?.result?.description);
@@ -496,9 +594,11 @@
                 : `${focus.name}、${destination}`;
         };
 
-        if (detailed) {
-            const pitch = finalPitch(play);
-            if (pitch) {
+        const selectedDetails = new Set(Array.isArray(detailKeys) ? detailKeys : []);
+        detailOptions(play).filter((option) => selectedDetails.has(option.key))
+            .forEach((option) => {
+            if (option.kind === "pitch") {
+                const pitch = option.event;
                 const pitchNumber = number(pitch?.pitchNumber) || pitchEvents(play).length;
                 lines.push(`Ｑ　${countText(priorCount(play, pitch))}${circled(pitchNumber)}球目`);
                 const location = pitchLocation(play, pitch);
@@ -506,15 +606,18 @@
                 const type = pitchName(pitch);
                 const pitchDescription = `${location}${speed ? `${speed}キロの` : ""}${type}`;
                 if (pitchDescription) {
-                    const action = ["home_run", "single", "double", "triple"].includes(eventType)
+                    const isFinalPitch = pitch === finalPitch(play);
+                    const action = isFinalPitch && ["home_run", "single", "double", "triple"].includes(eventType)
                         ? "を捉え"
-                        : eventType.includes("strikeout")
+                        : isFinalPitch && eventType.includes("strikeout")
                             ? /swing|空振/i.test(description) ? "に空振り" : "を見逃し"
                             : "";
                     lines.push(`Ｑ　${pitchDescription}${action}`);
                 }
+            } else {
+                lines.push(...detailEventLines(play, option, data));
             }
-        }
+        });
 
         if (eventType === "home_run") {
             lines.push(`Ｑ　${hitLead(direction ? `${direction}スタンドへ` : "スタンドへ")}`);
@@ -776,17 +879,30 @@
         const data = snapshot();
         arrangeSelection();
         const selected = selection
-            .map((item) => ({ ...item, play: findPlay(item.atBatIndex, data) }))
+            .map((item) => {
+                if (item.type === "pitching-change") {
+                    const change = findPitcherChange(item.incomingPitcherId, data);
+                    return { ...item, change, play: change?.play };
+                }
+                return { ...item, play: findPlay(item.atBatIndex, data) };
+            })
             .filter((item) => item.play);
         const plays = selected.map((item) => item.play);
         const lines = automaticHead(plays, data);
         const introducedStarters = new Set();
         selected.forEach((item, index) => {
             if (lines.length) lines.push("");
+            if (item.type === "pitching-change") {
+                const outgoing = playerName({ id: item.outgoingPitcherId }, data) || "ピッチャー";
+                const incoming = playerName({ id: item.incomingPitcherId }, data);
+                lines.push(`Ｑ　ここで${outgoing}がマウンドを降ります`);
+                if (incoming) lines.push(`　　代わって${incoming}がマウンドへ`);
+                return;
+            }
             lines.push(...starterIntroductionForPlay(item.play, introducedStarters, data));
             lines.push(...batterResultLines(
                 item.play,
-                item.detailed,
+                item.detailKeys,
                 index > 0 ? selected[index - 1].play : null,
                 data
             ));
@@ -802,12 +918,16 @@
             cell.querySelector(".highlight-script-order")?.remove();
         });
         selection.forEach((item, index) => {
-            const cell = document.querySelector(
-                `.atbat-cell[data-at-bat-index="${item.atBatIndex}"]`
-            );
+            const cell = item.type === "pitching-change"
+                ? document.querySelector(
+                    `.bench-pitcher-entry[data-incoming-pitcher-id="${item.incomingPitcherId}"]`
+                )
+                : document.querySelector(
+                    `.atbat-cell[data-at-bat-index="${item.atBatIndex}"]`
+                );
             if (!cell) return;
             cell.classList.add("highlight-script-selected");
-            if (item.detailed) cell.classList.add("highlight-script-detailed");
+            if (item.detailKeys?.length) cell.classList.add("highlight-script-detailed");
             const badge = document.createElement("span");
             badge.className = "highlight-script-order";
             badge.textContent = String(index + 1);
@@ -818,21 +938,14 @@
         );
     };
 
-    const selectCell = (cell, detailed = false) => {
+    const selectCell = (cell) => {
         const atBatIndex = Number(cell?.dataset?.atBatIndex);
         if (!Number.isInteger(atBatIndex)) return;
         const index = selection.findIndex((item) => item.atBatIndex === atBatIndex);
-        if (detailed) {
-            if (index < 0) selection.push({
-                atBatIndex,
-                detailed: true,
-                selectionOrder: selectionSequence++
-            });
-            else selection[index].detailed = true;
-        } else if (index < 0) {
+        if (index < 0) {
             selection.push({
                 atBatIndex,
-                detailed: false,
+                detailKeys: [],
                 selectionOrder: selectionSequence++
             });
         } else {
@@ -840,6 +953,75 @@
         }
         arrangeSelection();
         refreshMarks();
+    };
+
+    const selectPitcherChange = (entry) => {
+        const incomingPitcherId = number(entry?.dataset?.incomingPitcherId);
+        const outgoingPitcherId = number(entry?.dataset?.outgoingPitcherId);
+        if (!incomingPitcherId) return;
+        const index = selection.findIndex((item) =>
+            item.type === "pitching-change" && item.incomingPitcherId === incomingPitcherId);
+        if (index >= 0) {
+            selection.splice(index, 1);
+        } else {
+            const change = findPitcherChange(incomingPitcherId);
+            selection.push({
+                type: "pitching-change",
+                incomingPitcherId,
+                outgoingPitcherId,
+                timelineIndex: getAtBatIndex(change?.play) - 0.1,
+                selectionOrder: selectionSequence++
+            });
+        }
+        arrangeSelection();
+        refreshMarks();
+    };
+
+    const showDetailChooser = (cell) => {
+        const atBatIndex = Number(cell?.dataset?.atBatIndex);
+        const play = findPlay(atBatIndex);
+        if (!play) return;
+        let item = selection.find((candidate) => candidate.atBatIndex === atBatIndex);
+        if (!item) {
+            item = { atBatIndex, detailKeys: [], selectionOrder: selectionSequence++ };
+            selection.push(item);
+            arrangeSelection();
+            refreshMarks();
+        }
+        const options = detailOptions(play);
+        const pitchOptions = options.filter((option) => option.kind === "pitch");
+        const chosen = new Set(item.detailKeys ?? []);
+        const backdrop = document.createElement("div");
+        backdrop.className = "highlight-script-dialog-backdrop";
+        backdrop.innerHTML = `<section class="highlight-script-dialog highlight-detail-dialog" role="dialog" aria-modal="true" aria-label="詳細選択"><header><h2>${xml(inningLabel(play))}　${xml(playerName(play?.matchup?.batter))}の詳細</h2><button type="button" data-close>閉じる</button></header><p class="highlight-script-dialog-note">原稿や公式PBP資料で詳しく見せる投球・出来事を選択してください。</p><div class="highlight-detail-options">${pitchOptions.length ? `<label class="highlight-detail-all"><input type="checkbox" data-all-pitches> 全球</label>` : ""}${options.map((option) => `<label><input type="checkbox" value="${xml(option.key)}" ${chosen.has(option.key) ? "checked" : ""}> <span>${xml(option.label)}</span></label>`).join("") || "<p>選択できる詳細はありません。</p>"}</div><footer><button type="button" data-clear>詳細を外す</button><button type="button" data-save class="primary">決定</button></footer></section>`;
+        const allPitches = backdrop.querySelector("[data-all-pitches]");
+        const pitchChecks = pitchOptions.map((option) =>
+            backdrop.querySelector(`input[value="${CSS.escape(option.key)}"]`)).filter(Boolean);
+        const syncAll = () => {
+            if (!allPitches) return;
+            allPitches.checked = pitchChecks.length > 0 && pitchChecks.every((input) => input.checked);
+            allPitches.indeterminate = pitchChecks.some((input) => input.checked) && !allPitches.checked;
+        };
+        syncAll();
+        allPitches?.addEventListener("change", () => {
+            pitchChecks.forEach((input) => { input.checked = allPitches.checked; });
+            syncAll();
+        });
+        pitchChecks.forEach((input) => input.addEventListener("change", syncAll));
+        const close = () => backdrop.remove();
+        backdrop.querySelector("[data-close]").addEventListener("click", close);
+        backdrop.querySelector("[data-clear]").addEventListener("click", () => {
+            item.detailKeys = [];
+            refreshMarks();
+            close();
+        });
+        backdrop.querySelector("[data-save]").addEventListener("click", () => {
+            item.detailKeys = [...backdrop.querySelectorAll(".highlight-detail-options input[value]:checked")]
+                .map((input) => input.value);
+            refreshMarks();
+            close();
+        });
+        document.body.append(backdrop);
     };
 
     const stop = ({ clear = false } = {}) => {
@@ -1037,11 +1219,178 @@
         context()?.setStatus?.(`${filename} を出力しました。`);
     };
 
+    const captureOfficialPbp = async (button) => {
+        const data = snapshot();
+        arrangeSelection();
+        const events = selection.map((item) => {
+            if (item.type === "pitching-change") {
+                return {
+                    type: "pitching-change",
+                    incomingPitcher: text(resolvedPerson({ id: item.incomingPitcherId }, data)?.fullName),
+                    outgoingPitcher: text(resolvedPerson({ id: item.outgoingPitcherId }, data)?.fullName)
+                };
+            }
+            return { type: "atbat", atBatIndex: item.atBatIndex };
+        });
+        const uniqueEvents = events.filter((event, index, list) => {
+            const key = event.type === "atbat"
+                ? `atbat:${event.atBatIndex}`
+                : `change:${event.incomingPitcher}:${event.outgoingPitcher}`;
+            return list.findIndex((candidate) => (candidate.type === "atbat"
+                ? `atbat:${candidate.atBatIndex}`
+                : `change:${candidate.incomingPitcher}:${candidate.outgoingPitcher}`) === key) === index;
+        });
+        if (!uniqueEvents.length) return;
+        const original = button?.textContent;
+        if (button) {
+            button.disabled = true;
+            button.textContent = "公式Gamedayを撮影中…";
+        }
+        try {
+            const response = await fetch("http://127.0.0.1:8765/capture", {
+                method: "POST",
+                headers: { "content-type": "application/json" },
+                body: JSON.stringify({
+                    gamePk: data?.gamePk,
+                    date: text(data?.gameData?.gameData?.datetime?.officialDate).replaceAll("-", ""),
+                    away: data?.away?.abbreviation,
+                    home: data?.home?.abbreviation,
+                    events: uniqueEvents
+                })
+            });
+            const result = await response.json();
+            if (!response.ok) throw new Error(result?.error || "PBP資料を作成できませんでした。");
+            const link = document.createElement("a");
+            link.href = result.url;
+            link.download = result.filename;
+            link.click();
+            context()?.setStatus?.(`${result.filename} を作成しました。`);
+        } catch (error) {
+            context()?.setStatus?.(
+                `PBP撮影を起動できません。scripts/PBP撮影を起動.command を開いてから再実行してください。${error?.message ? `（${error.message}）` : ""}`,
+                true
+            );
+        } finally {
+            if (button) {
+                button.disabled = false;
+                button.textContent = original;
+            }
+        }
+    };
+
+    const pbpPitchColor = (pitch) => {
+        if (pitch?.details?.isInPlay) return "#7e57c2";
+        return pitch?.details?.isStrike ? "#d92332" : "#159447";
+    };
+
+    const pbpPitchChart = (play) => {
+        const pitches = pitchEvents(play);
+        const chartWidth = 190;
+        const chartHeight = 150;
+        const mapX = (value) => 95 + Math.max(-2.5, Math.min(2.5, number(value))) * 34;
+        const mapY = (value) => 142 - Math.max(0, Math.min(5.5, number(value))) * 25;
+        const zoneTop = number(pitches.find((pitch) => pitch?.pitchData?.strikeZoneTop)
+            ?.pitchData?.strikeZoneTop) || 3.5;
+        const zoneBottom = number(pitches.find((pitch) => pitch?.pitchData?.strikeZoneBottom)
+            ?.pitchData?.strikeZoneBottom) || 1.5;
+        const left = mapX(-0.83);
+        const right = mapX(0.83);
+        const top = mapY(zoneTop);
+        const bottom = mapY(zoneBottom);
+        const verticals = [1, 2].map((part) => {
+            const x = left + ((right - left) * part / 3);
+            return `<line x1="${x}" y1="${top}" x2="${x}" y2="${bottom}"/>`;
+        }).join("");
+        const horizontals = [1, 2].map((part) => {
+            const y = top + ((bottom - top) * part / 3);
+            return `<line x1="${left}" y1="${y}" x2="${right}" y2="${y}"/>`;
+        }).join("");
+        const points = pitches.map((pitch, index) => {
+            const coordinates = pitch?.pitchData?.coordinates ?? {};
+            if (!Number.isFinite(Number(coordinates.pX)) ||
+                !Number.isFinite(Number(coordinates.pZ))) return "";
+            const x = mapX(coordinates.pX);
+            const y = mapY(coordinates.pZ);
+            return `<g><circle cx="${x}" cy="${y}" r="8" fill="${pbpPitchColor(pitch)}"/>` +
+                `<text x="${x}" y="${y + 3}" text-anchor="middle">${index + 1}</text></g>`;
+        }).join("");
+        return `<svg class="pitch-chart" viewBox="0 0 ${chartWidth} ${chartHeight}" aria-label="投球位置">` +
+            `<rect width="${chartWidth}" height="${chartHeight}" fill="#f3f1ea"/>` +
+            `<path d="M15 145 Q95 100 175 145" fill="#d8c19b" stroke="#987b54"/>` +
+            `<g class="zone"><rect x="${left}" y="${top}" width="${right - left}" ` +
+            `height="${bottom - top}"/>${verticals}${horizontals}</g>${points}</svg>`;
+    };
+
+    const pbpPitchRows = (play) => pitchEvents(play).map((pitch, index) => {
+        const speed = number(pitch?.pitchData?.startSpeed);
+        const description = text(pitch?.details?.description || "Pitch");
+        const type = text(pitch?.details?.type?.description);
+        const count = pitch?.count ?? {};
+        return `<li><b style="background:${pbpPitchColor(pitch)}">${index + 1}</b>` +
+            `<span><strong>${xml(description)}</strong><small>` +
+            `${speed ? `${speed.toFixed(1)} mph` : ""}${speed && type ? " " : ""}${xml(type)}` +
+            `</small></span><em>${number(count.balls)} - ${number(count.strikes)}</em></li>`;
+    }).join("");
+
+    const pbpCard = (play, data) => {
+        const score = scoreBefore(play, data);
+        const away = text(data?.away?.abbreviation || "AWAY");
+        const home = text(data?.home?.abbreviation || "HOME");
+        const half = play?.about?.isTopInning === true ? "TOP" : "BOT";
+        const pitcher = resolvedPerson(play?.matchup?.pitcher, data);
+        const batter = resolvedPerson(play?.matchup?.batter, data);
+        const pitches = pitchEvents(play);
+        const result = text(play?.result?.event || "Play");
+        const description = text(play?.result?.description);
+        const compact = pitches.length >= 9 ? " compact" : "";
+        const headshot = (person) => person?.id
+            ? `https://img.mlbstatic.com/mlb-photos/image/upload/w_120,q_auto:best/v1/people/${person.id}/headshot/67/current`
+            : "";
+        return `<article class="pbp-card${compact}">` +
+            `<div class="game-line">${half} ${number(play?.about?.inning)}　|　` +
+            `${xml(away)} ${score.away}, ${xml(home)} ${score.home}</div>` +
+            `<h2>${xml(result)}</h2><p class="description">${xml(description)}</p>` +
+            `<div class="matchup"><div>${headshot(pitcher) ? `<img src="${headshot(pitcher)}">` : ""}` +
+            `<strong>${xml(pitcher?.lastName || pitcher?.fullName)}</strong><small>Pitcher</small></div>` +
+            `<span class="count">${number(play?.count?.balls)} - ${number(play?.count?.strikes)}<small>○○○</small></span>` +
+            `<div>${headshot(batter) ? `<img src="${headshot(batter)}">` : ""}` +
+            `<strong>${xml(batter?.lastName || batter?.fullName)}</strong><small>Batter</small></div></div>` +
+            `<h3>Pitch by Pitch</h3><div class="pitch-area">${pbpPitchChart(play)}` +
+            `<ol>${pbpPitchRows(play)}</ol></div></article>`;
+    };
+
+    const printPbpMaterial = () => {
+        const data = snapshot();
+        arrangeSelection();
+        const plays = selection.map((item) => findPlay(item.atBatIndex, data)).filter(Boolean);
+        if (!plays.length) return;
+        const officialDate = text(data?.gameData?.gameData?.datetime?.officialDate).replaceAll("-", "");
+        const away = text(data?.away?.abbreviation || "AWAY");
+        const home = text(data?.home?.abbreviation || "HOME");
+        const printTitle = `${officialDate || "highlight"}_${away}@${home}_PBP資料`;
+        const pages = [];
+        for (let index = 0; index < plays.length; index += 4) {
+            pages.push(`<section class="sheet">${plays.slice(index, index + 4)
+                .map((play) => pbpCard(play, data)).join("")}</section>`);
+        }
+        const printWindow = window.open("", "_blank");
+        if (!printWindow) {
+            context()?.setStatus?.("PBP資料を開けませんでした。ポップアップを許可してください。", true);
+            return;
+        }
+        printWindow.document.write(`<!doctype html><html lang="ja"><head><meta charset="utf-8">` +
+            `<title>${xml(printTitle)}</title><style>
+@page{size:A4 portrait;margin:9mm}*{box-sizing:border-box}body{margin:0;background:#ddd;color:#111;font-family:Arial,"Noto Sans JP",sans-serif}.sheet{width:192mm;height:279mm;margin:8mm auto;background:#fff;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:7mm;padding:5mm;page-break-after:always}.sheet:last-child{page-break-after:auto}.pbp-card{min-width:0;overflow:hidden;border:1.5px solid #bbb;border-radius:5px;padding:4mm;background:#fff}.game-line{font-size:8pt}.pbp-card h2{margin:2mm 0 1mm;font-size:16pt}.description{height:10mm;margin:0 0 2mm;font-size:8.5pt;line-height:1.35}.matchup{display:grid;grid-template-columns:1fr 20mm 1fr;align-items:center;padding:2mm 0;border-top:1px solid #ddd;border-bottom:1px solid #ddd}.matchup>div{display:grid;grid-template-columns:12mm 1fr;grid-template-rows:1fr 1fr;align-items:center;gap:0 2mm;font-size:8pt}.matchup>div:last-child{text-align:right;grid-template-columns:1fr 12mm}.matchup>div:last-child img{grid-column:2;grid-row:1/3}.matchup img{width:11mm;height:11mm;object-fit:cover;border-radius:50%;grid-row:1/3}.matchup small{font-size:6.5pt;color:#666}.count{text-align:center;font-weight:700;font-size:10pt}.count small{display:block;letter-spacing:1px}.pbp-card h3{margin:2mm 0;font-size:10pt}.pitch-area{display:grid;grid-template-columns:45% 55%;gap:2mm}.pitch-chart{width:100%;height:47mm}.zone rect,.zone line{fill:none;stroke:#222;stroke-width:1}.pitch-chart text{fill:#fff;font-size:7px;font-weight:700}.pitch-area ol{list-style:none;margin:0;padding:0}.pitch-area li{display:grid;grid-template-columns:6mm 1fr 12mm;align-items:start;gap:1.5mm;margin-bottom:1.3mm;font-size:7pt}.pitch-area li>b{width:5mm;height:5mm;display:grid;place-items:center;border-radius:50%;color:#fff}.pitch-area li strong,.pitch-area li small{display:block;line-height:1.15}.pitch-area li small{font-size:6.4pt}.pitch-area li em{text-align:right;font-style:normal;font-weight:700}.compact .pitch-area li{margin-bottom:.6mm;font-size:6.3pt}.compact .pitch-area li small{font-size:5.8pt}@media print{body{background:#fff}.sheet{margin:0;padding:0;width:auto;height:279mm;gap:7mm}}
+</style></head><body>${pages.join("")}<script>addEventListener("load",()=>setTimeout(()=>print(),500));<\/script></body></html>`);
+        printWindow.document.close();
+        context()?.setStatus?.(`選択した${plays.length}打席のPBP資料を作成しました。`);
+    };
+
     const showPreview = (narration) => {
         dialog?.remove();
         const backdrop = document.createElement("div");
         backdrop.className = "highlight-script-dialog-backdrop";
-        backdrop.innerHTML = `<section class="highlight-script-dialog" role="dialog" aria-modal="true" aria-label="ハイライト原稿プレビュー"><header><h2>ハイライト原稿</h2><button type="button" data-close aria-label="閉じる">閉じる</button></header><p class="highlight-script-dialog-note">実況・解説や映像指示は入れていません。必要に応じて本文を直してからWordへ出力できます。</p><textarea spellcheck="false"></textarea><footer><button type="button" data-reselect>選び直す</button><button type="button" data-download class="primary">Wordを出力</button></footer></section>`;
+        backdrop.innerHTML = `<section class="highlight-script-dialog" role="dialog" aria-modal="true" aria-label="ハイライト原稿プレビュー"><header><h2>ハイライト原稿</h2><button type="button" data-close aria-label="閉じる">閉じる</button></header><p class="highlight-script-dialog-note">実況・解説や映像指示は入れていません。必要に応じて本文を直してからWordへ出力できます。</p><textarea spellcheck="false"></textarea><footer><button type="button" data-reselect>選び直す</button><button type="button" data-official-pbp>公式PBP資料を作成</button><button type="button" data-download class="primary">Wordを出力</button></footer></section>`;
         const textarea = backdrop.querySelector("textarea");
         textarea.value = narration;
         backdrop.querySelector("[data-close]").addEventListener("click", () => {
@@ -1057,6 +1406,8 @@
         });
         backdrop.querySelector("[data-download]").addEventListener("click", () =>
             downloadDocx(textarea.value));
+        backdrop.querySelector("[data-official-pbp]").addEventListener("click", (event) =>
+            captureOfficialPbp(event.currentTarget));
         document.body.append(backdrop);
         dialog = backdrop;
         textarea.focus();
@@ -1096,12 +1447,21 @@
 
     document.addEventListener("click", (event) => {
         if (!active) return;
+        const pitcherChange = event.target.closest?.(
+            ".bench-pitcher-entry[data-pitcher-change='true']"
+        );
+        if (pitcherChange) {
+            event.preventDefault();
+            event.stopImmediatePropagation();
+            selectPitcherChange(pitcherChange);
+            return;
+        }
         const cell = event.target.closest?.(".atbat-cell[data-at-bat-index]");
         if (!cell) return;
         event.preventDefault();
         event.stopImmediatePropagation();
         if (event.detail > 1) return;
-        selectCell(cell, false);
+        selectCell(cell);
     }, true);
 
     document.addEventListener("dblclick", (event) => {
@@ -1110,7 +1470,7 @@
         if (!cell) return;
         event.preventDefault();
         event.stopImmediatePropagation();
-        selectCell(cell, true);
+        showDetailChooser(cell);
     }, true);
 
     window.ScorebookHighlightScript = {
@@ -1124,7 +1484,13 @@
             mode = MODES[requestedMode] ? requestedMode : "full";
             selection.splice(0, selection.length, ...(items ?? []).map((item, index) => ({
                 atBatIndex: Number(item.atBatIndex),
-                detailed: Boolean(item.detailed),
+                detailKeys: Array.isArray(item.detailKeys)
+                    ? [...item.detailKeys]
+                    : item.detailed
+                        ? detailOptions(findPlay(Number(item.atBatIndex)))
+                            .filter((option) => option.kind === "pitch")
+                            .map((option) => option.key)
+                        : [],
                 selectionOrder: index
             })));
             arrangeSelection();
