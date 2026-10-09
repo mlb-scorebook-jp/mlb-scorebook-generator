@@ -7211,10 +7211,16 @@
                 return OUT_BASE_LETTERS[base] ?? "";
             };
 
-            const isRundownFieldingRoute = (numbers, isBatter) =>
-                !isBatter && numbers.length >= 3 &&
-                numbers[0] === numbers[numbers.length - 1] &&
-                new Set(numbers).size > 1;
+            // 公式PBPが併殺として扱っていても、映像で挟殺を確認した例外。
+            // 同じ守備番号で始まり終わる通常の3-6-3／3-4-3併殺は含めない。
+            const VERIFIED_RUNDOWN_PLAYS = new Set([
+                "849822:10" // 2026/10/7 LAD@ATL 2回表 M.マンシーを3-4-3で挟殺
+            ]);
+            const isRundownFieldingRoute = (play, numbers, isBatter) => {
+                if (isBatter || numbers.length < 3) return false;
+                const key = `${Number(state.gamePk)}:${Number(play?.atBatIndex ?? play?.about?.atBatIndex)}`;
+                return VERIFIED_RUNDOWN_PLAYS.has(key);
+            };
 
             const formatFieldingRoute = (play, route, suffixes = []) => {
                 const outRunners = (play?.runners ?? []).filter((runner) =>
@@ -7250,12 +7256,14 @@
                 if (!numbers.length) return "";
 
                 const runnerEventType = String(runner?.details?.eventType ?? "").toLowerCase();
+                const runnerMovementReason = String(runner?.details?.movementReason ?? "").toLowerCase();
                 const playEventType = String(play?.result?.eventType ?? "").toLowerCase();
                 const lowerDescription = description.toLowerCase();
                 const isBatter = Number(runner?.details?.runner?.id) === Number(batterId);
-                const isRundownTagOut = isRundownFieldingRoute(numbers, isBatter);
+                const isRundownTagOut = isRundownFieldingRoute(play, numbers, isBatter);
                 const isForceOut = !isRundownTagOut && (
                     runnerEventType.includes("force_out") ||
+                    runnerMovementReason.includes("force_out") ||
                     runnerEventType.includes("grounded_into_double_play") ||
                     runnerEventType.includes("triple_play") ||
                     playEventType === "force_out" ||
@@ -7264,6 +7272,7 @@
                 );
                 const isTagOut = isRundownTagOut || (!isForceOut && (
                     /caught_stealing|pickoff|tag_out/.test(runnerEventType) ||
+                    /tag_out|tagged_out|tag/.test(runnerMovementReason) ||
                     /caught stealing|picked off|tagged out|tag play/.test(lowerDescription) ||
                     /out at (?:2nd|3rd|home)\b/.test(lowerDescription) ||
                     (!isBatter && Boolean(runner?.movement?.originBase))
@@ -7348,20 +7357,26 @@
                         Math.max(0, numbers.length - outRunners.length + runnerIndex)
                     );
                     const runnerEventType = String(runner?.details?.eventType ?? "").toLowerCase();
+                    const runnerMovementReason = String(runner?.details?.movementReason ?? "").toLowerCase();
                     const playEventType = String(play?.result?.eventType ?? "").toLowerCase();
                     const lowerDescription = description.toLowerCase();
                     const isBatter = Number(runner?.details?.runner?.id) === Number(batterId);
-                    const isRundownTagOut = isRundownFieldingRoute(numbers, isBatter);
+                    const isRundownTagOut = isRundownFieldingRoute(play, numbers, isBatter);
                     const isForceOut = !isRundownTagOut && (
                         runnerEventType.includes("force_out") ||
+                        runnerMovementReason.includes("force_out") ||
                         runnerEventType.includes("grounded_into_double_play") ||
                         runnerEventType.includes("triple_play") ||
                         playEventType === "force_out" ||
                         playEventType === "triple_play" ||
                         lowerDescription.includes("force out")
                     );
-                    const isTagOut = isRundownTagOut ||
-                        (!isForceOut && !isBatter && Boolean(runner?.movement?.originBase));
+                    const isTagOut = isRundownTagOut || (!isForceOut && (
+                        /caught_stealing|pickoff|tag_out/.test(runnerEventType) ||
+                        /tag_out|tagged_out|tag/.test(runnerMovementReason) ||
+                        /caught stealing|picked off|tagged out|tag play/.test(lowerDescription) ||
+                        (!isBatter && Boolean(runner?.movement?.originBase))
+                    ));
 
                     if (isTagOut) {
                         suffixes[terminalIndex] = "TO";
