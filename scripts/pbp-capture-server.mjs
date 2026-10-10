@@ -67,7 +67,7 @@ const captureEvent = async (page, job, event) => {
     const navigation = page.goto(url, { waitUntil: "commit", timeout: 30000 }).catch(() => null);
     await Promise.race([navigation, page.waitForTimeout(12000)]);
     // 見た目の描画後、タブ切替のReactイベントが有効になるまで待つ。
-    await page.waitForTimeout(7000);
+    await page.waitForTimeout(12000);
     await closeOverlays(page);
     if (event.type === "atbat") {
         let detailDialog = page.getByRole("dialog")
@@ -166,11 +166,25 @@ const makePdf = async (job) => {
     });
     await browserContext.route(/doubleclick|googlesyndication|googletagmanager|amazon-adsystem|scorecardresearch|flashtalking/i,
         (route) => route.abort());
-    const page = await browserContext.newPage();
     const pdf = await PDFDocument.create();
     try {
-        for (const event of job.events) {
-            const bytes = await captureEvent(page, job, event);
+        const captures = new Array(job.events.length);
+        let nextIndex = 0;
+        const workerCount = Math.min(2, job.events.length);
+        const workers = Array.from({ length: workerCount }, async () => {
+            const page = await browserContext.newPage();
+            try {
+                while (nextIndex < job.events.length) {
+                    const index = nextIndex;
+                    nextIndex += 1;
+                    captures[index] = await captureEvent(page, job, job.events[index]);
+                }
+            } finally {
+                await page.close().catch(() => {});
+            }
+        });
+        await Promise.all(workers);
+        for (const bytes of captures) {
             const image = await pdf.embedPng(bytes);
             const sheet = pdf.addPage([841.89, 595.28]);
             const size = fit(image.width, image.height, 813.89, 567.28);
