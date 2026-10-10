@@ -61,12 +61,15 @@ const captureEvent = async (page, job, event) => {
     const url = event.type === "atbat"
         ? `${base}/play/${event.atBatIndex}`
         : `${base}/final`;
-    await page.goto(url, { waitUntil: "domcontentloaded", timeout: 90000 });
+    console.log(`[${new Date().toISOString()}] opening ${event.type}:${event.atBatIndex ?? "pitching-change"}`);
+    // MLB Gamedayは解析用通信が長く続くことがある。HTML全体の完了を待たず、
+    // ページ遷移が始まった時点から描画待ちへ進める。
+    await page.goto(url, { waitUntil: "commit", timeout: 30000 });
     await page.waitForTimeout(3500);
     await closeOverlays(page);
     if (event.type === "atbat") {
         const pitchTab = page.getByText("Pitch by Pitch", { exact: true }).first();
-        await pitchTab.waitFor({ timeout: 20000 }).catch(() => {});
+        await pitchTab.waitFor({ timeout: 8000 }).catch(() => {});
         if (await pitchTab.isVisible().catch(() => false)) {
             await pitchTab.click().catch(() => {});
             await page.waitForTimeout(700);
@@ -96,7 +99,9 @@ const captureEvent = async (page, job, event) => {
         }
     }
     await closeOverlays(page);
-    return page.screenshot({ type: "png", fullPage: false });
+    const shot = await page.screenshot({ type: "png", fullPage: false });
+    console.log(`[${new Date().toISOString()}] captured ${event.type}:${event.atBatIndex ?? "pitching-change"}`);
+    return shot;
 };
 
 const makePdf = async (job) => {
