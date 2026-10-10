@@ -48,7 +48,7 @@ const fit = (width, height, maxWidth, maxHeight) => {
 };
 
 const closeOverlays = async (page) => {
-    for (const label of ["Accept & Continue", "Accept All", "I Accept", "Continue", "Close"]) {
+    for (const label of ["Accept & Continue", "Accept All", "I Accept", "Continue"]) {
         const button = page.getByRole("button", { name: label, exact: false }).first();
         if (await button.isVisible().catch(() => false)) await button.click().catch(() => {});
         const textLink = page.getByText(label, { exact: false }).first();
@@ -64,16 +64,47 @@ const captureEvent = async (page, job, event) => {
     console.log(`[${new Date().toISOString()}] opening ${event.type}:${event.atBatIndex ?? "pitching-change"}`);
     // MLB Gamedayは解析用通信が長く続くことがある。HTML全体の完了を待たず、
     // ページ遷移が始まった時点から描画待ちへ進める。
-    await page.goto(url, { waitUntil: "commit", timeout: 30000 });
-    await page.waitForTimeout(3500);
+    const navigation = page.goto(url, { waitUntil: "commit", timeout: 30000 }).catch(() => null);
+    await Promise.race([navigation, page.waitForTimeout(12000)]);
     await closeOverlays(page);
     if (event.type === "atbat") {
-        const pitchTab = page.getByText("Pitch by Pitch", { exact: true }).first();
-        await pitchTab.waitFor({ timeout: 8000 }).catch(() => {});
+        let detailDialog = page.getByRole("dialog")
+            .filter({ hasText: event.description || "win probability" })
+            .first();
+        if (!(await detailDialog.isVisible().catch(() => false))) {
+            const allFilter = page.getByText("All", { exact: true }).first();
+            if (await allFilter.isVisible().catch(() => false)) {
+                await allFilter.click().catch(() => {});
+                await page.waitForTimeout(700);
+            }
+            const playButton = page.getByRole("button", {
+                name: event.description || "play detail",
+                exact: false
+            }).last();
+            await Promise.race([
+                detailDialog.waitFor({ state: "visible", timeout: 30000 }),
+                playButton.waitFor({ state: "visible", timeout: 30000 })
+            ]);
+            if (!(await detailDialog.isVisible().catch(() => false))) {
+                // 該当プレーが描画されたら、残っている広告通信を止めてから開く。
+                await page.evaluate(() => window.stop()).catch(() => {});
+                await playButton.click();
+                detailDialog = page.getByRole("dialog")
+                    .filter({ hasText: event.description || "win probability" })
+                    .first();
+            }
+        }
+        await detailDialog.waitFor({ state: "visible", timeout: 20000 });
+        const pitchTab = detailDialog.getByText("Pitch by Pitch", { exact: true }).first();
         if (await pitchTab.isVisible().catch(() => false)) {
             await pitchTab.click().catch(() => {});
             await page.waitForTimeout(700);
         }
+        const card = detailDialog.locator('[class*="overlaystyle__ContentWrapper"]').first();
+        await card.waitFor({ state: "visible", timeout: 10000 });
+        const shot = await card.screenshot({ type: "png" });
+        console.log(`[${new Date().toISOString()}] captured ${event.type}:${event.atBatIndex}`);
+        return shot;
     } else {
         const allFilter = page.getByText("All", { exact: true }).first();
         if (await allFilter.isVisible().catch(() => false)) {
@@ -106,12 +137,32 @@ const captureEvent = async (page, job, event) => {
 
 const makePdf = async (job) => {
     await fs.mkdir(OUTPUT, { recursive: true });
+    try {
+        const feedResponse = await fetch(`https://statsapi.mlb.com/api/v1.1/game/${job.gamePk}/feed/live`);
+        if (feedResponse.ok) {
+            const feed = await feedResponse.json();
+            const plays = feed?.liveData?.plays?.allPlays ?? [];
+            for (const event of job.events) {
+                if (event.type !== "atbat" || event.description) continue;
+                event.description = plays.find((play) =>
+                    Number(play?.atBatIndex) === Number(event.atBatIndex))?.result?.description || "";
+            }
+        }
+    } catch {
+        // Gameday側でも対象プレーを探すため、公式フィード取得失敗時も続行する。
+    }
     const executablePath = browserExecutable();
     if (!executablePath) {
         throw new Error("Google Chrome または Microsoft Edge が見つかりません。");
     }
     const browser = await chromium.launch({ headless: true, executablePath });
-    const page = await browser.newPage({ viewport: { width: 1440, height: 900 }, deviceScaleFactor: 1.4 });
+    const browserContext = await browser.newContext({
+        viewport: { width: 1440, height: 900 },
+        deviceScaleFactor: 1.4
+    });
+    await browserContext.route(/doubleclick|googlesyndication|googletagmanager|amazon-adsystem|scorecardresearch|flashtalking/i,
+        (route) => route.abort());
+    const page = await browserContext.newPage();
     const pdf = await PDFDocument.create();
     try {
         for (const event of job.events) {
