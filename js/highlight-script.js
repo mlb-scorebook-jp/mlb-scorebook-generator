@@ -1604,19 +1604,37 @@
             button.textContent = "公式Gamedayを撮影中…";
         }
         context()?.setStatus?.(`公式Gamedayを撮影しています（${uniqueEvents.length}件）。完了までこの画面を閉じないでください。`);
+        const job = {
+            gamePk: data?.gamePk,
+            date: text(data?.gameData?.gameData?.datetime?.officialDate).replaceAll("-", ""),
+            away: data?.away?.abbreviation,
+            home: data?.home?.abbreviation,
+            events: uniqueEvents
+        };
         try {
+            if (location.protocol === "file:") {
+                const form = document.createElement("form");
+                form.method = "POST";
+                form.action = "http://127.0.0.1:8765/capture-download";
+                form.target = "_blank";
+                form.hidden = true;
+                const input = document.createElement("input");
+                input.type = "hidden";
+                input.name = "job";
+                input.value = JSON.stringify(job);
+                form.append(input);
+                document.body.append(form);
+                form.submit();
+                form.remove();
+                context()?.setStatus?.("公式Gamedayの撮影を別タブで開始しました。完成するとPDFがダウンロードされます。");
+                return;
+            }
             const response = await fetch("http://127.0.0.1:8765/capture", {
                 method: "POST",
                 // file:// からローカルサーバーへの送信でブラウザの事前確認を
                 // 発生させない。サーバー側は本文をJSONとして読み取る。
                 headers: { "content-type": "text/plain;charset=UTF-8" },
-                body: JSON.stringify({
-                    gamePk: data?.gamePk,
-                    date: text(data?.gameData?.gameData?.datetime?.officialDate).replaceAll("-", ""),
-                    away: data?.away?.abbreviation,
-                    home: data?.home?.abbreviation,
-                    events: uniqueEvents
-                })
+                body: JSON.stringify(job)
             });
             const result = await response.json();
             if (!response.ok) throw new Error(result?.error || "PBP資料を作成できませんでした。");

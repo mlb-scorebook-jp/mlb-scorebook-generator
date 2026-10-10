@@ -161,6 +161,29 @@ const server = http.createServer(async (request, response) => {
             return json(response, 404, { error: "PDFが見つかりません。" });
         }
     }
+    if (request.method === "POST" && request.url === "/capture-download") {
+        try {
+            console.log(`[${new Date().toISOString()}] form capture request received`);
+            const chunks = [];
+            for await (const chunk of request) chunks.push(chunk);
+            const params = new URLSearchParams(Buffer.concat(chunks).toString("utf8"));
+            const job = JSON.parse(params.get("job") || "{}");
+            if (!Number(job.gamePk) || !Array.isArray(job.events) || !job.events.length) {
+                return json(response, 400, { error: "撮影対象がありません。" });
+            }
+            const filename = await makePdf(job);
+            const bytes = await fs.readFile(path.join(OUTPUT, filename));
+            response.writeHead(200, {
+                "content-type": "application/pdf",
+                "content-disposition": `attachment; filename*=UTF-8''${encodeURIComponent(filename)}`
+            });
+            console.log(`[${new Date().toISOString()}] form capture completed: ${filename}`);
+            return response.end(bytes);
+        } catch (error) {
+            console.error(`[${new Date().toISOString()}] form capture failed:`, error);
+            return json(response, 500, { error: error?.message || String(error) });
+        }
+    }
     if (request.method !== "POST" || request.url !== "/capture") {
         return json(response, 404, { error: "Not found" });
     }
