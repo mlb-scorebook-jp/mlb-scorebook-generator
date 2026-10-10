@@ -1624,53 +1624,27 @@
             home: data?.home?.abbreviation,
             events: uniqueEvents
         };
+        const form = document.createElement("form");
+        form.method = "POST";
+        form.action = "http://127.0.0.1:8765/capture-download";
+        form.target = "_blank";
+        form.hidden = true;
+        const input = document.createElement("input");
+        input.type = "hidden";
+        input.name = "job";
+        input.value = JSON.stringify(job);
+        form.append(input);
+        document.body.append(form);
         try {
-            if (location.protocol === "file:") {
-                const form = document.createElement("form");
-                form.method = "POST";
-                form.action = "http://127.0.0.1:8765/capture-download";
-                form.target = "_blank";
-                form.hidden = true;
-                const input = document.createElement("input");
-                input.type = "hidden";
-                input.name = "job";
-                input.value = JSON.stringify(job);
-                form.append(input);
-                document.body.append(form);
-                try {
-                    form.submit();
-                } catch {
-                    // file:// から別タブへフォーム送信すると、送信に成功しても
-                    // 一部ブラウザが Load failed を投げるため無視する。
-                }
-                form.remove();
-                setStatus("公式Gamedayの撮影を別タブで開始しました。完成するとPDFがダウンロードされます。");
-                return;
-            }
-            const response = await fetch("http://127.0.0.1:8765/capture", {
-                method: "POST",
-                // file:// からローカルサーバーへの送信でブラウザの事前確認を
-                // 発生させない。サーバー側は本文をJSONとして読み取る。
-                headers: { "content-type": "text/plain;charset=UTF-8" },
-                body: JSON.stringify(job)
-            });
-            const result = await response.json();
-            if (!response.ok) throw new Error(result?.error || "PBP資料を作成できませんでした。");
-            const link = document.createElement("a");
-            link.href = result.url;
-            link.download = result.filename;
-            link.click();
-            setStatus(`${result.filename} を作成しました。`);
-        } catch (error) {
-            setStatus(
-                `PBP撮影サーバーに接続できません。ページを再読み込みしてから、もう一度実行してください。${error?.message ? `（${error.message}）` : ""}`,
-                true
-            );
-        } finally {
-            if (button) {
-                button.disabled = false;
-                button.textContent = original;
-            }
+            form.submit();
+        } catch {
+            // 送信に成功してもブラウザが Load failed を投げる場合がある。
+        }
+        form.remove();
+        setStatus("公式Gamedayの撮影を別タブで開始しました。完成するとPDFがダウンロードされます。");
+        if (button) {
+            button.disabled = false;
+            button.textContent = original;
         }
     };
 
