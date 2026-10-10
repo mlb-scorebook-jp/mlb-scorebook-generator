@@ -66,6 +66,8 @@ const captureEvent = async (page, job, event) => {
     // ページ遷移が始まった時点から描画待ちへ進める。
     const navigation = page.goto(url, { waitUntil: "commit", timeout: 30000 }).catch(() => null);
     await Promise.race([navigation, page.waitForTimeout(12000)]);
+    // 見た目の描画後、タブ切替のReactイベントが有効になるまで待つ。
+    await page.waitForTimeout(7000);
     await closeOverlays(page);
     if (event.type === "atbat") {
         let detailDialog = page.getByRole("dialog")
@@ -86,8 +88,6 @@ const captureEvent = async (page, job, event) => {
                 playButton.waitFor({ state: "visible", timeout: 30000 })
             ]);
             if (!(await detailDialog.isVisible().catch(() => false))) {
-                // 該当プレーが描画されたら、残っている広告通信を止めてから開く。
-                await page.evaluate(() => window.stop()).catch(() => {});
                 await playButton.click();
                 detailDialog = page.getByRole("dialog")
                     .filter({ hasText: event.description || "win probability" })
@@ -95,11 +95,15 @@ const captureEvent = async (page, job, event) => {
             }
         }
         await detailDialog.waitFor({ state: "visible", timeout: 20000 });
-        const pitchTab = detailDialog.getByText("Pitch by Pitch", { exact: true }).first();
-        if (await pitchTab.isVisible().catch(() => false)) {
-            await pitchTab.click().catch(() => {});
-            await page.waitForTimeout(700);
+        const pitchTabLabel = detailDialog.getByText("Pitch by Pitch", { exact: true }).first();
+        if (await pitchTabLabel.isVisible().catch(() => false)) {
+            const pitchTabButton = pitchTabLabel.locator("..");
+            await pitchTabButton.focus();
+            await pitchTabButton.press("Enter");
+            await page.waitForTimeout(1200);
         }
+        await detailDialog.getByRole("img", { name: "Pitch 1", exact: true })
+            .waitFor({ state: "visible", timeout: 10000 });
         const card = detailDialog.locator('[class*="overlaystyle__ContentWrapper"]').first();
         await card.waitFor({ state: "visible", timeout: 10000 });
         const shot = await card.screenshot({ type: "png" });
