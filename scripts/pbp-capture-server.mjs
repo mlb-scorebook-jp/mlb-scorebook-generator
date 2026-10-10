@@ -184,16 +184,32 @@ const makePdf = async (job) => {
             }
         });
         await Promise.all(workers);
-        for (const bytes of captures) {
-            const image = await pdf.embedPng(bytes);
-            const sheet = pdf.addPage([841.89, 595.28]);
-            const size = fit(image.width, image.height, 813.89, 567.28);
-            sheet.drawImage(image, {
-                x: (841.89 - size.width) / 2,
-                y: (595.28 - size.height) / 2,
-                width: size.width,
-                height: size.height
-            });
+        const pageWidth = 841.89;
+        const pageHeight = 595.28;
+        const margin = 8;
+        const gap = 5;
+        const columns = 4;
+        const rows = 2;
+        const cardsPerPage = columns * rows;
+        const cellWidth = (pageWidth - margin * 2 - gap * (columns - 1)) / columns;
+        const cellHeight = (pageHeight - margin * 2 - gap * (rows - 1)) / rows;
+        for (let start = 0; start < captures.length; start += cardsPerPage) {
+            const sheet = pdf.addPage([pageWidth, pageHeight]);
+            const group = captures.slice(start, start + cardsPerPage);
+            for (let index = 0; index < group.length; index += 1) {
+                const image = await pdf.embedPng(group[index]);
+                const size = fit(image.width, image.height, cellWidth, cellHeight);
+                const column = index % columns;
+                const row = Math.floor(index / columns);
+                const cellX = margin + column * (cellWidth + gap);
+                const cellY = pageHeight - margin - (row + 1) * cellHeight - row * gap;
+                sheet.drawImage(image, {
+                    x: cellX + (cellWidth - size.width) / 2,
+                    y: cellY + (cellHeight - size.height) / 2,
+                    width: size.width,
+                    height: size.height
+                });
+            }
         }
     } finally {
         await browser.close();
