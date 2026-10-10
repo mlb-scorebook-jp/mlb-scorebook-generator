@@ -2,6 +2,122 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "The five biggest questions facing the Angels this offseason",
+        "summaryJa": "M.トラウト（LAA）の最新動向をMLB公式が詳報",
+        "slug": "five-big-questions-for-angels-this-offseason",
+        "url": "https://www.mlb.com/news/five-big-questions-for-angels-this-offseason",
+        "contentDate": "2026-10-10T16:30:00Z",
+        "teamIds": [
+            108
+        ],
+        "playerIds": [
+            545361
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Suzuki reflects on the good times -- and a few 'what ifs' -- from 5 years with Cubs",
+        "summaryJa": "鈴木 誠也（CHC）の最新動向をMLB公式が詳報",
+        "slug": "seiya-suzuki-discusses-time-with-cubs-start-to-his-mlb-career",
+        "url": "https://www.mlb.com/news/seiya-suzuki-discusses-time-with-cubs-start-to-his-mlb-career",
+        "contentDate": "2026-10-10T15:02:32.314Z",
+        "teamIds": [
+            112
+        ],
+        "playerIds": [
+            673548
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "5 questions for Nats entering offseason after promising 2026",
+        "summaryJa": "ナショナルズの最新動向をMLB公式が詳報",
+        "slug": "questions-nationals-need-to-answer-during-offseason",
+        "url": "https://www.mlb.com/news/questions-nationals-need-to-answer-during-offseason",
+        "contentDate": "2026-10-10T14:30:00Z",
+        "teamIds": [
+            120
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Gray intends to pitch in '27, open to Red Sox return (report)",
+        "summaryJa": "S.グレイ（BOS）、復帰へ向けた最新状況",
+        "slug": "sonny-gray-intends-to-pitch-in-2027-open-to-red-sox-return",
+        "url": "https://www.mlb.com/news/sonny-gray-intends-to-pitch-in-2027-open-to-red-sox-return",
+        "contentDate": "2026-10-10T14:09:07.327Z",
+        "teamIds": [
+            111
+        ],
+        "playerIds": [
+            543243
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "The Marlins called pitches from the dugout -- exclusively. How did that go?",
+        "summaryJa": "マーリンズを巡る注目点をMLB公式が分析",
+        "slug": "rob-marcello-talks-pitching-calling-marlins-dugout",
+        "url": "https://www.mlb.com/news/rob-marcello-talks-pitching-calling-marlins-dugout",
+        "contentDate": "2026-10-10T14:08:24.077Z",
+        "teamIds": [
+            146
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Five questions Rockies need to address this offseason",
+        "summaryJa": "ロッキーズの最新動向をMLB公式が詳報",
+        "slug": "questions-facing-rockies-in-2026-27-offseason",
+        "url": "https://www.mlb.com/news/questions-facing-rockies-in-2026-27-offseason",
+        "contentDate": "2026-10-10T13:38:43.224Z",
+        "teamIds": [
+            115
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "White Sox-Guardians ALDS Game 5 FAQ (8 ET, TBS/HBO Max)",
         "summaryJa": "ガーディアンズの最新動向をMLB公式が詳報",
         "slug": "white-sox-vs-guardians-alds-game-5-starting-lineups-and-pitching-matchup",
@@ -216,6 +332,26 @@
             "injury",
             "transactions",
             "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Posey expresses confidence in Adames despite down year",
+        "summaryJa": "W.アダーメス（SF）の最新動向をMLB公式が詳報",
+        "slug": "giants-sticking-with-willy-adames-at-shortstop",
+        "url": "https://www.mlb.com/news/giants-sticking-with-willy-adames-at-shortstop",
+        "contentDate": "2026-10-09T23:52:00Z",
+        "teamIds": [
+            137
+        ],
+        "playerIds": [
+            642715
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
@@ -1042,29 +1178,6 @@
         ]
     },
     {
-        "headline": "Game times, broadcasts announced for League Championship Series",
-        "summaryJa": "レイズの最新動向をMLB公式が詳報",
-        "slug": "2026-mlb-playoff-and-world-series-schedule",
-        "url": "https://www.mlb.com/news/2026-mlb-playoff-and-world-series-schedule",
-        "contentDate": "2026-10-09T03:48:00Z",
-        "teamIds": [
-            139,
-            145,
-            114,
-            158,
-            119
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "postseason",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB"
-        ]
-    },
-    {
         "headline": "Rays witnessing most dominant closer run in team history",
         "summaryJa": "B.ベイカー（TB）の最新動向をMLB公式が詳報",
         "slug": "bryan-baker-has-been-dominant-as-rays-closer",
@@ -1171,7 +1284,6 @@
             "postseason"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -5588,31 +5700,6 @@
         ]
     },
     {
-        "headline": "Crochet 'will go until they take the ball from me' for Red Sox in Wild Card Series",
-        "summaryJa": "G.クロシェ（BOS）の最新動向をMLB公式が詳報",
-        "slug": "garrett-crochet-al-wild-card-series-roster",
-        "url": "https://www.mlb.com/news/garrett-crochet-al-wild-card-series-roster",
-        "contentDate": "2026-09-29T23:28:00Z",
-        "teamIds": [
-            111
-        ],
-        "playerIds": [
-            676979
-        ],
-        "gamePks": [
-            849851
-        ],
-        "taxonomy": [
-            "apple-news",
-            "postseason",
-            "alwc",
-            "series-b"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Pohlad: Twins expecting to raise payroll for 2027",
         "summaryJa": "ツインズの最新動向をMLB公式が詳報",
         "slug": "tom-pohlad-jeremy-zoll-derek-shelton-discuss-twins-offseason",
@@ -7807,29 +7894,6 @@
         ]
     },
     {
-        "headline": "Doval thrilled to be back with Giants: 'I haven't stopped smiling'",
-        "summaryJa": "C.ドバール（SF）の移籍・契約に関する最新情報",
-        "slug": "giants-claim-camilo-doval-off-waivers",
-        "url": "https://www.mlb.com/news/giants-claim-camilo-doval-off-waivers",
-        "contentDate": "2026-09-26T05:39:00Z",
-        "teamIds": [
-            137
-        ],
-        "playerIds": [
-            666808
-        ],
-        "gamePks": [
-            823167
-        ],
-        "taxonomy": [
-            "apple-news",
-            "transactions"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Sharing MLB RBI lead? No thanks! Burleson's pinch-hit blast puts him back on top",
         "summaryJa": "A.バールソン（STL）、本塁打で存在感",
         "slug": "alec-burleson-homers-to-regain-mlb-lead-in-rbis-in-2026",
@@ -8605,29 +8669,6 @@
         ]
     },
     {
-        "headline": "Sandy saves the day again as Fish keep Cubs from joining playoff field",
-        "summaryJa": "S.アルカンタラ（MIA）、勝利を呼び込む活躍",
-        "slug": "sandy-alcantara-earns-another-save-marlins-beat-cubs",
-        "url": "https://www.mlb.com/news/sandy-alcantara-earns-another-save-marlins-beat-cubs",
-        "contentDate": "2026-09-24T05:05:41.938Z",
-        "teamIds": [
-            146
-        ],
-        "playerIds": [
-            645261
-        ],
-        "gamePks": [
-            824625
-        ],
-        "taxonomy": [
-            "apple-news",
-            "final-week"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Up-and-coming prospects key second title in four years for D-backs' Double-A affiliate",
         "summaryJa": "D.ジョーンズ（AZ）、勝利を呼び込む活躍",
         "slug": "d-backs-double-a-affiliate-wins-2026-texas-league-championship",
@@ -8735,51 +8776,6 @@
         ],
         "taxonomy": [
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Veen embracing the mundane in Major League development",
-        "summaryJa": "Z.ビーン（COL）の最新動向をMLB公式が詳報",
-        "slug": "zac-veen-improving-in-platoon-role-with-rockies",
-        "url": "https://www.mlb.com/news/zac-veen-improving-in-platoon-role-with-rockies",
-        "contentDate": "2026-09-23T16:51:31.136Z",
-        "teamIds": [
-            115
-        ],
-        "playerIds": [
-            691728
-        ],
-        "gamePks": [
-            824301
-        ],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Homers away from home: Guzman goes deep in 4th straight game at Sutter Health Park",
-        "summaryJa": "D.グズマン（LAA）、記録達成の最新情報",
-        "slug": "denzer-guzman-homers-in-angels-loss-to-a-s",
-        "url": "https://www.mlb.com/news/denzer-guzman-homers-in-angels-loss-to-a-s",
-        "contentDate": "2026-09-23T06:44:02.574Z",
-        "teamIds": [
-            108
-        ],
-        "playerIds": [
-            694203
-        ],
-        "gamePks": [
-            824953
-        ],
-        "taxonomy": [
-            "apple-news",
-            "final-week"
         ],
         "sourceScopes": [
             "球団公式"
