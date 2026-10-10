@@ -1,3 +1,4 @@
 data/records/.build-*-progress.json
 data/records/trials/.build-*-progress.json
 output/pbp-captures/
+scripts/pbp-runtime/node_modules/

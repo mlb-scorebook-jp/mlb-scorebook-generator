@@ -1,0 +1,9 @@
+{
+  "name": "mlb-scorebook-pbp-runtime",
+  "private": true,
+  "version": "1.0.0",
+  "dependencies": {
+    "pdf-lib": "^1.17.1",
+    "playwright": "^1.55.0"
+  }
+}

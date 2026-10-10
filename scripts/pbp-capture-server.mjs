@@ -1,4 +1,5 @@
 import http from "node:http";
+import fsSync from "node:fs";
 import fs from "node:fs/promises";
 import path from "node:path";
 import { createRequire } from "node:module";
@@ -11,8 +12,25 @@ const PORT = 8765;
 const ROOT = path.resolve(import.meta.dirname, "..");
 // 撮影結果はGit管理中の見本PDFを上書きしない専用フォルダへ保存する。
 const OUTPUT = path.join(ROOT, "output", "pbp-captures");
-const CHROME = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
 const fileTokens = new Map();
+
+const browserCandidates = process.platform === "win32"
+    ? [
+        process.env.PBP_BROWSER_PATH,
+        path.join(process.env.PROGRAMFILES || "", "Google", "Chrome", "Application", "chrome.exe"),
+        path.join(process.env["PROGRAMFILES(X86)"] || "", "Google", "Chrome", "Application", "chrome.exe"),
+        path.join(process.env.LOCALAPPDATA || "", "Google", "Chrome", "Application", "chrome.exe"),
+        path.join(process.env.PROGRAMFILES || "", "Microsoft", "Edge", "Application", "msedge.exe"),
+        path.join(process.env["PROGRAMFILES(X86)"] || "", "Microsoft", "Edge", "Application", "msedge.exe")
+    ]
+    : [
+        process.env.PBP_BROWSER_PATH,
+        "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+        "/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge"
+    ];
+
+const browserExecutable = () => browserCandidates.find((candidate) =>
+    candidate && fsSync.existsSync(candidate));
 
 const json = (response, status, body) => {
     response.writeHead(status, {
@@ -82,7 +100,11 @@ const captureEvent = async (page, job, event) => {
 
 const makePdf = async (job) => {
     await fs.mkdir(OUTPUT, { recursive: true });
-    const browser = await chromium.launch({ headless: true, executablePath: CHROME });
+    const executablePath = browserExecutable();
+    if (!executablePath) {
+        throw new Error("Google Chrome または Microsoft Edge が見つかりません。");
+    }
+    const browser = await chromium.launch({ headless: true, executablePath });
     const page = await browser.newPage({ viewport: { width: 1440, height: 900 }, deviceScaleFactor: 1.4 });
     const pdf = await PDFDocument.create();
     try {
