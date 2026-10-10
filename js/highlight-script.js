@@ -317,6 +317,7 @@
         const bases = baseSituation(play, data);
         const continuedBasesLoadedThreat = consecutive && bases === "満塁" &&
             scoringContext(previousSelected, data).runs > 0;
+        const japaneseSide = preferredJapaneseSide(data);
         const skippedScore = skippedScoringLead(previousSelected, play, data);
         if (skippedScore) {
             if (sameInning) {
@@ -355,9 +356,13 @@
             }
         }
         else if (continuedBasesLoadedThreat) {
-            lines.push("Ｑ　まだ満塁のピンチは続きます");
+            lines.push(japaneseSide === currentSide
+                ? "Ｑ　まだ満塁のチャンスは続きます"
+                : "Ｑ　まだ満塁のピンチは続きます");
         }
-        else if (consecutive) lines.push("Ｑ　次は");
+        else if (consecutive) {
+            // 接続語を置かず、そのまま次の打席状況へつなぐ。
+        }
         else lines.push("Ｑ　この後");
 
         const pitcherChanged = previousSelected &&
@@ -380,7 +385,8 @@
         }
         const situation = `${outSituation(play, data)}、${bases}`;
         lines.push(
-            `　　${situation}${order ? `で${circled(order)}番` : "で"}${batter}`
+            `${consecutive ? "Ｑ　" : "　　"}${situation}` +
+            `${order ? `で${circled(order)}番` : "で"}${batter}`
         );
         return lines;
     };
@@ -738,6 +744,8 @@
         } else if (["walk", "intent_walk", "intentional_walk"].includes(eventType)) {
             const batter = playerName(play?.matchup?.batter, data);
             const pitches = pitchEvents(play);
+            const becomesBasesLoaded = ["③塁・②塁", "③塁・①塁", "②塁・①塁"]
+                .includes(baseSituation(play, data));
             const straightWalk = eventType === "walk" && pitches.length === 4 &&
                 pitches.every((pitch) => pitch?.details?.isBall === true);
             if (straightWalk && focus?.role === "pitcher") {
@@ -755,6 +763,7 @@
                         : `${straightWalk ? "ストレートの" : ""}` +
                             "フォアボールで出塁します"}`);
             }
+            if (becomesBasesLoaded) lines.push("　　これで満塁とします");
         } else if (eventType === "hit_by_pitch") {
             lines.push("Ｑ　デッドボールで出塁します");
         } else if (eventType.includes("double_play")) {
