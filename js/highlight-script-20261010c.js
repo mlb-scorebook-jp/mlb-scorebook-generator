@@ -47,11 +47,17 @@
 
     const context = () => window.ScorebookHighlightContext;
     const setStatus = (message, isError = false) => {
-        context()?.setStatus?.(message, isError);
         const element = document.getElementById("status-message");
-        if (!element) return;
-        element.textContent = message;
-        element.style.color = isError ? "#ffb4b4" : "#b8c4ca";
+        if (element) {
+            element.textContent = message;
+            element.style.color = isError ? "#ffb4b4" : "#b8c4ca";
+        }
+        try {
+            context()?.setStatus?.(message, isError);
+        } catch {
+            // 画面の状態表示は上で更新済み。古いコンテキストの例外で
+            // PBP送信まで失敗扱いにしない。
+        }
     };
     const snapshot = () => context()?.getSnapshot?.() ?? null;
     const text = (value) => String(value ?? "").trim();
@@ -1631,7 +1637,12 @@
                 input.value = JSON.stringify(job);
                 form.append(input);
                 document.body.append(form);
-                form.submit();
+                try {
+                    form.submit();
+                } catch {
+                    // file:// から別タブへフォーム送信すると、送信に成功しても
+                    // 一部ブラウザが Load failed を投げるため無視する。
+                }
                 form.remove();
                 setStatus("公式Gamedayの撮影を別タブで開始しました。完成するとPDFがダウンロードされます。");
                 return;
