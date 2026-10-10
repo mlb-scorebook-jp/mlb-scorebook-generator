@@ -42,11 +42,6 @@ const json = (response, status, body) => {
     response.end(JSON.stringify(body));
 };
 
-const fit = (width, height, maxWidth, maxHeight) => {
-    const scale = Math.min(maxWidth / width, maxHeight / height);
-    return { width: width * scale, height: height * scale };
-};
-
 const closeOverlays = async (page) => {
     for (const label of ["Accept & Continue", "Accept All", "I Accept", "Continue"]) {
         const button = page.getByRole("button", { name: label, exact: false }).first();
@@ -106,9 +101,22 @@ const captureEvent = async (page, job, event) => {
             .waitFor({ state: "visible", timeout: 10000 });
         const card = detailDialog.locator('[class*="overlaystyle__ContentWrapper"]').first();
         await card.waitFor({ state: "visible", timeout: 10000 });
-        const shot = await card.screenshot({ type: "png" });
+        const shots = [await card.screenshot({ type: "png" })];
+        const pitchList = detailDialog.locator('[class*="atbatstyle__LiveFeedWrapper"]').first();
+        const scroll = await pitchList.evaluate((element) => ({
+            clientHeight: element.clientHeight,
+            scrollHeight: element.scrollHeight
+        }));
+        const maxScroll = Math.max(0, scroll.scrollHeight - scroll.clientHeight);
+        for (let offset = Math.min(scroll.clientHeight, maxScroll); offset > 0;) {
+            await pitchList.evaluate((element, top) => { element.scrollTop = top; }, offset);
+            await page.waitForTimeout(250);
+            shots.push(await card.screenshot({ type: "png" }));
+            if (offset >= maxScroll) break;
+            offset = Math.min(offset + scroll.clientHeight, maxScroll);
+        }
         console.log(`[${new Date().toISOString()}] captured ${event.type}:${event.atBatIndex}`);
-        return shot;
+        return shots;
     } else {
         const allFilter = page.getByText("All", { exact: true }).first();
         if (await allFilter.isVisible().catch(() => false)) {
@@ -136,7 +144,7 @@ const captureEvent = async (page, job, event) => {
     await closeOverlays(page);
     const shot = await page.screenshot({ type: "png", fullPage: false });
     console.log(`[${new Date().toISOString()}] captured ${event.type}:${event.atBatIndex ?? "pitching-change"}`);
-    return shot;
+    return [shot];
 };
 
 const makePdf = async (job) => {
@@ -184,6 +192,7 @@ const makePdf = async (job) => {
             }
         });
         await Promise.all(workers);
+        const cards = captures.flat();
         const pageWidth = 841.89;
         const pageHeight = 595.28;
         const margin = 8;
@@ -193,22 +202,29 @@ const makePdf = async (job) => {
         const cardsPerPage = columns * rows;
         const cellWidth = (pageWidth - margin * 2 - gap * (columns - 1)) / columns;
         const cellHeight = (pageHeight - margin * 2 - gap * (rows - 1)) / rows;
-        for (let start = 0; start < captures.length; start += cardsPerPage) {
+        for (let start = 0; start < cards.length; start += cardsPerPage) {
             const sheet = pdf.addPage([pageWidth, pageHeight]);
-            const group = captures.slice(start, start + cardsPerPage);
-            for (let index = 0; index < group.length; index += 1) {
-                const image = await pdf.embedPng(group[index]);
-                const size = fit(image.width, image.height, cellWidth, cellHeight);
-                const column = index % columns;
-                const row = Math.floor(index / columns);
-                const cellX = margin + column * (cellWidth + gap);
+            const group = cards.slice(start, start + cardsPerPage);
+            const images = await Promise.all(group.map((bytes) => pdf.embedPng(bytes)));
+            for (let row = 0; row < rows; row += 1) {
+                const rowImages = images.slice(row * columns, (row + 1) * columns);
+                if (!rowImages.length) break;
+                const commonHeight = Math.min(
+                    cellHeight,
+                    ...rowImages.map((image) => cellWidth * image.height / image.width)
+                );
                 const cellY = pageHeight - margin - (row + 1) * cellHeight - row * gap;
-                sheet.drawImage(image, {
-                    x: cellX + (cellWidth - size.width) / 2,
-                    y: cellY + (cellHeight - size.height) / 2,
-                    width: size.width,
-                    height: size.height
-                });
+                for (let column = 0; column < rowImages.length; column += 1) {
+                    const image = rowImages[column];
+                    const width = commonHeight * image.width / image.height;
+                    const cellX = margin + column * (cellWidth + gap);
+                    sheet.drawImage(image, {
+                        x: cellX + (cellWidth - width) / 2,
+                        y: cellY + cellHeight - commonHeight,
+                        width,
+                        height: commonHeight
+                    });
+                }
             }
         }
     } finally {
