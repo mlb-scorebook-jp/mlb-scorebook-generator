@@ -1627,7 +1627,14 @@
         const form = document.createElement("form");
         form.method = "POST";
         form.action = "http://127.0.0.1:8765/capture-download";
-        form.target = "_blank";
+        const waitingTarget = `pbp-capture-${Date.now()}`;
+        const waitingWindow = window.open("", waitingTarget);
+        if (waitingWindow) {
+            waitingWindow.document.open();
+            waitingWindow.document.write(`<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PBP資料を作成中</title><style>*{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;background:#f4f7fa;color:#172331;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",sans-serif}.panel{width:min(560px,calc(100% - 40px));padding:48px 36px;text-align:center;background:#fff;border:1px solid #d6dee7;border-radius:16px;box-shadow:0 14px 40px rgba(23,35,49,.12)}.spinner{width:52px;height:52px;margin:0 auto 26px;border:6px solid #dce7f0;border-top-color:#0878be;border-radius:50%;animation:spin 1s linear infinite}h1{margin:0 0 18px;font-size:28px}p{margin:8px 0;line-height:1.8;font-size:17px}.note{color:#607080;font-size:14px}@keyframes spin{to{transform:rotate(360deg)}}</style></head><body><main class="panel"><div class="spinner" aria-hidden="true"></div><h1>PBP資料を作成中</h1><p>完成したらダウンロードフォルダに保存されます。</p><p class="note">打席数によって1分ほどかかる場合があります。この画面を開いたままお待ちください。</p></main></body></html>`);
+            waitingWindow.document.close();
+        }
+        form.target = waitingWindow ? waitingTarget : "_blank";
         form.hidden = true;
         const input = document.createElement("input");
         input.type = "hidden";
