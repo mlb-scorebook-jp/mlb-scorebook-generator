@@ -1607,7 +1607,9 @@
         try {
             const response = await fetch("http://127.0.0.1:8765/capture", {
                 method: "POST",
-                headers: { "content-type": "application/json" },
+                // file:// からローカルサーバーへの送信でブラウザの事前確認を
+                // 発生させない。サーバー側は本文をJSONとして読み取る。
+                headers: { "content-type": "text/plain;charset=UTF-8" },
                 body: JSON.stringify({
                     gamePk: data?.gamePk,
                     date: text(data?.gameData?.gameData?.datetime?.officialDate).replaceAll("-", ""),
