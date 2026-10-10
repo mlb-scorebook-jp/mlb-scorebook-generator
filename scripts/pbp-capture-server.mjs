@@ -36,7 +36,8 @@ const json = (response, status, body) => {
     response.writeHead(status, {
         "content-type": "application/json; charset=utf-8",
         "access-control-allow-origin": "*",
-        "access-control-allow-headers": "content-type"
+        "access-control-allow-headers": "content-type",
+        "access-control-allow-private-network": "true"
     });
     response.end(JSON.stringify(body));
 };
@@ -135,7 +136,8 @@ const server = http.createServer(async (request, response) => {
         response.writeHead(204, {
             "access-control-allow-origin": "*",
             "access-control-allow-headers": "content-type",
-            "access-control-allow-methods": "GET,POST,OPTIONS"
+            "access-control-allow-methods": "GET,POST,OPTIONS",
+            "access-control-allow-private-network": "true"
         });
         return response.end();
     }
@@ -151,7 +153,8 @@ const server = http.createServer(async (request, response) => {
             response.writeHead(200, {
                 "content-type": "application/pdf",
                 "content-disposition": `attachment; filename="${filename}"`,
-                "access-control-allow-origin": "*"
+                "access-control-allow-origin": "*",
+                "access-control-allow-private-network": "true"
             });
             return response.end(bytes);
         } catch {
@@ -162,6 +165,7 @@ const server = http.createServer(async (request, response) => {
         return json(response, 404, { error: "Not found" });
     }
     try {
+        console.log(`[${new Date().toISOString()}] capture request received`);
         const chunks = [];
         for await (const chunk of request) chunks.push(chunk);
         const job = JSON.parse(Buffer.concat(chunks).toString("utf8"));
@@ -172,12 +176,14 @@ const server = http.createServer(async (request, response) => {
         const token = `${Date.now()}-${Math.random().toString(36).slice(2, 10)}`;
         fileTokens.set(token, filename);
         await fs.copyFile(path.join(OUTPUT, filename), path.join(OUTPUT, `${token}.pdf`));
+        console.log(`[${new Date().toISOString()}] capture completed: ${filename}`);
         return json(response, 200, {
             ok: true,
             filename,
             url: `http://127.0.0.1:${PORT}/files/${token}.pdf`
         });
     } catch (error) {
+        console.error(`[${new Date().toISOString()}] capture failed:`, error);
         return json(response, 500, { error: error?.message || String(error) });
     }
 });

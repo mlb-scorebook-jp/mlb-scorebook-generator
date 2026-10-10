@@ -1594,12 +1594,16 @@
                 ? `atbat:${candidate.atBatIndex}`
                 : `change:${candidate.incomingPitcher}:${candidate.outgoingPitcher}`) === key) === index;
         });
-        if (!uniqueEvents.length) return;
+        if (!uniqueEvents.length) {
+            context()?.setStatus?.("PBP資料に使う打席が見つかりませんでした。選択し直してください。", true);
+            return;
+        }
         const original = button?.textContent;
         if (button) {
             button.disabled = true;
             button.textContent = "公式Gamedayを撮影中…";
         }
+        context()?.setStatus?.(`公式Gamedayを撮影しています（${uniqueEvents.length}件）。完了までこの画面を閉じないでください。`);
         try {
             const response = await fetch("http://127.0.0.1:8765/capture", {
                 method: "POST",
@@ -1621,7 +1625,7 @@
             context()?.setStatus?.(`${result.filename} を作成しました。`);
         } catch (error) {
             context()?.setStatus?.(
-                `PBP撮影を起動できません。scripts/PBP撮影を起動.command を開いてから再実行してください。${error?.message ? `（${error.message}）` : ""}`,
+                `PBP撮影サーバーに接続できません。ページを再読み込みしてから、もう一度実行してください。${error?.message ? `（${error.message}）` : ""}`,
                 true
             );
         } finally {
