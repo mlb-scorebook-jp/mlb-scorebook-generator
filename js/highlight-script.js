@@ -133,6 +133,7 @@
     const inningLabel = (play) => {
         const half = play?.about?.isTopInning === true ||
             text(play?.about?.halfInning).toLowerCase() === "top" ? "表" : "裏";
+        if (number(play?.about?.inning) === 1 && half === "表") return "初回";
         return `${circled(play?.about?.inning)}回${half}`;
     };
 
@@ -259,6 +260,16 @@
         return index >= 0 ? index + 1 : 0;
     };
 
+    const matchupNumber = (play, data = snapshot()) => {
+        const position = playPosition(play, data);
+        const pitcherId = number(play?.matchup?.pitcher?.id);
+        const batterId = number(play?.matchup?.batter?.id);
+        if (position < 0 || !pitcherId || !batterId) return 1;
+        return allPlays(data).slice(0, position + 1).filter((candidate) =>
+            number(candidate?.matchup?.pitcher?.id) === pitcherId &&
+            number(candidate?.matchup?.batter?.id) === batterId).length;
+    };
+
     const skippedScoringLead = (previousSelected, play, data = snapshot()) => {
         if (!previousSelected) return "";
         const start = playPosition(previousSelected, data);
@@ -288,6 +299,32 @@
         return `このあと${shortTeam(scoringSides[0], data)}がさらに${circled(addedRuns)}点を追加`;
     };
 
+    const unshownHalfClosingLines = (previousSelected, currentPlay, data = snapshot()) => {
+        if (!previousSelected || !currentPlay ||
+            halfInningIndex(currentPlay) <= halfInningIndex(previousSelected) ||
+            number(previousSelected?.count?.outs) >= 3) return [];
+        const inning = number(previousSelected?.about?.inning);
+        const side = battingSide(previousSelected);
+        const half = allPlays(data).filter((candidate) =>
+            number(candidate?.about?.inning) === inning && battingSide(candidate) === side);
+        const last = half.at(-1);
+        if (!last || number(last?.count?.outs) < 3) return [];
+        const preferredSide = preferredJapaneseSide(data);
+        const runsAtSelection = scoreForSide(scoreAfter(previousSelected), side);
+        const runsAtEnd = scoreForSide(scoreAfter(last), side);
+        const halfRuns = runsAtEnd - scoreForSide(scoreBefore(half[0], data), side);
+        if (preferredSide === side && halfRuns === 0) {
+            return ["　　しかし後が続かず", `　　${shortTeam(side, data)}無得点に終わります`];
+        }
+        const pitcherId = number(previousSelected?.matchup?.pitcher?.id);
+        if (preferredSide === opponentSide(side) && runsAtEnd === runsAtSelection &&
+            number(last?.matchup?.pitcher?.id) === pitcherId) {
+            const pitcher = playerName(previousSelected?.matchup?.pitcher, data);
+            return pitcher ? [`　　${pitcher}、このあと後続も抑えます`] : [];
+        }
+        return [];
+    };
+
     const playLeadLines = (play, previousSelected, data = snapshot()) => {
         const lines = [];
         const sameInning = previousSelected &&
@@ -309,6 +346,11 @@
             playPosition(play, data) === playPosition(previousSelected, data) + 1;
         const order = battingOrder(play, data);
         const batter = playerName(play?.matchup?.batter, data) || "打者";
+        const meeting = matchupNumber(play, data);
+        const japaneseMatchup = isJapanesePlayer(play?.matchup?.pitcher, data) &&
+            isJapanesePlayer(play?.matchup?.batter, data);
+        const batterLabel = `${order ? `${circled(order)}番` : ""}${batter}` +
+            `${japaneseMatchup && meeting > 1 ? `と${circled(meeting)}度目の対決` : ""}`;
         const firstPlayOfHalf = allPlays(data).find((candidate) =>
             number(candidate?.about?.inning) === currentInning &&
             battingSide(candidate) === currentSide);
@@ -330,15 +372,15 @@
                     `で迎えた${inningLabel(play)}`
                 );
                 if (isLeadoffPlay) {
-                    lines.push(`　　${battingTeam}は${order ? `${circled(order)}番` : ""}${batter}`);
+                    lines.push(`　　${battingTeam}は${batterLabel}`);
                 }
             }
         } else if (isLeadoffPlay && movesToBottom) {
-            lines.push(`Ｑ　その裏、${battingTeam}は${order ? `${circled(order)}番` : ""}${batter}`);
+            lines.push(`Ｑ　その裏、${battingTeam}は${batterLabel}`);
         } else if (isLeadoffPlay && movesToNextTop) {
             lines.push(
                 `Ｑ　直後の${circled(currentInning)}回表、` +
-                `${battingTeam}は${order ? `${circled(order)}番` : ""}${batter}`
+                `${battingTeam}は${batterLabel}`
             );
         } else if (movesToBottom) lines.push("Ｑ　その裏");
         else if (movesToNextTop) lines.push(`Ｑ　直後の${circled(currentInning)}回表`);
@@ -352,7 +394,7 @@
                 lines.push(`Ｑ　${inningLabel(play)}`);
             }
             if (isLeadoffPlay) {
-                lines.push(`　　${battingTeam}は${order ? `${circled(order)}番` : ""}${batter}`);
+                lines.push(`　　${battingTeam}は${batterLabel}`);
             }
         }
         else if (continuedBasesLoadedThreat) {
@@ -380,13 +422,13 @@
 
         if (isLeadoffPlay) return lines;
         if (continuedBasesLoadedThreat) {
-            lines.push(`　　${order ? `${circled(order)}番` : ""}${batter}`);
+            lines.push(`　　${batterLabel}`);
             return lines;
         }
-        const situation = `${outSituation(play, data)}、${bases}`;
+        const situation = `${outSituation(play, data)}${bases}`;
         lines.push(
             `${consecutive ? "Ｑ　" : "　　"}${situation}` +
-            `${order ? `で${circled(order)}番` : "で"}${batter}`
+            `で${batterLabel}`
         );
         return lines;
     };
@@ -401,7 +443,8 @@
         const parts = [];
         if (number(balls)) parts.push(`${circled(balls)}ボール`);
         if (number(strikes)) parts.push(`${circled(strikes)}ストライク`);
-        return parts.length ? `${parts.join("・")}から` : "";
+        if (!parts.length) return "";
+        return `${parts.join("")}${parts.length > 1 ? "となって" : "から"}`;
     };
 
     // NHK rule: convert mph to km/h, then truncate (never round up) at the
@@ -409,7 +452,8 @@
     const speedKph = (mph) => {
         const value = Number(mph);
         if (!Number.isFinite(value)) return "";
-        return (Math.floor(value * 1.609344 * 10) / 10).toFixed(1);
+        const truncated = Math.floor(value * 1.609344 * 10) / 10;
+        return Number.isInteger(truncated) ? String(truncated) : truncated.toFixed(1);
     };
 
     const pitchName = (event) => {
@@ -696,7 +740,9 @@
             if (option.kind === "pitch") {
                 const pitch = option.event;
                 const pitchNumber = number(pitch?.pitchNumber) || pitchEvents(play).length;
-                lines.push(`Ｑ　${countText(priorCount(play, pitch))}${circled(pitchNumber)}球目`);
+                lines.push(`Ｑ　${pitchNumber === 1
+                    ? "初球"
+                    : `${countText(priorCount(play, pitch))}${circled(pitchNumber)}球目`}`);
                 const location = pitchLocation(play, pitch);
                 const speed = speedKph(pitch?.pitchData?.startSpeed);
                 const type = pitchName(pitch);
@@ -704,7 +750,7 @@
                 if (pitchDescription) {
                     const isFinalPitch = pitch === finalPitch(play);
                     const action = isFinalPitch && ["home_run", "single", "double", "triple"].includes(eventType)
-                        ? "を捉え"
+                        ? focus?.role === "pitcher" ? "を捉えられ" : "を捉え"
                         : isFinalPitch && eventType.includes("strikeout")
                             ? /swing|空振/i.test(description) ? "に空振り" : "を見逃し"
                             : "";
@@ -720,19 +766,33 @@
             const homeRunLabel = rbi >= 4 ? "グランドスラム"
                 : rbi === 3 ? "スリーランホームラン"
                     : rbi === 2 ? "ツーランホームラン" : "ソロホームラン";
-            lines.push(`　　${scoring.label ? `${scoring.label}の` : ""}${homeRunLabel}`);
+            lines.push(`　　${focus?.role !== "pitcher" && scoring.label
+                ? `${scoring.label}の`
+                : ""}${homeRunLabel}`);
         } else if (eventType === "single") {
-            lines.push(`Ｑ　${direction
-                ? hitLead(`${direction}へ`)
-                : hitLead("ヒットを", "ヒット")}`, "　　シングルヒット");
+            if (focus?.role === "pitcher") {
+                lines.push(`Ｑ　${focus.name}、${direction ? `${direction}へ運ばれ、` : ""}ヒットを許します`);
+            } else {
+                lines.push(`Ｑ　${direction
+                    ? hitLead(`${direction}へ`)
+                    : hitLead("ヒットを", "ヒット")}`, "　　シングルヒット");
+            }
         } else if (eventType === "double") {
-            lines.push(`Ｑ　${direction
-                ? hitLead(`${direction}へ`)
-                : hitLead("長打を", "大きな当たり")}`, "　　ツーベースヒット");
+            if (focus?.role === "pitcher") {
+                lines.push(`Ｑ　${focus.name}、${direction ? `${direction}へ運ばれ、` : ""}長打を許します`);
+            } else {
+                lines.push(`Ｑ　${direction
+                    ? hitLead(`${direction}へ`)
+                    : hitLead("長打を", "大きな当たり")}`, "　　ツーベースヒット");
+            }
         } else if (eventType === "triple") {
-            lines.push(`Ｑ　${direction
-                ? hitLead(`${direction}へ`)
-                : hitLead("長打を", "長打コース")}`, "　　スリーベースヒット");
+            if (focus?.role === "pitcher") {
+                lines.push(`Ｑ　${focus.name}、${direction ? `${direction}へ運ばれ、` : ""}長打を許します`);
+            } else {
+                lines.push(`Ｑ　${direction
+                    ? hitLead(`${direction}へ`)
+                    : hitLead("長打を", "長打コース")}`, "　　スリーベースヒット");
+            }
         } else if (eventType.includes("strikeout")) {
             const swinging = /swing|空振/i.test(description);
             const result = swinging ? "空振り三振" : "見逃し三振";
@@ -765,7 +825,12 @@
             }
             if (becomesBasesLoaded) lines.push("　　これで満塁とします");
         } else if (eventType === "hit_by_pitch") {
-            lines.push("Ｑ　デッドボールで出塁します");
+            const batter = playerName(play?.matchup?.batter, data);
+            lines.push(`Ｑ　${focus?.role === "pitcher"
+                ? `${focus.name}、${batter ? `${batter}に` : ""}デッドボールを与えます`
+                : focus?.role === "batter"
+                    ? `${focus.name}、デッドボールで出塁します`
+                    : "デッドボールで出塁します"}`);
         } else if (eventType.includes("double_play")) {
             lines.push("Ｑ　ダブルプレーに倒れます");
         } else if (eventType === "sac_fly") {
@@ -783,8 +848,18 @@
         }
         if (scoring.runs) {
             const team = shortTeam(battingSide(play), data);
+            const preferredSide = preferredJapaneseSide(data);
             const after = scoreAfter(play);
-            if (eventType !== "home_run") {
+            if (preferredSide === opponentSide(battingSide(play))) {
+                const preferredTeam = shortTeam(preferredSide, data);
+                const allowed = scoring.label === "先制" ? "先制を許します"
+                    : scoring.label === "同点" ? "追いつかれます"
+                        : scoring.label === "逆転" ? "逆転を許します"
+                            : scoring.label === "勝ち越し" ? "勝ち越しを許します"
+                                : scoring.label === "追加点" ? "追加点を許します"
+                                    : "反撃を許します";
+                lines.push(`　　${preferredTeam}、${allowed}`);
+            } else if (eventType !== "home_run") {
                 lines.push(`　　${team}${scoring.label ? `、${scoring.label}` : ""}`);
             }
             lines.push(`　　これで${circled(after.away)}対${circled(after.home)}とします`);
@@ -1042,6 +1117,17 @@
         } else if (gameNumber > 1) {
             lines.push(`　　連戦の第${circled(gameNumber)}戦`);
         }
+        const japaneseMatchup = allPlays(data).find((play) =>
+            isJapanesePlayer(play?.matchup?.pitcher, data) &&
+            isJapanesePlayer(play?.matchup?.batter, data) &&
+            number(starterForSide(opponentSide(battingSide(play)), data)?.id) ===
+                number(play?.matchup?.pitcher?.id));
+        if (japaneseMatchup) {
+            lines.push(
+                `Ｑ　${playerName(japaneseMatchup?.matchup?.pitcher, data)}と` +
+                `${playerName(japaneseMatchup?.matchup?.batter, data)}の日本人対決に注目です`
+            );
+        }
         const pregameHighlight = window.PregameInfo?.getGameHighlightText?.(data?.gamePk)?.[0];
         if (pregameHighlight) lines.push(`Ｑ　${pregameHighlight}`);
         const awayStarter = starterForSide("away", data);
@@ -1143,6 +1229,10 @@
         const lines = automaticHead(plays, data);
         const introducedStarters = new Set();
         selected.forEach((item, index) => {
+            if (index > 0) {
+                const bridge = unshownHalfClosingLines(selected[index - 1].play, item.play, data);
+                if (bridge.length) lines.push("", ...bridge);
+            }
             if (lines.length) lines.push("");
             if (item.type === "pitching-change") {
                 const incoming = playerName({ id: item.incomingPitcherId }, data);
