@@ -42,6 +42,14 @@ const json = (response, status, body) => {
     response.end(JSON.stringify(body));
 };
 
+const waitingPage = `<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PBP資料を作成中</title>
+<style>*{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;background:#f4f7fa;color:#172331;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",sans-serif}.panel{width:min(560px,calc(100% - 40px));padding:48px 36px;text-align:center;background:#fff;border:1px solid #d6dee7;border-radius:16px;box-shadow:0 14px 40px rgba(23,35,49,.12)}.spinner{width:52px;height:52px;margin:0 auto 26px;border:6px solid #dce7f0;border-top-color:#0878be;border-radius:50%;animation:spin 1s linear infinite}h1{margin:0 0 18px;font-size:28px}p{margin:8px 0;line-height:1.8;font-size:17px}.note{color:#607080;font-size:14px}@keyframes spin{to{transform:rotate(360deg)}}</style>
+</head><body><main class="panel"><div class="spinner" aria-hidden="true"></div><h1>PBP資料を作成中</h1><p>完成したらダウンロードフォルダに保存されます。</p><p class="note">打席数によって1分ほどかかる場合があります。この画面を開いたままお待ちください。</p></main>
+<script>(async()=>{const heading=document.querySelector("h1"),message=document.querySelector("p"),spinner=document.querySelector(".spinner");try{const job=JSON.parse(decodeURIComponent(location.hash.slice(1)));history.replaceState(null,"",location.pathname);const response=await fetch("/capture",{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify(job)});if(!response.ok)throw new Error("撮影サーバーの応答: "+response.status);const result=await response.json();if(!result.url)throw new Error("PDFの保存先を取得できませんでした。");heading.textContent="PBP資料が完成しました";message.textContent="ダウンロードフォルダへの保存を開始します。";spinner.style.display="none";location.href=result.url}catch(error){heading.textContent="PBP資料を作成できませんでした";message.textContent="元の画面へ戻って、もう一度実行してください。";spinner.style.display="none";document.querySelector(".note").textContent=error?.message||String(error)}})();</script>
+</body></html>`;
+
 const closeOverlays = async (page) => {
     for (const label of ["Accept & Continue", "Accept All", "I Accept", "Continue"]) {
         const button = page.getByRole("button", { name: label, exact: false }).first();
@@ -249,6 +257,13 @@ const server = http.createServer(async (request, response) => {
         return response.end();
     }
     if (request.method === "GET" && request.url === "/health") return json(response, 200, { ok: true });
+    if (request.method === "GET" && request.url === "/waiting") {
+        response.writeHead(200, {
+            "content-type": "text/html; charset=utf-8",
+            "cache-control": "no-store"
+        });
+        return response.end(waitingPage);
+    }
     if (request.method === "GET" && request.url?.startsWith("/files/")) {
         const token = path.basename(request.url.slice(7)).replace(/\.pdf$/i, "");
         if (!/^[0-9a-z-]+$/i.test(token)) {
@@ -259,7 +274,7 @@ const server = http.createServer(async (request, response) => {
             const bytes = await fs.readFile(path.join(OUTPUT, `${token}.pdf`));
             response.writeHead(200, {
                 "content-type": "application/pdf",
-                "content-disposition": `attachment; filename="${filename}"`,
+                "content-disposition": `attachment; filename*=UTF-8''${encodeURIComponent(filename)}`,
                 "access-control-allow-origin": "*",
                 "access-control-allow-private-network": "true"
             });

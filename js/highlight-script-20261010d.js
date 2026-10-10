@@ -1624,53 +1624,16 @@
             home: data?.home?.abbreviation,
             events: uniqueEvents
         };
-        const waitingTarget = `pbp-capture-${Date.now()}`;
-        const waitingWindow = window.open("", waitingTarget);
-        if (waitingWindow) {
-            waitingWindow.document.open();
-            waitingWindow.document.write(`<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PBP資料を作成中</title><style>*{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;background:#f4f7fa;color:#172331;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",sans-serif}.panel{width:min(560px,calc(100% - 40px));padding:48px 36px;text-align:center;background:#fff;border:1px solid #d6dee7;border-radius:16px;box-shadow:0 14px 40px rgba(23,35,49,.12)}.spinner{width:52px;height:52px;margin:0 auto 26px;border:6px solid #dce7f0;border-top-color:#0878be;border-radius:50%;animation:spin 1s linear infinite}h1{margin:0 0 18px;font-size:28px}p{margin:8px 0;line-height:1.8;font-size:17px}.note{color:#607080;font-size:14px}@keyframes spin{to{transform:rotate(360deg)}}</style></head><body><main class="panel"><div class="spinner" aria-hidden="true"></div><h1>PBP資料を作成中</h1><p>完成したらダウンロードフォルダに保存されます。</p><p class="note">打席数によって1分ほどかかる場合があります。この画面を開いたままお待ちください。</p></main></body></html>`);
-            waitingWindow.document.close();
+        const waitingUrl = `http://127.0.0.1:8765/waiting#${encodeURIComponent(JSON.stringify(job))}`;
+        const waitingWindow = window.open(waitingUrl, "_blank");
+        if (!waitingWindow) {
+            setStatus("PBP資料を開けませんでした。ポップアップを許可してください。", true);
+        } else {
+            setStatus("公式Gamedayの撮影を別タブで開始しました。完成するとPDFがダウンロードされます。");
         }
-        try {
-            const response = await fetch("http://127.0.0.1:8765/capture", {
-                method: "POST",
-                headers: { "content-type": "application/json" },
-                body: JSON.stringify(job)
-            });
-            if (!response.ok) throw new Error(`撮影サーバーの応答: ${response.status}`);
-            const result = await response.json();
-            if (!result?.url) throw new Error("PDFの保存先を取得できませんでした。");
-            if (waitingWindow && !waitingWindow.closed) {
-                const heading = waitingWindow.document.querySelector("h1");
-                const message = waitingWindow.document.querySelector("p");
-                const spinner = waitingWindow.document.querySelector(".spinner");
-                if (heading) heading.textContent = "PBP資料が完成しました";
-                if (message) message.textContent = "ダウンロードフォルダへの保存を開始します。";
-                if (spinner) spinner.style.display = "none";
-                waitingWindow.location.href = result.url;
-            } else {
-                const link = document.createElement("a");
-                link.href = result.url;
-                link.download = result.filename || "PBP資料.pdf";
-                link.click();
-            }
-            setStatus(`${result.filename || "PBP資料"} を作成しました。`);
-        } catch (error) {
-            const message = error?.message || String(error);
-            if (waitingWindow && !waitingWindow.closed) {
-                const heading = waitingWindow.document.querySelector("h1");
-                const detail = waitingWindow.document.querySelector("p");
-                const spinner = waitingWindow.document.querySelector(".spinner");
-                if (heading) heading.textContent = "PBP資料を作成できませんでした";
-                if (detail) detail.textContent = "元の画面へ戻って、もう一度実行してください。";
-                if (spinner) spinner.style.display = "none";
-            }
-            setStatus(`PBP資料を作成できませんでした。${message}`, true);
-        } finally {
-            if (button) {
-                button.disabled = false;
-                button.textContent = original;
-            }
+        if (button) {
+            button.disabled = false;
+            button.textContent = original;
         }
     };
 
