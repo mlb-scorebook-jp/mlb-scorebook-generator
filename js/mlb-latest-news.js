@@ -2,6 +2,140 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Now playing in Milwaukee: Chill lo-fi beats to study/work out to",
+        "summaryJa": "ブルワーズ、勝利を呼び込む活躍",
+        "slug": "brewers-play-jazz-at-dodgers-workout-before-nlcs",
+        "url": "https://www.mlb.com/news/brewers-play-jazz-at-dodgers-workout-before-nlcs",
+        "contentDate": "2026-10-10T23:40:00Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "adam-mccalvy-x6212",
+            "apple-news",
+            "postseason",
+            "nlcs",
+            "offbeat"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Here's how the pitching might line up for the Dodgers-Brewers NLCS",
+        "summaryJa": "T.スクーバル（LAD）を巡る注目点をMLB公式が分析",
+        "slug": "dodgers-brewers-nlcs-starting-pitching-previews",
+        "url": "https://www.mlb.com/news/dodgers-brewers-nlcs-starting-pitching-previews",
+        "contentDate": "2026-10-10T23:30:07.145Z",
+        "teamIds": [
+            119,
+            158
+        ],
+        "playerIds": [
+            669373,
+            808967,
+            605483,
+            694819,
+            701656,
+            688107
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "nlcs",
+            "postseason"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Dodgers-Brewers NLCS Game 1 FAQ (Sun., 8 p.m. ET, FOX/FOX One)",
+        "summaryJa": "ブルワーズの最新動向をMLB公式が詳報",
+        "slug": "dodgers-brewers-nl-championship-series-game-1-starting-lineups-and-pitching-matchup",
+        "url": "https://www.mlb.com/news/dodgers-brewers-nl-championship-series-game-1-starting-lineups-and-pitching-matchup",
+        "contentDate": "2026-10-10T23:27:00Z",
+        "teamIds": [
+            158,
+            119
+        ],
+        "playerIds": [],
+        "gamePks": [
+            849809
+        ],
+        "taxonomy": [
+            "apple-news",
+            "postseason",
+            "nlcs"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Miz's meteoric rise to ace status leads him to NLCS Game 1 starting nod",
+        "summaryJa": "J.ミザロウスキー（MIL）の最新動向をMLB公式が詳報",
+        "slug": "jacob-misiorowski-nlcs-game-1-starter-brewers",
+        "url": "https://www.mlb.com/news/jacob-misiorowski-nlcs-game-1-starter-brewers",
+        "contentDate": "2026-10-10T21:23:00Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [
+            694819
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "nlcs",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Want small ball? Clutch hits? Homers? The Rays can do it all -- and they're not done yet",
+        "summaryJa": "レイズ、本塁打で存在感",
+        "slug": "how-the-rays-score-runs-in-many-different-ways",
+        "url": "https://www.mlb.com/news/how-the-rays-score-runs-in-many-different-ways",
+        "contentDate": "2026-10-10T20:46:05.791Z",
+        "teamIds": [
+            139
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "postseason",
+            "alcs"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Watch LIVE: Nimmala, Angels prospects in Arizona Fall League action",
+        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
+        "slug": "watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
+        "url": "https://www.mlb.com/news/watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
+        "contentDate": "2026-10-10T20:42:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "arizona-fall-league"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "White Sox-Guardians ALDS Game 5 FAQ, lineups (8 ET, TBS/HBO Max)",
         "summaryJa": "ガーディアンズの最新動向をMLB公式が詳報",
         "slug": "white-sox-vs-guardians-alds-game-5-starting-lineups-and-pitching-matchup",
@@ -50,45 +184,6 @@
         ]
     },
     {
-        "headline": "Watch LIVE: Nimmala, Angels prospects in Arizona Fall League action",
-        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
-        "slug": "watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
-        "url": "https://www.mlb.com/news/watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
-        "contentDate": "2026-10-10T19:35:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "arizona-fall-league"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Brewers officially name Misiorowski Game 1 starter for NLCS vs. Dodgers",
-        "summaryJa": "J.ミザロウスキー（MIL）の最新動向をMLB公式が詳報",
-        "slug": "jacob-misiorowski-nlcs-game-1-starter-brewers",
-        "url": "https://www.mlb.com/news/jacob-misiorowski-nlcs-game-1-starter-brewers",
-        "contentDate": "2026-10-10T18:36:18.858Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [
-            694819
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "nlcs",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
         "headline": "2 elite arms lined up for duel in NLCS Game 1",
         "summaryJa": "T.スクーバル（LAD）を巡る注目点をMLB公式が分析",
         "slug": "nlcs-game-1-lines-up-for-jacob-misiorowski-tarik-skubal-showdown",
@@ -102,30 +197,6 @@
             669373,
             694819
         ],
-        "gamePks": [
-            849809
-        ],
-        "taxonomy": [
-            "apple-news",
-            "postseason",
-            "nlcs"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Dodgers-Brewers NLCS Game 1 FAQ (Sun., 8 p.m. ET, FOX/FOX One)",
-        "summaryJa": "ブルワーズの最新動向をMLB公式が詳報",
-        "slug": "dodgers-brewers-nl-championship-series-game-1-starting-lineups-and-pitching-matchup",
-        "url": "https://www.mlb.com/news/dodgers-brewers-nl-championship-series-game-1-starting-lineups-and-pitching-matchup",
-        "contentDate": "2026-10-10T18:32:00Z",
-        "teamIds": [
-            158,
-            119
-        ],
-        "playerIds": [],
         "gamePks": [
             849809
         ],
@@ -1126,32 +1197,6 @@
         ]
     },
     {
-        "headline": "Not done yet! Guardians storm back to force Game 5 in Cleveland",
-        "summaryJa": "ガーディアンズ、勝利を呼び込む活躍",
-        "slug": "guardians-win-alds-game-4-2026",
-        "url": "https://www.mlb.com/news/guardians-win-alds-game-4-2026",
-        "contentDate": "2026-10-09T07:08:00Z",
-        "teamIds": [
-            114
-        ],
-        "playerIds": [],
-        "gamePks": [
-            849832
-        ],
-        "taxonomy": [
-            "postseason",
-            "alds",
-            "series-b",
-            "apple-news",
-            "game-recap",
-            "key-moments"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
         "headline": "J-Ram rewriting his October narrative, one big hit at a time",
         "summaryJa": "J.ラミレス（CLE）の最新動向をMLB公式が詳報",
         "slug": "jose-ramirez-two-run-home-run-alds-game-4-2026",
@@ -1171,6 +1216,31 @@
             "alds",
             "series-b",
             "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Not done yet! Guardians storm back to force Game 5 in Cleveland",
+        "summaryJa": "ガーディアンズ、勝利を呼び込む活躍",
+        "slug": "guardians-win-alds-game-4-2026",
+        "url": "https://www.mlb.com/news/guardians-win-alds-game-4-2026",
+        "contentDate": "2026-10-09T07:08:00Z",
+        "teamIds": [
+            114
+        ],
+        "playerIds": [],
+        "gamePks": [
+            849832
+        ],
+        "taxonomy": [
+            "postseason",
+            "alds",
+            "series-b",
+            "apple-news",
+            "game-recap",
+            "key-moments"
         ],
         "sourceScopes": [
             "球団公式"
@@ -1858,29 +1928,6 @@
         ]
     },
     {
-        "headline": "You can breathe now! Brewers, Padres wrap up historically close series",
-        "summaryJa": "ブルワーズの最新動向をMLB公式が詳報",
-        "slug": "brewers-padres-complete-historically-close-nlds-matchup",
-        "url": "https://www.mlb.com/news/brewers-padres-complete-historically-close-nlds-matchup",
-        "contentDate": "2026-10-08T06:43:53.906Z",
-        "teamIds": [
-            158,
-            135
-        ],
-        "playerIds": [],
-        "gamePks": [
-            849827
-        ],
-        "taxonomy": [
-            "apple-news",
-            "nlds",
-            "series-a"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "4 things that matter for red-hot Rays going into ALCS",
         "summaryJa": "レイズの最新動向をMLB公式が詳報",
         "slug": "things-that-matter-rays-ahead-of-alcs",
@@ -2371,31 +2418,6 @@
         ]
     },
     {
-        "headline": "Rojas unavailable in G4 as Dodgers continue to evaluate back injury",
-        "summaryJa": "M.ロハス（LAD）の負傷状況をMLB公式が詳報",
-        "slug": "miguel-rojas-unavailable-nlds-game-4-2026-back-injury",
-        "url": "https://www.mlb.com/news/miguel-rojas-unavailable-nlds-game-4-2026-back-injury",
-        "contentDate": "2026-10-07T21:35:00.635Z",
-        "teamIds": [
-            119
-        ],
-        "playerIds": [
-            500743
-        ],
-        "gamePks": [
-            849822
-        ],
-        "taxonomy": [
-            "nlds",
-            "series-b",
-            "injury",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Blackout, tailgates, Pope Hats -- Chicago caught up in White Sox playoff fever",
         "summaryJa": "ホワイトソックスの最新動向をMLB公式が詳報",
         "slug": "white-sox-playoff-fever-sweeping-chicago-alds-2026",
@@ -2694,29 +2716,6 @@
             "series-a",
             "apple-news",
             "game-recap"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Unable to sweep, '40 of us versus 50,000' mentality driving Brewers into Game 4",
-        "summaryJa": "ブルワーズ、勝利を呼び込む活躍",
-        "slug": "brewers-lose-game-3-of-2026-nlds",
-        "url": "https://www.mlb.com/news/brewers-lose-game-3-of-2026-nlds",
-        "contentDate": "2026-10-07T07:01:00Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [],
-        "gamePks": [
-            849826
-        ],
-        "taxonomy": [
-            "apple-news",
-            "nlds",
-            "series-a",
-            "game-recap-losing"
         ],
         "sourceScopes": [
             "球団公式"
