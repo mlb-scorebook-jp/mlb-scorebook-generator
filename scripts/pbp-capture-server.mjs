@@ -195,7 +195,8 @@ const makePdf = async (job) => {
         const cards = captures.flat();
         const pageWidth = 841.89;
         const pageHeight = 595.28;
-        const margin = 8;
+        // 約5.6mmの外周余白を確保し、Windowsの一般的な印刷可能範囲に収める。
+        const margin = 16;
         const gap = 5;
         const columns = 4;
         const rows = 2;
