@@ -2,6 +2,26 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Spain qualifies for its first Premier12, with Italy returning for first time since 2015",
+        "summaryJa": "MLBの最新情報、復帰へ向けた最新状況",
+        "slug": "spain-and-italy-qualify-for-2027-premier12",
+        "url": "https://www.mlb.com/news/spain-and-italy-qualify-for-2027-premier12",
+        "contentDate": "2026-10-11T14:22:48.187Z",
+        "teamIds": [
+            920,
+            841
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "mlb-international",
+            "world-baseball-classic"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
         "headline": "Guardians erase 0-2 hole, complete ALDS comeback to punch ALCS ticket",
         "summaryJa": "ガーディアンズ、勝利を呼び込む活躍",
         "slug": "guardians-win-alds-2026",
@@ -406,7 +426,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
