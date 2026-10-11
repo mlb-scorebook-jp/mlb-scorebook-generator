@@ -25,7 +25,7 @@
         CH: "チェンジアップ", FS: "スプリット", FO: "スプリット",
         KN: "ナックル", SC: "スクリュー", EP: "イーファス"
     });
-    const CIRCLED = ["⓪", "①", "②", "③", "④", "⑤", "⑥", "⑦", "⑧", "⑨", "⑩", "⑪", "⑫", "⑬", "⑭", "⑮", "⑯", "⑰", "⑱", "⑲", "⑳"];
+    const CIRCLED = [..."⓪①②③④⑤⑥⑦⑧⑨⑩⑪⑫⑬⑭⑮⑯⑰⑱⑲⑳㉑㉒㉓㉔㉕㉖㉗㉘㉙㉚㉛㉜㉝㉞㉟㊱㊲㊳㊴㊵㊶㊷㊸㊹㊺㊻㊼㊽㊾㊿"];
     const encoder = new TextEncoder();
     const selection = [];
     let selectionSequence = 0;
@@ -63,6 +63,21 @@
     const text = (value) => String(value ?? "").trim();
     const number = (value) => Number.isFinite(Number(value)) ? Number(value) : 0;
     const circled = (value) => CIRCLED[number(value)] ?? String(value);
+    const circledNumberText = (value) => {
+        const source = String(value);
+        const parsed = Number(source);
+        if (Number.isInteger(parsed) && parsed >= 0 && parsed < CIRCLED.length) {
+            return CIRCLED[parsed];
+        }
+        return source.replace(/\d/g, (digit) => CIRCLED[Number(digit)] ?? digit);
+    };
+    const uprightSpeedText = (value) => String(value).replace(/[0-9.]/g, (character) =>
+        character === "." ? "．" : "０１２３４５６７８９"[Number(character)]);
+    const normalizeScriptNumbers = (value, { vertical = false } = {}) => String(value)
+        .replace(/\d+(?:\.\d+)?(?=\s*キロ)|\d+/g, (matched, offset, source) =>
+            /^\s*キロ/.test(source.slice(offset + matched.length))
+                ? vertical ? uprightSpeedText(matched) : matched
+                : circledNumberText(matched));
     const xml = (value) => text(value)
         .replaceAll("&", "&amp;")
         .replaceAll("<", "&lt;")
@@ -1297,7 +1312,7 @@
         });
         const ending = finalLines(plays, data);
         if (ending.length) lines.push("", ...ending);
-        return lines.join("\n");
+        return normalizeScriptNumbers(lines.join("\n"));
     };
 
     const refreshMarks = () => {
@@ -1550,7 +1565,8 @@
     };
 
     const documentXml = (narration) => {
-        const paragraphs = narration.split(/\r?\n/).map((line) => line
+        const verticalNarration = normalizeScriptNumbers(narration, { vertical: true });
+        const paragraphs = verticalNarration.split(/\r?\n/).map((line) => line
             ? `<w:p><w:pPr><w:spacing w:before="0" w:after="0" w:line="360" w:lineRule="auto"/></w:pPr>` +
                 `<w:r><w:rPr><w:rFonts w:ascii="ＭＳ ゴシック" w:eastAsia="ＭＳ ゴシック"/>` +
                 `<w:sz w:val="54"/><w:szCs w:val="54"/></w:rPr><w:t xml:space="preserve">${xml(line)}</w:t></w:r></w:p>`
