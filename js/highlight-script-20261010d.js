@@ -327,7 +327,27 @@
         const runsAtEnd = scoreForSide(scoreAfter(last), side);
         const halfRuns = runsAtEnd - scoreForSide(scoreBefore(half[0], data), side);
         if (preferredSide === side && halfRuns === 0) {
-            return ["　　しかし後が続かず", `　　${shortTeam(side, data)}無得点に終わります`];
+            const eventType = text(previousSelected?.result?.eventType).toLowerCase();
+            const reachedBase = [
+                "single", "double", "triple", "walk", "intent_walk",
+                "hit_by_pitch", "field_error", "catcher_interf"
+            ].includes(eventType);
+            const runnerRemains = (previousSelected?.runners ?? []).some((runner) =>
+                !runner?.movement?.isOut && ["1B", "2B", "3B"].includes(
+                    text(runner?.movement?.end).toUpperCase()
+                ));
+            if (reachedBase || runnerRemains) {
+                return ["　　しかし後が続かず", `　　${shortTeam(side, data)}無得点に終わります`];
+            }
+            const previousHalf = allPlays(data).filter((candidate) =>
+                number(candidate?.about?.inning) === inning - 1 && battingSide(candidate) === side);
+            const previousHalfRuns = previousHalf.length
+                ? scoreForSide(scoreAfter(previousHalf.at(-1)), side) -
+                    scoreForSide(scoreBefore(previousHalf[0], data), side)
+                : -1;
+            return [`　　${shortTeam(side, data)}${previousHalfRuns === 0
+                ? "この回も無得点に終わります"
+                : `${circled(inning)}回は無得点に終わります`}`];
         }
         const pitcherId = number(previousSelected?.matchup?.pitcher?.id);
         if (preferredSide === opponentSide(side) && runsAtEnd === runsAtSelection &&
