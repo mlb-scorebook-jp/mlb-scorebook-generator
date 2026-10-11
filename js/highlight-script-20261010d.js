@@ -757,6 +757,8 @@
         const lines = playLeadLines(play, previousSelected, data);
         const scoring = scoringContext(play, data);
         const focus = japaneseFocus(play, data);
+        const preferredSide = preferredJapaneseSide(data);
+        const describesRunFromDefense = preferredSide === opponentSide(battingSide(play));
         const rematchKey = `${number(play?.matchup?.pitcher?.id)}:${number(play?.matchup?.batter?.id)}`;
         const wonYesterdayRematch = relieverRematches.has(rematchKey) &&
             ["home_run", "single", "double", "triple"].includes(eventType);
@@ -799,7 +801,7 @@
             const homeRunLabel = rbi >= 4 ? "グランドスラム"
                 : rbi === 3 ? "スリーランホームラン"
                     : rbi === 2 ? "ツーランホームラン" : "ソロホームラン";
-            lines.push(`　　${focus?.role !== "pitcher" && scoring.label
+            lines.push(`　　${!describesRunFromDefense && focus?.role !== "pitcher" && scoring.label
                 ? `${scoring.label}の`
                 : ""}${homeRunLabel}`);
         } else if (eventType === "single") {
@@ -881,7 +883,6 @@
         }
         if (scoring.runs) {
             const team = shortTeam(battingSide(play), data);
-            const preferredSide = preferredJapaneseSide(data);
             const after = scoreAfter(play);
             if (preferredSide === opponentSide(battingSide(play))) {
                 const preferredTeam = shortTeam(preferredSide, data);
