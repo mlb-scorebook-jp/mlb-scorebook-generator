@@ -8053,6 +8053,7 @@
 
     const getTeamTrend = async (teamId, date, postseason = false) => {
         const endDate = previousDate(date);
+        const season = Number(String(date).slice(0, 4));
         const schedule = await getTeamSchedule(teamId, date, postseason);
         const recent = postseason ? schedule : schedule.slice(-10);
         const results = recent.map((game) => {
@@ -8079,7 +8080,7 @@
             ? `${date.slice(0, 4)}-09-01`
             : date);
         const gameType = postseason ? "P" : "R";
-        const [hittingPayload, pitchingPayload] = await Promise.all([
+        const [hittingPayload, pitchingPayload, rispPayload, reliefPayload] = await Promise.all([
             fetchJson(
                 `${API_ROOT}/v1/teams/${teamId}/stats?stats=byDateRange&group=hitting&gameType=${gameType}&startDate=${startDate}&endDate=${endDate}`,
                 `pregame:team-hit:${gameType}:${teamId}:${startDate}:${endDate}`
@@ -8087,10 +8088,20 @@
             fetchJson(
                 `${API_ROOT}/v1/teams/${teamId}/stats?stats=byDateRange&group=pitching&gameType=${gameType}&startDate=${startDate}&endDate=${endDate}`,
                 `pregame:team-pitch:${gameType}:${teamId}:${startDate}:${endDate}`
+            ).catch(() => null),
+            fetchJson(
+                `${API_ROOT}/v1/teams/${teamId}/stats?stats=statSplits&group=hitting&gameType=${gameType}&season=${season}&sitCodes=risp`,
+                `pregame:team-risp:${gameType}:${teamId}:${season}`
+            ).catch(() => null),
+            fetchJson(
+                `${API_ROOT}/v1/teams/${teamId}/stats?stats=statSplits&group=pitching&gameType=${gameType}&season=${season}&sitCodes=rp`,
+                `pregame:team-relief:${gameType}:${teamId}:${season}`
             ).catch(() => null)
         ]);
         const hitting = hittingPayload?.stats?.[0]?.splits?.[0]?.stat ?? {};
         const pitching = pitchingPayload?.stats?.[0]?.splits?.[0]?.stat ?? {};
+        const risp = rispPayload?.stats?.[0]?.splits?.[0]?.stat ?? {};
+        const relief = reliefPayload?.stats?.[0]?.splits?.[0]?.stat ?? {};
         return {
             wins: outcomes.filter((value) => value === "W").length,
             losses: outcomes.filter((value) => value === "L").length,
@@ -8100,6 +8111,8 @@
             avg: hitting.avg ?? "-",
             ops: hitting.ops ?? "-",
             era: pitching.era ?? "-",
+            rispAvg: risp.avg ?? "-",
+            reliefEra: relief.era ?? "-",
             results
         };
     };
@@ -9557,6 +9570,14 @@
                     metric("チーム防御率", String(trend.era), pitchingUrl ? {
                         href: pitchingUrl,
                         ariaLabel: `${teamCode(team)}の${season}年${isPostseason ? "ポストシーズン" : "レギュラーシーズン"}MLB公式チーム投手成績を新しいタブで開く`
+                    } : null),
+                    metric("チーム得点圏打率", String(trend.rispAvg), battingUrl ? {
+                        href: battingUrl,
+                        ariaLabel: `${teamCode(team)}の${season}年${isPostseason ? "ポストシーズン" : "レギュラーシーズン"}MLB公式チーム得点圏打率を新しいタブで開く`
+                    } : null),
+                    metric("リリーフ防御率", String(trend.reliefEra), pitchingUrl ? {
+                        href: pitchingUrl,
+                        ariaLabel: `${teamCode(team)}の${season}年${isPostseason ? "ポストシーズン" : "レギュラーシーズン"}MLB公式リリーフ投手成績を新しいタブで開く`
                     } : null)
                 );
                 column.append(metrics);

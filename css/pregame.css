@@ -3779,7 +3779,7 @@ a.pregame-batting-stat:focus-visible {
     grid-column: span 1;
 }
 
-.pregame-team-trends-section .pregame-metric:nth-child(2),
+.pregame-team-trends-section .pregame-metric:nth-child(even),
 .pregame-team-trends-section .pregame-trend-runs-metric,
 .pregame-team-trends-section .pregame-metric:last-child {
     border-right: 0;
