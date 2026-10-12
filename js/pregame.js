@@ -1626,7 +1626,9 @@
             const stat = split?.stat ?? {};
             Object.keys(stats).forEach((field) => {
                 if (field !== "era" && field !== "avg" && field !== "ops") {
-                    stats[field] += statNumber(stat[field]);
+                    stats[field] += field === "pitches"
+                        ? statNumber(stat.numberOfPitches ?? stat.pitchesThrown)
+                        : statNumber(stat[field]);
                 }
             });
             return stats;
@@ -1638,7 +1640,8 @@
             saves: 0,
             strikeOuts: 0,
             earnedRuns: 0,
-            outs: 0
+            outs: 0,
+            pitches: 0
         } : {
             gamesPlayed: 0,
             plateAppearances: 0,
@@ -1719,10 +1722,12 @@
             (person?.stats ?? []).forEach((entry) => {
                 const group = String(entry?.group?.displayName ?? "").toLowerCase();
                 const splits = entry?.splits ?? [];
-                byGroup.set(group, summarizePostseasonStats(splits, group));
-                byGroup.set(`${group}:currentLogs`, splits.filter((split) =>
+                const currentSplits = splits.filter((split) =>
                     String(split?.season ?? split?.date ?? "").slice(0, 4) === currentSeason
-                ));
+                );
+                byGroup.set(group, summarizePostseasonStats(splits, group));
+                byGroup.set(`${group}:current`, summarizePostseasonStats(currentSplits, group));
+                byGroup.set(`${group}:currentLogs`, currentSplits);
                 byGroup.set(`${group}:previous`, summarizePostseasonStats(
                     splits.filter((split) =>
                         String(split?.season ?? split?.date ?? "").slice(0, 4) === previousSeason
@@ -8450,8 +8455,17 @@
     const getPostseasonPerformanceNote = (profile, groups, href, postseasonStats) => {
         const candidates = [];
         if (groups.includes("hitting")) {
+            const current = postseasonStats?.get("hitting:current");
+            const hasCurrent = current?.plateAppearances >= 1;
+            if (hasCurrent) {
+                candidates.push({
+                    text: `今季ポストシーズン　打率${current.avg}　` +
+                        `${current.homeRuns}本塁打　${current.rbi}打点　OPS${current.ops}`,
+                    score: 120
+                });
+            }
             const stats = postseasonStats?.get("hitting");
-            if (stats) {
+            if (stats && !hasCurrent) {
                 const ops = Number(stats.ops);
                 const qualifies = (stats.plateAppearances >= 40 && ops >= 0.850) ||
                     stats.homeRuns >= 8 || stats.rbi >= 20;
@@ -8465,7 +8479,7 @@
                 }
             }
             const previous = postseasonStats?.get("hitting:previous");
-            if (previous) {
+            if (previous && !hasCurrent) {
                 const ops = Number(previous.ops);
                 const explosive = previous.plateAppearances >= 12 && (
                     ops >= 1.000 || Number(previous.avg) >= 0.350 ||
@@ -8482,8 +8496,18 @@
             }
         }
         if (groups.includes("pitching")) {
+            const current = postseasonStats?.get("pitching:current");
+            const hasCurrent = current?.pitches >= 1;
+            if (hasCurrent) {
+                const saveText = current.saves ? `　${current.saves}セーブ` : "";
+                candidates.push({
+                    text: `今季ポストシーズン　${current.wins}勝${current.losses}敗` +
+                        `${saveText}　防御率${current.era}　${current.strikeOuts}奪三振`,
+                    score: 120
+                });
+            }
             const stats = postseasonStats?.get("pitching");
-            if (stats) {
+            if (stats && !hasCurrent) {
                 const era = Number(stats.era);
                 const starterQualified = stats.outs >= 75 && Number.isFinite(era) && era <= 3.50;
                 const relieverQualified = stats.outs >= 45 && Number.isFinite(era) && era <= 2.50;
@@ -8504,7 +8528,7 @@
                 }
             }
             const previous = postseasonStats?.get("pitching:previous");
-            if (previous) {
+            if (previous && !hasCurrent) {
                 const era = Number(previous.era);
                 const dominant = Number.isFinite(era) && (
                     (previous.outs >= 18 && era <= 1.50) ||
