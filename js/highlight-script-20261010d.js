@@ -1174,7 +1174,7 @@
         if (japaneseMatchup) {
             lines.push(
                 `Ｑ　${playerName(japaneseMatchup?.matchup?.pitcher, data)}と` +
-                `${playerName(japaneseMatchup?.matchup?.batter, data)}の日本人対決に注目です`
+                `${playerName(japaneseMatchup?.matchup?.batter, data)}の日本選手対決に注目です`
             );
         }
         const pregameHighlight = window.PregameInfo?.getGameHighlightText?.(data?.gamePk)?.[0];
