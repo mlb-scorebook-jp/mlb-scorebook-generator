@@ -13,6 +13,7 @@ const ROOT = path.resolve(import.meta.dirname, "..");
 // 撮影結果はGit管理中の見本PDFを上書きしない専用フォルダへ保存する。
 const OUTPUT = path.join(ROOT, "output", "pbp-captures");
 const fileTokens = new Map();
+const captureProgress = new Map();
 
 const browserCandidates = process.platform === "win32"
     ? [
@@ -45,9 +46,9 @@ const json = (response, status, body) => {
 const waitingPage = `<!doctype html>
 <html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>PBP資料を作成中</title>
-<style>*{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;background:#f4f7fa;color:#172331;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",sans-serif}.panel{width:min(560px,calc(100% - 40px));padding:48px 36px;text-align:center;background:#fff;border:1px solid #d6dee7;border-radius:16px;box-shadow:0 14px 40px rgba(23,35,49,.12)}.spinner{width:52px;height:52px;margin:0 auto 26px;border:6px solid #dce7f0;border-top-color:#0878be;border-radius:50%;animation:spin 1s linear infinite}h1{margin:0 0 18px;font-size:28px}p{margin:8px 0;line-height:1.8;font-size:17px}.note{color:#607080;font-size:14px}@keyframes spin{to{transform:rotate(360deg)}}</style>
-</head><body><main class="panel"><div class="spinner" aria-hidden="true"></div><h1>PBP資料を作成中</h1><p>完成したらダウンロードフォルダに保存されます。</p><p class="note">打席数によって1分ほどかかる場合があります。この画面を開いたままお待ちください。</p></main>
-<script>(async()=>{const heading=document.querySelector("h1"),message=document.querySelector("p"),spinner=document.querySelector(".spinner");try{const job=JSON.parse(decodeURIComponent(location.hash.slice(1)));history.replaceState(null,"",location.pathname);const response=await fetch("/capture",{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify(job)});if(!response.ok)throw new Error("撮影サーバーの応答: "+response.status);const result=await response.json();if(!result.url)throw new Error("PDFの保存先を取得できませんでした。");heading.textContent="PBP資料が完成しました";message.textContent="ダウンロードフォルダへの保存を開始します。";spinner.style.display="none";location.href=result.url}catch(error){heading.textContent="PBP資料を作成できませんでした";message.textContent="元の画面へ戻って、もう一度実行してください。";spinner.style.display="none";document.querySelector(".note").textContent=error?.message||String(error)}})();</script>
+<style>*{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;background:#f4f7fa;color:#172331;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",sans-serif}.panel{width:min(560px,calc(100% - 40px));padding:48px 36px;text-align:center;background:#fff;border:1px solid #d6dee7;border-radius:16px;box-shadow:0 14px 40px rgba(23,35,49,.12)}h1{margin:0 0 18px;font-size:28px}.progress-label{margin:0 0 9px;text-align:right;color:#0878be;font-size:20px;font-weight:700;font-variant-numeric:tabular-nums}.progress-track{height:18px;margin:0 auto 25px;overflow:hidden;background:#dce7f0;border-radius:999px;box-shadow:inset 0 1px 2px rgba(23,35,49,.12)}.progress-bar{width:0;height:100%;background:linear-gradient(90deg,#1596d2,#0878be);border-radius:inherit;transition:width .35s ease}p{margin:8px 0;line-height:1.8;font-size:17px}.note{color:#607080;font-size:14px}</style>
+</head><body><main class="panel"><div class="progress-label">0％</div><div class="progress-track" role="progressbar" aria-label="PBP資料の作成進捗" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="progress-bar"></div></div><h1>PBP資料を作成中</h1><p>完成したらダウンロードフォルダに保存されます。</p><p class="note">準備しています。この画面を開いたままお待ちください。</p></main>
+<script>(async()=>{const heading=document.querySelector("h1"),message=document.querySelector("p"),note=document.querySelector(".note"),track=document.querySelector(".progress-track"),bar=document.querySelector(".progress-bar"),label=document.querySelector(".progress-label");const setProgress=(value,status)=>{const percent=Math.max(0,Math.min(100,Math.round(Number(value)||0)));bar.style.width=percent+"%";label.textContent=percent+"％";track.setAttribute("aria-valuenow",String(percent));if(status)note.textContent=status};let timer;try{const job=JSON.parse(decodeURIComponent(location.hash.slice(1)));job.progressId=(globalThis.crypto?.randomUUID?.()||Date.now()+"-"+Math.random().toString(36).slice(2));history.replaceState(null,"",location.pathname);timer=setInterval(async()=>{try{const response=await fetch("/progress/"+encodeURIComponent(job.progressId),{cache:"no-store"});if(!response.ok)return;const state=await response.json();setProgress(state.percent,state.message)}catch{}},500);const response=await fetch("/capture",{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify(job)});if(!response.ok)throw new Error("撮影サーバーの応答: "+response.status);const result=await response.json();if(!result.url)throw new Error("PDFの保存先を取得できませんでした。");clearInterval(timer);setProgress(100,"PDFを保存しました。");heading.textContent="PBP資料が完成しました";message.textContent="ダウンロードフォルダへの保存を開始します。";setTimeout(()=>{location.href=result.url},350)}catch(error){clearInterval(timer);heading.textContent="PBP資料を作成できませんでした";message.textContent="元の画面へ戻って、もう一度実行してください。";note.textContent=error?.message||String(error)}})();</script>
 </body></html>`;
 
 const closeOverlays = async (page) => {
@@ -155,8 +156,9 @@ const captureEvent = async (page, job, event) => {
     return [shot];
 };
 
-const makePdf = async (job) => {
+const makePdf = async (job, reportProgress = () => {}) => {
     await fs.mkdir(OUTPUT, { recursive: true });
+    reportProgress(2, "試合データを確認しています。");
     try {
         const feedResponse = await fetch(`https://statsapi.mlb.com/api/v1.1/game/${job.gamePk}/feed/live`);
         if (feedResponse.ok) {
@@ -176,6 +178,7 @@ const makePdf = async (job) => {
         throw new Error("Google Chrome または Microsoft Edge が見つかりません。");
     }
     const browser = await chromium.launch({ headless: true, executablePath });
+    reportProgress(6, `公式Gamedayを開いています（全${job.events.length}件）。`);
     const browserContext = await browser.newContext({
         viewport: { width: 1440, height: 900 },
         deviceScaleFactor: 1.4
@@ -186,6 +189,7 @@ const makePdf = async (job) => {
     try {
         const captures = new Array(job.events.length);
         let nextIndex = 0;
+        let completedEvents = 0;
         const workerCount = Math.min(2, job.events.length);
         const workers = Array.from({ length: workerCount }, async () => {
             const page = await browserContext.newPage();
@@ -194,12 +198,16 @@ const makePdf = async (job) => {
                     const index = nextIndex;
                     nextIndex += 1;
                     captures[index] = await captureEvent(page, job, job.events[index]);
+                    completedEvents += 1;
+                    const percent = 6 + Math.round((completedEvents / job.events.length) * 84);
+                    reportProgress(percent, `${completedEvents}/${job.events.length}件の撮影が完了しました。`);
                 }
             } finally {
                 await page.close().catch(() => {});
             }
         });
         await Promise.all(workers);
+        reportProgress(92, "撮影画像をPDFに配置しています。");
         const cards = captures.flat();
         const pageWidth = 841.89;
         const pageHeight = 595.28;
@@ -243,6 +251,7 @@ const makePdf = async (job) => {
         .replace(/[^\p{L}\p{N}@._-]/gu, "_");
     const filename = `${safe}.pdf`;
     await fs.writeFile(path.join(OUTPUT, filename), await pdf.save());
+    reportProgress(100, "PDFを保存しました。");
     return filename;
 };
 
@@ -257,6 +266,13 @@ const server = http.createServer(async (request, response) => {
         return response.end();
     }
     if (request.method === "GET" && request.url === "/health") return json(response, 200, { ok: true });
+    if (request.method === "GET" && request.url?.startsWith("/progress/")) {
+        const progressId = decodeURIComponent(request.url.slice(10));
+        const state = captureProgress.get(progressId);
+        return state
+            ? json(response, 200, state)
+            : json(response, 404, { error: "進捗情報が見つかりません。" });
+    }
     if (request.method === "GET" && request.url === "/waiting") {
         response.writeHead(200, {
             "content-type": "text/html; charset=utf-8",
@@ -317,11 +333,17 @@ const server = http.createServer(async (request, response) => {
         if (!Number(job.gamePk) || !Array.isArray(job.events) || !job.events.length) {
             return json(response, 400, { error: "撮影対象がありません。" });
         }
-        const filename = await makePdf(job);
+        const reportProgress = (percent, message) => {
+            if (!job.progressId) return;
+            captureProgress.set(job.progressId, { percent, message });
+        };
+        reportProgress(0, "準備しています。");
+        const filename = await makePdf(job, reportProgress);
         const token = `${Date.now()}-${Math.random().toString(36).slice(2, 10)}`;
         fileTokens.set(token, filename);
         await fs.copyFile(path.join(OUTPUT, filename), path.join(OUTPUT, `${token}.pdf`));
         console.log(`[${new Date().toISOString()}] capture completed: ${filename}`);
+        if (job.progressId) setTimeout(() => captureProgress.delete(job.progressId), 60000);
         return json(response, 200, {
             ok: true,
             filename,
