@@ -44,6 +44,7 @@
     const starterNotes = new Map();
     const relieverNotes = new Map();
     const relieverRematches = new Set();
+    let postseasonIntro = null;
 
     const context = () => window.ScorebookHighlightContext;
     const setStatus = (message, isError = false) => {
@@ -1153,18 +1154,80 @@
         }));
     };
 
+    const postseasonSeriesLabel = (gameType, data) => {
+        const leagueIds = ["away", "home"].map((side) =>
+            number(data?.gameData?.gameData?.teams?.[side]?.league?.id));
+        const league = leagueIds.every((id) => id === 103)
+            ? "アメリカンリーグ"
+            : leagueIds.every((id) => id === 104)
+                ? "ナショナルリーグ"
+                : "";
+        if (gameType === "L") return `${league ? `${league}の` : ""}リーグ優勝決定シリーズ`;
+        if (gameType === "D") return `${league ? `${league}の` : ""}地区シリーズ`;
+        if (gameType === "F") return "ワイルドカードシリーズ";
+        if (gameType === "W") return "ワールドシリーズ";
+        return "";
+    };
+
+    const preparePostseasonIntro = async (data) => {
+        postseasonIntro = null;
+        if (["second", "other"].includes(mode)) return;
+        const game = data?.gameData?.gameData?.game ?? {};
+        const gameType = text(game?.type).toUpperCase();
+        const label = postseasonSeriesLabel(gameType, data);
+        const season = number(game?.season);
+        const awayId = number(data?.gameData?.gameData?.teams?.away?.id);
+        const homeId = number(data?.gameData?.gameData?.teams?.home?.id);
+        if (!label || !season || !awayId || !homeId) return;
+        let repeatedMatchup = false;
+        try {
+            const params = new URLSearchParams({
+                sportId: "1",
+                teamId: String(awayId),
+                startDate: `${season - 1}-09-20`,
+                endDate: `${season - 1}-11-10`,
+                gameTypes: gameType
+            });
+            const response = await fetch(`https://statsapi.mlb.com/api/v1/schedule?${params}`);
+            if (response.ok) {
+                const schedule = await response.json();
+                repeatedMatchup = (schedule?.dates ?? []).some((date) =>
+                    (date?.games ?? []).some((candidate) => {
+                        const ids = [
+                            number(candidate?.teams?.away?.team?.id),
+                            number(candidate?.teams?.home?.team?.id)
+                        ];
+                        return ids.includes(awayId) && ids.includes(homeId);
+                    }));
+            }
+        } catch {
+            // 前年日程を取得できない場合も、現在のシリーズ情報だけで原稿を作る。
+        }
+        postseasonIntro = { label, repeatedMatchup };
+    };
+
     const automaticHead = (selectedPlays, data) => {
         if (["second", "other"].includes(mode)) return [];
         const away = shortTeam("away", data);
         const home = shortTeam("home", data);
-        const lines = [`Ｑ　${away}対${home}`];
         const gameType = text(data?.gameData?.gameData?.game?.type).toUpperCase();
         const seriesDescription = text(data?.gameData?.gameData?.game?.seriesDescription);
         const gameNumber = number(data?.gameData?.gameData?.game?.gameNumber);
-        if (gameType !== "R" && seriesDescription) {
-            lines.push(`　　${seriesDescription}${gameNumber ? `第${circled(gameNumber)}戦` : ""}`);
-        } else if (gameNumber > 1) {
-            lines.push(`　　連戦の第${circled(gameNumber)}戦`);
+        const seriesLabel = postseasonIntro?.label || postseasonSeriesLabel(gameType, data);
+        const lines = postseasonIntro?.repeatedMatchup
+            ? [
+                "Ｑ　去年と同じ顔合わせになった",
+                `　　${seriesLabel}、${away}対${home}`
+            ]
+            : [`Ｑ　${away}対${home}`];
+        if (!postseasonIntro?.repeatedMatchup) {
+            if (seriesLabel) {
+                lines.push(`　　${seriesLabel}${gameNumber ? `第${circled(gameNumber)}戦` : ""}`);
+            } else if (gameType !== "R" && seriesDescription) {
+                lines.push(`　　${seriesDescription}${gameNumber ? `第${circled(gameNumber)}戦` : ""}`);
+            } else if (gameNumber > 1) {
+                lines.push(`　　連戦の第${circled(gameNumber)}戦`);
+            }
         }
         const japaneseMatchup = allPlays(data).find((play) =>
             isJapanesePlayer(play?.matchup?.pitcher, data) &&
@@ -1820,7 +1883,10 @@
             finishButton.textContent = "先発情報を確認中…";
         }
         context()?.setStatus?.("MLB公式データで先発投手の直近成績を確認しています。");
-        await prepareStarterNotes(snapshot());
+        await Promise.all([
+            prepareStarterNotes(snapshot()),
+            preparePostseasonIntro(snapshot())
+        ]);
         const narration = generateNarration();
         stop();
         context()?.setStatus?.("先発投手の直近情報を反映して原稿を作成しました。");
