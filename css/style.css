@@ -2085,6 +2085,10 @@ body.app-mode-pregame .score-loading-overlay {
     right: -11px;
 }
 
+.atbat-cell.multi-out-link-segment .pitch-total-count.two-digit {
+    right: -14px;
+}
+
 .pitch-shape-stroke {
     fill: none;
     stroke: currentColor;
