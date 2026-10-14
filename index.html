@@ -3255,6 +3255,7 @@
                 const isRegularSeason = gameType === "R";
                 const isPostseason = ["F", "D", "L", "W"].includes(gameType);
                 if ((!isRegularSeason && !isPostseason) || !isGameFinal(data)) return "";
+                const attendanceGameTypes = ["R", "F", "D", "L", "W"];
 
                 const homeTeamId = Number(data?.gameData?.teams?.home?.id);
                 const homeVenueId = Number(data?.gameData?.teams?.home?.venue?.id);
@@ -3265,30 +3266,31 @@
                 if (!homeTeamId || !homeVenueId || gameVenueId !== homeVenueId ||
                     !officialDate || !season) return "";
 
-                const cacheKey = `${homeTeamId}:${season}:${officialDate}:${gameType}:attendance`;
+                const cacheKey = `${homeTeamId}:${season}:${officialDate}:all-season-attendance`;
                 let gamesRequest = seasonAttendanceCache.get(cacheKey);
                 if (!gamesRequest) {
-                    const params = new URLSearchParams({
-                        sportId: "1",
-                        teamId: String(homeTeamId),
-                        startDate: isRegularSeason ? `${season}-02-01` : `${season}-09-01`,
-                        endDate: officialDate,
-                        gameType,
-                        hydrate: "gameInfo,venue"
-                    });
-                    gamesRequest = fetch(`https://statsapi.mlb.com/api/v1/schedule?${params}`)
-                        .then(async (response) => {
-                            if (!response.ok) return [];
-                            const payload = await response.json();
-                            return (payload?.dates ?? []).flatMap((date) => date?.games ?? []);
-                        })
-                        .catch(() => []);
+                    gamesRequest = Promise.all(attendanceGameTypes.map(async (type) => {
+                        const params = new URLSearchParams({
+                            sportId: "1",
+                            teamId: String(homeTeamId),
+                            startDate: `${season}-02-01`,
+                            endDate: officialDate,
+                            gameType: type,
+                            hydrate: "gameInfo,venue"
+                        });
+                        const response = await fetch(
+                            `https://statsapi.mlb.com/api/v1/schedule?${params}`
+                        );
+                        if (!response.ok) return [];
+                        const payload = await response.json();
+                        return (payload?.dates ?? []).flatMap((date) => date?.games ?? []);
+                    })).then((groups) => groups.flat()).catch(() => []);
                     seasonAttendanceCache.set(cacheKey, gamesRequest);
                 }
 
                 const attendances = (await gamesRequest)
                     .filter((game) =>
-                        String(game?.gameType ?? "").toUpperCase() === gameType &&
+                        attendanceGameTypes.includes(String(game?.gameType ?? "").toUpperCase()) &&
                         String(game?.status?.abstractGameState ?? "").toLowerCase() === "final" &&
                         Number(game?.teams?.home?.team?.id) === homeTeamId &&
                         Number(game?.venue?.id) === homeVenueId &&
@@ -3306,9 +3308,8 @@
                 if (!current || !attendances.length) return "";
 
                 const values = attendances.map((entry) => entry.attendance);
-                const labelPrefix = isPostseason ? "今季PS" : "今季";
-                if (current.attendance === Math.max(...values)) return `${labelPrefix}最多入場者数`;
-                if (current.attendance === Math.min(...values)) return `${labelPrefix}最少入場者数`;
+                if (current.attendance === Math.max(...values)) return "今季最多入場者数";
+                if (current.attendance === Math.min(...values)) return "今季最少入場者数";
                 return "";
             };
 
