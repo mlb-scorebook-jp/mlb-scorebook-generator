@@ -14,10 +14,49 @@
 <body class="app-mode-home">
     <section class="portal-home" id="portal-home" aria-label="メインメニュー">
         <div class="portal-home-panel">
-            <h1>MLB SCOREBOOK GENERATOR</h1>
+            <div class="portal-home-intro">
+                <span class="portal-home-kicker">MLB BROADCAST PRODUCTION DESK</span>
+                <h1>今日の試合を、<br>ここから組み立てる。</h1>
+                <p>スコア、事前情報、記録、移籍情報をひとつの制作デスクに。</p>
+                <span class="portal-home-date" id="portal-home-date"></span>
+            </div>
             <div class="portal-home-actions">
-                <button type="button" id="portal-scorebook-btn">スコアブック生成</button>
-                <button type="button" id="portal-pregame-btn">試合前情報</button>
+                <button type="button" class="portal-action-card portal-action-primary" id="portal-scorebook-btn">
+                    <span class="portal-action-index">01</span>
+                    <span class="portal-action-copy">
+                        <small>SCOREBOOK</small>
+                        <strong>スコアブック生成</strong>
+                        <span>試合を選び、プレーと投球を一枚に整理</span>
+                    </span>
+                    <span class="portal-action-arrow" aria-hidden="true">→</span>
+                </button>
+                <button type="button" class="portal-action-card portal-action-primary" id="portal-pregame-btn">
+                    <span class="portal-action-index">02</span>
+                    <span class="portal-action-copy">
+                        <small>PRE-GAME</small>
+                        <strong>試合前情報</strong>
+                        <span>先発、注目選手、対戦材料をすぐ確認</span>
+                    </span>
+                    <span class="portal-action-arrow" aria-hidden="true">→</span>
+                </button>
+                <button type="button" class="portal-action-card" id="portal-daily-records-btn">
+                    <span class="portal-action-index">03</span>
+                    <span class="portal-action-copy">
+                        <small>DAILY NOTES</small>
+                        <strong>本日の記録</strong>
+                        <span>珍記録や節目の数字を制作メモに</span>
+                    </span>
+                    <span class="portal-action-arrow" aria-hidden="true">→</span>
+                </button>
+                <button type="button" class="portal-action-card" id="portal-transfers-btn">
+                    <span class="portal-action-index">04</span>
+                    <span class="portal-action-copy">
+                        <small>ROSTER</small>
+                        <strong>移籍情報</strong>
+                        <span>契約、トレード、ロースターの動きを追う</span>
+                    </span>
+                    <span class="portal-action-arrow" aria-hidden="true">→</span>
+                </button>
             </div>
         </div>
     </section>
@@ -12582,6 +12621,14 @@
             document.getElementById("header-scorebook-btn").addEventListener("click", showScorebook);
             document.getElementById("portal-scorebook-btn").addEventListener("click", showScorebook);
             document.getElementById("portal-pregame-btn").addEventListener("click", showPregame);
+            document.getElementById("portal-daily-records-btn").addEventListener(
+                "click",
+                () => showDailyRecords()
+            );
+            document.getElementById("portal-transfers-btn").addEventListener(
+                "click",
+                () => showTransfers()
+            );
             document.getElementById("app-home-link").addEventListener("click", showPortalHome);
             document.getElementById("pregame-brand-home").addEventListener("click", showPortalHome);
             dom.pitchChartBackButton.addEventListener("click", showScorebook);
@@ -12719,6 +12766,16 @@
             };
 
             const initializeApp = async () => {
+                const portalDate = document.getElementById("portal-home-date");
+                if (portalDate) {
+                    portalDate.textContent = new Intl.DateTimeFormat("ja-JP", {
+                        timeZone: "Asia/Tokyo",
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                        weekday: "short"
+                    }).format(new Date());
+                }
                 renderScorebookLibrary();
                 render();
                 requestAnimationFrame(refreshHorizontalScrollbar);
