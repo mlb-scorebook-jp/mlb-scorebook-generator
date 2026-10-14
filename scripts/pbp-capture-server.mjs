@@ -180,10 +180,10 @@ const makePdf = async (job, reportProgress = () => {}) => {
         // Gameday側でも対象プレーを探すため、公式フィード取得失敗時も続行する。
     }
     const executablePath = browserExecutable();
-    if (!executablePath) {
-        throw new Error("Google Chrome または Microsoft Edge が見つかりません。");
-    }
-    const browser = await chromium.launch({ headless: true, executablePath });
+    const browser = await chromium.launch({
+        headless: true,
+        ...(executablePath ? { executablePath } : {})
+    });
     reportProgress(6, `公式Gamedayを開いています（全${job.events.length}件）。`);
     const browserContext = await browser.newContext({
         viewport: { width: 1440, height: 900 },

@@ -46,6 +46,35 @@ else
     fi
 fi
 
+PBP_SYSTEM_BROWSER=""
+for PBP_BROWSER in \
+    "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" \
+    "${HOME}/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" \
+    "/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge" \
+    "${HOME}/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge" \
+    "/Applications/Chromium.app/Contents/MacOS/Chromium" \
+    "${HOME}/Applications/Chromium.app/Contents/MacOS/Chromium"; do
+    if [[ -x "${PBP_BROWSER}" ]]; then
+        PBP_SYSTEM_BROWSER="${PBP_BROWSER}"
+        break
+    fi
+done
+
+if [[ -z "${PBP_SYSTEM_BROWSER}" ]]; then
+    PBP_PLAYWRIGHT_CLI="${PBP_NODE_MODULES}/playwright/cli.js"
+    if [[ ! -f "${PBP_PLAYWRIGHT_CLI}" ]]; then
+        echo "撮影用ブラウザの準備ファイルが見つかりません。"
+        read "?Enterキーで閉じます。"
+        exit 1
+    fi
+    echo "撮影用ブラウザを準備しています。初回だけ数分かかる場合があります。"
+    "${PBP_NODE}" "${PBP_PLAYWRIGHT_CLI}" install chromium || {
+        echo "撮影用ブラウザを準備できませんでした。ネットワーク接続を確認してください。"
+        read "?Enterキーで閉じます。"
+        exit 1
+    }
+fi
+
 mkdir -p "${PBP_PLIST_DIR}"
 /bin/cat > "${PBP_PLIST}" <<EOF
 <?xml version="1.0" encoding="UTF-8"?>
