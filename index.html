@@ -7840,13 +7840,10 @@
                             runner?.details?.eventType ?? ""
                         ).toLowerCase();
 
-                        // MLB may split one hit-driven advance into consecutive rows
+                        // MLB may split one play-driven advance into consecutive rows
                         // for the same runner (for example 1B-2B plus 2B-3B). Treat
-                        // those rows as one continuous route so the scorebook keeps
-                        // the traditional bent arrow from first to third.
-                        if (!isCurrentBatter &&
-                            ["single", "double", "triple", "home_run"]
-                                .includes(runnerEventType)) {
+                        // those rows as one continuous route for hits and errors alike.
+                        if (!isCurrentBatter && runnerEventType) {
                             const eventIndex = Number(runner?.details?.playIndex);
                             const baseIndex = (base) => ({
                                 home: 0, home_plate: 0,
@@ -7872,6 +7869,38 @@
                             if (starts.length && ends.length && baseIndex(ends[0]) > baseIndex(starts[0])) {
                                 origin = starts[0];
                                 end = ends[0];
+                            }
+                        }
+
+                        // A batter reaching on an error may likewise be split into
+                        // home-1B and 1B-2B rows. Keep E5f at first and draw only the
+                        // continuation from first to the final base.
+                        if (isCurrentBatter && runnerEventType === "field_error") {
+                            const eventIndex = Number(runner?.details?.playIndex);
+                            const baseIndex = (base) => ({
+                                home: 0, home_plate: 0,
+                                "1b": 1, first: 1, first_base: 1,
+                                "2b": 2, second: 2, second_base: 2,
+                                "3b": 3, third: 3, third_base: 3,
+                                score: 4
+                            })[String(base ?? "").toLowerCase()] ?? -1;
+                            const furthestEnd = runners
+                                .filter((candidate) =>
+                                    Number(candidate?.details?.runner?.id) === Number(runnerId) &&
+                                    Number(candidate?.details?.playIndex) === eventIndex &&
+                                    String(candidate?.details?.eventType ?? "").toLowerCase() === runnerEventType &&
+                                    candidate?.movement?.isOut !== true
+                                )
+                                .map((candidate) => candidate?.movement?.end)
+                                .filter((base) => baseIndex(base) >= 0)
+                                .sort((left, right) => baseIndex(right) - baseIndex(left))[0];
+                            const errorAdvancePaths = {
+                                "2B": "first-second",
+                                "3B": "second-third",
+                                score: "second-third-home"
+                            };
+                            if (baseIndex(furthestEnd) > 1) {
+                                target.runnerAdvancePath = errorAdvancePaths[normalizeBase(furthestEnd)] ?? "";
                             }
                         }
 
