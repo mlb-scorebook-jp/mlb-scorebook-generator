@@ -8053,7 +8053,9 @@
                                     } else if (fromIndex === 1 && toIndex >= 4) {
                                         target.runnerAdvancePath = "second-third-home";
                                     } else if (fromIndex === 2 && toIndex >= 4) {
-                                        target.runnerAdvancePath = "third-home";
+                                        target.runnerAdvancePath = target.runnerAdvancePath === "first-second"
+                                            ? "first-second-third-home"
+                                            : "third-home";
                                     }
                                 }
                                 if (!isPickoffError) {
@@ -8326,6 +8328,7 @@
                 const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
                 const paths = {
                     "first-second": "M52 52 L52 9",
+                    "first-second-third-home": "M52 52 L52 9 L9 9 L9 52",
                     "second-third": "M52 52 L52 9 L9 9",
                     "second-third-home": "M52 9 L5 9 L5 52",
                     "third-home": "M52 9 L9 9 L9 52",

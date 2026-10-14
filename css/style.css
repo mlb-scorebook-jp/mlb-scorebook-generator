@@ -2386,6 +2386,12 @@ body.app-mode-pregame .score-loading-overlay {
     height: 36px;
 }
 
+/* 1Bから2Bへ進み、後続打者で本塁まで還った走者の全走路。 */
+.play-card .runner-history-svg.runner-history-first-second-third-home {
+    width: 36px;
+    height: 36px;
+}
+
 /* 2B to home via 3B: keep the bent pass arrow inside the upper-left quarter. */
 .play-card .runner-history-svg.runner-history-third-home,
 .play-card .runner-history-svg.runner-history-poe-third-home {
