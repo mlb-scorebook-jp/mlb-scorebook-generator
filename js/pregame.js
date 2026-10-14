@@ -12,14 +12,6 @@
         [139, 0], [140, 1], [141, 2], [142, 3], [143, 2],
         [144, 4], [145, 3], [146, 2], [147, 27], [158, 0]
     ]);
-    const BASEBALL_REFERENCE_TEAM_CODES = new Map([
-        [108, "LAA"], [109, "ARI"], [110, "BAL"], [111, "BOS"], [112, "CHC"],
-        [113, "CIN"], [114, "CLE"], [115, "COL"], [116, "DET"], [117, "HOU"],
-        [118, "KCR"], [119, "LAD"], [120, "WSN"], [121, "NYM"], [133, "ATH"],
-        [134, "PIT"], [135, "SDP"], [136, "SEA"], [137, "SFG"], [138, "STL"],
-        [139, "TBR"], [140, "TEX"], [141, "TOR"], [142, "MIN"], [143, "PHI"],
-        [144, "ATL"], [145, "CHW"], [146, "MIA"], [147, "NYY"], [158, "MIL"]
-    ]);
     const cache = new Map();
     const savantCache = new Map();
     const gameIndex = new Map();
@@ -4898,16 +4890,9 @@
         return `JST ${time} FP`;
     };
 
-    const renderSeriesStars = (team, seriesStanding, season, extraClass = "") => {
-        const referenceCode = BASEBALL_REFERENCE_TEAM_CODES.get(Number(team?.id));
-        const stars = el(referenceCode && season ? "a" : "span", `pregame-series-stars${extraClass ? ` ${extraClass}` : ""}`);
+    const renderSeriesStars = (team, seriesStanding, extraClass = "") => {
+        const stars = el("span", `pregame-series-stars${extraClass ? ` ${extraClass}` : ""}`);
         if (!seriesStanding) return stars;
-        if (referenceCode && season) {
-            stars.href = `https://www.baseball-reference.com/teams/${referenceCode}/${season}-schedule-scores.shtml`;
-            stars.target = "_blank";
-            stars.rel = "noopener noreferrer";
-            stars.title = `${teamJapaneseName(team)} ${season}年ゲームログ（Baseball-Reference）`;
-        }
         const wins = seriesStanding.wins.get(Number(team?.id)) ?? 0;
         const starCount = Number(seriesStanding.starCount ?? seriesStanding.totalGames);
         for (let index = 0; index < starCount; index += 1) {
@@ -4918,6 +4903,24 @@
             `${teamJapaneseName(team)} ${seriesStanding.gameType === "R" ? `このカード${seriesStanding.totalGames}試合中` : `シリーズ`} ${wins}勝`
         );
         return stars;
+    };
+
+    const postseasonReferenceUrl = (gameType, awayTeam, homeTeam, season, seedByTeam) => {
+        const league = Number(awayTeam?.league?.id) === 104 ? "NL" : "AL";
+        const type = String(gameType ?? "").toUpperCase();
+        if (!Number.isInteger(season) || !["F", "D", "L", "W"].includes(type)) return "";
+        if (type === "W") return `https://www.baseball-reference.com/postseason/${season}_WS.shtml`;
+        if (type === "L") return `https://www.baseball-reference.com/postseason/${season}_${league}CS.shtml`;
+        const seeds = [awayTeam, homeTeam]
+            .map((team) => Number(seedByTeam.get(Number(team?.id))))
+            .filter(Number.isFinite);
+        const bestSeed = seeds.length ? Math.min(...seeds) : 0;
+        const seriesNumber = type === "F"
+            ? bestSeed === 3 ? 1 : bestSeed === 4 ? 2 : 0
+            : bestSeed === 1 ? 1 : bestSeed === 2 ? 2 : 0;
+        return seriesNumber
+            ? `https://www.baseball-reference.com/postseason/${season}_${league}${type === "F" ? "WC" : "DS"}${seriesNumber}.shtml`
+            : `https://www.baseball-reference.com/postseason/${season}.shtml`;
     };
 
     const postseasonSeriesLabel = (gameType, awayTeam) => {
@@ -5058,9 +5061,9 @@
         const matchupHeading = seriesStanding
             ? [
                 teamBlock(awayTeam),
-                renderSeriesStars(awayTeam, seriesStanding, season),
+                renderSeriesStars(awayTeam, seriesStanding),
                 el("span", "pregame-header-versus", "VS."),
-                renderSeriesStars(homeTeam, seriesStanding, season),
+                renderSeriesStars(homeTeam, seriesStanding),
                 teamBlock(homeTeam)
             ]
             : [teamBlock(awayTeam), el("span", "pregame-header-versus", "VS."), teamBlock(homeTeam)];
@@ -5071,10 +5074,20 @@
                 ? `${postseasonLabel} GAME ${seriesGameNumber}`
                 : `GAME ${seriesGameNumber}/${totalSeriesGames}`
             : postseasonLabel;
+        const referenceUrl = isPostseason
+            ? postseasonReferenceUrl(gameType, awayTeam, homeTeam, season, postseasonSeedByTeam)
+            : "";
+        const seriesTitle = seriesGameLabel
+            ? el(referenceUrl ? "a" : "span", "pregame-postseason-series-title", seriesGameLabel)
+            : null;
+        if (seriesTitle && referenceUrl) {
+            seriesTitle.href = referenceUrl;
+            seriesTitle.target = "_blank";
+            seriesTitle.rel = "noopener noreferrer";
+            seriesTitle.title = `${postseasonLabel}（Baseball-Reference）`;
+        }
         dom.title.replaceChildren(
-            ...(seriesGameLabel
-                ? [el("span", "pregame-postseason-series-title", seriesGameLabel)]
-                : []),
+            ...(seriesTitle ? [seriesTitle] : []),
             ...matchupHeading
         );
         const venue = venueLabel(feed?.gameData?.venue ?? game?.venue) || "球場未定";

@@ -198,6 +198,14 @@ body.app-mode-pregame .scorebook-horizontal-scroll {
     letter-spacing: 0.08em;
     text-align: center;
     white-space: nowrap;
+    text-decoration: none;
+}
+
+a.pregame-postseason-series-title:hover,
+a.pregame-postseason-series-title:focus-visible {
+    color: #8fd0ff;
+    text-decoration: underline;
+    text-underline-offset: 3px;
 }
 
 .pregame-series-stars {
@@ -213,19 +221,6 @@ body.app-mode-pregame .scorebook-horizontal-scroll {
     line-height: 1.2;
     letter-spacing: 0;
     white-space: nowrap;
-    text-decoration: none;
-}
-
-a.pregame-series-stars:hover,
-a.pregame-series-stars:focus-visible {
-    color: #b9dfff;
-    text-decoration: none;
-}
-
-a.pregame-series-stars:focus-visible {
-    border-radius: 3px;
-    outline: 2px solid #66bfff;
-    outline-offset: 3px;
 }
 
 .pregame-series-star.won {
