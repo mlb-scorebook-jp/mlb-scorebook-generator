@@ -2388,6 +2388,7 @@ body.app-mode-pregame .score-loading-overlay {
 
 /* 1Bから2B：右下の一塁結果付近を始点にして二塁マスへ引く。 */
 .play-card .runner-history-svg.runner-history-first-second {
+    left: calc(50% + 5px);
     width: 36px;
     height: 36px;
 }
