@@ -8054,7 +8054,7 @@
                                         target.runnerAdvancePath = "second-third-home";
                                     } else if (fromIndex === 2 && toIndex >= 4) {
                                         target.runnerAdvancePath = target.runnerAdvancePath === "first-second"
-                                            ? "first-second-third-home"
+                                            ? "first-second|third-home"
                                             : "third-home";
                                     }
                                 }
@@ -8328,7 +8328,6 @@
                 const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
                 const paths = {
                     "first-second": "M52 52 L52 9",
-                    "first-second-third-home": "M52 52 L52 9 L9 9 L9 52",
                     "second-third": "M52 52 L52 9 L9 9",
                     "second-third-home": "M52 9 L5 9 L5 52",
                     "third-home": "M52 9 L9 9 L9 52",
@@ -8393,7 +8392,10 @@
                     ...anchorNames.map((name) => slots[name])
                 );
                 if (record.runnerAdvancePath) {
-                    card.append(createRunnerHistorySvg(record.runnerAdvancePath));
+                    record.runnerAdvancePath
+                        .split("|")
+                        .filter(Boolean)
+                        .forEach((pathType) => card.append(createRunnerHistorySvg(pathType)));
                 }
 
                 if (record.notation || record.outResult) {
