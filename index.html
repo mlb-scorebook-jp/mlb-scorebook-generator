@@ -8327,7 +8327,7 @@
                 svg.classList.add("runner-history-svg", `runner-history-${type}`);
                 const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
                 const paths = {
-                    "first-second": "M52 52 L52 9",
+                    "first-second": "M52 40 L52 9",
                     "second-third": "M52 52 L52 9 L9 9",
                     "second-third-home": "M52 9 L5 9 L5 52",
                     "third-home": "M52 9 L9 9 L9 52",
@@ -8346,7 +8346,7 @@
                 const upward = type === "first-second";
                 const homeX = type === "second-third-home" ? 5 : 9;
                 arrow.setAttribute("points", upward
-                    ? "52,9 44,22 60,22"
+                    ? "52,9 48,16 56,16"
                     : leftward
                         ? "9,9 22,1 22,17"
                         : `${homeX},52 ${homeX - 8},39 ${homeX + 8},39`);
