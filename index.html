@@ -1463,6 +1463,25 @@
                 );
             };
 
+            const getPersonFamilyName = (person) => {
+                const displayName = getPersonName(person).trim();
+                if (!displayName) return "";
+                const withoutInitials = displayName.replace(
+                    /^(?:[A-ZＡ-Ｚ](?:\.[A-ZＡ-Ｚ])?\.)+\s*/u,
+                    ""
+                );
+                if (withoutInitials !== displayName) return withoutInitials;
+                if (displayName.includes("・")) return displayName.split("・").at(-1).trim();
+                const parts = displayName.split(/\s+/).filter(Boolean);
+                if (parts.length <= 1) return displayName;
+                const hasJapaneseCharacters = /[ぁ-んァ-ヶ一-龠々]/u.test(displayName);
+                if (hasJapaneseCharacters) return parts[0];
+                const suffix = /^(?:Jr\.?|Sr\.?|II|III|IV)$/i.test(parts.at(-1))
+                    ? ` ${parts.pop()}`
+                    : "";
+                return `${parts.at(-1)}${suffix}`;
+            };
+
             const getMlbPlayerPageUrl = (person) => {
                 const playerId = Number(person?.id);
                 return Number.isInteger(playerId) && playerId > 0
@@ -8686,7 +8705,7 @@
                             playerId,
                             person,
                             role,
-                            name: getPersonName(person)
+                            name: getPersonFamilyName(person)
                         });
                         seenPlayers.add(playerId);
                     });
