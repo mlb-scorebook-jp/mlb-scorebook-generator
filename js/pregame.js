@@ -12,6 +12,14 @@
         [139, 0], [140, 1], [141, 2], [142, 3], [143, 2],
         [144, 4], [145, 3], [146, 2], [147, 27], [158, 0]
     ]);
+    const BASEBALL_REFERENCE_TEAM_CODES = new Map([
+        [108, "LAA"], [109, "ARI"], [110, "BAL"], [111, "BOS"], [112, "CHC"],
+        [113, "CIN"], [114, "CLE"], [115, "COL"], [116, "DET"], [117, "HOU"],
+        [118, "KCR"], [119, "LAD"], [120, "WSN"], [121, "NYM"], [133, "ATH"],
+        [134, "PIT"], [135, "SDP"], [136, "SEA"], [137, "SFG"], [138, "STL"],
+        [139, "TBR"], [140, "TEX"], [141, "TOR"], [142, "MIN"], [143, "PHI"],
+        [144, "ATL"], [145, "CHW"], [146, "MIA"], [147, "NYY"], [158, "MIL"]
+    ]);
     const cache = new Map();
     const savantCache = new Map();
     const gameIndex = new Map();
@@ -4890,9 +4898,16 @@
         return `JST ${time} FP`;
     };
 
-    const renderSeriesStars = (team, seriesStanding, extraClass = "") => {
-        const stars = el("span", `pregame-series-stars${extraClass ? ` ${extraClass}` : ""}`);
+    const renderSeriesStars = (team, seriesStanding, season, extraClass = "") => {
+        const referenceCode = BASEBALL_REFERENCE_TEAM_CODES.get(Number(team?.id));
+        const stars = el(referenceCode && season ? "a" : "span", `pregame-series-stars${extraClass ? ` ${extraClass}` : ""}`);
         if (!seriesStanding) return stars;
+        if (referenceCode && season) {
+            stars.href = `https://www.baseball-reference.com/teams/${referenceCode}/${season}-schedule-scores.shtml`;
+            stars.target = "_blank";
+            stars.rel = "noopener noreferrer";
+            stars.title = `${teamJapaneseName(team)} ${season}年ゲームログ（Baseball-Reference）`;
+        }
         const wins = seriesStanding.wins.get(Number(team?.id)) ?? 0;
         const starCount = Number(seriesStanding.starCount ?? seriesStanding.totalGames);
         for (let index = 0; index < starCount; index += 1) {
@@ -4943,6 +4958,7 @@
         const dateTime = feed?.gameData?.datetime?.dateTime ?? game?.gameDate;
         const officialDate = feed?.gameData?.datetime?.officialDate ??
             game?.officialDate ?? String(dateTime ?? "").slice(0, 10);
+        const season = Number(feed?.gameData?.game?.season ?? game?.season ?? officialDate.slice(0, 4));
         const gameType = String(feed?.gameData?.game?.type ?? game?.gameType ?? "R");
         const postseasonLabel = postseasonSeriesLabel(gameType, awayTeam);
         const isPostseason = Boolean(postseasonLabel);
@@ -5042,9 +5058,9 @@
         const matchupHeading = seriesStanding
             ? [
                 teamBlock(awayTeam),
-                renderSeriesStars(awayTeam, seriesStanding),
+                renderSeriesStars(awayTeam, seriesStanding, season),
                 el("span", "pregame-header-versus", "VS."),
-                renderSeriesStars(homeTeam, seriesStanding),
+                renderSeriesStars(homeTeam, seriesStanding, season),
                 teamBlock(homeTeam)
             ]
             : [teamBlock(awayTeam), el("span", "pregame-header-versus", "VS."), teamBlock(homeTeam)];
