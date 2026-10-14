@@ -1714,34 +1714,6 @@
         const original = button?.textContent;
         if (button) {
             button.disabled = true;
-            button.textContent = "撮影サーバーを確認中…";
-        }
-        let serverAvailable = false;
-        const controller = new AbortController();
-        const timeout = setTimeout(() => controller.abort(), 3000);
-        try {
-            const response = await fetch("http://127.0.0.1:8765/health", {
-                cache: "no-store",
-                signal: controller.signal
-            });
-            serverAvailable = response.ok && Boolean((await response.json())?.ok);
-        } catch {
-            serverAvailable = false;
-        } finally {
-            clearTimeout(timeout);
-        }
-        if (!serverAvailable) {
-            const message = "PBP撮影サーバーが起動していません。Windowsでは scripts フォルダの" +
-                "「PBP撮影を自動起動に設定_Windows.cmd」を一度実行してください。";
-            setStatus(message, true);
-            window.alert(message);
-            if (button) {
-                button.disabled = false;
-                button.textContent = original;
-            }
-            return;
-        }
-        if (button) {
             button.textContent = "公式Gamedayを撮影中…";
         }
         setStatus(`公式Gamedayを撮影しています（${uniqueEvents.length}件）。完了までこの画面を閉じないでください。`);
