@@ -90,8 +90,15 @@ EOF
 }
 /bin/launchctl kickstart -k "${PBP_DOMAIN}/${PBP_LABEL}"
 
-sleep 2
-if /usr/bin/curl -fsS --max-time 3 "http://127.0.0.1:8765/health" | /usr/bin/grep -q '"ok":true'; then
+PBP_READY=0
+for PBP_ATTEMPT in {1..15}; do
+    if /usr/bin/curl -fsS --max-time 2 "http://127.0.0.1:8765/health" 2>/dev/null | /usr/bin/grep -q '"ok":true'; then
+        PBP_READY=1
+        break
+    fi
+    sleep 1
+done
+if [[ "${PBP_READY}" -eq 1 ]]; then
     echo "設定完了。今後はMacへログインすると自動で利用できます。"
 else
     echo "設定は保存しましたが、起動確認に失敗しました。"
