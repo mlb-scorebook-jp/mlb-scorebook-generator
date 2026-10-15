@@ -2,11 +2,101 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Rays-Guardians ALCS Game 4 lineups, FAQ (6 ET Fri., TBS/HBO Max)",
+        "summaryJa": "ガーディアンズの最新動向をMLB公式が詳報",
+        "slug": "when-is-rays-vs-guardians-alcs-game-4-date-time-and-lineups",
+        "url": "https://www.mlb.com/news/when-is-rays-vs-guardians-alcs-game-4-date-time-and-lineups",
+        "contentDate": "2026-10-15T23:50:19.936Z",
+        "teamIds": [
+            114,
+            139
+        ],
+        "playerIds": [],
+        "gamePks": [
+            849817
+        ],
+        "taxonomy": [
+            "apple-news",
+            "alcs",
+            "postseason"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Watch Angels prospects in Arizona Fall League action",
+        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
+        "slug": "watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
+        "url": "https://www.mlb.com/news/watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
+        "contentDate": "2026-10-15T23:42:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "arizona-fall-league"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Smith tosses latest round of calm perfection with 4-out save in Game 3",
+        "summaryJa": "C.スミス（CLE）、勝利を呼び込む活躍",
+        "slug": "cade-smith-four-out-save-guardians-game-3-alcs-win",
+        "url": "https://www.mlb.com/news/cade-smith-four-out-save-guardians-game-3-alcs-win",
+        "contentDate": "2026-10-15T23:29:02.283Z",
+        "teamIds": [
+            114
+        ],
+        "playerIds": [
+            671922
+        ],
+        "gamePks": [
+            849818
+        ],
+        "taxonomy": [
+            "apple-news",
+            "postseason",
+            "alcs",
+            "relief-performance"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "With rain in forecast Friday, how might ALCS Game 4 pitching plans shape up?",
+        "summaryJa": "ガーディアンズを巡る注目点をMLB公式が分析",
+        "slug": "rays-and-guardians-pitching-plans-for-alcs-game-4",
+        "url": "https://www.mlb.com/news/rays-and-guardians-pitching-plans-for-alcs-game-4",
+        "contentDate": "2026-10-15T23:03:21.43Z",
+        "teamIds": [
+            114,
+            139
+        ],
+        "playerIds": [],
+        "gamePks": [
+            849817
+        ],
+        "taxonomy": [
+            "apple-news",
+            "alcs",
+            "postseason"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Simpson's electric skills on full display on two-strike, two-run triple",
         "summaryJa": "C.シンプソン（TB）の最新動向をMLB公式が詳報",
         "slug": "chandler-simpson-hits-2-run-triple-in-rays-2026-alcs-game-2-loss",
         "url": "https://www.mlb.com/news/chandler-simpson-hits-2-run-triple-in-rays-2026-alcs-game-2-loss",
-        "contentDate": "2026-10-15T21:45:11.513Z",
+        "contentDate": "2026-10-15T22:44:00Z",
         "teamIds": [
             139
         ],
@@ -20,6 +110,170 @@
             "postseason",
             "alcs",
             "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "13 K's, 3 hits, 1 frustrating loss: Rays' bats go quiet in G3",
+        "summaryJa": "レイズの最新動向をMLB公式が詳報",
+        "slug": "rays-strike-out-13-times-guardians-alcs-game-3-2026",
+        "url": "https://www.mlb.com/news/rays-strike-out-13-times-guardians-alcs-game-3-2026",
+        "contentDate": "2026-10-15T22:42:03.557Z",
+        "teamIds": [
+            139
+        ],
+        "playerIds": [],
+        "gamePks": [
+            849818
+        ],
+        "taxonomy": [
+            "postseason",
+            "alcs",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Which landed 1st? Halpin's epic HR or the 'majestic' bat flip that followed?",
+        "summaryJa": "P.ハルピン（CLE）、記録達成の最新情報",
+        "slug": "petey-halpin-go-ahead-homer-guardians-win-game-3-2026-alcs",
+        "url": "https://www.mlb.com/news/petey-halpin-go-ahead-homer-guardians-win-game-3-2026-alcs",
+        "contentDate": "2026-10-15T22:36:12.107Z",
+        "teamIds": [
+            114
+        ],
+        "playerIds": [
+            690984
+        ],
+        "gamePks": [
+            849818
+        ],
+        "taxonomy": [
+            "apple-news",
+            "postseason",
+            "alcs",
+            "performance"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "What you need to know about the 2026 World Series",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "2026-mlb-world-series-faq-schedule-times-teams-and-more",
+        "url": "https://www.mlb.com/news/2026-mlb-world-series-faq-schedule-times-teams-and-more",
+        "contentDate": "2026-10-15T22:31:47.159Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "world-series",
+            "postseason",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "Mattingly vows for Phils to be less 'cautious' in first full year as skipper",
+        "summaryJa": "D.マッティングリー（PHI）の最新動向をMLB公式が詳報",
+        "slug": "don-mattingly-talks-managing-phillies-again-in-2027",
+        "url": "https://www.mlb.com/news/don-mattingly-talks-managing-phillies-again-in-2027",
+        "contentDate": "2026-10-15T22:10:52.721Z",
+        "teamIds": [
+            143
+        ],
+        "playerIds": [
+            118443
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Guards' rare aggressiveness at Deadline paying off during playoff run",
+        "summaryJa": "J.アデル（CLE）の移籍・契約に関する最新情報",
+        "slug": "nathaniel-lowe-jo-adell-trades-paying-off-for-guardians-during-alcs-run",
+        "url": "https://www.mlb.com/news/nathaniel-lowe-jo-adell-trades-paying-off-for-guardians-during-alcs-run",
+        "contentDate": "2026-10-15T22:05:57.403Z",
+        "teamIds": [
+            114
+        ],
+        "playerIds": [
+            666176,
+            663993
+        ],
+        "gamePks": [
+            849818
+        ],
+        "taxonomy": [
+            "apple-news",
+            "postseason",
+            "alcs"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Lifted early out of caution, Williams still adds to historic postseason ledger",
+        "summaryJa": "G.ウィリアムズ（CLE）、勝利を呼び込む活躍",
+        "slug": "gavin-williams-strikes-out-nine-in-guardians-alcs-game-3-win",
+        "url": "https://www.mlb.com/news/gavin-williams-strikes-out-nine-in-guardians-alcs-game-3-win",
+        "contentDate": "2026-10-15T22:00:27.019Z",
+        "teamIds": [
+            114
+        ],
+        "playerIds": [
+            668909
+        ],
+        "gamePks": [
+            849818
+        ],
+        "taxonomy": [
+            "apple-news",
+            "alcs",
+            "postseason"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Back to basics: Ohtani returns to leadoff spot for NLCS Game 4",
+        "summaryJa": "大谷 翔平（LAD）、復帰へ向けた最新状況",
+        "slug": "shohei-ohtani-leading-off-in-game-4-of-2026-nlcs-vs-brewers",
+        "url": "https://www.mlb.com/news/shohei-ohtani-leading-off-in-game-4-of-2026-nlcs-vs-brewers",
+        "contentDate": "2026-10-15T21:56:00Z",
+        "teamIds": [
+            119
+        ],
+        "playerIds": [
+            660271
+        ],
+        "gamePks": [
+            849810
+        ],
+        "taxonomy": [
+            "apple-news",
+            "nlcs",
+            "postseason"
         ],
         "sourceScopes": [
             "MLB",
@@ -43,6 +297,7 @@
             "apple-news"
         ],
         "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
@@ -62,31 +317,6 @@
             "apple-news",
             "postseason",
             "nlcs"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Ohtani back in leadoff spot for NLCS Game 4",
-        "summaryJa": "大谷 翔平（LAD）の最新動向をMLB公式が詳報",
-        "slug": "shohei-ohtani-leading-off-in-game-4-of-2026-nlcs-vs-brewers",
-        "url": "https://www.mlb.com/news/shohei-ohtani-leading-off-in-game-4-of-2026-nlcs-vs-brewers",
-        "contentDate": "2026-10-15T21:15:00Z",
-        "teamIds": [
-            119
-        ],
-        "playerIds": [
-            660271
-        ],
-        "gamePks": [
-            849810
-        ],
-        "taxonomy": [
-            "apple-news",
-            "nlcs",
-            "postseason"
         ],
         "sourceScopes": [
             "MLB",
@@ -159,23 +389,7 @@
             "injury"
         ],
         "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Watch Angels prospects in Arizona Fall League action",
-        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
-        "slug": "watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
-        "url": "https://www.mlb.com/news/watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
-        "contentDate": "2026-10-15T20:07:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "arizona-fall-league"
-        ],
-        "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
@@ -460,7 +674,7 @@
         ]
     },
     {
-        "headline": "These 5 rookies could win a Gold Glove after excellent debuts",
+        "headline": "5 rookies could win a Gold Glove after excellent debuts",
         "summaryJa": "MLBの最新情報、メジャー昇格・初出場に関する最新情報",
         "slug": "2026-rookies-who-were-named-gold-glove-finalists",
         "url": "https://www.mlb.com/news/2026-rookies-who-were-named-gold-glove-finalists",
@@ -491,7 +705,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -832,7 +1045,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -948,7 +1160,7 @@
         ]
     },
     {
-        "headline": "One stat from each farm system that caught our eye in 2026",
+        "headline": "Here's one stat from each farm system that caught our eye in 2026",
         "summaryJa": "MLBの最新情報ら注目選手の最新動向",
         "slug": "best-prospect-stat-from-each-mlb-farm-system-2026",
         "url": "https://www.mlb.com/news/best-prospect-stat-from-each-mlb-farm-system-2026",
@@ -962,7 +1174,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -987,7 +1198,6 @@
             "injury"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1102,25 +1312,6 @@
         ]
     },
     {
-        "headline": "Who will get home-field advantage in the 2026 World Series?",
-        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
-        "slug": "world-series-home-field-advantage",
-        "url": "https://www.mlb.com/news/world-series-home-field-advantage",
-        "contentDate": "2026-10-14T19:52:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "evergreen",
-            "apple-news",
-            "world-series",
-            "postseason"
-        ],
-        "sourceScopes": [
-            "MLB"
-        ]
-    },
-    {
         "headline": "Today's updated start times: 1 ET (ALCS Game 3, TBS/HBO Max), 8 ET (NLCS Game 4, FS1, FOX One)",
         "summaryJa": "レイズの最新動向をMLB公式が詳報",
         "slug": "updated-alcs-nlcs-start-times-oct-15",
@@ -1202,7 +1393,7 @@
         ]
     },
     {
-        "headline": "2026 Gold Glove Award finalists revealed",
+        "headline": "Carroll, Perdomo among 4 D-backs nominated for Gold Gloves",
         "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
         "slug": "2026-gold-glove-award-finalists",
         "url": "https://www.mlb.com/news/2026-gold-glove-award-finalists",
@@ -1216,7 +1407,6 @@
             "awards-watch"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1292,7 +1482,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1317,7 +1506,7 @@
         ]
     },
     {
-        "headline": "He retired a decade ago, but Brewers wouldn't be who they are now without him",
+        "headline": "Brewers' Game 3 battery is all thanks to ... J.J. Hardy?",
         "summaryJa": "W.コントレラス（MIL）の移籍・契約に関する最新情報",
         "slug": "j-j-hardy-s-trade-tree-has-lasting-impact-for-brewers",
         "url": "https://www.mlb.com/news/j-j-hardy-s-trade-tree-has-lasting-impact-for-brewers",
@@ -1339,7 +1528,6 @@
             "nlcs"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1400,7 +1588,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1419,28 +1606,6 @@
             "mlb-top-prospects",
             "arizona-fall-league",
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "'I want a pitch to hit': Sweet-swinging prospect Hill leads next wave of Guards talent in AFL",
-        "summaryJa": "Luke Hill（CLE）ら注目選手の最新動向",
-        "slug": "guardians-arizona-fall-league-overview-2026",
-        "url": "https://www.mlb.com/news/guardians-arizona-fall-league-overview-2026",
-        "contentDate": "2026-10-14T14:10:21.551Z",
-        "teamIds": [
-            114
-        ],
-        "playerIds": [
-            702619
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "mlb-top-prospects",
-            "apple-news",
-            "arizona-fall-league"
         ],
         "sourceScopes": [
             "球団公式"
@@ -1844,7 +2009,6 @@
             "nlcs"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -2179,176 +2343,6 @@
         ]
     },
     {
-        "headline": "Guards come up big late to rally past Rays in ALCS opener",
-        "summaryJa": "ガーディアンズ、勝利を呼び込む活躍",
-        "slug": "guardians-win-alcs-game-1-2026",
-        "url": "https://www.mlb.com/news/guardians-win-alcs-game-1-2026",
-        "contentDate": "2026-10-13T06:00:00Z",
-        "teamIds": [
-            114
-        ],
-        "playerIds": [],
-        "gamePks": [
-            849820
-        ],
-        "taxonomy": [
-            "postseason",
-            "alcs",
-            "apple-news",
-            "game-recap",
-            "comeback"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "'Hosey' does it: Ramírez's havoc on basepaths key to Guards' 4th straight win",
-        "summaryJa": "J.ラミレス（CLE）、記録達成の最新情報",
-        "slug": "jose-ramirez-baserunning-guardians-alcs-game-1-win",
-        "url": "https://www.mlb.com/news/jose-ramirez-baserunning-guardians-alcs-game-1-win",
-        "contentDate": "2026-10-13T05:42:17.366Z",
-        "teamIds": [
-            114
-        ],
-        "playerIds": [
-            608070
-        ],
-        "gamePks": [
-            849820
-        ],
-        "taxonomy": [
-            "postseason",
-            "alcs",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Think dodging J-Ram to challenge DeLauter is a good plan? Think again",
-        "summaryJa": "C.デローター（CLE）、本塁打で存在感",
-        "slug": "chase-delauter-homers-three-hits-guardians-game-1-alcs-win",
-        "url": "https://www.mlb.com/news/chase-delauter-homers-three-hits-guardians-game-1-alcs-win",
-        "contentDate": "2026-10-13T05:37:16.395Z",
-        "teamIds": [
-            114
-        ],
-        "playerIds": [
-            800050
-        ],
-        "gamePks": [
-            849820
-        ],
-        "taxonomy": [
-            "postseason",
-            "alcs",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "What happened to Rays' offense after red-hot start to Game 1?",
-        "summaryJa": "J.デルーカ（TB）の最新動向をMLB公式が詳報",
-        "slug": "junior-caminero-jonny-deluca-not-enough-in-rays-game-1-alcs-loss",
-        "url": "https://www.mlb.com/news/junior-caminero-jonny-deluca-not-enough-in-rays-game-1-alcs-loss",
-        "contentDate": "2026-10-13T05:19:24.701Z",
-        "teamIds": [
-            139
-        ],
-        "playerIds": [
-            676356,
-            691406
-        ],
-        "gamePks": [
-            849820
-        ],
-        "taxonomy": [
-            "apple-news",
-            "alcs",
-            "postseason"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Guardians' staff silences Rays after shaky 1st, sets table for comeback win",
-        "summaryJa": "F.グリフィン（CLE）、記録達成の最新情報",
-        "slug": "foster-griffin-guardians-pitchers-alcs-game-1-win",
-        "url": "https://www.mlb.com/news/foster-griffin-guardians-pitchers-alcs-game-1-win",
-        "contentDate": "2026-10-13T04:57:07.297Z",
-        "teamIds": [
-            114
-        ],
-        "playerIds": [
-            656492
-        ],
-        "gamePks": [
-            849820
-        ],
-        "taxonomy": [
-            "apple-news",
-            "postseason",
-            "alcs"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Caminero, DeLuca dodge serious injury after scary collision",
-        "summaryJa": "J.キャミネロ（TB）の負傷状況をMLB公式が詳報",
-        "slug": "junior-caminero-ok-after-collision-with-jonny-deluca",
-        "url": "https://www.mlb.com/news/junior-caminero-ok-after-collision-with-jonny-deluca",
-        "contentDate": "2026-10-13T04:45:00Z",
-        "teamIds": [
-            139
-        ],
-        "playerIds": [
-            691406,
-            676356
-        ],
-        "gamePks": [
-            849820
-        ],
-        "taxonomy": [
-            "apple-news",
-            "alcs",
-            "injury"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Sticking with Ras backfires, then 'pen stumbles in ALCS opener",
-        "summaryJa": "D.ラスムッセン（TB）の最新動向をMLB公式が詳報",
-        "slug": "rays-lose-alcs-game-1-2026",
-        "url": "https://www.mlb.com/news/rays-lose-alcs-game-1-2026",
-        "contentDate": "2026-10-13T03:13:32.55Z",
-        "teamIds": [
-            139
-        ],
-        "playerIds": [
-            656876
-        ],
-        "gamePks": [
-            849820
-        ],
-        "taxonomy": [
-            "apple-news",
-            "alcs",
-            "game-recap-losing"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "To turn NLCS around, Dodgers' offense needs to figure things out -- and quickly",
         "summaryJa": "ドジャースの最新動向をMLB公式が詳報",
         "slug": "dodgers-lose-nlcs-game-2-2026",
@@ -2408,30 +2402,6 @@
         "taxonomy": [
             "arizona-fall-league",
             "mlb-top-prospects"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Guardians swap in Cecconi for Schneemann, bolstering staff for ALCS",
-        "summaryJa": "S.セコーニ（CLE）の最新動向をMLB公式が詳報",
-        "slug": "guardians-2026-alcs-roster",
-        "url": "https://www.mlb.com/news/guardians-2026-alcs-roster",
-        "contentDate": "2026-10-13T00:01:00Z",
-        "teamIds": [
-            114
-        ],
-        "playerIds": [
-            677944
-        ],
-        "gamePks": [
-            849820
-        ],
-        "taxonomy": [
-            "apple-news",
-            "alcs",
-            "postseason"
         ],
         "sourceScopes": [
             "球団公式"
@@ -3601,28 +3571,6 @@
             "alds",
             "series-b",
             "game-recap-losing"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Take two: Dante Nori hopes this Fall League stint leads him toward Philly",
-        "summaryJa": "D.ノーリ（PHI）ら注目選手の最新動向",
-        "slug": "healthy-phillies-prospect-dante-nori-in-2026-arizona-fall-league",
-        "url": "https://www.mlb.com/news/healthy-phillies-prospect-dante-nori-in-2026-arizona-fall-league",
-        "contentDate": "2026-10-09T04:08:46.931Z",
-        "teamIds": [
-            143
-        ],
-        "playerIds": [
-            807276
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "arizona-fall-league",
-            "mlb-top-prospects"
         ],
         "sourceScopes": [
             "球団公式"
