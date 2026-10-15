@@ -2,7 +2,180 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
-        "headline": "Key takeaways after Game 3: Can Glasnow help Dodgers stay alive?",
+        "headline": "Brewers-Dodgers NLCS Game 4 FAQ (8 ET, FS1/FOX One)",
+        "summaryJa": "ブルワーズの最新動向をMLB公式が詳報",
+        "slug": "brewers-dodgers-nl-championship-series-game-4-starting-lineups-and-pitching-matchup",
+        "url": "https://www.mlb.com/news/brewers-dodgers-nl-championship-series-game-4-starting-lineups-and-pitching-matchup",
+        "contentDate": "2026-10-15T07:07:21.635Z",
+        "teamIds": [
+            158,
+            119
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "postseason",
+            "nlcs"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Bauers refuses to give up – not on his career, not against a pair of Dodgers aces",
+        "summaryJa": "J.バウアーズ（MIL）、本塁打で存在感",
+        "slug": "jake-bauers-hits-go-ahead-hr-off-blake-snell-in-11-pitch-at-bat-in-nlcs-game-3",
+        "url": "https://www.mlb.com/news/jake-bauers-hits-go-ahead-hr-off-blake-snell-in-11-pitch-at-bat-in-nlcs-game-3",
+        "contentDate": "2026-10-15T06:26:00Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [
+            641343
+        ],
+        "gamePks": [
+            849811
+        ],
+        "taxonomy": [
+            "apple-news",
+            "postseason",
+            "nlcs",
+            "clutch-moment"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Brewers keep October magic rolling, on cusp of 1st World Series in 44 years",
+        "summaryJa": "ブルワーズ、記録達成の最新情報",
+        "slug": "brewers-win-nlcs-game-3-2026",
+        "url": "https://www.mlb.com/news/brewers-win-nlcs-game-3-2026",
+        "contentDate": "2026-10-15T06:23:00Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [],
+        "gamePks": [
+            849811
+        ],
+        "taxonomy": [
+            "game-recap",
+            "nlcs",
+            "postseason",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Slumping Smith, Shohei give Dodgers big ABs from bottom of order",
+        "summaryJa": "W.スミス（LAD）の最新動向をMLB公式が詳報",
+        "slug": "will-smith-shohei-ohtani-provide-spark-after-being-moved-down-in-lineup",
+        "url": "https://www.mlb.com/news/will-smith-shohei-ohtani-provide-spark-after-being-moved-down-in-lineup",
+        "contentDate": "2026-10-15T06:14:18.812Z",
+        "teamIds": [
+            119
+        ],
+        "playerIds": [
+            669257,
+            660271
+        ],
+        "gamePks": [
+            849811
+        ],
+        "taxonomy": [
+            "nlcs",
+            "apple-news",
+            "postseason"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Rays-Guardians ALCS Game 3 FAQ (1 ET, TBS/HBO Max)",
+        "summaryJa": "ガーディアンズの最新動向をMLB公式が詳報",
+        "slug": "rays-vs-guardians-alcs-game-3-starting-lineups-and-pitching-matchup",
+        "url": "https://www.mlb.com/news/rays-vs-guardians-alcs-game-3-starting-lineups-and-pitching-matchup",
+        "contentDate": "2026-10-15T06:11:00Z",
+        "teamIds": [
+            114,
+            139
+        ],
+        "playerIds": [],
+        "gamePks": [
+            849813
+        ],
+        "taxonomy": [
+            "apple-news",
+            "postseason",
+            "alcs"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Chourio's history-making 1st-pitch HR comes 1 year to the day after he did the same thing!",
+        "summaryJa": "J.チョリオ（MIL）、記録達成の最新情報",
+        "slug": "jackson-chourio-hits-first-pitch-home-run-in-nlcs-game-3",
+        "url": "https://www.mlb.com/news/jackson-chourio-hits-first-pitch-home-run-in-nlcs-game-3",
+        "contentDate": "2026-10-15T06:00:00Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [
+            694192
+        ],
+        "gamePks": [
+            849811
+        ],
+        "taxonomy": [
+            "apple-news",
+            "postseason",
+            "nlcs",
+            "leadoff",
+            "first-inning"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "LA facing long odds after rough 7th flips script on Snell's Game 3 start",
+        "summaryJa": "B.スネル（LAD）、記録達成の最新情報",
+        "slug": "dodgers-lose-nlcs-game-3-to-brewers-2026",
+        "url": "https://www.mlb.com/news/dodgers-lose-nlcs-game-3-to-brewers-2026",
+        "contentDate": "2026-10-15T05:49:43.772Z",
+        "teamIds": [
+            119
+        ],
+        "playerIds": [
+            605483
+        ],
+        "gamePks": [
+            849811
+        ],
+        "taxonomy": [
+            "apple-news",
+            "nlcs"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Can Brewers' 'pen hold up? Can Glasnow get L.A. on track? Key takeaways after Game 3",
         "summaryJa": "ブルワーズ、勝利を呼び込む活躍",
         "slug": "key-takeaways-from-brewers-win-over-dodgers-in-nlcs-game-3",
         "url": "https://www.mlb.com/news/key-takeaways-from-brewers-win-over-dodgers-in-nlcs-game-3",
@@ -23,6 +196,7 @@
             "relief-performance"
         ],
         "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
@@ -50,29 +224,27 @@
         ]
     },
     {
-        "headline": "Bauers refuses to give up – not on his career, not against a pair of Dodgers aces",
-        "summaryJa": "J.バウアーズ（MIL）、本塁打で存在感",
-        "slug": "jake-bauers-hits-go-ahead-hr-off-blake-snell-in-11-pitch-at-bat-in-nlcs-game-3",
-        "url": "https://www.mlb.com/news/jake-bauers-hits-go-ahead-hr-off-blake-snell-in-11-pitch-at-bat-in-nlcs-game-3",
-        "contentDate": "2026-10-15T03:55:00Z",
+        "headline": "Storylines to track as ALCS, NLCS stakes continue to rise",
+        "summaryJa": "ガーディアンズの最新動向をMLB公式が詳報",
+        "slug": "2026-alcs-game-3-nlcs-game-4-storylines",
+        "url": "https://www.mlb.com/news/2026-alcs-game-3-nlcs-game-4-storylines",
+        "contentDate": "2026-10-15T03:58:03.194Z",
         "teamIds": [
-            158
+            114,
+            139,
+            158,
+            119
         ],
-        "playerIds": [
-            641343
-        ],
-        "gamePks": [
-            849811
-        ],
+        "playerIds": [],
+        "gamePks": [],
         "taxonomy": [
-            "apple-news",
             "postseason",
             "nlcs",
-            "clutch-moment"
+            "alcs",
+            "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
-            "球団公式"
+            "MLB"
         ]
     },
     {
@@ -101,30 +273,6 @@
         ]
     },
     {
-        "headline": "Clutch homers have Brewers 1 win away from 1st World Series appearance in 44 years",
-        "summaryJa": "ブルワーズ、記録達成の最新情報",
-        "slug": "brewers-win-nlcs-game-3-2026",
-        "url": "https://www.mlb.com/news/brewers-win-nlcs-game-3-2026",
-        "contentDate": "2026-10-15T03:35:00Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [],
-        "gamePks": [
-            849811
-        ],
-        "taxonomy": [
-            "game-recap",
-            "nlcs",
-            "postseason",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
         "headline": "The best comeback attempts from 3-0 holes in playoffs",
         "summaryJa": "MLBの最新情報、勝利を呼び込む活躍",
         "slug": "best-3-0-comeback-attempts-in-postseason",
@@ -136,33 +284,6 @@
         "taxonomy": [],
         "sourceScopes": [
             "MLB"
-        ]
-    },
-    {
-        "headline": "Chourio's history-making 1st-pitch HR comes 1 year to the day after he did the same thing!",
-        "summaryJa": "J.チョリオ（MIL）、記録達成の最新情報",
-        "slug": "jackson-chourio-hits-first-pitch-home-run-in-nlcs-game-3",
-        "url": "https://www.mlb.com/news/jackson-chourio-hits-first-pitch-home-run-in-nlcs-game-3",
-        "contentDate": "2026-10-15T03:12:00Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [
-            694192
-        ],
-        "gamePks": [
-            849811
-        ],
-        "taxonomy": [
-            "apple-news",
-            "postseason",
-            "nlcs",
-            "leadoff",
-            "first-inning"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
         ]
     },
     {
@@ -375,30 +496,6 @@
             "apple-news",
             "alcs",
             "postseason"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Rays-Guardians ALCS Game 3 FAQ (Thurs., 1 ET, TBS/HBO Max)",
-        "summaryJa": "ガーディアンズの最新動向をMLB公式が詳報",
-        "slug": "rays-vs-guardians-alcs-game-3-starting-lineups-and-pitching-matchup",
-        "url": "https://www.mlb.com/news/rays-vs-guardians-alcs-game-3-starting-lineups-and-pitching-matchup",
-        "contentDate": "2026-10-14T21:45:00Z",
-        "teamIds": [
-            114,
-            139
-        ],
-        "playerIds": [],
-        "gamePks": [
-            849813
-        ],
-        "taxonomy": [
-            "apple-news",
-            "postseason",
-            "alcs"
         ],
         "sourceScopes": [
             "MLB",
@@ -823,28 +920,6 @@
         ]
     },
     {
-        "headline": "'I want a pitch to hit': Sweet-swinging prospect Hill leads next wave of Guards talent in AFL",
-        "summaryJa": "Luke Hill（CLE）ら注目選手の最新動向",
-        "slug": "guardians-arizona-fall-league-overview-2026",
-        "url": "https://www.mlb.com/news/guardians-arizona-fall-league-overview-2026",
-        "contentDate": "2026-10-14T14:10:21.551Z",
-        "teamIds": [
-            114
-        ],
-        "playerIds": [
-            702619
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "mlb-top-prospects",
-            "apple-news",
-            "arizona-fall-league"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Yankees Mag: Chambliss’ thrilling pennant-winning homer still brings goosebumps",
         "summaryJa": "Chris Chambliss（NYY）、本塁打で存在感",
         "slug": "yankees-magazine-chris-chambliss-memorable-home-run",
@@ -1027,7 +1102,6 @@
             "game-recap"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1052,7 +1126,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1076,7 +1149,6 @@
             "alcs"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1124,7 +1196,6 @@
             "play-of-the-day"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1375,7 +1446,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1772,30 +1842,6 @@
             "nlcs",
             "postseason",
             "key-moments"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "An ace's undoing: Bauers' 12-pitch walk vs. Yamamoto 'changes the game' for Crew",
-        "summaryJa": "J.バウアーズ（MIL）の最新動向をMLB公式が詳報",
-        "slug": "jake-bauers-12-pitch-walk-christian-yelich-single-yoshinobu-yamamoto",
-        "url": "https://www.mlb.com/news/jake-bauers-12-pitch-walk-christian-yelich-single-yoshinobu-yamamoto",
-        "contentDate": "2026-10-13T04:22:00Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [
-            641343
-        ],
-        "gamePks": [
-            849812
-        ],
-        "taxonomy": [
-            "apple-news",
-            "nlcs",
-            "postseason"
         ],
         "sourceScopes": [
             "球団公式"
@@ -2340,29 +2386,6 @@
         ]
     },
     {
-        "headline": "With minimal support, Skubal loses steam 2nd time through in NLCS loss to Brewers",
-        "summaryJa": "T.スクーバル（LAD）、記録達成の最新情報",
-        "slug": "tarik-skubal-start-vs-brewers-in-nlcs-game-1-2026",
-        "url": "https://www.mlb.com/news/tarik-skubal-start-vs-brewers-in-nlcs-game-1-2026",
-        "contentDate": "2026-10-12T05:38:00Z",
-        "teamIds": [
-            119
-        ],
-        "playerIds": [
-            669373
-        ],
-        "gamePks": [
-            849809
-        ],
-        "taxonomy": [
-            "nlcs",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Rangers RHP prospect Johnson expands his repertoire in the heat of the Fall League",
         "summaryJa": "Jacob Johnson（TEX）ら注目選手の最新動向",
         "slug": "rangers-prospect-jacob-johnson-expanding-repertoire-in-arizona-fall-league",
@@ -2445,30 +2468,6 @@
             "injury",
             "transactions",
             "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Dodgers add lefty Wrobleski to NLCS roster, leave off speedster Kim",
-        "summaryJa": "J.ロブレスキー（LAD）の最新動向をMLB公式が詳報",
-        "slug": "dodgers-2026-nlcs-roster",
-        "url": "https://www.mlb.com/news/dodgers-2026-nlcs-roster",
-        "contentDate": "2026-10-11T23:04:00Z",
-        "teamIds": [
-            119
-        ],
-        "playerIds": [
-            680736
-        ],
-        "gamePks": [
-            849809
-        ],
-        "taxonomy": [
-            "postseason",
-            "apple-news",
-            "nlcs"
         ],
         "sourceScopes": [
             "球団公式"
