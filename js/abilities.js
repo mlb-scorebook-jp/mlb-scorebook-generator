@@ -544,6 +544,7 @@
         </tr>` : replayState.view === "umpire" ? `<tr>
             <td class="ability-rank">${index + 1}</td>
             <td class="ability-player" title="${escapeHtml(row.name)}">${escapeHtml(umpireNamesJa[row.name] || row.name)}</td>
+            <td class="replay-umpire-age">${Number.isFinite(row.age) ? `${row.age}歳` : "—"}</td>
             <td class="ability-replay-record">${link(`${row.upheld}/${row.attempts}`)}</td>
             <td class="replay-accurate ${row.upheldRate >= replayUmpireAverage ? "replay-above-average" : "replay-below-average"}">${link(`${(row.upheldRate * 100).toFixed(1)}%`)}</td>
             <td class="replay-overturned-count">${link(row.overturned)}</td>
@@ -555,7 +556,7 @@
             <td class="ability-replay-record">${link(`${row.won}/${row.attempts}`)}</td>
             <td class="ability-replay-rate">${link(`${(row.successRate * 100).toFixed(1)}%`)}</td>
             <td>${link(row.teamReviews)}</td><td>${link(row.umpireReviews)}</td>
-        </tr>`).join("") : `<tr><td colspan="6">条件に一致する記録はありません。</td></tr>`;
+        </tr>`).join("") : `<tr><td colspan="${replayState.view === "umpire" ? 8 : 6}">条件に一致する記録はありません。</td></tr>`;
         content.querySelectorAll("[data-replay-sort]").forEach((button) => {
             const active = button.dataset.replaySort === replayState.sortKey;
             button.classList.toggle("active", active);
@@ -604,7 +605,7 @@
             : `<select id="replay-team"><option value="">全チーム・審判</option><option value="Umpire">審判</option>${teamCodes.map((value) => `<option value="${value}">${value}</option>`).join("")}</select><select id="replay-type"><option value="">全判定</option>${types.map((value) => `<option value="${value}">${replayTypeName(value)}</option>`).join("")}</select>`;
         const table = replayState.view === "history" ? `<table class="ability-table replay-history-table"><thead><tr><th>日付</th><th>対戦</th><th>実施</th><th>判定種類</th><th>回</th><th>結果</th><th>VIDEO</th></tr></thead><tbody id="replay-history-body"></tbody></table>`
             : replayState.view === "team" ? `<table class="ability-table replay-table"><thead><tr><th>順位</th><th>TEAM</th><th>チーム</th><th>${sortHeader("成功/実施", "won")}</th><th>${sortHeader("成功率", "successRate")}</th><th>最多の判定</th></tr></thead><tbody id="replay-body"></tbody></table>`
-            : replayState.view === "umpire" ? `<table class="ability-table replay-umpire-table"><thead><tr><th>順位</th><th>審判</th><th>${sortHeader("判定維持/対象", "upheld")}</th><th>${sortHeader("判定維持率", "upheldRate")}</th><th>${sortHeader("覆り", "overturned")}</th><th>最多覆り判定</th><th>最多維持判定</th></tr></thead><tbody id="replay-body"></tbody></table>`
+            : replayState.view === "umpire" ? `<table class="ability-table replay-umpire-table"><thead><tr><th>順位</th><th>審判</th><th>年齢</th><th>${sortHeader("判定維持/対象", "upheld")}</th><th>${sortHeader("判定維持率", "upheldRate")}</th><th>${sortHeader("覆り", "overturned")}</th><th>最多覆り判定</th><th>最多維持判定</th></tr></thead><tbody id="replay-body"></tbody></table>`
             : `<table class="ability-table replay-type-table"><thead><tr><th>順位</th><th>判定種類</th><th>${sortHeader("成功/実施", "won")}</th><th>${sortHeader("成功率", "successRate")}</th><th>${sortHeader("チーム", "teamReviews")}</th><th>${sortHeader("審判", "umpireReviews")}</th></tr></thead><tbody id="replay-body"></tbody></table>`;
         content.innerHTML = `<section class="ability-hero"><div><h3>チャレンジ｜プレー判定</h3></div><div class="ability-scale"><div><strong>${heroRate.toFixed(1)}%</strong><span>${heroLabel}</span></div></div></section>
             <div class="ability-subtabs replay-subtabs">${views.map((item) => `<button type="button" data-replay-view="${item.key}" class="${item.key === replayState.view ? "active" : ""}">${item.label}</button>`).join("")}</div>

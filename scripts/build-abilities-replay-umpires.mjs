@@ -2,7 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import vm from "node:vm";
 
-const [replayFile, scheduleFile, feedDirectory, outputFile] = process.argv.slice(2);
+const [replayFile, scheduleFile, feedDirectory, outputFile, peopleFile] = process.argv.slice(2);
 if (!replayFile || !scheduleFile || !feedDirectory || !outputFile) {
     console.error("Usage: node build-abilities-replay-umpires.mjs <replay.js> <schedule.json> <feed-dir> <output.js>");
     process.exit(1);
@@ -12,7 +12,15 @@ const context = { window: {} };
 vm.runInNewContext(fs.readFileSync(replayFile, "utf8"), context);
 const replayRows = context.window.ABILITIES_REPLAY_2026 || [];
 const schedule = JSON.parse(fs.readFileSync(scheduleFile, "utf8"));
+const people = peopleFile ? JSON.parse(fs.readFileSync(peopleFile, "utf8")).people || [] : [];
+const birthDateById = new Map(people.filter((person) => person.birthDate).map((person) => [person.id, person.birthDate]));
 const gamesByMatchup = new Map();
+const ageOn = (birthDate, date = "2026-10-16") => {
+    if (!birthDate) return null;
+    const [year, month, day] = birthDate.split("-").map(Number);
+    const [targetYear, targetMonth, targetDay] = date.split("-").map(Number);
+    return targetYear - year - (targetMonth < month || (targetMonth === month && targetDay < day) ? 1 : 0);
+};
 
 for (const date of schedule.dates || []) {
     for (const game of date.games || []) {
@@ -86,6 +94,7 @@ const rows = [...summaries.values()].map((row) => {
     const { types, ...summary } = row;
     return {
         ...summary,
+        age: ageOn(birthDateById.get(row.umpireId)),
         upheldRate: row.upheld / row.attempts,
         mostOverturnedType: topType(types, "overturned"),
         mostUpheldType: topType(types, "upheld")
