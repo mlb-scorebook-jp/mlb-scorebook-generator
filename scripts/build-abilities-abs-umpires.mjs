@@ -40,38 +40,38 @@ for (const challenge of uniqueChallenges.values()) {
         overturned: 0,
         overturnRate: 0,
         maxEdgeDistance: 0,
-        overturnedByTeam: {}
+        challengesByTeam: {}
     };
     const overturned = Number(challenge.is_challengeABS_overturned) === 1;
     summary.challenges += 1;
     summary.overturned += overturned ? 1 : 0;
     summary.maxEdgeDistance = Math.max(summary.maxEdgeDistance, Math.abs(Number(challenge.edge_dist_calc) || 0));
-    if (overturned) {
-        const challengerId = Number(challenge.challenging_player_id);
-        const battingTeam = challengerId === Number(challenge.player_at_bat);
-        const teamId = Number(battingTeam ? challenge.bat_team_id : challenge.fld_team_id);
-        const team = battingTeam ? challenge.bat_team_abbr : challenge.fld_team_abbr;
-        if (teamId && team) {
-            const teamKey = String(teamId);
-            const previous = summary.overturnedByTeam[teamKey] || { teamId, team, count: 0 };
-            previous.count += 1;
-            summary.overturnedByTeam[teamKey] = previous;
-        }
+    const challengerId = Number(challenge.challenging_player_id);
+    const battingTeam = challengerId === Number(challenge.player_at_bat);
+    const teamId = Number(battingTeam ? challenge.bat_team_id : challenge.fld_team_id);
+    const team = battingTeam ? challenge.bat_team_abbr : challenge.fld_team_abbr;
+    if (teamId && team) {
+        const teamKey = String(teamId);
+        const previous = summary.challengesByTeam[teamKey] || { teamId, team, challenges: 0, won: 0 };
+        previous.challenges += 1;
+        previous.won += overturned ? 1 : 0;
+        summary.challengesByTeam[teamKey] = previous;
     }
     summaries.set(umpire.id, summary);
 }
 
 const rows = [...summaries.values()]
     .map((row) => {
-        const [topTeam = { teamId: null, team: "—", count: 0 }] = Object.values(row.overturnedByTeam)
-            .sort((a, b) => b.count - a.count || a.team.localeCompare(b.team));
-        const { overturnedByTeam, ...summary } = row;
+        const [topTeam = { teamId: null, team: "—", challenges: 0, won: 0 }] = Object.values(row.challengesByTeam)
+            .sort((a, b) => b.won - a.won || b.challenges - a.challenges || a.team.localeCompare(b.team));
+        const { challengesByTeam, ...summary } = row;
         return {
             ...summary,
             overturnRate: row.overturned / row.challenges,
             topTeamId: topTeam.teamId,
             topTeam: topTeam.team,
-            topTeamCount: topTeam.count
+            topTeamWon: topTeam.won,
+            topTeamChallenges: topTeam.challenges
         };
     })
     .sort((a, b) => b.overturnRate - a.overturnRate || b.challenges - a.challenges || a.name.localeCompare(b.name));
