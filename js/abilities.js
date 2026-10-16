@@ -14,6 +14,7 @@
     const absUmpires2026 = Array.isArray(window.ABILITIES_ABS_UMPIRES_2026)
         ? window.ABILITIES_ABS_UMPIRES_2026
         : [];
+    const umpireNamesJa = window.ABILITIES_UMPIRE_NAMES_JA || {};
     const replay2026 = Array.isArray(window.ABILITIES_REPLAY_2026)
         ? window.ABILITIES_REPLAY_2026
         : [];
@@ -609,7 +610,8 @@
 
     const filteredAbsRows = () => absRows().filter((row) => {
         if (absState.category === "umpire") {
-            return !absState.query || row.name.toLowerCase().includes(absState.query);
+            const japaneseName = umpireNamesJa[row.name] || "";
+            return !absState.query || `${row.name} ${japaneseName}`.toLowerCase().includes(absState.query);
         }
         if (absState.team && row.team !== absState.team) return false;
         const displayName = absState.category === "overall" ? japaneseTeamName(row) : japanesePlayerName(row.name);
@@ -632,7 +634,7 @@
         if (absState.category === "umpire") {
             tbody.innerHTML = rows.length ? visibleRows.map((row, index) => `<tr>
                 <td class="ability-rank">${index + 1}</td>
-                <td class="ability-player">${escapeHtml(row.name)}</td>
+                <td class="ability-player" title="${escapeHtml(row.name)}">${escapeHtml(umpireNamesJa[row.name] || row.name)}</td>
                 <td class="ability-abs-record">${row.overturned}/${row.challenges}</td>
                 <td class="ability-abs-rate">${(row.overturnRate * 100).toFixed(1)}%</td>
                 <td class="ability-abs-distance">${(row.maxEdgeDistance * 2.54).toFixed(1)} cm</td>
