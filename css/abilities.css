@@ -247,7 +247,7 @@ body.app-mode-abilities #header-abilities-btn {
 }
 .ability-table th:nth-child(3),
 .ability-table td:nth-child(3) {
-    width: 130px;
+    width: 190px;
     padding-left: 6px;
     padding-right: 6px;
 }
