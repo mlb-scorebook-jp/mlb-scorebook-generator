@@ -410,6 +410,8 @@ body.app-mode-abilities #header-abilities-btn {
 .catcher-table td:nth-child(9),
 .catcher-table th:nth-child(10),
 .catcher-table td:nth-child(10) { width: 116px; }
+.catcher-table th:last-child,
+.catcher-table td:last-child { padding-left: 4px; text-align: center; }
 
 .ability-subtabs {
     display: grid;
