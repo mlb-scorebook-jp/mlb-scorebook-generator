@@ -2,6 +2,120 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Mueth takes on ‘closer’s mentality’ in AFL opportunity",
+        "summaryJa": "Zander Mueth（PIT）の最新動向をMLB公式が詳報",
+        "slug": "zander-mueth-arizona-fall-league-2026-pirates",
+        "url": "https://www.mlb.com/news/zander-mueth-arizona-fall-league-2026-pirates",
+        "contentDate": "2026-10-16T13:17:53.55Z",
+        "teamIds": [
+            134
+        ],
+        "playerIds": [
+            805800
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "arizona-fall-league"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Keep these three Reds prospects on your radar for 2027",
+        "summaryJa": "Carlos Jorge（CIN）ら注目選手の最新動向",
+        "slug": "reds-prospects-to-watch-in-2027",
+        "url": "https://www.mlb.com/news/reds-prospects-to-watch-in-2027",
+        "contentDate": "2026-10-16T13:14:47.577Z",
+        "teamIds": [
+            113
+        ],
+        "playerIds": [
+            699115,
+            807728,
+            695481
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "mlb-top-prospects",
+            "minor-league-baseball"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "3 prospects on the radar, 2 on the cusp and 1 big question",
+        "summaryJa": "Franklin Arias（BOS）ら注目選手の最新動向",
+        "slug": "red-sox-prospect-update-heading-into-offseason",
+        "url": "https://www.mlb.com/news/red-sox-prospect-update-heading-into-offseason",
+        "contentDate": "2026-10-16T13:14:03.469Z",
+        "teamIds": [
+            111
+        ],
+        "playerIds": [
+            808265
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "mlb-top-prospects"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Five burning questions for Yankees entering pivotal offseason",
+        "summaryJa": "A.ジャッジ（NYY）の最新動向をMLB公式が詳報",
+        "slug": "yankees-biggest-questions-for-2026-27-offseason",
+        "url": "https://www.mlb.com/news/yankees-biggest-questions-for-2026-27-offseason",
+        "contentDate": "2026-10-16T13:12:01.841Z",
+        "teamIds": [
+            147
+        ],
+        "playerIds": [
+            592450,
+            519317,
+            669224,
+            683011
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Holliday looking to build off positives from 2026 during '27 season",
+        "summaryJa": "J.ホリデイ（BAL）の最新動向をMLB公式が詳報",
+        "slug": "orioles-confident-jackson-holliday-can-reach-potential-in-2027",
+        "url": "https://www.mlb.com/news/orioles-confident-jackson-holliday-can-reach-potential-in-2027",
+        "contentDate": "2026-10-16T12:49:12.585Z",
+        "teamIds": [
+            110
+        ],
+        "playerIds": [
+            702616
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "offseason"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "After 13 seasons, 2-time World Series champ Rojas calls it a career",
         "summaryJa": "M.ロハス（LAD）の最新動向をMLB公式が詳報",
         "slug": "miguel-rojas-announces-retirement",
@@ -80,7 +194,7 @@
         ]
     },
     {
-        "headline": "Rays-Guardians ALCS Game 4 lineups, FAQ (6 ET, TBS/HBO Max)",
+        "headline": "Rays-Guardians ALCS Game 4 lineups, FAQ (8 ET, TBS/HBO Max)",
         "summaryJa": "ガーディアンズの最新動向をMLB公式が詳報",
         "slug": "when-is-rays-vs-guardians-alcs-game-4-date-time-and-lineups",
         "url": "https://www.mlb.com/news/when-is-rays-vs-guardians-alcs-game-4-date-time-and-lineups",
@@ -178,8 +292,8 @@
         ]
     },
     {
-        "headline": "Fascinating facts and stats from Brewers' comeback sweep",
-        "summaryJa": "ブルワーズ、勝利を呼び込む活躍",
+        "headline": "7 feats that define Milwaukee’s October magic",
+        "summaryJa": "ブルワーズの最新動向をMLB公式が詳報",
         "slug": "dyk-nlcs-game-4-facts-and-stats",
         "url": "https://www.mlb.com/news/dyk-nlcs-game-4-facts-and-stats",
         "contentDate": "2026-10-16T06:38:18.524Z",
@@ -868,28 +982,7 @@
             "offseason"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
-        ]
-    },
-    {
-        "headline": "Four NPB stars who could be Major League-bound",
-        "summaryJa": "Hiromi Itohの最新動向をMLB公式が詳報",
-        "slug": "teruaki-sato-leads-npb-stars-who-could-soon-come-to-majors",
-        "url": "https://www.mlb.com/news/teruaki-sato-leads-npb-stars-who-could-soon-come-to-majors",
-        "contentDate": "2026-10-15T16:34:42.04Z",
-        "teamIds": [],
-        "playerIds": [
-            808955,
-            831664
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "world-baseball-classic",
-            "japan"
-        ],
-        "sourceScopes": [
-            "MLB"
         ]
     },
     {
@@ -1026,25 +1119,7 @@
             "rumors"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
-        ]
-    },
-    {
-        "headline": "5 rookies could win a Gold Glove after excellent debuts",
-        "summaryJa": "MLBの最新情報、メジャー昇格・初出場に関する最新情報",
-        "slug": "2026-rookies-who-were-named-gold-glove-finalists",
-        "url": "https://www.mlb.com/news/2026-rookies-who-were-named-gold-glove-finalists",
-        "contentDate": "2026-10-15T13:27:11.341Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "gold-glove-award",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB"
         ]
     },
     {
@@ -5307,28 +5382,6 @@
         ]
     },
     {
-        "headline": "3-error first just the start of Yankees' defensive woes",
-        "summaryJa": "ヤンキースの最新動向をMLB公式が詳報",
-        "slug": "rays-capitalize-as-yankees-commit-3-errors-in-first-in-2026-alds-game-2",
-        "url": "https://www.mlb.com/news/rays-capitalize-as-yankees-commit-3-errors-in-first-in-2026-alds-game-2",
-        "contentDate": "2026-10-06T05:37:00Z",
-        "teamIds": [
-            147
-        ],
-        "playerIds": [],
-        "gamePks": [
-            849839
-        ],
-        "taxonomy": [
-            "apple-news",
-            "alds",
-            "series-a"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "5 takeaways: Rays' formula is working, and Yankees have yet to solve it",
         "summaryJa": "レイズの最新動向をMLB公式が詳報",
         "slug": "takeaways-from-rays-yankees-alds-game-2",
@@ -6262,28 +6315,6 @@
             "injury",
             "transactions",
             "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Red Sox turned away by Yanks in Wild Card Series for 2nd straight year",
-        "summaryJa": "レッドソックス、記録達成の最新情報",
-        "slug": "red-sox-lose-to-yankees-al-wild-card-series-2026",
-        "url": "https://www.mlb.com/news/red-sox-lose-to-yankees-al-wild-card-series-2026",
-        "contentDate": "2026-10-01T05:17:00Z",
-        "teamIds": [
-            111
-        ],
-        "playerIds": [],
-        "gamePks": [
-            849848
-        ],
-        "taxonomy": [
-            "apple-news",
-            "alwc",
-            "series-b"
         ],
         "sourceScopes": [
             "球団公式"
@@ -7427,26 +7458,6 @@
             "injury",
             "transactions",
             "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "The Reds have lots of work to do, but Francona will 'never not be optimistic'",
-        "summaryJa": "レッズの最新動向をMLB公式が詳報",
-        "slug": "reds-lose-2026-season-finale",
-        "url": "https://www.mlb.com/news/reds-lose-2026-season-finale",
-        "contentDate": "2026-09-27T23:18:00Z",
-        "teamIds": [
-            113
-        ],
-        "playerIds": [],
-        "gamePks": [
-            822761
-        ],
-        "taxonomy": [
-            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
