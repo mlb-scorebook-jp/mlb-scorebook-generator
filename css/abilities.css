@@ -256,15 +256,20 @@ body.app-mode-abilities #header-abilities-btn {
 .ability-table th:nth-child(5),
 .ability-table td:nth-child(5) { width: 60px; }
 .ability-table th:nth-child(6),
-.ability-table td:nth-child(6) { width: 56px; }
+.ability-table td:nth-child(6) { width: 44px; }
 .ability-table th:nth-child(7),
-.ability-table td:nth-child(7) { width: 100px; }
+.ability-table td:nth-child(7) { width: 82px; }
 .ability-table th:nth-child(8),
-.ability-table td:nth-child(8) { width: 110px; }
+.ability-table td:nth-child(8) { width: 90px; }
 .ability-table th:nth-child(9),
-.ability-table td:nth-child(9) { width: 105px; }
+.ability-table td:nth-child(9) { width: 84px; }
 .ability-table th:last-child,
 .ability-table td:last-child { width: 180px; }
+.ability-table th:nth-child(n+4):nth-child(-n+9),
+.ability-table td:nth-child(n+4):nth-child(-n+9) {
+    padding-left: 4px;
+    padding-right: 4px;
+}
 .ability-table td {
     box-sizing: border-box;
     padding: 11px 12px;
