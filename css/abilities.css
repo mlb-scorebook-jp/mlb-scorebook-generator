@@ -521,8 +521,19 @@ body.app-mode-abilities #header-abilities-btn {
 .missed-call-table td:nth-child(7) { width: 24%; }
 .ability-missed-count { color: #ff8b7b; font-size: 15px; font-weight: 800; }
 .ability-missed-impact { color: #f1c674; font-weight: 800; }
-.ability-missed-umpire { font-weight: 700; white-space: nowrap; }
-.ability-missed-umpire small { margin-left: 8px; color: #72d5ff; font-size: 11px; }
+.ability-missed-umpire {
+    font-weight: 700;
+    white-space: nowrap;
+}
+.ability-missed-umpire-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 44px;
+    align-items: center;
+    width: 100%;
+}
+.ability-missed-umpire-layout > span,
+.ability-missed-umpire-layout > small { justify-self: center; }
+.ability-missed-umpire small { color: #72d5ff; font-size: 11px; }
 
 .replay-subtabs { grid-template-columns: repeat(4, minmax(100px, 1fr)); }
 .replay-controls { grid-template-columns: 180px minmax(200px, 1fr); }

@@ -789,7 +789,7 @@
             <td class="ability-missed-count">${link(row.calls)}</td>
             <td class="ability-missed-impact">${link(row.impact)}</td>
             <td class="ability-abs-distance">${link(`${row.maxDistanceCm.toFixed(1)} cm`)}</td>
-            <td class="ability-missed-umpire" title="${escapeHtml(row.topUmpire)}">${escapeHtml(umpireNamesJa[row.topUmpire] || row.topUmpire)}<small>${row.topUmpireCount}回</small></td>
+            <td class="ability-missed-umpire" title="${escapeHtml(row.topUmpire)}"><span class="ability-missed-umpire-layout"><span>${escapeHtml(umpireNamesJa[row.topUmpire] || row.topUmpire)}</span><small>${row.topUmpireCount}回</small></span></td>
         </tr>`).join("") : `<tr><td colspan="7">条件に一致する記録はありません。</td></tr>`;
         content.querySelectorAll("[data-missed-sort]").forEach((button) => {
             const active = button.dataset.missedSort === missedCallState.sortKey;
