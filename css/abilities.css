@@ -443,6 +443,52 @@ body.app-mode-abilities #header-abilities-btn {
 .ability-abs-record,
 .ability-abs-rate { color: #72d5ff; font-weight: 800; }
 
+.replay-subtabs { grid-template-columns: repeat(3, minmax(110px, 1fr)); }
+.replay-controls { grid-template-columns: 180px minmax(200px, 1fr); }
+.replay-controls:has(select + select) { grid-template-columns: 180px 220px minmax(200px, 1fr); }
+.replay-table th,
+.replay-table td,
+.replay-type-table th,
+.replay-type-table td,
+.replay-history-table th,
+.replay-history-table td { text-align: center; }
+.replay-table th:nth-child(3),
+.replay-table td:nth-child(3),
+.replay-table th:nth-child(6),
+.replay-table td:nth-child(6),
+.replay-type-table th:nth-child(2),
+.replay-type-table td:nth-child(2),
+.replay-history-table th:nth-child(4),
+.replay-history-table td:nth-child(4) { text-align: left; }
+.replay-table th:nth-child(4),
+.replay-table td:nth-child(4) { width: 112px; }
+.replay-table th:nth-child(5),
+.replay-table td:nth-child(5) { width: 88px; }
+.replay-table th:nth-child(6),
+.replay-table td:nth-child(6) { width: 170px; }
+.replay-type-table th:nth-child(2),
+.replay-type-table td:nth-child(2) { width: auto; }
+.replay-type-table th:nth-child(n+3),
+.replay-type-table td:nth-child(n+3) { width: 120px; }
+.replay-history-table th:nth-child(1),
+.replay-history-table td:nth-child(1) { width: 105px; }
+.replay-history-table th:nth-child(2),
+.replay-history-table td:nth-child(2) { width: 120px; }
+.replay-history-table th:nth-child(3),
+.replay-history-table td:nth-child(3) { width: 82px; }
+.replay-history-table th:nth-child(4),
+.replay-history-table td:nth-child(4) { width: auto; }
+.replay-history-table th:nth-child(5),
+.replay-history-table td:nth-child(5) { width: 58px; }
+.replay-history-table th:nth-child(6),
+.replay-history-table td:nth-child(6) { width: 92px; }
+.replay-history-table th:nth-child(7),
+.replay-history-table td:nth-child(7) { width: 82px; }
+.ability-replay-record,
+.ability-replay-rate { color: #72d5ff; font-weight: 800; }
+.replay-overturned { color: #74d9a1; font-weight: 800; }
+.replay-confirmed { color: #9babb3; }
+
 @media (max-width: 820px) {
     .abilities-page { width: min(100% - 20px, 1460px); padding-top: 12px; }
     .abilities-header { align-items: flex-start; padding: 18px; flex-direction: column; }
@@ -458,4 +504,8 @@ body.app-mode-abilities #header-abilities-btn {
     .ability-subtabs { grid-template-columns: repeat(4, minmax(72px, 1fr)); }
     .abs-controls { grid-template-columns: 1fr; }
     .abs-controls input { grid-column: auto; }
+    .replay-subtabs { grid-template-columns: repeat(3, minmax(88px, 1fr)); }
+    .replay-controls,
+    .replay-controls:has(select + select) { grid-template-columns: 1fr; }
+    .replay-controls input { grid-column: auto; }
 }
