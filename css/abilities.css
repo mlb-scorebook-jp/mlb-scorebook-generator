@@ -211,7 +211,7 @@ body.app-mode-abilities #header-abilities-btn {
 .ability-table {
     width: 100%;
     border-collapse: collapse;
-    font-size: 11px;
+    font-size: 12px;
 }
 
 .ability-table th {
@@ -219,7 +219,7 @@ body.app-mode-abilities #header-abilities-btn {
     color: #8fa2ac;
     border-bottom: 1px solid #53636b;
     background: #222e34;
-    font-size: 9px;
+    font-size: 10px;
     letter-spacing: .08em;
     text-align: right;
     white-space: nowrap;
@@ -252,7 +252,7 @@ body.app-mode-abilities #header-abilities-btn {
 .ability-table tbody tr:hover { background: #223139; }
 .ability-table tbody tr:last-child td { border-bottom: 0; }
 .ability-rank { width: 44px; color: #7f929c; }
-.ability-player { color: #f0f4f6; font-size: 12px; font-weight: 700; }
+.ability-player { color: #f0f4f6; font-size: 13px; font-weight: 700; }
 .ability-team { color: #8ecbea; font-weight: 700; }
 .ability-team img {
     width: 19px;
@@ -264,7 +264,7 @@ body.app-mode-abilities #header-abilities-btn {
         drop-shadow(0 0 1px rgba(255, 255, 255, 0.92))
         drop-shadow(0 1px 2px rgba(0, 0, 0, 0.65));
 }
-.ability-speed { color: #72d5ff; font-size: 14px; font-weight: 800; }
+.ability-speed { color: #72d5ff; font-size: 15px; font-weight: 800; }
 .ability-speed-bar { display: inline-block; width: 64px; height: 3px; margin-right: 8px; vertical-align: middle; background: #26343b; }
 .ability-speed-bar i { display: block; height: 100%; background: linear-gradient(90deg, #217ca8, #72d5ff); }
 .ability-table-note { margin: 9px 2px 0; color: #778890; font-size: 9px; }
