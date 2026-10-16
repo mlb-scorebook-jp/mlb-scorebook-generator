@@ -407,7 +407,9 @@ body.app-mode-abilities #header-abilities-btn {
 .catcher-table th:nth-child(8),
 .catcher-table td:nth-child(8),
 .catcher-table th:nth-child(9),
-.catcher-table td:nth-child(9) { width: 120px; }
+.catcher-table td:nth-child(9),
+.catcher-table th:nth-child(10),
+.catcher-table td:nth-child(10) { width: 116px; }
 
 .ability-subtabs {
     display: grid;

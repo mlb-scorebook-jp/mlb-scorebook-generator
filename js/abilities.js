@@ -446,7 +446,7 @@
         const visibleRows = rows.slice(0, defenseState.visibleCount);
         const oaaUrl = (row) => `https://baseballsavant.mlb.com/leaderboard/outs_above_average?type=Fielder&startYear=2026&endYear=2026&split=yes&min=1&playerId=${row.playerId}`;
         const fieldingUrl = (row) => `https://baseballsavant.mlb.com/leaderboard/fielding-run-value?gameType=Regular&groupBy=year&minInnings=1&minResults=1&position=0&seasonEnd=2026&seasonStart=2026&type=fielder&playerId=${row.playerId}`;
-        const armUrl = (row) => `https://baseballsavant.mlb.com/leaderboard/arm-strength?type=player&year=2026&minThrows=1&playerId=${row.playerId}`;
+        const popTimeUrl = (row) => `https://baseballsavant.mlb.com/leaderboard/poptime?year=2026&team=&min2b=0&min3b=0&playerId=${row.playerId}`;
         const link = (url, value) => `<a class="ability-value-link" href="${url}" target="_blank" rel="noopener noreferrer">${value}</a>`;
         const signed = (value) => `${value > 0 ? "+" : ""}${value.toFixed(0)}`;
         tbody.innerHTML = rows.length ? visibleRows.map((row, index) => `<tr>
@@ -540,9 +540,10 @@
             <td>${row.age ?? "—"}</td><td>${row.throwBat}</td>
             <td class="ability-defense-value">${row.attempts ? `${row.caughtStealing}/${row.attempts}` : "—"}</td>
             <td class="ability-defense-value">${row.caughtStealingRate == null ? "—" : `${(row.caughtStealingRate * 100).toFixed(1)}%`}</td>
-            <td class="ability-velocity">${row.armAverage == null ? "—" : link(armUrl(row), `${milesPerHourToKmh(row.armAverage).toFixed(1)} km/h`)}</td>
-            <td class="ability-velocity">${row.armMax == null ? "—" : link(armUrl(row), `${milesPerHourToKmh(row.armMax).toFixed(1)} km/h`)}</td>
-        </tr>`).join("") : `<tr><td colspan="9">条件に一致する捕手はいません。</td></tr>`;
+            <td class="ability-velocity">${row.catcherArmStrength == null ? "—" : link(popTimeUrl(row), `${milesPerHourToKmh(row.catcherArmStrength).toFixed(1)} km/h`)}</td>
+            <td>${row.exchangeTime == null ? "—" : link(popTimeUrl(row), `${row.exchangeTime.toFixed(2)}秒`)}</td>
+            <td>${row.popTime2b == null ? "—" : link(popTimeUrl(row), `${row.popTime2b.toFixed(2)}秒`)}</td>
+        </tr>`).join("") : `<tr><td colspan="10">条件に一致する捕手はいません。</td></tr>`;
         content.querySelectorAll("[data-catcher-sort]").forEach((button) => {
             const active = button.dataset.catcherSort === catcherState.sortKey;
             button.classList.toggle("active", active);
@@ -565,9 +566,9 @@
         const sortHeader = (label, key) => `<button type="button" class="ability-sort-button" data-catcher-sort="${key}">${label}<span aria-hidden="true"></span></button>`;
         content.innerHTML = `<section class="ability-hero"><div><h3>捕手｜盗塁阻止</h3></div><div class="ability-scale"><div><strong>${leagueRate.toFixed(1)}%</strong><span>MLB全体 盗塁阻止率</span></div></div></section>
             <div class="ability-controls"><select id="ability-team"><option value="">全チーム</option>${teams.map((value) => `<option value="${value}">${value}</option>`).join("")}</select><input id="ability-search" type="search" placeholder="捕手名・チームで検索"></div>
-            <div class="ability-table-wrap"><table class="ability-table catcher-table"><thead><tr><th>順位</th><th>TEAM</th><th>捕手</th><th>年齢</th><th>投/打</th><th>${sortHeader("盗塁阻止<br><small>阻止/企図</small>", "caughtStealing")}</th><th>${sortHeader("盗塁阻止率", "caughtStealingRate")}</th><th>${sortHeader("平均送球速度", "armAverage")}</th><th>${sortHeader("最速送球", "armMax")}</th></tr></thead><tbody id="catcher-body"></tbody></table></div>
+            <div class="ability-table-wrap"><table class="ability-table catcher-table"><thead><tr><th>順位</th><th>TEAM</th><th>捕手</th><th>年齢</th><th>投/打</th><th>${sortHeader("盗塁阻止<br><small>阻止/企図</small>", "caughtStealing")}</th><th>${sortHeader("盗塁阻止率", "caughtStealingRate")}</th><th>${sortHeader("送球強度", "catcherArmStrength")}</th><th>${sortHeader("持ち替え", "exchangeTime")}</th><th>${sortHeader("二塁送球時間", "popTime2b")}</th></tr></thead><tbody id="catcher-body"></tbody></table></div>
             <div class="ability-table-footer"><span id="ability-result-summary"></span><button type="button" id="ability-show-more">さらに50人表示</button></div>
-            <p class="ability-table-note">2026年レギュラーシーズン。盗塁阻止は捕手守備時の阻止数／企図数、盗塁阻止率は阻止数÷（阻止数＋盗塁許容数）です。送球速度はSavantの集計対象選手のみ表示し、すべてkm/hへ変換しています（2026年10月17日時点）。</p>`;
+            <p class="ability-table-note">2026年レギュラーシーズン。盗塁阻止は捕手守備時の阻止数／企図数、盗塁阻止率は阻止数÷（阻止数＋盗塁許容数）です。送球強度・持ち替え・二塁送球時間はBaseball Savantの捕手専用Pop Timeデータを使用。送球強度は最大努力に近い送球群の平均で、km/hへ変換しています（2026年10月17日時点）。</p>`;
         const reset = () => { catcherState.visibleCount = PAGE_SIZE; };
         content.querySelector("#ability-team")?.addEventListener("change", (event) => { catcherState.team = event.target.value; reset(); renderCatcherTable(); });
         content.querySelector("#ability-search")?.addEventListener("input", (event) => { catcherState.query = event.target.value.trim().toLowerCase(); reset(); renderCatcherTable(); });
