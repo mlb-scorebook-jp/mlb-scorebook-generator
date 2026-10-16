@@ -266,8 +266,8 @@ body.app-mode-abilities #header-abilities-btn {
 .ability-table th:last-child,
 .ability-table td:last-child {
     width: auto;
-    padding-left: 10px;
-    text-align: left;
+    padding-left: 12px;
+    text-align: right;
 }
 .ability-table th:nth-child(n+4):nth-child(-n+9),
 .ability-table td:nth-child(n+4):nth-child(-n+9) {
