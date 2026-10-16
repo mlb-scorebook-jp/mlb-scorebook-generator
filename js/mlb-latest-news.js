@@ -2,6 +2,242 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Rockies part ways with pitching coach Leichman after 1 season",
+        "summaryJa": "Alon Leichman（COL）の最新動向をMLB公式が詳報",
+        "slug": "rockies-part-ways-with-pitching-coach-alon-leichman",
+        "url": "https://www.mlb.com/news/rockies-part-ways-with-pitching-coach-alon-leichman",
+        "contentDate": "2026-10-16T16:30:00Z",
+        "teamIds": [
+            115
+        ],
+        "playerIds": [
+            516540
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Triple-A El Paso takes home MiLB's 2026 Copa de la Diversión",
+        "summaryJa": "MLBの最新情報、勝利を呼び込む活躍",
+        "slug": "el-paso-matachines-win-2026-copa-de-la-diversion",
+        "url": "https://www.mlb.com/news/el-paso-matachines-win-2026-copa-de-la-diversion",
+        "contentDate": "2026-10-16T15:32:57.925Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "minor-league-baseball"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "How might ALCS Game 4 pitching plans shape up?",
+        "summaryJa": "ガーディアンズを巡る注目点をMLB公式が分析",
+        "slug": "rays-and-guardians-pitching-plans-for-alcs-game-4",
+        "url": "https://www.mlb.com/news/rays-and-guardians-pitching-plans-for-alcs-game-4",
+        "contentDate": "2026-10-16T14:58:00Z",
+        "teamIds": [
+            114,
+            139
+        ],
+        "playerIds": [],
+        "gamePks": [
+            849817
+        ],
+        "taxonomy": [
+            "apple-news",
+            "alcs",
+            "postseason"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "After first full pro season cut short, Astros' Monistere getting reps in AFL",
+        "summaryJa": "Nick Monistere（HOU）ら注目選手の最新動向",
+        "slug": "astros-prospect-nick-monistere-playing-in-arizona-fall-league",
+        "url": "https://www.mlb.com/news/astros-prospect-nick-monistere-playing-in-arizona-fall-league",
+        "contentDate": "2026-10-16T14:38:47.254Z",
+        "teamIds": [
+            117
+        ],
+        "playerIds": [
+            823809
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "arizona-fall-league",
+            "mlb-top-prospects"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Rays-Guardians ALCS Game 4 lineups, FAQ (8 ET, TBS/HBO Max)",
+        "summaryJa": "ガーディアンズの最新動向をMLB公式が詳報",
+        "slug": "when-is-rays-vs-guardians-alcs-game-4-date-time-and-lineups",
+        "url": "https://www.mlb.com/news/when-is-rays-vs-guardians-alcs-game-4-date-time-and-lineups",
+        "contentDate": "2026-10-16T14:38:00Z",
+        "teamIds": [
+            114,
+            139
+        ],
+        "playerIds": [],
+        "gamePks": [
+            849817
+        ],
+        "taxonomy": [
+            "apple-news",
+            "alcs",
+            "postseason"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Padres face series of questions this winter after latest postseason exit",
+        "summaryJa": "パドレスの最新動向をMLB公式が詳報",
+        "slug": "padres-questions-to-address-this-offseason",
+        "url": "https://www.mlb.com/news/padres-questions-to-address-this-offseason",
+        "contentDate": "2026-10-16T14:28:30.033Z",
+        "teamIds": [
+            135
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Phillies bring back Mayza on 1-year deal",
+        "summaryJa": "T.メイザ（PHI）の移籍・契約に関する最新情報",
+        "slug": "tim-mayza-re-signed-by-phillies",
+        "url": "https://www.mlb.com/news/tim-mayza-re-signed-by-phillies",
+        "contentDate": "2026-10-16T14:27:00Z",
+        "teamIds": [
+            143
+        ],
+        "playerIds": [
+            641835
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "transactions"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Yankees 'bizarro right-hander' building on first pro action in the desert",
+        "summaryJa": "Mack Estrada（NYY）ら注目選手の最新動向",
+        "slug": "yankees-prospect-mack-estrada-logging-lost-innings-arizona-fall-league",
+        "url": "https://www.mlb.com/news/yankees-prospect-mack-estrada-logging-lost-innings-arizona-fall-league",
+        "contentDate": "2026-10-16T14:26:39.62Z",
+        "teamIds": [
+            147
+        ],
+        "playerIds": [
+            806070
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "mlb-top-prospects",
+            "arizona-fall-league",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Family man Southisene making himself at home with fellow Braves in the desert",
+        "summaryJa": "Tate Southisene（ATL）の最新動向をMLB公式が詳報",
+        "slug": "braves-arizona-fall-league-overview-2026",
+        "url": "https://www.mlb.com/news/braves-arizona-fall-league-overview-2026",
+        "contentDate": "2026-10-16T14:26:35.305Z",
+        "teamIds": [
+            144
+        ],
+        "playerIds": [
+            816111
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "mlb-top-prospects",
+            "apple-news",
+            "arizona-fall-league"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "After standout season with the bat, Rays' Flewelling focusing on defense in Fall League",
+        "summaryJa": "Nathan Flewelling（TB）の最新動向をMLB公式が詳報",
+        "slug": "rays-arizona-fall-league-overview-2026",
+        "url": "https://www.mlb.com/news/rays-arizona-fall-league-overview-2026",
+        "contentDate": "2026-10-16T14:26:01.378Z",
+        "teamIds": [
+            139
+        ],
+        "playerIds": [
+            807083
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "arizona-fall-league",
+            "apple-news",
+            "mlb-top-prospects"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Which A's prospects could make impact in the Majors in 2027?",
+        "summaryJa": "H.ボルティー（ATH）ら注目選手の最新動向",
+        "slug": "athletics-top-prospects-who-performed-well-in-2026",
+        "url": "https://www.mlb.com/news/athletics-top-prospects-who-performed-well-in-2026",
+        "contentDate": "2026-10-16T14:21:10.996Z",
+        "teamIds": [
+            133
+        ],
+        "playerIds": [
+            703607,
+            811965,
+            701364
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "mlb-top-prospects",
+            "minor-league-baseball"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Mueth takes on ‘closer’s mentality’ in AFL opportunity",
         "summaryJa": "Zander Mueth（PIT）の最新動向をMLB公式が詳報",
         "slug": "zander-mueth-arizona-fall-league-2026-pirates",
@@ -187,30 +423,6 @@
             "postseason",
             "nlcs",
             "key-moments"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Rays-Guardians ALCS Game 4 lineups, FAQ (8 ET, TBS/HBO Max)",
-        "summaryJa": "ガーディアンズの最新動向をMLB公式が詳報",
-        "slug": "when-is-rays-vs-guardians-alcs-game-4-date-time-and-lineups",
-        "url": "https://www.mlb.com/news/when-is-rays-vs-guardians-alcs-game-4-date-time-and-lineups",
-        "contentDate": "2026-10-16T06:55:00Z",
-        "teamIds": [
-            114,
-            139
-        ],
-        "playerIds": [],
-        "gamePks": [
-            849817
-        ],
-        "taxonomy": [
-            "apple-news",
-            "alcs",
-            "postseason"
         ],
         "sourceScopes": [
             "MLB",
@@ -616,7 +828,6 @@
             "offbeat"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -640,30 +851,6 @@
             "postseason",
             "alcs",
             "relief-performance"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "With rain in forecast Friday, how might ALCS Game 4 pitching plans shape up?",
-        "summaryJa": "ガーディアンズを巡る注目点をMLB公式が分析",
-        "slug": "rays-and-guardians-pitching-plans-for-alcs-game-4",
-        "url": "https://www.mlb.com/news/rays-and-guardians-pitching-plans-for-alcs-game-4",
-        "contentDate": "2026-10-15T23:03:21.43Z",
-        "teamIds": [
-            114,
-            139
-        ],
-        "playerIds": [],
-        "gamePks": [
-            849817
-        ],
-        "taxonomy": [
-            "apple-news",
-            "alcs",
-            "postseason"
         ],
         "sourceScopes": [
             "MLB",
@@ -812,26 +999,6 @@
         ],
         "sourceScopes": [
             "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Rockies part ways with pitching coach Leichman after 1 season (source)",
-        "summaryJa": "Alon Leichman（COL）の最新動向をMLB公式が詳報",
-        "slug": "rockies-part-ways-with-pitching-coach-alon-leichman",
-        "url": "https://www.mlb.com/news/rockies-part-ways-with-pitching-coach-alon-leichman",
-        "contentDate": "2026-10-15T21:43:27.687Z",
-        "teamIds": [
-            115
-        ],
-        "playerIds": [
-            516540
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
             "球団公式"
         ]
     },
@@ -1004,7 +1171,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -4555,28 +4721,6 @@
         ]
     },
     {
-        "headline": "Yankees’ No. 1 prospect Kilby overhauling already-potent swing in Fall League",
-        "summaryJa": "Dax Kilby（NYY）ら注目選手の最新動向",
-        "slug": "yankees-arizona-fall-league-overview-2026",
-        "url": "https://www.mlb.com/news/yankees-arizona-fall-league-overview-2026",
-        "contentDate": "2026-10-07T14:20:24.796Z",
-        "teamIds": [
-            147
-        ],
-        "playerIds": [
-            828076
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "arizona-fall-league",
-            "mlb-top-prospects"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Twins' No. 17 prospect enjoying change of scenery in Fall League",
         "summaryJa": "Yasser Mercedes（MIN）ら注目選手の最新動向",
         "slug": "twins-arizona-fall-league-overview-2026",
@@ -5151,53 +5295,6 @@
         ]
     },
     {
-        "headline": "Yamamoto-Sale duel 1st of its kind in 88 years",
-        "summaryJa": "山本 由伸（LAD）、記録達成の最新情報",
-        "slug": "yoshinobu-yamamoto-chris-sale-nlds-game-3",
-        "url": "https://www.mlb.com/news/yoshinobu-yamamoto-chris-sale-nlds-game-3",
-        "contentDate": "2026-10-06T14:42:00.042Z",
-        "teamIds": [
-            119,
-            144
-        ],
-        "playerIds": [
-            808967,
-            519242
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "postseason",
-            "nlds",
-            "series-b"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Diving into Phillies' need to address offense after postseason exit",
-        "summaryJa": "B.ハーパー（PHI）の最新動向をMLB公式が詳報",
-        "slug": "breaking-down-phillies-need-to-address-offensive-issues-in-2026-27-offseeason",
-        "url": "https://www.mlb.com/news/breaking-down-phillies-need-to-address-offensive-issues-in-2026-27-offseeason",
-        "contentDate": "2026-10-06T14:40:51.062Z",
-        "teamIds": [
-            143
-        ],
-        "playerIds": [
-            547180,
-            656941
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "offseason"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "5 questions that will define Astros' offseason",
         "summaryJa": "アストロズの最新動向をMLB公式が詳報",
         "slug": "5-questions-facing-astros-in-2026-offseason",
@@ -5444,31 +5541,6 @@
         "taxonomy": [
             "apple-news",
             "offseason"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Was Miller tipping pitches? Closer -- and Brewers' skipper -- both say no",
-        "summaryJa": "M.ミラー（SD）の最新動向をMLB公式が詳報",
-        "slug": "mason-miller-says-blown-save-was-lack-of-command-not-tipping",
-        "url": "https://www.mlb.com/news/mason-miller-says-blown-save-was-lack-of-command-not-tipping",
-        "contentDate": "2026-10-06T01:03:00Z",
-        "teamIds": [
-            135,
-            158
-        ],
-        "playerIds": [
-            695243
-        ],
-        "gamePks": [
-            849826
-        ],
-        "taxonomy": [
-            "apple-news",
-            "nlds",
-            "series-a"
         ],
         "sourceScopes": [
             "球団公式"
@@ -6487,29 +6559,6 @@
         "taxonomy": [
             "apple-news",
             "offseason"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Bullpen game struggles put Astros in must-win position for ALWC G2",
-        "summaryJa": "アストロズ、勝利を呼び込む活躍",
-        "slug": "astros-lose-al-wild-card-game-1-2026",
-        "url": "https://www.mlb.com/news/astros-lose-al-wild-card-game-1-2026",
-        "contentDate": "2026-09-30T02:20:00Z",
-        "teamIds": [
-            117
-        ],
-        "playerIds": [],
-        "gamePks": [
-            849849
-        ],
-        "taxonomy": [
-            "alwc",
-            "series-a",
-            "apple-news",
-            "game-recap-losing"
         ],
         "sourceScopes": [
             "球団公式"
@@ -7782,29 +7831,6 @@
         "taxonomy": [
             "apple-news",
             "team-debut"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Lopez closes '26 on a high note, looking forward to '27",
-        "summaryJa": "J.ロペス（ATH）、勝利を呼び込む活躍",
-        "slug": "jacob-lopez-finishes-2026-season-with-quality-start-in-win-over-astros",
-        "url": "https://www.mlb.com/news/jacob-lopez-finishes-2026-season-with-quality-start-in-win-over-astros",
-        "contentDate": "2026-09-26T07:18:54.768Z",
-        "teamIds": [
-            133
-        ],
-        "playerIds": [
-            682052
-        ],
-        "gamePks": [
-            824947
-        ],
-        "taxonomy": [
-            "apple-news",
-            "game-recap"
         ],
         "sourceScopes": [
             "球団公式"
