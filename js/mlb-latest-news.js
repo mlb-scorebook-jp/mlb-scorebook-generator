@@ -2,6 +2,106 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Watch Angels prospects in Arizona Fall League action",
+        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
+        "slug": "watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
+        "url": "https://www.mlb.com/news/watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
+        "contentDate": "2026-10-16T20:02:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "arizona-fall-league"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Who should Brewers want to face in the World Series?",
+        "summaryJa": "ブルワーズの最新動向をMLB公式が詳報",
+        "slug": "brewers-to-face-rays-or-guardians-in-2026-world-series",
+        "url": "https://www.mlb.com/news/brewers-to-face-rays-or-guardians-in-2026-world-series",
+        "contentDate": "2026-10-16T19:51:19.413Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "world-series"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Long, Dickerson will not return to Phillies staff in '27",
+        "summaryJa": "フィリーズ、復帰へ向けた最新状況",
+        "slug": "phillies-part-ways-with-kevin-long-bobby-dickerson",
+        "url": "https://www.mlb.com/news/phillies-part-ways-with-kevin-long-bobby-dickerson",
+        "contentDate": "2026-10-16T19:12:00Z",
+        "teamIds": [
+            143
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Milwaukee backs Brewers as NBA's Bucks shift time of home opener for World Series",
+        "summaryJa": "ブルワーズの最新動向をMLB公式が詳報",
+        "slug": "milwaukee-bucks-change-time-of-home-opener-brewers-world-series",
+        "url": "https://www.mlb.com/news/milwaukee-bucks-change-time-of-home-opener-brewers-world-series",
+        "contentDate": "2026-10-16T18:14:36.689Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "world-series"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "The Brewers have ‘gamers’ … and some potential Hall of Famers",
+        "summaryJa": "C.イェリッチ（MIL）の最新動向をMLB公式が詳報",
+        "slug": "the-brewers-have-gamers-but-do-they-have-hall-of-famers",
+        "url": "https://www.mlb.com/news/the-brewers-have-gamers-but-do-they-have-hall-of-famers",
+        "contentDate": "2026-10-16T17:10:00Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [
+            592885,
+            694192,
+            694819,
+            668930
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "savant",
+            "postseason",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Rockies part ways with pitching coach Leichman after 1 season",
         "summaryJa": "Alon Leichman（COL）の最新動向をMLB公式が詳報",
         "slug": "rockies-part-ways-with-pitching-coach-alon-leichman",
@@ -255,7 +355,6 @@
             "arizona-fall-league"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -280,7 +379,6 @@
             "minor-league-baseball"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -665,23 +763,6 @@
         ],
         "sourceScopes": [
             "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Watch Angels prospects in Arizona Fall League action",
-        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
-        "slug": "watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
-        "url": "https://www.mlb.com/news/watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
-        "contentDate": "2026-10-16T05:13:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "arizona-fall-league"
-        ],
-        "sourceScopes": [
             "球団公式"
         ]
     },
@@ -1395,25 +1476,6 @@
         ]
     },
     {
-        "headline": "Brewers welcome fans into ballpark for NLCS Game 4 Watch Party",
-        "summaryJa": "ブルワーズの最新動向をMLB公式が詳報",
-        "slug": "brewers-nlcs-2026-game-4-watch-party",
-        "url": "https://www.mlb.com/news/brewers-nlcs-2026-game-4-watch-party",
-        "contentDate": "2026-10-15T13:11:36.768Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "postseason",
-            "nlcs"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Bauers refuses to give up – not on his career, not against a pair of Dodgers aces",
         "summaryJa": "J.バウアーズ（MIL）、本塁打で存在感",
         "slug": "jake-bauers-hits-go-ahead-hr-off-blake-snell-in-11-pitch-at-bat-in-nlcs-game-3",
@@ -1580,24 +1642,6 @@
             "nlcs",
             "postseason",
             "injury"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Long, Dickerson will not return to Phillies staff in '27 (sources)",
-        "summaryJa": "フィリーズ、復帰へ向けた最新状況",
-        "slug": "phillies-part-ways-with-kevin-long-bobby-dickerson",
-        "url": "https://www.mlb.com/news/phillies-part-ways-with-kevin-long-bobby-dickerson",
-        "contentDate": "2026-10-15T02:48:04.453Z",
-        "teamIds": [
-            143
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
@@ -1843,28 +1887,6 @@
         ]
     },
     {
-        "headline": "Today's updated start times: 1 ET (ALCS Game 3, TBS/HBO Max), 8 ET (NLCS Game 4, FS1, FOX One)",
-        "summaryJa": "レイズの最新動向をMLB公式が詳報",
-        "slug": "updated-alcs-nlcs-start-times-oct-15",
-        "url": "https://www.mlb.com/news/updated-alcs-nlcs-start-times-oct-15",
-        "contentDate": "2026-10-14T19:14:00Z",
-        "teamIds": [
-            139,
-            114
-        ],
-        "playerIds": [],
-        "gamePks": [
-            849818
-        ],
-        "taxonomy": [
-            "alcs",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Potential candidates to become next Astros manager",
         "summaryJa": "アストロズの最新動向をMLB公式が詳報",
         "slug": "potential-candidates-for-astros-manager",
@@ -2011,32 +2033,6 @@
         "taxonomy": [
             "apple-news",
             "rumors"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Brewers' Game 3 battery is all thanks to ... J.J. Hardy?",
-        "summaryJa": "W.コントレラス（MIL）の移籍・契約に関する最新情報",
-        "slug": "j-j-hardy-s-trade-tree-has-lasting-impact-for-brewers",
-        "url": "https://www.mlb.com/news/j-j-hardy-s-trade-tree-has-lasting-impact-for-brewers",
-        "contentDate": "2026-10-14T15:15:00Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [
-            661388,
-            688107,
-            429666
-        ],
-        "gamePks": [
-            849811
-        ],
-        "taxonomy": [
-            "apple-news",
-            "postseason",
-            "nlcs"
         ],
         "sourceScopes": [
             "球団公式"
