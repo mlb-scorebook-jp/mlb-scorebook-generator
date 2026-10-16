@@ -657,6 +657,7 @@
         const url = absLeaderboardUrl();
         const valueLink = (value) => `<a class="ability-value-link" href="${url}" target="_blank" rel="noopener noreferrer">${value}</a>`;
         if (absState.category === "umpire") {
+            const teamRecord = (teamId, team, won, challenges) => `<span class="ability-umpire-team-record"><img src="https://www.mlbstatic.com/team-logos/${teamId}.svg" alt="${escapeHtml(japaneseTeamName({ team, teamId }))}" title="${escapeHtml(japaneseTeamName({ team, teamId }))}" loading="lazy"><strong>${won}/${challenges}</strong></span>`;
             tbody.innerHTML = rows.length ? visibleRows.map((row, index) => `<tr>
                 <td class="ability-rank">${index + 1}</td>
                 <td class="ability-player" title="${escapeHtml(row.name)}">${escapeHtml(umpireNamesJa[row.name] || row.name)}</td>
@@ -664,8 +665,8 @@
                 <td class="ability-abs-record">${row.overturned}/${row.challenges}</td>
                 <td class="ability-abs-rate">${(row.overturnRate * 100).toFixed(1)}%</td>
                 <td class="ability-abs-distance">${(row.maxEdgeDistance * 2.54).toFixed(1)} cm</td>
-                <td class="ability-team ability-umpire-top-team"><img src="https://www.mlbstatic.com/team-logos/${row.topTeamId}.svg" alt="${escapeHtml(japaneseTeamName({ team: row.topTeam, teamId: row.topTeamId }))}" title="${escapeHtml(japaneseTeamName({ team: row.topTeam, teamId: row.topTeamId }))}" loading="lazy"></td>
-                <td class="ability-abs-record">${row.topTeamWon}/${row.topTeamChallenges}</td>
+                <td class="ability-umpire-top-team">${teamRecord(row.topRequestTeamId, row.topRequestTeam, row.topRequestWon, row.topRequestChallenges)}</td>
+                <td class="ability-umpire-top-team">${teamRecord(row.topSuccessTeamId, row.topSuccessTeam, row.topSuccessWon, row.topSuccessChallenges)}</td>
             </tr>`).join("") : `<tr><td colspan="8">条件に一致する記録はありません。</td></tr>`;
         } else tbody.innerHTML = rows.length ? visibleRows.map((row, index) => {
             const name = absState.category === "overall" ? japaneseTeamName(row) : japanesePlayerName(row.name);
@@ -718,11 +719,11 @@
                 <input id="ability-search" type="search" value="${escapeHtml(absState.query)}" placeholder="${isUmpire ? "審判名で検索" : absState.category === "overall" ? "チーム名で検索" : "選手名・チームで検索"}" aria-label="ABS検索">
             </div>
             <div class="ability-table-wrap"><table class="ability-table abs-table${isUmpire ? " abs-umpire-table" : ""}">
-                <thead>${isUmpire ? `<tr><th>順位</th><th>審判</th><th>年齢</th><th>${sortHeader("覆り/対象", "overturned")}</th><th>${sortHeader("覆り率", "overturnRate")}</th><th>${sortHeader("最大距離<br><small>ゾーン端から</small>", "maxEdgeDistance")}</th><th>${sortHeader("最多成功チーム", "topTeamWon")}</th><th>${sortHeader("成功/要求", "topTeamWon")}</th></tr>` : `<tr><th>順位</th><th>TEAM</th><th>${absState.category === "overall" ? "チーム" : "選手"}</th><th>${sortHeader("成功/実施", "won")}</th><th>${sortHeader("成功率", "winRate")}</th><th>${sortHeader("最大距離<br><small>ゾーン端から</small>", "maxEdgeDistance")}</th><th>${sortHeader("+K", "strikeouts")}</th><th>${sortHeader("-BB", "walks")}</th><th>${sortHeader("平均比", "runsAboveAverage")}</th></tr>`}</thead>
+                <thead>${isUmpire ? `<tr><th>順位</th><th>審判</th><th>年齢</th><th>${sortHeader("覆り/対象", "overturned")}</th><th>${sortHeader("覆り率", "overturnRate")}</th><th>${sortHeader("最大距離<br><small>ゾーン端から</small>", "maxEdgeDistance")}</th><th>${sortHeader("最多要求チーム", "topRequestChallenges")}</th><th>${sortHeader("最多成功チーム", "topSuccessWon")}</th></tr>` : `<tr><th>順位</th><th>TEAM</th><th>${absState.category === "overall" ? "チーム" : "選手"}</th><th>${sortHeader("成功/実施", "won")}</th><th>${sortHeader("成功率", "winRate")}</th><th>${sortHeader("最大距離<br><small>ゾーン端から</small>", "maxEdgeDistance")}</th><th>${sortHeader("+K", "strikeouts")}</th><th>${sortHeader("-BB", "walks")}</th><th>${sortHeader("平均比", "runsAboveAverage")}</th></tr>`}</thead>
                 <tbody id="abs-body"></tbody>
             </table></div>
             <div class="ability-table-footer"><span id="ability-result-summary"></span><button type="button" id="ability-show-more">さらに50件表示</button></div>
-            <p class="ability-table-note">${isUmpire ? "2026年レギュラーシーズン／球審を務めた試合でABSチャレンジの対象になった判定を集計。「最多成功チーム」は、その審判へのチャレンジ成功数が最も多いチームです。「成功/要求」はそのチームだけの成績で、成功数は公開データで確認できる誤判定数です。チャレンジされなかった判定は集計対象外です。" : "2026年レギュラーシーズン／1回以上チャレンジしたチーム・選手。成功は判定覆り、失敗は判定維持。「平均比」は同じ状況・同じ投球を経験した平均的な選手との得点価値差です。"}Baseball Savant公式ABS集計・MLB公式試合記録を参照（2026年10月16日時点）。</p>`;
+            <p class="ability-table-note">${isUmpire ? "2026年レギュラーシーズン／球審を務めた試合でABSチャレンジの対象になった判定を集計。チーム欄の数字は成功/要求です。「最多要求」は要求数、「最多成功」は成功数が最も多いチーム。成功数は公開データで確認できる誤判定数で、チャレンジされなかった判定は集計対象外です。" : "2026年レギュラーシーズン／1回以上チャレンジしたチーム・選手。成功は判定覆り、失敗は判定維持。「平均比」は同じ状況・同じ投球を経験した平均的な選手との得点価値差です。"}Baseball Savant公式ABS集計・MLB公式試合記録を参照（2026年10月16日時点）。</p>`;
 
         content.querySelectorAll("[data-abs-category]").forEach((button) => button.addEventListener("click", () => {
             absState.category = button.dataset.absCategory;

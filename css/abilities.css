@@ -470,13 +470,20 @@ body.app-mode-abilities #header-abilities-btn {
 }
 .abs-umpire-table th:nth-child(7),
 .abs-umpire-table td:nth-child(7) {
-    width: 130px;
+    width: 145px;
     text-align: center;
 }
 .abs-umpire-table th:nth-child(8),
 .abs-umpire-table td:nth-child(8) {
-    width: 70px;
+    width: 145px;
     text-align: center;
+}
+.ability-umpire-team-record {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    white-space: nowrap;
 }
 .ability-umpire-top-team img {
     width: 23px;
@@ -486,6 +493,7 @@ body.app-mode-abilities #header-abilities-btn {
         drop-shadow(0 0 1px #fff)
         drop-shadow(0 1px 2px rgba(0, 0, 0, 0.8));
 }
+.ability-umpire-team-record strong { color: #72d5ff; font-size: 14px; }
 
 .replay-subtabs { grid-template-columns: repeat(4, minmax(100px, 1fr)); }
 .replay-controls { grid-template-columns: 180px minmax(200px, 1fr); }

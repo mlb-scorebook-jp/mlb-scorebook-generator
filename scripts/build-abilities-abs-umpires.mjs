@@ -62,16 +62,23 @@ for (const challenge of uniqueChallenges.values()) {
 
 const rows = [...summaries.values()]
     .map((row) => {
-        const [topTeam = { teamId: null, team: "—", challenges: 0, won: 0 }] = Object.values(row.challengesByTeam)
+        const teams = Object.values(row.challengesByTeam);
+        const [topSuccessTeam = { teamId: null, team: "—", challenges: 0, won: 0 }] = [...teams]
             .sort((a, b) => b.won - a.won || b.challenges - a.challenges || a.team.localeCompare(b.team));
+        const [topRequestTeam = { teamId: null, team: "—", challenges: 0, won: 0 }] = [...teams]
+            .sort((a, b) => b.challenges - a.challenges || b.won - a.won || a.team.localeCompare(b.team));
         const { challengesByTeam, ...summary } = row;
         return {
             ...summary,
             overturnRate: row.overturned / row.challenges,
-            topTeamId: topTeam.teamId,
-            topTeam: topTeam.team,
-            topTeamWon: topTeam.won,
-            topTeamChallenges: topTeam.challenges
+            topRequestTeamId: topRequestTeam.teamId,
+            topRequestTeam: topRequestTeam.team,
+            topRequestWon: topRequestTeam.won,
+            topRequestChallenges: topRequestTeam.challenges,
+            topSuccessTeamId: topSuccessTeam.teamId,
+            topSuccessTeam: topSuccessTeam.team,
+            topSuccessWon: topSuccessTeam.won,
+            topSuccessChallenges: topSuccessTeam.challenges
         };
     })
     .sort((a, b) => b.overturnRate - a.overturnRate || b.challenges - a.challenges || a.name.localeCompare(b.name));
