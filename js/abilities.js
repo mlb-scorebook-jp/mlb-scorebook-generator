@@ -10,17 +10,14 @@
     const defense2026 = Array.isArray(window.ABILITIES_DEFENSE_2026)
         ? window.ABILITIES_DEFENSE_2026
         : [];
-    const catcherFieldingByPlayerId = new Map(
-        (Array.isArray(window.ABILITIES_CATCHER_FIELDING_2026)
-            ? window.ABILITIES_CATCHER_FIELDING_2026
-            : []).map((row) => [row.playerId, row])
-    );
-    defense2026.forEach((row) => Object.assign(row, catcherFieldingByPlayerId.get(row.playerId) || {
-        caughtStealing: null,
-        stolenBases: null,
-        attempts: null,
-        caughtStealingRate: null
-    }));
+    const catcherFielding2026 = Array.isArray(window.ABILITIES_CATCHER_FIELDING_2026)
+        ? window.ABILITIES_CATCHER_FIELDING_2026
+        : [];
+    const catcher2026 = catcherFielding2026.map((catcherStats) => {
+        const player = defense2026.find((row) => row.playerId === catcherStats.playerId && row.position === "C")
+            || defense2026.find((row) => row.playerId === catcherStats.playerId);
+        return player ? { ...player, ...catcherStats, position: "C" } : null;
+    }).filter(Boolean);
     const abs2026 = window.ABILITIES_ABS_2026 || {};
     const absUmpires2026 = Array.isArray(window.ABILITIES_ABS_UMPIRES_2026)
         ? window.ABILITIES_ABS_UMPIRES_2026
@@ -65,6 +62,13 @@
         query: "",
         visibleCount: PAGE_SIZE,
         sortKey: "oaa",
+        sortDirection: "desc"
+    };
+    const catcherState = {
+        team: "",
+        query: "",
+        visibleCount: PAGE_SIZE,
+        sortKey: "caughtStealingRate",
         sortDirection: "desc"
     };
     const absState = {
@@ -452,11 +456,9 @@
             <td>${row.age ?? "—"}</td><td>${row.throwBat}</td><td>${escapeHtml(row.position)}</td>
             <td class="ability-defense-value">${row.oaa == null ? "—" : link(oaaUrl(row), signed(row.oaa))}</td>
             <td class="ability-defense-value">${link(fieldingUrl(row), signed(row.fieldingRuns))}</td>
-            <td class="ability-defense-value">${row.attempts ? `${row.caughtStealing}/${row.attempts}` : "—"}</td>
-            <td class="ability-defense-value">${row.caughtStealingRate == null ? "—" : `${(row.caughtStealingRate * 100).toFixed(1)}%`}</td>
             <td class="ability-velocity">${row.armAverage == null ? "—" : link(armUrl(row), `${milesPerHourToKmh(row.armAverage).toFixed(1)} km/h`)}</td>
             <td class="ability-velocity">${row.armMax == null ? "—" : link(armUrl(row), `${milesPerHourToKmh(row.armMax).toFixed(1)} km/h`)}</td>
-        </tr>`).join("") : `<tr><td colspan="12">条件に一致する選手はいません。</td></tr>`;
+        </tr>`).join("") : `<tr><td colspan="10">条件に一致する選手はいません。</td></tr>`;
 
         content.querySelectorAll("[data-defense-sort]").forEach((button) => {
             const active = button.dataset.defenseSort === defenseState.sortKey;
@@ -486,11 +488,11 @@
                 <input id="ability-search" type="search" placeholder="選手名・チームで検索" aria-label="選手検索">
             </div>
             <div class="ability-table-wrap"><table class="ability-table defense-table">
-                <thead><tr><th>順位</th><th>TEAM</th><th>選手</th><th>年齢</th><th>投/打</th><th>守備</th><th>${sortHeader("OAA", "oaa")}</th><th>${sortHeader("守備得点価値", "fieldingRuns")}</th><th>${sortHeader("盗塁阻止<br><small>阻止/企図</small>", "caughtStealing")}</th><th>${sortHeader("盗塁阻止率", "caughtStealingRate")}</th><th>${sortHeader("平均送球速度", "armAverage")}</th><th>${sortHeader("最速送球", "armMax")}</th></tr></thead>
+                <thead><tr><th>順位</th><th>TEAM</th><th>選手</th><th>年齢</th><th>投/打</th><th>守備</th><th>${sortHeader("OAA", "oaa")}</th><th>${sortHeader("守備得点価値", "fieldingRuns")}</th><th>${sortHeader("平均送球速度", "armAverage")}</th><th>${sortHeader("最速送球", "armMax")}</th></tr></thead>
                 <tbody id="defense-body"></tbody>
             </table></div>
             <div class="ability-table-footer"><span id="ability-result-summary"></span><button type="button" id="ability-show-more">さらに50人表示</button></div>
-            <p class="ability-table-note">2026年レギュラーシーズン／投手を除く。盗塁阻止は捕手守備時の阻止数／企図数、盗塁阻止率は阻止数÷（阻止数＋盗塁許容数）です。OAAは守備範囲、守備得点価値は守備全体の貢献を示します。送球速度はSavantの集計対象選手のみ表示し、すべてkm/hへ変換しています（2026年10月17日時点）。</p>`;
+            <p class="ability-table-note">2026年レギュラーシーズン／投手を除く。OAAは守備範囲、守備得点価値は守備全体の貢献を示します。送球速度はSavantの集計対象選手のみ表示し、すべてkm/hへ変換しています（2026年10月17日時点）。</p>`;
 
         const reset = () => { defenseState.visibleCount = PAGE_SIZE; };
         content.querySelector("#ability-position")?.addEventListener("change", (event) => { defenseState.position = event.target.value; reset(); renderDefenseTable(); });
@@ -504,6 +506,74 @@
         }));
         content.querySelector("#ability-show-more")?.addEventListener("click", () => { defenseState.visibleCount += PAGE_SIZE; renderDefenseTable(); });
         renderDefenseTable();
+    };
+
+    const catcherRows = () => catcher2026;
+
+    const filteredCatcherRows = () => catcherRows().filter((row) => {
+        if (catcherState.team && row.team !== catcherState.team) return false;
+        if (catcherState.query && !`${row.player} ${japanesePlayerName(row.player)} ${row.team}`.toLowerCase().includes(catcherState.query)) return false;
+        return true;
+    });
+
+    const sortedCatcherRows = () => filteredCatcherRows().sort((a, b) => {
+        const aValue = a[catcherState.sortKey];
+        const bValue = b[catcherState.sortKey];
+        if (aValue == null && bValue == null) return a.player.localeCompare(b.player);
+        if (aValue == null) return 1;
+        if (bValue == null) return -1;
+        const direction = catcherState.sortDirection === "asc" ? 1 : -1;
+        return (aValue - bValue) * direction || b.attempts - a.attempts || a.player.localeCompare(b.player);
+    });
+
+    const renderCatcherTable = () => {
+        const tbody = content?.querySelector("#catcher-body");
+        if (!tbody) return;
+        const rows = sortedCatcherRows();
+        const visibleRows = rows.slice(0, catcherState.visibleCount);
+        const armUrl = (row) => `https://baseballsavant.mlb.com/leaderboard/arm-strength?type=player&year=2026&minThrows=1&playerId=${row.playerId}`;
+        const link = (url, value) => `<a class="ability-value-link" href="${url}" target="_blank" rel="noopener noreferrer">${value}</a>`;
+        tbody.innerHTML = rows.length ? visibleRows.map((row, index) => `<tr>
+            <td class="ability-rank">${index + 1}</td>
+            <td class="ability-team"><img src="https://www.mlbstatic.com/team-logos/${row.teamId}.svg" alt="${escapeHtml(row.team)}" title="${escapeHtml(row.team)}" loading="lazy"></td>
+            <td class="ability-player">${escapeHtml(japanesePlayerName(row.player))}</td>
+            <td>${row.age ?? "—"}</td><td>${row.throwBat}</td>
+            <td class="ability-defense-value">${row.attempts ? `${row.caughtStealing}/${row.attempts}` : "—"}</td>
+            <td class="ability-defense-value">${row.caughtStealingRate == null ? "—" : `${(row.caughtStealingRate * 100).toFixed(1)}%`}</td>
+            <td class="ability-velocity">${row.armAverage == null ? "—" : link(armUrl(row), `${milesPerHourToKmh(row.armAverage).toFixed(1)} km/h`)}</td>
+            <td class="ability-velocity">${row.armMax == null ? "—" : link(armUrl(row), `${milesPerHourToKmh(row.armMax).toFixed(1)} km/h`)}</td>
+        </tr>`).join("") : `<tr><td colspan="9">条件に一致する捕手はいません。</td></tr>`;
+        content.querySelectorAll("[data-catcher-sort]").forEach((button) => {
+            const active = button.dataset.catcherSort === catcherState.sortKey;
+            button.classList.toggle("active", active);
+            button.dataset.direction = active ? catcherState.sortDirection : "";
+            button.setAttribute("aria-sort", active ? (catcherState.sortDirection === "desc" ? "descending" : "ascending") : "none");
+        });
+        const summary = content.querySelector("#ability-result-summary");
+        if (summary) summary.textContent = `${Math.min(visibleRows.length, rows.length)} / ${rows.length}人を表示`;
+        const moreButton = content.querySelector("#ability-show-more");
+        if (moreButton) moreButton.hidden = visibleRows.length >= rows.length;
+    };
+
+    const renderCatcher = () => {
+        if (!content) return;
+        const rows = catcherRows();
+        const teams = [...new Set(rows.map((row) => row.team))].sort();
+        const totalCaught = rows.reduce((sum, row) => sum + (row.caughtStealing || 0), 0);
+        const totalAttempts = rows.reduce((sum, row) => sum + (row.attempts || 0), 0);
+        const leagueRate = totalAttempts ? totalCaught / totalAttempts * 100 : 0;
+        const sortHeader = (label, key) => `<button type="button" class="ability-sort-button" data-catcher-sort="${key}">${label}<span aria-hidden="true"></span></button>`;
+        content.innerHTML = `<section class="ability-hero"><div><h3>捕手｜盗塁阻止</h3></div><div class="ability-scale"><div><strong>${leagueRate.toFixed(1)}%</strong><span>MLB全体 盗塁阻止率</span></div></div></section>
+            <div class="ability-controls"><select id="ability-team"><option value="">全チーム</option>${teams.map((value) => `<option value="${value}">${value}</option>`).join("")}</select><input id="ability-search" type="search" placeholder="捕手名・チームで検索"></div>
+            <div class="ability-table-wrap"><table class="ability-table catcher-table"><thead><tr><th>順位</th><th>TEAM</th><th>捕手</th><th>年齢</th><th>投/打</th><th>${sortHeader("盗塁阻止<br><small>阻止/企図</small>", "caughtStealing")}</th><th>${sortHeader("盗塁阻止率", "caughtStealingRate")}</th><th>${sortHeader("平均送球速度", "armAverage")}</th><th>${sortHeader("最速送球", "armMax")}</th></tr></thead><tbody id="catcher-body"></tbody></table></div>
+            <div class="ability-table-footer"><span id="ability-result-summary"></span><button type="button" id="ability-show-more">さらに50人表示</button></div>
+            <p class="ability-table-note">2026年レギュラーシーズン。盗塁阻止は捕手守備時の阻止数／企図数、盗塁阻止率は阻止数÷（阻止数＋盗塁許容数）です。送球速度はSavantの集計対象選手のみ表示し、すべてkm/hへ変換しています（2026年10月17日時点）。</p>`;
+        const reset = () => { catcherState.visibleCount = PAGE_SIZE; };
+        content.querySelector("#ability-team")?.addEventListener("change", (event) => { catcherState.team = event.target.value; reset(); renderCatcherTable(); });
+        content.querySelector("#ability-search")?.addEventListener("input", (event) => { catcherState.query = event.target.value.trim().toLowerCase(); reset(); renderCatcherTable(); });
+        content.querySelectorAll("[data-catcher-sort]").forEach((button) => button.addEventListener("click", () => { const key = button.dataset.catcherSort; if (catcherState.sortKey === key) catcherState.sortDirection = catcherState.sortDirection === "desc" ? "asc" : "desc"; else { catcherState.sortKey = key; catcherState.sortDirection = "desc"; } reset(); renderCatcherTable(); }));
+        content.querySelector("#ability-show-more")?.addEventListener("click", () => { catcherState.visibleCount += PAGE_SIZE; renderCatcherTable(); });
+        renderCatcherTable();
     };
 
     const replayTeamRows = () => {
@@ -857,6 +927,10 @@
         }
         if (ability === "defense") {
             renderDefense();
+            return;
+        }
+        if (ability === "catcher") {
+            renderCatcher();
             return;
         }
         if (ability === "abs") {

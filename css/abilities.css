@@ -390,15 +390,24 @@ body.app-mode-abilities #header-abilities-btn {
 .defense-table th:nth-child(8),
 .defense-table td:nth-child(8) { width: 112px; }
 .defense-table th:nth-child(9),
-.defense-table td:nth-child(9) { width: 96px; }
+.defense-table td:nth-child(9),
 .defense-table th:nth-child(10),
-.defense-table td:nth-child(10) { width: 104px; }
-.defense-table th:nth-child(11),
-.defense-table td:nth-child(11),
-.defense-table th:nth-child(12),
-.defense-table td:nth-child(12) { width: 120px; }
+.defense-table td:nth-child(10) { width: 120px; }
 .defense-table th:last-child,
 .defense-table td:last-child { padding-left: 4px; text-align: center; }
+
+.catcher-table th,
+.catcher-table td { text-align: center; }
+.catcher-table th:nth-child(3),
+.catcher-table td:nth-child(3) { text-align: left; }
+.catcher-table th:nth-child(6),
+.catcher-table td:nth-child(6),
+.catcher-table th:nth-child(7),
+.catcher-table td:nth-child(7) { width: 112px; }
+.catcher-table th:nth-child(8),
+.catcher-table td:nth-child(8),
+.catcher-table th:nth-child(9),
+.catcher-table td:nth-child(9) { width: 120px; }
 
 .ability-subtabs {
     display: grid;

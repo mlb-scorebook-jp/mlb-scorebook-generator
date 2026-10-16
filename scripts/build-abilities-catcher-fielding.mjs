@@ -8,7 +8,8 @@ if (!sourcePath) {
 }
 
 const payload = JSON.parse(fs.readFileSync(sourcePath, "utf8"));
-const splits = payload.stats?.[0]?.splits || [];
+const splits = (payload.stats?.[0]?.splits || [])
+    .filter(({ position }) => position?.abbreviation === "C");
 const rows = splits.map(({ player, stat }) => {
     const caughtStealing = Number(stat.caughtStealing || 0);
     const stolenBases = Number(stat.stolenBases || 0);
