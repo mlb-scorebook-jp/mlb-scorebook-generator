@@ -83,7 +83,7 @@
             </div>
             <div class="ability-table-wrap">
                 <table class="ability-table">
-                    <thead><tr><th>順位</th><th>選手</th><th>TEAM</th><th>年齢</th><th>守備</th><th>競争的走塁</th><th>BOLT</th><th>本塁→一塁</th><th>SPRINT SPEED km/h</th></tr></thead>
+                    <thead><tr><th>順位</th><th>選手</th><th>TEAM</th><th>年齢</th><th>守備</th><th>測定対象走塁</th><th>32.9km/h以上</th><th>本塁→一塁</th><th>SPRINT SPEED km/h</th></tr></thead>
                     <tbody id="sprint-speed-body"></tbody>
                 </table>
             </div>
