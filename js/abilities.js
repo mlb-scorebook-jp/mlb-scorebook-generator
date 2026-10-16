@@ -446,7 +446,7 @@
         const visibleRows = rows.slice(0, defenseState.visibleCount);
         const oaaUrl = (row) => `https://baseballsavant.mlb.com/leaderboard/outs_above_average?type=Fielder&startYear=2026&endYear=2026&split=yes&min=1&playerId=${row.playerId}`;
         const fieldingUrl = (row) => `https://baseballsavant.mlb.com/leaderboard/fielding-run-value?gameType=Regular&groupBy=year&minInnings=1&minResults=1&position=0&seasonEnd=2026&seasonStart=2026&type=fielder&playerId=${row.playerId}`;
-        const popTimeUrl = (row) => `https://baseballsavant.mlb.com/leaderboard/poptime?year=2026&team=&min2b=0&min3b=0&playerId=${row.playerId}`;
+        const armUrl = (row) => `https://baseballsavant.mlb.com/leaderboard/arm-strength?type=player&year=2026&minThrows=1&playerId=${row.playerId}`;
         const link = (url, value) => `<a class="ability-value-link" href="${url}" target="_blank" rel="noopener noreferrer">${value}</a>`;
         const signed = (value) => `${value > 0 ? "+" : ""}${value.toFixed(0)}`;
         tbody.innerHTML = rows.length ? visibleRows.map((row, index) => `<tr>
@@ -531,7 +531,7 @@
         if (!tbody) return;
         const rows = sortedCatcherRows();
         const visibleRows = rows.slice(0, catcherState.visibleCount);
-        const armUrl = (row) => `https://baseballsavant.mlb.com/leaderboard/arm-strength?type=player&year=2026&minThrows=1&playerId=${row.playerId}`;
+        const popTimeUrl = (row) => `https://baseballsavant.mlb.com/leaderboard/poptime?year=2026&team=&min2b=0&min3b=0&playerId=${row.playerId}`;
         const link = (url, value) => `<a class="ability-value-link" href="${url}" target="_blank" rel="noopener noreferrer">${value}</a>`;
         tbody.innerHTML = rows.length ? visibleRows.map((row, index) => `<tr>
             <td class="ability-rank">${index + 1}</td>
