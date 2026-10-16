@@ -406,6 +406,8 @@ body.app-mode-abilities #header-abilities-btn {
     background: #34434b;
 }
 
+.abs-subtabs { grid-template-columns: repeat(5, minmax(90px, 1fr)); }
+
 .ability-subtabs button {
     min-height: 38px;
     color: #9dafb8;
@@ -424,6 +426,7 @@ body.app-mode-abilities #header-abilities-btn {
 }
 
 .abs-controls { grid-template-columns: 150px minmax(180px, 1fr); }
+.abs-umpire-controls { grid-template-columns: minmax(180px, 1fr); }
 .abs-table th,
 .abs-table td { text-align: center; }
 .abs-table th:nth-child(3),
@@ -445,6 +448,8 @@ body.app-mode-abilities #header-abilities-btn {
 .ability-abs-record,
 .ability-abs-rate { color: #72d5ff; font-weight: 800; }
 .ability-abs-distance { color: #f1c674; font-weight: 800; }
+.abs-umpire-table th:nth-child(2),
+.abs-umpire-table td:nth-child(2) { text-align: left; }
 
 .replay-subtabs { grid-template-columns: repeat(3, minmax(110px, 1fr)); }
 .replay-controls { grid-template-columns: 180px minmax(200px, 1fr); }
@@ -508,6 +513,7 @@ body.app-mode-abilities #header-abilities-btn {
     .ability-controls { grid-template-columns: 1fr 1fr; }
     .ability-controls input { grid-column: 1 / -1; }
     .ability-subtabs { grid-template-columns: repeat(4, minmax(72px, 1fr)); }
+    .abs-subtabs { grid-template-columns: repeat(5, minmax(68px, 1fr)); }
     .abs-controls { grid-template-columns: 1fr; }
     .abs-controls input { grid-column: auto; }
     .replay-subtabs { grid-template-columns: repeat(3, minmax(88px, 1fr)); }

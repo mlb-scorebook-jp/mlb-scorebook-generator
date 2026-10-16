@@ -11,6 +11,9 @@
         ? window.ABILITIES_DEFENSE_2026
         : [];
     const abs2026 = window.ABILITIES_ABS_2026 || {};
+    const absUmpires2026 = Array.isArray(window.ABILITIES_ABS_UMPIRES_2026)
+        ? window.ABILITIES_ABS_UMPIRES_2026
+        : [];
     const replay2026 = Array.isArray(window.ABILITIES_REPLAY_2026)
         ? window.ABILITIES_REPLAY_2026
         : [];
@@ -593,15 +596,21 @@
         replayState.view === "history" ? renderReplayHistory() : renderReplaySummaryTable();
     };
 
-    const absRows = () => Array.isArray(abs2026[absState.category]) ? abs2026[absState.category] : [];
+    const absRows = () => absState.category === "umpire"
+        ? absUmpires2026
+        : Array.isArray(abs2026[absState.category]) ? abs2026[absState.category] : [];
 
     const absLeaderboardUrl = () => {
+        if (absState.category === "umpire") return "https://baseballsavant.mlb.com/leaderboard/abs-challenges";
         const challengeType = absState.category === "overall" ? "team-summary" : absState.category;
         const fielderMode = ["pitcher", "catcher"].includes(absState.category) ? "&fielderMode=as-challenger" : "";
         return `https://baseballsavant.mlb.com/leaderboard/abs-challenges?challengeType=${challengeType}${fielderMode}&gameType%5B%5D=R&level=mlb&minChal=1&minOppChal=0&season%5B%5D=2026&splitYear=1`;
     };
 
     const filteredAbsRows = () => absRows().filter((row) => {
+        if (absState.category === "umpire") {
+            return !absState.query || row.name.toLowerCase().includes(absState.query);
+        }
         if (absState.team && row.team !== absState.team) return false;
         const displayName = absState.category === "overall" ? japaneseTeamName(row) : japanesePlayerName(row.name);
         if (absState.query && !`${row.name} ${displayName} ${row.team}`.toLowerCase().includes(absState.query)) return false;
@@ -620,7 +629,17 @@
         const visibleRows = rows.slice(0, absState.visibleCount);
         const url = absLeaderboardUrl();
         const valueLink = (value) => `<a class="ability-value-link" href="${url}" target="_blank" rel="noopener noreferrer">${value}</a>`;
-        tbody.innerHTML = rows.length ? visibleRows.map((row, index) => {
+        if (absState.category === "umpire") {
+            tbody.innerHTML = rows.length ? visibleRows.map((row, index) => `<tr>
+                <td class="ability-rank">${index + 1}</td>
+                <td class="ability-player">${escapeHtml(row.name)}</td>
+                <td class="ability-abs-record">${row.overturned}/${row.challenges}</td>
+                <td class="ability-abs-rate">${(row.overturnRate * 100).toFixed(1)}%</td>
+                <td class="ability-abs-distance">${(row.maxEdgeDistance * 2.54).toFixed(1)} cm</td>
+                <td>${row.strikeoutChanges}</td>
+                <td>${row.walkChanges}</td>
+            </tr>`).join("") : `<tr><td colspan="7">条件に一致する記録はありません。</td></tr>`;
+        } else tbody.innerHTML = rows.length ? visibleRows.map((row, index) => {
             const name = absState.category === "overall" ? japaneseTeamName(row) : japanesePlayerName(row.name);
             const signedRuns = `${row.runsAboveAverage > 0 ? "+" : ""}${row.runsAboveAverage.toFixed(1)}`;
             return `<tr>
@@ -650,38 +669,39 @@
 
     const renderAbs = () => {
         if (!content) return;
-        const categories = [{ key: "overall", label: "TEAM" }, { key: "pitcher", label: "投手" }, { key: "catcher", label: "捕手" }, { key: "batter", label: "打者" }];
+        const categories = [{ key: "overall", label: "TEAM" }, { key: "pitcher", label: "投手" }, { key: "catcher", label: "捕手" }, { key: "batter", label: "打者" }, { key: "umpire", label: "審判" }];
         const rows = absRows();
-        const teams = [...new Set(rows.map((row) => row.team))].sort();
+        const isUmpire = absState.category === "umpire";
+        const teams = isUmpire ? [] : [...new Set(rows.map((row) => row.team))].sort();
         const totalChallenges = rows.reduce((total, row) => total + row.challenges, 0);
-        const totalWon = rows.reduce((total, row) => total + row.won, 0);
+        const totalWon = rows.reduce((total, row) => total + (isUmpire ? row.overturned : row.won), 0);
         const leagueRate = totalChallenges ? totalWon / totalChallenges * 100 : 0;
         const sortHeader = (label, key) => `<button type="button" class="ability-sort-button" data-abs-sort="${key}">${label}<span aria-hidden="true"></span></button>`;
         content.innerHTML = `
             <section class="ability-hero">
                 <div><h3>ABS｜ボール・ストライク判定</h3></div>
-                <div class="ability-scale"><div><strong>${leagueRate.toFixed(1)}%</strong><span>${absState.category === "overall" ? "MLB全体" : categories.find((item) => item.key === absState.category)?.label} 成功率</span></div></div>
+                <div class="ability-scale"><div><strong>${leagueRate.toFixed(1)}%</strong><span>${isUmpire ? "審判別 覆った割合" : `${absState.category === "overall" ? "MLB全体" : categories.find((item) => item.key === absState.category)?.label} 成功率`}</span></div></div>
             </section>
-            <div class="ability-subtabs" role="tablist" aria-label="ABS集計区分">
+            <div class="ability-subtabs abs-subtabs" role="tablist" aria-label="ABS集計区分">
                 ${categories.map((item) => `<button type="button" role="tab" data-abs-category="${item.key}" class="${item.key === absState.category ? "active" : ""}" aria-selected="${item.key === absState.category}">${item.label}</button>`).join("")}
             </div>
-            <div class="ability-controls abs-controls">
-                <select id="ability-team" aria-label="チーム"><option value="">全チーム</option>${teams.map((value) => `<option value="${value}" ${value === absState.team ? "selected" : ""}>${value}</option>`).join("")}</select>
-                <input id="ability-search" type="search" value="${escapeHtml(absState.query)}" placeholder="${absState.category === "overall" ? "チーム名で検索" : "選手名・チームで検索"}" aria-label="ABS検索">
+            <div class="ability-controls abs-controls${isUmpire ? " abs-umpire-controls" : ""}">
+                ${isUmpire ? "" : `<select id="ability-team" aria-label="チーム"><option value="">全チーム</option>${teams.map((value) => `<option value="${value}" ${value === absState.team ? "selected" : ""}>${value}</option>`).join("")}</select>`}
+                <input id="ability-search" type="search" value="${escapeHtml(absState.query)}" placeholder="${isUmpire ? "審判名で検索" : absState.category === "overall" ? "チーム名で検索" : "選手名・チームで検索"}" aria-label="ABS検索">
             </div>
-            <div class="ability-table-wrap"><table class="ability-table abs-table">
-                <thead><tr><th>順位</th><th>TEAM</th><th>${absState.category === "overall" ? "チーム" : "選手"}</th><th>${sortHeader("成功/実施", "won")}</th><th>${sortHeader("成功率", "winRate")}</th><th>${sortHeader("最大距離<br><small>ゾーン端から</small>", "maxEdgeDistance")}</th><th>${sortHeader("+K", "strikeouts")}</th><th>${sortHeader("-BB", "walks")}</th><th>${sortHeader("平均比", "runsAboveAverage")}</th></tr></thead>
+            <div class="ability-table-wrap"><table class="ability-table abs-table${isUmpire ? " abs-umpire-table" : ""}">
+                <thead>${isUmpire ? `<tr><th>順位</th><th>審判</th><th>${sortHeader("覆り/対象", "overturned")}</th><th>${sortHeader("覆り率", "overturnRate")}</th><th>${sortHeader("最大距離<br><small>ゾーン端から</small>", "maxEdgeDistance")}</th><th>${sortHeader("三振変更", "strikeoutChanges")}</th><th>${sortHeader("四球変更", "walkChanges")}</th></tr>` : `<tr><th>順位</th><th>TEAM</th><th>${absState.category === "overall" ? "チーム" : "選手"}</th><th>${sortHeader("成功/実施", "won")}</th><th>${sortHeader("成功率", "winRate")}</th><th>${sortHeader("最大距離<br><small>ゾーン端から</small>", "maxEdgeDistance")}</th><th>${sortHeader("+K", "strikeouts")}</th><th>${sortHeader("-BB", "walks")}</th><th>${sortHeader("平均比", "runsAboveAverage")}</th></tr>`}</thead>
                 <tbody id="abs-body"></tbody>
             </table></div>
             <div class="ability-table-footer"><span id="ability-result-summary"></span><button type="button" id="ability-show-more">さらに50件表示</button></div>
-            <p class="ability-table-note">2026年レギュラーシーズン／1回以上チャレンジしたチーム・選手。成功は判定覆り、失敗は判定維持。「平均比」は同じ状況・同じ投球を経験した平均的な選手との得点価値差です。Baseball Savant公式ABS集計を参照（2026年10月16日時点）。</p>`;
+            <p class="ability-table-note">${isUmpire ? "2026年レギュラーシーズン／球審を務めた試合でABSチャレンジの対象になった判定を集計。覆り率はチャレンジされた判定のうち覆った割合で、全投球に対する誤審率ではありません。" : "2026年レギュラーシーズン／1回以上チャレンジしたチーム・選手。成功は判定覆り、失敗は判定維持。「平均比」は同じ状況・同じ投球を経験した平均的な選手との得点価値差です。"}Baseball Savant公式ABS集計・MLB公式試合記録を参照（2026年10月16日時点）。</p>`;
 
         content.querySelectorAll("[data-abs-category]").forEach((button) => button.addEventListener("click", () => {
             absState.category = button.dataset.absCategory;
             absState.team = "";
             absState.query = "";
             absState.visibleCount = PAGE_SIZE;
-            absState.sortKey = "runsAboveAverage";
+            absState.sortKey = absState.category === "umpire" ? "overturnRate" : "runsAboveAverage";
             absState.sortDirection = "desc";
             renderAbs();
         }));
