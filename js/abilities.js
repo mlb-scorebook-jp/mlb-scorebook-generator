@@ -2,17 +2,17 @@
     "use strict";
 
     const sprintSpeed2026 = [
-        { player: "Cam Cauley", team: "TEX", age: 23, position: "CF", runs: 24, bolts: 16, hp1b: 4.09, speed: 30.5 },
-        { player: "Henry Bolte", team: "ATH", age: 22, position: "CF", runs: 199, bolts: 118, hp1b: 4.18, speed: 30.5 },
-        { player: "Carlos Jorge", team: "CIN", age: 22, position: "CF", runs: 16, bolts: 12, hp1b: null, speed: 30.4 },
-        { player: "Eli White", team: "BOS", age: 32, position: "RF", runs: 108, bolts: 54, hp1b: 4.19, speed: 30.3 },
-        { player: "Jorge Mateo", team: "TB", age: 31, position: "SS", runs: 75, bolts: 36, hp1b: 4.14, speed: 30.2 },
-        { player: "Tommy Troy", team: "AZ", age: 24, position: "LF", runs: 55, bolts: 30, hp1b: 4.16, speed: 30.1 },
-        { player: "Bobby Witt Jr.", team: "KC", age: 26, position: "SS", runs: 242, bolts: 94, hp1b: 4.17, speed: 30.1 },
-        { player: "Jose Siri", team: "LAA", age: 30, position: "CF", runs: 83, bolts: 31, hp1b: 4.24, speed: 30.0 },
-        { player: "Jonah Cox", team: "SF", age: 24, position: "CF", runs: 50, bolts: 30, hp1b: 4.18, speed: 30.0 },
-        { player: "Jake McCarthy", team: "COL", age: 28, position: "LF", runs: 265, bolts: 109, hp1b: 4.17, speed: 30.0 },
-        { player: "Trea Turner", team: "PHI", age: 33, position: "SS", runs: 236, bolts: 98, hp1b: 4.24, speed: 29.9 }
+        { player: "Cam Cauley", team: "TEX", teamId: 140, age: 23, position: "CF", runs: 24, bolts: 16, hp1b: 4.09, speed: 30.5 },
+        { player: "Henry Bolte", team: "ATH", teamId: 133, age: 22, position: "CF", runs: 199, bolts: 118, hp1b: 4.18, speed: 30.5 },
+        { player: "Carlos Jorge", team: "CIN", teamId: 113, age: 22, position: "CF", runs: 16, bolts: 12, hp1b: null, speed: 30.4 },
+        { player: "Eli White", team: "BOS", teamId: 111, age: 32, position: "RF", runs: 108, bolts: 54, hp1b: 4.19, speed: 30.3 },
+        { player: "Jorge Mateo", team: "TB", teamId: 139, age: 31, position: "SS", runs: 75, bolts: 36, hp1b: 4.14, speed: 30.2 },
+        { player: "Tommy Troy", team: "AZ", teamId: 109, age: 24, position: "LF", runs: 55, bolts: 30, hp1b: 4.16, speed: 30.1 },
+        { player: "Bobby Witt Jr.", team: "KC", teamId: 118, age: 26, position: "SS", runs: 242, bolts: 94, hp1b: 4.17, speed: 30.1 },
+        { player: "Jose Siri", team: "LAA", teamId: 108, age: 30, position: "CF", runs: 83, bolts: 31, hp1b: 4.24, speed: 30.0 },
+        { player: "Jonah Cox", team: "SF", teamId: 137, age: 24, position: "CF", runs: 50, bolts: 30, hp1b: 4.18, speed: 30.0 },
+        { player: "Jake McCarthy", team: "COL", teamId: 115, age: 28, position: "LF", runs: 265, bolts: 109, hp1b: 4.17, speed: 30.0 },
+        { player: "Trea Turner", team: "PHI", teamId: 143, age: 33, position: "SS", runs: 236, bolts: 98, hp1b: 4.24, speed: 29.9 }
     ];
 
     const state = { team: "", position: "", query: "" };
@@ -27,10 +27,24 @@
         .replaceAll('"', "&quot;")
         .replaceAll("'", "&#039;");
 
+    const normalizeNameKey = (value) => String(value ?? "")
+        .normalize("NFKD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/[^a-z0-9]/gi, "")
+        .toLowerCase();
+
+    const japanesePlayerName = (name) => {
+        try {
+            return NHK_PLAYER_NAMES[normalizeNameKey(name)] || name;
+        } catch (_error) {
+            return name;
+        }
+    };
+
     const filteredRows = () => sprintSpeed2026.filter((row) => {
         if (state.team && row.team !== state.team) return false;
         if (state.position && row.position !== state.position) return false;
-        if (state.query && !`${row.player} ${row.team}`.toLowerCase().includes(state.query)) return false;
+        if (state.query && !`${row.player} ${japanesePlayerName(row.player)} ${row.team}`.toLowerCase().includes(state.query)) return false;
         return true;
     });
 
@@ -43,8 +57,8 @@
             const width = Math.max(0, Math.min(100, ((row.speed - 23) / 7.5) * 100));
             return `<tr>
                 <td class="ability-rank">${rank}</td>
-                <td class="ability-player">${escapeHtml(row.player)}</td>
-                <td class="ability-team">${escapeHtml(row.team)}</td>
+                <td class="ability-player">${escapeHtml(japanesePlayerName(row.player))}</td>
+                <td class="ability-team"><img src="https://www.mlbstatic.com/team-logos/${row.teamId}.svg" alt="${escapeHtml(row.team)}" title="${escapeHtml(row.team)}" loading="lazy"></td>
                 <td>${row.age}</td>
                 <td>${escapeHtml(row.position)}</td>
                 <td>${row.hp1b === null ? "—" : `${row.hp1b.toFixed(2)}秒`}</td>

@@ -22,6 +22,7 @@ Object.assign(NHK_PLAYER_NAMES, {
     braxtonroxby: "B.ロクスビー",
     bryceconley: "B.コンリー",
     bruinagbayani: "B.アグバヤーニ",
+    camcauley: "C.コーリー",
     carsonseymour: "C.シーモア",
     craigcounsell: "C.カウンセル",
     carlosjorge: "C.ホルヘ",
