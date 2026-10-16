@@ -786,10 +786,11 @@
         const link = (value, url) => `<a class="ability-value-link" href="${url}" target="_blank" rel="noopener noreferrer" title="この選手の該当投球をBaseball Savantで確認">${value}</a>`;
         tbody.innerHTML = rows.length ? visibleRows.map((row, index) => {
             const url = missedCallSearchUrl(row.playerId);
+            const positionPlayerPitching = missedCallState.role === "pitcher" && !["P", "TWP"].includes(row.position);
             return `<tr>
             <td class="ability-rank">${index + 1}</td>
             <td class="ability-team"><img src="https://www.mlbstatic.com/team-logos/${row.teamId}.svg" alt="${escapeHtml(japaneseTeamName({ teamId: row.teamId }))}" title="${escapeHtml(japaneseTeamName({ teamId: row.teamId }))}" loading="lazy"></td>
-            <td class="ability-player" title="${escapeHtml(row.name)}">${escapeHtml(japanesePlayerName(row.name))}</td>
+            <td class="ability-player" title="${escapeHtml(row.name)}">${escapeHtml(japanesePlayerName(row.name))}${positionPlayerPitching ? '<small class="ability-position-player-pitching">（野手登板）</small>' : ""}</td>
             <td class="ability-missed-count">${link(row.calls, url)}</td>
             <td class="ability-missed-impact">${link(row.impact, url)}</td>
             <td class="ability-abs-distance">${link(`${row.maxDistanceCm.toFixed(1)} cm`, url)}</td>

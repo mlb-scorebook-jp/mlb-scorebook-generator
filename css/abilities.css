@@ -523,6 +523,7 @@ body.app-mode-abilities #header-abilities-btn {
 .missed-call-table td:nth-child(7) { width: 24%; }
 .ability-missed-count { color: #ff8b7b; font-size: 15px; font-weight: 800; }
 .ability-missed-impact { color: #f1c674; font-weight: 800; }
+.ability-position-player-pitching { margin-left: 6px; color: #f1c674; font-size: 10px; font-weight: 700; }
 .ability-missed-umpire {
     font-weight: 700;
     white-space: nowrap;
