@@ -805,7 +805,7 @@
 
     const renderMissedCalls = () => {
         const rows = missedCallRows();
-        const callTypes = [{ key: "ballToStrike", label: "B → S" }, { key: "strikeToBall", label: "S → B" }];
+        const callTypes = [{ key: "ballToStrike", label: "ボール球 → ストライク判定" }, { key: "strikeToBall", label: "ストライク → ボール判定" }];
         const roles = [{ key: "pitcher", label: "投手" }, { key: "batter", label: "野手" }];
         const teamIds = [...new Set(rows.map((row) => row.teamId))].sort((a, b) => japaneseTeamName({ teamId: a }).localeCompare(japaneseTeamName({ teamId: b }), "ja"));
         const totalCalls = rows.reduce((total, row) => total + row.calls, 0);
