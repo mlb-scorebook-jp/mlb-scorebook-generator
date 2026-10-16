@@ -21,6 +21,7 @@
     const replayUmpires2026 = Array.isArray(window.ABILITIES_REPLAY_UMPIRES_2026)
         ? window.ABILITIES_REPLAY_UMPIRES_2026
         : [];
+    const missedCalls2026 = window.ABILITIES_MISSED_CALLS_2026 || {};
     const umpireAgeById = new Map(replayUmpires2026.map((row) => [row.umpireId, row.age]));
     const replayUmpireAttempts = replayUmpires2026.reduce((total, row) => total + row.attempts, 0);
     const replayUmpireAverage = replayUmpireAttempts
@@ -68,6 +69,15 @@
         query: "",
         visibleCount: PAGE_SIZE,
         sortKey: "successRate",
+        sortDirection: "desc"
+    };
+    const missedCallState = {
+        callType: "ballToStrike",
+        role: "batter",
+        team: "",
+        query: "",
+        visibleCount: PAGE_SIZE,
+        sortKey: "calls",
         sortDirection: "desc"
     };
     const feetPerSecondToKmh = (value) => value * 1.09728;
@@ -747,6 +757,77 @@
         renderAbsTable();
     };
 
+    const missedCallRows = () => Array.isArray(missedCalls2026[missedCallState.callType]?.[missedCallState.role])
+        ? missedCalls2026[missedCallState.callType][missedCallState.role]
+        : [];
+
+    const missedCallSearchUrl = () => {
+        const outsideStrike = missedCallState.callType === "ballToStrike";
+        const result = outsideStrike ? "called%5C.%5C.strike%7C" : "ball%7C";
+        const zones = outsideStrike ? "11%7C12%7C13%7C14%7C" : "1%7C2%7C3%7C4%7C5%7C6%7C7%7C8%7C9%7C";
+        return `https://baseballsavant.mlb.com/statcast_search?hfGT=R%7C&hfPR=${result}&hfZ=${zones}&hfSea=2026%7C&player_type=${missedCallState.role}&group_by=name&sort_col=pitches&sort_order=desc`;
+    };
+
+    const renderMissedCallTable = () => {
+        const tbody = content?.querySelector("#missed-call-body");
+        if (!tbody) return;
+        const direction = missedCallState.sortDirection === "asc" ? 1 : -1;
+        let rows = missedCallRows().filter((row) => {
+            if (missedCallState.team && String(row.teamId) !== missedCallState.team) return false;
+            const displayName = japanesePlayerName(row.name);
+            const umpireName = umpireNamesJa[row.topUmpire] || row.topUmpire;
+            return !missedCallState.query || `${row.name} ${displayName} ${row.position} ${row.topUmpire} ${umpireName}`.toLowerCase().includes(missedCallState.query);
+        });
+        rows.sort((a, b) => (a[missedCallState.sortKey] - b[missedCallState.sortKey]) * direction || a.name.localeCompare(b.name));
+        const visibleRows = rows.slice(0, missedCallState.visibleCount);
+        const url = missedCallSearchUrl();
+        const link = (value) => `<a class="ability-value-link" href="${url}" target="_blank" rel="noopener noreferrer">${value}</a>`;
+        tbody.innerHTML = rows.length ? visibleRows.map((row, index) => `<tr>
+            <td class="ability-rank">${index + 1}</td>
+            <td class="ability-team"><img src="https://www.mlbstatic.com/team-logos/${row.teamId}.svg" alt="${escapeHtml(japaneseTeamName({ teamId: row.teamId }))}" title="${escapeHtml(japaneseTeamName({ teamId: row.teamId }))}" loading="lazy"></td>
+            <td class="ability-player" title="${escapeHtml(row.name)}">${escapeHtml(japanesePlayerName(row.name))}</td>
+            <td>${escapeHtml(row.position)}</td>
+            <td class="ability-missed-count">${link(row.calls)}</td>
+            <td class="ability-missed-impact">${link(row.impact)}</td>
+            <td class="ability-abs-distance">${link(`${row.maxDistanceCm.toFixed(1)} cm`)}</td>
+            <td class="ability-missed-umpire" title="${escapeHtml(row.topUmpire)}">${escapeHtml(umpireNamesJa[row.topUmpire] || row.topUmpire)}<small>${row.topUmpireCount}回</small></td>
+        </tr>`).join("") : `<tr><td colspan="8">条件に一致する記録はありません。</td></tr>`;
+        content.querySelectorAll("[data-missed-sort]").forEach((button) => {
+            const active = button.dataset.missedSort === missedCallState.sortKey;
+            button.classList.toggle("active", active);
+            button.dataset.direction = active ? missedCallState.sortDirection : "";
+        });
+        const summary = content.querySelector("#ability-result-summary");
+        if (summary) summary.textContent = `${Math.min(visibleRows.length, rows.length)} / ${rows.length}人を表示`;
+        const moreButton = content.querySelector("#ability-show-more");
+        if (moreButton) moreButton.hidden = visibleRows.length >= rows.length;
+    };
+
+    const renderMissedCalls = () => {
+        const rows = missedCallRows();
+        const callTypes = [{ key: "ballToStrike", label: "ボール球 → ストライク判定" }, { key: "strikeToBall", label: "ストライク → ボール判定" }];
+        const roles = [{ key: "batter", label: "野手" }, { key: "pitcher", label: "投手" }];
+        const teamIds = [...new Set(rows.map((row) => row.teamId))].sort((a, b) => japaneseTeamName({ teamId: a }).localeCompare(japaneseTeamName({ teamId: b }), "ja"));
+        const totalCalls = rows.reduce((total, row) => total + row.calls, 0);
+        const impactLabel = missedCallState.callType === "ballToStrike" ? "三振直結" : "四球直結";
+        const distanceLabel = missedCallState.callType === "ballToStrike" ? "最大外れ幅" : "最大内側幅";
+        const sortHeader = (label, key) => `<button type="button" class="ability-sort-button" data-missed-sort="${key}">${label}<span aria-hidden="true"></span></button>`;
+        content.innerHTML = `<section class="ability-hero"><div><h3>誤審｜ボール・ストライク判定</h3></div><div class="ability-scale"><div><strong>${totalCalls.toLocaleString("ja-JP")}</strong><span>MLB全体 該当判定</span></div></div></section>
+            <div class="ability-subtabs missed-call-tabs">${callTypes.map((item) => `<button type="button" data-missed-call-type="${item.key}" class="${item.key === missedCallState.callType ? "active" : ""}">${item.label}</button>`).join("")}</div>
+            <div class="ability-subtabs missed-role-tabs">${roles.map((item) => `<button type="button" data-missed-role="${item.key}" class="${item.key === missedCallState.role ? "active" : ""}">${item.label}</button>`).join("")}</div>
+            <div class="ability-controls missed-call-controls"><select id="ability-team"><option value="">全チーム</option>${teamIds.map((teamId) => `<option value="${teamId}">${japaneseTeamName({ teamId })}</option>`).join("")}</select><input id="ability-search" type="search" placeholder="選手名・球審名で検索"></div>
+            <div class="ability-table-wrap"><table class="ability-table missed-call-table"><thead><tr><th>順位</th><th>TEAM</th><th>選手</th><th>POS</th><th>${sortHeader("判定数", "calls")}</th><th>${sortHeader(impactLabel, "impact")}</th><th>${sortHeader(distanceLabel, "maxDistanceCm")}</th><th>最多の球審<br><small>判定回数</small></th></tr></thead><tbody id="missed-call-body"></tbody></table></div>
+            <div class="ability-table-footer"><span id="ability-result-summary"></span><button type="button" id="ability-show-more">さらに50件表示</button></div>
+            <p class="ability-table-note">2026年レギュラーシーズン。Baseball SavantのStatcastゾーン（1〜9＝ゾーン内、11〜14＝ゾーン外）と実際の球審判定が一致しなかった投球を集計。「誤審」は実況用の便宜的な表現で、MLBが個別判定を誤審認定したものではありません。球審はMLB公式試合記録と試合IDで照合（2026年10月16日時点）。</p>`;
+        content.querySelectorAll("[data-missed-call-type]").forEach((button) => button.addEventListener("click", () => { missedCallState.callType = button.dataset.missedCallType; missedCallState.team = ""; missedCallState.query = ""; missedCallState.visibleCount = PAGE_SIZE; missedCallState.sortKey = "calls"; missedCallState.sortDirection = "desc"; renderMissedCalls(); }));
+        content.querySelectorAll("[data-missed-role]").forEach((button) => button.addEventListener("click", () => { missedCallState.role = button.dataset.missedRole; missedCallState.team = ""; missedCallState.query = ""; missedCallState.visibleCount = PAGE_SIZE; missedCallState.sortKey = "calls"; missedCallState.sortDirection = "desc"; renderMissedCalls(); }));
+        content.querySelector("#ability-team")?.addEventListener("change", (event) => { missedCallState.team = event.target.value; missedCallState.visibleCount = PAGE_SIZE; renderMissedCallTable(); });
+        content.querySelector("#ability-search")?.addEventListener("input", (event) => { missedCallState.query = event.target.value.trim().toLowerCase(); missedCallState.visibleCount = PAGE_SIZE; renderMissedCallTable(); });
+        content.querySelectorAll("[data-missed-sort]").forEach((button) => button.addEventListener("click", () => { const key = button.dataset.missedSort; if (missedCallState.sortKey === key) missedCallState.sortDirection = missedCallState.sortDirection === "desc" ? "asc" : "desc"; else { missedCallState.sortKey = key; missedCallState.sortDirection = "desc"; } renderMissedCallTable(); }));
+        content.querySelector("#ability-show-more")?.addEventListener("click", () => { missedCallState.visibleCount += PAGE_SIZE; renderMissedCallTable(); });
+        renderMissedCallTable();
+    };
+
     const showAbility = (ability) => {
         page?.querySelectorAll("[data-ability]").forEach((button) => {
             button.classList.toggle("active", button.dataset.ability === ability);
@@ -765,6 +846,10 @@
         }
         if (ability === "replay") {
             renderReplay();
+            return;
+        }
+        if (ability === "missed-calls") {
+            renderMissedCalls();
             return;
         }
         renderSprintSpeed();
