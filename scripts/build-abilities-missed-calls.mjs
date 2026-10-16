@@ -1,6 +1,6 @@
 import fs from "node:fs";
 
-const [outsideStrikeFile, insideBallFile, scheduleFile, playerCacheFile, outputFile, peopleFile] = process.argv.slice(2);
+const [outsideStrikeFile, insideBallFile, scheduleFile, playerCacheFile, outputFile, peopleFile, pitchingStatsFile] = process.argv.slice(2);
 if (!outsideStrikeFile || !insideBallFile || !scheduleFile || !playerCacheFile || !outputFile) {
     console.error("Usage: node build-abilities-missed-calls.mjs <outside-strikes.csv> <inside-balls.csv> <schedule.json> <player-cache.json> <output.js>");
     process.exit(1);
@@ -27,6 +27,8 @@ const parseCsv = (source) => {
 
 const schedule = JSON.parse(fs.readFileSync(scheduleFile, "utf8"));
 const players = JSON.parse(fs.readFileSync(playerCacheFile, "utf8")).players || {};
+const pitchingStats = pitchingStatsFile ? JSON.parse(fs.readFileSync(pitchingStatsFile, "utf8")) : null;
+const totalPitches = (pitchingStats?.stats?.[0]?.splits || []).reduce((total, split) => total + Number(split.stat?.numberOfPitches || 0), 0);
 if (peopleFile) for (const person of JSON.parse(fs.readFileSync(peopleFile, "utf8")).people || []) {
     players[person.id] = { ...players[person.id], fullName: person.fullName, position: person.primaryPosition?.abbreviation || players[person.id]?.position };
 }
@@ -110,9 +112,10 @@ const finalize = (map) => [...map.values()].map((row) => {
     return { ...summary, topUmpireId: topUmpire.umpireId, topUmpire: topUmpire.umpire, topUmpireCount: topUmpire.count };
 }).sort((a, b) => b.calls - a.calls || b.impact - a.impact || a.name.localeCompare(b.name));
 
-const output = Object.fromEntries(Object.entries(summaries).map(([callType, roles]) => [
+const leaderboards = Object.fromEntries(Object.entries(summaries).map(([callType, roles]) => [
     callType,
     Object.fromEntries(Object.entries(roles).map(([role, map]) => [role, finalize(map)]))
 ]));
+const output = { _meta: { totalPitches }, ...leaderboards };
 fs.writeFileSync(outputFile, `window.ABILITIES_MISSED_CALLS_2026 = ${JSON.stringify(output)};\n`);
-console.log(`Wrote missed-call data: ${Object.values(output).flatMap((roles) => Object.values(roles)).reduce((sum, rows) => sum + rows.length, 0)} leaderboard rows.`);
+console.log(`Wrote missed-call data: ${Object.values(leaderboards).flatMap((roles) => Object.values(roles)).reduce((sum, rows) => sum + rows.length, 0)} leaderboard rows.`);
