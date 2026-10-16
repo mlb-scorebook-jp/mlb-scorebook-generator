@@ -225,14 +225,16 @@ body.app-mode-abilities #header-abilities-btn {
     white-space: nowrap;
 }
 
-.ability-table th:nth-child(-n+3) { text-align: left; }
+.ability-table th:nth-child(-n+2) { text-align: left; }
+.ability-table th:nth-child(n+3):nth-child(-n+6) { text-align: center; }
 .ability-table td {
     padding: 11px 12px;
     border-bottom: 1px solid #2f3b41;
     text-align: right;
     white-space: nowrap;
 }
-.ability-table td:nth-child(-n+3) { text-align: left; }
+.ability-table td:nth-child(-n+2) { text-align: left; }
+.ability-table td:nth-child(n+3):nth-child(-n+6) { text-align: center; }
 .ability-table tbody tr:hover { background: #223139; }
 .ability-table tbody tr:last-child td { border-bottom: 0; }
 .ability-rank { width: 44px; color: #7f929c; }
@@ -242,6 +244,7 @@ body.app-mode-abilities #header-abilities-btn {
     width: 22px;
     height: 22px;
     display: block;
+    margin: 0 auto;
     object-fit: contain;
     filter:
         drop-shadow(0 0 1px rgba(255, 255, 255, 0.92))
