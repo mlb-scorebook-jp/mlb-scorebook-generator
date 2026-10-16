@@ -465,7 +465,7 @@ body.app-mode-abilities #header-abilities-btn {
 .abs-umpire-table td:nth-child(5) { width: 120px; }
 .abs-umpire-table th:nth-child(6),
 .abs-umpire-table td:nth-child(6) {
-    width: 170px;
+    width: 130px;
     text-align: center;
 }
 .abs-umpire-table th:nth-child(7),

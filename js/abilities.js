@@ -638,7 +638,7 @@
                 <td class="ability-abs-record">${row.overturned}/${row.challenges}</td>
                 <td class="ability-abs-rate">${(row.overturnRate * 100).toFixed(1)}%</td>
                 <td class="ability-abs-distance">${(row.maxEdgeDistance * 2.54).toFixed(1)} cm</td>
-                <td class="ability-umpire-top-team">${escapeHtml(japaneseTeamName({ team: row.topTeam, teamId: row.topTeamId }))}</td>
+                <td class="ability-team ability-umpire-top-team"><img src="https://www.mlbstatic.com/team-logos/${row.topTeamId}.svg" alt="${escapeHtml(japaneseTeamName({ team: row.topTeam, teamId: row.topTeamId }))}" title="${escapeHtml(japaneseTeamName({ team: row.topTeam, teamId: row.topTeamId }))}" loading="lazy"></td>
                 <td>${row.topTeamCount}</td>
             </tr>`).join("") : `<tr><td colspan="7">条件に一致する記録はありません。</td></tr>`;
         } else tbody.innerHTML = rows.length ? visibleRows.map((row, index) => {
