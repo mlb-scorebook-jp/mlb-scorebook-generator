@@ -2,17 +2,17 @@
     "use strict";
 
     const sprintSpeed2026 = [
-        { player: "Cam Cauley", team: "TEX", teamId: 140, age: 23, position: "CF", runs: 24, bolts: 16, hp1b: 4.09, speed: 30.5 },
-        { player: "Henry Bolte", team: "ATH", teamId: 133, age: 22, position: "CF", runs: 199, bolts: 118, hp1b: 4.18, speed: 30.5 },
-        { player: "Carlos Jorge", team: "CIN", teamId: 113, age: 22, position: "CF", runs: 16, bolts: 12, hp1b: null, speed: 30.4 },
-        { player: "Eli White", team: "BOS", teamId: 111, age: 32, position: "RF", runs: 108, bolts: 54, hp1b: 4.19, speed: 30.3 },
-        { player: "Jorge Mateo", team: "TB", teamId: 139, age: 31, position: "SS", runs: 75, bolts: 36, hp1b: 4.14, speed: 30.2 },
-        { player: "Tommy Troy", team: "AZ", teamId: 109, age: 24, position: "LF", runs: 55, bolts: 30, hp1b: 4.16, speed: 30.1 },
-        { player: "Bobby Witt Jr.", team: "KC", teamId: 118, age: 26, position: "SS", runs: 242, bolts: 94, hp1b: 4.17, speed: 30.1 },
-        { player: "Jose Siri", team: "LAA", teamId: 108, age: 30, position: "CF", runs: 83, bolts: 31, hp1b: 4.24, speed: 30.0 },
-        { player: "Jonah Cox", team: "SF", teamId: 137, age: 24, position: "CF", runs: 50, bolts: 30, hp1b: 4.18, speed: 30.0 },
-        { player: "Jake McCarthy", team: "COL", teamId: 115, age: 28, position: "LF", runs: 265, bolts: 109, hp1b: 4.17, speed: 30.0 },
-        { player: "Trea Turner", team: "PHI", teamId: 143, age: 33, position: "SS", runs: 236, bolts: 98, hp1b: 4.24, speed: 29.9 }
+        { player: "Cam Cauley", team: "TEX", teamId: 140, age: 23, throwBat: "右/右", position: "CF", runs: 24, bolts: 16, hp1b: 4.09, speed: 30.5 },
+        { player: "Henry Bolte", team: "ATH", teamId: 133, age: 22, throwBat: "右/右", position: "CF", runs: 199, bolts: 118, hp1b: 4.18, speed: 30.5 },
+        { player: "Carlos Jorge", team: "CIN", teamId: 113, age: 22, throwBat: "右/左", position: "CF", runs: 16, bolts: 12, hp1b: null, speed: 30.4 },
+        { player: "Eli White", team: "BOS", teamId: 111, age: 32, throwBat: "右/右", position: "RF", runs: 108, bolts: 54, hp1b: 4.19, speed: 30.3 },
+        { player: "Jorge Mateo", team: "TB", teamId: 139, age: 31, throwBat: "右/右", position: "SS", runs: 75, bolts: 36, hp1b: 4.14, speed: 30.2 },
+        { player: "Tommy Troy", team: "AZ", teamId: 109, age: 24, throwBat: "右/右", position: "LF", runs: 55, bolts: 30, hp1b: 4.16, speed: 30.1 },
+        { player: "Bobby Witt Jr.", team: "KC", teamId: 118, age: 26, throwBat: "右/右", position: "SS", runs: 242, bolts: 94, hp1b: 4.17, speed: 30.1 },
+        { player: "Jose Siri", team: "LAA", teamId: 108, age: 30, throwBat: "右/右", position: "CF", runs: 83, bolts: 31, hp1b: 4.24, speed: 30.0 },
+        { player: "Jonah Cox", team: "SF", teamId: 137, age: 24, throwBat: "右/右", position: "CF", runs: 50, bolts: 30, hp1b: 4.18, speed: 30.0 },
+        { player: "Jake McCarthy", team: "COL", teamId: 115, age: 28, throwBat: "左/左", position: "LF", runs: 265, bolts: 109, hp1b: 4.17, speed: 30.0 },
+        { player: "Trea Turner", team: "PHI", teamId: 143, age: 33, throwBat: "右/右", position: "SS", runs: 236, bolts: 98, hp1b: 4.24, speed: 29.9 }
     ];
 
     const state = { team: "", position: "", query: "" };
@@ -60,11 +60,12 @@
                 <td class="ability-team"><img src="https://www.mlbstatic.com/team-logos/${row.teamId}.svg" alt="${escapeHtml(row.team)}" title="${escapeHtml(row.team)}" loading="lazy"></td>
                 <td class="ability-player">${escapeHtml(japanesePlayerName(row.player))}</td>
                 <td>${row.age}</td>
+                <td>${row.throwBat}</td>
                 <td>${escapeHtml(row.position)}</td>
                 <td>${row.hp1b === null ? "—" : `${row.hp1b.toFixed(2)}秒`}</td>
                 <td class="ability-speed"><span class="ability-speed-bar"><i style="width:${width.toFixed(1)}%"></i></span>${feetPerSecondToKmh(row.speed).toFixed(1)}</td>
             </tr>`;
-        }).join("") : `<tr><td colspan="7">条件に一致する選手はいません。</td></tr>`;
+        }).join("") : `<tr><td colspan="8">条件に一致する選手はいません。</td></tr>`;
     };
 
     const renderSprintSpeed = () => {
@@ -94,7 +95,7 @@
             </div>
             <div class="ability-table-wrap">
                 <table class="ability-table">
-                    <thead><tr><th>順位</th><th>TEAM</th><th>選手</th><th>年齢</th><th>守備</th><th>本塁→１塁</th><th>SPRINT SPEED km/h</th></tr></thead>
+                    <thead><tr><th>順位</th><th>TEAM</th><th>選手</th><th>年齢</th><th>投/打</th><th>守備</th><th>本塁→１塁</th><th>SPRINT SPEED km/h</th></tr></thead>
                     <tbody id="sprint-speed-body"></tbody>
                 </table>
             </div>

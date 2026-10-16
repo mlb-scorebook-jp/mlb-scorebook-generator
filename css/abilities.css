@@ -228,7 +228,7 @@ body.app-mode-abilities #header-abilities-btn {
 .ability-table th:nth-child(3) { text-align: left; }
 .ability-table th:first-child,
 .ability-table th:nth-child(2),
-.ability-table th:nth-child(n+4):nth-child(-n+6) { text-align: center; }
+.ability-table th:nth-child(n+4):nth-child(-n+7) { text-align: center; }
 .ability-table th:first-child,
 .ability-table td:first-child { width: 44px; }
 .ability-table th:nth-child(2),
@@ -238,7 +238,13 @@ body.app-mode-abilities #header-abilities-btn {
     padding-right: 6px;
 }
 .ability-table th:nth-child(3),
-.ability-table td:nth-child(3) { padding-left: 6px; }
+.ability-table td:nth-child(3) {
+    width: 180px;
+    padding-left: 6px;
+    padding-right: 6px;
+}
+.ability-table th:nth-child(4),
+.ability-table td:nth-child(4) { width: 52px; }
 .ability-table td {
     padding: 11px 12px;
     border-bottom: 1px solid #2f3b41;
@@ -248,7 +254,7 @@ body.app-mode-abilities #header-abilities-btn {
 .ability-table td:nth-child(3) { text-align: left; }
 .ability-table td:first-child,
 .ability-table td:nth-child(2),
-.ability-table td:nth-child(n+4):nth-child(-n+6) { text-align: center; }
+.ability-table td:nth-child(n+4):nth-child(-n+7) { text-align: center; }
 .ability-table tbody tr:hover { background: #223139; }
 .ability-table tbody tr:last-child td { border-bottom: 0; }
 .ability-rank { width: 44px; color: #7f929c; }
