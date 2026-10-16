@@ -16,6 +16,7 @@
     ];
 
     const state = { team: "", position: "", query: "" };
+    const feetPerSecondToKmh = (value) => value * 1.09728;
     const page = document.getElementById("abilities-page");
     const content = document.getElementById("abilities-content");
 
@@ -49,7 +50,7 @@
                 <td>${row.runs}</td>
                 <td class="ability-bolt">${row.bolts}</td>
                 <td>${row.hp1b === null ? "—" : `${row.hp1b.toFixed(2)}秒`}</td>
-                <td class="ability-speed"><span class="ability-speed-bar"><i style="width:${width.toFixed(1)}%"></i></span>${row.speed.toFixed(1)}</td>
+                <td class="ability-speed"><span class="ability-speed-bar"><i style="width:${width.toFixed(1)}%"></i></span>${feetPerSecondToKmh(row.speed).toFixed(1)}</td>
             </tr>`;
         }).join("") : `<tr><td colspan="9">条件に一致する選手はいません。</td></tr>`;
     };
@@ -65,8 +66,8 @@
                     <p>選手が各プレー中に記録した「最も速い1秒間」の速度。対象となる競争的走塁のうち、速い方のおよそ3分の2を平均してシーズン値を算出します。</p>
                 </div>
                 <div class="ability-scale" aria-label="速度の目安">
-                    <div><strong>27.0</strong><span>MLB平均 ft/s</span></div>
-                    <div><strong>30.0</strong><span>BOLT基準 ft/s</span></div>
+                    <div><strong>${feetPerSecondToKmh(27).toFixed(1)}</strong><span>MLB平均 km/h</span></div>
+                    <div><strong>${feetPerSecondToKmh(30).toFixed(1)}</strong><span>BOLT基準 km/h</span></div>
                 </div>
             </section>
             <div class="ability-controls">
@@ -82,7 +83,7 @@
             </div>
             <div class="ability-table-wrap">
                 <table class="ability-table">
-                    <thead><tr><th>順位</th><th>選手</th><th>TEAM</th><th>年齢</th><th>守備</th><th>競争的走塁</th><th>BOLT</th><th>本塁→一塁</th><th>SPRINT SPEED ft/s</th></tr></thead>
+                    <thead><tr><th>順位</th><th>選手</th><th>TEAM</th><th>年齢</th><th>守備</th><th>競争的走塁</th><th>BOLT</th><th>本塁→一塁</th><th>SPRINT SPEED km/h</th></tr></thead>
                     <tbody id="sprint-speed-body"></tbody>
                 </table>
             </div>
