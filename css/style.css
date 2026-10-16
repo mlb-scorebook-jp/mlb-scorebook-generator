@@ -91,18 +91,27 @@ body {
 
 .portal-home-panel {
     position: relative;
-    width: min(1380px, 100%);
-    height: 100%;
-    max-height: 760px;
+    width: min(760px, 74vw);
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    gap: 34px;
+    justify-content: center;
+    gap: 24px;
     padding: 0;
     border: 0;
     background: none;
     box-shadow: none;
     text-align: left;
+}
+
+.portal-home-brand {
+    margin: 0;
+    color: #f5f8fa;
+    font-size: clamp(28px, 3vw, 42px);
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: .08em;
+    text-align: center;
+    text-shadow: 0 3px 18px rgba(0, 0, 0, .9), 0 0 28px rgba(44, 166, 224, .22);
 }
 
 .portal-home-intro {
@@ -154,15 +163,11 @@ body {
 }
 
 .portal-home-actions {
-    position: absolute;
-    top: 52%;
-    left: 50%;
-    width: min(760px, 74vw);
+    width: 100%;
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 14px;
     margin: 0;
-    transform: translate(-50%, -50%);
 }
 
 .portal-home-actions .portal-action-card {
@@ -202,11 +207,6 @@ body {
 .portal-home-actions .portal-action-primary {
     border-color: rgba(118, 199, 237, 0.38);
     background: linear-gradient(135deg, rgba(9, 29, 43, 0.86), rgba(5, 15, 23, 0.74));
-}
-
-.portal-home-actions .portal-action-wide {
-    grid-column: 1 / -1;
-    min-height: 92px;
 }
 
 .portal-home-actions .portal-action-card:hover,
@@ -272,7 +272,7 @@ body.app-mode-home > .app-footer {
 }
 
 body.app-mode-home > .app-header {
-    display: flex;
+    display: none;
 }
 
 body.app-mode-home .header-game-search,
@@ -292,7 +292,7 @@ body.app-mode-home .portal-home {
     width: 100%;
     height: 100dvh;
     min-height: 100vh;
-    padding-top: 96px;
+    padding-top: 46px;
     overflow: hidden;
     overscroll-behavior: none;
 }
@@ -304,9 +304,7 @@ body.app-mode-home {
     overscroll-behavior: none;
 }
 
-body.app-mode-home .portal-home-panel h1 {
-    display: block;
-}
+body.app-mode-home .portal-home-panel h1 { display: block; }
 
 body {
     color: var(--text);
@@ -806,10 +804,11 @@ body.app-mode-pregame .pregame-brand-home {
     .portal-home-panel {
         gap: 28px;
         padding: 18px 2px 34px;
+        width: 100%;
     }
 
     .portal-home h1 {
-        font-size: 21px;
+        font-size: 24px;
         line-height: 1.4;
     }
 

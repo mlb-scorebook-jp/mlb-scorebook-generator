@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MLB Scorebook Generator</title>
     <!-- Score notation update: stacked batted-ball symbol, red hits, blue strikeouts, black other results. -->
-    <link rel="stylesheet" href="css/style.css?v=20261009-highlight-script-drag-2">
+    <link rel="stylesheet" href="css/style.css?v=20261016-home-menu-grid-1">
     <link rel="stylesheet" href="css/pregame.css?v=20261009-mobile-highlights">
     <link rel="stylesheet" href="css/daily-records.css?v=20260928-hou-buttons-1">
     <link rel="stylesheet" href="css/abilities.css?v=20261016-source-link-removed-1">
@@ -15,12 +15,7 @@
 <body class="app-mode-home">
     <section class="portal-home" id="portal-home" aria-label="メインメニュー">
         <div class="portal-home-panel">
-            <div class="portal-home-intro">
-                <span class="portal-home-kicker">MLB BROADCAST PRODUCTION DESK</span>
-                <h1>今日の試合を、<br>ここから組み立てる。</h1>
-                <p>スコア、事前情報、記録、移籍情報をひとつの制作デスクに。</p>
-                <span class="portal-home-date" id="portal-home-date"></span>
-            </div>
+            <h1 class="portal-home-brand">MLB SCOREBOOK GENERATOR</h1>
             <div class="portal-home-actions">
                 <button type="button" class="portal-action-card portal-action-primary" id="portal-scorebook-btn">
                     <span class="portal-action-index">01</span>
@@ -58,7 +53,7 @@
                     </span>
                     <span class="portal-action-arrow" aria-hidden="true">→</span>
                 </button>
-                <button type="button" class="portal-action-card portal-action-wide" id="portal-abilities-btn">
+                <button type="button" class="portal-action-card" id="portal-abilities-btn">
                     <span class="portal-action-index">05</span>
                     <span class="portal-action-copy">
                         <small>TOOLS</small>
