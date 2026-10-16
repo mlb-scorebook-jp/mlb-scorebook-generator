@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="css/style.css?v=20261009-highlight-script-drag-2">
     <link rel="stylesheet" href="css/pregame.css?v=20261009-mobile-highlights">
     <link rel="stylesheet" href="css/daily-records.css?v=20260928-hou-buttons-1">
+    <link rel="stylesheet" href="css/abilities.css?v=20261016-sprint-speed-1">
 </head>
 
 <body class="app-mode-home">
@@ -57,6 +58,15 @@
                     </span>
                     <span class="portal-action-arrow" aria-hidden="true">→</span>
                 </button>
+                <button type="button" class="portal-action-card portal-action-wide" id="portal-abilities-btn">
+                    <span class="portal-action-index">05</span>
+                    <span class="portal-action-copy">
+                        <small>TOOLS</small>
+                        <strong>各種能力</strong>
+                        <span>Statcastで選手の見えない能力を比較</span>
+                    </span>
+                    <span class="portal-action-arrow" aria-hidden="true">→</span>
+                </button>
             </div>
         </div>
     </section>
@@ -76,6 +86,7 @@
             <button type="button" id="generate-btn">試合前情報</button>
             <button type="button" id="header-daily-records-btn">本日の記録</button>
             <button type="button" id="header-transfers-btn">移籍情報</button>
+            <button type="button" id="header-abilities-btn">各種能力</button>
             </nav>
 
             <section class="header-game-search" aria-label="試合検索">
@@ -355,6 +366,34 @@
                 </div>
                 <div class="daily-records-content" id="daily-records-content"></div>
                 <div class="daily-calendar-features" id="daily-calendar-features" hidden></div>
+            </section>
+
+            <section class="abilities-page" id="abilities-page" hidden aria-label="各種能力">
+                <header class="abilities-header">
+                    <div>
+                        <span class="abilities-kicker">STATCAST TOOLS</span>
+                        <h2>各種能力</h2>
+                        <p>数字に表れにくい選手の能力を、Statcastで可視化</p>
+                    </div>
+                    <a class="abilities-source-link"
+                        href="https://baseballsavant.mlb.com/leaderboard/sprint_speed?max_season=2026&amp;min=10&amp;min_season=2026"
+                        target="_blank" rel="noopener noreferrer">Baseball Savantで確認 ↗</a>
+                </header>
+                <div class="abilities-layout">
+                    <nav class="abilities-nav" aria-label="能力メニュー">
+                        <div class="abilities-nav-group">
+                            <strong>野手</strong>
+                            <button type="button" class="active" data-ability="sprint-speed">スプリントスピード</button>
+                            <button type="button" disabled>打球速度 <small>準備中</small></button>
+                            <button type="button" disabled>守備・送球 <small>準備中</small></button>
+                        </div>
+                        <div class="abilities-nav-group is-muted">
+                            <strong>投手</strong>
+                            <button type="button" disabled>球速・回転数 <small>準備中</small></button>
+                        </div>
+                    </nav>
+                    <main class="abilities-content" id="abilities-content"></main>
+                </div>
             </section>
 
             <div class="scorebook-horizontal-scroll" id="scorebook-horizontal-scroll">
@@ -1095,8 +1134,9 @@
                 window.DailyRecords?.close({ preserveShell: true });
                 document.body.classList.remove(
                     "app-mode-pregame", "app-mode-pitch-chart", "app-mode-daily-records",
-                    "app-mode-transfers"
+                    "app-mode-transfers", "app-mode-abilities"
                 );
+                window.Abilities?.close();
                 document.body.classList.add("app-mode-home");
                 dom.pitchChartPage.hidden = true;
                 dom.headerScorebookButton.textContent = "スコアブック生成";
@@ -1110,8 +1150,9 @@
                 window.DailyRecords?.close({ preserveShell: true });
                 document.body.classList.remove(
                     "app-mode-home", "app-mode-pregame", "app-mode-pitch-chart",
-                    "app-mode-daily-records", "app-mode-transfers"
+                    "app-mode-daily-records", "app-mode-transfers", "app-mode-abilities"
                 );
+                window.Abilities?.close();
                 dom.pitchChartPage.hidden = true;
                 dom.headerScorebookButton.textContent = "スコアブック生成";
                 if (options?.persist !== false) {
@@ -1154,8 +1195,9 @@
                 window.DailyRecords?.close({ preserveShell: true });
                 document.body.classList.remove(
                     "app-mode-home", "app-mode-pregame", "app-mode-daily-records",
-                    "app-mode-transfers"
+                    "app-mode-transfers", "app-mode-abilities"
                 );
+                window.Abilities?.close();
                 document.body.classList.add("app-mode-pitch-chart");
                 dom.pitchChartPage.hidden = false;
                 dom.headerScorebookButton.textContent = "スコアへ戻る";
@@ -1177,8 +1219,9 @@
                 window.DailyRecords?.close({ preserveShell: true });
                 document.body.classList.remove(
                     "app-mode-home", "app-mode-pitch-chart", "app-mode-daily-records",
-                    "app-mode-transfers"
+                    "app-mode-transfers", "app-mode-abilities"
                 );
+                window.Abilities?.close();
                 document.body.classList.add("app-mode-pregame");
                 dom.pitchChartPage.hidden = true;
                 dom.headerScorebookButton.textContent = "スコアブック生成";
@@ -1196,8 +1239,9 @@
                 window.PregameInfo?.close({ preserveShell: true });
                 document.body.classList.remove(
                     "app-mode-home", "app-mode-pregame", "app-mode-pitch-chart",
-                    "app-mode-transfers"
+                    "app-mode-transfers", "app-mode-abilities"
                 );
+                window.Abilities?.close();
                 document.body.classList.add("app-mode-daily-records");
                 dom.pitchChartPage.hidden = true;
                 dom.headerScorebookButton.textContent = "スコアブック生成";
@@ -1213,12 +1257,31 @@
                 stopLiveScoreUpdates({ preserveEligibility: true });
                 window.DailyRecords?.close({ preserveShell: true });
                 document.body.classList.remove(
-                    "app-mode-home", "app-mode-pitch-chart", "app-mode-daily-records"
+                    "app-mode-home", "app-mode-pitch-chart", "app-mode-daily-records",
+                    "app-mode-abilities"
                 );
+                window.Abilities?.close();
                 document.body.classList.add("app-mode-pregame", "app-mode-transfers");
                 dom.pitchChartPage.hidden = true;
                 dom.headerScorebookButton.textContent = "スコアブック生成";
                 await window.PregameInfo?.openTransfers(options);
+                window.scrollTo(0, 0);
+            };
+
+            const showAbilities = (options = {}) => {
+                closeAppMenu();
+                stopLiveScoreUpdates({ preserveEligibility: true });
+                window.PregameInfo?.close({ preserveShell: true });
+                window.DailyRecords?.close({ preserveShell: true });
+                document.body.classList.remove(
+                    "app-mode-home", "app-mode-pregame", "app-mode-pitch-chart",
+                    "app-mode-daily-records", "app-mode-transfers"
+                );
+                document.body.classList.add("app-mode-abilities");
+                dom.pitchChartPage.hidden = true;
+                dom.headerScorebookButton.textContent = "スコアブック生成";
+                window.Abilities?.open();
+                if (options.persist !== false) saveAppSession({ view: "abilities" });
                 window.scrollTo(0, 0);
             };
 
@@ -1229,6 +1292,7 @@
                 showPregame,
                 showDailyRecords,
                 showTransfers,
+                showAbilities,
                 loadScorebookGame: async (gamePk) => {
                     const selectedGamePk = Number(gamePk);
                     if (!selectedGamePk) return;
@@ -1239,8 +1303,9 @@
                 enterPregameShell: () => {
                     document.body.classList.remove(
                         "app-mode-home", "app-mode-pitch-chart", "app-mode-daily-records",
-                        "app-mode-transfers"
+                        "app-mode-transfers", "app-mode-abilities"
                     );
+                    window.Abilities?.close();
                     document.body.classList.add("app-mode-pregame");
                     dom.pitchChartPage.hidden = true;
                     dom.headerScorebookButton.textContent = "スコアブック生成";
@@ -12617,6 +12682,10 @@
                 "click",
                 () => showTransfers()
             );
+            document.getElementById("header-abilities-btn").addEventListener(
+                "click",
+                () => showAbilities()
+            );
 
             document.getElementById("header-scorebook-btn").addEventListener("click", showScorebook);
             document.getElementById("portal-scorebook-btn").addEventListener("click", showScorebook);
@@ -12628,6 +12697,10 @@
             document.getElementById("portal-transfers-btn").addEventListener(
                 "click",
                 () => showTransfers()
+            );
+            document.getElementById("portal-abilities-btn").addEventListener(
+                "click",
+                () => showAbilities()
             );
             document.getElementById("app-home-link").addEventListener("click", showPortalHome);
             document.getElementById("pregame-brand-home").addEventListener("click", showPortalHome);
@@ -12762,6 +12835,11 @@
                     return;
                 }
 
+                if (saved.view === "abilities") {
+                    showAbilities({ persist: false });
+                    return;
+                }
+
                 showPortalHome();
             };
 
@@ -12791,5 +12869,6 @@
         })();
     </script>
     <script src="js/highlight-script-20261010d.js?v=20261014-pbp-safari-fix"></script>
+    <script src="js/abilities.js?v=20261016-sprint-speed-1"></script>
 </body>
 </html>

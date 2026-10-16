@@ -204,6 +204,11 @@ body {
     background: linear-gradient(135deg, rgba(9, 29, 43, 0.86), rgba(5, 15, 23, 0.74));
 }
 
+.portal-home-actions .portal-action-wide {
+    grid-column: 1 / -1;
+    min-height: 92px;
+}
+
 .portal-home-actions .portal-action-card:hover,
 .portal-home-actions .portal-action-card:focus-visible {
     transform: translateY(-3px);
