@@ -229,6 +229,16 @@ body.app-mode-abilities #header-abilities-btn {
 .ability-table th:first-child,
 .ability-table th:nth-child(2),
 .ability-table th:nth-child(n+4):nth-child(-n+6) { text-align: center; }
+.ability-table th:first-child,
+.ability-table td:first-child { width: 44px; }
+.ability-table th:nth-child(2),
+.ability-table td:nth-child(2) {
+    width: 54px;
+    padding-left: 6px;
+    padding-right: 6px;
+}
+.ability-table th:nth-child(3),
+.ability-table td:nth-child(3) { padding-left: 6px; }
 .ability-table td {
     padding: 11px 12px;
     border-bottom: 1px solid #2f3b41;
