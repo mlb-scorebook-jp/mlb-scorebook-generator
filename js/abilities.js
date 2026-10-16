@@ -6,6 +6,7 @@
         : [];
 
     const PAGE_SIZE = 50;
+    const POSITION_ORDER = ["C", "1B", "2B", "3B", "SS", "LF", "CF", "RF", "DH", "TWP"];
     const state = { team: "", position: "", query: "", visibleCount: PAGE_SIZE };
     const feetPerSecondToKmh = (value) => value * 1.09728;
     const page = document.getElementById("abilities-page");
@@ -79,7 +80,14 @@
     const renderSprintSpeed = () => {
         if (!content) return;
         const teams = [...new Set(sprintSpeed2026.map((row) => row.team))].sort();
-        const positions = [...new Set(sprintSpeed2026.map((row) => row.position))].sort();
+        const positions = [...new Set(sprintSpeed2026.map((row) => row.position))].sort((a, b) => {
+            const aIndex = POSITION_ORDER.indexOf(a);
+            const bIndex = POSITION_ORDER.indexOf(b);
+            if (aIndex === -1 && bIndex === -1) return a.localeCompare(b);
+            if (aIndex === -1) return 1;
+            if (bIndex === -1) return -1;
+            return aIndex - bIndex;
+        });
         content.innerHTML = `
             <section class="ability-hero">
                 <div>
