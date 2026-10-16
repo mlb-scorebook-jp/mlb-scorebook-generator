@@ -72,6 +72,9 @@
         }
     };
 
+    const japaneseTeamName = (row) =>
+        window.MLB_SCOREBOOK_TEAM_NAMES_BY_ID?.[Number(row?.teamId)] || row?.name || row?.team || "—";
+
     const savantCustomUrl = (row, selections) =>
         `https://baseballsavant.mlb.com/leaderboard/custom?year=2026&type=batter&filter=${encodeURIComponent(row.player)}&sort=4&sortDir=desc&min=1&selections=${selections}&chart=false&x=pa&y=pa&r=no`;
     const savantRunningUrl = (row) => savantCustomUrl(row, "pa,sprint_speed,hp_to_1b");
@@ -439,7 +442,7 @@
 
     const filteredAbsRows = () => absRows().filter((row) => {
         if (absState.team && row.team !== absState.team) return false;
-        const displayName = absState.category === "overall" ? row.name : japanesePlayerName(row.name);
+        const displayName = absState.category === "overall" ? japaneseTeamName(row) : japanesePlayerName(row.name);
         if (absState.query && !`${row.name} ${displayName} ${row.team}`.toLowerCase().includes(absState.query)) return false;
         return true;
     });
@@ -457,7 +460,7 @@
         const url = absLeaderboardUrl();
         const valueLink = (value) => `<a class="ability-value-link" href="${url}" target="_blank" rel="noopener noreferrer">${value}</a>`;
         tbody.innerHTML = rows.length ? visibleRows.map((row, index) => {
-            const name = absState.category === "overall" ? row.name : japanesePlayerName(row.name);
+            const name = absState.category === "overall" ? japaneseTeamName(row) : japanesePlayerName(row.name);
             const signedRuns = `${row.runsAboveAverage > 0 ? "+" : ""}${row.runsAboveAverage.toFixed(1)}`;
             return `<tr>
                 <td class="ability-rank">${index + 1}</td>
@@ -485,7 +488,7 @@
 
     const renderAbs = () => {
         if (!content) return;
-        const categories = [{ key: "overall", label: "総合" }, { key: "pitcher", label: "投手" }, { key: "catcher", label: "捕手" }, { key: "batter", label: "打者" }];
+        const categories = [{ key: "overall", label: "TEAM" }, { key: "pitcher", label: "投手" }, { key: "catcher", label: "捕手" }, { key: "batter", label: "打者" }];
         const rows = absRows();
         const teams = [...new Set(rows.map((row) => row.team))].sort();
         const totalChallenges = rows.reduce((total, row) => total + row.challenges, 0);
