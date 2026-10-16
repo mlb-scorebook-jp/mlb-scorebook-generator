@@ -460,6 +460,8 @@ body.app-mode-abilities #header-abilities-btn {
 .replay-type-table td:nth-child(2),
 .replay-history-table th:nth-child(4),
 .replay-history-table td:nth-child(4) { text-align: left; }
+.replay-type-table th:nth-child(n+3),
+.replay-type-table td:nth-child(n+3) { text-align: center; }
 .replay-table th:nth-child(4),
 .replay-table td:nth-child(4) { width: 112px; }
 .replay-table th:nth-child(5),
