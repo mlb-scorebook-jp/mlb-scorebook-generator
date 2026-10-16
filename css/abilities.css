@@ -380,6 +380,21 @@ body.app-mode-abilities #header-abilities-btn {
 .exit-velocity-table th:last-child,
 .exit-velocity-table td:last-child { padding-left: 4px; text-align: center; }
 .ability-velocity { color: #72d5ff; font-weight: 800; }
+.ability-defense-value { color: #b9e7fa; font-size: 14px; font-weight: 800; }
+.defense-table th,
+.defense-table td { text-align: center; }
+.defense-table th:nth-child(3),
+.defense-table td:nth-child(3) { text-align: left; }
+.defense-table th:nth-child(7),
+.defense-table td:nth-child(7) { width: 76px; }
+.defense-table th:nth-child(8),
+.defense-table td:nth-child(8) { width: 112px; }
+.defense-table th:nth-child(9),
+.defense-table td:nth-child(9),
+.defense-table th:nth-child(10),
+.defense-table td:nth-child(10) { width: 120px; }
+.defense-table th:last-child,
+.defense-table td:last-child { padding-left: 4px; text-align: center; }
 
 @media (max-width: 820px) {
     .abilities-page { width: min(100% - 20px, 1460px); padding-top: 12px; }
