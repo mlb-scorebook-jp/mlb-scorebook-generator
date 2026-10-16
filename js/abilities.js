@@ -629,11 +629,12 @@
                 <td class="ability-player">${escapeHtml(name)}</td>
                 <td class="ability-abs-record">${valueLink(`${row.won}/${row.challenges}`)}</td>
                 <td class="ability-abs-rate">${valueLink(`${(row.winRate * 100).toFixed(1)}%`)}</td>
+                <td class="ability-abs-distance">${valueLink(`${(row.maxEdgeDistance * 2.54).toFixed(1)} cm`)}</td>
                 <td>${valueLink(row.strikeouts)}</td>
                 <td>${valueLink(row.walks)}</td>
                 <td class="ability-defense-value">${valueLink(signedRuns)}</td>
             </tr>`;
-        }).join("") : `<tr><td colspan="8">条件に一致する記録はありません。</td></tr>`;
+        }).join("") : `<tr><td colspan="9">条件に一致する記録はありません。</td></tr>`;
 
         content.querySelectorAll("[data-abs-sort]").forEach((button) => {
             const active = button.dataset.absSort === absState.sortKey;
@@ -669,7 +670,7 @@
                 <input id="ability-search" type="search" value="${escapeHtml(absState.query)}" placeholder="${absState.category === "overall" ? "チーム名で検索" : "選手名・チームで検索"}" aria-label="ABS検索">
             </div>
             <div class="ability-table-wrap"><table class="ability-table abs-table">
-                <thead><tr><th>順位</th><th>TEAM</th><th>${absState.category === "overall" ? "チーム" : "選手"}</th><th>${sortHeader("成功/実施", "won")}</th><th>${sortHeader("成功率", "winRate")}</th><th>${sortHeader("+K", "strikeouts")}</th><th>${sortHeader("-BB", "walks")}</th><th>${sortHeader("平均比", "runsAboveAverage")}</th></tr></thead>
+                <thead><tr><th>順位</th><th>TEAM</th><th>${absState.category === "overall" ? "チーム" : "選手"}</th><th>${sortHeader("成功/実施", "won")}</th><th>${sortHeader("成功率", "winRate")}</th><th>${sortHeader("最大距離<br><small>ゾーン端から</small>", "maxEdgeDistance")}</th><th>${sortHeader("+K", "strikeouts")}</th><th>${sortHeader("-BB", "walks")}</th><th>${sortHeader("平均比", "runsAboveAverage")}</th></tr></thead>
                 <tbody id="abs-body"></tbody>
             </table></div>
             <div class="ability-table-footer"><span id="ability-result-summary"></span><button type="button" id="ability-show-more">さらに50件表示</button></div>
