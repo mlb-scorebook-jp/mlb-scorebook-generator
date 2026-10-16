@@ -92,7 +92,6 @@
             <section class="ability-hero">
                 <div>
                     <h3>野手｜スプリントスピード</h3>
-                    <p>選手が各プレー中に記録した「最も速い1秒間」の速度。対象となる競争的走塁のうち、速い方のおよそ3分の2を平均してシーズン値を算出します。</p>
                 </div>
                 <div class="ability-scale" aria-label="速度の目安">
                     <div><strong>${feetPerSecondToKmh(27).toFixed(1)}</strong><span>MLB平均 km/h</span></div>
