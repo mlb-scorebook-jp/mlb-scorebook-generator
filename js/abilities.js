@@ -41,14 +41,9 @@
         }
     };
 
-    const savantPlayerUrl = (row) => {
-        const slug = row.player.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
-        return `https://baseballsavant.mlb.com/savant-player/${slug}-${row.playerId}`;
-    };
-
-    const savantRunningUrl = (row) => `${savantPlayerUrl(row)}?stats=statcast-r-running-mlb#statcastRunning-tr_0`;
     const savantCustomUrl = (row, selections) =>
         `https://baseballsavant.mlb.com/leaderboard/custom?year=2026&type=batter&filter=${encodeURIComponent(row.player)}&sort=4&sortDir=desc&min=1&selections=${selections}&chart=false&x=pa&y=pa&r=no`;
+    const savantRunningUrl = (row) => savantCustomUrl(row, "pa,sprint_speed,hp_to_1b");
 
     const filteredRows = () => sprintSpeed2026.filter((row) => {
         if (state.team && row.team !== state.team) return false;
