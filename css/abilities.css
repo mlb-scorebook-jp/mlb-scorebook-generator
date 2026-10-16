@@ -216,6 +216,7 @@ body.app-mode-abilities #header-abilities-btn {
 }
 
 .ability-table th {
+    box-sizing: border-box;
     padding: 10px 12px;
     color: #8fa2ac;
     border-bottom: 1px solid #53636b;
@@ -265,6 +266,7 @@ body.app-mode-abilities #header-abilities-btn {
 .ability-table th:last-child,
 .ability-table td:last-child { width: 180px; }
 .ability-table td {
+    box-sizing: border-box;
     padding: 11px 12px;
     border-bottom: 1px solid #2f3b41;
     text-align: right;
