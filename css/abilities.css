@@ -464,10 +464,13 @@ body.app-mode-abilities #header-abilities-btn {
 .abs-umpire-table th:nth-child(5),
 .abs-umpire-table td:nth-child(5) { width: 120px; }
 .abs-umpire-table th:nth-child(6),
-.abs-umpire-table td:nth-child(6),
+.abs-umpire-table td:nth-child(6) {
+    width: 170px;
+    text-align: center;
+}
 .abs-umpire-table th:nth-child(7),
 .abs-umpire-table td:nth-child(7) {
-    width: 100px;
+    width: 70px;
     text-align: center;
 }
 
