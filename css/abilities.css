@@ -239,7 +239,6 @@ body.app-mode-abilities #header-abilities-btn {
 .ability-player { color: #f0f4f6; font-size: 12px; font-weight: 700; }
 .ability-team { color: #8ecbea; font-weight: 700; }
 .ability-speed { color: #72d5ff; font-size: 14px; font-weight: 800; }
-.ability-bolt { color: #e8c95a; font-weight: 700; }
 .ability-speed-bar { display: inline-block; width: 64px; height: 3px; margin-right: 8px; vertical-align: middle; background: #26343b; }
 .ability-speed-bar i { display: block; height: 100%; background: linear-gradient(90deg, #217ca8, #72d5ff); }
 .ability-table-note { margin: 9px 2px 0; color: #778890; font-size: 9px; }

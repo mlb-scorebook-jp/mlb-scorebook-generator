@@ -47,12 +47,10 @@
                 <td class="ability-team">${escapeHtml(row.team)}</td>
                 <td>${row.age}</td>
                 <td>${escapeHtml(row.position)}</td>
-                <td>${row.runs}</td>
-                <td class="ability-bolt">${row.bolts}</td>
                 <td>${row.hp1b === null ? "—" : `${row.hp1b.toFixed(2)}秒`}</td>
                 <td class="ability-speed"><span class="ability-speed-bar"><i style="width:${width.toFixed(1)}%"></i></span>${feetPerSecondToKmh(row.speed).toFixed(1)}</td>
             </tr>`;
-        }).join("") : `<tr><td colspan="9">条件に一致する選手はいません。</td></tr>`;
+        }).join("") : `<tr><td colspan="7">条件に一致する選手はいません。</td></tr>`;
     };
 
     const renderSprintSpeed = () => {
@@ -67,7 +65,6 @@
                 </div>
                 <div class="ability-scale" aria-label="速度の目安">
                     <div><strong>${feetPerSecondToKmh(27).toFixed(1)}</strong><span>MLB平均 km/h</span></div>
-                    <div><strong>${feetPerSecondToKmh(30).toFixed(1)}</strong><span>BOLT基準 km/h</span></div>
                 </div>
             </section>
             <div class="ability-controls">
@@ -83,7 +80,7 @@
             </div>
             <div class="ability-table-wrap">
                 <table class="ability-table">
-                    <thead><tr><th>順位</th><th>選手</th><th>TEAM</th><th>年齢</th><th>守備</th><th>測定対象走塁</th><th>32.9km/h以上</th><th>本塁→一塁</th><th>SPRINT SPEED km/h</th></tr></thead>
+                    <thead><tr><th>順位</th><th>選手</th><th>TEAM</th><th>年齢</th><th>守備</th><th>本塁→一塁</th><th>SPRINT SPEED km/h</th></tr></thead>
                     <tbody id="sprint-speed-body"></tbody>
                 </table>
             </div>
