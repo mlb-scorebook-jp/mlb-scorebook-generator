@@ -97,7 +97,7 @@
             </div>
             <div class="ability-table-wrap">
                 <table class="ability-table">
-                    <thead><tr><th>順位</th><th>TEAM</th><th>選手</th><th>年齢</th><th>投/打</th><th>守備</th><th>本塁→１塁</th><th>内野安打<br><small>実数/安打数</small></th><th>盗塁<br><small>成功数/企図数</small></th><th>SPRINT SPEED km/h</th></tr></thead>
+                    <thead><tr><th>順位</th><th>TEAM</th><th>選手</th><th>年齢</th><th>投/打</th><th>守備</th><th><a class="ability-source-link" href="https://baseballsavant.mlb.com/leaderboard/sprint_speed?max_season=2026&min=10&min_season=2026&position=&sort=6&sortDir=asc&team=" target="_blank" rel="noopener noreferrer">本塁→１塁</a></th><th><a class="ability-source-link" href="https://baseballsavant.mlb.com/leaderboard/custom?year=2026&type=batter&filter=&sort=4&sortDir=desc&min=1&selections=pa,hits,infield_hits&chart=false&x=pa&y=pa&r=no" target="_blank" rel="noopener noreferrer">内野安打<br><small>実数/安打数</small></a></th><th><a class="ability-source-link" href="https://baseballsavant.mlb.com/leaderboard/custom?year=2026&type=batter&filter=&sort=4&sortDir=desc&min=1&selections=pa,stolen_bases,caught_stealing&chart=false&x=pa&y=pa&r=no" target="_blank" rel="noopener noreferrer">盗塁<br><small>成功数/企図数</small></a></th><th><a class="ability-source-link" href="https://baseballsavant.mlb.com/leaderboard/sprint_speed?max_season=2026&min=10&min_season=2026&position=&sort=7&sortDir=desc&team=" target="_blank" rel="noopener noreferrer">SPRINT SPEED km/h</a></th></tr></thead>
                     <tbody id="sprint-speed-body"></tbody>
                 </table>
             </div>

@@ -237,6 +237,17 @@ body.app-mode-abilities #header-abilities-btn {
     font-weight: 600;
     letter-spacing: 0;
 }
+.ability-source-link {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-color: rgba(114, 213, 255, 0.42);
+    text-underline-offset: 3px;
+}
+.ability-source-link:hover,
+.ability-source-link:focus-visible {
+    color: #72d5ff;
+    text-decoration-color: currentColor;
+}
 .ability-table th:first-child,
 .ability-table td:first-child { width: 44px; }
 .ability-table th:nth-child(2),
