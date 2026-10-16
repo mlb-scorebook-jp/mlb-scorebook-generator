@@ -2,16 +2,17 @@
     "use strict";
 
     const sprintSpeed2026 = [
+        { player: "Andrew Pinckney", playerId: 687605, team: "WSH", teamId: 120, age: 25, throwBat: "右/右", position: "LF", hp1b: null, hits: 7, infieldHits: 0, stolenBases: 1, stolenBaseAttempts: 2, speed: 31.0 },
         { player: "Cam Cauley", playerId: 695508, team: "TEX", teamId: 140, age: 23, throwBat: "右/右", position: "CF", runs: 24, bolts: 16, hp1b: 4.09, hits: 12, infieldHits: 3, stolenBases: 1, stolenBaseAttempts: 1, speed: 30.5 },
         { player: "Henry Bolte", playerId: 703607, team: "ATH", teamId: 133, age: 22, throwBat: "右/右", position: "CF", runs: 199, bolts: 118, hp1b: 4.18, hits: 115, infieldHits: 17, stolenBases: 21, stolenBaseAttempts: 29, speed: 30.5 },
         { player: "Carlos Jorge", playerId: 699115, team: "CIN", teamId: 113, age: 22, throwBat: "右/左", position: "CF", runs: 16, bolts: 12, hp1b: null, hits: 10, infieldHits: 2, stolenBases: 2, stolenBaseAttempts: 3, speed: 30.4 },
         { player: "Eli White", playerId: 642201, team: "BOS", teamId: 111, age: 32, throwBat: "右/右", position: "RF", runs: 108, bolts: 54, hp1b: 4.19, hits: 47, infieldHits: 9, stolenBases: 5, stolenBaseAttempts: 6, speed: 30.3 },
         { player: "Jorge Mateo", playerId: 622761, team: "TB", teamId: 139, age: 31, throwBat: "右/右", position: "SS", runs: 75, bolts: 36, hp1b: 4.14, hits: 42, infieldHits: 6, stolenBases: 19, stolenBaseAttempts: 23, speed: 30.2 },
-        { player: "Tommy Troy", playerId: 694371, team: "AZ", teamId: 109, age: 24, throwBat: "右/右", position: "LF", runs: 55, bolts: 30, hp1b: 4.16, hits: 28, infieldHits: 4, stolenBases: 1, stolenBaseAttempts: 1, speed: 30.1 },
         { player: "Bobby Witt Jr.", playerId: 677951, team: "KC", teamId: 118, age: 26, throwBat: "右/右", position: "SS", runs: 242, bolts: 94, hp1b: 4.17, hits: 157, infieldHits: 15, stolenBases: 45, stolenBaseAttempts: 53, speed: 30.1 },
+        { player: "Tommy Troy", playerId: 694371, team: "AZ", teamId: 109, age: 24, throwBat: "右/右", position: "LF", runs: 55, bolts: 30, hp1b: 4.16, hits: 28, infieldHits: 4, stolenBases: 1, stolenBaseAttempts: 1, speed: 30.1 },
+        { player: "Jake McCarthy", playerId: 664983, team: "COL", teamId: 115, age: 28, throwBat: "左/左", position: "LF", runs: 265, bolts: 109, hp1b: 4.17, hits: 159, infieldHits: 16, stolenBases: 32, stolenBaseAttempts: 38, speed: 30.0 },
         { player: "Jose Siri", playerId: 642350, team: "LAA", teamId: 108, age: 30, throwBat: "右/右", position: "CF", runs: 83, bolts: 31, hp1b: 4.24, hits: 55, infieldHits: 8, stolenBases: 9, stolenBaseAttempts: 10, speed: 30.0 },
         { player: "Jonah Cox", playerId: 813841, team: "SF", teamId: 137, age: 24, throwBat: "右/右", position: "CF", runs: 50, bolts: 30, hp1b: 4.18, hits: 38, infieldHits: 4, stolenBases: 16, stolenBaseAttempts: 20, speed: 30.0 },
-        { player: "Jake McCarthy", playerId: 664983, team: "COL", teamId: 115, age: 28, throwBat: "左/左", position: "LF", runs: 265, bolts: 109, hp1b: 4.17, hits: 159, infieldHits: 16, stolenBases: 32, stolenBaseAttempts: 38, speed: 30.0 },
         { player: "Trea Turner", playerId: 607208, team: "PHI", teamId: 143, age: 33, throwBat: "右/右", position: "SS", runs: 236, bolts: 98, hp1b: 4.24, hits: 156, infieldHits: 18, stolenBases: 21, stolenBaseAttempts: 25, speed: 29.9 }
     ];
 
@@ -108,7 +109,7 @@
                     <tbody id="sprint-speed-body"></tbody>
                 </table>
             </div>
-            <p class="ability-table-note">2026年レギュラーシーズン／最低10回。走塁速度はBaseball Savant、打撃成績はMLB公式・FanGraphsを参照（2026年10月16日時点）。</p>`;
+            <p class="ability-table-note">2026年レギュラーシーズン／最低1回。走塁速度はBaseball Savant、打撃成績はMLB公式・FanGraphsを参照（2026年10月16日時点）。</p>`;
 
         content.querySelector("#ability-position")?.addEventListener("change", (event) => {
             state.position = event.target.value;
