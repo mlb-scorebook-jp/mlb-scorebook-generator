@@ -202,6 +202,15 @@ body.app-mode-abilities #header-abilities-btn {
     font-size: 11px;
 }
 
+.ability-controls select {
+    padding-left: 24px;
+    padding-right: 24px;
+    font-size: 13px;
+    font-weight: 700;
+    text-align: center;
+    text-align-last: center;
+}
+
 .ability-table-wrap {
     margin-top: 10px;
     border: 1px solid #405059;
