@@ -46,6 +46,10 @@
         return `https://baseballsavant.mlb.com/savant-player/${slug}-${row.playerId}`;
     };
 
+    const savantRunningUrl = (row) => `${savantPlayerUrl(row)}?stats=statcast-r-running-mlb#statcast-running-statistics`;
+    const savantCustomUrl = (row, selections) =>
+        `https://baseballsavant.mlb.com/leaderboard/custom?year=2026&type=batter&filter=${encodeURIComponent(row.player)}&sort=4&sortDir=desc&min=1&selections=${selections}&chart=false&x=pa&y=pa&r=no`;
+
     const filteredRows = () => sprintSpeed2026.filter((row) => {
         if (state.team && row.team !== state.team) return false;
         if (state.position && row.position !== state.position) return false;
@@ -60,7 +64,9 @@
         tbody.innerHTML = rows.length ? rows.map((row) => {
             const rank = sprintSpeed2026.indexOf(row) + 1;
             const width = Math.max(0, Math.min(100, ((row.speed - 23) / 7.5) * 100));
-            const savantUrl = savantPlayerUrl(row);
+            const runningUrl = savantRunningUrl(row);
+            const infieldHitUrl = savantCustomUrl(row, "pa,hits,infield_hits");
+            const stolenBaseUrl = savantCustomUrl(row, "pa,stolen_bases,caught_stealing");
             return `<tr>
                 <td class="ability-rank">${rank}</td>
                 <td class="ability-team"><img src="https://www.mlbstatic.com/team-logos/${row.teamId}.svg" alt="${escapeHtml(row.team)}" title="${escapeHtml(row.team)}" loading="lazy"></td>
@@ -68,10 +74,10 @@
                 <td>${row.age}</td>
                 <td>${row.throwBat}</td>
                 <td>${escapeHtml(row.position)}</td>
-                <td>${row.hp1b === null ? "—" : `<a class="ability-value-link" href="${savantUrl}" target="_blank" rel="noopener noreferrer">${row.hp1b.toFixed(2)}秒</a>`}</td>
-                <td><a class="ability-value-link" href="${savantUrl}" target="_blank" rel="noopener noreferrer">${row.infieldHits}/${row.hits}</a></td>
-                <td><a class="ability-value-link" href="${savantUrl}" target="_blank" rel="noopener noreferrer">${row.stolenBases}/${row.stolenBaseAttempts}</a></td>
-                <td class="ability-speed"><a class="ability-value-link" href="${savantUrl}" target="_blank" rel="noopener noreferrer"><span class="ability-speed-bar"><i style="width:${width.toFixed(1)}%"></i></span>${feetPerSecondToKmh(row.speed).toFixed(1)}</a></td>
+                <td>${row.hp1b === null ? "—" : `<a class="ability-value-link" href="${runningUrl}" target="_blank" rel="noopener noreferrer">${row.hp1b.toFixed(2)}秒</a>`}</td>
+                <td><a class="ability-value-link" href="${infieldHitUrl}" target="_blank" rel="noopener noreferrer">${row.infieldHits}/${row.hits}</a></td>
+                <td><a class="ability-value-link" href="${stolenBaseUrl}" target="_blank" rel="noopener noreferrer">${row.stolenBases}/${row.stolenBaseAttempts}</a></td>
+                <td class="ability-speed"><a class="ability-value-link" href="${runningUrl}" target="_blank" rel="noopener noreferrer"><span class="ability-speed-bar"><i style="width:${width.toFixed(1)}%"></i></span>${feetPerSecondToKmh(row.speed).toFixed(1)}</a></td>
             </tr>`;
         }).join("") : `<tr><td colspan="10">条件に一致する選手はいません。</td></tr>`;
     };
