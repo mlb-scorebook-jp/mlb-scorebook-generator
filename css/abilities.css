@@ -432,14 +432,12 @@ body.app-mode-abilities #header-abilities-btn {
 .abs-table td:nth-child(4) { width: 125px; }
 .abs-table th:nth-child(5),
 .abs-table td:nth-child(5),
-.abs-table th:nth-child(7),
-.abs-table td:nth-child(7),
-.abs-table th:nth-child(8),
-.abs-table td:nth-child(8) { width: 72px; }
 .abs-table th:nth-child(6),
 .abs-table td:nth-child(6),
-.abs-table th:nth-child(9),
-.abs-table td:nth-child(9) { width: 92px; }
+.abs-table th:nth-child(7),
+.abs-table td:nth-child(7) { width: 78px; }
+.abs-table th:nth-child(8),
+.abs-table td:nth-child(8) { width: 92px; }
 .abs-table th:last-child,
 .abs-table td:last-child { padding-left: 4px; text-align: center; }
 .ability-abs-record,
