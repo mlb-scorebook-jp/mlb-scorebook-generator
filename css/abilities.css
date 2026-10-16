@@ -133,6 +133,7 @@ body.app-mode-abilities #header-abilities-btn {
     background: transparent;
     font-size: 11px;
     text-align: left;
+    cursor: pointer;
 }
 
 .abilities-nav button.active {
@@ -141,7 +142,7 @@ body.app-mode-abilities #header-abilities-btn {
     background: #263740;
 }
 
-.abilities-nav button:disabled { color: #63727a; }
+.abilities-nav button:disabled { color: #63727a; cursor: default; }
 .abilities-nav button small { font-size: 8px; }
 
 .abilities-content {
