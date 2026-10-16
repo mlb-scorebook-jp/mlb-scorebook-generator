@@ -479,12 +479,16 @@ body.app-mode-abilities #header-abilities-btn {
     text-align: center;
 }
 .ability-umpire-team-record {
-    display: inline-flex;
+    display: grid;
+    grid-template-columns: 32px 58px;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    column-gap: 8px;
+    width: 100%;
     white-space: nowrap;
 }
+.ability-umpire-team-record img,
+.ability-umpire-team-record strong { justify-self: center; }
 .ability-umpire-top-team img {
     width: 23px;
     height: 23px;
