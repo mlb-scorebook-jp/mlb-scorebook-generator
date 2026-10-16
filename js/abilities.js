@@ -557,7 +557,7 @@
         tbody.innerHTML = rows.length ? visibleRows.map((row) => {
             const videoUrl = `https://baseballsavant.mlb.com/sporty-videos?playId=${row.playId}`;
             const initiator = row.challengingTeam === "Umpire" ? "審判" : row.challengingTeam;
-            return `<tr><td>${row.date.replaceAll("-", "/")}</td><td>${row.awayTeam} @ ${row.homeTeam}</td><td>${initiator}</td><td>${escapeHtml(replayTypeName(row.type))}</td><td>${row.inning}回</td><td class="${row.overturned ? "replay-overturned" : "replay-confirmed"}">${row.overturned ? "成功" : "判定維持"}</td><td><a class="ability-value-link" href="${videoUrl}" target="_blank" rel="noopener noreferrer">映像 ↗</a></td></tr>`;
+            return `<tr><td>${row.date.replaceAll("-", "/")}</td><td>${row.awayTeam} @ ${row.homeTeam}</td><td>${initiator}</td><td>${escapeHtml(replayTypeName(row.type))}</td><td>${row.inning}回</td><td class="${row.overturned ? "replay-overturned" : "replay-confirmed"}">${row.overturned ? "成功" : "判定維持"}</td><td><a class="ability-value-link replay-video-link" href="${videoUrl}" target="_blank" rel="noopener noreferrer" aria-label="映像を再生" title="映像を再生">▶️</a></td></tr>`;
         }).join("") : `<tr><td colspan="7">条件に一致する記録はありません。</td></tr>`;
         const summary = content.querySelector("#ability-result-summary");
         if (summary) summary.textContent = `${Math.min(visibleRows.length, rows.length)} / ${rows.length}件を表示`;
