@@ -23,7 +23,6 @@
     const milesPerHourToKmh = (value) => value * 1.609344;
     const page = document.getElementById("abilities-page");
     const content = document.getElementById("abilities-content");
-    const sourceLink = document.getElementById("abilities-source-link");
 
     const escapeHtml = (value) => String(value ?? "")
         .replaceAll("&", "&amp;")
@@ -288,11 +287,9 @@
             button.classList.toggle("active", button.dataset.ability === ability);
         });
         if (ability === "exit-velocity") {
-            if (sourceLink) sourceLink.href = "https://baseballsavant.mlb.com/leaderboard/statcast?min=1&sort=exit_velocity_avg&sortDir=desc&type=batter&year=2026";
             renderExitVelocity();
             return;
         }
-        if (sourceLink) sourceLink.href = "https://baseballsavant.mlb.com/leaderboard/sprint_speed?max_season=2026&min=1&min_season=2026";
         renderSprintSpeed();
     };
 

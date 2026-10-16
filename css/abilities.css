@@ -82,16 +82,6 @@ body.app-mode-abilities #header-abilities-btn {
     font-size: 12px;
 }
 
-.abilities-source-link {
-    padding: 9px 13px;
-    color: #bfe8fa;
-    border: 1px solid #477487;
-    border-radius: 4px;
-    background: rgba(8, 25, 34, .7);
-    font-size: 11px;
-    text-decoration: none;
-}
-
 .abilities-layout {
     display: grid;
     grid-template-columns: 220px minmax(0, 1fr);
