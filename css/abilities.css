@@ -500,11 +500,29 @@ body.app-mode-abilities #header-abilities-btn {
     text-align: left;
 }
 .replay-umpire-table th:nth-child(3),
-.replay-umpire-table td:nth-child(3) { width: 125px; }
+.replay-umpire-table td:nth-child(3) {
+    width: 125px;
+    text-align: center;
+}
 .replay-umpire-table th:nth-child(4),
-.replay-umpire-table td:nth-child(4) { width: 90px; }
+.replay-umpire-table td:nth-child(4) {
+    width: 100px;
+    text-align: center;
+}
 .replay-umpire-table th:nth-child(5),
-.replay-umpire-table td:nth-child(5) { width: 80px; }
+.replay-umpire-table td:nth-child(5) {
+    width: 80px;
+    text-align: center;
+}
+.replay-umpire-table th:nth-child(6),
+.replay-umpire-table td:nth-child(6),
+.replay-umpire-table th:nth-child(7),
+.replay-umpire-table td:nth-child(7) {
+    width: 190px;
+    padding-left: 8px;
+    padding-right: 8px;
+    text-align: center;
+}
 .replay-umpire-table .replay-accurate { font-size: 14px; font-weight: 800; }
 .replay-umpire-table .replay-above-average,
 .replay-umpire-table .replay-above-average a { color: #72d5ff; }
