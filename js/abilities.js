@@ -46,7 +46,7 @@
         return `https://baseballsavant.mlb.com/savant-player/${slug}-${row.playerId}`;
     };
 
-    const savantRunningUrl = (row) => `${savantPlayerUrl(row)}?stats=statcast-r-running-mlb#statcast-running-statistics`;
+    const savantRunningUrl = (row) => `${savantPlayerUrl(row)}?stats=statcast-r-running-mlb#statcastRunning-tr_0`;
     const savantCustomUrl = (row, selections) =>
         `https://baseballsavant.mlb.com/leaderboard/custom?year=2026&type=batter&filter=${encodeURIComponent(row.player)}&sort=4&sortDir=desc&min=1&selections=${selections}&chart=false&x=pa&y=pa&r=no`;
 
