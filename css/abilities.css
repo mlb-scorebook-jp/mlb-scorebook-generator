@@ -247,7 +247,7 @@ body.app-mode-abilities #header-abilities-btn {
 }
 .ability-table th:nth-child(3),
 .ability-table td:nth-child(3) {
-    width: 180px;
+    width: 130px;
     padding-left: 6px;
     padding-right: 6px;
 }
@@ -264,7 +264,11 @@ body.app-mode-abilities #header-abilities-btn {
 .ability-table th:nth-child(9),
 .ability-table td:nth-child(9) { width: 84px; }
 .ability-table th:last-child,
-.ability-table td:last-child { width: 180px; }
+.ability-table td:last-child {
+    width: auto;
+    padding-left: 10px;
+    text-align: left;
+}
 .ability-table th:nth-child(n+4):nth-child(-n+9),
 .ability-table td:nth-child(n+4):nth-child(-n+9) {
     padding-left: 4px;
