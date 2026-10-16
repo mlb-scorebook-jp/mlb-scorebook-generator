@@ -10,6 +10,7 @@
     const defense2026 = Array.isArray(window.ABILITIES_DEFENSE_2026)
         ? window.ABILITIES_DEFENSE_2026
         : [];
+    const abs2026 = window.ABILITIES_ABS_2026 || {};
 
     const PAGE_SIZE = 50;
     const POSITION_ORDER = ["C", "1B", "2B", "3B", "SS", "LF", "CF", "RF", "DH", "TWP"];
@@ -35,6 +36,14 @@
         query: "",
         visibleCount: PAGE_SIZE,
         sortKey: "oaa",
+        sortDirection: "desc"
+    };
+    const absState = {
+        category: "overall",
+        team: "",
+        query: "",
+        visibleCount: PAGE_SIZE,
+        sortKey: "runsAboveAverage",
         sortDirection: "desc"
     };
     const feetPerSecondToKmh = (value) => value * 1.09728;
@@ -420,6 +429,111 @@
         renderDefenseTable();
     };
 
+    const absRows = () => Array.isArray(abs2026[absState.category]) ? abs2026[absState.category] : [];
+
+    const absLeaderboardUrl = () => {
+        const challengeType = absState.category === "overall" ? "team-summary" : absState.category;
+        const fielderMode = ["pitcher", "catcher"].includes(absState.category) ? "&fielderMode=as-challenger" : "";
+        return `https://baseballsavant.mlb.com/leaderboard/abs-challenges?challengeType=${challengeType}${fielderMode}&gameType%5B%5D=R&level=mlb&minChal=1&minOppChal=0&season%5B%5D=2026&splitYear=1`;
+    };
+
+    const filteredAbsRows = () => absRows().filter((row) => {
+        if (absState.team && row.team !== absState.team) return false;
+        const displayName = absState.category === "overall" ? row.name : japanesePlayerName(row.name);
+        if (absState.query && !`${row.name} ${displayName} ${row.team}`.toLowerCase().includes(absState.query)) return false;
+        return true;
+    });
+
+    const sortedAbsRows = () => filteredAbsRows().sort((a, b) => {
+        const direction = absState.sortDirection === "asc" ? 1 : -1;
+        return (a[absState.sortKey] - b[absState.sortKey]) * direction || a.name.localeCompare(b.name);
+    });
+
+    const renderAbsTable = () => {
+        const tbody = content?.querySelector("#abs-body");
+        if (!tbody) return;
+        const rows = sortedAbsRows();
+        const visibleRows = rows.slice(0, absState.visibleCount);
+        const url = absLeaderboardUrl();
+        const valueLink = (value) => `<a class="ability-value-link" href="${url}" target="_blank" rel="noopener noreferrer">${value}</a>`;
+        tbody.innerHTML = rows.length ? visibleRows.map((row, index) => {
+            const name = absState.category === "overall" ? row.name : japanesePlayerName(row.name);
+            const signedRuns = `${row.runsAboveAverage > 0 ? "+" : ""}${row.runsAboveAverage.toFixed(1)}`;
+            return `<tr>
+                <td class="ability-rank">${index + 1}</td>
+                <td class="ability-team"><img src="https://www.mlbstatic.com/team-logos/${row.teamId}.svg" alt="${escapeHtml(row.team)}" title="${escapeHtml(row.team)}" loading="lazy"></td>
+                <td class="ability-player">${escapeHtml(name)}</td>
+                <td class="ability-abs-record">${valueLink(`${row.won}/${row.challenges}`)}</td>
+                <td>${valueLink(row.lost)}</td>
+                <td class="ability-abs-rate">${valueLink(`${(row.winRate * 100).toFixed(1)}%`)}</td>
+                <td>${valueLink(row.strikeouts)}</td>
+                <td>${valueLink(row.walks)}</td>
+                <td class="ability-defense-value">${valueLink(signedRuns)}</td>
+            </tr>`;
+        }).join("") : `<tr><td colspan="9">条件に一致する記録はありません。</td></tr>`;
+
+        content.querySelectorAll("[data-abs-sort]").forEach((button) => {
+            const active = button.dataset.absSort === absState.sortKey;
+            button.classList.toggle("active", active);
+            button.dataset.direction = active ? absState.sortDirection : "";
+            button.setAttribute("aria-sort", active ? (absState.sortDirection === "desc" ? "descending" : "ascending") : "none");
+        });
+        const summary = content.querySelector("#ability-result-summary");
+        if (summary) summary.textContent = `${Math.min(visibleRows.length, rows.length)} / ${rows.length}${absState.category === "overall" ? "チーム" : "人"}を表示`;
+        const moreButton = content.querySelector("#ability-show-more");
+        if (moreButton) moreButton.hidden = visibleRows.length >= rows.length;
+    };
+
+    const renderAbs = () => {
+        if (!content) return;
+        const categories = [{ key: "overall", label: "総合" }, { key: "pitcher", label: "投手" }, { key: "catcher", label: "捕手" }, { key: "batter", label: "打者" }];
+        const rows = absRows();
+        const teams = [...new Set(rows.map((row) => row.team))].sort();
+        const totalChallenges = rows.reduce((total, row) => total + row.challenges, 0);
+        const totalWon = rows.reduce((total, row) => total + row.won, 0);
+        const leagueRate = totalChallenges ? totalWon / totalChallenges * 100 : 0;
+        const sortHeader = (label, key) => `<button type="button" class="ability-sort-button" data-abs-sort="${key}">${label}<span aria-hidden="true"></span></button>`;
+        content.innerHTML = `
+            <section class="ability-hero">
+                <div><h3>ABS｜チャレンジ</h3></div>
+                <div class="ability-scale"><div><strong>${leagueRate.toFixed(1)}%</strong><span>${absState.category === "overall" ? "MLB全体" : categories.find((item) => item.key === absState.category)?.label} 成功率</span></div></div>
+            </section>
+            <div class="ability-subtabs" role="tablist" aria-label="ABS集計区分">
+                ${categories.map((item) => `<button type="button" role="tab" data-abs-category="${item.key}" class="${item.key === absState.category ? "active" : ""}" aria-selected="${item.key === absState.category}">${item.label}</button>`).join("")}
+            </div>
+            <div class="ability-controls abs-controls">
+                <select id="ability-team" aria-label="チーム"><option value="">全チーム</option>${teams.map((value) => `<option value="${value}" ${value === absState.team ? "selected" : ""}>${value}</option>`).join("")}</select>
+                <input id="ability-search" type="search" value="${escapeHtml(absState.query)}" placeholder="${absState.category === "overall" ? "チーム名で検索" : "選手名・チームで検索"}" aria-label="ABS検索">
+            </div>
+            <div class="ability-table-wrap"><table class="ability-table abs-table">
+                <thead><tr><th>順位</th><th>TEAM</th><th>${absState.category === "overall" ? "チーム" : "選手"}</th><th>${sortHeader("成功/チャレンジ", "won")}</th><th>${sortHeader("失敗", "lost")}</th><th>${sortHeader("成功率", "winRate")}</th><th>${sortHeader("+K", "strikeouts")}</th><th>${sortHeader("-BB", "walks")}</th><th>${sortHeader("平均比", "runsAboveAverage")}</th></tr></thead>
+                <tbody id="abs-body"></tbody>
+            </table></div>
+            <div class="ability-table-footer"><span id="ability-result-summary"></span><button type="button" id="ability-show-more">さらに50件表示</button></div>
+            <p class="ability-table-note">2026年レギュラーシーズン／1回以上チャレンジしたチーム・選手。成功は判定覆り、失敗は判定維持。「平均比」は同じ状況・同じ投球を経験した平均的な選手との得点価値差です。Baseball Savant公式ABS集計を参照（2026年10月16日時点）。</p>`;
+
+        content.querySelectorAll("[data-abs-category]").forEach((button) => button.addEventListener("click", () => {
+            absState.category = button.dataset.absCategory;
+            absState.team = "";
+            absState.query = "";
+            absState.visibleCount = PAGE_SIZE;
+            absState.sortKey = "runsAboveAverage";
+            absState.sortDirection = "desc";
+            renderAbs();
+        }));
+        content.querySelector("#ability-team")?.addEventListener("change", (event) => { absState.team = event.target.value; absState.visibleCount = PAGE_SIZE; renderAbsTable(); });
+        content.querySelector("#ability-search")?.addEventListener("input", (event) => { absState.query = event.target.value.trim().toLowerCase(); absState.visibleCount = PAGE_SIZE; renderAbsTable(); });
+        content.querySelectorAll("[data-abs-sort]").forEach((button) => button.addEventListener("click", () => {
+            const key = button.dataset.absSort;
+            if (absState.sortKey === key) absState.sortDirection = absState.sortDirection === "desc" ? "asc" : "desc";
+            else { absState.sortKey = key; absState.sortDirection = "desc"; }
+            absState.visibleCount = PAGE_SIZE;
+            renderAbsTable();
+        }));
+        content.querySelector("#ability-show-more")?.addEventListener("click", () => { absState.visibleCount += PAGE_SIZE; renderAbsTable(); });
+        renderAbsTable();
+    };
+
     const showAbility = (ability) => {
         page?.querySelectorAll("[data-ability]").forEach((button) => {
             button.classList.toggle("active", button.dataset.ability === ability);
@@ -430,6 +544,10 @@
         }
         if (ability === "defense") {
             renderDefense();
+            return;
+        }
+        if (ability === "abs") {
+            renderAbs();
             return;
         }
         renderSprintSpeed();
