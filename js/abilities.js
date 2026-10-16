@@ -57,8 +57,8 @@
             const width = Math.max(0, Math.min(100, ((row.speed - 23) / 7.5) * 100));
             return `<tr>
                 <td class="ability-rank">${rank}</td>
-                <td class="ability-player">${escapeHtml(japanesePlayerName(row.player))}</td>
                 <td class="ability-team"><img src="https://www.mlbstatic.com/team-logos/${row.teamId}.svg" alt="${escapeHtml(row.team)}" title="${escapeHtml(row.team)}" loading="lazy"></td>
+                <td class="ability-player">${escapeHtml(japanesePlayerName(row.player))}</td>
                 <td>${row.age}</td>
                 <td>${escapeHtml(row.position)}</td>
                 <td>${row.hp1b === null ? "—" : `${row.hp1b.toFixed(2)}秒`}</td>
@@ -94,7 +94,7 @@
             </div>
             <div class="ability-table-wrap">
                 <table class="ability-table">
-                    <thead><tr><th>順位</th><th>選手</th><th>TEAM</th><th>年齢</th><th>守備</th><th>本塁→１塁</th><th>SPRINT SPEED km/h</th></tr></thead>
+                    <thead><tr><th>順位</th><th>TEAM</th><th>選手</th><th>年齢</th><th>守備</th><th>本塁→１塁</th><th>SPRINT SPEED km/h</th></tr></thead>
                     <tbody id="sprint-speed-body"></tbody>
                 </table>
             </div>
