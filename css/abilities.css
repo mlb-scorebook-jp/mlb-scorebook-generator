@@ -503,23 +503,26 @@ body.app-mode-abilities #header-abilities-btn {
 .missed-role-tabs { grid-template-columns: repeat(2, minmax(120px, 1fr)); }
 .missed-call-controls { grid-template-columns: 220px minmax(240px, 1fr); }
 .missed-call-table th,
-.missed-call-table td { text-align: center; }
+.missed-call-table td { padding-left: 8px; padding-right: 8px; text-align: center; }
+.missed-call-table { table-layout: fixed; }
+.missed-call-table th:nth-child(1),
+.missed-call-table td:nth-child(1) { width: 6%; }
 .missed-call-table th:nth-child(2),
-.missed-call-table td:nth-child(2) { width: 58px; }
+.missed-call-table td:nth-child(2) { width: 7%; }
 .missed-call-table th:nth-child(3),
-.missed-call-table td:nth-child(3) { width: 230px; text-align: left; }
+.missed-call-table td:nth-child(3) { width: 27%; text-align: left; }
 .missed-call-table th:nth-child(4),
 .missed-call-table td:nth-child(4),
 .missed-call-table th:nth-child(5),
-.missed-call-table td:nth-child(5) { width: 105px; }
+.missed-call-table td:nth-child(5) { width: 11%; }
 .missed-call-table th:nth-child(6),
-.missed-call-table td:nth-child(6) { width: 120px; }
+.missed-call-table td:nth-child(6) { width: 14%; }
 .missed-call-table th:nth-child(7),
-.missed-call-table td:nth-child(7) { width: 190px; }
+.missed-call-table td:nth-child(7) { width: 24%; }
 .ability-missed-count { color: #ff8b7b; font-size: 15px; font-weight: 800; }
 .ability-missed-impact { color: #f1c674; font-weight: 800; }
-.ability-missed-umpire { font-weight: 700; }
-.ability-missed-umpire small { display: block; margin-top: 3px; color: #72d5ff; font-size: 10px; }
+.ability-missed-umpire { font-weight: 700; white-space: nowrap; }
+.ability-missed-umpire small { margin-left: 8px; color: #72d5ff; font-size: 11px; }
 
 .replay-subtabs { grid-template-columns: repeat(4, minmax(100px, 1fr)); }
 .replay-controls { grid-template-columns: 180px minmax(200px, 1fr); }
