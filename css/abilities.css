@@ -210,7 +210,7 @@ body.app-mode-abilities #header-abilities-btn {
 
 .ability-table {
     width: 100%;
-    min-width: 1080px;
+    table-layout: fixed;
     border-collapse: collapse;
     font-size: 12px;
 }
@@ -252,6 +252,18 @@ body.app-mode-abilities #header-abilities-btn {
 }
 .ability-table th:nth-child(4),
 .ability-table td:nth-child(4) { width: 52px; }
+.ability-table th:nth-child(5),
+.ability-table td:nth-child(5) { width: 60px; }
+.ability-table th:nth-child(6),
+.ability-table td:nth-child(6) { width: 56px; }
+.ability-table th:nth-child(7),
+.ability-table td:nth-child(7) { width: 100px; }
+.ability-table th:nth-child(8),
+.ability-table td:nth-child(8) { width: 110px; }
+.ability-table th:nth-child(9),
+.ability-table td:nth-child(9) { width: 105px; }
+.ability-table th:last-child,
+.ability-table td:last-child { width: 180px; }
 .ability-table td {
     padding: 11px 12px;
     border-bottom: 1px solid #2f3b41;
