@@ -18,6 +18,13 @@
     const replay2026 = Array.isArray(window.ABILITIES_REPLAY_2026)
         ? window.ABILITIES_REPLAY_2026
         : [];
+    const replayUmpires2026 = Array.isArray(window.ABILITIES_REPLAY_UMPIRES_2026)
+        ? window.ABILITIES_REPLAY_UMPIRES_2026
+        : [];
+    const replayUmpireAttempts = replayUmpires2026.reduce((total, row) => total + row.attempts, 0);
+    const replayUmpireAverage = replayUmpireAttempts
+        ? replayUmpires2026.reduce((total, row) => total + row.upheld, 0) / replayUmpireAttempts
+        : 0;
 
     const PAGE_SIZE = 50;
     const POSITION_ORDER = ["C", "1B", "2B", "3B", "SS", "LF", "CF", "RF", "DH", "TWP"];
@@ -504,7 +511,9 @@
         return [...grouped.values()].map((row) => ({ ...row, successRate: row.attempts ? row.won / row.attempts : 0 }));
     };
 
-    const replayRowsForView = () => replayState.view === "team" ? replayTeamRows() : replayTypeRows();
+    const replayRowsForView = () => replayState.view === "team"
+        ? replayTeamRows()
+        : replayState.view === "umpire" ? [...replayUmpires2026] : replayTypeRows();
     const replayBaseUrl = "https://baseballsavant.mlb.com/replay?year=2026";
 
     const renderReplaySummaryTable = () => {
@@ -516,12 +525,14 @@
         if (replayState.query) rows = rows.filter((row) => {
             const searchable = replayState.view === "team"
                 ? `${row.team} ${japaneseTeamName(row)}`
-                : `${row.type} ${replayTypeName(row.type)}`;
+                : replayState.view === "umpire"
+                    ? `${row.name} ${umpireNamesJa[row.name] || ""} ${replayTypeName(row.mostOverturnedType)} ${replayTypeName(row.mostUpheldType)}`
+                    : `${row.type} ${replayTypeName(row.type)}`;
             return searchable.toLowerCase().includes(replayState.query);
         });
         const direction = replayState.sortDirection === "asc" ? 1 : -1;
         rows.sort((a, b) => (a[replayState.sortKey] - b[replayState.sortKey]) * direction ||
-            String(a.team || a.type).localeCompare(String(b.team || b.type)));
+            String(a.team || a.type || a.name).localeCompare(String(b.team || b.type || b.name)));
         const link = (value) => `<a class="ability-value-link" href="${replayBaseUrl}" target="_blank" rel="noopener noreferrer">${value}</a>`;
         tbody.innerHTML = rows.length ? rows.map((row, index) => replayState.view === "team" ? `<tr>
             <td class="ability-rank">${index + 1}</td>
@@ -530,6 +541,14 @@
             <td class="ability-replay-record">${link(`${row.won}/${row.attempts}`)}</td>
             <td class="ability-replay-rate">${link(`${(row.successRate * 100).toFixed(1)}%`)}</td>
             <td>${escapeHtml(replayTypeName(row.mainType))}</td>
+        </tr>` : replayState.view === "umpire" ? `<tr>
+            <td class="ability-rank">${index + 1}</td>
+            <td class="ability-player" title="${escapeHtml(row.name)}">${escapeHtml(umpireNamesJa[row.name] || row.name)}</td>
+            <td class="ability-replay-record">${link(`${row.upheld}/${row.attempts}`)}</td>
+            <td class="replay-accurate ${row.upheldRate >= replayUmpireAverage ? "replay-above-average" : "replay-below-average"}">${link(`${(row.upheldRate * 100).toFixed(1)}%`)}</td>
+            <td class="replay-overturned-count">${link(row.overturned)}</td>
+            <td>${escapeHtml(replayTypeName(row.mostOverturnedType))}</td>
+            <td>${escapeHtml(replayTypeName(row.mostUpheldType))}</td>
         </tr>` : `<tr>
             <td class="ability-rank">${index + 1}</td>
             <td class="ability-player">${escapeHtml(replayTypeName(row.type))}</td>
@@ -543,7 +562,7 @@
             button.dataset.direction = active ? replayState.sortDirection : "";
         });
         const summary = content.querySelector("#ability-result-summary");
-        if (summary) summary.textContent = `${rows.length}${replayState.view === "team" ? "チーム" : "種類"}を表示`;
+        if (summary) summary.textContent = `${rows.length}${replayState.view === "team" ? "チーム" : replayState.view === "umpire" ? "人" : "種類"}を表示`;
     };
 
     const filteredReplayHistory = () => replay2026.filter((row) => {
@@ -571,24 +590,28 @@
 
     const renderReplay = () => {
         if (!content) return;
-        const views = [{ key: "team", label: "TEAM" }, { key: "type", label: "判定種類" }, { key: "history", label: "履歴" }];
+        const views = [{ key: "team", label: "TEAM" }, { key: "type", label: "判定種類" }, { key: "umpire", label: "審判" }, { key: "history", label: "履歴" }];
         const teamCodes = [...new Set(replay2026.filter((row) => row.challengingTeamId).map((row) => row.challengingTeam))].sort();
         const types = [...new Set(replay2026.map((row) => row.type))].sort((a, b) => replayTypeName(a).localeCompare(replayTypeName(b), "ja"));
         const won = replay2026.filter((row) => row.overturned).length;
         const rate = replay2026.length ? won / replay2026.length * 100 : 0;
+        const heroRate = replayState.view === "umpire" ? replayUmpireAverage * 100 : rate;
+        const heroLabel = replayState.view === "umpire" ? "対象判定 平均維持率" : "MLB全体 覆った割合";
         const sortHeader = (label, key) => `<button type="button" class="ability-sort-button" data-replay-sort="${key}">${label}<span aria-hidden="true"></span></button>`;
         const controls = replayState.view === "team" ? `<select id="replay-team"><option value="">全チーム</option>${teamCodes.map((value) => `<option value="${value}">${value}</option>`).join("")}</select>`
             : replayState.view === "type" ? `<select id="replay-type"><option value="">全判定</option>${types.map((value) => `<option value="${value}">${replayTypeName(value)}</option>`).join("")}</select>`
+            : replayState.view === "umpire" ? ""
             : `<select id="replay-team"><option value="">全チーム・審判</option><option value="Umpire">審判</option>${teamCodes.map((value) => `<option value="${value}">${value}</option>`).join("")}</select><select id="replay-type"><option value="">全判定</option>${types.map((value) => `<option value="${value}">${replayTypeName(value)}</option>`).join("")}</select>`;
         const table = replayState.view === "history" ? `<table class="ability-table replay-history-table"><thead><tr><th>日付</th><th>対戦</th><th>実施</th><th>判定種類</th><th>回</th><th>結果</th><th>VIDEO</th></tr></thead><tbody id="replay-history-body"></tbody></table>`
             : replayState.view === "team" ? `<table class="ability-table replay-table"><thead><tr><th>順位</th><th>TEAM</th><th>チーム</th><th>${sortHeader("成功/実施", "won")}</th><th>${sortHeader("成功率", "successRate")}</th><th>最多の判定</th></tr></thead><tbody id="replay-body"></tbody></table>`
+            : replayState.view === "umpire" ? `<table class="ability-table replay-umpire-table"><thead><tr><th>順位</th><th>審判</th><th>${sortHeader("判定維持/対象", "upheld")}</th><th>${sortHeader("判定維持率", "upheldRate")}</th><th>${sortHeader("覆り", "overturned")}</th><th>最多覆り判定</th><th>最多維持判定</th></tr></thead><tbody id="replay-body"></tbody></table>`
             : `<table class="ability-table replay-type-table"><thead><tr><th>順位</th><th>判定種類</th><th>${sortHeader("成功/実施", "won")}</th><th>${sortHeader("成功率", "successRate")}</th><th>${sortHeader("チーム", "teamReviews")}</th><th>${sortHeader("審判", "umpireReviews")}</th></tr></thead><tbody id="replay-body"></tbody></table>`;
-        content.innerHTML = `<section class="ability-hero"><div><h3>チャレンジ｜プレー判定</h3></div><div class="ability-scale"><div><strong>${rate.toFixed(1)}%</strong><span>MLB全体 覆った割合</span></div></div></section>
+        content.innerHTML = `<section class="ability-hero"><div><h3>チャレンジ｜プレー判定</h3></div><div class="ability-scale"><div><strong>${heroRate.toFixed(1)}%</strong><span>${heroLabel}</span></div></div></section>
             <div class="ability-subtabs replay-subtabs">${views.map((item) => `<button type="button" data-replay-view="${item.key}" class="${item.key === replayState.view ? "active" : ""}">${item.label}</button>`).join("")}</div>
-            <div class="ability-controls replay-controls">${controls}<input id="replay-search" type="search" placeholder="検索"></div>
+            <div class="ability-controls replay-controls${replayState.view === "umpire" ? " replay-umpire-controls" : ""}">${controls}<input id="replay-search" type="search" placeholder="検索"></div>
             <div class="ability-table-wrap">${table}</div><div class="ability-table-footer"><span id="ability-result-summary"></span>${replayState.view === "history" ? '<button type="button" id="ability-show-more">さらに50件表示</button>' : ""}</div>
-            <p class="ability-table-note">2026年レギュラーシーズン。TEAMは監督チャレンジのみ。判定種類と履歴には審判主導レビューも含みます。Baseball Savant公式Instant Replay Databaseを参照（2026年10月16日時点）。</p>`;
-        content.querySelectorAll("[data-replay-view]").forEach((button) => button.addEventListener("click", () => { replayState.view = button.dataset.replayView; replayState.team = ""; replayState.type = ""; replayState.query = ""; replayState.visibleCount = PAGE_SIZE; replayState.sortKey = "successRate"; replayState.sortDirection = "desc"; renderReplay(); }));
+            <p class="ability-table-note">2026年レギュラーシーズン。TEAMは監督チャレンジのみ。判定種類と履歴には審判主導レビューも含みます。審判ランキングは担当を確実に特定できる１塁クロスプレー、死球、捕手妨害、本塁衝突の589件のみを集計しており、全判定の評価ではありません。Baseball Savant公式Instant Replay Database・MLB公式試合記録を参照（2026年10月16日時点）。</p>`;
+        content.querySelectorAll("[data-replay-view]").forEach((button) => button.addEventListener("click", () => { replayState.view = button.dataset.replayView; replayState.team = ""; replayState.type = ""; replayState.query = ""; replayState.visibleCount = PAGE_SIZE; replayState.sortKey = replayState.view === "umpire" ? "upheldRate" : "successRate"; replayState.sortDirection = "desc"; renderReplay(); }));
         content.querySelector("#replay-team")?.addEventListener("change", (event) => { replayState.team = event.target.value; replayState.visibleCount = PAGE_SIZE; replayState.view === "history" ? renderReplayHistory() : renderReplaySummaryTable(); });
         content.querySelector("#replay-type")?.addEventListener("change", (event) => { replayState.type = event.target.value; replayState.visibleCount = PAGE_SIZE; replayState.view === "history" ? renderReplayHistory() : renderReplaySummaryTable(); });
         content.querySelector("#replay-search")?.addEventListener("input", (event) => { replayState.query = event.target.value.trim().toLowerCase(); replayState.visibleCount = PAGE_SIZE; replayState.view === "history" ? renderReplayHistory() : renderReplaySummaryTable(); });
