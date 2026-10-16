@@ -2,17 +2,17 @@
     "use strict";
 
     const sprintSpeed2026 = [
-        { player: "Cam Cauley", team: "TEX", teamId: 140, age: 23, throwBat: "右/右", position: "CF", runs: 24, bolts: 16, hp1b: 4.09, hits: 12, infieldHits: 3, stolenBases: 1, stolenBaseAttempts: 1, speed: 30.5 },
-        { player: "Henry Bolte", team: "ATH", teamId: 133, age: 22, throwBat: "右/右", position: "CF", runs: 199, bolts: 118, hp1b: 4.18, hits: 115, infieldHits: 17, stolenBases: 21, stolenBaseAttempts: 29, speed: 30.5 },
-        { player: "Carlos Jorge", team: "CIN", teamId: 113, age: 22, throwBat: "右/左", position: "CF", runs: 16, bolts: 12, hp1b: null, hits: 10, infieldHits: 2, stolenBases: 2, stolenBaseAttempts: 3, speed: 30.4 },
-        { player: "Eli White", team: "BOS", teamId: 111, age: 32, throwBat: "右/右", position: "RF", runs: 108, bolts: 54, hp1b: 4.19, hits: 47, infieldHits: 9, stolenBases: 5, stolenBaseAttempts: 6, speed: 30.3 },
-        { player: "Jorge Mateo", team: "TB", teamId: 139, age: 31, throwBat: "右/右", position: "SS", runs: 75, bolts: 36, hp1b: 4.14, hits: 42, infieldHits: 6, stolenBases: 19, stolenBaseAttempts: 23, speed: 30.2 },
-        { player: "Tommy Troy", team: "AZ", teamId: 109, age: 24, throwBat: "右/右", position: "LF", runs: 55, bolts: 30, hp1b: 4.16, hits: 28, infieldHits: 4, stolenBases: 1, stolenBaseAttempts: 1, speed: 30.1 },
-        { player: "Bobby Witt Jr.", team: "KC", teamId: 118, age: 26, throwBat: "右/右", position: "SS", runs: 242, bolts: 94, hp1b: 4.17, hits: 157, infieldHits: 15, stolenBases: 45, stolenBaseAttempts: 53, speed: 30.1 },
-        { player: "Jose Siri", team: "LAA", teamId: 108, age: 30, throwBat: "右/右", position: "CF", runs: 83, bolts: 31, hp1b: 4.24, hits: 55, infieldHits: 8, stolenBases: 9, stolenBaseAttempts: 10, speed: 30.0 },
-        { player: "Jonah Cox", team: "SF", teamId: 137, age: 24, throwBat: "右/右", position: "CF", runs: 50, bolts: 30, hp1b: 4.18, hits: 38, infieldHits: 4, stolenBases: 16, stolenBaseAttempts: 20, speed: 30.0 },
-        { player: "Jake McCarthy", team: "COL", teamId: 115, age: 28, throwBat: "左/左", position: "LF", runs: 265, bolts: 109, hp1b: 4.17, hits: 159, infieldHits: 16, stolenBases: 32, stolenBaseAttempts: 38, speed: 30.0 },
-        { player: "Trea Turner", team: "PHI", teamId: 143, age: 33, throwBat: "右/右", position: "SS", runs: 236, bolts: 98, hp1b: 4.24, hits: 156, infieldHits: 18, stolenBases: 21, stolenBaseAttempts: 25, speed: 29.9 }
+        { player: "Cam Cauley", playerId: 695508, team: "TEX", teamId: 140, age: 23, throwBat: "右/右", position: "CF", runs: 24, bolts: 16, hp1b: 4.09, hits: 12, infieldHits: 3, stolenBases: 1, stolenBaseAttempts: 1, speed: 30.5 },
+        { player: "Henry Bolte", playerId: 703607, team: "ATH", teamId: 133, age: 22, throwBat: "右/右", position: "CF", runs: 199, bolts: 118, hp1b: 4.18, hits: 115, infieldHits: 17, stolenBases: 21, stolenBaseAttempts: 29, speed: 30.5 },
+        { player: "Carlos Jorge", playerId: 699115, team: "CIN", teamId: 113, age: 22, throwBat: "右/左", position: "CF", runs: 16, bolts: 12, hp1b: null, hits: 10, infieldHits: 2, stolenBases: 2, stolenBaseAttempts: 3, speed: 30.4 },
+        { player: "Eli White", playerId: 642201, team: "BOS", teamId: 111, age: 32, throwBat: "右/右", position: "RF", runs: 108, bolts: 54, hp1b: 4.19, hits: 47, infieldHits: 9, stolenBases: 5, stolenBaseAttempts: 6, speed: 30.3 },
+        { player: "Jorge Mateo", playerId: 622761, team: "TB", teamId: 139, age: 31, throwBat: "右/右", position: "SS", runs: 75, bolts: 36, hp1b: 4.14, hits: 42, infieldHits: 6, stolenBases: 19, stolenBaseAttempts: 23, speed: 30.2 },
+        { player: "Tommy Troy", playerId: 694371, team: "AZ", teamId: 109, age: 24, throwBat: "右/右", position: "LF", runs: 55, bolts: 30, hp1b: 4.16, hits: 28, infieldHits: 4, stolenBases: 1, stolenBaseAttempts: 1, speed: 30.1 },
+        { player: "Bobby Witt Jr.", playerId: 677951, team: "KC", teamId: 118, age: 26, throwBat: "右/右", position: "SS", runs: 242, bolts: 94, hp1b: 4.17, hits: 157, infieldHits: 15, stolenBases: 45, stolenBaseAttempts: 53, speed: 30.1 },
+        { player: "Jose Siri", playerId: 642350, team: "LAA", teamId: 108, age: 30, throwBat: "右/右", position: "CF", runs: 83, bolts: 31, hp1b: 4.24, hits: 55, infieldHits: 8, stolenBases: 9, stolenBaseAttempts: 10, speed: 30.0 },
+        { player: "Jonah Cox", playerId: 813841, team: "SF", teamId: 137, age: 24, throwBat: "右/右", position: "CF", runs: 50, bolts: 30, hp1b: 4.18, hits: 38, infieldHits: 4, stolenBases: 16, stolenBaseAttempts: 20, speed: 30.0 },
+        { player: "Jake McCarthy", playerId: 664983, team: "COL", teamId: 115, age: 28, throwBat: "左/左", position: "LF", runs: 265, bolts: 109, hp1b: 4.17, hits: 159, infieldHits: 16, stolenBases: 32, stolenBaseAttempts: 38, speed: 30.0 },
+        { player: "Trea Turner", playerId: 607208, team: "PHI", teamId: 143, age: 33, throwBat: "右/右", position: "SS", runs: 236, bolts: 98, hp1b: 4.24, hits: 156, infieldHits: 18, stolenBases: 21, stolenBaseAttempts: 25, speed: 29.9 }
     ];
 
     const state = { team: "", position: "", query: "" };
@@ -41,6 +41,11 @@
         }
     };
 
+    const savantPlayerUrl = (row) => {
+        const slug = row.player.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+        return `https://baseballsavant.mlb.com/savant-player/${slug}-${row.playerId}`;
+    };
+
     const filteredRows = () => sprintSpeed2026.filter((row) => {
         if (state.team && row.team !== state.team) return false;
         if (state.position && row.position !== state.position) return false;
@@ -55,6 +60,7 @@
         tbody.innerHTML = rows.length ? rows.map((row) => {
             const rank = sprintSpeed2026.indexOf(row) + 1;
             const width = Math.max(0, Math.min(100, ((row.speed - 23) / 7.5) * 100));
+            const savantUrl = savantPlayerUrl(row);
             return `<tr>
                 <td class="ability-rank">${rank}</td>
                 <td class="ability-team"><img src="https://www.mlbstatic.com/team-logos/${row.teamId}.svg" alt="${escapeHtml(row.team)}" title="${escapeHtml(row.team)}" loading="lazy"></td>
@@ -62,10 +68,10 @@
                 <td>${row.age}</td>
                 <td>${row.throwBat}</td>
                 <td>${escapeHtml(row.position)}</td>
-                <td>${row.hp1b === null ? "—" : `${row.hp1b.toFixed(2)}秒`}</td>
-                <td>${row.infieldHits}/${row.hits}</td>
-                <td>${row.stolenBases}/${row.stolenBaseAttempts}</td>
-                <td class="ability-speed"><span class="ability-speed-bar"><i style="width:${width.toFixed(1)}%"></i></span>${feetPerSecondToKmh(row.speed).toFixed(1)}</td>
+                <td>${row.hp1b === null ? "—" : `<a class="ability-value-link" href="${savantUrl}" target="_blank" rel="noopener noreferrer">${row.hp1b.toFixed(2)}秒</a>`}</td>
+                <td><a class="ability-value-link" href="${savantUrl}" target="_blank" rel="noopener noreferrer">${row.infieldHits}/${row.hits}</a></td>
+                <td><a class="ability-value-link" href="${savantUrl}" target="_blank" rel="noopener noreferrer">${row.stolenBases}/${row.stolenBaseAttempts}</a></td>
+                <td class="ability-speed"><a class="ability-value-link" href="${savantUrl}" target="_blank" rel="noopener noreferrer"><span class="ability-speed-bar"><i style="width:${width.toFixed(1)}%"></i></span>${feetPerSecondToKmh(row.speed).toFixed(1)}</a></td>
             </tr>`;
         }).join("") : `<tr><td colspan="10">条件に一致する選手はいません。</td></tr>`;
     };
@@ -97,7 +103,7 @@
             </div>
             <div class="ability-table-wrap">
                 <table class="ability-table">
-                    <thead><tr><th>順位</th><th>TEAM</th><th>選手</th><th>年齢</th><th>投/打</th><th>守備</th><th><a class="ability-source-link" href="https://baseballsavant.mlb.com/leaderboard/sprint_speed?max_season=2026&min=10&min_season=2026&position=&sort=6&sortDir=asc&team=" target="_blank" rel="noopener noreferrer">本塁→１塁</a></th><th><a class="ability-source-link" href="https://baseballsavant.mlb.com/leaderboard/custom?year=2026&type=batter&filter=&sort=4&sortDir=desc&min=1&selections=pa,hits,infield_hits&chart=false&x=pa&y=pa&r=no" target="_blank" rel="noopener noreferrer">内野安打<br><small>実数/安打数</small></a></th><th><a class="ability-source-link" href="https://baseballsavant.mlb.com/leaderboard/custom?year=2026&type=batter&filter=&sort=4&sortDir=desc&min=1&selections=pa,stolen_bases,caught_stealing&chart=false&x=pa&y=pa&r=no" target="_blank" rel="noopener noreferrer">盗塁<br><small>成功数/企図数</small></a></th><th><a class="ability-source-link" href="https://baseballsavant.mlb.com/leaderboard/sprint_speed?max_season=2026&min=10&min_season=2026&position=&sort=7&sortDir=desc&team=" target="_blank" rel="noopener noreferrer">SPRINT SPEED km/h</a></th></tr></thead>
+                    <thead><tr><th>順位</th><th>TEAM</th><th>選手</th><th>年齢</th><th>投/打</th><th>守備</th><th>本塁→１塁</th><th>内野安打<br><small>実数/安打数</small></th><th>盗塁<br><small>成功数/企図数</small></th><th>SPRINT SPEED km/h</th></tr></thead>
                     <tbody id="sprint-speed-body"></tbody>
                 </table>
             </div>
