@@ -449,7 +449,27 @@ body.app-mode-abilities #header-abilities-btn {
 .ability-abs-rate { color: #72d5ff; font-weight: 800; }
 .ability-abs-distance { color: #f1c674; font-weight: 800; }
 .abs-umpire-table th:nth-child(2),
-.abs-umpire-table td:nth-child(2) { text-align: left; }
+.abs-umpire-table td:nth-child(2) {
+    width: 220px;
+    padding-left: 16px;
+    text-align: left;
+}
+.abs-umpire-table th:nth-child(3),
+.abs-umpire-table td:nth-child(3) {
+    width: 130px;
+    text-align: center;
+}
+.abs-umpire-table th:nth-child(4),
+.abs-umpire-table td:nth-child(4) { width: 100px; }
+.abs-umpire-table th:nth-child(5),
+.abs-umpire-table td:nth-child(5) { width: 120px; }
+.abs-umpire-table th:nth-child(6),
+.abs-umpire-table td:nth-child(6),
+.abs-umpire-table th:nth-child(7),
+.abs-umpire-table td:nth-child(7) {
+    width: 100px;
+    text-align: center;
+}
 
 .replay-subtabs { grid-template-columns: repeat(3, minmax(110px, 1fr)); }
 .replay-controls { grid-template-columns: 180px minmax(200px, 1fr); }
