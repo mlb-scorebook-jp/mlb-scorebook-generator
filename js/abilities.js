@@ -497,7 +497,7 @@
         const sortHeader = (label, key) => `<button type="button" class="ability-sort-button" data-abs-sort="${key}">${label}<span aria-hidden="true"></span></button>`;
         content.innerHTML = `
             <section class="ability-hero">
-                <div><h3>ABS｜チャレンジ</h3></div>
+                <div><h3>ABS｜ボール・ストライク判定</h3></div>
                 <div class="ability-scale"><div><strong>${leagueRate.toFixed(1)}%</strong><span>${absState.category === "overall" ? "MLB全体" : categories.find((item) => item.key === absState.category)?.label} 成功率</span></div></div>
             </section>
             <div class="ability-subtabs" role="tablist" aria-label="ABS集計区分">
