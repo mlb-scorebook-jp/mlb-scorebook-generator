@@ -763,11 +763,12 @@
         ? missedCalls2026[missedCallState.callType][missedCallState.role]
         : [];
 
-    const missedCallSearchUrl = () => {
+    const missedCallSearchUrl = (playerId) => {
         const outsideStrike = missedCallState.callType === "ballToStrike";
         const result = outsideStrike ? "called%5C.%5C.strike%7C" : "ball%7C";
         const zones = outsideStrike ? "11%7C12%7C13%7C14%7C" : "1%7C2%7C3%7C4%7C5%7C6%7C7%7C8%7C9%7C";
-        return `https://baseballsavant.mlb.com/statcast_search?hfGT=R%7C&hfPR=${result}&hfZ=${zones}&hfSea=2026%7C&player_type=${missedCallState.role}&group_by=name&sort_col=pitches&sort_order=desc`;
+        const lookup = missedCallState.role === "batter" ? "batters_lookup%5B%5D" : "pitchers_lookup%5B%5D";
+        return `https://baseballsavant.mlb.com/statcast_search?hfGT=R%7C&hfPR=${result}&hfZ=${zones}&hfSea=2026%7C&player_type=${missedCallState.role}&${lookup}=${playerId}&group_by=name-event&sort_col=pitches&sort_order=desc#results`;
     };
 
     const renderMissedCallTable = () => {
@@ -782,17 +783,19 @@
         });
         rows.sort((a, b) => (a[missedCallState.sortKey] - b[missedCallState.sortKey]) * direction || a.name.localeCompare(b.name));
         const visibleRows = rows.slice(0, missedCallState.visibleCount);
-        const url = missedCallSearchUrl();
-        const link = (value) => `<a class="ability-value-link" href="${url}" target="_blank" rel="noopener noreferrer">${value}</a>`;
-        tbody.innerHTML = rows.length ? visibleRows.map((row, index) => `<tr>
+        const link = (value, url) => `<a class="ability-value-link" href="${url}" target="_blank" rel="noopener noreferrer" title="この選手の該当投球をBaseball Savantで確認">${value}</a>`;
+        tbody.innerHTML = rows.length ? visibleRows.map((row, index) => {
+            const url = missedCallSearchUrl(row.playerId);
+            return `<tr>
             <td class="ability-rank">${index + 1}</td>
             <td class="ability-team"><img src="https://www.mlbstatic.com/team-logos/${row.teamId}.svg" alt="${escapeHtml(japaneseTeamName({ teamId: row.teamId }))}" title="${escapeHtml(japaneseTeamName({ teamId: row.teamId }))}" loading="lazy"></td>
             <td class="ability-player" title="${escapeHtml(row.name)}">${escapeHtml(japanesePlayerName(row.name))}</td>
-            <td class="ability-missed-count">${link(row.calls)}</td>
-            <td class="ability-missed-impact">${link(row.impact)}</td>
-            <td class="ability-abs-distance">${link(`${row.maxDistanceCm.toFixed(1)} cm`)}</td>
+            <td class="ability-missed-count">${link(row.calls, url)}</td>
+            <td class="ability-missed-impact">${link(row.impact, url)}</td>
+            <td class="ability-abs-distance">${link(`${row.maxDistanceCm.toFixed(1)} cm`, url)}</td>
             <td class="ability-missed-umpire" title="${escapeHtml(row.topUmpire)}"><span class="ability-missed-umpire-layout"><span>${escapeHtml(umpireNamesJa[row.topUmpire] || row.topUmpire)}</span><small>${row.topUmpireCount}回</small></span></td>
-        </tr>`).join("") : `<tr><td colspan="7">条件に一致する記録はありません。</td></tr>`;
+        </tr>`;
+        }).join("") : `<tr><td colspan="7">条件に一致する記録はありません。</td></tr>`;
         content.querySelectorAll("[data-missed-sort]").forEach((button) => {
             const active = button.dataset.missedSort === missedCallState.sortKey;
             button.classList.toggle("active", active);
