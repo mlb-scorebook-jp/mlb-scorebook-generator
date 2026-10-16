@@ -243,7 +243,9 @@ body.app-mode-abilities #header-abilities-btn {
     height: 22px;
     display: block;
     object-fit: contain;
-    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, .65));
+    filter:
+        drop-shadow(0 0 1px rgba(255, 255, 255, 0.92))
+        drop-shadow(0 1px 2px rgba(0, 0, 0, 0.65));
 }
 .ability-speed { color: #72d5ff; font-size: 14px; font-weight: 800; }
 .ability-speed-bar { display: inline-block; width: 64px; height: 3px; margin-right: 8px; vertical-align: middle; background: #26343b; }
