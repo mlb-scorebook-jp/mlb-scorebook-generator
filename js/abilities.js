@@ -10,7 +10,14 @@
 
     const PAGE_SIZE = 50;
     const POSITION_ORDER = ["C", "1B", "2B", "3B", "SS", "LF", "CF", "RF", "DH", "TWP"];
-    const state = { team: "", position: "", query: "", visibleCount: PAGE_SIZE };
+    const state = {
+        team: "",
+        position: "",
+        query: "",
+        visibleCount: PAGE_SIZE,
+        sortKey: "speed",
+        sortDirection: "desc"
+    };
     const exitState = {
         team: "",
         position: "",
@@ -67,13 +74,26 @@
         return true;
     });
 
+    const sortedSprintRows = () => filteredRows().sort((a, b) => {
+        const aValue = a[state.sortKey];
+        const bValue = b[state.sortKey];
+        if ((aValue === null || aValue === undefined) && (bValue === null || bValue === undefined)) {
+            return b.speed - a.speed || a.player.localeCompare(b.player);
+        }
+        if (aValue === null || aValue === undefined) return 1;
+        if (bValue === null || bValue === undefined) return -1;
+        const direction = state.sortDirection === "asc" ? 1 : -1;
+        const difference = (aValue - bValue) * direction;
+        return difference || b.speed - a.speed || a.player.localeCompare(b.player);
+    });
+
     const renderTable = () => {
         const tbody = content?.querySelector("#sprint-speed-body");
         if (!tbody) return;
-        const rows = filteredRows();
+        const rows = sortedSprintRows();
         const visibleRows = rows.slice(0, state.visibleCount);
-        tbody.innerHTML = rows.length ? visibleRows.map((row) => {
-            const rank = sprintSpeed2026.indexOf(row) + 1;
+        tbody.innerHTML = rows.length ? visibleRows.map((row, index) => {
+            const rank = index + 1;
             const width = Math.max(0, Math.min(100, ((row.speed - 23) / 7.5) * 100));
             const runningUrl = savantRunningUrl(row);
             const infieldHitUrl = savantCustomUrl(row, "pa,hits,infield_hits");
@@ -94,6 +114,15 @@
             </tr>`;
         }).join("") : `<tr><td colspan="10">条件に一致する選手はいません。</td></tr>`;
 
+        content.querySelectorAll("[data-sprint-sort]").forEach((button) => {
+            const active = button.dataset.sprintSort === state.sortKey;
+            button.classList.toggle("active", active);
+            button.dataset.direction = active ? state.sortDirection : "";
+            button.setAttribute("aria-sort", active
+                ? (state.sortDirection === "desc" ? "descending" : "ascending")
+                : "none");
+        });
+
         const summary = content.querySelector("#ability-result-summary");
         if (summary) summary.textContent = `${Math.min(visibleRows.length, rows.length)} / ${rows.length}人を表示`;
         const moreButton = content.querySelector("#ability-show-more");
@@ -104,6 +133,7 @@
         if (!content) return;
         const teams = [...new Set(sprintSpeed2026.map((row) => row.team))].sort();
         const positions = sortedPositions(sprintSpeed2026);
+        const sortHeader = (label, key) => `<button type="button" class="ability-sort-button" data-sprint-sort="${key}">${label}<span aria-hidden="true"></span></button>`;
         content.innerHTML = `
             <section class="ability-hero">
                 <div>
@@ -126,7 +156,7 @@
             </div>
             <div class="ability-table-wrap">
                 <table class="ability-table">
-                    <thead><tr><th>順位</th><th>TEAM</th><th>選手</th><th>年齢</th><th>投/打</th><th>守備</th><th>本塁→１塁</th><th>内野安打<br><small>実数/安打数</small></th><th>盗塁<br><small>成功数/企図数</small></th><th>SPRINT SPEED km/h</th></tr></thead>
+                    <thead><tr><th>順位</th><th>TEAM</th><th>選手</th><th>年齢</th><th>投/打</th><th>守備</th><th>${sortHeader("本塁→１塁", "hp1b")}</th><th>${sortHeader("内野安打<br><small>実数/安打数</small>", "infieldHits")}</th><th>${sortHeader("盗塁<br><small>成功数/企図数</small>", "stolenBases")}</th><th>${sortHeader("SPRINT SPEED km/h", "speed")}</th></tr></thead>
                     <tbody id="sprint-speed-body"></tbody>
                 </table>
             </div>
@@ -155,6 +185,17 @@
             resetVisibleCount();
             renderTable();
         });
+        content.querySelectorAll("[data-sprint-sort]").forEach((button) => button.addEventListener("click", () => {
+            const key = button.dataset.sprintSort;
+            if (state.sortKey === key) {
+                state.sortDirection = state.sortDirection === "desc" ? "asc" : "desc";
+            } else {
+                state.sortKey = key;
+                state.sortDirection = key === "hp1b" ? "asc" : "desc";
+            }
+            resetVisibleCount();
+            renderTable();
+        }));
         content.querySelector("#ability-show-more")?.addEventListener("click", () => {
             state.visibleCount += PAGE_SIZE;
             renderTable();
