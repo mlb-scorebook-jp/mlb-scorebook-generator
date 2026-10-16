@@ -10,6 +10,17 @@
     const defense2026 = Array.isArray(window.ABILITIES_DEFENSE_2026)
         ? window.ABILITIES_DEFENSE_2026
         : [];
+    const catcherFieldingByPlayerId = new Map(
+        (Array.isArray(window.ABILITIES_CATCHER_FIELDING_2026)
+            ? window.ABILITIES_CATCHER_FIELDING_2026
+            : []).map((row) => [row.playerId, row])
+    );
+    defense2026.forEach((row) => Object.assign(row, catcherFieldingByPlayerId.get(row.playerId) || {
+        caughtStealing: null,
+        stolenBases: null,
+        attempts: null,
+        caughtStealingRate: null
+    }));
     const abs2026 = window.ABILITIES_ABS_2026 || {};
     const absUmpires2026 = Array.isArray(window.ABILITIES_ABS_UMPIRES_2026)
         ? window.ABILITIES_ABS_UMPIRES_2026
@@ -441,9 +452,11 @@
             <td>${row.age ?? "—"}</td><td>${row.throwBat}</td><td>${escapeHtml(row.position)}</td>
             <td class="ability-defense-value">${row.oaa == null ? "—" : link(oaaUrl(row), signed(row.oaa))}</td>
             <td class="ability-defense-value">${link(fieldingUrl(row), signed(row.fieldingRuns))}</td>
+            <td class="ability-defense-value">${row.attempts ? `${row.caughtStealing}/${row.attempts}` : "—"}</td>
+            <td class="ability-defense-value">${row.caughtStealingRate == null ? "—" : `${(row.caughtStealingRate * 100).toFixed(1)}%`}</td>
             <td class="ability-velocity">${row.armAverage == null ? "—" : link(armUrl(row), `${milesPerHourToKmh(row.armAverage).toFixed(1)} km/h`)}</td>
             <td class="ability-velocity">${row.armMax == null ? "—" : link(armUrl(row), `${milesPerHourToKmh(row.armMax).toFixed(1)} km/h`)}</td>
-        </tr>`).join("") : `<tr><td colspan="10">条件に一致する選手はいません。</td></tr>`;
+        </tr>`).join("") : `<tr><td colspan="12">条件に一致する選手はいません。</td></tr>`;
 
         content.querySelectorAll("[data-defense-sort]").forEach((button) => {
             const active = button.dataset.defenseSort === defenseState.sortKey;
@@ -473,11 +486,11 @@
                 <input id="ability-search" type="search" placeholder="選手名・チームで検索" aria-label="選手検索">
             </div>
             <div class="ability-table-wrap"><table class="ability-table defense-table">
-                <thead><tr><th>順位</th><th>TEAM</th><th>選手</th><th>年齢</th><th>投/打</th><th>守備</th><th>${sortHeader("OAA", "oaa")}</th><th>${sortHeader("守備得点価値", "fieldingRuns")}</th><th>${sortHeader("平均送球速度", "armAverage")}</th><th>${sortHeader("最速送球", "armMax")}</th></tr></thead>
+                <thead><tr><th>順位</th><th>TEAM</th><th>選手</th><th>年齢</th><th>投/打</th><th>守備</th><th>${sortHeader("OAA", "oaa")}</th><th>${sortHeader("守備得点価値", "fieldingRuns")}</th><th>${sortHeader("盗塁阻止<br><small>阻止/企図</small>", "caughtStealing")}</th><th>${sortHeader("盗塁阻止率", "caughtStealingRate")}</th><th>${sortHeader("平均送球速度", "armAverage")}</th><th>${sortHeader("最速送球", "armMax")}</th></tr></thead>
                 <tbody id="defense-body"></tbody>
             </table></div>
             <div class="ability-table-footer"><span id="ability-result-summary"></span><button type="button" id="ability-show-more">さらに50人表示</button></div>
-            <p class="ability-table-note">2026年レギュラーシーズン／投手を除く。OAAは守備範囲、守備得点価値は守備全体の貢献を示します。送球速度はSavantの集計対象選手のみ表示し、すべてkm/hへ変換しています（2026年10月16日時点）。</p>`;
+            <p class="ability-table-note">2026年レギュラーシーズン／投手を除く。盗塁阻止は捕手守備時の阻止数／企図数、盗塁阻止率は阻止数÷（阻止数＋盗塁許容数）です。OAAは守備範囲、守備得点価値は守備全体の貢献を示します。送球速度はSavantの集計対象選手のみ表示し、すべてkm/hへ変換しています（2026年10月17日時点）。</p>`;
 
         const reset = () => { defenseState.visibleCount = PAGE_SIZE; };
         content.querySelector("#ability-position")?.addEventListener("change", (event) => { defenseState.position = event.target.value; reset(); renderDefenseTable(); });
