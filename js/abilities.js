@@ -73,7 +73,7 @@
     };
     const missedCallState = {
         callType: "ballToStrike",
-        role: "batter",
+        role: "pitcher",
         team: "",
         query: "",
         visibleCount: PAGE_SIZE,
@@ -805,16 +805,16 @@
 
     const renderMissedCalls = () => {
         const rows = missedCallRows();
-        const callTypes = [{ key: "ballToStrike", label: "ボール球 → ストライク判定" }, { key: "strikeToBall", label: "ストライク → ボール判定" }];
-        const roles = [{ key: "batter", label: "野手" }, { key: "pitcher", label: "投手" }];
+        const callTypes = [{ key: "ballToStrike", label: "B → S" }, { key: "strikeToBall", label: "S → B" }];
+        const roles = [{ key: "pitcher", label: "投手" }, { key: "batter", label: "野手" }];
         const teamIds = [...new Set(rows.map((row) => row.teamId))].sort((a, b) => japaneseTeamName({ teamId: a }).localeCompare(japaneseTeamName({ teamId: b }), "ja"));
         const totalCalls = rows.reduce((total, row) => total + row.calls, 0);
         const impactLabel = missedCallState.callType === "ballToStrike" ? "三振直結" : "四球直結";
         const distanceLabel = missedCallState.callType === "ballToStrike" ? "最大外れ幅" : "最大内側幅";
         const sortHeader = (label, key) => `<button type="button" class="ability-sort-button" data-missed-sort="${key}">${label}<span aria-hidden="true"></span></button>`;
         content.innerHTML = `<section class="ability-hero"><div><h3>誤審｜ボール・ストライク判定</h3></div><div class="ability-scale"><div><strong>${totalCalls.toLocaleString("ja-JP")}</strong><span>MLB全体 該当判定</span></div></div></section>
-            <div class="ability-subtabs missed-call-tabs">${callTypes.map((item) => `<button type="button" data-missed-call-type="${item.key}" class="${item.key === missedCallState.callType ? "active" : ""}">${item.label}</button>`).join("")}</div>
             <div class="ability-subtabs missed-role-tabs">${roles.map((item) => `<button type="button" data-missed-role="${item.key}" class="${item.key === missedCallState.role ? "active" : ""}">${item.label}</button>`).join("")}</div>
+            <div class="ability-subtabs missed-call-tabs">${callTypes.map((item) => `<button type="button" data-missed-call-type="${item.key}" class="${item.key === missedCallState.callType ? "active" : ""}" title="${item.key === "ballToStrike" ? "ボール球 → ストライク判定" : "ストライク → ボール判定"}">${item.label}</button>`).join("")}</div>
             <div class="ability-controls missed-call-controls"><select id="ability-team"><option value="">全チーム</option>${teamIds.map((teamId) => `<option value="${teamId}">${japaneseTeamName({ teamId })}</option>`).join("")}</select><input id="ability-search" type="search" placeholder="選手名・球審名で検索"></div>
             <div class="ability-table-wrap"><table class="ability-table missed-call-table"><thead><tr><th>順位</th><th>TEAM</th><th>選手</th><th>POS</th><th>${sortHeader("判定数", "calls")}</th><th>${sortHeader(impactLabel, "impact")}</th><th>${sortHeader(distanceLabel, "maxDistanceCm")}</th><th>最多の球審<br><small>判定回数</small></th></tr></thead><tbody id="missed-call-body"></tbody></table></div>
             <div class="ability-table-footer"><span id="ability-result-summary"></span><button type="button" id="ability-show-more">さらに50件表示</button></div>
