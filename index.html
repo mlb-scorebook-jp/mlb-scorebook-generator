@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="css/style.css?v=20261009-highlight-script-drag-2">
     <link rel="stylesheet" href="css/pregame.css?v=20261009-mobile-highlights">
     <link rel="stylesheet" href="css/daily-records.css?v=20260928-hou-buttons-1">
-    <link rel="stylesheet" href="css/abilities.css?v=20261016-position-players-1">
+    <link rel="stylesheet" href="css/abilities.css?v=20261016-exit-velocity-1">
 </head>
 
 <body class="app-mode-home">
@@ -375,7 +375,7 @@
                         <h2>各種能力</h2>
                         <p>数字に表れにくい選手の能力を、Statcastで可視化</p>
                     </div>
-                    <a class="abilities-source-link"
+                    <a class="abilities-source-link" id="abilities-source-link"
                         href="https://baseballsavant.mlb.com/leaderboard/sprint_speed?max_season=2026&amp;min=10&amp;min_season=2026"
                         target="_blank" rel="noopener noreferrer">Baseball Savantで確認 ↗</a>
                 </header>
@@ -384,7 +384,7 @@
                         <div class="abilities-nav-group">
                             <strong>野手</strong>
                             <button type="button" class="active" data-ability="sprint-speed">スプリントスピード</button>
-                            <button type="button" disabled>打球速度 <small>準備中</small></button>
+                            <button type="button" data-ability="exit-velocity">打球速度</button>
                             <button type="button" disabled>守備・送球 <small>準備中</small></button>
                         </div>
                         <div class="abilities-nav-group is-muted">
@@ -12870,6 +12870,7 @@
     </script>
     <script src="js/highlight-script-20261010d.js?v=20261014-pbp-safari-fix"></script>
     <script src="js/abilities-data-2026.js?v=20261016-position-players-1"></script>
-    <script src="js/abilities.js?v=20261016-remove-description-1"></script>
+    <script src="js/abilities-exit-velocity-data-2026.js?v=20261016-exit-velocity-1"></script>
+    <script src="js/abilities.js?v=20261016-exit-velocity-1"></script>
 </body>
 </html>
