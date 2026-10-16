@@ -502,8 +502,8 @@ body.app-mode-abilities #header-abilities-btn {
 .missed-call-tabs { grid-template-columns: repeat(2, minmax(220px, 1fr)); }
 .missed-role-tabs { grid-template-columns: repeat(2, minmax(120px, 1fr)); }
 .missed-call-controls { grid-template-columns: 220px minmax(240px, 1fr); }
-.missed-call-scale { gap: 28px; }
-.missed-call-scale strong { font-size: 22px; }
+.missed-call-scale { gap: 24px; }
+.missed-call-scale strong { font-size: 20px; }
 .missed-call-table th,
 .missed-call-table td { padding-left: 8px; padding-right: 8px; text-align: center; }
 .missed-call-table { table-layout: fixed; }
