@@ -786,12 +786,11 @@
             <td class="ability-rank">${index + 1}</td>
             <td class="ability-team"><img src="https://www.mlbstatic.com/team-logos/${row.teamId}.svg" alt="${escapeHtml(japaneseTeamName({ teamId: row.teamId }))}" title="${escapeHtml(japaneseTeamName({ teamId: row.teamId }))}" loading="lazy"></td>
             <td class="ability-player" title="${escapeHtml(row.name)}">${escapeHtml(japanesePlayerName(row.name))}</td>
-            <td>${escapeHtml(row.position)}</td>
             <td class="ability-missed-count">${link(row.calls)}</td>
             <td class="ability-missed-impact">${link(row.impact)}</td>
             <td class="ability-abs-distance">${link(`${row.maxDistanceCm.toFixed(1)} cm`)}</td>
             <td class="ability-missed-umpire" title="${escapeHtml(row.topUmpire)}">${escapeHtml(umpireNamesJa[row.topUmpire] || row.topUmpire)}<small>${row.topUmpireCount}回</small></td>
-        </tr>`).join("") : `<tr><td colspan="8">条件に一致する記録はありません。</td></tr>`;
+        </tr>`).join("") : `<tr><td colspan="7">条件に一致する記録はありません。</td></tr>`;
         content.querySelectorAll("[data-missed-sort]").forEach((button) => {
             const active = button.dataset.missedSort === missedCallState.sortKey;
             button.classList.toggle("active", active);
@@ -816,7 +815,7 @@
             <div class="ability-subtabs missed-role-tabs">${roles.map((item) => `<button type="button" data-missed-role="${item.key}" class="${item.key === missedCallState.role ? "active" : ""}">${item.label}</button>`).join("")}</div>
             <div class="ability-subtabs missed-call-tabs">${callTypes.map((item) => `<button type="button" data-missed-call-type="${item.key}" class="${item.key === missedCallState.callType ? "active" : ""}" title="${item.key === "ballToStrike" ? "ボール球 → ストライク判定" : "ストライク → ボール判定"}">${item.label}</button>`).join("")}</div>
             <div class="ability-controls missed-call-controls"><select id="ability-team"><option value="">全チーム</option>${teamIds.map((teamId) => `<option value="${teamId}">${japaneseTeamName({ teamId })}</option>`).join("")}</select><input id="ability-search" type="search" placeholder="選手名・球審名で検索"></div>
-            <div class="ability-table-wrap"><table class="ability-table missed-call-table"><thead><tr><th>順位</th><th>TEAM</th><th>選手</th><th>POS</th><th>${sortHeader("判定数", "calls")}</th><th>${sortHeader(impactLabel, "impact")}</th><th>${sortHeader(distanceLabel, "maxDistanceCm")}</th><th>最多の球審<br><small>判定回数</small></th></tr></thead><tbody id="missed-call-body"></tbody></table></div>
+            <div class="ability-table-wrap"><table class="ability-table missed-call-table"><thead><tr><th>順位</th><th>TEAM</th><th>選手</th><th>${sortHeader("判定数", "calls")}</th><th>${sortHeader(impactLabel, "impact")}</th><th>${sortHeader(distanceLabel, "maxDistanceCm")}</th><th>最多の球審<br><small>判定回数</small></th></tr></thead><tbody id="missed-call-body"></tbody></table></div>
             <div class="ability-table-footer"><span id="ability-result-summary"></span><button type="button" id="ability-show-more">さらに50件表示</button></div>
             <p class="ability-table-note">2026年レギュラーシーズン。Baseball SavantのStatcastゾーン（1〜9＝ゾーン内、11〜14＝ゾーン外）と実際の球審判定が一致しなかった投球を集計。「誤審」は実況用の便宜的な表現で、MLBが個別判定を誤審認定したものではありません。球審はMLB公式試合記録と試合IDで照合（2026年10月16日時点）。</p>`;
         content.querySelectorAll("[data-missed-call-type]").forEach((button) => button.addEventListener("click", () => { missedCallState.callType = button.dataset.missedCallType; missedCallState.team = ""; missedCallState.query = ""; missedCallState.visibleCount = PAGE_SIZE; missedCallState.sortKey = "calls"; missedCallState.sortDirection = "desc"; renderMissedCalls(); }));

@@ -507,17 +507,15 @@ body.app-mode-abilities #header-abilities-btn {
 .missed-call-table th:nth-child(2),
 .missed-call-table td:nth-child(2) { width: 58px; }
 .missed-call-table th:nth-child(3),
-.missed-call-table td:nth-child(3) { width: 210px; text-align: left; }
+.missed-call-table td:nth-child(3) { width: 230px; text-align: left; }
 .missed-call-table th:nth-child(4),
-.missed-call-table td:nth-child(4) { width: 60px; }
+.missed-call-table td:nth-child(4),
 .missed-call-table th:nth-child(5),
-.missed-call-table td:nth-child(5),
+.missed-call-table td:nth-child(5) { width: 105px; }
 .missed-call-table th:nth-child(6),
-.missed-call-table td:nth-child(6) { width: 105px; }
+.missed-call-table td:nth-child(6) { width: 120px; }
 .missed-call-table th:nth-child(7),
-.missed-call-table td:nth-child(7) { width: 120px; }
-.missed-call-table th:nth-child(8),
-.missed-call-table td:nth-child(8) { width: 190px; }
+.missed-call-table td:nth-child(7) { width: 190px; }
 .ability-missed-count { color: #ff8b7b; font-size: 15px; font-weight: 800; }
 .ability-missed-impact { color: #f1c674; font-weight: 800; }
 .ability-missed-umpire { font-weight: 700; }
