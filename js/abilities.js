@@ -21,6 +21,7 @@
     const replayUmpires2026 = Array.isArray(window.ABILITIES_REPLAY_UMPIRES_2026)
         ? window.ABILITIES_REPLAY_UMPIRES_2026
         : [];
+    const umpireAgeById = new Map(replayUmpires2026.map((row) => [row.umpireId, row.age]));
     const replayUmpireAttempts = replayUmpires2026.reduce((total, row) => total + row.attempts, 0);
     const replayUmpireAverage = replayUmpireAttempts
         ? replayUmpires2026.reduce((total, row) => total + row.upheld, 0) / replayUmpireAttempts
@@ -659,12 +660,13 @@
             tbody.innerHTML = rows.length ? visibleRows.map((row, index) => `<tr>
                 <td class="ability-rank">${index + 1}</td>
                 <td class="ability-player" title="${escapeHtml(row.name)}">${escapeHtml(umpireNamesJa[row.name] || row.name)}</td>
+                <td class="replay-umpire-age">${Number.isFinite(umpireAgeById.get(row.umpireId)) ? `${umpireAgeById.get(row.umpireId)}歳` : "—"}</td>
                 <td class="ability-abs-record">${row.overturned}/${row.challenges}</td>
                 <td class="ability-abs-rate">${(row.overturnRate * 100).toFixed(1)}%</td>
                 <td class="ability-abs-distance">${(row.maxEdgeDistance * 2.54).toFixed(1)} cm</td>
                 <td class="ability-team ability-umpire-top-team"><img src="https://www.mlbstatic.com/team-logos/${row.topTeamId}.svg" alt="${escapeHtml(japaneseTeamName({ team: row.topTeam, teamId: row.topTeamId }))}" title="${escapeHtml(japaneseTeamName({ team: row.topTeam, teamId: row.topTeamId }))}" loading="lazy"></td>
                 <td class="ability-abs-record">${row.topTeamWon}/${row.topTeamChallenges}</td>
-            </tr>`).join("") : `<tr><td colspan="7">条件に一致する記録はありません。</td></tr>`;
+            </tr>`).join("") : `<tr><td colspan="8">条件に一致する記録はありません。</td></tr>`;
         } else tbody.innerHTML = rows.length ? visibleRows.map((row, index) => {
             const name = absState.category === "overall" ? japaneseTeamName(row) : japanesePlayerName(row.name);
             const signedRuns = `${row.runsAboveAverage > 0 ? "+" : ""}${row.runsAboveAverage.toFixed(1)}`;
@@ -716,7 +718,7 @@
                 <input id="ability-search" type="search" value="${escapeHtml(absState.query)}" placeholder="${isUmpire ? "審判名で検索" : absState.category === "overall" ? "チーム名で検索" : "選手名・チームで検索"}" aria-label="ABS検索">
             </div>
             <div class="ability-table-wrap"><table class="ability-table abs-table${isUmpire ? " abs-umpire-table" : ""}">
-                <thead>${isUmpire ? `<tr><th>順位</th><th>審判</th><th>${sortHeader("覆り/対象", "overturned")}</th><th>${sortHeader("覆り率", "overturnRate")}</th><th>${sortHeader("最大距離<br><small>ゾーン端から</small>", "maxEdgeDistance")}</th><th>${sortHeader("最多成功チーム", "topTeamWon")}</th><th>${sortHeader("成功/要求", "topTeamWon")}</th></tr>` : `<tr><th>順位</th><th>TEAM</th><th>${absState.category === "overall" ? "チーム" : "選手"}</th><th>${sortHeader("成功/実施", "won")}</th><th>${sortHeader("成功率", "winRate")}</th><th>${sortHeader("最大距離<br><small>ゾーン端から</small>", "maxEdgeDistance")}</th><th>${sortHeader("+K", "strikeouts")}</th><th>${sortHeader("-BB", "walks")}</th><th>${sortHeader("平均比", "runsAboveAverage")}</th></tr>`}</thead>
+                <thead>${isUmpire ? `<tr><th>順位</th><th>審判</th><th>年齢</th><th>${sortHeader("覆り/対象", "overturned")}</th><th>${sortHeader("覆り率", "overturnRate")}</th><th>${sortHeader("最大距離<br><small>ゾーン端から</small>", "maxEdgeDistance")}</th><th>${sortHeader("最多成功チーム", "topTeamWon")}</th><th>${sortHeader("成功/要求", "topTeamWon")}</th></tr>` : `<tr><th>順位</th><th>TEAM</th><th>${absState.category === "overall" ? "チーム" : "選手"}</th><th>${sortHeader("成功/実施", "won")}</th><th>${sortHeader("成功率", "winRate")}</th><th>${sortHeader("最大距離<br><small>ゾーン端から</small>", "maxEdgeDistance")}</th><th>${sortHeader("+K", "strikeouts")}</th><th>${sortHeader("-BB", "walks")}</th><th>${sortHeader("平均比", "runsAboveAverage")}</th></tr>`}</thead>
                 <tbody id="abs-body"></tbody>
             </table></div>
             <div class="ability-table-footer"><span id="ability-result-summary"></span><button type="button" id="ability-show-more">さらに50件表示</button></div>

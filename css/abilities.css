@@ -456,20 +456,25 @@ body.app-mode-abilities #header-abilities-btn {
 }
 .abs-umpire-table th:nth-child(3),
 .abs-umpire-table td:nth-child(3) {
-    width: 130px;
+    width: 55px;
     text-align: center;
 }
 .abs-umpire-table th:nth-child(4),
-.abs-umpire-table td:nth-child(4) { width: 100px; }
+.abs-umpire-table td:nth-child(4) { width: 130px; }
 .abs-umpire-table th:nth-child(5),
-.abs-umpire-table td:nth-child(5) { width: 120px; }
+.abs-umpire-table td:nth-child(5) { width: 100px; }
 .abs-umpire-table th:nth-child(6),
 .abs-umpire-table td:nth-child(6) {
-    width: 130px;
+    width: 120px;
     text-align: center;
 }
 .abs-umpire-table th:nth-child(7),
 .abs-umpire-table td:nth-child(7) {
+    width: 130px;
+    text-align: center;
+}
+.abs-umpire-table th:nth-child(8),
+.abs-umpire-table td:nth-child(8) {
     width: 70px;
     text-align: center;
 }
