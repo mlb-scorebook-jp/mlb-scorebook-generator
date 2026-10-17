@@ -2,6 +2,49 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "These 3 prospects could make debut on the mound for Nats in '27",
+        "summaryJa": "Jack Cebert（WSH）、メジャー昇格・初出場に関する最新情報",
+        "slug": "jack-cebert-ben-grable-josh-hartle-are-nationals-prospects-to-watch",
+        "url": "https://www.mlb.com/news/jack-cebert-ben-grable-josh-hartle-are-nationals-prospects-to-watch",
+        "contentDate": "2026-10-17T12:55:23.664Z",
+        "teamIds": [
+            120
+        ],
+        "playerIds": [
+            701411,
+            695066,
+            691776
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "mlb-top-prospects"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Q&A: PCA reflects on MVP-caliber season, embracing Cubs history",
+        "summaryJa": "P.クローアームストロング（CHC）の最新動向をMLB公式が詳報",
+        "slug": "q-a-with-cubs-outfielder-pete-crow-armstrong",
+        "url": "https://www.mlb.com/news/q-a-with-cubs-outfielder-pete-crow-armstrong",
+        "contentDate": "2026-10-17T12:21:27.259Z",
+        "teamIds": [
+            112
+        ],
+        "playerIds": [
+            691718
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Watch Angels prospects in Arizona Fall League action",
         "summaryJa": "MLBの最新情報ら注目選手の最新動向",
         "slug": "watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
@@ -303,6 +346,31 @@
             "world-series",
             "postseason",
             "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "All-Star Rodríguez back on mound in Fall League after 13-month absence",
+        "summaryJa": "Dakota Jordan（SF）、復帰へ向けた最新状況",
+        "slug": "randy-rodriguez-rehabbing-in-arizona-fall-league",
+        "url": "https://www.mlb.com/news/randy-rodriguez-rehabbing-in-arizona-fall-league",
+        "contentDate": "2026-10-16T22:39:00Z",
+        "teamIds": [
+            137
+        ],
+        "playerIds": [
+            702607,
+            809763,
+            678495
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "mlb-top-prospects",
+            "arizona-fall-league",
+            "injury"
         ],
         "sourceScopes": [
             "球団公式"
@@ -7295,27 +7363,6 @@
         ]
     },
     {
-        "headline": "Vitello tossed from Game 162, ending year with MLB-high 7 ejections",
-        "summaryJa": "ジャイアンツの最新動向をMLB公式が詳報",
-        "slug": "tony-vitello-gets-ejected-from-giants-final-2026-game",
-        "url": "https://www.mlb.com/news/tony-vitello-gets-ejected-from-giants-final-2026-game",
-        "contentDate": "2026-09-28T00:42:00Z",
-        "teamIds": [
-            137
-        ],
-        "playerIds": [],
-        "gamePks": [
-            823164
-        ],
-        "taxonomy": [
-            "apple-news",
-            "ejection"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "D-backs push postseason fight to Game 162, but battle ends there",
         "summaryJa": "ダイヤモンドバックスの最新動向をMLB公式が詳報",
         "slug": "diamondbacks-eliminated-from-2026-postseason-contention",
@@ -7806,29 +7853,6 @@
         "taxonomy": [
             "apple-news",
             "final-week"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Early makes much-anticipated Nationals debut with 3 scoreless innings",
-        "summaryJa": "C.アーリー（WSH）、メジャー昇格・初出場に関する最新情報",
-        "slug": "connelly-early-makes-nationals-debut",
-        "url": "https://www.mlb.com/news/connelly-early-makes-nationals-debut",
-        "contentDate": "2026-09-26T21:09:00Z",
-        "teamIds": [
-            120
-        ],
-        "playerIds": [
-            813349
-        ],
-        "gamePks": [
-            822678
-        ],
-        "taxonomy": [
-            "apple-news",
-            "team-debut"
         ],
         "sourceScopes": [
             "球団公式"
