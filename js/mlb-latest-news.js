@@ -2,6 +2,28 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "‘Like something out of a movie’: Cutch flashes back to 2013 Wild Card Game on 6-1-1 Podcast",
+        "summaryJa": "A.マカッチェン（PIT）の最新動向をMLB公式が詳報",
+        "slug": "andrew-mccutchen-talks-pirates-2013-wild-card-game-on-6-1-1-podcast",
+        "url": "https://www.mlb.com/news/andrew-mccutchen-talks-pirates-2013-wild-card-game-on-6-1-1-podcast",
+        "contentDate": "2026-10-17T21:20:23.101Z",
+        "teamIds": [
+            134
+        ],
+        "playerIds": [
+            457705
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "mlbn-611-podcast"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Rays-Guardians ALCS Game 4 lineups, FAQ (8 ET, TBS/HBO Max)",
         "summaryJa": "ガーディアンズの最新動向をMLB公式が詳報",
         "slug": "when-is-rays-vs-guardians-alcs-game-4-date-time-and-lineups",
@@ -1145,7 +1167,6 @@
             "clincher"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
