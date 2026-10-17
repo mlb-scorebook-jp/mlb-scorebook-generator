@@ -39,7 +39,8 @@
         "taxonomy": [
             "offbeat",
             "postseason",
-            "world-series"
+            "world-series",
+            "apple-news"
         ],
         "sourceScopes": [
             "MLB",
