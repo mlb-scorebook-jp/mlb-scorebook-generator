@@ -2,6 +2,30 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Rays-Guardians ALCS Game 4 lineups, FAQ (8 ET, TBS/HBO Max)",
+        "summaryJa": "ガーディアンズの最新動向をMLB公式が詳報",
+        "slug": "when-is-rays-vs-guardians-alcs-game-4-date-time-and-lineups",
+        "url": "https://www.mlb.com/news/when-is-rays-vs-guardians-alcs-game-4-date-time-and-lineups",
+        "contentDate": "2026-10-17T20:48:00Z",
+        "teamIds": [
+            114,
+            139
+        ],
+        "playerIds": [],
+        "gamePks": [
+            849816
+        ],
+        "taxonomy": [
+            "apple-news",
+            "alcs",
+            "postseason"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "3 Rockies prospects to watch in 2027",
         "summaryJa": "M.アダムズ（COL）ら注目選手の最新動向",
         "slug": "3-rockies-prospects-to-watch-in-2027",
@@ -66,30 +90,6 @@
             "arizona-fall-league"
         ],
         "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Rays-Guardians ALCS Game 4 lineups, FAQ (8 p.m. ET, TBS/HBO Max)",
-        "summaryJa": "ガーディアンズの最新動向をMLB公式が詳報",
-        "slug": "when-is-rays-vs-guardians-alcs-game-4-date-time-and-lineups",
-        "url": "https://www.mlb.com/news/when-is-rays-vs-guardians-alcs-game-4-date-time-and-lineups",
-        "contentDate": "2026-10-17T14:25:00Z",
-        "teamIds": [
-            114,
-            139
-        ],
-        "playerIds": [],
-        "gamePks": [
-            849816
-        ],
-        "taxonomy": [
-            "apple-news",
-            "alcs",
-            "postseason"
-        ],
-        "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
