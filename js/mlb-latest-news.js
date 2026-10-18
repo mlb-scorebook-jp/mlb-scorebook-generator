@@ -2,11 +2,131 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
-        "headline": "Timing couldn't be better for Rays' Big Three to finally deliver",
+        "headline": "Rays slip past Guards in Game 4 to knot up ALCS",
+        "summaryJa": "レイズ、勝利を呼び込む活躍",
+        "slug": "rays-win-alcs-game-4-2026",
+        "url": "https://www.mlb.com/news/rays-win-alcs-game-4-2026",
+        "contentDate": "2026-10-18T06:55:00Z",
+        "teamIds": [
+            139
+        ],
+        "playerIds": [],
+        "gamePks": [
+            849816
+        ],
+        "taxonomy": [
+            "alcs",
+            "apple-news",
+            "game-recap"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Here's where Rays, Guards stand as ALCS resets after Game 4",
+        "summaryJa": "ガーディアンズの最新動向をMLB公式が詳報",
+        "slug": "takeaways-after-rays-tie-alcs-at-2-with-guardians",
+        "url": "https://www.mlb.com/news/takeaways-after-rays-tie-alcs-at-2-with-guardians",
+        "contentDate": "2026-10-18T06:49:15.021Z",
+        "teamIds": [
+            114,
+            139
+        ],
+        "playerIds": [],
+        "gamePks": [
+            849816
+        ],
+        "taxonomy": [
+            "apple-news",
+            "postseason",
+            "alcs"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "With ALCS evened, Guardians look to flush Game 4 and hand ball to Messick",
+        "summaryJa": "ガーディアンズの最新動向をMLB公式が詳報",
+        "slug": "guardians-lose-game-4-2026-alcs-rays",
+        "url": "https://www.mlb.com/news/guardians-lose-game-4-2026-alcs-rays",
+        "contentDate": "2026-10-18T06:35:00.272Z",
+        "teamIds": [
+            114
+        ],
+        "playerIds": [],
+        "gamePks": [
+            849816
+        ],
+        "taxonomy": [
+            "apple-news",
+            "alcs",
+            "postseason"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Rays-Guardians ALCS Game 5 (5 ET on TBS/HBO Max)",
+        "summaryJa": "ガーディアンズの最新動向をMLB公式が詳報",
+        "slug": "rays-vs-guardians-alcs-game-5-starting-lineups-and-pitching-matchup",
+        "url": "https://www.mlb.com/news/rays-vs-guardians-alcs-game-5-starting-lineups-and-pitching-matchup",
+        "contentDate": "2026-10-18T06:30:12.004Z",
+        "teamIds": [
+            114,
+            139
+        ],
+        "playerIds": [],
+        "gamePks": [
+            849817
+        ],
+        "taxonomy": [
+            "apple-news",
+            "postseason",
+            "alcs"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "'Just a reliever'? Peralta's two huge outs help Rays even ALCS",
+        "summaryJa": "F.ペラルタ（TB）の最新動向をMLB公式が詳報",
+        "slug": "freddy-peralta-relief-appearance-rays-alcs-game-4-2026",
+        "url": "https://www.mlb.com/news/freddy-peralta-relief-appearance-rays-alcs-game-4-2026",
+        "contentDate": "2026-10-18T06:30:00Z",
+        "teamIds": [
+            139
+        ],
+        "playerIds": [
+            642547
+        ],
+        "gamePks": [
+            849816
+        ],
+        "taxonomy": [
+            "postseason",
+            "alcs",
+            "apple-news",
+            "pennant-chase"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "'Three Little Ones' come up big for Rays on this night",
         "summaryJa": "Y.ディアス（TB）の最新動向をMLB公式が詳報",
         "slug": "junior-caminero-yandy-diaz-jonathan-aranda-lead-rays-in-2026-alcs-game-4",
         "url": "https://www.mlb.com/news/junior-caminero-yandy-diaz-jonathan-aranda-lead-rays-in-2026-alcs-game-4",
-        "contentDate": "2026-10-18T05:02:00Z",
+        "contentDate": "2026-10-18T05:36:00Z",
         "teamIds": [
             139
         ],
@@ -21,6 +141,80 @@
             "apple-news",
             "alcs",
             "style"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Guardians just one part of huge weekend for Ohio sports",
+        "summaryJa": "ガーディアンズの最新動向をMLB公式が詳報",
+        "slug": "guardians-browns-and-buckeyes-all-play-in-big-ohio-sports-weekend",
+        "url": "https://www.mlb.com/news/guardians-browns-and-buckeyes-all-play-in-big-ohio-sports-weekend",
+        "contentDate": "2026-10-18T05:35:12.935Z",
+        "teamIds": [
+            114
+        ],
+        "playerIds": [],
+        "gamePks": [
+            849816
+        ],
+        "taxonomy": [
+            "apple-news",
+            "postseason",
+            "alcs"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Halpin's latest playoff moment? Tracking Caminero's 'funky' blast with wild circus catch",
+        "summaryJa": "P.ハルピン（CLE）の最新動向をMLB公式が詳報",
+        "slug": "petey-halpin-crazy-catch-guardians-alcs-game-4-loss-rays",
+        "url": "https://www.mlb.com/news/petey-halpin-crazy-catch-guardians-alcs-game-4-loss-rays",
+        "contentDate": "2026-10-18T05:20:32.752Z",
+        "teamIds": [
+            114
+        ],
+        "playerIds": [
+            690984
+        ],
+        "gamePks": [
+            849816
+        ],
+        "taxonomy": [
+            "apple-news",
+            "alcs",
+            "postseason",
+            "defense",
+            "play-of-the-day"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Martinez does 'a lot of Nick things' in rewarding Rays' confidence",
+        "summaryJa": "N.マルティネス（TB）の最新動向をMLB公式が詳報",
+        "slug": "nick-martinez-allows-1-run-in-2026-alcs-game-4",
+        "url": "https://www.mlb.com/news/nick-martinez-allows-1-run-in-2026-alcs-game-4",
+        "contentDate": "2026-10-18T05:16:00Z",
+        "teamIds": [
+            139
+        ],
+        "playerIds": [
+            607259
+        ],
+        "gamePks": [
+            849816
+        ],
+        "taxonomy": [
+            "apple-news",
+            "alcs"
         ],
         "sourceScopes": [
             "MLB",
@@ -49,29 +243,6 @@
         ]
     },
     {
-        "headline": "Rays slip past Guards in Game 4 to knot up ALCS",
-        "summaryJa": "レイズ、勝利を呼び込む活躍",
-        "slug": "rays-win-alcs-game-4-2026",
-        "url": "https://www.mlb.com/news/rays-win-alcs-game-4-2026",
-        "contentDate": "2026-10-18T04:52:00Z",
-        "teamIds": [
-            139
-        ],
-        "playerIds": [],
-        "gamePks": [
-            849816
-        ],
-        "taxonomy": [
-            "alcs",
-            "apple-news",
-            "game-recap"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Will extra rest help or hurt Brewers in World Series?",
         "summaryJa": "ブルワーズの最新動向をMLB公式が詳報",
         "slug": "impact-of-extra-rest-before-world-series",
@@ -86,30 +257,6 @@
             "world-series",
             "apple-news",
             "postseason"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Martinez rewards Rays' confidence with stellar ALCS start",
-        "summaryJa": "N.マルティネス（TB）の最新動向をMLB公式が詳報",
-        "slug": "nick-martinez-allows-1-run-in-2026-alcs-game-4",
-        "url": "https://www.mlb.com/news/nick-martinez-allows-1-run-in-2026-alcs-game-4",
-        "contentDate": "2026-10-18T03:41:00Z",
-        "teamIds": [
-            139
-        ],
-        "playerIds": [
-            607259
-        ],
-        "gamePks": [
-            849816
-        ],
-        "taxonomy": [
-            "apple-news",
-            "alcs"
         ],
         "sourceScopes": [
             "MLB",
@@ -414,7 +561,6 @@
             "arizona-fall-league"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -682,7 +828,6 @@
             "arizona-fall-league"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -842,7 +987,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1139,7 +1283,6 @@
             "key-moments"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1278,7 +1421,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1301,7 +1443,6 @@
             "nlcs"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -2066,28 +2207,6 @@
         ]
     },
     {
-        "headline": "After 'freak accident', Armstrong back at Trop pitching in playoffs",
-        "summaryJa": "S.アームストロング（CLE）の負傷状況をMLB公式が詳報",
-        "slug": "shawn-armstrong-back-tropicana-field-guardians-after-injury",
-        "url": "https://www.mlb.com/news/shawn-armstrong-back-tropicana-field-guardians-after-injury",
-        "contentDate": "2026-10-15T00:31:00.927Z",
-        "teamIds": [
-            114
-        ],
-        "playerIds": [
-            542888
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "alcs",
-            "postseason"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Latest Guardians injuries and transactions",
         "summaryJa": "ガーディアンズの負傷状況をMLB公式が詳報",
         "slug": "guardians-injuries-and-roster-moves",
@@ -2167,28 +2286,6 @@
         "taxonomy": [
             "apple-news",
             "injury"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "'Whenever you need me': Smith a busy man at back end of Guardians' bullpen",
-        "summaryJa": "C.スミス（CLE）の最新動向をMLB公式が詳報",
-        "slug": "cade-smith-busy-at-back-end-of-bullpen-for-guardians",
-        "url": "https://www.mlb.com/news/cade-smith-busy-at-back-end-of-bullpen-for-guardians",
-        "contentDate": "2026-10-14T21:55:25.839Z",
-        "teamIds": [
-            114
-        ],
-        "playerIds": [
-            671922
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "alcs",
-            "postseason"
         ],
         "sourceScopes": [
             "球団公式"
@@ -2671,74 +2768,6 @@
             "apple-news",
             "arizona-fall-league",
             "mlb-top-prospects"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Guards head home with series tied after costly error on Rays' turf",
-        "summaryJa": "J.ラミレス（CLE）の最新動向をMLB公式が詳報",
-        "slug": "jose-ramirez-costly-error-alcs-game-2",
-        "url": "https://www.mlb.com/news/jose-ramirez-costly-error-alcs-game-2",
-        "contentDate": "2026-10-14T05:38:42.403Z",
-        "teamIds": [
-            114
-        ],
-        "playerIds": [
-            608070
-        ],
-        "gamePks": [
-            849813
-        ],
-        "taxonomy": [
-            "postseason",
-            "alcs",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Spoiler alert: 'Fastball Freddy' went fastball-heavy -- and Guards still couldn't hit it",
-        "summaryJa": "F.ペラルタ（TB）、マウンドで好投",
-        "slug": "freddy-peralta-pitches-scoreless-ball-in-2026-alcs-game-2",
-        "url": "https://www.mlb.com/news/freddy-peralta-pitches-scoreless-ball-in-2026-alcs-game-2",
-        "contentDate": "2026-10-14T05:24:00Z",
-        "teamIds": [
-            139
-        ],
-        "playerIds": [
-            642547
-        ],
-        "gamePks": [
-            849813
-        ],
-        "taxonomy": [
-            "apple-news",
-            "alcs"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Rays pounce after Guards' mistakes, rally in the most Rays way imaginable",
-        "summaryJa": "レイズ、勝利を呼び込む活躍",
-        "slug": "rays-play-small-ball-in-3-run-fourth-in-2026-alcs-game-2-win",
-        "url": "https://www.mlb.com/news/rays-play-small-ball-in-3-run-fourth-in-2026-alcs-game-2-win",
-        "contentDate": "2026-10-14T05:13:52.626Z",
-        "teamIds": [
-            139
-        ],
-        "playerIds": [],
-        "gamePks": [
-            849813
-        ],
-        "taxonomy": [
-            "apple-news",
-            "alcs"
         ],
         "sourceScopes": [
             "球団公式"
