@@ -2,6 +2,48 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "'We did it': After 22-year journey, Attanasio brings World Series back to Milwaukee",
+        "summaryJa": "ブルワーズの最新動向をMLB公式が詳報",
+        "slug": "brewers-owner-mark-attanasio-on-world-series-berth",
+        "url": "https://www.mlb.com/news/brewers-owner-mark-attanasio-on-world-series-berth",
+        "contentDate": "2026-10-18T15:57:40.954Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "world-series"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Why Pratt's dream postseason run has been more than 'frickin' fun'",
+        "summaryJa": "C.プラット（MIL）を巡る注目点をMLB公式が分析",
+        "slug": "cooper-pratt-s-childhood-hard-work-translating-to-2026-postseason-results",
+        "url": "https://www.mlb.com/news/cooper-pratt-s-childhood-hard-work-translating-to-2026-postseason-results",
+        "contentDate": "2026-10-18T13:31:42.733Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [
+            806198
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "world-series",
+            "postseason"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Rays slip past Guards in Game 4 to knot up ALCS",
         "summaryJa": "レイズ、勝利を呼び込む活躍",
         "slug": "rays-win-alcs-game-4-2026",
@@ -631,7 +673,6 @@
             "winter-leagues"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1379,8 +1420,7 @@
             "clincher"
         ],
         "sourceScopes": [
-            "MLB",
-            "球団公式"
+            "MLB"
         ]
     },
     {
