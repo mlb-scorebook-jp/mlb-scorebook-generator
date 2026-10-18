@@ -2,6 +2,75 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "D-backs prospect Patrick Forbes sweeping through the Fall League with new offering",
+        "summaryJa": "Patrick Forbes（AZ）ら注目選手の最新動向",
+        "slug": "d-backs-prospect-patrick-forbes-adding-sweeper-in-fall-league",
+        "url": "https://www.mlb.com/news/d-backs-prospect-patrick-forbes-adding-sweeper-in-fall-league",
+        "contentDate": "2026-10-18T00:13:54.748Z",
+        "teamIds": [
+            109
+        ],
+        "playerIds": [
+            804467
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "arizona-fall-league",
+            "mlb-top-prospects"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "World Series game times announced",
+        "summaryJa": "レイズの最新動向をMLB公式が詳報",
+        "slug": "2026-mlb-playoff-and-world-series-schedule",
+        "url": "https://www.mlb.com/news/2026-mlb-playoff-and-world-series-schedule",
+        "contentDate": "2026-10-17T23:46:00Z",
+        "teamIds": [
+            139,
+            114,
+            158,
+            119
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "postseason",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "LIVE: Rays-Guardians ALCS Game 4, TBS/HBO Max",
+        "summaryJa": "ガーディアンズの最新動向をMLB公式が詳報",
+        "slug": "when-is-rays-vs-guardians-alcs-game-4-date-time-and-lineups",
+        "url": "https://www.mlb.com/news/when-is-rays-vs-guardians-alcs-game-4-date-time-and-lineups",
+        "contentDate": "2026-10-17T23:24:00Z",
+        "teamIds": [
+            114,
+            139
+        ],
+        "playerIds": [],
+        "gamePks": [
+            849816
+        ],
+        "taxonomy": [
+            "apple-news",
+            "alcs",
+            "postseason"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "‘Like something out of a movie’: Cutch flashes back to 2013 Wild Card Game on 6-1-1 Podcast",
         "summaryJa": "A.マカッチェン（PIT）の最新動向をMLB公式が詳報",
         "slug": "andrew-mccutchen-talks-pirates-2013-wild-card-game-on-6-1-1-podcast",
@@ -17,30 +86,6 @@
         "taxonomy": [
             "apple-news",
             "mlbn-611-podcast"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Rays-Guardians ALCS Game 4 lineups, FAQ (8 ET, TBS/HBO Max)",
-        "summaryJa": "ガーディアンズの最新動向をMLB公式が詳報",
-        "slug": "when-is-rays-vs-guardians-alcs-game-4-date-time-and-lineups",
-        "url": "https://www.mlb.com/news/when-is-rays-vs-guardians-alcs-game-4-date-time-and-lineups",
-        "contentDate": "2026-10-17T20:48:00Z",
-        "teamIds": [
-            114,
-            139
-        ],
-        "playerIds": [],
-        "gamePks": [
-            849816
-        ],
-        "taxonomy": [
-            "apple-news",
-            "alcs",
-            "postseason"
         ],
         "sourceScopes": [
             "MLB",
@@ -417,28 +462,6 @@
         "sourceScopes": [
             "MLB",
             "球団公式"
-        ]
-    },
-    {
-        "headline": "World Series game times announced",
-        "summaryJa": "レイズの最新動向をMLB公式が詳報",
-        "slug": "2026-mlb-playoff-and-world-series-schedule",
-        "url": "https://www.mlb.com/news/2026-mlb-playoff-and-world-series-schedule",
-        "contentDate": "2026-10-17T01:09:00Z",
-        "teamIds": [
-            139,
-            114,
-            158,
-            119
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "postseason",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB"
         ]
     },
     {
@@ -1578,7 +1601,6 @@
             "game-recap"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -7184,31 +7206,6 @@
         "gamePks": [],
         "taxonomy": [
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Alonso, Arenado earn Player of the Week honors with epic finishes",
-        "summaryJa": "P.アロンゾ（BAL）の最新動向をMLB公式が詳報",
-        "slug": "pete-alonso-nolan-arenado-named-players-of-the-week",
-        "url": "https://www.mlb.com/news/pete-alonso-nolan-arenado-named-players-of-the-week",
-        "contentDate": "2026-09-28T20:56:22.594Z",
-        "teamIds": [
-            110,
-            109,
-            144
-        ],
-        "playerIds": [
-            624413,
-            571448,
-            660670
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "players-of-the-week"
         ],
         "sourceScopes": [
             "球団公式"
