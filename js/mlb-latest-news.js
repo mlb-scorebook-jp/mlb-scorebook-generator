@@ -2,19 +2,17 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
-        "headline": "Rays-Guardians ALCS Game 5 lineups, FAQ (5 ET on TBS/HBO Max)",
+        "headline": "LIVE on TBS/HBO Max: Rays-Guardians ALCS Game 5",
         "summaryJa": "ガーディアンズの最新動向をMLB公式が詳報",
         "slug": "rays-vs-guardians-alcs-game-5-starting-lineups-and-pitching-matchup",
         "url": "https://www.mlb.com/news/rays-vs-guardians-alcs-game-5-starting-lineups-and-pitching-matchup",
-        "contentDate": "2026-10-18T18:05:00Z",
+        "contentDate": "2026-10-18T21:00:00Z",
         "teamIds": [
             114,
             139
         ],
         "playerIds": [],
-        "gamePks": [
-            849817
-        ],
+        "gamePks": [],
         "taxonomy": [
             "apple-news",
             "postseason",
@@ -26,11 +24,59 @@
         ]
     },
     {
+        "headline": "World Series game times announced",
+        "summaryJa": "レイズの最新動向をMLB公式が詳報",
+        "slug": "2026-mlb-playoff-and-world-series-schedule",
+        "url": "https://www.mlb.com/news/2026-mlb-playoff-and-world-series-schedule",
+        "contentDate": "2026-10-18T20:42:00Z",
+        "teamIds": [
+            139,
+            114,
+            158,
+            119
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "postseason",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "Guardians pair Messick with Bailey to keep catcher's hot bat in Game 5 lineup",
+        "summaryJa": "P.ベイリー（CLE）の最新動向をMLB公式が詳報",
+        "slug": "patrick-bailey-parker-messick-guardians-lineup-game-5-2026-alcs",
+        "url": "https://www.mlb.com/news/patrick-bailey-parker-messick-guardians-lineup-game-5-2026-alcs",
+        "contentDate": "2026-10-18T20:26:14.78Z",
+        "teamIds": [
+            114
+        ],
+        "playerIds": [
+            672275,
+            800048
+        ],
+        "gamePks": [
+            849817
+        ],
+        "taxonomy": [
+            "apple-news",
+            "alcs",
+            "postseason"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "'We did it': After 22-year journey, Attanasio brings World Series back to Milwaukee",
         "summaryJa": "ブルワーズの最新動向をMLB公式が詳報",
         "slug": "brewers-owner-mark-attanasio-on-world-series-berth",
         "url": "https://www.mlb.com/news/brewers-owner-mark-attanasio-on-world-series-berth",
-        "contentDate": "2026-10-18T15:57:40.954Z",
+        "contentDate": "2026-10-18T19:26:00Z",
         "teamIds": [
             158
         ],
@@ -42,6 +88,23 @@
         ],
         "sourceScopes": [
             "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Watch Angels prospects in Arizona Fall League action",
+        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
+        "slug": "watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
+        "url": "https://www.mlb.com/news/watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
+        "contentDate": "2026-10-18T19:09:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "arizona-fall-league"
+        ],
+        "sourceScopes": [
             "球団公式"
         ]
     },
@@ -133,7 +196,6 @@
             "postseason"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -264,7 +326,7 @@
         ]
     },
     {
-        "headline": "3 storylines to watch in tonight's pivotal ALCS Game 5",
+        "headline": "3 storylines to watch in pivotal ALCS Game 5",
         "summaryJa": "ガーディアンズの最新動向をMLB公式が詳報",
         "slug": "2026-alcs-game-5-storylines",
         "url": "https://www.mlb.com/news/2026-alcs-game-5-storylines",
@@ -303,28 +365,6 @@
         "sourceScopes": [
             "MLB",
             "球団公式"
-        ]
-    },
-    {
-        "headline": "World Series game times announced",
-        "summaryJa": "レイズの最新動向をMLB公式が詳報",
-        "slug": "2026-mlb-playoff-and-world-series-schedule",
-        "url": "https://www.mlb.com/news/2026-mlb-playoff-and-world-series-schedule",
-        "contentDate": "2026-10-18T03:17:00Z",
-        "teamIds": [
-            139,
-            114,
-            158,
-            119
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "postseason",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB"
         ]
     },
     {
@@ -564,23 +604,6 @@
         ],
         "sourceScopes": [
             "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Watch Angels prospects in Arizona Fall League action",
-        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
-        "slug": "watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
-        "url": "https://www.mlb.com/news/watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
-        "contentDate": "2026-10-17T04:12:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "arizona-fall-league"
-        ],
-        "sourceScopes": [
             "球団公式"
         ]
     },
