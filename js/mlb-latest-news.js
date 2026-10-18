@@ -2,21 +2,51 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
-        "headline": "LIVE on TBS/HBO Max: Rays-Guardians ALCS Game 5",
-        "summaryJa": "ガーディアンズの最新動向をMLB公式が詳報",
-        "slug": "rays-vs-guardians-alcs-game-5-starting-lineups-and-pitching-matchup",
-        "url": "https://www.mlb.com/news/rays-vs-guardians-alcs-game-5-starting-lineups-and-pitching-matchup",
-        "contentDate": "2026-10-18T21:00:00Z",
-        "teamIds": [
-            114,
-            139
+        "headline": "Arizona Fall League Week 2 top performers",
+        "summaryJa": "Welbyn Franciscaの最新動向をMLB公式が詳報",
+        "slug": "arizona-fall-league-top-performers-week-2-2026",
+        "url": "https://www.mlb.com/news/arizona-fall-league-top-performers-week-2-2026",
+        "contentDate": "2026-10-18T23:00:00Z",
+        "teamIds": [],
+        "playerIds": [
+            806988,
+            806522,
+            806964,
+            695493,
+            807748,
+            805796,
+            694345
         ],
-        "playerIds": [],
         "gamePks": [],
         "taxonomy": [
+            "arizona-fall-league",
+            "mlb-top-prospects",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Messick struggles with command as Game 5 becomes shortest start of career",
+        "summaryJa": "P.メシック（CLE）の最新動向をMLB公式が詳報",
+        "slug": "parker-messick-two-innings-guardians-game-5-alcs",
+        "url": "https://www.mlb.com/news/parker-messick-two-innings-guardians-game-5-alcs",
+        "contentDate": "2026-10-18T22:37:24.358Z",
+        "teamIds": [
+            114
+        ],
+        "playerIds": [
+            800048
+        ],
+        "gamePks": [
+            849817
+        ],
+        "taxonomy": [
             "apple-news",
-            "postseason",
-            "alcs"
+            "alcs",
+            "postseason"
         ],
         "sourceScopes": [
             "MLB",
@@ -67,7 +97,6 @@
             "postseason"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -127,6 +156,7 @@
             "postseason"
         ],
         "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
@@ -149,7 +179,6 @@
             "game-recap"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -173,12 +202,11 @@
             "alcs"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
     {
-        "headline": "With ALCS evened, Guardians look to flush Game 4 and hand ball to Messick",
+        "headline": "With ALCS evened, Guardians look to flush Game 4",
         "summaryJa": "ガーディアンズの最新動向をMLB公式が詳報",
         "slug": "guardians-lose-game-4-2026-alcs-rays",
         "url": "https://www.mlb.com/news/guardians-lose-game-4-2026-alcs-rays",
@@ -221,7 +249,6 @@
             "pennant-chase"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -247,7 +274,6 @@
             "style"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -297,7 +323,6 @@
             "play-of-the-day"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -321,29 +346,7 @@
             "alcs"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
-        ]
-    },
-    {
-        "headline": "3 storylines to watch in pivotal ALCS Game 5",
-        "summaryJa": "ガーディアンズの最新動向をMLB公式が詳報",
-        "slug": "2026-alcs-game-5-storylines",
-        "url": "https://www.mlb.com/news/2026-alcs-game-5-storylines",
-        "contentDate": "2026-10-18T05:01:38.915Z",
-        "teamIds": [
-            114,
-            139
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "alcs",
-            "postseason",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB"
         ]
     },
     {
@@ -696,6 +699,7 @@
             "winter-leagues"
         ],
         "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
@@ -755,6 +759,7 @@
             "apple-news"
         ],
         "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
@@ -892,6 +897,7 @@
             "arizona-fall-league"
         ],
         "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
@@ -1051,6 +1057,7 @@
             "apple-news"
         ],
         "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
@@ -1952,6 +1959,26 @@
         ],
         "sourceScopes": [
             "球団公式"
+        ]
+    },
+    {
+        "headline": "Four NPB stars who could be Major League-bound",
+        "summaryJa": "Hiromi Itohの最新動向をMLB公式が詳報",
+        "slug": "teruaki-sato-leads-npb-stars-who-could-soon-come-to-majors",
+        "url": "https://www.mlb.com/news/teruaki-sato-leads-npb-stars-who-could-soon-come-to-majors",
+        "contentDate": "2026-10-15T16:34:42.04Z",
+        "teamIds": [],
+        "playerIds": [
+            808955,
+            831664
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "world-baseball-classic",
+            "japan"
+        ],
+        "sourceScopes": [
+            "MLB"
         ]
     },
     {
@@ -5919,30 +5946,6 @@
         ]
     },
     {
-        "headline": "Amid career year, France still proving he belongs",
-        "summaryJa": "T.フランス（SD）の最新動向をMLB公式が詳報",
-        "slug": "ty-france-playing-with-chip-on-shoulder-this-season",
-        "url": "https://www.mlb.com/news/ty-france-playing-with-chip-on-shoulder-this-season",
-        "contentDate": "2026-10-06T00:38:05.951Z",
-        "teamIds": [
-            135
-        ],
-        "playerIds": [
-            664034
-        ],
-        "gamePks": [
-            849826
-        ],
-        "taxonomy": [
-            "apple-news",
-            "series-b",
-            "nlds"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "D-backs' lefty prospect Ariola brings elite K rate to Arizona Fall League",
         "summaryJa": "Joe Ariola（AZ）、復帰へ向けた最新状況",
         "slug": "d-backs-joe-ariola-returns-to-form-in-arizona-fall-league",
@@ -7168,7 +7171,7 @@
         ]
     },
     {
-        "headline": "Eyanson, Dzierwa land on Prospect Team of the Year",
+        "headline": "Wilder Dalis lands on Prospect Team of the Year",
         "summaryJa": "Rainiel Rodriguezら注目選手の最新動向",
         "slug": "prospect-team-of-the-year-2026",
         "url": "https://www.mlb.com/news/prospect-team-of-the-year-2026",
@@ -7751,28 +7754,6 @@
         ]
     },
     {
-        "headline": "Butera lauds Nats' resilience in '26, channels Ted Lasso to describe team's mindset",
-        "summaryJa": "ナショナルズ、勝利を呼び込む活躍",
-        "slug": "nationals-win-on-final-day-of-2026-regular-season",
-        "url": "https://www.mlb.com/news/nationals-win-on-final-day-of-2026-regular-season",
-        "contentDate": "2026-09-27T23:11:00Z",
-        "teamIds": [
-            120
-        ],
-        "playerIds": [],
-        "gamePks": [
-            822679
-        ],
-        "taxonomy": [
-            "apple-news",
-            "final-week",
-            "game-recap"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "After playing most games in a decade, Trout 'excited' for what's next",
         "summaryJa": "M.トラウト（LAA）の最新動向をMLB公式が詳報",
         "slug": "mike-trout-plays-most-games-in-10-years-in-2026",
@@ -7976,30 +7957,6 @@
         "gamePks": [],
         "taxonomy": [
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Detmers caps breakout '26 with 7-K gem in Seattle",
-        "summaryJa": "R.デトマーズ（LAA）、マウンドで好投",
-        "slug": "reid-detmers-has-7-strikeouts-as-angels-win-vs-mariners",
-        "url": "https://www.mlb.com/news/reid-detmers-has-7-strikeouts-as-angels-win-vs-mariners",
-        "contentDate": "2026-09-26T05:50:00Z",
-        "teamIds": [
-            108
-        ],
-        "playerIds": [
-            672282
-        ],
-        "gamePks": [
-            823085
-        ],
-        "taxonomy": [
-            "apple-news",
-            "quality-start",
-            "game-recap"
         ],
         "sourceScopes": [
             "球団公式"
