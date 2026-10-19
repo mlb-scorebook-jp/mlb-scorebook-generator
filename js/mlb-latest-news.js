@@ -2,6 +2,165 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "What Mets learned from Peralta's disappointing tenure -- and his rebound with Rays",
+        "summaryJa": "F.ペラルタ（NYM）の最新動向をMLB公式が詳報",
+        "slug": "what-went-wrong-during-freddy-peralta-s-mets-tenure",
+        "url": "https://www.mlb.com/news/what-went-wrong-during-freddy-peralta-s-mets-tenure",
+        "contentDate": "2026-10-19T13:58:00Z",
+        "teamIds": [
+            121
+        ],
+        "playerIds": [
+            642547
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Why Ashby's run as Brewers' fireman is reaching historic heights",
+        "summaryJa": "A.アシュビー（MIL）を巡る注目点をMLB公式が分析",
+        "slug": "brewers-aaron-ashby-having-dominant-postseason",
+        "url": "https://www.mlb.com/news/brewers-aaron-ashby-having-dominant-postseason",
+        "contentDate": "2026-10-19T13:48:39.842Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [
+            676879
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "player-tracking",
+            "savant",
+            "postseason",
+            "world-series"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Jared Banner named Orioles general manager",
+        "summaryJa": "オリオールズの最新動向をMLB公式が詳報",
+        "slug": "jared-banner-named-orioles-general-manager",
+        "url": "https://www.mlb.com/news/jared-banner-named-orioles-general-manager",
+        "contentDate": "2026-10-19T13:38:02.104Z",
+        "teamIds": [
+            110
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Braves' farm system progress report: These three made moves in 2026",
+        "summaryJa": "Eric Hartman（ATL）の最新動向をMLB公式が詳報",
+        "slug": "braves-farm-system-update-entering-2026-27-offseason",
+        "url": "https://www.mlb.com/news/braves-farm-system-update-entering-2026-27-offseason",
+        "contentDate": "2026-10-19T13:34:33.874Z",
+        "teamIds": [
+            144
+        ],
+        "playerIds": [
+            807080,
+            816111,
+            802117,
+            808535,
+            828148
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "mlb-top-prospects",
+            "minor-league-baseball"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Catching up with Rangers prospects making noise in Arizona Fall League",
+        "summaryJa": "S.ウォルコット（TEX）ら注目選手の最新動向",
+        "slug": "sebastian-walcott-jacob-johnson-and-rangers-prospects-playing-in-afl",
+        "url": "https://www.mlb.com/news/sebastian-walcott-jacob-johnson-and-rangers-prospects-playing-in-afl",
+        "contentDate": "2026-10-19T13:23:56.579Z",
+        "teamIds": [
+            140
+        ],
+        "playerIds": [
+            806964,
+            835375,
+            822415,
+            702265
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "arizona-fall-league",
+            "mlb-top-prospects",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "This super utility prospect can play every infield position -- including catcher!",
+        "summaryJa": "Cade McGee（STL）ら注目選手の最新動向",
+        "slug": "cardinals-prospect-cade-mcgee-talks-versatility-in-arizona-fall-league",
+        "url": "https://www.mlb.com/news/cardinals-prospect-cade-mcgee-talks-versatility-in-arizona-fall-league",
+        "contentDate": "2026-10-19T13:21:13.814Z",
+        "teamIds": [
+            138
+        ],
+        "playerIds": [
+            801629
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "arizona-fall-league",
+            "mlb-top-prospects"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Is a reunion in store for Bieber and Blue Jays this offseason?",
+        "summaryJa": "S.ビーバー（TOR）の最新動向をMLB公式が詳報",
+        "slug": "shane-bieber-blue-jays-free-agency-2026-2027-offseason",
+        "url": "https://www.mlb.com/news/shane-bieber-blue-jays-free-agency-2026-2027-offseason",
+        "contentDate": "2026-10-19T13:17:02.157Z",
+        "teamIds": [
+            141
+        ],
+        "playerIds": [
+            669456
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Winning formula in Game 5? 'Rays baseball at its finest'",
         "summaryJa": "レイズ、勝利を呼び込む活躍",
         "slug": "rays-all-around-effort-alcs-game-5-win-2026",
@@ -964,7 +1123,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1124,25 +1282,6 @@
         ]
     },
     {
-        "headline": "Top Japanese prospect Shoki Oda announces plans to forego NPB for future MLB career",
-        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
-        "slug": "shoki-oda-to-skip-npb-draft-to-pursue-mlb-dreams",
-        "url": "https://www.mlb.com/news/shoki-oda-to-skip-npb-draft-to-pursue-mlb-dreams",
-        "contentDate": "2026-10-16T18:55:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "japan",
-            "mlb-top-prospects",
-            "apple-news",
-            "rumors"
-        ],
-        "sourceScopes": [
-            "MLB"
-        ]
-    },
-    {
         "headline": "Milwaukee backs Brewers as NBA's Bucks shift time of home opener for World Series",
         "summaryJa": "ブルワーズの最新動向をMLB公式が詳報",
         "slug": "milwaukee-bucks-change-time-of-home-opener-brewers-world-series",
@@ -1158,7 +1297,6 @@
             "world-series"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1488,32 +1626,6 @@
         ]
     },
     {
-        "headline": "Ashby's 9-out save the cherry on top of dominant NLCS for Crew's 'pen",
-        "summaryJa": "A.アシュビー（MIL）の最新動向をMLB公式が詳報",
-        "slug": "aaron-ashby-brewers-bullpen-caps-dominant-nlcs",
-        "url": "https://www.mlb.com/news/aaron-ashby-brewers-bullpen-caps-dominant-nlcs",
-        "contentDate": "2026-10-16T07:18:20.787Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [
-            676879,
-            668941
-        ],
-        "gamePks": [
-            849810
-        ],
-        "taxonomy": [
-            "apple-news",
-            "postseason",
-            "nlcs",
-            "relief-performance"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Mitchell keeps proving doubters wrong -- all the way to the World Series",
         "summaryJa": "G.ミッチェル（MIL）、本塁打で存在感",
         "slug": "garrett-mitchell-hits-go-ahead-homer-to-send-brewers-to-world-series",
@@ -1608,30 +1720,6 @@
         "sourceScopes": [
             "MLB",
             "球団公式"
-        ]
-    },
-    {
-        "headline": "Brewers end Dodgers' three-peat bid with an NLCS sweep of their own",
-        "summaryJa": "ブルワーズ、勝利を呼び込む活躍",
-        "slug": "brewers-win-nlcs-2026",
-        "url": "https://www.mlb.com/news/brewers-win-nlcs-2026",
-        "contentDate": "2026-10-16T06:12:00Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [],
-        "gamePks": [
-            849810
-        ],
-        "taxonomy": [
-            "apple-news",
-            "postseason",
-            "nlcs",
-            "game-recap",
-            "clincher"
-        ],
-        "sourceScopes": [
-            "MLB"
         ]
     },
     {
@@ -7154,25 +7242,6 @@
         ]
     },
     {
-        "headline": "Young pledges to 'fix' Rangers issues after disappointing end",
-        "summaryJa": "レンジャーズの最新動向をMLB公式が詳報",
-        "slug": "chris-young-addresses-rangers-missing-2026-postseason",
-        "url": "https://www.mlb.com/news/chris-young-addresses-rangers-missing-2026-postseason",
-        "contentDate": "2026-09-29T01:01:45.286Z",
-        "teamIds": [
-            140
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "offseason"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "M's phenom Anderson caps big season with Pitching Prospect of the Year honors",
         "summaryJa": "K.アンダーソン（SEA）ら注目選手の最新動向",
         "slug": "mariners-kade-anderson-named-2026-pitching-prospect-of-the-year",
@@ -7315,25 +7384,6 @@
         "gamePks": [],
         "taxonomy": [
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Stearns hopes to build upon 'really encouraging signs' as he looks ahead to '27",
-        "summaryJa": "メッツの移籍・契約に関する最新情報",
-        "slug": "david-stearns-discusses-2026-mets-2027-outlook",
-        "url": "https://www.mlb.com/news/david-stearns-discusses-2026-mets-2027-outlook",
-        "contentDate": "2026-09-28T21:26:56.216Z",
-        "teamIds": [
-            121
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "offseason"
         ],
         "sourceScopes": [
             "球団公式"
@@ -7794,29 +7844,6 @@
         "taxonomy": [
             "apple-news",
             "final-week"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Emotional Springer says goodbye to Toronto on Scherzer's Hall-worthy day",
-        "summaryJa": "G.スプリンガ―（TOR）の最新動向をMLB公式が詳報",
-        "slug": "george-springer-grateful-for-time-with-blue-jays",
-        "url": "https://www.mlb.com/news/george-springer-grateful-for-time-with-blue-jays",
-        "contentDate": "2026-09-27T23:01:00Z",
-        "teamIds": [
-            141
-        ],
-        "playerIds": [
-            543807,
-            453286
-        ],
-        "gamePks": [
-            822761
-        ],
-        "taxonomy": [
-            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
