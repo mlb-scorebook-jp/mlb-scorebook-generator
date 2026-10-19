@@ -2,11 +2,129 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Winning formula in Game 5? 'Rays baseball at its finest'",
+        "summaryJa": "レイズ、勝利を呼び込む活躍",
+        "slug": "rays-all-around-effort-alcs-game-5-win-2026",
+        "url": "https://www.mlb.com/news/rays-all-around-effort-alcs-game-5-win-2026",
+        "contentDate": "2026-10-19T02:54:00Z",
+        "teamIds": [
+            139
+        ],
+        "playerIds": [],
+        "gamePks": [
+            849817
+        ],
+        "taxonomy": [
+            "postseason",
+            "alcs",
+            "apple-news",
+            "pennant-chase",
+            "style"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "3 storylines to watch as Guards-Rays clash in ALCS Game 6",
+        "summaryJa": "ガーディアンズの最新動向をMLB公式が詳報",
+        "slug": "2026-alcs-game-6-storylines",
+        "url": "https://www.mlb.com/news/2026-alcs-game-6-storylines",
+        "contentDate": "2026-10-19T02:28:36.997Z",
+        "teamIds": [
+            114,
+            139
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "alcs",
+            "postseason",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Rasmussen puts Rays on his back again to build on historic postseason",
+        "summaryJa": "D.ラスムッセン（TB）、勝利を呼び込む活躍",
+        "slug": "drew-rasmussen-dominates-as-rays-win-game-5-of-2026-alcs",
+        "url": "https://www.mlb.com/news/drew-rasmussen-dominates-as-rays-win-game-5-of-2026-alcs",
+        "contentDate": "2026-10-19T02:27:00Z",
+        "teamIds": [
+            139
+        ],
+        "playerIds": [
+            656876
+        ],
+        "gamePks": [
+            849817
+        ],
+        "taxonomy": [
+            "apple-news",
+            "alcs"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Guardians facing elimination, and they'll need a revised pitching plan to avoid it",
+        "summaryJa": "P.メシック（CLE）の最新動向をMLB公式が詳報",
+        "slug": "parker-messick-two-innings-guardians-game-5-alcs",
+        "url": "https://www.mlb.com/news/parker-messick-two-innings-guardians-game-5-alcs",
+        "contentDate": "2026-10-19T02:24:00Z",
+        "teamIds": [
+            114
+        ],
+        "playerIds": [
+            800048
+        ],
+        "gamePks": [
+            849817
+        ],
+        "taxonomy": [
+            "apple-news",
+            "alcs",
+            "postseason"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Rays' ruthless efficiency powering postseason run -- and perhaps AL pennant",
+        "summaryJa": "レイズの最新動向をMLB公式が詳報",
+        "slug": "rays-all-around-efficiency-powering-postseason-run",
+        "url": "https://www.mlb.com/news/rays-all-around-efficiency-powering-postseason-run",
+        "contentDate": "2026-10-19T02:23:41.971Z",
+        "teamIds": [
+            139
+        ],
+        "playerIds": [],
+        "gamePks": [
+            849817
+        ],
+        "taxonomy": [
+            "alcs",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Yandy declares the ALCS over: 'We're going to win tomorrow'",
         "summaryJa": "Y.ディアス（TB）、勝利を呼び込む活躍",
         "slug": "yandy-diaz-declares-rays-will-win-game-6-of-2026-alcs",
         "url": "https://www.mlb.com/news/yandy-diaz-declares-rays-will-win-game-6-of-2026-alcs",
-        "contentDate": "2026-10-19T01:30:27.459Z",
+        "contentDate": "2026-10-19T02:17:00Z",
         "teamIds": [
             139
         ],
@@ -26,23 +144,25 @@
         ]
     },
     {
-        "headline": "Behind Rasmussen gem, rejuvenated Rays return home 1 win from World Series",
-        "summaryJa": "レイズ、復帰へ向けた最新状況",
-        "slug": "rays-win-alcs-game-5-2026",
-        "url": "https://www.mlb.com/news/rays-win-alcs-game-5-2026",
-        "contentDate": "2026-10-19T00:22:00Z",
+        "headline": "Thought Kwan's first play was good? Gold Glover comes back with another gem",
+        "summaryJa": "S.クワン（CLE）の最新動向をMLB公式が詳報",
+        "slug": "steven-kwan-makes-great-throw-catch-in-alcs-game-5",
+        "url": "https://www.mlb.com/news/steven-kwan-makes-great-throw-catch-in-alcs-game-5",
+        "contentDate": "2026-10-19T02:12:33.256Z",
         "teamIds": [
-            139
+            114
         ],
-        "playerIds": [],
+        "playerIds": [
+            680757
+        ],
         "gamePks": [
             849817
         ],
         "taxonomy": [
-            "game-recap",
             "apple-news",
             "alcs",
-            "postseason"
+            "postseason",
+            "love"
         ],
         "sourceScopes": [
             "MLB",
@@ -50,11 +170,35 @@
         ]
     },
     {
-        "headline": "Rasmussen adds to historic postseason as Rays go home with ALCS lead",
-        "summaryJa": "D.ラスムッセン（TB）、勝利を呼び込む活躍",
-        "slug": "drew-rasmussen-dominates-as-rays-win-game-5-of-2026-alcs",
-        "url": "https://www.mlb.com/news/drew-rasmussen-dominates-as-rays-win-game-5-of-2026-alcs",
-        "contentDate": "2026-10-19T00:08:36.575Z",
+        "headline": "Guardians-Rays ALCS Game 6 FAQ (8 ET on TBS/HBO Max)",
+        "summaryJa": "ガーディアンズの最新動向をMLB公式が詳報",
+        "slug": "guardians-vs-rays-alcs-game-6-starting-lineups-pitching-matchup",
+        "url": "https://www.mlb.com/news/guardians-vs-rays-alcs-game-6-starting-lineups-pitching-matchup",
+        "contentDate": "2026-10-19T02:01:40.997Z",
+        "teamIds": [
+            114,
+            139
+        ],
+        "playerIds": [],
+        "gamePks": [
+            849815
+        ],
+        "taxonomy": [
+            "apple-news",
+            "postseason",
+            "alcs"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Confident Rays quiet Cleveland, return home one win from World Series",
+        "summaryJa": "D.ラスムッセン（TB）、復帰へ向けた最新状況",
+        "slug": "rays-win-alcs-game-5-2026",
+        "url": "https://www.mlb.com/news/rays-win-alcs-game-5-2026",
+        "contentDate": "2026-10-19T01:34:00Z",
         "teamIds": [
             139
         ],
@@ -65,8 +209,10 @@
             849817
         ],
         "taxonomy": [
+            "game-recap",
             "apple-news",
-            "alcs"
+            "alcs",
+            "postseason"
         ],
         "sourceScopes": [
             "MLB",
@@ -88,31 +234,6 @@
         ],
         "sourceScopes": [
             "MLB"
-        ]
-    },
-    {
-        "headline": "Messick struggles with command as Game 5 becomes shortest start of career",
-        "summaryJa": "P.メシック（CLE）の最新動向をMLB公式が詳報",
-        "slug": "parker-messick-two-innings-guardians-game-5-alcs",
-        "url": "https://www.mlb.com/news/parker-messick-two-innings-guardians-game-5-alcs",
-        "contentDate": "2026-10-19T00:06:00Z",
-        "teamIds": [
-            114
-        ],
-        "playerIds": [
-            800048
-        ],
-        "gamePks": [
-            849817
-        ],
-        "taxonomy": [
-            "apple-news",
-            "alcs",
-            "postseason"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
         ]
     },
     {
@@ -385,7 +506,6 @@
             "alcs"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -500,7 +620,6 @@
             "winter-leagues"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -523,7 +642,6 @@
             "mlb-top-prospects"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -545,7 +663,6 @@
             "mlbn-611-podcast"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -788,7 +905,6 @@
             "winter-leagues"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1145,7 +1261,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1493,6 +1608,30 @@
         "sourceScopes": [
             "MLB",
             "球団公式"
+        ]
+    },
+    {
+        "headline": "Brewers end Dodgers' three-peat bid with an NLCS sweep of their own",
+        "summaryJa": "ブルワーズ、勝利を呼び込む活躍",
+        "slug": "brewers-win-nlcs-2026",
+        "url": "https://www.mlb.com/news/brewers-win-nlcs-2026",
+        "contentDate": "2026-10-16T06:12:00Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [],
+        "gamePks": [
+            849810
+        ],
+        "taxonomy": [
+            "apple-news",
+            "postseason",
+            "nlcs",
+            "game-recap",
+            "clincher"
+        ],
+        "sourceScopes": [
+            "MLB"
         ]
     },
     {
@@ -2339,29 +2478,6 @@
         ]
     },
     {
-        "headline": "Reliever-turned-starter Jax excited for first playoff starting assignment",
-        "summaryJa": "G.ジャックス（TB）の移籍・契約に関する最新情報",
-        "slug": "griffin-jax-to-make-first-career-playoff-start-for-rays-in-alcs",
-        "url": "https://www.mlb.com/news/griffin-jax-to-make-first-career-playoff-start-for-rays-in-alcs",
-        "contentDate": "2026-10-14T23:16:20.767Z",
-        "teamIds": [
-            139
-        ],
-        "playerIds": [
-            643377,
-            693855
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "alcs",
-            "postseason"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Here's one stat from each farm system that caught our eye in 2026",
         "summaryJa": "MLBの最新情報ら注目選手の最新動向",
         "slug": "best-prospect-stat-from-each-mlb-farm-system-2026",
@@ -2434,32 +2550,6 @@
         "gamePks": [],
         "taxonomy": [
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "The two hitters unlike anyone else you'll see in the playoffs",
-        "summaryJa": "C.シンプソン（TB）の最新動向をMLB公式が詳報",
-        "slug": "steven-kwan-chandler-simpson-unlike-anyone-else-mlb-postseason",
-        "url": "https://www.mlb.com/news/steven-kwan-chandler-simpson-unlike-anyone-else-mlb-postseason",
-        "contentDate": "2026-10-14T20:01:00Z",
-        "teamIds": [
-            139,
-            114
-        ],
-        "playerIds": [
-            802415,
-            680757
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "alcs",
-            "player-tracking",
-            "savant",
-            "postseason"
         ],
         "sourceScopes": [
             "球団公式"
@@ -2589,46 +2679,6 @@
         "taxonomy": [
             "apple-news",
             "rumors"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Rays left 'no stone unturned' building roster en route to ALCS",
-        "summaryJa": "レイズの最新動向をMLB公式が詳報",
-        "slug": "rays-roster-construction-in-focus-during-alcs-2026",
-        "url": "https://www.mlb.com/news/rays-roster-construction-in-focus-during-alcs-2026",
-        "contentDate": "2026-10-14T15:00:22.099Z",
-        "teamIds": [
-            139
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "alcs",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "11 on 11: Why José (NOT J-Ram!) is Cleveland's brightest star",
-        "summaryJa": "J.ラミレス（CLE）を巡る注目点をMLB公式が分析",
-        "slug": "11-great-things-about-jose-ramirez-in-alcs",
-        "url": "https://www.mlb.com/news/11-great-things-about-jose-ramirez-in-alcs",
-        "contentDate": "2026-10-14T14:34:04.128Z",
-        "teamIds": [
-            114
-        ],
-        "playerIds": [
-            608070
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "alcs"
         ],
         "sourceScopes": [
             "球団公式"
