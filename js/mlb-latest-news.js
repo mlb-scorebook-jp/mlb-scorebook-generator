@@ -2,26 +2,23 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
-        "headline": "Arizona Fall League Week 2 top performers",
-        "summaryJa": "Welbyn Franciscaの最新動向をMLB公式が詳報",
-        "slug": "arizona-fall-league-top-performers-week-2-2026",
-        "url": "https://www.mlb.com/news/arizona-fall-league-top-performers-week-2-2026",
-        "contentDate": "2026-10-18T23:00:00Z",
-        "teamIds": [],
-        "playerIds": [
-            806988,
-            806522,
-            806964,
-            695493,
-            807748,
-            805796,
-            694345
+        "headline": "Yandy declares the ALCS over: 'We're going to win tomorrow'",
+        "summaryJa": "Y.ディアス（TB）、勝利を呼び込む活躍",
+        "slug": "yandy-diaz-declares-rays-will-win-game-6-of-2026-alcs",
+        "url": "https://www.mlb.com/news/yandy-diaz-declares-rays-will-win-game-6-of-2026-alcs",
+        "contentDate": "2026-10-19T01:30:27.459Z",
+        "teamIds": [
+            139
         ],
-        "gamePks": [],
+        "playerIds": [
+            650490
+        ],
+        "gamePks": [
+            849817
+        ],
         "taxonomy": [
-            "arizona-fall-league",
-            "mlb-top-prospects",
-            "apple-news"
+            "apple-news",
+            "alcs"
         ],
         "sourceScopes": [
             "MLB",
@@ -29,11 +26,76 @@
         ]
     },
     {
+        "headline": "Behind Rasmussen gem, rejuvenated Rays return home 1 win from World Series",
+        "summaryJa": "レイズ、復帰へ向けた最新状況",
+        "slug": "rays-win-alcs-game-5-2026",
+        "url": "https://www.mlb.com/news/rays-win-alcs-game-5-2026",
+        "contentDate": "2026-10-19T00:22:00Z",
+        "teamIds": [
+            139
+        ],
+        "playerIds": [],
+        "gamePks": [
+            849817
+        ],
+        "taxonomy": [
+            "game-recap",
+            "apple-news",
+            "alcs",
+            "postseason"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Rasmussen adds to historic postseason as Rays go home with ALCS lead",
+        "summaryJa": "D.ラスムッセン（TB）、勝利を呼び込む活躍",
+        "slug": "drew-rasmussen-dominates-as-rays-win-game-5-of-2026-alcs",
+        "url": "https://www.mlb.com/news/drew-rasmussen-dominates-as-rays-win-game-5-of-2026-alcs",
+        "contentDate": "2026-10-19T00:08:36.575Z",
+        "teamIds": [
+            139
+        ],
+        "playerIds": [
+            656876
+        ],
+        "gamePks": [
+            849817
+        ],
+        "taxonomy": [
+            "apple-news",
+            "alcs"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Here are the greatest LCS Game 6s of all time",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "best-game-6-s-in-lcs-history-c299343340",
+        "url": "https://www.mlb.com/news/best-game-6-s-in-lcs-history-c299343340",
+        "contentDate": "2026-10-19T00:07:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "evergreen",
+            "rankings"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
         "headline": "Messick struggles with command as Game 5 becomes shortest start of career",
         "summaryJa": "P.メシック（CLE）の最新動向をMLB公式が詳報",
         "slug": "parker-messick-two-innings-guardians-game-5-alcs",
         "url": "https://www.mlb.com/news/parker-messick-two-innings-guardians-game-5-alcs",
-        "contentDate": "2026-10-18T22:37:24.358Z",
+        "contentDate": "2026-10-19T00:06:00Z",
         "teamIds": [
             114
         ],
@@ -58,7 +120,7 @@
         "summaryJa": "レイズの最新動向をMLB公式が詳報",
         "slug": "2026-mlb-playoff-and-world-series-schedule",
         "url": "https://www.mlb.com/news/2026-mlb-playoff-and-world-series-schedule",
-        "contentDate": "2026-10-18T20:42:00Z",
+        "contentDate": "2026-10-18T23:58:00Z",
         "teamIds": [
             139,
             114,
@@ -73,6 +135,33 @@
         ],
         "sourceScopes": [
             "MLB"
+        ]
+    },
+    {
+        "headline": "Arizona Fall League Week 2 top performers",
+        "summaryJa": "Welbyn Franciscaの最新動向をMLB公式が詳報",
+        "slug": "arizona-fall-league-top-performers-week-2-2026",
+        "url": "https://www.mlb.com/news/arizona-fall-league-top-performers-week-2-2026",
+        "contentDate": "2026-10-18T23:00:00Z",
+        "teamIds": [],
+        "playerIds": [
+            806988,
+            806522,
+            806964,
+            695493,
+            807748,
+            805796,
+            694345
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "arizona-fall-league",
+            "mlb-top-prospects",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
         ]
     },
     {
@@ -897,7 +986,6 @@
             "arizona-fall-league"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1120,28 +1208,6 @@
             "mlb-top-prospects",
             "apple-news",
             "arizona-fall-league"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "After standout season with the bat, Rays' Flewelling focusing on defense in Fall League",
-        "summaryJa": "Nathan Flewelling（TB）の最新動向をMLB公式が詳報",
-        "slug": "rays-arizona-fall-league-overview-2026",
-        "url": "https://www.mlb.com/news/rays-arizona-fall-league-overview-2026",
-        "contentDate": "2026-10-16T14:26:01.378Z",
-        "teamIds": [
-            139
-        ],
-        "playerIds": [
-            807083
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "arizona-fall-league",
-            "apple-news",
-            "mlb-top-prospects"
         ],
         "sourceScopes": [
             "球団公式"
@@ -1427,30 +1493,6 @@
         "sourceScopes": [
             "MLB",
             "球団公式"
-        ]
-    },
-    {
-        "headline": "Brewers end Dodgers' three-peat bid with an NLCS sweep of their own",
-        "summaryJa": "ブルワーズ、勝利を呼び込む活躍",
-        "slug": "brewers-win-nlcs-2026",
-        "url": "https://www.mlb.com/news/brewers-win-nlcs-2026",
-        "contentDate": "2026-10-16T06:12:00Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [],
-        "gamePks": [
-            849810
-        ],
-        "taxonomy": [
-            "apple-news",
-            "postseason",
-            "nlcs",
-            "game-recap",
-            "clincher"
-        ],
-        "sourceScopes": [
-            "MLB"
         ]
     },
     {
@@ -1962,26 +2004,6 @@
         ]
     },
     {
-        "headline": "Four NPB stars who could be Major League-bound",
-        "summaryJa": "Hiromi Itohの最新動向をMLB公式が詳報",
-        "slug": "teruaki-sato-leads-npb-stars-who-could-soon-come-to-majors",
-        "url": "https://www.mlb.com/news/teruaki-sato-leads-npb-stars-who-could-soon-come-to-majors",
-        "contentDate": "2026-10-15T16:34:42.04Z",
-        "teamIds": [],
-        "playerIds": [
-            808955,
-            831664
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "world-baseball-classic",
-            "japan"
-        ],
-        "sourceScopes": [
-            "MLB"
-        ]
-    },
-    {
         "headline": "Padres prospect Harvey -- with help from Salas -- developing behind the plate in AFL",
         "summaryJa": "Ty Harvey（SD）ら注目選手の最新動向",
         "slug": "padres-arizona-fall-league-overview-2026",
@@ -2418,32 +2440,6 @@
         ]
     },
     {
-        "headline": "Examining Gavin Williams' breakout season ahead of ALCS start",
-        "summaryJa": "G.ウィリアムズ（CLE）を巡る注目点をMLB公式が分析",
-        "slug": "gavin-williams-2026-postseason-analysis",
-        "url": "https://www.mlb.com/news/gavin-williams-2026-postseason-analysis",
-        "contentDate": "2026-10-14T20:25:00Z",
-        "teamIds": [
-            114
-        ],
-        "playerIds": [
-            668909
-        ],
-        "gamePks": [
-            849813
-        ],
-        "taxonomy": [
-            "apple-news",
-            "postseason",
-            "alcs",
-            "player-tracking",
-            "savant"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "The two hitters unlike anyone else you'll see in the playoffs",
         "summaryJa": "C.シンプソン（TB）の最新動向をMLB公式が詳報",
         "slug": "steven-kwan-chandler-simpson-unlike-anyone-else-mlb-postseason",
@@ -2555,29 +2551,6 @@
         "taxonomy": [
             "minor-league-baseball",
             "baseball-traveler"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Hot corner, lasting legacy: Junior hoping to follow J-Ram's lead",
-        "summaryJa": "J.ラミレス（TB）の最新動向をMLB公式が詳報",
-        "slug": "junior-caminero-jose-ramirez-friendship-alcs-2026",
-        "url": "https://www.mlb.com/news/junior-caminero-jose-ramirez-friendship-alcs-2026",
-        "contentDate": "2026-10-14T16:10:21.162Z",
-        "teamIds": [
-            139
-        ],
-        "playerIds": [
-            608070,
-            691406
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "postseason",
-            "alcs",
-            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
