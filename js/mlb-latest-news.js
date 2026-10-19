@@ -2,6 +2,87 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Watch LIVE: Top prospect Nimmala in Arizona Fall League action",
+        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
+        "slug": "watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
+        "url": "https://www.mlb.com/news/watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
+        "contentDate": "2026-10-19T23:00:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "arizona-fall-league"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Boone to return as Yankees manager in '27, final year of his contract (source)",
+        "summaryJa": "ヤンキース、復帰へ向けた最新状況",
+        "slug": "aaron-boone-return-yankees-manager-2027",
+        "url": "https://www.mlb.com/news/aaron-boone-return-yankees-manager-2027",
+        "contentDate": "2026-10-19T22:27:09.751Z",
+        "teamIds": [
+            147
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Guardians-Rays ALCS Game 6 lineups, FAQ (8 ET on TBS/HBO Max)",
+        "summaryJa": "ガーディアンズの最新動向をMLB公式が詳報",
+        "slug": "guardians-vs-rays-alcs-game-6-starting-lineups-pitching-matchup",
+        "url": "https://www.mlb.com/news/guardians-vs-rays-alcs-game-6-starting-lineups-pitching-matchup",
+        "contentDate": "2026-10-19T20:22:00Z",
+        "teamIds": [
+            114,
+            139
+        ],
+        "playerIds": [],
+        "gamePks": [
+            849815
+        ],
+        "taxonomy": [
+            "apple-news",
+            "postseason",
+            "alcs"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "What Dodgers can learn from Ohtani's injury-plagued 2026",
+        "summaryJa": "大谷 翔平（LAD）の負傷状況をMLB公式が詳報",
+        "slug": "shohei-ohtani-2026-injury-timeline-dodgers-lessons",
+        "url": "https://www.mlb.com/news/shohei-ohtani-2026-injury-timeline-dodgers-lessons",
+        "contentDate": "2026-10-19T19:54:37.602Z",
+        "teamIds": [
+            119
+        ],
+        "playerIds": [
+            660271
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "What is the Guardians' pitching plan for Game 6? Even they say they're not sure",
         "summaryJa": "ガーディアンズの最新動向をMLB公式が詳報",
         "slug": "2026-alcs-game-6-storylines",
@@ -65,6 +146,27 @@
         ]
     },
     {
+        "headline": "Top prospect Nimmala named AFL Hitter of the Week",
+        "summaryJa": "A.ニマーラら注目選手の最新動向",
+        "slug": "arizona-fall-league-week-2-award-winners-2026",
+        "url": "https://www.mlb.com/news/arizona-fall-league-week-2-award-winners-2026",
+        "contentDate": "2026-10-19T16:01:00.715Z",
+        "teamIds": [],
+        "playerIds": [
+            805796,
+            694345
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "arizona-fall-league",
+            "apple-news",
+            "mlb-top-prospects"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Guardians facing elimination, and they'll need a revised pitching plan to avoid it",
         "summaryJa": "P.メシック（CLE）の最新動向をMLB公式が詳報",
         "slug": "parker-messick-two-innings-guardians-game-5-alcs",
@@ -83,30 +185,6 @@
             "apple-news",
             "alcs",
             "postseason"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Guardians-Rays ALCS Game 6 FAQ (8 ET on TBS/HBO Max)",
-        "summaryJa": "ガーディアンズの最新動向をMLB公式が詳報",
-        "slug": "guardians-vs-rays-alcs-game-6-starting-lineups-pitching-matchup",
-        "url": "https://www.mlb.com/news/guardians-vs-rays-alcs-game-6-starting-lineups-pitching-matchup",
-        "contentDate": "2026-10-19T15:09:00Z",
-        "teamIds": [
-            114,
-            139
-        ],
-        "playerIds": [],
-        "gamePks": [
-            849815
-        ],
-        "taxonomy": [
-            "apple-news",
-            "postseason",
-            "alcs"
         ],
         "sourceScopes": [
             "MLB",
@@ -186,7 +264,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -624,23 +701,6 @@
         ],
         "sourceScopes": [
             "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Watch Angels prospects in Arizona Fall League action",
-        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
-        "slug": "watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
-        "url": "https://www.mlb.com/news/watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
-        "contentDate": "2026-10-18T19:09:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "arizona-fall-league"
-        ],
-        "sourceScopes": [
             "球団公式"
         ]
     },
@@ -1240,7 +1300,6 @@
             "offbeat"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1686,29 +1745,6 @@
         "taxonomy": [
             "apple-news",
             "mlb-top-prospects"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Five burning questions for Yankees entering pivotal offseason",
-        "summaryJa": "A.ジャッジ（NYY）の最新動向をMLB公式が詳報",
-        "slug": "yankees-biggest-questions-for-2026-27-offseason",
-        "url": "https://www.mlb.com/news/yankees-biggest-questions-for-2026-27-offseason",
-        "contentDate": "2026-10-16T13:12:01.841Z",
-        "teamIds": [
-            147
-        ],
-        "playerIds": [
-            592450,
-            519317,
-            669224,
-            683011
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
@@ -3440,27 +3476,6 @@
         "taxonomy": [
             "apple-news",
             "mlb-top-prospects"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "To turn NLCS around, Dodgers' offense needs to figure things out -- and quickly",
-        "summaryJa": "ドジャースの最新動向をMLB公式が詳報",
-        "slug": "dodgers-lose-nlcs-game-2-2026",
-        "url": "https://www.mlb.com/news/dodgers-lose-nlcs-game-2-2026",
-        "contentDate": "2026-10-13T02:40:37.219Z",
-        "teamIds": [
-            119
-        ],
-        "playerIds": [],
-        "gamePks": [
-            849812
-        ],
-        "taxonomy": [
-            "nlcs",
-            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
@@ -7498,24 +7513,6 @@
         ]
     },
     {
-        "headline": "After down '26 for O's, Elias aims to get club back on track: 'We're tired of it'",
-        "summaryJa": "オリオールズの最新動向をMLB公式が詳報",
-        "slug": "mike-elias-orioles-2026-season-missing-playoffs",
-        "url": "https://www.mlb.com/news/mike-elias-orioles-2026-season-missing-playoffs",
-        "contentDate": "2026-09-28T20:57:50.221Z",
-        "teamIds": [
-            110
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Twins part ways with pitching coaches Maki, Ramirez and trainer Kirkman",
         "summaryJa": "ツインズの最新動向をMLB公式が詳報",
         "slug": "twins-coaching-staff-changes-2026",
@@ -8007,22 +8004,6 @@
             "injury",
             "transactions",
             "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Johnson goes into offseason with 'a little fire' after taking loss in final start",
-        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
-        "slug": "ryan-johnson-has-strong-end-to-2026-seasons",
-        "url": "https://www.mlb.com/news/ryan-johnson-has-strong-end-to-2026-seasons",
-        "contentDate": "2026-09-27T05:48:14.789Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
