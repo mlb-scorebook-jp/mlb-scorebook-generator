@@ -2,6 +2,234 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "What is the Guardians' pitching plan for Game 6? Even they say they're not sure",
+        "summaryJa": "ガーディアンズの最新動向をMLB公式が詳報",
+        "slug": "2026-alcs-game-6-storylines",
+        "url": "https://www.mlb.com/news/2026-alcs-game-6-storylines",
+        "contentDate": "2026-10-19T17:35:00Z",
+        "teamIds": [
+            114,
+            139
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "alcs",
+            "postseason",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "O's tab longtime exec Jared Banner as new general manager",
+        "summaryJa": "オリオールズの最新動向をMLB公式が詳報",
+        "slug": "jared-banner-named-orioles-general-manager",
+        "url": "https://www.mlb.com/news/jared-banner-named-orioles-general-manager",
+        "contentDate": "2026-10-19T17:07:00Z",
+        "teamIds": [
+            110
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Even Uecker would get a kick out of these Brewers fans' stories",
+        "summaryJa": "ブルワーズの最新動向をMLB公式が詳報",
+        "slug": "brewers-fans-share-what-world-series-appearance-means-to-them",
+        "url": "https://www.mlb.com/news/brewers-fans-share-what-world-series-appearance-means-to-them",
+        "contentDate": "2026-10-19T16:21:20.466Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "world-series",
+            "postseason",
+            "fans"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Guardians facing elimination, and they'll need a revised pitching plan to avoid it",
+        "summaryJa": "P.メシック（CLE）の最新動向をMLB公式が詳報",
+        "slug": "parker-messick-two-innings-guardians-game-5-alcs",
+        "url": "https://www.mlb.com/news/parker-messick-two-innings-guardians-game-5-alcs",
+        "contentDate": "2026-10-19T15:14:00Z",
+        "teamIds": [
+            114
+        ],
+        "playerIds": [
+            800048
+        ],
+        "gamePks": [
+            849817
+        ],
+        "taxonomy": [
+            "apple-news",
+            "alcs",
+            "postseason"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Guardians-Rays ALCS Game 6 FAQ (8 ET on TBS/HBO Max)",
+        "summaryJa": "ガーディアンズの最新動向をMLB公式が詳報",
+        "slug": "guardians-vs-rays-alcs-game-6-starting-lineups-pitching-matchup",
+        "url": "https://www.mlb.com/news/guardians-vs-rays-alcs-game-6-starting-lineups-pitching-matchup",
+        "contentDate": "2026-10-19T15:09:00Z",
+        "teamIds": [
+            114,
+            139
+        ],
+        "playerIds": [],
+        "gamePks": [
+            849815
+        ],
+        "taxonomy": [
+            "apple-news",
+            "postseason",
+            "alcs"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Recapping moments that defined D-backs' 2026 season",
+        "summaryJa": "ダイヤモンドバックスの最新動向をMLB公式が詳報",
+        "slug": "biggest-moments-from-d-backs-2026-season",
+        "url": "https://www.mlb.com/news/biggest-moments-from-d-backs-2026-season",
+        "contentDate": "2026-10-19T14:46:39.444Z",
+        "teamIds": [
+            109
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "A's bring in Taylor Smith to run baseball operations",
+        "summaryJa": "アスレチックスの最新動向をMLB公式が詳報",
+        "slug": "taylor-smith-named-a-s-president-of-baseball-operations",
+        "url": "https://www.mlb.com/news/taylor-smith-named-a-s-president-of-baseball-operations",
+        "contentDate": "2026-10-19T14:46:00Z",
+        "teamIds": [
+            133
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Tigers' offseason starts with key decision on Jansen's option",
+        "summaryJa": "K.ジャンセン（DET）の最新動向をMLB公式が詳報",
+        "slug": "tigers-club-option-for-veteran-closer-kenley-jansen-2027",
+        "url": "https://www.mlb.com/news/tigers-club-option-for-veteran-closer-kenley-jansen-2027",
+        "contentDate": "2026-10-19T14:45:09.612Z",
+        "teamIds": [
+            116
+        ],
+        "playerIds": [
+            445276
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "What Mariners players want to see in their next manager",
+        "summaryJa": "マリナーズの移籍・契約に関する最新情報",
+        "slug": "mariners-discuss-ideal-qualities-2027-manager",
+        "url": "https://www.mlb.com/news/mariners-discuss-ideal-qualities-2027-manager",
+        "contentDate": "2026-10-19T14:29:24.434Z",
+        "teamIds": [
+            136
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Catching prospect Jimenez joins Twins' AFL contingent",
+        "summaryJa": "Enrique Jimenez（MIN）ら注目選手の最新動向",
+        "slug": "twins-prospect-enrique-jimenez-joins-arizona-fall-league",
+        "url": "https://www.mlb.com/news/twins-prospect-enrique-jimenez-joins-arizona-fall-league",
+        "contentDate": "2026-10-19T14:24:23.909Z",
+        "teamIds": [
+            142
+        ],
+        "playerIds": [
+            806992
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "arizona-fall-league",
+            "mlb-top-prospects"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "NPB MVP, Triple Crown winner Sato to enter MLB posting system",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "teruaki-sato-mlb-posting-system",
+        "url": "https://www.mlb.com/news/teruaki-sato-mlb-posting-system",
+        "contentDate": "2026-10-19T14:17:33.16Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "mlb"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
         "headline": "What Mets learned from Peralta's disappointing tenure -- and his rebound with Rays",
         "summaryJa": "F.ペラルタ（NYM）の最新動向をMLB公式が詳報",
         "slug": "what-went-wrong-during-freddy-peralta-s-mets-tenure",
@@ -18,6 +246,7 @@
             "apple-news"
         ],
         "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
@@ -43,24 +272,6 @@
         ],
         "sourceScopes": [
             "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Jared Banner named Orioles general manager",
-        "summaryJa": "オリオールズの最新動向をMLB公式が詳報",
-        "slug": "jared-banner-named-orioles-general-manager",
-        "url": "https://www.mlb.com/news/jared-banner-named-orioles-general-manager",
-        "contentDate": "2026-10-19T13:38:02.104Z",
-        "teamIds": [
-            110
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
             "球団公式"
         ]
     },
@@ -112,7 +323,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -135,7 +345,6 @@
             "mlb-top-prospects"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -186,28 +395,6 @@
         ]
     },
     {
-        "headline": "3 storylines to watch as Guards-Rays clash in ALCS Game 6",
-        "summaryJa": "ガーディアンズの最新動向をMLB公式が詳報",
-        "slug": "2026-alcs-game-6-storylines",
-        "url": "https://www.mlb.com/news/2026-alcs-game-6-storylines",
-        "contentDate": "2026-10-19T02:28:36.997Z",
-        "teamIds": [
-            114,
-            139
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "alcs",
-            "postseason",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Rasmussen puts Rays on his back again to build on historic postseason",
         "summaryJa": "D.ラスムッセン（TB）、勝利を呼び込む活躍",
         "slug": "drew-rasmussen-dominates-as-rays-win-game-5-of-2026-alcs",
@@ -225,31 +412,6 @@
         "taxonomy": [
             "apple-news",
             "alcs"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Guardians facing elimination, and they'll need a revised pitching plan to avoid it",
-        "summaryJa": "P.メシック（CLE）の最新動向をMLB公式が詳報",
-        "slug": "parker-messick-two-innings-guardians-game-5-alcs",
-        "url": "https://www.mlb.com/news/parker-messick-two-innings-guardians-game-5-alcs",
-        "contentDate": "2026-10-19T02:24:00Z",
-        "teamIds": [
-            114
-        ],
-        "playerIds": [
-            800048
-        ],
-        "gamePks": [
-            849817
-        ],
-        "taxonomy": [
-            "apple-news",
-            "alcs",
-            "postseason"
         ],
         "sourceScopes": [
             "MLB",
@@ -322,30 +484,6 @@
             "alcs",
             "postseason",
             "love"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Guardians-Rays ALCS Game 6 FAQ (8 ET on TBS/HBO Max)",
-        "summaryJa": "ガーディアンズの最新動向をMLB公式が詳報",
-        "slug": "guardians-vs-rays-alcs-game-6-starting-lineups-pitching-matchup",
-        "url": "https://www.mlb.com/news/guardians-vs-rays-alcs-game-6-starting-lineups-pitching-matchup",
-        "contentDate": "2026-10-19T02:01:40.997Z",
-        "teamIds": [
-            114,
-            139
-        ],
-        "playerIds": [],
-        "gamePks": [
-            849815
-        ],
-        "taxonomy": [
-            "apple-news",
-            "postseason",
-            "alcs"
         ],
         "sourceScopes": [
             "MLB",
@@ -927,7 +1065,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -971,7 +1108,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1152,7 +1288,7 @@
         ]
     },
     {
-        "headline": "A bottle of Cooper Pratt to go with that? Brewers customize champagne for clincher",
+        "headline": "Brewers celebrate franchise history with custom champagne bottles",
         "summaryJa": "ブルワーズの最新動向をMLB公式が詳報",
         "slug": "brewers-celebrate-world-series-berth-with-custom-champagne-bottles",
         "url": "https://www.mlb.com/news/brewers-celebrate-world-series-berth-with-custom-champagne-bottles",
@@ -1167,7 +1303,6 @@
             "world-series"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1576,7 +1711,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1718,7 +1852,6 @@
             "offseason"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1780,31 +1913,6 @@
             "apple-news",
             "postseason",
             "nlcs"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Bauers takes home NLCS MVP after series filled with signature moments",
-        "summaryJa": "J.バウアーズ（MIL）の移籍・契約に関する最新情報",
-        "slug": "jake-bauers-wins-2026-nlcs-mvp",
-        "url": "https://www.mlb.com/news/jake-bauers-wins-2026-nlcs-mvp",
-        "contentDate": "2026-10-16T05:32:00Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [
-            641343
-        ],
-        "gamePks": [
-            849810
-        ],
-        "taxonomy": [
-            "apple-news",
-            "nlcs",
-            "postseason",
-            "clincher"
         ],
         "sourceScopes": [
             "球団公式"
@@ -7426,28 +7534,6 @@
         ]
     },
     {
-        "headline": "Four takeaways from Tigers' end-of-season press conference",
-        "summaryJa": "R.グリーン（DET）の最新動向をMLB公式が詳報",
-        "slug": "scott-harris-aj-hinch-hold-tigers-end-of-season-press-conference",
-        "url": "https://www.mlb.com/news/scott-harris-aj-hinch-hold-tigers-end-of-season-press-conference",
-        "contentDate": "2026-09-28T19:09:53.663Z",
-        "teamIds": [
-            116
-        ],
-        "playerIds": [
-            682985,
-            679529
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "offseason"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Latest O's injuries & transactions",
         "summaryJa": "オリオールズの負傷状況をMLB公式が詳報",
         "slug": "orioles-injuries-and-roster-moves",
@@ -7654,30 +7740,6 @@
         ]
     },
     {
-        "headline": "Wilson will not return as Mariners' manager in 2027",
-        "summaryJa": "D.ウィルソン（SEA）、復帰へ向けた最新状況",
-        "slug": "dan-wilson-won-t-return-mariners-manager-2027",
-        "url": "https://www.mlb.com/news/dan-wilson-won-t-return-mariners-manager-2027",
-        "contentDate": "2026-09-28T00:26:00Z",
-        "teamIds": [
-            136
-        ],
-        "playerIds": [
-            124383
-        ],
-        "gamePks": [
-            823084
-        ],
-        "taxonomy": [
-            "apple-news",
-            "final-week",
-            "game-recap"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Waltz surprises Hutton during final game in booth",
         "summaryJa": "マーリンズの最新動向をMLB公式が詳報",
         "slug": "tommy-hutton-surprised-by-rich-waltz-before-retirement",
@@ -7693,29 +7755,6 @@
         "taxonomy": [
             "apple-news",
             "final-week"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Free-agent-to-be Jeffers wraps strong 2026 with only team he's ever known",
-        "summaryJa": "R.ジェファーズ（MIN）の最新動向をMLB公式が詳報",
-        "slug": "ryan-jeffers-looks-back-on-strong-2026-looming-free-agency",
-        "url": "https://www.mlb.com/news/ryan-jeffers-looks-back-on-strong-2026-looming-free-agency",
-        "contentDate": "2026-09-28T00:18:19.616Z",
-        "teamIds": [
-            142
-        ],
-        "playerIds": [
-            680777
-        ],
-        "gamePks": [
-            823650
-        ],
-        "taxonomy": [
-            "final-week",
-            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
@@ -7968,29 +8007,6 @@
             "injury",
             "transactions",
             "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Perkins finishes intriguing season with another flash of potential",
-        "summaryJa": "J.パーキンス（ATH）の最新動向をMLB公式が詳報",
-        "slug": "jack-perkins-strikes-out-nine-in-a-s-loss-to-astros",
-        "url": "https://www.mlb.com/news/jack-perkins-strikes-out-nine-in-a-s-loss-to-astros",
-        "contentDate": "2026-09-27T06:40:48.392Z",
-        "teamIds": [
-            133
-        ],
-        "playerIds": [
-            678022
-        ],
-        "gamePks": [
-            824949
-        ],
-        "taxonomy": [
-            "apple-news",
-            "final-week"
         ],
         "sourceScopes": [
             "球団公式"
