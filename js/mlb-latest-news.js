@@ -2,6 +2,121 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Rays-Brewers World Series Game 1 FAQ (Fri., 8 ET on FOX)",
+        "summaryJa": "レイズの最新動向をMLB公式が詳報",
+        "slug": "rays-brewers-world-series-game-1-starting-lineups-and-pitching-matchup",
+        "url": "https://www.mlb.com/news/rays-brewers-world-series-game-1-starting-lineups-and-pitching-matchup",
+        "contentDate": "2026-10-20T07:30:00Z",
+        "teamIds": [
+            139,
+            158
+        ],
+        "playerIds": [],
+        "gamePks": [
+            849805
+        ],
+        "taxonomy": [
+            "apple-news",
+            "postseason",
+            "world-series"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "On 18th anniversary of first World Series berth, Rays reach third as AL's best team",
+        "summaryJa": "レイズ、記録達成の最新情報",
+        "slug": "rays-reach-world-series-on-18th-anniversary-of-first-al-pennant",
+        "url": "https://www.mlb.com/news/rays-reach-world-series-on-18th-anniversary-of-first-al-pennant",
+        "contentDate": "2026-10-20T07:14:00Z",
+        "teamIds": [
+            139
+        ],
+        "playerIds": [],
+        "gamePks": [
+            849815
+        ],
+        "taxonomy": [
+            "apple-news",
+            "alcs",
+            "clincher"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "'We've got one more bite!' Rays celebrate pennant, aim to keep good times going",
+        "summaryJa": "レイズの最新動向をMLB公式が詳報",
+        "slug": "rays-celebrate-berth-in-2026-world-series",
+        "url": "https://www.mlb.com/news/rays-celebrate-berth-in-2026-world-series",
+        "contentDate": "2026-10-20T07:11:57.078Z",
+        "teamIds": [
+            139
+        ],
+        "playerIds": [],
+        "gamePks": [
+            849815
+        ],
+        "taxonomy": [
+            "apple-news",
+            "alcs",
+            "clincher"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "'It hurts': Guards' incredible run ends 2 wins shy of World Series",
+        "summaryJa": "ガーディアンズ、勝利を呼び込む活躍",
+        "slug": "guardians-lose-2026-alcs-to-rays",
+        "url": "https://www.mlb.com/news/guardians-lose-2026-alcs-to-rays",
+        "contentDate": "2026-10-20T07:06:48.462Z",
+        "teamIds": [
+            114
+        ],
+        "playerIds": [],
+        "gamePks": [
+            849815
+        ],
+        "taxonomy": [
+            "postseason",
+            "alcs",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Why this World Series is unlike any we've seen in some time",
+        "summaryJa": "レイズを巡る注目点をMLB公式が分析",
+        "slug": "interesting-facts-about-rays-brewers-world-series-matchup",
+        "url": "https://www.mlb.com/news/interesting-facts-about-rays-brewers-world-series-matchup",
+        "contentDate": "2026-10-20T06:44:35.965Z",
+        "teamIds": [
+            139,
+            158
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "postseason",
+            "world-series"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Yandy makes good on prediction, delivers knockout blow in pennant clincher",
         "summaryJa": "Y.ディアス（TB）、本塁打で存在感",
         "slug": "yandy-diaz-homers-backs-up-prediction-in-rays-alcs-game-6-win",
@@ -23,6 +138,30 @@
             "clutch-moment"
         ],
         "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "ALCS MVP 'Fastball Freddy' pitches Rays to World Series, where his old team awaits",
+        "summaryJa": "F.ペラルタ（TB）、勝利を呼び込む活躍",
+        "slug": "freddy-peralta-wins-2026-alcs-mvp",
+        "url": "https://www.mlb.com/news/freddy-peralta-wins-2026-alcs-mvp",
+        "contentDate": "2026-10-20T06:30:00Z",
+        "teamIds": [
+            139
+        ],
+        "playerIds": [
+            642547
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "alcs",
+            "postseason"
+        ],
+        "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
@@ -130,29 +269,6 @@
             "alcs",
             "game-recap",
             "apple-news",
-            "clincher"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "On 18th anniversary of first World Series berth, Rays reach third as AL's best team",
-        "summaryJa": "レイズ、記録達成の最新情報",
-        "slug": "rays-reach-world-series-on-18th-anniversary-of-first-al-pennant",
-        "url": "https://www.mlb.com/news/rays-reach-world-series-on-18th-anniversary-of-first-al-pennant",
-        "contentDate": "2026-10-20T05:18:00Z",
-        "teamIds": [
-            139
-        ],
-        "playerIds": [],
-        "gamePks": [
-            849815
-        ],
-        "taxonomy": [
-            "apple-news",
-            "alcs",
             "clincher"
         ],
         "sourceScopes": [
@@ -280,27 +396,6 @@
             "world-series",
             "postseason",
             "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "ALCS MVP 'Fastball Freddy' pitches Rays to World Series, where his old team awaits",
-        "summaryJa": "レイズ、勝利を呼び込む活躍",
-        "slug": "freddy-peralta-wins-2026-alcs-mvp",
-        "url": "https://www.mlb.com/news/freddy-peralta-wins-2026-alcs-mvp",
-        "contentDate": "2026-10-20T03:24:15.647Z",
-        "teamIds": [
-            139
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "alcs",
-            "postseason"
         ],
         "sourceScopes": [
             "MLB",
@@ -646,7 +741,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -846,31 +940,6 @@
         ]
     },
     {
-        "headline": "Winning formula in Game 5? 'Rays baseball at its finest'",
-        "summaryJa": "レイズ、勝利を呼び込む活躍",
-        "slug": "rays-all-around-effort-alcs-game-5-win-2026",
-        "url": "https://www.mlb.com/news/rays-all-around-effort-alcs-game-5-win-2026",
-        "contentDate": "2026-10-19T02:54:00Z",
-        "teamIds": [
-            139
-        ],
-        "playerIds": [],
-        "gamePks": [
-            849817
-        ],
-        "taxonomy": [
-            "postseason",
-            "alcs",
-            "apple-news",
-            "pennant-chase",
-            "style"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Rasmussen puts Rays on his back again to build on historic postseason",
         "summaryJa": "D.ラスムッセン（TB）、勝利を呼び込む活躍",
         "slug": "drew-rasmussen-dominates-as-rays-win-game-5-of-2026-alcs",
@@ -888,27 +957,6 @@
         "taxonomy": [
             "apple-news",
             "alcs"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Rays' ruthless efficiency powering postseason run -- and perhaps AL pennant",
-        "summaryJa": "レイズの最新動向をMLB公式が詳報",
-        "slug": "rays-all-around-efficiency-powering-postseason-run",
-        "url": "https://www.mlb.com/news/rays-all-around-efficiency-powering-postseason-run",
-        "contentDate": "2026-10-19T02:23:41.971Z",
-        "teamIds": [
-            139
-        ],
-        "playerIds": [],
-        "gamePks": [
-            849817
-        ],
-        "taxonomy": [
-            "alcs",
-            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
@@ -934,7 +982,6 @@
             "alcs"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -985,25 +1032,7 @@
             "postseason"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
-        ]
-    },
-    {
-        "headline": "Here are the greatest LCS Game 6s of all time",
-        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
-        "slug": "best-game-6-s-in-lcs-history-c299343340",
-        "url": "https://www.mlb.com/news/best-game-6-s-in-lcs-history-c299343340",
-        "contentDate": "2026-10-19T00:07:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "evergreen",
-            "rankings"
-        ],
-        "sourceScopes": [
-            "MLB"
         ]
     },
     {
@@ -1443,28 +1472,6 @@
             "arizona-fall-league",
             "apple-news",
             "mlb-top-prospects"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Brewers' Made goes yard in first Winter League plate appearance at home in Dominican Republic",
-        "summaryJa": "J.マデイ（MIL）、本塁打で存在感",
-        "slug": "brewers-prospect-jesus-made-homers-in-first-winter-league-at-bat",
-        "url": "https://www.mlb.com/news/brewers-prospect-jesus-made-homers-in-first-winter-league-at-bat",
-        "contentDate": "2026-10-17T01:47:01.853Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [
-            815908
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "mlb-top-prospects",
-            "apple-news",
-            "winter-leagues"
         ],
         "sourceScopes": [
             "球団公式"
@@ -2066,30 +2073,6 @@
             "apple-news",
             "postseason",
             "nlcs"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "4 key takeaways as Brewers set sights on 1st World Series title",
-        "summaryJa": "ブルワーズ、記録達成の最新情報",
-        "slug": "key-takeaways-from-brewers-nlcs-sweep-of-dodgers",
-        "url": "https://www.mlb.com/news/key-takeaways-from-brewers-nlcs-sweep-of-dodgers",
-        "contentDate": "2026-10-16T05:17:00Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [],
-        "gamePks": [
-            849810
-        ],
-        "taxonomy": [
-            "apple-news",
-            "nlcs",
-            "postseason",
-            "takeaways",
-            "clincher"
         ],
         "sourceScopes": [
             "球団公式"
