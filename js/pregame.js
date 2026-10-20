@@ -5289,7 +5289,13 @@
         return String(Math.round(numeric));
     };
 
-    const getPregameLeagueLeaders = async (date, leagueId, group, definitions) => {
+    const getPregameLeagueLeaders = async (
+        date,
+        leagueId,
+        group,
+        definitions,
+        gameType = "R"
+    ) => {
         const season = Number(date.slice(0, 4));
         const endDate = previousDate(date);
         const params = new URLSearchParams({
@@ -5298,19 +5304,65 @@
             statType: "byDateRange",
             sportId: "1",
             leagueId: String(leagueId),
-            gameType: "R",
+            gameType,
             startDate: `${season}-01-01`,
             endDate,
             limit: "100"
         });
         const payload = await fetchJson(
             `${API_ROOT}/v1/stats/leaders?${params}`,
-            `pregame:stats-leaders:${leagueId}:${group}:${endDate}`
+            `pregame:stats-leaders:${gameType}:${leagueId}:${group}:${endDate}`
         ).catch(() => null);
         return new Map((payload?.leagueLeaders ?? []).map((category) => [
             String(category?.leaderCategory ?? ""),
             category?.leaders ?? []
         ]));
+    };
+
+    const getPregamePostseasonLeagueLeaders = async (
+        date,
+        leagueId,
+        group,
+        definitions
+    ) => {
+        const season = Number(date.slice(0, 4));
+        const endDate = previousDate(date);
+        const params = new URLSearchParams({
+            stats: "byDateRange",
+            group,
+            leagueIds: String(leagueId),
+            sportIds: "1",
+            gameType: "P",
+            startDate: `${season}-01-01`,
+            endDate,
+            playerPool: "ALL",
+            limit: "2000"
+        });
+        const payload = await fetchJson(
+            `${API_ROOT}/v1/stats?${params}`,
+            `pregame:postseason-leaders:${leagueId}:${group}:${endDate}`
+        ).catch(() => null);
+        const splits = payload?.stats?.[0]?.splits ?? [];
+        return new Map(definitions.map((definition) => {
+            const leaders = splits
+                .map((split) => ({
+                    person: split?.player,
+                    team: split?.team,
+                    stat: split?.stat ?? {},
+                    value: split?.stat?.[definition.field]
+                }))
+                .filter((entry) =>
+                    Number.isFinite(Number(entry.value)) &&
+                    statNumber(entry.stat?.gamesPlayed) > 0 &&
+                    matchesPregamePitcherRole(definition, entry) &&
+                    (definition.category !== "saves" || statNumber(entry.value) > 0)
+                )
+                .sort((left, right) => definition.lower
+                    ? Number(left.value) - Number(right.value)
+                    : Number(right.value) - Number(left.value))
+                .map((entry, index) => ({ ...entry, rank: index + 1 }));
+            return [definition.category, leaders];
+        }));
     };
 
     const renderPregameStatsRows = (definition, rows) => {
@@ -5437,7 +5489,7 @@
         return card;
     };
 
-    const getPregameTeamStats = async (date, team, group) => {
+    const getPregameTeamStats = async (date, team, group, gameType = "R") => {
         const season = Number(date.slice(0, 4));
         const endDate = previousDate(date);
         const params = new URLSearchParams({
@@ -5445,7 +5497,7 @@
             group,
             teamId: String(team.id),
             sportIds: "1",
-            gameType: "R",
+            gameType,
             startDate: `${season}-01-01`,
             endDate,
             playerPool: "ALL",
@@ -5453,13 +5505,32 @@
         });
         const payload = await fetchJson(
             `${API_ROOT}/v1/stats?${params}`,
-            `pregame:team-stats:${team.id}:${group}:${endDate}`
+            `pregame:team-stats:${gameType}:${team.id}:${group}:${endDate}`
         ).catch(() => null);
         return (payload?.stats?.[0]?.splits ?? []).map((split) => ({
             person: split?.player,
             team: split?.team ?? team,
             stat: split?.stat ?? {}
         }));
+    };
+
+    const getPregamePostseasonTeamIds = async (date) => {
+        const season = Number(date.slice(0, 4));
+        const params = new URLSearchParams({
+            sportId: "1",
+            startDate: `${season}-09-01`,
+            endDate: `${season}-12-01`,
+            gameTypes: "F,D,L,W"
+        });
+        const payload = await fetchJson(
+            `${API_ROOT}/v1/schedule?${params}`,
+            `pregame:postseason-teams:${season}`
+        ).catch(() => null);
+        return new Set((payload?.dates ?? [])
+            .flatMap((entry) => entry?.games ?? [])
+            .flatMap((game) => [game?.teams?.away?.team?.id, game?.teams?.home?.team?.id])
+            .map(Number)
+            .filter(Number.isFinite));
     };
 
     const rankPregameTeamEntries = (
@@ -5588,13 +5659,19 @@
                 return leftCity.localeCompare(rightCity, "en") ||
                     String(left?.name ?? "").localeCompare(String(right?.name ?? ""), "en");
             });
+        const postseasonTeamIds = await getPregamePostseasonTeamIds(date);
         const createTeamSelect = (placeholder, ariaLabel) => {
             const select = el("select", "pregame-stats-team-filter");
             select.setAttribute("aria-label", ariaLabel);
-            const placeholderOption = el("option", "", placeholder);
+            select.dataset.placeholder = placeholder;
+            return select;
+        };
+        const populateTeamSelect = (select, availableTeams) => {
+            const previousValue = select.value;
+            const placeholderOption = el("option", "", select.dataset.placeholder ?? "チーム選択");
             placeholderOption.value = "";
-            select.append(placeholderOption);
-            sortedTeams.forEach((team) => {
+            select.replaceChildren(placeholderOption);
+            availableTeams.forEach((team) => {
                 const option = el(
                     "option",
                     "",
@@ -5603,7 +5680,9 @@
                 option.value = String(team.id);
                 select.append(option);
             });
-            return select;
+            if (availableTeams.some((team) => String(team.id) === previousValue)) {
+                select.value = previousValue;
+            }
         };
         const headerControls = el("div", "pregame-stats-header-controls");
         const modes = el("div", "pregame-stats-modes");
@@ -5622,12 +5701,22 @@
         });
         const teamSelectA = createTeamSelect("チーム選択", "ランキングを表示する球団");
         const teamSelectB = createTeamSelect("比較する球団", "比較する2球団目");
+        const seasonTypeSelect = el("select", "pregame-stats-season-filter");
+        seasonTypeSelect.setAttribute("aria-label", "シーズン種別");
+        [["R", "レギュラーシーズン"], ["P", "ポストシーズン"]].forEach(([value, label]) => {
+            const option = el("option", "", label);
+            option.value = value;
+            seasonTypeSelect.append(option);
+        });
+        populateTeamSelect(teamSelectA, sortedTeams);
+        populateTeamSelect(teamSelectB, sortedTeams);
+        seasonTypeSelect.hidden = true;
         teamSelectA.hidden = true;
         teamSelectB.hidden = true;
         const toggle = el("button", "pregame-free-agent-toggle", "表示");
         toggle.type = "button";
         toggle.setAttribute("aria-expanded", "false");
-        headerControls.append(modes, teamSelectA, teamSelectB, toggle);
+        headerControls.append(modes, seasonTypeSelect, teamSelectA, teamSelectB, toggle);
         sectionElement.querySelector(".pregame-section-header")?.append(headerControls);
         toggle.addEventListener("click", () => {
             const collapsed = sectionElement.classList.toggle("is-collapsed");
@@ -5655,17 +5744,23 @@
             { code: "AL", id: 103 },
             { code: "NL", id: 104 }
         ];
-        const leaderRequests = await Promise.all(leagueDefinitions.flatMap(({ code, id }) =>
-            Object.entries(PREGAME_STATS_DEFINITIONS).map(async ([group, definitions]) => ({
+        const loadLeaderMap = async (gameType) => {
+            const leaderRequests = await Promise.all(leagueDefinitions.flatMap(({ code, id }) =>
+                Object.entries(PREGAME_STATS_DEFINITIONS).map(async ([group, definitions]) => ({
                 code,
                 group,
-                leaders: await getPregameLeagueLeaders(date, id, group, definitions)
-            }))
-        ));
-        const leadersByLeagueGroup = new Map(leaderRequests.map((entry) => [
-            `${entry.code}:${entry.group}`,
-            entry.leaders
-        ]));
+                leaders: gameType === "P"
+                    ? await getPregamePostseasonLeagueLeaders(date, id, group, definitions)
+                    : await getPregameLeagueLeaders(date, id, group, definitions, gameType)
+                }))
+            ));
+            return new Map(leaderRequests.map((entry) => [
+                `${entry.code}:${entry.group}`,
+                entry.leaders
+            ]));
+        };
+        const leadersBySeasonType = new Map([["R", await loadLeaderMap("R")]]);
+        let activeLeadersByLeagueGroup = leadersBySeasonType.get("R");
 
         const renderOverall = () => {
             const fragment = document.createDocumentFragment();
@@ -5680,7 +5775,7 @@
                         group === "hitting" ? "打者" : "投手"
                     ));
                     const cards = el("div", "pregame-stats-grid");
-                    const leaders = leadersByLeagueGroup.get(`${code}:${group}`) ?? new Map();
+                    const leaders = activeLeadersByLeagueGroup.get(`${code}:${group}`) ?? new Map();
                     definitions.forEach((definition) => {
                         const japaneseEntries = japaneseStats
                             .filter((entry) =>
@@ -5713,7 +5808,7 @@
 
         const getLeagueLeadersForTeam = (team, group, definition) => {
             const leagueCode = standings.get(Number(team.id))?.leagueCode;
-            return leadersByLeagueGroup.get(`${leagueCode}:${group}`)?.get(definition.category) ?? [];
+            return activeLeadersByLeagueGroup.get(`${leagueCode}:${group}`)?.get(definition.category) ?? [];
         };
 
         const renderTeamColumn = (
@@ -5729,7 +5824,10 @@
                 TEAM_CARD_COLORS[Number(team.id)] ?? "#002d72"
             );
             const standing = standings.get(Number(team.id));
-            const teamGames = statNumber(standing?.wins) + statNumber(standing?.losses);
+            const teamGames = currentSeasonType === "P"
+                ? Math.max(1, ...groups.flatMap((group) =>
+                    stats[group].map((entry) => statNumber(entry.stat?.gamesPlayed))))
+                : statNumber(standing?.wins) + statNumber(standing?.losses);
             const minimumStarterEraOuts = Math.ceil(teamGames * 0.2 * 3);
             const minimumRelieverEraOuts = Math.ceil(teamGames * 0.1 * 3);
             const minimumPlateAppearances = Math.ceil(teamGames * 3.1);
@@ -5761,7 +5859,7 @@
                         showTeamAggregates
                             ? pregameTeamAggregate(definition, stats[group])
                             : null,
-                        titleCounts
+                        currentSeasonType === "R" ? titleCounts : null
                     ));
                 });
                 groupElement.append(cards);
@@ -5772,26 +5870,40 @@
 
         const loadTeamStats = async (team) => {
             const [hitting, pitching] = await Promise.all([
-                getPregameTeamStats(date, team, "hitting"),
-                getPregameTeamStats(date, team, "pitching")
+                getPregameTeamStats(date, team, "hitting", currentSeasonType),
+                getPregameTeamStats(date, team, "pitching", currentSeasonType)
             ]);
             return { hitting, pitching };
         };
 
         let currentMode = "overall";
+        let currentSeasonType = "R";
         let renderRevision = 0;
         const renderMode = async () => {
             const revision = ++renderRevision;
             if (currentMode === "overall") {
+                activeLeadersByLeagueGroup = leadersBySeasonType.get("R");
                 content.replaceChildren(renderOverall());
                 return;
             }
+            if (!leadersBySeasonType.has(currentSeasonType)) {
+                content.replaceChildren(el("div", "pregame-loading", "読み込み中…"));
+                leadersBySeasonType.set(currentSeasonType, await loadLeaderMap(currentSeasonType));
+                if (revision !== renderRevision) return;
+            }
+            activeLeadersByLeagueGroup = leadersBySeasonType.get(currentSeasonType);
             const teamA = teams.get(Number(teamSelectA.value));
-            if (!teamA) return;
+            if (!teamA) {
+                content.replaceChildren(el("div", "pregame-empty", "チームを選択してください。"));
+                return;
+            }
             const teamB = currentMode === "compare"
                 ? teams.get(Number(teamSelectB.value))
                 : null;
-            if (currentMode === "compare" && !teamB) return;
+            if (currentMode === "compare" && !teamB) {
+                content.replaceChildren(el("div", "pregame-empty", "比較する2チームを選択してください。"));
+                return;
+            }
             content.replaceChildren(el("div", "pregame-loading", "読み込み中…"));
             if (currentMode === "team") {
                 const stats = await loadTeamStats(teamA);
@@ -5840,8 +5952,20 @@
             });
             teamSelectA.hidden = currentMode === "overall";
             teamSelectB.hidden = currentMode !== "compare";
+            seasonTypeSelect.hidden = currentMode === "overall";
             renderMode();
         }));
+        seasonTypeSelect.addEventListener("change", () => {
+            currentSeasonType = seasonTypeSelect.value;
+            const availableTeams = currentSeasonType === "P"
+                ? sortedTeams.filter((team) => postseasonTeamIds.has(Number(team.id)))
+                : sortedTeams;
+            teamSelectA.value = "";
+            teamSelectB.value = "";
+            populateTeamSelect(teamSelectA, availableTeams);
+            populateTeamSelect(teamSelectB, availableTeams);
+            renderMode();
+        });
         teamSelectA.addEventListener("change", renderMode);
         teamSelectB.addEventListener("change", renderMode);
 
