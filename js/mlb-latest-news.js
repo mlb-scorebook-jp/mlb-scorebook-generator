@@ -2,6 +2,49 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Braves' No. 8 prospect brings 'old school' mentality to club he grew up rooting for",
+        "summaryJa": "Briggs McKenzie（ATL）ら注目選手の最新動向",
+        "slug": "braves-prospect-briggs-mckenzie-in-arizona-fall-league",
+        "url": "https://www.mlb.com/news/braves-prospect-briggs-mckenzie-in-arizona-fall-league",
+        "contentDate": "2026-10-20T21:16:44.303Z",
+        "teamIds": [
+            144
+        ],
+        "playerIds": [
+            828987
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "mlb-top-prospects",
+            "arizona-fall-league"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Why this World Series is unlike any we've seen in some time",
+        "summaryJa": "レイズを巡る注目点をMLB公式が分析",
+        "slug": "interesting-facts-about-rays-brewers-world-series-matchup",
+        "url": "https://www.mlb.com/news/interesting-facts-about-rays-brewers-world-series-matchup",
+        "contentDate": "2026-10-20T21:00:00Z",
+        "teamIds": [
+            139,
+            158
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "postseason",
+            "world-series"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Rays set themselves up for perfect pitching scenario by winning ALCS in 6 games",
         "summaryJa": "レイズの最新動向をMLB公式が詳報",
         "slug": "rays-starters-lined-up-rest-bullpen-after-winning-2026-alcs",
@@ -100,7 +143,7 @@
         ]
     },
     {
-        "headline": "3 HOFers, a Game 163 and a future Commissioner: The wild story of the Brewers' 1st season -- in Seattle",
+        "headline": "The wild story of the Brewers' 1st season -- in Seattle",
         "summaryJa": "ブルワーズ、記録達成の最新情報",
         "slug": "how-the-seattle-pilots-became-the-milwaukee-brewers",
         "url": "https://www.mlb.com/news/how-the-seattle-pilots-became-the-milwaukee-brewers",
@@ -136,28 +179,6 @@
         "taxonomy": [
             "apple-news",
             "savant",
-            "postseason",
-            "world-series"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Why this World Series is unlike any we've seen in some time",
-        "summaryJa": "レイズを巡る注目点をMLB公式が分析",
-        "slug": "interesting-facts-about-rays-brewers-world-series-matchup",
-        "url": "https://www.mlb.com/news/interesting-facts-about-rays-brewers-world-series-matchup",
-        "contentDate": "2026-10-20T16:00:00Z",
-        "teamIds": [
-            139,
-            158
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
             "postseason",
             "world-series"
         ],
@@ -681,8 +702,8 @@
         ]
     },
     {
-        "headline": "This year's World Series champ will be a 1st-time winner ... either way",
-        "summaryJa": "MLBの最新情報、記録達成の最新情報",
+        "headline": "1 World Series certainty: A first-time champion",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
         "slug": "rays-brewers-each-vying-for-first-world-series-title",
         "url": "https://www.mlb.com/news/rays-brewers-each-vying-for-first-world-series-title",
         "contentDate": "2026-10-20T04:48:11.448Z",
@@ -5799,31 +5820,6 @@
         "gamePks": [],
         "taxonomy": [
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Acuña (right knee) limited to DH duties as NLDS moves to Atlanta",
-        "summaryJa": "R.アクーニャ Jr.（ATL）の最新動向をMLB公式が詳報",
-        "slug": "ronald-acuna-jr-right-knee-dh-braves-game-3-2026-nlds",
-        "url": "https://www.mlb.com/news/ronald-acuna-jr-right-knee-dh-braves-game-3-2026-nlds",
-        "contentDate": "2026-10-07T01:20:00Z",
-        "teamIds": [
-            144
-        ],
-        "playerIds": [
-            660670
-        ],
-        "gamePks": [
-            849819
-        ],
-        "taxonomy": [
-            "apple-news",
-            "postseason",
-            "nlds",
-            "series-b"
         ],
         "sourceScopes": [
             "球団公式"
