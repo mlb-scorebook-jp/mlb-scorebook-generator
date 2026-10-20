@@ -2,11 +2,11 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
-        "headline": "Watch LIVE: Top prospect Nimmala in Arizona Fall League action",
+        "headline": "Watch Angels prospects in Arizona Fall League action",
         "summaryJa": "MLBの最新情報ら注目選手の最新動向",
         "slug": "watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
         "url": "https://www.mlb.com/news/watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
-        "contentDate": "2026-10-19T23:00:00Z",
+        "contentDate": "2026-10-20T01:23:00Z",
         "teamIds": [],
         "playerIds": [],
         "gamePks": [],
@@ -16,6 +16,51 @@
         ],
         "sourceScopes": [
             "球団公式"
+        ]
+    },
+    {
+        "headline": "Cubs' 2025 third-rounder Reid running with six-pitch arsenal in Fall League",
+        "summaryJa": "Dominick Reid（CHC）の最新動向をMLB公式が詳報",
+        "slug": "cubs-dominick-reid-succeeds-with-deep-arsenal-in-arizona-fall-league",
+        "url": "https://www.mlb.com/news/cubs-dominick-reid-succeeds-with-deep-arsenal-in-arizona-fall-league",
+        "contentDate": "2026-10-20T01:06:00Z",
+        "teamIds": [
+            112
+        ],
+        "playerIds": [
+            805255
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "arizona-fall-league",
+            "apple-news",
+            "mlb-top-prospects"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "World Series game times announced",
+        "summaryJa": "レイズの最新動向をMLB公式が詳報",
+        "slug": "2026-mlb-playoff-and-world-series-schedule",
+        "url": "https://www.mlb.com/news/2026-mlb-playoff-and-world-series-schedule",
+        "contentDate": "2026-10-19T23:44:00Z",
+        "teamIds": [
+            139,
+            114,
+            158,
+            119
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "postseason",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB"
         ]
     },
     {
@@ -31,30 +76,6 @@
         "gamePks": [],
         "taxonomy": [
             "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Guardians-Rays ALCS Game 6 lineups, FAQ (8 ET on TBS/HBO Max)",
-        "summaryJa": "ガーディアンズの最新動向をMLB公式が詳報",
-        "slug": "guardians-vs-rays-alcs-game-6-starting-lineups-pitching-matchup",
-        "url": "https://www.mlb.com/news/guardians-vs-rays-alcs-game-6-starting-lineups-pitching-matchup",
-        "contentDate": "2026-10-19T20:22:00Z",
-        "teamIds": [
-            114,
-            139
-        ],
-        "playerIds": [],
-        "gamePks": [
-            849815
-        ],
-        "taxonomy": [
-            "apple-news",
-            "postseason",
-            "alcs"
         ],
         "sourceScopes": [
             "MLB",
@@ -83,7 +104,7 @@
         ]
     },
     {
-        "headline": "What is the Guardians' pitching plan for Game 6? Even they say they're not sure",
+        "headline": "3 storylines to watch as Guards-Rays clash in ALCS Game 6",
         "summaryJa": "ガーディアンズの最新動向をMLB公式が詳報",
         "slug": "2026-alcs-game-6-storylines",
         "url": "https://www.mlb.com/news/2026-alcs-game-6-storylines",
@@ -442,7 +463,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -605,28 +625,6 @@
         "taxonomy": [
             "evergreen",
             "rankings"
-        ],
-        "sourceScopes": [
-            "MLB"
-        ]
-    },
-    {
-        "headline": "World Series game times announced",
-        "summaryJa": "レイズの最新動向をMLB公式が詳報",
-        "slug": "2026-mlb-playoff-and-world-series-schedule",
-        "url": "https://www.mlb.com/news/2026-mlb-playoff-and-world-series-schedule",
-        "contentDate": "2026-10-18T23:58:00Z",
-        "teamIds": [
-            139,
-            114,
-            158,
-            119
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "postseason",
-            "apple-news"
         ],
         "sourceScopes": [
             "MLB"
@@ -1790,31 +1788,6 @@
             "nlcs",
             "apple-news",
             "retirement"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Mitchell keeps proving doubters wrong -- all the way to the World Series",
-        "summaryJa": "G.ミッチェル（MIL）、本塁打で存在感",
-        "slug": "garrett-mitchell-hits-go-ahead-homer-to-send-brewers-to-world-series",
-        "url": "https://www.mlb.com/news/garrett-mitchell-hits-go-ahead-homer-to-send-brewers-to-world-series",
-        "contentDate": "2026-10-16T07:03:51.693Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [
-            669003
-        ],
-        "gamePks": [
-            849810
-        ],
-        "taxonomy": [
-            "apple-news",
-            "postseason",
-            "nlcs",
-            "key-moments"
         ],
         "sourceScopes": [
             "球団公式"
