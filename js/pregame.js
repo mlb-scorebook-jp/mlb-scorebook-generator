@@ -5514,7 +5514,7 @@
         }));
     };
 
-    const getPregamePostseasonTeamIds = async (date) => {
+    const getPregamePostseasonInfo = async (date) => {
         const season = Number(date.slice(0, 4));
         const params = new URLSearchParams({
             sportId: "1",
@@ -5526,11 +5526,21 @@
             `${API_ROOT}/v1/schedule?${params}`,
             `pregame:postseason-teams:${season}`
         ).catch(() => null);
-        return new Set((payload?.dates ?? [])
+        const postseasonDates = (payload?.dates ?? [])
+            .map((entry) => String(entry?.date ?? ""))
+            .filter(Boolean)
+            .sort();
+        const teamIds = new Set((payload?.dates ?? [])
             .flatMap((entry) => entry?.games ?? [])
             .flatMap((game) => [game?.teams?.away?.team?.id, game?.teams?.home?.team?.id])
             .map(Number)
             .filter(Number.isFinite));
+        const firstDate = postseasonDates[0] ?? "";
+        const lastDate = postseasonDates[postseasonDates.length - 1] ?? "";
+        return {
+            teamIds,
+            active: Boolean(firstDate && lastDate && date >= firstDate && date <= lastDate)
+        };
     };
 
     const rankPregameTeamEntries = (
@@ -5659,7 +5669,8 @@
                 return leftCity.localeCompare(rightCity, "en") ||
                     String(left?.name ?? "").localeCompare(String(right?.name ?? ""), "en");
             });
-        const postseasonTeamIds = await getPregamePostseasonTeamIds(date);
+        const postseasonInfo = await getPregamePostseasonInfo(date);
+        const postseasonTeamIds = postseasonInfo.teamIds;
         const createTeamSelect = (placeholder, ariaLabel) => {
             const select = el("select", "pregame-stats-team-filter");
             select.setAttribute("aria-label", ariaLabel);
@@ -5703,7 +5714,9 @@
         const teamSelectB = createTeamSelect("比較する球団", "比較する2球団目");
         const seasonTypeSelect = el("select", "pregame-stats-season-filter");
         seasonTypeSelect.setAttribute("aria-label", "シーズン種別");
-        [["R", "レギュラーシーズン"], ["P", "ポストシーズン"]].forEach(([value, label]) => {
+        [["R", "レギュラーシーズン"], ...(postseasonInfo.active
+            ? [["P", "ポストシーズン"]]
+            : [])].forEach(([value, label]) => {
             const option = el("option", "", label);
             option.value = value;
             seasonTypeSelect.append(option);
@@ -5952,7 +5965,7 @@
             });
             teamSelectA.hidden = currentMode === "overall";
             teamSelectB.hidden = currentMode !== "compare";
-            seasonTypeSelect.hidden = currentMode === "overall";
+            seasonTypeSelect.hidden = currentMode === "overall" || !postseasonInfo.active;
             renderMode();
         }));
         seasonTypeSelect.addEventListener("change", () => {
