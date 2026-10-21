@@ -5387,13 +5387,6 @@
             playerLink.target = "_blank";
             playerLink.rel = "noopener noreferrer";
             playerCell.append(playerLink);
-            if (entry.leagueRank) {
-                playerCell.append(el(
-                    "small",
-                    "pregame-stats-league-rank",
-                    `（リーグ${entry.leagueRank}位）`
-                ));
-            }
             const teamCell = el("td", "pregame-stats-team");
             const teamLogo = createFreeAgentTeamLogo(entry.team, teamCode(entry.team));
             teamLogo.classList.add("pregame-stats-team-logo");
