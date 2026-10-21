@@ -5662,8 +5662,7 @@
                 return leftCity.localeCompare(rightCity, "en") ||
                     String(left?.name ?? "").localeCompare(String(right?.name ?? ""), "en");
             });
-        const postseasonInfo = await getPregamePostseasonInfo(date);
-        const postseasonTeamIds = postseasonInfo.teamIds;
+        let postseasonInfo = { teamIds: new Set(), active: false };
         const createTeamSelect = (placeholder, ariaLabel) => {
             const select = el("select", "pregame-stats-team-filter");
             select.setAttribute("aria-label", ariaLabel);
@@ -5707,9 +5706,7 @@
         const teamSelectB = createTeamSelect("比較する球団", "比較する2球団目");
         const seasonTypeSelect = el("select", "pregame-stats-season-filter");
         seasonTypeSelect.setAttribute("aria-label", "シーズン種別");
-        [["R", "レギュラーシーズン"], ...(postseasonInfo.active
-            ? [["P", "ポストシーズン"]]
-            : [])].forEach(([value, label]) => {
+        [["R", "レギュラーシーズン"]].forEach(([value, label]) => {
             const option = el("option", "", label);
             option.value = value;
             seasonTypeSelect.append(option);
@@ -5728,9 +5725,10 @@
             const collapsed = sectionElement.classList.toggle("is-collapsed");
             toggle.textContent = collapsed ? "表示" : "閉じる";
             toggle.setAttribute("aria-expanded", String(!collapsed));
+            if (!collapsed) renderMode();
         });
 
-        const japaneseStats = await Promise.all(japanesePlayers.map(async (person) => {
+        const loadJapaneseStats = () => Promise.all(japanesePlayers.map(async (person) => {
             const teamId = Number(person?.pregameTeamId ?? person?.currentTeam?.id);
             const standing = standings.get(teamId);
             const leagueCode = standing?.leagueCode;
@@ -5744,6 +5742,7 @@
             ])));
             return { person, team, leagueCode, groups, stats };
         }));
+        let japaneseStats = [];
 
         const content = el("div", "pregame-stats-content");
         const leagueDefinitions = [
@@ -5765,8 +5764,8 @@
                 entry.leaders
             ]));
         };
-        const leadersBySeasonType = new Map([["R", await loadLeaderMap("R")]]);
-        let activeLeadersByLeagueGroup = leadersBySeasonType.get("R");
+        const leadersBySeasonType = new Map();
+        let activeLeadersByLeagueGroup = new Map();
 
         const renderOverall = () => {
             const fragment = document.createDocumentFragment();
@@ -5884,9 +5883,49 @@
 
         let currentMode = "overall";
         let currentSeasonType = "R";
+        let statsDataPromise = null;
+        const ensureStatsData = () => {
+            if (statsDataPromise) return statsDataPromise;
+            statsDataPromise = Promise.all([
+                getPregamePostseasonInfo(date),
+                loadJapaneseStats(),
+                loadLeaderMap("R")
+            ]).then(([loadedPostseasonInfo, loadedJapaneseStats, regularLeaders]) => {
+                postseasonInfo = loadedPostseasonInfo;
+                japaneseStats = loadedJapaneseStats;
+                leadersBySeasonType.set("R", regularLeaders);
+                activeLeadersByLeagueGroup = regularLeaders;
+                if (postseasonInfo.active &&
+                    ![...seasonTypeSelect.options].some((option) => option.value === "P")) {
+                    const option = el("option", "", "ポストシーズン");
+                    option.value = "P";
+                    seasonTypeSelect.append(option);
+                }
+                seasonTypeSelect.hidden = currentMode === "overall" || !postseasonInfo.active;
+            }).catch((error) => {
+                statsDataPromise = null;
+                throw error;
+            });
+            return statsDataPromise;
+        };
         let renderRevision = 0;
         const renderMode = async () => {
             const revision = ++renderRevision;
+            if (!statsDataPromise) {
+                content.replaceChildren(el("div", "pregame-loading", "タイトル一覧を読み込み中…"));
+            }
+            try {
+                await ensureStatsData();
+            } catch (error) {
+                if (revision !== renderRevision) return;
+                content.replaceChildren(el(
+                    "div",
+                    "pregame-empty",
+                    error?.message || "タイトル一覧を読み込めませんでした。"
+                ));
+                return;
+            }
+            if (revision !== renderRevision) return;
             if (currentMode === "overall") {
                 activeLeadersByLeagueGroup = leadersBySeasonType.get("R");
                 content.replaceChildren(renderOverall());
@@ -5964,7 +6003,7 @@
         seasonTypeSelect.addEventListener("change", () => {
             currentSeasonType = seasonTypeSelect.value;
             const availableTeams = currentSeasonType === "P"
-                ? sortedTeams.filter((team) => postseasonTeamIds.has(Number(team.id)))
+                ? sortedTeams.filter((team) => postseasonInfo.teamIds.has(Number(team.id)))
                 : sortedTeams;
             teamSelectA.value = "";
             teamSelectB.value = "";
@@ -5975,7 +6014,7 @@
         teamSelectA.addEventListener("change", renderMode);
         teamSelectB.addEventListener("change", renderMode);
 
-        content.replaceChildren(renderOverall());
+        content.replaceChildren(el("div", "pregame-empty", "「表示」を押すとタイトル一覧を読み込みます。"));
         sectionElement.append(content);
         return sectionElement;
     };
