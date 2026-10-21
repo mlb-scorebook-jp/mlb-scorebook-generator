@@ -2,6 +2,68 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Watch top prospects in Arizona Fall League action",
+        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
+        "slug": "watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
+        "url": "https://www.mlb.com/news/watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
+        "contentDate": "2026-10-21T04:49:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "arizona-fall-league"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Devoted fan-turned-prospect hopes Fall League leads him to the Majors with Philly",
+        "summaryJa": "Ryan Dromboski（PHI）ら注目選手の最新動向",
+        "slug": "fan-turned-prospect-ryan-dromboski-hopes-arizona-fall-league-leads-him-to-phillies",
+        "url": "https://www.mlb.com/news/fan-turned-prospect-ryan-dromboski-hopes-arizona-fall-league-leads-him-to-phillies",
+        "contentDate": "2026-10-21T03:05:05.978Z",
+        "teamIds": [
+            143
+        ],
+        "playerIds": [
+            823804
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "mlb-top-prospects",
+            "arizona-fall-league"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Versatile glove-first Padres '25 draftee focusing on strides at the dish this fall",
+        "summaryJa": "Justin DeCriscio（SD）ら注目選手の最新動向",
+        "slug": "padres-prospect-justin-decriscio-focused-on-hitting-in-arizona-fall-league",
+        "url": "https://www.mlb.com/news/padres-prospect-justin-decriscio-focused-on-hitting-in-arizona-fall-league",
+        "contentDate": "2026-10-21T02:16:00Z",
+        "teamIds": [
+            135
+        ],
+        "playerIds": [
+            813664
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "mlb-top-prospects",
+            "arizona-fall-league"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "How the Brewers might pitch to Caminero in the World Series",
         "summaryJa": "J.キャミネロ（TB）を巡る注目点をMLB公式が分析",
         "slug": "how-teams-are-pitching-to-junior-caminero-in-the-postseason",
@@ -22,7 +84,36 @@
             "world-series"
         ],
         "sourceScopes": [
+            "MLB",
             "球団公式"
+        ]
+    },
+    {
+        "headline": "1 big offseason question for each eliminated postseason team",
+        "summaryJa": "ガーディアンズの最新動向をMLB公式が詳報",
+        "slug": "offseason-questions-for-eliminated-mlb-postseason-teams",
+        "url": "https://www.mlb.com/news/offseason-questions-for-eliminated-mlb-postseason-teams",
+        "contentDate": "2026-10-21T02:00:00Z",
+        "teamIds": [
+            114,
+            117,
+            147,
+            111,
+            145,
+            119,
+            144,
+            135,
+            112,
+            143
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "postseason",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB"
         ]
     },
     {
@@ -60,24 +151,6 @@
         "gamePks": [],
         "taxonomy": [
             "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "LIVE: Watch top prospects in Arizona Fall League action",
-        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
-        "slug": "watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
-        "url": "https://www.mlb.com/news/watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
-        "contentDate": "2026-10-21T01:20:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "arizona-fall-league"
         ],
         "sourceScopes": [
             "MLB",
@@ -732,7 +805,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -823,7 +895,6 @@
             "alcs"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1145,30 +1216,6 @@
         "gamePks": [],
         "taxonomy": [
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Why Ashby's run as Brewers' fireman is reaching historic heights",
-        "summaryJa": "A.アシュビー（MIL）を巡る注目点をMLB公式が分析",
-        "slug": "brewers-aaron-ashby-having-dominant-postseason",
-        "url": "https://www.mlb.com/news/brewers-aaron-ashby-having-dominant-postseason",
-        "contentDate": "2026-10-19T13:48:39.842Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [
-            676879
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "player-tracking",
-            "savant",
-            "postseason",
-            "world-series"
         ],
         "sourceScopes": [
             "球団公式"
@@ -4549,25 +4596,6 @@
         ]
     },
     {
-        "headline": "Where could Bohm land in free agency?",
-        "summaryJa": "A.ボームの最新動向をMLB公式が詳報",
-        "slug": "alec-bohm-free-agency-profile-team-fits",
-        "url": "https://www.mlb.com/news/alec-bohm-free-agency-profile-team-fits",
-        "contentDate": "2026-10-09T16:02:13.573Z",
-        "teamIds": [],
-        "playerIds": [
-            664761
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "rumors"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Bo Jackson of the Ivy League? How Venable rebounded from hoops to baseball",
         "summaryJa": "W.ベナブル（CWS）を巡る注目点をMLB公式が分析",
         "slug": "white-sox-manager-will-venable-two-sport-athlete-in-college",
@@ -5572,30 +5600,6 @@
         "playerIds": [],
         "gamePks": [],
         "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Xander makes savvy moves on basepaths, in field as Padres stay alive",
-        "summaryJa": "X.ボガーツ（SD）、勝利を呼び込む活躍",
-        "slug": "xander-bogaerts-makes-big-plays-in-padres-game-3-nlds-win",
-        "url": "https://www.mlb.com/news/xander-bogaerts-makes-big-plays-in-padres-game-3-nlds-win",
-        "contentDate": "2026-10-07T08:13:12.698Z",
-        "teamIds": [
-            135
-        ],
-        "playerIds": [
-            593428
-        ],
-        "gamePks": [
-            849826
-        ],
-        "taxonomy": [
-            "nlds",
-            "series-a",
             "apple-news"
         ],
         "sourceScopes": [
