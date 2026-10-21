@@ -6129,6 +6129,33 @@
                 return wrapper;
             };
             const text = el("div", "pregame-game-highlight-text");
+            if (highlight.kind === "worldSeriesFact") {
+                const teamPair = el("span", "pregame-game-highlight-contender");
+                highlight.teams.forEach((team, index) => {
+                    if (index > 0) teamPair.append(el(
+                        "span",
+                        "pregame-game-highlight-connector",
+                        "×"
+                    ));
+                    const logo = createFreeAgentTeamLogo(team, teamCode(team));
+                    logo.classList.add("pregame-game-highlight-logo");
+                    teamPair.append(logo);
+                });
+                const label = el(
+                    highlight.href ? "a" : "strong",
+                    "pregame-game-highlight-label",
+                    highlight.label
+                );
+                if (highlight.href) {
+                    label.href = highlight.href;
+                    label.target = "_blank";
+                    label.rel = "noopener noreferrer";
+                }
+                text.append(teamPair, label);
+                item.append(text);
+                list.append(item);
+                return;
+            }
             if (highlight.kind === "special") {
                 const specialLabel = el(
                     highlight.href ? "a" : "strong",
@@ -6227,6 +6254,43 @@
                 href: note.href
             }))
     );
+
+    const get2026WorldSeriesHighlights = (gameType, teams) => {
+        const BREWERS_ID = 158;
+        const RAYS_ID = 139;
+        const teamList = [teams?.away, teams?.home].filter(Boolean);
+        const brewers = teamList.find((team) => Number(team?.id) === BREWERS_ID);
+        const rays = teamList.find((team) => Number(team?.id) === RAYS_ID);
+        if (String(gameType ?? "").toUpperCase() !== "W" || !brewers || !rays) return [];
+        const href = "https://www.mlb.com/rays/news/2026-mlb-world-series-faq-schedule-times-teams-and-more";
+        const pairedTeams = [brewers, rays];
+        return [
+            {
+                kind: "worldSeriesFact",
+                teams: pairedTeams,
+                label: "ともにワールドシリーズ制覇経験なし。今シリーズで球団初優勝を目指す",
+                href
+            },
+            {
+                kind: "worldSeriesFact",
+                teams: pairedTeams,
+                label: "MILは1982年以来44年ぶり2度目、TBは2008、2020年に続く3度目のワールドシリーズ進出",
+                href
+            },
+            {
+                kind: "worldSeriesFact",
+                teams: pairedTeams,
+                label: "レギュラーシーズンはMILが103勝、TBが98勝。ホームフィールド・アドバンテージはMIL",
+                href
+            },
+            {
+                kind: "worldSeriesFact",
+                teams: pairedTeams,
+                label: "今季直接対決はMILが2勝1敗。3試合すべてMIL投手陣は3失点以下",
+                href
+            }
+        ];
+    };
 
     const getPostseasonSeriesHistoryHighlights = (seriesStanding, teams) => {
         if (String(seriesStanding?.gameType ?? "") !== "D" ||
@@ -9587,6 +9651,10 @@
                 getLineupSeasonStats(lineupPlayerIds, date)
             ]);
             const gameHighlights = [
+                ...get2026WorldSeriesHighlights(
+                    gameType,
+                    { away: awayTeam, home: homeTeam }
+                ),
                 ...getPostseasonSeriesHistoryHighlights(
                     seriesStanding,
                     { away: awayTeam, home: homeTeam }
