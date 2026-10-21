@@ -2,6 +2,145 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Latest Dodgers injuries & transactions",
+        "summaryJa": "ドジャースの負傷状況をMLB公式が詳報",
+        "slug": "dodgers-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/dodgers-injuries-and-roster-moves",
+        "contentDate": "2026-10-21T23:37:00Z",
+        "teamIds": [
+            119
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Rushing undergoes surgery to repair partially torn UCL in right elbow",
+        "summaryJa": "D.ラッシング（LAD）の最新動向をMLB公式が詳報",
+        "slug": "dalton-rushing-has-right-elbow-surgery",
+        "url": "https://www.mlb.com/news/dalton-rushing-has-right-elbow-surgery",
+        "contentDate": "2026-10-21T23:35:01.948Z",
+        "teamIds": [
+            119
+        ],
+        "playerIds": [
+            687221
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "injury"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Watch Angels prospects in Arizona Fall League action",
+        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
+        "slug": "watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
+        "url": "https://www.mlb.com/news/watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
+        "contentDate": "2026-10-21T22:23:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "arizona-fall-league"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Ohtani won't need surgery, expects to return to 2-way form. How that looks is up in the air",
+        "summaryJa": "大谷 翔平（LAD）、復帰へ向けた最新状況",
+        "slug": "shohei-ohtani-health-updates-2026-offseason",
+        "url": "https://www.mlb.com/news/shohei-ohtani-health-updates-2026-offseason",
+        "contentDate": "2026-10-21T22:20:23.556Z",
+        "teamIds": [
+            119
+        ],
+        "playerIds": [
+            660271
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "This Dodgers prospect has all the tools to succeed -- can he put them together?",
+        "summaryJa": "Chase Harlan（LAD）ら注目選手の最新動向",
+        "slug": "dodgers-prospect-chase-harlan-working-on-defense-in-arizona-fall-league",
+        "url": "https://www.mlb.com/news/dodgers-prospect-chase-harlan-working-on-defense-in-arizona-fall-league",
+        "contentDate": "2026-10-21T22:17:00Z",
+        "teamIds": [
+            119
+        ],
+        "playerIds": [
+            815792
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "mlb-top-prospects",
+            "arizona-fall-league"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Boone to return as Yankees manager in '27, final year of his contract",
+        "summaryJa": "ヤンキース、復帰へ向けた最新状況",
+        "slug": "aaron-boone-return-yankees-manager-2027",
+        "url": "https://www.mlb.com/news/aaron-boone-return-yankees-manager-2027",
+        "contentDate": "2026-10-21T21:50:00Z",
+        "teamIds": [
+            147
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "For longtime Brewers employees, the wait for another World Series run is finally over",
+        "summaryJa": "ブルワーズの最新動向をMLB公式が詳報",
+        "slug": "brewers-longtime-employees-who-work-for-2026-world-series-team",
+        "url": "https://www.mlb.com/news/brewers-longtime-employees-who-work-for-2026-world-series-team",
+        "contentDate": "2026-10-21T21:20:09.36Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "What do the '82 Brewers think of the '26 Brewers and their World Series run?",
         "summaryJa": "ブルワーズの最新動向をMLB公式が詳報",
         "slug": "1982-brewers-discuss-2026-team-before-world-series",
@@ -18,23 +157,7 @@
             "postseason"
         ],
         "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Watch Angels prospects in Arizona Fall League action",
-        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
-        "slug": "watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
-        "url": "https://www.mlb.com/news/watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
-        "contentDate": "2026-10-21T20:22:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "arizona-fall-league"
-        ],
-        "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
@@ -159,7 +282,7 @@
         ]
     },
     {
-        "headline": "Crew has been MLB's best team under Pat Murphy. Can he lead them to a World Series win?",
+        "headline": "Crew has been MLB's best team under Pat Murphy. Can he lead them to World Series win?",
         "summaryJa": "ブルワーズ、勝利を呼び込む活躍",
         "slug": "pat-murphy-leads-brewers-to-nl-pennant-world-series-berth",
         "url": "https://www.mlb.com/news/pat-murphy-leads-brewers-to-nl-pennant-world-series-berth",
@@ -533,7 +656,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -923,7 +1045,6 @@
             "postseason"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -944,7 +1065,6 @@
             "world-series"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1025,7 +1145,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1461,24 +1580,6 @@
             "arizona-fall-league",
             "apple-news",
             "mlb-top-prospects"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Boone to return as Yankees manager in '27, final year of his contract (source)",
-        "summaryJa": "ヤンキース、復帰へ向けた最新状況",
-        "slug": "aaron-boone-return-yankees-manager-2027",
-        "url": "https://www.mlb.com/news/aaron-boone-return-yankees-manager-2027",
-        "contentDate": "2026-10-19T22:27:09.751Z",
-        "teamIds": [
-            147
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
@@ -2680,26 +2781,6 @@
         ]
     },
     {
-        "headline": "Latest Dodgers injuries & transactions",
-        "summaryJa": "ドジャースの負傷状況をMLB公式が詳報",
-        "slug": "dodgers-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/dodgers-injuries-and-roster-moves",
-        "contentDate": "2026-10-16T06:08:00Z",
-        "teamIds": [
-            119
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Dodgers left to ponder state of team core as cracks emerge in NLCS sweep",
         "summaryJa": "ドジャース、勝利を呼び込む活躍",
         "slug": "dodgers-lose-2026-nlcs-to-brewers",
@@ -3294,31 +3375,6 @@
         ]
     },
     {
-        "headline": "Moved down in Dodgers' lineup, Ohtani singles, walks in Game 3 loss",
-        "summaryJa": "大谷 翔平（LAD）の最新動向をMLB公式が詳報",
-        "slug": "shohei-ohtani-nlcs-game-3-lineup-dodgers",
-        "url": "https://www.mlb.com/news/shohei-ohtani-nlcs-game-3-lineup-dodgers",
-        "contentDate": "2026-10-15T03:52:00Z",
-        "teamIds": [
-            119
-        ],
-        "playerIds": [
-            660271
-        ],
-        "gamePks": [
-            849811
-        ],
-        "taxonomy": [
-            "apple-news",
-            "nlcs",
-            "postseason",
-            "injury"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "A's LHP prospect Richardson shows off health and resiliency during Fall League homecoming",
         "summaryJa": "Grant Richardson（ATH）ら注目選手の最新動向",
         "slug": "athletics-pitching-prospect-grant-richardson-at-home-in-arizona-fall-league",
@@ -3797,32 +3853,6 @@
             "apple-news",
             "mlb-top-prospects",
             "arizona-fall-league"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Here's the root of Ohtani's slump. Is there time to fix it?",
-        "summaryJa": "大谷 翔平（LAD）の最新動向をMLB公式が詳報",
-        "slug": "shohei-ohtani-struggles-2026-postseason",
-        "url": "https://www.mlb.com/news/shohei-ohtani-struggles-2026-postseason",
-        "contentDate": "2026-10-14T00:23:00Z",
-        "teamIds": [
-            119
-        ],
-        "playerIds": [
-            660271
-        ],
-        "gamePks": [
-            849811
-        ],
-        "taxonomy": [
-            "player-tracking",
-            "savant",
-            "apple-news",
-            "postseason",
-            "nlcs"
         ],
         "sourceScopes": [
             "球団公式"
