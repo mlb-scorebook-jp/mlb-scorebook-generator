@@ -2,6 +2,237 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "How a junior college in Missouri produced two World Series pitchers",
+        "summaryJa": "A.アシュビー（MIL）を巡る注目点をMLB公式が分析",
+        "slug": "jacob-misiorowski-aaron-ashby-s-journey-from-juco-to-world-series",
+        "url": "https://www.mlb.com/news/jacob-misiorowski-aaron-ashby-s-journey-from-juco-to-world-series",
+        "contentDate": "2026-10-21T17:21:45.791Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [
+            676879,
+            694819
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "postseason",
+            "world-series"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "In the first World Series with ABS, will any hitters challenge?",
+        "summaryJa": "ブルワーズの最新動向をMLB公式が詳報",
+        "slug": "who-will-challenge-in-first-abs-world-series",
+        "url": "https://www.mlb.com/news/who-will-challenge-in-first-abs-world-series",
+        "contentDate": "2026-10-21T16:57:00Z",
+        "teamIds": [
+            158,
+            139
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "savant",
+            "abs",
+            "world-series",
+            "postseason"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "A message from the Uecker Family",
+        "summaryJa": "ブルワーズの最新動向をMLB公式が詳報",
+        "slug": "uecker-family-delivers-message-before-2026-world-series",
+        "url": "https://www.mlb.com/news/uecker-family-delivers-message-before-2026-world-series",
+        "contentDate": "2026-10-21T16:52:51.744Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Can the Miz get his groove -- and his whiffs -- back?",
+        "summaryJa": "J.ミザロウスキー（MIL）の最新動向をMLB公式が詳報",
+        "slug": "can-jacob-misiorowski-find-his-whiffs-in-world-series",
+        "url": "https://www.mlb.com/news/can-jacob-misiorowski-find-his-whiffs-in-world-series",
+        "contentDate": "2026-10-21T16:45:00Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [
+            694819
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "savant",
+            "postseason",
+            "world-series"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "How did this high-flying victory celebration come to be? 'We both wish we could dunk'",
+        "summaryJa": "R.パラシオス（TB）、勝利を呼び込む活躍",
+        "slug": "richie-palacios-taylor-walls-talk-basketball-inspired-celebration",
+        "url": "https://www.mlb.com/news/richie-palacios-taylor-walls-talk-basketball-inspired-celebration",
+        "contentDate": "2026-10-21T16:30:23.529Z",
+        "teamIds": [
+            139
+        ],
+        "playerIds": [
+            680700,
+            670764
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "world-series",
+            "postseason"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Savvy trades, sharp scouting key to construction of this year's World Series rosters",
+        "summaryJa": "MLBの最新情報の移籍・契約に関する最新情報",
+        "slug": "how-the-world-series-teams-were-built-2026",
+        "url": "https://www.mlb.com/news/how-the-world-series-teams-were-built-2026",
+        "contentDate": "2026-10-21T16:15:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "world-series",
+            "mlb-top-prospects"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Cashman returning for 30th season as Yankees GM",
+        "summaryJa": "ヤンキース、復帰へ向けた最新状況",
+        "slug": "brian-cashman-returning-as-yankees-general-manager",
+        "url": "https://www.mlb.com/news/brian-cashman-returning-as-yankees-general-manager",
+        "contentDate": "2026-10-21T16:06:13.605Z",
+        "teamIds": [
+            147
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "transactions"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Everything to know about the Tarik Skubal free agency frenzy",
+        "summaryJa": "T.スクーバルの最新動向をMLB公式が詳報",
+        "slug": "tarik-skubal-2026-free-agent-profile",
+        "url": "https://www.mlb.com/news/tarik-skubal-2026-free-agent-profile",
+        "contentDate": "2026-10-21T15:44:53.8Z",
+        "teamIds": [],
+        "playerIds": [
+            669373
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "offseason",
+            "rumors"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "Milwaukee rocks! Violent Femmes to play pregame concert before World Series Game 1",
+        "summaryJa": "ブルワーズの最新動向をMLB公式が詳報",
+        "slug": "violent-femmes-perform-before-world-series-game-1-in-milwaukee",
+        "url": "https://www.mlb.com/news/violent-femmes-perform-before-world-series-game-1-in-milwaukee",
+        "contentDate": "2026-10-21T14:59:04.879Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "world-series",
+            "apple-news",
+            "postseason"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Brewers announce Watch Parties for WS Games 3 and 4 at American Family Field",
+        "summaryJa": "ブルワーズの最新動向をMLB公式が詳報",
+        "slug": "brewers-announce-world-series-games-3-and-4-watch-parties-inside-american-family-field",
+        "url": "https://www.mlb.com/news/brewers-announce-world-series-games-3-and-4-watch-parties-inside-american-family-field",
+        "contentDate": "2026-10-21T12:45:25.219Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "world-series"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Booser's journey from 'very dark days' battling addiction to getting huge postseason outs",
+        "summaryJa": "C.ブーザー（TB）の最新動向をMLB公式が詳報",
+        "slug": "cam-booser-baseball-journey-rays-2026-alds",
+        "url": "https://www.mlb.com/news/cam-booser-baseball-journey-rays-2026-alds",
+        "contentDate": "2026-10-21T12:36:00Z",
+        "teamIds": [
+            139
+        ],
+        "playerIds": [
+            592155
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "world-series"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "These are the 5 most pressing offseason questions for Dodgers",
         "summaryJa": "ドジャースの最新動向をMLB公式が詳報",
         "slug": "dodgers-most-pressing-offseason-questions",
@@ -59,7 +290,6 @@
             "mlb-top-prospects"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -79,7 +309,6 @@
             "mlb-top-prospects"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -119,7 +348,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -162,7 +390,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -322,18 +549,23 @@
         ]
     },
     {
-        "headline": "Savvy trades, sharp scouting key to construction of this year's World Series rosters",
-        "summaryJa": "MLBの最新情報の移籍・契約に関する最新情報",
-        "slug": "how-the-world-series-teams-were-built-2026",
-        "url": "https://www.mlb.com/news/how-the-world-series-teams-were-built-2026",
-        "contentDate": "2026-10-21T00:11:00Z",
-        "teamIds": [],
+        "headline": "Rays and Brewers have effective, yet completely different bullpens. Here's how",
+        "summaryJa": "レイズを巡る注目点をMLB公式が分析",
+        "slug": "brewers-rays-2026-world-series-bullpen-breakdown",
+        "url": "https://www.mlb.com/news/brewers-rays-2026-world-series-bullpen-breakdown",
+        "contentDate": "2026-10-21T00:41:00Z",
+        "teamIds": [
+            139,
+            158
+        ],
         "playerIds": [],
         "gamePks": [],
         "taxonomy": [
-            "apple-news",
             "world-series",
-            "mlb-top-prospects"
+            "apple-news",
+            "postseason",
+            "savant",
+            "player-tracking"
         ],
         "sourceScopes": [
             "MLB",
@@ -406,8 +638,7 @@
             "world-series"
         ],
         "sourceScopes": [
-            "MLB",
-            "球団公式"
+            "MLB"
         ]
     },
     {
@@ -446,7 +677,6 @@
             "rumors"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -505,30 +735,6 @@
             "apple-news",
             "world-series",
             "postseason"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Can the Miz get his groove -- and his whiffs -- back?",
-        "summaryJa": "J.ミザロウスキー（MIL）の最新動向をMLB公式が詳報",
-        "slug": "can-jacob-misiorowski-find-his-whiffs-in-world-series",
-        "url": "https://www.mlb.com/news/can-jacob-misiorowski-find-his-whiffs-in-world-series",
-        "contentDate": "2026-10-20T16:58:13.148Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [
-            694819
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "savant",
-            "postseason",
-            "world-series"
         ],
         "sourceScopes": [
             "MLB",
@@ -598,8 +804,7 @@
             "world-series"
         ],
         "sourceScopes": [
-            "MLB",
-            "球団公式"
+            "MLB"
         ]
     },
     {
@@ -1014,7 +1219,6 @@
             "clincher"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1039,8 +1243,7 @@
             "world-series"
         ],
         "sourceScopes": [
-            "MLB",
-            "球団公式"
+            "MLB"
         ]
     },
     {
@@ -1058,8 +1261,7 @@
             "postseason"
         ],
         "sourceScopes": [
-            "MLB",
-            "球団公式"
+            "MLB"
         ]
     },
     {
@@ -1078,27 +1280,6 @@
         "taxonomy": [
             "apple-news",
             "alcs"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "What you need to know about the 2026 World Series",
-        "summaryJa": "ブルワーズの最新動向をMLB公式が詳報",
-        "slug": "2026-mlb-world-series-faq-schedule-times-teams-and-more",
-        "url": "https://www.mlb.com/news/2026-mlb-world-series-faq-schedule-times-teams-and-more",
-        "contentDate": "2026-10-20T03:40:00Z",
-        "teamIds": [
-            158,
-            139
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "world-series",
-            "postseason",
-            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
@@ -1165,27 +1346,6 @@
         ]
     },
     {
-        "headline": "'Something special': How a teenage Chourio became the Brewers' best bet",
-        "summaryJa": "J.チョリオ（MIL）ら注目選手の最新動向",
-        "slug": "jackson-chourio-is-a-special-brewers-top-prospect",
-        "url": "https://www.mlb.com/news/featured/jackson-chourio-is-a-special-brewers-top-prospect",
-        "contentDate": "2026-10-19T22:26:00Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [
-            694192
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "featured",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "What Dodgers can learn from Ohtani's injury-plagued 2026",
         "summaryJa": "大谷 翔平（LAD）の負傷状況をMLB公式が詳報",
         "slug": "shohei-ohtani-2026-injury-timeline-dodgers-lessons",
@@ -1218,27 +1378,6 @@
         "gamePks": [],
         "taxonomy": [
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Even Uecker would get a kick out of these Brewers fans' stories",
-        "summaryJa": "ブルワーズの最新動向をMLB公式が詳報",
-        "slug": "brewers-fans-share-what-world-series-appearance-means-to-them",
-        "url": "https://www.mlb.com/news/brewers-fans-share-what-world-series-appearance-means-to-them",
-        "contentDate": "2026-10-19T16:21:20.466Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "world-series",
-            "postseason",
-            "fans"
         ],
         "sourceScopes": [
             "球団公式"
@@ -6301,30 +6440,6 @@
             "arizona-fall-league",
             "apple-news",
             "mlb-top-prospects"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "5 takeaways: Rays' formula is working, and Yankees have yet to solve it",
-        "summaryJa": "レイズの最新動向をMLB公式が詳報",
-        "slug": "takeaways-from-rays-yankees-alds-game-2",
-        "url": "https://www.mlb.com/news/takeaways-from-rays-yankees-alds-game-2",
-        "contentDate": "2026-10-06T05:33:17.324Z",
-        "teamIds": [
-            139,
-            147
-        ],
-        "playerIds": [],
-        "gamePks": [
-            849839
-        ],
-        "taxonomy": [
-            "apple-news",
-            "alds",
-            "series-a",
-            "postseason"
         ],
         "sourceScopes": [
             "球団公式"
