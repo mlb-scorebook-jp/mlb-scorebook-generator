@@ -2,6 +2,108 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "How the Brewers might pitch to Caminero in the World Series",
+        "summaryJa": "J.キャミネロ（TB）を巡る注目点をMLB公式が分析",
+        "slug": "how-teams-are-pitching-to-junior-caminero-in-the-postseason",
+        "url": "https://www.mlb.com/news/how-teams-are-pitching-to-junior-caminero-in-the-postseason",
+        "contentDate": "2026-10-21T02:00:00Z",
+        "teamIds": [
+            139
+        ],
+        "playerIds": [
+            691406
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "player-tracking",
+            "savant",
+            "postseason",
+            "world-series"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Woodruff would love World Series roster spot, but understands why it might not happen",
+        "summaryJa": "B.ウッドラフ（MIL）を巡る注目点をMLB公式が分析",
+        "slug": "brandon-woodruff-world-series-status",
+        "url": "https://www.mlb.com/news/brandon-woodruff-world-series-status",
+        "contentDate": "2026-10-21T01:33:59.019Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [
+            605540
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "world-series"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "What Guardians' ALCS loss revealed heading into pivotal offseason",
+        "summaryJa": "ガーディアンズの最新動向をMLB公式が詳報",
+        "slug": "guardians-take-lessons-from-2026-alcs-elimination",
+        "url": "https://www.mlb.com/news/guardians-take-lessons-from-2026-alcs-elimination",
+        "contentDate": "2026-10-21T01:31:50.912Z",
+        "teamIds": [
+            114
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "LIVE: Watch top prospects in Arizona Fall League action",
+        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
+        "slug": "watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
+        "url": "https://www.mlb.com/news/watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
+        "contentDate": "2026-10-21T01:20:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "arizona-fall-league"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Savvy trades, sharp scouting key to construction of this year's World Series rosters",
+        "summaryJa": "MLBの最新情報の移籍・契約に関する最新情報",
+        "slug": "how-the-world-series-teams-were-built-2026",
+        "url": "https://www.mlb.com/news/how-the-world-series-teams-were-built-2026",
+        "contentDate": "2026-10-21T00:11:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "world-series",
+            "mlb-top-prospects"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Braves' No. 8 prospect brings 'old school' mentality to club he grew up rooting for",
         "summaryJa": "Briggs McKenzie（ATL）ら注目選手の最新動向",
         "slug": "braves-prospect-briggs-mckenzie-in-arizona-fall-league",
@@ -58,24 +160,6 @@
         "taxonomy": [
             "world-series",
             "postseason"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Watch LIVE: Top prospects in Arizona Fall League action",
-        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
-        "slug": "watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
-        "url": "https://www.mlb.com/news/watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
-        "contentDate": "2026-10-20T20:26:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "arizona-fall-league"
         ],
         "sourceScopes": [
             "MLB",
@@ -228,6 +312,7 @@
             "world-series"
         ],
         "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
@@ -760,7 +845,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -782,23 +866,6 @@
         ],
         "sourceScopes": [
             "球団公式"
-        ]
-    },
-    {
-        "headline": "Caminero's Game 6 HR trot second only ... to one of his own",
-        "summaryJa": "MLBの最新情報、記録達成の最新情報",
-        "slug": "the-slowest-home-run-trots-on-record",
-        "url": "https://www.mlb.com/news/the-slowest-home-run-trots-on-record",
-        "contentDate": "2026-10-20T02:47:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "evergreen",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB"
         ]
     },
     {
@@ -838,7 +905,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1081,7 +1147,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1203,29 +1268,6 @@
         ]
     },
     {
-        "headline": "Rasmussen puts Rays on his back again to build on historic postseason",
-        "summaryJa": "D.ラスムッセン（TB）、勝利を呼び込む活躍",
-        "slug": "drew-rasmussen-dominates-as-rays-win-game-5-of-2026-alcs",
-        "url": "https://www.mlb.com/news/drew-rasmussen-dominates-as-rays-win-game-5-of-2026-alcs",
-        "contentDate": "2026-10-19T02:27:00Z",
-        "teamIds": [
-            139
-        ],
-        "playerIds": [
-            656876
-        ],
-        "gamePks": [
-            849817
-        ],
-        "taxonomy": [
-            "apple-news",
-            "alcs"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Thought Kwan's first play was good? Gold Glover comes back with another gem",
         "summaryJa": "S.クワン（CLE）の最新動向をMLB公式が詳報",
         "slug": "steven-kwan-makes-great-throw-catch-in-alcs-game-5",
@@ -1295,47 +1337,6 @@
         "taxonomy": [
             "apple-news",
             "alcs",
-            "postseason"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "'We did it': After 22-year journey, Attanasio brings World Series back to Milwaukee",
-        "summaryJa": "ブルワーズの最新動向をMLB公式が詳報",
-        "slug": "brewers-owner-mark-attanasio-on-world-series-berth",
-        "url": "https://www.mlb.com/news/brewers-owner-mark-attanasio-on-world-series-berth",
-        "contentDate": "2026-10-18T19:26:00Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "world-series"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Why Pratt's dream postseason run has been more than 'frickin' fun'",
-        "summaryJa": "C.プラット（MIL）を巡る注目点をMLB公式が分析",
-        "slug": "cooper-pratt-s-childhood-hard-work-translating-to-2026-postseason-results",
-        "url": "https://www.mlb.com/news/cooper-pratt-s-childhood-hard-work-translating-to-2026-postseason-results",
-        "contentDate": "2026-10-18T13:31:42.733Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [
-            806198
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "world-series",
             "postseason"
         ],
         "sourceScopes": [
@@ -2298,26 +2299,6 @@
         ]
     },
     {
-        "headline": "'Brewers at 50' excerpt: Fond memories of '82",
-        "summaryJa": "ブルワーズの最新動向をMLB公式が詳報",
-        "slug": "brewers-1982-season-memories",
-        "url": "https://www.mlb.com/news/featured/brewers-1982-season-memories",
-        "contentDate": "2026-10-15T23:18:00Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "postseason",
-            "world-series",
-            "long-form"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Which landed 1st? Halpin's epic HR or the 'majestic' bat flip that followed?",
         "summaryJa": "P.ハルピン（CLE）、記録達成の最新情報",
         "slug": "petey-halpin-go-ahead-homer-guardians-win-game-3-2026-alcs",
@@ -2357,31 +2338,6 @@
         "gamePks": [],
         "taxonomy": [
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Guards' rare aggressiveness at Deadline paying off during playoff run",
-        "summaryJa": "J.アデル（CLE）の移籍・契約に関する最新情報",
-        "slug": "nathaniel-lowe-jo-adell-trades-paying-off-for-guardians-during-alcs-run",
-        "url": "https://www.mlb.com/news/nathaniel-lowe-jo-adell-trades-paying-off-for-guardians-during-alcs-run",
-        "contentDate": "2026-10-15T22:05:57.403Z",
-        "teamIds": [
-            114
-        ],
-        "playerIds": [
-            666176,
-            663993
-        ],
-        "gamePks": [
-            849818
-        ],
-        "taxonomy": [
-            "apple-news",
-            "postseason",
-            "alcs"
         ],
         "sourceScopes": [
             "球団公式"
