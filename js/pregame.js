@@ -6255,16 +6255,16 @@
             }))
     );
 
-    const get2026WorldSeriesHighlights = (gameType, teams) => {
+    const get2026WorldSeriesHighlights = (game, teams, rosterBySide = {}) => {
         const BREWERS_ID = 158;
         const RAYS_ID = 139;
         const teamList = [teams?.away, teams?.home].filter(Boolean);
         const brewers = teamList.find((team) => Number(team?.id) === BREWERS_ID);
         const rays = teamList.find((team) => Number(team?.id) === RAYS_ID);
-        if (String(gameType ?? "").toUpperCase() !== "W" || !brewers || !rays) return [];
+        if (String(game?.gameType ?? "").toUpperCase() !== "W" || !brewers || !rays) return [];
         const href = "https://www.mlb.com/rays/news/2026-mlb-world-series-faq-schedule-times-teams-and-more";
         const pairedTeams = [brewers, rays];
-        return [
+        const highlights = [
             {
                 kind: "worldSeriesFact",
                 teams: pairedTeams,
@@ -6288,8 +6288,71 @@
                 teams: pairedTeams,
                 label: "今季直接対決はMILが2勝1敗。3試合すべてMIL投手陣は3失点以下",
                 href
+            },
+            {
+                kind: "worldSeriesFact",
+                teams: pairedTeams,
+                label: "MILは前年NLCSでLADに0勝4敗、今季は4勝0敗。前年のスイープを逆にスイープで返した史上初のチーム",
+                href: "https://www.mlb.com/news/dodgers-lose-2026-nlcs-to-brewers?t=sonja-chen"
+            },
+            {
+                kind: "worldSeriesFact",
+                teams: pairedTeams,
+                label: "MILは今ポストシーズン、WS開幕前まで先制された試合で5勝1敗。他球団の合計は6勝20敗",
+                href: ""
             }
         ];
+        if (Number(game?.seriesGameNumber) === 1) {
+            highlights.push(
+                {
+                    kind: "worldSeriesFact",
+                    teams: pairedTeams,
+                    label: "MILはNLCS終了から第1戦まで丸7日休養。2009年以降、先にWS進出を決めたチームは4勝12敗",
+                    href: "https://www.mlb.com/news/impact-of-extra-rest-before-world-series"
+                },
+                {
+                    kind: "worldSeriesFact",
+                    teams: pairedTeams,
+                    label: "アメリカンファミリーフィールドで初めて開催されるワールドシリーズ",
+                    href
+                },
+                {
+                    kind: "worldSeriesFact",
+                    teams: pairedTeams,
+                    label: "地元NBAバックスもWS第1戦を優先し、ホーム開幕戦を現地午後7時から午後3時へ変更",
+                    href: "https://www.mlb.com/brewers/news/milwaukee-bucks-change-time-of-home-opener-brewers-world-series"
+                },
+                {
+                    kind: "worldSeriesFact",
+                    teams: pairedTeams,
+                    label: "2025年LADと2026年MILのNLCSは、ともに4勝0敗、149打席、128打数、32安打、打率.250、出塁率.347",
+                    href: "https://www.mlb.com/news/dodgers-brewers-had-exact-match-in-stats-in-2025-and-2026-nlcs"
+                }
+            );
+        }
+        const lineupEntries = [
+            ...startingLineupEntries(rosterBySide.away ?? []),
+            ...startingLineupEntries(rosterBySide.home ?? [])
+        ];
+        const lineupPerson = (playerId) => lineupEntries.find((entry) =>
+            Number(entry?.person?.id) === playerId)?.person;
+        const bauers = lineupPerson(641343);
+        if (bauers) highlights.push({
+            kind: "special",
+            person: bauers,
+            team: brewers,
+            label: "2年前には引退も検討。今季26本塁打、86打点を記録し、球団史上初のNLCS MVPに",
+            href: "https://www.mlb.com/news/jake-bauers-wins-2026-nlcs-mvp"
+        });
+        const pratt = lineupPerson(806198);
+        if (pratt) highlights.push({
+            kind: "special",
+            person: pratt,
+            team: brewers,
+            label: "22歳の新人遊撃手。今季74試合で打率.281、今ポストシーズンは打率.310",
+            href: "https://www.mlb.com/brewers/news/cooper-pratt-s-childhood-hard-work-translating-to-2026-postseason-results"
+        });
+        return highlights;
     };
 
     const getPostseasonSeriesHistoryHighlights = (seriesStanding, teams) => {
@@ -9652,8 +9715,9 @@
             ]);
             const gameHighlights = [
                 ...get2026WorldSeriesHighlights(
-                    gameType,
-                    { away: awayTeam, home: homeTeam }
+                    game,
+                    { away: awayTeam, home: homeTeam },
+                    rosterBySide
                 ),
                 ...getPostseasonSeriesHistoryHighlights(
                     seriesStanding,
