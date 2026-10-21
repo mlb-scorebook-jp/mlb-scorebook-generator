@@ -6286,8 +6286,32 @@
             {
                 kind: "worldSeriesFact",
                 teams: pairedTeams,
+                label: "両リーグ最高勝率チーム同士のWSは、ワイルドカード時代で史上6度目",
+                href: "https://www.mlb.com/news/interesting-facts-about-rays-brewers-world-series-matchup"
+            },
+            {
+                kind: "worldSeriesFact",
+                teams: pairedTeams,
                 label: "今季直接対決はMILが2勝1敗。3試合すべてMIL投手陣は3失点以下",
                 href
+            },
+            {
+                kind: "worldSeriesFact",
+                teams: pairedTeams,
+                label: "スモールベースボール対決。バント安打はTBがMLB1位の49、MILが2位の32。犠打もTBが1位の45、MILが5位の37",
+                href: "https://www.cbssports.com/mlb/news/2026-world-series-brewers-rays-x-factors/"
+            },
+            {
+                kind: "worldSeriesFact",
+                teams: pairedTeams,
+                label: "盗塁はTBが164、MILが162。一方、盗塁阻止率はMILの30％に対してTBは21％",
+                href: "https://www.cbssports.com/mlb/news/2026-world-series-brewers-rays-x-factors/"
+            },
+            {
+                kind: "worldSeriesFact",
+                teams: pairedTeams,
+                label: "ミザロウスキーのフォーシーム空振り率は、レギュラーシーズンの40％から今ポストシーズンは16％に低下",
+                href: "https://www.mlb.com/news/can-jacob-misiorowski-find-his-whiffs-in-world-series"
             },
             {
                 kind: "worldSeriesFact",
