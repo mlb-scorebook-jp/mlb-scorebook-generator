@@ -2,6 +2,234 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "What do the '82 Brewers think of the '26 Brewers and their World Series run?",
+        "summaryJa": "ブルワーズの最新動向をMLB公式が詳報",
+        "slug": "1982-brewers-discuss-2026-team-before-world-series",
+        "url": "https://www.mlb.com/news/1982-brewers-discuss-2026-team-before-world-series",
+        "contentDate": "2026-10-21T20:37:19.199Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "world-series",
+            "postseason"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Watch Angels prospects in Arizona Fall League action",
+        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
+        "slug": "watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
+        "url": "https://www.mlb.com/news/watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
+        "contentDate": "2026-10-21T20:22:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "arizona-fall-league"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Red Sox in need of new first- and third-base coaches (source)",
+        "summaryJa": "レッドソックスの最新動向をMLB公式が詳報",
+        "slug": "red-sox-make-changes-to-coaching-staff-ahead-of-2027",
+        "url": "https://www.mlb.com/news/red-sox-make-changes-to-coaching-staff-ahead-of-2027",
+        "contentDate": "2026-10-21T20:00:09.762Z",
+        "teamIds": [
+            111
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "rumors"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Astros casting wide net in search for new GM",
+        "summaryJa": "アストロズの最新動向をMLB公式が詳報",
+        "slug": "astros-general-manager-candidates",
+        "url": "https://www.mlb.com/news/astros-general-manager-candidates",
+        "contentDate": "2026-10-21T19:31:34.387Z",
+        "teamIds": [
+            117
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Cashman returning for 30th season as Yankees GM",
+        "summaryJa": "ヤンキース、復帰へ向けた最新状況",
+        "slug": "brian-cashman-returning-as-yankees-general-manager",
+        "url": "https://www.mlb.com/news/brian-cashman-returning-as-yankees-general-manager",
+        "contentDate": "2026-10-21T19:08:00Z",
+        "teamIds": [
+            147
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "transactions"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Angels decline Suzuki's option, will seek new manager",
+        "summaryJa": "エンゼルスの移籍・契約に関する最新情報",
+        "slug": "angels-decline-manager-kurt-suzuki-contract-option",
+        "url": "https://www.mlb.com/news/angels-decline-manager-kurt-suzuki-contract-option",
+        "contentDate": "2026-10-21T19:04:00Z",
+        "teamIds": [
+            108
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "40 kids to compete in finals of MLB's Pitch, Hit & Run at 2026 World Series",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "mlb-pitch-hit-run-finals-to-take-place-at-2026-world-series",
+        "url": "https://www.mlb.com/news/mlb-pitch-hit-run-finals-to-take-place-at-2026-world-series",
+        "contentDate": "2026-10-21T18:55:43.51Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "youth-baseball",
+            "apple-news",
+            "softball"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "To beat Rays, Brewers need to stop Caminero. Here's how they can",
+        "summaryJa": "J.キャミネロ（TB）、勝利を呼び込む活躍",
+        "slug": "how-teams-are-pitching-to-junior-caminero-in-the-postseason",
+        "url": "https://www.mlb.com/news/how-teams-are-pitching-to-junior-caminero-in-the-postseason",
+        "contentDate": "2026-10-21T18:35:00Z",
+        "teamIds": [
+            139,
+            158
+        ],
+        "playerIds": [
+            691406
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "player-tracking",
+            "savant",
+            "postseason",
+            "world-series"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Crew has been MLB's best team under Pat Murphy. Can he lead them to a World Series win?",
+        "summaryJa": "ブルワーズ、勝利を呼び込む活躍",
+        "slug": "pat-murphy-leads-brewers-to-nl-pennant-world-series-berth",
+        "url": "https://www.mlb.com/news/pat-murphy-leads-brewers-to-nl-pennant-world-series-berth",
+        "contentDate": "2026-10-21T17:57:34.857Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "world-series"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "A video aligned Simpson sprinting to 1B and Caminero's HR trot -- the result was hilarious",
+        "summaryJa": "C.シンプソン（TB）、本塁打で存在感",
+        "slug": "chandler-simpson-bunt-singles-vs-junior-caminero-home-run-trot",
+        "url": "https://www.mlb.com/news/chandler-simpson-bunt-singles-vs-junior-caminero-home-run-trot",
+        "contentDate": "2026-10-21T17:43:11.944Z",
+        "teamIds": [
+            139
+        ],
+        "playerIds": [
+            802415,
+            691406
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "postseason",
+            "world-series",
+            "apple-news",
+            "player-tracking"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Here are MLB's 7 best 17-year-old prospects",
+        "summaryJa": "L.ヘルナンデスら注目選手の最新動向",
+        "slug": "these-are-the-best-17-year-old-mlb-prospects",
+        "url": "https://www.mlb.com/news/these-are-the-best-17-year-old-mlb-prospects",
+        "contentDate": "2026-10-21T17:36:51.501Z",
+        "teamIds": [],
+        "playerIds": [
+            836582,
+            825412,
+            836353,
+            828796,
+            837522,
+            836583,
+            836548
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "mlb-top-prospects",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "How a junior college in Missouri produced two World Series pitchers",
         "summaryJa": "A.アシュビー（MIL）を巡る注目点をMLB公式が分析",
         "slug": "jacob-misiorowski-aaron-ashby-s-journey-from-juco-to-world-series",
@@ -134,26 +362,6 @@
         ]
     },
     {
-        "headline": "Cashman returning for 30th season as Yankees GM",
-        "summaryJa": "ヤンキース、復帰へ向けた最新状況",
-        "slug": "brian-cashman-returning-as-yankees-general-manager",
-        "url": "https://www.mlb.com/news/brian-cashman-returning-as-yankees-general-manager",
-        "contentDate": "2026-10-21T16:06:13.605Z",
-        "teamIds": [
-            147
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "transactions"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Everything to know about the Tarik Skubal free agency frenzy",
         "summaryJa": "T.スクーバルの最新動向をMLB公式が詳報",
         "slug": "tarik-skubal-2026-free-agent-profile",
@@ -247,7 +455,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -268,7 +475,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -369,7 +575,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -388,23 +593,6 @@
         "gamePks": [],
         "taxonomy": [
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Watch Angels prospects in Arizona Fall League action",
-        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
-        "slug": "watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
-        "url": "https://www.mlb.com/news/watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
-        "contentDate": "2026-10-21T04:49:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "arizona-fall-league"
         ],
         "sourceScopes": [
             "球団公式"
@@ -451,31 +639,6 @@
             "arizona-fall-league"
         ],
         "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "How the Brewers might pitch to Caminero in the World Series",
-        "summaryJa": "J.キャミネロ（TB）を巡る注目点をMLB公式が分析",
-        "slug": "how-teams-are-pitching-to-junior-caminero-in-the-postseason",
-        "url": "https://www.mlb.com/news/how-teams-are-pitching-to-junior-caminero-in-the-postseason",
-        "contentDate": "2026-10-21T02:00:00Z",
-        "teamIds": [
-            139
-        ],
-        "playerIds": [
-            691406
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "player-tracking",
-            "savant",
-            "postseason",
-            "world-series"
-        ],
-        "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -595,7 +758,6 @@
             "offseason"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -843,7 +1005,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -887,8 +1048,7 @@
             "postseason"
         ],
         "sourceScopes": [
-            "MLB",
-            "球団公式"
+            "MLB"
         ]
     },
     {
@@ -1262,27 +1422,6 @@
         ],
         "sourceScopes": [
             "MLB"
-        ]
-    },
-    {
-        "headline": "Look who's back! Glasnow, Arozarena among Game 6 attendees at Trop",
-        "summaryJa": "レイズの最新動向をMLB公式が詳報",
-        "slug": "tyler-glasnow-randy-arozarena-attend-2026-alcs-game-6-at-trop",
-        "url": "https://www.mlb.com/news/tyler-glasnow-randy-arozarena-attend-2026-alcs-game-6-at-trop",
-        "contentDate": "2026-10-20T04:16:00Z",
-        "teamIds": [
-            139
-        ],
-        "playerIds": [],
-        "gamePks": [
-            849815
-        ],
-        "taxonomy": [
-            "apple-news",
-            "alcs"
-        ],
-        "sourceScopes": [
-            "球団公式"
         ]
     },
     {
@@ -4258,28 +4397,6 @@
         ]
     },
     {
-        "headline": "'I feel great now': Healthy Miller headlines Phillies contingent in Fall League",
-        "summaryJa": "Aidan Miller（PHI）の最新動向をMLB公式が詳報",
-        "slug": "phillies-arizona-fall-league-overview-2026",
-        "url": "https://www.mlb.com/news/phillies-arizona-fall-league-overview-2026",
-        "contentDate": "2026-10-12T13:34:57.143Z",
-        "teamIds": [
-            143
-        ],
-        "playerIds": [
-            805795
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "arizona-fall-league",
-            "mlb-top-prospects",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Orioles' No. 5 prospect Ike Irish feeling the pull of the Arizona Fall League",
         "summaryJa": "Ike Irish（BAL）ら注目選手の最新動向",
         "slug": "orioles-arizona-fall-league-overview-2026",
@@ -5783,28 +5900,6 @@
         ]
     },
     {
-        "headline": "Arizona native Mason White leads Red Sox participants in Fall League",
-        "summaryJa": "Mason White（BOS）の最新動向をMLB公式が詳報",
-        "slug": "red-sox-arizona-fall-league-overview-2026",
-        "url": "https://www.mlb.com/news/red-sox-arizona-fall-league-overview-2026",
-        "contentDate": "2026-10-07T14:20:28.253Z",
-        "teamIds": [
-            111
-        ],
-        "playerIds": [
-            702517
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "mlb-top-prospects",
-            "arizona-fall-league",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Twins' No. 17 prospect enjoying change of scenery in Fall League",
         "summaryJa": "Yasser Mercedes（MIN）ら注目選手の最新動向",
         "slug": "twins-arizona-fall-league-overview-2026",
@@ -6571,28 +6666,6 @@
         ]
     },
     {
-        "headline": "Ochoa's comeback story continues in the Fall League",
-        "summaryJa": "Nehomar Ochoa Jr.（HOU）、勝利を呼び込む活躍",
-        "slug": "astros-arizona-fall-league-overview-2026",
-        "url": "https://www.mlb.com/news/astros-arizona-fall-league-overview-2026",
-        "contentDate": "2026-10-05T18:13:32.524Z",
-        "teamIds": [
-            117
-        ],
-        "playerIds": [
-            806441
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "mlb-top-prospects",
-            "arizona-fall-league"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "A's Athletic Club Sells Out 17 Months Ahead of 2028 Ballpark Opening",
         "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
         "slug": "a-s-athletic-club-sells-out-17-months-ahead-of-2028-ballpark-opening",
@@ -6752,28 +6825,6 @@
         ]
     },
     {
-        "headline": "Peete looks to stay hot in AFL after capping strong Double-A campaign",
-        "summaryJa": "Tai Peete（STL）ら注目選手の最新動向",
-        "slug": "cardinals-prospect-tai-peete-arizona-fall-league",
-        "url": "https://www.mlb.com/news/cardinals-prospect-tai-peete-arizona-fall-league",
-        "contentDate": "2026-10-05T13:46:30.658Z",
-        "teamIds": [
-            138
-        ],
-        "playerIds": [
-            806191
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "mlb-top-prospects",
-            "arizona-fall-league"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Five burning questions facing Tigers in their quest to return to postseason",
         "summaryJa": "タイガース、復帰へ向けた最新状況",
         "slug": "questions-facing-tigers-in-2026-offseason",
@@ -6888,28 +6939,6 @@
         ],
         "playerIds": [
             703186
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "mlb-top-prospects",
-            "apple-news",
-            "arizona-fall-league"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Latest pivot takes promising Mets prospect Mathis to Arizona Fall League",
-        "summaryJa": "Cole Mathis（NYM）ら注目選手の最新動向",
-        "slug": "latest-pivot-takes-mets-prospect-cole-mathis-to-arizona-fall-league",
-        "url": "https://www.mlb.com/news/latest-pivot-takes-mets-prospect-cole-mathis-to-arizona-fall-league",
-        "contentDate": "2026-10-04T03:54:00Z",
-        "teamIds": [
-            121
-        ],
-        "playerIds": [
-            695573
         ],
         "gamePks": [],
         "taxonomy": [
@@ -7307,30 +7336,6 @@
         ]
     },
     {
-        "headline": "With 28th postseason HR, Altuve now 1 shy of all-time record",
-        "summaryJa": "J.アルトゥーベ（HOU）、記録達成の最新情報",
-        "slug": "jose-altuve-nearing-postseason-home-run-record",
-        "url": "https://www.mlb.com/news/jose-altuve-nearing-postseason-home-run-record",
-        "contentDate": "2026-10-01T00:18:00Z",
-        "teamIds": [
-            117
-        ],
-        "playerIds": [
-            514888
-        ],
-        "gamePks": [
-            849846
-        ],
-        "taxonomy": [
-            "alwc",
-            "series-a",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Picollo talks coaching staff change, rotation outlook for '27",
         "summaryJa": "ロイヤルズの最新動向をMLB公式が詳報",
         "slug": "j-j-picollo-discusses-royals-2026-season-2027-offseason",
@@ -7628,28 +7633,6 @@
         "taxonomy": [
             "mlb-top-prospects",
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "No. 3 prospect Gomez becomes second-youngest player in Fall League history",
-        "summaryJa": "S.ウォルコットら注目選手の最新動向",
-        "slug": "top-prospects-added-to-arizona-fall-league-rosters",
-        "url": "https://www.mlb.com/news/top-prospects-added-to-arizona-fall-league-rosters",
-        "contentDate": "2026-09-28T23:51:00Z",
-        "teamIds": [],
-        "playerIds": [
-            806964,
-            825412,
-            805795
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "mlb-top-prospects",
-            "arizona-fall-league"
         ],
         "sourceScopes": [
             "球団公式"
@@ -8014,29 +7997,6 @@
             "injury",
             "transactions",
             "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "After playing most games in a decade, Trout 'excited' for what's next",
-        "summaryJa": "M.トラウト（LAA）の最新動向をMLB公式が詳報",
-        "slug": "mike-trout-plays-most-games-in-10-years-in-2026",
-        "url": "https://www.mlb.com/news/mike-trout-plays-most-games-in-10-years-in-2026",
-        "contentDate": "2026-09-27T23:04:00Z",
-        "teamIds": [
-            108
-        ],
-        "playerIds": [
-            545361
-        ],
-        "gamePks": [
-            823084
-        ],
-        "taxonomy": [
-            "apple-news",
-            "final-week"
         ],
         "sourceScopes": [
             "球団公式"
