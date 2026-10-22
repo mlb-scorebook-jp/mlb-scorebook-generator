@@ -2,6 +2,174 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Rays-Brewers World Series position-by-position breakdown",
+        "summaryJa": "レイズの最新動向をMLB公式が詳報",
+        "slug": "rays-brewers-2026-world-series-position-by-position-breakdown",
+        "url": "https://www.mlb.com/news/rays-brewers-2026-world-series-position-by-position-breakdown",
+        "contentDate": "2026-10-22T17:05:00Z",
+        "teamIds": [
+            139,
+            158
+        ],
+        "playerIds": [],
+        "gamePks": [
+            849805
+        ],
+        "taxonomy": [
+            "world-series",
+            "apple-news",
+            "postseason"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Choque de Gigantes comes to loanDepot park in November",
+        "summaryJa": "M.ロハス（MIA）、復帰へ向けた最新状況",
+        "slug": "choque-de-gigantes-returns-to-loandepot-park",
+        "url": "https://www.mlb.com/news/choque-de-gigantes-returns-to-loandepot-park",
+        "contentDate": "2026-10-22T17:00:47.854Z",
+        "teamIds": [
+            146
+        ],
+        "playerIds": [
+            500743
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Legends Global to represent Royals during downtown ballpark process",
+        "summaryJa": "ロイヤルズの最新動向をMLB公式が詳報",
+        "slug": "royals-select-legends-global-as-owner-s-representative-for-new-downtown-ballpark",
+        "url": "https://www.mlb.com/news/royals-select-legends-global-as-owner-s-representative-for-new-downtown-ballpark",
+        "contentDate": "2026-10-22T16:57:47.432Z",
+        "teamIds": [
+            118
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Longtime catcher Mitch Garver retiring after 10 seasons (source)",
+        "summaryJa": "M.ガーバー（SEA）の最新動向をMLB公式が詳報",
+        "slug": "mitch-garver-retires",
+        "url": "https://www.mlb.com/news/mitch-garver-retires",
+        "contentDate": "2026-10-22T16:21:08.878Z",
+        "teamIds": [
+            136
+        ],
+        "playerIds": [
+            641598
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "retirement",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Benzinger, 1990 WS champion with Reds, passes away at 63",
+        "summaryJa": "Todd Benzingerの最新動向をMLB公式が詳報",
+        "slug": "todd-benzinger-passes-away",
+        "url": "https://www.mlb.com/news/todd-benzinger-passes-away",
+        "contentDate": "2026-10-22T15:59:55.831Z",
+        "teamIds": [],
+        "playerIds": [
+            110887
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "obituary"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Venable named Sporting News AL Manager of the Year",
+        "summaryJa": "W.ベナブル（CWS）の最新動向をMLB公式が詳報",
+        "slug": "will-venable-named-2026-sporting-news-al-manager-of-the-year",
+        "url": "https://www.mlb.com/news/will-venable-named-2026-sporting-news-al-manager-of-the-year",
+        "contentDate": "2026-10-22T15:41:19.356Z",
+        "teamIds": [
+            145
+        ],
+        "playerIds": [
+            461416
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "The Rays didn't even mean to scout him ... now he's integral to this World Series run",
+        "summaryJa": "J.アランダ（TB）の最新動向をMLB公式が詳報",
+        "slug": "jonathan-aranda-journey-to-major-leagues",
+        "url": "https://www.mlb.com/news/jonathan-aranda-journey-to-major-leagues",
+        "contentDate": "2026-10-22T15:35:00Z",
+        "teamIds": [
+            139
+        ],
+        "playerIds": [
+            666018
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "world-series",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "5 fun Miz facts: Get to know the man behind the triple-digit heat",
+        "summaryJa": "J.ミザロウスキー（MIL）の最新動向をMLB公式が詳報",
+        "slug": "jacob-misiorowski-background-hobbies",
+        "url": "https://www.mlb.com/news/jacob-misiorowski-background-hobbies",
+        "contentDate": "2026-10-22T15:14:53.677Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [
+            694819
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "world-series",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Here's how Seattle prospects fared at Arizona Fall League last week",
         "summaryJa": "B.スミス（SEA）ら注目選手の最新動向",
         "slug": "mariners-prospects-2026-arizona-fall-league-recap",
@@ -21,7 +189,6 @@
             "mlb-top-prospects"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -43,7 +210,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -62,7 +228,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -137,7 +302,6 @@
             "rehab"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -181,7 +345,6 @@
             "arizona-fall-league"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -330,29 +493,7 @@
         ]
     },
     {
-        "headline": "The Rays didn't even mean to scout him ... now he's integral to this World Series run",
-        "summaryJa": "J.アランダ（TB）の最新動向をMLB公式が詳報",
-        "slug": "jonathan-aranda-journey-to-major-leagues",
-        "url": "https://www.mlb.com/news/jonathan-aranda-journey-to-major-leagues",
-        "contentDate": "2026-10-22T00:00:07.343Z",
-        "teamIds": [
-            139
-        ],
-        "playerIds": [
-            666018
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "world-series",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Each team's top performer from the 2026 Draft",
+        "headline": "The Draft was less than 4 months ago -- who have been the best performing picks so far?",
         "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
         "slug": "2026-draft-top-performer-for-each-team",
         "url": "https://www.mlb.com/news/2026-draft-top-performer-for-each-team",
@@ -1123,8 +1264,8 @@
         ]
     },
     {
-        "headline": "Rays and Brewers have effective, yet completely different bullpens. Here's how",
-        "summaryJa": "レイズを巡る注目点をMLB公式が分析",
+        "headline": "Breaking down the Fall Classic bullpens",
+        "summaryJa": "レイズの最新動向をMLB公式が詳報",
         "slug": "brewers-rays-2026-world-series-bullpen-breakdown",
         "url": "https://www.mlb.com/news/brewers-rays-2026-world-series-bullpen-breakdown",
         "contentDate": "2026-10-21T00:41:00Z",
@@ -1245,29 +1386,6 @@
         "gamePks": [],
         "taxonomy": [
             "pit-inside-the-pirates"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Rays-Brewers World Series position-by-position breakdown",
-        "summaryJa": "レイズの最新動向をMLB公式が詳報",
-        "slug": "rays-brewers-2026-world-series-position-by-position-breakdown",
-        "url": "https://www.mlb.com/news/rays-brewers-2026-world-series-position-by-position-breakdown",
-        "contentDate": "2026-10-20T15:03:00Z",
-        "teamIds": [
-            139,
-            158
-        ],
-        "playerIds": [],
-        "gamePks": [
-            849805
-        ],
-        "taxonomy": [
-            "world-series",
-            "apple-news",
-            "postseason"
         ],
         "sourceScopes": [
             "球団公式"
@@ -5294,28 +5412,6 @@
         ]
     },
     {
-        "headline": "Rangers' Walcott -- highest-ranked prospect in the AFL -- appreciating health in 2nd stint in desert",
-        "summaryJa": "S.ウォルコット（TEX）、記録達成の最新情報",
-        "slug": "rangers-arizona-fall-league-overview-2026",
-        "url": "https://www.mlb.com/news/rangers-arizona-fall-league-overview-2026",
-        "contentDate": "2026-10-08T16:22:22.477Z",
-        "teamIds": [
-            140
-        ],
-        "playerIds": [
-            806964
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "mlb-top-prospects",
-            "arizona-fall-league",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Latest Marlins injuries & transactions",
         "summaryJa": "マーリンズの負傷状況をMLB公式が詳報",
         "slug": "marlins-injuries-and-roster-moves",
@@ -5780,29 +5876,6 @@
         ]
     },
     {
-        "headline": "White Sox first home playoff clincher in 120 years on hold as ALDS heads to Game 4",
-        "summaryJa": "ホワイトソックスの最新動向をMLB公式が詳報",
-        "slug": "white-sox-alds-game-3-2026-guardians",
-        "url": "https://www.mlb.com/news/white-sox-alds-game-3-2026-guardians",
-        "contentDate": "2026-10-08T03:36:00Z",
-        "teamIds": [
-            145
-        ],
-        "playerIds": [],
-        "gamePks": [
-            849833
-        ],
-        "taxonomy": [
-            "postseason",
-            "apple-news",
-            "alds",
-            "series-b"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Here are each organization's Prospects of the Year",
         "summaryJa": "MLBの最新情報ら注目選手の最新動向",
         "slug": "each-team-s-prospects-of-the-year-2026",
@@ -5897,28 +5970,6 @@
             "nlds",
             "series-b",
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Twins' No. 17 prospect enjoying change of scenery in Fall League",
-        "summaryJa": "Yasser Mercedes（MIN）ら注目選手の最新動向",
-        "slug": "twins-arizona-fall-league-overview-2026",
-        "url": "https://www.mlb.com/news/twins-arizona-fall-league-overview-2026",
-        "contentDate": "2026-10-07T14:20:21.337Z",
-        "teamIds": [
-            142
-        ],
-        "playerIds": [
-            703160
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "mlb-top-prospects",
-            "apple-news",
-            "arizona-fall-league"
         ],
         "sourceScopes": [
             "球団公式"
@@ -7036,24 +7087,6 @@
         ]
     },
     {
-        "headline": "Johnson not returning as Reds pitching coach; search underway for replacement",
-        "summaryJa": "レッズ、復帰へ向けた最新状況",
-        "slug": "reds-pitching-coach-derek-johnson-not-returning",
-        "url": "https://www.mlb.com/news/reds-pitching-coach-derek-johnson-not-returning",
-        "contentDate": "2026-10-01T21:05:00Z",
-        "teamIds": [
-            113
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Phil Castellini focused on making Reds contenders: 'We have a commitment to this city'",
         "summaryJa": "レッズの最新動向をMLB公式が詳報",
         "slug": "reds-ceo-phil-castellini-talks-reds-future",
@@ -7341,35 +7374,6 @@
         "playerIds": [],
         "gamePks": [],
         "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Compton, Cannarella land on Prospect Team of the Year",
-        "summaryJa": "Rainiel Rodriguezら注目選手の最新動向",
-        "slug": "prospect-team-of-the-year-2026",
-        "url": "https://www.mlb.com/news/prospect-team-of-the-year-2026",
-        "contentDate": "2026-09-29T00:28:33.609Z",
-        "teamIds": [],
-        "playerIds": [
-            823787,
-            815873,
-            815195,
-            702652,
-            808265,
-            800543,
-            701527,
-            815394,
-            807739,
-            809254,
-            811139
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "mlb-top-prospects",
             "apple-news"
         ],
         "sourceScopes": [
