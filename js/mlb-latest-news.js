@@ -2,6 +2,89 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Watch Angels prospects in Arizona Fall League action",
+        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
+        "slug": "watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
+        "url": "https://www.mlb.com/news/watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
+        "contentDate": "2026-10-22T04:26:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "arizona-fall-league"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "World Series could turn into a track meet. Can either team slow the other down?",
+        "summaryJa": "レイズの最新動向をMLB公式が詳報",
+        "slug": "world-series-2026-brewers-rays-speed-stolen-bases-matchup",
+        "url": "https://www.mlb.com/news/world-series-2026-brewers-rays-speed-stolen-bases-matchup",
+        "contentDate": "2026-10-22T04:00:00Z",
+        "teamIds": [
+            139,
+            158
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "world-series",
+            "player-tracking",
+            "savant",
+            "stolen-base",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Nats prospect Kevin Bazzell catching 'the best stuff' in the Minors during the Fall League",
+        "summaryJa": "Kevin Bazzell（WSH）ら注目選手の最新動向",
+        "slug": "nationals-prospect-kevin-bazzell-catching-jarlin-susana-in-arizona-fall-league",
+        "url": "https://www.mlb.com/news/nationals-prospect-kevin-bazzell-catching-jarlin-susana-in-arizona-fall-league",
+        "contentDate": "2026-10-22T02:56:00Z",
+        "teamIds": [
+            120
+        ],
+        "playerIds": [
+            695494,
+            703186
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "arizona-fall-league",
+            "mlb-top-prospects",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "A's new baseball ops president Smith 'so excited to build on' young core",
+        "summaryJa": "アスレチックスの最新動向をMLB公式が詳報",
+        "slug": "taylor-smith-introduced-as-athletics-president-of-baseball-operations",
+        "url": "https://www.mlb.com/news/taylor-smith-introduced-as-athletics-president-of-baseball-operations",
+        "contentDate": "2026-10-22T02:27:44.569Z",
+        "teamIds": [
+            133
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Rushing undergoes surgery to repair partially torn UCL in right elbow",
         "summaryJa": "D.ラッシング（LAD）の最新動向をMLB公式が詳報",
         "slug": "dalton-rushing-has-right-elbow-surgery",
@@ -38,23 +121,6 @@
             "injury",
             "transactions",
             "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Watch LIVE: Angels prospects in Arizona Fall League action",
-        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
-        "slug": "watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
-        "url": "https://www.mlb.com/news/watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
-        "contentDate": "2026-10-22T01:21:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "arizona-fall-league"
         ],
         "sourceScopes": [
             "球団公式"
@@ -891,7 +957,8 @@
             "apple-news",
             "postseason",
             "savant",
-            "player-tracking"
+            "player-tracking",
+            "relief-performance"
         ],
         "sourceScopes": [
             "MLB",
@@ -943,27 +1010,6 @@
         ],
         "sourceScopes": [
             "球団公式"
-        ]
-    },
-    {
-        "headline": "Why this World Series is unlike any we've seen in some time",
-        "summaryJa": "レイズを巡る注目点をMLB公式が分析",
-        "slug": "interesting-facts-about-rays-brewers-world-series-matchup",
-        "url": "https://www.mlb.com/news/interesting-facts-about-rays-brewers-world-series-matchup",
-        "contentDate": "2026-10-20T21:00:00Z",
-        "teamIds": [
-            139,
-            158
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "postseason",
-            "world-series"
-        ],
-        "sourceScopes": [
-            "MLB"
         ]
     },
     {
@@ -1320,28 +1366,6 @@
         ]
     },
     {
-        "headline": "'We've got one more bite!' Rays celebrate pennant, aim to keep good times going",
-        "summaryJa": "レイズの最新動向をMLB公式が詳報",
-        "slug": "rays-celebrate-berth-in-2026-world-series",
-        "url": "https://www.mlb.com/news/rays-celebrate-berth-in-2026-world-series",
-        "contentDate": "2026-10-20T07:11:57.078Z",
-        "teamIds": [
-            139
-        ],
-        "playerIds": [],
-        "gamePks": [
-            849815
-        ],
-        "taxonomy": [
-            "apple-news",
-            "alcs",
-            "clincher"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "'It hurts': Guards' incredible run ends 2 wins shy of World Series",
         "summaryJa": "ガーディアンズ、勝利を呼び込む活躍",
         "slug": "guardians-lose-2026-alcs-to-rays",
@@ -1421,48 +1445,6 @@
         ],
         "sourceScopes": [
             "球団公式"
-        ]
-    },
-    {
-        "headline": "Rays finish off Guards to set up World Series clash vs. Crew",
-        "summaryJa": "レイズ、勝利を呼び込む活躍",
-        "slug": "rays-win-alcs-2026",
-        "url": "https://www.mlb.com/news/rays-win-alcs-2026",
-        "contentDate": "2026-10-20T05:23:00Z",
-        "teamIds": [
-            139
-        ],
-        "playerIds": [],
-        "gamePks": [
-            849815
-        ],
-        "taxonomy": [
-            "postseason",
-            "alcs",
-            "game-recap",
-            "apple-news",
-            "clincher"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "1 World Series certainty: A first-time champion",
-        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
-        "slug": "rays-brewers-each-vying-for-first-world-series-title",
-        "url": "https://www.mlb.com/news/rays-brewers-each-vying-for-first-world-series-title",
-        "contentDate": "2026-10-20T04:48:11.448Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "world-series",
-            "postseason"
-        ],
-        "sourceScopes": [
-            "MLB"
         ]
     },
     {
@@ -6785,28 +6767,6 @@
         ]
     },
     {
-        "headline": "Nats' Susana brings heat as advertised to the desert in Fall League debut",
-        "summaryJa": "J.スサーナ（WSH）、メジャー昇格・初出場に関する最新情報",
-        "slug": "nationals-jarlin-susana-brings-heat-in-first-arizona-fall-league-start",
-        "url": "https://www.mlb.com/news/nationals-jarlin-susana-brings-heat-in-first-arizona-fall-league-start",
-        "contentDate": "2026-10-04T04:31:00Z",
-        "teamIds": [
-            120
-        ],
-        "playerIds": [
-            703186
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "mlb-top-prospects",
-            "apple-news",
-            "arizona-fall-league"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "PCA, Miz, Mason Miller honored by Baseball Digest",
         "summaryJa": "J.ミザロウスキー、勝利を呼び込む活躍",
         "slug": "pete-crow-armstrong-jacob-misiorowski-mason-miller-win-2026-baseball-digest-awards",
@@ -7501,26 +7461,6 @@
         "playerIds": [],
         "gamePks": [
             824542
-        ],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Emergence of young A's talent provides hope for 2027 as 'tough season' ends",
-        "summaryJa": "アスレチックスの最新動向をMLB公式が詳報",
-        "slug": "a-s-2026-season-ends-with-loss-to-astros",
-        "url": "https://www.mlb.com/news/a-s-2026-season-ends-with-loss-to-astros",
-        "contentDate": "2026-09-28T01:14:11.801Z",
-        "teamIds": [
-            133
-        ],
-        "playerIds": [],
-        "gamePks": [
-            824948
         ],
         "taxonomy": [
             "apple-news"
