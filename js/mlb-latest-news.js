@@ -2,6 +2,298 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "MLB Pipeline Pitching Lab: Tekoah Roby",
+        "summaryJa": "T.ロビーの最新動向をMLB公式が詳報",
+        "slug": "tekoah-roby-pitching-breakdown",
+        "url": "https://www.mlb.com/news/tekoah-roby-pitching-breakdown",
+        "contentDate": "2026-10-23T17:28:40.592Z",
+        "teamIds": [],
+        "playerIds": [
+            694358
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "arizona-fall-league",
+            "138-affiliate",
+            "apple-news",
+            "mlb-top-prospects"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Where does Stanton fit in Yankees' plans for 2027?",
+        "summaryJa": "G.スタントン（NYY）の最新動向をMLB公式が詳報",
+        "slug": "giancarlo-stanton-yankees-role-2027-season",
+        "url": "https://www.mlb.com/news/giancarlo-stanton-yankees-role-2027-season",
+        "contentDate": "2026-10-23T17:10:53.271Z",
+        "teamIds": [
+            147
+        ],
+        "playerIds": [
+            519317
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Latest Brewers injuries & transactions",
+        "summaryJa": "ブルワーズの負傷状況をMLB公式が詳報",
+        "slug": "brewers-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/brewers-injuries-and-roster-moves",
+        "contentDate": "2026-10-23T16:43:00Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Ranking the 10 best hitters in this year's World Series",
+        "summaryJa": "J.キャミネロ（MIL）ら注目選手の最新動向",
+        "slug": "2026-world-series-hitter-power-rankings",
+        "url": "https://www.mlb.com/news/2026-world-series-hitter-power-rankings",
+        "contentDate": "2026-10-23T16:35:00Z",
+        "teamIds": [
+            158,
+            139
+        ],
+        "playerIds": [
+            691406,
+            661388,
+            650490,
+            641343,
+            694192,
+            668930,
+            666018,
+            669003,
+            592885,
+            802415
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "hitter-power-rankings",
+            "rankings",
+            "apple-news",
+            "postseason",
+            "world-series"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "How the former Top 100 prospects in this year's World Series stack up",
+        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
+        "slug": "2026-world-series-players-ranked-as-prospects",
+        "url": "https://www.mlb.com/news/2026-world-series-players-ranked-as-prospects",
+        "contentDate": "2026-10-23T16:28:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "world-series",
+            "apple-news",
+            "mlb-top-prospects"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Caminero damages videoboard with BP homer before World Series Game 1",
+        "summaryJa": "J.キャミネロ（TB）、本塁打で存在感",
+        "slug": "junior-caminero-damages-american-family-field-videoboard-before-world-series-game-1",
+        "url": "https://www.mlb.com/news/junior-caminero-damages-american-family-field-videoboard-before-world-series-game-1",
+        "contentDate": "2026-10-23T16:08:37.183Z",
+        "teamIds": [
+            139
+        ],
+        "playerIds": [
+            691406
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "world-series"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "Tolle answered your questions ahead of the World Series. Here are his best responses",
+        "summaryJa": "P.トーリー（BOS）の最新動向をMLB公式が詳報",
+        "slug": "payton-tolle-answers-fan-questions-in-reddit-ama",
+        "url": "https://www.mlb.com/news/payton-tolle-answers-fan-questions-in-reddit-ama",
+        "contentDate": "2026-10-23T16:08:10.522Z",
+        "teamIds": [
+            111
+        ],
+        "playerIds": [
+            801139
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "world-series"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "He's in: Woodruff added to Crew's World Series roster",
+        "summaryJa": "B.ウッドラフ（MIL）の最新動向をMLB公式が詳報",
+        "slug": "brewers-2026-world-series-roster",
+        "url": "https://www.mlb.com/news/brewers-2026-world-series-roster",
+        "contentDate": "2026-10-23T15:39:31.598Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [
+            605540
+        ],
+        "gamePks": [
+            849805
+        ],
+        "taxonomy": [
+            "apple-news",
+            "postseason",
+            "world-series"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "After remarkable recovery, Woodruff earns spot on Brewers' World Series roster",
+        "summaryJa": "B.ウッドラフ（MIL）の最新動向をMLB公式が詳報",
+        "slug": "brandon-woodruff-brewers-2026-world-series-roster",
+        "url": "https://www.mlb.com/news/brandon-woodruff-brewers-2026-world-series-roster",
+        "contentDate": "2026-10-23T15:36:00Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [
+            605540
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "postseason",
+            "world-series"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Rays-Brewers World Series Game 1 FAQ (Fri., 8 ET on FOX/FOX One)",
+        "summaryJa": "レイズの最新動向をMLB公式が詳報",
+        "slug": "rays-brewers-world-series-game-1-starting-lineups-and-pitching-matchup",
+        "url": "https://www.mlb.com/news/rays-brewers-world-series-game-1-starting-lineups-and-pitching-matchup",
+        "contentDate": "2026-10-23T15:32:00Z",
+        "teamIds": [
+            139,
+            158
+        ],
+        "playerIds": [],
+        "gamePks": [
+            849805
+        ],
+        "taxonomy": [
+            "apple-news",
+            "postseason",
+            "world-series"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Cleavinger back on Rays' World Series roster",
+        "summaryJa": "レイズの最新動向をMLB公式が詳報",
+        "slug": "rays-2026-world-series-roster",
+        "url": "https://www.mlb.com/news/rays-2026-world-series-roster",
+        "contentDate": "2026-10-23T15:31:25.226Z",
+        "teamIds": [
+            139
+        ],
+        "playerIds": [],
+        "gamePks": [
+            849805
+        ],
+        "taxonomy": [
+            "apple-news",
+            "postseason",
+            "world-series"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "There for Milwaukee's World Series in '50s, Torre is watching this one closely",
+        "summaryJa": "J.トーリ（MIL）の最新動向をMLB公式が詳報",
+        "slug": "joe-torre-on-1950s-world-series-in-milwaukee",
+        "url": "https://www.mlb.com/news/joe-torre-on-1950s-world-series-in-milwaukee",
+        "contentDate": "2026-10-23T15:08:58.271Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [
+            123406
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "world-series"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Meet the man who tried -- and ranked -- 77 ballpark hot dogs across pro baseball",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "minor-league-fan-ranks-77-hot-dogs",
+        "url": "https://www.mlb.com/news/minor-league-fan-ranks-77-hot-dogs",
+        "contentDate": "2026-10-23T14:49:51.626Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "baseball-traveler",
+            "offbeat",
+            "apple-news",
+            "minor-league-baseball"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
         "headline": "With Salas settled in San Diego, who's next in Padres' pipeline?",
         "summaryJa": "E.サラス（SD）の最新動向をMLB公式が詳報",
         "slug": "padres-farm-system-outlook-after-2026-season",
@@ -19,7 +311,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -37,7 +328,8 @@
         ],
         "gamePks": [],
         "taxonomy": [
-            "apple-news"
+            "apple-news",
+            "japan"
         ],
         "sourceScopes": [
             "MLB",
@@ -79,7 +371,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -163,7 +454,6 @@
             "mlb-top-prospects"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -356,7 +646,7 @@
         ]
     },
     {
-        "headline": "3 burning questions ahead of World Series Game 1",
+        "headline": "3 keys heading into Game 1 of the World Series",
         "summaryJa": "ブルワーズの最新動向をMLB公式が詳報",
         "slug": "2026-world-series-game-1-storylines-rays-brewers",
         "url": "https://www.mlb.com/news/2026-world-series-game-1-storylines-rays-brewers",
@@ -389,41 +679,6 @@
         "playerIds": [],
         "gamePks": [],
         "taxonomy": [
-            "apple-news",
-            "postseason",
-            "world-series"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Ranking the 10 best hitters in this year's World Series",
-        "summaryJa": "J.キャミネロ（MIL）ら注目選手の最新動向",
-        "slug": "2026-world-series-hitter-power-rankings",
-        "url": "https://www.mlb.com/news/2026-world-series-hitter-power-rankings",
-        "contentDate": "2026-10-23T01:09:43.971Z",
-        "teamIds": [
-            158,
-            139
-        ],
-        "playerIds": [
-            691406,
-            661388,
-            650490,
-            641343,
-            694192,
-            668930,
-            666018,
-            669003,
-            592885,
-            802415
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "hitter-power-rankings",
-            "rankings",
             "apple-news",
             "postseason",
             "world-series"
@@ -476,49 +731,6 @@
         ]
     },
     {
-        "headline": "How the former Top 100 prospects in this year's World Series stack up",
-        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
-        "slug": "2026-world-series-players-ranked-as-prospects",
-        "url": "https://www.mlb.com/news/2026-world-series-players-ranked-as-prospects",
-        "contentDate": "2026-10-22T23:40:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "world-series",
-            "apple-news",
-            "mlb-top-prospects"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Rays-Brewers World Series Game 1 FAQ (Fri., 8 ET on FOX/FOX One)",
-        "summaryJa": "レイズの最新動向をMLB公式が詳報",
-        "slug": "rays-brewers-world-series-game-1-starting-lineups-and-pitching-matchup",
-        "url": "https://www.mlb.com/news/rays-brewers-world-series-game-1-starting-lineups-and-pitching-matchup",
-        "contentDate": "2026-10-22T23:13:00Z",
-        "teamIds": [
-            139,
-            158
-        ],
-        "playerIds": [],
-        "gamePks": [
-            849805
-        ],
-        "taxonomy": [
-            "apple-news",
-            "postseason",
-            "world-series"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Brewers quickly sell out watch parties for first two World Series road games",
         "summaryJa": "ブルワーズの最新動向をMLB公式が詳報",
         "slug": "brewers-sell-out-watch-parties-for-2026-world-series-games-3-4",
@@ -558,26 +770,6 @@
         ]
     },
     {
-        "headline": "Latest Brewers injuries & transactions",
-        "summaryJa": "ブルワーズの負傷状況をMLB公式が詳報",
-        "slug": "brewers-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/brewers-injuries-and-roster-moves",
-        "contentDate": "2026-10-22T22:59:00Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Rays tab Martinez over Rasmussen in Game 1",
         "summaryJa": "N.マルティネス（TB）の最新動向をMLB公式が詳報",
         "slug": "rays-name-nick-martinez-world-series-game-1-starter",
@@ -596,29 +788,6 @@
             "world-series",
             "postseason",
             "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "As deadline nears, odds of Woodruff making Crew's WS roster 'literally a 50-50 tossup'",
-        "summaryJa": "B.ウッドラフ（MIL）の最新動向をMLB公式が詳報",
-        "slug": "brandon-woodruff-brewers-2026-world-series-roster",
-        "url": "https://www.mlb.com/news/brandon-woodruff-brewers-2026-world-series-roster",
-        "contentDate": "2026-10-22T22:34:46.098Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [
-            605540
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "postseason",
-            "world-series"
         ],
         "sourceScopes": [
             "MLB",
@@ -714,8 +883,8 @@
         ]
     },
     {
-        "headline": "Winners of the 2026 Fielding Bible Awards announced",
-        "summaryJa": "D.ディングラーの最新動向をMLB公式が詳報",
+        "headline": "Rafaela beats PCA for Fielding Bible Award in center; Wilyer also wins",
+        "summaryJa": "D.ディングラー、勝利を呼び込む活躍",
         "slug": "fielding-bible-award-winners-for-2026",
         "url": "https://www.mlb.com/news/fielding-bible-award-winners-for-2026",
         "contentDate": "2026-10-22T19:13:23.532Z",
@@ -738,7 +907,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1139,29 +1307,6 @@
         ]
     },
     {
-        "headline": "World Series could turn into a track meet. Can either team slow the other down?",
-        "summaryJa": "レイズの最新動向をMLB公式が詳報",
-        "slug": "world-series-2026-brewers-rays-speed-stolen-bases-matchup",
-        "url": "https://www.mlb.com/news/world-series-2026-brewers-rays-speed-stolen-bases-matchup",
-        "contentDate": "2026-10-22T04:00:00Z",
-        "teamIds": [
-            139,
-            158
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "world-series",
-            "player-tracking",
-            "savant",
-            "stolen-base",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB"
-        ]
-    },
-    {
         "headline": "Nats prospect Kevin Bazzell catching 'the best stuff' in the Minors during the Fall League",
         "summaryJa": "Kevin Bazzell（WSH）ら注目選手の最新動向",
         "slug": "nationals-prospect-kevin-bazzell-catching-jarlin-susana-in-arizona-fall-league",
@@ -1340,44 +1485,6 @@
         ]
     },
     {
-        "headline": "For longtime Brewers employees, the wait for another World Series run is finally over",
-        "summaryJa": "ブルワーズの最新動向をMLB公式が詳報",
-        "slug": "brewers-longtime-employees-who-work-for-2026-world-series-team",
-        "url": "https://www.mlb.com/news/brewers-longtime-employees-who-work-for-2026-world-series-team",
-        "contentDate": "2026-10-21T21:20:09.36Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "What do the '82 Brewers think of the '26 Brewers and their World Series run?",
-        "summaryJa": "ブルワーズの最新動向をMLB公式が詳報",
-        "slug": "1982-brewers-discuss-2026-team-before-world-series",
-        "url": "https://www.mlb.com/news/1982-brewers-discuss-2026-team-before-world-series",
-        "contentDate": "2026-10-21T20:37:19.199Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "world-series",
-            "postseason"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Red Sox in need of new first- and third-base coaches (source)",
         "summaryJa": "レッドソックスの最新動向をMLB公式が詳報",
         "slug": "red-sox-make-changes-to-coaching-staff-ahead-of-2027",
@@ -1477,28 +1584,6 @@
         "taxonomy": [
             "mlb-top-prospects",
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "In the first World Series with ABS, will any hitters challenge?",
-        "summaryJa": "ブルワーズの最新動向をMLB公式が詳報",
-        "slug": "who-will-challenge-in-first-abs-world-series",
-        "url": "https://www.mlb.com/news/who-will-challenge-in-first-abs-world-series",
-        "contentDate": "2026-10-21T16:57:00Z",
-        "teamIds": [
-            158,
-            139
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "savant",
-            "abs",
-            "world-series",
-            "postseason"
         ],
         "sourceScopes": [
             "球団公式"
@@ -5925,29 +6010,6 @@
         ]
     },
     {
-        "headline": "'It's a failure': Yankees' championship drought extended to 17 seasons",
-        "summaryJa": "ヤンキースの最新動向をMLB公式が詳報",
-        "slug": "yankees-lose-alds-2026",
-        "url": "https://www.mlb.com/news/yankees-lose-alds-2026",
-        "contentDate": "2026-10-08T07:13:00Z",
-        "teamIds": [
-            147
-        ],
-        "playerIds": [],
-        "gamePks": [
-            849838
-        ],
-        "taxonomy": [
-            "apple-news",
-            "alds",
-            "series-a",
-            "game-recap-losing"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Judge wants front office to go 'all in' -- with Boone remaining in charge",
         "summaryJa": "A.ジャッジ（NYY）の最新動向をMLB公式が詳報",
         "slug": "aaron-judge-discusses-yankees-season-aaron-boone",
@@ -6454,28 +6516,6 @@
             "apple-news",
             "arizona-fall-league",
             "mlb-top-prospects"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "After missing regular season, Roby leads crop of Cardinals in Arizona Fall League",
-        "summaryJa": "T.ロビー（STL）の最新動向をMLB公式が詳報",
-        "slug": "cardinals-arizona-fall-league-overview-2026",
-        "url": "https://www.mlb.com/news/cardinals-arizona-fall-league-overview-2026",
-        "contentDate": "2026-10-06T15:02:27.15Z",
-        "teamIds": [
-            138
-        ],
-        "playerIds": [
-            694358
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "mlb-top-prospects",
-            "arizona-fall-league"
         ],
         "sourceScopes": [
             "球団公式"
