@@ -2,20 +2,17 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
-        "headline": "Yes, Misiorowski also teared up watching that viral interview of young fan after NLCS win",
-        "summaryJa": "J.ミザロウスキー（MIL）、勝利を呼び込む活躍",
-        "slug": "jacob-misiorowski-reacts-to-young-fan-interviewed-after-brewers-nlcs-win",
-        "url": "https://www.mlb.com/news/jacob-misiorowski-reacts-to-young-fan-interviewed-after-brewers-nlcs-win",
-        "contentDate": "2026-10-22T21:14:56.237Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [
-            694819
-        ],
+        "headline": "Watch Angels prospects in Arizona Fall League action",
+        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
+        "slug": "watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
+        "url": "https://www.mlb.com/news/watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
+        "contentDate": "2026-10-22T23:50:00Z",
+        "teamIds": [],
+        "playerIds": [],
         "gamePks": [],
         "taxonomy": [
-            "world-series"
+            "apple-news",
+            "arizona-fall-league"
         ],
         "sourceScopes": [
             "球団公式"
@@ -26,7 +23,7 @@
         "summaryJa": "レイズの最新動向をMLB公式が詳報",
         "slug": "rays-brewers-world-series-game-1-starting-lineups-and-pitching-matchup",
         "url": "https://www.mlb.com/news/rays-brewers-world-series-game-1-starting-lineups-and-pitching-matchup",
-        "contentDate": "2026-10-22T20:31:00Z",
+        "contentDate": "2026-10-22T23:13:00Z",
         "teamIds": [
             139,
             158
@@ -46,11 +43,70 @@
         ]
     },
     {
+        "headline": "Brewers quickly sell out watch parties for first two World Series road games",
+        "summaryJa": "ブルワーズの最新動向をMLB公式が詳報",
+        "slug": "brewers-sell-out-watch-parties-for-2026-world-series-games-3-4",
+        "url": "https://www.mlb.com/news/brewers-sell-out-watch-parties-for-2026-world-series-games-3-4",
+        "contentDate": "2026-10-22T23:09:14.141Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "world-series",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Ribs, brat rangoon and, of course, beer: Brewers bringing 'flair' with World Series menu",
+        "summaryJa": "ブルワーズの最新動向をMLB公式が詳報",
+        "slug": "brewers-unveil-special-ballpark-menu-for-world-series",
+        "url": "https://www.mlb.com/news/brewers-unveil-special-ballpark-menu-for-world-series",
+        "contentDate": "2026-10-22T23:01:32.759Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "world-series"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Latest Brewers injuries & transactions",
+        "summaryJa": "ブルワーズの負傷状況をMLB公式が詳報",
+        "slug": "brewers-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/brewers-injuries-and-roster-moves",
+        "contentDate": "2026-10-22T22:59:00Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Rays tab Martinez over Rasmussen in Game 1",
         "summaryJa": "N.マルティネス（TB）の最新動向をMLB公式が詳報",
         "slug": "rays-name-nick-martinez-world-series-game-1-starter",
         "url": "https://www.mlb.com/news/rays-name-nick-martinez-world-series-game-1-starter",
-        "contentDate": "2026-10-22T20:26:22.07Z",
+        "contentDate": "2026-10-22T22:45:00Z",
         "teamIds": [
             139
         ],
@@ -71,19 +127,86 @@
         ]
     },
     {
-        "headline": "Watch Angels prospects in Arizona Fall League action",
-        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
-        "slug": "watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
-        "url": "https://www.mlb.com/news/watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
-        "contentDate": "2026-10-22T20:22:00Z",
-        "teamIds": [],
+        "headline": "As deadline nears, odds of Woodruff making Crew's WS roster 'literally a 50-50 tossup'",
+        "summaryJa": "B.ウッドラフ（MIL）の最新動向をMLB公式が詳報",
+        "slug": "brandon-woodruff-brewers-2026-world-series-roster",
+        "url": "https://www.mlb.com/news/brandon-woodruff-brewers-2026-world-series-roster",
+        "contentDate": "2026-10-22T22:34:46.098Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [
+            605540
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "postseason",
+            "world-series"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Neander, Arnold put 19-year friendship aside as teams square off for title",
+        "summaryJa": "レイズの最新動向をMLB公式が詳報",
+        "slug": "matt-arnold-erik-neander-worked-together-with-rays",
+        "url": "https://www.mlb.com/news/matt-arnold-erik-neander-worked-together-with-rays",
+        "contentDate": "2026-10-22T22:20:24.952Z",
+        "teamIds": [
+            139,
+            158
+        ],
         "playerIds": [],
         "gamePks": [],
         "taxonomy": [
             "apple-news",
-            "arizona-fall-league"
+            "world-series"
         ],
         "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Vogt affirms he'll be back as Guardians' skipper in 2027",
+        "summaryJa": "ガーディアンズの最新動向をMLB公式が詳報",
+        "slug": "stephen-vogt-to-remain-as-guardians-manager-in-2027",
+        "url": "https://www.mlb.com/news/stephen-vogt-to-remain-as-guardians-manager-in-2027",
+        "contentDate": "2026-10-22T22:01:02.887Z",
+        "teamIds": [
+            114
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Yes, Misiorowski also teared up watching that viral interview of young fan after NLCS win",
+        "summaryJa": "J.ミザロウスキー（MIL）、勝利を呼び込む活躍",
+        "slug": "jacob-misiorowski-reacts-to-young-fan-interviewed-after-brewers-nlcs-win",
+        "url": "https://www.mlb.com/news/jacob-misiorowski-reacts-to-young-fan-interviewed-after-brewers-nlcs-win",
+        "contentDate": "2026-10-22T21:14:56.237Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [
+            694819
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "world-series"
+        ],
+        "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
@@ -626,7 +749,6 @@
             "injury"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -764,7 +886,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -785,7 +906,6 @@
             "postseason"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -844,24 +964,6 @@
         "sourceScopes": [
             "MLB",
             "球団公式"
-        ]
-    },
-    {
-        "headline": "40 kids to compete in finals of MLB's Pitch, Hit & Run at 2026 World Series",
-        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
-        "slug": "mlb-pitch-hit-run-finals-to-take-place-at-2026-world-series",
-        "url": "https://www.mlb.com/news/mlb-pitch-hit-run-finals-to-take-place-at-2026-world-series",
-        "contentDate": "2026-10-21T18:55:43.51Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "youth-baseball",
-            "apple-news",
-            "softball"
-        ],
-        "sourceScopes": [
-            "MLB"
         ]
     },
     {
@@ -1310,34 +1412,6 @@
         ]
     },
     {
-        "headline": "1 big offseason question for each eliminated postseason team",
-        "summaryJa": "ガーディアンズの最新動向をMLB公式が詳報",
-        "slug": "offseason-questions-for-eliminated-mlb-postseason-teams",
-        "url": "https://www.mlb.com/news/offseason-questions-for-eliminated-mlb-postseason-teams",
-        "contentDate": "2026-10-21T02:00:00Z",
-        "teamIds": [
-            114,
-            117,
-            147,
-            111,
-            145,
-            119,
-            144,
-            135,
-            112,
-            143
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "postseason",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB"
-        ]
-    },
-    {
         "headline": "Woodruff would love World Series roster spot, but understands why it might not happen",
         "summaryJa": "B.ウッドラフ（MIL）を巡る注目点をMLB公式が分析",
         "slug": "brandon-woodruff-world-series-status",
@@ -1499,26 +1573,6 @@
         "gamePks": [],
         "taxonomy": [
             "pit-inside-the-pirates"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Levering's famous NLCS clincher call? Of course it starts with Ueck",
-        "summaryJa": "ブルワーズ、勝利を呼び込む活躍",
-        "slug": "jeff-levering-remembers-bob-uecker-as-brewers-win-nlcs",
-        "url": "https://www.mlb.com/news/jeff-levering-remembers-bob-uecker-as-brewers-win-nlcs",
-        "contentDate": "2026-10-20T15:02:30.064Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "postseason",
-            "world-series"
         ],
         "sourceScopes": [
             "球団公式"
@@ -3066,31 +3120,6 @@
         "gamePks": [],
         "taxonomy": [
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Which landed 1st? Halpin's epic HR or the 'majestic' bat flip that followed?",
-        "summaryJa": "P.ハルピン（CLE）、記録達成の最新情報",
-        "slug": "petey-halpin-go-ahead-homer-guardians-win-game-3-2026-alcs",
-        "url": "https://www.mlb.com/news/petey-halpin-go-ahead-homer-guardians-win-game-3-2026-alcs",
-        "contentDate": "2026-10-15T22:36:12.107Z",
-        "teamIds": [
-            114
-        ],
-        "playerIds": [
-            690984
-        ],
-        "gamePks": [
-            849818
-        ],
-        "taxonomy": [
-            "apple-news",
-            "postseason",
-            "alcs",
-            "performance"
         ],
         "sourceScopes": [
             "球団公式"
@@ -4675,26 +4704,6 @@
             "arizona-fall-league",
             "mlb-top-prospects",
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Latest Brewers injuries & transactions",
-        "summaryJa": "ブルワーズの負傷状況をMLB公式が詳報",
-        "slug": "brewers-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/brewers-injuries-and-roster-moves",
-        "contentDate": "2026-10-12T00:59:00Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
         ],
         "sourceScopes": [
             "球団公式"
