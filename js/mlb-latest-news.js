@@ -2,6 +2,89 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Junior Caminero's batting practice sessions are becoming a demolition derby",
+        "summaryJa": "J.キャミネロ（TB）の最新動向をMLB公式が詳報",
+        "slug": "junior-caminero-damages-american-family-field-videoboard-before-world-series-game-1",
+        "url": "https://www.mlb.com/news/junior-caminero-damages-american-family-field-videoboard-before-world-series-game-1",
+        "contentDate": "2026-10-23T23:41:00Z",
+        "teamIds": [
+            139
+        ],
+        "playerIds": [
+            691406
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "world-series"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Latest Brewers injuries & transactions",
+        "summaryJa": "ブルワーズの負傷状況をMLB公式が詳報",
+        "slug": "brewers-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/brewers-injuries-and-roster-moves",
+        "contentDate": "2026-10-23T23:05:00Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Latest Rays injuries & transactions",
+        "summaryJa": "レイズの負傷状況をMLB公式が詳報",
+        "slug": "rays-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/rays-injuries-and-roster-moves",
+        "contentDate": "2026-10-23T22:42:00Z",
+        "teamIds": [
+            139
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "'Last Man Standing': Murphy gets FaceTime call from idol Springsteen",
+        "summaryJa": "ブルワーズの最新動向をMLB公式が詳報",
+        "slug": "pat-murphy-gets-facetime-call-from-bruce-springsteen",
+        "url": "https://www.mlb.com/news/pat-murphy-gets-facetime-call-from-bruce-springsteen",
+        "contentDate": "2026-10-23T22:41:07.509Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [],
+        "gamePks": [
+            849805
+        ],
+        "taxonomy": [
+            "apple-news",
+            "world-series"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Cleavinger back on Rays' World Series roster",
         "summaryJa": "レイズの最新動向をMLB公式が詳報",
         "slug": "rays-2026-world-series-roster",
@@ -21,6 +104,47 @@
         ],
         "sourceScopes": [
             "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "3 keys heading into Game 1 of the World Series",
+        "summaryJa": "ブルワーズの最新動向をMLB公式が詳報",
+        "slug": "2026-world-series-game-1-storylines-rays-brewers",
+        "url": "https://www.mlb.com/news/2026-world-series-game-1-storylines-rays-brewers",
+        "contentDate": "2026-10-23T21:00:00Z",
+        "teamIds": [
+            158,
+            139
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "postseason",
+            "world-series"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "Brewers broadcasters to sport Bob Uecker's jackets during World Series Game 1",
+        "summaryJa": "ブルワーズの最新動向をMLB公式が詳報",
+        "slug": "brewers-announcers-wearing-bob-uecker-jackets-during-2026-world-series-game-1",
+        "url": "https://www.mlb.com/news/brewers-announcers-wearing-bob-uecker-jackets-during-2026-world-series-game-1",
+        "contentDate": "2026-10-23T20:58:36.258Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "world-series",
+            "apple-news",
+            "postseason"
+        ],
+        "sourceScopes": [
             "球団公式"
         ]
     },
@@ -49,8 +173,8 @@
         ]
     },
     {
-        "headline": "He's in: Woodruff added to Crew's World Series roster",
-        "summaryJa": "B.ウッドラフ（MIL）の最新動向をMLB公式が詳報",
+        "headline": "Woodruff makes unexpected comeback to join World Series roster",
+        "summaryJa": "B.ウッドラフ（MIL）、勝利を呼び込む活躍",
         "slug": "brewers-2026-world-series-roster",
         "url": "https://www.mlb.com/news/brewers-2026-world-series-roster",
         "contentDate": "2026-10-23T20:44:00Z",
@@ -182,26 +306,6 @@
         ]
     },
     {
-        "headline": "Latest Brewers injuries & transactions",
-        "summaryJa": "ブルワーズの負傷状況をMLB公式が詳報",
-        "slug": "brewers-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/brewers-injuries-and-roster-moves",
-        "contentDate": "2026-10-23T16:43:00Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Ranking the 10 best hitters in this year's World Series",
         "summaryJa": "J.キャミネロ（MIL）ら注目選手の最新動向",
         "slug": "2026-world-series-hitter-power-rankings",
@@ -253,26 +357,6 @@
         "sourceScopes": [
             "MLB",
             "球団公式"
-        ]
-    },
-    {
-        "headline": "Caminero damages videoboard with BP homer before World Series Game 1",
-        "summaryJa": "J.キャミネロ（TB）、本塁打で存在感",
-        "slug": "junior-caminero-damages-american-family-field-videoboard-before-world-series-game-1",
-        "url": "https://www.mlb.com/news/junior-caminero-damages-american-family-field-videoboard-before-world-series-game-1",
-        "contentDate": "2026-10-23T16:08:37.183Z",
-        "teamIds": [
-            139
-        ],
-        "playerIds": [
-            691406
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "world-series"
-        ],
-        "sourceScopes": [
-            "MLB"
         ]
     },
     {
@@ -713,27 +797,6 @@
         ]
     },
     {
-        "headline": "3 keys heading into Game 1 of the World Series",
-        "summaryJa": "ブルワーズの最新動向をMLB公式が詳報",
-        "slug": "2026-world-series-game-1-storylines-rays-brewers",
-        "url": "https://www.mlb.com/news/2026-world-series-game-1-storylines-rays-brewers",
-        "contentDate": "2026-10-23T01:10:30.746Z",
-        "teamIds": [
-            158,
-            139
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "postseason",
-            "world-series"
-        ],
-        "sourceScopes": [
-            "MLB"
-        ]
-    },
-    {
         "headline": "Our experts make their World Series predictions",
         "summaryJa": "ブルワーズの最新動向をMLB公式が詳報",
         "slug": "expert-predictions-for-the-rays-brewers-world-series",
@@ -994,7 +1057,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1188,8 +1250,7 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
-            "球団公式"
+            "MLB"
         ]
     },
     {
@@ -1867,30 +1928,6 @@
         "gamePks": [],
         "taxonomy": [
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Rays and Brewers have effective, yet completely different bullpens. Here's how",
-        "summaryJa": "レイズを巡る注目点をMLB公式が分析",
-        "slug": "brewers-rays-2026-world-series-bullpen-breakdown",
-        "url": "https://www.mlb.com/news/brewers-rays-2026-world-series-bullpen-breakdown",
-        "contentDate": "2026-10-21T00:41:00Z",
-        "teamIds": [
-            139,
-            158
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "world-series",
-            "apple-news",
-            "postseason",
-            "savant",
-            "player-tracking",
-            "relief-performance"
         ],
         "sourceScopes": [
             "球団公式"
@@ -4417,26 +4454,6 @@
         "taxonomy": [
             "apple-news",
             "mlb-top-prospects"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Latest Rays injuries & transactions",
-        "summaryJa": "レイズの負傷状況をMLB公式が詳報",
-        "slug": "rays-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/rays-injuries-and-roster-moves",
-        "contentDate": "2026-10-13T22:30:00Z",
-        "teamIds": [
-            139
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
         ],
         "sourceScopes": [
             "球団公式"
