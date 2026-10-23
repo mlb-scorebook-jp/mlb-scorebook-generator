@@ -2,6 +2,143 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Cleavinger back on Rays' World Series roster",
+        "summaryJa": "レイズの最新動向をMLB公式が詳報",
+        "slug": "rays-2026-world-series-roster",
+        "url": "https://www.mlb.com/news/rays-2026-world-series-roster",
+        "contentDate": "2026-10-23T21:30:00Z",
+        "teamIds": [
+            139
+        ],
+        "playerIds": [],
+        "gamePks": [
+            849805
+        ],
+        "taxonomy": [
+            "apple-news",
+            "postseason",
+            "world-series"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Rays-Brewers World Series Game 1 FAQ, lineups (8 ET on FOX/FOX One)",
+        "summaryJa": "レイズの最新動向をMLB公式が詳報",
+        "slug": "rays-brewers-world-series-game-1-starting-lineups-and-pitching-matchup",
+        "url": "https://www.mlb.com/news/rays-brewers-world-series-game-1-starting-lineups-and-pitching-matchup",
+        "contentDate": "2026-10-23T20:49:00Z",
+        "teamIds": [
+            139,
+            158
+        ],
+        "playerIds": [],
+        "gamePks": [
+            849805
+        ],
+        "taxonomy": [
+            "apple-news",
+            "postseason",
+            "world-series"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "He's in: Woodruff added to Crew's World Series roster",
+        "summaryJa": "B.ウッドラフ（MIL）の最新動向をMLB公式が詳報",
+        "slug": "brewers-2026-world-series-roster",
+        "url": "https://www.mlb.com/news/brewers-2026-world-series-roster",
+        "contentDate": "2026-10-23T20:44:00Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [
+            605540
+        ],
+        "gamePks": [
+            849805
+        ],
+        "taxonomy": [
+            "apple-news",
+            "postseason",
+            "world-series"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "MLB, Brewers make 'dream' donation to local baseball club",
+        "summaryJa": "ブルワーズの最新動向をMLB公式が詳報",
+        "slug": "world-series-legacy-project-makes-donation-to-milwaukee-baseball-club",
+        "url": "https://www.mlb.com/news/world-series-legacy-project-makes-donation-to-milwaukee-baseball-club",
+        "contentDate": "2026-10-23T20:30:07.069Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "community",
+            "world-series"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Did you know? Cash and Murph have already met in the World Series once before...",
+        "summaryJa": "ブルワーズの最新動向をMLB公式が詳報",
+        "slug": "pat-murphy-kevin-cash-1998-college-world-series",
+        "url": "https://www.mlb.com/news/pat-murphy-kevin-cash-1998-college-world-series",
+        "contentDate": "2026-10-23T19:35:43.219Z",
+        "teamIds": [
+            158,
+            139
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "world-series",
+            "postseason"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "MLBx brings baseball to India with event in Mumbai",
+        "summaryJa": "カブスの最新動向をMLB公式が詳報",
+        "slug": "mlbx-mumbai-brings-baseball-to-india",
+        "url": "https://www.mlb.com/news/mlbx-mumbai-brings-baseball-to-india",
+        "contentDate": "2026-10-23T19:24:06.316Z",
+        "teamIds": [
+            112,
+            111,
+            119,
+            147
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "mlbx",
+            "india",
+            "mlb-international"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
         "headline": "MLB Pipeline Pitching Lab: Tekoah Roby",
         "summaryJa": "T.ロビーの最新動向をMLB公式が詳報",
         "slug": "tekoah-roby-pitching-breakdown",
@@ -19,6 +156,7 @@
             "mlb-top-prospects"
         ],
         "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
@@ -39,6 +177,7 @@
             "apple-news"
         ],
         "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
@@ -158,31 +297,6 @@
         ]
     },
     {
-        "headline": "He's in: Woodruff added to Crew's World Series roster",
-        "summaryJa": "B.ウッドラフ（MIL）の最新動向をMLB公式が詳報",
-        "slug": "brewers-2026-world-series-roster",
-        "url": "https://www.mlb.com/news/brewers-2026-world-series-roster",
-        "contentDate": "2026-10-23T15:39:31.598Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [
-            605540
-        ],
-        "gamePks": [
-            849805
-        ],
-        "taxonomy": [
-            "apple-news",
-            "postseason",
-            "world-series"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
         "headline": "After remarkable recovery, Woodruff earns spot on Brewers' World Series roster",
         "summaryJa": "B.ウッドラフ（MIL）の最新動向をMLB公式が詳報",
         "slug": "brandon-woodruff-brewers-2026-world-series-roster",
@@ -195,53 +309,6 @@
             605540
         ],
         "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "postseason",
-            "world-series"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Rays-Brewers World Series Game 1 FAQ (Fri., 8 ET on FOX/FOX One)",
-        "summaryJa": "レイズの最新動向をMLB公式が詳報",
-        "slug": "rays-brewers-world-series-game-1-starting-lineups-and-pitching-matchup",
-        "url": "https://www.mlb.com/news/rays-brewers-world-series-game-1-starting-lineups-and-pitching-matchup",
-        "contentDate": "2026-10-23T15:32:00Z",
-        "teamIds": [
-            139,
-            158
-        ],
-        "playerIds": [],
-        "gamePks": [
-            849805
-        ],
-        "taxonomy": [
-            "apple-news",
-            "postseason",
-            "world-series"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Cleavinger back on Rays' World Series roster",
-        "summaryJa": "レイズの最新動向をMLB公式が詳報",
-        "slug": "rays-2026-world-series-roster",
-        "url": "https://www.mlb.com/news/rays-2026-world-series-roster",
-        "contentDate": "2026-10-23T15:31:25.226Z",
-        "teamIds": [
-            139
-        ],
-        "playerIds": [],
-        "gamePks": [
-            849805
-        ],
         "taxonomy": [
             "apple-news",
             "postseason",
@@ -704,7 +771,6 @@
             "world-series"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -830,7 +896,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1541,30 +1606,6 @@
         ]
     },
     {
-        "headline": "A video aligned Simpson sprinting to 1B and Caminero's HR trot -- the result was hilarious",
-        "summaryJa": "C.シンプソン（TB）、本塁打で存在感",
-        "slug": "chandler-simpson-bunt-singles-vs-junior-caminero-home-run-trot",
-        "url": "https://www.mlb.com/news/chandler-simpson-bunt-singles-vs-junior-caminero-home-run-trot",
-        "contentDate": "2026-10-21T17:43:11.944Z",
-        "teamIds": [
-            139
-        ],
-        "playerIds": [
-            802415,
-            691406
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "postseason",
-            "world-series",
-            "apple-news",
-            "player-tracking"
-        ],
-        "sourceScopes": [
-            "MLB"
-        ]
-    },
-    {
         "headline": "Here are MLB's 7 best 17-year-old prospects",
         "summaryJa": "L.ヘルナンデスら注目選手の最新動向",
         "slug": "these-are-the-best-17-year-old-mlb-prospects",
@@ -2164,30 +2205,6 @@
         ],
         "sourceScopes": [
             "球団公式"
-        ]
-    },
-    {
-        "headline": "Back to the beginning: Both LCS MVPs face teams they debuted with in Fall Classic",
-        "summaryJa": "J.バウアーズ（MIL）、メジャー昇格・初出場に関する最新情報",
-        "slug": "freddy-peralta-jake-bauers-facing-former-teams-in-world-series",
-        "url": "https://www.mlb.com/news/freddy-peralta-jake-bauers-facing-former-teams-in-world-series",
-        "contentDate": "2026-10-20T05:11:13.155Z",
-        "teamIds": [
-            158,
-            139
-        ],
-        "playerIds": [
-            641343,
-            642547
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "postseason",
-            "world-series"
-        ],
-        "sourceScopes": [
-            "MLB"
         ]
     },
     {
