@@ -2384,6 +2384,14 @@ body.app-mode-pregame .score-loading-overlay {
     transform: translateX(3px);
 }
 
+/* A runner doubled off at second: keep the route below the advance note in 2B's quarter. */
+.score-anchor.top-right.doubled-off-stack {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    transform: translate(3px, -4px);
+}
+
 .score-anchor.center {
     top: 50%;
     left: 50%;
