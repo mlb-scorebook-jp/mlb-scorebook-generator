@@ -2,6 +2,82 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "MLB App launches for iPhone Duo just in time for World Series",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "mlb-app-launches-for-iphone-duo",
+        "url": "https://www.mlb.com/news/mlb-app-launches-for-iphone-duo",
+        "contentDate": "2026-10-24T22:44:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "Watch Angels prospects in Arizona Fall League action",
+        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
+        "slug": "watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
+        "url": "https://www.mlb.com/news/watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
+        "contentDate": "2026-10-24T22:39:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "arizona-fall-league"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "How a forgotten Brewers owner helped create the World Series",
+        "summaryJa": "MLBの最新情報を巡る注目点をMLB公式が分析",
+        "slug": "henry-killilea-world-series-history-brewers-milwaukee",
+        "url": "https://www.mlb.com/news/henry-killilea-world-series-history-brewers-milwaukee",
+        "contentDate": "2026-10-24T22:30:17.457Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [
+            849802
+        ],
+        "taxonomy": [
+            "world-series",
+            "apple-news",
+            "postseason",
+            "offbeat"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "This lifelong Brewers fan walks to EVERY home game (yes, even the World Series)",
+        "summaryJa": "ブルワーズの最新動向をMLB公式が詳報",
+        "slug": "brewers-fan-walks-to-every-home-game-including-world-series",
+        "url": "https://www.mlb.com/news/brewers-fan-walks-to-every-home-game-including-world-series",
+        "contentDate": "2026-10-24T21:52:48.45Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [],
+        "gamePks": [
+            849802
+        ],
+        "taxonomy": [
+            "apple-news",
+            "world-series"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Rays-Brewers World Series Game 2 FAQ, lineups (8 ET, FOX/FOX One)",
         "summaryJa": "ブルワーズの最新動向をMLB公式が詳報",
         "slug": "rays-brewers-world-series-game-2-starting-lineups-and-pitching-matchup",
@@ -803,7 +879,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -870,27 +945,6 @@
         ],
         "playerIds": [
             801139
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "world-series"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "There for Milwaukee's World Series in '50s, Torre is watching this one closely",
-        "summaryJa": "J.トーリ（MIL）の最新動向をMLB公式が詳報",
-        "slug": "joe-torre-on-1950s-world-series-in-milwaukee",
-        "url": "https://www.mlb.com/news/joe-torre-on-1950s-world-series-in-milwaukee",
-        "contentDate": "2026-10-23T15:08:58.271Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [
-            123406
         ],
         "gamePks": [],
         "taxonomy": [
@@ -1103,23 +1157,6 @@
         ]
     },
     {
-        "headline": "Watch LIVE: Angels top prospect Nimmala in Arizona Fall League action",
-        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
-        "slug": "watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
-        "url": "https://www.mlb.com/news/watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
-        "contentDate": "2026-10-23T03:59:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "arizona-fall-league"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Angels 6-foot-11 prospect Olejnik looking to reach new heights in Arizona Fall League",
         "summaryJa": "Peyton Olejnik（LAA）ら注目選手の最新動向",
         "slug": "angels-prospect-peyton-olejnik-looking-to-reach-new-heights-in-arizona-fall-league",
@@ -1244,27 +1281,6 @@
             "apple-news",
             "postseason",
             "world-series"
-        ],
-        "sourceScopes": [
-            "MLB"
-        ]
-    },
-    {
-        "headline": "Meet the true X-factors in this World Series: The roofs",
-        "summaryJa": "レイズの最新動向をMLB公式が詳報",
-        "slug": "ground-rules-for-roofs-rays-brewers-world-series",
-        "url": "https://www.mlb.com/news/ground-rules-for-roofs-rays-brewers-world-series",
-        "contentDate": "2026-10-23T00:16:34.717Z",
-        "teamIds": [
-            139,
-            158
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "world-series",
-            "postseason"
         ],
         "sourceScopes": [
             "MLB"
