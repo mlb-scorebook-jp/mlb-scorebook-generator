@@ -2,6 +2,51 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Rays-Brewers World Series Game 2 FAQ, lineups (8 ET, FOX/FOX One)",
+        "summaryJa": "ブルワーズの最新動向をMLB公式が詳報",
+        "slug": "rays-brewers-world-series-game-2-starting-lineups-and-pitching-matchup",
+        "url": "https://www.mlb.com/news/rays-brewers-world-series-game-2-starting-lineups-and-pitching-matchup",
+        "contentDate": "2026-10-24T20:36:00Z",
+        "teamIds": [
+            158,
+            139
+        ],
+        "playerIds": [],
+        "gamePks": [
+            849802
+        ],
+        "taxonomy": [
+            "world-series",
+            "apple-news",
+            "postseason"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "He threw the only immaculate inning in postseason history ... and didn't know until 30 years later",
+        "summaryJa": "Danny Jackson（KC）の最新動向をMLB公式が詳報",
+        "slug": "danny-jackson-immaculate-inning-in-1985-world-series",
+        "url": "https://www.mlb.com/news/danny-jackson-immaculate-inning-in-1985-world-series",
+        "contentDate": "2026-10-24T19:59:35.953Z",
+        "teamIds": [
+            118
+        ],
+        "playerIds": [
+            116424
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "With an eye on defensive growth, 'sky's the limit' for De Paula",
         "summaryJa": "J.デポーラ（LAD）の最新動向をMLB公式が詳報",
         "slug": "josue-de-paula-focusing-on-defensive-improvement-ahead-of-2027",
@@ -388,30 +433,6 @@
             "postseason",
             "world-series",
             "relief-performance"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Rays-Brewers World Series Game 2 FAQ (8 p.m. ET, FOX/FOX Deportes/FOX One)",
-        "summaryJa": "ブルワーズの最新動向をMLB公式が詳報",
-        "slug": "rays-brewers-world-series-game-2-starting-lineups-and-pitching-matchup",
-        "url": "https://www.mlb.com/news/rays-brewers-world-series-game-2-starting-lineups-and-pitching-matchup",
-        "contentDate": "2026-10-24T06:05:53.244Z",
-        "teamIds": [
-            158,
-            139
-        ],
-        "playerIds": [],
-        "gamePks": [
-            849802
-        ],
-        "taxonomy": [
-            "world-series",
-            "apple-news",
-            "postseason"
         ],
         "sourceScopes": [
             "MLB",
@@ -919,7 +940,6 @@
             "japan"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1083,7 +1103,7 @@
         ]
     },
     {
-        "headline": "Watch Angels prospects in Arizona Fall League action",
+        "headline": "Watch LIVE: Angels top prospect Nimmala in Arizona Fall League action",
         "summaryJa": "MLBの最新情報ら注目選手の最新動向",
         "slug": "watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
         "url": "https://www.mlb.com/news/watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
