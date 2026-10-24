@@ -7425,6 +7425,16 @@
                 return OUT_BASE_LETTERS[base] ?? "";
             };
 
+            const isDoubledOffRunner = (runner, description = "") => {
+                const eventType = String(runner?.details?.eventType ?? "").toLowerCase();
+                const movementReason = String(
+                    runner?.details?.movementReason ?? ""
+                ).toLowerCase();
+                return eventType.includes("doubled_off") ||
+                    movementReason.includes("doubled_off") ||
+                    /doubled off/.test(String(description).toLowerCase());
+            };
+
             // 公式PBPが併殺として扱っていても、映像で挟殺を確認した例外。
             // 同じ守備番号で始まり終わる通常の3-6-3／3-4-3併殺は含めない。
             const VERIFIED_RUNDOWN_PLAYS = new Set([
@@ -7475,6 +7485,7 @@
                 const lowerDescription = description.toLowerCase();
                 const isBatter = Number(runner?.details?.runner?.id) === Number(batterId);
                 const isRundownTagOut = isRundownFieldingRoute(play, numbers, isBatter);
+                const isDoubledOff = isDoubledOffRunner(runner, description);
                 const isForceOut = !isRundownTagOut && (
                     runnerEventType.includes("force_out") ||
                     runnerMovementReason.includes("force_out") ||
@@ -7484,7 +7495,7 @@
                     playEventType === "triple_play" ||
                     lowerDescription.includes("force out")
                 );
-                const isTagOut = isRundownTagOut || (!isForceOut && (
+                const isTagOut = isRundownTagOut || (!isForceOut && !isDoubledOff && (
                     /caught_stealing|pickoff|tag_out/.test(runnerEventType) ||
                     /tag_out|tagged_out|tag/.test(runnerMovementReason) ||
                     /caught stealing|picked off|tagged out|tag play/.test(lowerDescription) ||
@@ -7508,7 +7519,9 @@
                 const route = numbers.slice(0, terminalIndex + 1);
                 const suffixes = route.map(() => "");
 
-                if (isTagOut) {
+                if (isDoubledOff && !isBatter) {
+                    suffixes[suffixes.length - 1] = getOutBaseLetter(runner);
+                } else if (isTagOut) {
                     suffixes[suffixes.length - 1] = "TO";
                 } else if (
                     isForceOut &&
@@ -7576,6 +7589,7 @@
                     const lowerDescription = description.toLowerCase();
                     const isBatter = Number(runner?.details?.runner?.id) === Number(batterId);
                     const isRundownTagOut = isRundownFieldingRoute(play, numbers, isBatter);
+                    const isDoubledOff = isDoubledOffRunner(runner, description);
                     const isForceOut = !isRundownTagOut && (
                         runnerEventType.includes("force_out") ||
                         runnerMovementReason.includes("force_out") ||
@@ -7585,14 +7599,16 @@
                         playEventType === "triple_play" ||
                         lowerDescription.includes("force out")
                     );
-                    const isTagOut = isRundownTagOut || (!isForceOut && (
+                    const isTagOut = isRundownTagOut || (!isForceOut && !isDoubledOff && (
                         /caught_stealing|pickoff|tag_out/.test(runnerEventType) ||
                         /tag_out|tagged_out|tag/.test(runnerMovementReason) ||
                         /caught stealing|picked off|tagged out|tag play/.test(lowerDescription) ||
                         (!isBatter && Boolean(runner?.movement?.originBase))
                     ));
 
-                    if (isTagOut) {
+                    if (isDoubledOff && !isBatter) {
+                        suffixes[terminalIndex] = getOutBaseLetter(runner);
+                    } else if (isTagOut) {
                         suffixes[terminalIndex] = "TO";
                     } else if (
                         isForceOut &&
