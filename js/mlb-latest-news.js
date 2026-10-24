@@ -2,6 +2,226 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "With an eye on defensive growth, 'sky's the limit' for De Paula",
+        "summaryJa": "J.デポーラ（LAD）の最新動向をMLB公式が詳報",
+        "slug": "josue-de-paula-focusing-on-defensive-improvement-ahead-of-2027",
+        "url": "https://www.mlb.com/news/josue-de-paula-focusing-on-defensive-improvement-ahead-of-2027",
+        "contentDate": "2026-10-24T16:23:05.48Z",
+        "teamIds": [
+            119
+        ],
+        "playerIds": [
+            800543
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "mlb-top-prospects"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "3 ways Marlins can improve in 2027 to reach postseason",
+        "summaryJa": "マーリンズの最新動向をMLB公式が詳報",
+        "slug": "marlins-can-improve-in-2027-to-reach-postseason",
+        "url": "https://www.mlb.com/news/marlins-can-improve-in-2027-to-reach-postseason",
+        "contentDate": "2026-10-24T16:05:00Z",
+        "teamIds": [
+            146
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "JHL calls '26 a 'rollercoaster season,' but Giants see improvement",
+        "summaryJa": "J.イ（SF）の最新動向をMLB公式が詳報",
+        "slug": "jung-hoo-lee-makes-progress-in-2026-season",
+        "url": "https://www.mlb.com/news/jung-hoo-lee-makes-progress-in-2026-season",
+        "contentDate": "2026-10-24T16:03:05.167Z",
+        "teamIds": [
+            137
+        ],
+        "playerIds": [
+            808982
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Coming off an injury-shortened '26, this Royals prospect is lighting up the AFL",
+        "summaryJa": "Brooks Bryan（KC）の負傷状況をMLB公式が詳報",
+        "slug": "royals-prospect-brooks-bryan-hitting-well-in-arizona-fall-league",
+        "url": "https://www.mlb.com/news/royals-prospect-brooks-bryan-hitting-well-in-arizona-fall-league",
+        "contentDate": "2026-10-24T16:02:46.586Z",
+        "teamIds": [
+            118
+        ],
+        "playerIds": [
+            804871
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "arizona-fall-league"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "From High-A to Wrigley: A Cubs prospect's remarkable rise",
+        "summaryJa": "Owen Ayers（CHC）ら注目選手の最新動向",
+        "slug": "owen-ayers-cubs-catching-prospect-2027-outlook",
+        "url": "https://www.mlb.com/news/owen-ayers-cubs-catching-prospect-2027-outlook",
+        "contentDate": "2026-10-24T16:02:05.704Z",
+        "teamIds": [
+            112
+        ],
+        "playerIds": [
+            689196
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "mlb-top-prospects",
+            "minor-league-baseball",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Nats hoping 'YoYo' can work into 3B picture in '27",
+        "summaryJa": "Y.モラレス（WSH）の最新動向をMLB公式が詳報",
+        "slug": "nationals-hope-yohandy-morales-can-play-more-third-base",
+        "url": "https://www.mlb.com/news/nationals-hope-yohandy-morales-can-play-more-third-base",
+        "contentDate": "2026-10-24T16:00:00Z",
+        "teamIds": [
+            120
+        ],
+        "playerIds": [
+            691002
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "30 years ago, Pettitte got redemption with World Series masterpiece",
+        "summaryJa": "A.ペティット（NYY）の最新動向をMLB公式が詳報",
+        "slug": "andy-pettitte-recalls-1996-world-series-performance",
+        "url": "https://www.mlb.com/news/andy-pettitte-recalls-1996-world-series-performance",
+        "contentDate": "2026-10-24T15:52:15.126Z",
+        "teamIds": [
+            147
+        ],
+        "playerIds": [
+            120485
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Yankees agree to 3-year extension with pitching coach Blake (report)",
+        "summaryJa": "ヤンキースの移籍・契約に関する最新情報",
+        "slug": "yankees-pitching-coach-matt-blake-contract-extension",
+        "url": "https://www.mlb.com/news/yankees-pitching-coach-matt-blake-contract-extension",
+        "contentDate": "2026-10-24T15:16:56.493Z",
+        "teamIds": [
+            147
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "O'Dowd power surge turning heads in Fall League",
+        "summaryJa": "Jack O'Dowd（COL）の最新動向をMLB公式が詳報",
+        "slug": "jack-o-dowd-swings-hot-bat-in-2026-arizona-fall-league",
+        "url": "https://www.mlb.com/news/jack-o-dowd-swings-hot-bat-in-2026-arizona-fall-league",
+        "contentDate": "2026-10-24T14:00:00Z",
+        "teamIds": [
+            115
+        ],
+        "playerIds": [
+            691942
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "arizona-fall-league",
+            "minor-league-baseball"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "5 offseason questions for the White Sox after a surprisingly successful '26",
+        "summaryJa": "ホワイトソックスの最新動向をMLB公式が詳報",
+        "slug": "5-offseason-questions-for-white-sox",
+        "url": "https://www.mlb.com/news/5-offseason-questions-for-white-sox",
+        "contentDate": "2026-10-24T13:51:04.523Z",
+        "teamIds": [
+            145
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "With Suzuki out and Mozeliak done after December, what's next for Angels?",
+        "summaryJa": "エンゼルスの最新動向をMLB公式が詳報",
+        "slug": "angels-2027-leadership-after-kurt-suzuki-john-mozeliak-departures",
+        "url": "https://www.mlb.com/news/angels-2027-leadership-after-kurt-suzuki-john-mozeliak-departures",
+        "contentDate": "2026-10-24T13:40:08.618Z",
+        "teamIds": [
+            108
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "It took all of 1 pitch for a World Series record",
         "summaryJa": "J.ミザロウスキー（MIL）、記録達成の最新情報",
         "slug": "jacob-misiorowski-makes-world-series-history-in-game-1",
@@ -519,30 +739,6 @@
             "apple-news",
             "world-series",
             "postseason"
-        ],
-        "sourceScopes": [
-            "MLB"
-        ]
-    },
-    {
-        "headline": "MLBx brings baseball to India with event in Mumbai",
-        "summaryJa": "カブスの最新動向をMLB公式が詳報",
-        "slug": "mlbx-mumbai-brings-baseball-to-india",
-        "url": "https://www.mlb.com/news/mlbx-mumbai-brings-baseball-to-india",
-        "contentDate": "2026-10-23T19:24:06.316Z",
-        "teamIds": [
-            112,
-            111,
-            119,
-            147
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "mlbx",
-            "india",
-            "mlb-international"
         ],
         "sourceScopes": [
             "MLB"
@@ -1334,27 +1530,6 @@
         ],
         "sourceScopes": [
             "球団公式"
-        ]
-    },
-    {
-        "headline": "5 fun Miz facts: Get to know the man behind the triple-digit heat",
-        "summaryJa": "J.ミザロウスキー（MIL）の最新動向をMLB公式が詳報",
-        "slug": "jacob-misiorowski-background-hobbies",
-        "url": "https://www.mlb.com/news/jacob-misiorowski-background-hobbies",
-        "contentDate": "2026-10-22T15:14:53.677Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [
-            694819
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "world-series",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB"
         ]
     },
     {
@@ -4011,29 +4186,6 @@
         ]
     },
     {
-        "headline": "LA facing long odds after rough 7th flips script on Snell's Game 3 start",
-        "summaryJa": "B.スネル（LAD）、記録達成の最新情報",
-        "slug": "dodgers-lose-nlcs-game-3-to-brewers-2026",
-        "url": "https://www.mlb.com/news/dodgers-lose-nlcs-game-3-to-brewers-2026",
-        "contentDate": "2026-10-15T05:49:43.772Z",
-        "teamIds": [
-            119
-        ],
-        "playerIds": [
-            605483
-        ],
-        "gamePks": [
-            849811
-        ],
-        "taxonomy": [
-            "apple-news",
-            "nlcs"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "A's LHP prospect Richardson shows off health and resiliency during Fall League homecoming",
         "summaryJa": "Grant Richardson（ATH）ら注目選手の最新動向",
         "slug": "athletics-pitching-prospect-grant-richardson-at-home-in-arizona-fall-league",
@@ -6076,30 +6228,6 @@
         ]
     },
     {
-        "headline": "After being left out of Game 3 lineup, Chisholm says he wants to return to Yankees",
-        "summaryJa": "J.チゾム Jr.（NYY）、復帰へ向けた最新状況",
-        "slug": "anthony-volpe-jose-caballero-start-for-yankees-in-game-3-of-alds",
-        "url": "https://www.mlb.com/news/anthony-volpe-jose-caballero-start-for-yankees-in-game-3-of-alds",
-        "contentDate": "2026-10-08T07:27:00Z",
-        "teamIds": [
-            147
-        ],
-        "playerIds": [
-            665862
-        ],
-        "gamePks": [
-            849838
-        ],
-        "taxonomy": [
-            "apple-news",
-            "alds",
-            "series-a"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Déja vú strikes thrice as Machado robbed of game-tying HR",
         "summaryJa": "M.マチャード（SD）、本塁打で存在感",
         "slug": "manny-machado-robbed-of-game-tying-home-run-in-nlds-game-4",
@@ -6953,28 +7081,6 @@
         ]
     },
     {
-        "headline": "Flamethrowing Nats right-hander looks to make up for lost time in Arizona Fall League",
-        "summaryJa": "J.スサーナ（WSH）の最新動向をMLB公式が詳報",
-        "slug": "nationals-arizona-fall-league-overview-2026",
-        "url": "https://www.mlb.com/news/nationals-arizona-fall-league-overview-2026",
-        "contentDate": "2026-10-05T14:04:23.919Z",
-        "teamIds": [
-            120
-        ],
-        "playerIds": [
-            703186
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "arizona-fall-league",
-            "mlb-top-prospects"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Royals' top Draft pick eager to show off tools in Arizona Fall League",
         "summaryJa": "Zion Rose（KC）を巡る注目点をMLB公式が分析",
         "slug": "royals-arizona-fall-league-overview-2026",
@@ -7115,26 +7221,6 @@
             "mlb-top-prospects",
             "apple-news",
             "arizona-fall-league"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "PCA, Miz, Mason Miller honored by Baseball Digest",
-        "summaryJa": "J.ミザロウスキー、勝利を呼び込む活躍",
-        "slug": "pete-crow-armstrong-jacob-misiorowski-mason-miller-win-2026-baseball-digest-awards",
-        "url": "https://www.mlb.com/news/pete-crow-armstrong-jacob-misiorowski-mason-miller-win-2026-baseball-digest-awards",
-        "contentDate": "2026-10-03T13:00:15.274Z",
-        "teamIds": [],
-        "playerIds": [
-            694819,
-            695243,
-            691718
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
@@ -7378,24 +7464,6 @@
         ]
     },
     {
-        "headline": "Picollo talks coaching staff change, rotation outlook for '27",
-        "summaryJa": "ロイヤルズの最新動向をMLB公式が詳報",
-        "slug": "j-j-picollo-discusses-royals-2026-season-2027-offseason",
-        "url": "https://www.mlb.com/news/j-j-picollo-discusses-royals-2026-season-2027-offseason",
-        "contentDate": "2026-09-30T23:23:09.393Z",
-        "teamIds": [
-            118
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Latest Giants injuries & transactions",
         "summaryJa": "ジャイアンツの負傷状況をMLB公式が詳報",
         "slug": "giants-injuries-and-roster-moves",
@@ -7442,24 +7510,6 @@
         "contentDate": "2026-09-29T23:23:08.35Z",
         "teamIds": [
             142
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Marlins part ways with hitting coach Guerrero",
-        "summaryJa": "マーリンズ、復帰へ向けた最新状況",
-        "slug": "pedro-guerrero-not-returning-as-marlins-hitting-coach",
-        "url": "https://www.mlb.com/news/pedro-guerrero-not-returning-as-marlins-hitting-coach",
-        "contentDate": "2026-09-29T16:56:22.366Z",
-        "teamIds": [
-            146
         ],
         "playerIds": [],
         "gamePks": [],
@@ -7626,26 +7676,6 @@
             "injury",
             "transactions",
             "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "DePodesta, Rockies ready to 'act early' after 4th straight 100-plus-loss season",
-        "summaryJa": "ロッキーズ、記録達成の最新情報",
-        "slug": "paul-depodesta-gets-ready-for-first-full-offseason-in-colorado",
-        "url": "https://www.mlb.com/news/paul-depodesta-gets-ready-for-first-full-offseason-in-colorado",
-        "contentDate": "2026-09-28T01:20:06.61Z",
-        "teamIds": [
-            115
-        ],
-        "playerIds": [],
-        "gamePks": [
-            824542
-        ],
-        "taxonomy": [
-            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
