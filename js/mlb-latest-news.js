@@ -2,6 +2,185 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Crew strikes early, hangs on to take Game 1 in front of raucous fans",
+        "summaryJa": "ブルワーズ、勝利を呼び込む活躍",
+        "slug": "brewers-win-world-series-game-1-2026",
+        "url": "https://www.mlb.com/news/brewers-win-world-series-game-1-2026",
+        "contentDate": "2026-10-24T04:05:00Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [],
+        "gamePks": [
+            849805
+        ],
+        "taxonomy": [
+            "game-recap",
+            "postseason",
+            "world-series",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "4 key takeaways after Brewers win a thriller to start World Series",
+        "summaryJa": "ブルワーズ、勝利を呼び込む活躍",
+        "slug": "key-takeaways-from-world-series-game-1-2026",
+        "url": "https://www.mlb.com/news/key-takeaways-from-world-series-game-1-2026",
+        "contentDate": "2026-10-24T03:59:18.2Z",
+        "teamIds": [
+            158,
+            139
+        ],
+        "playerIds": [],
+        "gamePks": [
+            849805
+        ],
+        "taxonomy": [
+            "world-series",
+            "postseason",
+            "apple-news",
+            "takeaways"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Brewers won their first World Series game in 44 years. And then they won it again",
+        "summaryJa": "ブルワーズ、勝利を呼び込む活躍",
+        "slug": "brewers-game-ending-double-play-overturned-world-series-game-1",
+        "url": "https://www.mlb.com/news/brewers-game-ending-double-play-overturned-world-series-game-1",
+        "contentDate": "2026-10-24T03:51:10.442Z",
+        "teamIds": [
+            158,
+            139
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "world-series",
+            "apple-news",
+            "replay"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "It took all of 1 pitch for a World Series record",
+        "summaryJa": "J.ミザロウスキー（MIL）、記録達成の最新情報",
+        "slug": "jacob-misiorowski-makes-world-series-history-in-game-1",
+        "url": "https://www.mlb.com/news/jacob-misiorowski-makes-world-series-history-in-game-1",
+        "contentDate": "2026-10-24T03:51:00Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [
+            694819
+        ],
+        "gamePks": [
+            849805
+        ],
+        "taxonomy": [
+            "apple-news",
+            "postseason",
+            "player-tracking"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "For Rasmussen's G2 start, he'll face team he'd otherwise be rooting for",
+        "summaryJa": "D.ラスムッセン（TB）の最新動向をMLB公式が詳報",
+        "slug": "drew-rasmussen-to-face-former-team-in-game-2-of-2026-world-series",
+        "url": "https://www.mlb.com/news/drew-rasmussen-to-face-former-team-in-game-2-of-2026-world-series",
+        "contentDate": "2026-10-24T03:45:00Z",
+        "teamIds": [
+            139
+        ],
+        "playerIds": [
+            656876
+        ],
+        "gamePks": [
+            849805
+        ],
+        "taxonomy": [
+            "apple-news",
+            "world-series"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Which ballparks have best home-field advantage in postseason?",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "best-home-field-advantage-in-mlb-playoffs",
+        "url": "https://www.mlb.com/news/best-home-field-advantage-in-mlb-playoffs",
+        "contentDate": "2026-10-24T03:39:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "postseason",
+            "fans",
+            "rankings"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Teams with the best records in a postseason",
+        "summaryJa": "MLBの最新情報、記録達成の最新情報",
+        "slug": "best-mlb-single-season-postseason-winning-percentages",
+        "url": "https://www.mlb.com/news/best-mlb-single-season-postseason-winning-percentages",
+        "contentDate": "2026-10-24T03:38:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "rankings"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Miz, Caminero and other players in 'Avengers: Doomsday'? Take a sneak peek at it",
+        "summaryJa": "レイズの最新動向をMLB公式が詳報",
+        "slug": "avengers-doomsday-game-1-of-the-2026-world-series",
+        "url": "https://www.mlb.com/news/avengers-doomsday-game-1-of-the-2026-world-series",
+        "contentDate": "2026-10-24T00:58:03.072Z",
+        "teamIds": [
+            139,
+            158
+        ],
+        "playerIds": [],
+        "gamePks": [
+            849805
+        ],
+        "taxonomy": [
+            "apple-news",
+            "offbeat",
+            "world-series"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Junior Caminero's batting practice sessions are becoming a demolition derby",
         "summaryJa": "J.キャミネロ（TB）の最新動向をMLB公式が詳報",
         "slug": "junior-caminero-damages-american-family-field-videoboard-before-world-series-game-1",
@@ -15,7 +194,8 @@
         ],
         "gamePks": [],
         "taxonomy": [
-            "world-series"
+            "world-series",
+            "apple-news"
         ],
         "sourceScopes": [
             "MLB",
@@ -108,27 +288,6 @@
         ]
     },
     {
-        "headline": "3 keys heading into Game 1 of the World Series",
-        "summaryJa": "ブルワーズの最新動向をMLB公式が詳報",
-        "slug": "2026-world-series-game-1-storylines-rays-brewers",
-        "url": "https://www.mlb.com/news/2026-world-series-game-1-storylines-rays-brewers",
-        "contentDate": "2026-10-23T21:00:00Z",
-        "teamIds": [
-            158,
-            139
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "postseason",
-            "world-series"
-        ],
-        "sourceScopes": [
-            "MLB"
-        ]
-    },
-    {
         "headline": "Brewers broadcasters to sport Bob Uecker's jackets during World Series Game 1",
         "summaryJa": "ブルワーズの最新動向をMLB公式が詳報",
         "slug": "brewers-announcers-wearing-bob-uecker-jackets-during-2026-world-series-game-1",
@@ -143,29 +302,6 @@
             "world-series",
             "apple-news",
             "postseason"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Rays-Brewers World Series Game 1 FAQ, lineups (8 ET on FOX/FOX One)",
-        "summaryJa": "レイズの最新動向をMLB公式が詳報",
-        "slug": "rays-brewers-world-series-game-1-starting-lineups-and-pitching-matchup",
-        "url": "https://www.mlb.com/news/rays-brewers-world-series-game-1-starting-lineups-and-pitching-matchup",
-        "contentDate": "2026-10-23T20:49:00Z",
-        "teamIds": [
-            139,
-            158
-        ],
-        "playerIds": [],
-        "gamePks": [
-            849805
-        ],
-        "taxonomy": [
-            "apple-news",
-            "postseason",
-            "world-series"
         ],
         "sourceScopes": [
             "MLB",
@@ -336,8 +472,7 @@
             "world-series"
         ],
         "sourceScopes": [
-            "MLB",
-            "球団公式"
+            "MLB"
         ]
     },
     {
@@ -355,8 +490,7 @@
             "mlb-top-prospects"
         ],
         "sourceScopes": [
-            "MLB",
-            "球団公式"
+            "MLB"
         ]
     },
     {
@@ -423,25 +557,6 @@
         "sourceScopes": [
             "MLB",
             "球団公式"
-        ]
-    },
-    {
-        "headline": "Meet the man who tried -- and ranked -- 77 ballpark hot dogs across pro baseball",
-        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
-        "slug": "minor-league-fan-ranks-77-hot-dogs",
-        "url": "https://www.mlb.com/news/minor-league-fan-ranks-77-hot-dogs",
-        "contentDate": "2026-10-23T14:49:51.626Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "baseball-traveler",
-            "offbeat",
-            "apple-news",
-            "minor-league-baseball"
-        ],
-        "sourceScopes": [
-            "MLB"
         ]
     },
     {
@@ -702,28 +817,7 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
-        ]
-    },
-    {
-        "headline": "MLB provides immersive World Series preview with one-of-a-kind display inside Oculus",
-        "summaryJa": "レイズの最新動向をMLB公式が詳報",
-        "slug": "major-league-baseball-displays-world-series-preview-in-the-oculus",
-        "url": "https://www.mlb.com/news/major-league-baseball-displays-world-series-preview-in-the-oculus",
-        "contentDate": "2026-10-23T01:49:15.718Z",
-        "teamIds": [
-            139,
-            158
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "world-series"
-        ],
-        "sourceScopes": [
-            "MLB"
         ]
     },
     {
@@ -814,8 +908,7 @@
             "world-series"
         ],
         "sourceScopes": [
-            "MLB",
-            "球団公式"
+            "MLB"
         ]
     },
     {
@@ -860,25 +953,6 @@
         ]
     },
     {
-        "headline": "Brewers quickly sell out watch parties for first two World Series road games",
-        "summaryJa": "ブルワーズの最新動向をMLB公式が詳報",
-        "slug": "brewers-sell-out-watch-parties-for-2026-world-series-games-3-4",
-        "url": "https://www.mlb.com/news/brewers-sell-out-watch-parties-for-2026-world-series-games-3-4",
-        "contentDate": "2026-10-22T23:09:14.141Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "world-series",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Ribs, brat rangoon and, of course, beer: Brewers bringing 'flair' with World Series menu",
         "summaryJa": "ブルワーズの最新動向をMLB公式が詳報",
         "slug": "brewers-unveil-special-ballpark-menu-for-world-series",
@@ -894,7 +968,6 @@
             "world-series"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -940,7 +1013,6 @@
             "world-series"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1205,27 +1277,6 @@
         ],
         "gamePks": [],
         "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "The Rays didn't even mean to scout him ... now he's integral to this World Series run",
-        "summaryJa": "J.アランダ（TB）の最新動向をMLB公式が詳報",
-        "slug": "jonathan-aranda-journey-to-major-leagues",
-        "url": "https://www.mlb.com/news/jonathan-aranda-journey-to-major-leagues",
-        "contentDate": "2026-10-22T15:35:00Z",
-        "teamIds": [
-            139
-        ],
-        "playerIds": [
-            666018
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "world-series",
             "apple-news"
         ],
         "sourceScopes": [
@@ -1686,29 +1737,6 @@
         "taxonomy": [
             "mlb-top-prospects",
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "How did this high-flying victory celebration come to be? 'We both wish we could dunk'",
-        "summaryJa": "R.パラシオス（TB）、勝利を呼び込む活躍",
-        "slug": "richie-palacios-taylor-walls-talk-basketball-inspired-celebration",
-        "url": "https://www.mlb.com/news/richie-palacios-taylor-walls-talk-basketball-inspired-celebration",
-        "contentDate": "2026-10-21T16:30:23.529Z",
-        "teamIds": [
-            139
-        ],
-        "playerIds": [
-            680700,
-            670764
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "world-series",
-            "postseason"
         ],
         "sourceScopes": [
             "球団公式"
