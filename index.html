@@ -8299,6 +8299,9 @@
                                     if (outBase === "2B") target.outAtSecond = runnerFieldingResult;
                                     if (outBase === "3B") target.outAtThird = runnerFieldingResult;
                                     if (["home", "score"].includes(outBase)) target.outAtHome = runnerFieldingResult;
+                                    if (isDoubledOffRunner(runner, runnerDescription)) {
+                                        target.doubledOffResult = runnerFieldingResult;
+                                    }
                                 } else {
                                     target.outResult = runnerFieldingResult;
                                     target.outResultAtBatIndex = Number.isInteger(Number(play?.about?.atBatIndex))
@@ -8540,7 +8543,9 @@
                         .forEach((pathType) => card.append(createRunnerHistorySvg(pathType)));
                 }
 
-                if (record.notation || record.outResult) {
+                const doubledOffResult = String(record.doubledOffResult ?? "");
+
+                if (record.notation || record.outResult || doubledOffResult) {
                     const notationStack = createElement("div", "play-notation-stack");
                     if (record.notation) {
                         const templateSvg = createTemplateSvg(record.shape);
@@ -8569,6 +8574,13 @@
                             `score-symbol play-result runner-out-result${longClass}${rundownClass}`,
                             record.outResultAtBatIndex,
                             record.outResultPlayId
+                        ));
+                    }
+                    if (doubledOffResult) {
+                        notationStack.append(createElement(
+                            "div",
+                            "score-symbol play-result runner-out-result doubled-off-result",
+                            doubledOffResult
                         ));
                     }
                     slots.bottomRight.append(notationStack);
@@ -8615,9 +8627,15 @@
                         record.pickoffErrorLabel
                     ));
                 }
-                if (record.outAtSecond) slots.topRight.append(createRunnerBaseOutResult(record.outAtSecond));
-                if (record.outAtThird) slots.topLeft.append(createRunnerBaseOutResult(record.outAtThird));
-                if (record.outAtHome) slots.bottomLeft.append(createRunnerBaseOutResult(record.outAtHome));
+                if (record.outAtSecond && record.outAtSecond !== doubledOffResult) {
+                    slots.topRight.append(createRunnerBaseOutResult(record.outAtSecond));
+                }
+                if (record.outAtThird && record.outAtThird !== doubledOffResult) {
+                    slots.topLeft.append(createRunnerBaseOutResult(record.outAtThird));
+                }
+                if (record.outAtHome && record.outAtHome !== doubledOffResult) {
+                    slots.bottomLeft.append(createRunnerBaseOutResult(record.outAtHome));
+                }
                 if (record.inningEnd) {
                     card.classList.add("has-inning-end");
                     card.append(createElement("div", "inning-end-mark"));
