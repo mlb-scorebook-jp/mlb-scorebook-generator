@@ -2,6 +2,31 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Key takeaways as Brewers take commanding 2-0 lead in World Series",
+        "summaryJa": "レイズの最新動向をMLB公式が詳報",
+        "slug": "key-takeaways-from-world-series-game-2-2026",
+        "url": "https://www.mlb.com/news/key-takeaways-from-world-series-game-2-2026",
+        "contentDate": "2026-10-25T15:05:00Z",
+        "teamIds": [
+            139,
+            158
+        ],
+        "playerIds": [],
+        "gamePks": [
+            849802
+        ],
+        "taxonomy": [
+            "world-series",
+            "postseason",
+            "apple-news",
+            "takeaways"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Comeback Crew has been must-see all October -- and '82 squad loves every minute",
         "summaryJa": "C.プラット（MIL）、勝利を呼び込む活躍",
         "slug": "brewers-erase-four-run-deficit-win-2026-world-series-game-2",
@@ -21,31 +46,6 @@
             "postseason",
             "apple-news",
             "comeback"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Key takeaways as Brewers take commanding 2-0 lead in World Series",
-        "summaryJa": "レイズの最新動向をMLB公式が詳報",
-        "slug": "key-takeaways-from-world-series-game-2-2026",
-        "url": "https://www.mlb.com/news/key-takeaways-from-world-series-game-2-2026",
-        "contentDate": "2026-10-25T06:55:00Z",
-        "teamIds": [
-            139,
-            158
-        ],
-        "playerIds": [],
-        "gamePks": [
-            849802
-        ],
-        "taxonomy": [
-            "world-series",
-            "postseason",
-            "apple-news",
-            "takeaways"
         ],
         "sourceScopes": [
             "MLB",
@@ -472,7 +472,6 @@
             "mlb-top-prospects"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1081,6 +1080,29 @@
             "world-series"
         ],
         "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Ever wonder what a Chandler Simpson homer would look like? We'll show you",
+        "summaryJa": "C.シンプソン（TB）、本塁打で存在感",
+        "slug": "chandler-simpson-home-run-breakdown",
+        "url": "https://www.mlb.com/news/chandler-simpson-home-run-breakdown",
+        "contentDate": "2026-10-23T16:04:00Z",
+        "teamIds": [
+            139
+        ],
+        "playerIds": [
+            802415
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "savant",
+            "player-tracking",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
