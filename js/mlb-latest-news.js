@@ -2,6 +2,133 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Watch Angels prospects in Arizona Fall League action",
+        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
+        "slug": "watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
+        "url": "https://www.mlb.com/news/watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
+        "contentDate": "2026-10-25T01:04:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "arizona-fall-league"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "First World Series HR comes from Hicks, capping 4-run first",
+        "summaryJa": "L.ヒックス（TB）、本塁打で存在感",
+        "slug": "rays-score-4-runs-in-first-inning-of-2026-world-series-game-2",
+        "url": "https://www.mlb.com/news/rays-score-4-runs-in-first-inning-of-2026-world-series-game-2",
+        "contentDate": "2026-10-25T01:00:00Z",
+        "teamIds": [
+            139
+        ],
+        "playerIds": [
+            689414
+        ],
+        "gamePks": [
+            849802
+        ],
+        "taxonomy": [
+            "apple-news",
+            "world-series"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Family affair: Priester's uncle, cousin to fly Crew's team plane to Game 3",
+        "summaryJa": "Q.プリースター（MIL）の最新動向をMLB公式が詳報",
+        "slug": "quinn-priester-uncle-to-captain-brewers-team-flight-to-florida-for-game-3",
+        "url": "https://www.mlb.com/news/quinn-priester-uncle-to-captain-brewers-team-flight-to-florida-for-game-3",
+        "contentDate": "2026-10-25T00:58:01.784Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [
+            682990
+        ],
+        "gamePks": [
+            849802
+        ],
+        "taxonomy": [
+            "world-series",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "MLB highlights youth initiatives during pregame ceremony",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "mlb-youth-baseball-players-ceremony-game-2-2026-world-series",
+        "url": "https://www.mlb.com/news/mlb-youth-baseball-players-ceremony-game-2-2026-world-series",
+        "contentDate": "2026-10-25T00:47:51.98Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [
+            849802
+        ],
+        "taxonomy": [
+            "apple-news",
+            "youth-baseball",
+            "world-series"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "After lost '26 season, Mets' Baro focused on adding pop in the desert",
+        "summaryJa": "Boston Baro（NYM）ら注目選手の最新動向",
+        "slug": "mets-prospect-boston-baro-adding-pop-arizona-fall-league",
+        "url": "https://www.mlb.com/news/mets-prospect-boston-baro-adding-pop-arizona-fall-league",
+        "contentDate": "2026-10-25T00:13:00Z",
+        "teamIds": [
+            121
+        ],
+        "playerIds": [
+            805951
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "mlb-top-prospects",
+            "apple-news",
+            "arizona-fall-league"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Jennie Finch Empowerment Award recipients take center stage at World Series",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "jennie-finch-empowerment-award-recipients-honored-at-2026-world-series",
+        "url": "https://www.mlb.com/news/jennie-finch-empowerment-award-recipients-honored-at-2026-world-series",
+        "contentDate": "2026-10-25T00:06:15.202Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "youth-baseball",
+            "world-series",
+            "softball",
+            "jennie-finch"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
         "headline": "MLB App launches for iPhone Duo just in time for World Series",
         "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
         "slug": "mlb-app-launches-for-iphone-duo",
@@ -15,23 +142,6 @@
         ],
         "sourceScopes": [
             "MLB"
-        ]
-    },
-    {
-        "headline": "Watch Angels prospects in Arizona Fall League action",
-        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
-        "slug": "watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
-        "url": "https://www.mlb.com/news/watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
-        "contentDate": "2026-10-24T22:39:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "arizona-fall-league"
-        ],
-        "sourceScopes": [
-            "球団公式"
         ]
     },
     {
@@ -71,30 +181,6 @@
         "taxonomy": [
             "apple-news",
             "world-series"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Rays-Brewers World Series Game 2 FAQ, lineups (8 ET, FOX/FOX One)",
-        "summaryJa": "ブルワーズの最新動向をMLB公式が詳報",
-        "slug": "rays-brewers-world-series-game-2-starting-lineups-and-pitching-matchup",
-        "url": "https://www.mlb.com/news/rays-brewers-world-series-game-2-starting-lineups-and-pitching-matchup",
-        "contentDate": "2026-10-24T20:36:00Z",
-        "teamIds": [
-            158,
-            139
-        ],
-        "playerIds": [],
-        "gamePks": [
-            849802
-        ],
-        "taxonomy": [
-            "world-series",
-            "apple-news",
-            "postseason"
         ],
         "sourceScopes": [
             "MLB",
@@ -583,7 +669,6 @@
             "world-series"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -621,22 +706,6 @@
             "apple-news",
             "postseason",
             "fans",
-            "rankings"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Teams with the best records in a postseason",
-        "summaryJa": "MLBの最新情報、記録達成の最新情報",
-        "slug": "best-mlb-single-season-postseason-winning-percentages",
-        "url": "https://www.mlb.com/news/best-mlb-single-season-postseason-winning-percentages",
-        "contentDate": "2026-10-24T03:38:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
             "rankings"
         ],
         "sourceScopes": [
@@ -917,24 +986,6 @@
         ]
     },
     {
-        "headline": "How the former Top 100 prospects in this year's World Series stack up",
-        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
-        "slug": "2026-world-series-players-ranked-as-prospects",
-        "url": "https://www.mlb.com/news/2026-world-series-players-ranked-as-prospects",
-        "contentDate": "2026-10-23T16:28:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "world-series",
-            "apple-news",
-            "mlb-top-prospects"
-        ],
-        "sourceScopes": [
-            "MLB"
-        ]
-    },
-    {
         "headline": "Tolle answered your questions ahead of the World Series. Here are his best responses",
         "summaryJa": "P.トーリー（BOS）の最新動向をMLB公式が詳報",
         "slug": "payton-tolle-answers-fan-questions-in-reddit-ama",
@@ -1072,28 +1123,6 @@
         ],
         "sourceScopes": [
             "球団公式"
-        ]
-    },
-    {
-        "headline": "The World Series could hinge on this strength-on-strength matchup",
-        "summaryJa": "レイズの最新動向をMLB公式が詳報",
-        "slug": "rays-defense-vs-brewers-offense-in-2026-world-series",
-        "url": "https://www.mlb.com/news/rays-defense-vs-brewers-offense-in-2026-world-series",
-        "contentDate": "2026-10-23T12:44:00Z",
-        "teamIds": [
-            139,
-            158
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "savant",
-            "player-tracking",
-            "world-series",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB"
         ]
     },
     {
@@ -1346,27 +1375,6 @@
         ],
         "sourceScopes": [
             "球団公式"
-        ]
-    },
-    {
-        "headline": "Yes, Misiorowski also teared up watching that viral interview of young fan after NLCS win",
-        "summaryJa": "J.ミザロウスキー（MIL）、勝利を呼び込む活躍",
-        "slug": "jacob-misiorowski-reacts-to-young-fan-interviewed-after-brewers-nlcs-win",
-        "url": "https://www.mlb.com/news/jacob-misiorowski-reacts-to-young-fan-interviewed-after-brewers-nlcs-win",
-        "contentDate": "2026-10-22T21:14:56.237Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [
-            694819
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "world-series",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB"
         ]
     },
     {
@@ -6832,28 +6840,6 @@
         "taxonomy": [
             "apple-news",
             "offseason"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Like father, like son: Bruin Agbayani's journey toward Queens stops in the Arizona Fall League",
-        "summaryJa": "Bruin Agbayani（NYM）の最新動向をMLB公式が詳報",
-        "slug": "mets-arizona-fall-league-overview-2026",
-        "url": "https://www.mlb.com/news/mets-arizona-fall-league-overview-2026",
-        "contentDate": "2026-10-06T14:18:07.825Z",
-        "teamIds": [
-            121
-        ],
-        "playerIds": [
-            828202
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "arizona-fall-league",
-            "mlb-top-prospects"
         ],
         "sourceScopes": [
             "球団公式"
