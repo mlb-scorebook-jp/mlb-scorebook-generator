@@ -2,6 +2,104 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Comeback Crew has been must-see all October -- and '82 squad loves every minute",
+        "summaryJa": "C.プラット（MIL）、勝利を呼び込む活躍",
+        "slug": "brewers-erase-four-run-deficit-win-2026-world-series-game-2",
+        "url": "https://www.mlb.com/news/brewers-erase-four-run-deficit-win-2026-world-series-game-2",
+        "contentDate": "2026-10-25T07:23:14.15Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [
+            806198
+        ],
+        "gamePks": [
+            849802
+        ],
+        "taxonomy": [
+            "world-series",
+            "postseason",
+            "apple-news",
+            "comeback"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Key takeaways as Brewers take commanding 2-0 lead in World Series",
+        "summaryJa": "レイズの最新動向をMLB公式が詳報",
+        "slug": "key-takeaways-from-world-series-game-2-2026",
+        "url": "https://www.mlb.com/news/key-takeaways-from-world-series-game-2-2026",
+        "contentDate": "2026-10-25T06:55:00Z",
+        "teamIds": [
+            139,
+            158
+        ],
+        "playerIds": [],
+        "gamePks": [
+            849802
+        ],
+        "taxonomy": [
+            "world-series",
+            "postseason",
+            "apple-news",
+            "takeaways"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Brewers-Rays World Series Game 3 FAQ (Monday, 8 ET, FOX/FOX One)",
+        "summaryJa": "レイズの最新動向をMLB公式が詳報",
+        "slug": "brewers-rays-world-series-game-3-starting-lineups-and-pitching-matchup",
+        "url": "https://www.mlb.com/news/brewers-rays-world-series-game-3-starting-lineups-and-pitching-matchup",
+        "contentDate": "2026-10-25T06:54:52.6Z",
+        "teamIds": [
+            139,
+            158
+        ],
+        "playerIds": [],
+        "gamePks": [
+            849804
+        ],
+        "taxonomy": [
+            "world-series",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "A 4-run lead with Ras on mound; what could go wrong? As it turns out ... plenty",
+        "summaryJa": "D.ラスムッセン（TB）の最新動向をMLB公式が詳報",
+        "slug": "rays-blow-4-0-lead-lose-game-2-of-2026-world-series",
+        "url": "https://www.mlb.com/news/rays-blow-4-0-lead-lose-game-2-of-2026-world-series",
+        "contentDate": "2026-10-25T06:51:46.884Z",
+        "teamIds": [
+            139
+        ],
+        "playerIds": [
+            656876
+        ],
+        "gamePks": [
+            849802
+        ],
+        "taxonomy": [
+            "apple-news",
+            "world-series"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Club built on doing little things right is suddenly getting them wrong",
         "summaryJa": "レイズの最新動向をMLB公式が詳報",
         "slug": "rays-struggle-with-fundamentals-in-2026-world-series-game-2",
@@ -163,31 +261,6 @@
             "arizona-fall-league"
         ],
         "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Key takeaways as Brewers take commanding 2-0 lead in World Series",
-        "summaryJa": "レイズの最新動向をMLB公式が詳報",
-        "slug": "key-takeaways-from-world-series-game-2-2026",
-        "url": "https://www.mlb.com/news/key-takeaways-from-world-series-game-2-2026",
-        "contentDate": "2026-10-25T04:11:08.302Z",
-        "teamIds": [
-            139,
-            158
-        ],
-        "playerIds": [],
-        "gamePks": [
-            849802
-        ],
-        "taxonomy": [
-            "world-series",
-            "postseason",
-            "apple-news",
-            "takeaways"
-        ],
-        "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -950,50 +1023,6 @@
         ]
     },
     {
-        "headline": "Brewers broadcasters to sport Bob Uecker's jackets during World Series Game 1",
-        "summaryJa": "ブルワーズの最新動向をMLB公式が詳報",
-        "slug": "brewers-announcers-wearing-bob-uecker-jackets-during-2026-world-series-game-1",
-        "url": "https://www.mlb.com/news/brewers-announcers-wearing-bob-uecker-jackets-during-2026-world-series-game-1",
-        "contentDate": "2026-10-23T20:58:36.258Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "world-series",
-            "apple-news",
-            "postseason"
-        ],
-        "sourceScopes": [
-            "MLB"
-        ]
-    },
-    {
-        "headline": "He's in: Woodruff added to Crew's World Series roster",
-        "summaryJa": "B.ウッドラフ（MIL）の最新動向をMLB公式が詳報",
-        "slug": "brewers-2026-world-series-roster",
-        "url": "https://www.mlb.com/news/brewers-2026-world-series-roster",
-        "contentDate": "2026-10-23T20:44:00Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [
-            605540
-        ],
-        "gamePks": [
-            849805
-        ],
-        "taxonomy": [
-            "apple-news",
-            "postseason",
-            "world-series"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "MLB Pipeline Pitching Lab: Tekoah Roby",
         "summaryJa": "T.ロビーの最新動向をMLB公式が詳報",
         "slug": "tekoah-roby-pitching-breakdown",
@@ -1032,24 +1061,6 @@
         ],
         "sourceScopes": [
             "球団公式"
-        ]
-    },
-    {
-        "headline": "How the former Top 100 prospects in this year's World Series stack up",
-        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
-        "slug": "2026-world-series-players-ranked-as-prospects",
-        "url": "https://www.mlb.com/news/2026-world-series-players-ranked-as-prospects",
-        "contentDate": "2026-10-23T16:28:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "world-series",
-            "apple-news",
-            "mlb-top-prospects"
-        ],
-        "sourceScopes": [
-            "MLB"
         ]
     },
     {
@@ -1275,49 +1286,6 @@
         ]
     },
     {
-        "headline": "'We're incredibly lucky to have him': Cash the right man to lead Rays",
-        "summaryJa": "レイズの最新動向をMLB公式が詳報",
-        "slug": "kevin-cash-evolving-his-style-as-rays-manager",
-        "url": "https://www.mlb.com/news/kevin-cash-evolving-his-style-as-rays-manager",
-        "contentDate": "2026-10-23T01:59:10.231Z",
-        "teamIds": [
-            139
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "world-series",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Bauers, Díaz reunite in World Series 8 years after trade that altered their careers",
-        "summaryJa": "Y.ディアス（TB）の移籍・契約に関する最新情報",
-        "slug": "jake-bauers-yandy-diaz-discuss-2018-trade-world-series",
-        "url": "https://www.mlb.com/news/jake-bauers-yandy-diaz-discuss-2018-trade-world-series",
-        "contentDate": "2026-10-23T01:26:45.516Z",
-        "teamIds": [
-            139,
-            158
-        ],
-        "playerIds": [
-            650490,
-            641343
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "postseason",
-            "world-series"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Small-town West Virginia boy Kyle West has sights set on big-city Yankees",
         "summaryJa": "Kyle West（NYY）ら注目選手の最新動向",
         "slug": "yankees-prospect-kyle-west-road-to-bronx-runs-through-arizona-fall-league",
@@ -1374,27 +1342,6 @@
         ],
         "sourceScopes": [
             "球団公式"
-        ]
-    },
-    {
-        "headline": "Yes, Misiorowski also teared up watching that viral interview of young fan after NLCS win",
-        "summaryJa": "J.ミザロウスキー（MIL）、勝利を呼び込む活躍",
-        "slug": "jacob-misiorowski-reacts-to-young-fan-interviewed-after-brewers-nlcs-win",
-        "url": "https://www.mlb.com/news/jacob-misiorowski-reacts-to-young-fan-interviewed-after-brewers-nlcs-win",
-        "contentDate": "2026-10-22T21:14:56.237Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [
-            694819
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "world-series",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB"
         ]
     },
     {
