@@ -2,6 +2,95 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Rays lend a helping hand (literally) to fellow member of 'Champa Bay'",
+        "summaryJa": "レイズの最新動向をMLB公式が詳報",
+        "slug": "rays-glove-buccaneers-quarterback-baker-mayfield",
+        "url": "https://www.mlb.com/news/rays-glove-buccaneers-quarterback-baker-mayfield",
+        "contentDate": "2026-10-25T21:30:48.859Z",
+        "teamIds": [
+            139
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "world-series",
+            "postseason"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Brewers-Rays World Series Game 3 FAQ (Monday, 8 ET, FOX/FOX One)",
+        "summaryJa": "レイズの最新動向をMLB公式が詳報",
+        "slug": "brewers-rays-world-series-game-3-starting-lineups-and-pitching-matchup",
+        "url": "https://www.mlb.com/news/brewers-rays-world-series-game-3-starting-lineups-and-pitching-matchup",
+        "contentDate": "2026-10-25T20:19:00Z",
+        "teamIds": [
+            139,
+            158
+        ],
+        "playerIds": [],
+        "gamePks": [
+            849804
+        ],
+        "taxonomy": [
+            "world-series",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "In tatters 2 years ago, rejuvenated Trop will host first World Series since '08",
+        "summaryJa": "レイズ、復帰へ向けた最新状況",
+        "slug": "world-series-returns-to-tropicana-field-for-first-time-since-2008",
+        "url": "https://www.mlb.com/news/world-series-returns-to-tropicana-field-for-first-time-since-2008",
+        "contentDate": "2026-10-25T19:58:57.448Z",
+        "teamIds": [
+            139
+        ],
+        "playerIds": [],
+        "gamePks": [
+            849804
+        ],
+        "taxonomy": [
+            "apple-news",
+            "world-series"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "'Fastball Freddy' benefiting from historic velo bump this postseason",
+        "summaryJa": "F.ペラルタ（TB）の最新動向をMLB公式が詳報",
+        "slug": "freddy-peralta-velocity-increase-2026-postseason",
+        "url": "https://www.mlb.com/news/freddy-peralta-velocity-increase-2026-postseason",
+        "contentDate": "2026-10-25T19:47:23.661Z",
+        "teamIds": [
+            139
+        ],
+        "playerIds": [
+            642547
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "player-tracking",
+            "savant",
+            "postseason"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Brewers, Rays prove there's still room for old-school scouting",
         "summaryJa": "レイズの最新動向をMLB公式が詳報",
         "slug": "brewers-rays-scouting-investment-world-series-2026",
@@ -19,6 +108,7 @@
             "apple-news"
         ],
         "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
@@ -175,29 +265,6 @@
             "postseason",
             "apple-news",
             "comeback"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Brewers-Rays World Series Game 3 FAQ (Monday, 8 ET, FOX/FOX One)",
-        "summaryJa": "レイズの最新動向をMLB公式が詳報",
-        "slug": "brewers-rays-world-series-game-3-starting-lineups-and-pitching-matchup",
-        "url": "https://www.mlb.com/news/brewers-rays-world-series-game-3-starting-lineups-and-pitching-matchup",
-        "contentDate": "2026-10-25T06:54:52.6Z",
-        "teamIds": [
-            139,
-            158
-        ],
-        "playerIds": [],
-        "gamePks": [
-            849804
-        ],
-        "taxonomy": [
-            "world-series",
-            "apple-news"
         ],
         "sourceScopes": [
             "MLB",
@@ -413,8 +480,7 @@
             "world-series"
         ],
         "sourceScopes": [
-            "MLB",
-            "球団公式"
+            "MLB"
         ]
     },
     {
@@ -824,28 +890,6 @@
         ]
     },
     {
-        "headline": "None of Rays' best relievers pitched in Game 1 -- and that could be a good thing",
-        "summaryJa": "レイズの最新動向をMLB公式が詳報",
-        "slug": "rays-bullpen-management-game-1-world-series-loss",
-        "url": "https://www.mlb.com/news/rays-bullpen-management-game-1-world-series-loss",
-        "contentDate": "2026-10-24T07:03:02.194Z",
-        "teamIds": [
-            139
-        ],
-        "playerIds": [],
-        "gamePks": [
-            849805
-        ],
-        "taxonomy": [
-            "world-series",
-            "postseason",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB"
-        ]
-    },
-    {
         "headline": "Captain sets tone for Crew: Yelich's RBI triple has teammates 'pumped'",
         "summaryJa": "C.イェリッチ（MIL）の最新動向をMLB公式が詳報",
         "slug": "christian-yelich-brewers-world-series-game-1-2026",
@@ -888,8 +932,7 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
-            "球団公式"
+            "MLB"
         ]
     },
     {
@@ -942,33 +985,6 @@
         ]
     },
     {
-        "headline": "Crew 'pen adds a little late drama, then gets back to its lockdown ways",
-        "summaryJa": "T.メギル（MIL）、勝利を呼び込む活躍",
-        "slug": "brewers-bullpen-seals-2026-world-series-game-1-win",
-        "url": "https://www.mlb.com/news/brewers-bullpen-seals-2026-world-series-game-1-win",
-        "contentDate": "2026-10-24T06:14:07.17Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [
-            656730,
-            682842,
-            676879
-        ],
-        "gamePks": [
-            849805
-        ],
-        "taxonomy": [
-            "apple-news",
-            "postseason",
-            "world-series",
-            "relief-performance"
-        ],
-        "sourceScopes": [
-            "MLB"
-        ]
-    },
-    {
         "headline": "Brewers weather ninth-inning storm, take Game 1 in front of raucous fans",
         "summaryJa": "ブルワーズ、勝利を呼び込む活躍",
         "slug": "brewers-win-world-series-game-1-2026",
@@ -1010,29 +1026,6 @@
             "world-series",
             "apple-news",
             "replay"
-        ],
-        "sourceScopes": [
-            "MLB"
-        ]
-    },
-    {
-        "headline": "Miz, Caminero and other players in 'Avengers: Doomsday'? Take a sneak peek at it",
-        "summaryJa": "レイズの最新動向をMLB公式が詳報",
-        "slug": "avengers-doomsday-game-1-of-the-2026-world-series",
-        "url": "https://www.mlb.com/news/avengers-doomsday-game-1-of-the-2026-world-series",
-        "contentDate": "2026-10-24T00:58:03.072Z",
-        "teamIds": [
-            139,
-            158
-        ],
-        "playerIds": [],
-        "gamePks": [
-            849805
-        ],
-        "taxonomy": [
-            "apple-news",
-            "offbeat",
-            "world-series"
         ],
         "sourceScopes": [
             "MLB"
