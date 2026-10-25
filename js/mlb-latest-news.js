@@ -2,6 +2,135 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Brewers, Rays prove there's still room for old-school scouting",
+        "summaryJa": "レイズの最新動向をMLB公式が詳報",
+        "slug": "brewers-rays-scouting-investment-world-series-2026",
+        "url": "https://www.mlb.com/news/brewers-rays-scouting-investment-world-series-2026",
+        "contentDate": "2026-10-25T18:46:13.957Z",
+        "teamIds": [
+            139,
+            158
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "world-series",
+            "postseason",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Peralta set to meet old friends -- and new foes -- in Fall Classic",
+        "summaryJa": "F.ペラルタ（TB）の最新動向をMLB公式が詳報",
+        "slug": "freddy-peralta-ready-to-face-old-team-in-2026-world-series",
+        "url": "https://www.mlb.com/news/freddy-peralta-ready-to-face-old-team-in-2026-world-series",
+        "contentDate": "2026-10-25T18:00:00Z",
+        "teamIds": [
+            139
+        ],
+        "playerIds": [
+            642547
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "world-series"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "What makes Walls such a great shortstop? For one, 'he cheats' (kind of)",
+        "summaryJa": "T.ウォールズ（TB）の最新動向をMLB公式が詳報",
+        "slug": "taylor-walls-great-defense-for-rays-in-2026-mlb-season",
+        "url": "https://www.mlb.com/news/taylor-walls-great-defense-for-rays-in-2026-mlb-season",
+        "contentDate": "2026-10-25T17:21:41.697Z",
+        "teamIds": [
+            139
+        ],
+        "playerIds": [
+            670764
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "postseason",
+            "world-series"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "How the Rays can send the World Series back to Milwaukee",
+        "summaryJa": "レイズを巡る注目点をMLB公式が分析",
+        "slug": "rays-keys-to-extending-world-series-vs-brewers-after-game-2",
+        "url": "https://www.mlb.com/news/rays-keys-to-extending-world-series-vs-brewers-after-game-2",
+        "contentDate": "2026-10-25T16:57:17.79Z",
+        "teamIds": [
+            139
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "world-series",
+            "postseason"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Turang made shocking pitch to Brewers to land 1st pro contract ... or did he?",
+        "summaryJa": "B.テュラング（MIL）の移籍・契約に関する最新情報",
+        "slug": "brice-turang-s-surprising-pitch-to-brewers-for-first-pro-contract",
+        "url": "https://www.mlb.com/news/brice-turang-s-surprising-pitch-to-brewers-for-first-pro-contract",
+        "contentDate": "2026-10-25T16:40:00Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [
+            668930
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "world-series"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Meet the true X-factors in this World Series: The roofs",
+        "summaryJa": "レイズの最新動向をMLB公式が詳報",
+        "slug": "ground-rules-for-roofs-rays-brewers-world-series",
+        "url": "https://www.mlb.com/news/ground-rules-for-roofs-rays-brewers-world-series",
+        "contentDate": "2026-10-25T16:15:00Z",
+        "teamIds": [
+            139,
+            158
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "world-series",
+            "postseason"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Key takeaways as Brewers take commanding 2-0 lead in World Series",
         "summaryJa": "レイズの最新動向をMLB公式が詳報",
         "slug": "key-takeaways-from-world-series-game-2-2026",
@@ -610,7 +739,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -692,8 +820,7 @@
             "player-tracking"
         ],
         "sourceScopes": [
-            "MLB",
-            "球団公式"
+            "MLB"
         ]
     },
     {
@@ -715,8 +842,7 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
-            "球団公式"
+            "MLB"
         ]
     },
     {
@@ -812,8 +938,7 @@
             "takeaways"
         ],
         "sourceScopes": [
-            "MLB",
-            "球団公式"
+            "MLB"
         ]
     },
     {
@@ -840,8 +965,7 @@
             "relief-performance"
         ],
         "sourceScopes": [
-            "MLB",
-            "球団公式"
+            "MLB"
         ]
     },
     {
@@ -888,8 +1012,7 @@
             "replay"
         ],
         "sourceScopes": [
-            "MLB",
-            "球団公式"
+            "MLB"
         ]
     },
     {
@@ -912,30 +1035,7 @@
             "world-series"
         ],
         "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Junior Caminero's batting practice sessions are becoming a demolition derby",
-        "summaryJa": "J.キャミネロ（TB）の最新動向をMLB公式が詳報",
-        "slug": "junior-caminero-damages-american-family-field-videoboard-before-world-series-game-1",
-        "url": "https://www.mlb.com/news/junior-caminero-damages-american-family-field-videoboard-before-world-series-game-1",
-        "contentDate": "2026-10-23T23:41:00Z",
-        "teamIds": [
-            139
-        ],
-        "playerIds": [
-            691406
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "world-series",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
+            "MLB"
         ]
     },
     {
@@ -973,49 +1073,6 @@
             "injury",
             "transactions",
             "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "'Last Man Standing': Murphy gets FaceTime call from idol Springsteen",
-        "summaryJa": "ブルワーズの最新動向をMLB公式が詳報",
-        "slug": "pat-murphy-gets-facetime-call-from-bruce-springsteen",
-        "url": "https://www.mlb.com/news/pat-murphy-gets-facetime-call-from-bruce-springsteen",
-        "contentDate": "2026-10-23T22:41:07.509Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [],
-        "gamePks": [
-            849805
-        ],
-        "taxonomy": [
-            "apple-news",
-            "world-series"
-        ],
-        "sourceScopes": [
-            "MLB"
-        ]
-    },
-    {
-        "headline": "Cleavinger back on Rays' World Series roster",
-        "summaryJa": "レイズの最新動向をMLB公式が詳報",
-        "slug": "rays-2026-world-series-roster",
-        "url": "https://www.mlb.com/news/rays-2026-world-series-roster",
-        "contentDate": "2026-10-23T21:30:00Z",
-        "teamIds": [
-            139
-        ],
-        "playerIds": [],
-        "gamePks": [
-            849805
-        ],
-        "taxonomy": [
-            "apple-news",
-            "postseason",
-            "world-series"
         ],
         "sourceScopes": [
             "球団公式"
@@ -1330,19 +1387,20 @@
         ]
     },
     {
-        "headline": "Brewers quickly sell out watch parties for first two World Series road games",
-        "summaryJa": "ブルワーズの最新動向をMLB公式が詳報",
-        "slug": "brewers-sell-out-watch-parties-for-2026-world-series-games-3-4",
-        "url": "https://www.mlb.com/news/brewers-sell-out-watch-parties-for-2026-world-series-games-3-4",
-        "contentDate": "2026-10-22T23:09:14.141Z",
+        "headline": "Neander, Arnold put 19-year friendship aside as teams square off for title",
+        "summaryJa": "レイズの最新動向をMLB公式が詳報",
+        "slug": "matt-arnold-erik-neander-worked-together-with-rays",
+        "url": "https://www.mlb.com/news/matt-arnold-erik-neander-worked-together-with-rays",
+        "contentDate": "2026-10-22T22:20:24.952Z",
         "teamIds": [
+            139,
             158
         ],
         "playerIds": [],
         "gamePks": [],
         "taxonomy": [
-            "world-series",
-            "apple-news"
+            "apple-news",
+            "world-series"
         ],
         "sourceScopes": [
             "球団公式"
