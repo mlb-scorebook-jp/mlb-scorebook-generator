@@ -18,6 +18,7 @@
             "postseason"
         ],
         "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
@@ -157,8 +158,8 @@
         ]
     },
     {
-        "headline": "How the Rays can send the World Series back to Milwaukee",
-        "summaryJa": "レイズを巡る注目点をMLB公式が分析",
+        "headline": "3 things the Rays need to do to send World Series back to Milwaukee",
+        "summaryJa": "レイズの最新動向をMLB公式が詳報",
         "slug": "rays-keys-to-extending-world-series-vs-brewers-after-game-2",
         "url": "https://www.mlb.com/news/rays-keys-to-extending-world-series-vs-brewers-after-game-2",
         "contentDate": "2026-10-25T16:57:17.79Z",
@@ -911,28 +912,6 @@
         "sourceScopes": [
             "MLB",
             "球団公式"
-        ]
-    },
-    {
-        "headline": "Rays' best-laid Game 1 plans undone by Brewers' airtight arms",
-        "summaryJa": "レイズの最新動向をMLB公式が詳報",
-        "slug": "rays-lose-game-1-of-2026-world-series",
-        "url": "https://www.mlb.com/news/rays-lose-game-1-of-2026-world-series",
-        "contentDate": "2026-10-24T06:54:00Z",
-        "teamIds": [
-            139
-        ],
-        "playerIds": [],
-        "gamePks": [
-            849805
-        ],
-        "taxonomy": [
-            "world-series",
-            "postseason",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB"
         ]
     },
     {
