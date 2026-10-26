@@ -2,6 +2,72 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "A pen, a napkin and a ninja: How Murphy draws up the Crew's winning lineups",
+        "summaryJa": "ブルワーズを巡る注目点をMLB公式が分析",
+        "slug": "pat-murphy-draws-out-starting-lineups-on-napkins",
+        "url": "https://www.mlb.com/news/pat-murphy-draws-out-starting-lineups-on-napkins",
+        "contentDate": "2026-10-26T00:18:30.186Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "postseason",
+            "world-series"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "MLBx takes over Mumbai in star-studded sport crossover",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "mlbx-mumbai-brings-together-baseball-softball-and-cricket-stars",
+        "url": "https://www.mlb.com/news/mlbx-mumbai-brings-together-baseball-softball-and-cricket-stars",
+        "contentDate": "2026-10-25T23:59:07.792Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "mlbx",
+            "leagueid-6044",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "Arizona Fall League Week 3 top performers",
+        "summaryJa": "Yerlin Confidanの最新動向をMLB公式が詳報",
+        "slug": "arizona-fall-league-top-performers-week-3-2026",
+        "url": "https://www.mlb.com/news/arizona-fall-league-top-performers-week-3-2026",
+        "contentDate": "2026-10-25T23:20:00Z",
+        "teamIds": [],
+        "playerIds": [
+            691398,
+            828076,
+            703610,
+            828987,
+            691942,
+            806191,
+            703606
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "mlb-top-prospects",
+            "apple-news",
+            "arizona-fall-league"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Rays lend a helping hand (literally) to fellow member of 'Champa Bay'",
         "summaryJa": "レイズの最新動向をMLB公式が詳報",
         "slug": "rays-glove-buccaneers-quarterback-baker-mayfield",
@@ -646,7 +712,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -910,32 +975,6 @@
             "world-series"
         ],
         "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Rays were perfect on postseason SBs -- until Contreras put up a stop sign",
-        "summaryJa": "W.コントレラス（TB）の移籍・契約に関する最新情報",
-        "slug": "william-contreras-catches-two-rays-stealing-in-game-1-of-2026-world-series",
-        "url": "https://www.mlb.com/news/william-contreras-catches-two-rays-stealing-in-game-1-of-2026-world-series",
-        "contentDate": "2026-10-24T06:39:42.795Z",
-        "teamIds": [
-            139,
-            158
-        ],
-        "playerIds": [
-            661388
-        ],
-        "gamePks": [
-            849805
-        ],
-        "taxonomy": [
-            "apple-news",
-            "world-series"
-        ],
-        "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -3522,28 +3561,6 @@
         "gamePks": [],
         "taxonomy": [
             "transactions"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Yankees 'bizarro right-hander' building on first pro action in the desert",
-        "summaryJa": "Mack Estrada（NYY）ら注目選手の最新動向",
-        "slug": "yankees-prospect-mack-estrada-logging-lost-innings-arizona-fall-league",
-        "url": "https://www.mlb.com/news/yankees-prospect-mack-estrada-logging-lost-innings-arizona-fall-league",
-        "contentDate": "2026-10-16T14:26:39.62Z",
-        "teamIds": [
-            147
-        ],
-        "playerIds": [
-            806070
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "mlb-top-prospects",
-            "arizona-fall-league",
-            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
@@ -6699,26 +6716,6 @@
         ]
     },
     {
-        "headline": "Cardinals' Double-A club springs to life with new identity",
-        "summaryJa": "カージナルスの最新動向をMLB公式が詳報",
-        "slug": "st-louis-affiliate-unveils-ozarks-springbirds-identity",
-        "url": "https://www.mlb.com/news/st-louis-affiliate-unveils-ozarks-springbirds-identity",
-        "contentDate": "2026-10-06T23:22:00Z",
-        "teamIds": [
-            138
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "minor-league-baseball",
-            "apple-news",
-            "baseball-traveler"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Trio of coaches won't return to Mets' Major League staff in 2027",
         "summaryJa": "メッツ、復帰へ向けた最新状況",
         "slug": "mets-coaching-changes-2027",
@@ -7201,26 +7198,6 @@
         ]
     },
     {
-        "headline": "Royals' 17-year-old prospect puts potential on full display in stateside debut",
-        "summaryJa": "Angeibel Gomez、メジャー昇格・初出場に関する最新情報",
-        "slug": "royals-angeibel-gomez-debuts-stateside-arizona-fall-league",
-        "url": "https://www.mlb.com/news/royals-angeibel-gomez-debuts-stateside-arizona-fall-league",
-        "contentDate": "2026-10-05T04:15:00Z",
-        "teamIds": [],
-        "playerIds": [
-            825412
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "mlb-top-prospects",
-            "apple-news",
-            "arizona-fall-league"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "'We let an opportunity slip away': Hoyer, Cubs evaluating future after postseason exit",
         "summaryJa": "P.クローアームストロング（CHC）の最新動向をMLB公式が詳報",
         "slug": "jed-hoyer-talks-cubs-wild-card-series-loss-to-padres",
@@ -7351,24 +7328,6 @@
         "contentDate": "2026-10-02T00:49:00Z",
         "teamIds": [
             109
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Phil Castellini focused on making Reds contenders: 'We have a commitment to this city'",
-        "summaryJa": "レッズの最新動向をMLB公式が詳報",
-        "slug": "reds-ceo-phil-castellini-talks-reds-future",
-        "url": "https://www.mlb.com/news/reds-ceo-phil-castellini-talks-reds-future",
-        "contentDate": "2026-10-01T19:36:26.103Z",
-        "teamIds": [
-            113
         ],
         "playerIds": [],
         "gamePks": [],
