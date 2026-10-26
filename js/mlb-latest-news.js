@@ -2,6 +2,113 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "McGonigle has a strong case for AL Rookie of the Year -- will he win?",
+        "summaryJa": "K.マゴニグル（DET）、勝利を呼び込む活躍",
+        "slug": "kevin-mcgonigle-in-running-for-al-rookie-of-the-year-award",
+        "url": "https://www.mlb.com/news/kevin-mcgonigle-in-running-for-al-rookie-of-the-year-award",
+        "contentDate": "2026-10-26T13:56:16.886Z",
+        "teamIds": [
+            116
+        ],
+        "playerIds": [
+            805808
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "awards-watch"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Spurred by 'how much I love pitching,' Leiter aims to return strong from ankle injury",
+        "summaryJa": "J.ライター（TEX）の負傷状況をMLB公式が詳報",
+        "slug": "jack-leiter-looking-forward-to-being-healthy-again-in-2027",
+        "url": "https://www.mlb.com/news/jack-leiter-looking-forward-to-being-healthy-again-in-2027",
+        "contentDate": "2026-10-26T13:33:34.095Z",
+        "teamIds": [
+            140
+        ],
+        "playerIds": [
+            683004
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "These Mets made their case for recognition this awards season",
+        "summaryJa": "C.ベンジ（NYM）の最新動向をMLB公式が詳報",
+        "slug": "mets-players-in-contention-for-2026-mlb-awards",
+        "url": "https://www.mlb.com/news/mets-players-in-contention-for-2026-mlb-awards",
+        "contentDate": "2026-10-26T13:30:17.511Z",
+        "teamIds": [
+            121
+        ],
+        "playerIds": [
+            701807,
+            690997,
+            805999,
+            620443
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "awards-watch"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "What can the Blue Jays learn from the Brewers and Rays this World Series?",
+        "summaryJa": "ブルージェイズの最新動向をMLB公式が詳報",
+        "slug": "blue-jays-rays-brewers-2026-world-series",
+        "url": "https://www.mlb.com/news/blue-jays-rays-brewers-2026-world-series",
+        "contentDate": "2026-10-26T13:22:34.32Z",
+        "teamIds": [
+            141
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Lindor wins 2026 Clemente Award, in spirit of his idol and countryman",
+        "summaryJa": "F.リンドー（NYM）、勝利を呼び込む活躍",
+        "slug": "francisco-lindor-2026-clemente-award",
+        "url": "https://www.mlb.com/news/francisco-lindor-2026-clemente-award",
+        "contentDate": "2026-10-26T13:02:58.624Z",
+        "teamIds": [
+            121
+        ],
+        "playerIds": [
+            596019
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "roberto-clemente-award",
+            "apple-news",
+            "awards-watch"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Watch Angels prospects in Arizona Fall League action",
         "summaryJa": "MLBの最新情報ら注目選手の最新動向",
         "slug": "watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
@@ -735,7 +842,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -6435,28 +6541,6 @@
         ]
     },
     {
-        "headline": "Ever closer to his MLB debut, Hope leads Tigers' group in Fall League",
-        "summaryJa": "Z.ホープ（DET）、メジャー昇格・初出場に関する最新情報",
-        "slug": "tigers-arizona-fall-league-overview-2026",
-        "url": "https://www.mlb.com/news/tigers-arizona-fall-league-overview-2026",
-        "contentDate": "2026-10-07T14:20:17.523Z",
-        "teamIds": [
-            116
-        ],
-        "playerIds": [
-            814307
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "arizona-fall-league",
-            "mlb-top-prospects"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "5 biggest questions facing Marlins for upcoming offseason",
         "summaryJa": "S.アルカンタラ（MIA）の最新動向をMLB公式が詳報",
         "slug": "biggest-questions-facing-marlins-for-2026-27-offseason",
@@ -7101,27 +7185,6 @@
         "taxonomy": [
             "apple-news",
             "offseason"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Five big questions that will define Mets' offseason",
-        "summaryJa": "B.ビシェット（NYM）の最新動向をMLB公式が詳報",
-        "slug": "five-big-questions-that-will-define-mets-offseason",
-        "url": "https://www.mlb.com/news/five-big-questions-that-will-define-mets-offseason",
-        "contentDate": "2026-10-05T13:39:02.995Z",
-        "teamIds": [
-            121
-        ],
-        "playerIds": [
-            666182,
-            701807
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
