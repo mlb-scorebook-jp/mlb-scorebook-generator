@@ -531,7 +531,7 @@
         if (!tbody) return;
         const rows = sortedCatcherRows();
         const visibleRows = rows.slice(0, catcherState.visibleCount);
-        const fieldingStatsUrl = (row) => `https://statsapi.mlb.com/api/v1/people/${row.playerId}/stats?stats=season&group=fielding&season=2026&gameType=R`;
+        const catcherThrowingUrl = (row) => `https://baseballsavant.mlb.com/leaderboard/catcher-throwing?game_type=Regular&n=1&season_end=2026&season_start=2026&split=no&target_base=All&team=${row.teamId}&type=Cat&with_team_only=1`;
         const popTimeUrl = (row) => `https://baseballsavant.mlb.com/leaderboard/poptime?year=2026&team=&min2b=0&min3b=0&playerId=${row.playerId}`;
         const link = (url, value) => `<a class="ability-value-link" href="${url}" target="_blank" rel="noopener noreferrer">${value}</a>`;
         tbody.innerHTML = rows.length ? visibleRows.map((row, index) => `<tr>
@@ -539,8 +539,8 @@
             <td class="ability-team"><img src="https://www.mlbstatic.com/team-logos/${row.teamId}.svg" alt="${escapeHtml(row.team)}" title="${escapeHtml(row.team)}" loading="lazy"></td>
             <td class="ability-player">${escapeHtml(japanesePlayerName(row.player))}</td>
             <td>${row.age ?? "—"}</td><td>${row.throwBat}</td>
-            <td class="ability-defense-value">${row.attempts ? link(fieldingStatsUrl(row), `${row.caughtStealing}/${row.attempts}`) : "—"}</td>
-            <td class="ability-defense-value">${row.caughtStealingRate == null ? "—" : link(fieldingStatsUrl(row), `${(row.caughtStealingRate * 100).toFixed(1)}%`)}</td>
+            <td class="ability-defense-value">${row.attempts ? link(catcherThrowingUrl(row), `${row.caughtStealing}/${row.attempts}`) : "—"}</td>
+            <td class="ability-defense-value">${row.caughtStealingRate == null ? "—" : link(catcherThrowingUrl(row), `${(row.caughtStealingRate * 100).toFixed(1)}%`)}</td>
             <td class="ability-velocity">${row.catcherArmStrength == null ? "—" : link(popTimeUrl(row), `${milesPerHourToKmh(row.catcherArmStrength).toFixed(1)} km/h`)}</td>
             <td>${row.exchangeTime == null ? "—" : link(popTimeUrl(row), `${row.exchangeTime.toFixed(2)}秒`)}</td>
             <td>${row.popTime2b == null ? "—" : link(popTimeUrl(row), `${row.popTime2b.toFixed(2)}秒`)}</td>
