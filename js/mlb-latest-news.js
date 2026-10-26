@@ -6,11 +6,141 @@
         "summaryJa": "MLBの最新情報ら注目選手の最新動向",
         "slug": "watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
         "url": "https://www.mlb.com/news/watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
-        "contentDate": "2026-10-26T19:47:00Z",
+        "contentDate": "2026-10-26T23:19:00Z",
         "teamIds": [],
         "playerIds": [],
         "gamePks": [],
         "taxonomy": [
+            "apple-news",
+            "arizona-fall-league"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Lindor wins 2026 Clemente Award, in spirit of his idol and countryman",
+        "summaryJa": "F.リンドー（NYM）、勝利を呼び込む活躍",
+        "slug": "francisco-lindor-2026-clemente-award",
+        "url": "https://www.mlb.com/news/francisco-lindor-2026-clemente-award",
+        "contentDate": "2026-10-26T23:03:00Z",
+        "teamIds": [
+            121
+        ],
+        "playerIds": [
+            596019
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "roberto-clemente-award",
+            "apple-news",
+            "awards-watch"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Phillies hire Fatse to be new hitting coach (source)",
+        "summaryJa": "フィリーズの最新動向をMLB公式が詳報",
+        "slug": "phillies-hire-peter-fatse-as-new-hitting-coach",
+        "url": "https://www.mlb.com/news/phillies-hire-peter-fatse-as-new-hitting-coach",
+        "contentDate": "2026-10-26T22:29:37.493Z",
+        "teamIds": [
+            143
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "White Sox inform TV play-by-play voice Schriffen that his contract won't be extended",
+        "summaryJa": "ホワイトソックス、復帰へ向けた最新状況",
+        "slug": "white-sox-announce-john-schriffen-won-t-return-broadcasts",
+        "url": "https://www.mlb.com/news/white-sox-announce-john-schriffen-won-t-return-broadcasts",
+        "contentDate": "2026-10-26T21:52:09.935Z",
+        "teamIds": [
+            145
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Brewers-Rays World Series Game 3 FAQ, lineups (Monday, 8 ET, FOX/FOX One)",
+        "summaryJa": "レイズの最新動向をMLB公式が詳報",
+        "slug": "brewers-rays-world-series-game-3-starting-lineups-and-pitching-matchup",
+        "url": "https://www.mlb.com/news/brewers-rays-world-series-game-3-starting-lineups-and-pitching-matchup",
+        "contentDate": "2026-10-26T20:41:00Z",
+        "teamIds": [
+            139,
+            158
+        ],
+        "playerIds": [],
+        "gamePks": [
+            849804
+        ],
+        "taxonomy": [
+            "world-series",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Former Ray -- and 2020 World Series hero -- gives back to cause near and dear to him",
+        "summaryJa": "B.フィリップス（TB）の最新動向をMLB公式が詳報",
+        "slug": "mlb-rays-partner-on-boys-and-girls-club-event-in-tampa-bay",
+        "url": "https://www.mlb.com/news/mlb-rays-partner-on-boys-and-girls-club-event-in-tampa-bay",
+        "contentDate": "2026-10-26T20:39:24.575Z",
+        "teamIds": [
+            139
+        ],
+        "playerIds": [
+            621433
+        ],
+        "gamePks": [
+            849804
+        ],
+        "taxonomy": [
+            "world-series",
+            "postseason",
+            "apple-news",
+            "community",
+            "mlb-community-org"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Just a beach boy from Australia, O’s prospect Hamson sets sights on MLB debut in '28",
+        "summaryJa": "オリオールズ、メジャー昇格・初出場に関する最新情報",
+        "slug": "kailen-hamson-sets-sights-on-two-debuts-in-2028",
+        "url": "https://www.mlb.com/news/kailen-hamson-sets-sights-on-two-debuts-in-2028",
+        "contentDate": "2026-10-26T20:27:27.846Z",
+        "teamIds": [
+            110
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "mlb-top-prospects",
             "apple-news",
             "arizona-fall-league"
         ],
@@ -35,6 +165,7 @@
             "apple-news"
         ],
         "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
@@ -135,7 +266,8 @@
             "postseason"
         ],
         "sourceScopes": [
-            "MLB"
+            "MLB",
+            "球団公式"
         ]
     },
     {
@@ -349,29 +481,6 @@
         ]
     },
     {
-        "headline": "Lindor wins 2026 Clemente Award, in spirit of his idol and countryman",
-        "summaryJa": "F.リンドー（NYM）、勝利を呼び込む活躍",
-        "slug": "francisco-lindor-2026-clemente-award",
-        "url": "https://www.mlb.com/news/francisco-lindor-2026-clemente-award",
-        "contentDate": "2026-10-26T13:02:58.624Z",
-        "teamIds": [
-            121
-        ],
-        "playerIds": [
-            596019
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "roberto-clemente-award",
-            "apple-news",
-            "awards-watch"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
         "headline": "With World Series start, Gasser is living his dream -- and his dad's",
         "summaryJa": "R.ギャサー（MIL）の最新動向をMLB公式が詳報",
         "slug": "robert-gasser-living-his-dream-dad-s-in-2026-world-series",
@@ -496,29 +605,6 @@
             "apple-news",
             "world-series",
             "postseason"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Brewers-Rays World Series Game 3 FAQ (Monday, 8 ET, FOX/FOX One)",
-        "summaryJa": "レイズの最新動向をMLB公式が詳報",
-        "slug": "brewers-rays-world-series-game-3-starting-lineups-and-pitching-matchup",
-        "url": "https://www.mlb.com/news/brewers-rays-world-series-game-3-starting-lineups-and-pitching-matchup",
-        "contentDate": "2026-10-25T20:19:00Z",
-        "teamIds": [
-            139,
-            158
-        ],
-        "playerIds": [],
-        "gamePks": [
-            849804
-        ],
-        "taxonomy": [
-            "world-series",
-            "apple-news"
         ],
         "sourceScopes": [
             "MLB",
@@ -794,7 +880,6 @@
             "world-series"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -925,52 +1010,6 @@
         ]
     },
     {
-        "headline": "First World Series HR comes from Hicks, capping 4-run first",
-        "summaryJa": "L.ヒックス（TB）、本塁打で存在感",
-        "slug": "rays-score-4-runs-in-first-inning-of-2026-world-series-game-2",
-        "url": "https://www.mlb.com/news/rays-score-4-runs-in-first-inning-of-2026-world-series-game-2",
-        "contentDate": "2026-10-25T03:57:00Z",
-        "teamIds": [
-            139
-        ],
-        "playerIds": [
-            689414
-        ],
-        "gamePks": [
-            849802
-        ],
-        "taxonomy": [
-            "apple-news",
-            "world-series"
-        ],
-        "sourceScopes": [
-            "MLB"
-        ]
-    },
-    {
-        "headline": "Family affair: Priester's uncle, cousin to fly Crew's team plane to Game 3",
-        "summaryJa": "Q.プリースター（MIL）の最新動向をMLB公式が詳報",
-        "slug": "quinn-priester-uncle-to-captain-brewers-team-flight-to-florida-for-game-3",
-        "url": "https://www.mlb.com/news/quinn-priester-uncle-to-captain-brewers-team-flight-to-florida-for-game-3",
-        "contentDate": "2026-10-25T00:58:01.784Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [
-            682990
-        ],
-        "gamePks": [
-            849802
-        ],
-        "taxonomy": [
-            "world-series",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "After lost '26 season, Mets' Baro focused on adding pop in the desert",
         "summaryJa": "Boston Baro（NYM）ら注目選手の最新動向",
         "slug": "mets-prospect-boston-baro-adding-pop-arizona-fall-league",
@@ -990,26 +1029,6 @@
         ],
         "sourceScopes": [
             "球団公式"
-        ]
-    },
-    {
-        "headline": "Jennie Finch Empowerment Award recipients take center stage at World Series",
-        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
-        "slug": "jennie-finch-empowerment-award-recipients-honored-at-2026-world-series",
-        "url": "https://www.mlb.com/news/jennie-finch-empowerment-award-recipients-honored-at-2026-world-series",
-        "contentDate": "2026-10-25T00:06:15.202Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "youth-baseball",
-            "world-series",
-            "softball",
-            "jennie-finch"
-        ],
-        "sourceScopes": [
-            "MLB"
         ]
     },
     {
@@ -5452,28 +5471,6 @@
         ]
     },
     {
-        "headline": "Bonemer looks to take fast lane to South Side with OF reps in Fall League",
-        "summaryJa": "Caleb Bonemer（CWS）の最新動向をMLB公式が詳報",
-        "slug": "white-sox-arizona-fall-league-overview-2026",
-        "url": "https://www.mlb.com/news/white-sox-arizona-fall-league-overview-2026",
-        "contentDate": "2026-10-12T13:35:00.955Z",
-        "teamIds": [
-            145
-        ],
-        "playerIds": [
-            815352
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "mlb-top-prospects",
-            "apple-news",
-            "arizona-fall-league"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Orioles' No. 5 prospect Ike Irish feeling the pull of the Arizona Fall League",
         "summaryJa": "Ike Irish（BAL）ら注目選手の最新動向",
         "slug": "orioles-arizona-fall-league-overview-2026",
@@ -5946,25 +5943,6 @@
         "taxonomy": [
             "apple-news",
             "injury"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Five pressing questions facing Phillies during critical offseason",
-        "summaryJa": "フィリーズの最新動向をMLB公式が詳報",
-        "slug": "questions-facing-phillies-in-2026-offseason",
-        "url": "https://www.mlb.com/news/questions-facing-phillies-in-2026-offseason",
-        "contentDate": "2026-10-09T19:45:44.417Z",
-        "teamIds": [
-            143
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "offseason"
         ],
         "sourceScopes": [
             "球団公式"
@@ -6862,28 +6840,6 @@
         "playerIds": [],
         "gamePks": [],
         "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Tooled-up O's prospect Honeycutt using Arizona Fall League as proving ground",
-        "summaryJa": "Vance Honeycutt（BAL）ら注目選手の最新動向",
-        "slug": "vance-honeycutt-using-arizona-fall-league-as-proving-ground",
-        "url": "https://www.mlb.com/news/vance-honeycutt-using-arizona-fall-league-as-proving-ground",
-        "contentDate": "2026-10-06T21:06:17.527Z",
-        "teamIds": [
-            110
-        ],
-        "playerIds": [
-            701689
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "mlb-top-prospects",
-            "arizona-fall-league",
             "apple-news"
         ],
         "sourceScopes": [
