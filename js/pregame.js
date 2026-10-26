@@ -1503,9 +1503,21 @@
         return block;
     };
 
-    const renderJapaneseDailyStats = (daily) => {
+    const renderJapaneseDailyStats = (daily, { collapsed = false } = {}) => {
         const wrapper = section("日本人選手 当日成績一覧");
         wrapper.classList.add("pregame-japanese-daily-section");
+        if (collapsed) {
+            wrapper.classList.add("is-collapsed");
+            const toggle = el("button", "pregame-free-agent-toggle", "表示");
+            toggle.type = "button";
+            toggle.setAttribute("aria-expanded", "false");
+            toggle.addEventListener("click", () => {
+                const isCollapsed = wrapper.classList.toggle("is-collapsed");
+                toggle.textContent = isCollapsed ? "表示" : "閉じる";
+                toggle.setAttribute("aria-expanded", String(!isCollapsed));
+            });
+            wrapper.querySelector(".pregame-section-header")?.append(toggle);
+        }
         const layout = el("div", "pregame-japanese-daily-layout");
         const tables = el("div", "pregame-japanese-daily-tables");
         const commonColumns = [
@@ -6647,8 +6659,15 @@
                 japaneseSection.append(japaneseGrid);
             }
             dashboard.append(japaneseSection);
+            const japanesePostseasonTeamStillActive = postseasonTeams && todaysJapanese.some(
+                (person) => postseasonTeams.has(Number(person.pregameTeamId)) &&
+                    !eliminatedPostseasonTeams.has(Number(person.pregameTeamId))
+            );
             dashboard.append(renderJapaneseDailyStats(
-                await buildJapaneseDailyStats(todaysJapanese, teamGames)
+                await buildJapaneseDailyStats(todaysJapanese, teamGames),
+                {
+                    collapsed: Boolean(postseasonTeams) && !japanesePostseasonTeamStillActive
+                }
             ));
 
             const gamesSection = section("全試合", `${games.length}試合`);

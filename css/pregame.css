@@ -1454,6 +1454,14 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
     align-items: stretch;
 }
 
+.pregame-japanese-daily-section.is-collapsed .pregame-japanese-daily-layout {
+    display: none;
+}
+
+.pregame-japanese-daily-section .pregame-section-header > .pregame-free-agent-toggle {
+    margin-left: auto;
+}
+
 .pregame-japanese-daily-tables {
     min-width: 0;
     border-right: 1px solid #46535c;
