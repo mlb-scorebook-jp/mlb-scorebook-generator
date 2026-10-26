@@ -2,6 +2,67 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Watch Angels prospects in Arizona Fall League action",
+        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
+        "slug": "watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
+        "url": "https://www.mlb.com/news/watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
+        "contentDate": "2026-10-26T02:09:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "arizona-fall-league"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "With World Series start, Gasser is living his dream -- and his dad's",
+        "summaryJa": "R.ギャサー（MIL）の最新動向をMLB公式が詳報",
+        "slug": "robert-gasser-living-his-dream-dad-s-in-2026-world-series",
+        "url": "https://www.mlb.com/news/robert-gasser-living-his-dream-dad-s-in-2026-world-series",
+        "contentDate": "2026-10-26T01:47:18.643Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [
+            688107
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "world-series"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "3 pressing questions for World Series Game 3",
+        "summaryJa": "ブルワーズの最新動向をMLB公式が詳報",
+        "slug": "2026-world-series-game-3-storylines-brewers-vs-rays",
+        "url": "https://www.mlb.com/news/2026-world-series-game-3-storylines-brewers-vs-rays",
+        "contentDate": "2026-10-26T01:41:55.296Z",
+        "teamIds": [
+            158,
+            139
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "postseason",
+            "world-series"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "A pen, a napkin and a ninja: How Murphy draws up the Crew's winning lineups",
         "summaryJa": "ブルワーズを巡る注目点をMLB公式が分析",
         "slug": "pat-murphy-draws-out-starting-lineups-on-napkins",
@@ -197,6 +258,7 @@
             "world-series"
         ],
         "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
@@ -224,8 +286,8 @@
         ]
     },
     {
-        "headline": "3 things the Rays need to do to send World Series back to Milwaukee",
-        "summaryJa": "レイズの最新動向をMLB公式が詳報",
+        "headline": "How the Rays can send the World Series back to Milwaukee",
+        "summaryJa": "レイズを巡る注目点をMLB公式が分析",
         "slug": "rays-keys-to-extending-world-series-vs-brewers-after-game-2",
         "url": "https://www.mlb.com/news/rays-keys-to-extending-world-series-vs-brewers-after-game-2",
         "contentDate": "2026-10-25T16:57:17.79Z",
@@ -511,23 +573,6 @@
         ]
     },
     {
-        "headline": "Watch Angels prospects in Arizona Fall League action",
-        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
-        "slug": "watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
-        "url": "https://www.mlb.com/news/watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
-        "contentDate": "2026-10-25T04:13:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "arizona-fall-league"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "First World Series HR comes from Hicks, capping 4-run first",
         "summaryJa": "L.ヒックス（TB）、本塁打で存在感",
         "slug": "rays-score-4-runs-in-first-inning-of-2026-world-series-game-2",
@@ -551,7 +596,7 @@
         ]
     },
     {
-        "headline": "Flight crew on way to Tampa Bay will have a very special relationship to Crew",
+        "headline": "Family affair: Priester's uncle, cousin to fly Crew's team plane to Game 3",
         "summaryJa": "Q.プリースター（MIL）の最新動向をMLB公式が詳報",
         "slug": "quinn-priester-uncle-to-captain-brewers-team-flight-to-florida-for-game-3",
         "url": "https://www.mlb.com/news/quinn-priester-uncle-to-captain-brewers-team-flight-to-florida-for-game-3",
@@ -570,7 +615,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -653,27 +697,6 @@
         ]
     },
     {
-        "headline": "How a forgotten Brewers owner helped create the World Series",
-        "summaryJa": "MLBの最新情報を巡る注目点をMLB公式が分析",
-        "slug": "henry-killilea-world-series-history-brewers-milwaukee",
-        "url": "https://www.mlb.com/news/henry-killilea-world-series-history-brewers-milwaukee",
-        "contentDate": "2026-10-24T22:30:17.457Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [
-            849802
-        ],
-        "taxonomy": [
-            "world-series",
-            "apple-news",
-            "postseason",
-            "offbeat"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "This lifelong Brewers fan walks to EVERY home game (yes, even the World Series)",
         "summaryJa": "ブルワーズの最新動向をMLB公式が詳報",
         "slug": "brewers-fan-walks-to-every-home-game-including-world-series",
@@ -712,6 +735,7 @@
             "apple-news"
         ],
         "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
@@ -950,100 +974,6 @@
             "apple-news",
             "postseason",
             "player-tracking"
-        ],
-        "sourceScopes": [
-            "MLB"
-        ]
-    },
-    {
-        "headline": "Captain sets tone for Crew: Yelich's RBI triple has teammates 'pumped'",
-        "summaryJa": "C.イェリッチ（MIL）の最新動向をMLB公式が詳報",
-        "slug": "christian-yelich-brewers-world-series-game-1-2026",
-        "url": "https://www.mlb.com/news/christian-yelich-brewers-world-series-game-1-2026",
-        "contentDate": "2026-10-24T06:56:36.001Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [
-            592885
-        ],
-        "gamePks": [
-            849805
-        ],
-        "taxonomy": [
-            "apple-news",
-            "world-series"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "4 key takeaways after Brewers win a thriller to start World Series",
-        "summaryJa": "ブルワーズ、勝利を呼び込む活躍",
-        "slug": "key-takeaways-from-world-series-game-1-2026",
-        "url": "https://www.mlb.com/news/key-takeaways-from-world-series-game-1-2026",
-        "contentDate": "2026-10-24T06:16:00Z",
-        "teamIds": [
-            158,
-            139
-        ],
-        "playerIds": [],
-        "gamePks": [
-            849805
-        ],
-        "taxonomy": [
-            "world-series",
-            "postseason",
-            "apple-news",
-            "takeaways"
-        ],
-        "sourceScopes": [
-            "MLB"
-        ]
-    },
-    {
-        "headline": "Brewers weather ninth-inning storm, take Game 1 in front of raucous fans",
-        "summaryJa": "ブルワーズ、勝利を呼び込む活躍",
-        "slug": "brewers-win-world-series-game-1-2026",
-        "url": "https://www.mlb.com/news/brewers-win-world-series-game-1-2026",
-        "contentDate": "2026-10-24T05:47:00Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [],
-        "gamePks": [
-            849805
-        ],
-        "taxonomy": [
-            "game-recap",
-            "postseason",
-            "world-series",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Brewers won their first World Series game in 44 years. And then they won it again",
-        "summaryJa": "ブルワーズ、勝利を呼び込む活躍",
-        "slug": "brewers-game-ending-double-play-overturned-world-series-game-1",
-        "url": "https://www.mlb.com/news/brewers-game-ending-double-play-overturned-world-series-game-1",
-        "contentDate": "2026-10-24T05:36:00Z",
-        "teamIds": [
-            158,
-            139
-        ],
-        "playerIds": [],
-        "gamePks": [
-            849805
-        ],
-        "taxonomy": [
-            "world-series",
-            "apple-news",
-            "replay"
         ],
         "sourceScopes": [
             "MLB"
