@@ -2,6 +2,180 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Schlittler seems a lock for Cy, but other Yankees could bring home awards, too",
+        "summaryJa": "C.シュリットラー（NYY）、勝利を呼び込む活躍",
+        "slug": "cam-schlittler-other-yankees-could-win-postseason-awards",
+        "url": "https://www.mlb.com/news/cam-schlittler-other-yankees-could-win-postseason-awards",
+        "contentDate": "2026-10-27T14:17:19.364Z",
+        "teamIds": [
+            147
+        ],
+        "playerIds": [
+            693645,
+            700250,
+            502671,
+            670280,
+            687396,
+            641355,
+            543037,
+            621112
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Important Phillies offseason dates for awards, Hot Stove season",
+        "summaryJa": "フィリーズの最新動向をMLB公式が詳報",
+        "slug": "phillies-key-offseason-dates-2026-2027",
+        "url": "https://www.mlb.com/news/phillies-key-offseason-dates-2026-2027",
+        "contentDate": "2026-10-27T14:10:14.611Z",
+        "teamIds": [
+            143
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "awards-watch"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Lowe and more Bucs could take home awards this year",
+        "summaryJa": "B.ラウ（PIT）の最新動向をMLB公式が詳報",
+        "slug": "brandon-lowe-pirates-chances-for-awards-in-2026",
+        "url": "https://www.mlb.com/news/brandon-lowe-pirates-chances-for-awards-in-2026",
+        "contentDate": "2026-10-27T14:03:21.383Z",
+        "teamIds": [
+            134
+        ],
+        "playerIds": [
+            664040
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "awards-watch"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "118.2 mph exit velo! 103.8 mph fastball! These are the Arizona Fall League statcast leaders",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "arizona-fall-league-statcast-leaders-2026",
+        "url": "https://www.mlb.com/news/arizona-fall-league-statcast-leaders-2026",
+        "contentDate": "2026-10-27T13:53:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "mlb-top-prospects",
+            "arizona-fall-league"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "These Padres prospects have been standouts in the Arizona Fall League",
+        "summaryJa": "Alex McCoy（SD）ら注目選手の最新動向",
+        "slug": "padres-prospects-impressing-in-arizona-fall-league",
+        "url": "https://www.mlb.com/news/padres-prospects-impressing-in-arizona-fall-league",
+        "contentDate": "2026-10-27T13:48:46.349Z",
+        "teamIds": [
+            135
+        ],
+        "playerIds": [
+            801932,
+            800212,
+            813664
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "mlb-top-prospects",
+            "arizona-fall-league"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "After excellent '26, is Alonso in line for more hardware?",
+        "summaryJa": "P.アロンゾ（BAL）の最新動向をMLB公式が詳報",
+        "slug": "pete-alonso-s-strong-2026-could-earn-him-award-hardware",
+        "url": "https://www.mlb.com/news/pete-alonso-s-strong-2026-could-earn-him-award-hardware",
+        "contentDate": "2026-10-27T13:41:07.868Z",
+        "teamIds": [
+            110
+        ],
+        "playerIds": [
+            624413
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "awards-watch"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Q&A: Smith discusses his new role as youngest head of baseball ops in MLB",
+        "summaryJa": "アスレチックスの最新動向をMLB公式が詳報",
+        "slug": "q-a-with-athletics-president-of-baseball-operations-taylor-smith",
+        "url": "https://www.mlb.com/news/q-a-with-athletics-president-of-baseball-operations-taylor-smith",
+        "contentDate": "2026-10-27T12:46:09.943Z",
+        "teamIds": [
+            133
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Tolle knocks it out of the park as World Series correspondent ... is anyone surprised?",
+        "summaryJa": "P.トーリー（BOS）の最新動向をMLB公式が詳報",
+        "slug": "payton-tolle-world-series-player-correspondent-highlights",
+        "url": "https://www.mlb.com/news/payton-tolle-world-series-player-correspondent-highlights",
+        "contentDate": "2026-10-27T12:36:12.283Z",
+        "teamIds": [
+            111
+        ],
+        "playerIds": [
+            801139
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "world-series"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "After two 1-run losses, blowout at Trop puts Rays' season on brink",
         "summaryJa": "レイズの最新動向をMLB公式が詳報",
         "slug": "rays-lose-game-3-of-2026-world-series",
@@ -945,26 +1119,8 @@
         ]
     },
     {
-        "headline": "MLBx takes over Mumbai in star-studded sport crossover",
-        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
-        "slug": "mlbx-mumbai-brings-together-baseball-softball-and-cricket-stars",
-        "url": "https://www.mlb.com/news/mlbx-mumbai-brings-together-baseball-softball-and-cricket-stars",
-        "contentDate": "2026-10-25T23:59:07.792Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "mlbx",
-            "leagueid-6044",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB"
-        ]
-    },
-    {
-        "headline": "Arizona Fall League Week 3 top performers",
-        "summaryJa": "Yerlin Confidanの最新動向をMLB公式が詳報",
+        "headline": "OF prospect Confidan among Fall League's Week 3 top performers",
+        "summaryJa": "Yerlin Confidanら注目選手の最新動向",
         "slug": "arizona-fall-league-top-performers-week-3-2026",
         "url": "https://www.mlb.com/news/arizona-fall-league-top-performers-week-3-2026",
         "contentDate": "2026-10-25T23:20:00Z",
@@ -985,7 +1141,6 @@
             "arizona-fall-league"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1006,7 +1161,6 @@
             "postseason"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1073,7 +1227,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1547,7 +1700,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -4845,27 +4997,6 @@
         ]
     },
     {
-        "headline": "Yankees Mag: Chambliss’ thrilling pennant-winning homer still brings goosebumps",
-        "summaryJa": "Chris Chambliss（NYY）、本塁打で存在感",
-        "slug": "yankees-magazine-chris-chambliss-memorable-home-run",
-        "url": "https://www.mlb.com/news/yankees-magazine-chris-chambliss-memorable-home-run",
-        "contentDate": "2026-10-14T12:22:14.386Z",
-        "teamIds": [
-            147
-        ],
-        "playerIds": [
-            112180
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "nyy-yankees-magazine"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Rockies' glove-first shortstop prospect standing out in Fall League",
         "summaryJa": "Andy Perez（COL）ら注目選手の最新動向",
         "slug": "rockies-prospect-andy-perez-excelling-in-arizona-fall-league",
@@ -6309,28 +6440,6 @@
         ]
     },
     {
-        "headline": "Consider O's RHP prospect Reilly both older and wiser after return from Tommy John surgery",
-        "summaryJa": "Patrick Reilly（BAL）、復帰へ向けた最新状況",
-        "slug": "orioles-prospect-patrick-reilly-starts-arizona-fall-league-campaign-strong",
-        "url": "https://www.mlb.com/news/orioles-prospect-patrick-reilly-starts-arizona-fall-league-campaign-strong",
-        "contentDate": "2026-10-09T01:00:00Z",
-        "teamIds": [
-            110
-        ],
-        "playerIds": [
-            694345
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "mlb-top-prospects",
-            "apple-news",
-            "arizona-fall-league"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "What's next for Morejon, King and France after Padres' NLDS exit?",
         "summaryJa": "M.キング（SD）の最新動向をMLB公式が詳報",
         "slug": "adrian-morejon-michael-king-ty-france-padres-key-free-agents",
@@ -6512,54 +6621,6 @@
         ]
     },
     {
-        "headline": "Padres left wondering what could have been after NLDS exit: 'It stings'",
-        "summaryJa": "パドレスの最新動向をMLB公式が詳報",
-        "slug": "padres-lose-2026-nlds-to-brewers",
-        "url": "https://www.mlb.com/news/padres-lose-2026-nlds-to-brewers",
-        "contentDate": "2026-10-08T07:59:00Z",
-        "teamIds": [
-            135
-        ],
-        "playerIds": [],
-        "gamePks": [
-            849827
-        ],
-        "taxonomy": [
-            "apple-news",
-            "nlds",
-            "series-a",
-            "game-recap-losing"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Déja vú strikes thrice as Machado robbed of game-tying HR",
-        "summaryJa": "M.マチャード（SD）、本塁打で存在感",
-        "slug": "manny-machado-robbed-of-game-tying-home-run-in-nlds-game-4",
-        "url": "https://www.mlb.com/news/manny-machado-robbed-of-game-tying-home-run-in-nlds-game-4",
-        "contentDate": "2026-10-08T07:24:00Z",
-        "teamIds": [
-            135
-        ],
-        "playerIds": [
-            592518,
-            669003
-        ],
-        "gamePks": [
-            849827
-        ],
-        "taxonomy": [
-            "nlds",
-            "series-a",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Judge wants front office to go 'all in' -- with Boone remaining in charge",
         "summaryJa": "A.ジャッジ（NYY）の最新動向をMLB公式が詳報",
         "slug": "aaron-judge-discusses-yankees-season-aaron-boone",
@@ -6665,32 +6726,6 @@
             "nlds",
             "series-b",
             "postseason"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Acuña hears boos from Braves faithful amid postseason struggles",
-        "summaryJa": "R.アクーニャ Jr.（ATL）の負傷状況をMLB公式が詳報",
-        "slug": "latest-news-ronald-acuna-jr-knee-injury-nlds-game-4",
-        "url": "https://www.mlb.com/news/latest-news-ronald-acuna-jr-knee-injury-nlds-game-4",
-        "contentDate": "2026-10-08T03:57:00Z",
-        "teamIds": [
-            144
-        ],
-        "playerIds": [
-            660670
-        ],
-        "gamePks": [
-            849822
-        ],
-        "taxonomy": [
-            "apple-news",
-            "injury",
-            "postseason",
-            "nlds",
-            "series-b"
         ],
         "sourceScopes": [
             "球団公式"
@@ -6892,29 +6927,7 @@
         ]
     },
     {
-        "headline": "National treasure: Jorgelys Mota showcases raw power with 455 foot homer in Fall League",
-        "summaryJa": "Jorgelys Mota（WSH）、本塁打で存在感",
-        "slug": "nationals-prospect-jorgelys-mota-hits-455-foot-arizona-fall-league-homer",
-        "url": "https://www.mlb.com/news/nationals-prospect-jorgelys-mota-hits-455-foot-arizona-fall-league-homer",
-        "contentDate": "2026-10-07T00:29:04.47Z",
-        "teamIds": [
-            120
-        ],
-        "playerIds": [
-            800195
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "arizona-fall-league",
-            "mlb-top-prospects"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Stewart lands on Pipeline’s All-Rookie Team",
+        "headline": "McGonigle lands on Pipeline’s All-Rookie Team",
         "summaryJa": "C.ジェンセンの最新動向をMLB公式が詳報",
         "slug": "2026-mlb-all-rookie-team",
         "url": "https://www.mlb.com/news/2026-mlb-all-rookie-team",
@@ -7200,27 +7213,6 @@
         "taxonomy": [
             "apple-news",
             "obituary"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Anthony not expected to need surgery: 'Rest is likely the best path to recovery'",
-        "summaryJa": "R.アンソニー（BOS）の負傷状況をMLB公式が詳報",
-        "slug": "roman-anthony-injury-update-october-2026",
-        "url": "https://www.mlb.com/news/roman-anthony-injury-update-october-2026",
-        "contentDate": "2026-10-05T19:34:42.453Z",
-        "teamIds": [
-            111
-        ],
-        "playerIds": [
-            701350
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "injury"
         ],
         "sourceScopes": [
             "球団公式"
@@ -7594,25 +7586,6 @@
             "transactions",
             "injury",
             "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Former A's All-Star closer Hendriks retires after 14-year MLB career",
-        "summaryJa": "L.ヘンドリクスの最新動向をMLB公式が詳報",
-        "slug": "liam-hendriks-retires-from-mlb-after-14-seasons",
-        "url": "https://www.mlb.com/news/liam-hendriks-retires-from-mlb-after-14-seasons",
-        "contentDate": "2026-09-29T23:40:56.147Z",
-        "teamIds": [],
-        "playerIds": [
-            521230
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "retirement"
         ],
         "sourceScopes": [
             "球団公式"
