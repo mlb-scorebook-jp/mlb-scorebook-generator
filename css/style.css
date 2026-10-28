@@ -1479,9 +1479,12 @@ body.app-mode-pregame .score-loading-overlay {
     grid-template-columns: minmax(92px, 1.25fr) repeat(2, minmax(58px, 1fr));
     grid-template-rows: repeat(3, minmax(0, 1fr));
     align-self: stretch;
-    border-top: 1.4px solid var(--rule);
     border-left: 1.4px solid var(--rule);
     background: #fff;
+}
+
+.head-to-head-table > div:nth-child(-n + 3) {
+    border-top: 1.4px solid var(--rule);
 }
 
 .head-to-head-table > div {
