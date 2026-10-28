@@ -1,6 +1,6 @@
 // MLB公式「2026年シーズン終了後のFA予定選手」を基にした全候補。
 (function (global) {
-    const sourceUrl = "https://www.mlb.com/news/baseball-s-next-free-agent-classes";
+    const sourceUrl = "https://www.mlb.com/news/mlb-free-agents-2026-2027";
     const contractYearsByPlayerId = Object.freeze({
         434378: 1,
         543243: 3,
@@ -21,6 +21,26 @@
         673357: 6,
         673548: 5,
         684007: 4,
+    });
+    const contractOriginTeamIdByPlayerId = Object.freeze({
+        543243: 138,
+        543685: 108,
+        543807: 141,
+        592206: 143,
+        592662: 136,
+        605540: 158,
+        608032: 118,
+        628452: 144,
+        642547: 158,
+        645261: 146,
+        645277: 144,
+        660670: 144,
+        664023: 112,
+        664040: 139,
+        669203: 109,
+        673357: 145,
+        673548: 112,
+        684007: 112,
     });
     global.MLB_FREE_AGENT_CANDIDATES = Object.freeze({
         2026: Object.freeze([
@@ -52,6 +72,7 @@
             { playerId: 543685, name: "Anthony Rendon", teamId: 108, position: "3B" },
             { playerId: 624641, name: "Edmundo Sosa", teamId: 143, position: "3B" },
             { playerId: 660162, name: "Yoán Moncada", teamId: 108, position: "3B" },
+            { playerId: 571771, name: "Enrique Hernández", teamId: 119, position: "3B" },
             { playerId: 643396, name: "Isiah Kiner-Falefa", teamId: 111, position: "3B" },
             { playerId: 602104, name: "Ramón Urías", teamId: 138, position: "3B" },
             { playerId: 641487, name: "J.P. Crawford", teamId: 136, position: "SS" },
@@ -82,7 +103,14 @@
             { playerId: 592626, name: "Joc Pederson", teamId: 140, position: "DH" },
             { playerId: 669373, name: "Tarik Skubal", teamId: 119, position: "LHP", pitcherRole: "SP" },
             { playerId: 592332, name: "Kevin Gausman", teamId: 112, position: "RHP", pitcherRole: "SP" },
-            { playerId: 642547, name: "Freddy Peralta", teamId: 139, position: "RHP", pitcherRole: "SP" },
+            {
+                playerId: 642547,
+                name: "Freddy Peralta",
+                teamId: 139,
+                position: "RHP",
+                pitcherRole: "SP",
+                contractEndingLabel: "との2026年球団オプション終了"
+            },
             { playerId: 650633, name: "Michael King", teamId: 135, position: "RHP", pitcherRole: "SP" },
             { playerId: 645261, name: "Sandy Alcantara", teamId: 146, position: "RHP", pitcherRole: "SP" },
             { playerId: 669456, name: "Shane Bieber", teamId: 141, position: "RHP", pitcherRole: "SP" },
@@ -141,6 +169,7 @@
         ].map((entry) => Object.freeze({
             ...entry,
             contractYears: contractYearsByPlayerId[entry.playerId] || 1,
+            contractOriginTeamId: contractOriginTeamIdByPlayerId[entry.playerId] || 0,
             sourceUrl
         })))
     });

@@ -2415,6 +2415,9 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
 }
 
 .pregame-free-agent-contract-ending {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
     color: #eef3f6;
     font-weight: 700;
 }

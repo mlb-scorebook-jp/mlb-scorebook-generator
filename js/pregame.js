@@ -3914,11 +3914,23 @@
                         declaredStatus.rel = "noopener noreferrer";
                         row.append(declaredStatus);
                     } else if (upcoming) {
+                        const contractOriginTeamId = Number(entry.contractOriginTeamId);
+                        const currentTeamId = Number(entry.formerTeam?.id);
+                        const contractCameFromAnotherTeam = contractOriginTeamId &&
+                            contractOriginTeamId !== currentTeamId;
                         const contractEnding = el(
                             "span",
                             "pregame-free-agent-contract-ending",
-                            `${entry.contractYears}年契約が終了`
+                            entry.contractEndingLabel ||
+                                `${contractCameFromAnotherTeam ? "との" : ""}` +
+                                `${entry.contractYears}年契約が終了`
                         );
+                        if (contractCameFromAnotherTeam) {
+                            contractEnding.prepend(createFreeAgentTeamLogo(
+                                { id: contractOriginTeamId },
+                                `${teamCode({ id: contractOriginTeamId })}のロゴ`
+                            ));
+                        }
                         if (isNewPlayer) {
                             contractEnding.append(el("span", "pregame-free-agent-new", "NEW"));
                         }
