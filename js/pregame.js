@@ -6864,6 +6864,14 @@
         return url.toString();
     };
 
+    const getOfficialTeamReliefStatsUrl = (season, postseason = false) => {
+        const url = new URL("https://www.mlb.com/stats/team/pitching");
+        url.searchParams.set("split", "rp");
+        url.searchParams.set("season", String(season));
+        if (postseason) url.searchParams.set("gameType", "P");
+        return url.toString();
+    };
+
     const FRANCHISE_RECORD_CATEGORIES = Object.freeze({
         hitting: Object.freeze({
             homeRuns: "本塁打",
@@ -9916,6 +9924,7 @@
                 const scheduleUrl = getOfficialTeamScheduleUrl(team, date);
                 const battingUrl = getOfficialTeamStatsUrl(team, season, "hitting", isPostseason);
                 const pitchingUrl = getOfficialTeamStatsUrl(team, season, "pitching", isPostseason);
+                const reliefPitchingUrl = getOfficialTeamReliefStatsUrl(season, isPostseason);
                 const recentGamesMetric = el("div", "pregame-metric pregame-trend-record-metric");
                 const recentRecord = el(
                     scheduleUrl ? "a" : "strong",
@@ -9960,10 +9969,10 @@
                         href: battingUrl,
                         ariaLabel: `${teamCode(team)}の${season}年${isPostseason ? "ポストシーズン" : "レギュラーシーズン"}MLB公式チーム得点圏打率を新しいタブで開く`
                     } : null),
-                    metric("リリーフ防御率", String(trend.reliefEra), pitchingUrl ? {
-                        href: pitchingUrl,
+                    metric("リリーフ防御率", String(trend.reliefEra), {
+                        href: reliefPitchingUrl,
                         ariaLabel: `${teamCode(team)}の${season}年${isPostseason ? "ポストシーズン" : "レギュラーシーズン"}MLB公式リリーフ投手成績を新しいタブで開く`
-                    } : null)
+                    })
                 );
                 column.append(metrics);
                 trendColumns.append(column);
