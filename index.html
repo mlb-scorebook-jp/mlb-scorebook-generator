@@ -842,6 +842,28 @@
                 return !bottomHalfWasPlayed;
             };
 
+            const shouldShowWalkOffMark = (side, inningNumber) => {
+                if (side !== "home" || inningNumber !== state.innings ||
+                    !isGameFinal(state.gameData)) {
+                    return false;
+                }
+
+                const awayRuns = Number(getTeamTotal("away", "runs"));
+                const homeRuns = Number(getTeamTotal("home", "runs"));
+                const inning = state.gameData?.liveData?.linescore?.innings?.find(
+                    (item) => Number(item?.num) === inningNumber
+                );
+                const finalInningRuns = Number(inning?.home?.runs);
+
+                if (!Number.isFinite(awayRuns) || !Number.isFinite(homeRuns) ||
+                    !Number.isFinite(finalInningRuns) || finalInningRuns <= 0 ||
+                    homeRuns <= awayRuns) {
+                    return false;
+                }
+
+                return homeRuns - finalInningRuns <= awayRuns;
+            };
+
             const state = {
                 innings: DEFAULT_INNINGS,
                 gamePk: null,
@@ -6106,7 +6128,10 @@
                 );
 
                 const value = inning?.[side]?.runs;
-                return value === undefined || value === null ? "" : String(value);
+                if (value === undefined || value === null) return "";
+                return shouldShowWalkOffMark(side, inningNumber)
+                    ? `${value}×`
+                    : String(value);
             };
 
             const getTeamTotal = (side, key) => {
