@@ -6854,22 +6854,17 @@
         return box;
     };
 
-    const getOfficialTeamStatsUrl = (team, season, group, postseason = false) => {
-        const slug = window.MLB_SCOREBOOK_TEAM_SLUGS_BY_ID?.[Number(team?.id)];
-        if (!slug) return "";
+    const getOfficialTeamStatsUrl = (season, group, postseason = false, split = "") => {
         const path = group === "pitching" ? "stats/team/pitching" : "stats/team";
-        const url = new URL(`https://www.mlb.com/${slug}/${path}`);
+        const url = new URL(`https://www.mlb.com/${path}`);
         url.searchParams.set("season", String(season));
         if (postseason) url.searchParams.set("gameType", "P");
+        if (split) url.searchParams.set("split", split);
         return url.toString();
     };
 
     const getOfficialTeamReliefStatsUrl = (season, postseason = false) => {
-        const url = new URL("https://www.mlb.com/stats/team/pitching");
-        url.searchParams.set("split", "rp");
-        url.searchParams.set("season", String(season));
-        if (postseason) url.searchParams.set("gameType", "P");
-        return url.toString();
+        return getOfficialTeamStatsUrl(season, "pitching", postseason, "rp");
     };
 
     const FRANCHISE_RECORD_CATEGORIES = Object.freeze({
@@ -9922,8 +9917,14 @@
                 const metrics = el("div", "pregame-metric-grid");
                 const season = Number(date.slice(0, 4));
                 const scheduleUrl = getOfficialTeamScheduleUrl(team, date);
-                const battingUrl = getOfficialTeamStatsUrl(team, season, "hitting", isPostseason);
-                const pitchingUrl = getOfficialTeamStatsUrl(team, season, "pitching", isPostseason);
+                const battingUrl = getOfficialTeamStatsUrl(season, "hitting", isPostseason);
+                const pitchingUrl = getOfficialTeamStatsUrl(season, "pitching", isPostseason);
+                const rispBattingUrl = getOfficialTeamStatsUrl(
+                    season,
+                    "hitting",
+                    isPostseason,
+                    "risp"
+                );
                 const reliefPitchingUrl = getOfficialTeamReliefStatsUrl(season, isPostseason);
                 const recentGamesMetric = el("div", "pregame-metric pregame-trend-record-metric");
                 const recentRecord = el(
@@ -9965,8 +9966,8 @@
                         href: pitchingUrl,
                         ariaLabel: `${teamCode(team)}の${season}年${isPostseason ? "ポストシーズン" : "レギュラーシーズン"}MLB公式チーム投手成績を新しいタブで開く`
                     } : null),
-                    metric("チーム得点圏打率", String(trend.rispAvg), battingUrl ? {
-                        href: battingUrl,
+                    metric("チーム得点圏打率", String(trend.rispAvg), rispBattingUrl ? {
+                        href: rispBattingUrl,
                         ariaLabel: `${teamCode(team)}の${season}年${isPostseason ? "ポストシーズン" : "レギュラーシーズン"}MLB公式チーム得点圏打率を新しいタブで開く`
                     } : null),
                     metric("リリーフ防御率", String(trend.reliefEra), {
