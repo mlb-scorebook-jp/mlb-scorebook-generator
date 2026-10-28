@@ -2,15 +2,42 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
-        "headline": "Watch Angels prospects in Arizona Fall League action",
-        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
-        "slug": "watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
-        "url": "https://www.mlb.com/news/watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
-        "contentDate": "2026-10-27T22:41:00Z",
-        "teamIds": [],
-        "playerIds": [],
+        "headline": "Cubs' catching prospect makes most of opportunity once again, this time in the AFL",
+        "summaryJa": "Miguel Useche（CHC）ら注目選手の最新動向",
+        "slug": "cubs-prospect-miguel-useche-capitalizing-on-arizona-fall-league-opportunity",
+        "url": "https://www.mlb.com/news/cubs-prospect-miguel-useche-capitalizing-on-arizona-fall-league-opportunity",
+        "contentDate": "2026-10-28T01:31:00Z",
+        "teamIds": [
+            112
+        ],
+        "playerIds": [
+            687766
+        ],
         "gamePks": [],
         "taxonomy": [
+            "apple-news",
+            "arizona-fall-league",
+            "mlb-top-prospects"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Nats' Susana turns in longest outing since '25 with refreshed arsenal in Fall League",
+        "summaryJa": "J.スサーナ（WSH）の最新動向をMLB公式が詳報",
+        "slug": "nationals-jarlin-susana-posts-longest-outing-since-2025-in-arizona-fall-league",
+        "url": "https://www.mlb.com/news/nationals-jarlin-susana-posts-longest-outing-since-2025-in-arizona-fall-league",
+        "contentDate": "2026-10-28T00:30:00Z",
+        "teamIds": [
+            120
+        ],
+        "playerIds": [
+            703186
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "mlb-top-prospects",
             "apple-news",
             "arizona-fall-league"
         ],
@@ -19,23 +46,92 @@
         ]
     },
     {
-        "headline": "Brewers-Rays World Series Game 4 lineups, FAQ (8 ET, FOX/FOX One)",
-        "summaryJa": "レイズの最新動向をMLB公式が詳報",
-        "slug": "brewers-rays-world-series-game-4-starting-lineups-and-pitching-matchup",
-        "url": "https://www.mlb.com/news/brewers-rays-world-series-game-4-starting-lineups-and-pitching-matchup",
-        "contentDate": "2026-10-27T20:55:00Z",
+        "headline": "Longoria tosses first pitch ahead of Rays' must-win Game 4",
+        "summaryJa": "E.ロンゴリア（TB）、勝利を呼び込む活躍",
+        "slug": "evan-longoria-to-throw-first-pitch-at-world-series-game-4-2026",
+        "url": "https://www.mlb.com/news/evan-longoria-to-throw-first-pitch-at-world-series-game-4-2026",
+        "contentDate": "2026-10-28T00:23:00Z",
         "teamIds": [
-            139,
+            139
+        ],
+        "playerIds": [
+            446334
+        ],
+        "gamePks": [
+            849803
+        ],
+        "taxonomy": [
+            "world-series",
+            "postseason",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Here's one more way 'Wild Bill' is dominating during Brewers' postseason run",
+        "summaryJa": "W.コントレラス（MIL）を巡る注目点をMLB公式が分析",
+        "slug": "william-contreras-showing-mastery-of-abs-challenge-system-in-postseason",
+        "url": "https://www.mlb.com/news/william-contreras-showing-mastery-of-abs-challenge-system-in-postseason",
+        "contentDate": "2026-10-28T00:06:00Z",
+        "teamIds": [
             158
         ],
+        "playerIds": [
+            661388
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "world-series",
+            "postseason",
+            "abs",
+            "player-tracking"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "AUSL champ Talons celebrated ahead of WS G4: 'It's such an honor'",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "ausl-champion-utah-talons-honored-at-world-series-game-4",
+        "url": "https://www.mlb.com/news/ausl-champion-utah-talons-honored-at-world-series-game-4",
+        "contentDate": "2026-10-27T23:52:15.024Z",
+        "teamIds": [
+            6481
+        ],
+        "playerIds": [],
+        "gamePks": [
+            849803
+        ],
+        "taxonomy": [
+            "world-series",
+            "apple-news",
+            "athletes-unlimited-softball-league",
+            "postseason"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "Watch Angels prospects in Arizona Fall League action",
+        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
+        "slug": "watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
+        "url": "https://www.mlb.com/news/watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
+        "contentDate": "2026-10-27T23:20:00Z",
+        "teamIds": [],
         "playerIds": [],
         "gamePks": [],
         "taxonomy": [
             "apple-news",
-            "world-series"
+            "arizona-fall-league"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -185,31 +281,6 @@
         "gamePks": [],
         "taxonomy": [
             "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Here's one more way 'Wild Bill' is dominating during Brewers' postseason run",
-        "summaryJa": "W.コントレラス（MIL）を巡る注目点をMLB公式が分析",
-        "slug": "william-contreras-showing-mastery-of-abs-challenge-system-in-postseason",
-        "url": "https://www.mlb.com/news/william-contreras-showing-mastery-of-abs-challenge-system-in-postseason",
-        "contentDate": "2026-10-27T15:03:22.227Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [
-            661388
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "world-series",
-            "postseason",
-            "abs",
-            "player-tracking"
         ],
         "sourceScopes": [
             "MLB",
@@ -390,7 +461,6 @@
             "awards-watch"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -590,31 +660,6 @@
         "taxonomy": [
             "apple-news",
             "world-series"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Longoria tapped for first pitch ahead of Rays' must-win Game 4",
-        "summaryJa": "E.ロンゴリア（TB）、勝利を呼び込む活躍",
-        "slug": "evan-longoria-to-throw-first-pitch-at-world-series-game-4-2026",
-        "url": "https://www.mlb.com/news/evan-longoria-to-throw-first-pitch-at-world-series-game-4-2026",
-        "contentDate": "2026-10-27T05:24:24.356Z",
-        "teamIds": [
-            139
-        ],
-        "playerIds": [
-            446334
-        ],
-        "gamePks": [
-            849803
-        ],
-        "taxonomy": [
-            "world-series",
-            "postseason",
-            "apple-news"
         ],
         "sourceScopes": [
             "MLB",
@@ -7208,28 +7253,6 @@
         "gamePks": [],
         "taxonomy": [
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Road less traveled takes Cubs' pitcher-turned-outfielder Kade Snell to Fall League",
-        "summaryJa": "Kade Snell（CHC）の最新動向をMLB公式が詳報",
-        "slug": "road-less-traveled-takes-cubs-kade-snell-to-arizona-fall-league",
-        "url": "https://www.mlb.com/news/road-less-traveled-takes-cubs-kade-snell-to-arizona-fall-league",
-        "contentDate": "2026-10-06T06:24:00Z",
-        "teamIds": [
-            112
-        ],
-        "playerIds": [
-            820835
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "arizona-fall-league",
-            "apple-news",
-            "mlb-top-prospects"
         ],
         "sourceScopes": [
             "球団公式"
