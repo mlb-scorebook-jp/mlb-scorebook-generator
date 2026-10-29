@@ -2,11 +2,11 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
-        "headline": "Brewers-Rays World Series Game 5 lineups, FAQ (8 ET, FOX/FOX One)",
+        "headline": "LIVE: Brewers-Rays World Series Game 5 (FOX/FOX One)",
         "summaryJa": "レイズの最新動向をMLB公式が詳報",
         "slug": "brewers-rays-world-series-game-5-starting-lineups-and-pitching-matchup",
         "url": "https://www.mlb.com/news/brewers-rays-world-series-game-5-starting-lineups-and-pitching-matchup",
-        "contentDate": "2026-10-28T20:08:00Z",
+        "contentDate": "2026-10-29T00:00:00Z",
         "teamIds": [
             139,
             158
@@ -23,11 +23,51 @@
         ]
     },
     {
+        "headline": "Watch Angels prospects in Arizona Fall League action",
+        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
+        "slug": "watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
+        "url": "https://www.mlb.com/news/watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
+        "contentDate": "2026-10-28T23:37:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "arizona-fall-league"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Ashby available for Game 5? 'Yes,' says Crew's pitching coordinator",
+        "summaryJa": "A.アシュビー（MIL）の最新動向をMLB公式が詳報",
+        "slug": "aaron-ashby-brewers-world-series-game-5",
+        "url": "https://www.mlb.com/news/aaron-ashby-brewers-world-series-game-5",
+        "contentDate": "2026-10-28T22:29:00Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [
+            676879
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "postseason",
+            "world-series",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Cash was right, Caminero is playing in pivotal Game 5",
         "summaryJa": "J.キャミネロ（TB）の負傷状況をMLB公式が詳報",
         "slug": "junior-caminero-injury-status-world-series-game-5",
         "url": "https://www.mlb.com/news/junior-caminero-injury-status-world-series-game-5",
-        "contentDate": "2026-10-28T20:06:00Z",
+        "contentDate": "2026-10-28T21:55:00Z",
         "teamIds": [
             139
         ],
@@ -46,28 +86,11 @@
         ]
     },
     {
-        "headline": "Watch LIVE: Angels prospects in Arizona Fall League action",
-        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
-        "slug": "watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
-        "url": "https://www.mlb.com/news/watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
-        "contentDate": "2026-10-28T19:54:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "arizona-fall-league"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Rasmussen, on 3 days’ rest, gets Game 5 nod",
         "summaryJa": "D.ラスムッセン（TB）の最新動向をMLB公式が詳報",
         "slug": "drew-rasmussen-2026-world-series-game-5-start",
         "url": "https://www.mlb.com/news/drew-rasmussen-2026-world-series-game-5-start",
-        "contentDate": "2026-10-28T19:11:49.227Z",
+        "contentDate": "2026-10-28T21:28:00Z",
         "teamIds": [
             139
         ],
@@ -83,6 +106,27 @@
         ],
         "sourceScopes": [
             "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "17-year-old Royals prospect Gomez showing off his 'incredible talent' in AFL",
+        "summaryJa": "Angeibel Gomez（KC）ら注目選手の最新動向",
+        "slug": "angeibel-gomez-impressing-in-afl-at-17",
+        "url": "https://www.mlb.com/news/angeibel-gomez-impressing-in-afl-at-17",
+        "contentDate": "2026-10-28T20:47:49.842Z",
+        "teamIds": [
+            118
+        ],
+        "playerIds": [
+            825412
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "mlb-top-prospects",
+            "arizona-fall-league"
+        ],
+        "sourceScopes": [
             "球団公式"
         ]
     },
@@ -342,7 +386,6 @@
             "awards-watch"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1188,29 +1231,6 @@
         ],
         "playerIds": [
             694192
-        ],
-        "gamePks": [
-            849804
-        ],
-        "taxonomy": [
-            "apple-news",
-            "world-series"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "'I want it right now': Woodruff seizes chance in 1st pitching appearance since July",
-        "summaryJa": "B.ウッドラフ（MIL）、記録達成の最新情報",
-        "slug": "brandon-woodruff-gets-final-out-in-2026-world-series-game-3",
-        "url": "https://www.mlb.com/news/brandon-woodruff-gets-final-out-in-2026-world-series-game-3",
-        "contentDate": "2026-10-27T06:30:07.651Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [
-            605540
         ],
         "gamePks": [
             849804
