@@ -2,6 +2,505 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "These Guardians could take home hardware during awards season",
+        "summaryJa": "P.メシック（CLE）、勝利を呼び込む活躍",
+        "slug": "parker-messick-among-guardians-who-could-win-postseason-awards",
+        "url": "https://www.mlb.com/news/parker-messick-among-guardians-who-could-win-postseason-awards",
+        "contentDate": "2026-10-29T11:32:12.752Z",
+        "teamIds": [
+            114
+        ],
+        "playerIds": [
+            800048,
+            800050,
+            671922,
+            668909,
+            680757,
+            676440,
+            656492
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "cy-young-award",
+            "rookie-of-the-year",
+            "gold-glove-award",
+            "silver-slugger-award"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Braves' No. 3 prospect is back and making noise in the AFL",
+        "summaryJa": "Tate Southisene（ATL）ら注目選手の最新動向",
+        "slug": "braves-prospect-tate-southisene-arizona-fall-league-2026",
+        "url": "https://www.mlb.com/news/braves-prospect-tate-southisene-arizona-fall-league-2026",
+        "contentDate": "2026-10-29T11:13:17.639Z",
+        "teamIds": [
+            144
+        ],
+        "playerIds": [
+            816111,
+            828987,
+            679489,
+            826928,
+            806061
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "mlb-top-prospects",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Will Torres, Flaherty, other Tigers free agents get another go in Detroit?",
+        "summaryJa": "G.トーレス（DET）の最新動向をMLB公式が詳報",
+        "slug": "gleyber-torres-jack-flaherty-tigers-free-agents-after-2026",
+        "url": "https://www.mlb.com/news/gleyber-torres-jack-flaherty-tigers-free-agents-after-2026",
+        "contentDate": "2026-10-29T11:09:03.985Z",
+        "teamIds": [
+            116
+        ],
+        "playerIds": [
+            650402,
+            656427
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "rumors"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Which Blue Jays could be up for award hardware?",
+        "summaryJa": "V.ゲレーロ Jr.（TOR）、勝利を呼び込む活躍",
+        "slug": "vladimir-guerrero-jr-and-other-blue-jays-could-win-2026-mlb-awards",
+        "url": "https://www.mlb.com/news/vladimir-guerrero-jr-and-other-blue-jays-could-win-2026-mlb-awards",
+        "contentDate": "2026-10-29T11:03:55.429Z",
+        "teamIds": [
+            141
+        ],
+        "playerIds": [
+            665489
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "A closer look at just how dominant the Brewers were this October",
+        "summaryJa": "ブルワーズ、勝利を呼び込む活躍",
+        "slug": "key-stats-from-brewers-2026-world-series-win",
+        "url": "https://www.mlb.com/news/key-stats-from-brewers-2026-world-series-win",
+        "contentDate": "2026-10-29T08:26:19.939Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [],
+        "gamePks": [
+            849799
+        ],
+        "taxonomy": [
+            "apple-news",
+            "world-series",
+            "postseason"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "A look at what went wrong in Fall Classic, as Rays met their match in Brewers",
+        "summaryJa": "レイズを巡る注目点をMLB公式が分析",
+        "slug": "takeaways-from-rays-world-series-loss-to-brewers",
+        "url": "https://www.mlb.com/news/takeaways-from-rays-world-series-loss-to-brewers",
+        "contentDate": "2026-10-29T08:26:12.625Z",
+        "teamIds": [
+            139
+        ],
+        "playerIds": [],
+        "gamePks": [
+            849799
+        ],
+        "taxonomy": [
+            "apple-news",
+            "world-series",
+            "postseason"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "'It’s reality now': Crew execs, former players embrace title decades in the making",
+        "summaryJa": "ブルワーズ、勝利を呼び込む活躍",
+        "slug": "brewers-executives-former-players-2026-world-series-win",
+        "url": "https://www.mlb.com/news/brewers-executives-former-players-2026-world-series-win",
+        "contentDate": "2026-10-29T08:03:42.924Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [],
+        "gamePks": [
+            849799
+        ],
+        "taxonomy": [
+            "apple-news",
+            "world-series",
+            "postseason",
+            "clincher"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Rasmussen lauds Rays, ponders 2027 after starting Game 5 on short rest",
+        "summaryJa": "D.ラスムッセン（TB）の最新動向をMLB公式が詳報",
+        "slug": "drew-rasmussen-2026-world-series-game-5-start",
+        "url": "https://www.mlb.com/news/drew-rasmussen-2026-world-series-game-5-start",
+        "contentDate": "2026-10-29T07:33:00Z",
+        "teamIds": [
+            139
+        ],
+        "playerIds": [
+            656876
+        ],
+        "gamePks": [
+            849799
+        ],
+        "taxonomy": [
+            "apple-news",
+            "world-series",
+            "postseason"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Latest Brewers injuries & transactions",
+        "summaryJa": "ブルワーズの負傷状況をMLB公式が詳報",
+        "slug": "brewers-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/brewers-injuries-and-roster-moves",
+        "contentDate": "2026-10-29T07:26:00Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "After dream season, Rays' World Series wishes crash back down to earth",
+        "summaryJa": "レイズの最新動向をMLB公式が詳報",
+        "slug": "rays-lose-2026-world-series-to-brewers",
+        "url": "https://www.mlb.com/news/rays-lose-2026-world-series-to-brewers",
+        "contentDate": "2026-10-29T07:24:00Z",
+        "teamIds": [
+            139
+        ],
+        "playerIds": [],
+        "gamePks": [
+            849799
+        ],
+        "taxonomy": [
+            "apple-news",
+            "world-series",
+            "postseason"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "'Rock of our clubhouse': Martinez reflects on season with Rays, future",
+        "summaryJa": "N.マルティネス（TB）の最新動向をMLB公式が詳報",
+        "slug": "nick-martinez-future-with-rays-unclear-after-serving-as-clubhouse-leader-in-2026",
+        "url": "https://www.mlb.com/news/nick-martinez-future-with-rays-unclear-after-serving-as-clubhouse-leader-in-2026",
+        "contentDate": "2026-10-29T07:21:27.141Z",
+        "teamIds": [
+            139
+        ],
+        "playerIds": [
+            607259
+        ],
+        "gamePks": [
+            849799
+        ],
+        "taxonomy": [
+            "apple-news",
+            "world-series",
+            "postseason"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "One of the best postseason performances ever? Ashby just did it",
+        "summaryJa": "A.アシュビー（MIL）の最新動向をMLB公式が詳報",
+        "slug": "aaron-ashby-delivers-historic-playoff-run-to-aid-brewers-world-series",
+        "url": "https://www.mlb.com/news/aaron-ashby-delivers-historic-playoff-run-to-aid-brewers-world-series",
+        "contentDate": "2026-10-29T07:17:38.897Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [
+            676879
+        ],
+        "gamePks": [
+            849799
+        ],
+        "taxonomy": [
+            "apple-news",
+            "postseason",
+            "world-series"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Believe it, Milwaukee! Brewers are World Series champs for 1st time",
+        "summaryJa": "ブルワーズ、記録達成の最新情報",
+        "slug": "brewers-beat-rays-game-5-win-2026-world-series",
+        "url": "https://www.mlb.com/news/brewers-beat-rays-game-5-win-2026-world-series",
+        "contentDate": "2026-10-29T07:07:00Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [],
+        "gamePks": [
+            849799
+        ],
+        "taxonomy": [
+            "apple-news",
+            "postseason",
+            "world-series",
+            "clincher"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "'How awesome is this?' Pratt sets World Series rookie record to help Crew to 1st title",
+        "summaryJa": "C.プラット（MIL）、記録達成の最新情報",
+        "slug": "cooper-pratt-world-series-rookie-record-six-straight-hits",
+        "url": "https://www.mlb.com/news/cooper-pratt-world-series-rookie-record-six-straight-hits",
+        "contentDate": "2026-10-29T06:58:00Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [
+            806198
+        ],
+        "gamePks": [
+            849799
+        ],
+        "taxonomy": [
+            "postseason",
+            "world-series",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Crew shouts out family (and Ueck) with custom bottles of celebratory bubbly",
+        "summaryJa": "ブルワーズの最新動向をMLB公式が詳報",
+        "slug": "brewers-celebratory-champagne-bottles-families-bob-uecker",
+        "url": "https://www.mlb.com/news/brewers-celebratory-champagne-bottles-families-bob-uecker",
+        "contentDate": "2026-10-29T06:29:18.659Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [],
+        "gamePks": [
+            849799
+        ],
+        "taxonomy": [
+            "apple-news",
+            "postseason",
+            "world-series",
+            "clincher"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Champs twice in one year! Brewers' Venezuelan trio pulls off rare feat with WBC, WS wins",
+        "summaryJa": "W.コントレラス（MIL）、勝利を呼び込む活躍",
+        "slug": "jackson-chourio-william-contreras-antonio-senzatela-2026-world-baseball-classic-world-series",
+        "url": "https://www.mlb.com/news/jackson-chourio-william-contreras-antonio-senzatela-2026-world-baseball-classic-world-series",
+        "contentDate": "2026-10-29T06:20:30.809Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [
+            661388,
+            694192,
+            622608
+        ],
+        "gamePks": [
+            849799
+        ],
+        "taxonomy": [
+            "world-series",
+            "apple-news",
+            "clincher"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Miz's scoreless start sets up historic clinch",
+        "summaryJa": "J.ミザロウスキー（MIL）、マウンドで好投",
+        "slug": "jacob-misiorowski-2026-world-series-game-5-start",
+        "url": "https://www.mlb.com/news/jacob-misiorowski-2026-world-series-game-5-start",
+        "contentDate": "2026-10-29T06:10:00Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [
+            694819
+        ],
+        "gamePks": [
+            849799
+        ],
+        "taxonomy": [
+            "apple-news",
+            "world-series",
+            "postseason"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Mighty Brewers prove they're an unbeatable crew, capture first World Series!",
+        "summaryJa": "ブルワーズ、勝利を呼び込む活躍",
+        "slug": "brewers-win-world-series-2026",
+        "url": "https://www.mlb.com/news/brewers-win-world-series-2026",
+        "contentDate": "2026-10-29T06:07:00Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [],
+        "gamePks": [
+            849799
+        ],
+        "taxonomy": [
+            "apple-news",
+            "world-series",
+            "postseason",
+            "game-recap",
+            "clincher"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Party in Milwaukee! Brewers' parade set for Friday",
+        "summaryJa": "ブルワーズの最新動向をMLB公式が詳報",
+        "slug": "brewers-2026-world-series-championship-parade",
+        "url": "https://www.mlb.com/news/brewers-2026-world-series-championship-parade",
+        "contentDate": "2026-10-29T05:54:59.032Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [],
+        "gamePks": [
+            849799
+        ],
+        "taxonomy": [
+            "apple-news",
+            "world-series",
+            "postseason",
+            "clincher"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "'I've waited my whole life for this': Brewers fans take in title-clinching win",
+        "summaryJa": "ブルワーズ、勝利を呼び込む活躍",
+        "slug": "brewers-fans-celebrate-world-series-title-at-american-family-field",
+        "url": "https://www.mlb.com/news/brewers-fans-celebrate-world-series-title-at-american-family-field",
+        "contentDate": "2026-10-29T05:40:05.496Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [],
+        "gamePks": [
+            849799
+        ],
+        "taxonomy": [
+            "apple-news",
+            "world-series",
+            "fans"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Extra rest a boon to Brewers in World Series",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "impact-of-extra-rest-before-world-series",
+        "url": "https://www.mlb.com/news/impact-of-extra-rest-before-world-series",
+        "contentDate": "2026-10-29T05:39:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "world-series",
+            "apple-news",
+            "postseason"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
         "headline": "Contreras honored with World Series MVP for prowess behind the plate",
         "summaryJa": "W.コントレラス（MIL）、勝利を呼び込む活躍",
         "slug": "william-contreras-wins-2026-world-series-mvp",
@@ -20,7 +519,8 @@
             "world-series-mvp",
             "world-series",
             "apple-news",
-            "postseason"
+            "postseason",
+            "clincher"
         ],
         "sourceScopes": [
             "MLB",
@@ -135,107 +635,6 @@
         ]
     },
     {
-        "headline": "Rasmussen, on 3 days’ rest, gets Rays into middle innings in Game 5",
-        "summaryJa": "D.ラスムッセン（TB）の最新動向をMLB公式が詳報",
-        "slug": "drew-rasmussen-2026-world-series-game-5-start",
-        "url": "https://www.mlb.com/news/drew-rasmussen-2026-world-series-game-5-start",
-        "contentDate": "2026-10-29T03:35:00Z",
-        "teamIds": [
-            139
-        ],
-        "playerIds": [
-            656876
-        ],
-        "gamePks": [
-            849799
-        ],
-        "taxonomy": [
-            "apple-news",
-            "world-series",
-            "postseason"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Mighty Brewers prove they're an unbeatable crew, capture first World Series!",
-        "summaryJa": "ブルワーズ、勝利を呼び込む活躍",
-        "slug": "brewers-win-world-series-2026",
-        "url": "https://www.mlb.com/news/brewers-win-world-series-2026",
-        "contentDate": "2026-10-29T03:31:00Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [],
-        "gamePks": [
-            849799
-        ],
-        "taxonomy": [
-            "apple-news",
-            "world-series",
-            "postseason",
-            "game-recap",
-            "clincher"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Red-hot Pratt sets World Series rookie record with hit in six straight plate appearances",
-        "summaryJa": "C.プラット（MIL）、記録達成の最新情報",
-        "slug": "cooper-pratt-world-series-rookie-record-six-straight-hits",
-        "url": "https://www.mlb.com/news/cooper-pratt-world-series-rookie-record-six-straight-hits",
-        "contentDate": "2026-10-29T03:31:00Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [
-            806198
-        ],
-        "gamePks": [
-            849799
-        ],
-        "taxonomy": [
-            "postseason",
-            "world-series",
-            "apple-news",
-            "milestone"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Misiorowski's scoreless start sets up Crew's clinch",
-        "summaryJa": "J.ミザロウスキー（MIL）、マウンドで好投",
-        "slug": "jacob-misiorowski-2026-world-series-game-5-start",
-        "url": "https://www.mlb.com/news/jacob-misiorowski-2026-world-series-game-5-start",
-        "contentDate": "2026-10-29T03:30:00Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [
-            694819
-        ],
-        "gamePks": [
-            849799
-        ],
-        "taxonomy": [
-            "apple-news",
-            "world-series",
-            "postseason"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Brewers complete one of the best postseason runs in history",
         "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
         "slug": "best-mlb-single-season-postseason-winning-percentages",
@@ -272,30 +671,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Believe it, Milwaukee! Brewers are World Series champs for 1st time",
-        "summaryJa": "ブルワーズ、記録達成の最新情報",
-        "slug": "brewers-beat-rays-game-5-win-2026-world-series",
-        "url": "https://www.mlb.com/news/brewers-beat-rays-game-5-win-2026-world-series",
-        "contentDate": "2026-10-29T03:24:39.138Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [],
-        "gamePks": [
-            849799
-        ],
-        "taxonomy": [
-            "apple-news",
-            "postseason",
-            "world-series",
-            "game-recap"
-        ],
-        "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -370,7 +745,6 @@
             "rumors"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -564,7 +938,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -615,7 +988,6 @@
             "awards-watch"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -680,7 +1052,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -793,30 +1164,6 @@
         ]
     },
     {
-        "headline": "Placed in a tough spot, rookie lefty Drohan can't stifle Rays rally in 12th",
-        "summaryJa": "S.ドローハン（MIL）、記録達成の最新情報",
-        "slug": "shane-drohan-allows-walk-off-in-12th-inning-of-world-series-game-4",
-        "url": "https://www.mlb.com/news/shane-drohan-allows-walk-off-in-12th-inning-of-world-series-game-4",
-        "contentDate": "2026-10-28T07:37:15.83Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [
-            675660
-        ],
-        "gamePks": [
-            849803
-        ],
-        "taxonomy": [
-            "apple-news",
-            "postseason",
-            "world-series"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Rallying Rays join rare company by forcing Game 5 facing 3-0 deficit",
         "summaryJa": "レイズ、勝利を呼び込む活躍",
         "slug": "stats-facts-from-rays-win-2026-world-series-game-4",
@@ -909,72 +1256,6 @@
         ]
     },
     {
-        "headline": "18 straight 0's: Ashby makes playoff history with record scoreless relief streak",
-        "summaryJa": "A.アシュビー（MIL）、記録達成の最新情報",
-        "slug": "aaron-ashby-postseason-consecutive-scoreless-innings-reliever-record",
-        "url": "https://www.mlb.com/news/aaron-ashby-postseason-consecutive-scoreless-innings-reliever-record",
-        "contentDate": "2026-10-28T06:08:00Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [
-            676879
-        ],
-        "gamePks": [
-            849803
-        ],
-        "taxonomy": [
-            "apple-news",
-            "world-series",
-            "milestone"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Here's one more way 'Wild Bill' is dominating during Brewers' postseason run",
-        "summaryJa": "W.コントレラス（MIL）を巡る注目点をMLB公式が分析",
-        "slug": "william-contreras-showing-mastery-of-abs-challenge-system-in-postseason",
-        "url": "https://www.mlb.com/news/william-contreras-showing-mastery-of-abs-challenge-system-in-postseason",
-        "contentDate": "2026-10-28T04:59:00Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [
-            661388
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "world-series",
-            "postseason",
-            "abs",
-            "player-tracking"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "The craziest finishes in World Series history",
-        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
-        "slug": "craziest-finishes-in-world-series-history",
-        "url": "https://www.mlb.com/news/craziest-finishes-in-world-series-history",
-        "contentDate": "2026-10-28T04:52:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "evergreen",
-            "rankings"
-        ],
-        "sourceScopes": [
-            "MLB"
-        ]
-    },
-    {
         "headline": "Crew honors Ueck as World Series pauses for powerful Stand Up To Cancer moment",
         "summaryJa": "ブルワーズの最新動向をMLB公式が詳報",
         "slug": "stand-up-to-cancer-at-world-series-game-4-2026",
@@ -995,8 +1276,7 @@
             "stand-up-to-cancer"
         ],
         "sourceScopes": [
-            "MLB",
-            "球団公式"
+            "MLB"
         ]
     },
     {
@@ -1065,29 +1345,6 @@
         ],
         "sourceScopes": [
             "球団公式"
-        ]
-    },
-    {
-        "headline": "AUSL champ Talons celebrated ahead of WS G4: 'It's such an honor'",
-        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
-        "slug": "ausl-champion-utah-talons-honored-at-world-series-game-4",
-        "url": "https://www.mlb.com/news/ausl-champion-utah-talons-honored-at-world-series-game-4",
-        "contentDate": "2026-10-27T23:52:15.024Z",
-        "teamIds": [
-            6481
-        ],
-        "playerIds": [],
-        "gamePks": [
-            849803
-        ],
-        "taxonomy": [
-            "world-series",
-            "apple-news",
-            "athletes-unlimited-softball-league",
-            "postseason"
-        ],
-        "sourceScopes": [
-            "MLB"
         ]
     },
     {
@@ -1309,7 +1566,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1452,7 +1708,6 @@
             "world-series"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1472,78 +1727,6 @@
         "taxonomy": [
             "apple-news",
             "world-series"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Brewers' 8-run 5th in Game 3 a 'knife in the chest' to Rays",
-        "summaryJa": "レイズ、記録達成の最新情報",
-        "slug": "rays-allow-eight-runs-to-brewers-in-fifth-inning-of-world-series-game-3",
-        "url": "https://www.mlb.com/news/rays-allow-eight-runs-to-brewers-in-fifth-inning-of-world-series-game-3",
-        "contentDate": "2026-10-27T05:54:00Z",
-        "teamIds": [
-            139
-        ],
-        "playerIds": [],
-        "gamePks": [
-            849804
-        ],
-        "taxonomy": [
-            "apple-news",
-            "world-series"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "With historic romp, unrelenting Crew just 1 win from 1st World Series title",
-        "summaryJa": "R.ギャサー（MIL）、記録達成の最新情報",
-        "slug": "brewers-win-world-series-game-3-2026",
-        "url": "https://www.mlb.com/news/brewers-win-world-series-game-3-2026",
-        "contentDate": "2026-10-27T04:48:00Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [
-            688107,
-            694192
-        ],
-        "gamePks": [
-            849804
-        ],
-        "taxonomy": [
-            "postseason",
-            "world-series",
-            "apple-news",
-            "game-recap"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Simpson's speed actually costs him SB -- then enables SPECTACULAR catch",
-        "summaryJa": "C.シンプソン（TB）の最新動向をMLB公式が詳報",
-        "slug": "chandler-simpson-makes-great-running-catch-in-2026-world-series-game-3",
-        "url": "https://www.mlb.com/news/chandler-simpson-makes-great-running-catch-in-2026-world-series-game-3",
-        "contentDate": "2026-10-27T03:11:00Z",
-        "teamIds": [
-            139
-        ],
-        "playerIds": [
-            802415
-        ],
-        "gamePks": [
-            849804
-        ],
-        "taxonomy": [
-            "apple-news",
-            "world-series",
-            "defense",
-            "play-of-the-day"
         ],
         "sourceScopes": [
             "球団公式"
@@ -1631,28 +1814,6 @@
         ]
     },
     {
-        "headline": "Maddon takes hill for first pitch ... then calls to bullpen for Shields",
-        "summaryJa": "レイズの最新動向をMLB公式が詳報",
-        "slug": "20261026-joe-maddon-first-pitch-rays",
-        "url": "https://www.mlb.com/news/20261026-joe-maddon-first-pitch-rays",
-        "contentDate": "2026-10-27T00:11:00Z",
-        "teamIds": [
-            139
-        ],
-        "playerIds": [],
-        "gamePks": [
-            849804
-        ],
-        "taxonomy": [
-            "apple-news",
-            "world-series",
-            "postseason"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Lindor wins 2026 Clemente Award, in spirit of his idol and countryman",
         "summaryJa": "F.リンドー（NYM）、勝利を呼び込む活躍",
         "slug": "francisco-lindor-2026-clemente-award",
@@ -1670,34 +1831,7 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
-        ]
-    },
-    {
-        "headline": "Former Ray -- and 2020 World Series hero -- gives back to cause near and dear to him",
-        "summaryJa": "B.フィリップス（TB）の最新動向をMLB公式が詳報",
-        "slug": "mlb-rays-partner-on-boys-and-girls-club-event-in-tampa-bay",
-        "url": "https://www.mlb.com/news/mlb-rays-partner-on-boys-and-girls-club-event-in-tampa-bay",
-        "contentDate": "2026-10-26T20:39:24.575Z",
-        "teamIds": [
-            139
-        ],
-        "playerIds": [
-            621433
-        ],
-        "gamePks": [
-            849804
-        ],
-        "taxonomy": [
-            "world-series",
-            "postseason",
-            "apple-news",
-            "community",
-            "mlb-community-org"
-        ],
-        "sourceScopes": [
-            "MLB"
         ]
     },
     {
@@ -2307,26 +2441,6 @@
         "gamePks": [],
         "taxonomy": [
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Latest Brewers injuries & transactions",
-        "summaryJa": "ブルワーズの負傷状況をMLB公式が詳報",
-        "slug": "brewers-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/brewers-injuries-and-roster-moves",
-        "contentDate": "2026-10-23T23:05:00Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
         ],
         "sourceScopes": [
             "球団公式"
@@ -7211,31 +7325,6 @@
         ]
     },
     {
-        "headline": "Braves' postseason journey ends as thin pitching depth runs out of gas",
-        "summaryJa": "T.マリー（ATL）の最新動向をMLB公式が詳報",
-        "slug": "braves-lose-2026-nlds-to-dodgers",
-        "url": "https://www.mlb.com/news/braves-lose-2026-nlds-to-dodgers",
-        "contentDate": "2026-10-08T04:32:00Z",
-        "teamIds": [
-            144
-        ],
-        "playerIds": [
-            641816
-        ],
-        "gamePks": [
-            849822
-        ],
-        "taxonomy": [
-            "apple-news",
-            "nlds",
-            "series-b",
-            "postseason"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Here are each organization's Prospects of the Year",
         "summaryJa": "MLBの最新情報ら注目選手の最新動向",
         "slug": "each-team-s-prospects-of-the-year-2026",
@@ -7425,36 +7514,6 @@
         "gamePks": [],
         "taxonomy": [
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "McGonigle lands on Pipeline’s All-Rookie Team",
-        "summaryJa": "C.ジェンセンの最新動向をMLB公式が詳報",
-        "slug": "2026-mlb-all-rookie-team",
-        "url": "https://www.mlb.com/news/2026-mlb-all-rookie-team",
-        "contentDate": "2026-10-06T23:30:00Z",
-        "teamIds": [],
-        "playerIds": [
-            695600,
-            808959,
-            802139,
-            805808,
-            804606,
-            701807,
-            800050,
-            671976,
-            701398,
-            800048,
-            801139,
-            800311
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "mlb-top-prospects"
         ],
         "sourceScopes": [
             "球団公式"
@@ -7752,24 +7811,6 @@
             "apple-news",
             "nlwc",
             "series-b"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Crackling bats and 400-foot blasts: Sights and sounds from the Canadian Futures Showcase",
-        "summaryJa": "ブルージェイズら注目選手の最新動向",
-        "slug": "top-high-school-prospects-take-on-canadian-futures-showcase",
-        "url": "https://www.mlb.com/news/top-high-school-prospects-take-on-canadian-futures-showcase",
-        "contentDate": "2026-10-02T18:00:06.399Z",
-        "teamIds": [
-            141
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
