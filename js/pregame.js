@@ -6685,7 +6685,16 @@
             const gamesSection = section("全試合", `${games.length}試合`);
             gamesSection.classList.add("pregame-games-section");
             if (!games.length) {
-                gamesSection.append(empty("この日のMLB公式戦は見つかりませんでした。"));
+                const seasonCompleted = Boolean(
+                    postseasonWindow?.worldSeriesCompleted &&
+                    postseasonWindow?.displayEndDate &&
+                    date > postseasonWindow.displayEndDate
+                );
+                gamesSection.append(empty(
+                    seasonCompleted
+                        ? `${season}年公式戦は全日程終了しました。`
+                        : "この日のMLB公式戦は見つかりませんでした。"
+                ));
             } else {
                 const createGameCard = (game) => {
                     const away = game?.teams?.away?.team ?? {};
