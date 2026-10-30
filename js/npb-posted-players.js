@@ -1,4 +1,5 @@
-// MLB・NPB公式発表でポスティングが確認できた選手。
+// MLB・NPB公式発表でポスティングまたは海外FA権行使が確認できた日本人選手。
+// 海外FAは { transferType: "overseas-fa", overseasFreeAgentDate } を使用する。
 (function (global) {
     global.MLB_NPB_POSTED_PLAYERS = Object.freeze({
         2023: Object.freeze([

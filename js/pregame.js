@@ -3057,6 +3057,21 @@
             .sort((left, right) => right.retiredDate.localeCompare(left.retiredDate))[0] ?? null;
     };
 
+    const japaneseMlbTransferDate = (player) => String(
+        player?.postedDate ??
+        player?.overseasFreeAgentDate ??
+        player?.declaredDate ?? ""
+    );
+
+    const japaneseMlbTransferStatus = (player) => {
+        const date = formatAgreementDate(japaneseMlbTransferDate(player));
+        const overseasFreeAgent = player?.transferType === "overseas-fa" ||
+            Boolean(player?.overseasFreeAgentDate);
+        return overseasFreeAgent
+            ? `${date}海外FA権行使`
+            : `${date}ポスティング申請`;
+    };
+
     const fetchFreeAgentTransactions = async (startDate, date) => {
         const params = new URLSearchParams({ startDate, endDate: date, sportId: "1" });
         const payload = await fetchJson(
@@ -3105,7 +3120,7 @@
         const hasPostingUpdate = Object.values(window.MLB_NPB_POSTED_PLAYERS ?? {})
             .flat()
             .some((player) =>
-                player?.postedDate === date ||
+                japaneseMlbTransferDate(player) === date ||
                 player?.signing?.agreedDate === date ||
                 player?.outcome?.date === date
             );
@@ -3692,8 +3707,13 @@
             getFreeAgentNewTransactions(date)
         ]);
         const postedPlayers = upcoming ? [] : (window.MLB_NPB_POSTED_PLAYERS?.[season] ?? [])
-            .filter((player) => player.postedDate <= date)
-            .sort((left, right) => left.postedDate.localeCompare(right.postedDate));
+            .filter((player) => {
+                const transferDate = japaneseMlbTransferDate(player);
+                return Boolean(transferDate) && transferDate <= date;
+            })
+            .sort((left, right) =>
+                japaneseMlbTransferDate(left).localeCompare(japaneseMlbTransferDate(right))
+            );
         const playerCount = Object.values(groups)
             .reduce((total, entries) => total + entries.length, 0) + postedPlayers.length;
         const historicalDataAvailable = Object.hasOwn(
@@ -3961,7 +3981,7 @@
         freeAgentSection.append(columns);
         if (postedPlayers.length) {
             const postedPanel = el("section", "pregame-free-agent-posted");
-            postedPanel.append(el("h4", "", "NPBポスティング/FA"));
+            postedPanel.append(el("h4", "", "日本人選手｜ポスティング／海外FA"));
             const postedList = el("div", "pregame-free-agent-list");
             postedPlayers.forEach((player) => {
                 const row = el("div", "pregame-free-agent-row");
@@ -3989,7 +4009,7 @@
                 const postingStatus = el(
                     "a",
                     "pregame-free-agent-posting-status",
-                    `${formatAgreementDate(player.postedDate)}申請`
+                    japaneseMlbTransferStatus(player)
                 );
                 postingStatus.href = player.sourceUrl;
                 postingStatus.target = "_blank";
