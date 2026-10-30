@@ -2,6 +2,208 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Alcantara's club option exercised for 2027 season",
+        "summaryJa": "S.アルカンタラ（MIA）の最新動向をMLB公式が詳報",
+        "slug": "marlins-exercise-sandy-alcantara-team-option",
+        "url": "https://www.mlb.com/news/marlins-exercise-sandy-alcantara-team-option",
+        "contentDate": "2026-10-30T14:30:44.766Z",
+        "teamIds": [
+            146
+        ],
+        "playerIds": [
+            645261
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "transactions"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Marlins outright 3 relievers, 2 catchers to Triple-A",
+        "summaryJa": "マーリンズの最新動向をMLB公式が詳報",
+        "slug": "tyler-zuber-zach-brzykcy-wikelman-gonzalez-brian-navarreto-logan-driscoll-outrighted",
+        "url": "https://www.mlb.com/news/tyler-zuber-zach-brzykcy-wikelman-gonzalez-brian-navarreto-logan-driscoll-outrighted",
+        "contentDate": "2026-10-30T14:26:24.922Z",
+        "teamIds": [
+            146
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "transactions",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Rooker, A's aiming to come back strong and healthy",
+        "summaryJa": "B.ルッカー（ATH）の最新動向をMLB公式が詳報",
+        "slug": "brent-rooker-aiming-to-bounce-back-after-2026",
+        "url": "https://www.mlb.com/news/brent-rooker-aiming-to-bounce-back-after-2026",
+        "contentDate": "2026-10-30T14:21:20.536Z",
+        "teamIds": [
+            133
+        ],
+        "playerIds": [
+            667670
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Stewart is in thick of ROY race; which other Reds could snag hardware?",
+        "summaryJa": "S.スチュワート（CIN）の最新動向をMLB公式が詳報",
+        "slug": "sal-stewart-chances-for-2026-nl-rookie-of-the-year-award",
+        "url": "https://www.mlb.com/news/sal-stewart-chances-for-2026-nl-rookie-of-the-year-award",
+        "contentDate": "2026-10-30T14:15:20.136Z",
+        "teamIds": [
+            113
+        ],
+        "playerIds": [
+            701398
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "New GM Banner learning the Oriole way from club legend Ripken",
+        "summaryJa": "C.リプケン Jr.（BAL）の最新動向をMLB公式が詳報",
+        "slug": "orioles-gm-jared-banner-learning-from-cal-ripken-jr",
+        "url": "https://www.mlb.com/news/orioles-gm-jared-banner-learning-from-cal-ripken-jr",
+        "contentDate": "2026-10-30T14:00:22.372Z",
+        "teamIds": [
+            110
+        ],
+        "playerIds": [
+            121222
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "How are Pirates prospects performing in Arizona Fall League?",
+        "summaryJa": "Wyatt Sanford（PIT）ら注目選手の最新動向",
+        "slug": "pirates-prospects-in-arizona-fall-league-2026",
+        "url": "https://www.mlb.com/news/pirates-prospects-in-arizona-fall-league-2026",
+        "contentDate": "2026-10-30T13:53:34.283Z",
+        "teamIds": [
+            134
+        ],
+        "playerIds": [
+            815608,
+            702695,
+            703177,
+            805800
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "mlb-top-prospects",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "A Padres guide to awards season, free agency",
+        "summaryJa": "パドレスの最新動向をMLB公式が詳報",
+        "slug": "padres-guide-to-awards-season-free-agency",
+        "url": "https://www.mlb.com/news/padres-guide-to-awards-season-free-agency",
+        "contentDate": "2026-10-30T13:42:02.508Z",
+        "teamIds": [
+            135
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "offseason"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "These Red Sox could be honored during Awards Season",
+        "summaryJa": "レッドソックスの最新動向をMLB公式が詳報",
+        "slug": "red-sox-2026-awards-season-preview",
+        "url": "https://www.mlb.com/news/red-sox-2026-awards-season-preview",
+        "contentDate": "2026-10-30T13:28:20.611Z",
+        "teamIds": [
+            111
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "awards-watch"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "NPB ERA leader to enter MLB posting system",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "kaima-taira-will-enter-mlb-posting-system",
+        "url": "https://www.mlb.com/news/kaima-taira-will-enter-mlb-posting-system",
+        "contentDate": "2026-10-30T13:13:47.531Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "Astros pitching prospect getting on track in Fall League after lengthy injury comeback",
+        "summaryJa": "Joey Dixon（HOU）の負傷状況をMLB公式が詳報",
+        "slug": "astros-prospect-joey-dixon-arizona-fall-league",
+        "url": "https://www.mlb.com/news/astros-prospect-joey-dixon-arizona-fall-league",
+        "contentDate": "2026-10-30T12:51:09.213Z",
+        "teamIds": [
+            117
+        ],
+        "playerIds": [
+            690972
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "arizona-fall-league"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Angels' Nimmala ends lull at the plate with five-hit night in the Fall League",
         "summaryJa": "A.ニマーラ（LAA）ら注目選手の最新動向",
         "slug": "angels-prospect-arjun-nimmala-five-hit-night-in-arizona-fall-league",
@@ -82,7 +284,7 @@
         ]
     },
     {
-        "headline": "Durbin undergoes surgery for foot fracture weeks after pinky operation",
+        "headline": "Durbin undergoes surgery for foot fracture weeks after pinkie operation",
         "summaryJa": "C.ダービン（BOS）の最新動向をMLB公式が詳報",
         "slug": "caleb-durbin-surgery-right-foot-fracture",
         "url": "https://www.mlb.com/news/caleb-durbin-surgery-right-foot-fracture",
@@ -99,7 +301,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -541,7 +742,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -750,7 +950,7 @@
         ]
     },
     {
-        "headline": "Party in Milwaukee! Brewers' parade set for Friday",
+        "headline": "Watch Brewers' championship parade today at 10 a.m. CT",
         "summaryJa": "ブルワーズの最新動向をMLB公式が詳報",
         "slug": "brewers-2026-world-series-championship-parade",
         "url": "https://www.mlb.com/news/brewers-2026-world-series-championship-parade",
@@ -1120,7 +1320,6 @@
             "rumors"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1396,7 +1595,6 @@
             "clincher"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1423,7 +1621,6 @@
             "clincher"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -5541,28 +5738,6 @@
         ]
     },
     {
-        "headline": "Red Sox infield prospect Anderson setting a definite 'Tone' in the desert",
-        "summaryJa": "Antonio Anderson（BOS）ら注目選手の最新動向",
-        "slug": "red-sox-antonio-anderson-making-most-of-showcase-in-fall-league",
-        "url": "https://www.mlb.com/news/red-sox-antonio-anderson-making-most-of-showcase-in-fall-league",
-        "contentDate": "2026-10-16T04:11:00Z",
-        "teamIds": [
-            111
-        ],
-        "playerIds": [
-            702995
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "mlb-top-prospects",
-            "apple-news",
-            "arizona-fall-league"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Learning curve: Royals' LHP prospect Lamkin refining pitch in Arizona Fall League",
         "summaryJa": "Justin Lamkin（KC）ら注目選手の最新動向",
         "slug": "royals-prospect-justin-lamkin-refining-breaking-ball-in-arizona-fall-league",
@@ -6476,32 +6651,6 @@
         ]
     },
     {
-        "headline": "Whose stock rose on the Astros' farm this year?",
-        "summaryJa": "Xavier Neyens（HOU）ら注目選手の最新動向",
-        "slug": "astros-top-prospects-who-are-getting-closer-to-majors",
-        "url": "https://www.mlb.com/news/astros-top-prospects-who-are-getting-closer-to-majors",
-        "contentDate": "2026-10-13T14:19:18.33Z",
-        "teamIds": [
-            117
-        ],
-        "playerIds": [
-            815832,
-            837522,
-            828395,
-            830004,
-            806494,
-            813314
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "mlb-top-prospects"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Reinvigorated and revamped Bloss headlines Blue Jays' Fall League contingent",
         "summaryJa": "J.ブロス（TOR）の最新動向をMLB公式が詳報",
         "slug": "blue-jays-arizona-fall-league-overview-2026",
@@ -6579,32 +6728,6 @@
             801725,
             702650,
             690961
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "mlb-top-prospects"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Where does Pittsburgh's farm system stand entering 2027?",
-        "summaryJa": "Seth Hernandez（PIT）の最新動向をMLB公式が詳報",
-        "slug": "pirates-farm-system-report-for-2026-27-offseason",
-        "url": "https://www.mlb.com/news/pirates-farm-system-report-for-2026-27-offseason",
-        "contentDate": "2026-10-13T13:21:30.169Z",
-        "teamIds": [
-            134
-        ],
-        "playerIds": [
-            815825,
-            821116,
-            800208,
-            815552,
-            809733,
-            834311
         ],
         "gamePks": [],
         "taxonomy": [
