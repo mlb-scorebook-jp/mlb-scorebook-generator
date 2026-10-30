@@ -1,6 +1,6 @@
 "use strict";
 
-// 261003 MLB 2026読み表（新）までに追加・修正された読み。
+// 261024 通訳さん用 スタメン表 読み表までに追加・修正された読み。
 Object.assign(NHK_PLAYER_NAMES, {
     andrewsears: "A.シアーズ",
     masanorimurakami: "村上 雅則",
@@ -29,7 +29,7 @@ Object.assign(NHK_PLAYER_NAMES, {
     cesarperdomo: "C.ぺルドモ",
     drewcavanaugh: "D.キャバノー",
     edgarquero: "E.ケロー",
-    edwindiaz: "E.ディアズ",
+    edwindiaz: "E.ディアス",
     enriquehernandez: "E.ヘルナンデス",
     jackweisenburger: "J.ワイゼンバーガー",
     jacksonkent: "J.ケント",
