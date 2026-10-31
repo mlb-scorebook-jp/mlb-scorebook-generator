@@ -2,6 +2,112 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Opt-outs and option decisions for 2027",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "mlb-players-with-2027-options-and-opt-outs",
+        "url": "https://www.mlb.com/news/mlb-players-with-2027-options-and-opt-outs",
+        "contentDate": "2026-10-31T04:00:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "rumors",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "Pederson, Higashioka, Junis free agents after mutual options declined (sources)",
+        "summaryJa": "J.ピーダーソン（TEX）の最新動向をMLB公式が詳報",
+        "slug": "joc-pederson-kyle-higashioka-jakob-junis-mutual-options-declined",
+        "url": "https://www.mlb.com/news/joc-pederson-kyle-higashioka-jakob-junis-mutual-options-declined",
+        "contentDate": "2026-10-31T03:35:04.537Z",
+        "teamIds": [
+            140
+        ],
+        "playerIds": [
+            592626,
+            596001,
+            543309
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "transactions"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "The most jaw-dropping metrics of the 2026 postseason",
+        "summaryJa": "J.チョリオの最新動向をMLB公式が詳報",
+        "slug": "top-statcast-moments-2026-mlb-postseason",
+        "url": "https://www.mlb.com/news/top-statcast-moments-2026-mlb-postseason",
+        "contentDate": "2026-10-31T02:26:02.92Z",
+        "teamIds": [],
+        "playerIds": [
+            694192,
+            694819,
+            691406,
+            660271,
+            656730,
+            676879,
+            608070,
+            671739,
+            656876,
+            650633,
+            663586,
+            519242,
+            693645,
+            656941,
+            547180
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "savant",
+            "postseason",
+            "player-tracking"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "Which long World Series title drought is most likely to end next?",
+        "summaryJa": "レイズの最新動向をMLB公式が詳報",
+        "slug": "which-world-series-drought-will-end-next",
+        "url": "https://www.mlb.com/news/which-world-series-drought-will-end-next",
+        "contentDate": "2026-10-31T02:24:38.445Z",
+        "teamIds": [
+            139,
+            136,
+            114,
+            121,
+            116,
+            133,
+            135,
+            115,
+            142,
+            141,
+            134,
+            110,
+            113
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
         "headline": "Watch Angels prospects in Arizona Fall League action",
         "summaryJa": "MLBの最新情報ら注目選手の最新動向",
         "slug": "watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
@@ -73,23 +179,6 @@
         "sourceScopes": [
             "MLB",
             "球団公式"
-        ]
-    },
-    {
-        "headline": "Opt-outs and option decisions for 2027",
-        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
-        "slug": "mlb-players-with-2027-options-and-opt-outs",
-        "url": "https://www.mlb.com/news/mlb-players-with-2027-options-and-opt-outs",
-        "contentDate": "2026-10-31T00:44:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "rumors",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB"
         ]
     },
     {
@@ -295,6 +384,25 @@
         ],
         "sourceScopes": [
             "球団公式"
+        ]
+    },
+    {
+        "headline": "Best World Series moments on Halloween 🎃",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "halloween-world-series-mlb-playoff-games",
+        "url": "https://www.mlb.com/news/halloween-world-series-mlb-playoff-games",
+        "contentDate": "2026-10-30T22:03:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "evergreen",
+            "apple-news",
+            "postseason",
+            "world-series"
+        ],
+        "sourceScopes": [
+            "MLB"
         ]
     },
     {
@@ -1208,7 +1316,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1467,7 +1574,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1492,8 +1598,23 @@
             "mlb-top-prospects"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
+        ]
+    },
+    {
+        "headline": "Who will receive a qualifying offer? And will anyone accept?",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "2026-27-qualifying-offer-predictions",
+        "url": "https://www.mlb.com/news/2026-27-qualifying-offer-predictions",
+        "contentDate": "2026-10-29T17:18:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB"
         ]
     },
     {
@@ -1537,7 +1658,6 @@
             "world-series"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1660,7 +1780,6 @@
             "postseason"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -7667,24 +7786,6 @@
         "gamePks": [],
         "taxonomy": [
             "injury",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Rangers' 5 biggest offseason questions",
-        "summaryJa": "レンジャーズの最新動向をMLB公式が詳報",
-        "slug": "rangers-5-biggest-offseason-questions",
-        "url": "https://www.mlb.com/news/rangers-5-biggest-offseason-questions",
-        "contentDate": "2026-10-08T12:22:16.932Z",
-        "teamIds": [
-            140
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
             "apple-news"
         ],
         "sourceScopes": [
