@@ -2,6 +2,180 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Watch Angels prospects in Arizona Fall League action",
+        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
+        "slug": "watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
+        "url": "https://www.mlb.com/news/watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
+        "contentDate": "2026-10-31T02:23:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "arizona-fall-league"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Pennant-winning season could lead to award-winning offseason for Rays",
+        "summaryJa": "レイズの最新動向をMLB公式が詳報",
+        "slug": "rays-players-up-for-offseason-awards",
+        "url": "https://www.mlb.com/news/rays-players-up-for-offseason-awards",
+        "contentDate": "2026-10-31T01:34:41.322Z",
+        "teamIds": [
+            139
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Dustin May has been traded to or from the last 2 World Series winners. How rare is that?",
+        "summaryJa": "D.メイの移籍・契約に関する最新情報",
+        "slug": "dustin-may-s-journey-being-traded-to-and-from-world-series-winners",
+        "url": "https://www.mlb.com/news/dustin-may-s-journey-being-traded-to-and-from-world-series-winners",
+        "contentDate": "2026-10-31T01:17:12.298Z",
+        "teamIds": [],
+        "playerIds": [
+            669160
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "world-series"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Astros hire Flores as next general manager",
+        "summaryJa": "アストロズの最新動向をMLB公式が詳報",
+        "slug": "randy-flores-astros-general-manager",
+        "url": "https://www.mlb.com/news/randy-flores-astros-general-manager",
+        "contentDate": "2026-10-31T01:14:00Z",
+        "teamIds": [
+            117
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Opt-outs and option decisions for 2027",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "mlb-players-with-2027-options-and-opt-outs",
+        "url": "https://www.mlb.com/news/mlb-players-with-2027-options-and-opt-outs",
+        "contentDate": "2026-10-31T00:44:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "rumors",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "He's waited his entire life for a Brewers title. Now, his celebration has gone viral",
+        "summaryJa": "ブルワーズ、勝利を呼び込む活躍",
+        "slug": "brewers-fan-celebrates-world-series-win",
+        "url": "https://www.mlb.com/news/brewers-fan-celebrates-world-series-win",
+        "contentDate": "2026-10-31T00:22:54.074Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "postseason",
+            "world-series",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Latest Angels injuries & transactions",
+        "summaryJa": "エンゼルスの負傷状況をMLB公式が詳報",
+        "slug": "angels-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/angels-injuries-and-roster-moves",
+        "contentDate": "2026-10-30T23:38:00Z",
+        "teamIds": [
+            108
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "D-backs to bring in Ben Fritz as new pitching coach (source)",
+        "summaryJa": "ダイヤモンドバックスの最新動向をMLB公式が詳報",
+        "slug": "diamondbacks-to-name-ben-fritz-pitching-coach",
+        "url": "https://www.mlb.com/news/diamondbacks-to-name-ben-fritz-pitching-coach",
+        "contentDate": "2026-10-30T23:32:29.602Z",
+        "teamIds": [
+            109
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "offseason"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Rangers' Walcott will venture into outfield during Arizona Fall League",
+        "summaryJa": "S.ウォルコット（TEX）の最新動向をMLB公式が詳報",
+        "slug": "rangers-sebastian-walcott-will-play-outfield-during-arizona-fall-league",
+        "url": "https://www.mlb.com/news/rangers-sebastian-walcott-will-play-outfield-during-arizona-fall-league",
+        "contentDate": "2026-10-30T23:14:30.932Z",
+        "teamIds": [
+            140
+        ],
+        "playerIds": [
+            806964
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "mlb-top-prospects",
+            "apple-news",
+            "arizona-fall-league"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "CJ Gillman to be hired as Mariners hitting coach (sources)",
         "summaryJa": "マリナーズの最新動向をMLB公式が詳報",
         "slug": "mariners-to-hire-cj-gillman-as-hitting-coach",
@@ -55,23 +229,6 @@
         ],
         "sourceScopes": [
             "球団公式"
-        ]
-    },
-    {
-        "headline": "Opt-outs and option decisions for 2027",
-        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
-        "slug": "mlb-players-with-2027-options-and-opt-outs",
-        "url": "https://www.mlb.com/news/mlb-players-with-2027-options-and-opt-outs",
-        "contentDate": "2026-10-30T22:21:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "rumors",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB"
         ]
     },
     {
@@ -204,23 +361,6 @@
         ]
     },
     {
-        "headline": "Watch Angels prospects in Arizona Fall League action",
-        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
-        "slug": "watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
-        "url": "https://www.mlb.com/news/watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
-        "contentDate": "2026-10-30T21:04:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "arizona-fall-league"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Mariners' No. 3 prospect Arroyo has right elbow surgery",
         "summaryJa": "M.アローヨ（SEA）ら注目選手の最新動向",
         "slug": "michael-arroyo-undergoes-right-elbow-surgery",
@@ -237,45 +377,6 @@
             "apple-news",
             "injury",
             "mlb-top-prospects"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Latest Angels injuries & transactions",
-        "summaryJa": "エンゼルスの負傷状況をMLB公式が詳報",
-        "slug": "angels-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/angels-injuries-and-roster-moves",
-        "contentDate": "2026-10-30T19:43:00Z",
-        "teamIds": [
-            108
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Astros' search for a GM could be nearing an end",
-        "summaryJa": "アストロズの最新動向をMLB公式が詳報",
-        "slug": "astros-general-manager-search-update",
-        "url": "https://www.mlb.com/news/astros-general-manager-search-update",
-        "contentDate": "2026-10-30T19:28:08.577Z",
-        "teamIds": [
-            117
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
         ],
         "sourceScopes": [
             "MLB",
@@ -320,6 +421,7 @@
             "transactions"
         ],
         "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
@@ -687,26 +789,6 @@
         ]
     },
     {
-        "headline": "Milwaukee Public Schools close for Brewers' championship parade",
-        "summaryJa": "ブルワーズの最新動向をMLB公式が詳報",
-        "slug": "milwaukee-public-schools-to-close-for-brewers-championship-parade",
-        "url": "https://www.mlb.com/news/milwaukee-public-schools-to-close-for-brewers-championship-parade",
-        "contentDate": "2026-10-30T15:00:00Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "postseason",
-            "world-series"
-        ],
-        "sourceScopes": [
-            "MLB"
-        ]
-    },
-    {
         "headline": "With massive power and a lineman's build, Bucs prospect made big strides this season",
         "summaryJa": "Tony Blanco Jr.（PIT）ら注目選手の最新動向",
         "slug": "tony-blanco-jr-progress-pirates-prospect-in-2026",
@@ -764,7 +846,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -785,6 +866,7 @@
             "apple-news"
         ],
         "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
@@ -805,7 +887,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1618,7 +1699,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1992,56 +2072,6 @@
         ]
     },
     {
-        "headline": "Champs twice in one year! Brewers' Venezuelan trio pulls off rare feat with WBC, WS wins",
-        "summaryJa": "W.コントレラス（MIL）、勝利を呼び込む活躍",
-        "slug": "jackson-chourio-william-contreras-antonio-senzatela-2026-world-baseball-classic-world-series",
-        "url": "https://www.mlb.com/news/jackson-chourio-william-contreras-antonio-senzatela-2026-world-baseball-classic-world-series",
-        "contentDate": "2026-10-29T06:20:30.809Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [
-            661388,
-            694192,
-            622608
-        ],
-        "gamePks": [
-            849799
-        ],
-        "taxonomy": [
-            "world-series",
-            "apple-news",
-            "clincher"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "'Long time coming': Miz's scoreless start sets up historic clinch",
-        "summaryJa": "J.ミザロウスキー（MIL）、マウンドで好投",
-        "slug": "jacob-misiorowski-2026-world-series-game-5-start",
-        "url": "https://www.mlb.com/news/jacob-misiorowski-2026-world-series-game-5-start",
-        "contentDate": "2026-10-29T06:10:00Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [
-            694819
-        ],
-        "gamePks": [
-            849799
-        ],
-        "taxonomy": [
-            "apple-news",
-            "world-series",
-            "postseason"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Mighty Brewers prove they're an unbeatable crew, capture first World Series!",
         "summaryJa": "ブルワーズ、勝利を呼び込む活躍",
         "slug": "brewers-win-world-series-2026",
@@ -2089,7 +2119,6 @@
             "clincher"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -2603,48 +2632,6 @@
             "mlb-top-prospects",
             "apple-news",
             "arizona-fall-league"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Longoria tosses first pitch ahead of Rays' must-win Game 4",
-        "summaryJa": "E.ロンゴリア（TB）、勝利を呼び込む活躍",
-        "slug": "evan-longoria-to-throw-first-pitch-at-world-series-game-4-2026",
-        "url": "https://www.mlb.com/news/evan-longoria-to-throw-first-pitch-at-world-series-game-4-2026",
-        "contentDate": "2026-10-28T00:23:00Z",
-        "teamIds": [
-            139
-        ],
-        "playerIds": [
-            446334
-        ],
-        "gamePks": [
-            849803
-        ],
-        "taxonomy": [
-            "world-series",
-            "postseason",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "A 2019 World Series connection emerges in Astros' GM search",
-        "summaryJa": "アストロズの最新動向をMLB公式が詳報",
-        "slug": "astros-general-manager-candidates",
-        "url": "https://www.mlb.com/news/astros-general-manager-candidates",
-        "contentDate": "2026-10-27T19:07:00Z",
-        "teamIds": [
-            117
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
@@ -6510,24 +6497,6 @@
         ]
     },
     {
-        "headline": "Potential candidates to become next Astros manager",
-        "summaryJa": "アストロズの最新動向をMLB公式が詳報",
-        "slug": "potential-candidates-for-astros-manager",
-        "url": "https://www.mlb.com/news/potential-candidates-for-astros-manager",
-        "contentDate": "2026-10-14T18:17:45.572Z",
-        "teamIds": [
-            117
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Pirates Insider: What are Lowe, Triolo's chances of winning Gold Gloves?",
         "summaryJa": "B.ラウ（PIT）の最新動向をMLB公式が詳報",
         "slug": "brandon-lowe-jared-triolo-recognized-as-gold-glove-finalists-what-are-their-chances-of-winning",
@@ -6917,6 +6886,32 @@
         ]
     },
     {
+        "headline": "Whose stock rose on the Astros' farm this year?",
+        "summaryJa": "Xavier Neyens（HOU）ら注目選手の最新動向",
+        "slug": "astros-top-prospects-who-are-getting-closer-to-majors",
+        "url": "https://www.mlb.com/news/astros-top-prospects-who-are-getting-closer-to-majors",
+        "contentDate": "2026-10-13T14:19:18.33Z",
+        "teamIds": [
+            117
+        ],
+        "playerIds": [
+            815832,
+            837522,
+            828395,
+            830004,
+            806494,
+            813314
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "mlb-top-prospects"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Reinvigorated and revamped Bloss headlines Blue Jays' Fall League contingent",
         "summaryJa": "J.ブロス（TOR）の最新動向をMLB公式が詳報",
         "slug": "blue-jays-arizona-fall-league-overview-2026",
@@ -7285,7 +7280,7 @@
         ]
     },
     {
-        "headline": "Top prospect Crisantes among Fall League's Week 1 top performers",
+        "headline": "RHP prospect Roby among Fall League's Week 1 top performers",
         "summaryJa": "J.スサーナら注目選手の最新動向",
         "slug": "arizona-fall-league-top-performers-week-1-2026",
         "url": "https://www.mlb.com/news/arizona-fall-league-top-performers-week-1-2026",
@@ -8113,30 +8108,6 @@
         "playerIds": [],
         "gamePks": [],
         "taxonomy": [],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "How did 2026 season predictions for Rangers play out?",
-        "summaryJa": "E.カーター（TEX）を巡る注目点をMLB公式が分析",
-        "slug": "how-2026-season-predictions-played-out-for-rangers",
-        "url": "https://www.mlb.com/news/how-2026-season-predictions-played-out-for-rangers",
-        "contentDate": "2026-10-05T14:02:05.455Z",
-        "teamIds": [
-            140
-        ],
-        "playerIds": [
-            694497,
-            694671,
-            677649,
-            594798,
-            656641
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
-        ],
         "sourceScopes": [
             "球団公式"
         ]
