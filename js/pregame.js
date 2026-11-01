@@ -2921,6 +2921,14 @@
     const FREE_AGENT_OPT_OUT_CONTRACT_YEARS = new Map([
         [837227, 3]
     ]);
+    const FREE_AGENT_OPT_OUT_DETAILS = new Map([
+        [650633, Object.freeze({
+            date: "2026-10-29",
+            contractYears: 3,
+            statusText: "3年契約のオプトアウト権を行使（残り2年5300万ドルを放棄）",
+            url: "https://www.mlb.com/news/michael-king-free-agent-2027"
+        })]
+    ]);
 
     const formatAgreementDate = (date) => {
         const match = String(date ?? "").match(/^\d{4}-(\d{2})-(\d{2})$/);
@@ -3015,9 +3023,14 @@
             .filter((article) =>
                 (article?.playerIds ?? []).some((id) => Number(id) === Number(playerId)) &&
                 startDate <= articleMlbDate(article) && articleMlbDate(article) <= date &&
-                /agree|sign|contract|deal/i.test([
-                    article?.headline, article?.summaryJa
-                ].filter(Boolean).join(" "))
+                (() => {
+                    const articleText = [article?.headline, article?.summaryJa]
+                        .filter(Boolean).join(" ");
+                    const isFreeAgencyOrExit = /(?:opt(?:s|ed)? out|declin(?:e|es|ed)|elect(?:s|ed)? free agency|become(?:s)? (?:a )?free agent|契約破棄|オプトアウト|FA(?:に|とな|選択|権)|自由契約)/i
+                        .test(articleText);
+                    return !isFreeAgencyOrExit &&
+                        /agree|sign|contract|deal|合意|契約/i.test(articleText);
+                })()
             )
             .map((article) => {
                 const articleTeamIds = (article?.teamIds ?? [])
@@ -3477,11 +3490,17 @@
             const formerTeam = transaction?.toTeam ?? transaction?.fromTeam;
             const formerTeamId = Number(formerTeam?.id);
             if (!playerId || !MLB_TEAM_IDS.has(formerTeamId)) return;
+            const optOut = FREE_AGENT_OPT_OUT_DETAILS.get(playerId);
             freeAgents.set(playerId, {
                 playerId,
                 person: transaction.person,
                 position: String(transaction.description).match(/^([A-Z0-9/]+)\s/)?.[1] ?? "",
-                formerTeam: { ...formerTeam, id: formerTeamId }
+                formerTeam: { ...formerTeam, id: formerTeamId },
+                declaredFreeAgent: Boolean(optOut),
+                declaredDate: optOut?.date || "",
+                optOutContractYears: optOut?.contractYears || 0,
+                declaredStatusText: optOut?.statusText || "",
+                sourceUrl: optOut?.url || ""
             });
         });
         const pitcherIds = [...freeAgents.values()]
@@ -3921,9 +3940,9 @@
                         if (details) details.append(status);
                         else row.append(status);
                     } else if (entry.declaredFreeAgent) {
-                        const declaredLabel = entry.optOutContractYears
+                        const declaredLabel = entry.declaredStatusText || (entry.optOutContractYears
                             ? `${entry.optOutContractYears}年契約途中でオプトアウト権を行使`
-                            : "FA選択";
+                            : "FA選択");
                         const declaredStatus = el(
                             "a",
                             "pregame-free-agent-declared-status",
