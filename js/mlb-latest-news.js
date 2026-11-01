@@ -2,6 +2,44 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Opt-outs and option decisions for 2027",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "mlb-players-with-2027-options-and-opt-outs",
+        "url": "https://www.mlb.com/news/mlb-players-with-2027-options-and-opt-outs",
+        "contentDate": "2026-11-01T18:27:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "rumors",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "Si Hwan Roh leads next crop of MLB-bound KBO stars",
+        "summaryJa": "Do Yeong Kimの最新動向をMLB公式が詳報",
+        "slug": "si-hwan-roh-and-the-kbo-stars-who-could-be-mlb-bound",
+        "url": "https://www.mlb.com/news/si-hwan-roh-and-the-kbo-stars-who-could-be-mlb-bound",
+        "contentDate": "2026-11-01T18:18:15.716Z",
+        "teamIds": [
+            1171
+        ],
+        "playerIds": [
+            838339
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "world-baseball-classic",
+            "mlb-international"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
         "headline": "Live from New York, it's the Brewers on Saturday Night Live!",
         "summaryJa": "C.イェリッチ（MIL）の最新動向をMLB公式が詳報",
         "slug": "christian-yelich-brice-turang-pat-murphy-saturday-night-live-world-series",
@@ -101,23 +139,6 @@
         "sourceScopes": [
             "MLB",
             "球団公式"
-        ]
-    },
-    {
-        "headline": "Opt-outs and option decisions for 2027",
-        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
-        "slug": "mlb-players-with-2027-options-and-opt-outs",
-        "url": "https://www.mlb.com/news/mlb-players-with-2027-options-and-opt-outs",
-        "contentDate": "2026-11-01T02:18:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "rumors",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB"
         ]
     },
     {
@@ -562,7 +583,6 @@
             "transactions"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
