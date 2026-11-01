@@ -2,11 +2,28 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Watch Angels prospects in Arizona Fall League action",
+        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
+        "slug": "watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
+        "url": "https://www.mlb.com/news/watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
+        "contentDate": "2026-11-01T00:53:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "arizona-fall-league"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Opt-outs and option decisions for 2027",
         "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
         "slug": "mlb-players-with-2027-options-and-opt-outs",
         "url": "https://www.mlb.com/news/mlb-players-with-2027-options-and-opt-outs",
-        "contentDate": "2026-10-31T21:49:00Z",
+        "contentDate": "2026-11-01T00:42:00Z",
         "teamIds": [],
         "playerIds": [],
         "gamePks": [],
@@ -19,20 +36,130 @@
         ]
     },
     {
-        "headline": "Watch Angels prospects in Arizona Fall League action",
-        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
-        "slug": "watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
-        "url": "https://www.mlb.com/news/watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
-        "contentDate": "2026-10-31T19:20:00Z",
-        "teamIds": [],
+        "headline": "Latest Rays injuries & transactions",
+        "summaryJa": "レイズの負傷状況をMLB公式が詳報",
+        "slug": "rays-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/rays-injuries-and-roster-moves",
+        "contentDate": "2026-10-31T23:30:00Z",
+        "teamIds": [
+            139
+        ],
         "playerIds": [],
         "gamePks": [],
         "taxonomy": [
-            "apple-news",
-            "arizona-fall-league"
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
         ],
         "sourceScopes": [
             "球団公式"
+        ]
+    },
+    {
+        "headline": "Rasmussen ($20M club option) returns to Rays for '27 after stellar season, playoff heroics",
+        "summaryJa": "D.ラスムッセン（TB）、復帰へ向けた最新状況",
+        "slug": "rays-pick-up-drew-rasmussen-s-club-option-for-2027",
+        "url": "https://www.mlb.com/news/rays-pick-up-drew-rasmussen-s-club-option-for-2027",
+        "contentDate": "2026-10-31T23:23:42.304Z",
+        "teamIds": [
+            139
+        ],
+        "playerIds": [
+            656876
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "transactions"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Latest O's injuries & transactions",
+        "summaryJa": "オリオールズの負傷状況をMLB公式が詳報",
+        "slug": "orioles-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/orioles-injuries-and-roster-moves",
+        "contentDate": "2026-10-31T23:15:00Z",
+        "teamIds": [
+            110
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Orioles decline Robert's '27 team option after injury-plagued season",
+        "summaryJa": "L.ロバート Jr.（BAL）の負傷状況をMLB公式が詳報",
+        "slug": "luis-robert-jr-2027-team-option-declined-by-orioles",
+        "url": "https://www.mlb.com/news/luis-robert-jr-2027-team-option-declined-by-orioles",
+        "contentDate": "2026-10-31T23:09:50.589Z",
+        "teamIds": [
+            110
+        ],
+        "playerIds": [
+            673357
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "transactions",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Pagán, Suárez headline trio of Reds to enter free agency",
+        "summaryJa": "E.スアレス（CIN）の最新動向をMLB公式が詳報",
+        "slug": "emilio-pagan-eugenio-suarez-among-reds-to-enter-free-agency",
+        "url": "https://www.mlb.com/news/emilio-pagan-eugenio-suarez-among-reds-to-enter-free-agency",
+        "contentDate": "2026-10-31T22:18:00Z",
+        "teamIds": [
+            113
+        ],
+        "playerIds": [
+            553993,
+            641941,
+            572955
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "transactions"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Brewers, Rays face roster decisions this offseason after World Series",
+        "summaryJa": "レイズの最新動向をMLB公式が詳報",
+        "slug": "brewers-rays-roster-decisions-this-offseason-after-world-series",
+        "url": "https://www.mlb.com/news/brewers-rays-roster-decisions-this-offseason-after-world-series",
+        "contentDate": "2026-10-31T22:11:54.385Z",
+        "teamIds": [
+            139,
+            158
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB"
         ]
     },
     {
@@ -715,27 +842,6 @@
             "mlb-top-prospects"
         ],
         "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Latest O's injuries & transactions",
-        "summaryJa": "オリオールズの負傷状況をMLB公式が詳報",
-        "slug": "orioles-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/orioles-injuries-and-roster-moves",
-        "contentDate": "2026-10-30T19:20:00Z",
-        "teamIds": [
-            110
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
-        ],
-        "sourceScopes": [
             "球団公式"
         ]
     },
@@ -758,26 +864,6 @@
         ],
         "sourceScopes": [
             "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Latest Rays injuries & transactions",
-        "summaryJa": "レイズの負傷状況をMLB公式が詳報",
-        "slug": "rays-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/rays-injuries-and-roster-moves",
-        "contentDate": "2026-10-30T18:47:00Z",
-        "teamIds": [
-            139
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
-        ],
-        "sourceScopes": [
             "球団公式"
         ]
     },
@@ -1200,7 +1286,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1500,7 +1585,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -2436,7 +2520,6 @@
             "clincher"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -7044,28 +7127,6 @@
         "gamePks": [],
         "taxonomy": [
             "apple-news",
-            "mlb-top-prospects"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Reds prospect Luke Holman is healthy and thriving in Arizona Fall League",
-        "summaryJa": "Luke Holman（CIN）ら注目選手の最新動向",
-        "slug": "reds-prospect-luke-holman-finally-healthy-and-thriving-in-arizona-fall-league",
-        "url": "https://www.mlb.com/news/reds-prospect-luke-holman-finally-healthy-and-thriving-in-arizona-fall-league",
-        "contentDate": "2026-10-14T06:17:00Z",
-        "teamIds": [
-            113
-        ],
-        "playerIds": [
-            695705
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "arizona-fall-league",
             "mlb-top-prospects"
         ],
         "sourceScopes": [
