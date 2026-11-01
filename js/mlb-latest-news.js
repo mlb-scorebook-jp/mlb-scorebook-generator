@@ -2,11 +2,74 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Live from New York, it's the Brewers on Saturday Night Live!",
+        "summaryJa": "C.イェリッチ（MIL）の最新動向をMLB公式が詳報",
+        "slug": "christian-yelich-brice-turang-pat-murphy-saturday-night-live-world-series",
+        "url": "https://www.mlb.com/news/christian-yelich-brice-turang-pat-murphy-saturday-night-live-world-series",
+        "contentDate": "2026-11-01T05:12:53.915Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [
+            592885,
+            668930
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Gold Glove winners announced tonight! Here are the finalists",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "2026-gold-glove-award-finalists",
+        "url": "https://www.mlb.com/news/2026-gold-glove-award-finalists",
+        "contentDate": "2026-11-01T04:00:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "gold-glove-award",
+            "apple-news",
+            "awards-watch"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Rasmussen ($20M club option) returns to Rays for '27 after stellar season, playoff heroics",
+        "summaryJa": "D.ラスムッセン（TB）、復帰へ向けた最新状況",
+        "slug": "rays-pick-up-drew-rasmussen-s-club-option-for-2027",
+        "url": "https://www.mlb.com/news/rays-pick-up-drew-rasmussen-s-club-option-for-2027",
+        "contentDate": "2026-11-01T03:58:00Z",
+        "teamIds": [
+            139
+        ],
+        "playerIds": [
+            656876
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "transactions"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Watch Angels prospects in Arizona Fall League action",
         "summaryJa": "MLBの最新情報ら注目選手の最新動向",
         "slug": "watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
         "url": "https://www.mlb.com/news/watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
-        "contentDate": "2026-11-01T00:53:00Z",
+        "contentDate": "2026-11-01T03:25:00Z",
         "teamIds": [],
         "playerIds": [],
         "gamePks": [],
@@ -19,17 +82,102 @@
         ]
     },
     {
+        "headline": "Pivetta becomes free agent after Padres decline '27 team option (source)",
+        "summaryJa": "N.ピベッタ（SD）の最新動向をMLB公式が詳報",
+        "slug": "nick-pivetta-2027-team-option-declined-by-padres",
+        "url": "https://www.mlb.com/news/nick-pivetta-2027-team-option-declined-by-padres",
+        "contentDate": "2026-11-01T02:27:00Z",
+        "teamIds": [
+            135
+        ],
+        "playerIds": [
+            601713
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "transactions",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Opt-outs and option decisions for 2027",
         "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
         "slug": "mlb-players-with-2027-options-and-opt-outs",
         "url": "https://www.mlb.com/news/mlb-players-with-2027-options-and-opt-outs",
-        "contentDate": "2026-11-01T00:42:00Z",
+        "contentDate": "2026-11-01T02:18:00Z",
         "teamIds": [],
         "playerIds": [],
         "gamePks": [],
         "taxonomy": [
             "rumors",
             "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "How did last year's top free agents fare in 2026?",
+        "summaryJa": "K.タッカーを巡る注目点をMLB公式が分析",
+        "slug": "how-did-top-free-agents-fare-in-2026-season",
+        "url": "https://www.mlb.com/news/how-did-top-free-agents-fare-in-2026-season",
+        "contentDate": "2026-11-01T01:48:07.408Z",
+        "teamIds": [],
+        "playerIds": [
+            663656,
+            608324,
+            656941,
+            666182,
+            641355,
+            624413,
+            656302,
+            808959,
+            650633,
+            624133
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "7 storylines to watch as the Hot Stove ignites",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "storylines-to-follow-in-2026-mlb-offseason",
+        "url": "https://www.mlb.com/news/storylines-to-follow-in-2026-mlb-offseason",
+        "contentDate": "2026-11-01T01:47:23.231Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "trades",
+            "transactions",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "Here are the top 30 names to watch in free agency",
+        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
+        "slug": "ranking-the-free-agents-for-2026-27-offseason",
+        "url": "https://www.mlb.com/news/ranking-the-free-agents-for-2026-27-offseason",
+        "contentDate": "2026-11-01T00:58:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "rumors",
+            "mlbn-hot-stove"
         ],
         "sourceScopes": [
             "MLB"
@@ -52,28 +200,6 @@
             "exclude-from-personalization"
         ],
         "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Rasmussen ($20M club option) returns to Rays for '27 after stellar season, playoff heroics",
-        "summaryJa": "D.ラスムッセン（TB）、復帰へ向けた最新状況",
-        "slug": "rays-pick-up-drew-rasmussen-s-club-option-for-2027",
-        "url": "https://www.mlb.com/news/rays-pick-up-drew-rasmussen-s-club-option-for-2027",
-        "contentDate": "2026-10-31T23:23:42.304Z",
-        "teamIds": [
-            139
-        ],
-        "playerIds": [
-            656876
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "transactions"
-        ],
-        "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -201,6 +327,24 @@
         ]
     },
     {
+        "headline": "Outfielders are better than ever -- here's why",
+        "summaryJa": "MLBの最新情報を巡る注目点をMLB公式が分析",
+        "slug": "outfield-defense-is-better-than-ever",
+        "url": "https://www.mlb.com/news/outfield-defense-is-better-than-ever",
+        "contentDate": "2026-10-31T16:09:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "savant",
+            "player-tracking",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
         "headline": "Important Angels dates for offseason awards, Hot Stove and more",
         "summaryJa": "エンゼルスの最新動向をMLB公式が詳報",
         "slug": "angels-2026-offseason-dates-for-awards-deadlines-more",
@@ -322,6 +466,7 @@
             "apple-news"
         ],
         "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
@@ -344,6 +489,7 @@
             "arizona-fall-league"
         ],
         "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
@@ -615,7 +761,6 @@
             "arizona-fall-league"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -742,25 +887,6 @@
         ]
     },
     {
-        "headline": "Best World Series moments on Halloween 🎃",
-        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
-        "slug": "halloween-world-series-mlb-playoff-games",
-        "url": "https://www.mlb.com/news/halloween-world-series-mlb-playoff-games",
-        "contentDate": "2026-10-30T22:03:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "evergreen",
-            "apple-news",
-            "postseason",
-            "world-series"
-        ],
-        "sourceScopes": [
-            "MLB"
-        ]
-    },
-    {
         "headline": "Rays decline Martinez and Mullins' contract options, making them free agents",
         "summaryJa": "N.マルティネス（TB）の移籍・契約に関する最新情報",
         "slug": "rays-decline-mutual-options-with-nick-martinez-cedric-mullins",
@@ -863,7 +989,6 @@
             "transactions"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -882,26 +1007,7 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
-        ]
-    },
-    {
-        "headline": "Inbox: Drafting top choices for the Fall League HR Derby",
-        "summaryJa": "MLBの最新情報、本塁打で存在感",
-        "slug": "pipeline-inbox-arizona-fall-league-home-run-derby-yankees-dax-kilby-and-more",
-        "url": "https://www.mlb.com/news/pipeline-inbox-arizona-fall-league-home-run-derby-yankees-dax-kilby-and-more",
-        "contentDate": "2026-10-30T18:33:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "mlb-top-prospects",
-            "apple-news",
-            "arizona-fall-league"
-        ],
-        "sourceScopes": [
-            "MLB"
         ]
     },
     {
@@ -1142,7 +1248,6 @@
             "postseason"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1326,7 +1431,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1514,7 +1618,7 @@
         ]
     },
     {
-        "headline": "Who made this year's All-Postseason Team?",
+        "headline": "Presenting the 2026 All-Postseason Team",
         "summaryJa": "W.コントレラスの最新動向をMLB公式が詳報",
         "slug": "2026-mlb-all-postseason-team",
         "url": "https://www.mlb.com/news/2026-mlb-all-postseason-team",
@@ -1544,7 +1648,6 @@
             "postseason"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -2045,7 +2148,6 @@
             "postseason"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -6206,22 +6308,6 @@
         ]
     },
     {
-        "headline": "Triple-A El Paso takes home MiLB's 2026 Copa de la Diversión",
-        "summaryJa": "MLBの最新情報、勝利を呼び込む活躍",
-        "slug": "el-paso-matachines-win-2026-copa-de-la-diversion",
-        "url": "https://www.mlb.com/news/el-paso-matachines-win-2026-copa-de-la-diversion",
-        "contentDate": "2026-10-16T15:32:57.925Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "minor-league-baseball"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "After first full pro season cut short, Astros' Monistere getting reps in AFL",
         "summaryJa": "Nick Monistere（HOU）ら注目選手の最新動向",
         "slug": "astros-prospect-nick-monistere-playing-in-arizona-fall-league",
@@ -6919,24 +7005,6 @@
         "gamePks": [],
         "taxonomy": [
             "pit-inside-the-pirates"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Carroll, Perdomo among 4 D-backs nominated for Gold Gloves",
-        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
-        "slug": "2026-gold-glove-award-finalists",
-        "url": "https://www.mlb.com/news/2026-gold-glove-award-finalists",
-        "contentDate": "2026-10-14T17:07:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "gold-glove-award",
-            "apple-news",
-            "awards-watch"
         ],
         "sourceScopes": [
             "球団公式"
