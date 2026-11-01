@@ -2,28 +2,11 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
-        "headline": "Opt-outs and option decisions for 2027",
-        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
-        "slug": "mlb-players-with-2027-options-and-opt-outs",
-        "url": "https://www.mlb.com/news/mlb-players-with-2027-options-and-opt-outs",
-        "contentDate": "2026-11-01T18:27:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "rumors",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB"
-        ]
-    },
-    {
         "headline": "Si Hwan Roh leads next crop of MLB-bound KBO stars",
         "summaryJa": "Do Yeong Kimの最新動向をMLB公式が詳報",
         "slug": "si-hwan-roh-and-the-kbo-stars-who-could-be-mlb-bound",
         "url": "https://www.mlb.com/news/si-hwan-roh-and-the-kbo-stars-who-could-be-mlb-bound",
-        "contentDate": "2026-11-01T18:18:15.716Z",
+        "contentDate": "2026-11-01T22:18:00Z",
         "teamIds": [
             1171
         ],
@@ -37,6 +20,117 @@
         ],
         "sourceScopes": [
             "MLB"
+        ]
+    },
+    {
+        "headline": "NPB ERA leader enters MLB posting system",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "kaima-taira-will-enter-mlb-posting-system",
+        "url": "https://www.mlb.com/news/kaima-taira-will-enter-mlb-posting-system",
+        "contentDate": "2026-11-01T22:11:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "Here are the top 30 names to watch in free agency",
+        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
+        "slug": "ranking-the-free-agents-for-2026-27-offseason",
+        "url": "https://www.mlb.com/news/ranking-the-free-agents-for-2026-27-offseason",
+        "contentDate": "2026-11-01T21:59:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "rumors",
+            "mlbn-hot-stove"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "NPB MVP, Triple Crown winner Sato enters MLB posting system",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "teruaki-sato-mlb-posting-system",
+        "url": "https://www.mlb.com/news/teruaki-sato-mlb-posting-system",
+        "contentDate": "2026-11-01T21:47:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "mlb"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "Red Sox exercise club option on reliever Whitlock",
+        "summaryJa": "G.ウィットロック（BOS）の最新動向をMLB公式が詳報",
+        "slug": "garrett-whitlock-red-sox-pick-up-team-option",
+        "url": "https://www.mlb.com/news/garrett-whitlock-red-sox-pick-up-team-option",
+        "contentDate": "2026-11-01T20:22:00Z",
+        "teamIds": [
+            111
+        ],
+        "playerIds": [
+            676477
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "transactions"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Right-handed ace Itoh officially posted by Japanese club",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "hiromi-itoh-posted-hokkaido-nippon-ham-fighters",
+        "url": "https://www.mlb.com/news/hiromi-itoh-posted-hokkaido-nippon-ham-fighters",
+        "contentDate": "2026-11-01T19:39:12.801Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "Koosman, iconic Mets southpaw who clinched '69 WS, passes away at 83",
+        "summaryJa": "Jerry Koosman（NYM）の最新動向をMLB公式が詳報",
+        "slug": "jerry-koosman-passes-away-at-83",
+        "url": "https://www.mlb.com/news/jerry-koosman-passes-away-at-83",
+        "contentDate": "2026-11-01T19:06:53.198Z",
+        "teamIds": [
+            121
+        ],
+        "playerIds": [
+            117255
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "obituary",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
         ]
     },
     {
@@ -181,24 +275,6 @@
             "trades",
             "transactions",
             "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB"
-        ]
-    },
-    {
-        "headline": "Here are the top 30 names to watch in free agency",
-        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
-        "slug": "ranking-the-free-agents-for-2026-27-offseason",
-        "url": "https://www.mlb.com/news/ranking-the-free-agents-for-2026-27-offseason",
-        "contentDate": "2026-11-01T00:58:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "rumors",
-            "mlbn-hot-stove"
         ],
         "sourceScopes": [
             "MLB"
@@ -510,7 +586,6 @@
             "arizona-fall-league"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -698,7 +773,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1371,7 +1445,6 @@
             "transactions"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1514,22 +1587,6 @@
         ],
         "sourceScopes": [
             "球団公式"
-        ]
-    },
-    {
-        "headline": "NPB ERA leader to enter MLB posting system",
-        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
-        "slug": "kaima-taira-will-enter-mlb-posting-system",
-        "url": "https://www.mlb.com/news/kaima-taira-will-enter-mlb-posting-system",
-        "contentDate": "2026-10-30T13:13:47.531Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB"
         ]
     },
     {
@@ -7344,27 +7401,6 @@
         ]
     },
     {
-        "headline": "Will Arias cause a domino effect? Plus 7 more offseason questions",
-        "summaryJa": "Franklin Arias（BOS）の最新動向をMLB公式が詳報",
-        "slug": "red-sox-questions-to-answer-in-offseason",
-        "url": "https://www.mlb.com/news/red-sox-questions-to-answer-in-offseason",
-        "contentDate": "2026-10-13T13:54:14.726Z",
-        "teamIds": [
-            111
-        ],
-        "playerIds": [
-            808265
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "mlb-top-prospects"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Three prospects who could be key contributors for O's in '27",
         "summaryJa": "Luis De León（BAL）ら注目選手の最新動向",
         "slug": "orioles-prospects-who-could-contribute-in-2027",
@@ -7503,29 +7539,6 @@
         "taxonomy": [
             "apple-news",
             "offseason"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Keep an eye on these 3 Mets prospects for 2027",
-        "summaryJa": "J.ロハス（NYM）ら注目選手の最新動向",
-        "slug": "jefferson-rojas-jonathan-santucci-emilien-pitre-are-mets-prospects-to-watch",
-        "url": "https://www.mlb.com/news/jefferson-rojas-jonathan-santucci-emilien-pitre-are-mets-prospects-to-watch",
-        "contentDate": "2026-10-12T14:28:07.046Z",
-        "teamIds": [
-            121
-        ],
-        "playerIds": [
-            800473,
-            695558,
-            692150
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "mlb-top-prospects"
         ],
         "sourceScopes": [
             "球団公式"
