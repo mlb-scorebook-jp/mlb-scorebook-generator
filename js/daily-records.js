@@ -2,7 +2,7 @@
 
 (() => {
     const API_ROOT = "https://statsapi.mlb.com/api";
-    const CACHE_PREFIX = "mlb-postgame-review-v1:";
+    const CACHE_PREFIX = "mlb-postgame-review-v2:";
     const MAX_CONCURRENT_GAMES = 3;
     const RECORD_THRESHOLDS = Object.freeze({
         inningHits: 2,
@@ -907,12 +907,51 @@
         return plays.at(-1) ?? null;
     };
 
+    const PLAY_EVENT_LABELS = {
+        home_run: "本塁打", single: "安打", double: "二塁打", triple: "三塁打",
+        walk: "四球", intentional_walk: "申告敬遠", hit_by_pitch: "死球",
+        sacrifice_fly: "犠牲フライ", sac_fly: "犠牲フライ", sacrifice_bunt: "犠牲バント",
+        sac_bunt: "犠牲バント", field_error: "失策で出塁", field_out: "打ち取られる",
+        force_out: "フォースアウト", grounded_into_double_play: "併殺打",
+        strikeout: "三振", catcher_interf: "打撃妨害", fielders_choice: "野手選択"
+    };
+    const battedBallDirection = (description) => {
+        const source = text(description).toLowerCase();
+        if (/left center/.test(source)) return "左中間";
+        if (/right center/.test(source)) return "右中間";
+        if (/left field/.test(source)) return "左翼";
+        if (/right field/.test(source)) return "右翼";
+        if (/center field/.test(source)) return "中堅";
+        return "";
+    };
+    const japanesePlayDescription = (play) => {
+        if (!play) return "";
+        const result = play?.result ?? {};
+        const eventType = text(result.eventType).toLowerCase();
+        const event = PLAY_EVENT_LABELS[eventType] || text(result.event) || "得点プレー";
+        const batter = play?.matchup?.batter
+            ? playerDisplayName(play.matchup.batter)
+            : "打者";
+        const direction = battedBallDirection(result.description);
+        const runs = (play?.runners ?? []).filter((runner) =>
+            runner?.details?.isScoringEvent === true ||
+            text(runner?.movement?.end).toLowerCase() === "score"
+        ).map((runner) => runner?.details?.runner
+            ? playerDisplayName(runner.details.runner)
+            : "").filter(Boolean);
+        const rbi = number(result.rbi);
+        let sentence = `${batter}が${direction ? `${direction}へ` : ""}${event}`;
+        if (runs.length) sentence += `。${runs.join("、")}が生還`;
+        else if (rbi) sentence += `で${rbi}点`;
+        return `${sentence}。`;
+    };
+
     const reviewPlay = (play) => {
         if (!play) return null;
         return {
             inning: number(play?.about?.inning),
             half: text(play?.about?.halfInning) === "top" ? "表" : "裏",
-            description: text(play?.result?.description || play?.result?.event),
+            description: japanesePlayDescription(play),
             awayScore: number(play?.result?.awayScore),
             homeScore: number(play?.result?.homeScore),
             eventType: text(play?.result?.eventType)
@@ -3100,8 +3139,15 @@
         const articles = review.articles?.[team.id] ?? [];
         if (articles.length) {
             articles.slice(0, 3).forEach((article) => {
-                const card = reviewLink(article.headline, article.url, "postgame-review-article");
-                if (article.summary) card.append(reviewElement("span", "", article.summary));
+                const isWinner = team.id === review.winnerId;
+                const card = reviewLink(
+                    `${team.code}公式記事：${isWinner ? "勝利を詳報" : "試合を振り返る"}`,
+                    article.url,
+                    "postgame-review-article"
+                );
+                card.append(reviewElement("span", "",
+                    `${team.code}の公式記事を日本語表示用に整理。原文と詳細はリンク先で確認できます。`
+                ));
                 articleList.append(card);
             });
         } else {
