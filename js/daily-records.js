@@ -2,7 +2,7 @@
 
 (() => {
     const API_ROOT = "https://statsapi.mlb.com/api";
-    const CACHE_PREFIX = "mlb-postgame-review-v3:";
+    const CACHE_PREFIX = "mlb-postgame-review-v4:";
     const MAX_CONCURRENT_GAMES = 3;
     const RECORD_THRESHOLDS = Object.freeze({
         inningHits: 2,
@@ -983,6 +983,42 @@
         };
     };
 
+    const decisionPitcherSummary = (boxscore, person, kind) => {
+        if (!person) return { name: "—", record: "" };
+        const playerId = number(person.id);
+        const entry = ["away", "home"].map((side) =>
+            boxTeamForSide(boxscore, side)?.players?.[`ID${playerId}`]
+        ).find(Boolean);
+        const pitching = entry?.seasonStats?.pitching ?? {};
+        const record = kind === "save"
+            ? (number(pitching.saves) ? `${number(pitching.saves)}S` : "")
+            : (number(pitching.wins) || number(pitching.losses)
+                ? `${number(pitching.wins)}勝${number(pitching.losses)}敗`
+                : "");
+        return { name: playerDisplayName(person), record };
+    };
+
+    const gameHomeRuns = (game, playByPlay, boxscore) => (playByPlay?.allPlays ?? [])
+        .filter((play) => text(play?.result?.eventType).toLowerCase() === "home_run")
+        .map((play) => {
+            const batter = play?.matchup?.batter;
+            const side = battingSideForPlay(play);
+            const description = text(play?.result?.description);
+            const parsedNumber = number(description.match(/\((\d+)\)/)?.[1]);
+            const playerId = number(batter?.id);
+            const seasonNumber = number(
+                boxTeamForSide(boxscore, side)?.players?.[`ID${playerId}`]
+                    ?.seasonStats?.batting?.homeRuns
+            );
+            return {
+                player: batter ? playerDisplayName(batter) : "選手不明",
+                number: parsedNumber || seasonNumber || null,
+                teamCode: teamCode(scheduleTeamForSide(game, side)),
+                inning: number(play?.about?.inning),
+                half: text(play?.about?.halfInning) === "top" ? "表" : "裏"
+            };
+        });
+
     const buildPostgameReview = async (game, playByPlay, boxscore, decisions, records, signal) => {
         const articles = (await fetchOfficialArticles(game.gamePk, signal).catch(() => []))
             .map(articleDigest).filter((article) => article.headline && article.url);
@@ -1024,10 +1060,11 @@
                 }))
             },
             decisions: {
-                winner: decisions?.winner ? playerDisplayName(decisions.winner) : "—",
-                save: decisions?.save ? playerDisplayName(decisions.save) : "—",
-                loser: decisions?.loser ? playerDisplayName(decisions.loser) : "—"
+                winner: decisionPitcherSummary(boxscore, decisions?.winner, "winner"),
+                save: decisionPitcherSummary(boxscore, decisions?.save, "save"),
+                loser: decisionPitcherSummary(boxscore, decisions?.loser, "loser")
             },
+            homeRuns: gameHomeRuns(game, playByPlay, boxscore),
             summary: `${winner.code}が${loser.code}に${winner.runs}－${loser.runs}で勝利。` +
                 `${winner.hits}安打${winner.homeRuns ? `、${winner.homeRuns}本塁打` : ""}で${winner.runs}得点を挙げた。`,
             decisivePlay: reviewPlay(decisive),
@@ -3225,11 +3262,36 @@
     const renderReviewDecisions = (review) => {
         const section = reviewElement("section", "postgame-review-decisions");
         [["勝利投手", review.decisions?.winner], ["セーブ", review.decisions?.save],
-            ["敗戦投手", review.decisions?.loser]].forEach(([label, name]) => {
+            ["敗戦投手", review.decisions?.loser]].forEach(([label, pitcher]) => {
             const item = reviewElement("div");
-            item.append(reviewElement("small", "", label), reviewElement("strong", "", name || "—"));
+            const value = reviewElement("strong");
+            value.append(document.createTextNode(pitcher?.name || "—"));
+            if (pitcher?.record) value.append(reviewElement("span", "", pitcher.record));
+            item.append(reviewElement("small", "", label), value);
             section.append(item);
         });
+        return section;
+    };
+
+    const renderReviewHomeRuns = (review) => {
+        const section = reviewElement("section", "postgame-review-home-runs");
+        section.append(reviewElement("h4", "", "本塁打"));
+        const list = reviewElement("div", "postgame-review-home-run-list");
+        if (review.homeRuns?.length) {
+            review.homeRuns.forEach((homeRun) => {
+                const item = reviewElement("div");
+                item.append(
+                    reviewElement("small", "", homeRun.teamCode),
+                    reviewElement("strong", "", homeRun.player),
+                    reviewElement("b", "", homeRun.number ? `${homeRun.number}号` : "本塁打"),
+                    reviewElement("span", "", `${homeRun.inning}回${homeRun.half}`)
+                );
+                list.append(item);
+            });
+        } else {
+            list.append(reviewElement("p", "is-muted", "本塁打なし"));
+        }
+        section.append(list);
         return section;
     };
 
@@ -3264,7 +3326,11 @@
             const count = reviewElement("span", "postgame-review-count", `記録 ${review.recordCount}件`);
             summary.append(matchup, score, count);
             const body = reviewElement("div", "postgame-review-body");
-            body.append(renderReviewLinescore(review), renderReviewDecisions(review));
+            body.append(
+                renderReviewLinescore(review),
+                renderReviewDecisions(review),
+                renderReviewHomeRuns(review)
+            );
             const overview = reviewElement("section", "postgame-review-overview");
             overview.append(
                 reviewElement("span", "postgame-review-kicker", "試合の結論"),
@@ -3439,7 +3505,7 @@
             const officialNewsSpecialRecords = buildOfficialNewsSpecialRecords(date, games);
             const heartwarmingRecords = buildHeartwarmingNewsRecords(date, games);
             const payload = {
-                version: 3,
+                version: 4,
                 date,
                 checkedAt: nowIso(),
                 totalGames: games.length,
