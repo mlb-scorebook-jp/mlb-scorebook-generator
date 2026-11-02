@@ -2,13 +2,273 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
-        "headline": "LIVE on ESPN: Gold Glove Award winners being announced",
-        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
-        "slug": "2026-gold-glove-award-winners",
-        "url": "https://www.mlb.com/news/2026-gold-glove-award-winners",
-        "contentDate": "2026-11-02T01:49:00Z",
+        "headline": "Watch Angels prospects in Arizona Fall League action",
+        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
+        "slug": "watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
+        "url": "https://www.mlb.com/news/watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
+        "contentDate": "2026-11-02T05:10:00Z",
         "teamIds": [],
         "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "arizona-fall-league"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Durbin, Abreu and Rafaela give Sox 3 Gold Glovers for 1st time since ‘18",
+        "summaryJa": "C.ダービン（BOS）、記録達成の最新情報",
+        "slug": "caleb-durbin-wilyer-abreu-ceddanne-rafaela-win-gold-glove-awards",
+        "url": "https://www.mlb.com/news/caleb-durbin-wilyer-abreu-ceddanne-rafaela-win-gold-glove-awards",
+        "contentDate": "2026-11-02T04:15:00Z",
+        "teamIds": [
+            111
+        ],
+        "playerIds": [
+            702332,
+            677800,
+            678882
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "gold-glove-award"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Bellinger's rock-solid LF defense rewarded with 2nd career Gold Glove",
+        "summaryJa": "C.ベリンジャー（NYY）、記録達成の最新情報",
+        "slug": "cody-bellinger-wins-2026-gold-glove-award",
+        "url": "https://www.mlb.com/news/cody-bellinger-wins-2026-gold-glove-award",
+        "contentDate": "2026-11-02T04:15:00Z",
+        "teamIds": [
+            147
+        ],
+        "playerIds": [
+            641355
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "gold-glove-award"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "PCA, Bregman both win their second Gold Glove Award",
+        "summaryJa": "A.ブレグマン（CHC）、勝利を呼び込む活躍",
+        "slug": "pete-crow-armstrong-alex-bregman-win-gold-glove-awards",
+        "url": "https://www.mlb.com/news/pete-crow-armstrong-alex-bregman-win-gold-glove-awards",
+        "contentDate": "2026-11-02T04:00:00Z",
+        "teamIds": [
+            112
+        ],
+        "playerIds": [
+            608324,
+            691718
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "gold-glove-award"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Giants pick up Minor League lefty Neubeck from Nats in exchange for Furman",
+        "summaryJa": "N.ファーマン（SF）の移籍・契約に関する最新情報",
+        "slug": "giants-trade-nate-furman-to-nationals-for-tony-neubeck",
+        "url": "https://www.mlb.com/news/giants-trade-nate-furman-to-nationals-for-tony-neubeck",
+        "contentDate": "2026-11-02T03:45:18.121Z",
+        "teamIds": [
+            137
+        ],
+        "playerIds": [
+            801501
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "transactions",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Latest Giants injuries & transactions",
+        "summaryJa": "ジャイアンツの負傷状況をMLB公式が詳報",
+        "slug": "giants-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/giants-injuries-and-roster-moves",
+        "contentDate": "2026-11-02T03:45:00Z",
+        "teamIds": [
+            137
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "transactions",
+            "injury",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "The Solution is golden! Duran wins first Gold Glove",
+        "summaryJa": "E.デュラン（TEX）、勝利を呼び込む活躍",
+        "slug": "ezequiel-duran-wins-2026-gold-glove-award",
+        "url": "https://www.mlb.com/news/ezequiel-duran-wins-2026-gold-glove-award",
+        "contentDate": "2026-11-02T03:03:29.136Z",
+        "teamIds": [
+            140
+        ],
+        "playerIds": [
+            677649
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "gold-glove-award"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Where could Bauers land in free agency after breakout year?",
+        "summaryJa": "J.バウアーズの最新動向をMLB公式が詳報",
+        "slug": "jake-bauers-2026-free-agent-profile",
+        "url": "https://www.mlb.com/news/jake-bauers-2026-free-agent-profile",
+        "contentDate": "2026-11-02T03:00:30.836Z",
+        "teamIds": [],
+        "playerIds": [
+            641343
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "rumors",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "What's in store for Peralta's free agency after late-season surge?",
+        "summaryJa": "F.ペラルタの最新動向をMLB公式が詳報",
+        "slug": "freddy-peralta-2026-free-agent-profile",
+        "url": "https://www.mlb.com/news/freddy-peralta-2026-free-agent-profile",
+        "contentDate": "2026-11-02T03:00:02.486Z",
+        "teamIds": [],
+        "playerIds": [
+            642547
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "Olson, Dubón both win 2nd straight Gold Gloves",
+        "summaryJa": "M.デュボーン（ATL）、記録達成の最新情報",
+        "slug": "matt-olson-mauricio-dubon-braves-2026-gold-glove-awards",
+        "url": "https://www.mlb.com/news/matt-olson-mauricio-dubon-braves-2026-gold-glove-awards",
+        "contentDate": "2026-11-02T02:48:37.958Z",
+        "teamIds": [
+            144
+        ],
+        "playerIds": [
+            643289,
+            621566
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "gold-glove-award"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Who's the best free-agent starter after Skubal? Let's dive in",
+        "summaryJa": "K.ガーズマンの最新動向をMLB公式が詳報",
+        "slug": "best-2026-free-agent-starters-other-than-tarik-skubal",
+        "url": "https://www.mlb.com/news/best-2026-free-agent-starters-other-than-tarik-skubal",
+        "contentDate": "2026-11-02T02:44:01.298Z",
+        "teamIds": [],
+        "playerIds": [
+            592332,
+            650633,
+            543243,
+            642547,
+            669432,
+            607259,
+            684007
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "Young nabs 1st career Gold Glove in 1st full season",
+        "summaryJa": "C.ヤング（SEA）、記録達成の最新情報",
+        "slug": "cole-young-wins-2026-gold-glove-award",
+        "url": "https://www.mlb.com/news/cole-young-wins-2026-gold-glove-award",
+        "contentDate": "2026-11-02T02:36:23.386Z",
+        "teamIds": [
+            136
+        ],
+        "playerIds": [
+            702284
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "gold-glove-award"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "D-backs strike gold with trio of defensive standouts",
+        "summaryJa": "G.ペルドモ（AZ）、勝利を呼び込む活躍",
+        "slug": "gabriel-moreno-corbin-carroll-geraldo-perdomo-win-gold-glove-awards-2026",
+        "url": "https://www.mlb.com/news/gabriel-moreno-corbin-carroll-geraldo-perdomo-win-gold-glove-awards-2026",
+        "contentDate": "2026-11-02T02:32:26.583Z",
+        "teamIds": [
+            109
+        ],
+        "playerIds": [
+            672695,
+            682998,
+            672515
+        ],
         "gamePks": [],
         "taxonomy": [
             "gold-glove-award",
@@ -20,19 +280,228 @@
         ]
     },
     {
-        "headline": "Watch Angels prospects in Arizona Fall League action",
-        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
-        "slug": "watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
-        "url": "https://www.mlb.com/news/watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
-        "contentDate": "2026-11-02T01:21:00Z",
+        "headline": "Chourio, Turang add Gold Gloves to growing trophy case",
+        "summaryJa": "B.テュラング（MIL）、勝利を呼び込む活躍",
+        "slug": "jackson-chourio-brice-turang-win-gold-glove-awards",
+        "url": "https://www.mlb.com/news/jackson-chourio-brice-turang-win-gold-glove-awards",
+        "contentDate": "2026-11-02T02:30:59.151Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [
+            668930,
+            694192
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "gold-glove-award",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Here are 2026's Minor League Gold Glove winners",
+        "summaryJa": "Josiah Hartshornの最新動向をMLB公式が詳報",
+        "slug": "here-are-2026-s-milb-gold-glove-winners",
+        "url": "https://www.mlb.com/news/here-are-2026-s-milb-gold-glove-winners",
+        "contentDate": "2026-11-02T02:30:00Z",
+        "teamIds": [],
+        "playerIds": [
+            815824,
+            801194,
+            805260,
+            808265,
+            699115,
+            702258,
+            811287,
+            694696,
+            805207
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "mlb-top-prospects",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "For Walls, winning AL Gold Glove at shortstop something he ‘dreamed of as a kid’",
+        "summaryJa": "T.ウォールズ（TB）、勝利を呼び込む活躍",
+        "slug": "taylor-walls-wins-2026-al-gold-glove-award-shortstop",
+        "url": "https://www.mlb.com/news/taylor-walls-wins-2026-al-gold-glove-award-shortstop",
+        "contentDate": "2026-11-02T02:29:47.391Z",
+        "teamIds": [
+            139
+        ],
+        "playerIds": [
+            670764
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "gold-glove-award",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Twice as nice! Dingler repeats as Gold Glove winner",
+        "summaryJa": "D.ディングラー（DET）、勝利を呼び込む活躍",
+        "slug": "dillon-dingler-wins-second-gold-glove-award-2026",
+        "url": "https://www.mlb.com/news/dillon-dingler-wins-second-gold-glove-award-2026",
+        "contentDate": "2026-11-02T02:29:45.24Z",
+        "teamIds": [
+            116
+        ],
+        "playerIds": [
+            693307
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "gold-glove-award",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "McLean wins Mets’ first Gold Glove in 12 years",
+        "summaryJa": "N.マクリーン（NYM）、勝利を呼び込む活躍",
+        "slug": "nolan-mclean-wins-2026-gold-glove-award",
+        "url": "https://www.mlb.com/news/nolan-mclean-wins-2026-gold-glove-award",
+        "contentDate": "2026-11-02T02:26:59.471Z",
+        "teamIds": [
+            121
+        ],
+        "playerIds": [
+            690997
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "gold-glove-award"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "First-timers make up bulk of Gold Glove winners",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "2026-gold-glove-award-winners",
+        "url": "https://www.mlb.com/news/2026-gold-glove-award-winners",
+        "contentDate": "2026-11-02T02:26:00Z",
         "teamIds": [],
         "playerIds": [],
         "gamePks": [],
         "taxonomy": [
-            "apple-news",
-            "arizona-fall-league"
+            "gold-glove-award",
+            "apple-news"
         ],
         "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "Bibee wins 1st career Gold Glove, 2nd Cleveland pitcher to earn honor",
+        "summaryJa": "T.バイビー（CLE）、記録達成の最新情報",
+        "slug": "tanner-bibee-wins-al-pitcher-gold-glove-award",
+        "url": "https://www.mlb.com/news/tanner-bibee-wins-al-pitcher-gold-glove-award",
+        "contentDate": "2026-11-02T02:23:37.033Z",
+        "teamIds": [
+            114
+        ],
+        "playerIds": [
+            676440
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "gold-glove-award"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Most Gold Glove Awards at each position",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "most-gold-glove-awards-all-time-each-position",
+        "url": "https://www.mlb.com/news/most-gold-glove-awards-all-time-each-position",
+        "contentDate": "2026-11-02T02:15:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "evergreen"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "Washington Nationals acquire infielder Nate Furman",
+        "summaryJa": "ナショナルズの移籍・契約に関する最新情報",
+        "slug": "washington-nationals-acquire-infielder-nate-furman",
+        "url": "https://www.mlb.com/news/washington-nationals-acquire-infielder-nate-furman",
+        "contentDate": "2026-11-02T02:04:19.438Z",
+        "teamIds": [
+            120
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "These rookies took home a Gold Glove",
+        "summaryJa": "MLBの最新情報、勝利を呼び込む活躍",
+        "slug": "mlb-rookies-who-won-gold-glove-award",
+        "url": "https://www.mlb.com/news/mlb-rookies-who-won-gold-glove-award",
+        "contentDate": "2026-11-02T01:59:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "gold-glove-award",
+            "apple-news",
+            "evergreen"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "Walker earns 4th career Gold Glove Award, 1st in American League",
+        "summaryJa": "C.ウォーカー（HOU）、記録達成の最新情報",
+        "slug": "christian-walker-wins-2026-al-gold-glove-award",
+        "url": "https://www.mlb.com/news/christian-walker-wins-2026-al-gold-glove-award",
+        "contentDate": "2026-11-02T01:50:34.898Z",
+        "teamIds": [
+            117
+        ],
+        "playerIds": [
+            572233
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "gold-glove-award"
+        ],
+        "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
@@ -97,7 +566,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -144,22 +612,6 @@
         "taxonomy": [
             "world-baseball-classic",
             "mlb-international"
-        ],
-        "sourceScopes": [
-            "MLB"
-        ]
-    },
-    {
-        "headline": "NPB ERA leader enters MLB posting system",
-        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
-        "slug": "kaima-taira-will-enter-mlb-posting-system",
-        "url": "https://www.mlb.com/news/kaima-taira-will-enter-mlb-posting-system",
-        "contentDate": "2026-11-01T22:11:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
         ],
         "sourceScopes": [
             "MLB"
@@ -318,7 +770,6 @@
             "transactions"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -425,7 +876,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -449,27 +899,7 @@
             "transactions"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
-        ]
-    },
-    {
-        "headline": "Brewers, Rays face roster decisions this offseason after World Series",
-        "summaryJa": "レイズの最新動向をMLB公式が詳報",
-        "slug": "brewers-rays-roster-decisions-this-offseason-after-world-series",
-        "url": "https://www.mlb.com/news/brewers-rays-roster-decisions-this-offseason-after-world-series",
-        "contentDate": "2026-10-31T22:11:54.385Z",
-        "teamIds": [
-            139,
-            158
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB"
         ]
     },
     {
@@ -490,24 +920,6 @@
         ],
         "sourceScopes": [
             "球団公式"
-        ]
-    },
-    {
-        "headline": "An inside look at how Brewers won their first World Series title",
-        "summaryJa": "MLBの最新情報、勝利を呼び込む活躍",
-        "slug": "brewers-world-series-win-on-this-week-in-baseball",
-        "url": "https://www.mlb.com/news/brewers-world-series-win-on-this-week-in-baseball",
-        "contentDate": "2026-10-31T16:27:16.018Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "this-week-in-baseball",
-            "offbeat"
-        ],
-        "sourceScopes": [
-            "MLB"
         ]
     },
     {
@@ -590,7 +1002,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -627,7 +1038,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -695,36 +1105,6 @@
         ]
     },
     {
-        "headline": "Which long World Series title drought is most likely to end next?",
-        "summaryJa": "レイズの最新動向をMLB公式が詳報",
-        "slug": "which-world-series-drought-will-end-next",
-        "url": "https://www.mlb.com/news/which-world-series-drought-will-end-next",
-        "contentDate": "2026-10-31T12:05:00Z",
-        "teamIds": [
-            139,
-            136,
-            114,
-            121,
-            116,
-            133,
-            135,
-            115,
-            142,
-            141,
-            134,
-            110,
-            113
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB"
-        ]
-    },
-    {
         "headline": "Pederson, Higashioka, Junis free agents after mutual options declined (sources)",
         "summaryJa": "J.ピーダーソン（TEX）の最新動向をMLB公式が詳報",
         "slug": "joc-pederson-kyle-higashioka-jakob-junis-mutual-options-declined",
@@ -745,41 +1125,6 @@
         ],
         "sourceScopes": [
             "球団公式"
-        ]
-    },
-    {
-        "headline": "The most jaw-dropping metrics of the 2026 postseason",
-        "summaryJa": "J.チョリオの最新動向をMLB公式が詳報",
-        "slug": "top-statcast-moments-2026-mlb-postseason",
-        "url": "https://www.mlb.com/news/top-statcast-moments-2026-mlb-postseason",
-        "contentDate": "2026-10-31T02:26:02.92Z",
-        "teamIds": [],
-        "playerIds": [
-            694192,
-            694819,
-            691406,
-            660271,
-            656730,
-            676879,
-            608070,
-            671739,
-            656876,
-            650633,
-            663586,
-            519242,
-            693645,
-            656941,
-            547180
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "savant",
-            "postseason",
-            "player-tracking"
-        ],
-        "sourceScopes": [
-            "MLB"
         ]
     },
     {
@@ -840,7 +1185,6 @@
             "world-series"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -879,7 +1223,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -981,26 +1324,6 @@
         ]
     },
     {
-        "headline": "Latest Giants injuries & transactions",
-        "summaryJa": "ジャイアンツの負傷状況をMLB公式が詳報",
-        "slug": "giants-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/giants-injuries-and-roster-moves",
-        "contentDate": "2026-10-30T22:27:00Z",
-        "teamIds": [
-            137
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "transactions",
-            "injury",
-            "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "A parade 44 years in the making, Brewers celebrate title with fans",
         "summaryJa": "ブルワーズの最新動向をMLB公式が詳報",
         "slug": "brewers-2026-world-series-championship-parade",
@@ -1020,7 +1343,6 @@
             "parade"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1467,7 +1789,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -2175,22 +2496,6 @@
         ]
     },
     {
-        "headline": "Who will receive a qualifying offer? And will anyone accept?",
-        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
-        "slug": "2026-27-qualifying-offer-predictions",
-        "url": "https://www.mlb.com/news/2026-27-qualifying-offer-predictions",
-        "contentDate": "2026-10-29T17:18:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB"
-        ]
-    },
-    {
         "headline": "Latest Pirates injuries & transactions",
         "summaryJa": "パイレーツの負傷状況をMLB公式が詳報",
         "slug": "pirates-injuries-and-roster-moves",
@@ -2716,30 +3021,6 @@
         ]
     },
     {
-        "headline": "'How awesome is this?' Pratt sets World Series rookie record to help Crew to 1st title",
-        "summaryJa": "C.プラット（MIL）、記録達成の最新情報",
-        "slug": "cooper-pratt-world-series-rookie-record-six-straight-hits",
-        "url": "https://www.mlb.com/news/cooper-pratt-world-series-rookie-record-six-straight-hits",
-        "contentDate": "2026-10-29T06:58:00Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [
-            806198
-        ],
-        "gamePks": [
-            849799
-        ],
-        "taxonomy": [
-            "postseason",
-            "world-series",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Crew shouts out family (and Ueck) with custom bottles of celebratory bubbly",
         "summaryJa": "ブルワーズの最新動向をMLB公式が詳報",
         "slug": "brewers-celebratory-champagne-bottles-families-bob-uecker",
@@ -3211,28 +3492,6 @@
             "apple-news",
             "world-series",
             "key-moments"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Rallying Rays join rare company by forcing Game 5 facing 3-0 deficit",
-        "summaryJa": "レイズ、勝利を呼び込む活躍",
-        "slug": "stats-facts-from-rays-win-2026-world-series-game-4",
-        "url": "https://www.mlb.com/news/stats-facts-from-rays-win-2026-world-series-game-4",
-        "contentDate": "2026-10-28T07:29:45.107Z",
-        "teamIds": [
-            139,
-            158
-        ],
-        "playerIds": [],
-        "gamePks": [
-            849803
-        ],
-        "taxonomy": [
-            "apple-news",
-            "world-series"
         ],
         "sourceScopes": [
             "球団公式"
@@ -5504,26 +5763,6 @@
         ]
     },
     {
-        "headline": "Is Volpe the Yankees' No. 1 option for 2B in 2027?",
-        "summaryJa": "A.ボルピー（NYY）の最新動向をMLB公式が詳報",
-        "slug": "anthony-volpe-s-role-with-2027-yankees",
-        "url": "https://www.mlb.com/news/anthony-volpe-s-role-with-2027-yankees",
-        "contentDate": "2026-10-20T14:17:23.211Z",
-        "teamIds": [
-            147
-        ],
-        "playerIds": [
-            683011
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Former Astros outfielder heading back to Fall Classic -- as a coach",
         "summaryJa": "J.レイン（HOU）の最新動向をMLB公式が詳報",
         "slug": "jason-lane-going-back-to-world-series-on-brewers-coaching-staff",
@@ -6537,27 +6776,6 @@
         ]
     },
     {
-        "headline": "3 prospects on the radar, 2 on the cusp and 1 big question",
-        "summaryJa": "Franklin Arias（BOS）ら注目選手の最新動向",
-        "slug": "red-sox-prospect-update-heading-into-offseason",
-        "url": "https://www.mlb.com/news/red-sox-prospect-update-heading-into-offseason",
-        "contentDate": "2026-10-16T13:14:03.469Z",
-        "teamIds": [
-            111
-        ],
-        "playerIds": [
-            808265
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "mlb-top-prospects"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Holliday looking to build off positives from 2026 during '27 season",
         "summaryJa": "J.ホリデイ（BAL）の最新動向をMLB公式が詳報",
         "slug": "orioles-confident-jackson-holliday-can-reach-potential-in-2027",
@@ -6597,28 +6815,6 @@
             "nlcs",
             "apple-news",
             "offseason"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Learning curve: Royals' LHP prospect Lamkin refining pitch in Arizona Fall League",
-        "summaryJa": "Justin Lamkin（KC）ら注目選手の最新動向",
-        "slug": "royals-prospect-justin-lamkin-refining-breaking-ball-in-arizona-fall-league",
-        "url": "https://www.mlb.com/news/royals-prospect-justin-lamkin-refining-breaking-ball-in-arizona-fall-league",
-        "contentDate": "2026-10-16T02:42:16.269Z",
-        "teamIds": [
-            118
-        ],
-        "playerIds": [
-            703610
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "arizona-fall-league",
-            "mlb-top-prospects"
         ],
         "sourceScopes": [
             "球団公式"
@@ -7438,22 +7634,6 @@
         ]
     },
     {
-        "headline": "Nationals are finalist for 2026 Allan H. Selig Award for Philanthropic Excellence",
-        "summaryJa": "ナショナルズの最新動向をMLB公式が詳報",
-        "slug": "nationals-named-finalist-for-2026-allan-h-selig-award",
-        "url": "https://www.mlb.com/news/nationals-named-finalist-for-2026-allan-h-selig-award",
-        "contentDate": "2026-10-12T14:59:45.471Z",
-        "teamIds": [
-            120
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Twins named finalist for MLB's Allan H. Selig Award",
         "summaryJa": "ツインズの最新動向をMLB公式が詳報",
         "slug": "twins-named-finalist-for-mlb-s-2026-allan-h-selig-award",
@@ -7705,26 +7885,6 @@
         ]
     },
     {
-        "headline": "Suzuki reflects on the good times -- and a few 'what ifs' -- from 5 years with Cubs",
-        "summaryJa": "鈴木 誠也（CHC）の最新動向をMLB公式が詳報",
-        "slug": "seiya-suzuki-discusses-time-with-cubs-start-to-his-mlb-career",
-        "url": "https://www.mlb.com/news/seiya-suzuki-discusses-time-with-cubs-start-to-his-mlb-career",
-        "contentDate": "2026-10-10T15:02:32.314Z",
-        "teamIds": [
-            112
-        ],
-        "playerIds": [
-            673548
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "5 questions for Nats entering offseason after promising 2026",
         "summaryJa": "ナショナルズの最新動向をMLB公式が詳報",
         "slug": "questions-nationals-need-to-answer-during-offseason",
@@ -7815,27 +7975,6 @@
         "gamePks": [],
         "taxonomy": [
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Seager undergoes surgery to remove bone spur from elbow",
-        "summaryJa": "C.シーガー（TEX）の最新動向をMLB公式が詳報",
-        "slug": "corey-seager-elbow-surgery-bone-spur",
-        "url": "https://www.mlb.com/news/corey-seager-elbow-surgery-bone-spur",
-        "contentDate": "2026-10-09T21:15:01.211Z",
-        "teamIds": [
-            140
-        ],
-        "playerIds": [
-            608369
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "injury"
         ],
         "sourceScopes": [
             "球団公式"
@@ -7971,28 +8110,6 @@
         "taxonomy": [
             "offseason",
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Giants prospect Wentz's whirlwind first-year journey takes him to the desert",
-        "summaryJa": "Dalton Wentz（SF）ら注目選手の最新動向",
-        "slug": "giants-prospect-dalton-wentz-s-first-year-ends-in-arizona-fall-league",
-        "url": "https://www.mlb.com/news/giants-prospect-dalton-wentz-s-first-year-ends-in-arizona-fall-league",
-        "contentDate": "2026-10-08T05:34:25.104Z",
-        "teamIds": [
-            137
-        ],
-        "playerIds": [
-            807275
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "arizona-fall-league",
-            "mlb-top-prospects"
         ],
         "sourceScopes": [
             "球団公式"
@@ -8157,24 +8274,6 @@
         ]
     },
     {
-        "headline": "What's next for Rockies? DePodesta lays out offseason priorities",
-        "summaryJa": "ロッキーズの最新動向をMLB公式が詳報",
-        "slug": "paul-depodesta-discusses-rockies-plans-for-2027-offseason",
-        "url": "https://www.mlb.com/news/paul-depodesta-discusses-rockies-plans-for-2027-offseason",
-        "contentDate": "2026-10-07T01:36:47.007Z",
-        "teamIds": [
-            115
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "A's mulling a few names to fill David Forst's vacancy as GM",
         "summaryJa": "アスレチックスの最新動向をMLB公式が詳報",
         "slug": "athletics-evaluating-options-to-replace-former-gm-david-forst",
@@ -8182,42 +8281,6 @@
         "contentDate": "2026-10-06T14:48:13.438Z",
         "teamIds": [
             133
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "How the Reds plan to fix an offense that was among MLB's worst in 2026",
-        "summaryJa": "レッズを巡る注目点をMLB公式が分析",
-        "slug": "reds-plan-to-address-offensive-woes-entering-offseason",
-        "url": "https://www.mlb.com/news/reds-plan-to-address-offensive-woes-entering-offseason",
-        "contentDate": "2026-10-06T14:04:56.715Z",
-        "teamIds": [
-            113
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Five pressing questions facing D-backs ahead of 2026-27 offseason",
-        "summaryJa": "ダイヤモンドバックスの最新動向をMLB公式が詳報",
-        "slug": "questions-facing-d-backs-in-2026-offseason",
-        "url": "https://www.mlb.com/news/questions-facing-d-backs-in-2026-offseason",
-        "contentDate": "2026-10-06T13:06:20.003Z",
-        "teamIds": [
-            109
         ],
         "playerIds": [],
         "gamePks": [],
