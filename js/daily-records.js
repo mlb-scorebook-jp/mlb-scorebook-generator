@@ -2,7 +2,7 @@
 
 (() => {
     const API_ROOT = "https://statsapi.mlb.com/api";
-    const CACHE_PREFIX = "mlb-postgame-review-v2:";
+    const CACHE_PREFIX = "mlb-postgame-review-v3:";
     const MAX_CONCURRENT_GAMES = 3;
     const RECORD_THRESHOLDS = Object.freeze({
         inningHits: 2,
@@ -983,7 +983,7 @@
         };
     };
 
-    const buildPostgameReview = async (game, playByPlay, boxscore, records, signal) => {
+    const buildPostgameReview = async (game, playByPlay, boxscore, decisions, records, signal) => {
         const articles = (await fetchOfficialArticles(game.gamePk, signal).catch(() => []))
             .map(articleDigest).filter((article) => article.headline && article.url);
         const teams = ["away", "home"].map((side) =>
@@ -1013,6 +1013,21 @@
             gameType: text(game?.gameType),
             teams,
             winnerId: winner.id,
+            linescore: {
+                innings: (game?.linescore?.innings ?? []).map((inning) => ({
+                    number: number(inning?.num),
+                    away: inning?.away?.runs ?? null,
+                    home: inning?.home?.runs ?? null
+                })),
+                teams: teams.map((team) => ({
+                    id: team.id, code: team.code, runs: team.runs, hits: team.hits, errors: team.errors
+                }))
+            },
+            decisions: {
+                winner: decisions?.winner ? playerDisplayName(decisions.winner) : "—",
+                save: decisions?.save ? playerDisplayName(decisions.save) : "—",
+                loser: decisions?.loser ? playerDisplayName(decisions.loser) : "—"
+            },
             summary: `${winner.code}が${loser.code}に${winner.runs}－${loser.runs}で勝利。` +
                 `${winner.hits}安打${winner.homeRuns ? `、${winner.homeRuns}本塁打` : ""}で${winner.runs}得点を挙げた。`,
             decisivePlay: reviewPlay(decisive),
@@ -2811,9 +2826,14 @@
             priorGamesByTeam = new Map();
         }
         const { includeArticles = true } = options;
-        const [playResult, boxResult] = await Promise.all([
+        const [playResult, boxResult, decisionResult] = await Promise.all([
             fetchJson(`${API_ROOT}/v1/game/${game.gamePk}/playByPlay`, signal),
-            fetchJson(`${API_ROOT}/v1/game/${game.gamePk}/boxscore`, signal)
+            fetchJson(`${API_ROOT}/v1/game/${game.gamePk}/boxscore`, signal),
+            fetchJson(
+                `${API_ROOT}/v1.1/game/${game.gamePk}/feed/live?` +
+                "fields=liveData,decisions,winner,id,fullName,loser,save",
+                signal
+            ).catch(() => ({ data: {} }))
         ]);
         const records = await analyzeGame(
             game,
@@ -2851,7 +2871,12 @@
         records.forEach((record) => { record.feedUpdatedAt = updatedAt; });
         const result = dedupeRecords(records);
         result.review = await buildPostgameReview(
-            game, playResult.data, boxResult.data, result, signal
+            game,
+            playResult.data,
+            boxResult.data,
+            decisionResult.data?.liveData?.decisions ?? {},
+            result,
+            signal
         );
         return result;
     };
@@ -3164,6 +3189,50 @@
         return panel;
     };
 
+    const renderReviewLinescore = (review) => {
+        const section = reviewElement("section", "postgame-review-linescore");
+        section.append(reviewElement("h4", "", "試合結果"));
+        const scroller = reviewElement("div", "postgame-review-linescore-scroll");
+        const table = document.createElement("table");
+        const head = document.createElement("thead");
+        const headRow = document.createElement("tr");
+        ["TEAM", ...(review.linescore?.innings ?? []).map((inning) => inning.number), "R", "H", "E"]
+            .forEach((label) => headRow.append(reviewElement("th", "", String(label))));
+        head.append(headRow);
+        const body = document.createElement("tbody");
+        (review.linescore?.teams ?? []).forEach((team, teamIndex) => {
+            const row = document.createElement("tr");
+            const teamCell = reviewElement("th", "postgame-review-linescore-team");
+            const logo = document.createElement("img");
+            logo.src = `https://www.mlbstatic.com/team-logos/${team.id}.svg`;
+            logo.alt = "";
+            teamCell.append(logo, document.createTextNode(team.code));
+            row.append(teamCell);
+            (review.linescore?.innings ?? []).forEach((inning) => {
+                const value = teamIndex === 0 ? inning.away : inning.home;
+                row.append(reviewElement("td", "", value === null ? "×" : String(value)));
+            });
+            [team.runs, team.hits, team.errors]
+                .forEach((value) => row.append(reviewElement("td", "is-total", String(value))));
+            body.append(row);
+        });
+        table.append(head, body);
+        scroller.append(table);
+        section.append(scroller);
+        return section;
+    };
+
+    const renderReviewDecisions = (review) => {
+        const section = reviewElement("section", "postgame-review-decisions");
+        [["勝利投手", review.decisions?.winner], ["セーブ", review.decisions?.save],
+            ["敗戦投手", review.decisions?.loser]].forEach(([label, name]) => {
+            const item = reviewElement("div");
+            item.append(reviewElement("small", "", label), reviewElement("strong", "", name || "—"));
+            section.append(item);
+        });
+        return section;
+    };
+
     const renderPostgameReviews = (payload) => {
         const reviews = payload.reviews ?? [];
         const section = reviewElement("section", "postgame-reviews");
@@ -3195,6 +3264,7 @@
             const count = reviewElement("span", "postgame-review-count", `記録 ${review.recordCount}件`);
             summary.append(matchup, score, count);
             const body = reviewElement("div", "postgame-review-body");
+            body.append(renderReviewLinescore(review), renderReviewDecisions(review));
             const overview = reviewElement("section", "postgame-review-overview");
             overview.append(
                 reviewElement("span", "postgame-review-kicker", "試合の結論"),
@@ -3369,7 +3439,7 @@
             const officialNewsSpecialRecords = buildOfficialNewsSpecialRecords(date, games);
             const heartwarmingRecords = buildHeartwarmingNewsRecords(date, games);
             const payload = {
-                version: 2,
+                version: 3,
                 date,
                 checkedAt: nowIso(),
                 totalGames: games.length,

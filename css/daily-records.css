@@ -106,6 +106,21 @@ body.app-mode-daily-records #header-daily-records-btn {
 .postgame-review-score { color: #fff; font-size: 22px; font-variant-numeric: tabular-nums; }
 .postgame-review-count { padding: 4px 8px; color: #8edfff; border: 1px solid #486573; font-size: 10px; font-weight: 800; }
 .postgame-review-body { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 14px; }
+.postgame-review-linescore { grid-column: 1 / -1; border: 1px solid #405660; background: #131e23; }
+.postgame-review-linescore h4 { margin: 0; padding: 9px 13px; color: #f1c84c; border-bottom: 1px solid #405660; font-size: 11px; }
+.postgame-review-linescore-scroll { overflow-x: auto; }
+.postgame-review-linescore table { width: 100%; min-width: 690px; border-collapse: collapse; table-layout: fixed; text-align: center; font-variant-numeric: tabular-nums; }
+.postgame-review-linescore th, .postgame-review-linescore td { height: 32px; padding: 3px 7px; border-right: 1px solid #30444d; border-bottom: 1px solid #30444d; }
+.postgame-review-linescore thead th { color: #8fa5ae; background: #1a282f; font-size: 9px; }
+.postgame-review-linescore tbody th, .postgame-review-linescore tbody td { color: #eaf3f5; font-size: 12px; font-weight: 800; }
+.postgame-review-linescore-team { width: 118px; text-align: left; }
+.postgame-review-linescore-team img { width: 25px; height: 25px; margin-right: 9px; object-fit: contain; vertical-align: middle; filter: drop-shadow(0 0 1px #fff) drop-shadow(0 0 3px rgb(255 255 255 / 70%)); }
+.postgame-review-linescore .is-total { color: #f1c84c; background: rgb(241 200 76 / 6%); }
+.postgame-review-decisions { display: grid; grid-column: 1 / -1; grid-template-columns: repeat(3, minmax(0, 1fr)); border: 1px solid #405660; background: #162127; }
+.postgame-review-decisions > div { display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 12px; min-height: 43px; padding: 7px 14px; }
+.postgame-review-decisions > div + div { border-left: 1px solid #405660; }
+.postgame-review-decisions small { color: #8fa5ae; font-size: 9px; font-weight: 800; }
+.postgame-review-decisions strong { color: #edf5f7; font-size: 13px; }
 .postgame-review-overview, .postgame-review-turning, .postgame-review-checks, .postgame-review-highlights, .postgame-review-rare { padding: 13px 15px; border: 1px solid #30444d; background: #162127; }
 .postgame-review-overview p, .postgame-review-turning p, .postgame-review-rare p { margin: 7px 0 0; line-height: 1.65; }
 .postgame-review-kicker { color: #f1c84c; font-size: 10px; font-weight: 900; letter-spacing: .08em; }
@@ -142,6 +157,8 @@ body.app-mode-daily-records #header-daily-records-btn {
     .postgame-review-count { display: none; }
     .postgame-review-body, .postgame-review-team-grid { grid-template-columns: 1fr; }
     .postgame-review-overview, .postgame-review-turning, .postgame-review-team-grid { grid-column: 1; }
+    .postgame-review-decisions { grid-template-columns: 1fr; }
+    .postgame-review-decisions > div + div { border-top: 1px solid #405660; border-left: 0; }
 }
 
 .daily-records-search-panel {
