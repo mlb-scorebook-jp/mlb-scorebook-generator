@@ -21,7 +21,6 @@
                 alt="${escapeHtml(winner.team)}" loading="lazy">
             <div class="awards-winner-copy">
                 <strong>${escapeHtml(winner.playerJa)}</strong>
-                <small>${escapeHtml(winner.player)}</small>
             </div>
             <div class="awards-win-count">
                 <b>${winner.count === 1 ? "初受賞" : `${winner.count}度目`}</b>

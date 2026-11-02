@@ -45,10 +45,10 @@ body.app-mode-awards #header-awards-btn {
 .awards-hero-meta span { display: block; margin-top: 8px; color: #9caab1; font-size: 10px; }
 
 .awards-category-nav { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); border: 1px solid #40515b; border-top: 0; background: #151f24; }
-.awards-category-nav button { min-height: 48px; padding: 7px 8px; border: 0; border-right: 1px solid #34444d; color: #8f9fa7; background: transparent; font-size: 11px; font-weight: 800; cursor: pointer; }
+.awards-category-nav button { min-height: 56px; padding: 8px 10px; border: 0; border-right: 1px solid #34444d; color: #a9b7be; background: transparent; font-size: 14px; font-weight: 800; cursor: pointer; }
 .awards-category-nav button:last-child { border-right: 0; }
 .awards-category-nav button.active { color: #172126; background: #dfbd57; }
-.awards-category-nav button small { display: block; margin-top: 2px; color: #64747c; font-size: 7px; }
+.awards-category-nav button small { display: block; margin-top: 3px; color: #788991; font-size: 9px; }
 .awards-category-nav button:disabled { cursor: pointer; }
 
 .awards-summary { display: grid; grid-template-columns: 170px 170px 1fr; border: 1px solid #40515b; border-top: 0; background: #19242a; }
@@ -74,15 +74,21 @@ body.app-mode-awards #header-awards-btn {
 .awards-position { display: flex; flex-direction: column; align-items: center; justify-content: center; border-right: 1px solid #40515b; }
 .awards-position b { color: #f0ca57; font-size: 18px; }
 .awards-position span { color: #91a1a9; font-size: 10px; }
-.awards-winner-card { position: relative; display: grid; grid-template-columns: 42px 1fr auto; align-items: center; gap: 12px; padding: 10px 18px 10px 46px; }
+.awards-winner-card { position: relative; display: grid; grid-template-columns: 48px 1fr auto; align-items: center; gap: 14px; padding: 10px 18px 10px 46px; }
 .awards-winner-card + .awards-winner-card { border-left: 1px solid #40515b; }
 .awards-league-badge { position: absolute; left: 12px; top: 50%; color: #6fcdf5; font-size: 9px; font-weight: 900; transform: translateY(-50%); }
 .awards-winner-nl .awards-league-badge { color: #e8c557; }
-.awards-team-logo { width: 35px; height: 35px; object-fit: contain; }
+.awards-team-logo {
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+    filter:
+        drop-shadow(0 0 1px rgb(255 255 255 / 95%))
+        drop-shadow(0 0 2px rgb(182 219 235 / 78%))
+        drop-shadow(0 2px 2px rgb(0 0 0 / 75%));
+}
 .awards-winner-copy { min-width: 0; }
-.awards-winner-copy strong, .awards-winner-copy small { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.awards-winner-copy strong { color: #f1f5f7; font-size: 14px; }
-.awards-winner-copy small { margin-top: 3px; color: #85969e; font-size: 9px; }
+.awards-winner-copy strong { display: block; overflow: hidden; color: #f1f5f7; font-size: 18px; line-height: 1.25; text-overflow: ellipsis; white-space: nowrap; }
 .awards-win-count { text-align: right; }
 .awards-win-count b { display: block; color: #70d2f8; font-size: 12px; }
 .awards-winner-nl .awards-win-count b { color: #f0ca57; }
@@ -106,7 +112,7 @@ body.app-mode-awards #header-awards-btn {
     .awards-position { grid-row: 1 / 3; }
     .awards-winner-card { grid-column: 2; grid-template-columns: 34px minmax(0, 1fr) auto; padding: 9px 10px 9px 35px; }
     .awards-winner-card + .awards-winner-card { border-left: 0; border-top: 1px solid #34434b; }
-    .awards-team-logo { width: 29px; height: 29px; }
-    .awards-winner-copy strong { font-size: 12px; }
+    .awards-team-logo { width: 34px; height: 34px; }
+    .awards-winner-copy strong { font-size: 15px; }
     .awards-source { flex-direction: column; }
 }
