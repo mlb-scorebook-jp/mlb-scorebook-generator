@@ -140,6 +140,35 @@
         return `<section class="awards-mvp-grid">${card(award.al, "AL")}${card(award.nl, "NL")}</section>`;
     };
 
+    const renderHistoricalSingle = () => {
+        const award = majorHistoryData[state.season]?.[state.category];
+        if (!award?.single) return renderPending(categories[state.category]);
+        const winner = award.single;
+        return `<section class="awards-single-feature"><article class="awards-mvp-card">
+            <header><span>${escapeHtml(winner.league)}</span><b>${escapeHtml(award.title)}</b></header>
+            <div class="awards-mvp-profile">
+                <span class="awards-mvp-year">${state.season}</span>
+                <div class="awards-mvp-portrait"><img class="awards-mvp-headshot" src="https://img.mlbstatic.com/mlb-photos/image/upload/w_360,q_auto:best/v1/people/${winner.playerId}/headshot/silo/current" alt="${escapeHtml(winner.playerJa)}"></div>
+                <img class="awards-mvp-team" src="${logoUrl(winner.teamId)}" alt="${escapeHtml(winner.team)}">
+                <div class="awards-mvp-name"><small>${escapeHtml(winner.position)}</small><h3>${escapeHtml(winner.playerJa)}</h3><b class="awards-mvp-count">${winner.count === 1 ? "初受賞" : `${winner.count}回目${winner.streak > 1 ? `（${winner.streak}年連続）` : ""}`}</b></div>
+            </div>
+            <div class="awards-mvp-stats" style="grid-template-columns:repeat(${Object.keys(winner.stats).length},1fr)">${Object.entries(winner.stats).map(([label, value]) => `<div><small>${escapeHtml(label)}</small><strong>${escapeHtml(value)}</strong></div>`).join("")}</div>
+        </article></section>`;
+    };
+
+    const renderHistoricalSilverSlugger = () => {
+        const award = majorHistoryData[state.season]?.silverSlugger;
+        if (!award) return renderPending(categories.silverSlugger);
+        const league = (title, rows, key) => `<section class="awards-slugger-league awards-slugger-${key}"><h3>${title}</h3><div>${rows.map(([position, name, playerId, team, teamId, count, avg, homeRuns, rbi]) => `<article class="awards-slugger-card">
+            <b class="awards-slugger-position">${position}</b>
+            <div class="awards-slugger-photo"><img src="https://img.mlbstatic.com/mlb-photos/image/upload/w_180,q_auto:best/v1/people/${playerId}/headshot/silo/current" alt="${escapeHtml(name)}"></div>
+            <img class="awards-slugger-logo" src="${logoUrl(teamId)}" alt="${team}">
+            <div class="awards-slugger-copy"><div class="awards-slugger-name-row"><strong>${escapeHtml(name)}</strong><span>${count === 1 ? "初受賞" : `${count}回目`}</span></div>
+                <div class="awards-slugger-stats"><b><small>率</small>${avg}</b><b><small>本</small>${homeRuns}</b><b><small>点</small>${rbi}</b></div></div>
+        </article>`).join("")}</div></section>`;
+        return `<section class="awards-slugger-grid">${league("AMERICAN LEAGUE", award.al, "al")}${league("NATIONAL LEAGUE", award.nl, "nl")}</section>`;
+    };
+
     const renderHistoricalAllMlb = () => {
         const award = majorHistoryData[state.season]?.allMlb;
         if (!award) return renderPending(categories.allMlb);
@@ -167,7 +196,9 @@
         const category = categories[state.category];
         if (!category) return;
         const body = state.category === "goldGlove" ? (state.season === 2026 ? renderGoldGloveBody(category) : renderHistoricalGoldGlove())
-            : ["mvp", "cyYoung", "rookie", "manager"].includes(state.category) && state.season !== 2026 ? renderHistoricalMajorPair()
+            : ["mvp", "cyYoung", "rookie", "manager", "platinumGlove", "hankAaron", "reliever", "comeback"].includes(state.category) && state.season !== 2026 ? renderHistoricalMajorPair()
+            : ["outstandingDh", "clemente", "allStarMvp", "alcsMvp", "nlcsMvp", "worldSeriesMvp"].includes(state.category) && state.season !== 2026 ? renderHistoricalSingle()
+            : state.category === "silverSlugger" && state.season !== 2026 ? renderHistoricalSilverSlugger()
             : state.category === "allMlb" && state.season !== 2026 ? renderHistoricalAllMlb()
             : state.season === 2026 && category.status === "announced" && Array.isArray(category.winners) ? renderSimpleWinners(category)
                 : renderPending(category);
