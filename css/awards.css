@@ -71,11 +71,11 @@ body.app-mode-awards #header-awards-btn {
 .awards-comparison-head { margin-top: 8px; border: 1px solid #40515b; background: #202e35; }
 .awards-comparison-head > * { padding: 8px 16px; color: #9cb0ba; font-size: 10px; letter-spacing: .08em; text-align: center; }
 .awards-comparison-head > * + * { border-left: 1px solid #40515b; }
-.awards-league-head { display: grid; grid-template-columns: 48px minmax(135px, 1fr) repeat(3, 42px); align-items: center; column-gap: 13px; }
+.awards-league-head { display: grid; grid-template-columns: 48px minmax(125px, 1fr) repeat(4, 38px); align-items: center; column-gap: 10px; }
 .awards-league-head strong { grid-column: 1 / 3; }
 .awards-league-head:first-of-type strong { color: #69c8f0; }
 .awards-league-head:last-child strong { color: #e2bd50; }
-.awards-league-head > div { grid-column: 3 / 6; display: grid; grid-template-columns: repeat(3, 42px); }
+.awards-league-head > div { grid-column: 3 / 7; display: grid; grid-template-columns: repeat(4, 38px); }
 .awards-league-head > div b { color: #9cb0ba; font-size: 9px; text-align: center; }
 .awards-winners { border: 1px solid #40515b; border-top: 0; }
 .awards-position-row { min-height: 76px; border-bottom: 1px solid #34434b; background: #172126; }
@@ -83,7 +83,7 @@ body.app-mode-awards #header-awards-btn {
 .awards-position { display: flex; flex-direction: column; align-items: center; justify-content: center; border-right: 1px solid #40515b; }
 .awards-position b { color: #f0ca57; font-size: 18px; }
 .awards-position span { color: #91a1a9; font-size: 10px; }
-.awards-winner-card { position: relative; display: grid; grid-template-columns: 48px minmax(135px, 1fr) repeat(3, 42px); align-items: center; column-gap: 13px; padding: 10px 18px; }
+.awards-winner-card { position: relative; display: grid; grid-template-columns: 48px minmax(125px, 1fr) repeat(4, 38px); align-items: center; column-gap: 10px; padding: 10px 18px; }
 .awards-winner-card + .awards-winner-card { border-left: 1px solid #40515b; }
 .awards-team-logo {
     width: 42px;
@@ -98,7 +98,7 @@ body.app-mode-awards #header-awards-btn {
 .awards-winner-copy strong { display: block; overflow: hidden; color: #f1f5f7; font-size: 18px; line-height: 1.25; text-overflow: ellipsis; white-space: nowrap; }
 .awards-winner-copy > b { display: block; margin-top: 3px; color: #f0ca57; font-size: 10px; }
 .awards-winner-card.is-first-time .awards-winner-copy > b { color: #70d2f8; }
-.awards-winner-metrics { grid-column: 3 / 6; display: grid; grid-template-columns: repeat(3, 42px); }
+.awards-winner-metrics { grid-column: 3 / 7; display: grid; grid-template-columns: repeat(4, 38px); }
 .awards-winner-metrics b { color: #dce7eb; font-size: 13px; font-variant-numeric: tabular-nums; text-align: center; }
 .awards-winner-metrics b:where(:not(:first-child)) { border-left: 1px solid rgb(64 81 91 / 45%); }
 .awards-winner-metrics b[title]:not([title=""]) { white-space: nowrap; }
@@ -133,11 +133,11 @@ body.app-mode-awards #header-awards-btn {
     .awards-winners { margin-top: 12px; border-top: 1px solid #40515b; }
     .awards-position-row { grid-template-columns: 72px 1fr; }
     .awards-position { grid-row: 1 / 3; }
-    .awards-winner-card { grid-column: 2; grid-template-columns: 34px minmax(0, 1fr) repeat(3, 34px); column-gap: 8px; padding: 9px 10px; }
+    .awards-winner-card { grid-column: 2; grid-template-columns: 34px minmax(0, 1fr) repeat(4, 30px); column-gap: 6px; padding: 9px 10px; }
     .awards-winner-card + .awards-winner-card { border-left: 0; border-top: 1px solid #34434b; }
     .awards-team-logo { width: 34px; height: 34px; }
     .awards-winner-copy strong { font-size: 15px; }
-    .awards-winner-metrics { grid-column: 3 / 6; grid-template-columns: repeat(3, 34px); min-width: 0; }
+    .awards-winner-metrics { grid-column: 3 / 7; grid-template-columns: repeat(4, 30px); min-width: 0; }
     .awards-metric-legend { padding: 0 8px; line-height: 1.5; text-align: left; }
     .awards-source { flex-direction: column; }
     .awards-simple-winners { grid-template-columns: 1fr; padding: 12px; }

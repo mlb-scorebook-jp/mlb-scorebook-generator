@@ -23,10 +23,11 @@
     const categoryKeys = (groupKey) => Object.entries(categories)
         .filter(([, category]) => category.group === groupKey)
         .map(([key]) => key);
-    const metricKeys = ["FRV", "DRS", "OAA"];
+    const metricKeys = ["FRV", "DRS", "OAA", "失策"];
     const metricValues = (winner) => {
         const values = Object.fromEntries((winner.metrics || []).map((metric) => [metric.label, metric.value]));
-        return metricKeys.map((key) => `<b title="${key}">${escapeHtml(values[key] || "—")}</b>`).join("");
+        values.失策 = winner.errors;
+        return metricKeys.map((key) => `<b title="${key}">${escapeHtml(values[key] ?? "—")}</b>`).join("");
     };
 
     const winnerCard = (winner, league) => `
