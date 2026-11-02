@@ -5,7 +5,10 @@ window.MLB_AWARDS_2026 = {
     categories: {
         goldGlove: {
             label: "ゴールドグラブ",
+            group: "battingDefense",
+            status: "announced",
             announcedAt: "2026-11-01",
+            sourceUrl: "https://www.mlb.com/news/2026-gold-glove-award-winners",
             summary: {
                 firstTimeWinners: 9,
                 teamLeaders: [
@@ -25,6 +28,68 @@ window.MLB_AWARDS_2026 = {
                 { position: "RF", positionJa: "右翼手", al: { player: "Wilyer Abreu", playerJa: "W.アブレイユ", team: "BOS", teamId: 111, count: 3 }, nl: { player: "Corbin Carroll", playerJa: "C.キャロル", team: "ARI", teamId: 109, count: 1 } },
                 { position: "P", positionJa: "投手", al: { player: "Tanner Bibee", playerJa: "T.ビビー", team: "CLE", teamId: 114, count: 1 }, nl: { player: "Nolan McLean", playerJa: "N.マクリーン", team: "NYM", teamId: 121, count: 1 } },
                 { position: "UT", positionJa: "ユーティリティー", al: { player: "Ezequiel Duran", playerJa: "E.デュラン", team: "TEX", teamId: 140, count: 1 }, nl: { player: "Mauricio Dubón", playerJa: "M.デュボーン", team: "ATL", teamId: 144, count: 3 } }
+            ]
+        },
+        platinumGlove: { label: "プラチナグラブ", group: "battingDefense", status: "pending" },
+        silverSlugger: { label: "シルバースラッガー", group: "battingDefense", status: "pending" },
+        hankAaron: { label: "ハンク・アーロン賞", group: "battingDefense", status: "pending" },
+        outstandingDh: { label: "最優秀指名打者賞", group: "battingDefense", status: "pending" },
+        mvp: { label: "MVP", group: "major", status: "pending" },
+        cyYoung: { label: "サイ・ヤング賞", group: "major", status: "pending" },
+        rookie: { label: "新人王", group: "major", status: "pending" },
+        manager: { label: "最優秀監督", group: "major", status: "pending" },
+        allMlb: { label: "オールMLB", group: "major", status: "pending" },
+        reliever: { label: "最優秀救援投手", group: "special", status: "pending" },
+        comeback: { label: "カムバック賞", group: "special", status: "pending" },
+        clemente: {
+            label: "ロベルト・クレメンテ賞",
+            group: "special",
+            status: "announced",
+            announcedAt: "2026-10-27",
+            sourceUrl: "https://www.mlb.com/awards/roberto-clemente",
+            description: "人格、地域貢献、慈善活動を通じて野球界を代表した選手",
+            winners: [
+                { player: "Francisco Lindor", playerJa: "F.リンドーア", team: "NYM", teamId: 121, honor: "受賞" }
+            ]
+        },
+        allStarMvp: {
+            label: "オールスターMVP",
+            group: "postseason",
+            status: "announced",
+            sourceUrl: "https://www.mlb.com/awards/all-star-game-mvp",
+            description: "オールスターゲーム最優秀選手",
+            winners: [
+                { player: "Cody Bellinger", playerJa: "C.ベリンジャー", team: "NYY", teamId: 147, honor: "MVP" }
+            ]
+        },
+        alcsMvp: {
+            label: "ALCS MVP",
+            group: "postseason",
+            status: "announced",
+            sourceUrl: "https://www.mlb.com/awards/postseason",
+            description: "アメリカン・リーグ優勝決定シリーズ最優秀選手",
+            winners: [
+                { player: "Freddy Peralta", playerJa: "F.ペラルタ", team: "TB", teamId: 139, honor: "ALCS MVP" }
+            ]
+        },
+        nlcsMvp: {
+            label: "NLCS MVP",
+            group: "postseason",
+            status: "announced",
+            sourceUrl: "https://www.mlb.com/awards/postseason",
+            description: "ナショナル・リーグ優勝決定シリーズ最優秀選手",
+            winners: [
+                { player: "Jake Bauers", playerJa: "J.バウアーズ", team: "MIL", teamId: 158, honor: "NLCS MVP" }
+            ]
+        },
+        worldSeriesMvp: {
+            label: "ワールドシリーズMVP",
+            group: "postseason",
+            status: "announced",
+            sourceUrl: "https://www.mlb.com/awards/postseason",
+            description: "ワールドシリーズ最優秀選手",
+            winners: [
+                { player: "William Contreras", playerJa: "W.コントレラス", team: "MIL", teamId: 158, honor: "WS MVP" }
             ]
         }
     }

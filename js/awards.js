@@ -4,6 +4,14 @@
     const page = document.getElementById("awards-page");
     const content = document.getElementById("awards-content");
     const data = window.MLB_AWARDS_2026 || {};
+    const categories = data.categories || {};
+    const groups = [
+        { key: "major", label: "主要表彰" },
+        { key: "battingDefense", label: "打撃・守備" },
+        { key: "special", label: "特別表彰" },
+        { key: "postseason", label: "大会MVP" }
+    ];
+    const state = { group: "battingDefense", category: "goldGlove" };
 
     const escapeHtml = (value) => String(value ?? "")
         .replaceAll("&", "&amp;")
@@ -11,88 +19,95 @@
         .replaceAll(">", "&gt;")
         .replaceAll('"', "&quot;")
         .replaceAll("'", "&#039;");
-
     const logoUrl = (teamId) => `https://www.mlbstatic.com/team-logos/${Number(teamId)}.svg`;
+    const categoryKeys = (groupKey) => Object.entries(categories)
+        .filter(([, category]) => category.group === groupKey)
+        .map(([key]) => key);
 
     const winnerCard = (winner, league) => `
-        <article class="awards-winner-card awards-winner-${league.toLowerCase()}">
-            <span class="awards-league-badge">${league}</span>
-            <img class="awards-team-logo" src="${logoUrl(winner.teamId)}"
-                alt="${escapeHtml(winner.team)}" loading="lazy">
-            <div class="awards-winner-copy">
-                <strong>${escapeHtml(winner.playerJa)}</strong>
-            </div>
+        <article class="awards-winner-card awards-winner-${league.toLowerCase()} ${winner.count === 1 ? "is-first-time" : "is-repeat"}">
+            <img class="awards-team-logo" src="${logoUrl(winner.teamId)}" alt="${escapeHtml(winner.team)}" loading="lazy">
+            <div class="awards-winner-copy"><strong>${escapeHtml(winner.playerJa)}</strong></div>
             <div class="awards-win-count">
                 <b>${winner.count === 1 ? "初受賞" : `${winner.count}度目`}</b>
                 <span>${escapeHtml(winner.team)}</span>
             </div>
         </article>`;
 
-    const renderGoldGlove = () => {
-        const award = data.categories?.goldGlove;
-        if (!award) {
-            content.innerHTML = '<p class="awards-empty">表彰データを準備しています。</p>';
-            return;
-        }
-        const teamLeaders = award.summary.teamLeaders.map((row) => `
-            <span class="awards-summary-team">
-                <img src="${logoUrl(row.teamId)}" alt="${escapeHtml(row.team)}">
-                <b>${row.count}人</b>
-            </span>`).join("");
+    const groupNav = () => `
+        <nav class="awards-group-nav" aria-label="表彰分類">
+            ${groups.map((group) => `<button type="button" data-award-group="${group.key}"
+                class="${state.group === group.key ? "active" : ""}">${group.label}</button>`).join("")}
+        </nav>`;
 
-        content.innerHTML = `
-            <section class="awards-hero">
-                <div>
-                    <span class="awards-kicker">2026 MLB AWARDS</span>
-                    <h2>ゴールドグラブ賞</h2>
-                    <p>各リーグ・各守備位置の最優秀守備選手</p>
-                </div>
-                <div class="awards-hero-meta">
-                    <b>2026</b>
-                    <span>11月1日発表</span>
-                </div>
-            </section>
-            <nav class="awards-category-nav" aria-label="表彰カテゴリー">
-                <button type="button" class="active">ゴールドグラブ</button>
-                <button type="button" disabled>シルバースラッガー <small>発表待ち</small></button>
-                <button type="button" disabled>MVP <small>発表待ち</small></button>
-                <button type="button" disabled>サイ・ヤング賞 <small>発表待ち</small></button>
-                <button type="button" disabled>新人王 <small>発表待ち</small></button>
-                <button type="button" disabled>オールMLB <small>発表待ち</small></button>
-            </nav>
-            <section class="awards-summary" aria-label="2026年ゴールドグラブ概要">
+    const categoryNav = () => `
+        <nav class="awards-category-nav" aria-label="表彰カテゴリー">
+            ${categoryKeys(state.group).map((key) => {
+                const category = categories[key];
+                return `<button type="button" data-award-category="${key}"
+                    class="${state.category === key ? "active" : ""}">${escapeHtml(category.label)}
+                    <small>${category.status === "announced" ? "発表済み" : "発表待ち"}</small></button>`;
+            }).join("")}
+        </nav>`;
+
+    const hero = (category) => `
+        <section class="awards-hero">
+            <div><span class="awards-kicker">2026 MLB AWARDS</span><h2>${escapeHtml(category.label)}</h2>
+                <p>${escapeHtml(category.description || "2026年シーズンの主要表彰")}</p></div>
+            <div class="awards-hero-meta"><b>2026</b><span>${category.status === "announced" ? "発表済み" : "発表待ち"}</span></div>
+        </section>`;
+
+    const renderGoldGloveBody = (award) => {
+        const teamLeaders = award.summary.teamLeaders.map((row) => `<span class="awards-summary-team">
+            <img src="${logoUrl(row.teamId)}" alt="${escapeHtml(row.team)}"><b>${row.count}人</b></span>`).join("");
+        return `<section class="awards-summary" aria-label="2026年ゴールドグラブ概要">
                 <div><small>受賞者</small><strong>${award.winners.length * 2}人</strong></div>
                 <div><small>初受賞</small><strong>${award.summary.firstTimeWinners}人</strong></div>
                 <div class="awards-summary-leaders"><small>球団最多</small>${teamLeaders}</div>
             </section>
-            <div class="awards-comparison-head" aria-hidden="true">
-                <span>守備位置</span><strong>AMERICAN LEAGUE</strong><strong>NATIONAL LEAGUE</strong>
-            </div>
-            <section class="awards-winners">
-                ${award.winners.map((row) => `
-                    <div class="awards-position-row">
-                        <div class="awards-position"><b>${escapeHtml(row.position)}</b><span>${escapeHtml(row.positionJa)}</span></div>
-                        ${winnerCard(row.al, "AL")}
-                        ${winnerCard(row.nl, "NL")}
-                    </div>`).join("")}
-            </section>
-            <footer class="awards-source">
-                <span>出典：MLB公式</span>
-                <a href="${escapeHtml(data.sourceUrl)}" target="_blank" rel="noopener noreferrer">2026年受賞者と解説を見る ↗</a>
-            </footer>`;
+            <div class="awards-comparison-head" aria-hidden="true"><span>守備位置</span><strong>AMERICAN LEAGUE</strong><strong>NATIONAL LEAGUE</strong></div>
+            <section class="awards-winners">${award.winners.map((row) => `<div class="awards-position-row">
+                <div class="awards-position"><b>${escapeHtml(row.position)}</b><span>${escapeHtml(row.positionJa)}</span></div>
+                ${winnerCard(row.al, "AL")}${winnerCard(row.nl, "NL")}</div>`).join("")}</section>`;
     };
 
-    const render = () => renderGoldGlove();
+    const renderSimpleWinners = (category) => `<section class="awards-simple-winners">
+        ${category.winners.map((winner) => `<article class="awards-feature-winner">
+            <img class="awards-feature-logo" src="${logoUrl(winner.teamId)}" alt="${escapeHtml(winner.team)}">
+            <div><small>${escapeHtml(winner.honor || category.label)}</small><strong>${escapeHtml(winner.playerJa)}</strong><span>${escapeHtml(winner.team)}</span></div>
+        </article>`).join("")}</section>`;
 
-    const open = () => {
-        if (!page) return;
-        page.hidden = false;
-        render();
+    const renderPending = (category) => `<section class="awards-pending"><span aria-hidden="true">AWARD</span>
+        <h3>${escapeHtml(category.label)}</h3><p>2026年の受賞者はまだ発表されていません。公式発表後に追加します。</p></section>`;
+
+    const sourceFooter = (category) => `<footer class="awards-source"><span>出典：MLB公式</span>
+        <a href="${escapeHtml(category.sourceUrl || "https://www.mlb.com/awards")}" target="_blank" rel="noopener noreferrer">公式表彰ページを見る ↗</a></footer>`;
+
+    const render = () => {
+        const category = categories[state.category];
+        if (!category) return;
+        const body = state.category === "goldGlove" ? renderGoldGloveBody(category)
+            : category.status === "announced" && Array.isArray(category.winners) ? renderSimpleWinners(category)
+                : renderPending(category);
+        content.innerHTML = `${hero(category)}${groupNav()}${categoryNav()}${body}${sourceFooter(category)}`;
     };
 
-    const close = () => {
-        if (page) page.hidden = true;
-    };
+    content?.addEventListener("click", (event) => {
+        const groupButton = event.target.closest("[data-award-group]");
+        if (groupButton) {
+            state.group = groupButton.dataset.awardGroup;
+            state.category = categoryKeys(state.group)[0];
+            render();
+            return;
+        }
+        const categoryButton = event.target.closest("[data-award-category]");
+        if (categoryButton) {
+            state.category = categoryButton.dataset.awardCategory;
+            render();
+        }
+    });
 
+    const open = () => { if (page) { page.hidden = false; render(); } };
+    const close = () => { if (page) page.hidden = true; };
     window.Awards = { open, close, render };
 })();
