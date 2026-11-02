@@ -2,7 +2,7 @@
 
 (() => {
     const API_ROOT = "https://statsapi.mlb.com/api";
-    const CACHE_PREFIX = "mlb-postgame-review-v4:";
+    const CACHE_PREFIX = "mlb-postgame-review-v5:";
     const MAX_CONCURRENT_GAMES = 3;
     const RECORD_THRESHOLDS = Object.freeze({
         inningHits: 2,
@@ -843,7 +843,8 @@
                     seen.add(url);
                     articles.push({
                         headline: value.headline, blurb: value.blurb || value.description || "",
-                        body: value.body || "", keywordsAll: value.keywordsAll || [], officialUrl: url
+                        body: value.body || "", keywordsAll: value.keywordsAll || [],
+                        contributors: value.contributors || [], officialUrl: url
                     });
                 }
             }
@@ -867,7 +868,8 @@
         if (typeof keyword === "number") return [keyword];
         if (typeof keyword === "string" && /^\d+$/.test(keyword)) return [number(keyword)];
         const type = text(keyword?.type || keyword?.keywordType).toLowerCase();
-        const value = number(keyword?.value || keyword?.id || keyword?.teamId);
+        const rawValue = text(keyword?.value || keyword?.id || keyword?.teamId);
+        const value = number(rawValue.match(/(\d+)/)?.[1] || rawValue);
         return type.includes("team") && value ? [value] : [];
     })).filter(Boolean);
 
@@ -876,7 +878,10 @@
         summary: text(article?.blurb || article?.description || article?.body)
             .replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim().slice(0, 240),
         url: text(article?.officialUrl || article?.url),
-        teamIds: articleTeamIds(article)
+        teamIds: articleTeamIds(article),
+        contributors: unique((article?.contributors ?? []).map((contributor) =>
+            text(contributor?.name || contributor)
+        ).filter(Boolean))
     });
 
     const scoringPlays = (playByPlay) => (playByPlay?.allPlays ?? []).filter((play) => {
@@ -3326,8 +3331,19 @@
                     paragraphs.push(`この試合では${achievements.slice(0, 3).join("、")}も記録された。`);
                 }
                 const card = reviewElement("article", "postgame-review-coverage-card");
+                const sourceTeams = review.teams.filter((team) =>
+                    article.teamIds?.includes(team.id)
+                );
+                const sourceLabel = sourceTeams.length
+                    ? `${sourceTeams.map((team) => team.code).join("・")}球団公式`
+                    : "MLB公式";
+                const contributor = article.contributors?.length
+                    ? `　担当記者：${article.contributors.join("、")}`
+                    : "";
                 card.append(
-                    reviewElement("small", "", `MLB公式${articles.length > 1 ? ` ${index + 1}` : ""}`),
+                    reviewElement("small", "",
+                        `${sourceLabel}${articles.length > 1 ? ` ${index + 1}` : ""}${contributor}`
+                    ),
                     reviewElement("h5", "", headline),
                     reviewElement("p", "", paragraphs.join(" ")),
                     reviewLink("原文 ↗", article.url, "postgame-review-source-link")
@@ -3503,7 +3519,7 @@
             const officialNewsSpecialRecords = buildOfficialNewsSpecialRecords(date, games);
             const heartwarmingRecords = buildHeartwarmingNewsRecords(date, games);
             const payload = {
-                version: 4,
+                version: 5,
                 date,
                 checkedAt: nowIso(),
                 totalGames: games.length,
