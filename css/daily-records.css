@@ -131,6 +131,13 @@ body.app-mode-daily-records #header-daily-records-btn {
 .postgame-review-home-run-list b { color: #f1c84c; font-size: 12px; }
 .postgame-review-home-run-list span { color: #85a0aa; font-size: 9px; }
 .postgame-review-home-run-list > p { margin: 0; padding: 13px 14px; }
+.postgame-review-coverage { grid-column: 1 / -1; border: 1px solid #405660; background: #131e23; }
+.postgame-review-coverage h4 { margin: 0; padding: 10px 13px; color: #f1c84c; border-bottom: 1px solid #405660; font-size: 11px; }
+.postgame-review-coverage-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; padding: 12px; }
+.postgame-review-coverage-card { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 42px; padding: 9px 12px; color: #e8f3f6; border-left: 3px solid #3db7e5; background: #1a282f; font-size: 12px; font-weight: 800; text-decoration: none; }
+.postgame-review-coverage-card:hover { color: #fff; background: #22343d; }
+.postgame-review-coverage-card span { flex: 0 0 auto; color: #79dbff; font-size: 10px; }
+.postgame-review-coverage-list > p { grid-column: 1 / -1; margin: 0; padding: 8px 2px; }
 .postgame-review-overview, .postgame-review-turning, .postgame-review-checks, .postgame-review-highlights, .postgame-review-rare { padding: 13px 15px; border: 1px solid #30444d; background: #162127; }
 .postgame-review-overview p, .postgame-review-turning p, .postgame-review-rare p { margin: 7px 0 0; line-height: 1.65; }
 .postgame-review-kicker { color: #f1c84c; font-size: 10px; font-weight: 900; letter-spacing: .08em; }
@@ -171,6 +178,7 @@ body.app-mode-daily-records #header-daily-records-btn {
     .postgame-review-decisions > div + div { border-top: 1px solid #405660; border-left: 0; }
     .postgame-review-home-run-list { display: grid; }
     .postgame-review-home-run-list > div { border-right: 0; border-bottom: 1px solid #405660; }
+    .postgame-review-coverage-list { grid-template-columns: 1fr; }
 }
 
 .daily-records-search-panel {

@@ -3295,13 +3295,42 @@
         return section;
     };
 
+    const renderReviewCoverage = (review) => {
+        const section = reviewElement("section", "postgame-review-coverage");
+        section.append(reviewElement("h4", "", "試合後の記事・公式発信"));
+        const list = reviewElement("div", "postgame-review-coverage-list");
+        const articles = review.allArticles ?? [];
+        if (articles.length) {
+            articles.forEach((article, index) => {
+                const relatedTeams = (review.teams ?? [])
+                    .filter((team) => article.teamIds?.includes(team.id))
+                    .map((team) => team.code);
+                const subject = relatedTeams.length
+                    ? relatedTeams.join("・")
+                    : review.teams.map((team) => team.code).join("―");
+                const link = reviewLink(
+                    `MLB公式｜${subject} 試合詳報${articles.length > 1 ? ` ${index + 1}` : ""}`,
+                    article.url,
+                    "postgame-review-coverage-card"
+                );
+                link.title = article.headline || "MLB公式記事";
+                link.append(reviewElement("span", "", "記事を開く ↗"));
+                list.append(link);
+            });
+        } else {
+            list.append(reviewElement("p", "is-muted", "関連記事なし"));
+        }
+        section.append(list);
+        return section;
+    };
+
     const renderPostgameReviews = (payload) => {
         const reviews = payload.reviews ?? [];
         const section = reviewElement("section", "postgame-reviews");
         const intro = reviewElement("div", "postgame-reviews-intro");
         intro.append(
             reviewElement("h3", "", `試合別レビュー　${reviews.length}試合`),
-            reviewElement("p", "", "結果・達成記録・公式記事・SNS・ハイライト候補を試合ごとに整理")
+            reviewElement("p", "", "試合結果と試合後の記事・公式発信を試合ごとに整理")
         );
         section.append(intro);
         if (!reviews.length) {
@@ -3329,58 +3358,9 @@
             body.append(
                 renderReviewLinescore(review),
                 renderReviewDecisions(review),
-                renderReviewHomeRuns(review)
+                renderReviewHomeRuns(review),
+                renderReviewCoverage(review)
             );
-            const overview = reviewElement("section", "postgame-review-overview");
-            overview.append(
-                reviewElement("span", "postgame-review-kicker", "試合の結論"),
-                reviewElement("p", "", review.summary)
-            );
-            const turning = reviewElement("section", "postgame-review-turning");
-            turning.append(reviewElement("span", "postgame-review-kicker", "勝敗の分岐点"));
-            if (review.decisivePlay) {
-                turning.append(reviewElement("p", "",
-                    `${review.decisivePlay.inning}回${review.decisivePlay.half}　${review.decisivePlay.description}`));
-            } else {
-                turning.append(reviewElement("p", "is-muted", "決勝点となったプレーを特定できませんでした"));
-            }
-            const teamGrid = reviewElement("div", "postgame-review-team-grid");
-            review.teams.forEach((team) => teamGrid.append(renderReviewTeam(review, team)));
-            const checks = reviewElement("section", "postgame-review-checks");
-            checks.append(reviewElement("h4", "", "事前情報の答え合わせ"));
-            const achieved = review.teams.flatMap((team) => team.records.map((record) => record.fact));
-            if (achieved.length) {
-                achieved.slice(0, 10).forEach((fact) => {
-                    const row = reviewElement("p", "postgame-review-check is-achieved");
-                    row.append(reviewElement("b", "", "達成"), document.createTextNode(fact));
-                    checks.append(row);
-                });
-            } else {
-                checks.append(reviewElement("p", "is-muted", "達成が確認された登録記録はありません"));
-            }
-            const highlights = reviewElement("section", "postgame-review-highlights");
-            highlights.append(reviewElement("h4", "", "ハイライト候補"));
-            if (review.highlightCandidates.length) {
-                review.highlightCandidates.forEach((play, playIndex) => {
-                    const row = reviewElement("div", "postgame-review-highlight");
-                    row.append(
-                        reviewElement("b", "", String(playIndex + 1).padStart(2, "0")),
-                        reviewElement("span", "", `${play.inning}回${play.half}`),
-                        reviewElement("p", "", play.description)
-                    );
-                    highlights.append(row);
-                });
-            } else {
-                highlights.append(reviewElement("p", "is-muted", "得点プレーを取得できませんでした"));
-            }
-            const rare = reviewElement("section", "postgame-review-rare");
-            rare.append(reviewElement("h4", "", "珍しいプレー・公式SNS確認候補"));
-            if (review.rareSocialCandidates.length) {
-                review.rareSocialCandidates.forEach((fact) => rare.append(reviewElement("p", "", `◆ ${fact}`)));
-            } else {
-                rare.append(reviewElement("p", "is-muted", "自動検出された候補なし。両球団公式SNSを確認"));
-            }
-            body.append(overview, turning, teamGrid, checks, highlights, rare);
             card.append(summary, body);
             section.append(card);
         });
