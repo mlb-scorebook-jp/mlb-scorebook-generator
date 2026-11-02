@@ -3482,9 +3482,9 @@
         }
         section.append(list);
         const tracking = review.gameNoteTracking ?? [];
+        const tracker = reviewElement("div", "postgame-review-note-tracker");
+        tracker.append(reviewElement("h5", "", "ゲームノート追跡"));
         if (tracking.length) {
-            const tracker = reviewElement("div", "postgame-review-note-tracker");
-            tracker.append(reviewElement("h5", "", "ゲームノート追跡"));
             tracking.forEach((item) => {
                 const row = reviewElement("div", `postgame-review-note-row is-${item.status}`);
                 const status = item.status === "continued"
@@ -3503,8 +3503,14 @@
                 if (item.href) row.append(reviewLink("ゲームノート ↗", item.href, "postgame-review-note-link"));
                 tracker.append(row);
             });
-            section.append(tracker);
+        } else {
+            tracker.append(reviewElement(
+                "p",
+                "postgame-review-note-empty",
+                "この試合はゲームノート未取得、または追跡対象となる連続記録がありません。"
+            ));
         }
+        section.append(tracker);
         return section;
     };
 

@@ -812,6 +812,7 @@ body.app-mode-daily-records #header-daily-records-btn {
 .postgame-review-note-row.is-stopped .postgame-review-note-status { color: #fff; background: #c34e55; }
 .postgame-review-note-row.is-notEligible .postgame-review-note-status { color: #192128; background: #aebbc2; }
 .postgame-review-note-link { white-space: nowrap; }
+.postgame-review-note-empty { margin: 0; color: #8fa3ad; font-size: 12px; }
 
 @media (max-width: 760px) {
     .postgame-review-note-row { grid-template-columns: 72px 1fr; }
