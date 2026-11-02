@@ -36,6 +36,19 @@
         失策: "MLB公式記録上の失策数。複数ポジションを守った選手はシーズン合計。",
         守備率: "（刺殺＋補殺）÷守備機会。失策せずに処理した割合で、1.000に近いほど高い。"
     };
+    const awardFoundedYears = {
+        platinumGlove: 2011,
+        reliever: 2014,
+        allMlb: 2019
+    };
+    const isBeforeAwardCreation = (categoryKey) => {
+        const foundedYear = awardFoundedYears[categoryKey];
+        return foundedYear && state.season < foundedYear;
+    };
+    const portraitWithFallback = (url, className = "") => `<div class="awards-image-fallback ${className}">
+        <img src="${url}" alt="" onerror="this.parentElement.classList.add('is-missing');this.remove()">
+        <span>NO IMAGE</span>
+    </div>`;
     const metricValues = (winner) => {
         const values = Object.fromEntries((winner.metrics || []).map((metric) => [metric.label, metric.value]));
         values.守備機会 = winner.chances;
@@ -65,7 +78,8 @@
             ${categoryKeys(state.group).map((key) => {
                 const category = categories[key];
                 const hasHistoricalData = key === "goldGlove" ? Boolean(historyData[state.season]) : Boolean(majorHistoryData[state.season]?.[key]);
-                const statusText = state.season === 2026 ? (category.status === "announced" ? "発表済み" : "発表待ち")
+                const statusText = isBeforeAwardCreation(key) ? `${awardFoundedYears[key]}年創設`
+                    : state.season === 2026 ? (category.status === "announced" ? "発表済み" : "発表待ち")
                     : hasHistoricalData ? "データあり" : "未登録";
                 return `<button type="button" data-award-category="${key}"
                     class="${state.category === key ? "active" : ""}">${escapeHtml(category.label)}
@@ -118,7 +132,7 @@
 
     const renderHistoricalMajorPair = () => {
         const award = majorHistoryData[state.season]?.[state.category];
-        if (!award) return renderPending(categories.mvp);
+        if (!award) return renderPending(categories[state.category]);
         const headshotUrl = (winner) => winner.photoUrl || (state.category === "manager"
             ? `https://img.mlbstatic.com/mlb-photos/image/upload/d_people%3Ageneric%3Aheadshot%3A83%3Acurrent.png/ar_1%3A1%2Cc_pad%2Cb_auto%3Aborder/w_360%2Cq_auto%3Abest/v1/people/${winner.playerId}/headshot/83/coach/current`
             : `https://img.mlbstatic.com/mlb-photos/image/upload/w_240,q_auto:best/v1/people/${winner.playerId}/headshot/silo/current`);
@@ -131,7 +145,7 @@
             <div class="awards-mvp-profile">
                 <div class="awards-mvp-wreath">${laurel("left")}<strong>MVP</strong>${laurel("right")}</div>
                 <span class="awards-mvp-year">${state.season}</span>
-                <div class="awards-mvp-portrait"><img class="awards-mvp-headshot${state.category === "manager" ? " is-manager" : ""}" src="${headshotUrl(winner)}" alt="${escapeHtml(winner.playerJa)}"></div>
+                <div class="awards-mvp-portrait">${portraitWithFallback(headshotUrl(winner), `awards-mvp-headshot${state.category === "manager" ? " is-manager" : ""}`)}</div>
                 <img class="awards-mvp-team" src="${logoUrl(winner.teamId)}" alt="${escapeHtml(winner.team)}">
                 <div class="awards-mvp-name"><small>${escapeHtml(winner.position)}</small><h3>${escapeHtml(winner.playerJa)}</h3><b class="awards-mvp-count">${winner.count === 1 ? "初受賞" : `${winner.count}回目${winner.streak > 1 ? `（${winner.streak}年連続）` : ""}`}</b></div>
             </div>
@@ -148,7 +162,7 @@
             <header><span>${escapeHtml(winner.league)}</span><b>${escapeHtml(award.title)}</b></header>
             <div class="awards-mvp-profile">
                 <span class="awards-mvp-year">${state.season}</span>
-                <div class="awards-mvp-portrait"><img class="awards-mvp-headshot" src="${winner.photoUrl || `https://img.mlbstatic.com/mlb-photos/image/upload/w_360,q_auto:best/v1/people/${winner.playerId}/headshot/silo/current`}" alt="${escapeHtml(winner.playerJa)}"></div>
+                <div class="awards-mvp-portrait">${portraitWithFallback(winner.photoUrl || `https://img.mlbstatic.com/mlb-photos/image/upload/w_360,q_auto:best/v1/people/${winner.playerId}/headshot/silo/current`, "awards-mvp-headshot")}</div>
                 <img class="awards-mvp-team" src="${logoUrl(winner.teamId)}" alt="${escapeHtml(winner.team)}">
                 <div class="awards-mvp-name"><small>${escapeHtml(winner.position)}</small><h3>${escapeHtml(winner.playerJa)}</h3><b class="awards-mvp-count">${winner.count === 1 ? "初受賞" : `${winner.count}回目${winner.streak > 1 ? `（${winner.streak}年連続）` : ""}`}</b></div>
             </div>
@@ -161,7 +175,7 @@
         if (!award) return renderPending(categories.silverSlugger);
         const league = (title, rows, key) => `<section class="awards-slugger-league awards-slugger-${key}"><h3>${title}</h3><div>${rows.map(([position, name, playerId, team, teamId, count, avg, homeRuns, rbi]) => `<article class="awards-slugger-card">
             <b class="awards-slugger-position">${position}</b>
-            <div class="awards-slugger-photo"><img src="https://img.mlbstatic.com/mlb-photos/image/upload/w_180,q_auto:best/v1/people/${playerId}/headshot/silo/current" alt="${escapeHtml(name)}"></div>
+            <div class="awards-slugger-photo">${portraitWithFallback(`https://img.mlbstatic.com/mlb-photos/image/upload/w_180,q_auto:best/v1/people/${playerId}/headshot/silo/current`)}</div>
             <img class="awards-slugger-logo" src="${logoUrl(teamId)}" alt="${team}">
             <div class="awards-slugger-copy"><div class="awards-slugger-name-row"><strong>${escapeHtml(name)}</strong><span>${count === 1 ? "初受賞" : `${count}回目`}</span></div>
                 <div class="awards-slugger-stats"><b><small>率</small>${avg}</b><b><small>本</small>${homeRuns}</b><b><small>点</small>${rbi}</b></div></div>
@@ -182,8 +196,14 @@
             <div><small>${escapeHtml(winner.honor || category.label)}</small><strong>${escapeHtml(winner.playerJa)}</strong><span>${escapeHtml(winner.team)}</span></div>
         </article>`).join("")}</section>`;
 
-    const renderPending = (category) => `<section class="awards-pending"><span aria-hidden="true">AWARD</span>
-        <h3>${escapeHtml(category.label)}</h3><p>${state.season}年の受賞者データはまだ登録されていません。</p></section>`;
+    const renderPending = (category) => {
+        const foundedYear = awardFoundedYears[state.category];
+        const message = isBeforeAwardCreation(state.category)
+            ? `${foundedYear}年創設`
+            : `${state.season}年の受賞者データはまだ登録されていません。`;
+        return `<section class="awards-pending"><span aria-hidden="true">AWARD</span>
+            <h3>${escapeHtml(category.label)}</h3><p>${escapeHtml(message)}</p></section>`;
+    };
 
     const sourceFooter = (category) => {
         const historicalUrl = majorHistoryData[state.season]?.[state.category]?.sourceUrl;
