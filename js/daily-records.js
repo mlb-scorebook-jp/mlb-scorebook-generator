@@ -2,7 +2,7 @@
 
 (() => {
     const API_ROOT = "https://statsapi.mlb.com/api";
-    const CACHE_PREFIX = "mlb-postgame-review-v7:";
+    const CACHE_PREFIX = "mlb-postgame-review-v8:";
     const MAX_CONCURRENT_GAMES = 3;
     const RECORD_THRESHOLDS = Object.freeze({
         inningHits: 2,
@@ -1071,6 +1071,59 @@
             };
         });
 
+    const GAME_NOTE_STREAK_TYPES = [
+        { key: "hits", label: "安打", pattern: /(?:試合)?連続安打/,
+            eligible: (batting) => number(batting?.atBats) > 0,
+            succeeded: (batting) => number(batting?.hits) > 0 },
+        { key: "onBase", label: "出塁", pattern: /(?:試合)?連続出塁/, succeeded: (batting) =>
+            number(batting?.hits) + number(batting?.baseOnBalls) + number(batting?.hitByPitch) > 0 },
+        { key: "rbi", label: "打点", pattern: /(?:試合)?連続打点/, succeeded: (batting) => number(batting?.rbi) > 0 },
+        { key: "homeRuns", label: "本塁打", pattern: /(?:試合)?連続本塁打/, succeeded: (batting) => number(batting?.homeRuns) > 0 }
+    ];
+    const gameNoteTracking = (game, boxscore) => {
+        const notes = window.MLBPressboxGameNotes?.get?.(
+            number(game?.gamePk), text(game?.officialDate || state.date)
+        )?.items ?? [];
+        if (!notes.length) return [];
+        const players = ["away", "home"].flatMap((side) =>
+            Object.values(boxTeamForSide(boxscore, side)?.players ?? {}).map((entry) => ({
+                entry,
+                side,
+                displayName: playerDisplayName(entry?.person),
+                fullName: text(entry?.person?.fullName)
+            }))
+        );
+        const tracked = [];
+        notes.forEach((note) => {
+            const source = text(note?.text);
+            const type = GAME_NOTE_STREAK_TYPES.find((candidate) => candidate.pattern.test(source));
+            if (!type) return;
+            const count = number(source.match(/(\d+)試合連続(?:安打|出塁|打点|本塁打)/)?.[1]);
+            if (!count) return;
+            const player = players.find((candidate) =>
+                (candidate.displayName && source.includes(candidate.displayName)) ||
+                (candidate.fullName && source.includes(candidate.fullName))
+            );
+            if (!player) return;
+            const batting = player.entry?.stats?.batting ?? {};
+            const plateAppearances = number(batting?.plateAppearances);
+            const eligible = type.eligible ? type.eligible(batting) : plateAppearances > 0;
+            const succeeded = eligible && type.succeeded(batting);
+            tracked.push({
+                player: player.displayName,
+                teamCode: teamCode(scheduleTeamForSide(game, player.side)),
+                type: type.key,
+                label: type.label,
+                before: count,
+                after: succeeded ? count + 1 : count,
+                status: !eligible ? "notEligible" : succeeded ? "continued" : "stopped",
+                source: source,
+                href: text(note?.href)
+            });
+        });
+        return uniqueBy(tracked, (item) => `${item.player}:${item.type}`);
+    };
+
     const buildPostgameReview = async (game, playByPlay, boxscore, decisions, records, signal) => {
         const articles = uniqueBy([
             ...(await fetchOfficialArticles(game.gamePk, signal).catch(() => [])),
@@ -1142,6 +1195,7 @@
                 `${winner.hits}安打${winner.homeRuns ? `、${winner.homeRuns}本塁打` : ""}で${winner.runs}得点を挙げた。`,
             decisivePlay: reviewPlay(decisive),
             highlightCandidates: candidates,
+            gameNoteTracking: gameNoteTracking(game, boxscore),
             articles: teamArticles,
             allArticles: articles.slice(0, 6),
             recordCount: records.length,
@@ -3427,6 +3481,30 @@
             list.append(reviewElement("p", "is-muted", "関連記事なし"));
         }
         section.append(list);
+        const tracking = review.gameNoteTracking ?? [];
+        if (tracking.length) {
+            const tracker = reviewElement("div", "postgame-review-note-tracker");
+            tracker.append(reviewElement("h5", "", "ゲームノート追跡"));
+            tracking.forEach((item) => {
+                const row = reviewElement("div", `postgame-review-note-row is-${item.status}`);
+                const status = item.status === "continued"
+                    ? "継続"
+                    : item.status === "stopped" ? "ストップ" : "判定対象なし";
+                const result = item.status === "continued"
+                    ? `${item.before}試合連続${item.label} → ${item.after}試合に更新`
+                    : item.status === "stopped"
+                        ? `${item.before}試合連続${item.label} → ストップ`
+                        : `${item.before}試合連続${item.label} → 判定対象なし（記録は継続）`;
+                row.append(
+                    reviewElement("span", "postgame-review-note-status", status),
+                    reviewElement("strong", "", `${item.player}（${item.teamCode}）`),
+                    reviewElement("span", "", result)
+                );
+                if (item.href) row.append(reviewLink("ゲームノート ↗", item.href, "postgame-review-note-link"));
+                tracker.append(row);
+            });
+            section.append(tracker);
+        }
         return section;
     };
 

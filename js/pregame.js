@@ -104,6 +104,12 @@
         const notes = PRESSBOX_GAME_NOTES.get(Number(gamePk));
         return notes?.date === date ? notes : null;
     };
+    window.MLBPressboxGameNotes = Object.freeze({
+        get(gamePk, date) {
+            const notes = pressboxGameNotes(gamePk, date);
+            return notes ? structuredClone(notes) : null;
+        }
+    });
 
     const fetchJson = async (url, cacheKey = url) => {
         if (cache.has(cacheKey)) return cache.get(cacheKey);

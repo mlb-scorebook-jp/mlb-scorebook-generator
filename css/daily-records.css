@@ -784,3 +784,37 @@ body.app-mode-daily-records #header-daily-records-btn {
     box-shadow: inset 0 3px 6px rgb(0 12 35 / 58%), 0 1px 0 #001a38, 0 3px 7px rgb(0 0 0 / 34%);
     transform: translateY(2px);
 }
+.postgame-review-note-tracker {
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px solid #354b55;
+}
+
+.postgame-review-note-tracker h5 {
+    margin: 0 0 8px;
+    color: #f3c84b;
+    font-size: 13px;
+}
+
+.postgame-review-note-row {
+    display: grid;
+    grid-template-columns: 72px minmax(150px, 220px) 1fr auto;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 10px;
+    border: 1px solid #354b55;
+    background: #132127;
+}
+
+.postgame-review-note-row + .postgame-review-note-row { border-top: 0; }
+.postgame-review-note-status { text-align: center; padding: 3px 7px; font-weight: 800; }
+.postgame-review-note-row.is-continued .postgame-review-note-status { color: #07140d; background: #62d995; }
+.postgame-review-note-row.is-stopped .postgame-review-note-status { color: #fff; background: #c34e55; }
+.postgame-review-note-row.is-notEligible .postgame-review-note-status { color: #192128; background: #aebbc2; }
+.postgame-review-note-link { white-space: nowrap; }
+
+@media (max-width: 760px) {
+    .postgame-review-note-row { grid-template-columns: 72px 1fr; }
+    .postgame-review-note-row > span:nth-of-type(2),
+    .postgame-review-note-link { grid-column: 2; }
+}
