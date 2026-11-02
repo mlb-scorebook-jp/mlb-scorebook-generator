@@ -23,15 +23,20 @@
     const categoryKeys = (groupKey) => Object.entries(categories)
         .filter(([, category]) => category.group === groupKey)
         .map(([key]) => key);
+    const metricKeys = ["FRV", "DRS", "OAA"];
+    const metricValues = (winner) => {
+        const values = Object.fromEntries((winner.metrics || []).map((metric) => [metric.label, metric.value]));
+        return metricKeys.map((key) => `<b title="${key}">${escapeHtml(values[key] || "—")}</b>`).join("");
+    };
 
     const winnerCard = (winner, league) => `
         <article class="awards-winner-card awards-winner-${league.toLowerCase()} ${winner.count === 1 ? "is-first-time" : "is-repeat"}">
             <img class="awards-team-logo" src="${logoUrl(winner.teamId)}" alt="${escapeHtml(winner.team)}" loading="lazy">
-            <div class="awards-winner-copy"><strong>${escapeHtml(winner.playerJa)}</strong></div>
-            <div class="awards-win-count">
+            <div class="awards-winner-copy">
+                <strong>${escapeHtml(winner.playerJa)}</strong>
                 <b>${winner.count === 1 ? "初受賞" : `${winner.count}度目`}</b>
-                <span>${escapeHtml(winner.team)}</span>
             </div>
+            <div class="awards-winner-metrics">${metricValues(winner)}</div>
         </article>`;
 
     const groupNav = () => `
@@ -65,7 +70,11 @@
                 <div><small>初受賞</small><strong>${award.summary.firstTimeWinners}人</strong></div>
                 <div class="awards-summary-leaders"><small>球団最多</small>${teamLeaders}</div>
             </section>
-            <div class="awards-comparison-head" aria-hidden="true"><span>守備位置</span><strong>AMERICAN LEAGUE</strong><strong>NATIONAL LEAGUE</strong></div>
+            <p class="awards-metric-legend">OAA＝平均的な守備より増やしたアウト数　DRS＝守備で防いだ得点　FRV＝Statcastによる守備得点価値</p>
+            <div class="awards-comparison-head" aria-hidden="true"><span>守備位置</span>
+                <div class="awards-league-head"><strong>AMERICAN LEAGUE</strong><div>${metricKeys.map((key) => `<b>${key}</b>`).join("")}</div></div>
+                <div class="awards-league-head"><strong>NATIONAL LEAGUE</strong><div>${metricKeys.map((key) => `<b>${key}</b>`).join("")}</div></div>
+            </div>
             <section class="awards-winners">${award.winners.map((row) => `<div class="awards-position-row">
                 <div class="awards-position"><b>${escapeHtml(row.position)}</b><span>${escapeHtml(row.positionJa)}</span></div>
                 ${winnerCard(row.al, "AL")}${winnerCard(row.nl, "NL")}</div>`).join("")}</section>`;
