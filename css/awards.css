@@ -31,7 +31,14 @@ body.app-mode-awards #header-awards-btn {
     background: linear-gradient(180deg, #6c5720, #46370f);
 }
 
-.awards-page { width: min(1680px, calc(100% - 28px)); min-width: 1540px; margin: 0 auto; padding: 22px 0 48px; color: #e8eef1; }
+.awards-page {
+    width: min(1680px, calc(100% - 48px));
+    min-width: 1540px;
+    margin-left: max(24px, calc((100% - 1680px) / 2));
+    margin-right: 24px;
+    padding: 22px 0 48px;
+    color: #e8eef1;
+}
 .awards-hero {
     display: flex; align-items: flex-end; justify-content: space-between; gap: 24px;
     padding: 25px 28px; border: 1px solid #58604f;
@@ -146,7 +153,7 @@ body.app-mode-awards #header-awards-btn {
 .awards-pending p { margin: 0; color: #82949d; font-size: 12px; }
 
 @media (max-width: 760px) {
-    .awards-page { width: min(100% - 20px, 1240px); min-width: 0; padding-top: 12px; }
+    .awards-page { width: min(100% - 20px, 1240px); min-width: 0; margin: 0 auto; padding-top: 12px; }
     .awards-hero { align-items: center; padding: 18px; }
     .awards-hero h2 { font-size: 22px; }
     .awards-group-nav { grid-template-columns: repeat(2, 1fr); }
