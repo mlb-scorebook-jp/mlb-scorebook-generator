@@ -2,7 +2,7 @@
 
 (() => {
     const API_ROOT = "https://statsapi.mlb.com/api";
-    const CACHE_PREFIX = "mlb-postgame-review-v5:";
+    const CACHE_PREFIX = "mlb-postgame-review-v6:";
     const MAX_CONCURRENT_GAMES = 3;
     const RECORD_THRESHOLDS = Object.freeze({
         inningHits: 2,
@@ -213,6 +213,15 @@
     const number = (value) => Number.isFinite(Number(value)) ? Number(value) : 0;
     const text = (value) => String(value ?? "").trim();
     const unique = (values) => [...new Set(values.filter(Boolean))];
+    const uniqueBy = (values, keyFor) => {
+        const seen = new Set();
+        return values.filter((value) => {
+            const key = keyFor(value);
+            if (!key || seen.has(key)) return false;
+            seen.add(key);
+            return true;
+        });
+    };
     const dateLabel = (date) => text(date).replaceAll("-", "/");
     const mlbHistoryAchievementFact = (context, ordinal) => {
         const source = text(context);
@@ -864,18 +873,52 @@
         return request;
     };
 
-    const articleTeamIds = (article) => unique((article?.keywordsAll ?? []).flatMap((keyword) => {
+    // The game-content endpoint often exposes only the winning club's recap.
+    // Merge in articles collected from each club's official news feed as well.
+    // Historical test cases remain here because the rolling news feed drops old stories.
+    const HISTORICAL_TEAM_ARTICLES = Object.freeze({
+        824382: Object.freeze([
+            Object.freeze({
+                headline: "White Sox drop rubber game to Guardians, slip out of 1st place in AL Central",
+                headlineJa: "CWS、CLEとの3連戦最終戦に敗れ地区首位から後退",
+                summary: "CWSはCLEとの3連戦最終戦に3－6で敗れ、7月3日以来となる地区首位陥落となった。6回にP.ハルピンの勝ち越し3ランを許した一方、W.ベナブル監督は今後の戦いへ前向きな姿勢を示した。",
+                url: "https://www.mlb.com/news/white-sox-fall-out-of-first-place-after-loss-to-guardians",
+                teamIds: [145],
+                contributors: ["Brian Dulik"]
+            })
+        ])
+    });
+
+    const teamNewsArticlesForGame = (gamePk) => {
+        const key = number(gamePk);
+        const rolling = (window.MLB_LATEST_NEWS ?? []).filter((article) =>
+            (article?.gamePks ?? []).map(number).includes(key)
+        ).map((article) => ({
+            headline: article.headline,
+            blurb: article.summaryJa,
+            officialUrl: article.url,
+            teamIds: article.teamIds ?? [],
+            contributors: article.contributors ?? []
+        }));
+        return [...rolling, ...(HISTORICAL_TEAM_ARTICLES[key] ?? [])];
+    };
+
+    const articleTeamIds = (article) => unique([
+        ...(article?.teamIds ?? []).map(number),
+        ...(article?.keywordsAll ?? []).flatMap((keyword) => {
         if (typeof keyword === "number") return [keyword];
         if (typeof keyword === "string" && /^\d+$/.test(keyword)) return [number(keyword)];
         const type = text(keyword?.type || keyword?.keywordType).toLowerCase();
         const rawValue = text(keyword?.value || keyword?.id || keyword?.teamId);
         const value = number(rawValue.match(/(\d+)/)?.[1] || rawValue);
         return type.includes("team") && value ? [value] : [];
-    })).filter(Boolean);
+        })
+    ]).filter(Boolean);
 
     const articleDigest = (article) => ({
         headline: text(article?.headline),
-        summary: text(article?.blurb || article?.description || article?.body)
+        headlineJa: text(article?.headlineJa),
+        summary: text(article?.summary || article?.blurb || article?.description || article?.body)
             .replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim().slice(0, 240),
         url: text(article?.officialUrl || article?.url),
         teamIds: articleTeamIds(article),
@@ -1025,8 +1068,11 @@
         });
 
     const buildPostgameReview = async (game, playByPlay, boxscore, decisions, records, signal) => {
-        const articles = (await fetchOfficialArticles(game.gamePk, signal).catch(() => []))
-            .map(articleDigest).filter((article) => article.headline && article.url);
+        const articles = uniqueBy([
+            ...(await fetchOfficialArticles(game.gamePk, signal).catch(() => [])),
+            ...teamNewsArticlesForGame(game.gamePk)
+        ].map(articleDigest).filter((article) => article.headline && article.url),
+        (article) => article.url);
         const teams = ["away", "home"].map((side) =>
             teamReviewStats(game, boxscore, side, records)
         );
@@ -3314,10 +3360,12 @@
                 const winnerHomeRun = review.homeRuns?.find((homeRun) =>
                     homeRun.teamCode === winner.code
                 );
-                const headline = winnerHomeRun
+                const generatedHeadline = winnerHomeRun
                     ? `${winnerHomeRun.player}の${winnerHomeRun.number ? `${winnerHomeRun.number}号` : "本塁打"}、${winner.code}が${loser.code}に勝利`
                     : `${winner.code}、${loser.code}に${winner.runs}－${loser.runs}で勝利`;
-                const paragraphs = [review.summary];
+                const headline = article.headlineJa || generatedHeadline;
+                const hasJapaneseSummary = /[ぁ-んァ-ヶ一-龠]/.test(article.summary || "");
+                const paragraphs = [hasJapaneseSummary ? article.summary : review.summary];
                 if (review.decisivePlay) {
                     paragraphs.push(
                         `勝敗を分けたのは${review.decisivePlay.inning}回${review.decisivePlay.half}。` +
@@ -3519,7 +3567,7 @@
             const officialNewsSpecialRecords = buildOfficialNewsSpecialRecords(date, games);
             const heartwarmingRecords = buildHeartwarmingNewsRecords(date, games);
             const payload = {
-                version: 5,
+                version: 6,
                 date,
                 checkedAt: nowIso(),
                 totalGames: games.length,

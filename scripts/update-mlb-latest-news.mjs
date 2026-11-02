@@ -53,6 +53,7 @@ const articleSelection = `{
       __typename
       ... on TeamTag{team{id name}}
       ... on PersonTag{person{id fullName}}
+      ... on ContributorTag{contributor{fullName}}
       ... on TaxonomyTag{slug}
       ... on GameTag{gamePk}
     }
@@ -315,6 +316,9 @@ const normalizeArticle = (article, sourceScope) => {
         ?.filter((tag) => tag.__typename === "GameTag" && tag.gamePk)
         .map((tag) => Number(tag.gamePk))
         .filter(Number.isFinite) ?? [];
+    const contributors = article.tags
+        ?.filter((tag) => tag.__typename === "ContributorTag" && tag.contributor?.fullName)
+        .map((tag) => tag.contributor.fullName) ?? [];
     const primaryTeam = teamNames.get(teams[0]?.id);
     const playerDisplayName = players[0]
         ? newsPlayerNameOverrides.get(normalizeName(players[0].name)) ||
@@ -332,6 +336,7 @@ const normalizeArticle = (article, sourceScope) => {
         teamIds: teams.map((team) => team.id),
         playerIds: players.map((player) => player.id),
         gamePks,
+        contributors,
         taxonomy,
         sourceScopes: [sourceScope]
     };
@@ -351,6 +356,9 @@ Object.entries(payload.data ?? {}).forEach(([sourceScope, items]) => {
         existing.teamIds = [...new Set([...existing.teamIds, ...normalized.teamIds])];
         existing.playerIds = [...new Set([...existing.playerIds, ...normalized.playerIds])];
         existing.gamePks = [...new Set([...existing.gamePks, ...normalized.gamePks])];
+        existing.contributors = [...new Set([
+            ...existing.contributors, ...normalized.contributors
+        ])];
         existing.taxonomy = [...new Set([...existing.taxonomy, ...normalized.taxonomy])];
         existing.sourceScopes = [...new Set([...existing.sourceScopes, ...normalized.sourceScopes])];
     });
