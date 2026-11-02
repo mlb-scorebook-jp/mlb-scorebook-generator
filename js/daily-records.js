@@ -3302,20 +3302,38 @@
         const articles = review.allArticles ?? [];
         if (articles.length) {
             articles.forEach((article, index) => {
-                const relatedTeams = (review.teams ?? [])
-                    .filter((team) => article.teamIds?.includes(team.id))
-                    .map((team) => team.code);
-                const subject = relatedTeams.length
-                    ? relatedTeams.join("・")
-                    : review.teams.map((team) => team.code).join("―");
-                const link = reviewLink(
-                    `MLB公式｜${subject} 試合詳報${articles.length > 1 ? ` ${index + 1}` : ""}`,
-                    article.url,
-                    "postgame-review-coverage-card"
+                const winner = review.teams.find((team) => team.id === review.winnerId)
+                    ?? review.teams[0];
+                const loser = review.teams.find((team) => team.id !== review.winnerId)
+                    ?? review.teams[1];
+                const winnerHomeRun = review.homeRuns?.find((homeRun) =>
+                    homeRun.teamCode === winner.code
                 );
-                link.title = article.headline || "MLB公式記事";
-                link.append(reviewElement("span", "", "記事を開く ↗"));
-                list.append(link);
+                const headline = winnerHomeRun
+                    ? `${winnerHomeRun.player}の${winnerHomeRun.number ? `${winnerHomeRun.number}号` : "本塁打"}、${winner.code}が${loser.code}に勝利`
+                    : `${winner.code}、${loser.code}に${winner.runs}－${loser.runs}で勝利`;
+                const paragraphs = [review.summary];
+                if (review.decisivePlay) {
+                    paragraphs.push(
+                        `勝敗を分けたのは${review.decisivePlay.inning}回${review.decisivePlay.half}。` +
+                        review.decisivePlay.description
+                    );
+                }
+                const achievements = review.teams.flatMap((team) =>
+                    team.records.map((record) => record.fact)
+                );
+                if (achievements.length) {
+                    paragraphs.push(`この試合では${achievements.slice(0, 3).join("、")}も記録された。`);
+                }
+                const card = reviewElement("article", "postgame-review-coverage-card");
+                card.append(
+                    reviewElement("small", "", `MLB公式${articles.length > 1 ? ` ${index + 1}` : ""}`),
+                    reviewElement("h5", "", headline),
+                    reviewElement("p", "", paragraphs.join(" ")),
+                    reviewLink("原文 ↗", article.url, "postgame-review-source-link")
+                );
+                card.title = article.headline || "MLB公式記事";
+                list.append(card);
             });
         } else {
             list.append(reviewElement("p", "is-muted", "関連記事なし"));
