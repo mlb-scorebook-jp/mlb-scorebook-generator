@@ -119,6 +119,9 @@
     const renderHistoricalMajorPair = () => {
         const award = majorHistoryData[state.season]?.[state.category];
         if (!award) return renderPending(categories.mvp);
+        const headshotUrl = (winner) => winner.photoUrl || (state.category === "manager"
+            ? `https://img.mlbstatic.com/mlb-photos/image/upload/d_people%3Ageneric%3Aheadshot%3A83%3Acurrent.png/ar_1%3A1%2Cc_pad%2Cb_auto%3Aborder/w_360%2Cq_auto%3Abest/v1/people/${winner.playerId}/headshot/83/coach/current`
+            : `https://img.mlbstatic.com/mlb-photos/image/upload/w_240,q_auto:best/v1/people/${winner.playerId}/headshot/silo/current`);
         const laurel = (side) => `<svg class="awards-mvp-laurel awards-mvp-laurel-${side}" viewBox="0 0 52 34" aria-hidden="true">
             <path d="M46 31C27 28 13 17 7 3"/><ellipse cx="39" cy="27" rx="7" ry="3" transform="rotate(24 39 27)"/><ellipse cx="30" cy="23" rx="7" ry="3" transform="rotate(34 30 23)"/><ellipse cx="22" cy="17" rx="7" ry="3" transform="rotate(48 22 17)"/><ellipse cx="15" cy="10" rx="7" ry="3" transform="rotate(58 15 10)"/><ellipse cx="45" cy="22" rx="7" ry="3" transform="rotate(-16 45 22)"/><ellipse cx="36" cy="17" rx="7" ry="3" transform="rotate(-6 36 17)"/><ellipse cx="27" cy="11" rx="7" ry="3" transform="rotate(8 27 11)"/>
         </svg>`;
@@ -128,9 +131,9 @@
             <div class="awards-mvp-profile">
                 <div class="awards-mvp-wreath">${laurel("left")}<strong>MVP</strong>${laurel("right")}</div>
                 <span class="awards-mvp-year">${state.season}</span>
-                <div class="awards-mvp-portrait"><img class="awards-mvp-headshot" src="https://img.mlbstatic.com/mlb-photos/image/upload/w_240,q_auto:best/v1/people/${winner.playerId}/headshot/silo/current" alt="${escapeHtml(winner.playerJa)}"></div>
+                <div class="awards-mvp-portrait"><img class="awards-mvp-headshot${state.category === "manager" ? " is-manager" : ""}" src="${headshotUrl(winner)}" alt="${escapeHtml(winner.playerJa)}"></div>
                 <img class="awards-mvp-team" src="${logoUrl(winner.teamId)}" alt="${escapeHtml(winner.team)}">
-                <div class="awards-mvp-name"><small>${escapeHtml(winner.position)}</small><div class="awards-mvp-name-line"><h3>${escapeHtml(winner.playerJa)}</h3><b class="awards-mvp-count">${winner.count === 1 ? "初受賞" : `${winner.count}回目${winner.streak > 1 ? `（${winner.streak}年連続）` : ""}`}</b></div><span>${escapeHtml(winner.player)}</span></div>
+                <div class="awards-mvp-name"><small>${escapeHtml(winner.position)}</small><h3>${escapeHtml(winner.playerJa)}</h3><b class="awards-mvp-count">${winner.count === 1 ? "初受賞" : `${winner.count}回目${winner.streak > 1 ? `（${winner.streak}年連続）` : ""}`}</b></div>
             </div>
             <div class="awards-mvp-stats" style="grid-template-columns:repeat(${Object.keys(winner.stats).length},1fr)">${Object.entries(winner.stats).map(([label, value]) => `<div><small>${escapeHtml(label)}</small><strong>${escapeHtml(value)}</strong></div>`).join("")}</div>
         </article>`;

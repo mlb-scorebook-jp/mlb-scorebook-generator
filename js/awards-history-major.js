@@ -40,8 +40,8 @@ window.MLB_AWARDS_MAJOR_HISTORY = {
         },
         manager: {
             title: "MANAGER OF THE YEAR", sourceUrl: "https://www.mlb.com/news/2025-manager-of-the-year-winners",
-            al: { league: "AMERICAN LEAGUE", player: "Stephen Vogt", playerJa: "S.ボート", playerId: 519390, team: "CLE", teamId: 114, position: "監督", count: 2, streak: 2, stats: { "勝敗": "88-74", "勝率": ".543", "地区": "AL中地区1位", "1位票": 17, "得票点": 113 } },
-            nl: { league: "NATIONAL LEAGUE", player: "Pat Murphy", playerJa: "P.マーフィー", playerId: 580268, team: "MIL", teamId: 158, position: "監督", count: 2, streak: 2, stats: { "勝敗": "97-65", "勝率": ".599", "地区": "NL中地区1位", "1位票": 27, "得票点": 141 } }
+            al: { league: "AMERICAN LEAGUE", player: "Stephen Vogt", playerJa: "S.ボート", playerId: 519390, photoUrl: "assets/awards/managers/stephen-vogt.png", team: "CLE", teamId: 114, position: "監督", count: 2, streak: 2, stats: { "勝敗": "88-74", "勝率": ".543", "地区": "AL中地区1位", "1位票": 17, "得票点": 113 } },
+            nl: { league: "NATIONAL LEAGUE", player: "Pat Murphy", playerJa: "P.マーフィー", playerId: 580268, photoUrl: "assets/awards/managers/pat-murphy.png", team: "MIL", teamId: 158, position: "監督", count: 2, streak: 2, stats: { "勝敗": "97-65", "勝率": ".599", "地区": "NL中地区1位", "1位票": 27, "得票点": 141 } }
         },
         allMlb: {
             sourceUrl: "https://www.mlb.com/awards/all-mlb",
