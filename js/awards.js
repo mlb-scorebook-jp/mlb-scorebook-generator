@@ -148,7 +148,7 @@
             <header><span>${escapeHtml(winner.league)}</span><b>${escapeHtml(award.title)}</b></header>
             <div class="awards-mvp-profile">
                 <span class="awards-mvp-year">${state.season}</span>
-                <div class="awards-mvp-portrait"><img class="awards-mvp-headshot" src="https://img.mlbstatic.com/mlb-photos/image/upload/w_360,q_auto:best/v1/people/${winner.playerId}/headshot/silo/current" alt="${escapeHtml(winner.playerJa)}"></div>
+                <div class="awards-mvp-portrait"><img class="awards-mvp-headshot" src="${winner.photoUrl || `https://img.mlbstatic.com/mlb-photos/image/upload/w_360,q_auto:best/v1/people/${winner.playerId}/headshot/silo/current`}" alt="${escapeHtml(winner.playerJa)}"></div>
                 <img class="awards-mvp-team" src="${logoUrl(winner.teamId)}" alt="${escapeHtml(winner.team)}">
                 <div class="awards-mvp-name"><small>${escapeHtml(winner.position)}</small><h3>${escapeHtml(winner.playerJa)}</h3><b class="awards-mvp-count">${winner.count === 1 ? "初受賞" : `${winner.count}回目${winner.streak > 1 ? `（${winner.streak}年連続）` : ""}`}</b></div>
             </div>

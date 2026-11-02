@@ -71,7 +71,7 @@ window.MLB_AWARDS_MAJOR_HISTORY = {
         reliever: {
             title: "RELIEVER OF THE YEAR", sourceUrl: "https://www.mlb.com/awards/reliever-of-the-year",
             al: { league: "AMERICAN LEAGUE", player: "Aroldis Chapman", playerJa: "A.チャップマン", playerId: 547973, team: "BOS", teamId: 111, position: "LHP", count: 2, stats: { "登板": 67, "防御率": "1.17", "セーブ": 32, "投球回": "61.1", "奪三振": 85, "WHIP": "0.70" } },
-            nl: { league: "NATIONAL LEAGUE", player: "Edwin Díaz", playerJa: "E.ディアス", playerId: 621242, team: "NYM", teamId: 121, position: "RHP", count: 3, stats: { "登板": 62, "防御率": "1.63", "セーブ": 28, "投球回": "66.1", "奪三振": 98, "K/9": "13.3" } }
+            nl: { league: "NATIONAL LEAGUE", player: "Edwin Díaz", playerJa: "E.ディアス", playerId: 621242, photoUrl: "assets/awards/players/edwin-diaz-mets-2025.png", team: "NYM", teamId: 121, position: "RHP", count: 3, stats: { "登板": 62, "防御率": "1.63", "セーブ": 28, "投球回": "66.1", "奪三振": 98, "K/9": "13.3" } }
         },
         comeback: {
             title: "COMEBACK PLAYER OF THE YEAR", sourceUrl: "https://www.mlb.com/awards/comeback-player",
