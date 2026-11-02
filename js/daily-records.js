@@ -2,7 +2,7 @@
 
 (() => {
     const API_ROOT = "https://statsapi.mlb.com/api";
-    const CACHE_PREFIX = "mlb-postgame-review-v8:";
+    const CACHE_PREFIX = "mlb-postgame-review-v9:";
     const MAX_CONCURRENT_GAMES = 3;
     const RECORD_THRESHOLDS = Object.freeze({
         inningHits: 2,
@@ -1081,10 +1081,11 @@
         { key: "homeRuns", label: "本塁打", pattern: /(?:試合)?連続本塁打/, succeeded: (batting) => number(batting?.homeRuns) > 0 }
     ];
     const gameNoteTracking = (game, boxscore) => {
-        const notes = window.MLBPressboxGameNotes?.get?.(
+        const gameNotes = window.MLBPressboxGameNotes?.get?.(
             number(game?.gamePk), text(game?.officialDate || state.date)
-        )?.items ?? [];
-        if (!notes.length) return [];
+        );
+        const notes = gameNotes?.items ?? [];
+        if (!notes.length) return { available: false, items: [] };
         const players = ["away", "home"].flatMap((side) =>
             Object.values(boxTeamForSide(boxscore, side)?.players ?? {}).map((entry) => ({
                 entry,
@@ -1121,7 +1122,10 @@
                 href: text(note?.href)
             });
         });
-        return uniqueBy(tracked, (item) => `${item.player}:${item.type}`);
+        return {
+            available: true,
+            items: uniqueBy(tracked, (item) => `${item.player}:${item.type}`)
+        };
     };
 
     const buildPostgameReview = async (game, playByPlay, boxscore, decisions, records, signal) => {
@@ -1168,6 +1172,7 @@
             teamArticles[team.id].push(fallback);
             articles.push(fallback);
         });
+        const noteTracking = gameNoteTracking(game, boxscore);
         return {
             gamePk: number(game.gamePk),
             date: text(game.officialDate || state.date),
@@ -1195,7 +1200,8 @@
                 `${winner.hits}安打${winner.homeRuns ? `、${winner.homeRuns}本塁打` : ""}で${winner.runs}得点を挙げた。`,
             decisivePlay: reviewPlay(decisive),
             highlightCandidates: candidates,
-            gameNoteTracking: gameNoteTracking(game, boxscore),
+            gameNotesAvailable: noteTracking.available,
+            gameNoteTracking: noteTracking.items,
             articles: teamArticles,
             allArticles: articles.slice(0, 6),
             recordCount: records.length,
@@ -3507,7 +3513,9 @@
             tracker.append(reviewElement(
                 "p",
                 "postgame-review-note-empty",
-                "この試合はゲームノート未取得、または追跡対象となる連続記録がありません。"
+                review.gameNotesAvailable
+                    ? "ゲームノート取得済み。この試合には追跡対象となる連続記録がありません。"
+                    : "この試合のゲームノートは未取得です。"
             ));
         }
         section.append(tracker);
