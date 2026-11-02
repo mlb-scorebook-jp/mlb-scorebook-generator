@@ -8,7 +8,7 @@
     <!-- Score notation update: stacked batted-ball symbol, red hits, blue strikeouts, black other results. -->
     <link rel="stylesheet" href="css/style.css?v=20261028-head-to-head-border-1">
     <link rel="stylesheet" href="css/pregame.css?v=20261102-pressbox-evidence-2">
-    <link rel="stylesheet" href="css/daily-records.css?v=20260928-hou-buttons-1">
+    <link rel="stylesheet" href="css/daily-records.css?v=20261102-postgame-review-1">
     <link rel="stylesheet" href="css/abilities.css?v=20261017-catcher-center-1">
     <link rel="stylesheet" href="css/awards.css?v=20261102-major-awards-20">
 </head>
@@ -39,9 +39,9 @@
                 <button type="button" class="portal-action-card" id="portal-daily-records-btn">
                     <span class="portal-action-index">03</span>
                     <span class="portal-action-copy">
-                        <small>DAILY NOTES</small>
-                        <strong>本日の記録</strong>
-                        <span>珍記録や節目の数字を制作メモに</span>
+                        <small>POST-GAME</small>
+                        <strong>試合後レビュー</strong>
+                        <span>結果・記録・公式記事・SNSを試合別に深掘り</span>
                     </span>
                     <span class="portal-action-arrow" aria-hidden="true">→</span>
                 </button>
@@ -89,7 +89,7 @@
             <nav class="app-primary-nav" aria-label="メインナビゲーション">
             <button type="button" id="header-scorebook-btn">スコアブック生成</button>
             <button type="button" id="generate-btn">試合前情報</button>
-            <button type="button" id="header-daily-records-btn">本日の記録</button>
+            <button type="button" id="header-daily-records-btn">試合後レビュー</button>
             <button type="button" id="header-transfers-btn">移籍情報</button>
             <button type="button" id="header-abilities-btn">各種能力</button>
             <button type="button" id="header-awards-btn">表彰</button>
@@ -310,11 +310,11 @@
                 <div class="pregame-content" id="pregame-content"></div>
             </section>
 
-            <section class="daily-records-page" id="daily-records-page" hidden aria-label="本日の記録">
+            <section class="daily-records-page" id="daily-records-page" hidden aria-label="試合後レビュー">
                 <header class="daily-records-header">
                     <div>
-                        <h2>本日の記録</h2>
-                        <p>MLB公式APIで確認できる珍記録・特殊事象</p>
+                        <h2>試合後レビュー</h2>
+                        <p>結果・達成記録・公式記事・SNS・ハイライト候補を試合ごとに整理</p>
                     </div>
                     <div class="daily-records-date-actions">
                         <label for="daily-records-date">
@@ -329,8 +329,8 @@
                         <button type="button" id="daily-records-refresh">再調査</button>
                     </div>
                 </header>
-                <nav class="daily-records-modes" aria-label="本日の記録メニュー">
-                    <button type="button" id="daily-records-mode-today" class="active">本日の記録</button>
+                <nav class="daily-records-modes" aria-label="試合後レビューメニュー">
+                    <button type="button" id="daily-records-mode-today" class="active">試合後レビュー</button>
                     <button type="button" id="daily-records-mode-search">記録検索</button>
                 </nav>
                 <section class="daily-records-search-panel" id="daily-records-search-panel" hidden>
@@ -462,7 +462,7 @@
     <script src="js/stathead-links.js?v=20260810-1"></script>
     <script src="js/records-archive.js?v=20260925-twin-umpires-1"></script>
     <script src="js/daily-calendar-features.js?v=20260901-modern-stats-1"></script>
-    <script src="js/daily-records.js?v=20261009-team-first-home-run"></script>
+    <script src="js/daily-records.js?v=20261102-postgame-review-1"></script>
     <script src="js/mlb-global-events.js?v=20260918-1"></script>
     <script src="js/mlb-prospect-rankings.js?v=20260927"></script>
     <script src="js/pregame.js?v=20261102-pressbox-highlighted-pdf-1"></script>

@@ -2,7 +2,7 @@
 
 (() => {
     const API_ROOT = "https://statsapi.mlb.com/api";
-    const CACHE_PREFIX = "mlb-daily-records-phase1-v29:";
+    const CACHE_PREFIX = "mlb-postgame-review-v1:";
     const MAX_CONCURRENT_GAMES = 3;
     const RECORD_THRESHOLDS = Object.freeze({
         inningHits: 2,
@@ -28,6 +28,23 @@
         team: "チーム／試合記録",
         special: "特殊事象／珍プレー候補",
         heartwarming: "ほっこりニュース候補"
+    });
+    const TEAM_SOCIAL_ACCOUNTS = Object.freeze({
+        108: ["angels", "angels"], 109: ["dbacks", "dbacks"],
+        110: ["orioles", "orioles"], 111: ["redsox", "redsox"],
+        112: ["cubs", "cubs"], 113: ["reds", "reds"],
+        114: ["cleguardians", "CLEGuardians"], 115: ["rockies", "rockies"],
+        116: ["tigers", "tigers"], 117: ["astros", "astrosbaseball"],
+        118: ["royals", "kcroyals"], 119: ["dodgers", "dodgers"],
+        120: ["nationals", "nationals"], 121: ["mets", "mets"],
+        133: ["athletics", "athletics"], 134: ["Pirates", "pittsburghpirates"],
+        135: ["padres", "padres"], 136: ["mariners", "mariners"],
+        137: ["sfgiants", "SFGiants"], 138: ["cardinals", "cardinals"],
+        139: ["raysbaseball", "raysbaseball"], 140: ["rangers", "rangers"],
+        141: ["bluejays", "bluejays"], 142: ["twins", "twins"],
+        143: ["phillies", "phillies"], 144: ["braves", "braves"],
+        145: ["whitesox", "whitesox"], 146: ["marlins", "marlins"],
+        147: ["yankees", "yankees"], 158: ["brewers", "brewers"]
     });
     const RECORD_CATALOG = Object.freeze({
         JAPANESE_CAREER_HIGH: ["日本人選手キャリア最多", "自己最多", "career high"],
@@ -835,11 +852,139 @@
         visit(data?.editorial);
         return articles;
     };
+    const officialArticleCache = new Map();
     const fetchOfficialArticles = async (gamePk, signal) => {
-        if (window.MLBOfficialArticles?.fetch) {
-            return window.MLBOfficialArticles.fetch(gamePk);
+        const key = number(gamePk);
+        if (officialArticleCache.has(key)) return officialArticleCache.get(key);
+        const request = window.MLBOfficialArticles?.fetch
+            ? window.MLBOfficialArticles.fetch(key)
+            : collectOfficialArticlesFallback(key, signal).catch(() => []);
+        officialArticleCache.set(key, request);
+        return request;
+    };
+
+    const articleTeamIds = (article) => unique((article?.keywordsAll ?? []).flatMap((keyword) => {
+        if (typeof keyword === "number") return [keyword];
+        if (typeof keyword === "string" && /^\d+$/.test(keyword)) return [number(keyword)];
+        const type = text(keyword?.type || keyword?.keywordType).toLowerCase();
+        const value = number(keyword?.value || keyword?.id || keyword?.teamId);
+        return type.includes("team") && value ? [value] : [];
+    })).filter(Boolean);
+
+    const articleDigest = (article) => ({
+        headline: text(article?.headline),
+        summary: text(article?.blurb || article?.description || article?.body)
+            .replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim().slice(0, 240),
+        url: text(article?.officialUrl || article?.url),
+        teamIds: articleTeamIds(article)
+    });
+
+    const scoringPlays = (playByPlay) => (playByPlay?.allPlays ?? []).filter((play) => {
+        const result = play?.result ?? {};
+        return number(result.rbi) > 0 || (play?.runners ?? []).some((runner) =>
+            runner?.details?.isScoringEvent === true
+        );
+    });
+
+    const decisiveScoringPlay = (game, playByPlay) => {
+        const winnerSide = number(game?.teams?.away?.score) > number(game?.teams?.home?.score)
+            ? "away" : "home";
+        const plays = scoringPlays(playByPlay);
+        for (let index = 0; index < plays.length; index += 1) {
+            const score = plays[index]?.result ?? {};
+            const winnerAhead = winnerSide === "away"
+                ? number(score.awayScore) > number(score.homeScore)
+                : number(score.homeScore) > number(score.awayScore);
+            if (!winnerAhead) continue;
+            const stayedAhead = plays.slice(index + 1).every((play) => {
+                const later = play?.result ?? {};
+                return winnerSide === "away"
+                    ? number(later.awayScore) > number(later.homeScore)
+                    : number(later.homeScore) > number(later.awayScore);
+            });
+            if (stayedAhead) return plays[index];
         }
-        return collectOfficialArticlesFallback(gamePk, signal).catch(() => []);
+        return plays.at(-1) ?? null;
+    };
+
+    const reviewPlay = (play) => {
+        if (!play) return null;
+        return {
+            inning: number(play?.about?.inning),
+            half: text(play?.about?.halfInning) === "top" ? "表" : "裏",
+            description: text(play?.result?.description || play?.result?.event),
+            awayScore: number(play?.result?.awayScore),
+            homeScore: number(play?.result?.homeScore),
+            eventType: text(play?.result?.eventType)
+        };
+    };
+
+    const teamReviewStats = (game, boxscore, side, records) => {
+        const scheduleTeam = scheduleTeamForSide(game, side);
+        const stats = boxTeamForSide(boxscore, side)?.teamStats ?? {};
+        const teamId = number(scheduleTeam?.id);
+        const [xAccount, instagramAccount] = TEAM_SOCIAL_ACCOUNTS[teamId] ?? [];
+        return {
+            side,
+            id: teamId,
+            code: teamCode(scheduleTeam),
+            name: text(scheduleTeam?.name),
+            runs: number(game?.teams?.[side]?.score),
+            hits: number(stats?.batting?.hits),
+            homeRuns: number(stats?.batting?.homeRuns),
+            strikeouts: number(stats?.batting?.strikeOuts),
+            walks: number(stats?.batting?.baseOnBalls),
+            errors: number(stats?.fielding?.errors),
+            records: records.filter((record) => number(record.teamId) === teamId)
+                .map((record) => ({ fact: record.fact, category: record.category })),
+            socials: {
+                x: xAccount ? `https://x.com/${xAccount}` : "",
+                instagram: instagramAccount ? `https://www.instagram.com/${instagramAccount}/` : ""
+            }
+        };
+    };
+
+    const buildPostgameReview = async (game, playByPlay, boxscore, records, signal) => {
+        const articles = (await fetchOfficialArticles(game.gamePk, signal).catch(() => []))
+            .map(articleDigest).filter((article) => article.headline && article.url);
+        const teams = ["away", "home"].map((side) =>
+            teamReviewStats(game, boxscore, side, records)
+        );
+        const winner = teams.reduce((best, team) => team.runs > best.runs ? team : best, teams[0]);
+        const loser = teams.find((team) => team.side !== winner.side) ?? teams[1];
+        const decisive = decisiveScoringPlay(game, playByPlay);
+        const candidates = scoringPlays(playByPlay)
+            .filter((play) => play === decisive ||
+                text(play?.result?.eventType) === "home_run" ||
+                number(play?.about?.inning) >= 7)
+            .slice(-5).map(reviewPlay).filter(Boolean);
+        const teamArticles = Object.fromEntries(teams.map((team) => [team.id,
+            articles.filter((article) => article.teamIds.includes(team.id))
+        ]));
+        articles.forEach((article) => {
+            if (article.teamIds.length) return;
+            teams.forEach((team) => {
+                if (!teamArticles[team.id].length) teamArticles[team.id].push(article);
+            });
+        });
+        return {
+            gamePk: number(game.gamePk),
+            date: text(game.officialDate || state.date),
+            venue: text(game?.venue?.name),
+            gameType: text(game?.gameType),
+            teams,
+            winnerId: winner.id,
+            summary: `${winner.code}が${loser.code}に${winner.runs}－${loser.runs}で勝利。` +
+                `${winner.hits}安打${winner.homeRuns ? `、${winner.homeRuns}本塁打` : ""}で${winner.runs}得点を挙げた。`,
+            decisivePlay: reviewPlay(decisive),
+            highlightCandidates: candidates,
+            articles: teamArticles,
+            allArticles: articles.slice(0, 5),
+            recordCount: records.length,
+            rareSocialCandidates: records.filter((record) =>
+                ["special", "heartwarming"].includes(record.category)
+            ).map((record) => record.fact)
+        };
     };
 
     const makeRecord = ({
@@ -2665,7 +2810,11 @@
         records.push(...careerRecords);
         const updatedAt = playResult.lastModified || boxResult.lastModified || nowIso();
         records.forEach((record) => { record.feedUpdatedAt = updatedAt; });
-        return dedupeRecords(records);
+        const result = dedupeRecords(records);
+        result.review = await buildPostgameReview(
+            game, playResult.data, boxResult.data, result, signal
+        );
+        return result;
     };
 
     const mapWithConcurrency = async (items, limit, worker, onProgress) => {
@@ -2899,18 +3048,171 @@
             }
         }
     };
+
+    const reviewElement = (tag, className = "", content = "") => {
+        const node = document.createElement(tag);
+        if (className) node.className = className;
+        if (content !== "") node.textContent = content;
+        return node;
+    };
+
+    const reviewLink = (label, href, className = "") => {
+        const link = reviewElement("a", className, label);
+        link.href = href;
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+        return link;
+    };
+
+    const renderReviewTeam = (review, team) => {
+        const panel = reviewElement("section", "postgame-review-team");
+        const heading = reviewElement("div", "postgame-review-team-heading");
+        const logo = document.createElement("img");
+        logo.src = `https://www.mlbstatic.com/team-logos/${team.id}.svg`;
+        logo.alt = "";
+        const name = reviewElement("strong", "", team.code);
+        const result = reviewElement(
+            "span",
+            team.id === review.winnerId ? "postgame-review-result is-win" : "postgame-review-result",
+            team.id === review.winnerId ? "勝利" : "敗戦"
+        );
+        heading.append(logo, name, result);
+        const stats = reviewElement("div", "postgame-review-team-stats");
+        [
+            ["得点", team.runs], ["安打", team.hits], ["本塁打", team.homeRuns],
+            ["三振", team.strikeouts], ["四球", team.walks], ["失策", team.errors]
+        ].forEach(([label, value]) => {
+            const stat = reviewElement("span");
+            stat.append(reviewElement("small", "", label), reviewElement("b", "", String(value)));
+            stats.append(stat);
+        });
+        const recordTitle = reviewElement("h5", "", "達成記録・出来事");
+        const records = reviewElement("ul", "postgame-review-team-records");
+        if (team.records.length) {
+            team.records.slice(0, 8).forEach((record) => {
+                records.append(reviewElement("li", "", record.fact));
+            });
+        } else {
+            records.append(reviewElement("li", "is-muted", "登録済みルールに該当する記録なし"));
+        }
+        const articleTitle = reviewElement("h5", "", "球団・MLB公式記事");
+        const articleList = reviewElement("div", "postgame-review-articles");
+        const articles = review.articles?.[team.id] ?? [];
+        if (articles.length) {
+            articles.slice(0, 3).forEach((article) => {
+                const card = reviewLink(article.headline, article.url, "postgame-review-article");
+                if (article.summary) card.append(reviewElement("span", "", article.summary));
+                articleList.append(card);
+            });
+        } else {
+            articleList.append(reviewElement("p", "postgame-review-waiting", "公式記事待ち／未取得"));
+        }
+        const socialTitle = reviewElement("h5", "", "公式SNS");
+        const socials = reviewElement("div", "postgame-review-socials");
+        if (team.socials.x) socials.append(reviewLink("公式X ↗", team.socials.x));
+        if (team.socials.instagram) {
+            socials.append(reviewLink("公式Instagram ↗", team.socials.instagram));
+        }
+        if (!socials.childElementCount) socials.append(reviewElement("span", "is-muted", "公式SNS未登録"));
+        panel.append(heading, stats, recordTitle, records, articleTitle, articleList, socialTitle, socials);
+        return panel;
+    };
+
+    const renderPostgameReviews = (payload) => {
+        const reviews = payload.reviews ?? [];
+        const section = reviewElement("section", "postgame-reviews");
+        const intro = reviewElement("div", "postgame-reviews-intro");
+        intro.append(
+            reviewElement("h3", "", `試合別レビュー　${reviews.length}試合`),
+            reviewElement("p", "", "結果・達成記録・公式記事・SNS・ハイライト候補を試合ごとに整理")
+        );
+        section.append(intro);
+        if (!reviews.length) {
+            section.append(reviewElement("div", "daily-records-empty",
+                payload.finalGames ? "試合後レビューを作成できませんでした" : "解析対象となるFinal試合はありません"));
+            return section;
+        }
+        reviews.forEach((review, index) => {
+            const card = reviewElement("details", "postgame-review-card");
+            if (index === 0) card.open = true;
+            const summary = reviewElement("summary", "postgame-review-card-summary");
+            const matchup = reviewElement("span", "postgame-review-matchup");
+            review.teams.forEach((team, teamIndex) => {
+                const logo = document.createElement("img");
+                logo.src = `https://www.mlbstatic.com/team-logos/${team.id}.svg`;
+                logo.alt = "";
+                matchup.append(logo, reviewElement("b", "", team.code));
+                if (teamIndex === 0) matchup.append(reviewElement("span", "", "＠"));
+            });
+            const score = reviewElement("strong", "postgame-review-score",
+                `${review.teams[0].runs}－${review.teams[1].runs}`);
+            const count = reviewElement("span", "postgame-review-count", `記録 ${review.recordCount}件`);
+            summary.append(matchup, score, count);
+            const body = reviewElement("div", "postgame-review-body");
+            const overview = reviewElement("section", "postgame-review-overview");
+            overview.append(
+                reviewElement("span", "postgame-review-kicker", "試合の結論"),
+                reviewElement("p", "", review.summary)
+            );
+            const turning = reviewElement("section", "postgame-review-turning");
+            turning.append(reviewElement("span", "postgame-review-kicker", "勝敗の分岐点"));
+            if (review.decisivePlay) {
+                turning.append(reviewElement("p", "",
+                    `${review.decisivePlay.inning}回${review.decisivePlay.half}　${review.decisivePlay.description}`));
+            } else {
+                turning.append(reviewElement("p", "is-muted", "決勝点となったプレーを特定できませんでした"));
+            }
+            const teamGrid = reviewElement("div", "postgame-review-team-grid");
+            review.teams.forEach((team) => teamGrid.append(renderReviewTeam(review, team)));
+            const checks = reviewElement("section", "postgame-review-checks");
+            checks.append(reviewElement("h4", "", "事前情報の答え合わせ"));
+            const achieved = review.teams.flatMap((team) => team.records.map((record) => record.fact));
+            if (achieved.length) {
+                achieved.slice(0, 10).forEach((fact) => {
+                    const row = reviewElement("p", "postgame-review-check is-achieved");
+                    row.append(reviewElement("b", "", "達成"), document.createTextNode(fact));
+                    checks.append(row);
+                });
+            } else {
+                checks.append(reviewElement("p", "is-muted", "達成が確認された登録記録はありません"));
+            }
+            const highlights = reviewElement("section", "postgame-review-highlights");
+            highlights.append(reviewElement("h4", "", "ハイライト候補"));
+            if (review.highlightCandidates.length) {
+                review.highlightCandidates.forEach((play, playIndex) => {
+                    const row = reviewElement("div", "postgame-review-highlight");
+                    row.append(
+                        reviewElement("b", "", String(playIndex + 1).padStart(2, "0")),
+                        reviewElement("span", "", `${play.inning}回${play.half}`),
+                        reviewElement("p", "", play.description)
+                    );
+                    highlights.append(row);
+                });
+            } else {
+                highlights.append(reviewElement("p", "is-muted", "得点プレーを取得できませんでした"));
+            }
+            const rare = reviewElement("section", "postgame-review-rare");
+            rare.append(reviewElement("h4", "", "珍しいプレー・公式SNS確認候補"));
+            if (review.rareSocialCandidates.length) {
+                review.rareSocialCandidates.forEach((fact) => rare.append(reviewElement("p", "", `◆ ${fact}`)));
+            } else {
+                rare.append(reviewElement("p", "is-muted", "自動検出された候補なし。両球団公式SNSを確認"));
+            }
+            body.append(overview, turning, teamGrid, checks, highlights, rare);
+            card.append(summary, body);
+            section.append(card);
+        });
+        return section;
+    };
+
     const renderPayload = (payload, fromCache = false) => {
         renderSummary(payload, fromCache);
         dom.content.replaceChildren();
-        if (!payload.records.length) {
-            const empty = document.createElement("div");
-            empty.className = "daily-records-empty";
-            empty.textContent = payload.finalGames
-                ? "登録済みルールに該当する記録はありません"
-                : "解析対象となるFinal試合はありません";
-            dom.content.append(empty);
-            return;
-        }
+        dom.content.append(renderPostgameReviews(payload));
+        if (!payload.records.length) return;
+        const legacy = reviewElement("details", "postgame-record-index");
+        const legacySummary = reviewElement("summary", "", `本日の記録一覧　${payload.records.length}件`);
+        const legacyBody = reviewElement("div", "postgame-record-index-body");
         CATEGORY_ORDER.forEach((category) => {
             const records = payload.records.filter((record) => record.category === category);
             if (!records.length) return;
@@ -2922,8 +3224,10 @@
             list.className = "daily-records-list";
             records.forEach((record) => list.append(renderRecord(record)));
             section.append(heading, list);
-            dom.content.append(section);
+            legacyBody.append(section);
         });
+        legacy.append(legacySummary, legacyBody);
+        dom.content.append(legacy);
     };
     const renderError = (error) => {
         dom.summary.replaceChildren();
@@ -3019,7 +3323,7 @@
             const officialNewsSpecialRecords = buildOfficialNewsSpecialRecords(date, games);
             const heartwarmingRecords = buildHeartwarmingNewsRecords(date, games);
             const payload = {
-                version: 1,
+                version: 2,
                 date,
                 checkedAt: nowIso(),
                 totalGames: games.length,
@@ -3030,6 +3334,7 @@
                     status: text(game?.status?.detailedState),
                     isFinal: isFinal(game)
                 })),
+                reviews: gameRecords.map((records) => records.review).filter(Boolean),
                 records: dedupeRecords([
                     ...gameRecords.flat(),
                     ...officialNewsSpecialRecords,
