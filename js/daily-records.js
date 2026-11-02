@@ -2,7 +2,7 @@
 
 (() => {
     const API_ROOT = "https://statsapi.mlb.com/api";
-    const CACHE_PREFIX = "mlb-postgame-review-v6:";
+    const CACHE_PREFIX = "mlb-postgame-review-v7:";
     const MAX_CONCURRENT_GAMES = 3;
     const RECORD_THRESHOLDS = Object.freeze({
         inningHits: 2,
@@ -324,6 +324,10 @@
     };
     const teamCode = (team) => text(team?.abbreviation || team?.teamCode || team?.fileCode)
         .toUpperCase() || text(team?.name) || "MLB";
+    const teamOfficialNewsUrl = (teamId) => {
+        const slug = text(window.MLB_SCOREBOOK_TEAM_SLUGS_BY_ID?.[number(teamId)]);
+        return slug ? `https://www.mlb.com/${slug}/news` : "https://www.mlb.com/news";
+    };
     const slugify = (value) => text(value)
         .normalize("NFKD")
         .replace(/[\u0300-\u036f]/g, "")
@@ -1093,6 +1097,24 @@
                 if (!teamArticles[team.id].length) teamArticles[team.id].push(article);
             });
         });
+        teams.forEach((team) => {
+            if (teamArticles[team.id].length) return;
+            const won = team.id === winner.id;
+            const opponent = won ? loser : winner;
+            const fallback = {
+                headline: `${team.code} official team news`,
+                headlineJa: `${team.code}公式ニュース：${opponent.code}戦を振り返る`,
+                summary: won
+                    ? `${team.code}は${opponent.code}に${team.runs}－${opponent.runs}で勝利。${team.hits}安打、${team.homeRuns}本塁打で${team.runs}得点を挙げた。球団公式ニュース一覧で、この試合に関する記事と続報を確認できる。`
+                    : `${team.code}は${opponent.code}に${team.runs}－${opponent.runs}で敗戦。${team.hits}安打で${team.runs}得点、投手陣は${opponent.runs}点を許した。球団公式ニュース一覧で、この試合に関する記事と続報を確認できる。`,
+                url: teamOfficialNewsUrl(team.id),
+                teamIds: [team.id],
+                contributors: [],
+                newsIndexFallback: true
+            };
+            teamArticles[team.id].push(fallback);
+            articles.push(fallback);
+        });
         return {
             gamePk: number(game.gamePk),
             date: text(game.officialDate || state.date),
@@ -1121,7 +1143,7 @@
             decisivePlay: reviewPlay(decisive),
             highlightCandidates: candidates,
             articles: teamArticles,
-            allArticles: articles.slice(0, 5),
+            allArticles: articles.slice(0, 6),
             recordCount: records.length,
             rareSocialCandidates: records.filter((record) =>
                 ["special", "heartwarming"].includes(record.category)
@@ -3382,7 +3404,9 @@
                 const sourceTeams = review.teams.filter((team) =>
                     article.teamIds?.includes(team.id)
                 );
-                const sourceLabel = sourceTeams.length
+                const sourceLabel = article.newsIndexFallback
+                    ? `${sourceTeams.map((team) => team.code).join("・")}球団公式ニュース一覧`
+                    : sourceTeams.length
                     ? `${sourceTeams.map((team) => team.code).join("・")}球団公式`
                     : "MLB公式";
                 const contributor = article.contributors?.length
