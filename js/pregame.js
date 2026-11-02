@@ -16,6 +16,29 @@
     const savantCache = new Map();
     const gameIndex = new Map();
     const gameHighlightTextByGame = new Map();
+    const PRESSBOX_GAME_NOTES = new Map([
+        [823661, {
+            date: "2026-09-01",
+            items: [
+                {
+                    text: "DETは直近16試合で13敗。1試合平均2.8得点、得失点差－35と打線の立て直しが急務。",
+                    href: "https://img.mlbstatic.com/mlb-images/image/upload/fl_attachment/mlb/xsbfbepybhxkp18bea7v.pdf"
+                },
+                {
+                    text: "DET先発T.メルトンは今季防御率1.86。通算最初の20先発で防御率2.07は、MLBでは40年以上ぶりの好成績。",
+                    href: "https://img.mlbstatic.com/mlb-images/image/upload/fl_attachment/mlb/xsbfbepybhxkp18bea7v.pdf"
+                },
+                {
+                    text: "MINは今季DET戦6勝2敗、ターゲット・フィールドでは5戦全勝。L.ケアシャルも対DET通算OPS 1.028。",
+                    href: "https://img.mlbstatic.com/mlb-images/image/upload/fl_attachment/mlb/c0vbzu5tj0bl5gsnucgw.pdf"
+                },
+                {
+                    text: "MIN先発A.モリスは25歳の誕生日登板。ツインズの投手が誕生日に先発するのは2018年のJ.ベリオス以来。",
+                    href: "https://img.mlbstatic.com/mlb-images/image/upload/fl_attachment/mlb/c0vbzu5tj0bl5gsnucgw.pdf"
+                }
+            ]
+        }]
+    ]);
     let currentContext = null;
     let currentDate = "";
     let currentTransferSeason = 0;
@@ -67,6 +90,11 @@
         if (className) node.className = className;
         if (text !== "") node.textContent = text;
         return node;
+    };
+
+    const pressboxGameNotes = (gamePk, date) => {
+        const notes = PRESSBOX_GAME_NOTES.get(Number(gamePk));
+        return notes?.date === date ? notes : null;
     };
 
     const fetchJson = async (url, cacheKey = url) => {
@@ -6241,6 +6269,23 @@
                 list.append(item);
                 return;
             }
+            if (highlight.kind === "gameNote") {
+                const sourceLabel = el("span", "pregame-game-note-source", "MLB PRESSBOX");
+                const noteLabel = el(
+                    highlight.href ? "a" : "strong",
+                    "pregame-game-highlight-label",
+                    highlight.label
+                );
+                if (highlight.href) {
+                    noteLabel.href = highlight.href;
+                    noteLabel.target = "_blank";
+                    noteLabel.rel = "noopener noreferrer";
+                }
+                text.append(sourceLabel, noteLabel);
+                item.append(text);
+                list.append(item);
+                return;
+            }
             if (highlight.kind === "prospectDebut") {
                 const logo = createFreeAgentTeamLogo(highlight.team, teamCode(highlight.team));
                 logo.classList.add("pregame-game-highlight-logo");
@@ -9820,6 +9865,11 @@
                 getLineupSeasonStats(lineupPlayerIds, date)
             ]);
             const gameHighlights = [
+                ...(pressboxGameNotes(gamePk, date)?.items ?? []).map((note) => ({
+                    kind: "gameNote",
+                    label: note.text,
+                    href: note.href
+                })),
                 ...get2026WorldSeriesHighlights(
                     game,
                     { away: awayTeam, home: homeTeam },

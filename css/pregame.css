@@ -2783,6 +2783,20 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
     background: #e6c247;
 }
 
+.pregame-game-note-source {
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    margin-right: 9px;
+    padding: 2px 6px;
+    color: #0f2028;
+    border-radius: 2px;
+    background: #6fd3f5;
+    font-size: 9px;
+    font-weight: 900;
+    letter-spacing: 0.05em;
+}
+
 .pregame-games-section .pregame-game-state-line {
     display: flex;
     align-items: center;
