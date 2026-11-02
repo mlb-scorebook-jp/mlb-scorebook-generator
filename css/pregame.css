@@ -2797,6 +2797,67 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
     letter-spacing: 0.05em;
 }
 
+.pregame-game-note-button {
+    padding: 0;
+    color: #edf3f5;
+    border: 0;
+    background: none;
+    font: inherit;
+    text-align: left;
+    text-decoration: underline;
+    text-decoration-color: #718089;
+    text-underline-offset: 3px;
+    cursor: pointer;
+}
+
+.pregame-game-note-button:hover,
+.pregame-game-note-button:focus-visible {
+    color: #fff;
+    text-decoration-color: #fff;
+}
+
+.pregame-game-note-evidence {
+    display: grid;
+    gap: 8px;
+    margin: 9px 0 2px;
+    padding: 10px 12px;
+    border: 1px solid rgba(241, 200, 76, 0.48);
+    background: #151d21;
+    scroll-margin-block: 120px;
+    transition: border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.pregame-game-note-evidence.is-focused {
+    border-color: #ffe36b;
+    box-shadow: 0 0 0 3px rgba(255, 227, 107, 0.28), 0 0 24px rgba(255, 202, 51, 0.24);
+}
+
+.pregame-game-note-evidence[hidden] {
+    display: none;
+}
+
+.pregame-game-note-evidence-title {
+    color: #f1c84c;
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.pregame-game-note-evidence-mark {
+    padding: 3px 5px;
+    color: #172027;
+    background: #ffe45e;
+    box-shadow: inset 0 -2px 0 #ffb800;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.pregame-game-note-pdf-link {
+    justify-self: start;
+    color: #6fd3f5;
+    font-size: 11px;
+    font-weight: 800;
+}
+
 .pregame-games-section .pregame-game-state-line {
     display: flex;
     align-items: center;
