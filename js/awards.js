@@ -23,18 +23,20 @@
     const categoryKeys = (groupKey) => Object.entries(categories)
         .filter(([, category]) => category.group === groupKey)
         .map(([key]) => key);
-    const metricKeys = ["FRV", "DRS", "OAA", "守備機会", "失策"];
+    const metricKeys = ["FRV", "DRS", "OAA", "守備機会", "失策", "守備率"];
     const metricDescriptions = {
         FRV: "Fielding Run Value：Statcastの総合守備指標。野手は捕球範囲（OAA）や送球、捕手はフレーミング・盗塁阻止・ブロッキングなどを得点に換算する。+10なら平均的な守備より約10点多く防いだ評価。",
         DRS: "Defensive Runs Saved：平均的な選手と比べて守備で何点防いだか。プラスほど優秀。",
         OAA: "Outs Above Average：平均的な選手より多く奪ったアウト数。プラスほど優秀。",
         守備機会: "刺殺・補殺・失策の合計。守備でプレーに関与した公式記録上の回数。複数ポジション分を含むシーズン合計。",
-        失策: "MLB公式記録上の失策数。複数ポジションを守った選手はシーズン合計。"
+        失策: "MLB公式記録上の失策数。複数ポジションを守った選手はシーズン合計。",
+        守備率: "（刺殺＋補殺）÷守備機会。失策せずに処理した割合で、1.000に近いほど高い。"
     };
     const metricValues = (winner) => {
         const values = Object.fromEntries((winner.metrics || []).map((metric) => [metric.label, metric.value]));
         values.守備機会 = winner.chances;
         values.失策 = winner.errors;
+        values.守備率 = winner.chances ? ((winner.chances - winner.errors) / winner.chances).toFixed(3).replace(/^0/, "") : "—";
         return metricKeys.map((key) => `<b title="${key}">${escapeHtml(values[key] ?? "—")}</b>`).join("");
     };
 
