@@ -3890,8 +3890,8 @@
                     "pregame-free-agent-daily-status",
                     isSigning
                         ? /minor league contract/i.test(String(transaction.description ?? ""))
-                            ? "マイナー契約"
-                            : "FA契約"
+                            ? "マイナー契約（期間と金額は未公表）"
+                            : "FA契約（期間と金額は未公表）"
                         : "FA選択"
                 );
                 const transactionDate = String(
@@ -3998,12 +3998,13 @@
                         const isNpbSigning = entry.signing.league === "NPB";
                         const statusText = isNpbSigning
                             ? entry.signing.statusText ||
-                                `${entry.signing.teamName}と契約` +
+                                `${entry.signing.teamName}と契約（期間と金額は未公表）` +
                                 (dateText ? `（${dateText}正式発表）` : "")
                             : terms
                                 ? `と${terms.years}年${formatContractDollars(terms.tenThousands)}で契約` +
                                     (dateText ? `（${dateText}${entry.signing.agreedDate ? "合意" : "公式登録"}）` : "")
                                 : `と${entry.signing.minorLeague ? "マイナー契約" : "契約"}` +
+                                    "（期間と金額は未公表）" +
                                     (dateText ? `（${dateText}${entry.signing.agreedDate ? "合意" : "公式登録"}）` : "");
                         const status = el(
                             entry.signing.url ? "a" : "span",
@@ -4129,8 +4130,11 @@
                 details.append(postingStatus);
                 const signing = player.signing?.agreedDate <= date ? player.signing : null;
                 if (signing) {
-                    const signingText = signing.statusText ||
-                        `と${signing.years}年${formatContractDollars(signing.tenThousands)}で契約`;
+                    const hasTerms = Number.isFinite(Number(signing.years)) &&
+                        Number.isFinite(Number(signing.tenThousands));
+                    const signingText = signing.statusText || (hasTerms
+                        ? `と${signing.years}年${formatContractDollars(signing.tenThousands)}で契約`
+                        : "と契約（期間と金額は未公表）");
                     const status = el(
                         "a",
                         "pregame-free-agent-signing",
