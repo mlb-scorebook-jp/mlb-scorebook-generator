@@ -1,0 +1,21 @@
+ObjC.import('Foundation');
+
+function run(argv) {
+  const mailboxName = argv[0] || 'MLB番記者';
+  const limit = Math.max(1, Number(argv[1] || 5));
+  const Mail = Application('Mail');
+  const mailbox = Mail.mailboxes.byName(mailboxName);
+
+  if (!mailbox.exists()) {
+    throw new Error(`メールボックス「${mailboxName}」が見つかりません。`);
+  }
+
+  const messages = mailbox.messages();
+  return JSON.stringify(messages.slice(0, limit).map((message) => ({
+    id: String(message.id()),
+    subject: String(message.subject() || ''),
+    sender: String(message.sender() || ''),
+    receivedAt: String(message.dateReceived() || ''),
+    content: String(message.content() || '')
+  })));
+}
