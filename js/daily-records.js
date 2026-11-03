@@ -2,7 +2,7 @@
 
 (() => {
     const API_ROOT = "https://statsapi.mlb.com/api";
-    const CACHE_PREFIX = "mlb-postgame-review-v14:";
+    const CACHE_PREFIX = "mlb-postgame-review-v15:";
     const MAX_CONCURRENT_GAMES = 3;
     const RECORD_THRESHOLDS = Object.freeze({
         inningHits: 2,
@@ -1059,11 +1059,11 @@
             const seasonStats = entry?.seasonStats?.pitching ?? {};
             let decision = "";
             if (number(decisions?.winner?.playerId) === playerId) {
-                decision = `W${decisions.winner.record ? ` ${decisions.winner.record}` : ""}`;
+                decision = "W";
             } else if (number(decisions?.loser?.playerId) === playerId) {
-                decision = `L${decisions.loser.record ? ` ${decisions.loser.record}` : ""}`;
+                decision = "L";
             } else if (number(decisions?.save?.playerId) === playerId) {
-                decision = `S${decisions.save.record ? ` ${decisions.save.record}` : ""}`;
+                decision = "S";
             }
             return {
                 playerId,
