@@ -3143,8 +3143,59 @@
         String(transaction?.typeCode ?? "") === "SFA" ||
         /elected free agency/i.test(String(transaction?.description ?? ""));
 
-    const getFreeAgentNewTransactions = async (date = currentEasternDate()) =>
-        (await fetchFreeAgentTransactions(date, date)).filter(isFreeAgentUpdateTransaction);
+    const FREE_AGENT_RECENT_STORAGE_KEY = "mlb-scorebook:free-agent-recent-updates";
+    const FREE_AGENT_RECENT_DURATION_MS = 24 * 60 * 60 * 1000;
+
+    const freeAgentTransactionKey = (transaction) => [
+        transaction?.id ?? "",
+        transaction?.person?.id ?? "",
+        transaction?.typeCode ?? "",
+        String(transaction?.date ?? transaction?.effectiveDate ?? "").slice(0, 10),
+        transaction?.toTeam?.id ?? "",
+        transaction?.fromTeam?.id ?? ""
+    ].join(":");
+
+    const readFreeAgentRecentSeen = () => {
+        try {
+            const stored = JSON.parse(localStorage.getItem(FREE_AGENT_RECENT_STORAGE_KEY) || "{}");
+            return stored && typeof stored === "object" ? stored : {};
+        } catch {
+            return {};
+        }
+    };
+
+    const writeFreeAgentRecentSeen = (seen) => {
+        try {
+            localStorage.setItem(FREE_AGENT_RECENT_STORAGE_KEY, JSON.stringify(seen));
+        } catch {
+            // Private browsing or a full storage area must not hide the FA list.
+        }
+    };
+
+    const getFreeAgentNewTransactions = async (date = currentEasternDate()) => {
+        const today = currentEasternDate();
+        if (date !== today) return [];
+
+        const now = Date.now();
+        const transactions = (await fetchFreeAgentTransactions(shiftDate(today, -1), today))
+            .filter(isFreeAgentUpdateTransaction);
+        const seen = readFreeAgentRecentSeen();
+
+        transactions.forEach((transaction) => {
+            const key = freeAgentTransactionKey(transaction);
+            if (!key) return;
+            if (!Number.isFinite(Number(seen[key]))) seen[key] = now;
+        });
+        Object.entries(seen).forEach(([key, firstSeen]) => {
+            if (now - Number(firstSeen) >= FREE_AGENT_RECENT_DURATION_MS) delete seen[key];
+        });
+        writeFreeAgentRecentSeen(seen);
+
+        return transactions.filter((transaction) => {
+            const firstSeen = Number(seen[freeAgentTransactionKey(transaction)]);
+            return Number.isFinite(firstSeen) && now - firstSeen < FREE_AGENT_RECENT_DURATION_MS;
+        });
+    };
 
     const getFreeAgentNewPlayerIds = async (date = currentEasternDate()) => {
         const transactions = await getFreeAgentNewTransactions(date);
@@ -3809,16 +3860,10 @@
             ));
         }
         header.append(headerMeta);
-        const listedPlayerIds = new Set(
-            Object.values(groups).flat().map((entry) => Number(entry.playerId))
-        );
-        const unlistedNewTransactions = newTransactions.filter((transaction) =>
-            !listedPlayerIds.has(Number(transaction?.person?.id))
-        );
-        if (unlistedNewTransactions.length) {
+        if (newTransactions.length) {
             const dailyUpdates = el("section", "pregame-free-agent-daily-updates");
-            dailyUpdates.append(el("h4", "", "本日のFA動向"));
-            unlistedNewTransactions.forEach((transaction) => {
+            dailyUpdates.append(el("h4", "", "新着FA動向（24時間）"));
+            newTransactions.forEach((transaction) => {
                 const row = el("div", "pregame-free-agent-row");
                 const identity = el("span", "pregame-free-agent-identity");
                 const team = transaction?.toTeam ?? transaction?.fromTeam;
@@ -3849,7 +3894,10 @@
                             : "FA契約"
                         : "FA選択"
                 );
-                status.href = `https://www.mlb.com/transactions?date=${date}`;
+                const transactionDate = String(
+                    transaction?.date ?? transaction?.effectiveDate ?? date
+                ).slice(0, 10);
+                status.href = `https://www.mlb.com/transactions?date=${transactionDate}`;
                 status.target = "_blank";
                 status.rel = "noopener noreferrer";
                 status.append(el("span", "pregame-free-agent-new", "NEW"));
