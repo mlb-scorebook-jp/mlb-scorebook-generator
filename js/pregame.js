@@ -3044,6 +3044,26 @@
         };
     };
 
+    const contractDetailsAreStated = (text) =>
+        /(?:\d+年|\$|ドル|円|契約金|年俸|期間と金額)/.test(String(text ?? ""));
+
+    const npbSigningStatusText = (signing, terms) => {
+        const teamName = String(signing?.teamName ?? "NPB球団");
+        let text = String(signing?.statusText ?? "").trim();
+        if (text) {
+            if (!text.includes(teamName)) {
+                text = text.startsWith("と") ? `${teamName}${text}` : `${teamName} ${text}`;
+            }
+        } else if (terms) {
+            text = `${teamName}と${terms.years}年${formatContractDollars(terms.tenThousands)}で契約`;
+        } else {
+            text = `${teamName}と契約`;
+        }
+        return terms || contractDetailsAreStated(text)
+            ? text
+            : `${text}（期間と金額は未公表）`;
+    };
+
     const findFreeAgentAgreement = (playerId, formerTeamId, startDate, date) => {
         const confirmed = window.MLB_FREE_AGENT_AGREEMENTS?.[Number(playerId)];
         if (confirmed && startDate <= confirmed.agreedDate && confirmed.agreedDate <= date) {
@@ -3997,8 +4017,7 @@
                         );
                         const isNpbSigning = entry.signing.league === "NPB";
                         const statusText = isNpbSigning
-                            ? entry.signing.statusText ||
-                                `${entry.signing.teamName}と契約（期間と金額は未公表）` +
+                            ? npbSigningStatusText(entry.signing, terms) +
                                 (dateText ? `（${dateText}正式発表）` : "")
                             : terms
                                 ? `と${terms.years}年${formatContractDollars(terms.tenThousands)}で契約` +
