@@ -104,7 +104,7 @@ body.app-mode-daily-records #header-daily-records-btn {
 .postgame-review-matchup { display: grid; grid-template-columns: 42px 54px 112px 42px 54px; align-items: center; gap: 8px; font-size: 17px; }
 .postgame-review-matchup b { text-align: center; }
 .postgame-review-matchup > img { justify-self: center; }
-.postgame-review-matchup > img:nth-of-type(2) { transform: translateX(8px); }
+.postgame-review-matchup > img:nth-of-type(2) { transform: translateX(16px); }
 .postgame-review-matchup img, .postgame-review-team-heading img { width: 38px; height: 38px; object-fit: contain; filter: drop-shadow(0 0 1px #fff) drop-shadow(0 0 3px rgb(255 255 255 / 75%)); }
 .postgame-review-score { display: grid; grid-template-columns: 42px 12px 42px; column-gap: 8px; align-items: center; justify-content: center; color: #fff; font-size: 22px; font-variant-numeric: tabular-nums; white-space: nowrap; }
 .postgame-review-score > span:first-child,
