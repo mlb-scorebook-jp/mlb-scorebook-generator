@@ -3888,8 +3888,13 @@
                 "pregame-free-agent-columns pregame-free-agent-daily-columns"
             );
             const playerLeagues = new Map();
+            const playerEntries = new Map();
             Object.entries(groups).forEach(([league, entries]) => {
-                entries.forEach((entry) => playerLeagues.set(Number(entry.playerId), league));
+                entries.forEach((entry) => {
+                    const playerId = Number(entry.playerId);
+                    playerLeagues.set(playerId, league);
+                    playerEntries.set(playerId, entry);
+                });
             });
             const transactionsByLeague = { AL: [], NL: [] };
             newTransactions.forEach((transaction) => {
@@ -3922,11 +3927,17 @@
                     )
                 );
                 const isSigning = String(transaction?.typeCode ?? "") === "SFA";
+                const signingTerms = playerEntries.get(
+                    Number(transaction?.person?.id)
+                )?.signing?.terms;
                 const status = el(
                     "a",
                     "pregame-free-agent-daily-status",
                     isSigning
-                        ? /minor league contract/i.test(String(transaction.description ?? ""))
+                        ? signingTerms
+                            ? `と${signingTerms.years}年` +
+                                `${formatContractDollars(signingTerms.tenThousands)}で契約`
+                            : /minor league contract/i.test(String(transaction.description ?? ""))
                             ? "とマイナー契約 ※期間と金額は未公表"
                             : "と契約 ※期間と金額は未公表"
                         : "FA選択"
