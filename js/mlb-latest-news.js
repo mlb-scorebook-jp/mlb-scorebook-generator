@@ -2,6 +2,179 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Improving Orioles rotation 'absolutely on the menu'",
+        "summaryJa": "オリオールズの最新動向をMLB公式が詳報",
+        "slug": "orioles-looking-for-starting-pitching-in-the-offseason",
+        "url": "https://www.mlb.com/news/orioles-looking-for-starting-pitching-in-the-offseason",
+        "contentDate": "2026-11-03T15:32:40.403Z",
+        "teamIds": [
+            110
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "With Bohm now a free agent, who will play 3B for Phils?",
+        "summaryJa": "A.ボーム（PHI）の最新動向をMLB公式が詳報",
+        "slug": "phillies-future-third-base-alec-bohm-free-agency",
+        "url": "https://www.mlb.com/news/phillies-future-third-base-alec-bohm-free-agency",
+        "contentDate": "2026-11-03T15:30:00Z",
+        "teamIds": [
+            143
+        ],
+        "playerIds": [
+            664761
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Chourio, Turang shoot hoops with Marquette basketball as World Series victory tour continues",
+        "summaryJa": "J.チョリオ（MIL）、勝利を呼び込む活躍",
+        "slug": "jackson-chourio-brice-turang-attend-marquette-basketball-game",
+        "url": "https://www.mlb.com/news/jackson-chourio-brice-turang-attend-marquette-basketball-game",
+        "contentDate": "2026-11-03T14:59:13.918Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [
+            694192,
+            668930
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Which free agents could help Red Sox take next step? Here are 5 potential fits",
+        "summaryJa": "R.アロサレーナ（BOS）の最新動向をMLB公式が詳報",
+        "slug": "free-agents-who-could-be-good-fits-with-2027-red-sox",
+        "url": "https://www.mlb.com/news/free-agents-who-could-be-good-fits-with-2027-red-sox",
+        "contentDate": "2026-11-03T14:57:48.486Z",
+        "teamIds": [
+            111
+        ],
+        "playerIds": [
+            668227,
+            673548,
+            543243,
+            684007
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "rumors"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "'I can do all of it': Braves prospect showcasing entire skill set in Fall League",
+        "summaryJa": "Isaiah Drake（ATL）ら注目選手の最新動向",
+        "slug": "braves-prospect-isaiah-drake-has-sights-set-on-the-the-show-in-arizona-fall-league",
+        "url": "https://www.mlb.com/news/braves-prospect-isaiah-drake-has-sights-set-on-the-the-show-in-arizona-fall-league",
+        "contentDate": "2026-11-03T14:39:47.261Z",
+        "teamIds": [
+            144
+        ],
+        "playerIds": [
+            806061
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "mlb-top-prospects",
+            "apple-news",
+            "arizona-fall-league"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "How could Reds fill gap at closer? Here are 3 ideas",
+        "summaryJa": "E.パガーン（CIN）を巡る注目点をMLB公式が分析",
+        "slug": "reds-potential-closer-options-for-2027",
+        "url": "https://www.mlb.com/news/reds-potential-closer-options-for-2027",
+        "contentDate": "2026-11-03T14:28:57.422Z",
+        "teamIds": [
+            113
+        ],
+        "playerIds": [
+            641941
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Which free agents make sense for Bucs in '27? Here's 5 to consider",
+        "summaryJa": "F.グリフィン（PIT）の最新動向をMLB公式が詳報",
+        "slug": "pirates-free-agents-discussion-2027",
+        "url": "https://www.mlb.com/news/pirates-free-agents-discussion-2027",
+        "contentDate": "2026-11-03T14:23:13.52Z",
+        "teamIds": [
+            134
+        ],
+        "playerIds": [
+            656492,
+            668941,
+            621438,
+            664761,
+            650556
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "After standout year, No. 7 prospect Taylor could factor into A's '27 plans",
+        "summaryJa": "Devin Taylor（ATH）ら注目選手の最新動向",
+        "slug": "devin-taylor-primed-to-take-big-step-in-2027-after-strong-season",
+        "url": "https://www.mlb.com/news/devin-taylor-primed-to-take-big-step-in-2027-after-strong-season",
+        "contentDate": "2026-11-03T14:21:38.704Z",
+        "teamIds": [
+            133
+        ],
+        "playerIds": [
+            805127
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "minor-league-baseball",
+            "mlb-top-prospects"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Watch Angels prospects in Arizona Fall League action",
         "summaryJa": "MLBの最新情報ら注目選手の最新動向",
         "slug": "watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
@@ -528,7 +701,6 @@
             "manager-of-the-year"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -720,7 +892,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -976,6 +1147,37 @@
         ]
     },
     {
+        "headline": "18 players who have accepted qualifying offers",
+        "summaryJa": "H.リュの最新動向をMLB公式が詳報",
+        "slug": "players-who-have-accepted-qualifying-offers",
+        "url": "https://www.mlb.com/news/players-who-have-accepted-qualifying-offers",
+        "contentDate": "2026-11-02T22:18:00Z",
+        "teamIds": [],
+        "playerIds": [
+            547943,
+            446308,
+            474463,
+            435522,
+            476451,
+            592332,
+            573186,
+            547989,
+            543606,
+            527048,
+            592626,
+            607259,
+            458675,
+            474832
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "headline-breakout"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
         "headline": "Twins extend qualifying offer to Jeffers as offseason gets underway",
         "summaryJa": "R.ジェファーズ（MIN）の最新動向をMLB公式が詳報",
         "slug": "ryan-jeffers-qualifying-offer-twins",
@@ -1097,7 +1299,6 @@
             "transactions"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -4589,24 +4790,6 @@
         ]
     },
     {
-        "headline": "Phillies hire Fatse as new hitting coach",
-        "summaryJa": "フィリーズの最新動向をMLB公式が詳報",
-        "slug": "phillies-hire-peter-fatse-as-new-hitting-coach",
-        "url": "https://www.mlb.com/news/phillies-hire-peter-fatse-as-new-hitting-coach",
-        "contentDate": "2026-10-27T15:25:00Z",
-        "teamIds": [
-            143
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "With Yordan an awards season favorite, could other Astros join him?",
         "summaryJa": "Y.アルバレス（HOU）の最新動向をMLB公式が詳報",
         "slug": "astros-potential-2026-award-contenders",
@@ -6226,25 +6409,6 @@
         ]
     },
     {
-        "headline": "Red Sox in need of new first- and third-base coaches (source)",
-        "summaryJa": "レッドソックスの最新動向をMLB公式が詳報",
-        "slug": "red-sox-make-changes-to-coaching-staff-ahead-of-2027",
-        "url": "https://www.mlb.com/news/red-sox-make-changes-to-coaching-staff-ahead-of-2027",
-        "contentDate": "2026-10-21T20:00:09.762Z",
-        "teamIds": [
-            111
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "rumors"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Here are MLB's 7 best 17-year-old prospects",
         "summaryJa": "L.ヘルナンデスら注目選手の最新動向",
         "slug": "these-are-the-best-17-year-old-mlb-prospects",
@@ -6487,27 +6651,6 @@
         "taxonomy": [
             "apple-news",
             "offseason"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Braves' No. 8 prospect brings 'old school' mentality to club he grew up rooting for",
-        "summaryJa": "Briggs McKenzie（ATL）ら注目選手の最新動向",
-        "slug": "braves-prospect-briggs-mckenzie-in-arizona-fall-league",
-        "url": "https://www.mlb.com/news/braves-prospect-briggs-mckenzie-in-arizona-fall-league",
-        "contentDate": "2026-10-20T21:16:44.303Z",
-        "teamIds": [
-            144
-        ],
-        "playerIds": [
-            828987
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "mlb-top-prospects",
-            "arizona-fall-league"
         ],
         "sourceScopes": [
             "球団公式"
@@ -7380,27 +7523,6 @@
         ]
     },
     {
-        "headline": "Holliday looking to build off positives from 2026 during '27 season",
-        "summaryJa": "J.ホリデイ（BAL）の最新動向をMLB公式が詳報",
-        "slug": "orioles-confident-jackson-holliday-can-reach-potential-in-2027",
-        "url": "https://www.mlb.com/news/orioles-confident-jackson-holliday-can-reach-potential-in-2027",
-        "contentDate": "2026-10-16T12:49:12.585Z",
-        "teamIds": [
-            110
-        ],
-        "playerIds": [
-            702616
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "offseason"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Royals, Populous share new downtown ballpark design details",
         "summaryJa": "ロイヤルズの移籍・契約に関する最新情報",
         "slug": "royals-populous-share-new-downtown-ballpark-design-details",
@@ -7829,27 +7951,6 @@
         "taxonomy": [
             "apple-news",
             "mlb-top-prospects"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Héctor Rodríguez looks to put 'great hands' to use in Reds' outfield",
-        "summaryJa": "H.ロドリゲス（CIN）の最新動向をMLB公式が詳報",
-        "slug": "hector-rodriguez-eyes-starting-role-in-reds-outfield-for-2027",
-        "url": "https://www.mlb.com/news/hector-rodriguez-eyes-starting-role-in-reds-outfield-for-2027",
-        "contentDate": "2026-10-13T14:23:11.144Z",
-        "teamIds": [
-            113
-        ],
-        "playerIds": [
-            699302
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "offseason"
         ],
         "sourceScopes": [
             "球団公式"
