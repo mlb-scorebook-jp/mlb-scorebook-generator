@@ -3602,8 +3602,14 @@
             grouped.forEach((homeRuns) => {
                 const first = homeRuns[0];
                 const item = reviewElement("div");
+                const team = review.teams.find((entry) => entry.code === first.teamCode);
+                const logo = document.createElement("img");
+                logo.className = "postgame-review-home-run-logo";
+                logo.src = `https://www.mlbstatic.com/team-logos/${team?.id}.svg`;
+                logo.alt = first.teamCode || "チーム";
+                logo.title = first.teamCode || "";
                 item.append(
-                    reviewElement("small", "", first.teamCode),
+                    logo,
                     reviewElement("strong", "", first.player)
                 );
                 homeRuns.forEach((homeRun) => item.append(

@@ -149,7 +149,7 @@ body.app-mode-daily-records #header-daily-records-btn {
 .postgame-review-home-runs h4 { margin: 0; padding: 9px 13px; color: #f1c84c; border-bottom: 1px solid #405660; font-size: 11px; }
 .postgame-review-home-run-list { display: flex; flex-wrap: wrap; min-height: 43px; align-items: stretch; }
 .postgame-review-home-run-list > div { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; padding: 8px 14px; border-right: 1px solid #405660; }
-.postgame-review-home-run-list small { color: #8fa5ae; font-size: 9px; font-weight: 900; }
+.postgame-review-home-run-logo { width: 27px; height: 27px; object-fit: contain; filter: drop-shadow(0 0 1px #fff) drop-shadow(0 0 3px rgb(255 255 255 / 70%)); }
 .postgame-review-home-run-list strong { color: #edf5f7; font-size: 13px; }
 .postgame-review-home-run-list b { color: #f1c84c; font-size: 12px; }
 .postgame-review-home-run-list > p { margin: 0; padding: 13px 14px; }
