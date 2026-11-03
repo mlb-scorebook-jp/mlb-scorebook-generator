@@ -3541,7 +3541,7 @@
             ["敗戦投手", review.decisions?.loser]].forEach(([label, pitcher]) => {
             const item = reviewElement("div");
             const value = reviewElement("strong");
-            value.append(document.createTextNode(pitcher?.name || "—"));
+            value.append(document.createTextNode(pitcher?.name || (label === "セーブ" ? "" : "—")));
             if (pitcher?.record) value.append(reviewElement("span", "", pitcher.record));
             item.append(reviewElement("small", "", label), value);
             section.append(item);
