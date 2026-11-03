@@ -3927,8 +3927,8 @@
                     "pregame-free-agent-daily-status",
                     isSigning
                         ? /minor league contract/i.test(String(transaction.description ?? ""))
-                            ? "マイナー契約 ※期間と金額は未公表"
-                            : "FA契約 ※期間と金額は未公表"
+                            ? "とマイナー契約 ※期間と金額は未公表"
+                            : "と契約 ※期間と金額は未公表"
                         : "FA選択"
                 );
                 const transactionDate = String(
