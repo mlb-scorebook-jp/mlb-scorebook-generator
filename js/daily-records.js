@@ -3587,14 +3587,23 @@
         section.append(reviewElement("h4", "", "本塁打"));
         const list = reviewElement("div", "postgame-review-home-run-list");
         if (review.homeRuns?.length) {
+            const grouped = new Map();
             review.homeRuns.forEach((homeRun) => {
+                const key = `${homeRun.teamCode}:${homeRun.player}`;
+                if (!grouped.has(key)) grouped.set(key, []);
+                grouped.get(key).push(homeRun);
+            });
+            grouped.forEach((homeRuns) => {
+                const first = homeRuns[0];
                 const item = reviewElement("div");
                 item.append(
-                    reviewElement("small", "", homeRun.teamCode),
-                    reviewElement("strong", "", homeRun.player),
-                    reviewElement("b", "", homeRun.number ? `${homeRun.number}号` : "本塁打"),
-                    reviewElement("span", "", `${homeRun.inning}回${homeRun.half}`)
+                    reviewElement("small", "", first.teamCode),
+                    reviewElement("strong", "", first.player)
                 );
+                homeRuns.forEach((homeRun) => item.append(
+                    reviewElement("b", "", `${homeRun.number ? `${homeRun.number}号` : "本塁打"}` +
+                        `（${homeRun.inning}回${homeRun.half}）`)
+                ));
                 list.append(item);
             });
         } else {
