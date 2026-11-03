@@ -3267,9 +3267,11 @@
         card.dataset.recordType = record.recordType;
         const header = document.createElement("div");
         header.className = "daily-record-card-header";
-        const team = document.createElement("span");
+        const team = document.createElement("img");
         team.className = "daily-record-team";
-        team.textContent = record.teamCode;
+        team.src = `https://www.mlbstatic.com/team-logos/${record.teamId}.svg`;
+        team.alt = record.teamCode || "チーム";
+        team.title = record.teamCode || "";
         const subject = document.createElement("span");
         subject.className = "daily-record-subject";
         subject.textContent = record.subject || record.playerName ||

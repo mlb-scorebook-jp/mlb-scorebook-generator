@@ -630,15 +630,16 @@ body.app-mode-daily-records #header-daily-records-btn {
 .daily-record-card-header {
     display: flex;
     flex-wrap: wrap;
-    align-items: baseline;
+    align-items: center;
     gap: 8px;
 }
 
 .daily-record-team {
-    min-width: 0;
-    color: #9ec2cf;
-    font-size: 11px;
-    font-weight: 700;
+    width: 26px;
+    height: 26px;
+    flex: 0 0 26px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 1px #fff) drop-shadow(0 0 3px rgb(255 255 255 / 70%));
 }
 
 .daily-record-subject {
