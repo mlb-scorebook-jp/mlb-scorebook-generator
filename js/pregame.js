@@ -3883,7 +3883,24 @@
         if (newTransactions.length) {
             const dailyUpdates = el("section", "pregame-free-agent-daily-updates");
             dailyUpdates.append(el("h4", "", "新着FA動向（24時間）"));
+            const dailyColumns = el(
+                "div",
+                "pregame-free-agent-columns pregame-free-agent-daily-columns"
+            );
+            const playerLeagues = new Map();
+            Object.entries(groups).forEach(([league, entries]) => {
+                entries.forEach((entry) => playerLeagues.set(Number(entry.playerId), league));
+            });
+            const transactionsByLeague = { AL: [], NL: [] };
             newTransactions.forEach((transaction) => {
+                const playerLeague = playerLeagues.get(Number(transaction?.person?.id));
+                const formerTeamId = Number(
+                    transaction?.fromTeam?.id ?? transaction?.toTeam?.id
+                );
+                const fallbackLeague = AL_TEAM_IDS.has(formerTeamId) ? "AL" : "NL";
+                transactionsByLeague[playerLeague || fallbackLeague].push(transaction);
+            });
+            const createDailyTransactionRow = (transaction) => {
                 const row = el("div", "pregame-free-agent-row");
                 const identity = el("span", "pregame-free-agent-identity");
                 const team = transaction?.toTeam ?? transaction?.fromTeam;
@@ -3922,8 +3939,22 @@
                 status.rel = "noopener noreferrer";
                 status.append(el("span", "pregame-free-agent-new", "NEW"));
                 row.append(identity, status);
-                dailyUpdates.append(row);
+                return row;
+            };
+            ["AL", "NL"].forEach((league) => {
+                const panel = el("section", "pregame-free-agent-league");
+                panel.append(el("h4", "", league));
+                const list = el("div", "pregame-free-agent-list");
+                transactionsByLeague[league].forEach((transaction) => {
+                    list.append(createDailyTransactionRow(transaction));
+                });
+                if (!transactionsByLeague[league].length) {
+                    list.append(empty("新着はありません。"));
+                }
+                panel.append(list);
+                dailyColumns.append(panel);
             });
+            dailyUpdates.append(dailyColumns);
             freeAgentSection.append(dailyUpdates);
         }
         const columns = el("div", "pregame-free-agent-columns");

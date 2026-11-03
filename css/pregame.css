@@ -2469,6 +2469,25 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
     font-size: 13px;
 }
 
+.pregame-free-agent-daily-columns {
+    gap: 0;
+}
+
+.pregame-free-agent-daily-columns .pregame-free-agent-league {
+    border: 0;
+    border-radius: 0;
+}
+
+.pregame-free-agent-daily-columns .pregame-free-agent-league +
+.pregame-free-agent-league {
+    border-left: 1px solid #50606a;
+}
+
+.pregame-free-agent-daily-columns .pregame-free-agent-league > h4 {
+    background: #222c32;
+    color: #dbe5ea;
+}
+
 .pregame-free-agent-daily-status {
     display: inline-flex;
     align-items: center;
@@ -2656,6 +2675,12 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
 
     .pregame-free-agent-columns {
         grid-template-columns: 1fr;
+    }
+
+    .pregame-free-agent-daily-columns .pregame-free-agent-league +
+    .pregame-free-agent-league {
+        border-top: 1px solid #50606a;
+        border-left: 0;
     }
 
     .pregame-free-agent-row {
