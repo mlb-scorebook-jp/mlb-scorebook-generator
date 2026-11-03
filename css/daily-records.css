@@ -191,7 +191,10 @@ body.app-mode-daily-records #header-daily-records-btn {
 .postgame-review-highlight span { color: #85d8f5; font-size: 10px; font-weight: 800; }
 .postgame-review-highlight p { margin: 0; line-height: 1.45; }
 .postgame-record-index { margin-top: 15px; border: 1px solid #354a54; background: #131e23; }
-.postgame-record-index > summary { padding: 13px 16px; color: #9bdfff; cursor: pointer; font-weight: 900; }
+.postgame-record-index > summary { display: flex; align-items: center; justify-content: space-between; padding: 13px 16px; color: #9bdfff; cursor: pointer; font-weight: 900; list-style: none; }
+.postgame-record-index > summary::-webkit-details-marker { display: none; }
+.postgame-record-index > summary::after { content: "＋"; color: #6fd3f5; font-size: 16px; font-weight: 900; }
+.postgame-record-index[open] > summary::after { content: "－"; }
 .postgame-record-index-body { display: grid; gap: 12px; padding: 0 12px 12px; }
 
 @media (max-width: 900px) {
