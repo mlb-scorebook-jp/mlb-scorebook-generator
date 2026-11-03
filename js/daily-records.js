@@ -2,7 +2,7 @@
 
 (() => {
     const API_ROOT = "https://statsapi.mlb.com/api";
-    const CACHE_PREFIX = "mlb-postgame-review-v10:";
+    const CACHE_PREFIX = "mlb-postgame-review-v11:";
     const MAX_CONCURRENT_GAMES = 3;
     const RECORD_THRESHOLDS = Object.freeze({
         inningHits: 2,
@@ -102,6 +102,7 @@
         FRANCHISE_AGE_RECORD: ["球団最年少記録", "球団最年長記録", "youngest in franchise history", "oldest in franchise history"],
         CONSECUTIVE_GAME_HOME_RUNS: ["連続試合本塁打", "consecutive games with a home run"],
         CONSECUTIVE_SCORELESS_INNINGS: ["連続無失点", "consecutive scoreless innings"],
+        CONSECUTIVE_GAME_HITS: ["連続試合安打", "hitting streak", "consecutive games with a hit"],
         CONSECUTIVE_SAVES: ["連続セーブ", "consecutive saves"],
         MLB_HISTORY_ORDINAL: ["MLB史上", "Major League history"],
         ALL_STARTERS_HIT: ["全先発野手安打"],
@@ -2760,6 +2761,56 @@
     }).sort((a, b) => text(b?.date).localeCompare(text(a?.date)) ||
         number(b?.game?.gameNumber || b?.game?.gamePk) - number(a?.game?.gameNumber || a?.game?.gamePk));
 
+    // 「本日の記録」から残す連続記録だけを調べる軽量版。
+    // 大量得点・珍プレー・単発記録などの旧解析はここでは実行しない。
+    const buildContinuityRecords = async (game, boxscore, signal) => {
+        const season = number(text(game?.officialDate).slice(0, 4));
+        if (!season || text(game?.gameType || "R").toUpperCase() !== "R") return [];
+        const groups = await Promise.all(["away", "home"].flatMap((side) =>
+            Object.values(boxTeamForSide(boxscore, side)?.players ?? {}).map(async (entry) => {
+                const records = [];
+                const person = entry?.person;
+                const playerId = number(person?.id);
+                if (!playerId) return records;
+                const batting = entry?.stats?.batting ?? {};
+                if (number(batting.hits) > 0) {
+                    const logs = gameLogThroughCurrent(
+                        await fetchRareGameLog(playerId, season, "hitting", signal), game);
+                    let games = 0;
+                    for (const split of logs) {
+                        if (number(split?.stat?.plateAppearances) <= 0) continue;
+                        if (number(split?.stat?.hits) <= 0) break;
+                        games += 1;
+                    }
+                    if (games >= 5) records.push(makeRecord({
+                        game, boxscore, recordType: "CONSECUTIVE_GAME_HITS", category: "individual",
+                        player: person, side, fact: `${games}試合連続安打`,
+                        details: { games }, evidence: "MLB公式打者Game Log"
+                    }));
+                }
+                const pitching = entry?.stats?.pitching ?? {};
+                if (inningsOuts(pitching.inningsPitched) <= 0 || number(pitching.runs) > 0) {
+                    return records;
+                }
+                const logs = gameLogThroughCurrent(
+                    await fetchRareGameLog(playerId, season, "pitching", signal), game);
+                let outs = 0;
+                for (const split of logs) {
+                    if (inningsOuts(split?.stat?.inningsPitched) <= 0) continue;
+                    if (number(split?.stat?.runs) > 0) break;
+                    outs += inningsOuts(split?.stat?.inningsPitched);
+                }
+                if (outs >= 30) records.push(makeRecord({
+                    game, boxscore, recordType: "CONSECUTIVE_SCORELESS_INNINGS", category: "individual",
+                    player: person, side, fact: `${Math.floor(outs / 3)}.${outs % 3}回連続無失点`,
+                    details: { outs }, evidence: "MLB公式投手Game Log"
+                }));
+                return records;
+            })
+        ));
+        return groups.flat();
+    };
+
     const buildSeasonRareRecords = async (game, playByPlay, boxscore, signal) => {
         const season = number(text(game?.officialDate).slice(0, 4));
         if (!season || text(game?.gameType || "R").toUpperCase() !== "R") return [];
@@ -3062,7 +3113,6 @@
             options = priorGamesByTeam ?? {};
             priorGamesByTeam = new Map();
         }
-        const { includeArticles = true } = options;
         const [playResult, boxResult, decisionResult] = await Promise.all([
             fetchJson(`${API_ROOT}/v1/game/${game.gamePk}/playByPlay`, signal),
             fetchJson(`${API_ROOT}/v1/game/${game.gamePk}/boxscore`, signal),
@@ -3072,19 +3122,7 @@
                 signal
             ).catch(() => ({ data: {} }))
         ]);
-        const records = await analyzeGame(
-            game,
-            playResult.data,
-            boxResult.data,
-            signal,
-            { includeArticles }
-        );
-        records.push(...await analyzeRareContext(
-            game, playResult.data, boxResult.data, signal
-        ));
-        records.push(...await buildNotableVenueReturnRecords(
-            game, boxResult.data, signal
-        ));
+        const records = await buildContinuityRecords(game, boxResult.data, signal);
         records.push(...await buildCrossDateAtBatRecords(
             game,
             playResult.data,
@@ -3093,17 +3131,10 @@
             japanesePlayers,
             signal
         ));
-        records.push(...await buildAllTimeStrikeoutRankRecords(
-            game,
-            boxResult.data,
-            signal
-        ));
-        const careerRecords = await japaneseCareerRecords(game, boxResult.data, japanesePlayers, signal);
         const japaneseIds = new Set(japanesePlayers.keys());
         records.forEach((record) => {
             if (record.playerId && japaneseIds.has(record.playerId)) record.category = "japanese";
         });
-        records.push(...careerRecords);
         const updatedAt = playResult.lastModified || boxResult.lastModified || nowIso();
         records.forEach((record) => { record.feedUpdatedAt = updatedAt; });
         const result = dedupeRecords(records);
@@ -3150,7 +3181,7 @@
             ["試合", `${payload.totalGames}試合`],
             ["解析済み", `${payload.finalGames}試合`],
             ["未終了", `${payload.unfinishedGames}試合`],
-            ["検出", `${payload.records.length}件`],
+            ["連続記録", `${payload.records.length}件`],
             ["最終調査", formatCheckedAt(payload.checkedAt)]
         ];
         if (fromCache) parts.push(["表示", "日付別キャッシュ"]);
@@ -3612,7 +3643,7 @@
             });
             const score = reviewElement("strong", "postgame-review-score",
                 `${review.teams[0].runs}－${review.teams[1].runs}`);
-            const count = reviewElement("span", "postgame-review-count", `記録 ${review.recordCount}件`);
+            const count = reviewElement("span", "postgame-review-count", `連続記録 ${review.recordCount}件`);
             summary.append(matchup, score, count);
             const body = reviewElement("div", "postgame-review-body");
             body.append(
@@ -3633,7 +3664,7 @@
         dom.content.append(renderPostgameReviews(payload));
         if (!payload.records.length) return;
         const legacy = reviewElement("details", "postgame-record-index");
-        const legacySummary = reviewElement("summary", "", `本日の記録一覧　${payload.records.length}件`);
+        const legacySummary = reviewElement("summary", "", `連続記録一覧　${payload.records.length}件`);
         const legacyBody = reviewElement("div", "postgame-record-index-body");
         CATEGORY_ORDER.forEach((category) => {
             const records = payload.records.filter((record) => record.category === category);
@@ -3742,10 +3773,8 @@
                 }
             );
             if (generation !== state.generation) return;
-            const officialNewsSpecialRecords = buildOfficialNewsSpecialRecords(date, games);
-            const heartwarmingRecords = buildHeartwarmingNewsRecords(date, games);
             const payload = {
-                version: 6,
+                version: 7,
                 date,
                 checkedAt: nowIso(),
                 totalGames: games.length,
@@ -3757,11 +3786,7 @@
                     isFinal: isFinal(game)
                 })),
                 reviews: gameRecords.map((records) => records.review).filter(Boolean),
-                records: dedupeRecords([
-                    ...gameRecords.flat(),
-                    ...officialNewsSpecialRecords,
-                    ...heartwarmingRecords
-                ]).sort((left, right) =>
+                records: dedupeRecords(gameRecords.flat()).sort((left, right) =>
                     CATEGORY_ORDER.indexOf(left.category) - CATEGORY_ORDER.indexOf(right.category) ||
                     left.teamCode.localeCompare(right.teamCode, "en") ||
                     left.fact.localeCompare(right.fact, "ja")
