@@ -122,6 +122,21 @@ body.app-mode-daily-records #header-daily-records-btn {
 .postgame-review-decisions small { color: #8fa5ae; font-size: 9px; font-weight: 800; }
 .postgame-review-decisions strong { color: #edf5f7; font-size: 13px; }
 .postgame-review-decisions strong span { margin-left: 10px; color: #7fdcff; font-size: 11px; font-weight: 900; }
+.postgame-review-pitching { grid-column: 1 / -1; border: 1px solid #405660; background: #131e23; }
+.postgame-review-pitching > h4 { margin: 0; padding: 9px 13px; color: #f1c84c; border-bottom: 1px solid #405660; font-size: 11px; }
+.postgame-review-pitching-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.postgame-review-pitching-team + .postgame-review-pitching-team { border-left: 1px solid #405660; }
+.postgame-review-pitching-heading { display: flex; align-items: center; gap: 8px; min-height: 38px; padding: 5px 10px; border-bottom: 1px solid #30444d; background: #18262d; }
+.postgame-review-pitching-heading img { width: 25px; height: 25px; object-fit: contain; filter: drop-shadow(0 0 1px #fff) drop-shadow(0 0 3px rgb(255 255 255 / 70%)); }
+.postgame-review-pitching-heading strong { color: #eaf3f5; font-size: 12px; }
+.postgame-review-pitching-scroll { overflow-x: auto; }
+.postgame-review-pitching table { width: 100%; min-width: 540px; border-collapse: collapse; table-layout: fixed; font-variant-numeric: tabular-nums; }
+.postgame-review-pitching th, .postgame-review-pitching td { height: 31px; padding: 4px 7px; border-right: 1px solid #2c4049; border-bottom: 1px solid #2c4049; text-align: center; white-space: nowrap; }
+.postgame-review-pitching thead th { color: #8fa5ae; background: #162127; font-size: 8px; }
+.postgame-review-pitching thead th:first-child, .postgame-review-pitcher-name { width: 155px; text-align: left; }
+.postgame-review-pitching tbody th, .postgame-review-pitching tbody td { color: #e7eff2; font-size: 10px; }
+.postgame-review-pitcher-name { overflow: hidden; text-overflow: ellipsis; font-size: 11px !important; }
+.postgame-review-pitcher-name b { margin-left: 7px; color: #f1c84c; font-size: 9px; }
 .postgame-review-home-runs { grid-column: 1 / -1; border: 1px solid #405660; background: #162127; }
 .postgame-review-home-runs h4 { margin: 0; padding: 9px 13px; color: #f1c84c; border-bottom: 1px solid #405660; font-size: 11px; }
 .postgame-review-home-run-list { display: flex; flex-wrap: wrap; min-height: 43px; align-items: stretch; }
@@ -179,6 +194,8 @@ body.app-mode-daily-records #header-daily-records-btn {
     .postgame-review-overview, .postgame-review-turning, .postgame-review-team-grid { grid-column: 1; }
     .postgame-review-decisions { grid-template-columns: 1fr; }
     .postgame-review-decisions > div + div { border-top: 1px solid #405660; border-left: 0; }
+    .postgame-review-pitching-grid { grid-template-columns: 1fr; }
+    .postgame-review-pitching-team + .postgame-review-pitching-team { border-top: 1px solid #405660; border-left: 0; }
     .postgame-review-home-run-list { display: grid; }
     .postgame-review-home-run-list > div { border-right: 0; border-bottom: 1px solid #405660; }
     .postgame-review-coverage-list { grid-template-columns: 1fr; }

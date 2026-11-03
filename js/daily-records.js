@@ -2,7 +2,7 @@
 
 (() => {
     const API_ROOT = "https://statsapi.mlb.com/api";
-    const CACHE_PREFIX = "mlb-postgame-review-v11:";
+    const CACHE_PREFIX = "mlb-postgame-review-v12:";
     const MAX_CONCURRENT_GAMES = 3;
     const RECORD_THRESHOLDS = Object.freeze({
         inningHits: 2,
@@ -1037,7 +1037,7 @@
     };
 
     const decisionPitcherSummary = (boxscore, person, kind) => {
-        if (!person) return { name: "—", record: "" };
+        if (!person) return { playerId: null, name: "—", record: "" };
         const playerId = number(person.id);
         const entry = ["away", "home"].map((side) =>
             boxTeamForSide(boxscore, side)?.players?.[`ID${playerId}`]
@@ -1048,8 +1048,44 @@
             : (number(pitching.wins) || number(pitching.losses)
                 ? `${number(pitching.wins)}勝${number(pitching.losses)}敗`
                 : "");
-        return { name: playerDisplayName(person), record };
+        return { playerId, name: playerDisplayName(person), record };
     };
+
+    const gamePitchingLines = (game, boxscore, decisions) => ["away", "home"].map((side) => {
+        const teamBox = boxTeamForSide(boxscore, side);
+        const pitchers = (teamBox?.pitchers ?? []).map(number).filter(Boolean).map((playerId) => {
+            const entry = teamBox?.players?.[`ID${playerId}`] ?? {};
+            const gameStats = entry?.stats?.pitching ?? {};
+            const seasonStats = entry?.seasonStats?.pitching ?? {};
+            let decision = "";
+            if (number(decisions?.winner?.playerId) === playerId) {
+                decision = `勝${decisions.winner.record ? ` ${decisions.winner.record}` : ""}`;
+            } else if (number(decisions?.loser?.playerId) === playerId) {
+                decision = `敗${decisions.loser.record ? ` ${decisions.loser.record}` : ""}`;
+            } else if (number(decisions?.save?.playerId) === playerId) {
+                decision = `セーブ${decisions.save.record ? ` ${decisions.save.record}` : ""}`;
+            }
+            return {
+                playerId,
+                name: playerDisplayName(entry?.person ?? { id: playerId }),
+                decision,
+                innings: text(gameStats?.inningsPitched) || "0.0",
+                hits: number(gameStats?.hits),
+                runs: number(gameStats?.runs),
+                earnedRuns: number(gameStats?.earnedRuns),
+                walks: number(gameStats?.baseOnBalls),
+                strikeouts: number(gameStats?.strikeOuts),
+                homeRuns: number(gameStats?.homeRuns),
+                era: text(seasonStats?.era) || "—"
+            };
+        });
+        return {
+            side,
+            teamId: number(scheduleTeamForSide(game, side)?.id),
+            teamCode: teamCode(scheduleTeamForSide(game, side)),
+            pitchers
+        };
+    });
 
     const gameHomeRuns = (game, playByPlay, boxscore) => (playByPlay?.allPlays ?? [])
         .filter((play) => text(play?.result?.eventType).toLowerCase() === "home_run")
@@ -1241,6 +1277,11 @@
             articles.push(fallback);
         });
         const noteTracking = gameNoteTracking(game, boxscore);
+        const decisionsSummary = {
+            winner: decisionPitcherSummary(boxscore, decisions?.winner, "winner"),
+            save: decisionPitcherSummary(boxscore, decisions?.save, "save"),
+            loser: decisionPitcherSummary(boxscore, decisions?.loser, "loser")
+        };
         return {
             gamePk: number(game.gamePk),
             date: text(game.officialDate || state.date),
@@ -1258,11 +1299,8 @@
                     id: team.id, code: team.code, runs: team.runs, hits: team.hits, errors: team.errors
                 }))
             },
-            decisions: {
-                winner: decisionPitcherSummary(boxscore, decisions?.winner, "winner"),
-                save: decisionPitcherSummary(boxscore, decisions?.save, "save"),
-                loser: decisionPitcherSummary(boxscore, decisions?.loser, "loser")
-            },
+            decisions: decisionsSummary,
+            pitchingLines: gamePitchingLines(game, boxscore, decisionsSummary),
             homeRuns: gameHomeRuns(game, playByPlay, boxscore),
             summary: `${winner.code}が${loser.code}に${winner.runs}－${loser.runs}で勝利。` +
                 `${winner.hits}安打${winner.homeRuns ? `、${winner.homeRuns}本塁打` : ""}で${winner.runs}得点を挙げた。`,
@@ -3504,6 +3542,45 @@
         return section;
     };
 
+    const renderReviewPitchingLines = (review) => {
+        const section = reviewElement("section", "postgame-review-pitching");
+        section.append(reviewElement("h4", "", "登板投手成績"));
+        const grid = reviewElement("div", "postgame-review-pitching-grid");
+        (review.pitchingLines ?? []).forEach((team) => {
+            const block = reviewElement("div", "postgame-review-pitching-team");
+            const heading = reviewElement("div", "postgame-review-pitching-heading");
+            const logo = document.createElement("img");
+            logo.src = `https://www.mlbstatic.com/team-logos/${team.teamId}.svg`;
+            logo.alt = "";
+            heading.append(logo, reviewElement("strong", "", team.teamCode));
+            const scroller = reviewElement("div", "postgame-review-pitching-scroll");
+            const table = document.createElement("table");
+            const head = document.createElement("thead");
+            const headRow = document.createElement("tr");
+            ["投手", "IP", "H", "R", "ER", "BB", "K", "HR", "ERA"]
+                .forEach((label) => headRow.append(reviewElement("th", "", label)));
+            head.append(headRow);
+            const body = document.createElement("tbody");
+            team.pitchers.forEach((pitcher) => {
+                const row = document.createElement("tr");
+                const name = reviewElement("th", "postgame-review-pitcher-name");
+                name.append(document.createTextNode(pitcher.name));
+                if (pitcher.decision) name.append(reviewElement("b", "", pitcher.decision));
+                row.append(name);
+                [pitcher.innings, pitcher.hits, pitcher.runs, pitcher.earnedRuns,
+                    pitcher.walks, pitcher.strikeouts, pitcher.homeRuns, pitcher.era]
+                    .forEach((value) => row.append(reviewElement("td", "", String(value))));
+                body.append(row);
+            });
+            table.append(head, body);
+            scroller.append(table);
+            block.append(heading, scroller);
+            grid.append(block);
+        });
+        section.append(grid);
+        return section;
+    };
+
     const renderReviewHomeRuns = (review) => {
         const section = reviewElement("section", "postgame-review-home-runs");
         section.append(reviewElement("h4", "", "本塁打"));
@@ -3649,6 +3726,7 @@
             body.append(
                 renderReviewLinescore(review),
                 renderReviewDecisions(review),
+                renderReviewPitchingLines(review),
                 renderReviewHomeRuns(review),
                 renderReviewCoverage(review)
             );
