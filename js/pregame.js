@@ -3937,6 +3937,12 @@
                 status.href = `https://www.mlb.com/transactions?date=${transactionDate}`;
                 status.target = "_blank";
                 status.rel = "noopener noreferrer";
+                if (isSigning && transaction?.toTeam?.id) {
+                    status.prepend(createFreeAgentTeamLogo(
+                        transaction.toTeam,
+                        `${teamJapaneseName(transaction.toTeam)}のロゴ`
+                    ));
+                }
                 status.append(el("span", "pregame-free-agent-new", "NEW"));
                 row.append(identity, status);
                 return row;
