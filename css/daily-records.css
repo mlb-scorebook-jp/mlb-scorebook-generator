@@ -97,7 +97,7 @@ body.app-mode-daily-records #header-daily-records-btn {
 .postgame-reviews-intro p { color: #93a8b2; font-size: 11px; }
 .postgame-review-card { overflow: hidden; border: 1px solid #3b505a; background: #111b20; }
 .postgame-review-card[open] { border-color: #5f7c89; box-shadow: 0 10px 28px rgb(0 0 0 / 24%); }
-.postgame-review-card-summary { display: grid; grid-template-columns: minmax(350px, 1fr) auto auto; align-items: center; gap: 20px; min-height: 66px; padding: 10px 18px; color: #edf5f7; background: #1c2a31; cursor: pointer; list-style: none; }
+.postgame-review-card-summary { display: grid; grid-template-columns: max-content max-content; justify-content: start; align-items: center; gap: 18px; min-height: 66px; padding: 10px 18px; color: #edf5f7; background: #1c2a31; cursor: pointer; list-style: none; }
 .postgame-review-card-summary::-webkit-details-marker { display: none; }
 .postgame-review-card-summary::after { content: "＋"; color: #6fd3f5; font-size: 19px; font-weight: 900; }
 .postgame-review-card[open] > .postgame-review-card-summary::after { content: "－"; }
@@ -113,7 +113,6 @@ body.app-mode-daily-records #header-daily-records-btn {
 .postgame-review-score > span:last-child { transform: translateX(8px); }
 .postgame-review-separator { display: block; text-align: center; }
 .postgame-review-score .is-winner { color: #f1c84c; }
-.postgame-review-count { padding: 4px 8px; color: #8edfff; border: 1px solid #486573; font-size: 10px; font-weight: 800; }
 .postgame-review-body { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 14px; }
 .postgame-review-linescore { grid-column: 1 / -1; border: 1px solid #405660; background: #131e23; }
 .postgame-review-linescore h4 { margin: 0; padding: 9px 13px; color: #f1c84c; border-bottom: 1px solid #405660; font-size: 11px; }
@@ -197,7 +196,6 @@ body.app-mode-daily-records #header-daily-records-btn {
 
 @media (max-width: 900px) {
     .postgame-review-card-summary { grid-template-columns: 1fr auto; gap: 10px; }
-    .postgame-review-count { display: none; }
     .postgame-review-body, .postgame-review-team-grid { grid-template-columns: 1fr; }
     .postgame-review-overview, .postgame-review-turning, .postgame-review-team-grid { grid-column: 1; }
     .postgame-review-decisions { grid-template-columns: 1fr; }

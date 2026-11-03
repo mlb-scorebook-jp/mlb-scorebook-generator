@@ -3742,8 +3742,7 @@
                     matchup.append(score);
                 }
             });
-            const count = reviewElement("span", "postgame-review-count", `連続記録 ${review.recordCount}件`);
-            summary.append(matchup, count);
+            summary.append(matchup);
             const body = reviewElement("div", "postgame-review-body");
             body.append(
                 renderReviewLinescore(review),
