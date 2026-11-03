@@ -2970,7 +2970,7 @@
         [650633, Object.freeze({
             date: "2026-10-29",
             contractYears: 3,
-            statusText: "3年契約のオプトアウト権を行使（残り2年5300万ドルを放棄）",
+            statusText: "3年契約のオプトアウト権を行使 ※残り2年5300万ドルを放棄",
             url: "https://www.mlb.com/news/michael-king-free-agent-2027"
         })]
     ]);
