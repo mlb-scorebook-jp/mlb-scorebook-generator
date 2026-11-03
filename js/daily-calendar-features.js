@@ -60,11 +60,11 @@
         ? (numerator / denominator).toFixed(digits).replace(/^0/, "") : "-";
     const innings = (outs) => `${Math.floor(number(outs) / 3)}.${number(outs) % 3}`;
     const section = (title, className) => {
-        const node = document.createElement("section");
+        const node = document.createElement("details");
         node.className = `daily-calendar-section ${className}`;
-        const heading = document.createElement("h3"); heading.textContent = title;
+        const heading = document.createElement("summary"); heading.textContent = title;
         const content = document.createElement("div"); content.className = "daily-calendar-list";
-        node.append(heading, content); return { node, content };
+        node.append(heading, content); return { node, heading, content };
     };
     const empty = (message) => {
         const node = document.createElement("p"); node.className = "daily-calendar-empty";
@@ -142,6 +142,7 @@
         })).filter((entry) => entry.roster).sort((left, right) =>
             (left.roster.teamCode || "").localeCompare(right.roster.teamCode || "", "en") ||
             displayName(left.player).localeCompare(displayName(right.player), "ja"));
+        birthday.heading.textContent = `BIRTHDAY　${activePlayers.length}人`;
         if (activePlayers.length) activePlayers.forEach(({ player, roster }) =>
             birthday.content.append(renderBirthdayCard(player, date, roster, data.birthday?.statsRange)));
         else birthday.content.append(empty("この日に誕生日を迎える現役MLB選手はいません"));
@@ -149,6 +150,7 @@
 
         const history = section("今日はこんな日", "daily-history-section");
         const events = (data.history?.events ?? []).filter((event) => text(event.date) < date);
+        history.heading.textContent = `今日はこんな日　${events.length}件`;
         if (!events.length) history.content.append(empty("既存記録DBに表示対象の出来事はありません"));
         else {
             const initial = 10;

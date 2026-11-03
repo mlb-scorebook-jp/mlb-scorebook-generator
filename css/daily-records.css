@@ -483,14 +483,24 @@ body.app-mode-daily-records #header-daily-records-btn {
     background: #1b2429;
 }
 
-.daily-calendar-section > h3 {
+.daily-calendar-section > summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     margin: 0;
     padding: 9px 12px;
     border-bottom: 1px solid #46545c;
     background: #263139;
     color: #f1f5f6;
+    cursor: pointer;
     font-size: 13px;
+    font-weight: 700;
+    list-style: none;
 }
+
+.daily-calendar-section > summary::-webkit-details-marker { display: none; }
+.daily-calendar-section > summary::after { content: "＋"; color: #6fd3f5; font-size: 16px; font-weight: 900; }
+.daily-calendar-section[open] > summary::after { content: "－"; }
 
 .daily-calendar-list {
     display: grid;
