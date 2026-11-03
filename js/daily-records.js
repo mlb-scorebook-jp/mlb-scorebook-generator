@@ -3738,7 +3738,7 @@
                     const homeScore = reviewElement("span",
                         review.winnerId === review.teams[1].id ? "is-winner" : "",
                         `${review.teams[1].runs}${review.isWalkoff ? "×" : ""}`);
-                    score.append(awayScore, document.createTextNode("－"), homeScore);
+                    score.append(awayScore, reviewElement("span", "postgame-review-separator", "－"), homeScore);
                     matchup.append(score);
                 }
             });
