@@ -101,11 +101,11 @@ body.app-mode-daily-records #header-daily-records-btn {
 .postgame-review-card-summary::-webkit-details-marker { display: none; }
 .postgame-review-card-summary::after { content: "＋"; color: #6fd3f5; font-size: 19px; font-weight: 900; }
 .postgame-review-card[open] > .postgame-review-card-summary::after { content: "－"; }
-.postgame-review-matchup { display: grid; grid-template-columns: 42px 54px 100px 42px 54px; align-items: center; gap: 8px; font-size: 17px; }
+.postgame-review-matchup { display: grid; grid-template-columns: 42px 54px 112px 42px 54px; align-items: center; gap: 8px; font-size: 17px; }
 .postgame-review-matchup b { text-align: center; }
 .postgame-review-matchup > img { justify-self: center; }
 .postgame-review-matchup img, .postgame-review-team-heading img { width: 38px; height: 38px; object-fit: contain; filter: drop-shadow(0 0 1px #fff) drop-shadow(0 0 3px rgb(255 255 255 / 75%)); }
-.postgame-review-score { display: grid; grid-template-columns: 42px 16px 42px; align-items: center; justify-content: center; color: #fff; font-size: 22px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.postgame-review-score { display: grid; grid-template-columns: 42px 12px 42px; column-gap: 8px; align-items: center; justify-content: center; color: #fff; font-size: 22px; font-variant-numeric: tabular-nums; white-space: nowrap; }
 .postgame-review-score > span:first-child { text-align: right; }
 .postgame-review-score > span:last-child { text-align: left; }
 .postgame-review-separator { display: block; text-align: center; }
