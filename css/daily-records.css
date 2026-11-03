@@ -130,7 +130,7 @@ body.app-mode-daily-records #header-daily-records-btn {
 .postgame-review-pitching-heading img { width: 25px; height: 25px; object-fit: contain; filter: drop-shadow(0 0 1px #fff) drop-shadow(0 0 3px rgb(255 255 255 / 70%)); }
 .postgame-review-pitching-heading strong { color: #eaf3f5; font-size: 12px; }
 .postgame-review-pitching-scroll { overflow-x: auto; }
-.postgame-review-pitching table { width: 100%; min-width: 540px; border-collapse: collapse; table-layout: fixed; font-variant-numeric: tabular-nums; }
+.postgame-review-pitching table { width: 100%; min-width: 575px; border-collapse: collapse; table-layout: fixed; font-variant-numeric: tabular-nums; }
 .postgame-review-pitching th, .postgame-review-pitching td { height: 31px; padding: 4px 7px; border-right: 1px solid #2c4049; border-bottom: 1px solid #2c4049; text-align: center; white-space: nowrap; }
 .postgame-review-pitching thead th { color: #8fa5ae; background: #162127; font-size: 8px; }
 .postgame-review-pitching thead th:first-child, .postgame-review-pitcher-name { width: 155px; text-align: left; }

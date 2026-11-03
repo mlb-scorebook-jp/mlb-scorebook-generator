@@ -2,7 +2,7 @@
 
 (() => {
     const API_ROOT = "https://statsapi.mlb.com/api";
-    const CACHE_PREFIX = "mlb-postgame-review-v12:";
+    const CACHE_PREFIX = "mlb-postgame-review-v13:";
     const MAX_CONCURRENT_GAMES = 3;
     const RECORD_THRESHOLDS = Object.freeze({
         inningHits: 2,
@@ -1070,6 +1070,7 @@
                 name: playerDisplayName(entry?.person ?? { id: playerId }),
                 decision,
                 innings: text(gameStats?.inningsPitched) || "0.0",
+                pitches: number(gameStats?.numberOfPitches),
                 hits: number(gameStats?.hits),
                 runs: number(gameStats?.runs),
                 earnedRuns: number(gameStats?.earnedRuns),
@@ -3557,7 +3558,7 @@
             const table = document.createElement("table");
             const head = document.createElement("thead");
             const headRow = document.createElement("tr");
-            ["投手", "IP", "H", "R", "ER", "BB", "K", "HR", "ERA"]
+            ["投手", "IP", "球数", "H", "R", "ER", "BB", "K", "HR", "ERA"]
                 .forEach((label) => headRow.append(reviewElement("th", "", label)));
             head.append(headRow);
             const body = document.createElement("tbody");
@@ -3567,7 +3568,7 @@
                 name.append(document.createTextNode(pitcher.name));
                 if (pitcher.decision) name.append(reviewElement("b", "", pitcher.decision));
                 row.append(name);
-                [pitcher.innings, pitcher.hits, pitcher.runs, pitcher.earnedRuns,
+                [pitcher.innings, pitcher.pitches, pitcher.hits, pitcher.runs, pitcher.earnedRuns,
                     pitcher.walks, pitcher.strikeouts, pitcher.homeRuns, pitcher.era]
                     .forEach((value) => row.append(reviewElement("td", "", String(value))));
                 body.append(row);
