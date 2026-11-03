@@ -3726,12 +3726,13 @@
                 logo.src = `https://www.mlbstatic.com/team-logos/${team.id}.svg`;
                 logo.alt = "";
                 matchup.append(logo, reviewElement("b", "", team.code));
-                if (teamIndex === 0) matchup.append(reviewElement("span", "", "＠"));
+                if (teamIndex === 0) {
+                    matchup.append(reviewElement("strong", "postgame-review-score",
+                        `${review.teams[0].runs}－${review.teams[1].runs}`));
+                }
             });
-            const score = reviewElement("strong", "postgame-review-score",
-                `${review.teams[0].runs}－${review.teams[1].runs}`);
             const count = reviewElement("span", "postgame-review-count", `連続記録 ${review.recordCount}件`);
-            summary.append(matchup, score, count);
+            summary.append(matchup, count);
             const body = reviewElement("div", "postgame-review-body");
             body.append(
                 renderReviewLinescore(review),
