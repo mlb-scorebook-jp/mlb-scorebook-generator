@@ -47,6 +47,9 @@
             ]
         }]
     ]);
+    Object.entries(window.MLB_PRESSBOX_GAME_NOTES ?? {}).forEach(([gamePk, notes]) => {
+        PRESSBOX_GAME_NOTES.set(Number(gamePk), notes);
+    });
     let currentContext = null;
     let currentDate = "";
     let currentTransferSeason = 0;
