@@ -2,7 +2,7 @@
 
 (() => {
     const API_ROOT = "https://statsapi.mlb.com/api";
-    const CACHE_PREFIX = "mlb-postgame-review-v9:";
+    const CACHE_PREFIX = "mlb-postgame-review-v10:";
     const MAX_CONCURRENT_GAMES = 3;
     const RECORD_THRESHOLDS = Object.freeze({
         inningHits: 2,
@@ -1080,6 +1080,11 @@
         { key: "rbi", label: "打点", pattern: /(?:試合)?連続打点/, succeeded: (batting) => number(batting?.rbi) > 0 },
         { key: "homeRuns", label: "本塁打", pattern: /(?:試合)?連続本塁打/, succeeded: (batting) => number(batting?.homeRuns) > 0 }
     ];
+    const pitchingLineText = (pitching) => {
+        const innings = text(pitching?.inningsPitched) || "0.0";
+        return `${innings}回 ${number(pitching?.hits)}安打 ${number(pitching?.runs)}失点` +
+            `（自責${number(pitching?.earnedRuns)}） ${number(pitching?.strikeOuts)}奪三振`;
+    };
     const gameNoteTracking = (game, boxscore) => {
         const gameNotes = window.MLBPressboxGameNotes?.get?.(
             number(game?.gamePk), text(game?.officialDate || state.date)
@@ -1094,37 +1099,99 @@
                 fullName: text(entry?.person?.fullName)
             }))
         );
+        const teams = ["away", "home"].map((side) => ({
+            side,
+            code: teamCode(scheduleTeamForSide(game, side)),
+            runs: number(game?.teams?.[side]?.score)
+        }));
+        const winner = teams.reduce((best, team) => team.runs > best.runs ? team : best, teams[0]);
         const tracked = [];
         notes.forEach((note) => {
             const source = text(note?.text);
             const type = GAME_NOTE_STREAK_TYPES.find((candidate) => candidate.pattern.test(source));
-            if (!type) return;
-            const count = number(source.match(/(\d+)試合連続(?:安打|出塁|打点|本塁打)/)?.[1]);
-            if (!count) return;
             const player = players.find((candidate) =>
                 (candidate.displayName && source.includes(candidate.displayName)) ||
                 (candidate.fullName && source.includes(candidate.fullName))
             );
-            if (!player) return;
-            const batting = player.entry?.stats?.batting ?? {};
-            const plateAppearances = number(batting?.plateAppearances);
-            const eligible = type.eligible ? type.eligible(batting) : plateAppearances > 0;
-            const succeeded = eligible && type.succeeded(batting);
+            if (type && player) {
+                const count = number(source.match(/(\d+)試合連続(?:安打|出塁|打点|本塁打)/)?.[1]);
+                if (count) {
+                    const batting = player.entry?.stats?.batting ?? {};
+                    const plateAppearances = number(batting?.plateAppearances);
+                    const eligible = type.eligible ? type.eligible(batting) : plateAppearances > 0;
+                    const succeeded = eligible && type.succeeded(batting);
+                    tracked.push({
+                        kind: "streak",
+                        title: `${player.displayName}（${teamCode(scheduleTeamForSide(game, player.side))}）`,
+                        result: succeeded
+                            ? `${count}試合連続${type.label} → ${count + 1}試合に更新`
+                            : eligible
+                                ? `${count}試合連続${type.label} → ストップ`
+                                : `${count}試合連続${type.label} → 判定対象なし（記録は継続）`,
+                        status: !eligible ? "notEligible" : succeeded ? "continued" : "stopped",
+                        source, href: text(note?.href)
+                    });
+                    return;
+                }
+            }
+
+            const recent = source.match(/([A-Z]{2,3})は直近(\d+)試合で(\d+)敗/);
+            if (recent) {
+                const code = recent[1];
+                const lost = winner.code !== code;
+                tracked.push({
+                    kind: "followup", status: lost ? "stopped" : "continued",
+                    title: source,
+                    result: `${code}は${lost ? "敗戦" : "勝利"}。直近${number(recent[2]) + 1}試合で${number(recent[3]) + (lost ? 1 : 0)}敗となった。`,
+                    source, href: text(note?.href)
+                });
+                return;
+            }
+
+            const matchup = source.match(/([A-Z]{2,3})は今季([A-Z]{2,3})戦(\d+)勝(\d+)敗/);
+            if (matchup) {
+                const code = matchup[1];
+                const won = winner.code === code;
+                const homeSweep = source.match(/では(\d+)戦全勝/);
+                tracked.push({
+                    kind: "followup", status: won ? "continued" : "stopped",
+                    title: source,
+                    result: `${code}が${won ? "勝利" : "敗戦"}し、今季${matchup[2]}戦は${number(matchup[3]) + (won ? 1 : 0)}勝${number(matchup[4]) + (won ? 0 : 1)}敗。` +
+                        (homeSweep && teams.find((team) => team.code === code)?.side === "home"
+                            ? `本拠地では${number(homeSweep[1]) + (won ? 1 : 0)}戦${won ? "全勝" : "目で初黒星"}。`
+                            : ""),
+                    source, href: text(note?.href)
+                });
+                return;
+            }
+
+            if (/(?:先発|防御率|誕生日登板)/.test(source)) {
+                const noteName = source.match(/(?:先発)?([A-Z]\.[^は、。\s]+)/)?.[1] || "該当選手";
+                const pitching = player?.entry?.stats?.pitching ?? {};
+                const started = number(pitching?.gamesStarted) > 0;
+                const appeared = started || number(pitching?.gamesPlayed) > 0 || text(pitching?.inningsPitched) !== "";
+                tracked.push({
+                    kind: "followup", status: started ? "continued" : appeared ? "notEligible" : "stopped",
+                    title: source,
+                    result: started
+                        ? `${player?.displayName || noteName}は予定どおり先発し、${pitchingLineText(pitching)}。`
+                        : appeared
+                            ? `${player?.displayName || noteName}は先発せず、救援で${pitchingLineText(pitching)}。`
+                            : `${player?.displayName || noteName}はこの試合に登板しなかった。`,
+                    source, href: text(note?.href)
+                });
+                return;
+            }
+
             tracked.push({
-                player: player.displayName,
-                teamCode: teamCode(scheduleTeamForSide(game, player.side)),
-                type: type.key,
-                label: type.label,
-                before: count,
-                after: succeeded ? count + 1 : count,
-                status: !eligible ? "notEligible" : succeeded ? "continued" : "stopped",
-                source: source,
-                href: text(note?.href)
+                kind: "followup", status: "notEligible", title: source,
+                result: `${winner.code}が${teams.find((team) => team.code !== winner.code)?.code}に${winner.runs}－${teams.find((team) => team.code !== winner.code)?.runs}で勝利。`,
+                source, href: text(note?.href)
             });
         });
         return {
             available: true,
-            items: uniqueBy(tracked, (item) => `${item.player}:${item.type}`)
+            items: uniqueBy(tracked, (item) => item.source)
         };
     };
 
@@ -3489,22 +3556,17 @@
         section.append(list);
         const tracking = review.gameNoteTracking ?? [];
         const tracker = reviewElement("div", "postgame-review-note-tracker");
-        tracker.append(reviewElement("h5", "", "ゲームノート追跡"));
+        tracker.append(reviewElement("h5", "", "ゲームノート答え合わせ"));
         if (tracking.length) {
             tracking.forEach((item) => {
                 const row = reviewElement("div", `postgame-review-note-row is-${item.status}`);
-                const status = item.status === "continued"
-                    ? "継続"
-                    : item.status === "stopped" ? "ストップ" : "判定対象なし";
-                const result = item.status === "continued"
-                    ? `${item.before}試合連続${item.label} → ${item.after}試合に更新`
-                    : item.status === "stopped"
-                        ? `${item.before}試合連続${item.label} → ストップ`
-                        : `${item.before}試合連続${item.label} → 判定対象なし（記録は継続）`;
+                const status = item.kind === "streak"
+                    ? (item.status === "continued" ? "継続" : item.status === "stopped" ? "ストップ" : "対象外")
+                    : "結果";
                 row.append(
                     reviewElement("span", "postgame-review-note-status", status),
-                    reviewElement("strong", "", `${item.player}（${item.teamCode}）`),
-                    reviewElement("span", "", result)
+                    reviewElement("strong", "", item.title),
+                    reviewElement("span", "", item.result)
                 );
                 if (item.href) row.append(reviewLink("ゲームノート ↗", item.href, "postgame-review-note-link"));
                 tracker.append(row);
@@ -3514,7 +3576,7 @@
                 "p",
                 "postgame-review-note-empty",
                 review.gameNotesAvailable
-                    ? "ゲームノート取得済み。この試合には追跡対象となる連続記録がありません。"
+                    ? "ゲームノート取得済み。答え合わせできる項目がありません。"
                     : "この試合のゲームノートは未取得です。"
             ));
         }
