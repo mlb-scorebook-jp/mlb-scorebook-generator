@@ -2,7 +2,7 @@
 
 (() => {
     const API_ROOT = "https://statsapi.mlb.com/api";
-    const CACHE_PREFIX = "mlb-postgame-review-v15:";
+    const CACHE_PREFIX = "mlb-postgame-review-v16:";
     const MAX_CONCURRENT_GAMES = 3;
     const RECORD_THRESHOLDS = Object.freeze({
         inningHits: 2,
@@ -1283,6 +1283,9 @@
             save: decisionPitcherSummary(boxscore, decisions?.save, "save"),
             loser: decisionPitcherSummary(boxscore, decisions?.loser, "loser")
         };
+        const isWalkoff = winner.side === "home" && number(decisive?.about?.inning) >= 9 &&
+            text(decisive?.about?.halfInning).toLowerCase() === "bottom" &&
+            number(decisive?.result?.homeScore) > number(decisive?.result?.awayScore);
         return {
             gamePk: number(game.gamePk),
             date: text(game.officialDate || state.date),
@@ -1290,6 +1293,7 @@
             gameType: text(game?.gameType),
             teams,
             winnerId: winner.id,
+            isWalkoff,
             linescore: {
                 innings: (game?.linescore?.innings ?? []).map((inning) => ({
                     number: number(inning?.num),
@@ -3727,8 +3731,15 @@
                 logo.alt = "";
                 matchup.append(logo, reviewElement("b", "", team.code));
                 if (teamIndex === 0) {
-                    matchup.append(reviewElement("strong", "postgame-review-score",
-                        `${review.teams[0].runs}－${review.teams[1].runs}`));
+                    const score = reviewElement("strong", "postgame-review-score");
+                    const awayScore = reviewElement("span",
+                        review.winnerId === review.teams[0].id ? "is-winner" : "",
+                        String(review.teams[0].runs));
+                    const homeScore = reviewElement("span",
+                        review.winnerId === review.teams[1].id ? "is-winner" : "",
+                        `${review.teams[1].runs}${review.isWalkoff ? "×" : ""}`);
+                    score.append(awayScore, document.createTextNode("－"), homeScore);
+                    matchup.append(score);
                 }
             });
             const count = reviewElement("span", "postgame-review-count", `連続記録 ${review.recordCount}件`);
