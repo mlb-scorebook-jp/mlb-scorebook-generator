@@ -3722,9 +3722,8 @@
                 payload.finalGames ? "試合後レビューを作成できませんでした" : "解析対象となるFinal試合はありません"));
             return section;
         }
-        reviews.forEach((review, index) => {
+        reviews.forEach((review) => {
             const card = reviewElement("details", "postgame-review-card");
-            if (index === 0) card.open = true;
             const summary = reviewElement("summary", "postgame-review-card-summary");
             const matchup = reviewElement("span", "postgame-review-matchup");
             review.teams.forEach((team, teamIndex) => {
