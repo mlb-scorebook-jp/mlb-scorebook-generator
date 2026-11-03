@@ -5,7 +5,7 @@
 //   agreedDate: "YYYY-MM-DD", years?: 年数, tenThousands?: 金額（万ドル）,
 //   url: "球団公式などの発表URL", statusText?: "独自に表示したい契約文言"
 // }
-// years・tenThousandsがない場合は「期間と金額は未公表」を自動表示する。
+// years・tenThousandsがない場合は「※期間と金額は未公表」を自動表示する。
 // MLB以外の海外リーグは追跡対象に含めない。
 (function (global) {
     global.MLB_FREE_AGENT_AGREEMENTS = Object.freeze({});
