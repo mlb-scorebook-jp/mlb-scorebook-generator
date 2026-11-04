@@ -4113,19 +4113,19 @@
                         else row.append(retirement);
                     } else if (entry.signing) {
                         const terms = entry.signing.terms;
-                        const dateText = formatAgreementDate(
+                        const dateText = formatJapaneseMlbTransferDate(
                             entry.signing.agreedDate || entry.signing.officialDate
                         );
                         const isNpbSigning = entry.signing.league === "NPB";
                         const statusText = isNpbSigning
                             ? npbSigningStatusText(entry.signing, terms) +
-                                (dateText ? `（${dateText}正式発表）` : "")
+                                (dateText ? ` ${dateText}正式発表` : "")
                             : terms
                                 ? `と${terms.years}年${formatContractDollars(terms.tenThousands)}で契約` +
-                                    (dateText ? `（${dateText}${entry.signing.agreedDate ? "合意" : "公式登録"}）` : "")
+                                    (dateText ? ` ${dateText}${entry.signing.agreedDate ? "合意" : "公式登録"}` : "")
                                 : `と${entry.signing.minorLeague ? "マイナー契約" : "契約"}` +
                                     " ※期間と金額は未公表" +
-                                    (dateText ? `（${dateText}${entry.signing.agreedDate ? "合意" : "公式登録"}）` : "");
+                                    (dateText ? ` ${dateText}${entry.signing.agreedDate ? "合意" : "公式登録"}` : "");
                         const status = el(
                             entry.signing.url ? "a" : "span",
                             "pregame-free-agent-signing",
