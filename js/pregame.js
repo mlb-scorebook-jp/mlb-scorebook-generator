@@ -3882,7 +3882,7 @@
             headerMeta.append(el(
                 "span",
                 "pregame-free-agent-exchange-rate",
-                `1ドル${rateText}円（${formatAgreementDate(exchangeRate.date)}時点）`
+                `1ドル${rateText}円 ${formatJapaneseMlbTransferDate(exchangeRate.date)}時点`
             ));
         }
         header.append(headerMeta);
@@ -4015,7 +4015,7 @@
                         status.append(el(
                             "span",
                             "pregame-free-agent-manager-date",
-                            `（${formatAgreementDate(manager.announcedDate)}発表）`
+                            `${formatJapaneseMlbTransferDate(manager.announcedDate)}発表`
                         ));
                         row.append(identity, status);
                         list.append(row);
@@ -4088,7 +4088,7 @@
                         const postingStatus = el(
                             "a",
                             "pregame-free-agent-posting-status",
-                            `${formatAgreementDate(entry.postedDate)}申請`
+                            `${formatJapaneseMlbTransferDate(entry.postedDate)}申請`
                         );
                         postingStatus.href = entry.sourceUrl;
                         postingStatus.target = "_blank";
@@ -4160,7 +4160,7 @@
                         const declaredStatus = el(
                             "a",
                             "pregame-free-agent-declared-status",
-                            `${declaredLabel}（${formatAgreementDate(entry.declaredDate)}）`
+                            `${declaredLabel} ${formatJapaneseMlbTransferDate(entry.declaredDate)}`
                         );
                         declaredStatus.href = entry.sourceUrl;
                         declaredStatus.target = "_blank";
@@ -4192,7 +4192,8 @@
                         const status = el(
                             "a",
                             "pregame-free-agent-trade-status",
-                            `${teamCode({ id: entry.trade.teamId })}へトレード（${formatAgreementDate(entry.trade.date)}）`
+                            `${teamCode({ id: entry.trade.teamId })}へトレード ` +
+                                formatJapaneseMlbTransferDate(entry.trade.date)
                         );
                         status.href = entry.trade.url;
                         status.target = "_blank";
