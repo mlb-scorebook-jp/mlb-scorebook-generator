@@ -139,10 +139,26 @@
                 pitcherRole: "SP",
                 transferType: "prospect",
                 declaredDate: "2026-11-02",
-                statusText: "11月4日から、ドジャースやヤンキースを含む" +
+                statusText: "ドジャースやヤンキースを含む" +
                     "MLB約11～12球団との面談開始予定",
                 sourceUrl: "https://www.nikkansports.com/baseball/highschool/" +
                     "news/202611020001706.html"
+            },
+            {
+                name: "野上 龍哉",
+                formerTeam: "大阪産業大学準硬式野球部",
+                position: "RHP",
+                pitcherRole: "SP",
+                transferType: "amateur",
+                declaredDate: "2026-10-16",
+                statusText: "大阪産業大学準硬式野球部から米球界挑戦",
+                sourceUrl: "https://www.chunichi.co.jp/article/1326186",
+                signing: {
+                    teamId: 135,
+                    agreedDate: "2026-10-16",
+                    statusText: "とマイナー契約",
+                    url: "https://www.chunichi.co.jp/article/1326186"
+                }
             },
             {
                 name: "佐藤 輝明",
