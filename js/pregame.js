@@ -3141,9 +3141,14 @@
         player?.declaredDate ?? ""
     );
 
+    const formatJapaneseMlbTransferDate = (date) => {
+        const match = String(date ?? "").match(/^\d{4}-(\d{2})-(\d{2})$/);
+        return match ? `${Number(match[1])}/${Number(match[2])}` : "";
+    };
+
     const japaneseMlbTransferStatus = (player) => {
         if (player?.statusText) return player.statusText;
-        const date = formatAgreementDate(japaneseMlbTransferDate(player));
+        const date = formatJapaneseMlbTransferDate(japaneseMlbTransferDate(player));
         const overseasFreeAgent = player?.transferType === "overseas-fa" ||
             Boolean(player?.overseasFreeAgentDate);
         return overseasFreeAgent
@@ -4254,7 +4259,7 @@
                         "a",
                         "pregame-free-agent-signing",
                         signingText +
-                            `（${formatAgreementDate(signing.agreedDate)}合意）`
+                            ` ${formatJapaneseMlbTransferDate(signing.agreedDate)}合意`
                     );
                     status.prepend(createFreeAgentTeamLogo(
                         { id: signing.teamId },
