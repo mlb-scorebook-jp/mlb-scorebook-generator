@@ -80,8 +80,7 @@
         return foundedYear && state.season < foundedYear;
     };
     const portraitWithFallback = (url, className = "") => `<div class="awards-image-fallback ${className}">
-        <img src="${url}" alt="" onerror="this.parentElement.classList.add('is-missing');this.remove()">
-        <span>NO IMAGE</span>
+        <img src="${url}" alt="" onerror="this.remove()">
     </div>`;
     const metricValues = (winner) => {
         const values = Object.fromEntries((winner.metrics || []).map((metric) => [metric.label, metric.value]));
