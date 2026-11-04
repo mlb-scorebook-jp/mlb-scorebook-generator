@@ -153,12 +153,15 @@
                 transferType: "amateur",
                 declaredDate: "2026-10-16",
                 statusText: "大阪産業大学準硬式野球部から米球界挑戦",
-                sourceUrl: "https://www.chunichi.co.jp/article/1326186",
+                sourceUrl: "https://www.nikkansports.com/baseball/mlb/" +
+                    "news/202610240000796.html",
                 signing: {
                     teamId: 135,
                     agreedDate: "2026-10-16",
-                    statusText: "とマイナー契約",
-                    url: "https://www.chunichi.co.jp/article/1326186"
+                    statusText: "とマイナー契約（契約金30万ドル・" +
+                        "奨学金最大20万ドル）",
+                    url: "https://www.nikkansports.com/baseball/mlb/" +
+                        "news/202610240000796.html"
                 }
             },
             {
