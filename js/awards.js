@@ -195,7 +195,7 @@
                     <div class="awards-finalist-photo">${portraitWithFallback(photoUrl, isManager ? "is-manager" : "")}</div>
                     <img src="${logoUrl(finalist.teamId)}" alt="${escapeHtml(finalist.team)}">
                     <div class="awards-finalist-copy"><small>${escapeHtml(finalist.position)}</small><strong>${escapeHtml(finalist.playerJa)}</strong>
-                        <div class="awards-finalist-stats">${(finalist.stats || []).map(([label, value]) => `<span><small>${escapeHtml(label)}</small><b>${escapeHtml(value)}</b></span>`).join("")}</div>
+                        <div class="awards-finalist-stats">${(finalist.stats || []).map(([label, value]) => `<span>${label ? `<small>${escapeHtml(label)}</small>` : ""}<b>${escapeHtml(value)}</b></span>`).join("")}</div>
                     </div>
                 </article>`;
             }).join("")}</div>

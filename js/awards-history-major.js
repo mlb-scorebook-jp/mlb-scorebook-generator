@@ -46,14 +46,14 @@ window.MLB_AWARDS_MAJOR_HISTORY = {
             finalistsSourceUrl: "https://www.mlb.com/news/2025-bbwaa-awards-finalists-for-mvp-cy-young-rookie-of-year",
             finalists: {
                 al: [
-                    { playerJa: "H.ブラウン", playerId: 686613, team: "HOU", teamId: 117, position: "RHP", stats: [["勝敗", "12勝9敗"], ["防", "2.43"], ["振", "206"]] },
-                    { playerJa: "G.クロシェ", playerId: 676979, team: "BOS", teamId: 111, position: "LHP", stats: [["勝敗", "18勝5敗"], ["防", "2.59"], ["振", "255"]] },
+                    { playerJa: "H.ブラウン", playerId: 686613, team: "HOU", teamId: 117, position: "RHP", stats: [["", "12勝9敗"], ["防", "2.43"], ["振", "206"]] },
+                    { playerJa: "G.クロシェ", playerId: 676979, team: "BOS", teamId: 111, position: "LHP", stats: [["", "18勝5敗"], ["防", "2.59"], ["振", "255"]] },
                     { playerJa: "T.スクーバル", playerId: 669373, team: "DET", teamId: 116, position: "LHP" }
                 ],
                 nl: [
-                    { playerJa: "C.サンチェス", playerId: 650911, team: "PHI", teamId: 143, position: "LHP", stats: [["勝敗", "13勝5敗"], ["防", "2.50"], ["振", "212"]] },
+                    { playerJa: "C.サンチェス", playerId: 650911, team: "PHI", teamId: 143, position: "LHP", stats: [["", "13勝5敗"], ["防", "2.50"], ["振", "212"]] },
                     { playerJa: "P.スキーンズ", playerId: 694973, team: "PIT", teamId: 134, position: "RHP" },
-                    { playerJa: "山本 由伸", playerId: 808967, team: "LAD", teamId: 119, position: "RHP", stats: [["勝敗", "12勝8敗"], ["防", "2.49"], ["振", "201"]] }
+                    { playerJa: "山本 由伸", playerId: 808967, team: "LAD", teamId: 119, position: "RHP", stats: [["", "12勝8敗"], ["防", "2.49"], ["振", "201"]] }
                 ]
             },
             al: { league: "AMERICAN LEAGUE", player: "Tarik Skubal", playerJa: "T.スクーバル", playerId: 669373, team: "DET", teamId: 116, position: "LHP", count: 2, streak: 2, stats: { "登板": 31, "勝敗": "13-6", "防御率": "2.21", "投球回": "195.1", "奪三振": 241, "WHIP": "0.89" } },
@@ -71,7 +71,7 @@ window.MLB_AWARDS_MAJOR_HISTORY = {
                 nl: [
                     { playerJa: "D.ボールドウィン", playerId: 686948, team: "ATL", teamId: 144, position: "C" },
                     { playerJa: "C.ダービン", playerId: 702332, team: "MIL", teamId: 158, position: "3B", stats: [["率", ".256"], ["本", "11"], ["盗", "18"]] },
-                    { playerJa: "C.ホートン", playerId: 690990, team: "CHC", teamId: 112, position: "RHP", stats: [["勝敗", "11勝4敗"], ["防", "2.67"], ["振", "97"]] }
+                    { playerJa: "C.ホートン", playerId: 690990, team: "CHC", teamId: 112, position: "RHP", stats: [["", "11勝4敗"], ["防", "2.67"], ["振", "97"]] }
                 ]
             },
             al: { league: "AMERICAN LEAGUE", player: "Nick Kurtz", playerJa: "N.カーツ", playerId: 701762, team: "ATH", teamId: 133, position: "1B", count: 1, stats: { "試合": 117, "打率": ".290", "本塁打": 36, "打点": 86, "得点": 90, "OPS": "1.002" } },
