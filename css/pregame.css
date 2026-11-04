@@ -2456,19 +2456,29 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
     vertical-align: 1px;
 }
 
-.pregame-free-agent-daily-updates {
+.pregame-free-agent-daily-updates,
+.pregame-free-agent-manager-updates {
     margin: 10px;
     border: 1px solid #50606a;
     background: #182329;
 }
 
-.pregame-free-agent-daily-updates h4 {
+.pregame-free-agent-daily-updates > h4,
+.pregame-free-agent-manager-updates > h4 {
     margin: 0;
     padding: 7px 10px;
     border-bottom: 1px solid #50606a;
     background: #273640;
     color: #ffd432;
     font-size: 13px;
+}
+
+.pregame-free-agent-manager-updates {
+    margin-top: 0;
+}
+
+.pregame-free-agent-manager-updates > h4 {
+    color: #6fc5ff;
 }
 
 .pregame-free-agent-daily-columns {
@@ -2504,6 +2514,26 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
 .pregame-free-agent-daily-status:focus-visible {
     text-decoration: underline;
     text-underline-offset: 2px;
+}
+
+.pregame-free-agent-manager-status {
+    color: #eef5f8;
+    font-weight: 700;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.pregame-free-agent-manager-status:hover,
+.pregame-free-agent-manager-status:focus-visible {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.pregame-free-agent-manager-date {
+    margin-left: 5px;
+    color: #9fadb5;
+    font-size: 11px;
+    font-weight: 400;
 }
 
 .pregame-free-agent-declared-status {

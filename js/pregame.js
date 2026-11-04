@@ -3974,6 +3974,53 @@
             dailyUpdates.append(dailyColumns);
             freeAgentSection.append(dailyUpdates);
         }
+        const newManagers = upcoming ? [] : (window.MLB_NEW_MANAGERS?.[season] ?? [])
+            .filter((manager) => manager.announcedDate <= date);
+        if (newManagers.length) {
+            const managerUpdates = el("section", "pregame-free-agent-manager-updates");
+            managerUpdates.append(el("h4", "", `${season + 1}年 新監督`));
+            const managerColumns = el(
+                "div",
+                "pregame-free-agent-columns pregame-free-agent-daily-columns"
+            );
+            ["AL", "NL"].forEach((league) => {
+                const panel = el("section", "pregame-free-agent-league");
+                panel.append(el("h4", "", league));
+                const list = el("div", "pregame-free-agent-list");
+                newManagers.filter((manager) => manager.league === league)
+                    .forEach((manager) => {
+                        const row = el("div", "pregame-free-agent-row");
+                        const identity = el("span", "pregame-free-agent-identity");
+                        identity.append(
+                            createFreeAgentTeamLogo({
+                                id: manager.teamId,
+                                name: manager.teamName
+                            }),
+                            el("span", "pregame-free-agent-player", manager.managerName)
+                        );
+                        const status = el(
+                            "a",
+                            "pregame-free-agent-manager-status",
+                            manager.statusText
+                        );
+                        status.href = manager.sourceUrl;
+                        status.target = "_blank";
+                        status.rel = "noopener noreferrer";
+                        status.append(el(
+                            "span",
+                            "pregame-free-agent-manager-date",
+                            `（${formatAgreementDate(manager.announcedDate)}発表）`
+                        ));
+                        row.append(identity, status);
+                        list.append(row);
+                    });
+                if (!list.childElementCount) list.append(empty("発表はありません。"));
+                panel.append(list);
+                managerColumns.append(panel);
+            });
+            managerUpdates.append(managerColumns);
+            freeAgentSection.append(managerUpdates);
+        }
         const columns = el("div", "pregame-free-agent-columns");
         ["AL", "NL"].forEach((league) => {
             const panel = el("section", "pregame-free-agent-league");
