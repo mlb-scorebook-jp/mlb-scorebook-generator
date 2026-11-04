@@ -134,6 +134,7 @@
             {
                 name: "佐藤 輝明",
                 formerTeam: "阪神タイガース",
+                formerTeamLogoUrl: "assets/npb-team-logos/t.png",
                 position: "3B",
                 postedDate: "2026-11-01",
                 sourceUrl: "https://www.mlb.com/news/teruaki-sato-mlb-posting-system"
