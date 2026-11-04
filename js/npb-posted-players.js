@@ -129,6 +129,67 @@
                     url: "https://www.mlb.com/cubs/news/kona-takahashi-returning-to-npb-for-2026"
                 }
             }
+        ]),
+        2026: Object.freeze([
+            {
+                name: "織田 翔希",
+                formerTeam: "横浜高等学校",
+                formerTeamLogoUrl: "assets/npb-team-logos/yokohama-high-school.svg",
+                position: "RHP",
+                pitcherRole: "SP",
+                transferType: "prospect",
+                declaredDate: "2026-11-02",
+                statusText: "11/4からドジャースやヤンキースを含む" +
+                    "MLB約11～12球団との面談開始予定",
+                sourceUrl: "https://www.nikkansports.com/baseball/highschool/" +
+                    "news/202611020001706.html"
+            },
+            {
+                name: "野上 龍哉",
+                formerTeam: "大阪産業大学準硬式野球部",
+                formerTeamLogoUrl: "assets/npb-team-logos/osaka-sangyo-university.svg",
+                position: "RHP",
+                pitcherRole: "SP",
+                transferType: "amateur",
+                declaredDate: "2026-10-16",
+                statusText: "大阪産業大学準硬式野球部から米球界挑戦",
+                sourceUrl: "https://www.nikkansports.com/baseball/mlb/" +
+                    "news/202610240000796.html",
+                signing: {
+                    teamId: 135,
+                    agreedDate: "2026-10-16",
+                    statusText: "とマイナー契約（契約金30万ドル・" +
+                        "奨学金最大20万ドル）",
+                    url: "https://www.nikkansports.com/baseball/mlb/" +
+                        "news/202610240000796.html"
+                }
+            },
+            {
+                name: "佐藤 輝明",
+                formerTeam: "阪神タイガース",
+                formerTeamLogoUrl: "assets/npb-team-logos/t.png",
+                position: "3B",
+                postedDate: "2026-11-01",
+                sourceUrl: "https://www.mlb.com/news/teruaki-sato-mlb-posting-system"
+            },
+            {
+                name: "平良 海馬",
+                formerTeam: "埼玉西武ライオンズ",
+                formerTeamLogoUrl: "assets/npb-team-logos/l.png",
+                position: "RHP",
+                pitcherRole: "SP",
+                postedDate: "2026-11-01",
+                sourceUrl: "https://www.mlb.com/news/kaima-taira-will-enter-mlb-posting-system"
+            },
+            {
+                name: "伊藤 大海",
+                formerTeam: "北海道日本ハムファイターズ",
+                formerTeamLogoUrl: "assets/npb-team-logos/f.png",
+                position: "RHP",
+                pitcherRole: "SP",
+                postedDate: "2026-11-01",
+                sourceUrl: "https://www.mlb.com/news/hiromi-itoh-posted-hokkaido-nippon-ham-fighters"
+            }
         ])
     });
 })(window);

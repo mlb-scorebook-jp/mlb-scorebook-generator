@@ -1,6 +1,6 @@
 window.MLB_AWARDS_2026 = {
     season: 2026,
-    updatedAt: "2026-11-01",
+    updatedAt: "2026-11-03",
     sourceUrl: "https://www.mlb.com/news/2026-gold-glove-award-winners",
     categories: {
         goldGlove: {
@@ -34,10 +34,54 @@ window.MLB_AWARDS_2026 = {
         silverSlugger: { label: "シルバースラッガー", group: "battingDefense", status: "pending" },
         hankAaron: { label: "ハンク・アーロン賞", group: "battingDefense", status: "pending" },
         outstandingDh: { label: "最優秀指名打者賞", group: "battingDefense", status: "pending" },
-        mvp: { label: "MVP", group: "major", status: "pending" },
-        cyYoung: { label: "サイ・ヤング賞", group: "major", status: "pending" },
-        rookie: { label: "新人王", group: "major", status: "pending" },
-        manager: { label: "最優秀監督", group: "major", status: "pending" },
+        mvp: { label: "MVP", group: "major", status: "pending", finalistsSourceUrl: "https://www.mlb.com/news/2026-bbwaa-awards-finalists", finalists: {
+            al: [
+                { playerJa: "Y.アルバレス", playerId: 670541, team: "HOU", teamId: 117, position: "DH", stats: [["率", ".316"], ["本", "42"], ["点", "106"]] },
+                { playerJa: "J.カミネロ", playerId: 691406, team: "TB", teamId: 139, position: "3B", stats: [["率", ".276"], ["本", "42"], ["点", "101"]] },
+                { playerJa: "B.ウィット Jr.", playerId: 677951, team: "KC", teamId: 118, position: "SS", stats: [["率", ".281"], ["本", "18"], ["点", "54"]] }
+            ],
+            nl: [
+                { playerJa: "P.クローアームストロング", playerId: 691718, team: "CHC", teamId: 112, position: "CF", stats: [["率", ".280"], ["本", "45"], ["盗", "41"]] },
+                { playerJa: "大谷 翔平", playerId: 660271, team: "LAD", teamId: 119, position: "TWP", stats: [["率", ".275"], ["本", "30"], ["防", "1.79"]] },
+                { playerJa: "B.トゥラング", playerId: 668930, team: "MIL", teamId: 158, position: "2B", stats: [["率", ".268"], ["本", "21"], ["点", "100"]] }
+            ]
+        } },
+        cyYoung: { label: "サイ・ヤング賞", group: "major", status: "pending", finalistsSourceUrl: "https://www.mlb.com/news/2026-bbwaa-awards-finalists", finalists: {
+            al: [
+                { playerJa: "D.シース", playerId: 656302, team: "TOR", teamId: 141, position: "RHP", stats: [["回", "169.0"], ["防", "2.40"], ["振", "239"]] },
+                { playerJa: "P.メシック", playerId: 800048, team: "CLE", teamId: 114, position: "LHP", stats: [["回", "186.1"], ["防", "2.56"], ["振", "193"]] },
+                { playerJa: "C.シュリットラー", playerId: 693645, team: "NYY", teamId: 147, position: "RHP", stats: [["回", "193.2"], ["防", "1.95"], ["振", "239"]] }
+            ],
+            nl: [
+                { playerJa: "J.ミザロウスキー", playerId: 694819, team: "MIL", teamId: 158, position: "RHP", stats: [["回", "174.2"], ["防", "1.80"], ["振", "252"]] },
+                { playerJa: "C.セール", playerId: 519242, team: "ATL", teamId: 144, position: "LHP", stats: [["回", "162.2"], ["防", "2.16"], ["振", "200"]] },
+                { playerJa: "C.サンチェス", playerId: 650911, team: "PHI", teamId: 143, position: "LHP", stats: [["回", "207.0"], ["防", "2.91"], ["振", "231"]] }
+            ]
+        } },
+        rookie: { label: "新人王", group: "major", status: "pending", finalistsSourceUrl: "https://www.mlb.com/news/2026-bbwaa-awards-finalists", finalists: {
+            al: [
+                { playerJa: "K.マゴニグル", playerId: 805808, team: "DET", teamId: 116, position: "SS/3B", stats: [["率", ".278"], ["本", "18"], ["盗", "12"]] },
+                { playerJa: "P.メシック", playerId: 800048, team: "CLE", teamId: 114, position: "LHP", stats: [["回", "186.1"], ["防", "2.56"], ["振", "193"]] },
+                { playerJa: "P.トーリー", playerId: 801139, team: "BOS", teamId: 111, position: "LHP", stats: [["回", "148.2"], ["振", "171"]] }
+            ],
+            nl: [
+                { playerJa: "C.ベンジ", playerId: 701807, team: "NYM", teamId: 121, position: "RF", stats: [["率", ".282"], ["本", "20"], ["盗", "22"]] },
+                { playerJa: "S.スチュワート", playerId: 701398, team: "CIN", teamId: 113, position: "1B", stats: [["率", ".263"], ["本", "32"], ["点", "112"]] },
+                { playerJa: "J.J.ウェザーホルト", playerId: 802139, team: "STL", teamId: 138, position: "2B", stats: [["率", ".242"], ["本", "17"], ["盗", "14"]] }
+            ]
+        } },
+        manager: { label: "最優秀監督", group: "major", status: "pending", finalistsSourceUrl: "https://www.mlb.com/news/2026-bbwaa-awards-finalists", finalists: {
+            al: [
+                { playerJa: "K.キャッシュ", playerId: 408211, team: "TB", teamId: 139, position: "監督", stats: [["勝敗", "98-64"], ["勝率", ".605"], ["順位", "東1位"]] },
+                { playerJa: "C.トレーシー", playerId: 429710, team: "BOS", teamId: 111, position: "監督", stats: [["勝敗", "77-58"], ["結果", "WC進出"]] },
+                { playerJa: "W.ベナブル", playerId: 461416, team: "CWS", teamId: 145, position: "監督", stats: [["勝敗", "84-78"], ["勝率", ".519"], ["結果", "WC進出"]] }
+            ],
+            nl: [
+                { playerJa: "D.マッティングリー", playerId: 118443, team: "PHI", teamId: 143, position: "監督", stats: [["勝敗", "79-55"], ["結果", "WC進出"]] },
+                { playerJa: "P.マーフィー", playerId: 580268, team: "MIL", teamId: 158, position: "監督", stats: [["勝敗", "103-59"], ["勝率", ".636"], ["順位", "中1位"]] },
+                { playerJa: "W.ワイス", playerId: 124054, team: "ATL", teamId: 144, position: "監督", stats: [["勝敗", "94-68"], ["勝率", ".580"], ["順位", "東1位"]] }
+            ]
+        } },
         allMlb: { label: "オールMLB", group: "major", status: "pending" },
         reliever: { label: "最優秀救援投手", group: "special", status: "pending" },
         comeback: { label: "カムバック賞", group: "special", status: "pending" },

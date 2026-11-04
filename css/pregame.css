@@ -2139,14 +2139,14 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
 }
 
 .pregame-trade-details {
-    width: min(360px, 100%);
+    width: min(760px, 100%);
     min-width: 0;
 }
 
 .pregame-trade-team-header,
 .pregame-trade-exchange {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) 34px minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr) 54px minmax(0, 1fr);
     align-items: center;
     column-gap: 8px;
     min-width: 0;
@@ -2185,7 +2185,10 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
 
 .pregame-trade-swap {
     align-self: center;
-    font-size: 15px;
+    color: #b9c6cd;
+    font-size: 27px;
+    line-height: 1;
+    transform: translateY(-11px);
 }
 
 .pregame-trade-assets {
@@ -2209,6 +2212,24 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
     color: #dbe5ea;
     overflow-wrap: anywhere;
     text-decoration: none;
+}
+
+.pregame-trade-player-entry {
+    display: flex;
+    align-items: baseline;
+    gap: 7px;
+    min-width: 0;
+}
+
+.pregame-trade-player-profile {
+    flex: 0 0 auto;
+    color: #8fa0aa;
+    font-size: 11px;
+    white-space: nowrap;
+}
+
+.pregame-trade-assets-right .pregame-trade-player-entry {
+    justify-content: flex-end;
 }
 
 .pregame-trade-asset {
@@ -2456,19 +2477,29 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
     vertical-align: 1px;
 }
 
-.pregame-free-agent-daily-updates {
+.pregame-free-agent-daily-updates,
+.pregame-free-agent-manager-updates {
     margin: 10px;
     border: 1px solid #50606a;
     background: #182329;
 }
 
-.pregame-free-agent-daily-updates h4 {
+.pregame-free-agent-daily-updates > h4,
+.pregame-free-agent-manager-updates > h4 {
     margin: 0;
     padding: 7px 10px;
     border-bottom: 1px solid #50606a;
     background: #273640;
     color: #ffd432;
     font-size: 13px;
+}
+
+.pregame-free-agent-manager-updates {
+    margin-top: 0;
+}
+
+.pregame-free-agent-manager-updates > h4 {
+    color: #6fc5ff;
 }
 
 .pregame-free-agent-daily-columns {
@@ -2504,6 +2535,26 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
 .pregame-free-agent-daily-status:focus-visible {
     text-decoration: underline;
     text-underline-offset: 2px;
+}
+
+.pregame-free-agent-manager-status {
+    color: #eef5f8;
+    font-weight: 700;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.pregame-free-agent-manager-status:hover,
+.pregame-free-agent-manager-status:focus-visible {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.pregame-free-agent-manager-date {
+    margin-left: 5px;
+    color: #9fadb5;
+    font-size: 11px;
+    font-weight: 400;
 }
 
 .pregame-free-agent-declared-status {
@@ -2669,7 +2720,7 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
 
     .pregame-trade-team-header,
     .pregame-trade-exchange {
-        grid-template-columns: minmax(0, 1fr) 28px minmax(0, 1fr);
+        grid-template-columns: minmax(0, 1fr) 40px minmax(0, 1fr);
         column-gap: 5px;
     }
 

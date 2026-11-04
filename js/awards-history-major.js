@@ -3,6 +3,19 @@ window.MLB_AWARDS_MAJOR_HISTORY = {
         mvp: {
             announcedAt: "2025-11-13",
             sourceUrl: "https://www.mlb.com/awards/most-valuable-player",
+            finalistsSourceUrl: "https://www.mlb.com/news/2025-bbwaa-awards-finalists-for-mvp-cy-young-rookie-of-year",
+            finalists: {
+                al: [
+                    { playerJa: "A.ジャッジ", playerId: 592450, team: "NYY", teamId: 147, position: "OF" },
+                    { playerJa: "C.ローリー", playerId: 663728, team: "SEA", teamId: 136, position: "C", stats: [["率", ".247"], ["本", "60"], ["点", "125"]] },
+                    { playerJa: "J.ラミレス", playerId: 608070, team: "CLE", teamId: 114, position: "3B", stats: [["率", ".283"], ["本", "30"], ["盗", "44"]] }
+                ],
+                nl: [
+                    { playerJa: "大谷 翔平", playerId: 660271, team: "LAD", teamId: 119, position: "TWP" },
+                    { playerJa: "K.シュワーバー", playerId: 656941, team: "PHI", teamId: 143, position: "DH", stats: [["率", ".240"], ["本", "56"], ["点", "132"]] },
+                    { playerJa: "J.ソト", playerId: 665742, team: "NYM", teamId: 121, position: "RF", stats: [["率", ".263"], ["本", "43"], ["点", "105"]] }
+                ]
+            },
             al: {
                 league: "AMERICAN LEAGUE",
                 player: "Aaron Judge",
@@ -30,16 +43,55 @@ window.MLB_AWARDS_MAJOR_HISTORY = {
         },
         cyYoung: {
             title: "CY YOUNG AWARD", sourceUrl: "https://www.mlb.com/news/2025-cy-young-award-winners",
+            finalistsSourceUrl: "https://www.mlb.com/news/2025-bbwaa-awards-finalists-for-mvp-cy-young-rookie-of-year",
+            finalists: {
+                al: [
+                    { playerJa: "H.ブラウン", playerId: 686613, team: "HOU", teamId: 117, position: "RHP", stats: [["", "12勝9敗"], ["回", "185.1"], ["防", "2.43"], ["振", "206"]] },
+                    { playerJa: "G.クロシェ", playerId: 676979, team: "BOS", teamId: 111, position: "LHP", stats: [["", "18勝5敗"], ["回", "205.1"], ["防", "2.59"], ["振", "255"]] },
+                    { playerJa: "T.スクーバル", playerId: 669373, team: "DET", teamId: 116, position: "LHP" }
+                ],
+                nl: [
+                    { playerJa: "C.サンチェス", playerId: 650911, team: "PHI", teamId: 143, position: "LHP", stats: [["", "13勝5敗"], ["回", "202.0"], ["防", "2.50"], ["振", "212"]] },
+                    { playerJa: "P.スキーンズ", playerId: 694973, team: "PIT", teamId: 134, position: "RHP" },
+                    { playerJa: "山本 由伸", playerId: 808967, team: "LAD", teamId: 119, position: "RHP", stats: [["", "12勝8敗"], ["回", "173.2"], ["防", "2.49"], ["振", "201"]] }
+                ]
+            },
             al: { league: "AMERICAN LEAGUE", player: "Tarik Skubal", playerJa: "T.スクーバル", playerId: 669373, team: "DET", teamId: 116, position: "LHP", count: 2, streak: 2, stats: { "登板": 31, "勝敗": "13-6", "防御率": "2.21", "投球回": "195.1", "奪三振": 241, "WHIP": "0.89" } },
             nl: { league: "NATIONAL LEAGUE", player: "Paul Skenes", playerJa: "P.スキーンズ", playerId: 694973, team: "PIT", teamId: 134, position: "RHP", count: 1, stats: { "登板": 32, "勝敗": "10-10", "防御率": "1.97", "投球回": "187.2", "奪三振": 216, "WHIP": "0.95" } }
         },
         rookie: {
             title: "ROOKIE OF THE YEAR", sourceUrl: "https://www.mlb.com/news/2025-mlb-rookie-of-the-year-winners",
+            finalistsSourceUrl: "https://www.mlb.com/news/2025-bbwaa-awards-finalists-for-mvp-cy-young-rookie-of-year",
+            finalists: {
+                al: [
+                    { playerJa: "R.アンソニー", playerId: 701350, team: "BOS", teamId: 111, position: "OF", stats: [["率", ".292"], ["本", "8"], ["OPS", ".859"]] },
+                    { playerJa: "N.カーツ", playerId: 701762, team: "ATH", teamId: 133, position: "1B" },
+                    { playerJa: "J.ウィルソン", playerId: 805779, team: "ATH", teamId: 133, position: "SS", stats: [["率", ".311"], ["本", "13"], ["OPS", ".799"]] }
+                ],
+                nl: [
+                    { playerJa: "D.ボールドウィン", playerId: 686948, team: "ATL", teamId: 144, position: "C" },
+                    { playerJa: "C.ダービン", playerId: 702332, team: "MIL", teamId: 158, position: "3B", stats: [["率", ".256"], ["本", "11"], ["盗", "18"]] },
+                    { playerJa: "C.ホートン", playerId: 690990, team: "CHC", teamId: 112, position: "RHP", stats: [["", "11勝4敗"], ["防", "2.67"], ["振", "97"]] }
+                ]
+            },
             al: { league: "AMERICAN LEAGUE", player: "Nick Kurtz", playerJa: "N.カーツ", playerId: 701762, team: "ATH", teamId: 133, position: "1B", count: 1, stats: { "試合": 117, "打率": ".290", "本塁打": 36, "打点": 86, "得点": 90, "OPS": "1.002" } },
             nl: { league: "NATIONAL LEAGUE", player: "Drake Baldwin", playerJa: "D.ボールドウィン", playerId: 686948, team: "ATL", teamId: 144, position: "C", count: 1, stats: { "打率": ".274", "出塁率": ".341", "長打率": ".469", "本塁打": 19, "打点": 80, "OPS": ".810" } }
         },
         manager: {
             title: "MANAGER OF THE YEAR", sourceUrl: "https://www.mlb.com/news/2025-manager-of-the-year-winners",
+            finalistsSourceUrl: "https://www.mlb.com/news/2025-bbwaa-awards-finalists-for-mvp-cy-young-rookie-of-year",
+            finalists: {
+                al: [
+                    { playerJa: "J.シュナイダー", playerId: 456120, team: "TOR", teamId: 141, position: "監督", stats: [["勝敗", "94-68"], ["勝率", ".580"], ["順位", "東1位"]] },
+                    { playerJa: "S.ボート", playerId: 519390, team: "CLE", teamId: 114, position: "監督" },
+                    { playerJa: "D.ウィルソン", playerId: 124383, team: "SEA", teamId: 136, position: "監督", stats: [["勝敗", "90-72"], ["勝率", ".556"], ["順位", "西1位"]] }
+                ],
+                nl: [
+                    { playerJa: "T.フランコーナ", playerId: 114378, team: "CIN", teamId: 113, position: "監督", stats: [["勝敗", "83-79"], ["勝率", ".512"], ["結果", "WC進出"]] },
+                    { playerJa: "P.マーフィー", playerId: 580268, team: "MIL", teamId: 158, position: "監督" },
+                    { playerJa: "R.トムソン", playerId: 479080, team: "PHI", teamId: 143, position: "監督", stats: [["勝敗", "96-66"], ["勝率", ".593"], ["順位", "東1位"]] }
+                ]
+            },
             al: { league: "AMERICAN LEAGUE", player: "Stephen Vogt", playerJa: "S.ボート", playerId: 519390, photoUrl: "assets/awards/managers/stephen-vogt.png", team: "CLE", teamId: 114, position: "監督", count: 2, streak: 2, stats: { "勝敗": "88-74", "勝率": ".543", "地区": "AL中地区1位", "1位票": 17, "得票点": 113 } },
             nl: { league: "NATIONAL LEAGUE", player: "Pat Murphy", playerJa: "P.マーフィー", playerId: 580268, photoUrl: "assets/awards/managers/pat-murphy.png", team: "MIL", teamId: 158, position: "監督", count: 2, streak: 2, stats: { "勝敗": "97-65", "勝率": ".599", "地区": "NL中地区1位", "1位票": 27, "得票点": 141 } }
         },

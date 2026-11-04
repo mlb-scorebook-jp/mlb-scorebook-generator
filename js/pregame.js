@@ -3141,8 +3141,14 @@
         player?.declaredDate ?? ""
     );
 
+    const formatJapaneseMlbTransferDate = (date) => {
+        const match = String(date ?? "").match(/^\d{4}-(\d{2})-(\d{2})$/);
+        return match ? `${Number(match[1])}/${Number(match[2])}` : "";
+    };
+
     const japaneseMlbTransferStatus = (player) => {
-        const date = formatAgreementDate(japaneseMlbTransferDate(player));
+        if (player?.statusText) return player.statusText;
+        const date = formatJapaneseMlbTransferDate(japaneseMlbTransferDate(player));
         const overseasFreeAgent = player?.transferType === "overseas-fa" ||
             Boolean(player?.overseasFreeAgentDate);
         return overseasFreeAgent
@@ -3300,6 +3306,25 @@
     const buildSeasonTrades = async (season, date) => {
         const startDate = `${season}-01-01`;
         const transactions = await fetchFreeAgentTransactions(startDate, date);
+        const playerIds = [...new Set(transactions
+            .filter((transaction) => String(transaction?.typeCode ?? "") === "TR")
+            .map((transaction) => Number(transaction?.person?.id))
+            .filter(Boolean))];
+        const playerProfiles = new Map();
+        await Promise.all(Array.from(
+            { length: Math.ceil(playerIds.length / 50) },
+            async (_value, index) => {
+                const ids = playerIds.slice(index * 50, index * 50 + 50);
+                const params = new URLSearchParams({ personIds: ids.join(",") });
+                const payload = await fetchJson(
+                    `${API_ROOT}/v1/people?${params}`,
+                    `pregame:trade-player-profiles:${ids.join("-")}`
+                ).catch(() => null);
+                (payload?.people ?? []).forEach((person) => {
+                    playerProfiles.set(Number(person.id), person);
+                });
+            }
+        ));
         const grouped = new Map();
         transactions
             .filter((transaction) => String(transaction?.typeCode ?? "") === "TR")
@@ -3326,7 +3351,9 @@
                 trade.movements.set(movementKey, {
                     fromTeam: { ...fromTeam, id: fromTeamId },
                     toTeam: { ...toTeam, id: toTeamId },
-                    person: personId ? transaction.person : null,
+                    person: personId
+                        ? { ...transaction.person, ...playerProfiles.get(personId) }
+                        : null,
                     assetLabel: personId ? "" : tradeAssetLabel(description)
                 });
             });
@@ -3462,15 +3489,28 @@
             dateLink.rel = "noopener noreferrer";
             const details = el("div", "pregame-trade-details");
             const createTradeAsset = (movement) => {
-                const asset = movement.person
-                    ? el("a", "pregame-trade-player", playerName(movement.person))
-                    : el("span", "pregame-trade-asset", movement.assetLabel);
-                if (movement.person) {
-                    asset.href = `https://www.mlb.com/player/${movement.person.id}`;
-                    asset.target = "_blank";
-                    asset.rel = "noopener noreferrer";
+                if (!movement.person) {
+                    return el("span", "pregame-trade-asset", movement.assetLabel);
                 }
-                return asset;
+                const entry = el("span", "pregame-trade-player-entry");
+                const asset = el("a", "pregame-trade-player", playerName(movement.person));
+                asset.href = `https://www.mlb.com/player/${movement.person.id}`;
+                asset.target = "_blank";
+                asset.rel = "noopener noreferrer";
+                entry.append(asset);
+                const position = String(
+                    movement.person?.primaryPosition?.abbreviation ?? ""
+                ).toUpperCase();
+                const handLabel = (value) => ({ R: "右", L: "左", S: "両" })[
+                    String(value ?? "").toUpperCase()
+                ] ?? "";
+                const throws = handLabel(movement.person?.pitchHand?.code);
+                const bats = handLabel(movement.person?.batSide?.code);
+                const profile = [position, throws && bats ? `${throws}／${bats}` : ""]
+                    .filter(Boolean)
+                    .join("　");
+                if (profile) entry.append(el("span", "pregame-trade-player-profile", profile));
+                return entry;
             };
             const teams = new Map();
             trade.movements.forEach((movement) => {
@@ -3876,13 +3916,17 @@
             headerMeta.append(el(
                 "span",
                 "pregame-free-agent-exchange-rate",
-                `1ドル${rateText}円（${formatAgreementDate(exchangeRate.date)}時点）`
+                `1ドル${rateText}円 ${formatJapaneseMlbTransferDate(exchangeRate.date)}時点`
             ));
         }
         header.append(headerMeta);
         if (newTransactions.length) {
             const dailyUpdates = el("section", "pregame-free-agent-daily-updates");
-            dailyUpdates.append(el("h4", "", "新着FA動向（24時間）"));
+            dailyUpdates.append(el(
+                "h4",
+                "",
+                `${formatJapaneseMlbTransferDate(date)} 新着FA動向`
+            ));
             const dailyColumns = el(
                 "div",
                 "pregame-free-agent-columns pregame-free-agent-daily-columns"
@@ -3974,6 +4018,53 @@
             dailyUpdates.append(dailyColumns);
             freeAgentSection.append(dailyUpdates);
         }
+        const newManagers = upcoming ? [] : (window.MLB_NEW_MANAGERS?.[season] ?? [])
+            .filter((manager) => manager.announcedDate <= date);
+        if (newManagers.length) {
+            const managerUpdates = el("section", "pregame-free-agent-manager-updates");
+            managerUpdates.append(el("h4", "", `${season + 1}年 新監督`));
+            const managerColumns = el(
+                "div",
+                "pregame-free-agent-columns pregame-free-agent-daily-columns"
+            );
+            ["AL", "NL"].forEach((league) => {
+                const panel = el("section", "pregame-free-agent-league");
+                panel.append(el("h4", "", league));
+                const list = el("div", "pregame-free-agent-list");
+                newManagers.filter((manager) => manager.league === league)
+                    .forEach((manager) => {
+                        const row = el("div", "pregame-free-agent-row");
+                        const identity = el("span", "pregame-free-agent-identity");
+                        identity.append(
+                            createFreeAgentTeamLogo({
+                                id: manager.teamId,
+                                name: manager.teamName
+                            }),
+                            el("span", "pregame-free-agent-player", manager.managerName)
+                        );
+                        const status = el(
+                            "a",
+                            "pregame-free-agent-manager-status",
+                            manager.statusText
+                        );
+                        status.href = manager.sourceUrl;
+                        status.target = "_blank";
+                        status.rel = "noopener noreferrer";
+                        status.append(el(
+                            "span",
+                            "pregame-free-agent-manager-date",
+                            `${formatJapaneseMlbTransferDate(manager.announcedDate)}発表`
+                        ));
+                        row.append(identity, status);
+                        list.append(row);
+                    });
+                if (!list.childElementCount) list.append(empty("発表はありません。"));
+                panel.append(list);
+                managerColumns.append(panel);
+            });
+            managerUpdates.append(managerColumns);
+            freeAgentSection.append(managerUpdates);
+        }
         const columns = el("div", "pregame-free-agent-columns");
         ["AL", "NL"].forEach((league) => {
             const panel = el("section", "pregame-free-agent-league");
@@ -4035,7 +4126,7 @@
                         const postingStatus = el(
                             "a",
                             "pregame-free-agent-posting-status",
-                            `${formatAgreementDate(entry.postedDate)}申請`
+                            `${formatJapaneseMlbTransferDate(entry.postedDate)}申請`
                         );
                         postingStatus.href = entry.sourceUrl;
                         postingStatus.target = "_blank";
@@ -4060,19 +4151,19 @@
                         else row.append(retirement);
                     } else if (entry.signing) {
                         const terms = entry.signing.terms;
-                        const dateText = formatAgreementDate(
+                        const dateText = formatJapaneseMlbTransferDate(
                             entry.signing.agreedDate || entry.signing.officialDate
                         );
                         const isNpbSigning = entry.signing.league === "NPB";
                         const statusText = isNpbSigning
                             ? npbSigningStatusText(entry.signing, terms) +
-                                (dateText ? `（${dateText}正式発表）` : "")
+                                (dateText ? ` ${dateText}正式発表` : "")
                             : terms
                                 ? `と${terms.years}年${formatContractDollars(terms.tenThousands)}で契約` +
-                                    (dateText ? `（${dateText}${entry.signing.agreedDate ? "合意" : "公式登録"}）` : "")
+                                    (dateText ? ` ${dateText}${entry.signing.agreedDate ? "合意" : "公式登録"}` : "")
                                 : `と${entry.signing.minorLeague ? "マイナー契約" : "契約"}` +
                                     " ※期間と金額は未公表" +
-                                    (dateText ? `（${dateText}${entry.signing.agreedDate ? "合意" : "公式登録"}）` : "");
+                                    (dateText ? ` ${dateText}${entry.signing.agreedDate ? "合意" : "公式登録"}` : "");
                         const status = el(
                             entry.signing.url ? "a" : "span",
                             "pregame-free-agent-signing",
@@ -4107,7 +4198,7 @@
                         const declaredStatus = el(
                             "a",
                             "pregame-free-agent-declared-status",
-                            `${declaredLabel}（${formatAgreementDate(entry.declaredDate)}）`
+                            `${declaredLabel} ${formatJapaneseMlbTransferDate(entry.declaredDate)}`
                         );
                         declaredStatus.href = entry.sourceUrl;
                         declaredStatus.target = "_blank";
@@ -4139,7 +4230,8 @@
                         const status = el(
                             "a",
                             "pregame-free-agent-trade-status",
-                            `${teamCode({ id: entry.trade.teamId })}へトレード（${formatAgreementDate(entry.trade.date)}）`
+                            `${teamCode({ id: entry.trade.teamId })}へトレード ` +
+                                formatJapaneseMlbTransferDate(entry.trade.date)
                         );
                         status.href = entry.trade.url;
                         status.target = "_blank";
@@ -4161,7 +4253,7 @@
         freeAgentSection.append(columns);
         if (postedPlayers.length) {
             const postedPanel = el("section", "pregame-free-agent-posted");
-            postedPanel.append(el("h4", "", "日本人選手｜ポスティング／海外FA"));
+            postedPanel.append(el("h4", "", "日本人選手｜MLB移籍・挑戦"));
             const postedList = el("div", "pregame-free-agent-list");
             postedPlayers.forEach((player) => {
                 const row = el("div", "pregame-free-agent-row");
@@ -4206,7 +4298,7 @@
                         "a",
                         "pregame-free-agent-signing",
                         signingText +
-                            `（${formatAgreementDate(signing.agreedDate)}合意）`
+                            ` ${formatJapaneseMlbTransferDate(signing.agreedDate)}合意`
                     );
                     status.prepend(createFreeAgentTeamLogo(
                         { id: signing.teamId },
