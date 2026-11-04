@@ -3142,6 +3142,7 @@
     );
 
     const japaneseMlbTransferStatus = (player) => {
+        if (player?.statusText) return player.statusText;
         const date = formatAgreementDate(japaneseMlbTransferDate(player));
         const overseasFreeAgent = player?.transferType === "overseas-fa" ||
             Boolean(player?.overseasFreeAgentDate);
@@ -4208,7 +4209,7 @@
         freeAgentSection.append(columns);
         if (postedPlayers.length) {
             const postedPanel = el("section", "pregame-free-agent-posted");
-            postedPanel.append(el("h4", "", "日本人選手｜ポスティング／海外FA"));
+            postedPanel.append(el("h4", "", "日本人選手｜MLB移籍・挑戦"));
             const postedList = el("div", "pregame-free-agent-list");
             postedPlayers.forEach((player) => {
                 const row = el("div", "pregame-free-agent-row");

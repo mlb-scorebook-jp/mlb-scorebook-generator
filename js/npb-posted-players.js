@@ -132,6 +132,19 @@
         ]),
         2026: Object.freeze([
             {
+                name: "織田 翔希",
+                formerTeam: "横浜高等学校",
+                formerTeamLogoUrl: "assets/npb-team-logos/yokohama-high-school.svg",
+                position: "RHP",
+                pitcherRole: "SP",
+                transferType: "prospect",
+                declaredDate: "2026-11-04",
+                statusText: "11月4日から、ドジャースやヤンキースを含む" +
+                    "MLB約11～12球団との面談開始予定",
+                sourceUrl: "https://www.nikkansports.com/baseball/highschool/" +
+                    "news/202611020001706.html"
+            },
+            {
                 name: "佐藤 輝明",
                 formerTeam: "阪神タイガース",
                 formerTeamLogoUrl: "assets/npb-team-logos/t.png",
