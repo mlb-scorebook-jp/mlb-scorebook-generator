@@ -71,7 +71,7 @@ window.MLB_AWARDS_MAJOR_HISTORY = {
                 nl: [
                     { playerJa: "D.ボールドウィン", playerId: 686948, team: "ATL", teamId: 144, position: "C" },
                     { playerJa: "C.ダービン", playerId: 702332, team: "MIL", teamId: 158, position: "3B", stats: [["率", ".256"], ["本", "11"], ["盗", "18"]] },
-                    { playerJa: "C.ホートン", playerId: 690990, team: "CHC", teamId: 112, position: "RHP", stats: [["勝敗", "11-4"], ["防", "2.67"], ["振", "97"]] }
+                    { playerJa: "C.ホートン", playerId: 690990, team: "CHC", teamId: 112, position: "RHP", stats: [["勝敗", "11勝4敗"], ["防", "2.67"], ["振", "97"]] }
                 ]
             },
             al: { league: "AMERICAN LEAGUE", player: "Nick Kurtz", playerJa: "N.カーツ", playerId: 701762, team: "ATH", teamId: 133, position: "1B", count: 1, stats: { "試合": 117, "打率": ".290", "本塁打": 36, "打点": 86, "得点": 90, "OPS": "1.002" } },
