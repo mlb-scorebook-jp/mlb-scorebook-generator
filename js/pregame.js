@@ -2974,6 +2974,13 @@
             url: "https://www.mlb.com/news/michael-king-free-agent-2027"
         })]
     ]);
+    const FREE_AGENT_QUALIFYING_OFFERS = new Map([
+        668227, 664040, 673548, 669432, 641343, 670970, 680777, 670280
+    ].map((playerId) => [playerId, Object.freeze({
+        offeredDate: "2026-11-02",
+        responseDeadline: "2026-11-17",
+        url: "https://www.mlb.com/news/qualifying-offer-candidates-and-decisions-2026-27"
+    })]));
 
     const formatAgreementDate = (date) => {
         const match = String(date ?? "").match(/^\d{4}-(\d{2})-(\d{2})$/);
@@ -3647,9 +3654,13 @@
             const formerTeamId = Number(formerTeam?.id);
             if (!playerId || !MLB_TEAM_IDS.has(formerTeamId)) return;
             const optOut = FREE_AGENT_OPT_OUT_DETAILS.get(playerId);
+            const qualifyingOffer = FREE_AGENT_QUALIFYING_OFFERS.get(playerId);
             const declaredDate = String(
                 transaction?.effectiveDate || transaction?.date || ""
             ).slice(0, 10);
+            const qualifyingOfferPending = qualifyingOffer &&
+                qualifyingOffer.offeredDate <= date &&
+                date <= qualifyingOffer.responseDeadline;
             freeAgents.set(playerId, {
                 playerId,
                 person: transaction.person,
@@ -3658,8 +3669,11 @@
                 declaredFreeAgent: true,
                 declaredDate: optOut?.date || declaredDate,
                 optOutContractYears: optOut?.contractYears || 0,
-                declaredStatusText: optOut?.statusText || "",
+                declaredStatusText: optOut?.statusText || (qualifyingOfferPending
+                    ? "QO回答待ち（11/17期限）"
+                    : ""),
                 sourceUrl: optOut?.url ||
+                    (qualifyingOfferPending ? qualifyingOffer.url : "") ||
                     `https://www.mlb.com/transactions?date=${declaredDate}`
             });
         });

@@ -9,9 +9,17 @@
             retiredDate: "2026-03-27",
             url: "https://www.mlb.com/news/former-braves-cubs-dodgers-jason-heyward-announces-retirement-after-16-years-in-big-leagues"
         }),
+        641313: Object.freeze({
+            retiredDate: "2026-08-10",
+            url: "https://www.mlb.com/news/tim-anderson-retires"
+        }),
         641820: Object.freeze({
             retiredDate: "2026-08-18",
             url: "https://www.mlb.com/news/trey-mancini-announces-retirement"
+        }),
+        521230: Object.freeze({
+            retiredDate: "2026-09-29",
+            url: "https://www.mlb.com/news/liam-hendriks-retires-from-mlb-after-14-seasons"
         }),
         434378: Object.freeze({
             retiredDate: "2026-09-26",
