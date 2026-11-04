@@ -20,6 +20,10 @@
         489446: Object.freeze({
             retiredDate: "2026-09-26",
             url: "https://www.mlb.com/news/kirby-yates-makes-final-mlb-appearance-before-retiring"
+        }),
+        500743: Object.freeze({
+            retiredDate: "2026-10-15",
+            url: "https://www.mlb.com/news/miguel-rojas-announces-retirement"
         })
     });
 })(window);
