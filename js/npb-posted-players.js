@@ -138,7 +138,7 @@
                 position: "RHP",
                 pitcherRole: "SP",
                 transferType: "prospect",
-                declaredDate: "2026-11-04",
+                declaredDate: "2026-11-02",
                 statusText: "11月4日から、ドジャースやヤンキースを含む" +
                     "MLB約11～12球団との面談開始予定",
                 sourceUrl: "https://www.nikkansports.com/baseball/highschool/" +
