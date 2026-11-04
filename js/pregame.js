@@ -4083,7 +4083,21 @@
             managerUpdates.append(managerColumns);
             freeAgentSection.append(managerUpdates);
         }
+        const listOrderControls = el("div", "pregame-free-agent-list-order");
+        const listOrderLabel = el("label", "", "表示順");
+        const listOrderSelect = document.createElement("select");
+        listOrderSelect.className = "pregame-free-agent-list-order-select";
+        listOrderSelect.append(
+            new Option("ポジション別", "position"),
+            new Option("チーム別", "team")
+        );
+        listOrderLabel.append(listOrderSelect);
+        listOrderControls.append(listOrderLabel);
+        freeAgentSection.append(listOrderControls);
+
         const columns = el("div", "pregame-free-agent-columns");
+        const leagueLists = [];
+        const formerTeams = new Map();
         ["AL", "NL"].forEach((league) => {
             const panel = el("section", "pregame-free-agent-league");
             panel.append(el("h4", "", league));
@@ -4123,6 +4137,10 @@
                     ));
                     entriesByPosition.get(position).forEach((entry) => {
                     const row = el("div", "pregame-free-agent-row");
+                    const formerTeamId = Number(entry.formerTeam?.id) || 0;
+                    row.dataset.formerTeamId = String(formerTeamId);
+                    row.dataset.playerName = playerName(entry.person);
+                    if (formerTeamId) formerTeams.set(formerTeamId, entry.formerTeam);
                     const isNewPlayer = newPlayerIds.has(Number(entry.playerId));
                     const identity = el("span", "pregame-free-agent-identity");
                     const playerLink = el("a", "pregame-free-agent-player", playerName(entry.person));
@@ -4218,6 +4236,9 @@
                             "pregame-free-agent-declared-status",
                             `${declaredLabel} ${formatJapaneseMlbTransferDate(entry.declaredDate)}`
                         );
+                        if (entry.declaredStatusText?.startsWith("QO回答待ち")) {
+                            declaredStatus.classList.add("pregame-free-agent-qo-pending");
+                        }
                         declaredStatus.href = entry.sourceUrl;
                         declaredStatus.target = "_blank";
                         declaredStatus.rel = "noopener noreferrer";
@@ -4267,6 +4288,52 @@
             }
             panel.append(list);
             columns.append(panel);
+            leagueLists.push({ list, positionChildren: [...list.children] });
+        });
+        listOrderSelect.addEventListener("change", () => {
+            leagueLists.forEach(({ list, positionChildren }) => {
+                if (listOrderSelect.value === "position") {
+                    list.replaceChildren(...positionChildren);
+                    return;
+                }
+                const rows = positionChildren.filter((child) =>
+                    child.classList.contains("pregame-free-agent-row")
+                );
+                if (!rows.length) {
+                    list.replaceChildren(...positionChildren);
+                    return;
+                }
+                const rowsByTeam = rows.reduce((map, row) => {
+                    const teamId = Number(row.dataset.formerTeamId) || 0;
+                    if (!map.has(teamId)) map.set(teamId, []);
+                    map.get(teamId).push(row);
+                    return map;
+                }, new Map());
+                const teamIds = [...rowsByTeam.keys()].sort((left, right) => {
+                    const leftCode = teamCode(formerTeams.get(left)) || "ZZZ";
+                    const rightCode = teamCode(formerTeams.get(right)) || "ZZZ";
+                    return leftCode.localeCompare(rightCode, "en");
+                });
+                const children = [];
+                teamIds.forEach((teamId) => {
+                    const team = formerTeams.get(teamId);
+                    const heading = el(
+                        "div",
+                        "pregame-free-agent-position-heading pregame-free-agent-team-heading"
+                    );
+                    if (team) heading.append(createFreeAgentTeamLogo(team));
+                    heading.append(document.createTextNode(
+                        team ? `${teamCode(team)}｜${teamJapaneseName(team)}` : "所属チーム不明"
+                    ));
+                    children.push(heading);
+                    rowsByTeam.get(teamId)
+                        .sort((left, right) =>
+                            left.dataset.playerName.localeCompare(right.dataset.playerName, "ja")
+                        )
+                        .forEach((row) => children.push(row));
+                });
+                list.replaceChildren(...children);
+            });
         });
         freeAgentSection.append(columns);
         if (postedPlayers.length) {
