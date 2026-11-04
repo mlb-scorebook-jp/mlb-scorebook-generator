@@ -744,6 +744,17 @@
         return `${values.year}-${values.month}-${values.day}`;
     };
 
+    const currentJapanDate = (now = new Date()) => {
+        const parts = new Intl.DateTimeFormat("en-US", {
+            timeZone: "Asia/Tokyo",
+            year: "numeric",
+            month: "2-digit",
+            day: "2-digit"
+        }).formatToParts(now);
+        const values = Object.fromEntries(parts.map((part) => [part.type, part.value]));
+        return `${values.year}-${values.month}-${values.day}`;
+    };
+
     const currentMlbDate = () => currentEasternDate();
 
     const getStatus = (game) => String(
@@ -3888,7 +3899,11 @@
         header.append(headerMeta);
         if (newTransactions.length) {
             const dailyUpdates = el("section", "pregame-free-agent-daily-updates");
-            dailyUpdates.append(el("h4", "", "新着FA動向（24時間）"));
+            dailyUpdates.append(el(
+                "h4",
+                "",
+                `${formatJapaneseMlbTransferDate(currentJapanDate())} 新着FA動向`
+            ));
             const dailyColumns = el(
                 "div",
                 "pregame-free-agent-columns pregame-free-agent-daily-columns"
