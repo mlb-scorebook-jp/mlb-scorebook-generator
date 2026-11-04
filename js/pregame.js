@@ -4321,9 +4321,8 @@
                         "div",
                         "pregame-free-agent-position-heading pregame-free-agent-team-heading"
                     );
-                    if (team) heading.append(createFreeAgentTeamLogo(team));
                     heading.append(document.createTextNode(
-                        team ? `${teamCode(team)}｜${teamJapaneseName(team)}` : "所属チーム不明"
+                        team ? teamJapaneseName(team) : "所属チーム不明"
                     ));
                     children.push(heading);
                     rowsByTeam.get(teamId)
