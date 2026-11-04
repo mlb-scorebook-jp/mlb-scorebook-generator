@@ -72,14 +72,14 @@ window.MLB_AWARDS_2026 = {
         } },
         manager: { label: "最優秀監督", group: "major", status: "pending", finalistsSourceUrl: "https://www.mlb.com/news/2026-bbwaa-awards-finalists", finalists: {
             al: [
-                { playerJa: "K.キャッシュ", playerId: 408211, team: "TB", teamId: 139, position: "監督", stats: [["勝敗", "98-64"], ["勝率", ".605"], ["結果", "WS進出"]] },
+                { playerJa: "K.キャッシュ", playerId: 408211, photoUrl: "assets/awards/managers/2026/kevin-cash.png", team: "TB", teamId: 139, position: "監督", stats: [["勝敗", "98-64"], ["勝率", ".605"], ["結果", "WS進出"]] },
                 { playerJa: "C.トレーシー", playerId: 429710, team: "BOS", teamId: 111, position: "監督", stats: [["勝敗", "77-58"], ["結果", "WC進出"]] },
-                { playerJa: "W.ベナブル", playerId: 461416, team: "CWS", teamId: 145, position: "監督", stats: [["勝敗", "84-78"], ["勝率", ".519"], ["結果", "WC進出"]] }
+                { playerJa: "W.ベナブル", playerId: 461416, photoUrl: "assets/awards/managers/2026/will-venable.png", team: "CWS", teamId: 145, position: "監督", stats: [["勝敗", "84-78"], ["勝率", ".519"], ["結果", "WC進出"]] }
             ],
             nl: [
-                { playerJa: "D.マッティングリー", playerId: 118443, team: "PHI", teamId: 143, position: "監督", stats: [["勝敗", "79-55"], ["結果", "WC進出"]] },
-                { playerJa: "P.マーフィー", playerId: 580268, team: "MIL", teamId: 158, position: "監督", stats: [["勝敗", "103-59"], ["勝率", ".636"], ["結果", "WS優勝"]] },
-                { playerJa: "W.ワイス", playerId: 124054, team: "ATL", teamId: 144, position: "監督", stats: [["勝敗", "94-68"], ["勝率", ".580"], ["順位", "東1位"]] }
+                { playerJa: "D.マッティングリー", playerId: 118443, photoUrl: "assets/awards/managers/2026/don-mattingly.png", team: "PHI", teamId: 143, position: "監督", stats: [["勝敗", "79-55"], ["結果", "WC進出"]] },
+                { playerJa: "P.マーフィー", playerId: 580268, photoUrl: "assets/awards/managers/2026/pat-murphy.png", team: "MIL", teamId: 158, position: "監督", stats: [["勝敗", "103-59"], ["勝率", ".636"], ["結果", "WS優勝"]] },
+                { playerJa: "W.ワイス", playerId: 124054, photoUrl: "assets/awards/managers/2026/walt-weiss.png", team: "ATL", teamId: 144, position: "監督", stats: [["勝敗", "94-68"], ["勝率", ".580"], ["順位", "東1位"]] }
             ]
         } },
         allMlb: { label: "オールMLB", group: "major", status: "pending" },

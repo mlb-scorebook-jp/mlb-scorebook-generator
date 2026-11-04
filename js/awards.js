@@ -253,9 +253,9 @@
             <h3>${leagueName === "AL" ? "AMERICAN LEAGUE" : "NATIONAL LEAGUE"}</h3>
             <div>${rows.map((finalist) => {
                 const isManager = state.category === "manager";
-                const photoUrl = isManager
+                const photoUrl = finalist.photoUrl || (isManager
                     ? `https://img.mlbstatic.com/mlb-photos/image/upload/d_people%3Ageneric%3Aheadshot%3A83%3Acurrent.png/ar_1%3A1%2Cc_pad%2Cb_auto%3Aborder/w_180%2Cq_auto%3Abest/v1/people/${finalist.playerId}/headshot/83/coach/current`
-                    : `https://img.mlbstatic.com/mlb-photos/image/upload/w_160,q_auto:best/v1/people/${finalist.playerId}/headshot/silo/current`;
+                    : `https://img.mlbstatic.com/mlb-photos/image/upload/w_160,q_auto:best/v1/people/${finalist.playerId}/headshot/silo/current`);
                 return `<article class="awards-finalist-card">
                     <div class="awards-finalist-photo">${portraitWithFallback(photoUrl, isManager ? "is-manager" : "")}</div>
                     <img src="${logoUrl(finalist.teamId)}" alt="${escapeHtml(finalist.team)}">
