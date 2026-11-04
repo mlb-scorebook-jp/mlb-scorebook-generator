@@ -3344,6 +3344,67 @@
 
     const renderSeasonTradeList = async (season, date) => {
         const trades = await buildSeasonTrades(season, date);
+        const tradePlayerIds = [...new Set(trades.flatMap((trade) =>
+            trade.movements.map((movement) => Number(movement.person?.id)).filter(Boolean)
+        ))];
+        const tradePlayerStats = new Map();
+        const endDate = String(date).slice(0, 10);
+        let tradeStatsLoaded = false;
+        let tradeStatsPromise = null;
+        const loadTradePlayerStats = () => {
+            if (tradeStatsPromise) return tradeStatsPromise;
+            tradeStatsPromise = Promise.all(Array.from(
+                { length: Math.ceil(tradePlayerIds.length / 40) },
+                async (_value, index) => {
+                    const ids = tradePlayerIds.slice(index * 40, index * 40 + 40);
+                    const hydrate = `stats(group=[hitting,pitching],type=[byDateRange],` +
+                        `startDate=${season}-01-01,endDate=${endDate},gameType=[R])`;
+                    const params = new URLSearchParams({ personIds: ids.join(","), hydrate });
+                    const payload = await fetchJson(
+                        `${API_ROOT}/v1/people?${params}`,
+                        `pregame:trade-player-stats:${season}:${endDate}:${ids.join("-")}`
+                    ).catch(() => null);
+                    (payload?.people ?? []).forEach((person) => {
+                        const stats = {};
+                        (person?.stats ?? []).forEach((entry) => {
+                            const group = String(entry?.group?.displayName ?? "").toLowerCase();
+                            if (group) stats[group] = entry?.splits?.[0]?.stat ?? null;
+                        });
+                        tradePlayerStats.set(Number(person.id), stats);
+                    });
+                }
+            )).then(() => {
+                tradeStatsLoaded = true;
+            });
+            return tradeStatsPromise;
+        };
+        const tradePlayerStatText = (playerId) => {
+            if (!tradeStatsLoaded) return "成績を読み込み中…";
+            const stats = tradePlayerStats.get(Number(playerId)) ?? {};
+            const hitting = stats.hitting;
+            const pitching = stats.pitching;
+            const statLines = [];
+            if (statNumber(hitting?.plateAppearances) || statNumber(hitting?.atBats)) {
+                statLines.push(
+                    `${statNumber(hitting.gamesPlayed)}試合　打率${hitting.avg ?? "-"}` +
+                    `　${statNumber(hitting.homeRuns)}本　${statNumber(hitting.rbi)}打点` +
+                    `　OPS ${hitting.ops ?? "-"}`
+                );
+            }
+            if (statNumber(pitching?.gamesPlayed) || inningsToOuts(pitching?.inningsPitched)) {
+                statLines.push(
+                    `${statNumber(pitching.gamesPlayed)}登板　防御率${pitching.era ?? "-"}` +
+                    `　${statNumber(pitching.wins)}勝${statNumber(pitching.losses)}敗` +
+                    `　${statNumber(pitching.strikeOuts)}奪三振　WHIP ${pitching.whip ?? "-"}`
+                );
+            }
+            return statLines.join(" / ") || `${season}年 MLB出場なし`;
+        };
+        const refreshTradePlayerStats = (root) => {
+            root.querySelectorAll(".pregame-trade-player-stats").forEach((node) => {
+                node.textContent = tradePlayerStatText(node.dataset.playerId);
+            });
+        };
         const tradeSection = section(`${season}年 トレード一覧（${trades.length}組）`, "");
         tradeSection.classList.add("pregame-trades-section");
         const title = tradeSection.querySelector(".pregame-section-header h3");
@@ -3449,10 +3510,14 @@
         headerTools.append(teamFilter, search, count, toggle);
         header.append(headerTools);
         tradeSection.classList.add("pregame-trades-collapsed");
-        toggle.addEventListener("click", () => {
+        toggle.addEventListener("click", async () => {
             const collapsed = tradeSection.classList.toggle("pregame-trades-collapsed");
             toggle.textContent = collapsed ? "表示" : "閉じる";
             toggle.setAttribute("aria-expanded", String(!collapsed));
+            if (!collapsed && !tradeStatsLoaded) {
+                await loadTradePlayerStats();
+                refreshTradePlayerStats(tradeSection);
+            }
         });
         const list = el("div", "pregame-trade-list");
         const noResults = el("div", "pregame-empty pregame-trade-no-results", "一致するトレードはありません。");
@@ -3468,15 +3533,25 @@
             dateLink.rel = "noopener noreferrer";
             const details = el("div", "pregame-trade-details");
             const createTradeAsset = (movement) => {
-                const asset = movement.person
-                    ? el("a", "pregame-trade-player", playerName(movement.person))
-                    : el("span", "pregame-trade-asset", movement.assetLabel);
-                if (movement.person) {
-                    asset.href = `https://www.mlb.com/player/${movement.person.id}`;
-                    asset.target = "_blank";
-                    asset.rel = "noopener noreferrer";
+                if (!movement.person) {
+                    return el("span", "pregame-trade-asset", movement.assetLabel);
                 }
-                return asset;
+                const card = el("span", "pregame-trade-player-card");
+                const asset = el("a", "pregame-trade-player", playerName(movement.person));
+                asset.href = `https://www.mlb.com/player/${movement.person.id}`;
+                asset.target = "_blank";
+                asset.rel = "noopener noreferrer";
+                const statLine = el(
+                    "span",
+                    "pregame-trade-player-stats",
+                    tradePlayerStatText(movement.person.id)
+                );
+                statLine.dataset.playerId = String(movement.person.id);
+                card.append(
+                    asset,
+                    statLine
+                );
+                return card;
             };
             const teams = new Map();
             trade.movements.forEach((movement) => {

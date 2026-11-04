@@ -2139,14 +2139,14 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
 }
 
 .pregame-trade-details {
-    width: min(360px, 100%);
+    width: min(760px, 100%);
     min-width: 0;
 }
 
 .pregame-trade-team-header,
 .pregame-trade-exchange {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) 34px minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr) 54px minmax(0, 1fr);
     align-items: center;
     column-gap: 8px;
     min-width: 0;
@@ -2185,7 +2185,9 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
 
 .pregame-trade-swap {
     align-self: center;
-    font-size: 15px;
+    color: #b9c6cd;
+    font-size: 27px;
+    line-height: 1;
 }
 
 .pregame-trade-assets {
@@ -2196,7 +2198,7 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
 }
 
 .pregame-trade-assets > * {
-    min-height: 21px;
+    min-height: 38px;
     font-size: 13px;
 }
 
@@ -2209,6 +2211,25 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
     color: #dbe5ea;
     overflow-wrap: anywhere;
     text-decoration: none;
+}
+
+.pregame-trade-player-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 3px;
+    min-width: 0;
+}
+
+.pregame-trade-player-stats {
+    color: #8fa0aa;
+    font-size: 10px;
+    line-height: 1.25;
+    overflow-wrap: anywhere;
+}
+
+.pregame-trade-assets-right .pregame-trade-player-card {
+    align-items: flex-end;
 }
 
 .pregame-trade-asset {
@@ -2699,7 +2720,7 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
 
     .pregame-trade-team-header,
     .pregame-trade-exchange {
-        grid-template-columns: minmax(0, 1fr) 28px minmax(0, 1fr);
+        grid-template-columns: minmax(0, 1fr) 40px minmax(0, 1fr);
         column-gap: 5px;
     }
 
