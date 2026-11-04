@@ -17,6 +17,40 @@
     const initialSeason = Number(new URLSearchParams(location.hash.slice(1)).get("season")) || 2026;
     const state = { group: "battingDefense", category: "goldGlove", season: seasons.includes(initialSeason) ? initialSeason : 2026 };
 
+    const currentEasternDate = () => {
+        const parts = new Intl.DateTimeFormat("en-US", {
+            timeZone: "America/New_York",
+            year: "numeric",
+            month: "2-digit",
+            day: "2-digit"
+        }).formatToParts(new Date());
+        const values = Object.fromEntries(parts.map((part) => [part.type, part.value]));
+        return `${values.year}-${values.month}-${values.day}`;
+    };
+
+    const refreshHeaderNew = () => {
+        const button = document.getElementById("header-awards-btn");
+        if (!button) return false;
+        const today = currentEasternDate();
+        const hasNew = Object.values(categories).some((category) =>
+            category?.status === "announced" && category?.announcedAt === today
+        );
+        let badge = button.querySelector(".header-transfer-new");
+        if (hasNew && !badge) {
+            badge = document.createElement("span");
+            badge.className = "header-transfer-new";
+            badge.textContent = "NEW";
+            button.append(badge);
+        } else if (!hasNew) {
+            badge?.remove();
+        }
+        button.setAttribute(
+            "aria-label",
+            hasNew ? "表彰（本日の新着あり）" : "表彰"
+        );
+        return hasNew;
+    };
+
     const escapeHtml = (value) => String(value ?? "")
         .replaceAll("&", "&amp;")
         .replaceAll("<", "&lt;")
@@ -252,5 +286,6 @@
 
     const open = () => { if (page) { page.hidden = false; render(); } };
     const close = () => { if (page) page.hidden = true; };
-    window.Awards = { open, close, render };
+    refreshHeaderNew();
+    window.Awards = { open, close, render, refreshHeaderNew };
 })();
