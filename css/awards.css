@@ -220,6 +220,7 @@ body.app-mode-awards #header-awards-btn {
 .awards-mvp-stats small { color: #83959e; font-size: 9px; }
 .awards-mvp-stats strong { margin-top: 4px; color: #ffe28b; font-size: 20px; text-shadow: 0 0 10px rgb(235 187 66 / 32%); }
 .awards-finalists { padding: 0 34px 30px; border: 1px solid #40515b; border-top: 0; background: #0b1115; }
+.awards-finalists-pending { padding-top: 18px; }
 .awards-finalists > header { display: flex; align-items: center; justify-content: space-between; padding: 12px 0 9px; border-top: 1px solid #334149; }
 .awards-finalists > header h3 { margin: 0; color: #cfd9de; font-size: 13px; letter-spacing: .08em; }
 .awards-finalists > header a { color: #6dcdf5; font-size: 9px; text-decoration: none; }

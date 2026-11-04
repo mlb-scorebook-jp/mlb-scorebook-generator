@@ -112,7 +112,7 @@
                 const category = categories[key];
                 const hasHistoricalData = key === "goldGlove" ? Boolean(historyData[state.season]) : Boolean(majorHistoryData[state.season]?.[key]);
                 const statusText = isBeforeAwardCreation(key) ? `${awardFoundedYears[key]}年創設`
-                    : state.season === 2026 ? (category.status === "announced" ? "発表済み" : "発表待ち")
+                    : state.season === 2026 ? (category.status === "announced" ? "発表済み" : category.finalists ? "最終候補発表済み" : "発表待ち")
                     : hasHistoricalData ? "データあり" : "未登録";
                 return `<button type="button" data-award-category="${key}"
                     class="${state.category === key ? "active" : ""}">${escapeHtml(category.label)}
@@ -126,7 +126,7 @@
                 <p>${escapeHtml(category.description || `${state.season}年シーズンの主要表彰`)}</p></div>
             <div class="awards-hero-meta"><label for="awards-season-select">シーズン</label>
                 <select id="awards-season-select" class="awards-season-select">${seasons.map((season) => `<option value="${season}" ${season === state.season ? "selected" : ""}>${season}</option>`).join("")}</select>
-                <span>${state.season === 2026 ? (category.status === "announced" ? "発表済み" : "発表待ち") : "歴代受賞者"}</span></div>
+                <span>${state.season === 2026 ? (category.status === "announced" ? "発表済み" : category.finalists ? "最終候補発表済み" : "発表待ち") : "歴代受賞者"}</span></div>
         </section>`;
 
     const renderGoldGloveBody = (award) => {
@@ -248,6 +248,26 @@
             <div><small>${escapeHtml(winner.honor || category.label)}</small><strong>${escapeHtml(winner.playerJa)}</strong><span>${escapeHtml(winner.team)}</span></div>
         </article>`).join("")}</section>`;
 
+    const renderPendingFinalists = (category) => {
+        const league = (rows, leagueName) => `<section class="awards-finalist-league awards-finalist-${leagueName.toLowerCase()}">
+            <h3>${leagueName === "AL" ? "AMERICAN LEAGUE" : "NATIONAL LEAGUE"}</h3>
+            <div>${rows.map((finalist) => {
+                const isManager = state.category === "manager";
+                const photoUrl = isManager
+                    ? `https://img.mlbstatic.com/mlb-photos/image/upload/d_people%3Ageneric%3Aheadshot%3A83%3Acurrent.png/ar_1%3A1%2Cc_pad%2Cb_auto%3Aborder/w_180%2Cq_auto%3Abest/v1/people/${finalist.playerId}/headshot/83/coach/current`
+                    : `https://img.mlbstatic.com/mlb-photos/image/upload/w_160,q_auto:best/v1/people/${finalist.playerId}/headshot/silo/current`;
+                return `<article class="awards-finalist-card">
+                    <div class="awards-finalist-photo">${portraitWithFallback(photoUrl, isManager ? "is-manager" : "")}</div>
+                    <img src="${logoUrl(finalist.teamId)}" alt="${escapeHtml(finalist.team)}">
+                    <div class="awards-finalist-copy"><small>${escapeHtml(finalist.position)}</small><strong>${escapeHtml(finalist.playerJa)}</strong>
+                        <div class="awards-finalist-stats">${(finalist.stats || []).map(([label, value]) => `<span>${label ? `<small>${escapeHtml(label)}</small>` : ""}<b>${escapeHtml(value)}</b></span>`).join("")}</div>
+                    </div>
+                </article>`;
+            }).join("")}</div>
+        </section>`;
+        return `<section class="awards-finalists awards-finalists-pending"><header><h3>最終候補</h3><a href="${escapeHtml(category.finalistsSourceUrl || category.sourceUrl || "https://www.mlb.com/awards")}" target="_blank" rel="noopener noreferrer">MLB公式 ↗</a></header><div class="awards-finalist-grid">${league(category.finalists.al || [], "AL")}${league(category.finalists.nl || [], "NL")}</div></section>`;
+    };
+
     const renderPending = (category) => {
         const foundedYear = awardFoundedYears[state.category];
         const message = isBeforeAwardCreation(state.category)
@@ -273,6 +293,7 @@
             : state.category === "silverSlugger" && state.season !== 2026 ? renderHistoricalSilverSlugger()
             : state.category === "allMlb" && state.season !== 2026 ? renderHistoricalAllMlb()
             : state.season === 2026 && category.status === "announced" && Array.isArray(category.winners) ? renderSimpleWinners(category)
+                : state.season === 2026 && category.status === "pending" && category.finalists ? renderPendingFinalists(category)
                 : renderPending(category);
         content.innerHTML = `${hero(category)}${groupNav()}${categoryNav()}${body}${sourceFooter(category)}`;
     };
