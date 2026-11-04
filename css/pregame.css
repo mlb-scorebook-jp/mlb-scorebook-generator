@@ -2199,7 +2199,7 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
 }
 
 .pregame-trade-assets > * {
-    min-height: 38px;
+    min-height: 21px;
     font-size: 13px;
 }
 
@@ -2212,25 +2212,6 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
     color: #dbe5ea;
     overflow-wrap: anywhere;
     text-decoration: none;
-}
-
-.pregame-trade-player-card {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 3px;
-    min-width: 0;
-}
-
-.pregame-trade-player-stats {
-    color: #8fa0aa;
-    font-size: 10px;
-    line-height: 1.25;
-    overflow-wrap: anywhere;
-}
-
-.pregame-trade-assets-right .pregame-trade-player-card {
-    align-items: flex-end;
 }
 
 .pregame-trade-asset {
