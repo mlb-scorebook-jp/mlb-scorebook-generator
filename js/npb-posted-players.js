@@ -129,6 +129,33 @@
                     url: "https://www.mlb.com/cubs/news/kona-takahashi-returning-to-npb-for-2026"
                 }
             }
+        ]),
+        2026: Object.freeze([
+            {
+                name: "佐藤 輝明",
+                formerTeam: "阪神タイガース",
+                position: "3B",
+                postedDate: "2026-11-01",
+                sourceUrl: "https://www.mlb.com/news/teruaki-sato-mlb-posting-system"
+            },
+            {
+                name: "平良 海馬",
+                formerTeam: "埼玉西武ライオンズ",
+                formerTeamLogoUrl: "assets/npb-team-logos/l.png",
+                position: "RHP",
+                pitcherRole: "SP",
+                postedDate: "2026-11-01",
+                sourceUrl: "https://www.mlb.com/news/kaima-taira-will-enter-mlb-posting-system"
+            },
+            {
+                name: "伊藤 大海",
+                formerTeam: "北海道日本ハムファイターズ",
+                formerTeamLogoUrl: "assets/npb-team-logos/f.png",
+                position: "RHP",
+                pitcherRole: "SP",
+                postedDate: "2026-11-01",
+                sourceUrl: "https://www.mlb.com/news/hiromi-itoh-posted-hokkaido-nippon-ham-fighters"
+            }
         ])
     });
 })(window);
