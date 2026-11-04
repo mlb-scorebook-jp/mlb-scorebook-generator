@@ -3306,6 +3306,25 @@
     const buildSeasonTrades = async (season, date) => {
         const startDate = `${season}-01-01`;
         const transactions = await fetchFreeAgentTransactions(startDate, date);
+        const playerIds = [...new Set(transactions
+            .filter((transaction) => String(transaction?.typeCode ?? "") === "TR")
+            .map((transaction) => Number(transaction?.person?.id))
+            .filter(Boolean))];
+        const playerProfiles = new Map();
+        await Promise.all(Array.from(
+            { length: Math.ceil(playerIds.length / 50) },
+            async (_value, index) => {
+                const ids = playerIds.slice(index * 50, index * 50 + 50);
+                const params = new URLSearchParams({ personIds: ids.join(",") });
+                const payload = await fetchJson(
+                    `${API_ROOT}/v1/people?${params}`,
+                    `pregame:trade-player-profiles:${ids.join("-")}`
+                ).catch(() => null);
+                (payload?.people ?? []).forEach((person) => {
+                    playerProfiles.set(Number(person.id), person);
+                });
+            }
+        ));
         const grouped = new Map();
         transactions
             .filter((transaction) => String(transaction?.typeCode ?? "") === "TR")
@@ -3332,7 +3351,9 @@
                 trade.movements.set(movementKey, {
                     fromTeam: { ...fromTeam, id: fromTeamId },
                     toTeam: { ...toTeam, id: toTeamId },
-                    person: personId ? transaction.person : null,
+                    person: personId
+                        ? { ...transaction.person, ...playerProfiles.get(personId) }
+                        : null,
                     assetLabel: personId ? "" : tradeAssetLabel(description)
                 });
             });
@@ -3468,15 +3489,28 @@
             dateLink.rel = "noopener noreferrer";
             const details = el("div", "pregame-trade-details");
             const createTradeAsset = (movement) => {
-                const asset = movement.person
-                    ? el("a", "pregame-trade-player", playerName(movement.person))
-                    : el("span", "pregame-trade-asset", movement.assetLabel);
-                if (movement.person) {
-                    asset.href = `https://www.mlb.com/player/${movement.person.id}`;
-                    asset.target = "_blank";
-                    asset.rel = "noopener noreferrer";
+                if (!movement.person) {
+                    return el("span", "pregame-trade-asset", movement.assetLabel);
                 }
-                return asset;
+                const entry = el("span", "pregame-trade-player-entry");
+                const asset = el("a", "pregame-trade-player", playerName(movement.person));
+                asset.href = `https://www.mlb.com/player/${movement.person.id}`;
+                asset.target = "_blank";
+                asset.rel = "noopener noreferrer";
+                entry.append(asset);
+                const position = String(
+                    movement.person?.primaryPosition?.abbreviation ?? ""
+                ).toUpperCase();
+                const handLabel = (value) => ({ R: "右", L: "左", S: "両" })[
+                    String(value ?? "").toUpperCase()
+                ] ?? "";
+                const throws = handLabel(movement.person?.pitchHand?.code);
+                const bats = handLabel(movement.person?.batSide?.code);
+                const profile = [position, throws && bats ? `${throws}／${bats}` : ""]
+                    .filter(Boolean)
+                    .join("　");
+                if (profile) entry.append(el("span", "pregame-trade-player-profile", profile));
+                return entry;
             };
             const teams = new Map();
             trade.movements.forEach((movement) => {

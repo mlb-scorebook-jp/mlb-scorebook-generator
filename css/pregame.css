@@ -2214,6 +2214,24 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
     text-decoration: none;
 }
 
+.pregame-trade-player-entry {
+    display: flex;
+    align-items: baseline;
+    gap: 7px;
+    min-width: 0;
+}
+
+.pregame-trade-player-profile {
+    flex: 0 0 auto;
+    color: #8fa0aa;
+    font-size: 11px;
+    white-space: nowrap;
+}
+
+.pregame-trade-assets-right .pregame-trade-player-entry {
+    justify-content: flex-end;
+}
+
 .pregame-trade-asset {
     min-width: 0;
     color: #e1b82f;
