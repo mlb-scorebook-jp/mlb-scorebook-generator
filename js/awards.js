@@ -185,7 +185,25 @@
             </div>
             <div class="awards-mvp-stats" style="grid-template-columns:repeat(${Object.keys(winner.stats).length},1fr)">${Object.entries(winner.stats).map(([label, value]) => `<div><small>${escapeHtml(label)}</small><strong>${escapeHtml(value)}</strong></div>`).join("")}</div>
         </article>`;
-        return `<section class="awards-mvp-grid">${card(award.al, "AL")}${card(award.nl, "NL")}</section>`;
+        const finalistLeague = (rows, league, winner) => `<section class="awards-finalist-league awards-finalist-${league.toLowerCase()}">
+            <h3>${league === "AL" ? "AMERICAN LEAGUE" : "NATIONAL LEAGUE"}</h3>
+            <div>${rows.map((finalist) => {
+                const isWinner = Number(finalist.playerId) === Number(winner.playerId);
+                const isManager = state.category === "manager";
+                const photoUrl = finalist.photoUrl || (isManager
+                    ? `https://img.mlbstatic.com/mlb-photos/image/upload/d_people%3Ageneric%3Aheadshot%3A83%3Acurrent.png/ar_1%3A1%2Cc_pad%2Cb_auto%3Aborder/w_180%2Cq_auto%3Abest/v1/people/${finalist.playerId}/headshot/83/coach/current`
+                    : `https://img.mlbstatic.com/mlb-photos/image/upload/w_160,q_auto:best/v1/people/${finalist.playerId}/headshot/silo/current`);
+                return `<article class="awards-finalist-card ${isWinner ? "is-winner" : ""}">
+                    <div class="awards-finalist-photo">${portraitWithFallback(photoUrl, isManager ? "is-manager" : "")}</div>
+                    <img src="${logoUrl(finalist.teamId)}" alt="${escapeHtml(finalist.team)}">
+                    <div><small>${escapeHtml(finalist.position)}</small><strong>${escapeHtml(finalist.playerJa)}</strong>${isWinner ? "<b>受賞</b>" : ""}</div>
+                </article>`;
+            }).join("")}</div>
+        </section>`;
+        const finalists = award.finalists
+            ? `<section class="awards-finalists"><header><h3>最終候補</h3><a href="${escapeHtml(award.finalistsSourceUrl || award.sourceUrl)}" target="_blank" rel="noopener noreferrer">MLB公式 ↗</a></header><div class="awards-finalist-grid">${finalistLeague(award.finalists.al || [], "AL", award.al)}${finalistLeague(award.finalists.nl || [], "NL", award.nl)}</div></section>`
+            : "";
+        return `<section class="awards-mvp-grid">${card(award.al, "AL")}${card(award.nl, "NL")}</section>${finalists}`;
     };
 
     const renderHistoricalSingle = () => {
