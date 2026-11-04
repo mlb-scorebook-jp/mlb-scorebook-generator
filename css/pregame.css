@@ -2188,6 +2188,7 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
     color: #b9c6cd;
     font-size: 27px;
     line-height: 1;
+    transform: translateY(-11px);
 }
 
 .pregame-trade-assets {
