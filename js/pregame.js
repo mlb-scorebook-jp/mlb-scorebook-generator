@@ -3647,16 +3647,20 @@
             const formerTeamId = Number(formerTeam?.id);
             if (!playerId || !MLB_TEAM_IDS.has(formerTeamId)) return;
             const optOut = FREE_AGENT_OPT_OUT_DETAILS.get(playerId);
+            const declaredDate = String(
+                transaction?.effectiveDate || transaction?.date || ""
+            ).slice(0, 10);
             freeAgents.set(playerId, {
                 playerId,
                 person: transaction.person,
                 position: String(transaction.description).match(/^([A-Z0-9/]+)\s/)?.[1] ?? "",
                 formerTeam: { ...formerTeam, id: formerTeamId },
-                declaredFreeAgent: Boolean(optOut),
-                declaredDate: optOut?.date || "",
+                declaredFreeAgent: true,
+                declaredDate: optOut?.date || declaredDate,
                 optOutContractYears: optOut?.contractYears || 0,
                 declaredStatusText: optOut?.statusText || "",
-                sourceUrl: optOut?.url || ""
+                sourceUrl: optOut?.url ||
+                    `https://www.mlb.com/transactions?date=${declaredDate}`
             });
         });
         const pitcherIds = [...freeAgents.values()]
