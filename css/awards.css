@@ -267,6 +267,8 @@ body.app-mode-awards #header-awards-btn {
 .awards-pending p { margin: 0; color: #82949d; font-size: 12px; }
 
 @media (max-width: 760px) {
+    body.app-mode-awards .app-main { min-height: calc(100dvh - 58px); margin-top: 58px; }
+    body.app-mode-awards .viewer { min-height: calc(100dvh - 58px); }
     .awards-page { width: min(100% - 20px, 1240px); min-width: 0; margin: 0 auto; padding-top: 12px; }
     .awards-hero { align-items: center; padding: 18px; }
     .awards-hero h2 { font-size: 22px; }
@@ -303,4 +305,107 @@ body.app-mode-awards #header-awards-btn {
     .awards-finalist-stats b { font-size: 14px; }
     .awards-allmlb-grid { grid-template-columns: 1fr; padding: 12px; }
     .awards-history-league + .awards-history-league { border-top: 1px solid #40515b; border-left: 0; }
+}
+
+/* Phone layout: keep every award card inside the visual viewport. */
+@media (max-width: 560px) {
+    .awards-page { width: calc(100% - 16px); padding-bottom: 28px; }
+    .awards-hero { gap: 12px; padding: 14px 12px; }
+    .awards-hero h2 { font-size: 19px; }
+    .awards-hero p { font-size: 10px; }
+    .awards-season-select { min-width: 92px; padding-right: 22px; font-size: 17px; }
+
+    .awards-category-nav button { min-height: 50px; padding: 7px 5px; font-size: 12px; }
+    .awards-summary > div { min-height: 62px; padding: 11px 12px; }
+    .awards-summary strong { font-size: 18px; }
+    .awards-summary-leaders { flex-wrap: wrap; gap: 10px 16px; }
+
+    .awards-mvp-grid { gap: 14px; padding: 8px; }
+    .awards-mvp-card > header { min-height: 46px; padding: 0 11px; }
+    .awards-mvp-card > header span,
+    .awards-mvp-card > header b { font-size: 9px; letter-spacing: .1em; }
+    .awards-mvp-card::after { top: 45px; }
+    .awards-mvp-profile {
+        grid-template-columns: 112px 46px minmax(0, 1fr);
+        gap: 8px;
+        min-height: 160px;
+        padding: 12px 10px 0;
+    }
+    .awards-mvp-portrait { width: 112px; height: 148px; }
+    .awards-mvp-team { width: 46px; height: 46px; padding: 2px; }
+    .awards-mvp-name { min-width: 0; }
+    .awards-mvp-name h3,
+    .awards-mvp-profile h3 {
+        width: auto;
+        min-width: 0;
+        margin-top: 3px;
+        font-size: clamp(17px, 5vw, 22px);
+        line-height: 1.2;
+        white-space: normal;
+        overflow-wrap: anywhere;
+    }
+    .awards-mvp-count { margin-top: 7px; font-size: 14px; white-space: normal; }
+    .awards-mvp-profile small { font-size: 9px; }
+    .awards-mvp-year { right: 8px; font-size: 54px; }
+    .awards-mvp-stats { grid-template-columns: repeat(3, 1fr); }
+    .awards-mvp-stats div { padding: 10px 3px; border-bottom: 1px solid #3f3827; }
+    .awards-mvp-stats small { font-size: 8px; }
+    .awards-mvp-stats strong { font-size: 17px; }
+
+    .awards-finalists { padding: 0 8px 10px; }
+    .awards-finalists > header { padding: 10px 2px 8px; }
+    .awards-finalist-card {
+        grid-template-columns: 58px 34px minmax(0, 1fr);
+        gap: 7px;
+        min-height: 92px;
+        padding: 5px 7px;
+    }
+    .awards-finalist-photo { height: 82px; }
+    .awards-finalist-card > img { width: 32px; height: 32px; }
+    .awards-finalist-copy { display: grid; grid-template-columns: minmax(0, 1fr); gap: 5px; white-space: normal; }
+    .awards-finalist-card small { font-size: 9px; }
+    .awards-finalist-card strong { overflow-wrap: anywhere; font-size: 15px; }
+    .awards-finalist-stats { display: grid; grid-template-columns: repeat(3, auto); justify-content: start; gap: 5px 10px; margin-left: 0; }
+    .awards-finalist-stats small { font-size: 8px; }
+    .awards-finalist-stats b { font-size: 13px; }
+
+    .awards-slugger-grid { gap: 12px; padding: 8px; }
+    .awards-slugger-league > div { grid-template-columns: 1fr; }
+    .awards-slugger-card,
+    .awards-slugger-card:nth-child(2n) { border-right: 0; }
+    .awards-slugger-card { grid-template-columns: 25px 54px 43px minmax(0, 1fr); min-height: 92px; padding: 6px 7px; }
+    .awards-slugger-photo { height: 84px; }
+    .awards-slugger-logo { width: 34px; height: 34px; }
+    .awards-slugger-name-row { gap: 7px; }
+    .awards-slugger-name-row strong { font-size: 14px; }
+    .awards-slugger-name-row span { font-size: 11px; }
+    .awards-slugger-stats { flex-wrap: wrap; gap: 5px 10px; margin-top: 7px; }
+    .awards-slugger-stats b { font-size: 13px; }
+
+    .awards-allmlb-grid { gap: 12px; padding: 8px; }
+    .awards-allmlb-team > div { grid-template-columns: 1fr; }
+    .awards-allmlb-team article,
+    .awards-allmlb-team article:nth-child(even) { border-right: 0; }
+
+    .awards-history-head { grid-template-columns: minmax(190px, 1fr) 216px; padding: 0 7px; }
+    .awards-history-head > div,
+    .awards-history-metrics { grid-template-columns: repeat(6, minmax(34px, 1fr)); }
+    .awards-history-winner { grid-template-columns: 34px 38px minmax(112px, 1fr) 216px; gap: 7px; padding: 7px; }
+    .awards-history-winner strong { font-size: 14px; }
+    .awards-history-metrics b { font-size: 11px; }
+    .awards-history-league { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .awards-history-head,
+    .awards-history-winner { min-width: 470px; }
+
+    .awards-position-row { grid-template-columns: 54px minmax(0, 1fr); }
+    .awards-position b { font-size: 15px; }
+    .awards-winner-card { grid-template-columns: 30px minmax(92px, 1fr) repeat(6, minmax(23px, 1fr)); column-gap: 3px; padding: 8px 5px; }
+    .awards-team-logo { width: 30px; height: 30px; }
+    .awards-winner-copy strong { font-size: 13px; }
+    .awards-winner-metrics { grid-template-columns: repeat(6, minmax(23px, 1fr)); }
+    .awards-winner-metrics b { font-size: 10px; }
+
+    .awards-metric-help::after { position: fixed; right: 12px; bottom: 18px; left: 12px; width: auto; transform: none; }
+    .awards-metric-help:hover::after,
+    .awards-metric-help:focus-visible::after { transform: none; }
 }

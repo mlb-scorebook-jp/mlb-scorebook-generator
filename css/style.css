@@ -853,6 +853,28 @@ body.app-mode-pregame .pregame-brand-home {
 }
 
 @media screen and (max-width: 767px) {
+    html:has(body.app-mode-home),
+    html:has(body.app-mode-home) body {
+        height: auto;
+        min-height: 100%;
+        overflow-x: hidden;
+        overflow-y: auto;
+        overscroll-behavior-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    body.app-mode-home .portal-home {
+        position: relative;
+        inset: auto;
+        height: auto;
+        min-height: 100vh;
+        min-height: 100dvh;
+        place-items: start center;
+        padding: max(24px, env(safe-area-inset-top)) 18px max(34px, env(safe-area-inset-bottom));
+        overflow: visible;
+        overscroll-behavior-y: auto;
+    }
+
     .portal-home {
         padding: 18px;
     }
@@ -873,7 +895,7 @@ body.app-mode-pregame .pregame-brand-home {
         width: 100%;
         grid-template-columns: 1fr;
         gap: 12px;
-        overflow-y: auto;
+        overflow: visible;
         transform: none;
     }
 
