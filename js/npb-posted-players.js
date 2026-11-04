@@ -147,6 +147,7 @@
             {
                 name: "野上 龍哉",
                 formerTeam: "大阪産業大学準硬式野球部",
+                formerTeamLogoUrl: "assets/npb-team-logos/osaka-sangyo-university.svg",
                 position: "RHP",
                 pitcherRole: "SP",
                 transferType: "amateur",
