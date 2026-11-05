@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="css/daily-records.css?v=20261103-homer-team-logo-22">
     <link rel="stylesheet" href="css/abilities.css?v=20261017-catcher-center-1">
     <link rel="stylesheet" href="css/awards.css?v=20261104-mobile-layout">
+    <link rel="stylesheet" href="css/strength-analysis.css?v=20261105-1">
 </head>
 
 <body class="app-mode-home">
@@ -72,6 +73,15 @@
                     </span>
                     <span class="portal-action-arrow" aria-hidden="true">→</span>
                 </button>
+                <button type="button" class="portal-action-card" id="portal-strength-btn">
+                    <span class="portal-action-index">07</span>
+                    <span class="portal-action-copy">
+                        <small>TEAM BUILDING</small>
+                        <strong>戦力分析</strong>
+                        <span>球団別の戦力、FA、補強ポイントを可視化</span>
+                    </span>
+                    <span class="portal-action-arrow" aria-hidden="true">→</span>
+                </button>
             </div>
         </div>
     </section>
@@ -93,6 +103,7 @@
             <button type="button" id="header-transfers-btn">移籍情報</button>
             <button type="button" id="header-abilities-btn">各種能力</button>
             <button type="button" id="header-awards-btn">表彰</button>
+            <button type="button" id="header-strength-btn">戦力分析</button>
             </nav>
 
             <section class="header-game-search" aria-label="試合検索">
@@ -378,6 +389,10 @@
                 <main id="awards-content"></main>
             </section>
 
+            <section class="strength-analysis-page" id="strength-analysis-page" hidden aria-label="戦力分析">
+                <main id="strength-analysis-content"></main>
+            </section>
+
             <section class="abilities-page" id="abilities-page" hidden aria-label="各種能力">
                 <header class="abilities-header">
                     <div>
@@ -485,6 +500,7 @@
             // Player-name readings are loaded from js/players.js.
 
             const NHK_TEAM_NAMES = {"arizonadiamondbacks":"アリゾナ・ダイヤモンドバックス","athletics":"アスレチックス","atlantabraves":"アトランタ・ブレーブス","baltimoreorioles":"ボルチモア・オリオールズ","bostonredsox":"ボストン・レッドソックス","chicagocubs":"シカゴ・カブス","chicagowhitesox":"シカゴ・ホワイトソックス","cincinnatireds":"シンシナティ・レッズ","clevelandguardians":"クリーブランド・ガーディアンズ","coloradorockies":"コロラド・ロッキーズ","detroittigers":"デトロイト・タイガース","houstonastros":"ヒューストン・アストロズ","kansascityroyals":"カンザスシティ・ロイヤルズ","losangelesangels":"ロサンゼルス・エンゼルス","losangelesdodgers":"ロサンゼルス・ドジャース","miamimarlins":"マイアミ・マーリンズ","milwaukeebrewers":"ミルウォーキー・ブルワーズ","minnesotatwins":"ミネソタ・ツインズ","newyorkmets":"ニューヨーク・メッツ","newyorkyankees":"ニューヨーク・ヤンキース","philadelphiaphillies":"フィラデルフィア・フィリーズ","pittsburghpirates":"ピッツバーグ・パイレーツ","sandiegopadres":"サンディエゴ・パドレス","sanfranciscogiants":"サンフランシスコ・ジャイアンツ","seattlemariners":"シアトル・マリナーズ","stlouiscardinals":"セントルイス・カージナルス","tampabayrays":"タンパベイ・レイズ","texasrangers":"テキサス・レンジャーズ","torontobluejays":"トロント・ブルージェイズ","washingtonnationals":"ワシントン・ナショナルズ"};
+            window.MLB_TEAM_NAMES_JA = NHK_TEAM_NAMES;
 
             NHK_TEAM_NAMES.stlouiscardinals = "セントルイス・カーディナルス";
             Object.assign(NHK_TEAM_NAMES, {
@@ -1177,10 +1193,11 @@
                 window.DailyRecords?.close({ preserveShell: true });
                 document.body.classList.remove(
                     "app-mode-pregame", "app-mode-pitch-chart", "app-mode-daily-records",
-                    "app-mode-transfers", "app-mode-abilities", "app-mode-awards"
+                    "app-mode-transfers", "app-mode-abilities", "app-mode-awards", "app-mode-strength"
                 );
                 window.Abilities?.close();
                 window.Awards?.close();
+                window.StrengthAnalysis?.close();
                 document.body.classList.add("app-mode-home");
                 dom.pitchChartPage.hidden = true;
                 dom.headerScorebookButton.textContent = "スコアブック生成";
@@ -1195,10 +1212,11 @@
                 document.body.classList.remove(
                     "app-mode-home", "app-mode-pregame", "app-mode-pitch-chart",
                     "app-mode-daily-records", "app-mode-transfers", "app-mode-abilities",
-                    "app-mode-awards"
+                    "app-mode-awards", "app-mode-strength"
                 );
                 window.Abilities?.close();
                 window.Awards?.close();
+                window.StrengthAnalysis?.close();
                 dom.pitchChartPage.hidden = true;
                 dom.headerScorebookButton.textContent = "スコアブック生成";
                 if (options?.persist !== false) {
@@ -1241,10 +1259,11 @@
                 window.DailyRecords?.close({ preserveShell: true });
                 document.body.classList.remove(
                     "app-mode-home", "app-mode-pregame", "app-mode-daily-records",
-                    "app-mode-transfers", "app-mode-abilities", "app-mode-awards"
+                    "app-mode-transfers", "app-mode-abilities", "app-mode-awards", "app-mode-strength"
                 );
                 window.Abilities?.close();
                 window.Awards?.close();
+                window.StrengthAnalysis?.close();
                 document.body.classList.add("app-mode-pitch-chart");
                 dom.pitchChartPage.hidden = false;
                 dom.headerScorebookButton.textContent = "スコアへ戻る";
@@ -1266,10 +1285,11 @@
                 window.DailyRecords?.close({ preserveShell: true });
                 document.body.classList.remove(
                     "app-mode-home", "app-mode-pitch-chart", "app-mode-daily-records",
-                    "app-mode-transfers", "app-mode-abilities", "app-mode-awards"
+                    "app-mode-transfers", "app-mode-abilities", "app-mode-awards", "app-mode-strength"
                 );
                 window.Abilities?.close();
                 window.Awards?.close();
+                window.StrengthAnalysis?.close();
                 document.body.classList.add("app-mode-pregame");
                 dom.pitchChartPage.hidden = true;
                 dom.headerScorebookButton.textContent = "スコアブック生成";
@@ -1287,10 +1307,11 @@
                 window.PregameInfo?.close({ preserveShell: true });
                 document.body.classList.remove(
                     "app-mode-home", "app-mode-pregame", "app-mode-pitch-chart",
-                    "app-mode-transfers", "app-mode-abilities", "app-mode-awards"
+                    "app-mode-transfers", "app-mode-abilities", "app-mode-awards", "app-mode-strength"
                 );
                 window.Abilities?.close();
                 window.Awards?.close();
+                window.StrengthAnalysis?.close();
                 document.body.classList.add("app-mode-daily-records");
                 dom.pitchChartPage.hidden = true;
                 dom.headerScorebookButton.textContent = "スコアブック生成";
@@ -1307,10 +1328,11 @@
                 window.DailyRecords?.close({ preserveShell: true });
                 document.body.classList.remove(
                     "app-mode-home", "app-mode-pitch-chart", "app-mode-daily-records",
-                    "app-mode-abilities", "app-mode-awards"
+                    "app-mode-abilities", "app-mode-awards", "app-mode-strength"
                 );
                 window.Abilities?.close();
                 window.Awards?.close();
+                window.StrengthAnalysis?.close();
                 document.body.classList.add("app-mode-pregame", "app-mode-transfers");
                 dom.pitchChartPage.hidden = true;
                 dom.headerScorebookButton.textContent = "スコアブック生成";
@@ -1325,9 +1347,10 @@
                 window.DailyRecords?.close({ preserveShell: true });
                 document.body.classList.remove(
                     "app-mode-home", "app-mode-pregame", "app-mode-pitch-chart",
-                    "app-mode-daily-records", "app-mode-transfers", "app-mode-awards"
+                    "app-mode-daily-records", "app-mode-transfers", "app-mode-awards", "app-mode-strength"
                 );
                 window.Awards?.close();
+                window.StrengthAnalysis?.close();
                 document.body.classList.add("app-mode-abilities");
                 dom.pitchChartPage.hidden = true;
                 dom.headerScorebookButton.textContent = "スコアブック生成";
@@ -1344,13 +1367,34 @@
                 window.Abilities?.close();
                 document.body.classList.remove(
                     "app-mode-home", "app-mode-pregame", "app-mode-pitch-chart",
-                    "app-mode-daily-records", "app-mode-transfers", "app-mode-abilities"
+                    "app-mode-daily-records", "app-mode-transfers", "app-mode-abilities", "app-mode-strength"
                 );
                 document.body.classList.add("app-mode-awards");
                 dom.pitchChartPage.hidden = true;
                 dom.headerScorebookButton.textContent = "スコアブック生成";
                 window.Awards?.open();
                 if (options.persist !== false) saveAppSession({ view: "awards", season: 2026 });
+                window.scrollTo(0, 0);
+            };
+
+            const showStrengthAnalysis = (options = {}) => {
+                closeAppMenu();
+                stopLiveScoreUpdates({ preserveEligibility: true });
+                window.PregameInfo?.close({ preserveShell: true });
+                window.DailyRecords?.close({ preserveShell: true });
+                window.Abilities?.close();
+                window.Awards?.close();
+                document.body.classList.remove(
+                    "app-mode-home", "app-mode-pregame", "app-mode-pitch-chart",
+                    "app-mode-daily-records", "app-mode-transfers", "app-mode-abilities", "app-mode-awards"
+                );
+                document.body.classList.add("app-mode-strength");
+                dom.pitchChartPage.hidden = true;
+                dom.headerScorebookButton.textContent = "スコアブック生成";
+                window.StrengthAnalysis?.open(options);
+                if (options.persist !== false) {
+                    saveAppSession({ view: "strength-analysis", season: options.season || 2026, team: options.team });
+                }
                 window.scrollTo(0, 0);
             };
 
@@ -1363,6 +1407,7 @@
                 showTransfers,
                 showAbilities,
                 showAwards,
+                showStrengthAnalysis,
                 loadScorebookGame: async (gamePk) => {
                     const selectedGamePk = Number(gamePk);
                     if (!selectedGamePk) return;
@@ -1373,10 +1418,11 @@
                 enterPregameShell: () => {
                     document.body.classList.remove(
                         "app-mode-home", "app-mode-pitch-chart", "app-mode-daily-records",
-                        "app-mode-transfers", "app-mode-abilities", "app-mode-awards"
+                        "app-mode-transfers", "app-mode-abilities", "app-mode-awards", "app-mode-strength"
                     );
                     window.Abilities?.close();
                     window.Awards?.close();
+                    window.StrengthAnalysis?.close();
                     document.body.classList.add("app-mode-pregame");
                     dom.pitchChartPage.hidden = true;
                     dom.headerScorebookButton.textContent = "スコアブック生成";
@@ -12788,6 +12834,10 @@
                 "click",
                 () => showAwards()
             );
+            document.getElementById("header-strength-btn").addEventListener(
+                "click",
+                () => showStrengthAnalysis()
+            );
 
             document.getElementById("header-scorebook-btn").addEventListener("click", showScorebook);
             document.getElementById("portal-scorebook-btn").addEventListener("click", showScorebook);
@@ -12807,6 +12857,10 @@
             document.getElementById("portal-awards-btn").addEventListener(
                 "click",
                 () => showAwards()
+            );
+            document.getElementById("portal-strength-btn").addEventListener(
+                "click",
+                () => showStrengthAnalysis()
             );
             document.getElementById("app-home-link").addEventListener("click", showPortalHome);
             document.getElementById("pregame-brand-home").addEventListener("click", showPortalHome);
@@ -12951,6 +13005,11 @@
                     return;
                 }
 
+                if (saved.view === "strength-analysis") {
+                    showStrengthAnalysis({ persist: false, season: saved.season, team: saved.team });
+                    return;
+                }
+
                 showPortalHome();
             };
 
@@ -12991,5 +13050,6 @@
     <script src="js/abilities-replay-umpire-data-2026.js?v=20261016-replay-umpire-age-1"></script>
     <script src="js/abilities-missed-calls-data-2026.js?v=20261016-called-pitch-rate-1"></script>
     <script src="js/abilities.js?v=20261026-catcher-source-links-2"></script>
+    <script src="js/strength-analysis.js?v=20261105-1"></script>
 </body>
 </html>
