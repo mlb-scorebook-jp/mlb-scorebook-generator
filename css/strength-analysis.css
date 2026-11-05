@@ -67,19 +67,6 @@ body.app-mode-strength #header-strength-btn { color: #fff; border-color: #4db7e7
 }
 .strength-team-picker-button img, .strength-team-picker-option img {
     width: 28px; height: 28px; object-fit: contain;
-    filter:
-        drop-shadow(1px 0 0 rgba(225, 245, 255, .9))
-        drop-shadow(-1px 0 0 rgba(225, 245, 255, .9))
-        drop-shadow(0 1px 0 rgba(225, 245, 255, .9))
-        drop-shadow(0 -1px 0 rgba(225, 245, 255, .9))
-        drop-shadow(0 0 4px rgba(117, 211, 255, .78));
-}
-.strength-team-picker-button img { filter:
-    drop-shadow(1px 0 0 rgba(225, 245, 255, .95))
-    drop-shadow(-1px 0 0 rgba(225, 245, 255, .95))
-    drop-shadow(0 1px 0 rgba(225, 245, 255, .95))
-    drop-shadow(0 -1px 0 rgba(225, 245, 255, .95))
-    drop-shadow(0 0 5px rgba(117, 211, 255, .9));
 }
 .strength-team-picker-arrow { color: #91a6b1; font-size: 17px; }
 .strength-team-picker-menu {
@@ -109,12 +96,6 @@ body.app-mode-strength #header-strength-btn { color: #fff; border-color: #4db7e7
 .strength-team-header { display: flex; align-items: center; gap: 16px; margin-top: 16px; padding: 17px 20px; border: 1px solid #3b4b54; background: #111c22; }
 .strength-team-header img {
     width: 62px; height: 62px; object-fit: contain;
-    filter:
-        drop-shadow(1px 0 0 rgba(225, 245, 255, .95))
-        drop-shadow(-1px 0 0 rgba(225, 245, 255, .95))
-        drop-shadow(0 1px 0 rgba(225, 245, 255, .95))
-        drop-shadow(0 -1px 0 rgba(225, 245, 255, .95))
-        drop-shadow(0 0 6px rgba(117, 211, 255, .88));
 }
 .strength-team-header h3 { margin: 0; font-size: 25px; }
 .strength-team-header p { margin: 4px 0 0; color: #9cabb3; }
