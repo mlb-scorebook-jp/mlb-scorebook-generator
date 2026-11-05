@@ -4000,7 +4000,7 @@
                             ? `と${signingTerms.years}年` +
                                 `${formatContractDollars(signingTerms.tenThousands)}で契約`
                             : /minor league contract/i.test(String(transaction.description ?? ""))
-                            ? "とマイナー契約 ※期間と金額は未公表"
+                            ? "とマイナー契約"
                             : "と契約 ※期間と金額は未公表"
                         : "FA選択"
                 );
@@ -4197,9 +4197,10 @@
                             : terms
                                 ? `と${terms.years}年${formatContractDollars(terms.tenThousands)}で契約` +
                                     (dateText ? ` ${dateText}${entry.signing.agreedDate ? "合意" : "公式登録"}` : "")
-                                : `と${entry.signing.minorLeague ? "マイナー契約" : "契約"}` +
-                                    " ※期間と金額は未公表" +
-                                    (dateText ? ` ${dateText}${entry.signing.agreedDate ? "合意" : "公式登録"}` : "");
+                                : entry.signing.minorLeague
+                                    ? "とマイナー契約"
+                                    : `と契約 ※期間と金額は未公表` +
+                                        (dateText ? ` ${dateText}${entry.signing.agreedDate ? "合意" : "公式登録"}` : "");
                         const status = el(
                             entry.signing.url ? "a" : "span",
                             "pregame-free-agent-signing",
