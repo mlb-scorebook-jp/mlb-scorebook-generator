@@ -2,11 +2,34 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "How does Yanks' No. 1 prospect Kilby look? His AFL teammates, coaches are eager to share",
+        "summaryJa": "Dax Kilby（NYY）ら注目選手の最新動向",
+        "slug": "yankees-prospect-dax-kilby-impresses-in-arizona-fall-league",
+        "url": "https://www.mlb.com/news/yankees-prospect-dax-kilby-impresses-in-arizona-fall-league",
+        "contentDate": "2026-11-05T06:12:14.985Z",
+        "teamIds": [
+            147
+        ],
+        "playerIds": [
+            828076
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "arizona-fall-league",
+            "mlb-top-prospects"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Watch Angels prospects in Arizona Fall League action",
         "summaryJa": "MLBの最新情報ら注目選手の最新動向",
         "slug": "watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
         "url": "https://www.mlb.com/news/watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
-        "contentDate": "2026-11-05T01:25:00Z",
+        "contentDate": "2026-11-05T05:32:00Z",
         "teamIds": [],
         "playerIds": [],
         "gamePks": [],
@@ -15,6 +38,158 @@
             "arizona-fall-league"
         ],
         "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "What to expect from Japanese superstar Sato in the Majors",
+        "summaryJa": "Teruaki Satoの最新動向をMLB公式が詳報",
+        "slug": "what-to-expect-from-teruaki-sato-in-majors",
+        "url": "https://www.mlb.com/news/what-to-expect-from-teruaki-sato-in-majors",
+        "contentDate": "2026-11-05T03:30:37.287Z",
+        "teamIds": [],
+        "playerIds": [
+            831664
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "japan",
+            "japan-related"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "Jays' Parker hitting the ball far AND trying out a new position in Fall League",
+        "summaryJa": "A.パーカー（TOR）を巡る注目点をMLB公式が分析",
+        "slug": "blue-jays-aaron-parker-shows-off-power-at-new-position-in-arizona-fall-league",
+        "url": "https://www.mlb.com/news/blue-jays-aaron-parker-shows-off-power-at-new-position-in-arizona-fall-league",
+        "contentDate": "2026-11-05T03:20:00Z",
+        "teamIds": [
+            141
+        ],
+        "playerIds": [
+            801590
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "mlb-top-prospects",
+            "apple-news",
+            "arizona-fall-league"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Kanzler's 'unique path' arrives in Seattle as Mariners' new manager",
+        "summaryJa": "マリナーズの最新動向をMLB公式が詳報",
+        "slug": "mariners-introduce-jason-kanzler-as-new-manager",
+        "url": "https://www.mlb.com/news/mariners-introduce-jason-kanzler-as-new-manager",
+        "contentDate": "2026-11-05T03:07:00Z",
+        "teamIds": [
+            136
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Now that Mariners have manager, they shift focus to rest of coaching staff",
+        "summaryJa": "マリナーズの最新動向をMLB公式が詳報",
+        "slug": "after-mariners-hire-jason-kanzler-as-manager-they-look-to-find-rest-of-coaching-staff",
+        "url": "https://www.mlb.com/news/after-mariners-hire-jason-kanzler-as-manager-they-look-to-find-rest-of-coaching-staff",
+        "contentDate": "2026-11-05T03:05:28.806Z",
+        "teamIds": [
+            136
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "How 3 stars went from prospect trade chips to MVP finalists",
+        "summaryJa": "Y.アルバレス（HOU）の移籍・契約に関する最新情報",
+        "slug": "2026-mlb-mvp-candidates-traded",
+        "url": "https://www.mlb.com/news/2026-mlb-mvp-candidates-traded",
+        "contentDate": "2026-11-05T03:00:33.213Z",
+        "teamIds": [
+            117,
+            139,
+            112
+        ],
+        "playerIds": [
+            670541,
+            691406,
+            691718
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "awards-watch"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "10 free agents who raised their stock in 2026",
+        "summaryJa": "R.アロサレーナの最新動向をMLB公式が詳報",
+        "slug": "mlb-free-agents-that-raised-stock-in-2026",
+        "url": "https://www.mlb.com/news/mlb-free-agents-that-raised-stock-in-2026",
+        "contentDate": "2026-11-05T03:00:00Z",
+        "teamIds": [],
+        "playerIds": [
+            668227,
+            673548,
+            641343,
+            650333,
+            664040,
+            669432,
+            664034,
+            647336,
+            656492,
+            607259
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "Reds hire Guardians assistant Joe Torres as pitching coach",
+        "summaryJa": "レッズの最新動向をMLB公式が詳報",
+        "slug": "joe-torres-hired-as-reds-pitching-coach",
+        "url": "https://www.mlb.com/news/joe-torres-hired-as-reds-pitching-coach",
+        "contentDate": "2026-11-05T02:03:00Z",
+        "teamIds": [
+            113
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
@@ -187,25 +362,6 @@
         ]
     },
     {
-        "headline": "Joe Torres named Reds' new pitching coach",
-        "summaryJa": "レッズの最新動向をMLB公式が詳報",
-        "slug": "joe-torres-hired-as-reds-pitching-coach",
-        "url": "https://www.mlb.com/news/joe-torres-hired-as-reds-pitching-coach",
-        "contentDate": "2026-11-04T21:01:50.853Z",
-        "teamIds": [
-            113
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Latest Phillies injuries & transactions",
         "summaryJa": "フィリーズの負傷状況をMLB公式が詳報",
         "slug": "phillies-injuries-and-roster-moves",
@@ -321,24 +477,6 @@
         ]
     },
     {
-        "headline": "Former Ranger Teixeira elected to House seat in Texas",
-        "summaryJa": "M.タシェアラの最新動向をMLB公式が詳報",
-        "slug": "mark-teixeira-house-seat-texas",
-        "url": "https://www.mlb.com/news/mark-teixeira-house-seat-texas",
-        "contentDate": "2026-11-04T17:06:06.746Z",
-        "teamIds": [],
-        "playerIds": [
-            407893
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB"
-        ]
-    },
-    {
         "headline": "Milwaukee chapter of BBWAA announces Brewers award winners",
         "summaryJa": "J.ミザロウスキー（MIL）の最新動向をMLB公式が詳報",
         "slug": "brewers-award-winners-selected-by-milwaukee-chapter-of-bbwaa",
@@ -414,12 +552,11 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
     {
-        "headline": "These 3 Dodgers prospects could make an impact next season",
+        "headline": "3 Dodgers prospects who could make an impact next season",
         "summaryJa": "J.デポーラ（LAD）ら注目選手の最新動向",
         "slug": "josue-de-paula-jackson-ferris-mike-sirota-dodgers-prospects-to-watch",
         "url": "https://www.mlb.com/news/josue-de-paula-jackson-ferris-mike-sirota-dodgers-prospects-to-watch",
@@ -542,7 +679,6 @@
             "gold-glove-award"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -950,7 +1086,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1048,7 +1183,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1086,23 +1220,6 @@
         ],
         "sourceScopes": [
             "球団公式"
-        ]
-    },
-    {
-        "headline": "Who opted out? Every 2027 option decision",
-        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
-        "slug": "mlb-players-with-2027-options-and-opt-outs",
-        "url": "https://www.mlb.com/news/mlb-players-with-2027-options-and-opt-outs",
-        "contentDate": "2026-11-03T16:13:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "rumors",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB"
         ]
     },
     {
@@ -5224,24 +5341,6 @@
         ]
     },
     {
-        "headline": "Astros set to host 'Diamond Dreams Gala' on Nov. 14",
-        "summaryJa": "アストロズ、記録達成の最新情報",
-        "slug": "astros-host-11th-diamond-dreams-gala-on-nov-14",
-        "url": "https://www.mlb.com/news/astros-host-11th-diamond-dreams-gala-on-nov-14",
-        "contentDate": "2026-10-27T18:41:30.685Z",
-        "teamIds": [
-            117
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Now fully healthy, '26 breakout Valdez seeking greater heights in '27",
         "summaryJa": "E.バルデス（PIT）の最新動向をMLB公式が詳報",
         "slug": "esmerlyn-valdez-is-healthy-again-and-can-t-wait-to-build-on-his-2026-season",
@@ -6713,24 +6812,6 @@
         ]
     },
     {
-        "headline": "Here’s why pitching is Cubs’ top priority this offseason",
-        "summaryJa": "カブスを巡る注目点をMLB公式が分析",
-        "slug": "rebuilding-rotation-cubs-priority-before-2027-season",
-        "url": "https://www.mlb.com/news/rebuilding-rotation-cubs-priority-before-2027-season",
-        "contentDate": "2026-10-21T11:18:42.097Z",
-        "teamIds": [
-            112
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "These two pitchers have Marlins tenure (and high school alma mater) in common",
         "summaryJa": "R.ノラスコ（MIA）の最新動向をMLB公式が詳報",
         "slug": "victor-vodnik-ricky-nolasco-connected-by-marlins-high-school",
@@ -7156,26 +7237,6 @@
         ]
     },
     {
-        "headline": "Mattingly vows for Phils to be less 'cautious' in first full year as skipper",
-        "summaryJa": "D.マッティングリー（PHI）の最新動向をMLB公式が詳報",
-        "slug": "don-mattingly-talks-managing-phillies-again-in-2027",
-        "url": "https://www.mlb.com/news/don-mattingly-talks-managing-phillies-again-in-2027",
-        "contentDate": "2026-10-15T22:10:52.721Z",
-        "teamIds": [
-            143
-        ],
-        "playerIds": [
-            118443
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Dombrowski offers insights into the Phillies' offseason agenda",
         "summaryJa": "B.ストット（PHI）の最新動向をMLB公式が詳報",
         "slug": "dave-dombrowski-plans-2026-27-phillies-offseason",
@@ -7412,24 +7473,6 @@
         ]
     },
     {
-        "headline": "Dillon Lawson named Marlins hitting coach",
-        "summaryJa": "マーリンズの最新動向をMLB公式が詳報",
-        "slug": "dillon-lawson-named-marlins-hitting-coach",
-        "url": "https://www.mlb.com/news/dillon-lawson-named-marlins-hitting-coach",
-        "contentDate": "2026-10-12T17:00:38.233Z",
-        "teamIds": [
-            146
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Early key to Blue Jays' offseason: Become more dangerous on the bases",
         "summaryJa": "ブルージェイズの最新動向をMLB公式が詳報",
         "slug": "blue-jays-aiming-to-get-better-at-baserunning",
@@ -7482,25 +7525,6 @@
         ],
         "gamePks": [],
         "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "The five biggest needs for Blue Jays this offseason",
-        "summaryJa": "ブルージェイズを巡る注目点をMLB公式が分析",
-        "slug": "examining-the-blue-jays-biggest-offseason-needs",
-        "url": "https://www.mlb.com/news/examining-the-blue-jays-biggest-offseason-needs",
-        "contentDate": "2026-10-08T11:34:29.149Z",
-        "teamIds": [
-            141
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "offseason",
             "apple-news"
         ],
         "sourceScopes": [
