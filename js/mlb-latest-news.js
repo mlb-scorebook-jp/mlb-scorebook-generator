@@ -2,6 +2,207 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Cubs Minor Leaguer is turning heads in AFL -- and not just for his wild stance",
+        "summaryJa": "Harrison Feinberg（CHC）の最新動向をMLB公式が詳報",
+        "slug": "cubs-harrison-feinberg-having-success-in-arizona-fall-league",
+        "url": "https://www.mlb.com/news/cubs-harrison-feinberg-having-success-in-arizona-fall-league",
+        "contentDate": "2026-11-06T21:50:24.113Z",
+        "teamIds": [
+            112
+        ],
+        "playerIds": [
+            695664
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "arizona-fall-league",
+            "minor-league-baseball"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "What's next for Ewing after strong rookie season?",
+        "summaryJa": "A.ユーイング（NYM）の最新動向をMLB公式が詳報",
+        "slug": "what-s-next-for-a-j-ewing-after-strong-rookie-season",
+        "url": "https://www.mlb.com/news/what-s-next-for-a-j-ewing-after-strong-rookie-season",
+        "contentDate": "2026-11-06T20:57:43.203Z",
+        "teamIds": [
+            121
+        ],
+        "playerIds": [
+            805999
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "How aggressive should Blue Jays be in fortifying 2027 rotation?",
+        "summaryJa": "T.スクーバル（TOR）を巡る注目点をMLB公式が分析",
+        "slug": "tarik-skubal-kevin-gausman-options-for-blue-jays-in-2027",
+        "url": "https://www.mlb.com/news/tarik-skubal-kevin-gausman-options-for-blue-jays-in-2027",
+        "contentDate": "2026-11-06T20:50:19.411Z",
+        "teamIds": [
+            141
+        ],
+        "playerIds": [
+            669373
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "rumors"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Latest Nationals injuries & transactions",
+        "summaryJa": "ナショナルズの負傷状況をMLB公式が詳報",
+        "slug": "nationals-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/nationals-injuries-and-roster-moves",
+        "contentDate": "2026-11-06T20:37:00Z",
+        "teamIds": [
+            120
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Nats trade for lefty reliever Sanmartin from Giants",
+        "summaryJa": "R.サンマーティーン（WSH）の移籍・契約に関する最新情報",
+        "slug": "nationals-trade-for-reiver-sanmartin-from-giants",
+        "url": "https://www.mlb.com/news/nationals-trade-for-reiver-sanmartin-from-giants",
+        "contentDate": "2026-11-06T20:33:13.114Z",
+        "teamIds": [
+            120
+        ],
+        "playerIds": [
+            665665
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "transactions",
+            "trades"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Watch LIVE: Angels prospects in Arizona Fall League action",
+        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
+        "slug": "watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
+        "url": "https://www.mlb.com/news/watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
+        "contentDate": "2026-11-06T20:25:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "arizona-fall-league"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Inbox: '26 draftees in Arizona Fall League? Breakout performers?",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "arizona-fall-league-pipeline-inbox",
+        "url": "https://www.mlb.com/news/arizona-fall-league-pipeline-inbox",
+        "contentDate": "2026-11-06T19:28:33.442Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "mlb-top-prospects",
+            "arizona-fall-league",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "Mense joins Royals' staff from Giants as hitting coach",
+        "summaryJa": "ロイヤルズの最新動向をMLB公式が詳報",
+        "slug": "hunter-mense-royals-coach",
+        "url": "https://www.mlb.com/news/hunter-mense-royals-coach",
+        "contentDate": "2026-11-06T18:21:00Z",
+        "teamIds": [
+            118
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Dodgers part ways with hitting coach Bates (source)",
+        "summaryJa": "ドジャースの最新動向をMLB公式が詳報",
+        "slug": "dodgers-part-ways-hitting-coach-aaron-bates",
+        "url": "https://www.mlb.com/news/dodgers-part-ways-hitting-coach-aaron-bates",
+        "contentDate": "2026-11-06T18:03:11.988Z",
+        "teamIds": [
+            119
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Nats, outfielder Young agree to four-year contract extension (source)",
+        "summaryJa": "J.ヤング（WSH）の移籍・契約に関する最新情報",
+        "slug": "jacob-young-contract-extension-nationals",
+        "url": "https://www.mlb.com/news/jacob-young-contract-extension-nationals",
+        "contentDate": "2026-11-06T17:15:00Z",
+        "teamIds": [
+            120
+        ],
+        "playerIds": [
+            696285
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "transactions"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "How good can the Phillies' rotation be in '27? Or ... what could go wrong?",
         "summaryJa": "J.ルザルド（PHI）を巡る注目点をMLB公式が分析",
         "slug": "evaluating-the-phillies-starting-rotation-for-2027-season",
@@ -22,6 +223,7 @@
             "apple-news"
         ],
         "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
@@ -65,28 +267,6 @@
             "offseason"
         ],
         "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Nats, outfielder Young agree to four-year contract extension (source)",
-        "summaryJa": "J.ヤング（WSH）の移籍・契約に関する最新情報",
-        "slug": "jacob-young-contract-extension-nationals",
-        "url": "https://www.mlb.com/news/jacob-young-contract-extension-nationals",
-        "contentDate": "2026-11-06T15:55:56.094Z",
-        "teamIds": [
-            120
-        ],
-        "playerIds": [
-            696285
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "transactions"
-        ],
-        "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -204,24 +384,6 @@
         "taxonomy": [
             "apple-news",
             "offseason"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Mense joins Royals' staff as hitting coach",
-        "summaryJa": "ロイヤルズの最新動向をMLB公式が詳報",
-        "slug": "hunter-mense-royals-coach",
-        "url": "https://www.mlb.com/news/hunter-mense-royals-coach",
-        "contentDate": "2026-11-06T15:12:00Z",
-        "teamIds": [
-            118
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
@@ -360,7 +522,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -384,6 +545,22 @@
         ],
         "sourceScopes": [
             "球団公式"
+        ]
+    },
+    {
+        "headline": "Breaking down the free-agent class by tiers",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "tiers-of-mlb-s-2026-27-free-agent-players",
+        "url": "https://www.mlb.com/news/tiers-of-mlb-s-2026-27-free-agent-players",
+        "contentDate": "2026-11-06T05:00:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB"
         ]
     },
     {
@@ -413,39 +590,6 @@
         ],
         "sourceScopes": [
             "MLB"
-        ]
-    },
-    {
-        "headline": "Breaking down the free-agent class by tiers",
-        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
-        "slug": "tiers-of-mlb-s-2026-27-free-agent-players",
-        "url": "https://www.mlb.com/news/tiers-of-mlb-s-2026-27-free-agent-players",
-        "contentDate": "2026-11-06T05:00:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB"
-        ]
-    },
-    {
-        "headline": "Watch Angels prospects in Arizona Fall League action",
-        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
-        "slug": "watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
-        "url": "https://www.mlb.com/news/watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
-        "contentDate": "2026-11-06T04:33:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "arizona-fall-league"
-        ],
-        "sourceScopes": [
-            "球団公式"
         ]
     },
     {
@@ -595,7 +739,6 @@
             "rumors"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1003,7 +1146,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1107,7 +1249,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -2287,7 +2428,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -3243,26 +3383,6 @@
         "taxonomy": [
             "apple-news",
             "transactions"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Latest Nationals injuries & transactions",
-        "summaryJa": "ナショナルズの負傷状況をMLB公式が詳報",
-        "slug": "nationals-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/nationals-injuries-and-roster-moves",
-        "contentDate": "2026-11-02T21:09:00Z",
-        "teamIds": [
-            120
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
         ],
         "sourceScopes": [
             "球団公式"
@@ -5424,28 +5544,6 @@
         ]
     },
     {
-        "headline": "After watching his brother win World Series, Tylor Megill can take inspiration",
-        "summaryJa": "T.メギル（NYM）、勝利を呼び込む活躍",
-        "slug": "tylor-megill-inspired-by-world-series-champion-brother-trevor-megill",
-        "url": "https://www.mlb.com/news/tylor-megill-inspired-by-world-series-champion-brother-trevor-megill",
-        "contentDate": "2026-10-29T15:12:31.621Z",
-        "teamIds": [
-            121
-        ],
-        "playerIds": [
-            656731,
-            656730
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "world-series"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Forging a path: The thinking behind the Pirates' latest offseason prospects camp",
         "summaryJa": "パイレーツら注目選手の最新動向",
         "slug": "forging-a-path-the-thinking-behind-the-pirates-latest-offseason-prospects-camp",
@@ -7215,29 +7313,6 @@
             703607,
             811965,
             701364
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "mlb-top-prospects",
-            "minor-league-baseball"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Which Blue Jays prospects showed out in '26, could make impact in '27?",
-        "summaryJa": "Nolan Perry（TOR）ら注目選手の最新動向",
-        "slug": "blue-jays-top-prospects-performed-well-2026",
-        "url": "https://www.mlb.com/news/blue-jays-top-prospects-performed-well-2026",
-        "contentDate": "2026-10-15T14:36:21.427Z",
-        "teamIds": [
-            141
-        ],
-        "playerIds": [
-            804526,
-            834978
         ],
         "gamePks": [],
         "taxonomy": [
