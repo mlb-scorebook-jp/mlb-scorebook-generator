@@ -2,6 +2,112 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Royals' 2026 first-rounder Rose gets to cap first year as a pro as an AFL Fall Star",
+        "summaryJa": "Zion Rose（KC）、メジャー昇格・初出場に関する最新情報",
+        "slug": "royals-prospect-zion-rose-wrapping-up-pro-debut-in-arizona-fall-league",
+        "url": "https://www.mlb.com/news/royals-prospect-zion-rose-wrapping-up-pro-debut-in-arizona-fall-league",
+        "contentDate": "2026-11-06T06:13:00Z",
+        "teamIds": [
+            118
+        ],
+        "playerIds": [
+            805799
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "mlb-top-prospects",
+            "apple-news",
+            "arizona-fall-league"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "This offseason's best free-agent starters, ranked",
+        "summaryJa": "T.スクーバルら注目選手の最新動向",
+        "slug": "free-agent-starting-pitcher-power-rankings-for-2026-2027",
+        "url": "https://www.mlb.com/news/free-agent-starting-pitcher-power-rankings-for-2026-2027",
+        "contentDate": "2026-11-06T05:00:00Z",
+        "teamIds": [],
+        "playerIds": [
+            669373,
+            650633,
+            543243,
+            642547,
+            669432,
+            605280,
+            592332,
+            684007,
+            656492
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "pitcher-power-rankings",
+            "rankings",
+            "rumors",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "Breaking down the free-agent class by tiers",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "tiers-of-mlb-s-2026-27-free-agent-players",
+        "url": "https://www.mlb.com/news/tiers-of-mlb-s-2026-27-free-agent-players",
+        "contentDate": "2026-11-06T05:00:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "Watch Angels prospects in Arizona Fall League action",
+        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
+        "slug": "watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
+        "url": "https://www.mlb.com/news/watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
+        "contentDate": "2026-11-06T04:33:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "arizona-fall-league"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "A’s prospect who was ‘born to hit’ bringing big smiles, intangibles to Fall League",
+        "summaryJa": "Breyson Guedez（ATH）ら注目選手の最新動向",
+        "slug": "athletics-prospect-breyson-guedez-showcasing-intangibles-in-arizona-fall-league",
+        "url": "https://www.mlb.com/news/athletics-prospect-breyson-guedez-showcasing-intangibles-in-arizona-fall-league",
+        "contentDate": "2026-11-06T03:28:23.67Z",
+        "teamIds": [
+            133
+        ],
+        "playerIds": [
+            829052
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "arizona-fall-league",
+            "mlb-top-prospects"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "New GM Castro, POBO Smith give glimpse into vision for A's",
         "summaryJa": "アスレチックスの最新動向をMLB公式が詳報",
         "slug": "cam-castro-introduced-as-athletics-general-manager",
@@ -17,23 +123,6 @@
         ],
         "sourceScopes": [
             "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Watch Angels prospects in Arizona Fall League action",
-        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
-        "slug": "watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
-        "url": "https://www.mlb.com/news/watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
-        "contentDate": "2026-11-06T01:20:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "arizona-fall-league"
-        ],
-        "sourceScopes": [
             "球団公式"
         ]
     },
@@ -143,7 +232,6 @@
             "offseason"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -162,7 +250,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -547,6 +634,7 @@
             "apple-news"
         ],
         "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
@@ -934,7 +1022,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -7188,27 +7275,6 @@
         ],
         "playerIds": [
             545361
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "The five biggest questions facing the A's this offseason",
-        "summaryJa": "N.カーツ（ATH）の最新動向をMLB公式が詳報",
-        "slug": "five-big-questions-for-athletics-this-offseason",
-        "url": "https://www.mlb.com/news/five-big-questions-for-athletics-this-offseason",
-        "contentDate": "2026-10-09T11:42:38.366Z",
-        "teamIds": [
-            133
-        ],
-        "playerIds": [
-            701762,
-            672016
         ],
         "gamePks": [],
         "taxonomy": [
