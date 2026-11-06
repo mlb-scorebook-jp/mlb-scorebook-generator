@@ -2,6 +2,63 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "New GM Castro, POBO Smith give glimpse into vision for A's",
+        "summaryJa": "アスレチックスの最新動向をMLB公式が詳報",
+        "slug": "cam-castro-introduced-as-athletics-general-manager",
+        "url": "https://www.mlb.com/news/cam-castro-introduced-as-athletics-general-manager",
+        "contentDate": "2026-11-06T02:14:43.472Z",
+        "teamIds": [
+            133
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Watch Angels prospects in Arizona Fall League action",
+        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
+        "slug": "watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
+        "url": "https://www.mlb.com/news/watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
+        "contentDate": "2026-11-06T01:20:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "arizona-fall-league"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Which Kyle Tucker will the Dodgers get in 2027?",
+        "summaryJa": "K.タッカー（LAD）を巡る注目点をMLB公式が分析",
+        "slug": "kyle-tucker-2027-outlook-and-analysis",
+        "url": "https://www.mlb.com/news/kyle-tucker-2027-outlook-and-analysis",
+        "contentDate": "2026-11-06T00:02:19.519Z",
+        "teamIds": [
+            119
+        ],
+        "playerIds": [
+            663656
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "These internal options could fill Cubs' corner-outfield spots in 2027",
         "summaryJa": "M.ショー（CHC）の最新動向をMLB公式が詳報",
         "slug": "internal-options-to-fill-cubs-corner-outfield-spots",
@@ -217,23 +274,6 @@
         ],
         "sourceScopes": [
             "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Watch LIVE: Top prospect Nimmala in Arizona Fall League action",
-        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
-        "slug": "watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
-        "url": "https://www.mlb.com/news/watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
-        "contentDate": "2026-11-05T20:26:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "arizona-fall-league"
-        ],
-        "sourceScopes": [
             "球団公式"
         ]
     },
@@ -912,7 +952,6 @@
             "power-rankings"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1182,24 +1221,6 @@
         ],
         "sourceScopes": [
             "球団公式"
-        ]
-    },
-    {
-        "headline": "Team-by-team breakdown of every free agent",
-        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
-        "slug": "2026-2027-mlb-free-agents-for-every-team",
-        "url": "https://www.mlb.com/news/2026-2027-mlb-free-agents-for-every-team",
-        "contentDate": "2026-11-04T02:54:35.33Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "rumors",
-            "transactions",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB"
         ]
     },
     {
@@ -6670,27 +6691,6 @@
         ]
     },
     {
-        "headline": "Ohtani won't need surgery, expects to return to 2-way form. How that looks is up in the air",
-        "summaryJa": "大谷 翔平（LAD）、復帰へ向けた最新状況",
-        "slug": "shohei-ohtani-health-updates-2026-offseason",
-        "url": "https://www.mlb.com/news/shohei-ohtani-health-updates-2026-offseason",
-        "contentDate": "2026-10-21T22:20:23.556Z",
-        "teamIds": [
-            119
-        ],
-        "playerIds": [
-            660271
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Here are MLB's 7 best 17-year-old prospects",
         "summaryJa": "L.ヘルナンデスら注目選手の最新動向",
         "slug": "these-are-the-best-17-year-old-mlb-prospects",
@@ -7172,27 +7172,6 @@
             "mlb-top-prospects",
             "apple-news",
             "arizona-fall-league"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Pitching prospect Huggins growing his game with the help of this A's Hall of Famer",
-        "summaryJa": "K.ハギンズ（ATH）ら注目選手の最新動向",
-        "slug": "athletics-prospect-kenya-huggins-mentor-dave-stewart",
-        "url": "https://www.mlb.com/news/athletics-prospect-kenya-huggins-mentor-dave-stewart",
-        "contentDate": "2026-10-13T01:30:00Z",
-        "teamIds": [
-            133
-        ],
-        "playerIds": [
-            695761
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "arizona-fall-league",
-            "mlb-top-prospects"
         ],
         "sourceScopes": [
             "球団公式"
