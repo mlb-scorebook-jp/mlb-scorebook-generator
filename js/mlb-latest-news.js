@@ -2,6 +2,107 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "These 3 Nationals could be key pitching options in 2027",
+        "summaryJa": "W.ディオン（WSH）の最新動向をMLB公式が詳報",
+        "slug": "will-dion-orlando-ribalta-josiah-gray-key-pitchers-nationals-2027",
+        "url": "https://www.mlb.com/news/will-dion-orlando-ribalta-josiah-gray-key-pitchers-nationals-2027",
+        "contentDate": "2026-11-07T14:53:45.996Z",
+        "teamIds": [
+            120
+        ],
+        "playerIds": [
+            702021,
+            680686,
+            687377
+        ],
+        "gamePks": [],
+        "taxonomy": [],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Trio of Royals prospects selected for Fall Stars Game",
+        "summaryJa": "Zion Rose（KC）ら注目選手の最新動向",
+        "slug": "angeibel-gomez-zion-rose-justin-lamkin-named-afl-fall-stars",
+        "url": "https://www.mlb.com/news/angeibel-gomez-zion-rose-justin-lamkin-named-afl-fall-stars",
+        "contentDate": "2026-11-07T14:45:28.819Z",
+        "teamIds": [
+            118
+        ],
+        "playerIds": [
+            805799,
+            825412,
+            703610
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "arizona-fall-league",
+            "mlb-top-prospects"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Ulloa's evolving arsenal earns him spot among Fall Stars",
+        "summaryJa": "ロッキーズら注目選手の最新動向",
+        "slug": "rockies-prospect-fidel-ulloa-develops-pitches-in-arizona-fall-league",
+        "url": "https://www.mlb.com/news/rockies-prospect-fidel-ulloa-develops-pitches-in-arizona-fall-league",
+        "contentDate": "2026-11-07T14:07:03.912Z",
+        "teamIds": [
+            115
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "arizona-fall-league",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Next step for White Sox: Build on high energy from 2026",
+        "summaryJa": "ホワイトソックスの最新動向をMLB公式が詳報",
+        "slug": "white-sox-looking-to-build-on-2026-season",
+        "url": "https://www.mlb.com/news/white-sox-looking-to-build-on-2026-season",
+        "contentDate": "2026-11-07T13:59:35.629Z",
+        "teamIds": [
+            145
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "5 questions for the World Series champion Brewers this offseason",
+        "summaryJa": "ブルワーズの最新動向をMLB公式が詳報",
+        "slug": "brewers-2026-27-offseason-questions",
+        "url": "https://www.mlb.com/news/brewers-2026-27-offseason-questions",
+        "contentDate": "2026-11-07T13:51:10.254Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Watch Red Sox prospect Anderson in tonight's AFL Home Run Derby",
         "summaryJa": "MLBの最新情報、本塁打で存在感",
         "slug": "2026-arizona-fall-league-home-run-derby",
@@ -849,7 +950,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1299,7 +1399,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -5964,25 +6063,6 @@
         ]
     },
     {
-        "headline": "Important Royals offseason dates for awards, Hot Stove season",
-        "summaryJa": "ロイヤルズの最新動向をMLB公式が詳報",
-        "slug": "royals-key-offseason-dates-2026-2027",
-        "url": "https://www.mlb.com/news/royals-key-offseason-dates-2026-2027",
-        "contentDate": "2026-10-28T11:12:08.948Z",
-        "teamIds": [
-            118
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "awards-watch"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "How Alvarez made his case for Nats’ 2027 starting rotation",
         "summaryJa": "A.アルバレス（WSH）を巡る注目点をMLB公式が分析",
         "slug": "andrew-alvarez-competing-for-spot-in-nationals-2027-rotation",
@@ -6370,32 +6450,6 @@
         ]
     },
     {
-        "headline": "OF Thomas, C O'Dowd among Fall League's Week 3 top performers",
-        "summaryJa": "Yerlin Confidanの最新動向をMLB公式が詳報",
-        "slug": "arizona-fall-league-top-performers-week-3-2026",
-        "url": "https://www.mlb.com/news/arizona-fall-league-top-performers-week-3-2026",
-        "contentDate": "2026-10-25T23:20:00Z",
-        "teamIds": [],
-        "playerIds": [
-            691398,
-            828076,
-            703610,
-            828987,
-            691942,
-            806191,
-            703606
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "mlb-top-prospects",
-            "apple-news",
-            "arizona-fall-league"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "White Sox No. 2 prospect Bonemer recaps Fall League stint: 'A great three weeks'",
         "summaryJa": "Caleb Bonemer（CWS）ら注目選手の最新動向",
         "slug": "white-sox-caleb-bonemer-2026-arizona-fall-league-recap",
@@ -6678,26 +6732,6 @@
         ]
     },
     {
-        "headline": "Venable named Sporting News AL Manager of the Year",
-        "summaryJa": "W.ベナブル（CWS）の最新動向をMLB公式が詳報",
-        "slug": "will-venable-named-2026-sporting-news-al-manager-of-the-year",
-        "url": "https://www.mlb.com/news/will-venable-named-2026-sporting-news-al-manager-of-the-year",
-        "contentDate": "2026-10-22T15:41:19.356Z",
-        "teamIds": [
-            145
-        ],
-        "playerIds": [
-            461416
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Here's how Seattle prospects fared at Arizona Fall League last week",
         "summaryJa": "B.スミス（SEA）ら注目選手の最新動向",
         "slug": "mariners-prospects-2026-arizona-fall-league-recap",
@@ -6828,29 +6862,6 @@
             "injury",
             "offseason",
             "rehab"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Nats prospect Kevin Bazzell catching 'the best stuff' in the Minors during the Fall League",
-        "summaryJa": "Kevin Bazzell（WSH）ら注目選手の最新動向",
-        "slug": "nationals-prospect-kevin-bazzell-catching-jarlin-susana-in-arizona-fall-league",
-        "url": "https://www.mlb.com/news/nationals-prospect-kevin-bazzell-catching-jarlin-susana-in-arizona-fall-league",
-        "contentDate": "2026-10-22T02:56:00Z",
-        "teamIds": [
-            120
-        ],
-        "playerIds": [
-            695494,
-            703186
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "arizona-fall-league",
-            "mlb-top-prospects",
-            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
