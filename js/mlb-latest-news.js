@@ -2,7 +2,79 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
-        "headline": "Watch Red Sox prospect Anderson in tonight's AFL Home Run Derby",
+        "headline": "Here are the top performers from Week 5 of AFL action",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "arizona-fall-league-top-performers-week-5-2026",
+        "url": "https://www.mlb.com/news/arizona-fall-league-top-performers-week-5-2026",
+        "contentDate": "2026-11-07T20:45:06.293Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Yankees' Triple-A affiliate announces new identity",
+        "summaryJa": "ヤンキースの最新動向をMLB公式が詳報",
+        "slug": "yankees-triple-a-affiliate-rebrands-as-highlanders",
+        "url": "https://www.mlb.com/news/yankees-triple-a-affiliate-rebrands-as-highlanders",
+        "contentDate": "2026-11-07T20:35:16.735Z",
+        "teamIds": [
+            147
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "minor-league-baseball",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Breaking down the Fall Stars Game participants by organization",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "2026-arizona-fall-league-fall-stars-by-organization",
+        "url": "https://www.mlb.com/news/2026-arizona-fall-league-fall-stars-by-organization",
+        "contentDate": "2026-11-07T19:57:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "mlb-top-prospects",
+            "apple-news",
+            "arizona-fall-league"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Latest Guardians injuries and transactions",
+        "summaryJa": "ガーディアンズの負傷状況をMLB公式が詳報",
+        "slug": "guardians-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/guardians-injuries-and-roster-moves",
+        "contentDate": "2026-11-07T19:17:00Z",
+        "teamIds": [
+            114
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Breaking down the AFL Home Run Derby participants",
         "summaryJa": "MLBの最新情報、本塁打で存在感",
         "slug": "2026-arizona-fall-league-home-run-derby",
         "url": "https://www.mlb.com/news/2026-arizona-fall-league-home-run-derby",
@@ -16,6 +88,7 @@
             "apple-news"
         ],
         "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
@@ -33,24 +106,6 @@
         "taxonomy": [
             "apple-news",
             "offseason"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Breaking down the Fall Stars Game participants by organization",
-        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
-        "slug": "2026-arizona-fall-league-fall-stars-by-organization",
-        "url": "https://www.mlb.com/news/2026-arizona-fall-league-fall-stars-by-organization",
-        "contentDate": "2026-11-07T16:01:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "mlb-top-prospects",
-            "apple-news",
-            "arizona-fall-league"
         ],
         "sourceScopes": [
             "球団公式"
@@ -1098,7 +1153,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1157,26 +1211,6 @@
         ],
         "sourceScopes": [
             "球団公式"
-        ]
-    },
-    {
-        "headline": "What to expect from Japanese superstar Sato in the Majors",
-        "summaryJa": "Teruaki Satoの最新動向をMLB公式が詳報",
-        "slug": "what-to-expect-from-teruaki-sato-in-majors",
-        "url": "https://www.mlb.com/news/what-to-expect-from-teruaki-sato-in-majors",
-        "contentDate": "2026-11-05T21:00:00Z",
-        "teamIds": [],
-        "playerIds": [
-            831664
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "japan",
-            "japan-related"
-        ],
-        "sourceScopes": [
-            "MLB"
         ]
     },
     {
@@ -4927,26 +4961,6 @@
         ]
     },
     {
-        "headline": "Latest Guardians injuries and transactions",
-        "summaryJa": "ガーディアンズの負傷状況をMLB公式が詳報",
-        "slug": "guardians-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/guardians-injuries-and-roster-moves",
-        "contentDate": "2026-10-30T22:15:00Z",
-        "teamIds": [
-            114
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Rays decline Martinez and Mullins' contract options, making them free agents",
         "summaryJa": "N.マルティネス（TB）の移籍・契約に関する最新情報",
         "slug": "rays-decline-mutual-options-with-nick-martinez-cedric-mullins",
@@ -5373,28 +5387,6 @@
         ]
     },
     {
-        "headline": "Balancing act: Braves OF prospect succeeds by slowing things down in the desert",
-        "summaryJa": "Owen Carey（ATL）ら注目選手の最新動向",
-        "slug": "braves-prospect-owen-carey-finding-balance-in-arizona-fall-league",
-        "url": "https://www.mlb.com/news/braves-prospect-owen-carey-finding-balance-in-arizona-fall-league",
-        "contentDate": "2026-10-30T03:29:32.992Z",
-        "teamIds": [
-            144
-        ],
-        "playerIds": [
-            826928
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "arizona-fall-league",
-            "mlb-top-prospects"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Durbin undergoes surgery for foot fracture weeks after pinkie operation",
         "summaryJa": "C.ダービン（BOS）の最新動向をMLB公式が詳報",
         "slug": "caleb-durbin-surgery-right-foot-fracture",
@@ -5504,28 +5496,6 @@
         "taxonomy": [
             "transactions",
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Royals decline Estévez's club option, exercise Gonsolin's option",
-        "summaryJa": "T.ゴンソリン（KC）の最新動向をMLB公式が詳報",
-        "slug": "royals-decline-carlos-estevez-s-club-option-exercise-tony-gonsolin-s-option",
-        "url": "https://www.mlb.com/news/royals-decline-carlos-estevez-s-club-option-exercise-tony-gonsolin-s-option",
-        "contentDate": "2026-10-29T22:33:05.737Z",
-        "teamIds": [
-            118
-        ],
-        "playerIds": [
-            664062,
-            608032
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "transactions"
         ],
         "sourceScopes": [
             "球団公式"
@@ -6192,33 +6162,6 @@
         ]
     },
     {
-        "headline": "Schlittler seems a lock for Cy, but other Yankees could bring home awards, too",
-        "summaryJa": "C.シュリットラー（NYY）、勝利を呼び込む活躍",
-        "slug": "cam-schlittler-other-yankees-could-win-postseason-awards",
-        "url": "https://www.mlb.com/news/cam-schlittler-other-yankees-could-win-postseason-awards",
-        "contentDate": "2026-10-27T14:17:19.364Z",
-        "teamIds": [
-            147
-        ],
-        "playerIds": [
-            693645,
-            700250,
-            502671,
-            670280,
-            687396,
-            641355,
-            543037,
-            621112
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Important Phillies offseason dates for awards, Hot Stove season",
         "summaryJa": "フィリーズの最新動向をMLB公式が詳報",
         "slug": "phillies-key-offseason-dates-2026-2027",
@@ -6863,28 +6806,6 @@
         ]
     },
     {
-        "headline": "5 questions facing Guardians this offseason",
-        "summaryJa": "S.クワン（CLE）の最新動向をMLB公式が詳報",
-        "slug": "guardians-2026-27-offseason-questions",
-        "url": "https://www.mlb.com/news/guardians-2026-27-offseason-questions",
-        "contentDate": "2026-10-22T11:43:31.059Z",
-        "teamIds": [
-            114
-        ],
-        "playerIds": [
-            680757,
-            595978,
-            806252
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "The return of these injured players could shape Toronto's offseason plans",
         "summaryJa": "C.ポンセ（TOR）の負傷状況をMLB公式が詳報",
         "slug": "blue-jays-2026-offseason-agenda-injury-returns",
@@ -7100,45 +7021,6 @@
         ]
     },
     {
-        "headline": "Dombrowski eyes ways to keep Phillies' veterans fresh, bolster outfield",
-        "summaryJa": "フィリーズの最新動向をMLB公式が詳報",
-        "slug": "dave-dombrowski-discusses-phillies-2027-roster-plans",
-        "url": "https://www.mlb.com/news/dave-dombrowski-discusses-phillies-2027-roster-plans",
-        "contentDate": "2026-10-20T14:18:24.128Z",
-        "teamIds": [
-            143
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Top prospect Nimmala named AFL Hitter of the Week",
-        "summaryJa": "A.ニマーラら注目選手の最新動向",
-        "slug": "arizona-fall-league-week-2-award-winners-2026",
-        "url": "https://www.mlb.com/news/arizona-fall-league-week-2-award-winners-2026",
-        "contentDate": "2026-10-19T16:01:00.715Z",
-        "teamIds": [],
-        "playerIds": [
-            805796,
-            694345
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "arizona-fall-league",
-            "apple-news",
-            "mlb-top-prospects"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Recapping moments that defined D-backs' 2026 season",
         "summaryJa": "ダイヤモンドバックスの最新動向をMLB公式が詳報",
         "slug": "biggest-moments-from-d-backs-2026-season",
@@ -7251,28 +7133,6 @@
             "apple-news",
             "arizona-fall-league",
             "mlb-top-prospects"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Marlins No. 27 prospect Williams making up for lost time in AFL",
-        "summaryJa": "Max Williams（MIA）ら注目選手の最新動向",
-        "slug": "marlins-prospect-max-williams-talks-arizona-fall-league-2026-season",
-        "url": "https://www.mlb.com/news/marlins-prospect-max-williams-talks-arizona-fall-league-2026-season",
-        "contentDate": "2026-10-17T14:30:00Z",
-        "teamIds": [
-            146
-        ],
-        "playerIds": [
-            703637
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "mlb-top-prospects",
-            "apple-news",
-            "arizona-fall-league"
         ],
         "sourceScopes": [
             "球団公式"
