@@ -2,6 +2,143 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Watch Angels prospects in Arizona Fall League action",
+        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
+        "slug": "watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
+        "url": "https://www.mlb.com/news/watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
+        "contentDate": "2026-11-07T01:28:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "arizona-fall-league"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Watch Red Sox prospect Anderson in Saturday’s AFL Home Run Derby",
+        "summaryJa": "MLBの最新情報、本塁打で存在感",
+        "slug": "2026-arizona-fall-league-home-run-derby",
+        "url": "https://www.mlb.com/news/2026-arizona-fall-league-home-run-derby",
+        "contentDate": "2026-11-06T23:59:10.711Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "arizona-fall-league",
+            "mlb-top-prospects",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Latest Giants injuries & transactions",
+        "summaryJa": "ジャイアンツの負傷状況をMLB公式が詳報",
+        "slug": "giants-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/giants-injuries-and-roster-moves",
+        "contentDate": "2026-11-06T23:39:00Z",
+        "teamIds": [
+            137
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "transactions",
+            "injury",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Cerfolio named Cardinals' new general manager",
+        "summaryJa": "カージナルスの最新動向をMLB公式が詳報",
+        "slug": "rob-cerfolio-cardinals-general-manager",
+        "url": "https://www.mlb.com/news/rob-cerfolio-cardinals-general-manager",
+        "contentDate": "2026-11-06T23:36:00Z",
+        "teamIds": [
+            138
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Mariners closing in on new bench coach (source)",
+        "summaryJa": "マリナーズの最新動向をMLB公式が詳報",
+        "slug": "mariners-bench-coach-tanner-swanson",
+        "url": "https://www.mlb.com/news/mariners-bench-coach-tanner-swanson",
+        "contentDate": "2026-11-06T23:01:49.974Z",
+        "teamIds": [
+            136
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Witt becomes first 3-time winner of Heart & Hustle Award",
+        "summaryJa": "B.ウィット Jr.（KC）の最新動向をMLB公式が詳報",
+        "slug": "bobby-witt-jr-2026-heart-hustle-award-winner",
+        "url": "https://www.mlb.com/news/bobby-witt-jr-2026-heart-hustle-award-winner",
+        "contentDate": "2026-11-06T22:54:00Z",
+        "teamIds": [
+            118
+        ],
+        "playerIds": [
+            677951
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "heart-and-hustle",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Gold (Glove) carpet rolls out for Mattingly, Turang, Winfield at MLB NYC flagship store",
+        "summaryJa": "B.テュラングの最新動向をMLB公式が詳報",
+        "slug": "don-mattingly-brice-turang-dave-winfield-greet-fans-at-gold-glove-meet-and-greet",
+        "url": "https://www.mlb.com/news/don-mattingly-brice-turang-dave-winfield-greet-fans-at-gold-glove-meet-and-greet",
+        "contentDate": "2026-11-06T22:48:25.131Z",
+        "teamIds": [],
+        "playerIds": [
+            668930,
+            124448,
+            118443
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "gold-glove-award"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Cubs Minor Leaguer is turning heads in AFL -- and not just for his wild stance",
         "summaryJa": "Harrison Feinberg（CHC）の最新動向をMLB公式が詳報",
         "slug": "cubs-harrison-feinberg-having-success-in-arizona-fall-league",
@@ -103,23 +240,6 @@
             "apple-news",
             "transactions",
             "trades"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Watch LIVE: Angels prospects in Arizona Fall League action",
-        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
-        "slug": "watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
-        "url": "https://www.mlb.com/news/watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
-        "contentDate": "2026-11-06T20:25:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "arizona-fall-league"
         ],
         "sourceScopes": [
             "球団公式"
@@ -228,28 +348,6 @@
         ]
     },
     {
-        "headline": "Witt becomes first 3-time winner of Heart & Hustle Award",
-        "summaryJa": "B.ウィット Jr.（KC）の最新動向をMLB公式が詳報",
-        "slug": "bobby-witt-jr-2026-heart-hustle-award-winner",
-        "url": "https://www.mlb.com/news/bobby-witt-jr-2026-heart-hustle-award-winner",
-        "contentDate": "2026-11-06T16:31:29.86Z",
-        "teamIds": [
-            118
-        ],
-        "playerIds": [
-            677951
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "heart-and-hustle",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Longtime MLB catcher Maldonado among new faces on Tigers' coaching staff for '27",
         "summaryJa": "M.マルドナード（DET）の最新動向をMLB公式が詳報",
         "slug": "tigers-announce-2027-mlb-coaching-training-staffs",
@@ -348,25 +446,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Cerfolio named Cardinals' new general manager",
-        "summaryJa": "カージナルスの最新動向をMLB公式が詳報",
-        "slug": "rob-cerfolio-cardinals-general-manager",
-        "url": "https://www.mlb.com/news/rob-cerfolio-cardinals-general-manager",
-        "contentDate": "2026-11-06T15:33:00Z",
-        "teamIds": [
-            138
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1168,33 +1247,6 @@
         ]
     },
     {
-        "headline": "10 free agents who raised their stock in 2026",
-        "summaryJa": "R.アロサレーナの最新動向をMLB公式が詳報",
-        "slug": "mlb-free-agents-that-raised-stock-in-2026",
-        "url": "https://www.mlb.com/news/mlb-free-agents-that-raised-stock-in-2026",
-        "contentDate": "2026-11-05T03:00:00Z",
-        "teamIds": [],
-        "playerIds": [
-            668227,
-            673548,
-            641343,
-            650333,
-            664040,
-            669432,
-            664034,
-            647336,
-            656492,
-            607259
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB"
-        ]
-    },
-    {
         "headline": "Reds hire Guardians assistant Joe Torres as pitching coach",
         "summaryJa": "レッズの最新動向をMLB公式が詳報",
         "slug": "joe-torres-hired-as-reds-pitching-coach",
@@ -1434,23 +1486,6 @@
         ]
     },
     {
-        "headline": "Hot Stove rumors: Gunnar, Mets, Rasmussen, Marte",
-        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
-        "slug": "mlb-rumors-and-2026-27-free-agent-news-november-4",
-        "url": "https://www.mlb.com/news/mlb-rumors-and-2026-27-free-agent-news-november-4",
-        "contentDate": "2026-11-04T18:21:52.368Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "rumors",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB"
-        ]
-    },
-    {
         "headline": "A's hire former Brewers exec Cam Castro as GM",
         "summaryJa": "アスレチックスの最新動向をMLB公式が詳報",
         "slug": "cam-castro-new-a-s-gm",
@@ -1522,24 +1557,6 @@
             "mlb-top-prospects",
             "apple-news",
             "arizona-fall-league"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Here are our top 5 moments in American Family Field history",
-        "summaryJa": "ブルワーズら注目選手の最新動向",
-        "slug": "miller-park-american-family-field-top-moments",
-        "url": "https://www.mlb.com/news/miller-park-american-family-field-top-moments",
-        "contentDate": "2026-11-04T15:45:00Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "evergreen"
         ],
         "sourceScopes": [
             "球団公式"
@@ -2342,26 +2359,6 @@
             "apple-news",
             "minor-league-baseball",
             "mlb-top-prospects"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Latest Giants injuries & transactions",
-        "summaryJa": "ジャイアンツの負傷状況をMLB公式が詳報",
-        "slug": "giants-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/giants-injuries-and-roster-moves",
-        "contentDate": "2026-11-03T04:11:00Z",
-        "teamIds": [
-            137
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "transactions",
-            "injury",
-            "exclude-from-personalization"
         ],
         "sourceScopes": [
             "球団公式"
@@ -5722,28 +5719,6 @@
         ]
     },
     {
-        "headline": "‘Love you, Boston': Mariners' No. 13 prospect thrives against old friends in the desert",
-        "summaryJa": "B.スミス（SEA）ら注目選手の最新動向",
-        "slug": "mariners-prospect-boston-smith-faces-old-friends-in-arizona-fall-league",
-        "url": "https://www.mlb.com/news/mariners-prospect-boston-smith-faces-old-friends-in-arizona-fall-league",
-        "contentDate": "2026-10-29T02:00:00Z",
-        "teamIds": [
-            136
-        ],
-        "playerIds": [
-            695722
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "mlb-top-prospects",
-            "apple-news",
-            "arizona-fall-league"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "New MLB Network doc marks 25th anniversary of D-backs' 2001 World Series title",
         "summaryJa": "ダイヤモンドバックス、記録達成の最新情報",
         "slug": "new-mlb-network-documentary-spotlights-d-backs-2001-world-series-win",
@@ -5758,27 +5733,6 @@
             "apple-news",
             "mlbn-presents",
             "mlb-network"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "17-year-old Royals prospect Gomez showing off his 'incredible talent' in AFL",
-        "summaryJa": "Angeibel Gomez（KC）ら注目選手の最新動向",
-        "slug": "angeibel-gomez-impressing-in-afl-at-17",
-        "url": "https://www.mlb.com/news/angeibel-gomez-impressing-in-afl-at-17",
-        "contentDate": "2026-10-28T20:47:49.842Z",
-        "teamIds": [
-            118
-        ],
-        "playerIds": [
-            825412
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "mlb-top-prospects",
-            "arizona-fall-league"
         ],
         "sourceScopes": [
             "球団公式"
@@ -6132,30 +6086,6 @@
         "contentDate": "2026-10-27T13:53:00Z",
         "teamIds": [],
         "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "mlb-top-prospects",
-            "arizona-fall-league"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "These Padres prospects have been standouts in the Arizona Fall League",
-        "summaryJa": "Alex McCoy（SD）ら注目選手の最新動向",
-        "slug": "padres-prospects-impressing-in-arizona-fall-league",
-        "url": "https://www.mlb.com/news/padres-prospects-impressing-in-arizona-fall-league",
-        "contentDate": "2026-10-27T13:48:46.349Z",
-        "teamIds": [
-            135
-        ],
-        "playerIds": [
-            801932,
-            800212,
-            813664
-        ],
         "gamePks": [],
         "taxonomy": [
             "apple-news",
