@@ -2,6 +2,102 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Watch Red Sox prospect Anderson in tonight's AFL Home Run Derby",
+        "summaryJa": "MLBの最新情報、本塁打で存在感",
+        "slug": "2026-arizona-fall-league-home-run-derby",
+        "url": "https://www.mlb.com/news/2026-arizona-fall-league-home-run-derby",
+        "contentDate": "2026-11-07T19:14:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "arizona-fall-league",
+            "mlb-top-prospects",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Where does Angels' roster stand entering offseason?",
+        "summaryJa": "エンゼルスの最新動向をMLB公式が詳報",
+        "slug": "where-angels-roster-stands-entering-offseason",
+        "url": "https://www.mlb.com/news/where-angels-roster-stands-entering-offseason",
+        "contentDate": "2026-11-07T16:05:00Z",
+        "teamIds": [
+            108
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "offseason"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Breaking down the Fall Stars Game participants by organization",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "2026-arizona-fall-league-fall-stars-by-organization",
+        "url": "https://www.mlb.com/news/2026-arizona-fall-league-fall-stars-by-organization",
+        "contentDate": "2026-11-07T16:01:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "mlb-top-prospects",
+            "apple-news",
+            "arizona-fall-league"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Here are the rosters for Sunday's AFL Fall Stars Game",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "2026-arizona-fall-league-fall-stars-game-rosters",
+        "url": "https://www.mlb.com/news/2026-arizona-fall-league-fall-stars-game-rosters",
+        "contentDate": "2026-11-07T16:01:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "mlb-top-prospects",
+            "apple-news",
+            "arizona-fall-league"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "New hitting coach Lawson discusses Lopez, Mack, Ramírez and more",
+        "summaryJa": "A.ラミレス（MIA）の最新動向をMLB公式が詳報",
+        "slug": "marlins-hitting-coach-dillon-lawson-talks-otto-lopez-joe-mack-agustin-ramirez",
+        "url": "https://www.mlb.com/news/marlins-hitting-coach-dillon-lawson-talks-otto-lopez-joe-mack-agustin-ramirez",
+        "contentDate": "2026-11-07T14:58:59.687Z",
+        "teamIds": [
+            146
+        ],
+        "playerIds": [
+            682663,
+            672640,
+            691788
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "offseason"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "These 3 Nationals could be key pitching options in 2027",
         "summaryJa": "W.ディオン（WSH）の最新動向をMLB公式が詳報",
         "slug": "will-dion-orlando-ribalta-josiah-gray-key-pitchers-nationals-2027",
@@ -99,24 +195,6 @@
         ],
         "sourceScopes": [
             "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Watch Red Sox prospect Anderson in tonight's AFL Home Run Derby",
-        "summaryJa": "MLBの最新情報、本塁打で存在感",
-        "slug": "2026-arizona-fall-league-home-run-derby",
-        "url": "https://www.mlb.com/news/2026-arizona-fall-league-home-run-derby",
-        "contentDate": "2026-11-07T06:15:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "arizona-fall-league",
-            "mlb-top-prospects",
-            "apple-news"
-        ],
-        "sourceScopes": [
             "球団公式"
         ]
     },
@@ -252,25 +330,28 @@
         "playerIds": [],
         "gamePks": [],
         "taxonomy": [
-            "savant"
+            "savant",
+            "apple-news"
         ],
         "sourceScopes": [
             "MLB"
         ]
     },
     {
-        "headline": "Here are the rosters for Sunday's AFL Fall Stars Game",
-        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
-        "slug": "2026-arizona-fall-league-fall-stars-game-rosters",
-        "url": "https://www.mlb.com/news/2026-arizona-fall-league-fall-stars-game-rosters",
-        "contentDate": "2026-11-07T02:09:00Z",
-        "teamIds": [],
-        "playerIds": [],
+        "headline": "What’s next for Schmitt after breakout season?",
+        "summaryJa": "C.シュミット（SF）の最新動向をMLB公式が詳報",
+        "slug": "casey-schmitt-s-2027-outlook-for-giants",
+        "url": "https://www.mlb.com/news/casey-schmitt-s-2027-outlook-for-giants",
+        "contentDate": "2026-11-07T02:44:00Z",
+        "teamIds": [
+            137
+        ],
+        "playerIds": [
+            669477
+        ],
         "gamePks": [],
         "taxonomy": [
-            "mlb-top-prospects",
-            "apple-news",
-            "arizona-fall-league"
+            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
@@ -1495,24 +1576,6 @@
         "gamePks": [],
         "taxonomy": [
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Breaking down the Fall Stars Game participants by organization",
-        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
-        "slug": "2026-arizona-fall-league-fall-stars-by-organization",
-        "url": "https://www.mlb.com/news/2026-arizona-fall-league-fall-stars-by-organization",
-        "contentDate": "2026-11-05T00:30:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "mlb-top-prospects",
-            "apple-news",
-            "arizona-fall-league"
         ],
         "sourceScopes": [
             "球団公式"
@@ -4449,24 +4512,6 @@
         ]
     },
     {
-        "headline": "Sanoja vies for back-to-back Gold Glove honor, this time at 3B",
-        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
-        "slug": "2026-gold-glove-award-finalists",
-        "url": "https://www.mlb.com/news/2026-gold-glove-award-finalists",
-        "contentDate": "2026-11-01T04:00:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "gold-glove-award",
-            "apple-news",
-            "awards-watch"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Rasmussen ($20M club option) returns to Rays for '27 after stellar season, playoff heroics",
         "summaryJa": "D.ラスムッセン（TB）、復帰へ向けた最新状況",
         "slug": "rays-pick-up-drew-rasmussen-s-club-option-for-2027",
@@ -7190,28 +7235,6 @@
         ]
     },
     {
-        "headline": "Giants Trade Deadline acquisition Mendez turns up the heat against old friends in the desert",
-        "summaryJa": "M.メンデス（SF）の移籍・契約に関する最新情報",
-        "slug": "giants-prospect-miguel-mendez-faces-former-organization-in-fall-league",
-        "url": "https://www.mlb.com/news/giants-prospect-miguel-mendez-faces-former-organization-in-fall-league",
-        "contentDate": "2026-10-18T03:16:29.94Z",
-        "teamIds": [
-            137
-        ],
-        "playerIds": [
-            700280
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "mlb-top-prospects",
-            "arizona-fall-league"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "D-backs prospect Forbes sweeping through the Fall League with new offering",
         "summaryJa": "Patrick Forbes（AZ）ら注目選手の最新動向",
         "slug": "d-backs-prospect-patrick-forbes-adding-sweeper-in-fall-league",
@@ -7359,26 +7382,6 @@
             "mlb-top-prospects",
             "apple-news",
             "arizona-fall-league"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "The five biggest questions facing the Angels this offseason",
-        "summaryJa": "M.トラウト（LAA）の最新動向をMLB公式が詳報",
-        "slug": "five-big-questions-for-angels-this-offseason",
-        "url": "https://www.mlb.com/news/five-big-questions-for-angels-this-offseason",
-        "contentDate": "2026-10-10T16:30:00Z",
-        "teamIds": [
-            108
-        ],
-        "playerIds": [
-            545361
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
