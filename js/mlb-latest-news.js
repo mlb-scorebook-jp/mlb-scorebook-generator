@@ -6,7 +6,7 @@
         "summaryJa": "MLBの最新情報ら注目選手の最新動向",
         "slug": "watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
         "url": "https://www.mlb.com/news/watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
-        "contentDate": "2026-11-08T18:37:00Z",
+        "contentDate": "2026-11-08T19:55:00Z",
         "teamIds": [],
         "playerIds": [],
         "gamePks": [],
@@ -40,7 +40,7 @@
         ]
     },
     {
-        "headline": "Here are the rosters for Sunday's AFL Fall Stars Game",
+        "headline": "Here are the rosters for tonight's AFL Fall Stars Game (8 ET on MLB Network)",
         "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
         "slug": "2026-arizona-fall-league-fall-stars-game-rosters",
         "url": "https://www.mlb.com/news/2026-arizona-fall-league-fall-stars-game-rosters",
@@ -81,7 +81,7 @@
         "summaryJa": "A.パーカー（TOR）、本塁打で存在感",
         "slug": "blue-jays-prospect-aaron-parker-wins-2026-arizona-fall-league-home-run-derby",
         "url": "https://www.mlb.com/news/blue-jays-prospect-aaron-parker-wins-2026-arizona-fall-league-home-run-derby",
-        "contentDate": "2026-11-08T05:10:13.108Z",
+        "contentDate": "2026-11-08T05:10:00Z",
         "teamIds": [
             141
         ],
