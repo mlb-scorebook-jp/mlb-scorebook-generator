@@ -2,11 +2,70 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
-        "headline": "Watch LIVE: Arizona Fall League Home Run Derby",
+        "headline": "Here are the rosters for Sunday's AFL Fall Stars Game",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "2026-arizona-fall-league-fall-stars-game-rosters",
+        "url": "https://www.mlb.com/news/2026-arizona-fall-league-fall-stars-game-rosters",
+        "contentDate": "2026-11-08T05:14:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "mlb-top-prospects",
+            "apple-news",
+            "arizona-fall-league"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Breaking down the Fall Stars Game participants by organization",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "2026-arizona-fall-league-fall-stars-by-organization",
+        "url": "https://www.mlb.com/news/2026-arizona-fall-league-fall-stars-by-organization",
+        "contentDate": "2026-11-08T05:14:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "mlb-top-prospects",
+            "apple-news",
+            "arizona-fall-league"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Blue Jays' Parker goes from last-minute sub to Fall League HR Derby champ",
+        "summaryJa": "A.パーカー（TOR）、本塁打で存在感",
+        "slug": "blue-jays-prospect-aaron-parker-wins-2026-arizona-fall-league-home-run-derby",
+        "url": "https://www.mlb.com/news/blue-jays-prospect-aaron-parker-wins-2026-arizona-fall-league-home-run-derby",
+        "contentDate": "2026-11-08T05:10:13.108Z",
+        "teamIds": [
+            141
+        ],
+        "playerIds": [
+            801590
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "mlb-top-prospects",
+            "apple-news",
+            "arizona-fall-league"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Blue Jays' prospect Aaron Parker wins Arizona Fall League Home Run Derby",
         "summaryJa": "MLBの最新情報、本塁打で存在感",
         "slug": "2026-arizona-fall-league-home-run-derby",
         "url": "https://www.mlb.com/news/2026-arizona-fall-league-home-run-derby",
-        "contentDate": "2026-11-08T01:53:00Z",
+        "contentDate": "2026-11-08T03:55:00Z",
         "teamIds": [],
         "playerIds": [],
         "gamePks": [],
@@ -18,6 +77,123 @@
         "sourceScopes": [
             "MLB",
             "球団公式"
+        ]
+    },
+    {
+        "headline": "Watch Angels prospects in Arizona Fall League action",
+        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
+        "slug": "watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
+        "url": "https://www.mlb.com/news/watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
+        "contentDate": "2026-11-08T03:39:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "arizona-fall-league"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "He's never been an All-Star, but here's why he might be the best non-Skubal free agent",
+        "summaryJa": "鈴木 誠也を巡る注目点をMLB公式が分析",
+        "slug": "seiya-suzuki-free-agent-profile",
+        "url": "https://www.mlb.com/news/seiya-suzuki-free-agent-profile",
+        "contentDate": "2026-11-08T02:09:26.039Z",
+        "teamIds": [],
+        "playerIds": [
+            673548
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "Breaking down the best free agent at every position",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "best-free-agent-at-every-position-for-2026-27-mlb-offseason",
+        "url": "https://www.mlb.com/news/best-free-agent-at-every-position-for-2026-27-mlb-offseason",
+        "contentDate": "2026-11-08T02:08:58.202Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "mlbn-hot-stove",
+            "rumors"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "How much do the Dodgers need to re-sign Skubal?",
+        "summaryJa": "T.スクーバル（LAD）の移籍・契約に関する最新情報",
+        "slug": "is-signing-tarik-skubal-vital-for-the-dodgers",
+        "url": "https://www.mlb.com/news/is-signing-tarik-skubal-vital-for-the-dodgers",
+        "contentDate": "2026-11-08T02:06:56.236Z",
+        "teamIds": [
+            119
+        ],
+        "playerIds": [
+            669373
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "rumors"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Revisiting PCA's best games from a season for the record books",
+        "summaryJa": "P.クローアームストロング（CHC）、記録達成の最新情報",
+        "slug": "pete-crow-armstrong-s-best-games-of-2026",
+        "url": "https://www.mlb.com/news/pete-crow-armstrong-s-best-games-of-2026",
+        "contentDate": "2026-11-08T02:02:38.102Z",
+        "teamIds": [
+            112
+        ],
+        "playerIds": [
+            691718
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "awards-watch",
+            "most-valuable-player"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Making the Hall of Fame case for the long, varied career of Bill White",
+        "summaryJa": "B.ホワイトの最新動向をMLB公式が詳報",
+        "slug": "bill-white-case-for-hall-of-fame-on-contemporary-baseball-era-ballot",
+        "url": "https://www.mlb.com/news/bill-white-case-for-hall-of-fame-on-contemporary-baseball-era-ballot",
+        "contentDate": "2026-11-08T02:01:41.098Z",
+        "teamIds": [],
+        "playerIds": [
+            124191
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "baseball-hall-of-fame"
+        ],
+        "sourceScopes": [
+            "MLB"
         ]
     },
     {
@@ -51,24 +227,6 @@
         ],
         "sourceScopes": [
             "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Breaking down the Fall Stars Game participants by organization",
-        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
-        "slug": "2026-arizona-fall-league-fall-stars-by-organization",
-        "url": "https://www.mlb.com/news/2026-arizona-fall-league-fall-stars-by-organization",
-        "contentDate": "2026-11-07T19:57:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "mlb-top-prospects",
-            "apple-news",
-            "arizona-fall-league"
-        ],
-        "sourceScopes": [
             "球団公式"
         ]
     },
@@ -108,24 +266,7 @@
             "offseason"
         ],
         "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Here are the rosters for Sunday's AFL Fall Stars Game",
-        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
-        "slug": "2026-arizona-fall-league-fall-stars-game-rosters",
-        "url": "https://www.mlb.com/news/2026-arizona-fall-league-fall-stars-game-rosters",
-        "contentDate": "2026-11-07T16:01:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "mlb-top-prospects",
-            "apple-news",
-            "arizona-fall-league"
-        ],
-        "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
@@ -169,6 +310,7 @@
         "gamePks": [],
         "taxonomy": [],
         "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
@@ -250,42 +392,6 @@
         ],
         "sourceScopes": [
             "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Here are 10 of the funniest Minor League Baseball jerseys ever",
-        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
-        "slug": "weirdest-minor-league-jerseys",
-        "url": "https://www.mlb.com/news/weirdest-minor-league-jerseys",
-        "contentDate": "2026-11-07T04:59:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "offbeat",
-            "apple-news",
-            "baseball-traveler",
-            "minor-league-baseball"
-        ],
-        "sourceScopes": [
-            "MLB"
-        ]
-    },
-    {
-        "headline": "Watch Angels prospects in Arizona Fall League action",
-        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
-        "slug": "watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
-        "url": "https://www.mlb.com/news/watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
-        "contentDate": "2026-11-07T04:37:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "arizona-fall-league"
-        ],
-        "sourceScopes": [
             "球団公式"
         ]
     },
@@ -409,6 +515,7 @@
             "apple-news"
         ],
         "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
@@ -466,7 +573,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -644,24 +750,6 @@
         ]
     },
     {
-        "headline": "Inbox: '26 draftees in Arizona Fall League? Breakout performers?",
-        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
-        "slug": "arizona-fall-league-pipeline-inbox",
-        "url": "https://www.mlb.com/news/arizona-fall-league-pipeline-inbox",
-        "contentDate": "2026-11-06T19:28:33.442Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "mlb-top-prospects",
-            "arizona-fall-league",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB"
-        ]
-    },
-    {
         "headline": "Mense joins Royals' staff from Giants as hitting coach",
         "summaryJa": "ロイヤルズの最新動向をMLB公式が詳報",
         "slug": "hunter-mense-royals-coach",
@@ -694,7 +782,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -902,7 +989,6 @@
             "offseason"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1106,7 +1192,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1130,7 +1215,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1337,8 +1421,8 @@
         ]
     },
     {
-        "headline": "Finalists for Silver Sluggers announced",
-        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "headline": "Trout seeks 10th Silver Slugger Award, Neto his first",
+        "summaryJa": "MLBの最新情報、記録達成の最新情報",
         "slug": "2026-silver-slugger-award-finalists",
         "url": "https://www.mlb.com/news/2026-silver-slugger-award-finalists",
         "contentDate": "2026-11-05T16:13:03.725Z",
@@ -1350,7 +1434,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1475,7 +1558,6 @@
             "mlbn-hot-stove"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -5502,6 +5584,28 @@
         ]
     },
     {
+        "headline": "Royals decline Estévez's club option, exercise Gonsolin's option",
+        "summaryJa": "T.ゴンソリン（KC）の最新動向をMLB公式が詳報",
+        "slug": "royals-decline-carlos-estevez-s-club-option-exercise-tony-gonsolin-s-option",
+        "url": "https://www.mlb.com/news/royals-decline-carlos-estevez-s-club-option-exercise-tony-gonsolin-s-option",
+        "contentDate": "2026-10-29T22:33:05.737Z",
+        "teamIds": [
+            118
+        ],
+        "playerIds": [
+            664062,
+            608032
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "transactions"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Latest Padres injuries and transactions",
         "summaryJa": "パドレスの負傷状況をMLB公式が詳報",
         "slug": "padres-injuries-and-roster-moves",
@@ -6220,6 +6324,30 @@
         ]
     },
     {
+        "headline": "These Padres prospects have been standouts in the Arizona Fall League",
+        "summaryJa": "Alex McCoy（SD）ら注目選手の最新動向",
+        "slug": "padres-prospects-impressing-in-arizona-fall-league",
+        "url": "https://www.mlb.com/news/padres-prospects-impressing-in-arizona-fall-league",
+        "contentDate": "2026-10-27T13:48:46.349Z",
+        "teamIds": [
+            135
+        ],
+        "playerIds": [
+            801932,
+            800212,
+            813664
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "mlb-top-prospects",
+            "arizona-fall-league"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Q&A: Smith discusses his new role as youngest head of baseball ops in MLB",
         "summaryJa": "アスレチックスの最新動向をMLB公式が詳報",
         "slug": "q-a-with-athletics-president-of-baseball-operations-taylor-smith",
@@ -6438,6 +6566,32 @@
         ]
     },
     {
+        "headline": "OF Thomas, C O'Dowd among Fall League's Week 3 top performers",
+        "summaryJa": "Yerlin Confidanの最新動向をMLB公式が詳報",
+        "slug": "arizona-fall-league-top-performers-week-3-2026",
+        "url": "https://www.mlb.com/news/arizona-fall-league-top-performers-week-3-2026",
+        "contentDate": "2026-10-25T23:20:00Z",
+        "teamIds": [],
+        "playerIds": [
+            691398,
+            828076,
+            703610,
+            828987,
+            691942,
+            806191,
+            703606
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "mlb-top-prospects",
+            "apple-news",
+            "arizona-fall-league"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "White Sox No. 2 prospect Bonemer recaps Fall League stint: 'A great three weeks'",
         "summaryJa": "Caleb Bonemer（CWS）ら注目選手の最新動向",
         "slug": "white-sox-caleb-bonemer-2026-arizona-fall-league-recap",
@@ -6611,6 +6765,26 @@
         "taxonomy": [
             "apple-news",
             "mlb-top-prospects"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "How will hard-playing Myers fit into Reds' outfield mix in 2027?",
+        "summaryJa": "D.マイヤーズ（CIN）を巡る注目点をMLB公式が分析",
+        "slug": "dane-myers-fit-in-reds-2027-outfield",
+        "url": "https://www.mlb.com/news/dane-myers-fit-in-reds-2027-outfield",
+        "contentDate": "2026-10-23T12:25:53.273Z",
+        "teamIds": [
+            113
+        ],
+        "playerIds": [
+            667472
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
