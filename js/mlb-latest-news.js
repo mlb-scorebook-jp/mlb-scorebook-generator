@@ -2,6 +2,23 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Watch Angels prospects in Arizona Fall League action",
+        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
+        "slug": "watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
+        "url": "https://www.mlb.com/news/watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
+        "contentDate": "2026-11-08T18:37:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "arizona-fall-league"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Smith, Messick named Cleveland BBWAA award winners",
         "summaryJa": "C.スミス（CLE）、勝利を呼び込む活躍",
         "slug": "cade-smith-parker-messick-win-local-2026-bbwaa-awards",
@@ -82,7 +99,7 @@
         ]
     },
     {
-        "headline": "Blue Jays' prospect Aaron Parker wins Arizona Fall League Home Run Derby",
+        "headline": "Blue Jays prospect Aaron Parker wins Arizona Fall League Home Run Derby",
         "summaryJa": "MLBの最新情報、本塁打で存在感",
         "slug": "2026-arizona-fall-league-home-run-derby",
         "url": "https://www.mlb.com/news/2026-arizona-fall-league-home-run-derby",
@@ -101,25 +118,8 @@
         ]
     },
     {
-        "headline": "Watch Angels prospects in Arizona Fall League action",
-        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
-        "slug": "watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
-        "url": "https://www.mlb.com/news/watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
-        "contentDate": "2026-11-08T03:39:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "arizona-fall-league"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "He's never been an All-Star, but here's why he might be the best non-Skubal free agent",
-        "summaryJa": "鈴木 誠也を巡る注目点をMLB公式が分析",
+        "headline": "He's never been an All-Star, but he might be the best hitter in the free-agent class",
+        "summaryJa": "鈴木 誠也の最新動向をMLB公式が詳報",
         "slug": "seiya-suzuki-free-agent-profile",
         "url": "https://www.mlb.com/news/seiya-suzuki-free-agent-profile",
         "contentDate": "2026-11-08T02:09:26.039Z",
@@ -724,7 +724,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -3132,6 +3131,27 @@
         ],
         "sourceScopes": [
             "球団公式"
+        ]
+    },
+    {
+        "headline": "Here are the finalists for MVP, Cy Young, Rookie of the Year, more",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "2026-bbwaa-awards-finalists",
+        "url": "https://www.mlb.com/news/2026-bbwaa-awards-finalists",
+        "contentDate": "2026-11-03T01:03:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "awards-watch",
+            "apple-news",
+            "cy-young-award",
+            "most-valuable-player",
+            "rookie-of-the-year",
+            "manager-of-the-year"
+        ],
+        "sourceScopes": [
+            "MLB"
         ]
     },
     {
