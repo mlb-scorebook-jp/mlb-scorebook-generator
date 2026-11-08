@@ -2,6 +2,25 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Watch LIVE: Arizona Fall League Home Run Derby",
+        "summaryJa": "MLBの最新情報、本塁打で存在感",
+        "slug": "2026-arizona-fall-league-home-run-derby",
+        "url": "https://www.mlb.com/news/2026-arizona-fall-league-home-run-derby",
+        "contentDate": "2026-11-08T01:53:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "arizona-fall-league",
+            "mlb-top-prospects",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Here are the top performers from Week 5 of AFL action",
         "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
         "slug": "arizona-fall-league-top-performers-week-5-2026",
@@ -70,25 +89,6 @@
             "exclude-from-personalization"
         ],
         "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Breaking down the AFL Home Run Derby participants",
-        "summaryJa": "MLBの最新情報、本塁打で存在感",
-        "slug": "2026-arizona-fall-league-home-run-derby",
-        "url": "https://www.mlb.com/news/2026-arizona-fall-league-home-run-derby",
-        "contentDate": "2026-11-07T19:14:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "arizona-fall-league",
-            "mlb-top-prospects",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
