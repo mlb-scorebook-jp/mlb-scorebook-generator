@@ -2,6 +2,27 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Smith, Messick named Cleveland BBWAA award winners",
+        "summaryJa": "C.スミス（CLE）、勝利を呼び込む活躍",
+        "slug": "cade-smith-parker-messick-win-local-2026-bbwaa-awards",
+        "url": "https://www.mlb.com/news/cade-smith-parker-messick-win-local-2026-bbwaa-awards",
+        "contentDate": "2026-11-08T11:00:00Z",
+        "teamIds": [
+            114
+        ],
+        "playerIds": [
+            671922,
+            800048
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Here are the rosters for Sunday's AFL Fall Stars Game",
         "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
         "slug": "2026-arizona-fall-league-fall-stars-game-rosters",
@@ -6807,24 +6828,6 @@
             "apple-news",
             "arizona-fall-league",
             "mlb-top-prospects"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Vogt affirms he'll be back as Guardians' skipper in 2027",
-        "summaryJa": "ガーディアンズの最新動向をMLB公式が詳報",
-        "slug": "stephen-vogt-to-remain-as-guardians-manager-in-2027",
-        "url": "https://www.mlb.com/news/stephen-vogt-to-remain-as-guardians-manager-in-2027",
-        "contentDate": "2026-10-22T22:01:02.887Z",
-        "teamIds": [
-            114
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
