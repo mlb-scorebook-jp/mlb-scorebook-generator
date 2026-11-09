@@ -2,21 +2,134 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
-        "headline": "Watch LIVE: '26 AFL Fall Stars Game",
-        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
-        "slug": "arizona-fall-league-fall-stars-game-2026-watch-live",
-        "url": "https://www.mlb.com/news/arizona-fall-league-fall-stars-game-2026-watch-live",
-        "contentDate": "2026-11-09T00:57:00Z",
+        "headline": "Here's how every prospect fared in the AFL Fall Stars Game",
+        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
+        "slug": "2026-arizona-fall-league-fall-stars-game",
+        "url": "https://www.mlb.com/news/2026-arizona-fall-league-fall-stars-game",
+        "contentDate": "2026-11-09T06:59:00Z",
         "teamIds": [],
         "playerIds": [],
         "gamePks": [],
         "taxonomy": [
             "arizona-fall-league",
-            "mlb-top-prospects"
+            "mlb-top-prospects",
+            "apple-news"
         ],
         "sourceScopes": [
             "MLB",
             "球団公式"
+        ]
+    },
+    {
+        "headline": "These were the 7 top performers in the AFL Fall Stars Game",
+        "summaryJa": "J.スサーナの最新動向をMLB公式が詳報",
+        "slug": "afl-fall-stars-game-2026-top-performers",
+        "url": "https://www.mlb.com/news/afl-fall-stars-game-2026-top-performers",
+        "contentDate": "2026-11-09T06:18:00Z",
+        "teamIds": [],
+        "playerIds": [
+            703186,
+            814414,
+            806988,
+            695494,
+            691398,
+            803183
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "arizona-fall-league",
+            "mlb-top-prospects",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Fall Stars Game sparks pair of nostalgic moments for O'Dowd father and son",
+        "summaryJa": "Jack O'Dowdの最新動向をMLB公式が詳報",
+        "slug": "jack-and-dan-o-dowd-special-moments-at-afl-fall-stars-game",
+        "url": "https://www.mlb.com/news/jack-and-dan-o-dowd-special-moments-at-afl-fall-stars-game",
+        "contentDate": "2026-11-09T05:18:00Z",
+        "teamIds": [],
+        "playerIds": [
+            691942
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "arizona-fall-league",
+            "mlb-top-prospects",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "The case for each Rookie of the Year finalist",
+        "summaryJa": "J.ウェザーホルト（STL）の最新動向をMLB公式が詳報",
+        "slug": "case-for-each-2026-mlb-rookie-of-the-year-award-finalist",
+        "url": "https://www.mlb.com/news/case-for-each-2026-mlb-rookie-of-the-year-award-finalist",
+        "contentDate": "2026-11-09T02:34:08.065Z",
+        "teamIds": [
+            138,
+            121,
+            113,
+            116,
+            111,
+            114
+        ],
+        "playerIds": [
+            802139,
+            701807,
+            701398,
+            805808,
+            801139,
+            800048
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "rookie-of-the-year"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "6 storylines to watch during Awards Week",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "storylines-to-watch-for-2026-mlb-awards",
+        "url": "https://www.mlb.com/news/storylines-to-watch-for-2026-mlb-awards",
+        "contentDate": "2026-11-09T02:33:20.46Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "awards-watch"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "What to expect at GM Meetings this week in Vegas",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "general-managers-meetings-preview-2026",
+        "url": "https://www.mlb.com/news/general-managers-meetings-preview-2026",
+        "contentDate": "2026-11-09T02:32:38.735Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "gm-meetings"
+        ],
+        "sourceScopes": [
+            "MLB"
         ]
     },
     {
@@ -248,7 +361,7 @@
         ]
     },
     {
-        "headline": "Breaking down the best free agent at every position",
+        "headline": "Here is this offseason's All-Free-Agent Team",
         "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
         "slug": "best-free-agent-at-every-position-for-2026-27-mlb-offseason",
         "url": "https://www.mlb.com/news/best-free-agent-at-every-position-for-2026-27-mlb-offseason",
@@ -648,7 +761,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -789,7 +901,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -999,7 +1110,6 @@
             "rumors"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1216,51 +1326,6 @@
         ],
         "sourceScopes": [
             "球団公式"
-        ]
-    },
-    {
-        "headline": "Breaking down the free-agent class by tiers",
-        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
-        "slug": "tiers-of-mlb-s-2026-27-free-agent-players",
-        "url": "https://www.mlb.com/news/tiers-of-mlb-s-2026-27-free-agent-players",
-        "contentDate": "2026-11-06T05:00:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB"
-        ]
-    },
-    {
-        "headline": "This offseason's best free-agent starters, ranked",
-        "summaryJa": "T.スクーバルら注目選手の最新動向",
-        "slug": "free-agent-starting-pitcher-power-rankings-for-2026-2027",
-        "url": "https://www.mlb.com/news/free-agent-starting-pitcher-power-rankings-for-2026-2027",
-        "contentDate": "2026-11-06T05:00:00Z",
-        "teamIds": [],
-        "playerIds": [
-            669373,
-            650633,
-            543243,
-            642547,
-            669432,
-            605280,
-            592332,
-            684007,
-            656492
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "pitcher-power-rankings",
-            "rankings",
-            "rumors",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB"
         ]
     },
     {
@@ -5254,27 +5319,6 @@
         ]
     },
     {
-        "headline": "King opts out of deal with Padres to become free agent",
-        "summaryJa": "M.キング（SD）の移籍・契約に関する最新情報",
-        "slug": "michael-king-free-agent-2027",
-        "url": "https://www.mlb.com/news/michael-king-free-agent-2027",
-        "contentDate": "2026-10-30T17:22:00Z",
-        "teamIds": [
-            135
-        ],
-        "playerIds": [
-            650633
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "transactions"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Longtime team fixture Hurdle parting ways with Rockies",
         "summaryJa": "C.ハードル（COL）の最新動向をMLB公式が詳報",
         "slug": "clint-hurdle-parting-ways-with-rockies",
@@ -5644,6 +5688,28 @@
         "taxonomy": [
             "transactions",
             "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Royals decline Estévez's club option, exercise Gonsolin's option",
+        "summaryJa": "T.ゴンソリン（KC）の最新動向をMLB公式が詳報",
+        "slug": "royals-decline-carlos-estevez-s-club-option-exercise-tony-gonsolin-s-option",
+        "url": "https://www.mlb.com/news/royals-decline-carlos-estevez-s-club-option-exercise-tony-gonsolin-s-option",
+        "contentDate": "2026-10-29T22:33:05.737Z",
+        "teamIds": [
+            118
+        ],
+        "playerIds": [
+            664062,
+            608032
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "transactions"
         ],
         "sourceScopes": [
             "球団公式"
@@ -6225,26 +6291,6 @@
         ]
     },
     {
-        "headline": "After up-and-down '26, Bleday eyes consistency with Reds",
-        "summaryJa": "J.ブレディ（CIN）の最新動向をMLB公式が詳報",
-        "slug": "jj-bleday-reds-2026-season-2027-outlook",
-        "url": "https://www.mlb.com/news/jj-bleday-reds-2026-season-2027-outlook",
-        "contentDate": "2026-10-27T15:31:48.021Z",
-        "teamIds": [
-            113
-        ],
-        "playerIds": [
-            668709
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Important Phillies offseason dates for awards, Hot Stove season",
         "summaryJa": "フィリーズの最新動向をMLB公式が詳報",
         "slug": "phillies-key-offseason-dates-2026-2027",
@@ -6285,24 +6331,6 @@
         ]
     },
     {
-        "headline": "118.2 mph exit velo! 103.8 mph fastball! These are the Arizona Fall League Statcast leaders",
-        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
-        "slug": "arizona-fall-league-statcast-leaders-2026",
-        "url": "https://www.mlb.com/news/arizona-fall-league-statcast-leaders-2026",
-        "contentDate": "2026-10-27T13:53:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "mlb-top-prospects",
-            "arizona-fall-league"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Q&A: Smith discusses his new role as youngest head of baseball ops in MLB",
         "summaryJa": "アスレチックスの最新動向をMLB公式が詳報",
         "slug": "q-a-with-athletics-president-of-baseball-operations-taylor-smith",
@@ -6333,27 +6361,6 @@
         "gamePks": [],
         "taxonomy": [
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "O'Dowd named Arizona Fall League Hitter of the Week",
-        "summaryJa": "Jack O'Dowdの最新動向をMLB公式が詳報",
-        "slug": "arizona-fall-league-week-3-award-winners-2026",
-        "url": "https://www.mlb.com/news/arizona-fall-league-week-3-award-winners-2026",
-        "contentDate": "2026-10-26T16:01:32.633Z",
-        "teamIds": [],
-        "playerIds": [
-            691942,
-            703610
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "arizona-fall-league",
-            "mlb-top-prospects"
         ],
         "sourceScopes": [
             "球団公式"
@@ -6477,27 +6484,6 @@
         "gamePks": [],
         "taxonomy": [
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "With an eye on defensive growth, 'sky's the limit' for De Paula",
-        "summaryJa": "J.デポーラ（LAD）の最新動向をMLB公式が詳報",
-        "slug": "josue-de-paula-focusing-on-defensive-improvement-ahead-of-2027",
-        "url": "https://www.mlb.com/news/josue-de-paula-focusing-on-defensive-improvement-ahead-of-2027",
-        "contentDate": "2026-10-24T16:23:05.48Z",
-        "teamIds": [
-            119
-        ],
-        "playerIds": [
-            800543
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "mlb-top-prospects"
         ],
         "sourceScopes": [
             "球団公式"
@@ -6928,6 +6914,32 @@
         "gamePks": [],
         "taxonomy": [
             "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "7 free-agent pitching targets for the Giants",
+        "summaryJa": "A.モレホーン（SF）の最新動向をMLB公式が詳報",
+        "slug": "giants-could-target-these-pitchers-in-free-agency",
+        "url": "https://www.mlb.com/news/giants-could-target-these-pitchers-in-free-agency",
+        "contentDate": "2026-10-20T23:05:00Z",
+        "teamIds": [
+            137
+        ],
+        "playerIds": [
+            670970,
+            628452,
+            670280,
+            642547,
+            592332,
+            607259
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "offseason"
         ],
         "sourceScopes": [
             "球団公式"
