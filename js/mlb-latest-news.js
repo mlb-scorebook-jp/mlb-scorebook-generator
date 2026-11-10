@@ -2,6 +2,41 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Watch Angels prospects in Arizona Fall League action",
+        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
+        "slug": "watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
+        "url": "https://www.mlb.com/news/watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
+        "contentDate": "2026-11-10T06:07:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "arizona-fall-league"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Where does Basallo rank on '26 rookies based on long-term value list?",
+        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
+        "slug": "ranking-2026-rookies-based-on-long-term-value",
+        "url": "https://www.mlb.com/news/ranking-2026-rookies-based-on-long-term-value",
+        "contentDate": "2026-11-10T04:17:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "mlb-top-prospects",
+            "apple-news",
+            "rankings"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Former MLB, NBA stars and more hit the links to celebrate 20 years of Compton Youth Academy",
         "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
         "slug": "mlb-youth-academy-celebrity-golf-invitational-honors-compton-youth-academy",
@@ -35,23 +70,6 @@
         "taxonomy": [
             "apple-news",
             "mlb-top-prospects"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Watch Angels prospects in Arizona Fall League action",
-        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
-        "slug": "watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
-        "url": "https://www.mlb.com/news/watch-top-prospects-in-arizona-fall-league-winter-ball-2026",
-        "contentDate": "2026-11-10T02:49:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "arizona-fall-league"
         ],
         "sourceScopes": [
             "球団公式"
@@ -443,7 +461,7 @@
         ]
     },
     {
-        "headline": "With Bednar a free agent, here are the Yankees' closer options",
+        "headline": "With Bednar a free agent, who will be Yankees' closer in 2027?",
         "summaryJa": "D.べドナー（NYY）の最新動向をMLB公式が詳報",
         "slug": "who-will-be-yankees-closer-in-2027",
         "url": "https://www.mlb.com/news/who-will-be-yankees-closer-in-2027",
@@ -2939,24 +2957,6 @@
         "gamePks": [],
         "taxonomy": [
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Where does Basallo rank on '26 rookies based on long-term value list?",
-        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
-        "slug": "ranking-2026-rookies-based-on-long-term-value",
-        "url": "https://www.mlb.com/news/ranking-2026-rookies-based-on-long-term-value",
-        "contentDate": "2026-11-04T00:20:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "mlb-top-prospects",
-            "apple-news",
-            "rankings"
         ],
         "sourceScopes": [
             "球団公式"
