@@ -1,4 +1,5 @@
 /* Shared contrast edge for team/organization logos on the dark UI. */
+img[src*="/team-logos/"],
 img[src*="mlbstatic.com/team-logos/"],
 img[src*="/assets/team-logos/"],
 img[src^="assets/team-logos/"],
@@ -22,4 +23,31 @@ img[src*="/147.svg"] {
 img[src$="/142.svg"],
 img[src$="min-t-white.svg"] {
     filter: none !important;
+}
+
+/* Small, high-density screens need a slightly clearer edge at rendered size. */
+@media (max-width: 767px) {
+    img[src*="/team-logos/"],
+    img[src*="mlbstatic.com/team-logos/"],
+    img[src*="/assets/team-logos/"],
+    img[src^="assets/team-logos/"],
+    img[src*="/assets/npb-team-logos/"],
+    img[src^="assets/npb-team-logos/"] {
+        filter: drop-shadow(0 0 .55px rgba(245, 250, 252, .68)) !important;
+    }
+
+    img[src*="/116.svg"],
+    img[src*="/118.svg"],
+    img[src*="/119.svg"],
+    img[src*="/115.svg"],
+    img[src*="/133.svg"],
+    img[src*="/135.svg"],
+    img[src*="/147.svg"] {
+        filter: drop-shadow(0 0 1px rgba(245, 250, 252, .95)) !important;
+    }
+
+    img[src$="/142.svg"],
+    img[src$="min-t-white.svg"] {
+        filter: none !important;
+    }
 }
