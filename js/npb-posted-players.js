@@ -139,10 +139,16 @@
                 pitcherRole: "SP",
                 transferType: "prospect",
                 declaredDate: "2026-11-02",
-                statusText: "11/4からドジャースやヤンキースを含む" +
-                    "MLB約11～12球団との面談開始予定",
-                sourceUrl: "https://www.nikkansports.com/baseball/highschool/" +
-                    "news/202611020001706.html"
+                meetings: [
+                    { date: "11/4", teamId: 140 },
+                    { date: "11/5", teamId: 143 },
+                    { date: "11/5", teamId: 121 },
+                    { date: "11/6", teamId: 141 },
+                    { date: "11/6", teamId: 138 },
+                    { date: "11/6", teamId: 147 }
+                ],
+                meetingStatusText: "と面談済み",
+                sourceUrl: "https://full-count.jp/2026/11/10/post2042885/"
             },
             {
                 name: "野上 龍哉",

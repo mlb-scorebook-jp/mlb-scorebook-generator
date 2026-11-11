@@ -2396,6 +2396,41 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
     text-decoration: underline;
 }
 
+.pregame-free-agent-meeting-status {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    color: #eef3f6;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.pregame-free-agent-meeting-status:hover,
+.pregame-free-agent-meeting-status:focus-visible {
+    color: #8fdcff;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.pregame-free-agent-meeting-status .pregame-free-agent-team-logo {
+    width: 21px;
+    height: 21px;
+}
+
+.pregame-free-agent-meeting-date {
+    color: #a9bac3;
+    font-size: 10px;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+}
+
+.pregame-free-agent-meeting-entry {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+}
+
 .pregame-free-agent-posting-outcome {
     color: #ff9088;
     font-weight: 700;

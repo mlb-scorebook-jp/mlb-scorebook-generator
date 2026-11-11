@@ -4336,15 +4336,39 @@
                 );
                 row.append(identity);
                 const details = el("span", "pregame-free-agent-details");
-                const postingStatus = el(
-                    "a",
-                    "pregame-free-agent-posting-status",
-                    japaneseMlbTransferStatus(player)
-                );
-                postingStatus.href = player.sourceUrl;
-                postingStatus.target = "_blank";
-                postingStatus.rel = "noopener noreferrer";
-                details.append(postingStatus);
+                if (Array.isArray(player.meetings) && player.meetings.length) {
+                    const meetingStatus = el("a", "pregame-free-agent-meeting-status");
+                    meetingStatus.href = player.sourceUrl;
+                    meetingStatus.target = "_blank";
+                    meetingStatus.rel = "noopener noreferrer";
+                    player.meetings.forEach((meeting) => {
+                        const meetingEntry = el("span", "pregame-free-agent-meeting-entry");
+                        meetingEntry.append(el(
+                            "span",
+                            "pregame-free-agent-meeting-date",
+                            meeting.date
+                        ));
+                        meetingEntry.append(createFreeAgentTeamLogo(
+                            { id: meeting.teamId },
+                            `${teamJapaneseName({ id: meeting.teamId })}のロゴ`
+                        ));
+                        meetingStatus.append(meetingEntry);
+                    });
+                    meetingStatus.append(document.createTextNode(
+                        player.meetingStatusText || "と面談済み"
+                    ));
+                    details.append(meetingStatus);
+                } else {
+                    const postingStatus = el(
+                        "a",
+                        "pregame-free-agent-posting-status",
+                        japaneseMlbTransferStatus(player)
+                    );
+                    postingStatus.href = player.sourceUrl;
+                    postingStatus.target = "_blank";
+                    postingStatus.rel = "noopener noreferrer";
+                    details.append(postingStatus);
+                }
                 const signing = player.signing?.agreedDate <= date ? player.signing : null;
                 if (signing) {
                     const hasTerms = Number.isFinite(Number(signing.years)) &&
