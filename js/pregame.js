@@ -3071,55 +3071,28 @@
             : `${text} ※期間と金額は未公表`;
     };
 
-    const findFreeAgentAgreement = (playerId, formerTeamId, startDate, date) => {
+    // 契約合意は確認済みデータだけを採用する。噂記事や「再契約が必要」の見出しから推測しない。
+    const findFreeAgentAgreement = (playerId, startDate, date) => {
         const confirmed = window.MLB_FREE_AGENT_AGREEMENTS?.[Number(playerId)];
-        if (confirmed && startDate <= confirmed.agreedDate && confirmed.agreedDate <= date) {
-            return {
-                teamId: Number(confirmed.teamId),
-                league: confirmed.league || "MLB",
-                teamName: confirmed.teamName || "",
-                teamLogoUrl: confirmed.teamLogoUrl || "",
-                statusText: confirmed.statusText || "",
-                agreedDate: confirmed.agreedDate,
-                terms: Number.isFinite(Number(confirmed.years)) &&
-                    Number.isFinite(Number(confirmed.tenThousands))
-                    ? {
-                        years: Number(confirmed.years),
-                        tenThousands: Number(confirmed.tenThousands)
-                    }
-                    : null,
-                url: confirmed.url || ""
-            };
+        if (!confirmed || startDate > confirmed.agreedDate || confirmed.agreedDate > date) {
+            return null;
         }
-        return (window.MLB_LATEST_NEWS ?? [])
-            .filter((article) =>
-                (article?.playerIds ?? []).some((id) => Number(id) === Number(playerId)) &&
-                startDate <= articleMlbDate(article) && articleMlbDate(article) <= date &&
-                (() => {
-                    const articleText = [article?.headline, article?.summaryJa]
-                        .filter(Boolean).join(" ");
-                    const isFreeAgencyOrExit = /(?:opt(?:s|ed)? out|declin(?:e|es|ed)|elect(?:s|ed)? free agency|become(?:s)? (?:a )?free agent|契約破棄|オプトアウト|FA(?:に|とな|選択|権)|自由契約)/i
-                        .test(articleText);
-                    return !isFreeAgencyOrExit &&
-                        /agree|sign|contract|deal|合意|契約/i.test(articleText);
-                })()
-            )
-            .map((article) => {
-                const articleTeamIds = (article?.teamIds ?? [])
-                    .map(Number)
-                    .filter((id) => MLB_TEAM_IDS.has(id));
-                const destinationTeamId = articleTeamIds.find((id) =>
-                    id !== Number(formerTeamId)
-                ) ?? articleTeamIds[0];
-                return destinationTeamId ? {
-                    teamId: destinationTeamId,
-                    agreedDate: articleMlbDate(article),
-                    terms: parseContractTerms(article),
-                    url: article.url
-                } : null;
-            })
-            .filter(Boolean)
-            .sort((left, right) => right.agreedDate.localeCompare(left.agreedDate))[0] ?? null;
+        return {
+            teamId: Number(confirmed.teamId),
+            league: confirmed.league || "MLB",
+            teamName: confirmed.teamName || "",
+            teamLogoUrl: confirmed.teamLogoUrl || "",
+            statusText: confirmed.statusText || "",
+            agreedDate: confirmed.agreedDate,
+            terms: Number.isFinite(Number(confirmed.years)) &&
+                Number.isFinite(Number(confirmed.tenThousands))
+                ? {
+                    years: Number(confirmed.years),
+                    tenThousands: Number(confirmed.tenThousands)
+                }
+                : null,
+            url: confirmed.url || ""
+        };
     };
 
     const findFreeAgentRetirement = (playerId, date) => {
@@ -3722,12 +3695,12 @@
         const groups = { AL: [], NL: [] };
         freeAgents.forEach((entry) => {
             const retirement = findFreeAgentRetirement(entry.playerId, date);
-            const articleAgreement = findFreeAgentAgreement(
-                entry.playerId, entry.formerTeam.id, startDate, date
+            const confirmedAgreement = findFreeAgentAgreement(
+                entry.playerId, startDate, date
             );
             const officialSigning = signings.get(entry.playerId) || entry.historicalSigning;
-            const signing = articleAgreement || officialSigning
-                ? { ...officialSigning, ...articleAgreement }
+            const signing = confirmedAgreement || officialSigning
+                ? { ...officialSigning, ...confirmedAgreement }
                 : null;
             const trackedContract = signing
                 ? findFreeAgentContractTerms(season, entry.person)
