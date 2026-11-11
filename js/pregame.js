@@ -3145,9 +3145,26 @@
         return payload?.transactions ?? [];
     };
 
+    const freeAgentDeclarationFromTransaction = (transaction) => {
+        const description = String(transaction?.description ?? "");
+        if (/elected free agency|became a free agent/i.test(description)) {
+            return { statusText: "FA選択" };
+        }
+        if (/declined[^.]*player option/i.test(description)) {
+            return { statusText: "選手オプションを拒否" };
+        }
+        if (/declined[^.]*mutual option/i.test(description)) {
+            return { statusText: "相互オプションを拒否" };
+        }
+        if (/declined[^.]*club option|club option[^.]*declined/i.test(description)) {
+            return { statusText: "球団オプション終了" };
+        }
+        return null;
+    };
+
     const isFreeAgentUpdateTransaction = (transaction) =>
         String(transaction?.typeCode ?? "") === "SFA" ||
-        /elected free agency/i.test(String(transaction?.description ?? ""));
+        Boolean(freeAgentDeclarationFromTransaction(transaction));
 
     const FREE_AGENT_RECENT_STORAGE_KEY = "mlb-scorebook:free-agent-recent-updates";
     const FREE_AGENT_RECENT_DURATION_MS = 24 * 60 * 60 * 1000;
@@ -3226,7 +3243,7 @@
         );
         const hasFreeAgentTransactionUpdate = transactions.some((transaction) =>
             String(transaction?.typeCode ?? "") === "SFA" ||
-            /elected free agency/i.test(String(transaction?.description ?? ""))
+            Boolean(freeAgentDeclarationFromTransaction(transaction))
         );
         const hasAgreementUpdate = Object.values(window.MLB_FREE_AGENT_AGREEMENTS ?? {})
             .some((entry) => entry?.agreedDate === date);
@@ -3599,6 +3616,10 @@
         const startDate = addDays(postseasonWindow.displayEndDate, 1);
         const transactions = await fetchFreeAgentTransactions(startDate, date);
         const freeAgents = new Map();
+        const candidatesById = new Map(
+            (window.MLB_FREE_AGENT_CANDIDATES?.[season] ?? [])
+                .map((candidate) => [Number(candidate.playerId), candidate])
+        );
         (window.MLB_HISTORICAL_FREE_AGENTS?.[season] ?? []).forEach((entry) => {
             freeAgents.set(Number(entry.playerId), {
                 playerId: Number(entry.playerId),
@@ -3621,9 +3642,12 @@
             });
         });
         transactions.forEach((transaction) => {
-            if (!/elected free agency/i.test(String(transaction?.description ?? ""))) return;
+            const declaration = freeAgentDeclarationFromTransaction(transaction);
+            if (!declaration) return;
             const playerId = Number(transaction?.person?.id);
-            const formerTeam = transaction?.toTeam ?? transaction?.fromTeam;
+            const candidate = candidatesById.get(playerId);
+            const formerTeam = transaction?.toTeam ?? transaction?.fromTeam ??
+                (candidate?.teamId ? { id: candidate.teamId } : null);
             const formerTeamId = Number(formerTeam?.id);
             if (!playerId || !MLB_TEAM_IDS.has(formerTeamId)) return;
             const optOut = FREE_AGENT_OPT_OUT_DETAILS.get(playerId);
@@ -3636,18 +3660,46 @@
                 date <= qualifyingOffer.responseDeadline;
             freeAgents.set(playerId, {
                 playerId,
-                person: transaction.person,
-                position: String(transaction.description).match(/^([A-Z0-9/]+)\s/)?.[1] ?? "",
+                person: transaction.person || { id: playerId, fullName: candidate?.name || "" },
+                position: String(transaction.description).match(/^([A-Z0-9/]+)\s/)?.[1] ??
+                    candidate?.position ?? "",
                 formerTeam: { ...formerTeam, id: formerTeamId },
                 declaredFreeAgent: true,
                 declaredDate: optOut?.date || declaredDate,
                 optOutContractYears: optOut?.contractYears || 0,
                 declaredStatusText: optOut?.statusText || (qualifyingOfferPending
                     ? "QO回答待ち（11/17期限）"
-                    : ""),
+                    : declaration.statusText),
                 sourceUrl: optOut?.url ||
                     (qualifyingOfferPending ? qualifyingOffer.url : "") ||
                     `https://www.mlb.com/transactions?date=${declaredDate}`
+            });
+        });
+        // MLBのSFA（Signed as Free Agent）取引は、直前のFA選択イベントが
+        // APIに載らない場合でも、選手がFAとして契約したことを示す公式記録。
+        // 既存のFA名簿にいない契約選手も一覧から漏れないよう候補名簿と突合する。
+        transactions.forEach((transaction) => {
+            if (String(transaction?.typeCode ?? "") !== "SFA") return;
+            const playerId = Number(transaction?.person?.id);
+            if (!playerId || freeAgents.has(playerId)) return;
+            const candidate = candidatesById.get(playerId);
+            const formerTeam = transaction?.fromTeam ?? transaction?.toTeam ??
+                (candidate?.teamId ? { id: candidate.teamId } : null);
+            const formerTeamId = Number(formerTeam?.id);
+            if (!MLB_TEAM_IDS.has(formerTeamId)) return;
+            freeAgents.set(playerId, {
+                playerId,
+                person: transaction.person || { id: playerId, fullName: candidate?.name || "" },
+                position: candidate?.position ||
+                    String(transaction.description ?? "").match(/^([A-Z0-9/]+)\s/)?.[1] || "",
+                pitcherRole: candidate?.pitcherRole || "",
+                formerTeam: { ...formerTeam, id: formerTeamId },
+                declaredFreeAgent: true,
+                declaredDate: String(transaction.effectiveDate || transaction.date || "").slice(0, 10),
+                declaredStatusText: "FA選択",
+                sourceUrl: `https://www.mlb.com/transactions?date=${String(
+                    transaction.date || transaction.effectiveDate || date
+                ).slice(0, 10)}`
             });
         });
         const pitcherIds = [...freeAgents.values()]
@@ -3807,9 +3859,7 @@
                 }
             });
         transactions
-            .filter((transaction) =>
-                /elected free agency/i.test(String(transaction?.description ?? ""))
-            )
+            .filter((transaction) => Boolean(freeAgentDeclarationFromTransaction(transaction)))
             .forEach((transaction) => {
                 const playerId = Number(transaction?.person?.id);
                 const declaredDate = String(
@@ -3965,6 +4015,7 @@
                 const signingTerms = playerEntries.get(
                     Number(transaction?.person?.id)
                 )?.signing?.terms;
+                const declaration = freeAgentDeclarationFromTransaction(transaction);
                 const status = el(
                     "a",
                     "pregame-free-agent-daily-status",
@@ -3975,7 +4026,7 @@
                             : /minor league contract/i.test(String(transaction.description ?? ""))
                             ? "とマイナー契約"
                             : "と契約 ※期間と金額は未公表"
-                        : "FA選択"
+                        : declaration?.statusText || "FA選択"
                 );
                 const transactionDate = String(
                     transaction?.date ?? transaction?.effectiveDate ?? date
