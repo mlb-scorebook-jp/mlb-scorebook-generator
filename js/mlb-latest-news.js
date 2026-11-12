@@ -2,6 +2,176 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Blue Jays GM Atkins says Santander's social media posts were 'extremely concerning, extremely disappointing'",
+        "summaryJa": "A.サンタンデール（TOR）の最新動向をMLB公式が詳報",
+        "slug": "ross-atkins-disappointed-in-anthony-santander-for-social-media-posts",
+        "url": "https://www.mlb.com/news/ross-atkins-disappointed-in-anthony-santander-for-social-media-posts",
+        "contentDate": "2026-11-12T22:00:00Z",
+        "teamIds": [
+            141
+        ],
+        "playerIds": [
+            623993
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Relief stalwart Phillips inks 3-year deal with Braves",
+        "summaryJa": "E.フィリップス（ATL）の移籍・契約に関する最新情報",
+        "slug": "evan-phillips-three-year-contract-with-braves",
+        "url": "https://www.mlb.com/news/evan-phillips-three-year-contract-with-braves",
+        "contentDate": "2026-11-12T21:18:00Z",
+        "teamIds": [
+            144
+        ],
+        "playerIds": [
+            623465
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "transactions",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Move from backstop to mound restarts clock for hard-throwing Yanks prospect",
+        "summaryJa": "Antonio Gomez（NYY）ら注目選手の最新動向",
+        "slug": "antonio-gomez-on-transition-from-catching-to-pitching",
+        "url": "https://www.mlb.com/news/antonio-gomez-on-transition-from-catching-to-pitching",
+        "contentDate": "2026-11-12T21:10:50.966Z",
+        "teamIds": [
+            147
+        ],
+        "playerIds": [
+            682625
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "mlb-top-prospects",
+            "arizona-fall-league"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "The latest MLB rumors and free-agent news",
+        "summaryJa": "MLBの最新情報の移籍・契約に関する最新情報",
+        "slug": "mlb-rumors-trades-and-signings",
+        "url": "https://www.mlb.com/news/mlb-rumors-trades-and-signings",
+        "contentDate": "2026-11-12T20:42:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "rumors"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "Watch Angels prospects in Arizona Fall League playoffs",
+        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
+        "slug": "watch-arizona-fall-league-playoffs-2026",
+        "url": "https://www.mlb.com/news/watch-arizona-fall-league-playoffs-2026",
+        "contentDate": "2026-11-12T20:26:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "arizona-fall-league",
+            "mlb-top-prospects"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Here's the case for each MVP Award finalist (MLB Network, 7 p.m. ET)",
+        "summaryJa": "Y.アルバレス（HOU）の最新動向をMLB公式が詳報",
+        "slug": "the-case-for-each-2026-mlb-mvp-finalist",
+        "url": "https://www.mlb.com/news/the-case-for-each-2026-mlb-mvp-finalist",
+        "contentDate": "2026-11-12T20:15:00Z",
+        "teamIds": [
+            117,
+            139,
+            118,
+            112,
+            119,
+            158
+        ],
+        "playerIds": [
+            670541,
+            691406,
+            677951,
+            691718,
+            660271,
+            668930
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "awards-watch",
+            "most-valuable-player"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Hot Stove rumors: Jazz, Goodman, Sato, Suzuki, Abrams",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "mlb-rumors-and-2026-27-free-agent-news-november-12",
+        "url": "https://www.mlb.com/news/mlb-rumors-and-2026-27-free-agent-news-november-12",
+        "contentDate": "2026-11-12T18:30:13.242Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "rumors"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "Let Lindor walk you through his iconic NLDS grand slam",
+        "summaryJa": "F.リンドー（NYM）、本塁打で存在感",
+        "slug": "francisco-lindor-talks-nlds-grand-slam-on-6-1-1-podcast",
+        "url": "https://www.mlb.com/news/francisco-lindor-talks-nlds-grand-slam-on-6-1-1-podcast",
+        "contentDate": "2026-11-12T17:31:19.003Z",
+        "teamIds": [
+            121
+        ],
+        "playerIds": [
+            596019
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "mlbn-611-podcast"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Royals and Elevate bring new downtown ballpark experience to life",
         "summaryJa": "ロイヤルズの最新動向をMLB公式が詳報",
         "slug": "royals-and-elevate-team-up-on-new-downtown-ballpark-experience",
@@ -52,6 +222,7 @@
             "rumors"
         ],
         "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
@@ -91,39 +262,6 @@
             "world-series"
         ],
         "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Here's the case for each MVP Award finalist (MLB Network, 7 p.m. ET)",
-        "summaryJa": "Y.アルバレス（HOU）の最新動向をMLB公式が詳報",
-        "slug": "the-case-for-each-2026-mlb-mvp-finalist",
-        "url": "https://www.mlb.com/news/the-case-for-each-2026-mlb-mvp-finalist",
-        "contentDate": "2026-11-12T15:20:00Z",
-        "teamIds": [
-            117,
-            139,
-            118,
-            112,
-            119,
-            158
-        ],
-        "playerIds": [
-            670541,
-            691406,
-            677951,
-            691718,
-            660271,
-            668930
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "awards-watch",
-            "most-valuable-player"
-        ],
-        "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -368,22 +506,6 @@
         "gamePks": [],
         "taxonomy": [
             "apple-news",
-            "rumors"
-        ],
-        "sourceScopes": [
-            "MLB"
-        ]
-    },
-    {
-        "headline": "The latest MLB rumors and free-agent news",
-        "summaryJa": "MLBの最新情報の移籍・契約に関する最新情報",
-        "slug": "mlb-rumors-trades-and-signings",
-        "url": "https://www.mlb.com/news/mlb-rumors-trades-and-signings",
-        "contentDate": "2026-11-12T04:39:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
             "rumors"
         ],
         "sourceScopes": [
@@ -1109,7 +1231,7 @@
         ]
     },
     {
-        "headline": "In Vegas, baseball execs mining for hidden gems",
+        "headline": "GM Meetings offer early Hot Stove takes",
         "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
         "slug": "baseball-execs-look-for-hidden-gems-gm-meetings",
         "url": "https://www.mlb.com/news/baseball-execs-look-for-hidden-gems-gm-meetings",
@@ -1290,24 +1412,6 @@
         ]
     },
     {
-        "headline": "Watch Angels prospects in Arizona Fall League playoffs",
-        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
-        "slug": "watch-arizona-fall-league-playoffs-2026",
-        "url": "https://www.mlb.com/news/watch-arizona-fall-league-playoffs-2026",
-        "contentDate": "2026-11-12T00:40:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "arizona-fall-league",
-            "mlb-top-prospects"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Rangers hire Tommy Joseph as hitting coach",
         "summaryJa": "T.ジョセフ（TEX）の最新動向をMLB公式が詳報",
         "slug": "tommy-joseph-hired-as-rangers-hitting-coach",
@@ -1344,7 +1448,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1527,7 +1630,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1549,7 +1651,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1571,7 +1672,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -2359,26 +2459,6 @@
         "gamePks": [],
         "taxonomy": [
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Blue Jays GM Atkins says Santander's social media posts were 'extremely concerning, extremely disappointing'",
-        "summaryJa": "A.サンタンデール（TOR）の最新動向をMLB公式が詳報",
-        "slug": "ross-atkins-disappointed-in-anthony-santander-for-social-media-posts",
-        "url": "https://www.mlb.com/news/ross-atkins-disappointed-in-anthony-santander-for-social-media-posts",
-        "contentDate": "2026-11-11T01:23:00.941Z",
-        "teamIds": [
-            141
-        ],
-        "playerIds": [
-            623993
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "exclude-from-personalization"
         ],
         "sourceScopes": [
             "球団公式"
@@ -4737,28 +4817,6 @@
         ]
     },
     {
-        "headline": "How does Yanks' No. 1 prospect Kilby look? His AFL teammates, coaches are eager to share",
-        "summaryJa": "Dax Kilby（NYY）ら注目選手の最新動向",
-        "slug": "yankees-prospect-dax-kilby-impresses-in-arizona-fall-league",
-        "url": "https://www.mlb.com/news/yankees-prospect-dax-kilby-impresses-in-arizona-fall-league",
-        "contentDate": "2026-11-05T06:12:14.985Z",
-        "teamIds": [
-            147
-        ],
-        "playerIds": [
-            828076
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "arizona-fall-league",
-            "mlb-top-prospects"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Kanzler's 'unique path' arrives in Seattle as Mariners' new manager",
         "summaryJa": "マリナーズの最新動向をMLB公式が詳報",
         "slug": "mariners-introduce-jason-kanzler-as-new-manager",
@@ -6280,24 +6338,6 @@
         "gamePks": [],
         "taxonomy": [
             "baseball-hall-of-fame",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Election time! Who would you vote for to address Atlanta's offseason needs?",
-        "summaryJa": "ブレーブスの最新動向をMLB公式が詳報",
-        "slug": "braves-choices-2026-27-offseason-needs",
-        "url": "https://www.mlb.com/news/braves-choices-2026-27-offseason-needs",
-        "contentDate": "2026-11-02T15:18:36.937Z",
-        "teamIds": [
-            144
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
             "apple-news"
         ],
         "sourceScopes": [
