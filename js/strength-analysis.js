@@ -2,6 +2,16 @@
     "use strict";
 
     const SEASON = 2026;
+    const USD_JPY_RATE = 159.705;
+    const CBT_THRESHOLD_2026 = 244_000_000;
+    const TEAM_PAYROLL_2026 = Object.freeze({
+        108: 194530851, 109: 232680420, 110: 217666181, 111: 266101898, 112: 248474822,
+        113: 148667572, 114: 87827999, 115: 131609949, 116: 239806674, 117: 235133199,
+        118: 183197498, 119: 415212461, 120: 114624471, 121: 381002101, 133: 136029542,
+        134: 134501207, 135: 255992138, 136: 197631230, 137: 229003270, 138: 111559321,
+        139: 108325756, 140: 202378541, 141: 309484438, 142: 123266143, 143: 313201706,
+        144: 246555515, 145: 108379653, 146: 81941404, 147: 337140544, 158: 139000376
+    });
     const page = document.getElementById("strength-analysis-page");
     const root = document.getElementById("strength-analysis-content");
     const cache = new Map();
@@ -330,7 +340,19 @@
             const teamHeader = el("section", "strength-team-header");
             const logo = document.createElement("img"); logo.src = logoUrl(selectedTeamId); logo.alt = "";
             const teamCopy = el("div");
-            teamCopy.append(el("h3", "", japaneseTeamName(team)),
+            const teamTitle = el("div", "strength-team-title");
+            teamTitle.append(el("h3", "", japaneseTeamName(team)));
+            const payroll = TEAM_PAYROLL_2026[selectedTeamId];
+            if (payroll) {
+                const yenInHundredMillions = Math.round((payroll * USD_JPY_RATE) / 100_000_000);
+                const excess = payroll - CBT_THRESHOLD_2026;
+                const excessText = excess > 0
+                    ? `、贅沢税基準を約${Math.round((excess * USD_JPY_RATE) / 100_000_000)}億円超過`
+                    : "";
+                teamTitle.append(el("span", "strength-team-payroll",
+                    `総年俸 $${(payroll / 1_000_000).toFixed(1)}M（約${yenInHundredMillions}億円${excessText}）`));
+            }
+            teamCopy.append(teamTitle,
                 el("p", "", `${japaneseLeagueName(team)}　${SEASON}年レギュラーシーズン`));
             teamHeader.append(logo, teamCopy);
             const overview = el("div", "strength-overview");
@@ -363,7 +385,7 @@
             rosters.append(renderTable("野手成績", hitters, "hitting", freeAgents),
                 renderTable("投手成績", pitchers, "pitching", freeAgents));
             body.replaceChildren(teamHeader, overview, notesPanel, rosters,
-                el("p", "strength-source", "成績：MLB Stats API　FA表示：MLB公式FA候補リスト"));
+                el("p", "strength-source", "年俸：The Baseball Cube 2026年開幕時点（契約済選手）　贅沢税基準：2026年 $244M（表示年俸との差額）　円換算：日銀 11/12 17時（1ドル=159.705円）　成績：MLB Stats API　FA表示：MLB公式FA候補リスト"));
         } catch (error) {
             console.error(error);
             body.replaceChildren(el("div", "strength-error", "成績を取得できませんでした。通信状態を確認して、球団を選び直してください。"));

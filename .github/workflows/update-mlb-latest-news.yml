@@ -3,7 +3,10 @@ name: Update MLB Latest News
 on:
   workflow_dispatch:
   schedule:
-    - cron: "*/5 * * * *"
+    # Off-season: poll once per hour from November through March (UTC).
+    - cron: "0 * * 11,12,1,2,3 *"
+    # Regular season: keep the faster five-minute news refresh from April through October.
+    - cron: "*/5 * * 4-10 *"
 
 permissions:
   contents: write

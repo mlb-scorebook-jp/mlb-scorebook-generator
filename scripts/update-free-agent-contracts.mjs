@@ -1,5 +1,7 @@
 import { readFile, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
+import { createHash } from "node:crypto";
+import vm from "node:vm";
 
 const trackerSeason = Number(process.argv[2] || new Date().getFullYear() + 1);
 const inputPath = process.argv[3];
@@ -30,19 +32,44 @@ const contracts = (query?.state?.data ?? [])
         tenThousands: Math.round(Number(entry.ContractTotal) / 10000)
     }))
     .sort((left, right) => left.name.localeCompare(right.name, "en"));
+if (contracts.length === 0) {
+    throw new Error("FanGraphsから有効なFA契約を取得できませんでした。既存データは保持します。");
+}
 
 const season = trackerSeason - 1;
-const serializedContracts = JSON.stringify(contracts, null, 4)
-    .split("\n")
-    .map((line) => `        ${line}`)
-    .join("\n");
+const outputPath = resolve("js/free-agent-contracts.js");
+const existingText = await readFile(outputPath, "utf8").catch(() => "");
+const existingContext = { window: {} };
+if (existingText) vm.runInNewContext(existingText, existingContext);
+const contractsBySeason = {
+    ...(existingContext.window.MLB_FREE_AGENT_CONTRACTS || {}),
+    [season]: contracts
+};
+const serializedSeasons = Object.entries(contractsBySeason)
+    .sort(([left], [right]) => Number(left) - Number(right))
+    .map(([year, seasonContracts]) => {
+        const serializedContracts = JSON.stringify(seasonContracts, null, 4)
+            .split("\n")
+            .map((line) => `            ${line}`)
+            .join("\n");
+        return `        ${year}: Object.freeze(${serializedContracts.trimStart()})`;
+    })
+    .join(",\n");
 const output = `// FanGraphs Free Agent Trackerから取得した契約条件。\n` +
 `// Source: ${trackerUrl}\n` +
 `(function (global) {\n` +
 `    global.MLB_FREE_AGENT_CONTRACTS = Object.freeze({\n` +
-`        ${season}: Object.freeze(${serializedContracts.trimStart()})\n` +
+`${serializedSeasons}\n` +
 `    });\n` +
 `})(window);\n`;
 
-await writeFile(resolve("js/free-agent-contracts.js"), output);
+await writeFile(outputPath, output);
+const cacheKey = createHash("sha256").update(output).digest("hex").slice(0, 12);
+const indexPath = resolve("index.html");
+const indexHtml = await readFile(indexPath, "utf8");
+const versionedIndex = indexHtml.replace(
+    /js\/free-agent-contracts\.js\?v=[^"\s]+/,
+    `js/free-agent-contracts.js?v=${cacheKey}`
+);
+if (versionedIndex !== indexHtml) await writeFile(indexPath, versionedIndex);
 console.log(`${contracts.length}件の契約条件を更新しました。`);
