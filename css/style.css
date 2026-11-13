@@ -5352,7 +5352,8 @@ body.app-mode-pitch-chart .viewer {
     }
 
     #scorebook-print-stage .scorebook-print-content {
-        transform: translate(-50%, -50%) scale(var(--print-a3-scale, var(--print-scale, 1)));
+        transform: translate(-50%, -50%)
+            scale(var(--print-a3-scale, var(--print-scale, 1)));
     }
 }
 

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MLB Scorebook Generator</title>
     <!-- Score notation update: stacked batted-ball symbol, red hits, blue strikeouts, black other results. -->
-    <link rel="stylesheet" href="css/style.css?v=20261104-mobile-home-scroll">
+    <link rel="stylesheet" href="css/style.css?v=20261113-print-full-sheet">
     <link rel="stylesheet" href="css/pregame.css?v=20261111-oda-meeting-dates">
     <link rel="stylesheet" href="css/daily-records.css?v=20261103-homer-team-logo-22">
     <link rel="stylesheet" href="css/abilities.css?v=20261017-catcher-center-1">
@@ -938,26 +938,6 @@
                 }
             };
 
-            const DEFAULT_DOCUMENT_TITLE = "MLB Scorebook Generator";
-            const restoreDefaultDocumentTitle = () => {
-                document.title = DEFAULT_DOCUMENT_TITLE;
-            };
-            const updateScorebookDocumentTitle = (
-                data = state.gameData,
-                away = state.away,
-                home = state.home
-            ) => {
-                const officialDate = String(
-                    data?.gameData?.datetime?.officialDate ?? ""
-                ).slice(0, 10);
-                const awayCode = String(away?.abbreviation ?? "").toUpperCase();
-                const homeCode = String(home?.abbreviation ?? "").toUpperCase();
-                document.title = /^\d{4}-\d{2}-\d{2}$/.test(officialDate) && awayCode && homeCode
-                    ? `${officialDate}_${awayCode}@${homeCode}_score`
-                    : DEFAULT_DOCUMENT_TITLE;
-            };
-
-
             const statHeaders = [
                 "打数",
                 "安打",
@@ -1209,7 +1189,6 @@
             };
 
             const showPortalHome = () => {
-                restoreDefaultDocumentTitle();
                 closeAppMenu();
                 stopLiveScoreUpdates({ preserveEligibility: true });
                 window.PregameInfo?.close({ preserveShell: true });
@@ -1229,7 +1208,6 @@
             };
 
             const showScorebook = (options = {}) => {
-                updateScorebookDocumentTitle();
                 closeAppMenu();
                 window.PregameInfo?.close({ preserveShell: true });
                 window.DailyRecords?.close({ preserveShell: true });
@@ -1304,7 +1282,6 @@
             };
 
             const showPregame = async () => {
-                restoreDefaultDocumentTitle();
                 closeAppMenu();
                 stopLiveScoreUpdates({ preserveEligibility: true });
                 window.DailyRecords?.close({ preserveShell: true });
@@ -1327,7 +1304,6 @@
             };
 
             const showDailyRecords = async (options = {}) => {
-                restoreDefaultDocumentTitle();
                 closeAppMenu();
                 stopLiveScoreUpdates({ preserveEligibility: true });
                 window.PregameInfo?.close({ preserveShell: true });
@@ -1349,7 +1325,6 @@
             };
 
             const showTransfers = async (options = {}) => {
-                restoreDefaultDocumentTitle();
                 closeAppMenu();
                 stopLiveScoreUpdates({ preserveEligibility: true });
                 window.DailyRecords?.close({ preserveShell: true });
@@ -1368,7 +1343,6 @@
             };
 
             const showAbilities = (options = {}) => {
-                restoreDefaultDocumentTitle();
                 closeAppMenu();
                 stopLiveScoreUpdates({ preserveEligibility: true });
                 window.PregameInfo?.close({ preserveShell: true });
@@ -1388,7 +1362,6 @@
             };
 
             const showAwards = (options = {}) => {
-                restoreDefaultDocumentTitle();
                 closeAppMenu();
                 stopLiveScoreUpdates({ preserveEligibility: true });
                 window.PregameInfo?.close({ preserveShell: true });
@@ -1407,7 +1380,6 @@
             };
 
             const showStrengthAnalysis = (options = {}) => {
-                restoreDefaultDocumentTitle();
                 closeAppMenu();
                 stopLiveScoreUpdates({ preserveEligibility: true });
                 window.PregameInfo?.close({ preserveShell: true });
@@ -12358,7 +12330,6 @@
                     state.defensivePositionHistory = buildDefensivePositionHistory(data);
                     state.away = getTeamState(data, "away");
                     state.home = getTeamState(data, "home");
-                    updateScorebookDocumentTitle(data, state.away, state.home);
                     state.activeRosterPeople = { away: [], home: [] };
                     state.rookieEligiblePlayerIds = new Set();
                     const supplementalResults = await Promise.allSettled([
@@ -12493,7 +12464,6 @@
                     determineInningColumns(snapshot.gameData, state.innings);
                 state.away = snapshot.away ?? getTeamState(snapshot.gameData, "away");
                 state.home = snapshot.home ?? getTeamState(snapshot.gameData, "home");
-                updateScorebookDocumentTitle(snapshot.gameData, state.away, state.home);
                 state.headToHead = snapshot.headToHead ?? null;
                 state.attendanceNote = snapshot.attendanceNote ?? "";
                 state.streakNotes = snapshot.streakNotes ?? { away: [], home: [] };
@@ -12602,9 +12572,6 @@
             const A3_LANDSCAPE_WIDTH_MM = 420;
             const A3_LANDSCAPE_HEIGHT_MM = 297;
             const PRINT_MARGIN_MM = 6;
-            // Safari can round a transformed page outward when creating a PDF.
-            // Keep the spread slightly inside the printable box so the home
-            // team's right border is never clipped by that rounding.
             const PRINT_EDGE_SAFETY_MM = 4;
             const CSS_PIXELS_PER_MM = 96 / 25.4;
             let printOriginalDocumentTitle = null;
@@ -12613,12 +12580,10 @@
                 const officialDate = String(
                     state.gameData?.gameData?.datetime?.officialDate ?? ""
                 ).slice(0, 10);
-                const [year, month, day] = officialDate.split("-");
                 const awayCode = String(state.away?.abbreviation ?? "AWAY").trim();
                 const homeCode = String(state.home?.abbreviation ?? "HOME").trim();
-                if (!year || !month || !day) return "MLB_Scorebook";
-                return `${year}_${Number(month)}_${Number(day)}_` +
-                    `${awayCode}＠${homeCode}_scorebook`;
+                if (!/^\d{4}-\d{2}-\d{2}$/.test(officialDate)) return "MLB_score";
+                return `${officialDate}_${awayCode}@${homeCode}_score`;
             };
 
             const clearPrintFit = () => {
@@ -12655,7 +12620,6 @@
                 if (!(contentWidth > 0 && contentHeight > 0)) return false;
 
                 const scale = Math.min(
-                    1,
                     safeWidth / contentWidth,
                     safeHeight / contentHeight
                 );
@@ -12666,7 +12630,6 @@
                     A3_LANDSCAPE_HEIGHT_MM - PRINT_MARGIN_MM * 2 - PRINT_EDGE_SAFETY_MM * 2
                 ) * CSS_PIXELS_PER_MM;
                 const a3Scale = Math.min(
-                    1,
                     a3SafeWidth / contentWidth,
                     a3SafeHeight / contentHeight
                 );
