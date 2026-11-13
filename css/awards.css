@@ -210,6 +210,9 @@ body.app-mode-awards #header-awards-btn {
 .awards-mvp-name { position: relative; z-index: 1; }
 .awards-mvp-name h3 { width: max-content; min-width: max-content; white-space: nowrap; word-break: keep-all; overflow-wrap: normal; }
 .awards-mvp-count { display: block; margin-top: 10px; color: #f4cf64; font-size: 20px; font-weight: 950; white-space: nowrap; text-shadow: 0 0 10px rgb(235 187 66 / 30%); }
+.awards-mvp-vote { display: flex; align-items: baseline; gap: 8px; margin-top: 10px; color: #aebbc1; }
+.awards-mvp-vote small { font-size: 11px; }
+.awards-mvp-vote strong { color: #f4cf64; font-size: 20px; font-variant-numeric: tabular-nums; }
 .awards-mvp-profile small { color: #83959e; font-size: 11px; font-weight: 900; }
 .awards-mvp-profile h3 { margin: 5px 0 0; color: #f5f7f8; font-size: 30px; letter-spacing: .02em; text-shadow: 0 2px 7px rgb(0 0 0 / 65%); }
 .awards-mvp-profile span { display: block; margin-top: 4px; color: #83959e; font-size: 11px; }
@@ -244,6 +247,9 @@ body.app-mode-awards #header-awards-btn {
 .awards-finalist-stats small, .awards-finalist-stats b { display: inline; }
 .awards-finalist-stats small { margin-right: 4px; font-size: 10px; }
 .awards-finalist-stats b { color: #efc64f; font-size: 16px; font-variant-numeric: tabular-nums; }
+.awards-finalist-vote { display: flex; align-items: baseline; gap: 5px; margin-left: 14px; padding-left: 14px; border-left: 1px solid #52616a; white-space: nowrap; }
+.awards-finalist-vote small { color: #aebbc1; font-size: 10px; }
+.awards-finalist-vote b { color: #f4cf64; font-size: 16px; font-variant-numeric: tabular-nums; }
 .awards-allmlb-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; padding: 34px; border: 1px solid #40515b; border-top: 0; background: linear-gradient(#11191e, #0b1115); }
 .awards-allmlb-team { overflow: hidden; border: 1px solid #a9822e; background: linear-gradient(145deg, #223038, #10171b 70%); box-shadow: 0 16px 34px rgb(0 0 0 / 40%); }
 .awards-allmlb-team h3 { margin: 0; padding: 17px 20px; border-bottom: 2px solid #b68b30; color: #f4d87f; font-family: Georgia, serif; font-size: 13px; letter-spacing: .22em; text-align: center; }
@@ -345,6 +351,9 @@ body.app-mode-awards #header-awards-btn {
         overflow-wrap: anywhere;
     }
     .awards-mvp-count { margin-top: 7px; font-size: 14px; white-space: normal; }
+    .awards-mvp-vote { gap: 5px; margin-top: 6px; }
+    .awards-mvp-vote small { font-size: 9px; }
+    .awards-mvp-vote strong { font-size: 16px; }
     .awards-mvp-profile small { font-size: 9px; }
     .awards-mvp-year { right: 8px; font-size: 54px; }
     .awards-mvp-stats { grid-template-columns: repeat(3, 1fr); }
@@ -368,6 +377,9 @@ body.app-mode-awards #header-awards-btn {
     .awards-finalist-stats { display: grid; grid-template-columns: repeat(3, auto); justify-content: start; gap: 5px 10px; margin-left: 0; }
     .awards-finalist-stats small { font-size: 8px; }
     .awards-finalist-stats b { font-size: 13px; }
+    .awards-finalist-vote { width: max-content; margin: 0; padding: 0; border: 0; }
+    .awards-finalist-vote small { font-size: 8px; }
+    .awards-finalist-vote b { font-size: 13px; }
 
     .awards-slugger-grid { gap: 12px; padding: 8px; }
     .awards-slugger-league > div { grid-template-columns: 1fr; }

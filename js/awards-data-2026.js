@@ -1,6 +1,6 @@
 window.MLB_AWARDS_2026 = {
     season: 2026,
-    updatedAt: "2026-11-03",
+    updatedAt: "2026-11-13",
     sourceUrl: "https://www.mlb.com/news/2026-gold-glove-award-winners",
     categories: {
         goldGlove: {
@@ -34,16 +34,16 @@ window.MLB_AWARDS_2026 = {
         silverSlugger: { label: "シルバースラッガー", group: "battingDefense", status: "pending" },
         hankAaron: { label: "ハンク・アーロン賞", group: "battingDefense", status: "pending" },
         outstandingDh: { label: "最優秀指名打者賞", group: "battingDefense", status: "pending" },
-        mvp: { label: "MVP", group: "major", status: "pending", finalistsSourceUrl: "https://www.mlb.com/news/2026-bbwaa-awards-finalists", finalists: {
+        mvp: { label: "MVP", group: "major", status: "announced", announcedAt: "2026-11-12", sourceUrl: "https://www.mlb.com/news/2026-mlb-mvp-award-winners", voteSourceUrl: "https://www.mlb.com/news/2026-mlb-mvp-award-voting-results", finalistsSourceUrl: "https://www.mlb.com/news/2026-bbwaa-awards-finalists", al: { league: "AMERICAN LEAGUE", player: "Yordan Alvarez", playerJa: "Y.アルバレス", playerId: 670541, team: "HOU", teamId: 117, position: "DH", count: 1, votePoints: 420, stats: { "打率": ".316", "本塁打": 42, "打点": 106 } }, nl: { league: "NATIONAL LEAGUE", player: "Pete Crow-Armstrong", playerJa: "P.クローアームストロング", playerId: 691718, team: "CHC", teamId: 112, position: "CF", count: 1, votePoints: 420, stats: { "打率": ".280", "本塁打": 45, "盗塁": 41 } }, finalists: {
             al: [
-                { playerJa: "Y.アルバレス", playerId: 670541, team: "HOU", teamId: 117, position: "DH", stats: [["率", ".316"], ["本", "42"], ["点", "106"]] },
-                { playerJa: "J.カミネロ", playerId: 691406, team: "TB", teamId: 139, position: "3B", stats: [["率", ".276"], ["本", "42"], ["点", "101"]] },
-                { playerJa: "B.ウィット Jr.", playerId: 677951, team: "KC", teamId: 118, position: "SS", stats: [["率", ".281"], ["本", "18"], ["点", "54"]] }
+                { playerJa: "Y.アルバレス", playerId: 670541, team: "HOU", teamId: 117, position: "DH", votePoints: 420, stats: [["率", ".316"], ["本", "42"], ["点", "106"]] },
+                { playerJa: "J.カミネロ", playerId: 691406, team: "TB", teamId: 139, position: "3B", votePoints: 267, stats: [["率", ".276"], ["本", "42"], ["点", "101"]] },
+                { playerJa: "B.ウィット Jr.", playerId: 677951, team: "KC", teamId: 118, position: "SS", votePoints: 188, stats: [["率", ".281"], ["本", "18"], ["点", "54"]] }
             ],
             nl: [
-                { playerJa: "P.クローアームストロング", playerId: 691718, team: "CHC", teamId: 112, position: "CF", stats: [["率", ".280"], ["本", "45"], ["盗", "41"]] },
-                { playerJa: "大谷 翔平", playerId: 660271, team: "LAD", teamId: 119, position: "TWP", stats: [["率", ".275"], ["本", "30"], ["防", "1.79"]] },
-                { playerJa: "B.トゥラング", playerId: 668930, team: "MIL", teamId: 158, position: "2B", stats: [["率", ".268"], ["本", "21"], ["点", "100"]] }
+                { playerJa: "P.クローアームストロング", playerId: 691718, team: "CHC", teamId: 112, position: "CF", votePoints: 420, stats: [["率", ".280"], ["本", "45"], ["盗", "41"]] },
+                { playerJa: "大谷 翔平", playerId: 660271, team: "LAD", teamId: 119, position: "TWP", votePoints: 264, stats: [["率", ".275"], ["本", "30"], ["防", "1.79"]] },
+                { playerJa: "B.トゥラング", playerId: 668930, team: "MIL", teamId: 158, position: "2B", votePoints: 190, stats: [["率", ".268"], ["本", "21"], ["点", "100"]] }
             ]
         } },
         cyYoung: { label: "サイ・ヤング賞", group: "major", status: "pending", finalistsSourceUrl: "https://www.mlb.com/news/2026-bbwaa-awards-finalists", finalists: {
@@ -82,7 +82,7 @@ window.MLB_AWARDS_2026 = {
                 { playerJa: "W.ワイス", playerId: 124054, photoUrl: "assets/awards/managers/2026/walt-weiss.png", team: "ATL", teamId: 144, position: "監督", stats: [["勝敗", "94-68"], ["勝率", ".580"], ["順位", "東1位"]] }
             ]
         } },
-        allMlb: { label: "オールMLB", group: "major", status: "pending" },
+        allMlb: { label: "オールMLB", group: "major", status: "announced", announcedAt: "2026-11-12", sourceUrl: "https://www.mlb.com/awards/all-mlb", first: [["C","G.モレノ","ARI",109],["1B","P.アロンソ","BAL",110],["2B","B.トゥラング","MIL",158],["SS","B.ウィット Jr.","KC",118],["3B","J.カミネロ","TB",139],["OF","P.クローアームストロング","CHC",112],["OF","F.タティス Jr.","SD",135],["OF","J.チョーリオ","MIL",158],["DH","Y.アルバレス","HOU",117],["SP","J.ミザロウスキー","MIL",158],["SP","C.シュリットラー","NYY",147],["SP","C.セール","ATL",144],["SP","D.シース","TOR",141],["SP","C.サンチェス","PHI",143],["RP","M.ミラー","SD",135],["RP","L.バーランド","TOR",141]], second: [["C","W.コントレラス","MIL",158],["1B","W.コントレラス","BOS",111],["2B","B.ロウ","PIT",134],["SS","E.デラクルーズ","CIN",113],["3B","A.ブレグマン","CHC",112],["OF","J.ウッド","WSH",120],["OF","R.アロザレーナ","SEA",136],["OF","J.ウォーカー","STL",138],["DH","B.ライス","NYY",147],["SP","山本 由伸","LAD",119],["SP","S.グレイ","BOS",111],["SP","T.スクーバル","LAD",119],["SP","D.ラスムッセン","TB",139],["SP","J.ルザルド","PHI",143],["RP","B.ベイカー","TB",139],["RP","C.スミス","CLE",114]] },
         reliever: { label: "最優秀救援投手", group: "special", status: "pending" },
         comeback: { label: "カムバック賞", group: "special", status: "pending" },
         clemente: {

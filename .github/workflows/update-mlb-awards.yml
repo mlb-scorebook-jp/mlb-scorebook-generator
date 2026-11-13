@@ -1,0 +1,35 @@
+name: Update MLB Awards
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 */6 * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-mlb-awards
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - name: Fetch MLB official awards
+        run: node scripts/update-mlb-awards.mjs
+      - name: Commit updated awards snapshot
+        run: |
+          if git diff --quiet -- js/awards-auto-data.js; then
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add js/awards-auto-data.js
+          git commit -m "Update MLB award results"
+          git pull --rebase origin main
+          git push
