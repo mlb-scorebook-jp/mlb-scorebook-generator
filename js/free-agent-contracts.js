@@ -1510,6 +1510,11 @@
                     "tenThousands": 130
                 },
                 {
+                    "name": "Jake Bauers",
+                    "years": 4,
+                    "tenThousands": 5800
+                },
+                {
                     "name": "Ryan Weiss",
                     "years": 1,
                     "tenThousands": 185
