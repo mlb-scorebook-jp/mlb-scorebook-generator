@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="css/pregame.css?v=20261111-oda-meeting-dates">
     <link rel="stylesheet" href="css/daily-records.css?v=20261103-homer-team-logo-22">
     <link rel="stylesheet" href="css/abilities.css?v=20261017-catcher-center-1">
-    <link rel="stylesheet" href="css/awards.css?v=20261113-mvp-vote-points">
+    <link rel="stylesheet" href="css/awards.css?v=20261113-award-new-badges">
     <link rel="stylesheet" href="css/strength-analysis.css?v=20261113-team-payroll">
     <link rel="stylesheet" href="css/team-logo-edge.css?v=20261111-6">
 </head>
@@ -489,7 +489,7 @@
     <script src="js/awards-history-major-2007-2024.js?v=20261102-awards-history-2"></script>
     <script src="js/awards-data-2026.js?v=20261113-awards-results"></script>
     <script src="js/awards-auto-data.js?v=20261113-awards-auto"></script>
-    <script src="js/awards.js?v=20261113-mvp-vote-p"></script>
+    <script src="js/awards.js?v=20261113-award-new-badges"></script>
 
     <script>
         (() => {
@@ -938,6 +938,26 @@
                 }
             };
 
+            const DEFAULT_DOCUMENT_TITLE = "MLB Scorebook Generator";
+            const restoreDefaultDocumentTitle = () => {
+                document.title = DEFAULT_DOCUMENT_TITLE;
+            };
+            const updateScorebookDocumentTitle = (
+                data = state.gameData,
+                away = state.away,
+                home = state.home
+            ) => {
+                const officialDate = String(
+                    data?.gameData?.datetime?.officialDate ?? ""
+                ).slice(0, 10);
+                const awayCode = String(away?.abbreviation ?? "").toUpperCase();
+                const homeCode = String(home?.abbreviation ?? "").toUpperCase();
+                document.title = /^\d{4}-\d{2}-\d{2}$/.test(officialDate) && awayCode && homeCode
+                    ? `${officialDate}_${awayCode}@${homeCode}_score`
+                    : DEFAULT_DOCUMENT_TITLE;
+            };
+
+
             const statHeaders = [
                 "打数",
                 "安打",
@@ -1189,6 +1209,7 @@
             };
 
             const showPortalHome = () => {
+                restoreDefaultDocumentTitle();
                 closeAppMenu();
                 stopLiveScoreUpdates({ preserveEligibility: true });
                 window.PregameInfo?.close({ preserveShell: true });
@@ -1208,6 +1229,7 @@
             };
 
             const showScorebook = (options = {}) => {
+                updateScorebookDocumentTitle();
                 closeAppMenu();
                 window.PregameInfo?.close({ preserveShell: true });
                 window.DailyRecords?.close({ preserveShell: true });
@@ -1282,6 +1304,7 @@
             };
 
             const showPregame = async () => {
+                restoreDefaultDocumentTitle();
                 closeAppMenu();
                 stopLiveScoreUpdates({ preserveEligibility: true });
                 window.DailyRecords?.close({ preserveShell: true });
@@ -1304,6 +1327,7 @@
             };
 
             const showDailyRecords = async (options = {}) => {
+                restoreDefaultDocumentTitle();
                 closeAppMenu();
                 stopLiveScoreUpdates({ preserveEligibility: true });
                 window.PregameInfo?.close({ preserveShell: true });
@@ -1325,6 +1349,7 @@
             };
 
             const showTransfers = async (options = {}) => {
+                restoreDefaultDocumentTitle();
                 closeAppMenu();
                 stopLiveScoreUpdates({ preserveEligibility: true });
                 window.DailyRecords?.close({ preserveShell: true });
@@ -1343,6 +1368,7 @@
             };
 
             const showAbilities = (options = {}) => {
+                restoreDefaultDocumentTitle();
                 closeAppMenu();
                 stopLiveScoreUpdates({ preserveEligibility: true });
                 window.PregameInfo?.close({ preserveShell: true });
@@ -1362,6 +1388,7 @@
             };
 
             const showAwards = (options = {}) => {
+                restoreDefaultDocumentTitle();
                 closeAppMenu();
                 stopLiveScoreUpdates({ preserveEligibility: true });
                 window.PregameInfo?.close({ preserveShell: true });
@@ -1380,6 +1407,7 @@
             };
 
             const showStrengthAnalysis = (options = {}) => {
+                restoreDefaultDocumentTitle();
                 closeAppMenu();
                 stopLiveScoreUpdates({ preserveEligibility: true });
                 window.PregameInfo?.close({ preserveShell: true });
@@ -12330,6 +12358,7 @@
                     state.defensivePositionHistory = buildDefensivePositionHistory(data);
                     state.away = getTeamState(data, "away");
                     state.home = getTeamState(data, "home");
+                    updateScorebookDocumentTitle(data, state.away, state.home);
                     state.activeRosterPeople = { away: [], home: [] };
                     state.rookieEligiblePlayerIds = new Set();
                     const supplementalResults = await Promise.allSettled([
@@ -12464,6 +12493,7 @@
                     determineInningColumns(snapshot.gameData, state.innings);
                 state.away = snapshot.away ?? getTeamState(snapshot.gameData, "away");
                 state.home = snapshot.home ?? getTeamState(snapshot.gameData, "home");
+                updateScorebookDocumentTitle(snapshot.gameData, state.away, state.home);
                 state.headToHead = snapshot.headToHead ?? null;
                 state.attendanceNote = snapshot.attendanceNote ?? "";
                 state.streakNotes = snapshot.streakNotes ?? { away: [], home: [] };

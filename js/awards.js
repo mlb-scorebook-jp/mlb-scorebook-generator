@@ -31,6 +31,10 @@
         return `${values.year}-${values.month}-${values.day}`;
     };
 
+    const isNewAwardToday = (category) =>
+        state.season === 2026 && category?.status === "announced" &&
+        category?.announcedAt === currentEasternDate();
+
     const refreshHeaderNew = () => {
         const button = document.getElementById("header-awards-btn");
         if (!button) return false;
@@ -117,8 +121,11 @@
                 const statusText = isBeforeAwardCreation(key) ? `${awardFoundedYears[key]}年創設`
                     : state.season === 2026 ? (category.status === "announced" ? "発表済み" : category.finalists ? "最終候補発表済み" : "発表待ち")
                     : hasHistoricalData ? "データあり" : "未登録";
+                const newBadge = isNewAwardToday(category)
+                    ? `<span class="awards-category-new">NEW</span>`
+                    : "";
                 return `<button type="button" data-award-category="${key}"
-                    class="${state.category === key ? "active" : ""}">${escapeHtml(category.label)}
+                    class="${state.category === key ? "active" : ""}"><span class="awards-category-label">${escapeHtml(category.label)}${newBadge}</span>
                     <small>${statusText}</small></button>`;
             }).join("")}
         </nav>`;

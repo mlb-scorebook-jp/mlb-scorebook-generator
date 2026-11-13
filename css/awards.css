@@ -62,6 +62,7 @@ body.app-mode-awards #header-awards-btn {
 .awards-category-nav button:last-child { border-right: 0; }
 .awards-category-nav button.active { color: #172126; background: #dfbd57; }
 .awards-category-nav button small { display: block; margin-top: 3px; color: #788991; font-size: 9px; }
+.awards-category-new { display: inline-block; margin-left: 6px; padding: 1px 4px; border-radius: 3px; color: #fff; background: #df4545; font-size: 9px; font-weight: 900; line-height: 1.25; vertical-align: 2px; }
 .awards-category-nav button:disabled { cursor: pointer; }
 
 .awards-summary { display: grid; grid-template-columns: 170px 170px 1fr; border: 1px solid #40515b; border-top: 0; background: #19242a; }
