@@ -2,6 +2,191 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Watch LIVE: Angels No. 1 prospect Nimmala in Arizona Fall League playoffs",
+        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
+        "slug": "watch-arizona-fall-league-playoffs-2026",
+        "url": "https://www.mlb.com/news/watch-arizona-fall-league-playoffs-2026",
+        "contentDate": "2026-11-13T04:27:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "arizona-fall-league",
+            "mlb-top-prospects"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Ranking the top 10 bats on the free-agent market",
+        "summaryJa": "鈴木 誠也ら注目選手の最新動向",
+        "slug": "free-agent-hitter-power-rankings-2026-2027",
+        "url": "https://www.mlb.com/news/free-agent-hitter-power-rankings-2026-2027",
+        "contentDate": "2026-11-13T04:01:44.991Z",
+        "teamIds": [],
+        "playerIds": [
+            673548,
+            831664,
+            668227,
+            641343,
+            664034,
+            665862,
+            664040,
+            592626,
+            650333,
+            680777
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "rankings",
+            "hitter-power-rankings",
+            "apple-news",
+            "rumors"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "The latest MLB rumors and free-agent news",
+        "summaryJa": "MLBの最新情報の移籍・契約に関する最新情報",
+        "slug": "mlb-rumors-trades-and-signings",
+        "url": "https://www.mlb.com/news/mlb-rumors-trades-and-signings",
+        "contentDate": "2026-11-13T04:00:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "rumors"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "Hot Stove rumors: Jazz, Goodman, Sato, Suzuki, Abrams",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "mlb-rumors-and-2026-27-free-agent-news-november-12",
+        "url": "https://www.mlb.com/news/mlb-rumors-and-2026-27-free-agent-news-november-12",
+        "contentDate": "2026-11-13T03:55:13.242Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "rumors"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "Unanimous MVP winners add to historic Awards Week",
+        "summaryJa": "P.クローアームストロング、勝利を呼び込む活躍",
+        "slug": "facts-stats-from-yordan-alvarez-pete-crow-armstrong-mvp-wins",
+        "url": "https://www.mlb.com/news/facts-stats-from-yordan-alvarez-pete-crow-armstrong-mvp-wins",
+        "contentDate": "2026-11-13T03:36:50.486Z",
+        "teamIds": [],
+        "playerIds": [
+            691718,
+            670541
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "most-valuable-player",
+            "awards-watch",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "With 40-40 season, PCA left no doubt in winning NL MVP",
+        "summaryJa": "P.クローアームストロング（CHC）、勝利を呼び込む活躍",
+        "slug": "pete-crow-armstrong-wins-2026-nl-mvp",
+        "url": "https://www.mlb.com/news/pete-crow-armstrong-wins-2026-nl-mvp",
+        "contentDate": "2026-11-13T02:57:00Z",
+        "teamIds": [
+            112
+        ],
+        "playerIds": [
+            691718
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "most-valuable-player",
+            "awards-watch"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Yordan caps awards season sweep with AL MVP",
+        "summaryJa": "Y.アルバレス（HOU）、勝利を呼び込む活躍",
+        "slug": "yordan-alvarez-wins-2026-al-mvp-award",
+        "url": "https://www.mlb.com/news/yordan-alvarez-wins-2026-al-mvp-award",
+        "contentDate": "2026-11-13T02:46:00Z",
+        "teamIds": [
+            117
+        ],
+        "playerIds": [
+            670541
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "awards-watch",
+            "most-valuable-player"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "In Skubal sweepstakes, there may only be one team ‘even in the conversation’",
+        "summaryJa": "T.スクーバルの最新動向をMLB公式が詳報",
+        "slug": "tarik-skubal-rumors",
+        "url": "https://www.mlb.com/news/tarik-skubal-rumors",
+        "contentDate": "2026-11-13T02:35:00Z",
+        "teamIds": [],
+        "playerIds": [
+            669373
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "rumors"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "Contreras brothers continue epic year with Latin Grammys appearance",
+        "summaryJa": "W.コントレラスの最新動向をMLB公式が詳報",
+        "slug": "willson-and-william-contreras-attend-2026-latin-grammys",
+        "url": "https://www.mlb.com/news/willson-and-william-contreras-attend-2026-latin-grammys",
+        "contentDate": "2026-11-13T02:28:00Z",
+        "teamIds": [],
+        "playerIds": [
+            661388,
+            575929
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
         "headline": "Here’s every ranked prospect that needs to be protected ahead of Tuesday’s 40-man deadline",
         "summaryJa": "MLBの最新情報ら注目選手の最新動向",
         "slug": "rule-5-draft-prospects-protected-on-40-man-roster-2026",
@@ -14,29 +199,6 @@
             "mlb-top-prospects",
             "minor-league-baseball",
             "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Yordan caps awards season sweep with AL MVP",
-        "summaryJa": "Y.アルバレス（HOU）、勝利を呼び込む活躍",
-        "slug": "yordan-alvarez-wins-2026-al-mvp-award",
-        "url": "https://www.mlb.com/news/yordan-alvarez-wins-2026-al-mvp-award",
-        "contentDate": "2026-11-13T01:44:00Z",
-        "teamIds": [
-            117
-        ],
-        "playerIds": [
-            670541
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "awards-watch",
-            "most-valuable-player"
         ],
         "sourceScopes": [
             "MLB",
@@ -58,47 +220,6 @@
         ],
         "sourceScopes": [
             "MLB"
-        ]
-    },
-    {
-        "headline": "Watch LIVE: Angels No. 1 prospect Nimmala in Arizona Fall League playoffs",
-        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
-        "slug": "watch-arizona-fall-league-playoffs-2026",
-        "url": "https://www.mlb.com/news/watch-arizona-fall-league-playoffs-2026",
-        "contentDate": "2026-11-13T01:28:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "arizona-fall-league",
-            "mlb-top-prospects"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "With 40-40 season, PCA left no doubt in winning NL MVP",
-        "summaryJa": "P.クローアームストロング（CHC）、勝利を呼び込む活躍",
-        "slug": "pete-crow-armstrong-wins-2026-nl-mvp",
-        "url": "https://www.mlb.com/news/pete-crow-armstrong-wins-2026-nl-mvp",
-        "contentDate": "2026-11-13T01:20:00Z",
-        "teamIds": [
-            112
-        ],
-        "playerIds": [
-            691718
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "most-valuable-player",
-            "awards-watch"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
         ]
     },
     {
@@ -435,22 +556,6 @@
         ]
     },
     {
-        "headline": "The latest MLB rumors and free-agent news",
-        "summaryJa": "MLBの最新情報の移籍・契約に関する最新情報",
-        "slug": "mlb-rumors-trades-and-signings",
-        "url": "https://www.mlb.com/news/mlb-rumors-trades-and-signings",
-        "contentDate": "2026-11-12T20:42:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "rumors"
-        ],
-        "sourceScopes": [
-            "MLB"
-        ]
-    },
-    {
         "headline": "Here's the case for each MVP Award finalist (MLB Network, 7 p.m. ET)",
         "summaryJa": "Y.アルバレス（HOU）の最新動向をMLB公式が詳報",
         "slug": "the-case-for-each-2026-mlb-mvp-finalist",
@@ -480,23 +585,6 @@
         ],
         "sourceScopes": [
             "球団公式"
-        ]
-    },
-    {
-        "headline": "Hot Stove rumors: Jazz, Goodman, Sato, Suzuki, Abrams",
-        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
-        "slug": "mlb-rumors-and-2026-27-free-agent-news-november-12",
-        "url": "https://www.mlb.com/news/mlb-rumors-and-2026-27-free-agent-news-november-12",
-        "contentDate": "2026-11-12T18:30:13.242Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "rumors"
-        ],
-        "sourceScopes": [
-            "MLB"
         ]
     },
     {
@@ -694,7 +782,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1398,7 +1485,6 @@
             "dh-of-the-year"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1419,7 +1505,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1534,24 +1619,6 @@
         ],
         "sourceScopes": [
             "球団公式"
-        ]
-    },
-    {
-        "headline": "GM Meetings offer early Hot Stove takes",
-        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
-        "slug": "baseball-execs-look-for-hidden-gems-gm-meetings",
-        "url": "https://www.mlb.com/news/baseball-execs-look-for-hidden-gems-gm-meetings",
-        "contentDate": "2026-11-12T01:54:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "gm-meetings",
-            "rumors"
-        ],
-        "sourceScopes": [
-            "MLB"
         ]
     },
     {
@@ -5968,6 +6035,28 @@
         ]
     },
     {
+        "headline": "After historic season, PCA named NL MVP finalist",
+        "summaryJa": "P.クローアームストロング（CHC）の最新動向をMLB公式が詳報",
+        "slug": "pete-crow-armstrong-2026-nl-mvp-finalist",
+        "url": "https://www.mlb.com/news/pete-crow-armstrong-2026-nl-mvp-finalist",
+        "contentDate": "2026-11-03T01:03:31.293Z",
+        "teamIds": [
+            112
+        ],
+        "playerIds": [
+            691718
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "awards-watch",
+            "most-valuable-player",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Benge earns ROY finalist nod after all-around standout debut",
         "summaryJa": "C.ベンジ（NYM）、メジャー昇格・初出場に関する最新情報",
         "slug": "carson-benge-2026-rookie-of-the-year-finalist",
@@ -5990,7 +6079,7 @@
         ]
     },
     {
-        "headline": "Checking in on No. 2 prospect Brito in winter ball",
+        "headline": "Checking in on No. 2 prospect Gonzales in winter ball",
         "summaryJa": "J.マデイら注目選手の最新動向",
         "slug": "top-prospects-in-winter-ball-2026",
         "url": "https://www.mlb.com/news/top-prospects-in-winter-ball-2026",
@@ -7089,6 +7178,24 @@
         "contentDate": "2026-10-24T13:40:08.618Z",
         "teamIds": [
             108
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "A's new baseball ops president Smith 'so excited to build on' young core",
+        "summaryJa": "アスレチックスの最新動向をMLB公式が詳報",
+        "slug": "taylor-smith-introduced-as-athletics-president-of-baseball-operations",
+        "url": "https://www.mlb.com/news/taylor-smith-introduced-as-athletics-president-of-baseball-operations",
+        "contentDate": "2026-10-22T02:27:44.569Z",
+        "teamIds": [
+            133
         ],
         "playerIds": [],
         "gamePks": [],
