@@ -183,7 +183,7 @@
                 <span class="awards-mvp-year">${state.season}</span>
                 <div class="awards-mvp-portrait">${portraitWithFallback(headshotUrl(winner), `awards-mvp-headshot${state.category === "manager" ? " is-manager" : ""}`)}</div>
                 <img class="awards-mvp-team" src="${logoUrl(winner.teamId)}" alt="${escapeHtml(winner.team)}">
-                <div class="awards-mvp-name"><small>${escapeHtml(winner.position)}</small><h3>${escapeHtml(winner.playerJa)}</h3><b class="awards-mvp-count">${winner.count === 1 ? "初受賞" : `${winner.count}回目${winner.streak > 1 ? `（${winner.streak}年連続）` : ""}`}</b>${winner.votePoints != null ? `<div class="awards-mvp-vote"><small>得票ポイント</small><strong>${escapeHtml(winner.votePoints)}点</strong></div>` : ""}</div>
+                <div class="awards-mvp-name"><small>${escapeHtml(winner.position)}</small><h3>${escapeHtml(winner.playerJa)}</h3><b class="awards-mvp-count">${winner.count === 1 ? "初受賞" : `${winner.count}回目${winner.streak > 1 ? `（${winner.streak}年連続）` : ""}`}</b>${winner.votePoints != null ? `<div class="awards-mvp-vote"><small>得票ポイント</small><strong>${escapeHtml(winner.votePoints)}P</strong></div>` : ""}</div>
             </div>
             <div class="awards-mvp-stats" style="grid-template-columns:repeat(${Object.keys(winner.stats).length},1fr)">${Object.entries(winner.stats).map(([label, value]) => `<div><small>${escapeHtml(label)}</small><strong>${escapeHtml(value)}</strong></div>`).join("")}</div>
         </article>`;
@@ -198,7 +198,7 @@
                     <div class="awards-finalist-photo">${portraitWithFallback(photoUrl, isManager ? "is-manager" : "")}</div>
                     <img src="${logoUrl(finalist.teamId)}" alt="${escapeHtml(finalist.team)}">
                     <div class="awards-finalist-copy"><small>${escapeHtml(finalist.position)}</small><strong>${escapeHtml(finalist.playerJa)}</strong>
-                        <div class="awards-finalist-stats">${(finalist.stats || []).map(([label, value]) => `<span>${label ? `<small>${escapeHtml(label)}</small>` : ""}<b>${escapeHtml(value)}</b></span>`).join("")}</div>${finalist.votePoints != null ? `<div class="awards-finalist-vote"><small>得票</small><b>${escapeHtml(finalist.votePoints)}点</b></div>` : ""}
+                        <div class="awards-finalist-stats">${(finalist.stats || []).map(([label, value]) => `<span>${label ? `<small>${escapeHtml(label)}</small>` : ""}<b>${escapeHtml(value)}</b></span>`).join("")}</div>${finalist.votePoints != null ? `<div class="awards-finalist-vote"><small>得票</small><b>${escapeHtml(finalist.votePoints)}P</b></div>` : ""}
                     </div>
                 </article>`;
             }).join("")}</div>
