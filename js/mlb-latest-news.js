@@ -2,6 +2,131 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Improving 'pen a top priority for Nationals. How might they do that?",
+        "summaryJa": "ナショナルズを巡る注目点をMLB公式が分析",
+        "slug": "nationals-looking-to-improve-bullpen-after-2026",
+        "url": "https://www.mlb.com/news/nationals-looking-to-improve-bullpen-after-2026",
+        "contentDate": "2026-11-14T14:58:44.455Z",
+        "teamIds": [
+            120
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "What roster upgrades might Miami target this offseason?",
+        "summaryJa": "マーリンズの最新動向をMLB公式が詳報",
+        "slug": "marlins-2026-2027-offseason-targets",
+        "url": "https://www.mlb.com/news/marlins-2026-2027-offseason-targets",
+        "contentDate": "2026-11-14T14:35:25.997Z",
+        "teamIds": [
+            146
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Pitching prospect Flesland has strong '26 campaign across Minors, AFL",
+        "summaryJa": "ロッキーズら注目選手の最新動向",
+        "slug": "stu-flesland-iii-impresses-in-minor-leagues-and-arizona-fall-league-in-2026",
+        "url": "https://www.mlb.com/news/stu-flesland-iii-impresses-in-minor-leagues-and-arizona-fall-league-in-2026",
+        "contentDate": "2026-11-14T14:31:47.216Z",
+        "teamIds": [
+            115
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "arizona-fall-league"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "How will Royals divide catching duties between Salvy, Jensen in '27?",
+        "summaryJa": "C.ジェンセン（KC）を巡る注目点をMLB公式が分析",
+        "slug": "royals-plan-for-carter-jensen-salvador-perez-at-catcher-in-2027",
+        "url": "https://www.mlb.com/news/royals-plan-for-carter-jensen-salvador-perez-at-catcher-in-2027",
+        "contentDate": "2026-11-14T14:23:00.309Z",
+        "teamIds": [
+            118
+        ],
+        "playerIds": [
+            695600,
+            521692
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Shelton's move to 1B, strong offensive AFL showing should help push toward Majors",
+        "summaryJa": "Colby Shelton（CWS）を巡る注目点をMLB公式が分析",
+        "slug": "colby-shelton-has-strong-showing-in-2026-arizona-fall-league",
+        "url": "https://www.mlb.com/news/colby-shelton-has-strong-showing-in-2026-arizona-fall-league",
+        "contentDate": "2026-11-14T14:17:21.205Z",
+        "teamIds": [
+            145
+        ],
+        "playerIds": [
+            701333
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "mlb-top-prospects",
+            "arizona-fall-league"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "'Respect 70': Maddon presents strong HOF case on Contemporary Baseball Era ballot",
+        "summaryJa": "J.マッドン（TB）の最新動向をMLB公式が詳報",
+        "slug": "joe-maddon-hall-of-fame-case",
+        "url": "https://www.mlb.com/news/joe-maddon-hall-of-fame-case",
+        "contentDate": "2026-11-14T14:15:12.152Z",
+        "teamIds": [
+            139,
+            112
+        ],
+        "playerIds": [
+            427309
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "baseball-hall-of-fame"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Top prospects set to face off for Fall League championship",
         "summaryJa": "MLBの最新情報ら注目選手の最新動向",
         "slug": "2026-arizona-fall-league-championship-game",
@@ -501,7 +626,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -947,41 +1071,6 @@
         ]
     },
     {
-        "headline": "Most Valuable MVP: Ranking every winner",
-        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
-        "slug": "greatest-mvp-seasons-in-mlb-history-c300194658",
-        "url": "https://www.mlb.com/news/greatest-mvp-seasons-in-mlb-history-c300194658",
-        "contentDate": "2026-11-13T01:05:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "evergreen",
-            "rankings",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB"
-        ]
-    },
-    {
-        "headline": "Here are the MVP Award vote totals",
-        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
-        "slug": "2026-mlb-mvp-award-voting-results",
-        "url": "https://www.mlb.com/news/2026-mlb-mvp-award-voting-results",
-        "contentDate": "2026-11-13T00:58:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "most-valuable-player",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB"
-        ]
-    },
-    {
         "headline": "Ohtani finishes 2nd for NL MVP after stellar (though injury-dampened) campaign",
         "summaryJa": "大谷 翔平（LAD）の負傷状況をMLB公式が詳報",
         "slug": "shohei-ohtani-finishes-second-in-nl-mvp-voting-2026",
@@ -1125,7 +1214,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1953,23 +2041,6 @@
         ],
         "sourceScopes": [
             "球団公式"
-        ]
-    },
-    {
-        "headline": "Here are the ’26 All-MLB First and Second Teams",
-        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
-        "slug": "2026-all-mlb-teams",
-        "url": "https://www.mlb.com/news/2026-all-mlb-teams",
-        "contentDate": "2026-11-12T04:03:41.573Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "all-mlb-team",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB"
         ]
     },
     {
@@ -5198,28 +5269,6 @@
         ]
     },
     {
-        "headline": "Is that a Soto homering in a Nats uniform? Juan's younger brother goes deep in Fall League",
-        "summaryJa": "Elian Soto（WSH）、本塁打で存在感",
-        "slug": "nationals-prospect-elian-soto-first-arizona-fall-league-homer-brother-juan",
-        "url": "https://www.mlb.com/news/nationals-prospect-elian-soto-first-arizona-fall-league-homer-brother-juan",
-        "contentDate": "2026-11-05T22:01:53.382Z",
-        "teamIds": [
-            120
-        ],
-        "playerIds": [
-            808279
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "arizona-fall-league",
-            "mlb-top-prospects",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Breaking down Aaron Ashby's remarkable 2026 season",
         "summaryJa": "A.アシュビー（MIL）を巡る注目点をMLB公式が分析",
         "slug": "aaron-ashby-2026-analysis",
@@ -5839,27 +5888,6 @@
         ]
     },
     {
-        "headline": "Always solid at third, Bregman found another level. Here's how",
-        "summaryJa": "A.ブレグマン（CHC）を巡る注目点をMLB公式が分析",
-        "slug": "alex-bregman-found-another-level-on-defense-in-2026",
-        "url": "https://www.mlb.com/news/alex-bregman-found-another-level-on-defense-in-2026",
-        "contentDate": "2026-11-04T12:27:20.816Z",
-        "teamIds": [
-            112
-        ],
-        "playerIds": [
-            608324
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "gold-glove-award"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Here's what recent roster moves could mean for Marlins",
         "summaryJa": "J.サノーハ（MIA）の最新動向をMLB公式が詳報",
         "slug": "javier-sanoja-third-base-after-marlins-roster-moves",
@@ -6324,40 +6352,6 @@
             "apple-news",
             "awards-watch",
             "rookie-of-the-year"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Checking in on No. 2 prospect Brito in winter ball",
-        "summaryJa": "J.マデイら注目選手の最新動向",
-        "slug": "top-prospects-in-winter-ball-2026",
-        "url": "https://www.mlb.com/news/top-prospects-in-winter-ball-2026",
-        "contentDate": "2026-11-03T00:41:00Z",
-        "teamIds": [],
-        "playerIds": [
-            815908,
-            806957,
-            815896,
-            815929,
-            821041,
-            800473,
-            821100,
-            836353,
-            699024,
-            692657,
-            694224,
-            800406,
-            692478,
-            699214,
-            702036
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "mlb-top-prospects",
-            "winter-leagues",
-            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
@@ -6984,23 +6978,6 @@
             "apple-news",
             "arizona-fall-league",
             "mlb-top-prospects"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "The best moment from each series during the playoffs",
-        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
-        "slug": "best-postseason-moments-2026",
-        "url": "https://www.mlb.com/news/best-postseason-moments-2026",
-        "contentDate": "2026-10-30T15:35:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "postseason"
         ],
         "sourceScopes": [
             "球団公式"
