@@ -3683,8 +3683,9 @@
             const playerId = Number(transaction?.person?.id);
             if (!playerId || freeAgents.has(playerId)) return;
             const candidate = candidatesById.get(playerId);
-            const formerTeam = transaction?.fromTeam ?? transaction?.toTeam ??
-                (candidate?.teamId ? { id: candidate.teamId } : null);
+            const formerTeam = candidate?.teamId
+                ? { id: candidate.teamId }
+                : transaction?.fromTeam;
             const formerTeamId = Number(formerTeam?.id);
             if (!MLB_TEAM_IDS.has(formerTeamId)) return;
             freeAgents.set(playerId, {
@@ -3993,7 +3994,10 @@
             const createDailyTransactionRow = (transaction) => {
                 const row = el("div", "pregame-free-agent-row");
                 const identity = el("span", "pregame-free-agent-identity");
-                const team = transaction?.toTeam ?? transaction?.fromTeam;
+                // 新着動向の選手横には移籍前の所属球団を表示する。
+                // toTeam（移籍先）は契約ステータス側に別ロゴで表示する。
+                const playerEntry = playerEntries.get(Number(transaction?.person?.id));
+                const team = playerEntry?.formerTeam ?? transaction?.fromTeam;
                 const playerLink = el(
                     "a",
                     "pregame-free-agent-player",
@@ -4002,8 +4006,8 @@
                 playerLink.href = `https://www.mlb.com/player/${transaction.person.id}`;
                 playerLink.target = "_blank";
                 playerLink.rel = "noopener noreferrer";
+                if (team) identity.append(createFreeAgentTeamLogo(team));
                 identity.append(
-                    createFreeAgentTeamLogo(team),
                     playerLink,
                     el(
                         "span",
