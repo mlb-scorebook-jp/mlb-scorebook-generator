@@ -3202,6 +3202,58 @@
         const now = Date.now();
         const transactions = (await fetchFreeAgentTransactions(shiftDate(today, -1), today))
             .filter(isFreeAgentUpdateTransaction);
+        // SFAのfromTeamは契約先を指す場合があり、旧所属としては使えない。
+        // 候補者名簿と、選手IDで取得した契約日前のMLB取引履歴を照合する。
+        // マイナー球団の取引を飛ばして直近のMLB球団を探し、確認できなければ空欄にする。
+        await Promise.all(transactions.map(async (transaction) => {
+            if (String(transaction?.typeCode ?? "") !== "SFA" ||
+                transaction?.formerTeam?.id) return;
+            const playerId = Number(transaction?.person?.id);
+            if (!playerId) return;
+            const signingDate = String(
+                transaction?.effectiveDate || transaction?.date || today
+            ).slice(0, 10);
+            const params = new URLSearchParams({ playerId: String(playerId) });
+            const history = await fetchJson(
+                `${API_ROOT}/v1/transactions?${params}`,
+                `pregame:free-agent-player-transactions:${playerId}`
+            ).catch(() => null);
+            const priorMoves = (history?.transactions ?? [])
+                .filter((move) => {
+                    const moveDate = String(move?.effectiveDate || move?.date || "").slice(0, 10);
+                    return moveDate && moveDate < signingDate &&
+                        (move?.fromTeam?.id || move?.toTeam?.id);
+                })
+                .sort((left, right) => String(
+                    right?.effectiveDate || right?.date || ""
+                ).localeCompare(String(left?.effectiveDate || left?.date || "")));
+            for (const move of priorMoves) {
+                const fromTeam = move?.fromTeam;
+                const toTeam = move?.toTeam;
+                const fromIsMlb = MLB_TEAM_IDS.has(Number(fromTeam?.id));
+                const toIsMlb = MLB_TEAM_IDS.has(Number(toTeam?.id));
+                // MLB球団間の移籍なら移籍先、MLB球団と傘下球団の間の移動なら
+                // MLB球団側を採用する。契約先チームは候補から除外する。
+                const formerTeam = toIsMlb && Number(toTeam.id) !== Number(transaction?.toTeam?.id)
+                    ? toTeam
+                    : fromIsMlb && Number(fromTeam.id) !== Number(transaction?.toTeam?.id)
+                        ? fromTeam
+                        : null;
+                if (formerTeam) {
+                    transaction.formerTeam = formerTeam;
+                    break;
+                }
+            }
+            if (!transaction.formerTeam?.id) {
+                const season = Number(signingDate.slice(0, 4));
+                const candidate = (window.MLB_FREE_AGENT_CANDIDATES?.[season] ?? [])
+                    .find((entry) => Number(entry.playerId) === playerId);
+                const candidateTeamId = Number(candidate?.teamId);
+                if (MLB_TEAM_IDS.has(candidateTeamId) && candidateTeamId !== Number(transaction?.toTeam?.id)) {
+                    transaction.formerTeam = { id: candidateTeamId };
+                }
+            }
+        }));
         const seen = readFreeAgentRecentSeen();
 
         transactions.forEach((transaction) => {
@@ -3986,7 +4038,11 @@
             newTransactions.forEach((transaction) => {
                 const playerLeague = playerLeagues.get(Number(transaction?.person?.id));
                 const formerTeamId = Number(
-                    transaction?.fromTeam?.id ?? transaction?.toTeam?.id
+                    transaction?.formerTeam?.id ??
+                    playerEntries.get(Number(transaction?.person?.id))?.formerTeam?.id ??
+                    (String(transaction?.typeCode ?? "") === "SFA"
+                        ? 0
+                        : transaction?.fromTeam?.id ?? transaction?.toTeam?.id)
                 );
                 const fallbackLeague = AL_TEAM_IDS.has(formerTeamId) ? "AL" : "NL";
                 transactionsByLeague[playerLeague || fallbackLeague].push(transaction);
@@ -3994,10 +4050,12 @@
             const createDailyTransactionRow = (transaction) => {
                 const row = el("div", "pregame-free-agent-row");
                 const identity = el("span", "pregame-free-agent-identity");
+                const isSigning = String(transaction?.typeCode ?? "") === "SFA";
                 // 新着動向の選手横には移籍前の所属球団を表示する。
                 // toTeam（移籍先）は契約ステータス側に別ロゴで表示する。
                 const playerEntry = playerEntries.get(Number(transaction?.person?.id));
-                const team = playerEntry?.formerTeam ?? transaction?.fromTeam;
+                const team = transaction?.formerTeam ?? playerEntry?.formerTeam ??
+                    (isSigning ? null : transaction?.fromTeam);
                 const playerLink = el(
                     "a",
                     "pregame-free-agent-player",
@@ -4015,7 +4073,6 @@
                         String(transaction.description ?? "").match(/^([A-Z0-9/]+)\s/)?.[1] ?? ""
                     )
                 );
-                const isSigning = String(transaction?.typeCode ?? "") === "SFA";
                 const signingTerms = playerEntries.get(
                     Number(transaction?.person?.id)
                 )?.signing?.terms;
