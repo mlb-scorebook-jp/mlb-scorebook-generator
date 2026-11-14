@@ -2376,6 +2376,14 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
     object-fit: contain;
 }
 
+.pregame-free-agent-country-flag {
+    flex: 0 0 18px;
+    width: 18px;
+    text-align: center;
+    font-size: 15px;
+    line-height: 18px;
+}
+
 .pregame-free-agent-position {
     color: #9fadb5;
     font-size: 12px;

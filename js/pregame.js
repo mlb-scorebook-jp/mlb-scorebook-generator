@@ -2963,6 +2963,46 @@
     };
 
     const AL_TEAM_IDS = new Set([108, 110, 111, 114, 116, 117, 118, 133, 136, 139, 140, 141, 142, 145, 147]);
+    // 2026年オフの新着契約で、選手IDと旧所属を公式履歴・球団資料で確認済みのもの。
+    // Stats APIの取引履歴が欠ける場合の補完用。契約先ではなく契約直前のMLB所属を示す。
+    const FREE_AGENT_VERIFIED_FORMER_TEAM_BY_PLAYER_ID = new Map([
+        [671111, 108], // Sammy Peralta — Angels
+        [623465, 119], // Evan Phillips — Dodgers
+        [682868, 110], // Bryan Ramos — Orioles
+        [671289, 115], // Tyler Freeman — Rockies
+        [664129, 133], // Geoff Hartlieb — Athletics
+        [691263, 137], // Esmerlin Vinicio — Giants
+        [808220, 141], // Raimundo De Los Santos — Blue Jays
+        [641386, 133]  // Ben Bowden — Athletics
+    ]);
+    const FREE_AGENT_OVERSEAS_COUNTRY_BY_PLAYER_ID = new Map([
+        [805097, "Mexico"],    // Angel Hernandez — 直近はメキシコリーグから移籍
+        [672712, "Venezuela"]  // Luis Palacios — 直近はベネズエラのリーグから移籍
+    ]);
+    const FREE_AGENT_COUNTRY_CODES = Object.freeze({
+        "united states": "US", usa: "US", "dominican republic": "DO",
+        venezuela: "VE", cuba: "CU", mexico: "MX", japan: "JP",
+        "south korea": "KR", korea: "KR", taiwan: "TW", colombia: "CO",
+        panama: "PA", nicaragua: "NI", brazil: "BR", canada: "CA",
+        australia: "AU", netherlands: "NL", curacao: "CW", aruba: "AW",
+        "puerto rico": "PR", bahamas: "BS", "united kingdom": "GB"
+    });
+    const countryFlagEmoji = (country) => {
+        const code = FREE_AGENT_COUNTRY_CODES[String(country ?? "").trim().toLowerCase()];
+        if (!code) return "";
+        return [...code].map((letter) => String.fromCodePoint(
+            0x1f1e6 + letter.charCodeAt(0) - 65
+        )).join("");
+    };
+    const createFreeAgentCountryFlag = (country) => {
+        const flag = countryFlagEmoji(country);
+        if (!flag) return null;
+        const node = el("span", "pregame-free-agent-country-flag", flag);
+        node.setAttribute("role", "img");
+        node.setAttribute("aria-label", `${country}の国旗`);
+        node.title = country;
+        return node;
+    };
     const FREE_AGENT_OPT_OUT_CONTRACT_YEARS = new Map([
         [837227, 3]
     ]);
@@ -3204,12 +3244,24 @@
             .filter(isFreeAgentUpdateTransaction);
         // SFAのfromTeamは契約先を指す場合があり、旧所属としては使えない。
         // 候補者名簿と、選手IDで取得した契約日前のMLB取引履歴を照合する。
-        // マイナー球団の取引を飛ばして直近のMLB球団を探し、確認できなければ空欄にする。
+        // マイナー球団の取引を飛ばして直近のMLB球団を探す。
+        // 海外リーグから来たことが確認できている選手は、球団ロゴではなく国旗を優先する。
         await Promise.all(transactions.map(async (transaction) => {
-            if (String(transaction?.typeCode ?? "") !== "SFA" ||
-                transaction?.formerTeam?.id) return;
+            if (String(transaction?.typeCode ?? "") !== "SFA") return;
             const playerId = Number(transaction?.person?.id);
             if (!playerId) return;
+            const overseasCountry = FREE_AGENT_OVERSEAS_COUNTRY_BY_PLAYER_ID.get(playerId);
+            if (overseasCountry) {
+                transaction.overseasCountry = overseasCountry;
+                transaction.person = { ...transaction.person, birthCountry: overseasCountry };
+                return;
+            }
+            if (transaction?.formerTeam?.id) return;
+            const verifiedFormerTeamId = FREE_AGENT_VERIFIED_FORMER_TEAM_BY_PLAYER_ID.get(playerId);
+            if (verifiedFormerTeamId) {
+                transaction.formerTeam = { id: verifiedFormerTeamId };
+                return;
+            }
             const signingDate = String(
                 transaction?.effectiveDate || transaction?.date || today
             ).slice(0, 10);
@@ -4044,7 +4096,9 @@
                         ? 0
                         : transaction?.fromTeam?.id ?? transaction?.toTeam?.id)
                 );
-                const fallbackLeague = AL_TEAM_IDS.has(formerTeamId) ? "AL" : "NL";
+                const destinationTeamId = Number(transaction?.toTeam?.id);
+                const fallbackTeamId = formerTeamId || destinationTeamId;
+                const fallbackLeague = AL_TEAM_IDS.has(fallbackTeamId) ? "AL" : "NL";
                 transactionsByLeague[playerLeague || fallbackLeague].push(transaction);
             });
             const createDailyTransactionRow = (transaction) => {
@@ -4054,7 +4108,8 @@
                 // 新着動向の選手横には移籍前の所属球団を表示する。
                 // toTeam（移籍先）は契約ステータス側に別ロゴで表示する。
                 const playerEntry = playerEntries.get(Number(transaction?.person?.id));
-                const team = transaction?.formerTeam ?? playerEntry?.formerTeam ??
+                const team = transaction?.overseasCountry ? null :
+                    transaction?.formerTeam ?? playerEntry?.formerTeam ??
                     (isSigning ? null : transaction?.fromTeam);
                 const playerLink = el(
                     "a",
@@ -4064,7 +4119,12 @@
                 playerLink.href = `https://www.mlb.com/player/${transaction.person.id}`;
                 playerLink.target = "_blank";
                 playerLink.rel = "noopener noreferrer";
-                if (team) identity.append(createFreeAgentTeamLogo(team));
+                if (team) {
+                    identity.append(createFreeAgentTeamLogo(team));
+                } else if (isSigning && transaction?.overseasCountry) {
+                    const flag = createFreeAgentCountryFlag(transaction.overseasCountry);
+                    if (flag) identity.append(flag);
+                }
                 identity.append(
                     playerLink,
                     el(
