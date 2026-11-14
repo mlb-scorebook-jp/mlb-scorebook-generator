@@ -122,6 +122,7 @@
             { playerId: 684007, name: "Shota Imanaga", teamId: 112, position: "LHP", pitcherRole: "SP" },
             { playerId: 592662, name: "Robbie Ray", teamId: 135, position: "LHP", pitcherRole: "SP" },
             { playerId: 601713, name: "Nick Pivetta", teamId: 135, position: "RHP", pitcherRole: "SP" },
+            { playerId: 671111, name: "Sammy Peralta", teamId: 108, position: "LHP", pitcherRole: "RP" },
             { playerId: 668678, name: "Zac Gallen", teamId: 109, position: "RHP", pitcherRole: "SP" },
             { playerId: 605135, name: "Chris Bassitt", teamId: 110, position: "RHP", pitcherRole: "SP" },
             { playerId: 622663, name: "Luis Severino", teamId: 133, position: "RHP", pitcherRole: "SP" },
