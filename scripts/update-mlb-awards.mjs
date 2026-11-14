@@ -79,7 +79,19 @@ function collectRecipients(value, found = []) {
 }
 
 async function fetchMvp() {
-  const api = await getText(`https://statsapi.mlb.com/api/v1/awards/MLBMVP/recipients?season=${season}`);
+  const url = `https://statsapi.mlb.com/api/v1/awards/MLBMVP/recipients?season=${season}`;
+  const response = await fetch(url, { headers });
+  if (response.status === 404) {
+    // StatsAPI can lag or omit a season even after MLB has announced its MVPs.
+    // Keep the official static result for this season, and let the other award
+    // sources (notably All-MLB) continue updating instead of failing the job.
+    console.warn(`MLB Stats API has no ${season} MVP recipient response; retaining the existing official result when available.`);
+    return season === base.season && base.categories.mvp?.status === 'announced'
+      ? base.categories.mvp
+      : null;
+  }
+  if (!response.ok) throw new Error(`MLB source returned ${response.status}: ${url}`);
+  const api = await response.text();
   const records = collectRecipients(JSON.parse(api));
   const finalistRows = [ ...(base.categories.mvp.finalists?.al || []).map((p) => ({ ...p, leagueKey: 'al' })), ...(base.categories.mvp.finalists?.nl || []).map((p) => ({ ...p, leagueKey: 'nl' })) ];
   const winners = {};
