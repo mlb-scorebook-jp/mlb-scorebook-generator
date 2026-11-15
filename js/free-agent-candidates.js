@@ -45,6 +45,7 @@
     global.MLB_FREE_AGENT_CANDIDATES = Object.freeze({
         2026: Object.freeze([
             { playerId: 608348, name: "Carson Kelly", teamId: 112, position: "C" },
+            { playerId: 641343, name: "Jake Bauers", teamId: 158, position: "1B" },
             { playerId: 680777, name: "Ryan Jeffers", teamId: 142, position: "C" },
             { playerId: 663886, name: "Tyler Stephenson", teamId: 113, position: "C" },
             { playerId: 518595, name: "Travis d'Arnaud", teamId: 108, position: "C" },

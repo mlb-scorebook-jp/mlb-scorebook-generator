@@ -8,5 +8,14 @@
 // years・tenThousandsがない場合は「※期間と金額は未公表」を自動表示する。
 // MLB以外の海外リーグは追跡対象に含めない。
 (function (global) {
-    global.MLB_FREE_AGENT_AGREEMENTS = Object.freeze({});
+    global.MLB_FREE_AGENT_AGREEMENTS = Object.freeze({
+        // MLB.comが合意を報道。球団の正式発表・MLB取引登録とは区別して「合意」と表示。
+        641343: Object.freeze({
+            teamId: 111,
+            agreedDate: "2026-11-13",
+            years: 4,
+            tenThousands: 5800,
+            url: "https://www.mlb.com/news/jake-bauers-4-year-contract-with-red-sox"
+        })
+    });
 })(window);

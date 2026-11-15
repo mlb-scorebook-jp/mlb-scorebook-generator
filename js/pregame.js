@@ -3021,6 +3021,14 @@
         responseDeadline: "2026-11-17",
         url: "https://www.mlb.com/news/qualifying-offer-candidates-and-decisions-2026-27"
     })]));
+    // 回答期限前でも代理人が明言した拒否方針は、正式回答と区別して表示する。
+    const FREE_AGENT_QUALIFYING_OFFER_DECISIONS = new Map([
+        [673548, Object.freeze({
+            date: "2026-11-11",
+            statusText: "QO拒否方針（代理人発表）",
+            url: "https://www.nbcsports.com/fantasy/baseball/player-news/2026-11-11/seiya-suzuki-to-decline-cubs-qualifying-offer"
+        })]
+    ]);
 
     const formatAgreementDate = (date) => {
         const match = String(date ?? "").match(/^\d{4}-(\d{2})-(\d{2})$/);
@@ -3756,6 +3764,7 @@
             if (!playerId || !MLB_TEAM_IDS.has(formerTeamId)) return;
             const optOut = FREE_AGENT_OPT_OUT_DETAILS.get(playerId);
             const qualifyingOffer = FREE_AGENT_QUALIFYING_OFFERS.get(playerId);
+            const qualifyingOfferDecision = FREE_AGENT_QUALIFYING_OFFER_DECISIONS.get(playerId);
             const declaredDate = String(
                 transaction?.effectiveDate || transaction?.date || ""
             ).slice(0, 10);
@@ -3769,12 +3778,13 @@
                     candidate?.position ?? "",
                 formerTeam: { ...formerTeam, id: formerTeamId },
                 declaredFreeAgent: true,
-                declaredDate: optOut?.date || declaredDate,
+                declaredDate: optOut?.date || qualifyingOfferDecision?.date || declaredDate,
                 optOutContractYears: optOut?.contractYears || 0,
-                declaredStatusText: optOut?.statusText || (qualifyingOfferPending
+                declaredStatusText: optOut?.statusText || qualifyingOfferDecision?.statusText || (qualifyingOfferPending
                     ? "QO回答待ち（11/17期限）"
                     : declaration.statusText),
                 sourceUrl: optOut?.url ||
+                    qualifyingOfferDecision?.url ||
                     (qualifyingOfferPending ? qualifyingOffer.url : "") ||
                     `https://www.mlb.com/transactions?date=${declaredDate}`
             });
