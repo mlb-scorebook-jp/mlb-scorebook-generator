@@ -2,6 +2,152 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "5 ways the Blue Jays can (internally) improve on offense in 2027",
+        "summaryJa": "ブルージェイズを巡る注目点をMLB公式が分析",
+        "slug": "how-blue-jays-can-improve-on-offense-in-2027",
+        "url": "https://www.mlb.com/news/how-blue-jays-can-improve-on-offense-in-2027",
+        "contentDate": "2026-11-15T14:31:15.473Z",
+        "teamIds": [
+            141
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "The nasty pitch that could help Chapman evolve",
+        "summaryJa": "A.チャップマン（BOS）の最新動向をMLB公式が詳報",
+        "slug": "aroldis-chapman-evolving-with-nasty-splitter",
+        "url": "https://www.mlb.com/news/aroldis-chapman-evolving-with-nasty-splitter",
+        "contentDate": "2026-11-15T14:12:21.662Z",
+        "teamIds": [
+            111
+        ],
+        "playerIds": [
+            547973
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "savant",
+            "player-tracking"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "What sparked Jackson Merrill's huge second half in 2026?",
+        "summaryJa": "J.メリル（SD）の最新動向をMLB公式が詳報",
+        "slug": "jackson-merrill-breakdown-2026-season-padres",
+        "url": "https://www.mlb.com/news/jackson-merrill-breakdown-2026-season-padres",
+        "contentDate": "2026-11-15T14:11:39.466Z",
+        "teamIds": [
+            135
+        ],
+        "playerIds": [
+            701538
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "7 Cubs starters are free agents. Now what?",
+        "summaryJa": "カブスの最新動向をMLB公式が詳報",
+        "slug": "cubs-starting-rotation-candidates-2027",
+        "url": "https://www.mlb.com/news/cubs-starting-rotation-candidates-2027",
+        "contentDate": "2026-11-15T14:10:48.099Z",
+        "teamIds": [
+            112
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Is this free agent the perfect fit at 2B for Yankees?",
+        "summaryJa": "B.ラウ（NYY）の最新動向をMLB公式が詳報",
+        "slug": "brandon-lowe-makes-sense-for-yankees-in-free-agency",
+        "url": "https://www.mlb.com/news/brandon-lowe-makes-sense-for-yankees-in-free-agency",
+        "contentDate": "2026-11-15T13:58:46.164Z",
+        "teamIds": [
+            147
+        ],
+        "playerIds": [
+            664040
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "rumors"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Can McFarlane establish himself as long-term setup option?",
+        "summaryJa": "A.マクファーレン（PHI）の最新動向をMLB公式が詳報",
+        "slug": "alex-mcfarlane-outlook-for-phillies-2027",
+        "url": "https://www.mlb.com/news/alex-mcfarlane-outlook-for-phillies-2027",
+        "contentDate": "2026-11-15T13:29:56.044Z",
+        "teamIds": [
+            143
+        ],
+        "playerIds": [
+            686934
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "player-tracking"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Which version of Kyle Harrison will Crew get in ’27?",
+        "summaryJa": "K.ハリソン（MIL）の最新動向をMLB公式が詳報",
+        "slug": "kyle-harrison-2027-outlook-brewers-inconsistent-2026",
+        "url": "https://www.mlb.com/news/kyle-harrison-2027-outlook-brewers-inconsistent-2026",
+        "contentDate": "2026-11-15T13:28:32.95Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [
+            690986
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "player-tracking"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Peoria Javelinas steamroll way to record eighth Arizona Fall League championship",
         "summaryJa": "MLBの最新情報、記録達成の最新情報",
         "slug": "2026-arizona-fall-league-championship-game",
@@ -651,7 +797,6 @@
             "player-tracking"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -945,7 +1090,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -986,7 +1130,6 @@
             "rumors"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1028,22 +1171,6 @@
         ],
         "sourceScopes": [
             "球団公式"
-        ]
-    },
-    {
-        "headline": "Korean Series MVP looking to make MLB move",
-        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
-        "slug": "ja-wook-koo-interest-in-mlb",
-        "url": "https://www.mlb.com/news/ja-wook-koo-interest-in-mlb",
-        "contentDate": "2026-11-13T16:33:12.834Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB"
         ]
     },
     {
@@ -1146,7 +1273,6 @@
             "rumors"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1292,24 +1418,6 @@
         ]
     },
     {
-        "headline": "In Skubal sweepstakes, there may only be one team ‘even in the conversation’",
-        "summaryJa": "T.スクーバルの最新動向をMLB公式が詳報",
-        "slug": "tarik-skubal-rumors",
-        "url": "https://www.mlb.com/news/tarik-skubal-rumors",
-        "contentDate": "2026-11-13T02:35:00Z",
-        "teamIds": [],
-        "playerIds": [
-            669373
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "rumors"
-        ],
-        "sourceScopes": [
-            "MLB"
-        ]
-    },
-    {
         "headline": "Here’s every ranked prospect that needs to be protected ahead of Tuesday’s 40-man deadline",
         "summaryJa": "MLBの最新情報ら注目選手の最新動向",
         "slug": "rule-5-draft-prospects-protected-on-40-man-roster-2026",
@@ -1325,27 +1433,6 @@
         ],
         "sourceScopes": [
             "球団公式"
-        ]
-    },
-    {
-        "headline": "First-time MVP winners (both unanimous!) usher in new era of superstars",
-        "summaryJa": "P.クローアームストロングの最新動向をMLB公式が詳報",
-        "slug": "2026-mlb-mvp-award-winners",
-        "url": "https://www.mlb.com/news/2026-mlb-mvp-award-winners",
-        "contentDate": "2026-11-13T01:15:00Z",
-        "teamIds": [],
-        "playerIds": [
-            691718,
-            670541
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "most-valuable-player",
-            "awards-watch",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB"
         ]
     },
     {
@@ -4750,28 +4837,6 @@
         ]
     },
     {
-        "headline": "Blue Jays' Parker goes from last-minute sub to Fall League HR Derby champ",
-        "summaryJa": "A.パーカー（TOR）、本塁打で存在感",
-        "slug": "blue-jays-prospect-aaron-parker-wins-2026-arizona-fall-league-home-run-derby",
-        "url": "https://www.mlb.com/news/blue-jays-prospect-aaron-parker-wins-2026-arizona-fall-league-home-run-derby",
-        "contentDate": "2026-11-08T05:10:00Z",
-        "teamIds": [
-            141
-        ],
-        "playerIds": [
-            801590
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "mlb-top-prospects",
-            "apple-news",
-            "arizona-fall-league"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Watch LIVE: Red Sox prospect Anderson in AFL Home Run Derby",
         "summaryJa": "MLBの最新情報、本塁打で存在感",
         "slug": "2026-arizona-fall-league-home-run-derby",
@@ -5434,24 +5499,6 @@
         ]
     },
     {
-        "headline": "Where can the Yankees improve the lineup?",
-        "summaryJa": "ヤンキースの最新動向をMLB公式が詳報",
-        "slug": "ways-yankees-can-improve-their-offense",
-        "url": "https://www.mlb.com/news/ways-yankees-can-improve-their-offense",
-        "contentDate": "2026-11-06T14:24:44.995Z",
-        "teamIds": [
-            147
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Baker's illustrious résumé boasts clear case for Cooperstown",
         "summaryJa": "D.ベイカー Jr.（HOU）の最新動向をMLB公式が詳報",
         "slug": "dusty-baker-case-to-be-voted-into-national-baseball-hall-of-fame",
@@ -5574,26 +5621,6 @@
         ]
     },
     {
-        "headline": "Breaking down Aaron Ashby's remarkable 2026 season",
-        "summaryJa": "A.アシュビー（MIL）を巡る注目点をMLB公式が分析",
-        "slug": "aaron-ashby-2026-analysis",
-        "url": "https://www.mlb.com/news/aaron-ashby-2026-analysis",
-        "contentDate": "2026-11-05T22:00:00Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [
-            676879
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Mets adding Johnny Washington to staff as co-hitting coach (source)",
         "summaryJa": "メッツの最新動向をMLB公式が詳報",
         "slug": "johnny-washington-mets-co-hitting-coach",
@@ -5691,7 +5718,7 @@
         ]
     },
     {
-        "headline": "How PCA went from prospect trade chip to MVP finalist",
+        "headline": "How Yordan went from prospect trade chip to MVP finalist",
         "summaryJa": "Y.アルバレス（HOU）の移籍・契約に関する最新情報",
         "slug": "2026-mlb-mvp-candidates-traded",
         "url": "https://www.mlb.com/news/2026-mlb-mvp-candidates-traded",
@@ -7000,29 +7027,6 @@
         "taxonomy": [
             "apple-news",
             "mlb-top-prospects"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Durbin, Abreu and Rafaela give Sox 3 Gold Glovers for 1st time since ‘18",
-        "summaryJa": "C.ダービン（BOS）、記録達成の最新情報",
-        "slug": "caleb-durbin-wilyer-abreu-ceddanne-rafaela-win-gold-glove-awards",
-        "url": "https://www.mlb.com/news/caleb-durbin-wilyer-abreu-ceddanne-rafaela-win-gold-glove-awards",
-        "contentDate": "2026-11-02T04:15:00Z",
-        "teamIds": [
-            111
-        ],
-        "playerIds": [
-            702332,
-            677800,
-            678882
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "gold-glove-award"
         ],
         "sourceScopes": [
             "球団公式"
