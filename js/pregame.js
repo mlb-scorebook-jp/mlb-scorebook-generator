@@ -3022,13 +3022,16 @@
         url: "https://www.mlb.com/news/qualifying-offer-candidates-and-decisions-2026-27"
     })]));
     // 回答期限前でも代理人が明言した拒否方針は、正式回答と区別して表示する。
-    const FREE_AGENT_QUALIFYING_OFFER_DECISIONS = new Map([
-        [673548, Object.freeze({
-            date: "2026-11-11",
-            statusText: "QO拒否方針（代理人発表）",
-            url: "https://www.nbcsports.com/fantasy/baseball/player-news/2026-11-11/seiya-suzuki-to-decline-cubs-qualifying-offer"
-        })]
-    ]);
+    const FREE_AGENT_QUALIFYING_OFFER_DECISIONS = new Map(
+        Object.entries(window.MLB_FREE_AGENT_PROGRESS ?? {})
+            .filter(([, entry]) => entry?.qualifyingOffer)
+            .map(([playerId, entry]) => [Number(playerId), Object.freeze({
+                date: entry.qualifyingOffer.date,
+                expiresDate: entry.qualifyingOffer.expiresDate || "",
+                statusText: entry.qualifyingOffer.statusText,
+                url: entry.qualifyingOffer.url
+            })])
+    );
 
     const formatAgreementDate = (date) => {
         const match = String(date ?? "").match(/^\d{4}-(\d{2})-(\d{2})$/);
@@ -3122,24 +3125,34 @@
     // 契約合意は確認済みデータだけを採用する。噂記事や「再契約が必要」の見出しから推測しない。
     const findFreeAgentAgreement = (playerId, startDate, date) => {
         const confirmed = window.MLB_FREE_AGENT_AGREEMENTS?.[Number(playerId)];
-        if (!confirmed || startDate > confirmed.agreedDate || confirmed.agreedDate > date) {
+        const reported = window.MLB_FREE_AGENT_PROGRESS?.[Number(playerId)]?.agreement;
+        const agreement = confirmed || (reported ? {
+            teamId: reported.teamId,
+            agreedDate: reported.date,
+            years: reported.years,
+            tenThousands: reported.tenThousands,
+            url: reported.url,
+            reported: true
+        } : null);
+        if (!agreement || startDate > agreement.agreedDate || agreement.agreedDate > date) {
             return null;
         }
         return {
-            teamId: Number(confirmed.teamId),
-            league: confirmed.league || "MLB",
-            teamName: confirmed.teamName || "",
-            teamLogoUrl: confirmed.teamLogoUrl || "",
-            statusText: confirmed.statusText || "",
-            agreedDate: confirmed.agreedDate,
-            terms: Number.isFinite(Number(confirmed.years)) &&
-                Number.isFinite(Number(confirmed.tenThousands))
+            teamId: Number(agreement.teamId),
+            league: agreement.league || "MLB",
+            teamName: agreement.teamName || "",
+            teamLogoUrl: agreement.teamLogoUrl || "",
+            statusText: agreement.statusText || "",
+            agreedDate: agreement.agreedDate,
+            reported: Boolean(agreement.reported),
+            terms: Number.isFinite(Number(agreement.years)) &&
+                Number.isFinite(Number(agreement.tenThousands))
                 ? {
-                    years: Number(confirmed.years),
-                    tenThousands: Number(confirmed.tenThousands)
+                    years: Number(agreement.years),
+                    tenThousands: Number(agreement.tenThousands)
                 }
                 : null,
-            url: confirmed.url || ""
+            url: agreement.url || ""
         };
     };
 
@@ -3765,6 +3778,10 @@
             const optOut = FREE_AGENT_OPT_OUT_DETAILS.get(playerId);
             const qualifyingOffer = FREE_AGENT_QUALIFYING_OFFERS.get(playerId);
             const qualifyingOfferDecision = FREE_AGENT_QUALIFYING_OFFER_DECISIONS.get(playerId);
+            const activeQualifyingOfferDecision = qualifyingOfferDecision?.expiresDate &&
+                date > qualifyingOfferDecision.expiresDate
+                ? null
+                : qualifyingOfferDecision;
             const declaredDate = String(
                 transaction?.effectiveDate || transaction?.date || ""
             ).slice(0, 10);
@@ -3778,13 +3795,13 @@
                     candidate?.position ?? "",
                 formerTeam: { ...formerTeam, id: formerTeamId },
                 declaredFreeAgent: true,
-                declaredDate: optOut?.date || qualifyingOfferDecision?.date || declaredDate,
+                declaredDate: optOut?.date || activeQualifyingOfferDecision?.date || declaredDate,
                 optOutContractYears: optOut?.contractYears || 0,
-                declaredStatusText: optOut?.statusText || qualifyingOfferDecision?.statusText || (qualifyingOfferPending
+                declaredStatusText: optOut?.statusText || activeQualifyingOfferDecision?.statusText || (qualifyingOfferPending
                     ? "QO回答待ち（11/17期限）"
                     : declaration.statusText),
                 sourceUrl: optOut?.url ||
-                    qualifyingOfferDecision?.url ||
+                    activeQualifyingOfferDecision?.url ||
                     (qualifyingOfferPending ? qualifyingOffer.url : "") ||
                     `https://www.mlb.com/transactions?date=${declaredDate}`
             });
@@ -4351,11 +4368,11 @@
                                 (dateText ? ` ${dateText}正式発表` : "")
                             : terms
                                 ? `と${terms.years}年${formatContractDollars(terms.tenThousands)}で契約` +
-                                    (dateText ? ` ${dateText}${entry.signing.agreedDate ? "合意" : "公式登録"}` : "")
+                                    (dateText ? ` ${dateText}${entry.signing.reported ? "合意報道" : entry.signing.agreedDate ? "合意" : "公式登録"}` : "")
                                 : entry.signing.minorLeague
                                     ? "とマイナー契約"
                                     : `と契約 ※期間と金額は未公表` +
-                                        (dateText ? ` ${dateText}${entry.signing.agreedDate ? "合意" : "公式登録"}` : "");
+                                        (dateText ? ` ${dateText}${entry.signing.reported ? "合意報道" : entry.signing.agreedDate ? "合意" : "公式登録"}` : "");
                         const status = el(
                             entry.signing.url ? "a" : "span",
                             "pregame-free-agent-signing",
