@@ -7,6 +7,14 @@ const staticDataPath = new URL('../js/awards-data-2026.js', import.meta.url);
 const staticContext = { window: {} };
 vm.runInNewContext(await readFile(staticDataPath, 'utf8'), staticContext);
 const base = staticContext.window.MLB_AWARDS_2026;
+const previousContext = { window: {} };
+try {
+  vm.runInNewContext(await readFile(outPath, 'utf8'), previousContext);
+} catch {
+  // First run: no generated snapshot exists yet.
+}
+const previous = previousContext.window.MLB_AWARDS_AUTO;
+const previousCategories = previous?.season === season ? (previous.categories ?? {}) : {};
 const headers = { 'user-agent': 'MLB-SCOREBOOK-GENERATOR/1.0 awards updater' };
 
 async function getText(url) {
@@ -107,12 +115,30 @@ async function fetchMvp() {
   return { ...base.categories.mvp, ...winners, status: 'announced', announcedAt: `${season}-11-12`, sourceUrl: `https://www.mlb.com/news/${season}-mlb-mvp-award-winners` };
 }
 
-const [allMlbHtml, mvpCategory] = await Promise.all([
-  getText('https://www.mlb.com/awards/all-mlb'),
-  fetchMvp()
+async function trySource(label, fetcher, fallback) {
+  try {
+    return await fetcher();
+  } catch (error) {
+    console.warn(`${label} could not be refreshed; preserving the last known data. ${error.message}`);
+    return fallback ?? null;
+  }
+}
+
+const [allMlbCategory, mvpCategory] = await Promise.all([
+  trySource('All-MLB', async () => parseAllMlb(await getText('https://www.mlb.com/awards/all-mlb')), previousCategories.allMlb),
+  trySource('MVP', fetchMvp, previousCategories.mvp ?? (season === base.season ? base.categories.mvp : null))
 ]);
-const categories = { allMlb: parseAllMlb(allMlbHtml) };
-if (mvpCategory) categories.mvp = mvpCategory;
+
+const categories = {
+  ...previousCategories,
+  ...(allMlbCategory ? { allMlb: allMlbCategory } : {}),
+  ...(mvpCategory ? { mvp: mvpCategory } : {})
+};
+if (!Object.keys(categories).length) {
+  console.warn(`No award data was available for ${season}; leaving the existing snapshot untouched.`);
+  process.exit(0);
+}
+
 const output = `// Generated from MLB official award pages by scripts/update-mlb-awards.mjs.\nwindow.MLB_AWARDS_AUTO = ${JSON.stringify({ season, checkedAt: new Date().toISOString(), categories }, null, 2)};\n`;
 await writeFile(outPath, output);
-console.log(`Updated ${Object.keys(categories).join(', ')} from MLB official sources (${season}).`);
+console.log(`Updated/preserved ${Object.keys(categories).join(', ')} from MLB official sources (${season}).`);
