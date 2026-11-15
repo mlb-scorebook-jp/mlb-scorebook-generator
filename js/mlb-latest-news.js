@@ -2,6 +2,67 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Hill agrees to 1-year deal to return to Yankees (source)",
+        "summaryJa": "T.ヒル（NYY）、復帰へ向けた最新状況",
+        "slug": "tim-hill-deal-with-yankees",
+        "url": "https://www.mlb.com/news/tim-hill-deal-with-yankees",
+        "contentDate": "2026-11-15T16:26:00Z",
+        "teamIds": [
+            147
+        ],
+        "playerIds": [
+            657612
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "rumors",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Hot Stove rumors: Padres, Marte, young bats in trade talks, Dodgers",
+        "summaryJa": "MLBの最新情報の移籍・契約に関する最新情報",
+        "slug": "mlb-rumors-and-2026-27-free-agent-news-november-14",
+        "url": "https://www.mlb.com/news/mlb-rumors-and-2026-27-free-agent-news-november-14",
+        "contentDate": "2026-11-15T16:05:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "rumors",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "How to shake off a disappointing 2026? Fix 'atrocious' defense",
+        "summaryJa": "マリナーズを巡る注目点をMLB公式が分析",
+        "slug": "how-the-mariners-can-fix-defensive-issues-in-2027",
+        "url": "https://www.mlb.com/news/how-the-mariners-can-fix-defensive-issues-in-2027",
+        "contentDate": "2026-11-15T15:25:00Z",
+        "teamIds": [
+            136
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "savant",
+            "player-tracking",
+            "apple-news",
+            "rumors"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "5 ways the Blue Jays can (internally) improve on offense in 2027",
         "summaryJa": "ブルージェイズを巡る注目点をMLB公式が分析",
         "slug": "how-blue-jays-can-improve-on-offense-in-2027",
@@ -75,7 +136,9 @@
         ],
         "playerIds": [],
         "gamePks": [],
-        "taxonomy": [],
+        "taxonomy": [
+            "apple-news"
+        ],
         "sourceScopes": [
             "MLB",
             "球団公式"
@@ -190,8 +253,8 @@
         ]
     },
     {
-        "headline": "PCA, Yordan and Caminero were all traded as prospects. Should that be a cautionary tale?",
-        "summaryJa": "MLBの最新情報の移籍・契約に関する最新情報",
+        "headline": "Trading prospects can pay off -- or backfire. Just look at these names …",
+        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
         "slug": "how-teams-should-approach-trading-prospects-after-2026-mvp-winners",
         "url": "https://www.mlb.com/news/how-teams-should-approach-trading-prospects-after-2026-mvp-winners",
         "contentDate": "2026-11-15T03:22:10.291Z",
@@ -254,23 +317,6 @@
         "gamePks": [],
         "taxonomy": [
             "rumors"
-        ],
-        "sourceScopes": [
-            "MLB"
-        ]
-    },
-    {
-        "headline": "Hot Stove rumors: Padres, Marte, young bats in trade talks, Dodgers",
-        "summaryJa": "MLBの最新情報の移籍・契約に関する最新情報",
-        "slug": "mlb-rumors-and-2026-27-free-agent-news-november-14",
-        "url": "https://www.mlb.com/news/mlb-rumors-and-2026-27-free-agent-news-november-14",
-        "contentDate": "2026-11-15T00:10:19.797Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "rumors",
-            "apple-news"
         ],
         "sourceScopes": [
             "MLB"
@@ -517,7 +563,7 @@
         ]
     },
     {
-        "headline": "Balancing two-way play with health top of mind for Ohtani, Dodgers",
+        "headline": "Could 2-way Ohtani look different in 2027?",
         "summaryJa": "大谷 翔平（LAD）の最新動向をMLB公式が詳報",
         "slug": "shohei-ohtani-dodgers-hitting-pitching-health-2027",
         "url": "https://www.mlb.com/news/shohei-ohtani-dodgers-hitting-pitching-health-2027",
@@ -575,7 +621,6 @@
             "gm-meetings"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1230,28 +1275,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "How to shake off a disappointing 2026? Fix 'atrocious' defense",
-        "summaryJa": "マリナーズを巡る注目点をMLB公式が分析",
-        "slug": "how-the-mariners-can-fix-defensive-issues-in-2027",
-        "url": "https://www.mlb.com/news/how-the-mariners-can-fix-defensive-issues-in-2027",
-        "contentDate": "2026-11-13T15:37:00Z",
-        "teamIds": [
-            136
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "savant",
-            "player-tracking",
-            "apple-news",
-            "rumors"
-        ],
-        "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
