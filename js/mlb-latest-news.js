@@ -2,6 +2,102 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Peoria Javelinas steamroll way to record eighth Arizona Fall League championship",
+        "summaryJa": "MLBの最新情報、記録達成の最新情報",
+        "slug": "2026-arizona-fall-league-championship-game",
+        "url": "https://www.mlb.com/news/2026-arizona-fall-league-championship-game",
+        "contentDate": "2026-11-15T05:16:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "arizona-fall-league",
+            "mlb-top-prospects",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "RHP prospect Lambert hoping to ride AFL excellence to Mets' roster",
+        "summaryJa": "Ryan Lambert（NYM）ら注目選手の最新動向",
+        "slug": "mets-prospect-ryan-lambert-arizona-fall-league",
+        "url": "https://www.mlb.com/news/mets-prospect-ryan-lambert-arizona-fall-league",
+        "contentDate": "2026-11-15T04:16:00Z",
+        "teamIds": [
+            121
+        ],
+        "playerIds": [
+            822038
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "arizona-fall-league",
+            "mlb-top-prospects",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "PCA, Yordan and Caminero were all traded as prospects. Should that be a cautionary tale?",
+        "summaryJa": "MLBの最新情報の移籍・契約に関する最新情報",
+        "slug": "how-teams-should-approach-trading-prospects-after-2026-mvp-winners",
+        "url": "https://www.mlb.com/news/how-teams-should-approach-trading-prospects-after-2026-mvp-winners",
+        "contentDate": "2026-11-15T03:22:10.291Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "Who will go where? 1 free-agent fit for every team",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "one-free-agent-fit-for-every-team-this-offseason",
+        "url": "https://www.mlb.com/news/one-free-agent-fit-for-every-team-this-offseason",
+        "contentDate": "2026-11-15T03:12:47.328Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "O’s talk to D-backs about Marte; no deal imminent (source)",
+        "summaryJa": "K.マーテイ（BAL）の移籍・契約に関する最新情報",
+        "slug": "orioles-interest-in-ketel-marte-trade-with-diamondbacks",
+        "url": "https://www.mlb.com/news/orioles-interest-in-ketel-marte-trade-with-diamondbacks",
+        "contentDate": "2026-11-15T01:24:10.57Z",
+        "teamIds": [
+            110
+        ],
+        "playerIds": [
+            606466
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "rumors",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "The latest MLB rumors and free-agent news",
         "summaryJa": "MLBの最新情報の移籍・契約に関する最新情報",
         "slug": "mlb-rumors-trades-and-signings",
@@ -35,25 +131,6 @@
         ]
     },
     {
-        "headline": "Watch top prospects face off for Fall League championship (Live at 8 p.m. ET)",
-        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
-        "slug": "2026-arizona-fall-league-championship-game",
-        "url": "https://www.mlb.com/news/2026-arizona-fall-league-championship-game",
-        "contentDate": "2026-11-14T21:58:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "arizona-fall-league",
-            "mlb-top-prospects",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Once a shortstop, he grinded for years in indy ball. Now he’s a legit relief prospect",
         "summaryJa": "Tyler LaPorte（ATL）ら注目選手の最新動向",
         "slug": "tyler-laporte-journey-to-braves-organization-arizona-fall-league",
@@ -71,6 +148,7 @@
             "arizona-fall-league"
         ],
         "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
@@ -408,6 +486,7 @@
             "apple-news"
         ],
         "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
@@ -426,6 +505,7 @@
             "apple-news"
         ],
         "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
@@ -511,6 +591,7 @@
             "baseball-hall-of-fame"
         ],
         "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
@@ -593,7 +674,6 @@
             "offseason"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -639,7 +719,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -682,7 +761,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -825,7 +903,6 @@
             "offbeat"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -847,25 +924,7 @@
             "offseason"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
-        ]
-    },
-    {
-        "headline": "Hot Stove rumors: Cubs, King, Duran, RP market, Rays",
-        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
-        "slug": "mlb-rumors-and-2026-27-free-agent-news-november-13",
-        "url": "https://www.mlb.com/news/mlb-rumors-and-2026-27-free-agent-news-november-13",
-        "contentDate": "2026-11-13T19:11:17.182Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "rumors"
-        ],
-        "sourceScopes": [
-            "MLB"
         ]
     },
     {
@@ -908,38 +967,7 @@
             "transactions"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
-        ]
-    },
-    {
-        "headline": "Ranking the top 10 bats on the free-agent market",
-        "summaryJa": "鈴木 誠也ら注目選手の最新動向",
-        "slug": "free-agent-hitter-power-rankings-2026-2027",
-        "url": "https://www.mlb.com/news/free-agent-hitter-power-rankings-2026-2027",
-        "contentDate": "2026-11-13T18:30:00Z",
-        "teamIds": [],
-        "playerIds": [
-            673548,
-            831664,
-            668227,
-            641343,
-            664034,
-            665862,
-            664040,
-            592626,
-            650333,
-            680777
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "rankings",
-            "hitter-power-rankings",
-            "apple-news",
-            "rumors"
-        ],
-        "sourceScopes": [
-            "MLB"
         ]
     },
     {
@@ -1075,6 +1103,28 @@
             "apple-news"
         ],
         "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "How to shake off a disappointing 2026? Fix 'atrocious' defense",
+        "summaryJa": "マリナーズを巡る注目点をMLB公式が分析",
+        "slug": "how-the-mariners-can-fix-defensive-issues-in-2027",
+        "url": "https://www.mlb.com/news/how-the-mariners-can-fix-defensive-issues-in-2027",
+        "contentDate": "2026-11-13T15:37:00Z",
+        "teamIds": [
+            136
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "savant",
+            "player-tracking",
+            "apple-news",
+            "rumors"
+        ],
+        "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
@@ -1275,23 +1325,6 @@
         ],
         "sourceScopes": [
             "球団公式"
-        ]
-    },
-    {
-        "headline": "GM Meetings lay groundwork for 'crazy couple of weeks'",
-        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
-        "slug": "2026-general-manager-meetings-takeaways",
-        "url": "https://www.mlb.com/news/2026-general-manager-meetings-takeaways",
-        "contentDate": "2026-11-13T01:28:31.066Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "rumors"
-        ],
-        "sourceScopes": [
-            "MLB"
         ]
     },
     {
@@ -4978,28 +5011,6 @@
         ]
     },
     {
-        "headline": "With help from an outside source, Orioles' Honeycutt hitting his stride in Fall League",
-        "summaryJa": "Vance Honeycutt（BAL）ら注目選手の最新動向",
-        "slug": "orioles-prospect-vance-honeycutt-showing-improvement-in-arizona-fall-league",
-        "url": "https://www.mlb.com/news/orioles-prospect-vance-honeycutt-showing-improvement-in-arizona-fall-league",
-        "contentDate": "2026-11-07T04:02:56.192Z",
-        "teamIds": [
-            110
-        ],
-        "playerIds": [
-            701689
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "arizona-fall-league",
-            "mlb-top-prospects",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Tigers' Long continues unlikely path forward with his stop in the Arizona Fall League",
         "summaryJa": "Maddox Long（DET）の最新動向をMLB公式が詳報",
         "slug": "tigers-maddox-long-continues-working-on-adjustments-in-arizona-fall-league",
@@ -6612,6 +6623,64 @@
         ]
     },
     {
+        "headline": "Checking in on top prospects in winter ball",
+        "summaryJa": "J.マデイら注目選手の最新動向",
+        "slug": "top-prospects-in-winter-ball-2026",
+        "url": "https://www.mlb.com/news/top-prospects-in-winter-ball-2026",
+        "contentDate": "2026-11-03T00:41:00Z",
+        "teamIds": [],
+        "playerIds": [
+            815908,
+            806957,
+            815896,
+            815929,
+            821041,
+            800473,
+            821100,
+            836353,
+            699024,
+            692657,
+            694224,
+            800406,
+            692478,
+            699214,
+            702036
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "mlb-top-prospects",
+            "winter-leagues",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Big awards week ahead for Messick (ROY, Cy Young), Smith (Reliever of the Year)",
+        "summaryJa": "C.スミス（CLE）の最新動向をMLB公式が詳報",
+        "slug": "parker-messick-cade-smith-cy-young-award-rookie-of-the-year-reliever-of-the-year",
+        "url": "https://www.mlb.com/news/parker-messick-cade-smith-cy-young-award-rookie-of-the-year-reliever-of-the-year",
+        "contentDate": "2026-11-03T00:40:05.856Z",
+        "teamIds": [
+            114
+        ],
+        "playerIds": [
+            671922,
+            800048
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "awards-watch",
+            "rookie-of-the-year",
+            "cy-young-award"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Mariners extend Arozarena qualifying offer after career-best season",
         "summaryJa": "R.アロサレーナ（SEA）の最新動向をMLB公式が詳報",
         "slug": "mariners-qualifying-offer-randy-arozarena",
@@ -6807,27 +6876,6 @@
             "injury",
             "transactions",
             "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Young nabs 1st career Gold Glove in 1st full season",
-        "summaryJa": "C.ヤング（SEA）、記録達成の最新情報",
-        "slug": "cole-young-wins-2026-gold-glove-award",
-        "url": "https://www.mlb.com/news/cole-young-wins-2026-gold-glove-award",
-        "contentDate": "2026-11-02T20:35:00Z",
-        "teamIds": [
-            136
-        ],
-        "playerIds": [
-            702284
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "gold-glove-award"
         ],
         "sourceScopes": [
             "球団公式"
