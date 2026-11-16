@@ -2,20 +2,83 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
-        "headline": "Sandoval enjoys 'last dance' stateside, complete with one final dramatic moment",
-        "summaryJa": "P.サンドバルの最新動向をMLB公式が詳報",
-        "slug": "pablo-sandoval-gets-emotional-send-off-at-loandepot-park",
-        "url": "https://www.mlb.com/news/pablo-sandoval-gets-emotional-send-off-at-loandepot-park",
-        "contentDate": "2026-11-16T00:32:32.236Z",
+        "headline": "Reviewing the top free-agent relievers in a deep class",
+        "summaryJa": "A.モレホーンの最新動向をMLB公式が詳報",
+        "slug": "reviewing-the-top-mlb-free-agent-relief-pitchers",
+        "url": "https://www.mlb.com/news/reviewing-the-top-mlb-free-agent-relief-pitchers",
+        "contentDate": "2026-11-16T03:27:47.247Z",
         "teamIds": [],
         "playerIds": [
-            467055
+            670970,
+            670280,
+            681911
         ],
         "gamePks": [],
         "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "These 7 free-agent reunions would make perfect sense",
+        "summaryJa": "D.べドナーの最新動向をMLB公式が詳報",
+        "slug": "mlb-potential-free-agent-reunions-for-2027",
+        "url": "https://www.mlb.com/news/mlb-potential-free-agent-reunions-for-2027",
+        "contentDate": "2026-11-16T03:23:55.735Z",
+        "teamIds": [],
+        "playerIds": [
+            670280,
+            656427,
+            592332,
+            608337,
+            607259,
+            592626,
+            592662
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "rumors",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "Here is 1 trade candidate for all 30 teams",
+        "summaryJa": "MLBの最新情報の移籍・契約に関する最新情報",
+        "slug": "trade-candidates-for-every-team-2026-27-offseason",
+        "url": "https://www.mlb.com/news/trade-candidates-for-every-team-2026-27-offseason",
+        "contentDate": "2026-11-16T02:14:25.33Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "Brewers add reliever Ryan Walker in trade with Giants",
+        "summaryJa": "R.ウォーカー（MIL）の移籍・契約に関する最新情報",
+        "slug": "ryan-walker-traded-to-brewers-from-giants",
+        "url": "https://www.mlb.com/news/ryan-walker-traded-to-brewers-from-giants",
+        "contentDate": "2026-11-16T01:42:00Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [
+            676254
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "trades",
             "apple-news",
-            "retirement",
-            "venezuelan-league"
+            "transactions"
         ],
         "sourceScopes": [
             "MLB",
@@ -27,7 +90,7 @@
         "summaryJa": "Owen Careyの最新動向をMLB公式が詳報",
         "slug": "arizona-fall-league-top-performers-week-6-2026",
         "url": "https://www.mlb.com/news/arizona-fall-league-top-performers-week-6-2026",
-        "contentDate": "2026-11-15T23:55:00Z",
+        "contentDate": "2026-11-16T00:54:00Z",
         "teamIds": [],
         "playerIds": [
             826928,
@@ -50,6 +113,50 @@
         ]
     },
     {
+        "headline": "Giants trade Walker to Brewers for pair of Minors hurlers",
+        "summaryJa": "Blake Holub（SF）の移籍・契約に関する最新情報",
+        "slug": "giants-brewers-trade-blake-holub-gavin-perry-ryan-walker",
+        "url": "https://www.mlb.com/news/giants-brewers-trade-blake-holub-gavin-perry-ryan-walker",
+        "contentDate": "2026-11-16T00:51:02.281Z",
+        "teamIds": [
+            137
+        ],
+        "playerIds": [
+            700183,
+            676254
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "trades",
+            "transactions",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Sandoval enjoys 'last dance' stateside, complete with one final dramatic moment",
+        "summaryJa": "P.サンドバルの最新動向をMLB公式が詳報",
+        "slug": "pablo-sandoval-gets-emotional-send-off-at-loandepot-park",
+        "url": "https://www.mlb.com/news/pablo-sandoval-gets-emotional-send-off-at-loandepot-park",
+        "contentDate": "2026-11-16T00:32:32.236Z",
+        "teamIds": [],
+        "playerIds": [
+            467055
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "retirement",
+            "venezuelan-league"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Rojas gets worthy send-off during final pro game in Miami",
         "summaryJa": "M.ロハスの最新動向をMLB公式が詳報",
         "slug": "miguel-rojas-plays-in-last-professional-baseball-game",
@@ -61,28 +168,6 @@
         ],
         "gamePks": [],
         "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Brewers add reliever Ryan Walker in trade with Giants",
-        "summaryJa": "R.ウォーカー（MIL）の移籍・契約に関する最新情報",
-        "slug": "ryan-walker-traded-to-brewers-from-giants",
-        "url": "https://www.mlb.com/news/ryan-walker-traded-to-brewers-from-giants",
-        "contentDate": "2026-11-15T23:22:30.663Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [
-            676254
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "trades",
             "apple-news"
         ],
         "sourceScopes": [
@@ -234,7 +319,7 @@
         ]
     },
     {
-        "headline": "Is this free agent the perfect fit at 2B for Yankees?",
+        "headline": "Is this free agent the answer at 2B for Yankees?",
         "summaryJa": "B.ラウ（NYY）の最新動向をMLB公式が詳報",
         "slug": "brandon-lowe-makes-sense-for-yankees-in-free-agency",
         "url": "https://www.mlb.com/news/brandon-lowe-makes-sense-for-yankees-in-free-agency",
@@ -428,7 +513,6 @@
             "arizona-fall-league"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -522,7 +606,7 @@
         ]
     },
     {
-        "headline": "Here are the 2026 AFL award winners",
+        "headline": "Honeycutt named Arizona Fall League Defensive Player Of The Year",
         "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
         "slug": "2026-arizona-fall-league-award-winners",
         "url": "https://www.mlb.com/news/2026-arizona-fall-league-award-winners",
@@ -536,7 +620,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -663,7 +746,6 @@
             "baseball-hall-of-fame"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -757,7 +839,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -4001,6 +4082,31 @@
         ]
     },
     {
+        "headline": "How Ohtani creates a roster-building puzzle for the Dodgers",
+        "summaryJa": "大谷 翔平（LAD）を巡る注目点をMLB公式が分析",
+        "slug": "how-ohtani-affects-dodgers-2027-roster",
+        "url": "https://www.mlb.com/news/how-ohtani-affects-dodgers-2027-roster",
+        "contentDate": "2026-11-10T21:47:00Z",
+        "teamIds": [
+            119
+        ],
+        "playerIds": [
+            660271,
+            800543,
+            518692,
+            571970
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "savant",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Rookie royalty! McGonigle brings ROY honors back to Detroit",
         "summaryJa": "K.マゴニグル（DET）、勝利を呼び込む活躍",
         "slug": "kevin-mcgonigle-wins-2026-al-rookie-of-the-year",
@@ -6481,28 +6587,6 @@
             "apple-news",
             "minor-league-baseball",
             "mlb-top-prospects"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Buttó, Beck among 9 players departing from Giants",
-        "summaryJa": "J.ブート（SF）の最新動向をMLB公式が詳報",
-        "slug": "jose-butto-tristan-beck-other-players-leaving-giants",
-        "url": "https://www.mlb.com/news/jose-butto-tristan-beck-other-players-leaving-giants",
-        "contentDate": "2026-11-03T04:10:39.882Z",
-        "teamIds": [
-            137
-        ],
-        "playerIds": [
-            676130,
-            663941
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "transactions",
-            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
