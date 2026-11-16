@@ -2,6 +2,95 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Sandoval enjoys 'last dance' stateside, complete with one final dramatic moment",
+        "summaryJa": "P.サンドバルの最新動向をMLB公式が詳報",
+        "slug": "pablo-sandoval-gets-emotional-send-off-at-loandepot-park",
+        "url": "https://www.mlb.com/news/pablo-sandoval-gets-emotional-send-off-at-loandepot-park",
+        "contentDate": "2026-11-16T00:32:32.236Z",
+        "teamIds": [],
+        "playerIds": [
+            467055
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "retirement",
+            "venezuelan-league"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Arizona Fall League Week 6 top performers",
+        "summaryJa": "Owen Careyの最新動向をMLB公式が詳報",
+        "slug": "arizona-fall-league-top-performers-week-6-2026",
+        "url": "https://www.mlb.com/news/arizona-fall-league-top-performers-week-6-2026",
+        "contentDate": "2026-11-15T23:55:00Z",
+        "teamIds": [],
+        "playerIds": [
+            826928,
+            813664,
+            695705,
+            695573,
+            700280,
+            807276,
+            694345
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "arizona-fall-league",
+            "mlb-top-prospects",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Rojas gets worthy send-off during final pro game in Miami",
+        "summaryJa": "M.ロハスの最新動向をMLB公式が詳報",
+        "slug": "miguel-rojas-plays-in-last-professional-baseball-game",
+        "url": "https://www.mlb.com/news/miguel-rojas-plays-in-last-professional-baseball-game",
+        "contentDate": "2026-11-15T23:41:02.851Z",
+        "teamIds": [],
+        "playerIds": [
+            500743
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Brewers add reliever Ryan Walker in trade with Giants",
+        "summaryJa": "R.ウォーカー（MIL）の移籍・契約に関する最新情報",
+        "slug": "ryan-walker-traded-to-brewers-from-giants",
+        "url": "https://www.mlb.com/news/ryan-walker-traded-to-brewers-from-giants",
+        "contentDate": "2026-11-15T23:22:30.663Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [
+            676254
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "trades",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Hill agrees to 1-year deal to return to Yankees (source)",
         "summaryJa": "T.ヒル（NYY）、復帰へ向けた最新状況",
         "slug": "tim-hill-deal-with-yankees",
@@ -82,7 +171,7 @@
         ]
     },
     {
-        "headline": "The nasty pitch that could help Chapman evolve",
+        "headline": "The nasty pitch that could help Aroldis evolve",
         "summaryJa": "A.チャップマン（BOS）の最新動向をMLB公式が詳報",
         "slug": "aroldis-chapman-evolving-with-nasty-splitter",
         "url": "https://www.mlb.com/news/aroldis-chapman-evolving-with-nasty-splitter",
@@ -105,8 +194,8 @@
         ]
     },
     {
-        "headline": "What sparked Jackson Merrill's huge second half in 2026?",
-        "summaryJa": "J.メリル（SD）の最新動向をMLB公式が詳報",
+        "headline": "How Merrill put together huge second half in 2026",
+        "summaryJa": "J.メリル（SD）を巡る注目点をMLB公式が分析",
         "slug": "jackson-merrill-breakdown-2026-season-padres",
         "url": "https://www.mlb.com/news/jackson-merrill-breakdown-2026-season-padres",
         "contentDate": "2026-11-15T14:11:39.466Z",
@@ -248,7 +337,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -396,31 +484,6 @@
         ]
     },
     {
-        "headline": "Padres' Top 5 center fielders: Cassavell's take",
-        "summaryJa": "S.フィンリー（SD）ら注目選手の最新動向",
-        "slug": "padres-all-time-best-center-fielders",
-        "url": "https://www.mlb.com/news/padres-all-time-best-center-fielders",
-        "contentDate": "2026-11-14T20:00:00Z",
-        "teamIds": [
-            135
-        ],
-        "playerIds": [
-            114135,
-            118875,
-            111904,
-            115205,
-            701538
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "evergreen",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Here are the 5 best catchers in Nationals/Expos history",
         "summaryJa": "ナショナルズの最新動向をMLB公式が詳報",
         "slug": "nationals-catchers-all-time-best",
@@ -496,7 +559,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -677,7 +739,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -737,7 +798,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -5058,24 +5118,6 @@
         ]
     },
     {
-        "headline": "5 questions for the World Series champion Brewers this offseason",
-        "summaryJa": "ブルワーズの最新動向をMLB公式が詳報",
-        "slug": "brewers-2026-27-offseason-questions",
-        "url": "https://www.mlb.com/news/brewers-2026-27-offseason-questions",
-        "contentDate": "2026-11-07T13:51:10.254Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "PCA’s glove is Platinum! And Cubs win Team Gold",
         "summaryJa": "P.クローアームストロング（NYY）、勝利を呼び込む活躍",
         "slug": "pete-crow-armstrong-cody-bellinger-win-platinum-gloves",
@@ -5312,30 +5354,6 @@
             119
         ],
         "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "How good can the Phillies' rotation be in '27? Or ... what could go wrong?",
-        "summaryJa": "J.ルザルド（PHI）を巡る注目点をMLB公式が分析",
-        "slug": "evaluating-the-phillies-starting-rotation-for-2027-season",
-        "url": "https://www.mlb.com/news/evaluating-the-phillies-starting-rotation-for-2027-season",
-        "contentDate": "2026-11-06T17:07:33.85Z",
-        "teamIds": [
-            143
-        ],
-        "playerIds": [
-            666200,
-            554430,
-            605400,
-            691725,
-            650911
-        ],
         "gamePks": [],
         "taxonomy": [
             "apple-news"
@@ -5907,27 +5925,6 @@
         ]
     },
     {
-        "headline": "3 reasons Braves should hold on to Ronald Acuña Jr.",
-        "summaryJa": "R.アクーニャ Jr.（ATL）の移籍・契約に関する最新情報",
-        "slug": "why-braves-should-not-trade-ronald-acuna-jr",
-        "url": "https://www.mlb.com/news/why-braves-should-not-trade-ronald-acuna-jr",
-        "contentDate": "2026-11-05T11:54:34.293Z",
-        "teamIds": [
-            144
-        ],
-        "playerIds": [
-            660670
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "mlbn-hot-stove"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "One year before free agency, what does future hold for Kwan?",
         "summaryJa": "S.クワン（CLE）の最新動向をMLB公式が詳報",
         "slug": "guardians-outlook-on-steven-kwan-one-year-before-free-agency",
@@ -6023,24 +6020,6 @@
         ]
     },
     {
-        "headline": "4 big questions for Mets' rotation this offseason",
-        "summaryJa": "メッツの最新動向をMLB公式が詳報",
-        "slug": "mets-rotation-offseason-questions-2026-2027",
-        "url": "https://www.mlb.com/news/mets-rotation-offseason-questions-2026-2027",
-        "contentDate": "2026-11-04T21:08:44.555Z",
-        "teamIds": [
-            121
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "rumors"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Latest Phillies injuries & transactions",
         "summaryJa": "フィリーズの負傷状況をMLB公式が詳報",
         "slug": "phillies-injuries-and-roster-moves",
@@ -6113,29 +6092,6 @@
         "playerIds": [],
         "gamePks": [],
         "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "3 Dodgers prospects who could make an impact next season",
-        "summaryJa": "J.デポーラ（LAD）ら注目選手の最新動向",
-        "slug": "josue-de-paula-jackson-ferris-mike-sirota-dodgers-prospects-to-watch",
-        "url": "https://www.mlb.com/news/josue-de-paula-jackson-ferris-mike-sirota-dodgers-prospects-to-watch",
-        "contentDate": "2026-11-04T13:43:01.732Z",
-        "teamIds": [
-            119
-        ],
-        "playerIds": [
-            800543,
-            701328,
-            701527
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "mlb-top-prospects",
             "apple-news"
         ],
         "sourceScopes": [
@@ -6474,24 +6430,6 @@
         "contentDate": "2026-11-03T16:02:04.182Z",
         "teamIds": [
             117
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Improving Orioles rotation 'absolutely on the menu'",
-        "summaryJa": "オリオールズの最新動向をMLB公式が詳報",
-        "slug": "orioles-looking-for-starting-pitching-in-the-offseason",
-        "url": "https://www.mlb.com/news/orioles-looking-for-starting-pitching-in-the-offseason",
-        "contentDate": "2026-11-03T15:32:40.403Z",
-        "teamIds": [
-            110
         ],
         "playerIds": [],
         "gamePks": [],
