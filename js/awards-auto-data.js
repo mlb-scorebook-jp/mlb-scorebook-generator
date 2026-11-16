@@ -1,7 +1,7 @@
 // Generated from MLB official award pages by scripts/update-mlb-awards.mjs.
 window.MLB_AWARDS_AUTO = {
   "season": 2026,
-  "checkedAt": "2026-11-15T18:52:19.334Z",
+  "checkedAt": "2026-11-16T06:31:46.501Z",
   "categories": {
     "mvp": {
       "label": "MVP",
