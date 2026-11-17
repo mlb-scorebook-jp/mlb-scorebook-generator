@@ -2,6 +2,84 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Mets make in-person pitch to Skubal (report)",
+        "summaryJa": "T.スクーバルの最新動向をMLB公式が詳報",
+        "slug": "tarik-skubal-rumors",
+        "url": "https://www.mlb.com/news/tarik-skubal-rumors",
+        "contentDate": "2026-11-17T04:41:00Z",
+        "teamIds": [],
+        "playerIds": [
+            669373
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "rumors"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "5 intriguing under-the-radar free agents",
+        "summaryJa": "K.ブビッチの最新動向をMLB公式が詳報",
+        "slug": "intriguing-under-the-radar-free-agents-2026-27",
+        "url": "https://www.mlb.com/news/intriguing-under-the-radar-free-agents-2026-27",
+        "contentDate": "2026-11-17T03:00:08.644Z",
+        "teamIds": [],
+        "playerIds": [
+            663460,
+            663886,
+            808955,
+            621493,
+            681911
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "Would this free agent and ballpark be the perfect match?",
+        "summaryJa": "L.アラエズ（COL）の最新動向をMLB公式が詳報",
+        "slug": "luis-arraez-at-coors-field",
+        "url": "https://www.mlb.com/news/luis-arraez-at-coors-field",
+        "contentDate": "2026-11-17T03:00:00Z",
+        "teamIds": [
+            115
+        ],
+        "playerIds": [
+            650333
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "Here’s every ranked prospect that needs to be protected ahead of Tuesday’s 40-man deadline",
+        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
+        "slug": "rule-5-draft-prospects-protected-on-40-man-roster-2026",
+        "url": "https://www.mlb.com/news/rule-5-draft-prospects-protected-on-40-man-roster-2026",
+        "contentDate": "2026-11-17T02:42:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "mlb-top-prospects",
+            "minor-league-baseball",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Prospects on the 40-man bubble -- 1 from each team",
         "summaryJa": "MLBの最新情報ら注目選手の最新動向",
         "slug": "prospects-on-40-man-roster-bubble-2026",
@@ -139,6 +217,24 @@
         ]
     },
     {
+        "headline": "A look at the next 5 Hall of Fame ballots",
+        "summaryJa": "MLBの最新情報を巡る注目点をMLB公式が分析",
+        "slug": "future-baseball-hall-of-fame-ballots-preview",
+        "url": "https://www.mlb.com/news/future-baseball-hall-of-fame-ballots-preview",
+        "contentDate": "2026-11-16T18:30:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "evergreen",
+            "baseball-hall-of-fame",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
         "headline": "Why Wright's Hall of Fame case deserves a closer look",
         "summaryJa": "D.ライトを巡る注目点をMLB公式が分析",
         "slug": "david-wright-case-for-baseball-hall-of-fame",
@@ -238,7 +334,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -606,7 +701,7 @@
         ]
     },
     {
-        "headline": "How Ohtani creates a roster-building puzzle for the Dodgers",
+        "headline": "Ohtani complicates Dodgers' roster building",
         "summaryJa": "大谷 翔平（LAD）を巡る注目点をMLB公式が分析",
         "slug": "how-ohtani-affects-dodgers-2027-roster",
         "url": "https://www.mlb.com/news/how-ohtani-affects-dodgers-2027-roster",
@@ -763,7 +858,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -885,7 +979,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -969,7 +1062,6 @@
             "player-tracking"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1011,22 +1103,6 @@
         ],
         "sourceScopes": [
             "球団公式"
-        ]
-    },
-    {
-        "headline": "Trading prospects can pay off -- or backfire. Just look at these names …",
-        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
-        "slug": "how-teams-should-approach-trading-prospects-after-2026-mvp-winners",
-        "url": "https://www.mlb.com/news/how-teams-should-approach-trading-prospects-after-2026-mvp-winners",
-        "contentDate": "2026-11-15T03:22:10.291Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB"
         ]
     },
     {
@@ -1857,6 +1933,23 @@
         ]
     },
     {
+        "headline": "Decisions to be made ahead of Tuesday's qualifying offer deadline",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "qualifying-offer-candidates-and-decisions-2026-27",
+        "url": "https://www.mlb.com/news/qualifying-offer-candidates-and-decisions-2026-27",
+        "contentDate": "2026-11-13T17:52:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "rumors",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
         "headline": "Takeaways from GM Meetings: Skubal pursuit, rotation needs and more",
         "summaryJa": "パドレスの最新動向をMLB公式が詳報",
         "slug": "padres-takeaways-from-general-managers-meetings",
@@ -2113,24 +2206,6 @@
             "apple-news",
             "awards-watch",
             "most-valuable-player"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Here’s every ranked prospect that needs to be protected ahead of Tuesday’s 40-man deadline",
-        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
-        "slug": "rule-5-draft-prospects-protected-on-40-man-roster-2026",
-        "url": "https://www.mlb.com/news/rule-5-draft-prospects-protected-on-40-man-roster-2026",
-        "contentDate": "2026-11-13T01:47:50.345Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "mlb-top-prospects",
-            "minor-league-baseball",
-            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
