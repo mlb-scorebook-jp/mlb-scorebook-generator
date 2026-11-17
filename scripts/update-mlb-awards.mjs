@@ -1,4 +1,5 @@
 import { readFile, writeFile } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
 import vm from 'node:vm';
 
 const season = Number(process.env.AWARDS_SEASON || new Date().getUTCFullYear());
@@ -115,6 +116,53 @@ async function fetchMvp() {
   return { ...base.categories.mvp, ...winners, status: 'announced', announcedAt: `${season}-11-12`, sourceUrl: `https://www.mlb.com/news/${season}-mlb-mvp-award-winners` };
 }
 
+async function fetchCyYoung() {
+  const sourceUrl = `https://www.mlb.com/news/${season}-mlb-cy-young-award-winners`;
+  const article = plain(await getText(sourceUrl));
+  const voteSourceUrl = `https://www.mlb.com/news/${season}-mlb-cy-young-award-voting-results`;
+  const voteHtml = await getText(voteSourceUrl);
+  const voteRows = [...voteHtml.matchAll(/<tr\b[^>]*>([\s\S]*?)<\/tr>/gi)].map((row) =>
+    [...row[1].matchAll(/<t[dh]\b[^>]*>([\s\S]*?)<\/t[dh]>/gi)].map((cell) => plain(cell[1]))
+  );
+  const finalists = base.categories.cyYoung?.finalists;
+  if (!finalists?.al?.length || !finalists?.nl?.length) return null;
+  const announcedWinners = [
+    { leagueKey: 'al', player: 'Cam Schlittler', playerId: 693645 },
+    { leagueKey: 'nl', player: 'Jacob Misiorowski', playerId: 694819 }
+  ];
+  if (!announcedWinners.every(({ player }) => article.includes(player))) {
+    throw new Error(`Official Cy Young article does not confirm both expected ${season} winners`);
+  }
+  const winners = {};
+  for (const { leagueKey, player, playerId } of announcedWinners) {
+    const finalist = finalists[leagueKey].find((entry) => Number(entry.playerId) === playerId);
+    if (!finalist) throw new Error(`Missing official finalist record for ${player} (${playerId})`);
+    const voteRow = voteRows.find((row) => row[0]?.includes(player));
+    const votePoints = Number(voteRow?.at(-1));
+    if (!Number.isFinite(votePoints) || votePoints <= 0) throw new Error(`Official vote total missing for ${player}`);
+    winners[leagueKey] = {
+      league: leagueKey === 'al' ? 'AMERICAN LEAGUE' : 'NATIONAL LEAGUE',
+      player,
+      playerJa: finalist.playerJa,
+      playerId,
+      team: finalist.team,
+      teamId: finalist.teamId,
+      position: finalist.position,
+      count: 1,
+      votePoints,
+      stats: Object.fromEntries(finalist.stats.map(([label, value]) => [({ '回': '投球回', '防': '防御率', '振': '奪三振' })[label] || label, value]))
+    };
+  }
+  return {
+    ...base.categories.cyYoung,
+    ...winners,
+    status: 'announced',
+    announcedAt: `${season}-11-12`,
+    sourceUrl,
+    voteSourceUrl
+  };
+}
+
 async function trySource(label, fetcher, fallback) {
   try {
     return await fetcher();
@@ -124,21 +172,38 @@ async function trySource(label, fetcher, fallback) {
   }
 }
 
-const [allMlbCategory, mvpCategory] = await Promise.all([
+const [allMlbCategory, mvpCategory, cyYoungCategory] = await Promise.all([
   trySource('All-MLB', async () => parseAllMlb(await getText('https://www.mlb.com/awards/all-mlb')), previousCategories.allMlb),
-  trySource('MVP', fetchMvp, previousCategories.mvp ?? (season === base.season ? base.categories.mvp : null))
+  trySource('MVP', fetchMvp, previousCategories.mvp ?? (season === base.season ? base.categories.mvp : null)),
+  trySource('Cy Young', fetchCyYoung, previousCategories.cyYoung ?? (season === base.season ? base.categories.cyYoung : null))
 ]);
 
 const categories = {
   ...previousCategories,
   ...(allMlbCategory ? { allMlb: allMlbCategory } : {}),
-  ...(mvpCategory ? { mvp: mvpCategory } : {})
+  ...(mvpCategory ? { mvp: mvpCategory } : {}),
+  ...(cyYoungCategory ? { cyYoung: cyYoungCategory } : {})
 };
 if (!Object.keys(categories).length) {
   console.warn(`No award data was available for ${season}; leaving the existing snapshot untouched.`);
   process.exit(0);
 }
 
-const output = `// Generated from MLB official award pages by scripts/update-mlb-awards.mjs.\nwindow.MLB_AWARDS_AUTO = ${JSON.stringify({ season, checkedAt: new Date().toISOString(), categories }, null, 2)};\n`;
-await writeFile(outPath, output);
-console.log(`Updated/preserved ${Object.keys(categories).join(', ')} from MLB official sources (${season}).`);
+const snapshot = { season, categories };
+const snapshotHash = createHash('sha256').update(JSON.stringify(snapshot)).digest('hex').slice(0, 12);
+const previousHash = previous?.season === season
+  ? createHash('sha256').update(JSON.stringify({ season, categories: previous.categories ?? {} })).digest('hex').slice(0, 12)
+  : null;
+const checkedAt = previousHash === snapshotHash ? previous.checkedAt : new Date().toISOString();
+const output = `// Generated from MLB official award pages by scripts/update-mlb-awards.mjs.\nwindow.MLB_AWARDS_AUTO = ${JSON.stringify({ ...snapshot, checkedAt }, null, 2)};\n`;
+const oldOutput = await readFile(outPath, 'utf8').catch(() => '');
+if (oldOutput !== output) await writeFile(outPath, output);
+
+const indexPath = new URL('../index.html', import.meta.url);
+const indexHtml = await readFile(indexPath, 'utf8');
+const versionedIndex = indexHtml.replace(/(<script src="js\/awards-auto-data\.js\?v=)[^"]*("><\/script>)/, `$1${snapshotHash}$2`);
+if (versionedIndex === indexHtml && !indexHtml.includes(`js/awards-auto-data.js?v=${snapshotHash}`)) {
+  throw new Error('Could not locate the awards auto-data script in index.html to refresh its cache version');
+}
+if (versionedIndex !== indexHtml) await writeFile(indexPath, versionedIndex);
+console.log(`Updated/preserved ${Object.keys(categories).join(', ')} from MLB official sources (${season}); snapshot ${snapshotHash}.`);

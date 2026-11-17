@@ -182,11 +182,11 @@
         const laurel = (side) => `<svg class="awards-mvp-laurel awards-mvp-laurel-${side}" viewBox="0 0 52 34" aria-hidden="true">
             <path d="M46 31C27 28 13 17 7 3"/><ellipse cx="39" cy="27" rx="7" ry="3" transform="rotate(24 39 27)"/><ellipse cx="30" cy="23" rx="7" ry="3" transform="rotate(34 30 23)"/><ellipse cx="22" cy="17" rx="7" ry="3" transform="rotate(48 22 17)"/><ellipse cx="15" cy="10" rx="7" ry="3" transform="rotate(58 15 10)"/><ellipse cx="45" cy="22" rx="7" ry="3" transform="rotate(-16 45 22)"/><ellipse cx="36" cy="17" rx="7" ry="3" transform="rotate(-6 36 17)"/><ellipse cx="27" cy="11" rx="7" ry="3" transform="rotate(8 27 11)"/>
         </svg>`;
-        const awardTitle = award.title || "MOST VALUABLE PLAYER";
+        const awardTitle = award.title || (state.category === "cyYoung" ? "CY YOUNG AWARD" : "MOST VALUABLE PLAYER");
         const card = (winner, league) => `<article class="awards-mvp-card awards-mvp-${league.toLowerCase()}">
             <header><span>${escapeHtml(winner.league)}</span><b>${escapeHtml(awardTitle)}</b></header>
             <div class="awards-mvp-profile">
-                <div class="awards-mvp-wreath">${laurel("left")}<strong>MVP</strong>${laurel("right")}</div>
+                <div class="awards-mvp-wreath">${laurel("left")}<strong>${state.category === "cyYoung" ? "CY" : "MVP"}</strong>${laurel("right")}</div>
                 <span class="awards-mvp-year">${state.season}</span>
                 <div class="awards-mvp-portrait">${portraitWithFallback(headshotUrl(winner), `awards-mvp-headshot${state.category === "manager" ? " is-manager" : ""}`)}</div>
                 <img class="awards-mvp-team" src="${logoUrl(winner.teamId)}" alt="${escapeHtml(winner.team)}">
@@ -302,7 +302,7 @@
             : ["outstandingDh", "clemente", "allStarMvp", "alcsMvp", "nlcsMvp", "worldSeriesMvp"].includes(state.category) && state.season !== 2026 ? renderHistoricalSingle()
             : state.category === "silverSlugger" && state.season !== 2026 ? renderHistoricalSilverSlugger()
             : state.category === "allMlb" && state.season !== 2026 ? renderHistoricalAllMlb()
-            : state.category === "mvp" && category.status === "announced" ? renderHistoricalMajorPair()
+            : ["mvp", "cyYoung"].includes(state.category) && category.status === "announced" ? renderHistoricalMajorPair()
                 : state.category === "allMlb" && category.status === "announced" ? renderHistoricalAllMlb()
                     : state.season === 2026 && category.status === "announced" && Array.isArray(category.winners) ? renderSimpleWinners(category)
                 : state.season === 2026 && category.status === "pending" && category.finalists ? renderPendingFinalists(category)

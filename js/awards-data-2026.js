@@ -46,7 +46,7 @@ window.MLB_AWARDS_2026 = {
                 { playerJa: "B.トゥラング", playerId: 668930, team: "MIL", teamId: 158, position: "2B", votePoints: 190, stats: [["率", ".268"], ["本", "21"], ["点", "100"]] }
             ]
         } },
-        cyYoung: { label: "サイ・ヤング賞", group: "major", status: "pending", finalistsSourceUrl: "https://www.mlb.com/news/2026-bbwaa-awards-finalists", finalists: {
+        cyYoung: { label: "サイ・ヤング賞", group: "major", status: "announced", announcedAt: "2026-11-12", sourceUrl: "https://www.mlb.com/news/2026-mlb-cy-young-award-winners", voteSourceUrl: "https://www.mlb.com/news/2026-mlb-cy-young-award-voting-results", finalistsSourceUrl: "https://www.mlb.com/news/2026-bbwaa-awards-finalists", al: { league: "AMERICAN LEAGUE", player: "Cam Schlittler", playerJa: "C.シュリットラー", playerId: 693645, team: "NYY", teamId: 147, position: "RHP", count: 1, votePoints: 210, stats: { "投球回": "193.2", "防御率": "1.95", "奪三振": 239 } }, nl: { league: "NATIONAL LEAGUE", player: "Jacob Misiorowski", playerJa: "J.ミザロウスキー", playerId: 694819, team: "MIL", teamId: 158, position: "RHP", count: 1, votePoints: 210, stats: { "投球回": "174.2", "防御率": "1.80", "奪三振": 252 } }, finalists: {
             al: [
                 { playerJa: "D.シース", playerId: 656302, team: "TOR", teamId: 141, position: "RHP", stats: [["回", "169.0"], ["防", "2.40"], ["振", "239"]] },
                 { playerJa: "P.メシック", playerId: 800048, team: "CLE", teamId: 114, position: "LHP", stats: [["回", "186.1"], ["防", "2.56"], ["振", "193"]] },
