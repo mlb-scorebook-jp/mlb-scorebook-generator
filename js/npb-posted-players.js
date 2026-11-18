@@ -146,10 +146,12 @@
                     { date: "11/6", teamId: 141 },
                     { date: "11/6", teamId: 138 },
                     { date: "11/6", teamId: 147 },
-                    { date: "11/14", teamId: 119 }
+                    { date: "11/14", teamId: 119 },
+                    { date: "11/17", teamId: 133 },
+                    { date: "11/17", teamId: 117 }
                 ],
                 meetingStatusText: "と面談済み",
-                sourceUrl: "https://full-count.jp/2026/11/10/post2042885/"
+                sourceUrl: "https://www.draft-kaigi.jp/highschool/high-draftnews/90525/"
             },
             {
                 name: "野上 龍哉",

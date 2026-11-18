@@ -2444,6 +2444,25 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
     height: 21px;
 }
 
+.pregame-free-agent-meeting-team-link {
+    display: inline-flex;
+    border-radius: 3px;
+}
+
+.pregame-free-agent-meeting-team-link:hover,
+.pregame-free-agent-meeting-team-link:focus-visible {
+    outline: 1px solid #8fdcff;
+    outline-offset: 2px;
+}
+
+.pregame-free-agent-meeting-source {
+    color: #8fdcff;
+    font-size: 10px;
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
 .pregame-free-agent-meeting-date {
     color: #a9bac3;
     font-size: 10px;

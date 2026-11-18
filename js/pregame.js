@@ -4577,10 +4577,29 @@
                 row.append(identity);
                 const details = el("span", "pregame-free-agent-details");
                 if (Array.isArray(player.meetings) && player.meetings.length) {
-                    const meetingStatus = el("a", "pregame-free-agent-meeting-status");
-                    meetingStatus.href = player.sourceUrl;
-                    meetingStatus.target = "_blank";
-                    meetingStatus.rel = "noopener noreferrer";
+                    const meetingStatus = el("span", "pregame-free-agent-meeting-status");
+                    const officialTeamSiteUrl = (teamId) => ({
+                        108: "https://www.mlb.com/angels",
+                        109: "https://www.mlb.com/dbacks",
+                        110: "https://www.mlb.com/orioles",
+                        111: "https://www.mlb.com/redsox",
+                        112: "https://www.mlb.com/cubs",
+                        113: "https://www.mlb.com/reds",
+                        114: "https://www.mlb.com/guardians",
+                        115: "https://www.mlb.com/rockies",
+                        116: "https://www.mlb.com/tigers",
+                        117: "https://www.mlb.com/astros",
+                        118: "https://www.mlb.com/royals",
+                        119: "https://www.mlb.com/dodgers",
+                        120: "https://www.mlb.com/nationals",
+                        121: "https://www.mlb.com/mets",
+                        133: "https://www.mlb.com/athletics",
+                        138: "https://www.mlb.com/cardinals",
+                        140: "https://www.mlb.com/rangers",
+                        141: "https://www.mlb.com/bluejays",
+                        143: "https://www.mlb.com/phillies",
+                        147: "https://www.mlb.com/yankees"
+                    })[Number(teamId)] || `https://www.mlb.com/team/${Number(teamId)}`;
                     player.meetings.forEach((meeting) => {
                         const meetingEntry = el("span", "pregame-free-agent-meeting-entry");
                         meetingEntry.append(el(
@@ -4588,16 +4607,30 @@
                             "pregame-free-agent-meeting-date",
                             meeting.date
                         ));
-                        meetingEntry.append(createFreeAgentTeamLogo(
+                        const teamLink = el("a", "pregame-free-agent-meeting-team-link");
+                        teamLink.href = officialTeamSiteUrl(meeting.teamId);
+                        teamLink.target = "_blank";
+                        teamLink.rel = "noopener noreferrer";
+                        teamLink.setAttribute("aria-label", `${teamJapaneseName({ id: meeting.teamId })}公式サイト`);
+                        teamLink.append(createFreeAgentTeamLogo(
                             { id: meeting.teamId },
                             `${teamJapaneseName({ id: meeting.teamId })}のロゴ`
                         ));
+                        meetingEntry.append(teamLink);
                         meetingStatus.append(meetingEntry);
                     });
                     meetingStatus.append(document.createTextNode(
                         player.meetingStatusText || "と面談済み"
                     ));
                     details.append(meetingStatus);
+                    if (player.sourceUrl) {
+                        const sourceLink = el("a", "pregame-free-agent-meeting-source", "報道元");
+                        sourceLink.href = player.sourceUrl;
+                        sourceLink.target = "_blank";
+                        sourceLink.rel = "noopener noreferrer";
+                        sourceLink.title = "面談情報の報道元を確認";
+                        details.append(sourceLink);
+                    }
                 } else {
                     const postingStatus = el(
                         "a",
