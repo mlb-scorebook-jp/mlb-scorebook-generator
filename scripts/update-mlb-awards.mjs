@@ -39,7 +39,10 @@ const teams = {
   'Oakland': ['ATH',133], 'Athletics': ['ATH',133], 'Pittsburgh': ['PIT',134], 'San Diego': ['SD',135], 'Seattle': ['SEA',136],
   'San Francisco': ['SF',137], 'St. Louis': ['STL',138], 'Tampa Bay': ['TB',139], 'Texas': ['TEX',140], 'Toronto': ['TOR',141],
   'Minnesota': ['MIN',142], 'Philadelphia': ['PHI',143], 'Atlanta': ['ATL',144], 'Chi White Sox': ['CWS',145], 'Chicago White Sox': ['CWS',145],
-  'Miami': ['MIA',146], 'NY Yankees': ['NYY',147], 'Milwaukee': ['MIL',158]
+  'Miami': ['MIA',146], 'NY Yankees': ['NYY',147], 'Milwaukee': ['MIL',158], 'LA Angels': ['LAA',108],
+  'New York': ['NYY',147], 'Chicago': ['CWS',145], 'Los Angeles': ['LAD',119],
+  'D-backs': ['ARI',109], 'Arizona D-backs': ['ARI',109], 'Detroit/LAD': ['LAD',119],
+  'New York Yankees': ['NYY',147]
 };
 const japaneseNames = {
   'Gabriel Moreno':'G.モレノ','Pete Alonso':'P.アロンソ','Brice Turang':'B.トゥラング','Bobby Witt Jr.':'B.ウィット Jr.',
@@ -79,88 +82,147 @@ function parseAllMlb(html) {
   return { label: 'オールMLB', group: 'major', status: 'announced', announcedAt: `${season}-11-12`, sourceUrl: 'https://www.mlb.com/awards/all-mlb', first, second };
 }
 
-function collectRecipients(value, found = []) {
-  if (!value || typeof value !== 'object') return found;
-  if (Array.isArray(value)) { value.forEach((item) => collectRecipients(item, found)); return found; }
-  if (value.player?.id && value.player?.fullName) found.push(value);
-  for (const child of Object.values(value)) if (child && typeof child === 'object') collectRecipients(child, found);
+const historySources = {
+  mvp: 'most-valuable-player', cyYoung: 'cy-young', rookie: 'rookie-of-the-year', manager: 'manager-of-the-year',
+  goldGlove: 'gold-glove', platinumGlove: 'platinum-glove', silverSlugger: 'silver-slugger', hankAaron: 'hank-aaron',
+  outstandingDh: 'outstanding-dh', comeback: 'comeback-player', reliever: 'reliever-of-the-year',
+  clemente: 'roberto-clemente', allStarMvp: 'all-star', postseason: 'postseason'
+};
+
+function parseHistoryRows(html) {
+  const events = [];
+  for (const heading of html.matchAll(/<h([1-6])\b[^>]*>([\s\S]*?)<\/h\1>/gi)) {
+    events.push({ index: heading.index, type: 'heading', level: Number(heading[1]), text: plain(heading[2]) });
+  }
+  for (const table of html.matchAll(/<table\b[^>]*>([\s\S]*?)<\/table>/gi)) {
+    events.push({ index: table.index, type: 'table', html: table[1] });
+  }
+  events.sort((a, b) => a.index - b.index);
+  let trail = [];
+  const rows = [];
+  for (const event of events) {
+    if (event.type === 'heading') {
+      trail = trail.slice(0, Math.max(0, event.level - 2));
+      trail[event.level - 2] = event.text;
+      trail = trail.filter(Boolean);
+      continue;
+    }
+    for (const match of event.html.matchAll(/<tr\b[^>]*>([\s\S]*?)<\/tr>/gi)) {
+      const cells = [...match[1].matchAll(/<t[dh]\b[^>]*>([\s\S]*?)<\/t[dh]>/gi)].map((cell) => plain(cell[1]));
+      if (Number(cells[0]) !== season || cells.length < 3 || /^year$/i.test(cells[0])) continue;
+      const player = cells[1];
+      if (/^(team|team award|best team)$/i.test(player)) continue;
+      const playerIdMatch = match[1].match(/href=["'][^"']*\/(?:player|people|coach|manager)\/(\d+)/i);
+      rows.push({ season, player, playerId: playerIdMatch ? Number(playerIdMatch[1]) : null, teamName: cells[2], position: cells[3] || '', section: trail.join(' / '), cells });
+    }
+  }
+  return rows;
+}
+
+function teamDetails(teamName, section = '') {
+  const explicitLeague = teamName.match(/\((AL|NL)\)/i)?.[1]?.toLowerCase();
+  const cleanName = teamName.replace(/\s*\((?:AL|NL)\)\s*/i, '').trim();
+  let details = teams[cleanName];
+  const league = explicitLeague || (/american league/i.test(section) ? 'al' : /national league/i.test(section) ? 'nl' : null);
+  if (['New York', 'New York Yankees', 'New York (AL)'].includes(cleanName)) details = league === 'nl' ? ['NYM',121] : ['NYY',147];
+  if (cleanName === 'Chicago') details = league === 'nl' ? ['CHC',112] : ['CWS',145];
+  if (cleanName === 'Los Angeles') details = league === 'al' ? ['LAA',108] : ['LAD',119];
+  return { team: details?.[0] || '', teamId: details?.[1] || null, league };
+}
+
+function knownRows(category) {
+  const found = [];
+  const visit = (value) => {
+    if (!value || typeof value !== 'object') return;
+    if (!Array.isArray(value) && (value.playerId || value.player || value.playerJa)) found.push(value);
+    for (const child of Object.values(value)) if (child && typeof child === 'object') visit(child);
+  };
+  visit(category);
   return found;
 }
 
-async function fetchMvp() {
-  const url = `https://statsapi.mlb.com/api/v1/awards/MLBMVP/recipients?season=${season}`;
-  const response = await fetch(url, { headers });
-  if (response.status === 404) {
-    // StatsAPI can lag or omit a season even after MLB has announced its MVPs.
-    // Keep the official static result for this season, and let the other award
-    // sources (notably All-MLB) continue updating instead of failing the job.
-    console.warn(`MLB Stats API has no ${season} MVP recipient response; retaining the existing official result when available.`);
-    return season === base.season && base.categories.mvp?.status === 'announced'
-      ? base.categories.mvp
-      : null;
-  }
-  if (!response.ok) throw new Error(`MLB source returned ${response.status}: ${url}`);
-  const api = await response.text();
-  const records = collectRecipients(JSON.parse(api));
-  const finalistRows = [ ...(base.categories.mvp.finalists?.al || []).map((p) => ({ ...p, leagueKey: 'al' })), ...(base.categories.mvp.finalists?.nl || []).map((p) => ({ ...p, leagueKey: 'nl' })) ];
-  const winners = {};
-  for (const record of records) {
-    const playerId = Number(record.player.id);
-    const leagueKey = finalistRows.find((p) => Number(p.playerId) === playerId)?.leagueKey;
-    if (!leagueKey) continue;
-    const finalist = base.categories.mvp.finalists[leagueKey].find((p) => Number(p.playerId) === playerId);
-    const prior = base.categories.mvp[leagueKey];
-    winners[leagueKey] = { ...prior, player: record.player.fullName, playerId, playerJa: finalist.playerJa, team: record.team?.abbreviation || finalist.team, teamId: Number(record.team?.id || finalist.teamId) };
-  }
-  if (!winners.al || !winners.nl) return null;
-  return { ...base.categories.mvp, ...winners, status: 'announced', announcedAt: `${season}-11-12`, sourceUrl: `https://www.mlb.com/news/${season}-mlb-mvp-award-winners` };
+function makeWinner(row, category, leagueKey = null) {
+  const priorRows = knownRows(category);
+  const catalogRows = [...knownRows(base.categories), ...knownRows(previousCategories)];
+  const { team, teamId, league } = teamDetails(row.teamName, row.section);
+  const matchesPlayer = (entry) =>
+    (row.playerId && Number(entry.playerId) === row.playerId) ||
+    (entry.player && entry.player.toLowerCase() === row.player.toLowerCase());
+  const prior = priorRows.find((entry) => matchesPlayer(entry) ||
+    (leagueKey && entry.team === team && (entry.playerJa || entry.player)));
+  const known = prior || catalogRows.find(matchesPlayer);
+  const playerId = row.playerId || (known?.playerId ? Number(known.playerId) : null);
+  if (!playerId || !teamId) return null;
+  return {
+    ...(known || {}),
+    ...(leagueKey ? { league: leagueKey === 'al' ? 'AMERICAN LEAGUE' : 'NATIONAL LEAGUE' } : {}),
+    player: row.player,
+    playerJa: japaneseNames[row.player] || prior?.playerJa || row.player,
+    playerId,
+    team,
+    teamId,
+    ...(row.position ? { position: row.position } : {}),
+    ...(prior?.count != null ? { count: prior.count } : {}),
+    ...(prior?.votePoints != null ? { votePoints: prior.votePoints } : {}),
+    stats: prior?.stats && !Array.isArray(prior.stats) ? prior.stats : {}
+  };
 }
 
-async function fetchCyYoung() {
-  const sourceUrl = `https://www.mlb.com/news/${season}-mlb-cy-young-award-winners`;
-  const article = plain(await getText(sourceUrl));
-  const voteSourceUrl = `https://www.mlb.com/news/${season}-mlb-cy-young-award-voting-results`;
-  const voteHtml = await getText(voteSourceUrl);
-  const voteRows = [...voteHtml.matchAll(/<tr\b[^>]*>([\s\S]*?)<\/tr>/gi)].map((row) =>
-    [...row[1].matchAll(/<t[dh]\b[^>]*>([\s\S]*?)<\/t[dh]>/gi)].map((cell) => plain(cell[1]))
-  );
-  const finalists = base.categories.cyYoung?.finalists;
-  if (!finalists?.al?.length || !finalists?.nl?.length) return null;
-  const announcedWinners = [
-    { leagueKey: 'al', player: 'Cam Schlittler', playerId: 693645 },
-    { leagueKey: 'nl', player: 'Jacob Misiorowski', playerId: 694819 }
-  ];
-  if (!announcedWinners.every(({ player }) => article.includes(player))) {
-    throw new Error(`Official Cy Young article does not confirm both expected ${season} winners`);
+function parseHistoryCategory(key, html) {
+  const sourceUrl = `https://www.mlb.com/awards/${historySources[key]}`;
+  const category = base.categories[key] || previousCategories[key] || { label: key, group: 'major', status: 'pending' };
+  if (key === 'reliever') {
+    const bbwaaStart = html.search(/<h[1-6]\b[^>]*>[^<]*BBWAA Awards[^<]*<\/h[1-6]>/i);
+    if (bbwaaStart >= 0) html = html.slice(bbwaaStart);
   }
-  const winners = {};
-  for (const { leagueKey, player, playerId } of announcedWinners) {
-    const finalist = finalists[leagueKey].find((entry) => Number(entry.playerId) === playerId);
-    if (!finalist) throw new Error(`Missing official finalist record for ${player} (${playerId})`);
-    const voteRow = voteRows.find((row) => row[0]?.includes(player));
-    const votePoints = Number(voteRow?.at(-1));
-    if (!Number.isFinite(votePoints) || votePoints <= 0) throw new Error(`Official vote total missing for ${player}`);
-    winners[leagueKey] = {
-      league: leagueKey === 'al' ? 'AMERICAN LEAGUE' : 'NATIONAL LEAGUE',
-      player,
-      playerJa: finalist.playerJa,
-      playerId,
-      team: finalist.team,
-      teamId: finalist.teamId,
-      position: finalist.position,
-      count: 1,
-      votePoints,
-      stats: Object.fromEntries(finalist.stats.map(([label, value]) => [({ '回': '投球回', '防': '防御率', '振': '奪三振' })[label] || label, value]))
-    };
+  let rows = parseHistoryRows(html);
+  if (key === 'postseason') rows = rows.filter((row) => /world series|alcs|nlcs/i.test(row.section));
+  if (!rows.length) return null;
+
+  if (['mvp','cyYoung','rookie','manager','comeback','reliever','hankAaron'].includes(key)) {
+    const winners = {};
+    for (const leagueKey of ['al','nl']) {
+      const row = rows.find((entry) => entry.section.toLowerCase().includes(leagueKey === 'al' ? 'american league' : 'national league'));
+      if (!row) return null;
+      winners[leagueKey] = makeWinner(row, category, leagueKey);
+      if (!winners[leagueKey]) return null;
+    }
+    return { ...category, ...winners, status: 'announced', sourceUrl };
   }
-  return {
-    ...base.categories.cyYoung,
-    ...winners,
-    status: 'announced',
-    announcedAt: `${season}-11-12`,
-    sourceUrl,
-    voteSourceUrl
-  };
+
+  if (key === 'goldGlove') {
+    const grouped = new Map();
+    for (const row of rows) {
+      const leagueKey = row.section.toLowerCase().includes('american league') ? 'al' : row.section.toLowerCase().includes('national league') ? 'nl' : null;
+      if (!leagueKey) continue;
+      if (!['P','C','1B','2B','3B','SS','LF','CF','RF','UT'].includes(row.position)) continue;
+      const winner = makeWinner(row, category, leagueKey);
+      if (!winner) return null;
+      const position = row.position || '—';
+      if (!grouped.has(position)) grouped.set(position, { position, positionJa: ({ P: '投手', C: '捕手', '1B': '一塁手', '2B': '二塁手', '3B': '三塁手', SS: '遊撃手', LF: '左翼手', CF: '中堅手', RF: '右翼手', UT: 'ユーティリティー' })[position] || position });
+      grouped.get(position)[leagueKey] = winner;
+    }
+    const winners = [...grouped.values()].filter((row) => row.al && row.nl);
+    if (winners.length !== 10) return null;
+    return { ...category, winners, status: 'announced', sourceUrl };
+  }
+
+  if (key === 'postseason') {
+    const mapping = { worldSeriesMvp: /world series/i, alcsMvp: /alcs/i, nlcsMvp: /nlcs/i };
+    return Object.fromEntries(Object.entries(mapping).map(([categoryKey, pattern]) => {
+      const match = rows.find((row) => pattern.test(row.section));
+      if (!match) return [categoryKey, null];
+      const winner = makeWinner(match, base.categories[categoryKey]);
+      return [categoryKey, winner ? { ...base.categories[categoryKey], status: 'announced', sourceUrl, winners: [{ ...winner, honor: base.categories[categoryKey].winners?.[0]?.honor || base.categories[categoryKey].label }] } : null];
+    }));
+  }
+
+  if (key === 'silverSlugger') rows = rows.filter((row) => ['C','1B','2B','3B','SS','OF','DH','UT'].includes(row.position));
+  const required = key === 'silverSlugger' ? 20 : null;
+  if (required && rows.length < required) return null;
+  const winners = rows.map((row) => makeWinner(row, category)).filter(Boolean);
+  if (!winners.length || winners.length !== rows.length) return null;
+  return { ...category, winners: winners.map((winner) => ({ ...winner, honor: category.label })), status: 'announced', sourceUrl };
 }
 
 async function trySource(label, fetcher, fallback) {
@@ -172,17 +234,33 @@ async function trySource(label, fetcher, fallback) {
   }
 }
 
-const [allMlbCategory, mvpCategory, cyYoungCategory] = await Promise.all([
-  trySource('All-MLB', async () => parseAllMlb(await getText('https://www.mlb.com/awards/all-mlb')), previousCategories.allMlb),
-  trySource('MVP', fetchMvp, previousCategories.mvp ?? (season === base.season ? base.categories.mvp : null)),
-  trySource('Cy Young', fetchCyYoung, previousCategories.cyYoung ?? (season === base.season ? base.categories.cyYoung : null))
+const historyHtmlCache = new Map();
+async function getHistoryPage(slug) {
+  if (!historyHtmlCache.has(slug)) historyHtmlCache.set(slug, getText(`https://www.mlb.com/awards/${slug}`));
+  return historyHtmlCache.get(slug);
+}
+const historyKeys = Object.keys(historySources).filter((key) => key !== 'postseason');
+const [allMlbCategory, ...historyResults] = await Promise.all([
+  trySource('All-MLB', async () => parseAllMlb(await getHistoryPage('all-mlb')), previousCategories.allMlb ?? (season === base.season ? base.categories.allMlb : null)),
+  ...historyKeys.map((key) => trySource(key, async () => {
+    const result = parseHistoryCategory(key, await getHistoryPage(historySources[key]));
+    if (!result) throw new Error(`Official ${key} history has no complete ${season} result yet`);
+    return result;
+  }, previousCategories[key] ?? (season === base.season ? base.categories[key] : null))),
+  trySource('postseason', async () => {
+    const result = parseHistoryCategory('postseason', await getHistoryPage(historySources.postseason));
+    if (!result || ['alcsMvp','nlcsMvp','worldSeriesMvp'].some((key) => !result[key])) throw new Error(`Official postseason history has no complete ${season} result yet`);
+    return result;
+  }, Object.fromEntries(['alcsMvp','nlcsMvp','worldSeriesMvp'].map((key) => [key, previousCategories[key] ?? (season === base.season ? base.categories[key] : null)])))
 ]);
+const historyCategories = Object.fromEntries(historyKeys.map((key, index) => [key, historyResults[index]]));
+const postseasonCategories = historyResults.at(-1) || {};
 
 const categories = {
   ...previousCategories,
   ...(allMlbCategory ? { allMlb: allMlbCategory } : {}),
-  ...(mvpCategory ? { mvp: mvpCategory } : {}),
-  ...(cyYoungCategory ? { cyYoung: cyYoungCategory } : {})
+  ...Object.fromEntries(Object.entries(historyCategories).filter(([, value]) => value)),
+  ...Object.fromEntries(Object.entries(postseasonCategories).filter(([, value]) => value))
 };
 if (!Object.keys(categories).length) {
   console.warn(`No award data was available for ${season}; leaving the existing snapshot untouched.`);

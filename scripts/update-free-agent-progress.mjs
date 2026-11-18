@@ -85,7 +85,7 @@ for (const article of news) {
             /(?:拒否|断る|受けない)(?:方針|意向|予定)/.test(text);
         const QOReportedDecline = /\b(?:declined|rejected|turned down)\b/i.test(text) ||
             /QOを(?:拒否|断っ)た/.test(text);
-        if (explicitQO && (QOIntent || QOReportedDecline)) {
+        if (explicitQO && !current.qualifyingOffer?.verified && (QOIntent || QOReportedDecline)) {
             const statusText = QOReportedDecline
                 ? "QO拒否（報道）"
                 : /\b(?:likely|expected|probably)\b/i.test(text)

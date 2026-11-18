@@ -3019,6 +3019,7 @@
     ].map((playerId) => [playerId, Object.freeze({
         offeredDate: "2026-11-02",
         responseDeadline: "2026-11-17",
+        responseDeadlineAt: "2026-11-17T16:00:00-05:00",
         url: "https://www.mlb.com/news/qualifying-offer-candidates-and-decisions-2026-27"
     })]));
     // 回答期限前でも代理人が明言した拒否方針は、正式回答と区別して表示する。
@@ -3029,7 +3030,8 @@
                 date: entry.qualifyingOffer.date,
                 expiresDate: entry.qualifyingOffer.expiresDate || "",
                 statusText: entry.qualifyingOffer.statusText,
-                url: entry.qualifyingOffer.url
+                url: entry.qualifyingOffer.url,
+                accepted: entry.qualifyingOffer.accepted === true
             })])
     );
 
@@ -3787,7 +3789,8 @@
             ).slice(0, 10);
             const qualifyingOfferPending = qualifyingOffer &&
                 qualifyingOffer.offeredDate <= date &&
-                date <= qualifyingOffer.responseDeadline;
+                date <= qualifyingOffer.responseDeadline &&
+                Date.now() < Date.parse(qualifyingOffer.responseDeadlineAt);
             freeAgents.set(playerId, {
                 playerId,
                 person: transaction.person || { id: playerId, fullName: candidate?.name || "" },
@@ -3833,6 +3836,10 @@
                     transaction.date || transaction.effectiveDate || date
                 ).slice(0, 10)}`
             });
+        });
+        // QOを受諾した選手は翌季契約が成立しており、FA一覧には残さない。
+        FREE_AGENT_QUALIFYING_OFFER_DECISIONS.forEach((decision, playerId) => {
+            if (decision.accepted) freeAgents.delete(playerId);
         });
         const pitcherIds = [...freeAgents.values()]
             .filter((entry) => ["RHP", "LHP"].includes(entry.position))

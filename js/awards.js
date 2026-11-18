@@ -98,11 +98,11 @@
     };
 
     const winnerCard = (winner, league) => `
-        <article class="awards-winner-card awards-winner-${league.toLowerCase()} ${winner.count === 1 ? "is-first-time" : "is-repeat"}">
+        <article class="awards-winner-card awards-winner-${league.toLowerCase()} ${winner.count === 1 ? "is-first-time" : winner.count > 1 ? "is-repeat" : "is-count-unknown"}">
             <img class="awards-team-logo" src="${logoUrl(winner.teamId)}" alt="${escapeHtml(winner.team)}" loading="lazy">
             <div class="awards-winner-copy">
-                <strong>${escapeHtml(winner.playerJa)}</strong>
-                <b>${winner.count === 1 ? "初受賞" : `${winner.count}度目`}</b>
+                <strong>${escapeHtml(winner.playerJa || winner.player)}</strong>
+                ${winner.count != null ? `<b>${winner.count === 1 ? "初受賞" : `${winner.count}度目`}</b>` : ""}
             </div>
             <div class="awards-winner-metrics">${metricValues(winner)}</div>
         </article>`;
@@ -176,23 +176,23 @@
     const renderHistoricalMajorPair = () => {
         const award = state.season === 2026 ? categories[state.category] : majorHistoryData[state.season]?.[state.category];
         if (!award?.al || !award?.nl) return renderPending(categories[state.category]);
-        const headshotUrl = (winner) => winner.photoUrl || (state.category === "manager"
+        const headshotUrl = (winner) => winner.photoUrl || (winner.playerId ? (state.category === "manager"
             ? `https://img.mlbstatic.com/mlb-photos/image/upload/d_people%3Ageneric%3Aheadshot%3A83%3Acurrent.png/ar_1%3A1%2Cc_pad%2Cb_auto%3Aborder/w_360%2Cq_auto%3Abest/v1/people/${winner.playerId}/headshot/83/coach/current`
-            : `https://img.mlbstatic.com/mlb-photos/image/upload/w_240,q_auto:best/v1/people/${winner.playerId}/headshot/silo/current`);
+            : `https://img.mlbstatic.com/mlb-photos/image/upload/w_240,q_auto:best/v1/people/${winner.playerId}/headshot/silo/current`) : "");
         const laurel = (side) => `<svg class="awards-mvp-laurel awards-mvp-laurel-${side}" viewBox="0 0 52 34" aria-hidden="true">
             <path d="M46 31C27 28 13 17 7 3"/><ellipse cx="39" cy="27" rx="7" ry="3" transform="rotate(24 39 27)"/><ellipse cx="30" cy="23" rx="7" ry="3" transform="rotate(34 30 23)"/><ellipse cx="22" cy="17" rx="7" ry="3" transform="rotate(48 22 17)"/><ellipse cx="15" cy="10" rx="7" ry="3" transform="rotate(58 15 10)"/><ellipse cx="45" cy="22" rx="7" ry="3" transform="rotate(-16 45 22)"/><ellipse cx="36" cy="17" rx="7" ry="3" transform="rotate(-6 36 17)"/><ellipse cx="27" cy="11" rx="7" ry="3" transform="rotate(8 27 11)"/>
         </svg>`;
-        const awardTitle = award.title || (state.category === "cyYoung" ? "CY YOUNG AWARD" : "MOST VALUABLE PLAYER");
+        const awardTitle = award.title || ({ mvp: "MOST VALUABLE PLAYER", cyYoung: "CY YOUNG AWARD", rookie: "ROOKIE OF THE YEAR", manager: "MANAGER OF THE YEAR", reliever: "RELIEVER OF THE YEAR", comeback: "COMEBACK PLAYER OF THE YEAR", hankAaron: "HANK AARON AWARD" })[state.category] || "MLB AWARD";
         const card = (winner, league) => `<article class="awards-mvp-card awards-mvp-${league.toLowerCase()}">
             <header><span>${escapeHtml(winner.league)}</span><b>${escapeHtml(awardTitle)}</b></header>
             <div class="awards-mvp-profile">
-                <div class="awards-mvp-wreath">${laurel("left")}<strong>${state.category === "cyYoung" ? "CY" : "MVP"}</strong>${laurel("right")}</div>
+                <div class="awards-mvp-wreath">${laurel("left")}<strong>${state.category === "mvp" ? "MVP" : state.category === "cyYoung" ? "CY" : "AWARD"}</strong>${laurel("right")}</div>
                 <span class="awards-mvp-year">${state.season}</span>
-                <div class="awards-mvp-portrait">${portraitWithFallback(headshotUrl(winner), `awards-mvp-headshot${state.category === "manager" ? " is-manager" : ""}`)}</div>
+                <div class="awards-mvp-portrait">${winner.playerId ? portraitWithFallback(headshotUrl(winner), `awards-mvp-headshot${state.category === "manager" ? " is-manager" : ""}`) : ""}</div>
                 <img class="awards-mvp-team" src="${logoUrl(winner.teamId)}" alt="${escapeHtml(winner.team)}">
-                <div class="awards-mvp-name"><small>${escapeHtml(winner.position)}</small><h3>${escapeHtml(winner.playerJa)}</h3><b class="awards-mvp-count">${winner.count === 1 ? "初受賞" : `${winner.count}回目${winner.streak > 1 ? `（${winner.streak}年連続）` : ""}`}</b>${winner.votePoints != null ? `<div class="awards-mvp-vote"><small>得票ポイント</small><strong>${escapeHtml(winner.votePoints)}P</strong></div>` : ""}</div>
+                <div class="awards-mvp-name"><small>${escapeHtml(winner.position)}</small><h3>${escapeHtml(winner.playerJa || winner.player)}</h3>${winner.count != null ? `<b class="awards-mvp-count">${winner.count === 1 ? "初受賞" : `${winner.count}回目${winner.streak > 1 ? `（${winner.streak}年連続）` : ""}`}</b>` : ""}${winner.votePoints != null ? `<div class="awards-mvp-vote"><small>得票ポイント</small><strong>${escapeHtml(winner.votePoints)}P</strong></div>` : ""}</div>
             </div>
-            <div class="awards-mvp-stats" style="grid-template-columns:repeat(${Object.keys(winner.stats).length},1fr)">${Object.entries(winner.stats).map(([label, value]) => `<div><small>${escapeHtml(label)}</small><strong>${escapeHtml(value)}</strong></div>`).join("")}</div>
+            ${Object.keys(winner.stats || {}).length ? `<div class="awards-mvp-stats" style="grid-template-columns:repeat(${Object.keys(winner.stats).length},1fr)">${Object.entries(winner.stats).map(([label, value]) => `<div><small>${escapeHtml(label)}</small><strong>${escapeHtml(value)}</strong></div>`).join("")}</div>` : ""}
         </article>`;
         const finalistLeague = (rows, league, winner) => `<section class="awards-finalist-league awards-finalist-${league.toLowerCase()}">
             <h3>${league === "AL" ? "AMERICAN LEAGUE" : "NATIONAL LEAGUE"}</h3>
@@ -254,7 +254,7 @@
 
     const renderSimpleWinners = (category) => `<section class="awards-simple-winners">
         ${category.winners.map((winner) => `<article class="awards-feature-winner">
-            <img class="awards-feature-logo" src="${logoUrl(winner.teamId)}" alt="${escapeHtml(winner.team)}">
+            ${winner.teamId ? `<img class="awards-feature-logo" src="${logoUrl(winner.teamId)}" alt="${escapeHtml(winner.team)}">` : ""}
             <div><small>${escapeHtml(winner.honor || category.label)}</small><strong>${escapeHtml(winner.playerJa)}</strong><span>${escapeHtml(winner.team)}</span></div>
         </article>`).join("")}</section>`;
 
@@ -302,7 +302,7 @@
             : ["outstandingDh", "clemente", "allStarMvp", "alcsMvp", "nlcsMvp", "worldSeriesMvp"].includes(state.category) && state.season !== 2026 ? renderHistoricalSingle()
             : state.category === "silverSlugger" && state.season !== 2026 ? renderHistoricalSilverSlugger()
             : state.category === "allMlb" && state.season !== 2026 ? renderHistoricalAllMlb()
-            : ["mvp", "cyYoung"].includes(state.category) && category.status === "announced" ? renderHistoricalMajorPair()
+            : category.status === "announced" && category.al && category.nl ? renderHistoricalMajorPair()
                 : state.category === "allMlb" && category.status === "announced" ? renderHistoricalAllMlb()
                     : state.season === 2026 && category.status === "announced" && Array.isArray(category.winners) ? renderSimpleWinners(category)
                 : state.season === 2026 && category.status === "pending" && category.finalists ? renderPendingFinalists(category)

@@ -8,6 +8,13 @@
                     "url": "https://www.mlb.com/news/jake-bauers-4-year-contract-with-red-sox",
                     "reported": true,
                     "source": "MLB/球団公式記事"
+                },
+                "qualifyingOffer": {
+                    "date": "2026-11-17",
+                    "statusText": "QO拒否（MLB確認）",
+                    "url": "https://www.mlb.com/news/history-of-mlb-qualifying-offer-decisions-c300602464",
+                    "source": "MLB.com",
+                    "verified": true
                 }
             }),
         641941: Object.freeze({
@@ -23,11 +30,67 @@
             }),
         673548: Object.freeze({
                 "qualifyingOffer": {
-                    "date": "2026-11-11",
-                    "expiresDate": "2026-11-17",
-                    "statusText": "QO拒否方針（代理人発表）",
-                    "url": "https://www.nbcsports.com/fantasy/baseball/player-news/2026-11-11/seiya-suzuki-to-decline-cubs-qualifying-offer",
-                    "source": "代理人発言の報道"
+                    "date": "2026-11-17",
+                    "statusText": "QO拒否（MLB確認）",
+                    "url": "https://www.mlb.com/news/history-of-mlb-qualifying-offer-decisions-c300602464",
+                    "source": "MLB.com",
+                    "verified": true
+                }
+            }),
+        664040: Object.freeze({
+                "qualifyingOffer": {
+                    "date": "2026-11-17",
+                    "statusText": "QO拒否（MLB確認）",
+                    "url": "https://www.mlb.com/news/history-of-mlb-qualifying-offer-decisions-c300602464",
+                    "source": "MLB.com",
+                    "verified": true
+                }
+            }),
+        668227: Object.freeze({
+                "qualifyingOffer": {
+                    "date": "2026-11-17",
+                    "statusText": "QO拒否（MLB確認）",
+                    "url": "https://www.mlb.com/news/history-of-mlb-qualifying-offer-decisions-c300602464",
+                    "source": "MLB.com",
+                    "verified": true
+                }
+            }),
+        669432: Object.freeze({
+                "qualifyingOffer": {
+                    "date": "2026-11-17",
+                    "statusText": "QO拒否（MLB確認）",
+                    "url": "https://www.mlb.com/news/history-of-mlb-qualifying-offer-decisions-c300602464",
+                    "source": "MLB.com",
+                    "verified": true
+                }
+            }),
+        670970: Object.freeze({
+                "qualifyingOffer": {
+                    "date": "2026-11-17",
+                    "statusText": "QO拒否（MLB確認）",
+                    "url": "https://www.mlb.com/news/history-of-mlb-qualifying-offer-decisions-c300602464",
+                    "source": "MLB.com",
+                    "verified": true
+                }
+            }),
+        670280: Object.freeze({
+                "qualifyingOffer": {
+                    "date": "2026-11-17",
+                    "statusText": "QO受諾（2027年契約）",
+                    "url": "https://www.mlb.com/news/history-of-mlb-qualifying-offer-decisions-c300602464",
+                    "source": "MLB.com",
+                    "verified": true,
+                    "accepted": true
+                }
+            }),
+        680777: Object.freeze({
+                "qualifyingOffer": {
+                    "date": "2026-11-17",
+                    "statusText": "QO受諾（2027年契約）",
+                    "url": "https://www.mlb.com/news/history-of-mlb-qualifying-offer-decisions-c300602464",
+                    "source": "MLB.com",
+                    "verified": true,
+                    "accepted": true
                 }
             })
     });
