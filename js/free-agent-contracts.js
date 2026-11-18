@@ -1495,6 +1495,16 @@
             ]),
         2026: Object.freeze([
                 {
+                    "name": "David Bednar",
+                    "years": 1,
+                    "tenThousands": 2315
+                },
+                {
+                    "name": "Dustin May",
+                    "years": 3,
+                    "tenThousands": 5250
+                },
+                {
                     "name": "Emilio Pagán",
                     "years": 1,
                     "tenThousands": 1150
@@ -1513,6 +1523,11 @@
                     "name": "Jake Bauers",
                     "years": 4,
                     "tenThousands": 5800
+                },
+                {
+                    "name": "Ryan Jeffers",
+                    "years": 1,
+                    "tenThousands": 2315
                 },
                 {
                     "name": "Ryan Weiss",
