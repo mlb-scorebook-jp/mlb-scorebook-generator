@@ -5,7 +5,7 @@ img[src*="/assets/team-logos/"],
 img[src^="assets/team-logos/"],
 img[src*="/assets/npb-team-logos/"],
 img[src^="assets/npb-team-logos/"] {
-    filter: drop-shadow(0 0 .3px rgba(245, 250, 252, .45)) !important;
+    filter: drop-shadow(0 0 .55px rgba(245, 250, 252, .68)) !important;
 }
 
 /* Dark navy logos need a little more separation from the dark page background. */
@@ -16,7 +16,7 @@ img[src*="/115.svg"],
 img[src*="/133.svg"],
 img[src*="/135.svg"],
 img[src*="/147.svg"] {
-    filter: drop-shadow(0 0 .9px rgba(245, 250, 252, .9)) !important;
+    filter: drop-shadow(0 0 1px rgba(245, 250, 252, .95)) !important;
 }
 
 /* The Twins assets already contain a strong white keyline. */
