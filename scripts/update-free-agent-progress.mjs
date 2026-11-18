@@ -103,7 +103,7 @@ for (const article of news) {
         }
 
         const extension = /\b(?:extension|extends?|extended|re-sign|resign)\b/i.test(headline);
-        const agreementSignal = /\b(?:agrees? to|agreed to|in agreement (?:on|with)|signs? with|signed with)\b/i.test(headline) &&
+        const agreementSignal = /\b(?:agrees? (?:to|on)|agreed (?:to|on)|in agreement (?:on|with)|signs? with|signed with)\b/i.test(headline) &&
             /\b(?:contract|deal|terms|year)\b/i.test(headline);
         if (!extension && agreementSignal) {
             const teams = [...new Set((article.teamIds ?? [])
@@ -119,6 +119,12 @@ for (const article of news) {
                     agreement: {
                         teamId: destinationTeamId,
                         date,
+                        ...(current.agreement?.years && current.agreement?.tenThousands
+                            ? {
+                                years: current.agreement.years,
+                                tenThousands: current.agreement.tenThousands
+                            }
+                            : {}),
                         ...parseTerms(text),
                         url: article.url,
                         reported: true,

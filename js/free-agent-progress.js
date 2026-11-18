@@ -83,6 +83,17 @@
                     "accepted": true
                 }
             }),
+        669160: Object.freeze({
+                "agreement": {
+                    "teamId": 145,
+                    "date": "2026-11-17",
+                    "years": 3,
+                    "tenThousands": 5250,
+                    "url": "https://www.mlb.com/news/dustin-may-white-sox-contract",
+                    "reported": true,
+                    "source": "MLB/球団公式記事"
+                }
+            }),
         680777: Object.freeze({
                 "qualifyingOffer": {
                     "date": "2026-11-17",
