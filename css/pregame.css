@@ -2666,6 +2666,15 @@ body.app-mode-pregame .app-header > .pregame-header-actions-global {
     color: #fff;
 }
 
+.pregame-free-agent-declared-status.pregame-free-agent-qo-declined {
+    color: #d5a6ff;
+}
+
+.pregame-free-agent-declared-status.pregame-free-agent-qo-declined:hover,
+.pregame-free-agent-declared-status.pregame-free-agent-qo-declined:focus-visible {
+    color: #e6ccff;
+}
+
 .pregame-free-agent-declared-status:hover,
 .pregame-free-agent-declared-status:focus-visible {
     color: #a9e9ff;

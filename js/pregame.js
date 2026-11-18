@@ -4419,6 +4419,9 @@
                         if (entry.declaredStatusText?.startsWith("QO回答待ち")) {
                             declaredStatus.classList.add("pregame-free-agent-qo-pending");
                         }
+                        if (entry.declaredStatusText?.startsWith("QO拒否")) {
+                            declaredStatus.classList.add("pregame-free-agent-qo-declined");
+                        }
                         declaredStatus.href = entry.sourceUrl;
                         declaredStatus.target = "_blank";
                         declaredStatus.rel = "noopener noreferrer";
