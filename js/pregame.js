@@ -3265,6 +3265,37 @@
         const now = Date.now();
         const transactions = (await fetchFreeAgentTransactions(shiftDate(today, -1), today))
             .filter(isFreeAgentUpdateTransaction);
+        const candidatesById = new Map(
+            (window.MLB_FREE_AGENT_CANDIDATES?.[Number(today.slice(0, 4))] ?? [])
+                .map((candidate) => [Number(candidate.playerId), candidate])
+        );
+        transactions.forEach((transaction) => {
+            const playerId = Number(transaction?.person?.id);
+            const descriptionPosition = String(transaction?.description ?? "")
+                .match(/^([A-Z0-9/]+)\s/)?.[1];
+            transaction.position = descriptionPosition ||
+                candidatesById.get(playerId)?.position || "";
+        });
+        const missingPositionTransactions = transactions.filter((transaction) =>
+            !transaction.position && Number(transaction?.person?.id)
+        );
+        if (missingPositionTransactions.length) {
+            const personIds = [...new Set(missingPositionTransactions
+                .map((transaction) => Number(transaction.person.id)))];
+            const peoplePayload = await fetchJson(
+                `${API_ROOT}/v1/people?${new URLSearchParams({ personIds: personIds.join(",") })}`,
+                `pregame:free-agent-new-positions:${today}:${personIds.join("-")}`
+            ).catch(() => null);
+            const peopleById = new Map((peoplePayload?.people ?? [])
+                .map((person) => [Number(person.id), person]));
+            missingPositionTransactions.forEach((transaction) => {
+                const person = peopleById.get(Number(transaction.person.id));
+                const position = String(person?.primaryPosition?.abbreviation ?? "");
+                transaction.position = position === "P"
+                    ? ({ L: "LHP", R: "RHP" }[person?.pitchHand?.code] || "P")
+                    : position;
+            });
+        }
         // SFAのfromTeamは契約先を指す場合があり、旧所属としては使えない。
         // 候補者名簿と、選手IDで取得した契約日前のMLB取引履歴を照合する。
         // マイナー球団の取引を飛ばして直近のMLB球団を探す。
@@ -4156,20 +4187,17 @@
                 playerLink.href = `https://www.mlb.com/player/${transaction.person.id}`;
                 playerLink.target = "_blank";
                 playerLink.rel = "noopener noreferrer";
+                const position = transaction.position || playerEntry?.position || candidate?.position || "";
                 if (team) {
                     identity.append(createFreeAgentTeamLogo(team));
                 } else if (isSigning && transaction?.overseasCountry) {
                     const flag = createFreeAgentCountryFlag(transaction.overseasCountry);
                     if (flag) identity.append(flag);
                 }
-                identity.append(
-                    playerLink,
-                    el(
-                        "span",
-                        "pregame-free-agent-position",
-                        String(transaction.description ?? "").match(/^([A-Z0-9/]+)\s/)?.[1] ?? ""
-                    )
-                );
+                identity.append(playerLink);
+                if (position) {
+                    identity.append(el("span", "pregame-free-agent-position", `(${position})`));
+                }
                 const signingTerms = playerEntries.get(
                     Number(transaction?.person?.id)
                 )?.signing?.terms;
