@@ -4142,8 +4142,11 @@
                 // 新着動向の選手横には移籍前の所属球団を表示する。
                 // toTeam（移籍先）は契約ステータス側に別ロゴで表示する。
                 const playerEntry = playerEntries.get(Number(transaction?.person?.id));
+                const candidate = (window.MLB_FREE_AGENT_CANDIDATES?.[season] ?? [])
+                    .find((entry) => Number(entry.playerId) === Number(transaction?.person?.id));
                 const team = transaction?.overseasCountry ? null :
                     transaction?.formerTeam ?? playerEntry?.formerTeam ??
+                    (candidate?.teamId ? { id: candidate.teamId } : null) ??
                     (isSigning ? null : transaction?.fromTeam);
                 const playerLink = el(
                     "a",
