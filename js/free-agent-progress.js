@@ -28,15 +28,6 @@
                     "source": "MLB/球団公式記事"
                 }
             }),
-        673548: Object.freeze({
-                "qualifyingOffer": {
-                    "date": "2026-11-17",
-                    "statusText": "QO拒否（MLB確認）",
-                    "url": "https://www.mlb.com/news/history-of-mlb-qualifying-offer-decisions-c300602464",
-                    "source": "MLB.com",
-                    "verified": true
-                }
-            }),
         664040: Object.freeze({
                 "qualifyingOffer": {
                     "date": "2026-11-17",
@@ -55,16 +46,18 @@
                     "verified": true
                 }
             }),
-        669432: Object.freeze({
-                "qualifyingOffer": {
+        669160: Object.freeze({
+                "agreement": {
+                    "teamId": 145,
                     "date": "2026-11-17",
-                    "statusText": "QO拒否（MLB確認）",
-                    "url": "https://www.mlb.com/news/history-of-mlb-qualifying-offer-decisions-c300602464",
-                    "source": "MLB.com",
-                    "verified": true
+                    "years": 3,
+                    "tenThousands": 5250,
+                    "url": "https://www.mlb.com/news/dustin-may-white-sox-contract",
+                    "reported": true,
+                    "source": "MLB/球団公式記事"
                 }
             }),
-        670970: Object.freeze({
+        669432: Object.freeze({
                 "qualifyingOffer": {
                     "date": "2026-11-17",
                     "statusText": "QO拒否（MLB確認）",
@@ -83,15 +76,22 @@
                     "accepted": true
                 }
             }),
-        669160: Object.freeze({
-                "agreement": {
-                    "teamId": 145,
+        670970: Object.freeze({
+                "qualifyingOffer": {
                     "date": "2026-11-17",
-                    "years": 3,
-                    "tenThousands": 5250,
-                    "url": "https://www.mlb.com/news/dustin-may-white-sox-contract",
-                    "reported": true,
-                    "source": "MLB/球団公式記事"
+                    "statusText": "QO拒否（MLB確認）",
+                    "url": "https://www.mlb.com/news/history-of-mlb-qualifying-offer-decisions-c300602464",
+                    "source": "MLB.com",
+                    "verified": true
+                }
+            }),
+        673548: Object.freeze({
+                "qualifyingOffer": {
+                    "date": "2026-11-17",
+                    "statusText": "QO拒否（MLB確認）",
+                    "url": "https://www.mlb.com/news/history-of-mlb-qualifying-offer-decisions-c300602464",
+                    "source": "MLB.com",
+                    "verified": true
                 }
             }),
         680777: Object.freeze({
