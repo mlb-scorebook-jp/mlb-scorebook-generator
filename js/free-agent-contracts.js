@@ -1535,6 +1535,11 @@
                     "tenThousands": 185
                 },
                 {
+                    "name": "Sonny Gray",
+                    "years": 2,
+                    "tenThousands": 5500
+                },
+                {
                     "name": "Tim Hill",
                     "years": 1,
                     "tenThousands": 225
