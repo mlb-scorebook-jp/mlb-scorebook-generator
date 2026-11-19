@@ -49,7 +49,7 @@
         669160: Object.freeze({
                 "agreement": {
                     "teamId": 145,
-                    "date": "2026-11-17",
+                    "date": "2026-11-18",
                     "years": 3,
                     "tenThousands": 5250,
                     "url": "https://www.mlb.com/news/dustin-may-white-sox-contract",
