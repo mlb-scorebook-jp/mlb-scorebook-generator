@@ -2,6 +2,102 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "This winter's most buzzworthy trade candidates, around the diamond",
+        "summaryJa": "MLBの最新情報の移籍・契約に関する最新情報",
+        "slug": "trade-candidates-2027-mlb-offseason-every-position",
+        "url": "https://www.mlb.com/news/trade-candidates-2027-mlb-offseason-every-position",
+        "contentDate": "2026-11-19T03:02:13.407Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "rumors",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "After challenging rookie campaign, Canady excited for 2nd season in AUSL",
+        "summaryJa": "MLBの最新情報、記録達成の最新情報",
+        "slug": "nijaree-canady-excited-for-second-season-in-ausl",
+        "url": "https://www.mlb.com/news/nijaree-canady-excited-for-second-season-in-ausl",
+        "contentDate": "2026-11-19T03:01:26.241Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "leagueid-6044",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "At 7-foot-2, he's the tallest pitcher ever to appear in a professional game",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "james-boeree-pitcher-over-7-feet-tall",
+        "url": "https://www.mlb.com/news/james-boeree-pitcher-over-7-feet-tall",
+        "contentDate": "2026-11-19T03:01:21.413Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "offbeat"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "Breaking down the surprisingly robust second-base market",
+        "summaryJa": "B.ラウの移籍・契約に関する最新情報",
+        "slug": "second-base-free-agents-trade-targets-2026-2027",
+        "url": "https://www.mlb.com/news/second-base-free-agents-trade-targets-2026-2027",
+        "contentDate": "2026-11-19T03:01:00Z",
+        "teamIds": [],
+        "playerIds": [
+            664040,
+            650333,
+            665862,
+            650402,
+            606466,
+            702616,
+            669364,
+            807713
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "Latest Rays injuries & transactions",
+        "summaryJa": "レイズの負傷状況をMLB公式が詳報",
+        "slug": "rays-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/rays-injuries-and-roster-moves",
+        "contentDate": "2026-11-19T02:36:00Z",
+        "teamIds": [
+            139
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Vladdy Jr. hoping to suit up in Dominican Winter League -- if Blue Jays will let him",
         "summaryJa": "V.ゲレーロ Jr.（TOR）の最新動向をMLB公式が詳報",
         "slug": "vladimir-guerrero-jr-wants-to-play-in-dominican-winter-league",
@@ -77,11 +173,12 @@
             "apple-news"
         ],
         "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
     {
-        "headline": "These 12 sleeper prospects earned 40-man roster spots",
+        "headline": "12 sleeper prospects who earned 40-man roster spots",
         "summaryJa": "Josh Bostickら注目選手の最新動向",
         "slug": "top-sleeper-prospects-added-to-40-man-rosters-2026",
         "url": "https://www.mlb.com/news/top-sleeper-prospects-added-to-40-man-rosters-2026",
@@ -112,7 +209,7 @@
         ]
     },
     {
-        "headline": "May, White Sox agree on 3-year deal (source)",
+        "headline": "White Sox reach 3-year, $52.5M deal with veteran RHP May",
         "summaryJa": "D.メイ（CWS）の移籍・契約に関する最新情報",
         "slug": "dustin-may-white-sox-contract",
         "url": "https://www.mlb.com/news/dustin-may-white-sox-contract",
@@ -345,7 +442,6 @@
             "transactions"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -788,7 +884,7 @@
         ]
     },
     {
-        "headline": "Top free-agent catcher accepts qualifying offer to remain with Twins",
+        "headline": "Jeffers accepts qualifying offer to remain with Twins",
         "summaryJa": "R.ジェファーズ（MIN）の最新動向をMLB公式が詳報",
         "slug": "ryan-jeffers-accepts-twins-qualifying-offer",
         "url": "https://www.mlb.com/news/ryan-jeffers-accepts-twins-qualifying-offer",
@@ -805,7 +901,6 @@
             "transactions"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -828,7 +923,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -947,7 +1041,6 @@
             "dominican-republic"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1711,7 +1804,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -7547,26 +7639,6 @@
         "contentDate": "2026-11-03T19:55:00Z",
         "teamIds": [
             109
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Latest Rays injuries & transactions",
-        "summaryJa": "レイズの負傷状況をMLB公式が詳報",
-        "slug": "rays-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/rays-injuries-and-roster-moves",
-        "contentDate": "2026-11-03T17:48:00Z",
-        "teamIds": [
-            139
         ],
         "playerIds": [],
         "gamePks": [],
