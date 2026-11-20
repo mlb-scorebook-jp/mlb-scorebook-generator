@@ -1530,6 +1530,11 @@
                     "tenThousands": 5800
                 },
                 {
+                    "name": "Jonathan Loáisiga",
+                    "years": 2,
+                    "tenThousands": 1800
+                },
+                {
                     "name": "Ryan Jeffers",
                     "years": 1,
                     "tenThousands": 2315
