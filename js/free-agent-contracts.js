@@ -1495,6 +1495,11 @@
             ]),
         2026: Object.freeze([
                 {
+                    "name": "Darwinzon Hernández",
+                    "years": 3,
+                    "tenThousands": 1200
+                },
+                {
                     "name": "David Bednar",
                     "years": 1,
                     "tenThousands": 2315
