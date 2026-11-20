@@ -2,6 +2,217 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "15 intriguing players who might be free agents after today's non-tender deadline (5 p.m. ET)",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "non-tender-candidates-to-join-2026-2027-mlb-free-agent-class",
+        "url": "https://www.mlb.com/news/non-tender-candidates-to-join-2026-2027-mlb-free-agent-class",
+        "contentDate": "2026-11-20T17:07:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "rumors",
+            "apple-news",
+            "transactions"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "Twins non-tender six-year veteran Bailey Ober (source)",
+        "summaryJa": "B.オーバー（MIN）の最新動向をMLB公式が詳報",
+        "slug": "twins-non-tender-bailey-ober",
+        "url": "https://www.mlb.com/news/twins-non-tender-bailey-ober",
+        "contentDate": "2026-11-20T17:02:07.887Z",
+        "teamIds": [
+            142
+        ],
+        "playerIds": [
+            641927
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "transactions"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Loáisiga reunites with Yankees on 2-year deal (source)",
+        "summaryJa": "J.ロアイシガ（NYY）の移籍・契約に関する最新情報",
+        "slug": "jonathan-loaisiga-yankees-contract-2026",
+        "url": "https://www.mlb.com/news/jonathan-loaisiga-yankees-contract-2026",
+        "contentDate": "2026-11-20T16:14:00Z",
+        "teamIds": [
+            147
+        ],
+        "playerIds": [
+            642528
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "transactions",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "After busy day in office, Cashman hits field to Sleep Out for good cause",
+        "summaryJa": "ヤンキースの最新動向をMLB公式が詳報",
+        "slug": "brian-cashman-on-yankees-offseason-moves-sleep-out-charity-event",
+        "url": "https://www.mlb.com/news/brian-cashman-on-yankees-offseason-moves-sleep-out-charity-event",
+        "contentDate": "2026-11-20T14:07:00Z",
+        "teamIds": [
+            147
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Ranking the Padres' biggest remaining offseason needs",
+        "summaryJa": "パドレスら注目選手の最新動向",
+        "slug": "padres-remaining-needs-for-2026-2027-offseason",
+        "url": "https://www.mlb.com/news/padres-remaining-needs-for-2026-2027-offseason",
+        "contentDate": "2026-11-20T12:37:42.108Z",
+        "teamIds": [
+            135
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "offseason",
+            "rumors"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Missing out on Gold Glove for 2nd straight year? That wasn’t an option for Walker",
+        "summaryJa": "C.ウォーカー（HOU）、記録達成の最新情報",
+        "slug": "christian-walker-s-gold-glove-award-defense-at-first-base-for-astros",
+        "url": "https://www.mlb.com/news/christian-walker-s-gold-glove-award-defense-at-first-base-for-astros",
+        "contentDate": "2026-11-20T12:30:17.382Z",
+        "teamIds": [
+            117
+        ],
+        "playerIds": [
+            572233
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "gold-glove-award"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "What's the status of the Pirates' catching corps entering '27?",
+        "summaryJa": "H.デービス（PIT）の最新動向をMLB公式が詳報",
+        "slug": "pirates-catching-outlook-entering-2027",
+        "url": "https://www.mlb.com/news/pirates-catching-outlook-entering-2027",
+        "contentDate": "2026-11-20T12:26:16.679Z",
+        "teamIds": [
+            134
+        ],
+        "playerIds": [
+            680779,
+            682848,
+            804668
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Catching up on some of the Orioles' top prospects",
+        "summaryJa": "Anthony Eyanson（BAL）ら注目選手の最新動向",
+        "slug": "orioles-prospects-anthony-eyanson-nate-george-carter-baumler",
+        "url": "https://www.mlb.com/news/orioles-prospects-anthony-eyanson-nate-george-carter-baumler",
+        "contentDate": "2026-11-20T12:21:39.331Z",
+        "teamIds": [
+            110
+        ],
+        "playerIds": [
+            809254,
+            691945,
+            825582
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "mlb-top-prospects",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "One-year wonders? Why Red Sox don't believe that for Mead, Bauers",
+        "summaryJa": "C.ミード（BOS）を巡る注目点をMLB公式が分析",
+        "slug": "jake-bauers-curtis-mead-looking-to-stay-hot-with-red-sox-in-2027",
+        "url": "https://www.mlb.com/news/jake-bauers-curtis-mead-looking-to-stay-hot-with-red-sox-in-2027",
+        "contentDate": "2026-11-20T12:08:47.274Z",
+        "teamIds": [
+            111
+        ],
+        "playerIds": [
+            678554,
+            641343
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "How could Reds improve rotation next year? Here are some options",
+        "summaryJa": "レッズを巡る注目点をMLB公式が分析",
+        "slug": "how-reds-could-improve-rotation-in-2027",
+        "url": "https://www.mlb.com/news/how-reds-could-improve-rotation-in-2027",
+        "contentDate": "2026-11-20T12:03:25.496Z",
+        "teamIds": [
+            113
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Rockies bolster pitching in trade with White Sox for Martin, Castillo",
         "summaryJa": "L.カスティーヨ（COL）の移籍・契約に関する最新情報",
         "slug": "davis-martin-luis-castillo-rockies-white-sox-trade",
@@ -21,25 +232,6 @@
             "apple-news",
             "trades",
             "transactions"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "After busy day in office, Cashman hits field to Sleep Out for good cause",
-        "summaryJa": "ヤンキースの最新動向をMLB公式が詳報",
-        "slug": "brian-cashman-on-yankees-offseason-moves-sleep-out-charity-event",
-        "url": "https://www.mlb.com/news/brian-cashman-on-yankees-offseason-moves-sleep-out-charity-event",
-        "contentDate": "2026-11-20T05:25:55.848Z",
-        "teamIds": [
-            147
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
         ],
         "sourceScopes": [
             "MLB",
@@ -151,24 +343,6 @@
         "gamePks": [],
         "taxonomy": [
             "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB"
-        ]
-    },
-    {
-        "headline": "15 intriguing players who might join free-agent pool soon",
-        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
-        "slug": "non-tender-candidates-to-join-2026-2027-mlb-free-agent-class",
-        "url": "https://www.mlb.com/news/non-tender-candidates-to-join-2026-2027-mlb-free-agent-class",
-        "contentDate": "2026-11-20T03:00:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "rumors",
-            "apple-news",
-            "transactions"
         ],
         "sourceScopes": [
             "MLB"
@@ -296,7 +470,6 @@
             "transactions"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -549,25 +722,6 @@
         ]
     },
     {
-        "headline": "After turning heads with Team Italy, Cervelli is back to managing in the D.R.",
-        "summaryJa": "F.セルベーリの最新動向をMLB公式が詳報",
-        "slug": "francisco-cervelli-hired-manager-aguilas-cibaenas-dominican-winter-league",
-        "url": "https://www.mlb.com/news/francisco-cervelli-hired-manager-aguilas-cibaenas-dominican-winter-league",
-        "contentDate": "2026-11-19T17:48:23.395Z",
-        "teamIds": [],
-        "playerIds": [
-            465041
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "dominican-league"
-        ],
-        "sourceScopes": [
-            "MLB"
-        ]
-    },
-    {
         "headline": "The latest MLB rumors and free-agent news",
         "summaryJa": "MLBの最新情報の移籍・契約に関する最新情報",
         "slug": "mlb-rumors-trades-and-signings",
@@ -651,6 +805,25 @@
             "apple-news"
         ],
         "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "How can the AL's best team get even better? Here are 4 ways",
+        "summaryJa": "レイズを巡る注目点をMLB公式が分析",
+        "slug": "rays-areas-of-improvement",
+        "url": "https://www.mlb.com/news/rays-areas-of-improvement",
+        "contentDate": "2026-11-19T15:36:00Z",
+        "teamIds": [
+            139
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
@@ -837,40 +1010,6 @@
         ]
     },
     {
-        "headline": "After challenging rookie campaign, Canady excited for 2nd season in AUSL",
-        "summaryJa": "MLBの最新情報、記録達成の最新情報",
-        "slug": "nijaree-canady-excited-for-second-season-in-ausl",
-        "url": "https://www.mlb.com/news/nijaree-canady-excited-for-second-season-in-ausl",
-        "contentDate": "2026-11-19T03:01:26.241Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "leagueid-6044",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB"
-        ]
-    },
-    {
-        "headline": "At 7-foot-2, he's the tallest pitcher ever to appear in a professional game",
-        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
-        "slug": "james-boeree-pitcher-over-7-feet-tall",
-        "url": "https://www.mlb.com/news/james-boeree-pitcher-over-7-feet-tall",
-        "contentDate": "2026-11-19T03:01:21.413Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "offbeat"
-        ],
-        "sourceScopes": [
-            "MLB"
-        ]
-    },
-    {
         "headline": "Vladdy Jr. hoping to suit up in Dominican Winter League -- if Blue Jays will let him",
         "summaryJa": "V.ゲレーロ Jr.（TOR）の最新動向をMLB公式が詳報",
         "slug": "vladimir-guerrero-jr-wants-to-play-in-dominican-winter-league",
@@ -888,7 +1027,6 @@
             "winter-leagues"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -949,7 +1087,7 @@
         ]
     },
     {
-        "headline": "12 sleeper prospects who earned 40-man roster spots",
+        "headline": "These 12 sleeper prospects earned 40-man roster spots",
         "summaryJa": "Josh Bostickら注目選手の最新動向",
         "slug": "top-sleeper-prospects-added-to-40-man-rosters-2026",
         "url": "https://www.mlb.com/news/top-sleeper-prospects-added-to-40-man-rosters-2026",
@@ -975,7 +1113,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1062,7 +1199,7 @@
         ]
     },
     {
-        "headline": "Royals-Mariners blockbuster: All-Star 3B Garcia traded to Seattle in 6-player swap",
+        "headline": "Mariners land long-term 3B Garcia in blockbuster 6-player swap with KC",
         "summaryJa": "M.ガルシア（SEA）の移籍・契約に関する最新情報",
         "slug": "maikel-garcia-traded-from-royals-to-mariners",
         "url": "https://www.mlb.com/news/maikel-garcia-traded-from-royals-to-mariners",
@@ -1080,7 +1217,6 @@
             "transactions"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1309,7 +1445,6 @@
             "offbeat"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -5566,29 +5701,6 @@
         ]
     },
     {
-        "headline": "Schlittler, Rice’s breakout ‘26 campaigns earn All-MLB honors",
-        "summaryJa": "C.シュリットラー（NYY）の最新動向をMLB公式が詳報",
-        "slug": "cam-schlittler-ben-rice-2026-all-mlb",
-        "url": "https://www.mlb.com/news/cam-schlittler-ben-rice-2026-all-mlb",
-        "contentDate": "2026-11-12T04:07:54.702Z",
-        "teamIds": [
-            147
-        ],
-        "playerIds": [
-            693645,
-            700250
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "all-mlb-team",
-            "awards-watch"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Sale named to All-MLB First Team for 2nd time",
         "summaryJa": "C.セール（ATL）、記録達成の最新情報",
         "slug": "chris-sale-2026-all-mlb",
@@ -5759,26 +5871,6 @@
             "mlb-award",
             "apple-news",
             "dh-of-the-year"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Cowser's game-ending homer robbery named Premier Play of Year",
-        "summaryJa": "C.カウザー（BAL）、本塁打で存在感",
-        "slug": "colton-cowser-capital-one-premier-play-of-the-year-2026",
-        "url": "https://www.mlb.com/news/colton-cowser-capital-one-premier-play-of-the-year-2026",
-        "contentDate": "2026-11-12T03:18:47.719Z",
-        "teamIds": [
-            110
-        ],
-        "playerIds": [
-            681297
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
@@ -6406,45 +6498,6 @@
         ]
     },
     {
-        "headline": "Rays head into offseason confident in foundation for future",
-        "summaryJa": "レイズの最新動向をMLB公式が詳報",
-        "slug": "erik-neander-rays-offseason-approach-2026-general-managers-meetings",
-        "url": "https://www.mlb.com/news/erik-neander-rays-offseason-approach-2026-general-managers-meetings",
-        "contentDate": "2026-11-11T03:32:28.825Z",
-        "teamIds": [
-            139
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Could Reds explore a contract extension for Stewart soon?",
-        "summaryJa": "S.スチュワート（CIN）の移籍・契約に関する最新情報",
-        "slug": "sal-stewart-reds-possible-contract-extension",
-        "url": "https://www.mlb.com/news/sal-stewart-reds-possible-contract-extension",
-        "contentDate": "2026-11-11T03:13:48.121Z",
-        "teamIds": [
-            113
-        ],
-        "playerIds": [
-            701398
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "gm-meetings",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Will Lowe be back in Pittsburgh? Cherington weighs in from GM Meetings",
         "summaryJa": "B.ラウ（PIT）の最新動向をMLB公式が詳報",
         "slug": "ben-cherington-provides-update-on-brandon-lowe-s-free-agency",
@@ -6976,28 +7029,6 @@
         "teamIds": [],
         "playerIds": [
             701807
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "awards-watch",
-            "rookie-of-the-year"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Tolle finishes in 3rd place for AL Rookie of the Year Award",
-        "summaryJa": "P.トーリー（BOS）、記録達成の最新情報",
-        "slug": "payton-tolle-finishes-third-in-al-rookie-of-the-year-voting",
-        "url": "https://www.mlb.com/news/payton-tolle-finishes-third-in-al-rookie-of-the-year-voting",
-        "contentDate": "2026-11-10T01:04:38.985Z",
-        "teamIds": [
-            111
-        ],
-        "playerIds": [
-            801139
         ],
         "gamePks": [],
         "taxonomy": [
