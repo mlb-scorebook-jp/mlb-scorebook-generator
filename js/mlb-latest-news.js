@@ -2,6 +2,714 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Skubal changed after entering Dodgers pitching lab — here’s how",
+        "summaryJa": "T.スクーバルの移籍・契約に関する最新情報",
+        "slug": "tarik-skubal-changes-after-dodgers-trade",
+        "url": "https://www.mlb.com/news/tarik-skubal-changes-after-dodgers-trade",
+        "contentDate": "2026-11-21T03:11:00Z",
+        "teamIds": [],
+        "playerIds": [
+            669373
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "savant",
+            "rumors"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "Two free-agent outfielders, identical stat lines. Which one will teams covet more?",
+        "summaryJa": "R.アロサレーナの最新動向をMLB公式が詳報",
+        "slug": "randy-arozarena-vs-seiya-suzuki-free-agent-breakdown",
+        "url": "https://www.mlb.com/news/randy-arozarena-vs-seiya-suzuki-free-agent-breakdown",
+        "contentDate": "2026-11-21T03:00:00Z",
+        "teamIds": [],
+        "playerIds": [
+            668227,
+            673548
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "player-tracking",
+            "savant",
+            "apple-news",
+            "rumors"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "Giants agree to 1-year deal with Doval, trade Koss to Rays for Minor League RHP",
+        "summaryJa": "C.ドバール（SF）の移籍・契約に関する最新情報",
+        "slug": "camilo-doval-giants-contract-christian-koss-traded-to-rays",
+        "url": "https://www.mlb.com/news/camilo-doval-giants-contract-christian-koss-traded-to-rays",
+        "contentDate": "2026-11-21T02:59:52.356Z",
+        "teamIds": [
+            137
+        ],
+        "playerIds": [
+            666808,
+            683766
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "transactions"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Latest Giants injuries & transactions",
+        "summaryJa": "ジャイアンツの負傷状況をMLB公式が詳報",
+        "slug": "giants-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/giants-injuries-and-roster-moves",
+        "contentDate": "2026-11-21T02:42:00Z",
+        "teamIds": [
+            137
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "transactions",
+            "injury",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Twins deal '17 top pick Lewis to Dodgers for pitcher, catching prospect",
+        "summaryJa": "R.ルイス（MIN）の移籍・契約に関する最新情報",
+        "slug": "royce-lewis-traded-from-twins-to-dodgers",
+        "url": "https://www.mlb.com/news/royce-lewis-traded-from-twins-to-dodgers",
+        "contentDate": "2026-11-21T02:37:00Z",
+        "teamIds": [
+            142
+        ],
+        "playerIds": [
+            668904,
+            676272
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "trades",
+            "transactions"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Dodgers acquire INF Royce Lewis from Twins",
+        "summaryJa": "R.ルイス（LAD）の移籍・契約に関する最新情報",
+        "slug": "royce-lewis-dodgers-twins-trade",
+        "url": "https://www.mlb.com/news/royce-lewis-dodgers-twins-trade",
+        "contentDate": "2026-11-21T02:31:00Z",
+        "teamIds": [
+            119
+        ],
+        "playerIds": [
+            668904,
+            676272
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "trades",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Latest Dodgers injuries & transactions",
+        "summaryJa": "ドジャースの負傷状況をMLB公式が詳報",
+        "slug": "dodgers-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/dodgers-injuries-and-roster-moves",
+        "contentDate": "2026-11-21T02:29:00Z",
+        "teamIds": [
+            119
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Cubs add C Bart off waivers, trade for RHP Roxby in flurry of moves",
+        "summaryJa": "J.バート（CHC）の移籍・契約に関する最新情報",
+        "slug": "joey-bart-deal-with-cubs",
+        "url": "https://www.mlb.com/news/joey-bart-deal-with-cubs",
+        "contentDate": "2026-11-21T01:40:00Z",
+        "teamIds": [
+            112
+        ],
+        "playerIds": [
+            663698,
+            694820
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "transactions",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Twins shuffle roster, non-tender Ober, Larnach, Wallner",
+        "summaryJa": "B.オーバー（MIN）の最新動向をMLB公式が詳報",
+        "slug": "twins-non-tender-bailey-ober",
+        "url": "https://www.mlb.com/news/twins-non-tender-bailey-ober",
+        "contentDate": "2026-11-21T01:22:00Z",
+        "teamIds": [
+            142
+        ],
+        "playerIds": [
+            641927,
+            670242,
+            663616
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "transactions"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Reds non-tender No. 25 prospect Balcazar, tender all arb-eligible players",
+        "summaryJa": "L.ボルカザー（CIN）ら注目選手の最新動向",
+        "slug": "reds-decisions-at-2026-non-tender-deadline",
+        "url": "https://www.mlb.com/news/reds-decisions-at-2026-non-tender-deadline",
+        "contentDate": "2026-11-21T01:06:04.35Z",
+        "teamIds": [
+            113
+        ],
+        "playerIds": [
+            699114
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "transactions"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Latest Padres injuries and transactions",
+        "summaryJa": "パドレスの負傷状況をMLB公式が詳報",
+        "slug": "padres-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/padres-injuries-and-roster-moves",
+        "contentDate": "2026-11-21T01:06:00Z",
+        "teamIds": [
+            135
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Padres sign 2 pitchers, tender contracts to Miller, Campusano, more",
+        "summaryJa": "MLBの最新情報の移籍・契約に関する最新情報",
+        "slug": "padres-sign-jhony-brito-bryan-hoeing-tender-contracts-to-four-others",
+        "url": "https://www.mlb.com/news/padres-sign-jhony-brito-bryan-hoeing-tender-contracts-to-four-others",
+        "contentDate": "2026-11-21T01:05:22.271Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "transactions",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "11 of the most intriguing players to join free-agent pool",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "non-tender-candidates-to-join-2026-2027-mlb-free-agent-class",
+        "url": "https://www.mlb.com/news/non-tender-candidates-to-join-2026-2027-mlb-free-agent-class",
+        "contentDate": "2026-11-21T00:54:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "rumors",
+            "apple-news",
+            "transactions"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "Astros non-tender OF Trammell, sign INF Allen and LHP Sousa",
+        "summaryJa": "T.トラメル（HOU）の移籍・契約に関する最新情報",
+        "slug": "astros-non-tender-taylor-trammell-sign-nick-allen-bennett-sousa",
+        "url": "https://www.mlb.com/news/astros-non-tender-taylor-trammell-sign-nick-allen-bennett-sousa",
+        "contentDate": "2026-11-21T00:52:54.758Z",
+        "teamIds": [
+            117
+        ],
+        "playerIds": [
+            666211,
+            669397,
+            656986
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "transactions"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "O's agree to 2027 terms with Bautista, avoiding arbitration",
+        "summaryJa": "F.ボティースタ（BAL）の最新動向をMLB公式が詳報",
+        "slug": "felix-bautista-avoids-arbitration-orioles-2027-terms",
+        "url": "https://www.mlb.com/news/felix-bautista-avoids-arbitration-orioles-2027-terms",
+        "contentDate": "2026-11-21T00:51:00Z",
+        "teamIds": [
+            110
+        ],
+        "playerIds": [
+            642585
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "transactions"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "D-backs trade for right-hander Oviedo from Red Sox",
+        "summaryJa": "J.オビエド（AZ）の移籍・契約に関する最新情報",
+        "slug": "johan-oviedo-traded-to-d-backs-from-red-sox",
+        "url": "https://www.mlb.com/news/johan-oviedo-traded-to-d-backs-from-red-sox",
+        "contentDate": "2026-11-21T00:48:00Z",
+        "teamIds": [
+            109
+        ],
+        "playerIds": [
+            670912
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "trades",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Nats tender contracts to Abrams, 2 others, non-tender 3 pitchers",
+        "summaryJa": "Jared Simpson（WSH）の移籍・契約に関する最新情報",
+        "slug": "nationals-tender-contracts-to-three-players-at-2026-deadline",
+        "url": "https://www.mlb.com/news/nationals-tender-contracts-to-three-players-at-2026-deadline",
+        "contentDate": "2026-11-21T00:46:21.73Z",
+        "teamIds": [
+            120
+        ],
+        "playerIds": [
+            688692,
+            680686,
+            687223,
+            682928,
+            663623,
+            656234
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "transactions"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Latest Nationals injuries & transactions",
+        "summaryJa": "ナショナルズの負傷状況をMLB公式が詳報",
+        "slug": "nationals-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/nationals-injuries-and-roster-moves",
+        "contentDate": "2026-11-21T00:45:00Z",
+        "teamIds": [
+            120
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Guardians non-tender '24 postseason hero Fry",
+        "summaryJa": "D.フライ（CLE）の最新動向をMLB公式が詳報",
+        "slug": "guardians-non-tender-deadline-decisions-2026",
+        "url": "https://www.mlb.com/news/guardians-non-tender-deadline-decisions-2026",
+        "contentDate": "2026-11-21T00:38:45.572Z",
+        "teamIds": [
+            114
+        ],
+        "playerIds": [
+            681807,
+            670036,
+            670059,
+            663368
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "transactions"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Rays non-tender Sulser, add infield depth in trade with Giants",
+        "summaryJa": "C.サルサ―（TB）の移籍・契約に関する最新情報",
+        "slug": "rays-non-tender-cole-sulser-acquire-christian-koss",
+        "url": "https://www.mlb.com/news/rays-non-tender-cole-sulser-acquire-christian-koss",
+        "contentDate": "2026-11-21T00:36:23.112Z",
+        "teamIds": [
+            139
+        ],
+        "playerIds": [
+            642121,
+            683766
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "transactions"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Mariners address outfield logjam by non-tendering Raley",
+        "summaryJa": "L.レイリー（SEA）の最新動向をMLB公式が詳報",
+        "slug": "mariners-non-tender-luke-raley",
+        "url": "https://www.mlb.com/news/mariners-non-tender-luke-raley",
+        "contentDate": "2026-11-21T00:26:01.314Z",
+        "teamIds": [
+            136
+        ],
+        "playerIds": [
+            670042
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "transactions"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Angels keep all 10 arbitration-eligible players, signing 3",
+        "summaryJa": "J.シリ（LAA）の移籍・契約に関する最新情報",
+        "slug": "angels-decisions-at-2026-non-tender-deadline",
+        "url": "https://www.mlb.com/news/angels-decisions-at-2026-non-tender-deadline",
+        "contentDate": "2026-11-21T00:17:49.126Z",
+        "teamIds": [
+            108
+        ],
+        "playerIds": [
+            642350
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "transactions"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Brewers keep all eligible players in fold at non-tender deadline",
+        "summaryJa": "B.テュラング（MIL）の移籍・契約に関する最新情報",
+        "slug": "brewers-sign-4-players-to-1-year-deals-tender-contracts-to-8-others",
+        "url": "https://www.mlb.com/news/brewers-sign-4-players-to-1-year-deals-tender-contracts-to-8-others",
+        "contentDate": "2026-11-21T00:10:03.344Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [
+            668930
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "transactions"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Complete list of non-tendered players",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "non-tendered-mlb-free-agents-2026-2027",
+        "url": "https://www.mlb.com/news/non-tendered-mlb-free-agents-2026-2027",
+        "contentDate": "2026-11-21T00:09:41.194Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "rumors",
+            "transactions",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "Nardi (elbow surgery) among Marlins tendered contracts for 2027",
+        "summaryJa": "A.ナーディ（MIA）の移籍・契約に関する最新情報",
+        "slug": "andrew-nardi-marlins-tendered-contracts-2027",
+        "url": "https://www.mlb.com/news/andrew-nardi-marlins-tendered-contracts-2027",
+        "contentDate": "2026-11-21T00:08:37.537Z",
+        "teamIds": [
+            146
+        ],
+        "playerIds": [
+            677053
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "transactions",
+            "injury"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Latest Pirates injuries & transactions",
+        "summaryJa": "パイレーツの負傷状況をMLB公式が詳報",
+        "slug": "pirates-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/pirates-injuries-and-roster-moves",
+        "contentDate": "2026-11-20T23:58:00Z",
+        "teamIds": [
+            134
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Padres agree to three-year extension with slugger Sheets",
+        "summaryJa": "G.シーツ（SD）の移籍・契約に関する最新情報",
+        "slug": "gavin-sheets-padres-contract-extension",
+        "url": "https://www.mlb.com/news/gavin-sheets-padres-contract-extension",
+        "contentDate": "2026-11-20T23:51:00Z",
+        "teamIds": [
+            135
+        ],
+        "playerIds": [
+            657757
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "transactions"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Murdock non-tendered, Baddoo agrees to deal ahead of Friday’s deadline",
+        "summaryJa": "N.マードック（PIT）の移籍・契約に関する最新情報",
+        "slug": "pirates-non-tender-noah-murdock-sign-akil-baddoo",
+        "url": "https://www.mlb.com/news/pirates-non-tender-noah-murdock-sign-akil-baddoo",
+        "contentDate": "2026-11-20T23:49:44.927Z",
+        "teamIds": [
+            134
+        ],
+        "playerIds": [
+            668716,
+            668731
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "transactions"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Latest Phillies injuries & transactions",
+        "summaryJa": "フィリーズの負傷状況をMLB公式が詳報",
+        "slug": "phillies-injuries-and-roster-moves",
+        "url": "https://www.mlb.com/news/phillies-injuries-and-roster-moves",
+        "contentDate": "2026-11-20T23:49:00Z",
+        "teamIds": [
+            143
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "injury",
+            "transactions",
+            "exclude-from-personalization"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Red Sox sign 4 players, tender contracts to Duran, Rutschman and more",
+        "summaryJa": "A.モナステリオ（BOS）の移籍・契約に関する最新情報",
+        "slug": "red-sox-2026-non-tender-deadline-decisions",
+        "url": "https://www.mlb.com/news/red-sox-2026-non-tender-deadline-decisions",
+        "contentDate": "2026-11-20T23:45:00Z",
+        "teamIds": [
+            111
+        ],
+        "playerIds": [
+            655316,
+            663330,
+            642201,
+            663853
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "transactions"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "De La Cruz among players non-tendered by Phillies",
+        "summaryJa": "フィリーズの最新動向をMLB公式が詳報",
+        "slug": "bryan-de-la-cruz-among-players-non-tendered-by-phillies",
+        "url": "https://www.mlb.com/news/bryan-de-la-cruz-among-players-non-tendered-by-phillies",
+        "contentDate": "2026-11-20T23:44:30.44Z",
+        "teamIds": [
+            143
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "transactions",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Braves retain Elder, Lee among 4 tendered contracts",
+        "summaryJa": "B.エルダー（ATL）の移籍・契約に関する最新情報",
+        "slug": "braves-2026-non-tender-deadline-roster-moves",
+        "url": "https://www.mlb.com/news/braves-2026-non-tender-deadline-roster-moves",
+        "contentDate": "2026-11-20T23:38:01.083Z",
+        "teamIds": [
+            144
+        ],
+        "playerIds": [
+            693821,
+            666214,
+            669276,
+            680730
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "transactions"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Yankees non-tender former Rookie of the Year Gil, reliever Cruz",
+        "summaryJa": "L.ヒル（NYY）の最新動向をMLB公式が詳報",
+        "slug": "yankees-non-tender-decisions-2026",
+        "url": "https://www.mlb.com/news/yankees-non-tender-decisions-2026",
+        "contentDate": "2026-11-20T23:31:00Z",
+        "teamIds": [
+            147
+        ],
+        "playerIds": [
+            661563,
+            518585
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "transactions",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Mets tender 2027 contract to arb-eligible Vientos",
         "summaryJa": "M.ビエントス（NYM）の移籍・契約に関する最新情報",
         "slug": "mark-vientos-tendered-contract-2027-mets",
@@ -19,29 +727,6 @@
             "transactions"
         ],
         "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Dodgers acquire INF Royce Lewis from Twins",
-        "summaryJa": "R.ルイス（LAD）の移籍・契約に関する最新情報",
-        "slug": "royce-lewis-dodgers-twins-trade",
-        "url": "https://www.mlb.com/news/royce-lewis-dodgers-twins-trade",
-        "contentDate": "2026-11-20T23:13:00Z",
-        "teamIds": [
-            119
-        ],
-        "playerIds": [
-            668904,
-            676272
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "trades",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -149,29 +834,6 @@
             "exclude-from-personalization"
         ],
         "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Yankees non-tender former Rookie of the Year Luis Gil, reliever Fernando Cruz",
-        "summaryJa": "L.ヒル（NYY）の最新動向をMLB公式が詳報",
-        "slug": "yankees-non-tender-decisions-2026",
-        "url": "https://www.mlb.com/news/yankees-non-tender-decisions-2026",
-        "contentDate": "2026-11-20T22:25:43.979Z",
-        "teamIds": [
-            147
-        ],
-        "playerIds": [
-            661563,
-            518585
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "transactions",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -292,7 +954,7 @@
         ]
     },
     {
-        "headline": "MLB offers concession on domestic draft; MLBPA makes international draft proposal",
+        "headline": "MLB offers concession on domestic draft; MLBPA makes proposal on international players",
         "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
         "slug": "international-draft-proposal-in-cba-negotiations",
         "url": "https://www.mlb.com/news/international-draft-proposal-in-cba-negotiations",
@@ -303,52 +965,6 @@
         "taxonomy": [],
         "sourceScopes": [
             "MLB"
-        ]
-    },
-    {
-        "headline": "Padres agree to three-year extension with slugger Sheets (source)",
-        "summaryJa": "G.シーツ（SD）の移籍・契約に関する最新情報",
-        "slug": "gavin-sheets-padres-contract-extension",
-        "url": "https://www.mlb.com/news/gavin-sheets-padres-contract-extension",
-        "contentDate": "2026-11-20T21:15:00Z",
-        "teamIds": [
-            135
-        ],
-        "playerIds": [
-            657757
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "transactions"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Monasterio, Jones among 4 players signed by Red Sox ahead of non-tender deadline",
-        "summaryJa": "A.モナステリオ（BOS）の移籍・契約に関する最新情報",
-        "slug": "red-sox-2026-non-tender-deadline-decisions",
-        "url": "https://www.mlb.com/news/red-sox-2026-non-tender-deadline-decisions",
-        "contentDate": "2026-11-20T21:03:20.127Z",
-        "teamIds": [
-            111
-        ],
-        "playerIds": [
-            655316,
-            663330,
-            642201,
-            663853
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "transactions"
-        ],
-        "sourceScopes": [
-            "球団公式"
         ]
     },
     {
@@ -390,47 +1006,6 @@
             "exclude-from-personalization"
         ],
         "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "O's agree to 2027 terms with Bautista, avoiding arbitration",
-        "summaryJa": "F.ボティースタ（BAL）の最新動向をMLB公式が詳報",
-        "slug": "felix-bautista-avoids-arbitration-orioles-2027-terms",
-        "url": "https://www.mlb.com/news/felix-bautista-avoids-arbitration-orioles-2027-terms",
-        "contentDate": "2026-11-20T20:29:29.51Z",
-        "teamIds": [
-            110
-        ],
-        "playerIds": [
-            642585
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "transactions"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Cubs add backstop Bart off waivers (source)",
-        "summaryJa": "カブスの移籍・契約に関する最新情報",
-        "slug": "joey-bart-deal-with-cubs",
-        "url": "https://www.mlb.com/news/joey-bart-deal-with-cubs",
-        "contentDate": "2026-11-20T19:23:00Z",
-        "teamIds": [
-            112
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "transactions",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -479,25 +1054,21 @@
         ]
     },
     {
-        "headline": "Twins non-tender six-year veteran Bailey Ober (source)",
-        "summaryJa": "B.オーバー（MIN）の最新動向をMLB公式が詳報",
-        "slug": "twins-non-tender-bailey-ober",
-        "url": "https://www.mlb.com/news/twins-non-tender-bailey-ober",
-        "contentDate": "2026-11-20T17:02:07.887Z",
-        "teamIds": [
-            142
-        ],
-        "playerIds": [
-            641927
-        ],
+        "headline": "Inbox: Where would Fall League standouts rank on the next Top 100 list?",
+        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
+        "slug": "pipeline-inbox-where-would-the-cardinals-tai-peete-rank-post-arizona-fall-league",
+        "url": "https://www.mlb.com/news/pipeline-inbox-where-would-the-cardinals-tai-peete-rank-post-arizona-fall-league",
+        "contentDate": "2026-11-20T17:10:00Z",
+        "teamIds": [],
+        "playerIds": [],
         "gamePks": [],
         "taxonomy": [
+            "mlb-top-prospects",
             "apple-news",
-            "transactions"
+            "arizona-fall-league"
         ],
         "sourceScopes": [
-            "MLB",
-            "球団公式"
+            "MLB"
         ]
     },
     {
@@ -520,6 +1091,25 @@
         "sourceScopes": [
             "MLB",
             "球団公式"
+        ]
+    },
+    {
+        "headline": "Have you ever noticed the hidden details in these 9 Minor League logos?",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "hidden-details-in-milb-team-logos",
+        "url": "https://www.mlb.com/news/hidden-details-in-milb-team-logos",
+        "contentDate": "2026-11-20T15:28:04.92Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "minor-league-baseball",
+            "baseball-traveler",
+            "apple-news",
+            "offbeat"
+        ],
+        "sourceScopes": [
+            "MLB"
         ]
     },
     {
@@ -579,7 +1169,6 @@
             "gold-glove-award"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -664,7 +1253,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -741,23 +1329,6 @@
         ]
     },
     {
-        "headline": "Hot Stove Rumors: Lowe, Skubal, Cubs, Sato, Mariners, Mets, Bubic",
-        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
-        "slug": "mlb-rumors-and-2026-27-free-agent-news-november-19",
-        "url": "https://www.mlb.com/news/mlb-rumors-and-2026-27-free-agent-news-november-19",
-        "contentDate": "2026-11-20T03:01:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "rumors"
-        ],
-        "sourceScopes": [
-            "MLB"
-        ]
-    },
-    {
         "headline": "5 hitters whose underlying skills hint at a potential breakout",
         "summaryJa": "J.スウィンスキーの最新動向をMLB公式が詳報",
         "slug": "breakout-candidates-similar-to-jake-bauers",
@@ -820,7 +1391,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -862,7 +1432,6 @@
             "rumors"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -924,7 +1493,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1005,7 +1573,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1384,22 +1951,6 @@
         ]
     },
     {
-        "headline": "Commissioner Manfred ‘can’t imagine’ owners ratifying a deal without salary cap and floor",
-        "summaryJa": "MLBの最新情報の移籍・契約に関する最新情報",
-        "slug": "commissioner-rob-manfred-discusses-salary-cap-and-floor-proposals",
-        "url": "https://www.mlb.com/news/commissioner-rob-manfred-discusses-salary-cap-and-floor-proposals",
-        "contentDate": "2026-11-19T00:36:18.383Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB"
-        ]
-    },
-    {
         "headline": "After solidifying infield in Garcia deal, where do Mariners go next?",
         "summaryJa": "マリナーズの移籍・契約に関する最新情報",
         "slug": "mariners-plan-for-2026-27-offseason-after-maikel-garcia-trade",
@@ -1506,26 +2057,6 @@
         "taxonomy": [
             "apple-news",
             "transactions"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Latest Dodgers injuries & transactions",
-        "summaryJa": "ドジャースの負傷状況をMLB公式が詳報",
-        "slug": "dodgers-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/dodgers-injuries-and-roster-moves",
-        "contentDate": "2026-11-18T22:13:00Z",
-        "teamIds": [
-            119
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
         ],
         "sourceScopes": [
             "球団公式"
@@ -2221,26 +2752,6 @@
         ]
     },
     {
-        "headline": "Latest Giants injuries & transactions",
-        "summaryJa": "ジャイアンツの負傷状況をMLB公式が詳報",
-        "slug": "giants-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/giants-injuries-and-roster-moves",
-        "contentDate": "2026-11-18T02:49:00Z",
-        "teamIds": [
-            137
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "transactions",
-            "injury",
-            "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Lalane headlines group of prospects added to Giants' 40-man roster",
         "summaryJa": "ジャイアンツら注目選手の最新動向",
         "slug": "giants-henry-lalane-prospects-40-man-roster",
@@ -2411,26 +2922,6 @@
             "apple-news",
             "transactions",
             "mlb-top-prospects"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Latest Padres injuries and transactions",
-        "summaryJa": "パドレスの負傷状況をMLB公式が詳報",
-        "slug": "padres-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/padres-injuries-and-roster-moves",
-        "contentDate": "2026-11-18T00:54:00Z",
-        "teamIds": [
-            135
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
         ],
         "sourceScopes": [
             "球団公式"
@@ -3138,26 +3629,6 @@
         "taxonomy": [
             "transactions",
             "mlb-top-prospects"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Latest Nationals injuries & transactions",
-        "summaryJa": "ナショナルズの負傷状況をMLB公式が詳報",
-        "slug": "nationals-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/nationals-injuries-and-roster-moves",
-        "contentDate": "2026-11-17T20:58:00Z",
-        "teamIds": [
-            120
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
         ],
         "sourceScopes": [
             "球団公式"
@@ -4297,25 +4768,6 @@
         ],
         "gamePks": [],
         "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Nationals' Top 5 shortstops: Camerato's take",
-        "summaryJa": "ナショナルズら注目選手の最新動向",
-        "slug": "nationals-all-time-best-shortstops",
-        "url": "https://www.mlb.com/news/nationals-all-time-best-shortstops",
-        "contentDate": "2026-11-14T18:40:00Z",
-        "teamIds": [
-            120
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "evergreen",
             "apple-news"
         ],
         "sourceScopes": [
@@ -6015,51 +6467,6 @@
         ]
     },
     {
-        "headline": "Brewers place league-high 4 players on All-MLB Team",
-        "summaryJa": "B.テュラング（MIL）の最新動向をMLB公式が詳報",
-        "slug": "jacob-misiorowski-brice-turang-jackson-chourio-william-contreras-all-mlb-team-2026",
-        "url": "https://www.mlb.com/news/jacob-misiorowski-brice-turang-jackson-chourio-william-contreras-all-mlb-team-2026",
-        "contentDate": "2026-11-12T04:06:14.374Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [
-            668930,
-            694192,
-            694819,
-            661388
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "all-mlb-team"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Sánchez (First Team), Luzardo (Second) named to All-MLB squad",
-        "summaryJa": "C.サンチェス（PHI）の最新動向をMLB公式が詳報",
-        "slug": "cristopher-sanchez-jesus-luzardo-2026-all-mlb",
-        "url": "https://www.mlb.com/news/cristopher-sanchez-jesus-luzardo-2026-all-mlb",
-        "contentDate": "2026-11-12T04:04:42.96Z",
-        "teamIds": [
-            143
-        ],
-        "playerIds": [
-            650911,
-            666200
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "all-mlb-team"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "AL batting champ Alvarez named to All-MLB First Team",
         "summaryJa": "Y.アルバレス（HOU）の最新動向をMLB公式が詳報",
         "slug": "yordan-alvarez-2026-all-mlb",
@@ -6339,24 +6746,6 @@
         "taxonomy": [
             "arizona-fall-league",
             "mlb-top-prospects",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Coaching vet Iapoce named Reds' assistant hitting coach",
-        "summaryJa": "レッズの最新動向をMLB公式が詳報",
-        "slug": "anthony-iapoce-reds-assistant-hitting-coach",
-        "url": "https://www.mlb.com/news/anthony-iapoce-reds-assistant-hitting-coach",
-        "contentDate": "2026-11-11T20:57:00Z",
-        "teamIds": [
-            113
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
             "apple-news"
         ],
         "sourceScopes": [
@@ -6891,26 +7280,6 @@
         ]
     },
     {
-        "headline": "Cash finishes as runner-up for AL Manager of the Year",
-        "summaryJa": "レイズの最新動向をMLB公式が詳報",
-        "slug": "kevin-cash-second-place-2026-al-manager-of-the-year-award",
-        "url": "https://www.mlb.com/news/kevin-cash-second-place-2026-al-manager-of-the-year-award",
-        "contentDate": "2026-11-11T01:37:00Z",
-        "teamIds": [
-            139
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "awards-watch",
-            "manager-of-the-year"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Dodgers confirm pursuit of Skubal reunion this offseason",
         "summaryJa": "T.スクーバル（LAD）の最新動向をMLB公式が詳報",
         "slug": "dodgers-tarik-skubal-free-agency-2026-general-managers-meetings",
@@ -7104,27 +7473,6 @@
         ]
     },
     {
-        "headline": "Smith excited to pay it forward for single-mom families",
-        "summaryJa": "C.スミス（HOU）の最新動向をMLB公式が詳報",
-        "slug": "cam-smith-foundation-single-mother-families",
-        "url": "https://www.mlb.com/news/cam-smith-foundation-single-mother-families",
-        "contentDate": "2026-11-10T14:28:00.085Z",
-        "teamIds": [
-            117
-        ],
-        "playerIds": [
-            701358
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "player-tracking"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Newman brings analytics background to Pirates' scouting director role",
         "summaryJa": "パイレーツの最新動向をMLB公式が詳報",
         "slug": "justin-newman-pirates-amateur-scouting-director-2026",
@@ -7134,24 +7482,6 @@
             134
         ],
         "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Say Hey Kid to be featured on 2027 USPS stamp",
-        "summaryJa": "W.メイズの最新動向をMLB公式が詳報",
-        "slug": "united-states-postal-service-willie-mays-stamp-2027",
-        "url": "https://www.mlb.com/news/united-states-postal-service-willie-mays-stamp-2027",
-        "contentDate": "2026-11-10T13:33:55.44Z",
-        "teamIds": [],
-        "playerIds": [
-            118495
-        ],
         "gamePks": [],
         "taxonomy": [
             "apple-news"
@@ -7472,31 +7802,10 @@
         ]
     },
     {
-        "headline": "Smith, Messick named Cleveland BBWAA award winners",
-        "summaryJa": "C.スミス（CLE）、勝利を呼び込む活躍",
-        "slug": "cade-smith-parker-messick-win-local-2026-bbwaa-awards",
-        "url": "https://www.mlb.com/news/cade-smith-parker-messick-win-local-2026-bbwaa-awards",
-        "contentDate": "2026-11-08T11:00:00Z",
-        "teamIds": [
-            114
-        ],
-        "playerIds": [
-            671922,
-            800048
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Here are the rosters for Sunday's AFL Fall Stars Game",
+        "headline": "Breaking down the Fall Stars Game participants by organization",
         "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
-        "slug": "2026-arizona-fall-league-fall-stars-game-rosters",
-        "url": "https://www.mlb.com/news/2026-arizona-fall-league-fall-stars-game-rosters",
+        "slug": "2026-arizona-fall-league-fall-stars-by-organization",
+        "url": "https://www.mlb.com/news/2026-arizona-fall-league-fall-stars-by-organization",
         "contentDate": "2026-11-08T05:14:00Z",
         "teamIds": [],
         "playerIds": [],
@@ -7511,10 +7820,10 @@
         ]
     },
     {
-        "headline": "Breaking down the Fall Stars Game participants by organization",
+        "headline": "Here are the rosters for Sunday's AFL Fall Stars Game",
         "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
-        "slug": "2026-arizona-fall-league-fall-stars-by-organization",
-        "url": "https://www.mlb.com/news/2026-arizona-fall-league-fall-stars-by-organization",
+        "slug": "2026-arizona-fall-league-fall-stars-game-rosters",
+        "url": "https://www.mlb.com/news/2026-arizona-fall-league-fall-stars-game-rosters",
         "contentDate": "2026-11-08T05:14:00Z",
         "teamIds": [],
         "playerIds": [],
@@ -7545,20 +7854,6 @@
             "apple-news",
             "rumors"
         ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Here are the top performers from Week 5 of AFL action",
-        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
-        "slug": "arizona-fall-league-top-performers-week-5-2026",
-        "url": "https://www.mlb.com/news/arizona-fall-league-top-performers-week-5-2026",
-        "contentDate": "2026-11-07T20:45:06.293Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [],
         "sourceScopes": [
             "球団公式"
         ]
@@ -7858,26 +8153,6 @@
         ]
     },
     {
-        "headline": "Latest Phillies injuries & transactions",
-        "summaryJa": "フィリーズの負傷状況をMLB公式が詳報",
-        "slug": "phillies-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/phillies-injuries-and-roster-moves",
-        "contentDate": "2026-11-04T20:14:00Z",
-        "teamIds": [
-            143
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "McGonigle named Tiger of the Year after historic rookie season",
         "summaryJa": "K.マゴニグル（DET）の最新動向をMLB公式が詳報",
         "slug": "kevin-mcgonigle-tiger-of-the-year-award-2026-bbwaa",
@@ -8000,26 +8275,6 @@
         ]
     },
     {
-        "headline": "Latest Pirates injuries & transactions",
-        "summaryJa": "パイレーツの負傷状況をMLB公式が詳報",
-        "slug": "pirates-injuries-and-roster-moves",
-        "url": "https://www.mlb.com/news/pirates-injuries-and-roster-moves",
-        "contentDate": "2026-11-02T23:48:00Z",
-        "teamIds": [
-            134
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
-            "transactions",
-            "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Latest Blue Jays injuries & transactions",
         "summaryJa": "ブルージェイズの負傷状況をMLB公式が詳報",
         "slug": "blue-jays-injuries-and-roster-moves",
@@ -8115,26 +8370,6 @@
         "gamePks": [],
         "taxonomy": [
             "gold-glove-award",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Breaking down Fernando Tatis Jr.'s unusual 2026 season",
-        "summaryJa": "F.タティース Jr.（SD）の最新動向をMLB公式が詳報",
-        "slug": "fernando-tatis-jr-2026-breakdown",
-        "url": "https://www.mlb.com/news/fernando-tatis-jr-2026-breakdown",
-        "contentDate": "2026-11-01T18:21:00Z",
-        "teamIds": [
-            135
-        ],
-        "playerIds": [
-            665487
-        ],
-        "gamePks": [],
-        "taxonomy": [
             "apple-news"
         ],
         "sourceScopes": [
