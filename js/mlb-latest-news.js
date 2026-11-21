@@ -2,6 +2,26 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "The top Angels Draft pick from every season",
+        "summaryJa": "エンゼルスの最新動向をMLB公式が詳報",
+        "slug": "all-time-top-angels-draft-picks",
+        "url": "https://www.mlb.com/news/all-time-top-angels-draft-picks",
+        "contentDate": "2026-11-21T04:55:00Z",
+        "teamIds": [
+            108
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "mlb-draft",
+            "evergreen",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Skubal changed after entering Dodgers pitching lab — here’s how",
         "summaryJa": "T.スクーバルの移籍・契約に関する最新情報",
         "slug": "tarik-skubal-changes-after-dodgers-trade",
@@ -5076,24 +5096,6 @@
         ]
     },
     {
-        "headline": "Watch LIVE: Angels No. 1 prospect Nimmala in Arizona Fall League playoffs",
-        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
-        "slug": "watch-arizona-fall-league-playoffs-2026",
-        "url": "https://www.mlb.com/news/watch-arizona-fall-league-playoffs-2026",
-        "contentDate": "2026-11-14T05:54:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "arizona-fall-league",
-            "mlb-top-prospects"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "How Gunnar could become an MVP candidate once again",
         "summaryJa": "G.ヘンダーソン（BAL）を巡る注目点をMLB公式が分析",
         "slug": "gunnar-henderson-outlook-for-orioles-in-2027",
@@ -7859,6 +7861,20 @@
         ]
     },
     {
+        "headline": "Here are the top performers from Week 5 of AFL action",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "arizona-fall-league-top-performers-week-5-2026",
+        "url": "https://www.mlb.com/news/arizona-fall-league-top-performers-week-5-2026",
+        "contentDate": "2026-11-07T20:45:06.293Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Where does Angels' roster stand entering offseason?",
         "summaryJa": "エンゼルスの最新動向をMLB公式が詳報",
         "slug": "where-angels-roster-stands-entering-offseason",
@@ -8094,8 +8110,8 @@
         ]
     },
     {
-        "headline": "Trout seeks 10th Silver Slugger Award, Neto his first",
-        "summaryJa": "MLBの最新情報、記録達成の最新情報",
+        "headline": "NL batting champ Moreno, Carroll nominated for Silver Slugger",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
         "slug": "2026-silver-slugger-award-finalists",
         "url": "https://www.mlb.com/news/2026-silver-slugger-award-finalists",
         "contentDate": "2026-11-05T16:13:03.725Z",
