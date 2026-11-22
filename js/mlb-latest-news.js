@@ -2,6 +2,24 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Pirates Insider: Added to 40-man roster this past week, Mitch Jebb keeps evolving",
+        "summaryJa": "パイレーツの最新動向をMLB公式が詳報",
+        "slug": "pirates-insider-added-to-40-man-roster-this-past-week-mitch-jebb-keeps-evolving",
+        "url": "https://www.mlb.com/news/pirates-insider-added-to-40-man-roster-this-past-week-mitch-jebb-keeps-evolving",
+        "contentDate": "2026-11-22T13:00:38.577Z",
+        "teamIds": [
+            134
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "pit-inside-the-pirates"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Want the nastiest pitches? Sign these free agents",
         "summaryJa": "T.スクーバルの移籍・契約に関する最新情報",
         "slug": "the-best-pitches-on-the-2026-27-free-agent-market",
@@ -8068,24 +8086,6 @@
         "taxonomy": [
             "apple-news",
             "offseason"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Time in nature lets Pirates pitching coach take stock of the season",
-        "summaryJa": "パイレーツの最新動向をMLB公式が詳報",
-        "slug": "pirates-pitching-coach-bill-murphy-reflects-on-2026-season",
-        "url": "https://www.mlb.com/news/pirates-pitching-coach-bill-murphy-reflects-on-2026-season",
-        "contentDate": "2026-11-06T15:38:58.756Z",
-        "teamIds": [
-            134
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
