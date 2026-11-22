@@ -2,6 +2,90 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Want the nastiest pitches? Sign these free agents",
+        "summaryJa": "T.スクーバルの移籍・契約に関する最新情報",
+        "slug": "the-best-pitches-on-the-2026-27-free-agent-market",
+        "url": "https://www.mlb.com/news/the-best-pitches-on-the-2026-27-free-agent-market",
+        "contentDate": "2026-11-22T02:41:07.043Z",
+        "teamIds": [],
+        "playerIds": [
+            669373,
+            670970,
+            650633,
+            656492,
+            595345,
+            647336,
+            592332,
+            605280
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "savant",
+            "rumors"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "Which version of these top free agents will their next teams be getting?",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "mlb-free-agents-in-2026-2027-class-who-are-toughest-to-project",
+        "url": "https://www.mlb.com/news/mlb-free-agents-in-2026-2027-class-who-are-toughest-to-project",
+        "contentDate": "2026-11-22T02:40:48.176Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "rumors",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "Skubal changed after entering Dodgers pitching lab — here’s how",
+        "summaryJa": "T.スクーバルの移籍・契約に関する最新情報",
+        "slug": "tarik-skubal-changes-after-dodgers-trade",
+        "url": "https://www.mlb.com/news/tarik-skubal-changes-after-dodgers-trade",
+        "contentDate": "2026-11-22T01:04:00Z",
+        "teamIds": [],
+        "playerIds": [
+            669373
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "savant",
+            "rumors"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "These 3 pitches hold the key for free agent Trevor Rogers",
+        "summaryJa": "T.ロジャースの最新動向をMLB公式が詳報",
+        "slug": "trevor-rogers-keys-to-success-in-2027",
+        "url": "https://www.mlb.com/news/trevor-rogers-keys-to-success-in-2027",
+        "contentDate": "2026-11-22T01:03:59.593Z",
+        "teamIds": [],
+        "playerIds": [
+            669432
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "savant",
+            "player-tracking"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
         "headline": "Might LA deal Teo to give De Paula a longer look in '27?",
         "summaryJa": "T.ヘルナンデス（LAD）の移籍・契約に関する最新情報",
         "slug": "josue-de-paula-arrival-creates-left-field-question-for-dodgers-with-teoscar-hernandez",
@@ -73,6 +157,7 @@
             "savant"
         ],
         "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
@@ -121,22 +206,6 @@
         ]
     },
     {
-        "headline": "The earliest MLB contract extensions",
-        "summaryJa": "MLBの最新情報の移籍・契約に関する最新情報",
-        "slug": "earliest-contract-extensions-in-mlb-history-c269677352",
-        "url": "https://www.mlb.com/news/earliest-contract-extensions-in-mlb-history-c269677352",
-        "contentDate": "2026-11-21T18:36:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "rankings"
-        ],
-        "sourceScopes": [
-            "MLB"
-        ]
-    },
-    {
         "headline": "These ranked prospects got 40-man roster spots",
         "summaryJa": "MLBの最新情報ら注目選手の最新動向",
         "slug": "rule-5-draft-prospects-protected-on-40-man-roster-2026",
@@ -152,6 +221,23 @@
         ],
         "sourceScopes": [
             "球団公式"
+        ]
+    },
+    {
+        "headline": "Ohtani, Alvarez and Contreras lead 2026 All-World Team",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "2026-mlb-all-world-team",
+        "url": "https://www.mlb.com/news/2026-mlb-all-world-team",
+        "contentDate": "2026-11-21T16:14:17.993Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "world-baseball-classic",
+            "mlb-international"
+        ],
+        "sourceScopes": [
+            "MLB"
         ]
     },
     {
@@ -191,6 +277,7 @@
             "apple-news"
         ],
         "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
@@ -245,6 +332,7 @@
         "gamePks": [],
         "taxonomy": [],
         "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
@@ -263,6 +351,7 @@
             "apple-news"
         ],
         "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
@@ -288,6 +377,7 @@
             "apple-news"
         ],
         "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
@@ -309,26 +399,6 @@
         ],
         "sourceScopes": [
             "球団公式"
-        ]
-    },
-    {
-        "headline": "Skubal changed after entering Dodgers pitching lab — here’s how",
-        "summaryJa": "T.スクーバルの移籍・契約に関する最新情報",
-        "slug": "tarik-skubal-changes-after-dodgers-trade",
-        "url": "https://www.mlb.com/news/tarik-skubal-changes-after-dodgers-trade",
-        "contentDate": "2026-11-21T03:11:00Z",
-        "teamIds": [],
-        "playerIds": [
-            669373
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "savant",
-            "rumors"
-        ],
-        "sourceScopes": [
-            "MLB"
         ]
     },
     {
@@ -1057,7 +1127,6 @@
             "transactions"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1080,7 +1149,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1191,23 +1259,6 @@
         ]
     },
     {
-        "headline": "Hot Stove Rumors: Skubal, Mets, King, Peralta, Braves, Pivetta",
-        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
-        "slug": "mlb-rumors-and-2026-27-free-agent-news-november-20",
-        "url": "https://www.mlb.com/news/mlb-rumors-and-2026-27-free-agent-news-november-20",
-        "contentDate": "2026-11-20T21:39:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "rumors"
-        ],
-        "sourceScopes": [
-            "MLB"
-        ]
-    },
-    {
         "headline": "Mets reportedly offer Skubal 9-year deal",
         "summaryJa": "T.スクーバルの移籍・契約に関する最新情報",
         "slug": "tarik-skubal-rumors",
@@ -1302,29 +1353,6 @@
         ]
     },
     {
-        "headline": "2 postseason contenders need to rebuild an entire rotation. Here’s how to do it",
-        "summaryJa": "T.スクーバル（CHC）を巡る注目点をMLB公式が分析",
-        "slug": "cubs-padres-need-starting-pitching-after-postseason-appearances",
-        "url": "https://www.mlb.com/news/cubs-padres-need-starting-pitching-after-postseason-appearances",
-        "contentDate": "2026-11-20T19:15:00Z",
-        "teamIds": [
-            112,
-            135
-        ],
-        "playerIds": [
-            669373,
-            650633,
-            684007
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB"
-        ]
-    },
-    {
         "headline": "Goodman has surgery on non-throwing shoulder, expected to be ready for '27 opener",
         "summaryJa": "H.グッドマン（COL）の最新動向をMLB公式が詳報",
         "slug": "hunter-goodman-left-shoulder-surgery",
@@ -1346,24 +1374,6 @@
         ]
     },
     {
-        "headline": "Inbox: Where would Fall League standouts rank on the next Top 100 list?",
-        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
-        "slug": "pipeline-inbox-where-would-the-cardinals-tai-peete-rank-post-arizona-fall-league",
-        "url": "https://www.mlb.com/news/pipeline-inbox-where-would-the-cardinals-tai-peete-rank-post-arizona-fall-league",
-        "contentDate": "2026-11-20T17:10:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "mlb-top-prospects",
-            "apple-news",
-            "arizona-fall-league"
-        ],
-        "sourceScopes": [
-            "MLB"
-        ]
-    },
-    {
         "headline": "Loáisiga reunites with Yankees on 2-year deal (source)",
         "summaryJa": "J.ロアイシガ（NYY）の移籍・契約に関する最新情報",
         "slug": "jonathan-loaisiga-yankees-contract-2026",
@@ -1381,27 +1391,7 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
-        ]
-    },
-    {
-        "headline": "Have you ever noticed the hidden details in these 9 Minor League logos?",
-        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
-        "slug": "hidden-details-in-milb-team-logos",
-        "url": "https://www.mlb.com/news/hidden-details-in-milb-team-logos",
-        "contentDate": "2026-11-20T15:28:04.92Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "minor-league-baseball",
-            "baseball-traveler",
-            "apple-news",
-            "offbeat"
-        ],
-        "sourceScopes": [
-            "MLB"
         ]
     },
     {
@@ -2196,23 +2186,6 @@
         ],
         "sourceScopes": [
             "球団公式"
-        ]
-    },
-    {
-        "headline": "After challenging rookie campaign, Canady excited for 2nd season in AUSL",
-        "summaryJa": "MLBの最新情報、記録達成の最新情報",
-        "slug": "nijaree-canady-excited-for-second-season-in-ausl",
-        "url": "https://www.mlb.com/news/nijaree-canady-excited-for-second-season-in-ausl",
-        "contentDate": "2026-11-19T03:01:26.241Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "athletes-unlimited-softball-league"
-        ],
-        "sourceScopes": [
-            "MLB"
         ]
     },
     {
