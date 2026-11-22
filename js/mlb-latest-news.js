@@ -2,6 +2,61 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Might LA deal Teo to give De Paula a longer look in '27?",
+        "summaryJa": "T.ヘルナンデス（LAD）の移籍・契約に関する最新情報",
+        "slug": "josue-de-paula-arrival-creates-left-field-question-for-dodgers-with-teoscar-hernandez",
+        "url": "https://www.mlb.com/news/josue-de-paula-arrival-creates-left-field-question-for-dodgers-with-teoscar-hernandez",
+        "contentDate": "2026-11-21T23:34:13.957Z",
+        "teamIds": [
+            119
+        ],
+        "playerIds": [
+            606192,
+            800543
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "The latest MLB rumors and free-agent news",
+        "summaryJa": "MLBの最新情報の移籍・契約に関する最新情報",
+        "slug": "mlb-rumors-trades-and-signings",
+        "url": "https://www.mlb.com/news/mlb-rumors-trades-and-signings",
+        "contentDate": "2026-11-21T21:38:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "rumors"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "Hot Stove Rumors: Webb, Peralta, Mets, Yankees, Cubs, White Sox",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "mlb-rumors-and-2026-27-free-agent-news-november-21",
+        "url": "https://www.mlb.com/news/mlb-rumors-and-2026-27-free-agent-news-november-21",
+        "contentDate": "2026-11-21T20:52:22.741Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "rumors",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
         "headline": "What the Padres' improved infield defense might mean for their offseason",
         "summaryJa": "パドレスの最新動向をMLB公式が詳報",
         "slug": "is-the-padres-improved-infield-defense-sustainable",
@@ -155,22 +210,6 @@
         "taxonomy": [],
         "sourceScopes": [
             "球団公式"
-        ]
-    },
-    {
-        "headline": "The latest MLB rumors and free-agent news",
-        "summaryJa": "MLBの最新情報の移籍・契約に関する最新情報",
-        "slug": "mlb-rumors-trades-and-signings",
-        "url": "https://www.mlb.com/news/mlb-rumors-trades-and-signings",
-        "contentDate": "2026-11-21T14:27:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "rumors"
-        ],
-        "sourceScopes": [
-            "MLB"
         ]
     },
     {
@@ -1127,7 +1166,6 @@
             "trades"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1576,7 +1614,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -7731,28 +7768,6 @@
         "playerIds": [],
         "gamePks": [],
         "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Relearning 2B in Fall League can only benefit this Dodgers outfield prospect",
-        "summaryJa": "Charles Davalan（LAD）ら注目選手の最新動向",
-        "slug": "charles-davalan-second-base-arizona-fall-league",
-        "url": "https://www.mlb.com/news/charles-davalan-second-base-arizona-fall-league",
-        "contentDate": "2026-11-09T20:00:00Z",
-        "teamIds": [
-            119
-        ],
-        "playerIds": [
-            804560
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "arizona-fall-league",
-            "mlb-top-prospects",
             "apple-news"
         ],
         "sourceScopes": [
