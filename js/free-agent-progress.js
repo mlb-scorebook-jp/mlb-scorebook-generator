@@ -1,6 +1,15 @@
 // MLB・各球団の公式記事から自動生成するFA進捗データ。
 (function (global) {
     global.MLB_FREE_AGENT_PROGRESS = Object.freeze({
+        502671: Object.freeze({
+                "agreement": {
+                    "teamId": 121,
+                    "date": "2026-11-23",
+                    "url": "https://www.mlb.com/news/paul-goldschmidt-mets-contract",
+                    "reported": true,
+                    "source": "MLB/球団公式記事"
+                }
+            }),
         641343: Object.freeze({
                 "agreement": {
                     "teamId": 111,
