@@ -1535,6 +1535,11 @@
                     "tenThousands": 1800
                 },
                 {
+                    "name": "Luis Gil",
+                    "years": 1,
+                    "tenThousands": 230
+                },
+                {
                     "name": "Ryan Jeffers",
                     "years": 1,
                     "tenThousands": 2315
@@ -1548,6 +1553,11 @@
                     "name": "Sonny Gray",
                     "years": 2,
                     "tenThousands": 5500
+                },
+                {
+                    "name": "Tarik Skubal",
+                    "years": 9,
+                    "tenThousands": 45000
                 },
                 {
                     "name": "Tim Hill",
