@@ -2,6 +2,43 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Examining Dodgers' rotation options after not re-signing Skubal",
+        "summaryJa": "ドジャースの移籍・契約に関する最新情報",
+        "slug": "dodgers-rotation-plans-without-tarik-skubal",
+        "url": "https://www.mlb.com/news/dodgers-rotation-plans-without-tarik-skubal",
+        "contentDate": "2026-11-23T02:31:27.102Z",
+        "teamIds": [
+            119
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "rumors"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "1 team at each position most in need of an upgrade for 2027",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "mlb-teams-that-need-to-make-an-offseason-upgrade-2026-27",
+        "url": "https://www.mlb.com/news/mlb-teams-that-need-to-make-an-offseason-upgrade-2026-27",
+        "contentDate": "2026-11-23T02:28:44.759Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "rumors",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
         "headline": "Rotation a 'blank canvas,' here are SD's options with Skubal no longer in play",
         "summaryJa": "パドレスの最新動向をMLB公式が詳報",
         "slug": "padres-starting-pitching-plans-after-missing-out-on-tarik-skubal",
@@ -511,7 +548,6 @@
             "savant"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -609,7 +645,6 @@
             "baseball-hall-of-fame"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -7785,28 +7820,6 @@
         "playerIds": [],
         "gamePks": [],
         "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Relearning 2B in Fall League can only benefit this Dodgers outfield prospect",
-        "summaryJa": "Charles Davalan（LAD）ら注目選手の最新動向",
-        "slug": "charles-davalan-second-base-arizona-fall-league",
-        "url": "https://www.mlb.com/news/charles-davalan-second-base-arizona-fall-league",
-        "contentDate": "2026-11-09T20:00:00Z",
-        "teamIds": [
-            119
-        ],
-        "playerIds": [
-            804560
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "arizona-fall-league",
-            "mlb-top-prospects",
             "apple-news"
         ],
         "sourceScopes": [
