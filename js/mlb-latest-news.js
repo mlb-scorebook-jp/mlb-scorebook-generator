@@ -2,6 +2,269 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Rotation a 'blank canvas,' here are SD's options with Skubal no longer in play",
+        "summaryJa": "パドレスの最新動向をMLB公式が詳報",
+        "slug": "padres-starting-pitching-plans-after-missing-out-on-tarik-skubal",
+        "url": "https://www.mlb.com/news/padres-starting-pitching-plans-after-missing-out-on-tarik-skubal",
+        "contentDate": "2026-11-23T01:18:53.538Z",
+        "teamIds": [
+            135
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "rumors",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "With Skubal off the market, will it open free-agent floodgates?",
+        "summaryJa": "MLBの最新情報の移籍・契約に関する最新情報",
+        "slug": "what-tarik-skubal-deal-means-for-free-agent-market",
+        "url": "https://www.mlb.com/news/what-tarik-skubal-deal-means-for-free-agent-market",
+        "contentDate": "2026-11-23T00:51:30.167Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "Mets make the big splash, agree with Skubal for 9 years, $450M (sources)",
+        "summaryJa": "T.スクーバル（NYM）の移籍・契約に関する最新情報",
+        "slug": "tarik-skubal-mets-contract",
+        "url": "https://www.mlb.com/news/tarik-skubal-mets-contract",
+        "contentDate": "2026-11-23T00:27:00Z",
+        "teamIds": [
+            121
+        ],
+        "playerIds": [
+            669373
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "transactions"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "These 7 teams have the prospects to swing a big trade this offseason",
+        "summaryJa": "MLBの最新情報の移籍・契約に関する最新情報",
+        "slug": "mlb-teams-with-prospects-to-trade-offseason-2026",
+        "url": "https://www.mlb.com/news/mlb-teams-with-prospects-to-trade-offseason-2026",
+        "contentDate": "2026-11-23T00:24:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "mlb-top-prospects"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "5 immediate takeaways from Skubal's deal with Mets",
+        "summaryJa": "T.スクーバルの移籍・契約に関する最新情報",
+        "slug": "takeaways-tarik-skubal-mets-contract",
+        "url": "https://www.mlb.com/news/takeaways-tarik-skubal-mets-contract",
+        "contentDate": "2026-11-23T00:19:41.753Z",
+        "teamIds": [],
+        "playerIds": [
+            669373
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "Servais joins Rockies as senior director of baseball operations",
+        "summaryJa": "ロッキーズ、復帰へ向けた最新状況",
+        "slug": "scott-servais-returns-to-rockies-front-office",
+        "url": "https://www.mlb.com/news/scott-servais-returns-to-rockies-front-office",
+        "contentDate": "2026-11-23T00:10:00Z",
+        "teamIds": [
+            115
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Mets got the biggest prize in Skubal ... but they may be just getting started",
+        "summaryJa": "T.スクーバル（NYM）の移籍・契約に関する最新情報",
+        "slug": "how-tarik-skubal-deal-affects-mets-offseason-plans",
+        "url": "https://www.mlb.com/news/how-tarik-skubal-deal-affects-mets-offseason-plans",
+        "contentDate": "2026-11-22T23:59:02.372Z",
+        "teamIds": [
+            121
+        ],
+        "playerIds": [
+            669373
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "transactions"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Will Padres finally leapfrog Dodgers for NL West crown in '27?",
+        "summaryJa": "F.タティース Jr.（SD）、勝利を呼び込む活躍",
+        "slug": "will-padres-overtake-dodgers-to-win-nl-west-2027",
+        "url": "https://www.mlb.com/news/will-padres-overtake-dodgers-to-win-nl-west-2027",
+        "contentDate": "2026-11-22T23:48:00Z",
+        "teamIds": [
+            135,
+            119
+        ],
+        "playerIds": [
+            665487,
+            592518,
+            701538,
+            593428,
+            650633,
+            518692,
+            605141,
+            660271,
+            669373,
+            808967,
+            605483,
+            607192
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "How can Scott get even better for Mets?",
+        "summaryJa": "C.スコット（NYM）を巡る注目点をMLB公式が分析",
+        "slug": "christian-scott-outlook-for-mets-in-2027",
+        "url": "https://www.mlb.com/news/christian-scott-outlook-for-mets-in-2027",
+        "contentDate": "2026-11-22T23:45:00Z",
+        "teamIds": [
+            121
+        ],
+        "playerIds": [
+            681035
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "player-tracking"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "How will Skubal fare in his 30s with Mets?",
+        "summaryJa": "T.スクーバルの移籍・契約に関する最新情報",
+        "slug": "tarik-skubal-projection-scenarios-for-free-agent-deal",
+        "url": "https://www.mlb.com/news/tarik-skubal-projection-scenarios-for-free-agent-deal",
+        "contentDate": "2026-11-22T22:30:00Z",
+        "teamIds": [],
+        "playerIds": [
+            669373
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "rumors"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "Here are the largest free-agent contracts in MLB history",
+        "summaryJa": "MLBの最新情報の移籍・契約に関する最新情報",
+        "slug": "largest-contracts-in-mlb-history-c300060780",
+        "url": "https://www.mlb.com/news/largest-contracts-in-mlb-history-c300060780",
+        "contentDate": "2026-11-22T22:28:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "evergreen",
+            "rankings",
+            "rumors"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "Skubal changed after ‘Skubal Scope,’ pitching lab — here’s how",
+        "summaryJa": "T.スクーバルの移籍・契約に関する最新情報",
+        "slug": "tarik-skubal-changes-after-dodgers-trade",
+        "url": "https://www.mlb.com/news/tarik-skubal-changes-after-dodgers-trade",
+        "contentDate": "2026-11-22T22:28:00Z",
+        "teamIds": [],
+        "playerIds": [
+            669373
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "savant",
+            "rumors"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "The latest MLB rumors and free-agent news",
+        "summaryJa": "MLBの最新情報の移籍・契約に関する最新情報",
+        "slug": "mlb-rumors-trades-and-signings",
+        "url": "https://www.mlb.com/news/mlb-rumors-trades-and-signings",
+        "contentDate": "2026-11-22T22:13:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "rumors"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
         "headline": "Former ROY Gil agrees to 1-year deal with Tigers (source)",
         "summaryJa": "L.ヒル（DET）の移籍・契約に関する最新情報",
         "slug": "luis-gil-tigers-deal",
@@ -41,6 +304,7 @@
             "savant"
         ],
         "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
@@ -61,6 +325,7 @@
             "apple-news"
         ],
         "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
@@ -102,6 +367,7 @@
             "apple-news"
         ],
         "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
@@ -120,6 +386,7 @@
         "gamePks": [],
         "taxonomy": [],
         "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
@@ -146,42 +413,8 @@
             "apple-news"
         ],
         "sourceScopes": [
+            "MLB",
             "球団公式"
-        ]
-    },
-    {
-        "headline": "The latest MLB rumors and free-agent news",
-        "summaryJa": "MLBの最新情報の移籍・契約に関する最新情報",
-        "slug": "mlb-rumors-trades-and-signings",
-        "url": "https://www.mlb.com/news/mlb-rumors-trades-and-signings",
-        "contentDate": "2026-11-22T18:06:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "rumors"
-        ],
-        "sourceScopes": [
-            "MLB"
-        ]
-    },
-    {
-        "headline": "Skubal finished meeting with clubs; decision expected before Dec. 1",
-        "summaryJa": "T.スクーバルの最新動向をMLB公式が詳報",
-        "slug": "tarik-skubal-negotiations-update",
-        "url": "https://www.mlb.com/news/tarik-skubal-negotiations-update",
-        "contentDate": "2026-11-22T17:47:24.836Z",
-        "teamIds": [],
-        "playerIds": [
-            669373
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "rumors"
-        ],
-        "sourceScopes": [
-            "MLB"
         ]
     },
     {
@@ -203,33 +436,6 @@
         ]
     },
     {
-        "headline": "Want the nastiest pitches? Sign these free agents",
-        "summaryJa": "T.スクーバルの移籍・契約に関する最新情報",
-        "slug": "the-best-pitches-on-the-2026-27-free-agent-market",
-        "url": "https://www.mlb.com/news/the-best-pitches-on-the-2026-27-free-agent-market",
-        "contentDate": "2026-11-22T02:41:07.043Z",
-        "teamIds": [],
-        "playerIds": [
-            669373,
-            670970,
-            650633,
-            656492,
-            595345,
-            647336,
-            592332,
-            605280
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "savant",
-            "rumors"
-        ],
-        "sourceScopes": [
-            "MLB"
-        ]
-    },
-    {
         "headline": "Which version of these top free agents will their next teams be getting?",
         "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
         "slug": "mlb-free-agents-in-2026-2027-class-who-are-toughest-to-project",
@@ -247,27 +453,7 @@
         ]
     },
     {
-        "headline": "Skubal changed after entering Dodgers pitching lab — here’s how",
-        "summaryJa": "T.スクーバルの移籍・契約に関する最新情報",
-        "slug": "tarik-skubal-changes-after-dodgers-trade",
-        "url": "https://www.mlb.com/news/tarik-skubal-changes-after-dodgers-trade",
-        "contentDate": "2026-11-22T01:04:00Z",
-        "teamIds": [],
-        "playerIds": [
-            669373
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "savant",
-            "rumors"
-        ],
-        "sourceScopes": [
-            "MLB"
-        ]
-    },
-    {
-        "headline": "A deep dive into 1 of the best free-agent starting pitchers not named Skubal",
+        "headline": "These 3 pitches hold the key for free agent Trevor Rogers",
         "summaryJa": "T.ロジャースの最新動向をMLB公式が詳報",
         "slug": "trevor-rogers-keys-to-success-in-2027",
         "url": "https://www.mlb.com/news/trevor-rogers-keys-to-success-in-2027",
@@ -306,23 +492,6 @@
         "sourceScopes": [
             "MLB",
             "球団公式"
-        ]
-    },
-    {
-        "headline": "Hot Stove Rumors: Webb, Peralta, Mets, Yankees, Cubs, White Sox",
-        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
-        "slug": "mlb-rumors-and-2026-27-free-agent-news-november-21",
-        "url": "https://www.mlb.com/news/mlb-rumors-and-2026-27-free-agent-news-november-21",
-        "contentDate": "2026-11-21T20:52:22.741Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "rumors",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB"
         ]
     },
     {
@@ -386,7 +555,6 @@
             "baseball-hall-of-fame"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -462,7 +630,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -517,7 +684,6 @@
         "gamePks": [],
         "taxonomy": [],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -562,7 +728,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -627,7 +792,6 @@
             "transactions"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -693,7 +857,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -736,7 +899,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -901,7 +1063,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1060,24 +1221,6 @@
         ]
     },
     {
-        "headline": "Complete list of non-tendered players",
-        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
-        "slug": "non-tendered-mlb-free-agents-2026-2027",
-        "url": "https://www.mlb.com/news/non-tendered-mlb-free-agents-2026-2027",
-        "contentDate": "2026-11-21T00:09:41.194Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "rumors",
-            "transactions",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB"
-        ]
-    },
-    {
         "headline": "Nardi (elbow surgery) among Marlins tendered contracts for 2027",
         "summaryJa": "A.ナーディ（MIA）の移籍・契約に関する最新情報",
         "slug": "andrew-nardi-marlins-tendered-contracts-2027",
@@ -1137,7 +1280,6 @@
             "transactions"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1375,7 +1517,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1461,20 +1602,6 @@
         ],
         "sourceScopes": [
             "球団公式"
-        ]
-    },
-    {
-        "headline": "MLB offers concession on domestic draft; MLBPA makes proposal on international players",
-        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
-        "slug": "international-draft-proposal-in-cba-negotiations",
-        "url": "https://www.mlb.com/news/international-draft-proposal-in-cba-negotiations",
-        "contentDate": "2026-11-20T21:26:42.228Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [],
-        "sourceScopes": [
-            "MLB"
         ]
     },
     {
@@ -1774,30 +1901,6 @@
         ]
     },
     {
-        "headline": "5 hitters whose underlying skills hint at a potential breakout",
-        "summaryJa": "J.スウィンスキーの最新動向をMLB公式が詳報",
-        "slug": "breakout-candidates-similar-to-jake-bauers",
-        "url": "https://www.mlb.com/news/breakout-candidates-similar-to-jake-bauers",
-        "contentDate": "2026-11-20T03:00:00Z",
-        "teamIds": [],
-        "playerIds": [
-            669261,
-            641343,
-            666211,
-            669911,
-            683146,
-            666181
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "savant",
-            "player-tracking"
-        ],
-        "sourceScopes": [
-            "MLB"
-        ]
-    },
-    {
         "headline": "With baseball clinic for youth in UK, Ford a true ambassador of the game",
         "summaryJa": "H.フォードの最新動向をMLB公式が詳報",
         "slug": "harry-ford-hosts-baseball-clinic-in-england",
@@ -1853,27 +1956,6 @@
             "mlb-top-prospects",
             "arizona-fall-league",
             "rankings"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "If Mets are to land big fish Skubal, Stearns needs to sail uncharted waters",
-        "summaryJa": "T.スクーバル（NYM）の移籍・契約に関する最新情報",
-        "slug": "tarik-skubal-long-term-contract-with-mets-likelihood",
-        "url": "https://www.mlb.com/news/tarik-skubal-long-term-contract-with-mets-likelihood",
-        "contentDate": "2026-11-19T23:27:59.235Z",
-        "teamIds": [
-            121
-        ],
-        "playerIds": [
-            669373
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "rumors"
         ],
         "sourceScopes": [
             "球団公式"
@@ -2355,23 +2437,6 @@
         ]
     },
     {
-        "headline": "After challenging rookie campaign, Canady excited for 2nd season in AUSL",
-        "summaryJa": "MLBの最新情報、記録達成の最新情報",
-        "slug": "nijaree-canady-excited-for-second-season-in-ausl",
-        "url": "https://www.mlb.com/news/nijaree-canady-excited-for-second-season-in-ausl",
-        "contentDate": "2026-11-19T03:01:26.241Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "athletes-unlimited-softball-league"
-        ],
-        "sourceScopes": [
-            "MLB"
-        ]
-    },
-    {
         "headline": "Vladdy Jr. hoping to suit up in Dominican Winter League -- if Blue Jays will let him",
         "summaryJa": "V.ゲレーロ Jr.（TOR）の最新動向をMLB公式が詳報",
         "slug": "vladimir-guerrero-jr-wants-to-play-in-dominican-winter-league",
@@ -2688,26 +2753,6 @@
             "injury",
             "transactions",
             "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Could Padres make a run at signing Skubal?",
-        "summaryJa": "T.スクーバル（SD）の移籍・契約に関する最新情報",
-        "slug": "padres-interested-in-signing-tarik-skubal",
-        "url": "https://www.mlb.com/news/padres-interested-in-signing-tarik-skubal",
-        "contentDate": "2026-11-18T19:20:07.795Z",
-        "teamIds": [
-            135
-        ],
-        "playerIds": [
-            669373
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
@@ -4332,6 +4377,29 @@
         ]
     },
     {
+        "headline": "Tolle dominated as a rookie -- could he be even better in the future?",
+        "summaryJa": "P.トーリー（BOS）を巡る注目点をMLB公式が分析",
+        "slug": "payton-tolle-2026-analysis",
+        "url": "https://www.mlb.com/news/payton-tolle-2026-analysis",
+        "contentDate": "2026-11-16T23:55:00Z",
+        "teamIds": [
+            111
+        ],
+        "playerIds": [
+            801139
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "savant",
+            "player-tracking"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Here are the Brewers' 2027 non-roster invitees",
         "summaryJa": "ブルワーズの最新動向をMLB公式が詳報",
         "slug": "brewers-2027-spring-training-non-roster-invitees",
@@ -5196,7 +5264,7 @@
         ]
     },
     {
-        "headline": "Honeycutt named Arizona Fall League Defensive Player Of The Year",
+        "headline": "O'Dowd named Arizona Fall League Breakout Player Of The Year",
         "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
         "slug": "2026-arizona-fall-league-award-winners",
         "url": "https://www.mlb.com/news/2026-arizona-fall-league-award-winners",
@@ -6423,26 +6491,6 @@
         ]
     },
     {
-        "headline": "Neander named Executive of the Year for second time",
-        "summaryJa": "レイズの最新動向をMLB公式が詳報",
-        "slug": "erik-neander-executive-of-the-year",
-        "url": "https://www.mlb.com/news/erik-neander-executive-of-the-year",
-        "contentDate": "2026-11-12T04:44:00Z",
-        "teamIds": [
-            139
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "mlb-award",
-            "executive-of-the-year"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Rays put AL-high 3 players on All-MLB Teams in Caminero, Rasmussen, Baker",
         "summaryJa": "J.キャミネロ（TB）の最新動向をMLB公式が詳報",
         "slug": "junior-caminero-drew-rasmussen-bryan-baker-2026-all-mlb",
@@ -7432,29 +7480,6 @@
         ]
     },
     {
-        "headline": "GM Meetings underway, Padres fielding calls about catching surplus",
-        "summaryJa": "L.キャンプサーノ（SD）の移籍・契約に関する最新情報",
-        "slug": "padres-receiving-trade-interest-in-catchers-at-general-managers-meetings-2026",
-        "url": "https://www.mlb.com/news/padres-receiving-trade-interest-in-catchers-at-general-managers-meetings-2026",
-        "contentDate": "2026-11-11T02:51:11.968Z",
-        "teamIds": [
-            135
-        ],
-        "playerIds": [
-            669134,
-            806956,
-            666023
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "winter-meetings"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "'Put it in bold': Anthopoulos shuts down Acuña trade rumors",
         "summaryJa": "R.アクーニャ Jr.（ATL）の移籍・契約に関する最新情報",
         "slug": "alex-anthopoulos-says-braves-won-trade-ronald-acuna-jr",
@@ -7534,67 +7559,6 @@
         ]
     },
     {
-        "headline": "Mets to meet with Skubal next week as Stearns says 'no question' team will add pitching",
-        "summaryJa": "T.スクーバル（NYM）の最新動向をMLB公式が詳報",
-        "slug": "tarik-skubal-mets-meeting",
-        "url": "https://www.mlb.com/news/tarik-skubal-mets-meeting",
-        "contentDate": "2026-11-11T01:41:00Z",
-        "teamIds": [
-            121
-        ],
-        "playerIds": [
-            669373
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "rumors",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Dodgers confirm pursuit of Skubal reunion this offseason",
-        "summaryJa": "T.スクーバル（LAD）の最新動向をMLB公式が詳報",
-        "slug": "dodgers-tarik-skubal-free-agency-2026-general-managers-meetings",
-        "url": "https://www.mlb.com/news/dodgers-tarik-skubal-free-agency-2026-general-managers-meetings",
-        "contentDate": "2026-11-11T01:30:34.048Z",
-        "teamIds": [
-            119
-        ],
-        "playerIds": [
-            669373
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Tracy finishes 3rd for AL Manager of the Year Award",
-        "summaryJa": "レッドソックス、記録達成の最新情報",
-        "slug": "chad-tracy-third-place-al-manager-of-the-year-2026",
-        "url": "https://www.mlb.com/news/chad-tracy-third-place-al-manager-of-the-year-2026",
-        "contentDate": "2026-11-11T01:07:00Z",
-        "teamIds": [
-            111
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "manager-of-the-year",
-            "awards-watch",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Mozeliak happy to assist Angels' new ownership in GM search, offseason",
         "summaryJa": "エンゼルスの最新動向をMLB公式が詳報",
         "slug": "john-mozeliak-talks-angels-new-ownership-plans-at-gm-meetings",
@@ -7648,24 +7612,6 @@
         "taxonomy": [
             "awards-watch",
             "rookie-of-the-year",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "These under-the-radar prospects are standing out in the Arizona Fall League",
-        "summaryJa": "MLBの最新情報ら注目選手の最新動向",
-        "slug": "sleeper-prospects-in-arizona-fall-league-2026",
-        "url": "https://www.mlb.com/news/sleeper-prospects-in-arizona-fall-league-2026",
-        "contentDate": "2026-11-10T18:47:25.853Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "arizona-fall-league",
-            "mlb-top-prospects",
             "apple-news"
         ],
         "sourceScopes": [
@@ -7766,27 +7712,6 @@
         ]
     },
     {
-        "headline": "Cards' Bernal gets back into the swing of things with a grand slam in winter ball",
-        "summaryJa": "L.バナール（STL）、本塁打で存在感",
-        "slug": "cardinals-leo-bernal-hits-grand-slam-in-winter-ball",
-        "url": "https://www.mlb.com/news/cardinals-leo-bernal-hits-grand-slam-in-winter-ball",
-        "contentDate": "2026-11-10T02:49:48.831Z",
-        "teamIds": [
-            138
-        ],
-        "playerIds": [
-            699024
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "mlb-top-prospects"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Breakout '26 nets Wetherholt 3rd-place finish in NL Rookie of the Year voting",
         "summaryJa": "J.ウェザーホルト（STL）、記録達成の最新情報",
         "slug": "jj-wetherholt-third-nl-rookie-of-the-year-award-2026",
@@ -7867,6 +7792,28 @@
         ]
     },
     {
+        "headline": "Relearning 2B in Fall League can only benefit this Dodgers outfield prospect",
+        "summaryJa": "Charles Davalan（LAD）ら注目選手の最新動向",
+        "slug": "charles-davalan-second-base-arizona-fall-league",
+        "url": "https://www.mlb.com/news/charles-davalan-second-base-arizona-fall-league",
+        "contentDate": "2026-11-09T20:00:00Z",
+        "teamIds": [
+            119
+        ],
+        "playerIds": [
+            804560
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "arizona-fall-league",
+            "mlb-top-prospects",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Why Plaz, after a strong 2026, has a chance to be ‘special’",
         "summaryJa": "パイレーツを巡る注目点をMLB公式が分析",
         "slug": "why-axiel-plaz-after-a-strong-2026-has-a-chance-to-be-special",
@@ -7939,27 +7886,6 @@
         ]
     },
     {
-        "headline": "DeLauter's durability keys standout 2026, Silver Slugger nomination",
-        "summaryJa": "C.デローター（CLE）の最新動向をMLB公式が詳報",
-        "slug": "chase-delauter-silver-slugger-award-nomination-follows-durable-season",
-        "url": "https://www.mlb.com/news/chase-delauter-silver-slugger-award-nomination-follows-durable-season",
-        "contentDate": "2026-11-09T14:28:42.032Z",
-        "teamIds": [
-            114
-        ],
-        "playerIds": [
-            800050
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "silver-slugger-award"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "How will Twins sort out outfield with plethora of options?",
         "summaryJa": "ツインズを巡る注目点をMLB公式が分析",
         "slug": "twins-outfield-outlook-for-2027-season",
@@ -7985,6 +7911,31 @@
         "contentDate": "2026-11-09T06:59:00Z",
         "teamIds": [],
         "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "arizona-fall-league",
+            "mlb-top-prospects",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "DeBarge among AFL Fall Stars Game top performers",
+        "summaryJa": "J.スサーナの最新動向をMLB公式が詳報",
+        "slug": "afl-fall-stars-game-2026-top-performers",
+        "url": "https://www.mlb.com/news/afl-fall-stars-game-2026-top-performers",
+        "contentDate": "2026-11-09T06:18:00Z",
+        "teamIds": [],
+        "playerIds": [
+            703186,
+            814414,
+            806988,
+            695494,
+            691398,
+            803183
+        ],
         "gamePks": [],
         "taxonomy": [
             "arizona-fall-league",
@@ -8028,45 +7979,6 @@
             "mlb-top-prospects",
             "apple-news",
             "arizona-fall-league"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Here are the rosters for Sunday's AFL Fall Stars Game",
-        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
-        "slug": "2026-arizona-fall-league-fall-stars-game-rosters",
-        "url": "https://www.mlb.com/news/2026-arizona-fall-league-fall-stars-game-rosters",
-        "contentDate": "2026-11-08T05:14:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "mlb-top-prospects",
-            "apple-news",
-            "arizona-fall-league"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "How much do the Dodgers need to re-sign Skubal?",
-        "summaryJa": "T.スクーバル（LAD）の移籍・契約に関する最新情報",
-        "slug": "is-signing-tarik-skubal-vital-for-the-dodgers",
-        "url": "https://www.mlb.com/news/is-signing-tarik-skubal-vital-for-the-dodgers",
-        "contentDate": "2026-11-08T02:06:56.236Z",
-        "teamIds": [
-            119
-        ],
-        "playerIds": [
-            669373
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "rumors"
         ],
         "sourceScopes": [
             "球団公式"
@@ -8250,23 +8162,6 @@
         "playerIds": [],
         "gamePks": [],
         "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "NL batting champ Moreno, Carroll nominated for Silver Slugger",
-        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
-        "slug": "2026-silver-slugger-award-finalists",
-        "url": "https://www.mlb.com/news/2026-silver-slugger-award-finalists",
-        "contentDate": "2026-11-05T16:13:03.725Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "silver-slugger-award",
             "apple-news"
         ],
         "sourceScopes": [
@@ -8497,6 +8392,27 @@
         ]
     },
     {
+        "headline": "Alderson one of 8 nominees up for Hall on Contemporary Baseball Era Ballot",
+        "summaryJa": "D.ベイカー Jr.の最新動向をMLB公式が詳報",
+        "slug": "hall-of-fame-2026-contemporary-baseball-era-ballot-nominees",
+        "url": "https://www.mlb.com/news/hall-of-fame-2026-contemporary-baseball-era-ballot-nominees",
+        "contentDate": "2026-11-02T16:03:28.616Z",
+        "teamIds": [],
+        "playerIds": [
+            110481,
+            111136,
+            120586
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "baseball-hall-of-fame",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "D-backs' big offseason question: What to do with Marte?",
         "summaryJa": "K.マーテイ（AZ）の最新動向をMLB公式が詳報",
         "slug": "d-backs-have-decision-to-make-with-ketel-marte",
@@ -8511,6 +8427,27 @@
         "gamePks": [],
         "taxonomy": [
             "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "The Solution is golden! Duran wins first Gold Glove",
+        "summaryJa": "E.デュラン（TEX）、勝利を呼び込む活躍",
+        "slug": "ezequiel-duran-wins-2026-gold-glove-award",
+        "url": "https://www.mlb.com/news/ezequiel-duran-wins-2026-gold-glove-award",
+        "contentDate": "2026-11-02T03:03:29.136Z",
+        "teamIds": [
+            140
+        ],
+        "playerIds": [
+            677649
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "gold-glove-award"
         ],
         "sourceScopes": [
             "球団公式"
