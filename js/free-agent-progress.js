@@ -94,6 +94,15 @@
                     "verified": true
                 }
             }),
+        673490: Object.freeze({
+                "agreement": {
+                    "teamId": 116,
+                    "date": "2026-11-24",
+                    "url": "https://www.mlb.com/news/ha-seong-kim-tigers-contract",
+                    "reported": true,
+                    "source": "MLB/球団公式記事"
+                }
+            }),
         673548: Object.freeze({
                 "qualifyingOffer": {
                     "date": "2026-11-17",
