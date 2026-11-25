@@ -46,6 +46,17 @@
                     "verified": true
                 }
             }),
+        664761: Object.freeze({
+                "agreement": {
+                    "teamId": 118,
+                    "date": "2026-11-25",
+                    "years": 2,
+                    "tenThousands": 2000,
+                    "url": "https://www.mlb.com/news/alec-bohm-royals-contract",
+                    "reported": true,
+                    "source": "MLB/球団公式記事"
+                }
+            }),
         668227: Object.freeze({
                 "qualifyingOffer": {
                     "date": "2026-11-17",
