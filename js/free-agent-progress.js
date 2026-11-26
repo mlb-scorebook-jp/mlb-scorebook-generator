@@ -10,6 +10,15 @@
                     "source": "MLB/球団公式記事"
                 }
             }),
+        592332: Object.freeze({
+                "agreement": {
+                    "teamId": 116,
+                    "date": "2026-11-25",
+                    "url": "https://www.mlb.com/news/kevin-gausman-tigers-deal",
+                    "reported": true,
+                    "source": "MLB/球団公式記事"
+                }
+            }),
         641343: Object.freeze({
                 "agreement": {
                     "teamId": 111,
