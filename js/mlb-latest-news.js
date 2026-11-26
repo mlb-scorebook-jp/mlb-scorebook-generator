@@ -2,16 +2,105 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
-        "headline": "Reliever Puk heading to Nationals on 1-year deal (source)",
+        "headline": "From 17 to 25, here is the best prospect at each age",
+        "summaryJa": "L.ヘルナンデスら注目選手の最新動向",
+        "slug": "best-mlb-prospects-by-age-2026",
+        "url": "https://www.mlb.com/news/best-mlb-prospects-by-age-2026",
+        "contentDate": "2026-11-26T21:24:42.651Z",
+        "teamIds": [],
+        "playerIds": [
+            836582,
+            816113,
+            815908,
+            806964,
+            808265,
+            807739,
+            701527,
+            815589,
+            689196
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "mlb-top-prospects"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "Loáisiga reunites with Yankees on 2-year deal",
+        "summaryJa": "J.ロアイシガ（NYY）の移籍・契約に関する最新情報",
+        "slug": "jonathan-loaisiga-yankees-contract-2026",
+        "url": "https://www.mlb.com/news/jonathan-loaisiga-yankees-contract-2026",
+        "contentDate": "2026-11-26T19:07:00Z",
+        "teamIds": [
+            147
+        ],
+        "playerIds": [
+            642528
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "transactions",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "A Thanksgiving dinner made entirely of Minor League logos? Dig in!",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "thanksgiving-dinner-made-of-minor-league-logos",
+        "url": "https://www.mlb.com/news/thanksgiving-dinner-made-of-minor-league-logos",
+        "contentDate": "2026-11-26T17:24:03.578Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "minor-league-baseball",
+            "offbeat",
+            "apple-news",
+            "baseball-traveler"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "Reliever Puk heading to Nationals on 1-year deal",
         "summaryJa": "A.パック（WSH）の移籍・契約に関する最新情報",
         "slug": "a-j-puk-contract-nationals",
         "url": "https://www.mlb.com/news/a-j-puk-contract-nationals",
-        "contentDate": "2026-11-26T05:21:00Z",
+        "contentDate": "2026-11-26T16:52:00Z",
         "teamIds": [
             120
         ],
         "playerIds": [
             640462
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "transactions"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Veteran backstop Sánchez joining Marlins on 1-year contract (sources)",
+        "summaryJa": "G.サンチェス（MIA）の移籍・契約に関する最新情報",
+        "slug": "gary-sanchez-marlins-contract",
+        "url": "https://www.mlb.com/news/gary-sanchez-marlins-contract",
+        "contentDate": "2026-11-26T14:49:00Z",
+        "teamIds": [
+            146
+        ],
+        "playerIds": [
+            596142
         ],
         "gamePks": [],
         "taxonomy": [
@@ -229,28 +318,6 @@
         ]
     },
     {
-        "headline": "Veteran backstop Sánchez joining Marlins on 1-year contract (sources)",
-        "summaryJa": "G.サンチェス（MIA）の移籍・契約に関する最新情報",
-        "slug": "gary-sanchez-marlins-contract",
-        "url": "https://www.mlb.com/news/gary-sanchez-marlins-contract",
-        "contentDate": "2026-11-26T00:29:00Z",
-        "teamIds": [
-            146
-        ],
-        "playerIds": [
-            596142
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "transactions"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Mets make the big splash, sign Skubal for 9 years, $450M",
         "summaryJa": "T.スクーバル（NYM）の移籍・契約に関する最新情報",
         "slug": "tarik-skubal-mets-contract",
@@ -442,7 +509,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1035,7 +1101,7 @@
         ]
     },
     {
-        "headline": "Who are the best hitters 25 and under? Check out our lineup",
+        "headline": "Let's build a lineup of MLB's best 25-and-under stars",
         "summaryJa": "C.ジェンセンの最新動向をMLB公式が詳報",
         "slug": "best-players-in-mlb-25-and-under-heading-into-2027",
         "url": "https://www.mlb.com/news/best-players-in-mlb-25-and-under-heading-into-2027",
@@ -1057,7 +1123,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -3595,27 +3660,6 @@
         "taxonomy": [
             "apple-news",
             "injury"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Loáisiga reunites with Yankees on 2-year deal (source)",
-        "summaryJa": "J.ロアイシガ（NYY）の移籍・契約に関する最新情報",
-        "slug": "jonathan-loaisiga-yankees-contract-2026",
-        "url": "https://www.mlb.com/news/jonathan-loaisiga-yankees-contract-2026",
-        "contentDate": "2026-11-20T16:14:00Z",
-        "teamIds": [
-            147
-        ],
-        "playerIds": [
-            642528
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "transactions",
-            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
