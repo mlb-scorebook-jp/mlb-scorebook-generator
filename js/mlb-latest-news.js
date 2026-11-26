@@ -2,6 +2,28 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Reliever Puk heading to Nationals on 1-year deal (source)",
+        "summaryJa": "A.パック（WSH）の移籍・契約に関する最新情報",
+        "slug": "a-j-puk-contract-nationals",
+        "url": "https://www.mlb.com/news/a-j-puk-contract-nationals",
+        "contentDate": "2026-11-26T05:21:00Z",
+        "teamIds": [
+            120
+        ],
+        "playerIds": [
+            640462
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "transactions"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "26 things Sarah Langs is thankful for from the 2026 baseball season (which was the best!)",
         "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
         "slug": "things-to-be-thankful-for-from-2026-mlb-season",
@@ -361,7 +383,6 @@
             "player-tracking"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -6913,24 +6934,6 @@
         "taxonomy": [
             "apple-news",
             "gm-meetings"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Improving 'pen a top priority for Nationals. How might they do that?",
-        "summaryJa": "ナショナルズを巡る注目点をMLB公式が分析",
-        "slug": "nationals-looking-to-improve-bullpen-after-2026",
-        "url": "https://www.mlb.com/news/nationals-looking-to-improve-bullpen-after-2026",
-        "contentDate": "2026-11-14T14:58:44.455Z",
-        "teamIds": [
-            120
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
