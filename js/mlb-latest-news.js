@@ -2,6 +2,87 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Hot Stove Rumors: Arozarena, Suzuki, Morejon, Blue Jays, Orioles",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "mlb-rumors-and-2026-27-free-agent-news-november-25",
+        "url": "https://www.mlb.com/news/mlb-rumors-and-2026-27-free-agent-news-november-25",
+        "contentDate": "2026-11-27T03:03:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "rumors",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "The 16 most jaw-dropping Statcast feats of 2026",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "top-statcast-plays-of-2026",
+        "url": "https://www.mlb.com/news/top-statcast-plays-of-2026",
+        "contentDate": "2026-11-27T01:56:06.026Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "savant",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Presenting the 2026 ... All-Awardless Team!",
+        "summaryJa": "D.ボールドウィンの最新動向をMLB公式が詳報",
+        "slug": "mlb-all-awardless-team-2026",
+        "url": "https://www.mlb.com/news/mlb-all-awardless-team-2026",
+        "contentDate": "2026-11-27T01:55:37.517Z",
+        "teamIds": [],
+        "playerIds": [
+            686948,
+            646240,
+            802139,
+            672640,
+            678246,
+            665742,
+            680757,
+            673548,
+            660271,
+            800048,
+            621112
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "The SP market is moving fast. Which teams still need one, and who's out there?",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "starting-pitching-free-agent-market-update-before-thanksgiving-2026",
+        "url": "https://www.mlb.com/news/starting-pitching-free-agent-market-update-before-thanksgiving-2026",
+        "contentDate": "2026-11-27T01:50:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "rumors",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
         "headline": "From 17 to 25, here is the best prospect at each age",
         "summaryJa": "L.ヘルナンデスら注目選手の最新動向",
         "slug": "best-mlb-prospects-by-age-2026",
@@ -196,23 +277,6 @@
         ]
     },
     {
-        "headline": "The SP market is moving fast. Which teams still need one, and who's out there?",
-        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
-        "slug": "starting-pitching-free-agent-market-update-before-thanksgiving-2026",
-        "url": "https://www.mlb.com/news/starting-pitching-free-agent-market-update-before-thanksgiving-2026",
-        "contentDate": "2026-11-26T01:50:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "rumors",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB"
-        ]
-    },
-    {
         "headline": "Ohtani plans to remain 2-way player, make up for 'this year's frustration'",
         "summaryJa": "大谷 翔平（LAD）の最新動向をMLB公式が詳報",
         "slug": "shohei-ohtani-intends-to-remain-a-two-way-player",
@@ -397,23 +461,6 @@
         "sourceScopes": [
             "MLB",
             "球団公式"
-        ]
-    },
-    {
-        "headline": "Hot Stove Rumors: Arozarena, Suzuki, Morejon, Blue Jays, Orioles",
-        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
-        "slug": "mlb-rumors-and-2026-27-free-agent-news-november-25",
-        "url": "https://www.mlb.com/news/mlb-rumors-and-2026-27-free-agent-news-november-25",
-        "contentDate": "2026-11-25T22:06:33.745Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "rumors",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB"
         ]
     },
     {
@@ -631,7 +678,6 @@
             "transactions"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -668,28 +714,6 @@
         "sourceScopes": [
             "MLB",
             "球団公式"
-        ]
-    },
-    {
-        "headline": "The swing changes behind Tyrone Taylor's power surge",
-        "summaryJa": "T.テイラー（CWS）の最新動向をMLB公式が詳報",
-        "slug": "tyrone-taylor-outlook-with-white-sox",
-        "url": "https://www.mlb.com/news/tyrone-taylor-outlook-with-white-sox",
-        "contentDate": "2026-11-25T19:15:31.575Z",
-        "teamIds": [
-            145
-        ],
-        "playerIds": [
-            621438
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "player-tracking",
-            "savant"
-        ],
-        "sourceScopes": [
-            "MLB"
         ]
     },
     {
@@ -831,7 +855,8 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB"
+            "MLB",
+            "球団公式"
         ]
     },
     {
@@ -5100,29 +5125,6 @@
         ]
     },
     {
-        "headline": "Cubs add 2 pitching prospects to 40-man roster",
-        "summaryJa": "Brody McCullough（CHC）ら注目選手の最新動向",
-        "slug": "cubs-add-prospects-jaxon-wiggins-brody-mccullough-to-40-man-roster",
-        "url": "https://www.mlb.com/news/cubs-add-prospects-jaxon-wiggins-brody-mccullough-to-40-man-roster",
-        "contentDate": "2026-11-18T03:22:09.356Z",
-        "teamIds": [
-            112
-        ],
-        "playerIds": [
-            805664,
-            694393
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "mlb-top-prospects",
-            "transactions"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Rangers add pitcher Josh White off waivers before Rule 5 deadline",
         "summaryJa": "J.ホワイト（TEX）の移籍・契約に関する最新情報",
         "slug": "josh-white-claimed-on-waivers-by-rangers",
@@ -5366,31 +5368,6 @@
         "taxonomy": [
             "apple-news",
             "transactions",
-            "mlb-top-prospects"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Yankees add RHP Lagrange to 40-man roster; RHP Hampton claimed",
-        "summaryJa": "C.ハンプトン（NYY）の移籍・契約に関する最新情報",
-        "slug": "chase-hampton-claimed-by-yankees-from-orioles",
-        "url": "https://www.mlb.com/news/chase-hampton-claimed-by-yankees-from-orioles",
-        "contentDate": "2026-11-18T00:38:00Z",
-        "teamIds": [
-            147
-        ],
-        "playerIds": [
-            694633,
-            801739,
-            694805,
-            682003
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "transactions",
-            "apple-news",
             "mlb-top-prospects"
         ],
         "sourceScopes": [
@@ -5932,27 +5909,6 @@
         ]
     },
     {
-        "headline": "Seiya Suzuki declines qualifying offer from Cubs",
-        "summaryJa": "鈴木 誠也（CHC）の最新動向をMLB公式が詳報",
-        "slug": "seiya-suzuki-declines-qualifying-offer-from-cubs",
-        "url": "https://www.mlb.com/news/seiya-suzuki-declines-qualifying-offer-from-cubs",
-        "contentDate": "2026-11-17T21:54:00Z",
-        "teamIds": [
-            112
-        ],
-        "playerIds": [
-            673548
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "transactions"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Phillies protect rising prospect Rincon from Rule 5 Draft",
         "summaryJa": "B.リンカン（PHI）ら注目選手の最新動向",
         "slug": "bryan-rincon-phillies-40-man-roster-rule-5-draft2026",
@@ -6147,28 +6103,7 @@
         ]
     },
     {
-        "headline": "May leaves Brewers for free-agent deal with White Sox (source)",
-        "summaryJa": "D.メイ（MIL）の移籍・契約に関する最新情報",
-        "slug": "dustin-may-leaves-brewers-as-free-agent",
-        "url": "https://www.mlb.com/news/dustin-may-leaves-brewers-as-free-agent",
-        "contentDate": "2026-11-17T17:19:07.263Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [
-            669160
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "rumors"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Holman takes home final Fall League Pitcher of the Week honors",
+        "headline": "Mathis takes home final Fall League Hitter of the Week honors",
         "summaryJa": "Cole Mathisの最新動向をMLB公式が詳報",
         "slug": "arizona-fall-league-week-6-award-winners-2026",
         "url": "https://www.mlb.com/news/arizona-fall-league-week-6-award-winners-2026",
@@ -6659,25 +6594,6 @@
         ]
     },
     {
-        "headline": "Stearns hints how Mets may operate this offseason after GM Meetings",
-        "summaryJa": "メッツを巡る注目点をMLB公式が分析",
-        "slug": "david-stearns-discusses-mets-2026-offseason-plans",
-        "url": "https://www.mlb.com/news/david-stearns-discusses-mets-2026-offseason-plans",
-        "contentDate": "2026-11-16T14:30:00Z",
-        "teamIds": [
-            121
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "rumors"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "How Ohtani creates a roster-building puzzle for the Dodgers",
         "summaryJa": "大谷 翔平（LAD）を巡る注目点をMLB公式が分析",
         "slug": "how-ohtani-affects-dodgers-2027-roster",
@@ -6810,24 +6726,6 @@
         ]
     },
     {
-        "headline": "5 ways the Blue Jays can (internally) improve on offense in 2027",
-        "summaryJa": "ブルージェイズを巡る注目点をMLB公式が分析",
-        "slug": "how-blue-jays-can-improve-on-offense-in-2027",
-        "url": "https://www.mlb.com/news/how-blue-jays-can-improve-on-offense-in-2027",
-        "contentDate": "2026-11-15T14:31:15.473Z",
-        "teamIds": [
-            141
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "How Merrill put together huge second half in 2026",
         "summaryJa": "J.メリル（SD）を巡る注目点をMLB公式が分析",
         "slug": "jackson-merrill-breakdown-2026-season-padres",
@@ -6841,24 +6739,6 @@
         ],
         "gamePks": [],
         "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Peoria Javelinas steamroll way to record eighth Arizona Fall League championship",
-        "summaryJa": "MLBの最新情報、記録達成の最新情報",
-        "slug": "2026-arizona-fall-league-championship-game",
-        "url": "https://www.mlb.com/news/2026-arizona-fall-league-championship-game",
-        "contentDate": "2026-11-15T05:16:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "arizona-fall-league",
-            "mlb-top-prospects",
             "apple-news"
         ],
         "sourceScopes": [
@@ -6921,23 +6801,6 @@
             "arizona-fall-league",
             "mlb-top-prospects",
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Top first-time candidates to win MVP, Cy Young in 2027",
-        "summaryJa": "MLBの最新情報、勝利を呼び込む活躍",
-        "slug": "mlb-candidates-to-win-first-mvp-cy-young-2027",
-        "url": "https://www.mlb.com/news/mlb-candidates-to-win-first-mvp-cy-young-2027",
-        "contentDate": "2026-11-14T17:15:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "awards-watch"
         ],
         "sourceScopes": [
             "球団公式"
@@ -7021,28 +6884,6 @@
         ]
     },
     {
-        "headline": "Shelton's move to 1B, strong offensive AFL showing should help push toward Majors",
-        "summaryJa": "Colby Shelton（CWS）を巡る注目点をMLB公式が分析",
-        "slug": "colby-shelton-has-strong-showing-in-2026-arizona-fall-league",
-        "url": "https://www.mlb.com/news/colby-shelton-has-strong-showing-in-2026-arizona-fall-league",
-        "contentDate": "2026-11-14T14:17:21.205Z",
-        "teamIds": [
-            145
-        ],
-        "playerIds": [
-            701333
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "mlb-top-prospects",
-            "arizona-fall-league"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "'Respect 70': Maddon presents strong HOF case on Contemporary Baseball Era ballot",
         "summaryJa": "J.マッドン（TB）の最新動向をMLB公式が詳報",
         "slug": "joe-maddon-hall-of-fame-case",
@@ -7100,26 +6941,6 @@
         "gamePks": [],
         "taxonomy": [
             "transactions",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Breaking down the key pitches in Zac Thornton's arsenal",
-        "summaryJa": "Zac Thornton（NYM）の最新動向をMLB公式が詳報",
-        "slug": "mets-zac-thornton-breaks-down-pitch-arsenal",
-        "url": "https://www.mlb.com/news/mets-zac-thornton-breaks-down-pitch-arsenal",
-        "contentDate": "2026-11-13T22:13:18.264Z",
-        "teamIds": [
-            121
-        ],
-        "playerIds": [
-            804267
-        ],
-        "gamePks": [],
-        "taxonomy": [
             "apple-news"
         ],
         "sourceScopes": [
@@ -7228,24 +7049,6 @@
         ]
     },
     {
-        "headline": "Pirates were active last offseason. What can we learn from it?",
-        "summaryJa": "パイレーツの最新動向をMLB公式が詳報",
-        "slug": "looking-back-at-pirates-2025-26-offseason-moves",
-        "url": "https://www.mlb.com/news/looking-back-at-pirates-2025-26-offseason-moves",
-        "contentDate": "2026-11-13T15:52:41.614Z",
-        "teamIds": [
-            134
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "How Colorado’s depth could help DePodesta make moves this offseason",
         "summaryJa": "ロッキーズを巡る注目点をMLB公式が分析",
         "slug": "rockies-depth-could-lead-to-offseason-moves",
@@ -7326,24 +7129,6 @@
         ]
     },
     {
-        "headline": "Giants hire James Rowson as offensive coordinator",
-        "summaryJa": "ジャイアンツの最新動向をMLB公式が詳報",
-        "slug": "james-rowson-giants-offensive-coordinator",
-        "url": "https://www.mlb.com/news/james-rowson-giants-offensive-coordinator",
-        "contentDate": "2026-11-12T23:27:00Z",
-        "teamIds": [
-            137
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Relief stalwart Phillips inks 3-year deal with Braves",
         "summaryJa": "E.フィリップス（ATL）の移籍・契約に関する最新情報",
         "slug": "evan-phillips-three-year-contract-with-braves",
@@ -7398,26 +7183,6 @@
             686780,
             823787,
             699625
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Guardians eyeing rotation help as offseason ramps up",
-        "summaryJa": "F.グリフィン（CLE）の最新動向をMLB公式が詳報",
-        "slug": "guardians-want-to-add-starting-pitching-2026-27-offseason",
-        "url": "https://www.mlb.com/news/guardians-want-to-add-starting-pitching-2026-27-offseason",
-        "contentDate": "2026-11-12T12:03:21.826Z",
-        "teamIds": [
-            114
-        ],
-        "playerIds": [
-            656492
         ],
         "gamePks": [],
         "taxonomy": [
@@ -7898,29 +7663,6 @@
         ]
     },
     {
-        "headline": "New hitting coach Lawson discusses Lopez, Mack, Ramírez and more",
-        "summaryJa": "A.ラミレス（MIA）の最新動向をMLB公式が詳報",
-        "slug": "marlins-hitting-coach-dillon-lawson-talks-otto-lopez-joe-mack-agustin-ramirez",
-        "url": "https://www.mlb.com/news/marlins-hitting-coach-dillon-lawson-talks-otto-lopez-joe-mack-agustin-ramirez",
-        "contentDate": "2026-11-07T14:58:59.687Z",
-        "teamIds": [
-            146
-        ],
-        "playerIds": [
-            682663,
-            672640,
-            691788
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "offseason"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "New GM Castro, POBO Smith give glimpse into vision for A's",
         "summaryJa": "アスレチックスの最新動向をMLB公式が詳報",
         "slug": "cam-castro-introduced-as-athletics-general-manager",
@@ -7951,30 +7693,6 @@
         "gamePks": [],
         "taxonomy": [
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "What D-backs are looking for from AFL, winter ball participants",
-        "summaryJa": "Demetrio Crisantes（AZ）の最新動向をMLB公式が詳報",
-        "slug": "demetrio-crisantes-patrick-forbes-in-d-backs-arizona-fall-league",
-        "url": "https://www.mlb.com/news/demetrio-crisantes-patrick-forbes-in-d-backs-arizona-fall-league",
-        "contentDate": "2026-11-05T12:26:48.352Z",
-        "teamIds": [
-            109
-        ],
-        "playerIds": [
-            702679,
-            807957,
-            804467
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "mlb-top-prospects",
-            "arizona-fall-league"
         ],
         "sourceScopes": [
             "球団公式"
