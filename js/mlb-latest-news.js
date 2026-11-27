@@ -2,6 +2,176 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "RHP Jiménez continues comeback story, agrees to Minors deal with Rangers (source)",
+        "summaryJa": "J.ヒメネス（TEX）の移籍・契約に関する最新情報",
+        "slug": "joe-jimenez-minor-league-contract-with-rangers",
+        "url": "https://www.mlb.com/news/joe-jimenez-minor-league-contract-with-rangers",
+        "contentDate": "2026-11-27T16:47:10.321Z",
+        "teamIds": [
+            140
+        ],
+        "playerIds": [
+            641729
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "transactions",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Mets finalize Ewing's 8-year, $95 million extension",
+        "summaryJa": "A.ユーイング（NYM）の移籍・契約に関する最新情報",
+        "slug": "a-j-ewing-contract-extension-mets",
+        "url": "https://www.mlb.com/news/a-j-ewing-contract-extension-mets",
+        "contentDate": "2026-11-27T15:16:00Z",
+        "teamIds": [
+            121
+        ],
+        "playerIds": [
+            805999
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "transactions"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Root of success: Dodgers prospect thriving with revamped arsenal",
+        "summaryJa": "Zach Root（LAD）ら注目選手の最新動向",
+        "slug": "zach-root-dodgers-prospect-development-qa",
+        "url": "https://www.mlb.com/news/zach-root-dodgers-prospect-development-qa",
+        "contentDate": "2026-11-27T14:58:48.529Z",
+        "teamIds": [
+            119
+        ],
+        "playerIds": [
+            702539
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "mlb-top-prospects"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "Feeling healthy, free agent Woodruff sets sights on pitching in '27",
+        "summaryJa": "B.ウッドラフ（MIL）の最新動向をMLB公式が詳報",
+        "slug": "brandon-woodruff-plans-to-pitch-in-2027",
+        "url": "https://www.mlb.com/news/brandon-woodruff-plans-to-pitch-in-2027",
+        "contentDate": "2026-11-27T14:54:52.188Z",
+        "teamIds": [
+            158
+        ],
+        "playerIds": [
+            605540
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Shaw’s ’26 outfield trial may open path back to Cubs’ starting lineup",
+        "summaryJa": "M.ショー（CHC）の最新動向をMLB公式が詳報",
+        "slug": "matt-shaw-cubs-outfield-option-2027",
+        "url": "https://www.mlb.com/news/matt-shaw-cubs-outfield-option-2027",
+        "contentDate": "2026-11-27T14:47:38.072Z",
+        "teamIds": [
+            112
+        ],
+        "playerIds": [
+            807713
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "defense",
+            "wow"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Which righty starter could balance Red Sox's rotation?",
+        "summaryJa": "レッドソックスの最新動向をMLB公式が詳報",
+        "slug": "red-sox-options-for-right-handed-starters-on-free-agent-market",
+        "url": "https://www.mlb.com/news/red-sox-options-for-right-handed-starters-on-free-agent-market",
+        "contentDate": "2026-11-27T14:34:33.189Z",
+        "teamIds": [
+            111
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "rumors"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Which free-agent starters are on Braves' wish list?",
+        "summaryJa": "T.マリー（ATL）の最新動向をMLB公式が詳報",
+        "slug": "braves-free-agent-starting-pitcher-options-ahead-of-2027",
+        "url": "https://www.mlb.com/news/braves-free-agent-starting-pitcher-options-ahead-of-2027",
+        "contentDate": "2026-11-27T14:28:44.574Z",
+        "teamIds": [
+            144
+        ],
+        "playerIds": [
+            641816
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "rumors"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Arms aplenty, but questions remain: Where Yankees' roster stands",
+        "summaryJa": "ヤンキースの最新動向をMLB公式が詳報",
+        "slug": "yankees-2027-roster-outlook-offseason-needs",
+        "url": "https://www.mlb.com/news/yankees-2027-roster-outlook-offseason-needs",
+        "contentDate": "2026-11-27T14:18:59.612Z",
+        "teamIds": [
+            147
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Hot Stove Rumors: Arozarena, Suzuki, Morejon, Blue Jays, Orioles",
         "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
         "slug": "mlb-rumors-and-2026-27-free-agent-news-november-25",
@@ -167,7 +337,6 @@
             "transactions"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -399,7 +568,6 @@
             "transactions"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -417,7 +585,6 @@
             "mlb-top-prospects"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -519,7 +686,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -574,7 +740,6 @@
             "rumors"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -597,7 +762,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -682,22 +846,6 @@
         ]
     },
     {
-        "headline": "MLB files lawsuit with goal of preserving collective bargaining process",
-        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
-        "slug": "mlb-files-lawsuit-with-goal-of-preserving-collective-bargaining-process",
-        "url": "https://www.mlb.com/news/mlb-files-lawsuit-with-goal-of-preserving-collective-bargaining-process",
-        "contentDate": "2026-11-25T19:45:36.589Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB"
-        ]
-    },
-    {
         "headline": "One big splash down, but Blue Jays still need to be bold",
         "summaryJa": "ブルージェイズの移籍・契約に関する最新情報",
         "slug": "blue-jays-offseason-priorities-after-kaima-taira-deal",
@@ -712,7 +860,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -855,7 +1002,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1198,6 +1344,32 @@
             "send-to-milb"
         ],
         "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "The 7 biggest contracts in Mets history",
+        "summaryJa": "J.デグローム（NYM）の移籍・契約に関する最新情報",
+        "slug": "the-biggest-contracts-in-mets-history",
+        "url": "https://www.mlb.com/news/the-biggest-contracts-in-mets-history",
+        "contentDate": "2026-11-25T00:09:00Z",
+        "teamIds": [
+            121
+        ],
+        "playerIds": [
+            594798,
+            596019,
+            453286,
+            665742,
+            669373,
+            666182
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "evergreen"
+        ],
+        "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
@@ -2655,27 +2827,6 @@
             "apple-news",
             "player-tracking",
             "savant"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Ewing agrees to 8-year, $95 million extension with Mets (source)",
-        "summaryJa": "A.ユーイング（NYM）の移籍・契約に関する最新情報",
-        "slug": "a-j-ewing-contract-extension-mets",
-        "url": "https://www.mlb.com/news/a-j-ewing-contract-extension-mets",
-        "contentDate": "2026-11-21T19:08:00Z",
-        "teamIds": [
-            121
-        ],
-        "playerIds": [
-            805999
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "transactions"
         ],
         "sourceScopes": [
             "球団公式"
@@ -4782,27 +4933,6 @@
         ]
     },
     {
-        "headline": "Dwight Schrute from 'The Office' and PCA go way back ... and the pics are adorable",
-        "summaryJa": "P.クローアームストロング（CHC）の最新動向をMLB公式が詳報",
-        "slug": "pete-crow-armstrong-and-rainn-wilson-have-a-history",
-        "url": "https://www.mlb.com/news/pete-crow-armstrong-and-rainn-wilson-have-a-history",
-        "contentDate": "2026-11-18T18:06:31.965Z",
-        "teamIds": [
-            112
-        ],
-        "playerIds": [
-            691718
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "offbeat"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "World Series-winning skipper hitting the road for 'The Pat Murphy Tour'",
         "summaryJa": "ブルワーズの最新動向をMLB公式が詳報",
         "slug": "pat-murphy-touring-wisconsin-after-winning-world-series",
@@ -4815,28 +4945,6 @@
         "gamePks": [],
         "taxonomy": [
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Brewers add No. 10 prospect Williams, 5 others to 40-man roster",
-        "summaryJa": "J.ウィリアムズ（MIL）ら注目選手の最新動向",
-        "slug": "brewers-add-prospect-jett-williams-to-40-man-roster",
-        "url": "https://www.mlb.com/news/brewers-add-prospect-jett-williams-to-40-man-roster",
-        "contentDate": "2026-11-18T17:41:00Z",
-        "teamIds": [
-            158
-        ],
-        "playerIds": [
-            702518
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "mlb-top-prospects",
-            "transactions"
         ],
         "sourceScopes": [
             "球団公式"
@@ -6377,28 +6485,6 @@
         ]
     },
     {
-        "headline": "Lester lands on HOF ballot with interesting choice for voters",
-        "summaryJa": "J.レスター（BOS）の最新動向をMLB公式が詳報",
-        "slug": "jon-lester-case-for-baseball-hall-of-fame",
-        "url": "https://www.mlb.com/news/jon-lester-case-for-baseball-hall-of-fame",
-        "contentDate": "2026-11-16T17:06:29.431Z",
-        "teamIds": [
-            111,
-            112
-        ],
-        "playerIds": [
-            452657
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "baseball-hall-of-fame"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Newcomer Ervin Santana joins Hunter, K-Rod on ’27 HOF ballot",
         "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
         "slug": "baseball-hall-of-fame-ballot-2027",
@@ -7620,24 +7706,6 @@
             "arizona-fall-league",
             "mlb-top-prospects",
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Breaking down the Fall Stars Game participants by organization",
-        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
-        "slug": "2026-arizona-fall-league-fall-stars-by-organization",
-        "url": "https://www.mlb.com/news/2026-arizona-fall-league-fall-stars-by-organization",
-        "contentDate": "2026-11-08T05:14:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "mlb-top-prospects",
-            "apple-news",
-            "arizona-fall-league"
         ],
         "sourceScopes": [
             "球団公式"
