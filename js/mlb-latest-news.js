@@ -2,6 +2,64 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Which righty starter could balance Red Sox's rotation?",
+        "summaryJa": "レッドソックスの最新動向をMLB公式が詳報",
+        "slug": "red-sox-options-for-right-handed-starters-on-free-agent-market",
+        "url": "https://www.mlb.com/news/red-sox-options-for-right-handed-starters-on-free-agent-market",
+        "contentDate": "2026-11-28T17:11:00Z",
+        "teamIds": [
+            111
+        ],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "rumors"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Mahle staying with Braves on 2-year, $40 million deal",
+        "summaryJa": "T.マリー（ATL）の移籍・契約に関する最新情報",
+        "slug": "tyler-mahle-braves-contract",
+        "url": "https://www.mlb.com/news/tyler-mahle-braves-contract",
+        "contentDate": "2026-11-28T17:07:29.989Z",
+        "teamIds": [
+            144
+        ],
+        "playerIds": [
+            641816
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "transactions"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "The latest MLB rumors and free-agent news",
+        "summaryJa": "MLBの最新情報の移籍・契約に関する最新情報",
+        "slug": "mlb-rumors-trades-and-signings",
+        "url": "https://www.mlb.com/news/mlb-rumors-trades-and-signings",
+        "contentDate": "2026-11-28T14:15:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "rumors"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
         "headline": "Active Cubs agree on deal with lefty reliever Yarbrough (source)",
         "summaryJa": "R.ヤ―ブロウ（CHC）の移籍・契約に関する最新情報",
         "slug": "ryan-yarbrough-cubs-contract",
@@ -652,26 +710,6 @@
         ]
     },
     {
-        "headline": "Which righty starter could balance Red Sox's rotation?",
-        "summaryJa": "レッドソックスの最新動向をMLB公式が詳報",
-        "slug": "red-sox-options-for-right-handed-starters-on-free-agent-market",
-        "url": "https://www.mlb.com/news/red-sox-options-for-right-handed-starters-on-free-agent-market",
-        "contentDate": "2026-11-27T14:34:33.189Z",
-        "teamIds": [
-            111
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "rumors"
-        ],
-        "sourceScopes": [
-            "MLB",
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Which free-agent starters are on Braves' wish list?",
         "summaryJa": "T.マリー（ATL）の最新動向をMLB公式が詳報",
         "slug": "braves-free-agent-starting-pitcher-options-ahead-of-2027",
@@ -689,8 +727,7 @@
             "rumors"
         ],
         "sourceScopes": [
-            "MLB",
-            "球団公式"
+            "MLB"
         ]
     },
     {
@@ -977,7 +1014,6 @@
             "transactions"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -1037,22 +1073,6 @@
         ],
         "sourceScopes": [
             "球団公式"
-        ]
-    },
-    {
-        "headline": "The latest MLB rumors and free-agent news",
-        "summaryJa": "MLBの最新情報の移籍・契約に関する最新情報",
-        "slug": "mlb-rumors-trades-and-signings",
-        "url": "https://www.mlb.com/news/mlb-rumors-trades-and-signings",
-        "contentDate": "2026-11-25T22:03:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "rumors"
-        ],
-        "sourceScopes": [
-            "MLB"
         ]
     },
     {
