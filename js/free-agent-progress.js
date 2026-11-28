@@ -58,10 +58,19 @@
         664761: Object.freeze({
                 "agreement": {
                     "teamId": 118,
-                    "date": "2026-11-25",
+                    "date": "2026-11-27",
                     "years": 2,
                     "tenThousands": 2000,
                     "url": "https://www.mlb.com/news/alec-bohm-royals-contract",
+                    "reported": true,
+                    "source": "MLB/球団公式記事"
+                }
+            }),
+        665862: Object.freeze({
+                "agreement": {
+                    "teamId": 141,
+                    "date": "2026-11-27",
+                    "url": "https://www.mlb.com/news/jazz-chisholm-blue-jays-contract",
                     "reported": true,
                     "source": "MLB/球団公式記事"
                 }
@@ -117,7 +126,7 @@
         673490: Object.freeze({
                 "agreement": {
                     "teamId": 116,
-                    "date": "2026-11-24",
+                    "date": "2026-11-27",
                     "url": "https://www.mlb.com/news/ha-seong-kim-tigers-contract",
                     "reported": true,
                     "source": "MLB/球団公式記事"
