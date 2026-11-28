@@ -2,6 +2,166 @@
 (function (global) {
     global.MLB_LATEST_NEWS = Object.freeze([
     {
+        "headline": "Active Cubs agree on deal with lefty reliever Yarbrough (source)",
+        "summaryJa": "R.ヤ―ブロウ（CHC）の移籍・契約に関する最新情報",
+        "slug": "ryan-yarbrough-cubs-contract",
+        "url": "https://www.mlb.com/news/ryan-yarbrough-cubs-contract",
+        "contentDate": "2026-11-28T04:35:00Z",
+        "teamIds": [
+            112
+        ],
+        "playerIds": [
+            642232
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "transactions"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Itoh, last of Big 3 from NPB, reaches deal with Cubs (source)",
+        "summaryJa": "Hiromi Itoh（CHC）の移籍・契約に関する最新情報",
+        "slug": "hiromi-itoh-deal-cubs",
+        "url": "https://www.mlb.com/news/hiromi-itoh-deal-cubs",
+        "contentDate": "2026-11-28T03:46:00Z",
+        "teamIds": [
+            112
+        ],
+        "playerIds": [
+            808955
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "transactions"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Casas makes GRAND long-awaited return to game action with LIDOM slam",
+        "summaryJa": "T.カサス（BOS）、復帰へ向けた最新状況",
+        "slug": "triston-casas-hits-grand-slam-in-dominican-winter-league",
+        "url": "https://www.mlb.com/news/triston-casas-hits-grand-slam-in-dominican-winter-league",
+        "contentDate": "2026-11-28T03:33:12.083Z",
+        "teamIds": [
+            111
+        ],
+        "playerIds": [
+            671213
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "winter-leagues",
+            "rumors"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Hot Stove Rumors: Padres, Cubs, Imanaga, Bieber, Cardinals",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "mlb-rumors-and-2026-27-free-agent-news-november-27",
+        "url": "https://www.mlb.com/news/mlb-rumors-and-2026-27-free-agent-news-november-27",
+        "contentDate": "2026-11-28T03:13:00Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "rumors",
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "Each team's best single-game performance of '26",
+        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
+        "slug": "each-team-s-best-single-game-performance-in-2026",
+        "url": "https://www.mlb.com/news/each-team-s-best-single-game-performance-in-2026",
+        "contentDate": "2026-11-28T03:06:41.634Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "These milestones made 2026 a season to remember",
+        "summaryJa": "MLBの最新情報、記録達成の最新情報",
+        "slug": "mlb-milestones-2026",
+        "url": "https://www.mlb.com/news/mlb-milestones-2026",
+        "contentDate": "2026-11-28T02:38:52.654Z",
+        "teamIds": [],
+        "playerIds": [],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "milestone"
+        ],
+        "sourceScopes": [
+            "MLB"
+        ]
+    },
+    {
+        "headline": "Here's how Chisholm can find the sweet spot in Toronto",
+        "summaryJa": "J.チゾム Jr.（TOR）を巡る注目点をMLB公式が分析",
+        "slug": "how-jazz-chisholm-jr-impacts-blue-jays-2027",
+        "url": "https://www.mlb.com/news/how-jazz-chisholm-jr-impacts-blue-jays-2027",
+        "contentDate": "2026-11-28T01:09:59.644Z",
+        "teamIds": [
+            141
+        ],
+        "playerIds": [
+            665862
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "transactions"
+        ],
+        "sourceScopes": [
+            "MLB",
+            "球団公式"
+        ]
+    },
+    {
+        "headline": "Twins sign righty reliever Ginkel to 2-year deal",
+        "summaryJa": "K.ギンクル（MIN）の移籍・契約に関する最新情報",
+        "slug": "kevin-ginkel-twins-deal",
+        "url": "https://www.mlb.com/news/kevin-ginkel-twins-deal",
+        "contentDate": "2026-11-28T01:00:00Z",
+        "teamIds": [
+            142
+        ],
+        "playerIds": [
+            656464
+        ],
+        "gamePks": [],
+        "taxonomy": [
+            "apple-news",
+            "transactions"
+        ],
+        "sourceScopes": [
+            "球団公式"
+        ]
+    },
+    {
         "headline": "Utley has been trending toward HOF election. Here's why he belongs",
         "summaryJa": "C.アトリーを巡る注目点をMLB公式が分析",
         "slug": "chase-utley-case-for-2027-hall-of-fame-class",
@@ -17,28 +177,7 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Looking at Cubs' roster needs after Sato, Rogers deals",
-        "summaryJa": "Teruaki Sato（CHC）の移籍・契約に関する最新情報",
-        "slug": "cubs-2027-roster-after-deals-with-teruaki-sato-trevor-rogers",
-        "url": "https://www.mlb.com/news/cubs-2027-roster-after-deals-with-teruaki-sato-trevor-rogers",
-        "contentDate": "2026-11-28T00:08:00Z",
-        "teamIds": [
-            112
-        ],
-        "playerIds": [
-            831664,
-            669432
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "transactions"
-        ],
-        "sourceScopes": [
+            "MLB",
             "球団公式"
         ]
     },
@@ -60,7 +199,6 @@
             "transactions"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -169,23 +307,6 @@
         ]
     },
     {
-        "headline": "Hot Stove Rumors: Padres, Cubs, Imanaga, Bieber, Cardinals",
-        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
-        "slug": "mlb-rumors-and-2026-27-free-agent-news-november-27",
-        "url": "https://www.mlb.com/news/mlb-rumors-and-2026-27-free-agent-news-november-27",
-        "contentDate": "2026-11-27T21:45:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "rumors",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB"
-        ]
-    },
-    {
         "headline": "Pirates Insider: What led to Friday’s trade and what could be next",
         "summaryJa": "パイレーツの移籍・契約に関する最新情報",
         "slug": "pirates-insider-what-led-to-friday-s-tawa-davis-trade-and-what-could-be-next",
@@ -242,7 +363,6 @@
             "transactions"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -292,7 +412,7 @@
         ]
     },
     {
-        "headline": "Blue Jays bring on Japanese ERA leader Taira on five-year deal",
+        "headline": "Blue Jays bring in Japanese ERA leader Taira on five-year deal",
         "summaryJa": "ブルージェイズの移籍・契約に関する最新情報",
         "slug": "blue-jays-kaima-taira-free-agent-contract",
         "url": "https://www.mlb.com/news/blue-jays-kaima-taira-free-agent-contract",
@@ -399,7 +519,6 @@
             "transactions"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -594,23 +713,6 @@
         ]
     },
     {
-        "headline": "Hot Stove Rumors: Arozarena, Suzuki, Morejon, Blue Jays, Orioles",
-        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
-        "slug": "mlb-rumors-and-2026-27-free-agent-news-november-25",
-        "url": "https://www.mlb.com/news/mlb-rumors-and-2026-27-free-agent-news-november-25",
-        "contentDate": "2026-11-27T03:03:00Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "rumors",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "MLB"
-        ]
-    },
-    {
         "headline": "The 16 most jaw-dropping Statcast feats of 2026",
         "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
         "slug": "top-statcast-plays-of-2026",
@@ -675,33 +777,6 @@
         ]
     },
     {
-        "headline": "From 17 to 25, here is the best prospect at each age",
-        "summaryJa": "L.ヘルナンデスら注目選手の最新動向",
-        "slug": "best-mlb-prospects-by-age-2026",
-        "url": "https://www.mlb.com/news/best-mlb-prospects-by-age-2026",
-        "contentDate": "2026-11-26T21:24:42.651Z",
-        "teamIds": [],
-        "playerIds": [
-            836582,
-            816113,
-            815908,
-            806964,
-            808265,
-            807739,
-            701527,
-            815589,
-            689196
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "mlb-top-prospects"
-        ],
-        "sourceScopes": [
-            "MLB"
-        ]
-    },
-    {
         "headline": "Loáisiga reunites with Yankees on 2-year deal",
         "summaryJa": "J.ロアイシガ（NYY）の移籍・契約に関する最新情報",
         "slug": "jonathan-loaisiga-yankees-contract-2026",
@@ -720,25 +795,6 @@
         ],
         "sourceScopes": [
             "球団公式"
-        ]
-    },
-    {
-        "headline": "A Thanksgiving dinner made entirely of Minor League logos? Dig in!",
-        "summaryJa": "MLBの最新情報の最新動向をMLB公式が詳報",
-        "slug": "thanksgiving-dinner-made-of-minor-league-logos",
-        "url": "https://www.mlb.com/news/thanksgiving-dinner-made-of-minor-league-logos",
-        "contentDate": "2026-11-26T17:24:03.578Z",
-        "teamIds": [],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "minor-league-baseball",
-            "offbeat",
-            "apple-news",
-            "baseball-traveler"
-        ],
-        "sourceScopes": [
-            "MLB"
         ]
     },
     {
@@ -797,27 +853,6 @@
         ],
         "sourceScopes": [
             "MLB",
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Twins add righty reliever Ginkel on 2-year deal (sources)",
-        "summaryJa": "K.ギンクル（MIN）の移籍・契約に関する最新情報",
-        "slug": "kevin-ginkel-twins-deal",
-        "url": "https://www.mlb.com/news/kevin-ginkel-twins-deal",
-        "contentDate": "2026-11-26T04:27:00Z",
-        "teamIds": [
-            142
-        ],
-        "playerIds": [
-            656464
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "transactions"
-        ],
-        "sourceScopes": [
             "球団公式"
         ]
     },
@@ -882,7 +917,6 @@
             "apple-news"
         ],
         "sourceScopes": [
-            "MLB",
             "球団公式"
         ]
     },
@@ -4280,27 +4314,6 @@
         ]
     },
     {
-        "headline": "Cubs continue building pitching depth by adding McDermott",
-        "summaryJa": "C.マクダーモット（CHC）の移籍・契約に関する最新情報",
-        "slug": "cubs-claim-chayce-mcdermott-off-waivers",
-        "url": "https://www.mlb.com/news/cubs-claim-chayce-mcdermott-off-waivers",
-        "contentDate": "2026-11-19T23:06:37.892Z",
-        "teamIds": [
-            112
-        ],
-        "playerIds": [
-            694646
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "transactions"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Latest Rays injuries & transactions",
         "summaryJa": "レイズの負傷状況をMLB公式が詳報",
         "slug": "rays-injuries-and-roster-moves",
@@ -4315,26 +4328,6 @@
             "injury",
             "transactions",
             "exclude-from-personalization"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Cubs' goal for Cabrera is clear: 'We have to get more out of him'",
-        "summaryJa": "E.カブレーラ（CHC）の最新動向をMLB公式が詳報",
-        "slug": "cubs-discuss-edward-cabrera-2027-rotation",
-        "url": "https://www.mlb.com/news/cubs-discuss-edward-cabrera-2027-rotation",
-        "contentDate": "2026-11-19T22:08:43.149Z",
-        "teamIds": [
-            112
-        ],
-        "playerIds": [
-            665795
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
@@ -5375,7 +5368,7 @@
         ]
     },
     {
-        "headline": "1B Anderson, new addition Huggins make 2026 All-Arizona Fall League Team",
+        "headline": "RHP Holman makes 2026 All-Arizona Fall League Team",
         "summaryJa": "Jack O'Dowdの最新動向をMLB公式が詳報",
         "slug": "all-arizona-fall-league-team-2026",
         "url": "https://www.mlb.com/news/all-arizona-fall-league-team-2026",
@@ -5398,30 +5391,6 @@
         "taxonomy": [
             "mlb-top-prospects",
             "arizona-fall-league"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Vladdy gets traded -- in  Dominican Winter League",
-        "summaryJa": "V.ゲレーロ Jr.（TOR）の移籍・契約に関する最新情報",
-        "slug": "vladimir-guerrero-jr-dominican-winter-league-trade",
-        "url": "https://www.mlb.com/news/vladimir-guerrero-jr-dominican-winter-league-trade",
-        "contentDate": "2026-11-18T02:52:08.103Z",
-        "teamIds": [
-            141,
-            805
-        ],
-        "playerIds": [
-            665489
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "winter-leagues",
-            "dominican-league",
-            "dominican-republic"
         ],
         "sourceScopes": [
             "球団公式"
@@ -5988,27 +5957,6 @@
         ]
     },
     {
-        "headline": "Bednar returning to Yankees after accepting qualifying offer",
-        "summaryJa": "D.べドナー（NYY）、復帰へ向けた最新状況",
-        "slug": "david-bednar-accepts-yankees-qualifying-offer",
-        "url": "https://www.mlb.com/news/david-bednar-accepts-yankees-qualifying-offer",
-        "contentDate": "2026-11-17T22:54:00Z",
-        "teamIds": [
-            147
-        ],
-        "playerIds": [
-            670280
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "transactions",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Red Sox introduce long-coveted free-agent prize Bauers",
         "summaryJa": "J.バウアーズ（BOS）の最新動向をMLB公式が詳報",
         "slug": "red-sox-introduce-jake-bauers-in-press-conference",
@@ -6174,26 +6122,6 @@
         "taxonomy": [
             "apple-news",
             "transactions"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Rogers rejects O's qualifying offer, remains free agent",
-        "summaryJa": "T.ロジャース（BAL）の最新動向をMLB公式が詳報",
-        "slug": "trevor-rogers-rejects-orioles-qualifying-offer-remains-free-agent",
-        "url": "https://www.mlb.com/news/trevor-rogers-rejects-orioles-qualifying-offer-remains-free-agent",
-        "contentDate": "2026-11-17T21:16:44.419Z",
-        "teamIds": [
-            110
-        ],
-        "playerIds": [
-            669432
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
@@ -6417,24 +6345,6 @@
         ]
     },
     {
-        "headline": "Outfielder, lefty reliever on Phillies' shopping list this offseason",
-        "summaryJa": "フィリーズの最新動向をMLB公式が詳報",
-        "slug": "phillies-to-shop-for-outfielder-lefty-reliever-in-2026-offseason",
-        "url": "https://www.mlb.com/news/phillies-to-shop-for-outfielder-lefty-reliever-in-2026-offseason",
-        "contentDate": "2026-11-17T14:45:00Z",
-        "teamIds": [
-            143
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "After falling just short twice, will Piniella be elected to the Hall?",
         "summaryJa": "L.ピネラ（CIN）の最新動向をMLB公式が詳報",
         "slug": "lou-piniella-baseball-hall-of-fame-case",
@@ -6518,46 +6428,6 @@
             "arizona-fall-league",
             "mlb-top-prospects",
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Young, Nationals finalize 4-year extension",
-        "summaryJa": "J.ヤング（WSH）の移籍・契約に関する最新情報",
-        "slug": "jacob-young-contract-extension-nationals",
-        "url": "https://www.mlb.com/news/jacob-young-contract-extension-nationals",
-        "contentDate": "2026-11-16T19:45:00Z",
-        "teamIds": [
-            120
-        ],
-        "playerIds": [
-            696285
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "transactions"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Why Wright's Hall of Fame case deserves a closer look",
-        "summaryJa": "D.ライトを巡る注目点をMLB公式が分析",
-        "slug": "david-wright-case-for-baseball-hall-of-fame",
-        "url": "https://www.mlb.com/news/david-wright-case-for-baseball-hall-of-fame",
-        "contentDate": "2026-11-16T17:16:16.3Z",
-        "teamIds": [],
-        "playerIds": [
-            431151
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "baseball-hall-of-fame"
         ],
         "sourceScopes": [
             "球団公式"
@@ -6661,45 +6531,6 @@
         ]
     },
     {
-        "headline": "Here's the latest on the players Toronto could look to acquire",
-        "summaryJa": "ブルージェイズの移籍・契約に関する最新情報",
-        "slug": "blue-jays-options-free-agency-trade-market",
-        "url": "https://www.mlb.com/news/blue-jays-options-free-agency-trade-market",
-        "contentDate": "2026-11-16T15:02:45.511Z",
-        "teamIds": [
-            141
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "rumors"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Carpenter eyeing a bounceback campaign in 2027",
-        "summaryJa": "K.カーペンター（DET）の最新動向をMLB公式が詳報",
-        "slug": "kerry-carpenter-eyeing-bounceback-season-in-2027",
-        "url": "https://www.mlb.com/news/kerry-carpenter-eyeing-bounceback-season-in-2027",
-        "contentDate": "2026-11-16T14:49:05.43Z",
-        "teamIds": [
-            116
-        ],
-        "playerIds": [
-            681481
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "3 Rangers takeaways from the GM Meetings",
         "summaryJa": "レンジャーズの最新動向をMLB公式が詳報",
         "slug": "rangers-takeaways-from-2026-general-managers-meetings",
@@ -6773,56 +6604,6 @@
         ],
         "gamePks": [],
         "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "How Ohtani creates a roster-building puzzle for the Dodgers",
-        "summaryJa": "大谷 翔平（LAD）を巡る注目点をMLB公式が分析",
-        "slug": "how-ohtani-affects-dodgers-2027-roster",
-        "url": "https://www.mlb.com/news/how-ohtani-affects-dodgers-2027-roster",
-        "contentDate": "2026-11-16T14:12:00Z",
-        "teamIds": [
-            119
-        ],
-        "playerIds": [
-            660271,
-            800543,
-            518692,
-            571970
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "savant",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "RHP Mendez among Fall League's Week 6 top performers",
-        "summaryJa": "Owen Careyの最新動向をMLB公式が詳報",
-        "slug": "arizona-fall-league-top-performers-week-6-2026",
-        "url": "https://www.mlb.com/news/arizona-fall-league-top-performers-week-6-2026",
-        "contentDate": "2026-11-16T00:54:00Z",
-        "teamIds": [],
-        "playerIds": [
-            826928,
-            813664,
-            695705,
-            695573,
-            700280,
-            807276,
-            694345
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "arizona-fall-league",
-            "mlb-top-prospects",
             "apple-news"
         ],
         "sourceScopes": [
@@ -6906,26 +6687,6 @@
             "player-tracking",
             "apple-news",
             "rumors"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "How Merrill put together huge second half in 2026",
-        "summaryJa": "J.メリル（SD）を巡る注目点をMLB公式が分析",
-        "slug": "jackson-merrill-breakdown-2026-season-padres",
-        "url": "https://www.mlb.com/news/jackson-merrill-breakdown-2026-season-padres",
-        "contentDate": "2026-11-15T14:11:39.466Z",
-        "teamIds": [
-            135
-        ],
-        "playerIds": [
-            701538
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
         ],
         "sourceScopes": [
             "球団公式"
@@ -7064,28 +6825,6 @@
         "taxonomy": [
             "apple-news",
             "arizona-fall-league"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "'Respect 70': Maddon presents strong HOF case on Contemporary Baseball Era ballot",
-        "summaryJa": "J.マッドン（TB）の最新動向をMLB公式が詳報",
-        "slug": "joe-maddon-hall-of-fame-case",
-        "url": "https://www.mlb.com/news/joe-maddon-hall-of-fame-case",
-        "contentDate": "2026-11-14T14:15:12.152Z",
-        "teamIds": [
-            139,
-            112
-        ],
-        "playerIds": [
-            427309
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "baseball-hall-of-fame"
         ],
         "sourceScopes": [
             "球団公式"
@@ -7361,48 +7100,6 @@
         ]
     },
     {
-        "headline": "Alvarez adds prestigious Hank Aaron Award to trophy case",
-        "summaryJa": "Y.アルバレス、勝利を呼び込む活躍",
-        "slug": "yordan-alvarez-pete-crow-armstrong-win-2026-hank-aaron-awards",
-        "url": "https://www.mlb.com/news/yordan-alvarez-pete-crow-armstrong-win-2026-hank-aaron-awards",
-        "contentDate": "2026-11-12T04:14:45.623Z",
-        "teamIds": [],
-        "playerIds": [
-            670541,
-            691718
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "hank-aaron-award",
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Sale named to All-MLB First Team for 2nd time",
-        "summaryJa": "C.セール（ATL）、記録達成の最新情報",
-        "slug": "chris-sale-2026-all-mlb",
-        "url": "https://www.mlb.com/news/chris-sale-2026-all-mlb",
-        "contentDate": "2026-11-12T04:07:29.878Z",
-        "teamIds": [
-            144
-        ],
-        "playerIds": [
-            519242
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "all-mlb-team",
-            "awards-watch"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Batting champ Moreno adds All-MLB First Team honors to résumé",
         "summaryJa": "G.モレーノ（AZ）の最新動向をMLB公式が詳報",
         "slug": "gabriel-moreno-2026-all-mlb",
@@ -7413,27 +7110,6 @@
         ],
         "playerIds": [
             672515
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "all-mlb-team"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Walker earns All-MLB honors after long-awaited big league breakout",
-        "summaryJa": "J.ウォーカー（STL）の最新動向をMLB公式が詳報",
-        "slug": "jordan-walker-2026-all-mlb",
-        "url": "https://www.mlb.com/news/jordan-walker-2026-all-mlb",
-        "contentDate": "2026-11-12T04:06:44.102Z",
-        "teamIds": [
-            138
-        ],
-        "playerIds": [
-            691023
         ],
         "gamePks": [],
         "taxonomy": [
@@ -7624,26 +7300,6 @@
         ]
     },
     {
-        "headline": "McCarthy's value could be key to Rockies' pursuit of pitching",
-        "summaryJa": "J.マカーシー（COL）の最新動向をMLB公式が詳報",
-        "slug": "jake-mccarthy-key-to-rockies-2026-2027-offseason",
-        "url": "https://www.mlb.com/news/jake-mccarthy-key-to-rockies-2026-2027-offseason",
-        "contentDate": "2026-11-11T03:00:38.746Z",
-        "teamIds": [
-            115
-        ],
-        "playerIds": [
-            664983
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Mozeliak happy to assist Angels' new ownership in GM search, offseason",
         "summaryJa": "エンゼルスの最新動向をMLB公式が詳報",
         "slug": "john-mozeliak-talks-angels-new-ownership-plans-at-gm-meetings",
@@ -7718,24 +7374,6 @@
         ]
     },
     {
-        "headline": "Q&A with D-backs president Hall on 2026 finish, future priorities",
-        "summaryJa": "ダイヤモンドバックスの最新動向をMLB公式が詳報",
-        "slug": "d-backs-president-ceo-derrick-hall-discusses-2026-season-offseason",
-        "url": "https://www.mlb.com/news/d-backs-president-ceo-derrick-hall-discusses-2026-season-offseason",
-        "contentDate": "2026-11-09T15:23:31.242Z",
-        "teamIds": [
-            109
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "How Rangers' roster looks heading into GM Meetings",
         "summaryJa": "レンジャーズを巡る注目点をMLB公式が分析",
         "slug": "chris-young-discusses-rangers-offseason-needs-ahead-of-gm-meetings",
@@ -7766,25 +7404,6 @@
             "arizona-fall-league",
             "mlb-top-prospects",
             "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Where does Angels' roster stand entering offseason?",
-        "summaryJa": "エンゼルスの最新動向をMLB公式が詳報",
-        "slug": "where-angels-roster-stands-entering-offseason",
-        "url": "https://www.mlb.com/news/where-angels-roster-stands-entering-offseason",
-        "contentDate": "2026-11-07T16:05:00Z",
-        "teamIds": [
-            108
-        ],
-        "playerIds": [],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "offseason"
         ],
         "sourceScopes": [
             "球団公式"
@@ -7865,28 +7484,6 @@
         ]
     },
     {
-        "headline": "After standout year, No. 7 prospect Taylor could factor into A's '27 plans",
-        "summaryJa": "Devin Taylor（ATH）ら注目選手の最新動向",
-        "slug": "devin-taylor-primed-to-take-big-step-in-2027-after-strong-season",
-        "url": "https://www.mlb.com/news/devin-taylor-primed-to-take-big-step-in-2027-after-strong-season",
-        "contentDate": "2026-11-03T14:21:38.704Z",
-        "teamIds": [
-            133
-        ],
-        "playerIds": [
-            805127
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "apple-news",
-            "minor-league-baseball",
-            "mlb-top-prospects"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
         "headline": "Rangers shake up front office, coaching staff ahead of 2027",
         "summaryJa": "レンジャーズの最新動向をMLB公式が詳報",
         "slug": "rangers-announce-staff-changes-for-2027-season",
@@ -7898,27 +7495,6 @@
         "playerIds": [],
         "gamePks": [],
         "taxonomy": [
-            "apple-news"
-        ],
-        "sourceScopes": [
-            "球団公式"
-        ]
-    },
-    {
-        "headline": "Carter undergoes hip surgery, will likely miss start of '27 season",
-        "summaryJa": "E.カーター（TEX）の最新動向をMLB公式が詳報",
-        "slug": "rangers-outfielder-evan-carter-undergoes-hip-surgery",
-        "url": "https://www.mlb.com/news/rangers-outfielder-evan-carter-undergoes-hip-surgery",
-        "contentDate": "2026-11-02T21:37:59.932Z",
-        "teamIds": [
-            140
-        ],
-        "playerIds": [
-            694497
-        ],
-        "gamePks": [],
-        "taxonomy": [
-            "injury",
             "apple-news"
         ],
         "sourceScopes": [
